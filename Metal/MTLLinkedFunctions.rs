@@ -29,14 +29,14 @@ unsafe impl NSObjectProtocol for MTLLinkedFunctions {}
 extern_methods!(
     unsafe impl MTLLinkedFunctions {
         /// Create an autoreleased MTLLinkedFunctions object.
-        #[unsafe(method_family(none))]
         #[method_id(linkedFunctions)]
+        #[unsafe(method_family = none)]
         pub fn linkedFunctions() -> Retained<MTLLinkedFunctions>;
 
         #[cfg(feature = "MTLLibrary")]
         /// The array of functions to be AIR linked.
-        #[unsafe(method_family(none))]
         #[method_id(functions)]
+        #[unsafe(method_family = none)]
         pub fn functions(&self) -> Option<Retained<NSArray<ProtocolObject<dyn MTLFunction>>>>;
 
         #[cfg(feature = "MTLLibrary")]
@@ -46,8 +46,8 @@ extern_methods!(
 
         #[cfg(feature = "MTLLibrary")]
         /// The array of functions compiled to binary to be linked.
-        #[unsafe(method_family(none))]
         #[method_id(binaryFunctions)]
+        #[unsafe(method_family = none)]
         pub fn binaryFunctions(&self)
             -> Option<Retained<NSArray<ProtocolObject<dyn MTLFunction>>>>;
 
@@ -61,8 +61,8 @@ extern_methods!(
 
         #[cfg(feature = "MTLLibrary")]
         /// Groups of functions, grouped to match callsites in the shader code.
-        #[unsafe(method_family(none))]
         #[method_id(groups)]
+        #[unsafe(method_family = none)]
         pub fn groups(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, NSArray<ProtocolObject<dyn MTLFunction>>>>>;
@@ -80,8 +80,8 @@ extern_methods!(
         ///
         /// These functions are not exported by the pipeline state as MTLFunctionHandle objects.
         /// Function pointer support is not required to link private functions.
-        #[unsafe(method_family(none))]
         #[method_id(privateFunctions)]
+        #[unsafe(method_family = none)]
         pub fn privateFunctions(
             &self,
         ) -> Option<Retained<NSArray<ProtocolObject<dyn MTLFunction>>>>;
@@ -99,12 +99,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLLinkedFunctions {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
     }
 );

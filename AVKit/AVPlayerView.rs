@@ -99,8 +99,8 @@ extern_methods!(
     unsafe impl AVPlayerView {
         #[cfg(feature = "objc2-av-foundation")]
         /// The player from which to source the media content for the view.
-        #[unsafe(method_family(none))]
         #[method_id(player)]
+        #[unsafe(method_family = none)]
         pub unsafe fn player(&self) -> Option<Retained<AVPlayer>>;
 
         #[cfg(feature = "objc2-av-foundation")]
@@ -122,8 +122,8 @@ extern_methods!(
         /// A string defining how the video is displayed within an AVPlayerLayer bounds rect.
         ///
         /// Options are AVLayerVideoGravityResizeAspect, AVLayerVideoGravityResizeAspectFill and AVLayerVideoGravityResize. AVLayerVideoGravityResizeAspect is default.
-        #[unsafe(method_family(none))]
         #[method_id(videoGravity)]
+        #[unsafe(method_family = none)]
         pub unsafe fn videoGravity(&self) -> Retained<AVLayerVideoGravity>;
 
         #[cfg(feature = "objc2-av-foundation")]
@@ -140,8 +140,8 @@ extern_methods!(
         pub unsafe fn videoBounds(&self) -> NSRect;
 
         /// Use the content overlay view to add additional custom views between the video content and the controls.
-        #[unsafe(method_family(none))]
         #[method_id(contentOverlayView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contentOverlayView(&self) -> Option<Retained<NSView>>;
 
         /// Whether or not the now playing info center should be updated. Default is YES.
@@ -153,8 +153,8 @@ extern_methods!(
         pub unsafe fn setUpdatesNowPlayingInfoCenter(&self, updates_now_playing_info_center: bool);
 
         /// The receiver's delegate.
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self)
             -> Option<Retained<ProtocolObject<dyn AVPlayerViewDelegate>>>;
 
@@ -172,8 +172,8 @@ extern_methods!(
         /// By default this property will be set to the systemDefaultSpeeds class property. Setting this property to nil will hide the playback speed selection UI.
         ///
         /// To set the currently selected playback speed programmatically, either set the defaultRate on the AVPlayer associated with this view controller or use the selectSpeed method on AVPlayerView.
-        #[unsafe(method_family(none))]
         #[method_id(speeds)]
+        #[unsafe(method_family = none)]
         pub unsafe fn speeds(&self) -> Retained<NSArray<AVPlaybackSpeed>>;
 
         #[cfg(feature = "AVPlaybackSpeed")]
@@ -185,8 +185,8 @@ extern_methods!(
         /// The currently selected playback speed.
         ///
         /// Changes to the associated AVPlayer's defaultRate will be reflected in this property and vice versa. If the associated AVPlayer's defaultRate is set to a value that does not match a speed in the speeds list property, the selected speed will be nil.
-        #[unsafe(method_family(none))]
         #[method_id(selectedSpeed)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectedSpeed(&self) -> Option<Retained<AVPlaybackSpeed>>;
 
         #[cfg(feature = "AVPlaybackSpeed")]
@@ -263,12 +263,12 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl AVPlayerView {
-        #[unsafe(method_family(init))]
         #[method_id(initWithFrame:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -281,8 +281,8 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl AVPlayerView {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -292,8 +292,8 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl AVPlayerView {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -320,8 +320,8 @@ extern_methods!(
         pub unsafe fn setShowsSharingServiceButton(&self, shows_sharing_service_button: bool);
 
         /// Clients can set this property in order to show an action pop up button. Default is nil.
-        #[unsafe(method_family(none))]
         #[method_id(actionPopUpButtonMenu)]
+        #[unsafe(method_family = none)]
         pub unsafe fn actionPopUpButtonMenu(&self) -> Option<Retained<NSMenu>>;
 
         /// Setter for [`actionPopUpButtonMenu`][Self::actionPopUpButtonMenu].
@@ -427,8 +427,8 @@ extern_methods!(
         );
 
         /// A delegate for customizing Picture in Picture playback experience.
-        #[unsafe(method_family(none))]
         #[method_id(pictureInPictureDelegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pictureInPictureDelegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVPlayerViewPictureInPictureDelegate>>>;

@@ -29,42 +29,42 @@ unsafe impl NSObjectProtocol for UIRegion {}
 extern_methods!(
     unsafe impl UIRegion {
         /// A shared infinite region
-        #[unsafe(method_family(none))]
         #[method_id(infiniteRegion)]
+        #[unsafe(method_family = none)]
         pub unsafe fn infiniteRegion(mtm: MainThreadMarker) -> Retained<UIRegion>;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Create a circular region with radius
-        #[unsafe(method_family(init))]
         #[method_id(initWithRadius:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithRadius(this: Allocated<Self>, radius: CGFloat) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Create a rectangular region of size.
-        #[unsafe(method_family(init))]
         #[method_id(initWithSize:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithSize(this: Allocated<Self>, size: CGSize) -> Retained<Self>;
 
         /// Create a new region that is the inverse of the current region.
         /// The inverse of the infiniteRegion is an empty region.
         /// Subclasses of UIRegion need to provide an implementation of inverseRegion.
-        #[unsafe(method_family(none))]
         #[method_id(inverseRegion)]
+        #[unsafe(method_family = none)]
         pub unsafe fn inverseRegion(&self) -> Retained<Self>;
 
         /// Create a new region that is the original region plus the supplied region
-        #[unsafe(method_family(none))]
         #[method_id(regionByUnionWithRegion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn regionByUnionWithRegion(&self, region: &UIRegion) -> Retained<Self>;
 
         /// Create a new region that is the original region minus the supplied region
-        #[unsafe(method_family(none))]
         #[method_id(regionByDifferenceFromRegion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn regionByDifferenceFromRegion(&self, region: &UIRegion) -> Retained<Self>;
 
         /// Create a new region that is the region covered by the original region and the supplied region
-        #[unsafe(method_family(none))]
         #[method_id(regionByIntersectionWithRegion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn regionByIntersectionWithRegion(&self, region: &UIRegion) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -77,12 +77,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIRegion {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

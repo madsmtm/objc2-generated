@@ -41,8 +41,8 @@ extern_methods!(
         ///
         /// Returns: An initialized NSURLDownload object.
         #[deprecated = "Use NSURLSession downloadTask (see NSURLSession.h)"]
-        #[unsafe(method_family(init))]
         #[method_id(initWithRequest:delegate:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithRequest_delegate(
             this: Allocated<Self>,
             request: &NSURLRequest,
@@ -60,8 +60,8 @@ extern_methods!(
         ///
         /// Returns: An initialized NSURLDownload object.
         #[deprecated = "Use NSURLSession downloadTask (see NSURLSession.h)"]
-        #[unsafe(method_family(init))]
         #[method_id(initWithResumeData:delegate:path:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithResumeData_delegate_path(
             this: Allocated<Self>,
             resume_data: &NSData,
@@ -92,8 +92,8 @@ extern_methods!(
         /// Returns the request of the download.
         ///
         /// Returns: The request of the download.
-        #[unsafe(method_family(none))]
         #[method_id(request)]
+        #[unsafe(method_family = none)]
         pub unsafe fn request(&self) -> Retained<NSURLRequest>;
 
         #[cfg(feature = "NSData")]
@@ -106,8 +106,8 @@ extern_methods!(
         /// Non-nil is returned if the download was cancelled or ended in error after some but not all data has been received.
         /// The protocol of the download as well as the server must support resuming for non-nil to be returned.
         /// In order to later resume a download, be sure to call setDeletesFileUponFailure: with NO.
-        #[unsafe(method_family(none))]
         #[method_id(resumeData)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resumeData(&self) -> Option<Retained<NSData>>;
 
         /// Sets whether or not the downloaded file should be deleted upon failure.
@@ -127,12 +127,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSURLDownload {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -163,8 +163,8 @@ extern_protocol!(
         /// This method gives the delegate an opportunity to inspect the request
         /// that will be used to continue loading the request, and modify it if necessary.
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(download:willSendRequest:redirectResponse:)]
+        #[unsafe(method_family = none)]
         unsafe fn download_willSendRequest_redirectResponse(
             &self,
             download: &NSURLDownload,

@@ -28,23 +28,23 @@ unsafe impl NSObjectProtocol for SFSpeechLanguageModelConfiguration {}
 
 extern_methods!(
     unsafe impl SFSpeechLanguageModelConfiguration {
-        #[unsafe(method_family(none))]
         #[method_id(languageModel)]
+        #[unsafe(method_family = none)]
         pub unsafe fn languageModel(&self) -> Retained<NSURL>;
 
-        #[unsafe(method_family(none))]
         #[method_id(vocabulary)]
+        #[unsafe(method_family = none)]
         pub unsafe fn vocabulary(&self) -> Option<Retained<NSURL>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithLanguageModel:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithLanguageModel(
             this: Allocated<Self>,
             language_model: &NSURL,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithLanguageModel:vocabulary:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithLanguageModel_vocabulary(
             this: Allocated<Self>,
             language_model: &NSURL,
@@ -56,12 +56,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SFSpeechLanguageModelConfiguration {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -101,12 +101,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SFSpeechLanguageModel {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

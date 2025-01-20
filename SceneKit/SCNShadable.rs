@@ -95,8 +95,8 @@ extern_protocol!(
         ///
         /// When a program is set, it overrides all the rendering parameters such as material settings and shaderModifiers.
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(program)]
+        #[unsafe(method_family = none)]
         unsafe fn program(&self) -> Option<Retained<SCNProgram>>;
 
         /// Setter for [`program`][Self::program].
@@ -269,8 +269,8 @@ extern_protocol!(
         ///
         /// Custom uniforms can be animated using explicit animations.
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(shaderModifiers)]
+        #[unsafe(method_family = none)]
         unsafe fn shaderModifiers(
             &self,
         ) -> Option<Retained<NSDictionary<SCNShaderModifierEntryPoint, NSString>>>;
@@ -287,8 +287,8 @@ extern_protocol!(
         ///
         /// By default SceneKit does not use the most recent language version in order to reduce compilation times. If set to nil the shadable source code is assumed to compile with any language version greater than or equal to Metal 2.0.
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(minimumLanguageVersion)]
+        #[unsafe(method_family = none)]
         unsafe fn minimumLanguageVersion(&self) -> Option<Retained<NSNumber>>;
 
         /// Setter for [`minimumLanguageVersion`][Self::minimumLanguageVersion].
@@ -331,13 +331,13 @@ unsafe impl NSSecureCoding for SCNProgram {}
 extern_methods!(
     unsafe impl SCNProgram {
         /// Creates and initialize a program instance.
-        #[unsafe(method_family(none))]
         #[method_id(program)]
+        #[unsafe(method_family = none)]
         pub unsafe fn program() -> Retained<Self>;
 
         /// Determines the receiver's vertex shader.
-        #[unsafe(method_family(none))]
         #[method_id(vertexShader)]
+        #[unsafe(method_family = none)]
         pub unsafe fn vertexShader(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`vertexShader`][Self::vertexShader].
@@ -345,8 +345,8 @@ extern_methods!(
         pub unsafe fn setVertexShader(&self, vertex_shader: Option<&NSString>);
 
         /// Determines the receiver's fragment shader.
-        #[unsafe(method_family(none))]
         #[method_id(fragmentShader)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fragmentShader(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`fragmentShader`][Self::fragmentShader].
@@ -354,8 +354,8 @@ extern_methods!(
         pub unsafe fn setFragmentShader(&self, fragment_shader: Option<&NSString>);
 
         /// Determines the receiver's tessellation control shader. Tessellation shaders require OpenGL Core Profile.
-        #[unsafe(method_family(none))]
         #[method_id(tessellationControlShader)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tessellationControlShader(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`tessellationControlShader`][Self::tessellationControlShader].
@@ -366,8 +366,8 @@ extern_methods!(
         );
 
         /// Determines the receiver's tessellation evaluation shader. Tessellation shaders require OpenGL Core Profile.
-        #[unsafe(method_family(none))]
         #[method_id(tessellationEvaluationShader)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tessellationEvaluationShader(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`tessellationEvaluationShader`][Self::tessellationEvaluationShader].
@@ -378,8 +378,8 @@ extern_methods!(
         );
 
         /// Determines the receiver's geometry shader. Geometry shaders require OpenGL Core Profile.
-        #[unsafe(method_family(none))]
         #[method_id(geometryShader)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geometryShader(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`geometryShader`][Self::geometryShader].
@@ -389,8 +389,8 @@ extern_methods!(
         /// Determines the receiver's vertex function name.
         ///
         /// The name of the vertex function (for Metal programs).
-        #[unsafe(method_family(none))]
         #[method_id(vertexFunctionName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn vertexFunctionName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`vertexFunctionName`][Self::vertexFunctionName].
@@ -400,8 +400,8 @@ extern_methods!(
         /// Determines the receiver's fragment function name.
         ///
         /// The name of the fragment function (for Metal programs).
-        #[unsafe(method_family(none))]
         #[method_id(fragmentFunctionName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fragmentFunctionName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`fragmentFunctionName`][Self::fragmentFunctionName].
@@ -454,13 +454,13 @@ extern_methods!(
         /// Retrieves the SceneKit semantic associated to a symbol from the program source code.
         ///
         /// Parameter `symbol`: A symbol from the program source code.
-        #[unsafe(method_family(none))]
         #[method_id(semanticForSymbol:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn semanticForSymbol(&self, symbol: &NSString) -> Option<Retained<NSString>>;
 
         /// Determines the receiver's delegate
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn SCNProgramDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
@@ -472,8 +472,8 @@ extern_methods!(
         /// Specifies the Metal library to use to locate the function names specified above.
         ///
         /// If set to nil the default library is used. Defaults to nil.
-        #[unsafe(method_family(none))]
         #[method_id(library)]
+        #[unsafe(method_family = none)]
         pub unsafe fn library(&self) -> Option<Retained<ProtocolObject<dyn MTLLibrary>>>;
 
         #[cfg(feature = "objc2-metal")]
@@ -487,12 +487,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNProgram {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -210,8 +210,8 @@ extern_methods!(
         /// On creation, the engine is by default connected to an audio device and automatically renders
         /// in realtime. It can be configured to operate in manual rendering mode through
         /// `enableManualRenderingMode:format:maximumFrameCount:error:`.
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "AVAudioNode")]
@@ -452,8 +452,8 @@ extern_methods!(
         /// Connections are always one-to-one or one-to-many, never many-to-one.
         ///
         /// Returns nil if there is no connection on the node's specified input bus.
-        #[unsafe(method_family(none))]
         #[method_id(inputConnectionPointForNode:inputBus:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn inputConnectionPointForNode_inputBus(
             &self,
             node: &AVAudioNode,
@@ -477,8 +477,8 @@ extern_methods!(
         /// Connections are always one-to-one or one-to-many, never many-to-one.
         ///
         /// Returns an empty array if there are no connections on the node's specified output bus.
-        #[unsafe(method_family(none))]
         #[method_id(outputConnectionPointsForNode:outputBus:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn outputConnectionPointsForNode_outputBus(
             &self,
             node: &AVAudioNode,
@@ -514,8 +514,8 @@ extern_methods!(
         /// In manual rendering mode, the output format of the output node will determine the
         /// render format of the engine. It can be changed through
         /// `enableManualRenderingMode:format:maximumFrameCount:error:`.
-        #[unsafe(method_family(none))]
         #[method_id(outputNode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn outputNode(&self) -> Retained<AVAudioOutputNode>;
 
         #[cfg(all(feature = "AVAudioIONode", feature = "AVAudioNode"))]
@@ -540,8 +540,8 @@ extern_methods!(
         /// In manual rendering mode, the input node can be used to synchronously supply data to
         /// the engine while it is rendering (see
         /// `AVAudioInputNode(setManualRenderingInputPCMFormat:inputBlock:)`.
-        #[unsafe(method_family(none))]
         #[method_id(inputNode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn inputNode(&self) -> Retained<AVAudioInputNode>;
 
         #[cfg(all(feature = "AVAudioMixerNode", feature = "AVAudioNode"))]
@@ -558,8 +558,8 @@ extern_methods!(
         ///
         /// By default, the mixer's output format (sample rate and channel count) will track the format
         /// of the output node. You may however make the connection explicitly with a different format.
-        #[unsafe(method_family(none))]
         #[method_id(mainMixerNode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mainMixerNode(&self) -> Retained<AVAudioMixerNode>;
 
         /// The engine's running state.
@@ -591,8 +591,8 @@ extern_methods!(
 
         #[cfg(feature = "AVAudioNode")]
         /// Set of all nodes attached to the engine.
-        #[unsafe(method_family(none))]
         #[method_id(attachedNodes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn attachedNodes(&self) -> Retained<NSSet<AVAudioNode>>;
 
         #[cfg(all(feature = "AVAudioFormat", feature = "AVAudioTypes"))]
@@ -695,8 +695,8 @@ extern_methods!(
         ///
         /// Querying this property when the engine is not in manual rendering mode will return an
         /// invalid format, with zero sample rate and channel count.
-        #[unsafe(method_family(none))]
         #[method_id(manualRenderingFormat)]
+        #[unsafe(method_family = none)]
         pub unsafe fn manualRenderingFormat(&self) -> Retained<AVAudioFormat>;
 
         #[cfg(feature = "AVAudioTypes")]
@@ -857,8 +857,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAudioEngine {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

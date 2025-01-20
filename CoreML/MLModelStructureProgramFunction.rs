@@ -23,24 +23,24 @@ unsafe impl NSObjectProtocol for MLModelStructureProgramFunction {}
 
 extern_methods!(
     unsafe impl MLModelStructureProgramFunction {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "MLModelStructureProgramNamedValueType")]
         /// The named inputs to the function.
-        #[unsafe(method_family(none))]
         #[method_id(inputs)]
+        #[unsafe(method_family = none)]
         pub unsafe fn inputs(&self) -> Retained<NSArray<MLModelStructureProgramNamedValueType>>;
 
         #[cfg(feature = "MLModelStructureProgramBlock")]
         /// The active block in the function.
-        #[unsafe(method_family(none))]
         #[method_id(block)]
+        #[unsafe(method_family = none)]
         pub unsafe fn block(&self) -> Retained<MLModelStructureProgramBlock>;
     }
 );

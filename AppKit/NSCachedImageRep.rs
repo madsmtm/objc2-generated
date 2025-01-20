@@ -34,8 +34,8 @@ extern_methods!(
     unsafe impl NSCachedImageRep {
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(initWithWindow:rect:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithWindow_rect(
             this: Allocated<Self>,
             win: Option<&NSWindow>,
@@ -44,8 +44,8 @@ extern_methods!(
 
         #[cfg(feature = "NSGraphics")]
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(initWithSize:depth:separate:alpha:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithSize_depth_separate_alpha(
             this: Allocated<Self>,
             size: NSSize,
@@ -56,8 +56,8 @@ extern_methods!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(window)]
+        #[unsafe(method_family = none)]
         pub unsafe fn window(&self, mtm: MainThreadMarker) -> Option<Retained<NSWindow>>;
 
         #[deprecated]
@@ -70,12 +70,12 @@ extern_methods!(
     /// Methods declared on superclass `NSImageRep`
     #[cfg(feature = "NSImageRep")]
     unsafe impl NSCachedImageRep {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -87,8 +87,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSImageRep")]
     unsafe impl NSCachedImageRep {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

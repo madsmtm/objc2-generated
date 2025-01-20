@@ -19,17 +19,17 @@ unsafe impl NSObjectProtocol for UIBarButtonItemStateAppearance {}
 
 extern_methods!(
     unsafe impl UIBarButtonItemStateAppearance {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// Text attributes to be used for rendering title text. If the font or color are unspecified, appropriate defaults are supplied.
-        #[unsafe(method_family(none))]
         #[method_id(titleTextAttributes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn titleTextAttributes(
             &self,
         ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
@@ -53,8 +53,8 @@ extern_methods!(
 
         #[cfg(feature = "UIImage")]
         /// A background image to display around the button
-        #[unsafe(method_family(none))]
         #[method_id(backgroundImage)]
+        #[unsafe(method_family = none)]
         pub unsafe fn backgroundImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
@@ -100,25 +100,25 @@ unsafe impl NSSecureCoding for UIBarButtonItemAppearance {}
 extern_methods!(
     unsafe impl UIBarButtonItemAppearance {
         /// Construct an appearance for the UIBarButtonItemStylePlain style.
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "UIBarButtonItem")]
         /// Construct an appearance with default values for the given style.
-        #[unsafe(method_family(init))]
         #[method_id(initWithStyle:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithStyle(
             this: Allocated<Self>,
             style: UIBarButtonItemStyle,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
-        #[unsafe(method_family(copy))]
         #[method_id(copy)]
+        #[unsafe(method_family = copy)]
         pub unsafe fn copy(&self) -> Retained<Self>;
 
         #[cfg(feature = "UIBarButtonItem")]
@@ -127,23 +127,23 @@ extern_methods!(
         pub unsafe fn configureWithDefaultForStyle(&self, style: UIBarButtonItemStyle);
 
         /// The appearance when the bar button item is in the normal control state.
-        #[unsafe(method_family(none))]
         #[method_id(normal)]
+        #[unsafe(method_family = none)]
         pub unsafe fn normal(&self) -> Retained<UIBarButtonItemStateAppearance>;
 
         /// The appearance when the bar button item is in the highlighted control state. If unspecified, then synthesized from the normal state.
-        #[unsafe(method_family(none))]
         #[method_id(highlighted)]
+        #[unsafe(method_family = none)]
         pub unsafe fn highlighted(&self) -> Retained<UIBarButtonItemStateAppearance>;
 
         /// The appearance when the bar button item is in the disabled control state. If unspecified, then synthesized from the normal state.
-        #[unsafe(method_family(none))]
         #[method_id(disabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn disabled(&self) -> Retained<UIBarButtonItemStateAppearance>;
 
         /// The appearance when the bar button item is in the focused control state. If unspecified, then synthesized from the highlighted state.
-        #[unsafe(method_family(none))]
         #[method_id(focused)]
+        #[unsafe(method_family = none)]
         pub unsafe fn focused(&self) -> Retained<UIBarButtonItemStateAppearance>;
     }
 );
@@ -151,8 +151,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIBarButtonItemAppearance {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

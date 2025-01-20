@@ -49,8 +49,8 @@ extern_protocol!(
             feature = "NSView"
         ))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(comboBox:objectValueForItemAtIndex:)]
+        #[unsafe(method_family = none)]
         unsafe fn comboBox_objectValueForItemAtIndex(
             &self,
             combo_box: &NSComboBox,
@@ -78,8 +78,8 @@ extern_protocol!(
             feature = "NSView"
         ))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(comboBox:completedString:)]
+        #[unsafe(method_family = none)]
         unsafe fn comboBox_completedString(
             &self,
             combo_box: &NSComboBox,
@@ -312,8 +312,8 @@ extern_methods!(
         #[method(setCompletes:)]
         pub unsafe fn setCompletes(&self, completes: bool);
 
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSComboBoxDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -321,8 +321,8 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSComboBoxDelegate>>);
 
-        #[unsafe(method_family(none))]
         #[method_id(dataSource)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dataSource(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSComboBoxDataSource>>>;
@@ -359,19 +359,19 @@ extern_methods!(
         #[method(selectItemWithObjectValue:)]
         pub unsafe fn selectItemWithObjectValue(&self, object: Option<&AnyObject>);
 
-        #[unsafe(method_family(none))]
         #[method_id(itemObjectValueAtIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn itemObjectValueAtIndex(&self, index: NSInteger) -> Retained<AnyObject>;
 
-        #[unsafe(method_family(none))]
         #[method_id(objectValueOfSelectedItem)]
+        #[unsafe(method_family = none)]
         pub unsafe fn objectValueOfSelectedItem(&self) -> Option<Retained<AnyObject>>;
 
         #[method(indexOfItemWithObjectValue:)]
         pub unsafe fn indexOfItemWithObjectValue(&self, object: &AnyObject) -> NSInteger;
 
-        #[unsafe(method_family(none))]
         #[method_id(objectValues)]
+        #[unsafe(method_family = none)]
         pub unsafe fn objectValues(&self) -> Retained<NSArray>;
     }
 );
@@ -385,12 +385,12 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSComboBox {
-        #[unsafe(method_family(init))]
         #[method_id(initWithFrame:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -407,8 +407,8 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSComboBox {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -422,8 +422,8 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSComboBox {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

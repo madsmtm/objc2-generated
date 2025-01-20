@@ -58,8 +58,8 @@ extern_methods!(
         #[method(z)]
         pub unsafe fn z(&self) -> CLHeadingComponentValue;
 
-        #[unsafe(method_family(none))]
         #[method_id(timestamp)]
+        #[unsafe(method_family = none)]
         pub unsafe fn timestamp(&self) -> Retained<NSDate>;
     }
 );
@@ -67,12 +67,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CLHeading {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

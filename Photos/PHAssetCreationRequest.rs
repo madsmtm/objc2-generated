@@ -27,16 +27,16 @@ unsafe impl NSObjectProtocol for PHAssetResourceCreationOptions {}
 
 extern_methods!(
     unsafe impl PHAssetResourceCreationOptions {
-        #[unsafe(method_family(none))]
         #[method_id(originalFilename)]
+        #[unsafe(method_family = none)]
         pub unsafe fn originalFilename(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`originalFilename`][Self::originalFilename].
         #[method(setOriginalFilename:)]
         pub unsafe fn setOriginalFilename(&self, original_filename: Option<&NSString>);
 
-        #[unsafe(method_family(none))]
         #[method_id(uniformTypeIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn uniformTypeIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`uniformTypeIdentifier`][Self::uniformTypeIdentifier].
@@ -55,12 +55,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHAssetResourceCreationOptions {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -79,8 +79,8 @@ unsafe impl NSObjectProtocol for PHAssetCreationRequest {}
 extern_methods!(
     #[cfg(all(feature = "PHAssetChangeRequest", feature = "PHChangeRequest"))]
     unsafe impl PHAssetCreationRequest {
-        #[unsafe(method_family(none))]
         #[method_id(creationRequestForAsset)]
+        #[unsafe(method_family = none)]
         pub unsafe fn creationRequestForAsset() -> Retained<Self>;
 
         #[method(supportsAssetResourceTypes:)]
@@ -112,25 +112,25 @@ extern_methods!(
     unsafe impl PHAssetCreationRequest {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
-        #[unsafe(method_family(none))]
         #[method_id(creationRequestForAssetFromImage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn creationRequestForAssetFromImage(image: &NSImage) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(creationRequestForAssetFromImageAtFileURL:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn creationRequestForAssetFromImageAtFileURL(
             file_url: &NSURL,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(creationRequestForAssetFromVideoAtFileURL:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn creationRequestForAssetFromVideoAtFileURL(
             file_url: &NSURL,
         ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "PHAsset", feature = "PHObject"))]
-        #[unsafe(method_family(none))]
         #[method_id(changeRequestForAsset:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn changeRequestForAsset(asset: &PHAsset) -> Retained<Self>;
     }
 );
@@ -139,12 +139,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "PHAssetChangeRequest", feature = "PHChangeRequest"))]
     unsafe impl PHAssetCreationRequest {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

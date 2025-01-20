@@ -82,8 +82,8 @@ extern_methods!(
         pub unsafe fn cellIndex(&self) -> c_int;
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(align)]
+        #[unsafe(method_family = none)]
         pub unsafe fn align(&self) -> Retained<NSString>;
 
         /// Setter for [`align`][Self::align].
@@ -92,8 +92,8 @@ extern_methods!(
         pub unsafe fn setAlign(&self, align: Option<&NSString>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(axis)]
+        #[unsafe(method_family = none)]
         pub unsafe fn axis(&self) -> Retained<NSString>;
 
         /// Setter for [`axis`][Self::axis].
@@ -102,8 +102,8 @@ extern_methods!(
         pub unsafe fn setAxis(&self, axis: Option<&NSString>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(bgColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn bgColor(&self) -> Retained<NSString>;
 
         /// Setter for [`bgColor`][Self::bgColor].
@@ -112,8 +112,8 @@ extern_methods!(
         pub unsafe fn setBgColor(&self, bg_color: Option<&NSString>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(ch)]
+        #[unsafe(method_family = none)]
         pub unsafe fn ch(&self) -> Retained<NSString>;
 
         /// Setter for [`ch`][Self::ch].
@@ -122,8 +122,8 @@ extern_methods!(
         pub unsafe fn setCh(&self, ch: Option<&NSString>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(chOff)]
+        #[unsafe(method_family = none)]
         pub unsafe fn chOff(&self) -> Retained<NSString>;
 
         /// Setter for [`chOff`][Self::chOff].
@@ -150,8 +150,8 @@ extern_methods!(
         pub unsafe fn setRowSpan(&self, row_span: c_int);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(headers)]
+        #[unsafe(method_family = none)]
         pub unsafe fn headers(&self) -> Retained<NSString>;
 
         /// Setter for [`headers`][Self::headers].
@@ -160,8 +160,8 @@ extern_methods!(
         pub unsafe fn setHeaders(&self, headers: Option<&NSString>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(height)]
+        #[unsafe(method_family = none)]
         pub unsafe fn height(&self) -> Retained<NSString>;
 
         /// Setter for [`height`][Self::height].
@@ -179,8 +179,8 @@ extern_methods!(
         pub unsafe fn setNoWrap(&self, no_wrap: bool);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(vAlign)]
+        #[unsafe(method_family = none)]
         pub unsafe fn vAlign(&self) -> Retained<NSString>;
 
         /// Setter for [`vAlign`][Self::vAlign].
@@ -189,8 +189,8 @@ extern_methods!(
         pub unsafe fn setVAlign(&self, v_align: Option<&NSString>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(width)]
+        #[unsafe(method_family = none)]
         pub unsafe fn width(&self) -> Retained<NSString>;
 
         /// Setter for [`width`][Self::width].
@@ -199,8 +199,8 @@ extern_methods!(
         pub unsafe fn setWidth(&self, width: Option<&NSString>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(abbr)]
+        #[unsafe(method_family = none)]
         pub unsafe fn abbr(&self) -> Retained<NSString>;
 
         /// Setter for [`abbr`][Self::abbr].
@@ -209,8 +209,8 @@ extern_methods!(
         pub unsafe fn setAbbr(&self, abbr: Option<&NSString>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(scope)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scope(&self) -> Retained<NSString>;
 
         /// Setter for [`scope`][Self::scope].
@@ -231,8 +231,8 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLTableCellElement {
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -247,8 +247,8 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLTableCellElement {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

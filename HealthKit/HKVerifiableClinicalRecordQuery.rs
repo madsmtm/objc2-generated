@@ -28,23 +28,23 @@ extern_methods!(
     #[cfg(feature = "HKQuery")]
     unsafe impl HKVerifiableClinicalRecordQuery {
         /// The record types that need to be present on desired records.
-        #[unsafe(method_family(none))]
         #[method_id(recordTypes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn recordTypes(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "HKVerifiableClinicalRecord")]
         /// The source type(s) of the records.
-        #[unsafe(method_family(none))]
         #[method_id(sourceTypes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sourceTypes(&self)
             -> Retained<NSArray<HKVerifiableClinicalRecordSourceType>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(all(
@@ -61,8 +61,8 @@ extern_methods!(
         /// Parameter `predicate`: The predicate which records should match.
         ///
         /// Parameter `resultsHandler`: The block to invoke with the verifiable clinical records from the query.
-        #[unsafe(method_family(init))]
         #[method_id(initWithRecordTypes:predicate:resultsHandler:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithRecordTypes_predicate_resultsHandler(
             this: Allocated<Self>,
             record_types: &NSArray<NSString>,
@@ -92,8 +92,8 @@ extern_methods!(
         /// Parameter `predicate`: The predicate which records should match.
         ///
         /// Parameter `resultsHandler`: The block to invoke with the verifiable clinical records from the query.
-        #[unsafe(method_family(init))]
         #[method_id(initWithRecordTypes:sourceTypes:predicate:resultsHandler:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithRecordTypes_sourceTypes_predicate_resultsHandler(
             this: Allocated<Self>,
             record_types: &NSArray<NSString>,

@@ -54,18 +54,18 @@ extern_methods!(
         pub unsafe fn isSupported() -> bool;
 
         /// Use the default session for all transferring of content and state monitoring.
-        #[unsafe(method_family(none))]
         #[method_id(defaultSession)]
+        #[unsafe(method_family = none)]
         pub unsafe fn defaultSession() -> Retained<WCSession>;
 
         /// Use the default session instead.
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// A delegate must exist before the session will allow sends.
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn WCSessionDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -102,8 +102,8 @@ extern_methods!(
         pub unsafe fn remainingComplicationUserInfoTransfers(&self) -> NSUInteger;
 
         /// Use this directory to persist any data specific to the selected Watch. The location of the URL will change when the selected Watch changes. This directory will be deleted upon next launch if the watch app is uninstalled for the selected Watch, or that Watch is unpaired. If the watch app is not installed for the selected Watch the value will be nil.
-        #[unsafe(method_family(none))]
         #[method_id(watchDirectoryURL)]
+        #[unsafe(method_family = none)]
         pub unsafe fn watchDirectoryURL(&self) -> Option<Retained<NSURL>>;
 
         /// Check if the companion app is installed on the paired iPhone. This only applies to Watch apps that can run independently.
@@ -141,8 +141,8 @@ extern_methods!(
         );
 
         /// Setting the applicationContext is a way to transfer the latest state of an app. After updating the applicationContext, the system initiates the data transfer at an appropriate time, which can occur after the app exits. The counterpart app will receive a delegate callback on next launch if the applicationContext has successfully arrived. If there is no app context, it should be updated with an empty dictionary. The applicationContext dictionary can only accept the property list types.
-        #[unsafe(method_family(none))]
         #[method_id(applicationContext)]
+        #[unsafe(method_family = none)]
         pub unsafe fn applicationContext(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[method(updateApplicationContext:error:_)]
@@ -152,16 +152,16 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         /// Stores the most recently received applicationContext from the counterpart app.
-        #[unsafe(method_family(none))]
         #[method_id(receivedApplicationContext)]
+        #[unsafe(method_family = none)]
         pub unsafe fn receivedApplicationContext(
             &self,
         ) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[cfg(feature = "WCSessionUserInfoTransfer")]
         /// The system will enqueue the user info dictionary and transfer it to the counterpart app at an opportune time. The transfer of user info will continue after the sending app has exited. The counterpart app will receive a delegate callback on next launch if the file has successfully arrived. The userInfo dictionary can only accept the property list types.
-        #[unsafe(method_family(none))]
         #[method_id(transferUserInfo:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn transferUserInfo(
             &self,
             user_info: &NSDictionary<NSString, AnyObject>,
@@ -169,8 +169,8 @@ extern_methods!(
 
         #[cfg(feature = "WCSessionUserInfoTransfer")]
         /// Enqueues a user info dictionary containing the most current information for an enabled complication. If the app's complication is enabled the system will try to transfer this user info immediately. Once a current complication user info is received the system will launch the Watch App Extension in the background and allow it to update the complication content. If the current user info cannot be transferred (i.e. devices disconnected, out of background launch budget, etc.) it will wait in the outstandingUserInfoTransfers queue until next opportune time. There can only be one current complication user info in the outstandingUserInfoTransfers queue. If a current complication user info is outstanding (waiting to transfer) and -transferCurrentComplicationUserInfo: is called again with new user info, the new user info will be tagged as current and the previously current user info will be untagged. The previous user info will however stay in the queue of outstanding transfers.
-        #[unsafe(method_family(none))]
         #[method_id(transferCurrentComplicationUserInfo:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn transferCurrentComplicationUserInfo(
             &self,
             user_info: &NSDictionary<NSString, AnyObject>,
@@ -178,16 +178,16 @@ extern_methods!(
 
         #[cfg(feature = "WCSessionUserInfoTransfer")]
         /// Returns an array of user info transfers that are still transferring (i.e. have not been cancelled, failed, or been received by the counterpart app).
-        #[unsafe(method_family(none))]
         #[method_id(outstandingUserInfoTransfers)]
+        #[unsafe(method_family = none)]
         pub unsafe fn outstandingUserInfoTransfers(
             &self,
         ) -> Retained<NSArray<WCSessionUserInfoTransfer>>;
 
         #[cfg(feature = "WCSessionFile")]
         /// The system will enqueue the file and transfer it to the counterpart app at an opportune time. The transfer of a file will continue after the sending app has exited. The counterpart app will receive a delegate callback on next launch if the file has successfully arrived. The metadata dictionary can only accept the property list types.
-        #[unsafe(method_family(none))]
         #[method_id(transferFile:metadata:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn transferFile_metadata(
             &self,
             file: &NSURL,
@@ -196,8 +196,8 @@ extern_methods!(
 
         #[cfg(feature = "WCSessionFile")]
         /// Returns an array of file transfers that are still transferring (i.e. have not been cancelled, failed, or been received by the counterpart app).
-        #[unsafe(method_family(none))]
         #[method_id(outstandingFileTransfers)]
+        #[unsafe(method_family = none)]
         pub unsafe fn outstandingFileTransfers(&self) -> Retained<NSArray<WCSessionFileTransfer>>;
     }
 );
@@ -205,8 +205,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WCSession {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

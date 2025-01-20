@@ -35,8 +35,8 @@ extern_methods!(
     #[cfg(all(feature = "GCMicroGamepad", feature = "GCPhysicalInputProfile"))]
     unsafe impl GCMicroGamepadSnapshot {
         #[deprecated = "GCMicroGamepadSnapshot has been deprecated, use [GCController controllerWithMicroGamepad] instead"]
-        #[unsafe(method_family(none))]
         #[method_id(snapshotData)]
+        #[unsafe(method_family = none)]
         pub unsafe fn snapshotData(&self) -> Retained<NSData>;
 
         /// Setter for [`snapshotData`][Self::snapshotData].
@@ -45,14 +45,14 @@ extern_methods!(
         pub unsafe fn setSnapshotData(&self, snapshot_data: &NSData);
 
         #[deprecated = "GCMicroGamepadSnapshot has been deprecated, use [GCController controllerWithMicroGamepad] instead"]
-        #[unsafe(method_family(init))]
         #[method_id(initWithSnapshotData:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithSnapshotData(this: Allocated<Self>, data: &NSData) -> Retained<Self>;
 
         #[cfg(feature = "GCController")]
         #[deprecated = "GCMicroGamepadSnapshot has been deprecated, use [GCController controllerWithMicroGamepad] instead"]
-        #[unsafe(method_family(init))]
         #[method_id(initWithController:snapshotData:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithController_snapshotData(
             this: Allocated<Self>,
             controller: &GCController,
@@ -65,12 +65,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "GCMicroGamepad", feature = "GCPhysicalInputProfile"))]
     unsafe impl GCMicroGamepadSnapshot {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

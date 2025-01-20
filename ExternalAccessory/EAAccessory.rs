@@ -27,41 +27,41 @@ extern_methods!(
         #[method(connectionID)]
         pub unsafe fn connectionID(&self) -> NSUInteger;
 
-        #[unsafe(method_family(none))]
         #[method_id(manufacturer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn manufacturer(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(name)]
+        #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(modelNumber)]
+        #[unsafe(method_family = none)]
         pub unsafe fn modelNumber(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(serialNumber)]
+        #[unsafe(method_family = none)]
         pub unsafe fn serialNumber(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(firmwareRevision)]
+        #[unsafe(method_family = none)]
         pub unsafe fn firmwareRevision(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(hardwareRevision)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hardwareRevision(&self) -> Retained<NSString>;
 
         #[deprecated = "Not supported"]
-        #[unsafe(method_family(none))]
         #[method_id(dockType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dockType(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(protocolStrings)]
+        #[unsafe(method_family = none)]
         pub unsafe fn protocolStrings(&self) -> Retained<NSArray<NSString>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn EAAccessoryDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
@@ -76,12 +76,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl EAAccessory {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

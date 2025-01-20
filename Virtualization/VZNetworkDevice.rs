@@ -27,12 +27,12 @@ unsafe impl NSObjectProtocol for VZNetworkDevice {}
 
 extern_methods!(
     unsafe impl VZNetworkDevice {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZNetworkDeviceAttachment")]
@@ -43,8 +43,8 @@ extern_methods!(
         /// will be set to nil.
         ///
         /// This property may change at any time while the VM is running based on the state of the host network.
-        #[unsafe(method_family(none))]
         #[method_id(attachment)]
+        #[unsafe(method_family = none)]
         pub unsafe fn attachment(&self) -> Option<Retained<VZNetworkDeviceAttachment>>;
 
         #[cfg(feature = "VZNetworkDeviceAttachment")]

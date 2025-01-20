@@ -24,61 +24,61 @@ unsafe impl NSObjectProtocol for NSPersistentHistoryTransaction {}
 extern_methods!(
     unsafe impl NSPersistentHistoryTransaction {
         #[cfg(all(feature = "NSEntityDescription", feature = "NSManagedObjectContext"))]
-        #[unsafe(method_family(none))]
         #[method_id(entityDescriptionWithContext:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn entityDescriptionWithContext(
             context: &NSManagedObjectContext,
         ) -> Option<Retained<NSEntityDescription>>;
 
         #[cfg(feature = "NSEntityDescription")]
-        #[unsafe(method_family(none))]
         #[method_id(entityDescription)]
+        #[unsafe(method_family = none)]
         pub unsafe fn entityDescription() -> Option<Retained<NSEntityDescription>>;
 
         #[cfg(all(feature = "NSFetchRequest", feature = "NSPersistentStoreRequest"))]
-        #[unsafe(method_family(none))]
         #[method_id(fetchRequest)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fetchRequest() -> Option<Retained<NSFetchRequest>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(timestamp)]
+        #[unsafe(method_family = none)]
         pub unsafe fn timestamp(&self) -> Retained<NSDate>;
 
         #[cfg(feature = "NSPersistentHistoryChange")]
-        #[unsafe(method_family(none))]
         #[method_id(changes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn changes(&self) -> Option<Retained<NSArray<NSPersistentHistoryChange>>>;
 
         #[method(transactionNumber)]
         pub unsafe fn transactionNumber(&self) -> i64;
 
-        #[unsafe(method_family(none))]
         #[method_id(storeID)]
+        #[unsafe(method_family = none)]
         pub unsafe fn storeID(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(bundleID)]
+        #[unsafe(method_family = none)]
         pub unsafe fn bundleID(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(processID)]
+        #[unsafe(method_family = none)]
         pub unsafe fn processID(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(contextName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contextName(&self) -> Option<Retained<NSString>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(author)]
+        #[unsafe(method_family = none)]
         pub unsafe fn author(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSPersistentHistoryToken")]
-        #[unsafe(method_family(none))]
         #[method_id(token)]
+        #[unsafe(method_family = none)]
         pub unsafe fn token(&self) -> Retained<NSPersistentHistoryToken>;
 
-        #[unsafe(method_family(none))]
         #[method_id(objectIDNotification)]
+        #[unsafe(method_family = none)]
         pub unsafe fn objectIDNotification(&self) -> Retained<NSNotification>;
     }
 );
@@ -86,12 +86,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPersistentHistoryTransaction {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

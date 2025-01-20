@@ -35,8 +35,8 @@ extern_protocol!(
             glyph_index: NSUInteger,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(attributedString)]
+        #[unsafe(method_family = none)]
         unsafe fn attributedString(&self) -> Retained<NSAttributedString>;
 
         #[method(layoutOptions)]
@@ -64,8 +64,8 @@ extern_methods!(
             char_index: *mut NSUInteger,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(sharedGlyphGenerator)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sharedGlyphGenerator() -> Retained<NSGlyphGenerator>;
     }
 );
@@ -73,12 +73,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSGlyphGenerator {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

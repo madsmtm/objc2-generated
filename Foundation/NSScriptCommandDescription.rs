@@ -19,13 +19,13 @@ unsafe impl NSObjectProtocol for NSScriptCommandDescription {}
 
 extern_methods!(
     unsafe impl NSScriptCommandDescription {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        #[unsafe(method_family(init))]
         #[method_id(initWithSuiteName:commandName:dictionary:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithSuiteName_commandName_dictionary(
             this: Allocated<Self>,
             suite_name: &NSString,
@@ -34,21 +34,21 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSCoder")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             in_coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(suiteName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn suiteName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(commandName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn commandName(&self) -> Retained<NSString>;
 
         #[method(appleEventClassCode)]
@@ -58,26 +58,26 @@ extern_methods!(
         pub unsafe fn appleEventCode(&self) -> FourCharCode;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(commandClassName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn commandClassName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(returnType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn returnType(&self) -> Option<Retained<NSString>>;
 
         #[method(appleEventCodeForReturnType)]
         pub unsafe fn appleEventCodeForReturnType(&self) -> FourCharCode;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(argumentNames)]
+        #[unsafe(method_family = none)]
         pub unsafe fn argumentNames(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(typeForArgumentWithName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn typeForArgumentWithName(
             &self,
             argument_name: &NSString,
@@ -95,13 +95,13 @@ extern_methods!(
         pub unsafe fn isOptionalArgumentWithName(&self, argument_name: &NSString) -> bool;
 
         #[cfg(feature = "NSScriptCommand")]
-        #[unsafe(method_family(none))]
         #[method_id(createCommandInstance)]
+        #[unsafe(method_family = none)]
         pub unsafe fn createCommandInstance(&self) -> Retained<NSScriptCommand>;
 
         #[cfg(all(feature = "NSScriptCommand", feature = "NSZone"))]
-        #[unsafe(method_family(none))]
         #[method_id(createCommandInstanceWithZone:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn createCommandInstanceWithZone(
             &self,
             zone: *mut NSZone,
@@ -112,8 +112,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSScriptCommandDescription {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

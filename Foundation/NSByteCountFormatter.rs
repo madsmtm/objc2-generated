@@ -96,37 +96,37 @@ extern_methods!(
     #[cfg(feature = "NSFormatter")]
     unsafe impl NSByteCountFormatter {
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(stringFromByteCount:countStyle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stringFromByteCount_countStyle(
             byte_count: c_longlong,
             count_style: NSByteCountFormatterCountStyle,
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(stringFromByteCount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stringFromByteCount(&self, byte_count: c_longlong) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSMeasurement", feature = "NSString", feature = "NSUnit"))]
-        #[unsafe(method_family(none))]
         #[method_id(stringFromMeasurement:countStyle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stringFromMeasurement_countStyle(
             measurement: &NSMeasurement<NSUnitInformationStorage>,
             count_style: NSByteCountFormatterCountStyle,
         ) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSMeasurement", feature = "NSString", feature = "NSUnit"))]
-        #[unsafe(method_family(none))]
         #[method_id(stringFromMeasurement:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stringFromMeasurement(
             &self,
             measurement: &NSMeasurement<NSUnitInformationStorage>,
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(stringForObjectValue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stringForObjectValue(
             &self,
             obj: Option<&AnyObject>,
@@ -201,12 +201,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSFormatter")]
     unsafe impl NSByteCountFormatter {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

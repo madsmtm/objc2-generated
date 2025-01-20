@@ -25,8 +25,8 @@ extern_methods!(
     unsafe impl NSArchiver {
         #[cfg(feature = "NSData")]
         #[deprecated = "Use NSKeyedArchiver instead"]
-        #[unsafe(method_family(init))]
         #[method_id(initForWritingWithMutableData:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initForWritingWithMutableData(
             this: Allocated<Self>,
             mdata: &NSMutableData,
@@ -34,8 +34,8 @@ extern_methods!(
 
         #[cfg(feature = "NSData")]
         #[deprecated = "Use NSKeyedArchiver instead"]
-        #[unsafe(method_family(none))]
         #[method_id(archiverData)]
+        #[unsafe(method_family = none)]
         pub unsafe fn archiverData(&self) -> Retained<NSMutableData>;
 
         #[deprecated = "Use NSKeyedArchiver instead"]
@@ -48,8 +48,8 @@ extern_methods!(
 
         #[cfg(feature = "NSData")]
         #[deprecated = "Use NSKeyedArchiver instead"]
-        #[unsafe(method_family(none))]
         #[method_id(archivedDataWithRootObject:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn archivedDataWithRootObject(root_object: &AnyObject) -> Retained<NSData>;
 
         #[cfg(feature = "NSString")]
@@ -68,8 +68,8 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use NSKeyedArchiver instead"]
-        #[unsafe(method_family(none))]
         #[method_id(classNameEncodedForTrueClassName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn classNameEncodedForTrueClassName(
             &self,
             true_name: &NSString,
@@ -85,12 +85,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSCoder")]
     unsafe impl NSArchiver {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -114,8 +114,8 @@ extern_methods!(
     unsafe impl NSUnarchiver {
         #[cfg(feature = "NSData")]
         #[deprecated = "Use NSKeyedUnarchiver instead"]
-        #[unsafe(method_family(init))]
         #[method_id(initForReadingWithData:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initForReadingWithData(
             this: Allocated<Self>,
             data: &NSData,
@@ -141,14 +141,14 @@ extern_methods!(
 
         #[cfg(feature = "NSData")]
         #[deprecated = "Use NSKeyedUnarchiver instead"]
-        #[unsafe(method_family(none))]
         #[method_id(unarchiveObjectWithData:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn unarchiveObjectWithData(data: &NSData) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use NSKeyedUnarchiver instead"]
-        #[unsafe(method_family(none))]
         #[method_id(unarchiveObjectWithFile:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn unarchiveObjectWithFile(path: &NSString) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
@@ -170,16 +170,16 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use NSKeyedUnarchiver instead"]
-        #[unsafe(method_family(none))]
         #[method_id(classNameDecodedForArchiveClassName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn classNameDecodedForArchiveClassName_class(
             in_archive_name: &NSString,
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use NSKeyedUnarchiver instead"]
-        #[unsafe(method_family(none))]
         #[method_id(classNameDecodedForArchiveClassName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn classNameDecodedForArchiveClassName(
             &self,
             in_archive_name: &NSString,
@@ -195,12 +195,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSCoder")]
     unsafe impl NSUnarchiver {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -215,8 +215,8 @@ extern_category!(
 
         #[cfg(feature = "NSCoder")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(replacementObjectForArchiver:)]
+        #[unsafe(method_family = none)]
         unsafe fn replacementObjectForArchiver(
             &self,
             archiver: &NSArchiver,

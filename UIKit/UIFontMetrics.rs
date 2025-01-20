@@ -22,35 +22,35 @@ unsafe impl NSObjectProtocol for UIFontMetrics {}
 
 extern_methods!(
     unsafe impl UIFontMetrics {
-        #[unsafe(method_family(none))]
         #[method_id(defaultMetrics)]
+        #[unsafe(method_family = none)]
         pub unsafe fn defaultMetrics() -> Retained<UIFontMetrics>;
 
         #[cfg(feature = "UIFontDescriptor")]
-        #[unsafe(method_family(none))]
         #[method_id(metricsForTextStyle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn metricsForTextStyle(text_style: &UIFontTextStyle) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "UIFontDescriptor")]
-        #[unsafe(method_family(init))]
         #[method_id(initForTextStyle:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initForTextStyle(
             this: Allocated<Self>,
             text_style: &UIFontTextStyle,
         ) -> Retained<Self>;
 
         #[cfg(feature = "UIFont")]
-        #[unsafe(method_family(none))]
         #[method_id(scaledFontForFont:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scaledFontForFont(&self, font: &UIFont) -> Retained<UIFont>;
 
         #[cfg(all(feature = "UIFont", feature = "objc2-core-foundation"))]
-        #[unsafe(method_family(none))]
         #[method_id(scaledFontForFont:maximumPointSize:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scaledFontForFont_maximumPointSize(
             &self,
             font: &UIFont,
@@ -58,8 +58,8 @@ extern_methods!(
         ) -> Retained<UIFont>;
 
         #[cfg(all(feature = "UIFont", feature = "UITraitCollection"))]
-        #[unsafe(method_family(none))]
         #[method_id(scaledFontForFont:compatibleWithTraitCollection:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scaledFontForFont_compatibleWithTraitCollection(
             &self,
             font: &UIFont,
@@ -71,8 +71,8 @@ extern_methods!(
             feature = "UITraitCollection",
             feature = "objc2-core-foundation"
         ))]
-        #[unsafe(method_family(none))]
         #[method_id(scaledFontForFont:maximumPointSize:compatibleWithTraitCollection:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scaledFontForFont_maximumPointSize_compatibleWithTraitCollection(
             &self,
             font: &UIFont,
@@ -97,8 +97,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIFontMetrics {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

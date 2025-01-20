@@ -67,8 +67,8 @@ extern_methods!(
         pub unsafe fn setInstanceTransform(&self, instance_transform: CATransform3D);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[unsafe(method_family(none))]
         #[method_id(instanceColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn instanceColor(&self) -> Option<Retained<CGColor>>;
 
         #[cfg(feature = "objc2-core-graphics")]
@@ -111,16 +111,16 @@ extern_methods!(
     #[cfg(feature = "CALayer")]
     unsafe impl CAReplicatorLayer {
         /// Layer creation and initialization. *
-        #[unsafe(method_family(none))]
         #[method_id(layer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layer() -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithLayer:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
     }
 );
@@ -129,8 +129,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CALayer")]
     unsafe impl CAReplicatorLayer {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

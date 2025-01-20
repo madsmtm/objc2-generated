@@ -23,16 +23,16 @@ extern_methods!(
     #[cfg(feature = "SKRequest")]
     unsafe impl SKReceiptRefreshRequest {
         #[deprecated = "Use Transaction.all and AppTransaction.shared"]
-        #[unsafe(method_family(init))]
         #[method_id(initWithReceiptProperties:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithReceiptProperties(
             this: Allocated<Self>,
             properties: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Retained<Self>;
 
         #[deprecated = "Use Transaction.all and AppTransaction.shared"]
-        #[unsafe(method_family(none))]
         #[method_id(receiptProperties)]
+        #[unsafe(method_family = none)]
         pub unsafe fn receiptProperties(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
@@ -43,12 +43,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "SKRequest")]
     unsafe impl SKReceiptRefreshRequest {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

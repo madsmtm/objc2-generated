@@ -31,17 +31,17 @@ extern_methods!(
         /// `CKDiscoverUserIdentitiesOperation`or
         /// `CKFetchShareParticipantsOperation`to create a
         /// `CKUserIdentity`
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "CKRecordID")]
-        #[unsafe(method_family(none))]
         #[method_id(userRecordID)]
+        #[unsafe(method_family = none)]
         pub unsafe fn userRecordID(&self) -> Option<Retained<CKRecordID>>;
 
         #[cfg(feature = "CKUserIdentityLookupInfo")]
@@ -49,20 +49,20 @@ extern_methods!(
         /// `lookupInfo`you passed in to
         /// `CKDiscoverUserIdentitiesOperation`or
         /// `CKFetchShareParticipantsOperation`
-        #[unsafe(method_family(none))]
         #[method_id(lookupInfo)]
+        #[unsafe(method_family = none)]
         pub unsafe fn lookupInfo(&self) -> Option<Retained<CKUserIdentityLookupInfo>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(nameComponents)]
+        #[unsafe(method_family = none)]
         pub unsafe fn nameComponents(&self) -> Option<Retained<NSPersonNameComponents>>;
 
         #[method(hasiCloudAccount)]
         pub unsafe fn hasiCloudAccount(&self) -> bool;
 
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
-        #[unsafe(method_family(none))]
         #[method_id(contactIdentifiers)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contactIdentifiers(&self) -> Retained<NSArray<NSString>>;
     }
 );

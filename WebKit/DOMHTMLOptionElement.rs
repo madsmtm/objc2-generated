@@ -88,13 +88,13 @@ extern_methods!(
 
         #[cfg(feature = "DOMHTMLFormElement")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(form)]
+        #[unsafe(method_family = none)]
         pub unsafe fn form(&self) -> Option<Retained<DOMHTMLFormElement>>;
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(label)]
+        #[unsafe(method_family = none)]
         pub unsafe fn label(&self) -> Retained<NSString>;
 
         /// Setter for [`label`][Self::label].
@@ -121,8 +121,8 @@ extern_methods!(
         pub unsafe fn setSelected(&self, selected: bool);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(value)]
+        #[unsafe(method_family = none)]
         pub unsafe fn value(&self) -> Retained<NSString>;
 
         /// Setter for [`value`][Self::value].
@@ -131,8 +131,8 @@ extern_methods!(
         pub unsafe fn setValue(&self, value: Option<&NSString>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(text)]
+        #[unsafe(method_family = none)]
         pub unsafe fn text(&self) -> Retained<NSString>;
 
         #[deprecated]
@@ -152,8 +152,8 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLOptionElement {
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -168,8 +168,8 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLOptionElement {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

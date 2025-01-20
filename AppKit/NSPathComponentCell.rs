@@ -81,8 +81,8 @@ extern_methods!(
     ))]
     unsafe impl NSPathComponentCell {
         #[cfg(feature = "NSImage")]
-        #[unsafe(method_family(none))]
         #[method_id(image)]
+        #[unsafe(method_family = none)]
         pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
@@ -90,8 +90,8 @@ extern_methods!(
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 
-        #[unsafe(method_family(none))]
         #[method_id(URL)]
+        #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`URL`][Self::URL].
@@ -108,17 +108,17 @@ extern_methods!(
         feature = "NSTextFieldCell"
     ))]
     unsafe impl NSPathComponentCell {
-        #[unsafe(method_family(init))]
         #[method_id(initTextCell:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
-        #[unsafe(method_family(init))]
         #[method_id(initImageCell:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initImageCell(
             this: Allocated<Self>,
             image: Option<&NSImage>,
@@ -134,8 +134,8 @@ extern_methods!(
         feature = "NSTextFieldCell"
     ))]
     unsafe impl NSPathComponentCell {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -148,8 +148,8 @@ extern_methods!(
         feature = "NSTextFieldCell"
     ))]
     unsafe impl NSPathComponentCell {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

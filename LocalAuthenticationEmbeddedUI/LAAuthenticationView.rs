@@ -63,12 +63,12 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl LAAuthenticationView {
-        #[unsafe(method_family(init))]
         #[method_id(initWithFrame:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         /// Creates a new view and pairs it with the specified authentication context.
@@ -85,8 +85,8 @@ extern_methods!(
         /// - `LAPolicyDeviceOwnerAuthentication` (This one is supported just for convenience. If neither biometric nor watch authentication is available, the evaluation of the policy fails)
         ///
         /// Parameter `context`: `LAContext`instance to control the authentication.
-        #[unsafe(method_family(init))]
         #[method_id(initWithContext:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithContext(this: Allocated<Self>, context: &LAContext)
             -> Retained<Self>;
 
@@ -108,8 +108,8 @@ extern_methods!(
         /// Parameter `controlSize`: Preferred size of
         /// `LAAuthenticationView`provided using
         /// `NSControlSize`
-        #[unsafe(method_family(init))]
         #[method_id(initWithContext:controlSize:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithContext_controlSize(
             this: Allocated<Self>,
             context: &LAContext,
@@ -117,8 +117,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// `LAContext`instance passed to the initializer.
-        #[unsafe(method_family(none))]
         #[method_id(context)]
+        #[unsafe(method_family = none)]
         pub unsafe fn context(&self) -> Retained<LAContext>;
 
         /// `NSControlSize`instance passed to the initializer.
@@ -132,8 +132,8 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl LAAuthenticationView {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -143,8 +143,8 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl LAAuthenticationView {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

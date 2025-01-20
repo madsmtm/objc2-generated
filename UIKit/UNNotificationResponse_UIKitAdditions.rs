@@ -11,8 +11,8 @@ extern_category!(
     #[doc(alias = "UIKitAdditions")]
     pub unsafe trait UNNotificationResponseUIKitAdditions {
         #[cfg(all(feature = "UIResponder", feature = "UIScene"))]
-        #[unsafe(method_family(none))]
         #[method_id(targetScene)]
+        #[unsafe(method_family = none)]
         unsafe fn targetScene(&self, mtm: MainThreadMarker) -> Option<Retained<UIScene>>;
     }
 

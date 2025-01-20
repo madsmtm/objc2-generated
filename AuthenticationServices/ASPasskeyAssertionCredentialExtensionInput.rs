@@ -29,18 +29,18 @@ unsafe impl NSSecureCoding for ASPasskeyAssertionCredentialExtensionInput {}
 
 extern_methods!(
     unsafe impl ASPasskeyAssertionCredentialExtensionInput {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput")]
         /// Input for the `largeBlob` extension in passkey assertion requests.
-        #[unsafe(method_family(none))]
         #[method_id(largeBlob)]
+        #[unsafe(method_family = none)]
         pub unsafe fn largeBlob(
             &self,
         ) -> Option<Retained<ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput>>;

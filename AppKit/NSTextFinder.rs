@@ -100,16 +100,16 @@ unsafe impl NSObjectProtocol for NSTextFinder {}
 
 extern_methods!(
     unsafe impl NSTextFinder {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(client)]
+        #[unsafe(method_family = none)]
         pub unsafe fn client(&self) -> Option<Retained<ProtocolObject<dyn NSTextFinderClient>>>;
 
         /// Setter for [`client`][Self::client].
@@ -122,8 +122,8 @@ extern_methods!(
         #[method(validateAction:)]
         pub unsafe fn validateAction(&self, op: NSTextFinderAction) -> bool;
 
-        #[unsafe(method_family(none))]
         #[method_id(findBarContainer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn findBarContainer(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSTextFinderBarContainer>>>;
@@ -162,8 +162,8 @@ extern_methods!(
             incremental_searching_should_dim_content_view: bool,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(incrementalMatchRanges)]
+        #[unsafe(method_family = none)]
         pub unsafe fn incrementalMatchRanges(&self) -> Retained<NSArray<NSValue>>;
 
         #[method(drawIncrementalMatchHighlightInRect:)]
@@ -177,8 +177,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextFinder {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -199,13 +199,13 @@ extern_protocol!(
         unsafe fn isEditable(&self) -> bool;
 
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(string)]
+        #[unsafe(method_family = none)]
         unsafe fn string(&self) -> Retained<NSString>;
 
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(stringAtIndex:effectiveRange:endsWithSearchBoundary:)]
+        #[unsafe(method_family = none)]
         unsafe fn stringAtIndex_effectiveRange_endsWithSearchBoundary(
             &self,
             character_index: NSUInteger,
@@ -222,8 +222,8 @@ extern_protocol!(
         unsafe fn firstSelectedRange(&self) -> NSRange;
 
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(selectedRanges)]
+        #[unsafe(method_family = none)]
         unsafe fn selectedRanges(&self) -> Retained<NSArray<NSValue>>;
 
         /// Setter for [`selectedRanges`][Self::selectedRanges].
@@ -253,8 +253,8 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(contentViewAtIndex:effectiveCharacterRange:)]
+        #[unsafe(method_family = none)]
         unsafe fn contentViewAtIndex_effectiveCharacterRange(
             &self,
             index: NSUInteger,
@@ -263,16 +263,16 @@ extern_protocol!(
         ) -> Retained<NSView>;
 
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(rectsForCharacterRange:)]
+        #[unsafe(method_family = none)]
         unsafe fn rectsForCharacterRange(
             &self,
             range: NSRange,
         ) -> Option<Retained<NSArray<NSValue>>>;
 
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(visibleCharacterRanges)]
+        #[unsafe(method_family = none)]
         unsafe fn visibleCharacterRanges(&self) -> Retained<NSArray<NSValue>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -286,8 +286,8 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextfinderbarcontainer?language=objc)
     pub unsafe trait NSTextFinderBarContainer: NSObjectProtocol {
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-        #[unsafe(method_family(none))]
         #[method_id(findBarView)]
+        #[unsafe(method_family = none)]
         unsafe fn findBarView(&self, mtm: MainThreadMarker) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -307,8 +307,8 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(contentView)]
+        #[unsafe(method_family = none)]
         unsafe fn contentView(&self, mtm: MainThreadMarker) -> Option<Retained<NSView>>;
     }
 );

@@ -78,8 +78,8 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLTitleElement {
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(text)]
+        #[unsafe(method_family = none)]
         pub unsafe fn text(&self) -> Retained<NSString>;
 
         /// Setter for [`text`][Self::text].
@@ -100,8 +100,8 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLTitleElement {
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -116,8 +116,8 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLTitleElement {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

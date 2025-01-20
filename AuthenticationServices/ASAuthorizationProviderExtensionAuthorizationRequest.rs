@@ -110,45 +110,45 @@ extern_methods!(
         );
 
         /// Request URL with all components.
-        #[unsafe(method_family(none))]
         #[method_id(url)]
+        #[unsafe(method_family = none)]
         pub unsafe fn url(&self) -> Retained<NSURL>;
 
         /// Operation to be executed by the extension.
-        #[unsafe(method_family(none))]
         #[method_id(requestedOperation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestedOperation(
             &self,
         ) -> Retained<ASAuthorizationProviderAuthorizationOperation>;
 
         /// Request HTTP headers.
-        #[unsafe(method_family(none))]
         #[method_id(httpHeaders)]
+        #[unsafe(method_family = none)]
         pub unsafe fn httpHeaders(&self) -> Retained<NSDictionary<NSString, NSString>>;
 
         /// Request body.
-        #[unsafe(method_family(none))]
         #[method_id(httpBody)]
+        #[unsafe(method_family = none)]
         pub unsafe fn httpBody(&self) -> Retained<NSData>;
 
         /// Realm.
-        #[unsafe(method_family(none))]
         #[method_id(realm)]
+        #[unsafe(method_family = none)]
         pub unsafe fn realm(&self) -> Retained<NSString>;
 
         /// Extension data from extension configuration provided by MDM stored as a property-list.
-        #[unsafe(method_family(none))]
         #[method_id(extensionData)]
+        #[unsafe(method_family = none)]
         pub unsafe fn extensionData(&self) -> Retained<NSDictionary>;
 
         /// Identification of the calling application.
-        #[unsafe(method_family(none))]
         #[method_id(callerBundleIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn callerBundleIdentifier(&self) -> Retained<NSString>;
 
         /// Authorization options.
-        #[unsafe(method_family(none))]
         #[method_id(authorizationOptions)]
+        #[unsafe(method_family = none)]
         pub unsafe fn authorizationOptions(&self) -> Retained<NSDictionary>;
 
         /// Indicates whether the calling application is managed.
@@ -156,18 +156,18 @@ extern_methods!(
         pub unsafe fn isCallerManaged(&self) -> bool;
 
         /// Team identifier of the calling application.
-        #[unsafe(method_family(none))]
         #[method_id(callerTeamIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn callerTeamIdentifier(&self) -> Retained<NSString>;
 
         /// Localized display name of the calling application.
-        #[unsafe(method_family(none))]
         #[method_id(localizedCallerDisplayName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn localizedCallerDisplayName(&self) -> Retained<NSString>;
 
         /// Audit token of the calling application.
-        #[unsafe(method_family(none))]
         #[method_id(callerAuditToken)]
+        #[unsafe(method_family = none)]
         pub unsafe fn callerAuditToken(&self) -> Retained<NSData>;
 
         /// Indicates whether the authorization user interface is enabled.
@@ -182,8 +182,8 @@ extern_methods!(
 
         #[cfg(feature = "ASAuthorizationProviderExtensionLoginManager")]
         /// The login manager to interface with the Platform SSO configuration.
-        #[unsafe(method_family(none))]
         #[method_id(loginManager)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loginManager(
             &self,
         ) -> Option<Retained<ASAuthorizationProviderExtensionLoginManager>>;
@@ -193,12 +193,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASAuthorizationProviderExtensionAuthorizationRequest {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

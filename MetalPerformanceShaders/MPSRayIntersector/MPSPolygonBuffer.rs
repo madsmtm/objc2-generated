@@ -34,24 +34,24 @@ extern_methods!(
     unsafe impl MPSPolygonBuffer {
         /// Initialize the polygon buffer
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Initialize the polygon buffer with an NSCoder. Buffer properties such as the vertex
         /// buffer, instance buffer, etc. are set to nil. Encode and decode these buffers along with the
         /// polygon buffer instead.
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(polygonBuffer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn polygonBuffer() -> Retained<Self>;
 
         /// Create a a copy of this polygon buffer
@@ -64,8 +64,8 @@ extern_methods!(
         ///
         /// Parameter `zone`: This parameter is ignored. Memory zones are no longer used by Objective-C.
         #[deprecated]
-        #[unsafe(method_family(copy))]
         #[method_id(copyWithZone:)]
+        #[unsafe(method_family = copy)]
         pub unsafe fn copyWithZone(&self, zone: *mut NSZone) -> Retained<Self>;
 
         /// Vertex buffer containing vertex data encoded as three 32 bit floats per vertex. Note
@@ -83,8 +83,8 @@ extern_methods!(
         /// can be used to pad quadrilateral indices if needed. All four vertices of a quadrilateral must
         /// be coplanar and the quadrilateral must be convex.
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(vertexBuffer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn vertexBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         /// Setter for [`vertexBuffer`][Self::vertexBuffer].
@@ -106,8 +106,8 @@ extern_methods!(
         /// Index buffer containing index data. Each index references a vertex in the vertex buffer.
         /// May be nil.
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(indexBuffer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indexBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         /// Setter for [`indexBuffer`][Self::indexBuffer].
@@ -130,8 +130,8 @@ extern_methods!(
         /// Mask buffer containing one uint32_t mask per polygon. May be nil. Otherwise, the mask
         /// type must be specified on the MPSRayIntersector with which it is used.
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(maskBuffer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maskBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         /// Setter for [`maskBuffer`][Self::maskBuffer].
@@ -165,8 +165,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSPolygonBuffer {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

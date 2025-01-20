@@ -23,20 +23,20 @@ unsafe impl NSObjectProtocol for CKFetchWebAuthTokenOperation {}
 extern_methods!(
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchWebAuthTokenOperation {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithAPIToken:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithAPIToken(
             this: Allocated<Self>,
             api_token: &NSString,
         ) -> Retained<Self>;
 
         /// APIToken is expected to be set before you begin this operation.
-        #[unsafe(method_family(none))]
         #[method_id(APIToken)]
+        #[unsafe(method_family = none)]
         pub unsafe fn APIToken(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`APIToken`][Self::APIToken].
@@ -79,8 +79,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchWebAuthTokenOperation {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

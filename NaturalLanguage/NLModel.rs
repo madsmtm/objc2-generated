@@ -39,47 +39,47 @@ unsafe impl NSObjectProtocol for NLModel {}
 
 extern_methods!(
     unsafe impl NLModel {
-        #[unsafe(method_family(none))]
         #[method_id(modelWithContentsOfURL:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn modelWithContentsOfURL_error(
             url: &NSURL,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "objc2-core-ml")]
-        #[unsafe(method_family(none))]
         #[method_id(modelWithMLModel:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn modelWithMLModel_error(
             ml_model: &MLModel,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(configuration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn configuration(&self) -> Retained<NLModelConfiguration>;
 
-        #[unsafe(method_family(none))]
         #[method_id(predictedLabelForString:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn predictedLabelForString(
             &self,
             string: &NSString,
         ) -> Option<Retained<NSString>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(predictedLabelsForTokens:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn predictedLabelsForTokens(
             &self,
             tokens: &NSArray<NSString>,
         ) -> Retained<NSArray<NSString>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(predictedLabelHypothesesForString:maximumCount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn predictedLabelHypothesesForString_maximumCount(
             &self,
             string: &NSString,
             maximum_count: NSUInteger,
         ) -> Retained<NSDictionary<NSString, NSNumber>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(predictedLabelHypothesesForTokens:maximumCount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn predictedLabelHypothesesForTokens_maximumCount(
             &self,
             tokens: &NSArray<NSString>,
@@ -91,12 +91,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NLModel {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -126,15 +126,15 @@ extern_methods!(
         pub unsafe fn r#type(&self) -> NLModelType;
 
         #[cfg(feature = "NLLanguage")]
-        #[unsafe(method_family(none))]
         #[method_id(language)]
+        #[unsafe(method_family = none)]
         pub unsafe fn language(&self) -> Option<Retained<NLLanguage>>;
 
         #[method(revision)]
         pub unsafe fn revision(&self) -> NSUInteger;
 
-        #[unsafe(method_family(none))]
         #[method_id(supportedRevisionsForType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn supportedRevisionsForType(r#type: NLModelType) -> Retained<NSIndexSet>;
 
         #[method(currentRevisionForType:)]
@@ -145,12 +145,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NLModelConfiguration {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

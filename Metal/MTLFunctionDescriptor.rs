@@ -68,13 +68,13 @@ unsafe impl NSObjectProtocol for MTLFunctionDescriptor {}
 extern_methods!(
     unsafe impl MTLFunctionDescriptor {
         /// Create an autoreleased function descriptor
-        #[unsafe(method_family(none))]
         #[method_id(functionDescriptor)]
+        #[unsafe(method_family = none)]
         pub fn functionDescriptor() -> Retained<MTLFunctionDescriptor>;
 
         /// The name of the `visible` function to find.
-        #[unsafe(method_family(none))]
         #[method_id(name)]
+        #[unsafe(method_family = none)]
         pub fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
@@ -82,8 +82,8 @@ extern_methods!(
         pub fn setName(&self, name: Option<&NSString>);
 
         /// An optional new name for a `visible` function to allow reuse with different specializations.
-        #[unsafe(method_family(none))]
         #[method_id(specializedName)]
+        #[unsafe(method_family = none)]
         pub fn specializedName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`specializedName`][Self::specializedName].
@@ -92,8 +92,8 @@ extern_methods!(
 
         #[cfg(feature = "MTLFunctionConstantValues")]
         /// The set of constant values assigned to the function constants. Compilation fails if you do not provide valid constant values for all required function constants.
-        #[unsafe(method_family(none))]
         #[method_id(constantValues)]
+        #[unsafe(method_family = none)]
         pub fn constantValues(&self) -> Option<Retained<MTLFunctionConstantValues>>;
 
         #[cfg(feature = "MTLFunctionConstantValues")]
@@ -113,8 +113,8 @@ extern_methods!(
         /// The array of archives to be searched.
         ///
         /// Binary archives to be searched for precompiled functions during the compilation of this function.
-        #[unsafe(method_family(none))]
         #[method_id(binaryArchives)]
+        #[unsafe(method_family = none)]
         pub unsafe fn binaryArchives(
             &self,
         ) -> Option<Retained<NSArray<ProtocolObject<dyn MTLBinaryArchive>>>>;
@@ -132,12 +132,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLFunctionDescriptor {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
     }
 );
@@ -171,12 +171,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLIntersectionFunctionDescriptor {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

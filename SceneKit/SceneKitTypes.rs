@@ -229,19 +229,19 @@ extern_category!(
     /// Adds methods to wrap vectors in NSValue objects.
     pub unsafe trait NSValueSceneKitAdditions {
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(none))]
         #[method_id(valueWithSCNVector3:)]
+        #[unsafe(method_family = none)]
         unsafe fn valueWithSCNVector3(v: SCNVector3) -> Retained<NSValue>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(none))]
         #[method_id(valueWithSCNVector4:)]
+        #[unsafe(method_family = none)]
         unsafe fn valueWithSCNVector4(v: SCNVector4) -> Retained<NSValue>;
 
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(not(target_os = "watchos"))]
-        #[unsafe(method_family(none))]
         #[method_id(valueWithSCNMatrix4:)]
+        #[unsafe(method_family = none)]
         unsafe fn valueWithSCNMatrix4(v: SCNMatrix4) -> Retained<NSValue>;
 
         #[cfg(feature = "objc2-core-foundation")]

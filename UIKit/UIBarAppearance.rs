@@ -30,14 +30,14 @@ unsafe impl NSSecureCoding for UIBarAppearance {}
 extern_methods!(
     unsafe impl UIBarAppearance {
         /// Constructs a new bar appearance, configured with default values and targeting the device idiom.
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "UIDevice")]
         /// Constructs a new bar appearance, targeting the passed-in idiom as a hint. Not all platforms support all available idioms. See the idiom property to determine the resolved idiom.
-        #[unsafe(method_family(init))]
         #[method_id(initWithIdiom:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithIdiom(
             this: Allocated<Self>,
             idiom: UIUserInterfaceIdiom,
@@ -49,19 +49,19 @@ extern_methods!(
         pub unsafe fn idiom(&self) -> UIUserInterfaceIdiom;
 
         /// Constructs a new bar appearance, copying all relevant properties from the given appearance object. This initializer is useful for migrating configuration between UIBarAppearance subclasses. For example, you can initialize a UINavigationBarAppearance with a UIToolbarAppearance instance, and shared attributes will be identical between the two.
-        #[unsafe(method_family(init))]
         #[method_id(initWithBarAppearance:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithBarAppearance(
             this: Allocated<Self>,
             bar_appearance: &UIBarAppearance,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
-        #[unsafe(method_family(copy))]
         #[method_id(copy)]
+        #[unsafe(method_family = copy)]
         pub unsafe fn copy(&self) -> Retained<Self>;
 
         /// Reset background and shadow properties to their defaults.
@@ -78,8 +78,8 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBlurEffect", feature = "UIVisualEffect"))]
         /// A specific blur effect to use for the bar background. This effect is composited first when constructing the bar's background.
-        #[unsafe(method_family(none))]
         #[method_id(backgroundEffect)]
+        #[unsafe(method_family = none)]
         pub unsafe fn backgroundEffect(&self) -> Option<Retained<UIBlurEffect>>;
 
         #[cfg(all(feature = "UIBlurEffect", feature = "UIVisualEffect"))]
@@ -89,8 +89,8 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         /// A color to use for the bar background. This color is composited over backgroundEffects.
-        #[unsafe(method_family(none))]
         #[method_id(backgroundColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn backgroundColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -100,8 +100,8 @@ extern_methods!(
 
         #[cfg(feature = "UIImage")]
         /// An image to use for the bar background. This image is composited over the backgroundColor, and resized per the backgroundImageContentMode.
-        #[unsafe(method_family(none))]
         #[method_id(backgroundImage)]
+        #[unsafe(method_family = none)]
         pub unsafe fn backgroundImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
@@ -124,8 +124,8 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         /// A color to use for the shadow. Its specific behavior depends on the value of shadowImage. If shadowImage is nil, then the shadowColor is used to color the bar's default shadow; a nil or clearColor shadowColor will result in no shadow. If shadowImage is a template image, then the shadowColor is used to tint the image; a nil or clearColor shadowColor will also result in no shadow. If the shadowImage is not a template image, then it will be rendered regardless of the value of shadowColor.
-        #[unsafe(method_family(none))]
         #[method_id(shadowColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shadowColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -135,8 +135,8 @@ extern_methods!(
 
         #[cfg(feature = "UIImage")]
         /// Use an image for the shadow. See shadowColor for how they interact.
-        #[unsafe(method_family(none))]
         #[method_id(shadowImage)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shadowImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
@@ -149,8 +149,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIBarAppearance {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

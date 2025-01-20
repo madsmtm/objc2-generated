@@ -62,8 +62,8 @@ extern_methods!(
         /// Create a tile definition with an SKTexture, and set its size to the SKTexture's width/height.
         ///
         /// Parameter `texture`: the texture to reference for size and content
-        #[unsafe(method_family(none))]
         #[method_id(tileDefinitionWithTexture:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tileDefinitionWithTexture(texture: &SKTexture) -> Retained<Self>;
 
         #[cfg(all(feature = "SKTexture", feature = "objc2-core-foundation"))]
@@ -72,8 +72,8 @@ extern_methods!(
         /// Parameter `texture`: the texture to reference for content
         ///
         /// Parameter `size`: the size of the tile in points
-        #[unsafe(method_family(none))]
         #[method_id(tileDefinitionWithTexture:size:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tileDefinitionWithTexture_size(
             texture: &SKTexture,
             size: CGSize,
@@ -87,8 +87,8 @@ extern_methods!(
         /// Parameter `normalTexture`: the normal texture to use for generating normals for lighting
         ///
         /// Parameter `size`: the size of the tile in points
-        #[unsafe(method_family(none))]
         #[method_id(tileDefinitionWithTexture:normalTexture:size:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tileDefinitionWithTexture_normalTexture_size(
             texture: &SKTexture,
             normal_texture: &SKTexture,
@@ -103,8 +103,8 @@ extern_methods!(
         /// Parameter `size`: the size of the tile in points
         ///
         /// Parameter `timePerFrame`: the duration, in seconds, that each texture in the textures array is displayed before switching to the next texture in the sequence
-        #[unsafe(method_family(none))]
         #[method_id(tileDefinitionWithTextures:size:timePerFrame:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tileDefinitionWithTextures_size_timePerFrame(
             textures: &NSArray<SKTexture>,
             size: CGSize,
@@ -121,8 +121,8 @@ extern_methods!(
         /// Parameter `size`: the size of the tile in points
         ///
         /// Parameter `timePerFrame`: the duration, in seconds, that each texture in the textures array is displayed before switching to the next texture in the sequence
-        #[unsafe(method_family(none))]
         #[method_id(tileDefinitionWithTextures:normalTextures:size:timePerFrame:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tileDefinitionWithTextures_normalTextures_size_timePerFrame(
             textures: &NSArray<SKTexture>,
             normal_textures: &NSArray<SKTexture>,
@@ -134,8 +134,8 @@ extern_methods!(
         /// Initilize a tile definition with an SKTexture, and set its size to the SKTexture's width/height.
         ///
         /// Parameter `texture`: the texture to reference for size and content
-        #[unsafe(method_family(init))]
         #[method_id(initWithTexture:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithTexture(this: Allocated<Self>, texture: &SKTexture)
             -> Retained<Self>;
 
@@ -145,8 +145,8 @@ extern_methods!(
         /// Parameter `texture`: the texture to reference for content
         ///
         /// Parameter `size`: the size of the tile in points
-        #[unsafe(method_family(init))]
         #[method_id(initWithTexture:size:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithTexture_size(
             this: Allocated<Self>,
             texture: &SKTexture,
@@ -161,8 +161,8 @@ extern_methods!(
         /// Parameter `normalTexture`: the normal texture to use for generating normals for lighting
         ///
         /// Parameter `size`: the size of the tile in points
-        #[unsafe(method_family(init))]
         #[method_id(initWithTexture:normalTexture:size:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithTexture_normalTexture_size(
             this: Allocated<Self>,
             texture: &SKTexture,
@@ -178,8 +178,8 @@ extern_methods!(
         /// Parameter `size`: the size of the tile in points
         ///
         /// Parameter `timePerFrame`: the duration, in seconds, that each texture in the textures array is displayed before switching to the next texture in the sequence
-        #[unsafe(method_family(init))]
         #[method_id(initWithTextures:size:timePerFrame:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithTextures_size_timePerFrame(
             this: Allocated<Self>,
             textures: &NSArray<SKTexture>,
@@ -197,8 +197,8 @@ extern_methods!(
         /// Parameter `size`: the size of the tile in points
         ///
         /// Parameter `timePerFrame`: the duration, in seconds, that each texture in the textures array is displayed before switching to the next texture in the sequence
-        #[unsafe(method_family(init))]
         #[method_id(initWithTextures:normalTextures:size:timePerFrame:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithTextures_normalTextures_size_timePerFrame(
             this: Allocated<Self>,
             textures: &NSArray<SKTexture>,
@@ -209,8 +209,8 @@ extern_methods!(
 
         #[cfg(feature = "SKTexture")]
         /// The textures used to draw the tile. Non-animated tiles use only one texture. When more than one texture is present, the tile will swap through them in sequence, showing each for the duration specified in the timePerFrame property. After displaying the last texture in the array, the sequence is repeated from the first texture.
-        #[unsafe(method_family(none))]
         #[method_id(textures)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textures(&self) -> Retained<NSArray<SKTexture>>;
 
         #[cfg(feature = "SKTexture")]
@@ -220,8 +220,8 @@ extern_methods!(
 
         #[cfg(feature = "SKTexture")]
         /// The textures to use for generating normals that lights use to light this tile. These will only be used if the tile is lit by at least one light. Each normal texture corresponds to a texture in the textures property.
-        #[unsafe(method_family(none))]
         #[method_id(normalTextures)]
+        #[unsafe(method_family = none)]
         pub unsafe fn normalTextures(&self) -> Retained<NSArray<SKTexture>>;
 
         #[cfg(feature = "SKTexture")]
@@ -230,8 +230,8 @@ extern_methods!(
         pub unsafe fn setNormalTextures(&self, normal_textures: &NSArray<SKTexture>);
 
         /// An optional dictionary that can be used to store your own data for each tile definition. Defaults to nil.
-        #[unsafe(method_family(none))]
         #[method_id(userData)]
+        #[unsafe(method_family = none)]
         pub unsafe fn userData(&self) -> Option<Retained<NSMutableDictionary>>;
 
         /// Setter for [`userData`][Self::userData].
@@ -239,8 +239,8 @@ extern_methods!(
         pub unsafe fn setUserData(&self, user_data: Option<&NSMutableDictionary>);
 
         /// Client-assignable name for the tile definition. Defaults to nil.
-        #[unsafe(method_family(none))]
         #[method_id(name)]
+        #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
@@ -304,12 +304,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKTileDefinition {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

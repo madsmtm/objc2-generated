@@ -98,20 +98,20 @@ unsafe impl NSSecureCoding for NSColor {}
 
 extern_methods!(
     unsafe impl NSColor {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "NSColorSpace", feature = "objc2-core-foundation"))]
-        #[unsafe(method_family(none))]
         #[method_id(colorWithColorSpace:components:count:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colorWithColorSpace_components_count(
             space: &NSColorSpace,
             components: NonNull<CGFloat>,
@@ -119,8 +119,8 @@ extern_methods!(
         ) -> Retained<NSColor>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(none))]
         #[method_id(colorWithSRGBRed:green:blue:alpha:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colorWithSRGBRed_green_blue_alpha(
             red: CGFloat,
             green: CGFloat,
@@ -129,16 +129,16 @@ extern_methods!(
         ) -> Retained<NSColor>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(none))]
         #[method_id(colorWithGenericGamma22White:alpha:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colorWithGenericGamma22White_alpha(
             white: CGFloat,
             alpha: CGFloat,
         ) -> Retained<NSColor>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(none))]
         #[method_id(colorWithDisplayP3Red:green:blue:alpha:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colorWithDisplayP3Red_green_blue_alpha(
             red: CGFloat,
             green: CGFloat,
@@ -147,13 +147,13 @@ extern_methods!(
         ) -> Retained<NSColor>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(none))]
         #[method_id(colorWithWhite:alpha:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colorWithWhite_alpha(white: CGFloat, alpha: CGFloat) -> Retained<NSColor>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(none))]
         #[method_id(colorWithRed:green:blue:alpha:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colorWithRed_green_blue_alpha(
             red: CGFloat,
             green: CGFloat,
@@ -162,8 +162,8 @@ extern_methods!(
         ) -> Retained<NSColor>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(none))]
         #[method_id(colorWithHue:saturation:brightness:alpha:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colorWithHue_saturation_brightness_alpha(
             hue: CGFloat,
             saturation: CGFloat,
@@ -172,8 +172,8 @@ extern_methods!(
         ) -> Retained<NSColor>;
 
         #[cfg(all(feature = "NSColorSpace", feature = "objc2-core-foundation"))]
-        #[unsafe(method_family(none))]
         #[method_id(colorWithColorSpace:hue:saturation:brightness:alpha:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colorWithColorSpace_hue_saturation_brightness_alpha(
             space: &NSColorSpace,
             hue: CGFloat,
@@ -183,45 +183,45 @@ extern_methods!(
         ) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColorList")]
-        #[unsafe(method_family(none))]
         #[method_id(colorWithCatalogName:colorName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colorWithCatalogName_colorName(
             list_name: &NSColorListName,
             color_name: &NSColorName,
         ) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColorList")]
-        #[unsafe(method_family(none))]
         #[method_id(colorNamed:bundle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colorNamed_bundle(
             name: &NSColorName,
             bundle: Option<&NSBundle>,
         ) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColorList")]
-        #[unsafe(method_family(none))]
         #[method_id(colorNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colorNamed(name: &NSColorName) -> Option<Retained<NSColor>>;
 
         #[cfg(all(feature = "NSAppearance", feature = "NSColorList", feature = "block2"))]
-        #[unsafe(method_family(none))]
         #[method_id(colorWithName:dynamicProvider:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colorWithName_dynamicProvider(
             color_name: Option<&NSColorName>,
             dynamic_provider: &block2::Block<dyn Fn(NonNull<NSAppearance>) -> NonNull<NSColor>>,
         ) -> Retained<NSColor>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(none))]
         #[method_id(colorWithDeviceWhite:alpha:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colorWithDeviceWhite_alpha(
             white: CGFloat,
             alpha: CGFloat,
         ) -> Retained<NSColor>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(none))]
         #[method_id(colorWithDeviceRed:green:blue:alpha:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colorWithDeviceRed_green_blue_alpha(
             red: CGFloat,
             green: CGFloat,
@@ -230,8 +230,8 @@ extern_methods!(
         ) -> Retained<NSColor>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(none))]
         #[method_id(colorWithDeviceHue:saturation:brightness:alpha:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colorWithDeviceHue_saturation_brightness_alpha(
             hue: CGFloat,
             saturation: CGFloat,
@@ -240,8 +240,8 @@ extern_methods!(
         ) -> Retained<NSColor>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(none))]
         #[method_id(colorWithDeviceCyan:magenta:yellow:black:alpha:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colorWithDeviceCyan_magenta_yellow_black_alpha(
             cyan: CGFloat,
             magenta: CGFloat,
@@ -251,16 +251,16 @@ extern_methods!(
         ) -> Retained<NSColor>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(none))]
         #[method_id(colorWithCalibratedWhite:alpha:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colorWithCalibratedWhite_alpha(
             white: CGFloat,
             alpha: CGFloat,
         ) -> Retained<NSColor>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(none))]
         #[method_id(colorWithCalibratedRed:green:blue:alpha:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colorWithCalibratedRed_green_blue_alpha(
             red: CGFloat,
             green: CGFloat,
@@ -269,8 +269,8 @@ extern_methods!(
         ) -> Retained<NSColor>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(none))]
         #[method_id(colorWithCalibratedHue:saturation:brightness:alpha:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colorWithCalibratedHue_saturation_brightness_alpha(
             hue: CGFloat,
             saturation: CGFloat,
@@ -279,305 +279,305 @@ extern_methods!(
         ) -> Retained<NSColor>;
 
         #[cfg(feature = "NSImage")]
-        #[unsafe(method_family(none))]
         #[method_id(colorWithPatternImage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colorWithPatternImage(image: &NSImage) -> Retained<NSColor>;
 
         #[method(type)]
         pub unsafe fn r#type(&self) -> NSColorType;
 
-        #[unsafe(method_family(none))]
         #[method_id(colorUsingType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colorUsingType(&self, r#type: NSColorType) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColorSpace")]
-        #[unsafe(method_family(none))]
         #[method_id(colorUsingColorSpace:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colorUsingColorSpace(
             &self,
             space: &NSColorSpace,
         ) -> Option<Retained<NSColor>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(blackColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn blackColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(darkGrayColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn darkGrayColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(lightGrayColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn lightGrayColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(whiteColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn whiteColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(grayColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn grayColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(redColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn redColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(greenColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn greenColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(blueColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn blueColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(cyanColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cyanColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(yellowColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn yellowColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(magentaColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn magentaColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(orangeColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn orangeColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(purpleColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn purpleColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(brownColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn brownColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(clearColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn clearColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(labelColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn labelColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(secondaryLabelColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn secondaryLabelColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(tertiaryLabelColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tertiaryLabelColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(quaternaryLabelColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn quaternaryLabelColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(quinaryLabelColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn quinaryLabelColor() -> Retained<NSColor>;
 
         /// Used for large scale images or subtle decorative elements; not for general foreground content.
-        #[unsafe(method_family(none))]
         #[method_id(linkColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn linkColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(placeholderTextColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn placeholderTextColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(windowFrameTextColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn windowFrameTextColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(selectedMenuItemTextColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectedMenuItemTextColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(alternateSelectedControlTextColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alternateSelectedControlTextColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(headerTextColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn headerTextColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(separatorColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn separatorColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(gridColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn gridColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(windowBackgroundColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn windowBackgroundColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(underPageBackgroundColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn underPageBackgroundColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(controlBackgroundColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn controlBackgroundColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(selectedContentBackgroundColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectedContentBackgroundColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(unemphasizedSelectedContentBackgroundColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn unemphasizedSelectedContentBackgroundColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(alternatingContentBackgroundColors)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alternatingContentBackgroundColors() -> Retained<NSArray<NSColor>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(findHighlightColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn findHighlightColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(textColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(textBackgroundColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textBackgroundColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(textInsertionPointColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textInsertionPointColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(selectedTextColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectedTextColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(selectedTextBackgroundColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectedTextBackgroundColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(unemphasizedSelectedTextBackgroundColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn unemphasizedSelectedTextBackgroundColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(unemphasizedSelectedTextColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn unemphasizedSelectedTextColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(controlColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn controlColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(controlTextColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn controlTextColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(selectedControlColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectedControlColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(selectedControlTextColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectedControlTextColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(disabledControlTextColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn disabledControlTextColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(keyboardFocusIndicatorColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn keyboardFocusIndicatorColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(scrubberTexturedBackgroundColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scrubberTexturedBackgroundColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(systemRedColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn systemRedColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(systemGreenColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn systemGreenColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(systemBlueColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn systemBlueColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(systemOrangeColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn systemOrangeColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(systemYellowColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn systemYellowColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(systemBrownColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn systemBrownColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(systemPinkColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn systemPinkColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(systemPurpleColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn systemPurpleColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(systemGrayColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn systemGrayColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(systemTealColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn systemTealColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(systemIndigoColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn systemIndigoColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(systemMintColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn systemMintColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(systemCyanColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn systemCyanColor() -> Retained<NSColor>;
 
         /// Fill colors for UI elements.
         /// These are meant to be used over the background colors, since their alpha component is less than 1.
         ///
         /// systemFillColor is appropriate for filling thin shapes, such as the track of a slider.
-        #[unsafe(method_family(none))]
         #[method_id(systemFillColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn systemFillColor() -> Retained<NSColor>;
 
         /// secondarySystemFillColor is appropriate for filling small-size shapes, such as the backing of a progress indicator.
-        #[unsafe(method_family(none))]
         #[method_id(secondarySystemFillColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn secondarySystemFillColor() -> Retained<NSColor>;
 
         /// tertiarySystemFillColor is appropriate for filling medium-size shapes,  such as the backing of a switch.
-        #[unsafe(method_family(none))]
         #[method_id(tertiarySystemFillColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tertiarySystemFillColor() -> Retained<NSColor>;
 
         /// quaternarySystemFillColor is appropriate for filling large areas, such as a group box or tab pane.
-        #[unsafe(method_family(none))]
         #[method_id(quaternarySystemFillColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn quaternarySystemFillColor() -> Retained<NSColor>;
 
         /// quinarySystemFillColor is appropriate for filling large areas that require subtle emphasis, such as content of a form..
-        #[unsafe(method_family(none))]
         #[method_id(quinarySystemFillColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn quinarySystemFillColor() -> Retained<NSColor>;
 
         /// A dynamic color that reflects the user's current preferred accent color. This color automatically updates when the accent color preference changes. Do not make assumptions about the color space of this color, which may change across releases.
-        #[unsafe(method_family(none))]
         #[method_id(controlAccentColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn controlAccentColor() -> Retained<NSColor>;
 
         #[cfg(feature = "NSCell")]
@@ -586,31 +586,31 @@ extern_methods!(
 
         #[cfg(feature = "NSCell")]
         #[deprecated = "NSControlTint does not describe the full range of available control accent colors. Use +[NSColor controlAccentColor] instead."]
-        #[unsafe(method_family(none))]
         #[method_id(colorForControlTint:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colorForControlTint(control_tint: NSControlTint) -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(highlightColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn highlightColor() -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(shadowColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shadowColor() -> Retained<NSColor>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(none))]
         #[method_id(highlightWithLevel:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn highlightWithLevel(&self, val: CGFloat) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(none))]
         #[method_id(shadowWithLevel:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shadowWithLevel(&self, val: CGFloat) -> Option<Retained<NSColor>>;
 
         /// Returns a color representing the base color with a system defined effect applied to it. This color is safe to create before draw time, as the resolution of the final color only happens when being `-set`, retrieving its `CGColor`, resolving with `-colorWithType:`, etc. The return color type is `.named`.
-        #[unsafe(method_family(none))]
         #[method_id(colorWithSystemEffect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colorWithSystemEffect(
             &self,
             system_effect: NSColorSystemEffect,
@@ -626,8 +626,8 @@ extern_methods!(
         pub unsafe fn setStroke(&self);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(none))]
         #[method_id(blendedColorWithFraction:ofColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn blendedColorWithFraction_ofColor(
             &self,
             fraction: CGFloat,
@@ -635,27 +635,27 @@ extern_methods!(
         ) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(none))]
         #[method_id(colorWithAlphaComponent:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colorWithAlphaComponent(&self, alpha: CGFloat) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColorList")]
         /// * Methods to get various components of colors. Not all of the methods apply to all colors; if called, they raise. **
-        #[unsafe(method_family(none))]
         #[method_id(catalogNameComponent)]
+        #[unsafe(method_family = none)]
         pub unsafe fn catalogNameComponent(&self) -> Retained<NSColorListName>;
 
         #[cfg(feature = "NSColorList")]
-        #[unsafe(method_family(none))]
         #[method_id(colorNameComponent)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colorNameComponent(&self) -> Retained<NSColorName>;
 
-        #[unsafe(method_family(none))]
         #[method_id(localizedCatalogNameComponent)]
+        #[unsafe(method_family = none)]
         pub unsafe fn localizedCatalogNameComponent(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(localizedColorNameComponent)]
+        #[unsafe(method_family = none)]
         pub unsafe fn localizedColorNameComponent(&self) -> Retained<NSString>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -738,8 +738,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSColorSpace")]
-        #[unsafe(method_family(none))]
         #[method_id(colorSpace)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colorSpace(&self) -> Retained<NSColorSpace>;
 
         #[method(numberOfComponents)]
@@ -750,8 +750,8 @@ extern_methods!(
         pub unsafe fn getComponents(&self, components: NonNull<CGFloat>);
 
         #[cfg(feature = "NSImage")]
-        #[unsafe(method_family(none))]
         #[method_id(patternImage)]
+        #[unsafe(method_family = none)]
         pub unsafe fn patternImage(&self) -> Retained<NSImage>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -759,8 +759,8 @@ extern_methods!(
         pub unsafe fn alphaComponent(&self) -> CGFloat;
 
         #[cfg(feature = "NSPasteboard")]
-        #[unsafe(method_family(none))]
         #[method_id(colorFromPasteboard:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colorFromPasteboard(paste_board: &NSPasteboard) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSPasteboard")]
@@ -772,14 +772,14 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-graphics")]
         #[cfg(target_vendor = "apple")]
-        #[unsafe(method_family(none))]
         #[method_id(colorWithCGColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colorWithCGColor(cg_color: &CGColor) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         #[cfg(target_vendor = "apple")]
-        #[unsafe(method_family(none))]
         #[method_id(CGColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn CGColor(&self) -> Retained<CGColor>;
 
         #[deprecated = "Use `showsAlpha` in `NSColorPanel` and `supportsAlpha` in `NSColorWell` to control alpha behavior for individual controls."]
@@ -796,8 +796,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSColor {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -807,92 +807,92 @@ extern_methods!(
     unsafe impl NSColor {
         /// Historically used as the inner border highlight color for beveled buttons. No longer used.
         #[deprecated = "Use a color that matches the semantics being used, such as `separatorColor`"]
-        #[unsafe(method_family(none))]
         #[method_id(controlHighlightColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn controlHighlightColor() -> Retained<NSColor>;
 
         /// Historically used as the outer border highlight color for beveled buttons. No longer used.
         #[deprecated = "Use a color that matches the semantics being used, such as `separatorColor`"]
-        #[unsafe(method_family(none))]
         #[method_id(controlLightHighlightColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn controlLightHighlightColor() -> Retained<NSColor>;
 
         /// Historically used as the inner border shadow color for beveled buttons. No longer used.
         #[deprecated = "Use a color that matches the semantics being used, such as `separatorColor`"]
-        #[unsafe(method_family(none))]
         #[method_id(controlShadowColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn controlShadowColor() -> Retained<NSColor>;
 
         /// Historically used as the outer border shadow color for beveled buttons. No longer used.
         #[deprecated = "Use a color that matches the semantics being used, such as `separatorColor`"]
-        #[unsafe(method_family(none))]
         #[method_id(controlDarkShadowColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn controlDarkShadowColor() -> Retained<NSColor>;
 
         /// Historically used as the color of scroll bars. No longer used.
         #[deprecated = "Use NSScroller instead"]
-        #[unsafe(method_family(none))]
         #[method_id(scrollBarColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scrollBarColor() -> Retained<NSColor>;
 
         /// Historically used as the color of scroll bar knobs. No longer used.
         #[deprecated = "Use NSScroller instead"]
-        #[unsafe(method_family(none))]
         #[method_id(knobColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn knobColor() -> Retained<NSColor>;
 
         /// Historically used as the color of scroll bar knobs being dragged. No longer used.
         #[deprecated = "Use NSScroller instead"]
-        #[unsafe(method_family(none))]
         #[method_id(selectedKnobColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectedKnobColor() -> Retained<NSColor>;
 
         /// Historically used as the color of the window chrome, which is no longer able to be represented by a color. No longer used.
         #[deprecated = "Use NSVisualEffectMaterialTitlebar"]
-        #[unsafe(method_family(none))]
         #[method_id(windowFrameColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn windowFrameColor() -> Retained<NSColor>;
 
         /// Historically used as the color of selected menu items, which is no longer a color but a tinted blur effect. No longer used.
         #[deprecated = "Use NSVisualEffectMaterialSelection"]
-        #[unsafe(method_family(none))]
         #[method_id(selectedMenuItemColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectedMenuItemColor() -> Retained<NSColor>;
 
         /// Historically used as the color of table headers, which is no longer a color but a tinted blur effect.
         #[deprecated = "Use NSVisualEffectMaterialHeaderView"]
-        #[unsafe(method_family(none))]
         #[method_id(headerColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn headerColor() -> Retained<NSColor>;
 
         /// The background color of selected content or text that is unemphasized. Older alias for +unemphasizedSelectedContentBackgroundColor and +unemphasizedSelectedTextBackgroundColor
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(secondarySelectedControlColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn secondarySelectedControlColor() -> Retained<NSColor>;
 
         /// The background color of selected and emphasized (focused) content: table views rows, collection views, etc. Older alias for +selectedContentBackgroundColor
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(alternateSelectedControlColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alternateSelectedControlColor() -> Retained<NSColor>;
 
         /// The background colors for alternating content items: such as table view rows, collection view items. Older alias for +alternatingContentBackgroundColors
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(controlAlternatingRowBackgroundColors)]
+        #[unsafe(method_family = none)]
         pub unsafe fn controlAlternatingRowBackgroundColors() -> Retained<NSArray<NSColor>>;
 
         #[cfg(feature = "NSGraphics")]
         #[deprecated = "Use -type and NSColorType instead"]
-        #[unsafe(method_family(none))]
         #[method_id(colorSpaceName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colorSpaceName(&self) -> Retained<NSColorSpaceName>;
 
         #[cfg(feature = "NSGraphics")]
         #[deprecated = "Use -colorUsingType: or -colorUsingColorSpace: instead"]
-        #[unsafe(method_family(none))]
         #[method_id(colorUsingColorSpaceName:device:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colorUsingColorSpaceName_device(
             &self,
             name: Option<&NSColorSpaceName>,
@@ -901,8 +901,8 @@ extern_methods!(
 
         #[cfg(feature = "NSGraphics")]
         #[deprecated = "Use -colorUsingType: or -colorUsingColorSpace: instead"]
-        #[unsafe(method_family(none))]
         #[method_id(colorUsingColorSpaceName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colorUsingColorSpaceName(
             &self,
             name: &NSColorSpaceName,
@@ -915,8 +915,8 @@ extern_methods!(
     unsafe impl NSColor {
         #[cfg(feature = "objc2-core-image")]
         #[cfg(target_vendor = "apple")]
-        #[unsafe(method_family(none))]
         #[method_id(colorWithCIColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colorWithCIColor(color: &CIColor) -> Retained<NSColor>;
     }
 );
@@ -925,8 +925,8 @@ extern_category!(
     /// Category "NSAppKitAdditions" on [`CIColor`].
     #[doc(alias = "NSAppKitAdditions")]
     pub unsafe trait CIColorNSAppKitAdditions {
-        #[unsafe(method_family(init))]
         #[method_id(initWithColor:)]
+        #[unsafe(method_family = init)]
         unsafe fn initWithColor(this: Allocated<Self>, color: &NSColor) -> Option<Retained<Self>>;
     }
 

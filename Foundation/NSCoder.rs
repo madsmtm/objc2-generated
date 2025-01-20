@@ -51,8 +51,8 @@ extern_methods!(
         pub unsafe fn encodeDataObject(&self, data: &NSData);
 
         #[cfg(feature = "NSData")]
-        #[unsafe(method_family(none))]
         #[method_id(decodeDataObject)]
+        #[unsafe(method_family = none)]
         pub unsafe fn decodeDataObject(&self) -> Option<Retained<NSData>>;
 
         #[method(decodeValueOfObjCType:at:size:)]
@@ -72,12 +72,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSCoder {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -111,13 +111,13 @@ extern_methods!(
         #[method(encodeBytes:length:)]
         pub unsafe fn encodeBytes_length(&self, byteaddr: *const c_void, length: NSUInteger);
 
-        #[unsafe(method_family(none))]
         #[method_id(decodeObject)]
+        #[unsafe(method_family = none)]
         pub unsafe fn decodeObject(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSError")]
-        #[unsafe(method_family(none))]
         #[method_id(decodeTopLevelObjectAndReturnError:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn decodeTopLevelObjectAndReturnError(
             &self,
         ) -> Result<Retained<AnyObject>, Retained<NSError>>;
@@ -139,8 +139,8 @@ extern_methods!(
         #[method(encodePropertyList:)]
         pub unsafe fn encodePropertyList(&self, a_property_list: &AnyObject);
 
-        #[unsafe(method_family(none))]
         #[method_id(decodePropertyList)]
+        #[unsafe(method_family = none)]
         pub unsafe fn decodePropertyList(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSZone")]
@@ -207,13 +207,13 @@ extern_methods!(
         pub unsafe fn containsValueForKey(&self, key: &NSString) -> bool;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(decodeObjectForKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn decodeObjectForKey(&self, key: &NSString) -> Option<Retained<AnyObject>>;
 
         #[cfg(all(feature = "NSError", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(decodeTopLevelObjectForKey:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn decodeTopLevelObjectForKey_error(
             &self,
             key: &NSString,
@@ -263,8 +263,8 @@ extern_methods!(
         pub unsafe fn requiresSecureCoding(&self) -> bool;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(decodeObjectOfClass:forKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn decodeObjectOfClass_forKey(
             &self,
             a_class: &AnyClass,
@@ -272,8 +272,8 @@ extern_methods!(
         ) -> Option<Retained<AnyObject>>;
 
         #[cfg(all(feature = "NSError", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(decodeTopLevelObjectOfClass:forKey:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn decodeTopLevelObjectOfClass_forKey_error(
             &self,
             a_class: &AnyClass,
@@ -294,8 +294,8 @@ extern_methods!(
         /// `nil`if the object for
         /// `key`is not of the expected types, or cannot be decoded, and sets the
         /// `error`on the decoder.
-        #[unsafe(method_family(none))]
         #[method_id(decodeArrayOfObjectsOfClass:forKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn decodeArrayOfObjectsOfClass_forKey(
             &self,
             cls: &AnyClass,
@@ -318,8 +318,8 @@ extern_methods!(
         /// `nil`if the object for
         /// `key`is not of the expected types, or cannot be decoded, and sets the
         /// `error`on the decoder.
-        #[unsafe(method_family(none))]
         #[method_id(decodeDictionaryWithKeysOfClass:objectsOfClass:forKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn decodeDictionaryWithKeysOfClass_objectsOfClass_forKey(
             &self,
             key_cls: &AnyClass,
@@ -328,8 +328,8 @@ extern_methods!(
         ) -> Option<Retained<NSDictionary>>;
 
         #[cfg(all(feature = "NSSet", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(decodeObjectOfClasses:forKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn decodeObjectOfClasses_forKey(
             &self,
             classes: Option<&NSSet<AnyClass>>,
@@ -337,8 +337,8 @@ extern_methods!(
         ) -> Option<Retained<AnyObject>>;
 
         #[cfg(all(feature = "NSError", feature = "NSSet", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(decodeTopLevelObjectOfClasses:forKey:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn decodeTopLevelObjectOfClasses_forKey_error(
             &self,
             classes: Option<&NSSet<AnyClass>>,
@@ -359,8 +359,8 @@ extern_methods!(
         /// `nil`if the object for
         /// `key`is not of the expected types, or cannot be decoded, and sets the
         /// `error`on the decoder.
-        #[unsafe(method_family(none))]
         #[method_id(decodeArrayOfObjectsOfClasses:forKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn decodeArrayOfObjectsOfClasses_forKey(
             &self,
             classes: &NSSet<AnyClass>,
@@ -383,8 +383,8 @@ extern_methods!(
         /// `nil`if the object for
         /// `key`is not of the expected types, or cannot be decoded, and sets the
         /// `error`on the decoder.
-        #[unsafe(method_family(none))]
         #[method_id(decodeDictionaryWithKeysOfClasses:objectsOfClasses:forKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn decodeDictionaryWithKeysOfClasses_objectsOfClasses_forKey(
             &self,
             key_classes: &NSSet<AnyClass>,
@@ -393,16 +393,16 @@ extern_methods!(
         ) -> Option<Retained<NSDictionary>>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(decodePropertyListForKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn decodePropertyListForKey(
             &self,
             key: &NSString,
         ) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSSet")]
-        #[unsafe(method_family(none))]
         #[method_id(allowedClasses)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowedClasses(&self) -> Option<Retained<NSSet<AnyClass>>>;
 
         #[cfg(feature = "NSError")]
@@ -454,8 +454,8 @@ extern_methods!(
         /// While .error is non-nil, all attempts to decode data from this coder will return a nil/zero-equivalent value.
         ///
         /// This error is consumed by a TopLevel decode API (which resets this coder back to a being able to potentially decode data).
-        #[unsafe(method_family(none))]
         #[method_id(error)]
+        #[unsafe(method_family = none)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
     }
 );
@@ -480,8 +480,8 @@ extern_methods!(
         pub unsafe fn encodeNXObject(&self, object: &AnyObject);
 
         #[deprecated = "Not supported"]
-        #[unsafe(method_family(none))]
         #[method_id(decodeNXObject)]
+        #[unsafe(method_family = none)]
         pub unsafe fn decodeNXObject(&self) -> Option<Retained<AnyObject>>;
     }
 );

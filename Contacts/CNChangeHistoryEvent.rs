@@ -39,12 +39,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CNChangeHistoryEvent {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -77,12 +77,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CNChangeHistoryDropEverythingEvent {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -111,12 +111,12 @@ unsafe impl NSSecureCoding for CNChangeHistoryAddContactEvent {}
 extern_methods!(
     unsafe impl CNChangeHistoryAddContactEvent {
         #[cfg(feature = "CNContact")]
-        #[unsafe(method_family(none))]
         #[method_id(contact)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contact(&self) -> Retained<CNContact>;
 
-        #[unsafe(method_family(none))]
         #[method_id(containerIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn containerIdentifier(&self) -> Option<Retained<NSString>>;
     }
 );
@@ -124,12 +124,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CNChangeHistoryAddContactEvent {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -158,8 +158,8 @@ unsafe impl NSSecureCoding for CNChangeHistoryUpdateContactEvent {}
 extern_methods!(
     unsafe impl CNChangeHistoryUpdateContactEvent {
         #[cfg(feature = "CNContact")]
-        #[unsafe(method_family(none))]
         #[method_id(contact)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contact(&self) -> Retained<CNContact>;
     }
 );
@@ -167,12 +167,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CNChangeHistoryUpdateContactEvent {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -200,8 +200,8 @@ unsafe impl NSSecureCoding for CNChangeHistoryDeleteContactEvent {}
 
 extern_methods!(
     unsafe impl CNChangeHistoryDeleteContactEvent {
-        #[unsafe(method_family(none))]
         #[method_id(contactIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contactIdentifier(&self) -> Retained<NSString>;
     }
 );
@@ -209,12 +209,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CNChangeHistoryDeleteContactEvent {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -243,12 +243,12 @@ unsafe impl NSSecureCoding for CNChangeHistoryAddGroupEvent {}
 extern_methods!(
     unsafe impl CNChangeHistoryAddGroupEvent {
         #[cfg(feature = "CNGroup")]
-        #[unsafe(method_family(none))]
         #[method_id(group)]
+        #[unsafe(method_family = none)]
         pub unsafe fn group(&self) -> Retained<CNGroup>;
 
-        #[unsafe(method_family(none))]
         #[method_id(containerIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn containerIdentifier(&self) -> Retained<NSString>;
     }
 );
@@ -256,12 +256,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CNChangeHistoryAddGroupEvent {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -290,8 +290,8 @@ unsafe impl NSSecureCoding for CNChangeHistoryUpdateGroupEvent {}
 extern_methods!(
     unsafe impl CNChangeHistoryUpdateGroupEvent {
         #[cfg(feature = "CNGroup")]
-        #[unsafe(method_family(none))]
         #[method_id(group)]
+        #[unsafe(method_family = none)]
         pub unsafe fn group(&self) -> Retained<CNGroup>;
     }
 );
@@ -299,12 +299,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CNChangeHistoryUpdateGroupEvent {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -332,8 +332,8 @@ unsafe impl NSSecureCoding for CNChangeHistoryDeleteGroupEvent {}
 
 extern_methods!(
     unsafe impl CNChangeHistoryDeleteGroupEvent {
-        #[unsafe(method_family(none))]
         #[method_id(groupIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn groupIdentifier(&self) -> Retained<NSString>;
     }
 );
@@ -341,12 +341,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CNChangeHistoryDeleteGroupEvent {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -375,13 +375,13 @@ unsafe impl NSSecureCoding for CNChangeHistoryAddMemberToGroupEvent {}
 extern_methods!(
     unsafe impl CNChangeHistoryAddMemberToGroupEvent {
         #[cfg(feature = "CNContact")]
-        #[unsafe(method_family(none))]
         #[method_id(member)]
+        #[unsafe(method_family = none)]
         pub unsafe fn member(&self) -> Retained<CNContact>;
 
         #[cfg(feature = "CNGroup")]
-        #[unsafe(method_family(none))]
         #[method_id(group)]
+        #[unsafe(method_family = none)]
         pub unsafe fn group(&self) -> Retained<CNGroup>;
     }
 );
@@ -389,12 +389,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CNChangeHistoryAddMemberToGroupEvent {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -423,13 +423,13 @@ unsafe impl NSSecureCoding for CNChangeHistoryRemoveMemberFromGroupEvent {}
 extern_methods!(
     unsafe impl CNChangeHistoryRemoveMemberFromGroupEvent {
         #[cfg(feature = "CNContact")]
-        #[unsafe(method_family(none))]
         #[method_id(member)]
+        #[unsafe(method_family = none)]
         pub unsafe fn member(&self) -> Retained<CNContact>;
 
         #[cfg(feature = "CNGroup")]
-        #[unsafe(method_family(none))]
         #[method_id(group)]
+        #[unsafe(method_family = none)]
         pub unsafe fn group(&self) -> Retained<CNGroup>;
     }
 );
@@ -437,12 +437,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CNChangeHistoryRemoveMemberFromGroupEvent {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -471,13 +471,13 @@ unsafe impl NSSecureCoding for CNChangeHistoryAddSubgroupToGroupEvent {}
 extern_methods!(
     unsafe impl CNChangeHistoryAddSubgroupToGroupEvent {
         #[cfg(feature = "CNGroup")]
-        #[unsafe(method_family(none))]
         #[method_id(subgroup)]
+        #[unsafe(method_family = none)]
         pub unsafe fn subgroup(&self) -> Retained<CNGroup>;
 
         #[cfg(feature = "CNGroup")]
-        #[unsafe(method_family(none))]
         #[method_id(group)]
+        #[unsafe(method_family = none)]
         pub unsafe fn group(&self) -> Retained<CNGroup>;
     }
 );
@@ -485,12 +485,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CNChangeHistoryAddSubgroupToGroupEvent {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -519,13 +519,13 @@ unsafe impl NSSecureCoding for CNChangeHistoryRemoveSubgroupFromGroupEvent {}
 extern_methods!(
     unsafe impl CNChangeHistoryRemoveSubgroupFromGroupEvent {
         #[cfg(feature = "CNGroup")]
-        #[unsafe(method_family(none))]
         #[method_id(subgroup)]
+        #[unsafe(method_family = none)]
         pub unsafe fn subgroup(&self) -> Retained<CNGroup>;
 
         #[cfg(feature = "CNGroup")]
-        #[unsafe(method_family(none))]
         #[method_id(group)]
+        #[unsafe(method_family = none)]
         pub unsafe fn group(&self) -> Retained<CNGroup>;
     }
 );
@@ -533,12 +533,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CNChangeHistoryRemoveSubgroupFromGroupEvent {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

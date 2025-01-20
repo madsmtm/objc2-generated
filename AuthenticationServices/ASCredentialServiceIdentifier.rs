@@ -54,8 +54,8 @@ extern_methods!(
         /// Parameter `identifier`: string value for the service identifier.
         ///
         /// Parameter `type`: the type that the service identifier string represents.
-        #[unsafe(method_family(init))]
         #[method_id(initWithIdentifier:type:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifier_type(
             this: Allocated<Self>,
             identifier: &NSString,
@@ -65,8 +65,8 @@ extern_methods!(
         /// Get the identifier.
         ///
         /// Returns: The service identifier.
-        #[unsafe(method_family(none))]
         #[method_id(identifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         /// Get the service identifier type.
@@ -80,12 +80,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASCredentialServiceIdentifier {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -21,17 +21,17 @@ unsafe impl NSObjectProtocol for UITabBarItemStateAppearance {}
 
 extern_methods!(
     unsafe impl UITabBarItemStateAppearance {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// Text attributes to be used for rendering title text. If the font or color are unspecified, appropriate defaults are supplied.
-        #[unsafe(method_family(none))]
         #[method_id(titleTextAttributes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn titleTextAttributes(
             &self,
         ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
@@ -55,8 +55,8 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         /// The color to use for item icons. If not specified, a suitable color will be derived.
-        #[unsafe(method_family(none))]
         #[method_id(iconColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn iconColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -76,8 +76,8 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         /// The color to use for the badge background
-        #[unsafe(method_family(none))]
         #[method_id(badgeBackgroundColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn badgeBackgroundColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -86,8 +86,8 @@ extern_methods!(
         pub unsafe fn setBadgeBackgroundColor(&self, badge_background_color: Option<&UIColor>);
 
         /// Text attributes to be used for rendering badge text. If the font and color are unspecified, appropriate defaults are supplied.
-        #[unsafe(method_family(none))]
         #[method_id(badgeTextAttributes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn badgeTextAttributes(
             &self,
         ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
@@ -159,24 +159,24 @@ unsafe impl NSSecureCoding for UITabBarItemAppearance {}
 extern_methods!(
     unsafe impl UITabBarItemAppearance {
         /// Construct an appearance with default values for the stacked layout.
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Construct an appearance with default values for the given layout.
-        #[unsafe(method_family(init))]
         #[method_id(initWithStyle:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithStyle(
             this: Allocated<Self>,
             style: UITabBarItemAppearanceStyle,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
-        #[unsafe(method_family(copy))]
         #[method_id(copy)]
+        #[unsafe(method_family = copy)]
         pub unsafe fn copy(&self) -> Retained<Self>;
 
         /// Reset this appearance to that of the given layout.
@@ -184,23 +184,23 @@ extern_methods!(
         pub unsafe fn configureWithDefaultForStyle(&self, style: UITabBarItemAppearanceStyle);
 
         /// The appearance when the tab bar item is in the normal state
-        #[unsafe(method_family(none))]
         #[method_id(normal)]
+        #[unsafe(method_family = none)]
         pub unsafe fn normal(&self) -> Retained<UITabBarItemStateAppearance>;
 
         /// The appearance when the tab bar item is in the selected state
-        #[unsafe(method_family(none))]
         #[method_id(selected)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selected(&self) -> Retained<UITabBarItemStateAppearance>;
 
         /// The appearance when the tab bar item is in the disabled state
-        #[unsafe(method_family(none))]
         #[method_id(disabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn disabled(&self) -> Retained<UITabBarItemStateAppearance>;
 
         /// The appearance when the tab bar item is in the focused state
-        #[unsafe(method_family(none))]
         #[method_id(focused)]
+        #[unsafe(method_family = none)]
         pub unsafe fn focused(&self) -> Retained<UITabBarItemStateAppearance>;
     }
 );
@@ -208,8 +208,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITabBarItemAppearance {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -244,8 +244,8 @@ extern_methods!(
     #[cfg(feature = "UIBarAppearance")]
     unsafe impl UITabBarAppearance {
         /// The appearance for the stacked tab bar item layout
-        #[unsafe(method_family(none))]
         #[method_id(stackedLayoutAppearance)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stackedLayoutAppearance(&self) -> Retained<UITabBarItemAppearance>;
 
         /// Setter for [`stackedLayoutAppearance`][Self::stackedLayoutAppearance].
@@ -256,8 +256,8 @@ extern_methods!(
         );
 
         /// The appearance for the inline tab bar item layout
-        #[unsafe(method_family(none))]
         #[method_id(inlineLayoutAppearance)]
+        #[unsafe(method_family = none)]
         pub unsafe fn inlineLayoutAppearance(&self) -> Retained<UITabBarItemAppearance>;
 
         /// Setter for [`inlineLayoutAppearance`][Self::inlineLayoutAppearance].
@@ -268,8 +268,8 @@ extern_methods!(
         );
 
         /// The appearance for the compact inline tab bar item layout
-        #[unsafe(method_family(none))]
         #[method_id(compactInlineLayoutAppearance)]
+        #[unsafe(method_family = none)]
         pub unsafe fn compactInlineLayoutAppearance(&self) -> Retained<UITabBarItemAppearance>;
 
         /// Setter for [`compactInlineLayoutAppearance`][Self::compactInlineLayoutAppearance].
@@ -281,8 +281,8 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         /// A color to use for the selectionIndicator, its specific behavior depends on the value of selectionIndicatorImage. If selectionIndicatorImage is nil, then the selectionIndicatorTintColor is used to color the UITabBar's default selection indicator; a nil or clearColor selectionIndicatorTintColor will result in no indicator. If selectionIndicatorImage is a template image, then the selectionIndicatorTintColor is used to tint the image; a nil or clearColor selectionIndicatorTintColor will also result in no indicator. If the selectionIndicatorImage is not a template image, then it will be rendered without respect to the value of selectionIndicatorTintColor.
-        #[unsafe(method_family(none))]
         #[method_id(selectionIndicatorTintColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectionIndicatorTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -295,8 +295,8 @@ extern_methods!(
 
         #[cfg(feature = "UIImage")]
         /// An image that is rendered behind the selected UITabBarItem and above the tab bar's background. Modified by selectionIndicatorTintColor when appropriate.
-        #[unsafe(method_family(none))]
         #[method_id(selectionIndicatorImage)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectionIndicatorImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
@@ -345,29 +345,29 @@ extern_methods!(
     #[cfg(feature = "UIBarAppearance")]
     unsafe impl UITabBarAppearance {
         /// Constructs a new bar appearance, configured with default values and targeting the device idiom.
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "UIDevice")]
         /// Constructs a new bar appearance, targeting the passed-in idiom as a hint. Not all platforms support all available idioms. See the idiom property to determine the resolved idiom.
-        #[unsafe(method_family(init))]
         #[method_id(initWithIdiom:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithIdiom(
             this: Allocated<Self>,
             idiom: UIUserInterfaceIdiom,
         ) -> Retained<Self>;
 
         /// Constructs a new bar appearance, copying all relevant properties from the given appearance object. This initializer is useful for migrating configuration between UIBarAppearance subclasses. For example, you can initialize a UINavigationBarAppearance with a UIToolbarAppearance instance, and shared attributes will be identical between the two.
-        #[unsafe(method_family(init))]
         #[method_id(initWithBarAppearance:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithBarAppearance(
             this: Allocated<Self>,
             bar_appearance: &UIBarAppearance,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
     }
 );
@@ -376,8 +376,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UIBarAppearance")]
     unsafe impl UITabBarAppearance {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

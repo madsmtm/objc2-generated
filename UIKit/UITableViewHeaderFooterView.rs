@@ -84,15 +84,15 @@ unsafe impl UITraitEnvironment for UITableViewHeaderFooterView {}
 extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UITableViewHeaderFooterView {
-        #[unsafe(method_family(init))]
         #[method_id(initWithReuseIdentifier:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithReuseIdentifier(
             this: Allocated<Self>,
             reuse_identifier: Option<&NSString>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -102,8 +102,8 @@ extern_methods!(
         /// Returns the current configuration state for the header/footer.
         /// To add your own custom state(s), override the getter and call super to obtain an instance with the
         /// system properties set, then set your own custom states as desired.
-        #[unsafe(method_family(none))]
         #[method_id(configurationState)]
+        #[unsafe(method_family = none)]
         pub unsafe fn configurationState(&self) -> Retained<UIViewConfigurationState>;
 
         /// Requests the view update its configuration for its current state. This method is called automatically
@@ -136,16 +136,16 @@ extern_methods!(
 
         #[cfg(feature = "UIListContentConfiguration")]
         /// Returns a default list content configuration for the header/footer view's style.
-        #[unsafe(method_family(none))]
         #[method_id(defaultContentConfiguration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn defaultContentConfiguration(&self) -> Retained<UIListContentConfiguration>;
 
         #[cfg(feature = "UIContentConfiguration")]
         /// Setting a content configuration replaces the existing contentView of the header/footer with a new content view instance from the configuration,
         /// or directly applies the configuration to the existing content view if the configuration is compatible with the existing content view type.
         /// The default value is nil. After a configuration has been set, setting this property to nil will replace the current content view with a new content view.
-        #[unsafe(method_family(none))]
         #[method_id(contentConfiguration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contentConfiguration(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIContentConfiguration>>>;
@@ -170,33 +170,33 @@ extern_methods!(
             automatically_updates_content_configuration: bool,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(contentView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contentView(&self) -> Retained<UIView>;
 
         #[cfg(feature = "UILabel")]
         #[deprecated = "Use UIListContentConfiguration instead, this property will be deprecated in a future release."]
-        #[unsafe(method_family(none))]
         #[method_id(textLabel)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textLabel(&self) -> Option<Retained<UILabel>>;
 
         #[cfg(feature = "UILabel")]
         #[deprecated = "Use UIListContentConfiguration instead, this property will be deprecated in a future release."]
-        #[unsafe(method_family(none))]
         #[method_id(detailTextLabel)]
+        #[unsafe(method_family = none)]
         pub unsafe fn detailTextLabel(&self) -> Option<Retained<UILabel>>;
 
         #[cfg(feature = "UIBackgroundConfiguration")]
         /// Returns a default background configuration for the header/footer's style.
         /// This background configuration represents the default appearance that the header/footer will use.
-        #[unsafe(method_family(none))]
         #[method_id(defaultBackgroundConfiguration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn defaultBackgroundConfiguration(&self) -> Retained<UIBackgroundConfiguration>;
 
         #[cfg(feature = "UIBackgroundConfiguration")]
         /// Setting a background configuration supersedes the header/footer's backgroundView. The default value is nil.
-        #[unsafe(method_family(none))]
         #[method_id(backgroundConfiguration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn backgroundConfiguration(&self)
             -> Option<Retained<UIBackgroundConfiguration>>;
 
@@ -220,16 +220,16 @@ extern_methods!(
             automatically_updates_background_configuration: bool,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(backgroundView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn backgroundView(&self) -> Option<Retained<UIView>>;
 
         /// Setter for [`backgroundView`][Self::backgroundView].
         #[method(setBackgroundView:)]
         pub unsafe fn setBackgroundView(&self, background_view: Option<&UIView>);
 
-        #[unsafe(method_family(none))]
         #[method_id(reuseIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reuseIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[method(prepareForReuse)]
@@ -242,8 +242,8 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UITableViewHeaderFooterView {
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithFrame:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
     }
 );
@@ -252,12 +252,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UITableViewHeaderFooterView {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

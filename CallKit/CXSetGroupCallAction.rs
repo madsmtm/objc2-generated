@@ -35,23 +35,23 @@ unsafe impl NSSecureCoding for CXSetGroupCallAction {}
 extern_methods!(
     #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
     unsafe impl CXSetGroupCallAction {
-        #[unsafe(method_family(init))]
         #[method_id(initWithCallUUID:callUUIDToGroupWith:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCallUUID_callUUIDToGroupWith(
             this: Allocated<Self>,
             call_uuid: &NSUUID,
             call_uuid_to_group_with: Option<&NSUUID>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCallUUID:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCallUUID(this: Allocated<Self>, call_uuid: &NSUUID)
             -> Retained<Self>;
 
@@ -59,8 +59,8 @@ extern_methods!(
         ///
         /// - If the call for this action's UUID is already in a group, it should leave that group if necessary.
         /// - If nil, leave any group the call is currently in.
-        #[unsafe(method_family(none))]
         #[method_id(callUUIDToGroupWith)]
+        #[unsafe(method_family = none)]
         pub unsafe fn callUUIDToGroupWith(&self) -> Option<Retained<NSUUID>>;
 
         /// Setter for [`callUUIDToGroupWith`][Self::callUUIDToGroupWith].
@@ -73,8 +73,8 @@ extern_methods!(
     /// Methods declared on superclass `CXCallAction`
     #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
     unsafe impl CXSetGroupCallAction {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -83,8 +83,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
     unsafe impl CXSetGroupCallAction {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

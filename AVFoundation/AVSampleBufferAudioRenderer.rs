@@ -27,8 +27,8 @@ extern_methods!(
         #[method(status)]
         pub unsafe fn status(&self) -> AVQueuedSampleBufferRenderingStatus;
 
-        #[unsafe(method_family(none))]
         #[method_id(error)]
+        #[unsafe(method_family = none)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
 
         /// Specifies the unique ID of the Core Audio output device used to play audio.
@@ -42,8 +42,8 @@ extern_methods!(
         /// On macOS, the audio device clock may be used as the AVSampleBufferRenderSynchronizer's and all attached AVQueuedSampleBufferRendering's timebase's clocks.  If the audioOutputDeviceUniqueID is modified, the clocks of all these timebases may also change.
         ///
         /// If multiple AVSampleBufferAudioRenderers with different values for audioOutputDeviceUniqueID are attached to the same AVSampleBufferRenderSynchronizer, audio may not stay in sync during playback.  To avoid this, ensure that all synchronized AVSampleBufferAudioRenderers are using the same audio output device.
-        #[unsafe(method_family(none))]
         #[method_id(audioOutputDeviceUniqueID)]
+        #[unsafe(method_family = none)]
         pub unsafe fn audioOutputDeviceUniqueID(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`audioOutputDeviceUniqueID`][Self::audioOutputDeviceUniqueID].
@@ -64,8 +64,8 @@ extern_methods!(
         /// If the timebase's rate is not supported by the audioTimePitchAlgorithm, audio will be muted.
         ///
         /// Modifying this property while the timebase's rate is not 0.0 may cause the rate to briefly change to 0.0.
-        #[unsafe(method_family(none))]
         #[method_id(audioTimePitchAlgorithm)]
+        #[unsafe(method_family = none)]
         pub unsafe fn audioTimePitchAlgorithm(&self) -> Retained<AVAudioTimePitchAlgorithm>;
 
         #[cfg(feature = "AVAudioProcessingSettings")]
@@ -96,12 +96,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVSampleBufferAudioRenderer {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

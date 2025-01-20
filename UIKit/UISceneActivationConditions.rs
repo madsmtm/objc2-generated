@@ -23,19 +23,19 @@ unsafe impl NSSecureCoding for UISceneActivationConditions {}
 
 extern_methods!(
     unsafe impl UISceneActivationConditions {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(canActivateForTargetContentIdentifierPredicate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn canActivateForTargetContentIdentifierPredicate(
             &self,
         ) -> Retained<NSPredicate>;
@@ -47,8 +47,8 @@ extern_methods!(
             can_activate_for_target_content_identifier_predicate: &NSPredicate,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(prefersToActivateForTargetContentIdentifierPredicate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn prefersToActivateForTargetContentIdentifierPredicate(
             &self,
         ) -> Retained<NSPredicate>;
@@ -65,8 +65,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UISceneActivationConditions {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -75,8 +75,8 @@ extern_category!(
     /// Category "UISceneActivationConditions" on [`NSUserActivity`].
     #[doc(alias = "UISceneActivationConditions")]
     pub unsafe trait NSUserActivityUISceneActivationConditions {
-        #[unsafe(method_family(none))]
         #[method_id(targetContentIdentifier)]
+        #[unsafe(method_family = none)]
         unsafe fn targetContentIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`targetContentIdentifier`][Self::targetContentIdentifier].

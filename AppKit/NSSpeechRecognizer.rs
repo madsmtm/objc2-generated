@@ -18,8 +18,8 @@ unsafe impl NSObjectProtocol for NSSpeechRecognizer {}
 
 extern_methods!(
     unsafe impl NSSpeechRecognizer {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Option<Retained<Self>>;
 
         #[method(startListening)]
@@ -28,8 +28,8 @@ extern_methods!(
         #[method(stopListening)]
         pub unsafe fn stopListening(&self);
 
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
             mtm: MainThreadMarker,
@@ -43,16 +43,16 @@ extern_methods!(
             delegate: Option<&ProtocolObject<dyn NSSpeechRecognizerDelegate>>,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(commands)]
+        #[unsafe(method_family = none)]
         pub unsafe fn commands(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`commands`][Self::commands].
         #[method(setCommands:)]
         pub unsafe fn setCommands(&self, commands: Option<&NSArray<NSString>>);
 
-        #[unsafe(method_family(none))]
         #[method_id(displayedCommandsTitle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn displayedCommandsTitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`displayedCommandsTitle`][Self::displayedCommandsTitle].
@@ -78,8 +78,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSSpeechRecognizer {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

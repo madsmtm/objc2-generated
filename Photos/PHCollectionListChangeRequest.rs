@@ -21,14 +21,14 @@ unsafe impl NSObjectProtocol for PHCollectionListChangeRequest {}
 extern_methods!(
     #[cfg(feature = "PHChangeRequest")]
     unsafe impl PHCollectionListChangeRequest {
-        #[unsafe(method_family(none))]
         #[method_id(creationRequestForCollectionListWithTitle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn creationRequestForCollectionListWithTitle(title: &NSString)
             -> Retained<Self>;
 
         #[cfg(feature = "PHObject")]
-        #[unsafe(method_family(none))]
         #[method_id(placeholderForCreatedCollectionList)]
+        #[unsafe(method_family = none)]
         pub unsafe fn placeholderForCreatedCollectionList(&self) -> Retained<PHObjectPlaceholder>;
 
         #[method(deleteCollectionLists:)]
@@ -37,8 +37,8 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "PHCollection", feature = "PHObject"))]
-        #[unsafe(method_family(none))]
         #[method_id(changeRequestForCollectionList:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn changeRequestForCollectionList(
             collection_list: &PHCollectionList,
         ) -> Option<Retained<Self>>;
@@ -48,8 +48,8 @@ extern_methods!(
             feature = "PHFetchResult",
             feature = "PHObject"
         ))]
-        #[unsafe(method_family(none))]
         #[method_id(changeRequestForCollectionList:childCollections:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn changeRequestForCollectionList_childCollections(
             collection_list: &PHCollectionList,
             child_collections: &PHFetchResult<PHCollection>,
@@ -60,14 +60,14 @@ extern_methods!(
             feature = "PHFetchResult",
             feature = "PHObject"
         ))]
-        #[unsafe(method_family(none))]
         #[method_id(changeRequestForTopLevelCollectionListUserCollections:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn changeRequestForTopLevelCollectionListUserCollections(
             child_collections: &PHFetchResult<PHCollection>,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(title)]
+        #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
@@ -116,12 +116,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "PHChangeRequest")]
     unsafe impl PHCollectionListChangeRequest {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

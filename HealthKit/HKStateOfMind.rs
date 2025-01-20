@@ -276,18 +276,18 @@ extern_methods!(
         pub unsafe fn valenceClassification(&self) -> HKStateOfMindValenceClassification;
 
         /// Zero or more specific sentiments selected to represent a felt experience.
-        #[unsafe(method_family(none))]
         #[method_id(labels)]
+        #[unsafe(method_family = none)]
         pub unsafe fn labels(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Zero or more facets of life with which this felt experience is associated.
-        #[unsafe(method_family(none))]
         #[method_id(associations)]
+        #[unsafe(method_family = none)]
         pub unsafe fn associations(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Creates a new log describing an experienced emotion at a moment in time.
-        #[unsafe(method_family(none))]
         #[method_id(stateOfMindWithDate:kind:valence:labels:associations:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stateOfMindWithDate_kind_valence_labels_associations(
             date: &NSDate,
             kind: HKStateOfMindKind,
@@ -297,8 +297,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Creates a new log describing an experienced emotion at a moment in time.
-        #[unsafe(method_family(none))]
         #[method_id(stateOfMindWithDate:kind:valence:labels:associations:metadata:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stateOfMindWithDate_kind_valence_labels_associations_metadata(
             date: &NSDate,
             kind: HKStateOfMindKind,
@@ -308,12 +308,12 @@ extern_methods!(
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

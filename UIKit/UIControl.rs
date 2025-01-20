@@ -218,12 +218,12 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIControl {
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithFrame:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -235,8 +235,8 @@ extern_methods!(
             feature = "objc2-core-foundation"
         ))]
         /// Initializes the control and adds primaryAction for the UIControlEventPrimaryActionTriggered control event. Subclasses of UIControl may alter or add behaviors around the usage of primaryAction, see subclass documentation of this initializer for additional information.
-        #[unsafe(method_family(init))]
         #[method_id(initWithFrame:primaryAction:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame_primaryAction(
             this: Allocated<Self>,
             frame: CGRect,
@@ -373,15 +373,15 @@ extern_methods!(
         #[method(performPrimaryAction)]
         pub unsafe fn performPrimaryAction(&self);
 
-        #[unsafe(method_family(none))]
         #[method_id(allTargets)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allTargets(&self) -> Retained<NSSet>;
 
         #[method(allControlEvents)]
         pub unsafe fn allControlEvents(&self) -> UIControlEvents;
 
-        #[unsafe(method_family(none))]
         #[method_id(actionsForTarget:forControlEvent:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn actionsForTarget_forControlEvent(
             &self,
             target: Option<&AnyObject>,
@@ -420,8 +420,8 @@ extern_methods!(
 
         #[cfg(feature = "UIContextMenuInteraction")]
         /// Returns a UIContextMenuInteraction with this control set as its delegate. Before constructing the UIContextMenuInteraction, UIControl verifies 'self' is a viable delegate. See 'Implementing UIControl Menus' below for more details.
-        #[unsafe(method_family(none))]
         #[method_id(contextMenuInteraction)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contextMenuInteraction(&self) -> Option<Retained<UIContextMenuInteraction>>;
 
         /// Specifies if the context menu interaction is enabled. NO by default.
@@ -455,8 +455,8 @@ extern_methods!(
         ) -> CGPoint;
 
         /// Assigning a value to this property causes the tool tip to be displayed for the view. Setting the property to nil cancels the display of the tool tip for the view.
-        #[unsafe(method_family(none))]
         #[method_id(toolTip)]
+        #[unsafe(method_family = none)]
         pub unsafe fn toolTip(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`toolTip`][Self::toolTip].
@@ -465,8 +465,8 @@ extern_methods!(
 
         #[cfg(feature = "UIToolTipInteraction")]
         /// Returns the control's default UIToolTipInteraction.
-        #[unsafe(method_family(none))]
         #[method_id(toolTipInteraction)]
+        #[unsafe(method_family = none)]
         pub unsafe fn toolTipInteraction(&self) -> Option<Retained<UIToolTipInteraction>>;
 
         /// Whether or not symbol animations are enabled for this control.
@@ -484,12 +484,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIControl {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -505,8 +505,8 @@ extern_methods!(
             feature = "objc2-core-foundation"
         ))]
         /// An override is required for UIControl to create a UIContextMenuInteraction. Direct UIControl subclasses do not need to call super.
-        #[unsafe(method_family(none))]
         #[method_id(contextMenuInteraction:configurationForMenuAtLocation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contextMenuInteraction_configurationForMenuAtLocation(
             &self,
             interaction: &UIContextMenuInteraction,
@@ -519,8 +519,8 @@ extern_methods!(
             feature = "UITargetedPreview"
         ))]
         /// Direct UIControl subclasses do not need to call super.
-        #[unsafe(method_family(none))]
         #[method_id(contextMenuInteraction:previewForHighlightingMenuWithConfiguration:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contextMenuInteraction_previewForHighlightingMenuWithConfiguration(
             &self,
             interaction: &UIContextMenuInteraction,
@@ -533,8 +533,8 @@ extern_methods!(
             feature = "UITargetedPreview"
         ))]
         /// Direct UIControl subclasses do not need to call super.
-        #[unsafe(method_family(none))]
         #[method_id(contextMenuInteraction:previewForDismissingMenuWithConfiguration:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contextMenuInteraction_previewForDismissingMenuWithConfiguration(
             &self,
             interaction: &UIContextMenuInteraction,

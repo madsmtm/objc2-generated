@@ -28,8 +28,8 @@ extern_methods!(
         ///
         /// This descriptor must be passed to the fetch request if the returned
         /// contacts are to be serialized with dataWithContacts:error:.
-        #[unsafe(method_family(none))]
         #[method_id(descriptorForRequiredKeys)]
+        #[unsafe(method_family = none)]
         pub unsafe fn descriptorForRequiredKeys() -> Retained<ProtocolObject<dyn CNKeyDescriptor>>;
 
         #[cfg(feature = "CNContact")]
@@ -47,8 +47,8 @@ extern_methods!(
         ///
         /// Returns: The encoded data. If the serialization fails, this will be
         /// `nil.`
-        #[unsafe(method_family(none))]
         #[method_id(dataWithContacts:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dataWithContacts_error(
             contacts: &NSArray<CNContact>,
         ) -> Result<Retained<NSData>, Retained<NSError>>;
@@ -65,8 +65,8 @@ extern_methods!(
         ///
         /// Returns: The parsed contacts. If the parsing fails, this will be
         /// `nil.`
-        #[unsafe(method_family(none))]
         #[method_id(contactsWithData:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contactsWithData_error(
             data: &NSData,
         ) -> Result<Retained<NSArray<CNContact>>, Retained<NSError>>;
@@ -76,12 +76,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CNContactVCardSerialization {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

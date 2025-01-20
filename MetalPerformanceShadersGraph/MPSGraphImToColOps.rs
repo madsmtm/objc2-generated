@@ -140,8 +140,8 @@ extern_methods!(
         /// - paddingBottom: See `paddingBottom` property.
         /// - dataLayout: See `dataLayout` property.
         /// - Returns: A valid MPSGraphImToColOpDescriptor on autoreleasepool.
-        #[unsafe(method_family(none))]
         #[method_id(descriptorWithKernelWidth:kernelHeight:strideInX:strideInY:dilationRateInX:dilationRateInY:paddingLeft:paddingRight:paddingTop:paddingBottom:dataLayout:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithKernelWidth_kernelHeight_strideInX_strideInY_dilationRateInX_dilationRateInY_paddingLeft_paddingRight_paddingTop_paddingBottom_dataLayout(
             kernel_width: NSUInteger,
             kernel_height: NSUInteger,
@@ -166,8 +166,8 @@ extern_methods!(
         /// - dilationRateInY: See `dilationRateInY` property.
         /// - dataLayout: See `dataLayout` property.
         /// - Returns: A valid MPSGraphImToColOpDescriptor on autoreleasepool.
-        #[unsafe(method_family(none))]
         #[method_id(descriptorWithKernelWidth:kernelHeight:strideInX:strideInY:dilationRateInX:dilationRateInY:dataLayout:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithKernelWidth_kernelHeight_strideInX_strideInY_dilationRateInX_dilationRateInY_dataLayout(
             kernel_width: NSUInteger,
             kernel_height: NSUInteger,
@@ -199,12 +199,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MPSGraphCore")]
     unsafe impl MPSGraphImToColOpDescriptor {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -221,8 +221,8 @@ extern_methods!(
         /// - descriptor: The descriptor object that specifies the parameters of the operation.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[unsafe(method_family(none))]
         #[method_id(imToColWithSourceTensor:descriptor:name:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn imToColWithSourceTensor_descriptor_name(
             &self,
             source: &MPSGraphTensor,
@@ -242,8 +242,8 @@ extern_methods!(
         /// - descriptor: The descriptor object that specifies the parameters of the operation.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[unsafe(method_family(none))]
         #[method_id(colToImWithSourceTensor:outputShape:descriptor:name:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colToImWithSourceTensor_outputShape_descriptor_name(
             &self,
             source: &MPSGraphTensor,

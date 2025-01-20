@@ -55,8 +55,8 @@ extern_methods!(
     unsafe impl WKNavigationAction {
         #[cfg(feature = "WKFrameInfo")]
         /// The target frame, or nil if this is a new window navigation.
-        #[unsafe(method_family(none))]
         #[method_id(targetFrame)]
+        #[unsafe(method_family = none)]
         pub unsafe fn targetFrame(&self) -> Option<Retained<WKFrameInfo>>;
 
         /// The type of action that triggered the navigation.
@@ -66,8 +66,8 @@ extern_methods!(
         pub unsafe fn navigationType(&self) -> WKNavigationType;
 
         /// The navigation's request.
-        #[unsafe(method_family(none))]
         #[method_id(request)]
+        #[unsafe(method_family = none)]
         pub unsafe fn request(&self) -> Retained<NSURLRequest>;
 
         /// A value indicating whether the web content used a download attribute to indicate that this should be downloaded.
@@ -89,12 +89,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKNavigationAction {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

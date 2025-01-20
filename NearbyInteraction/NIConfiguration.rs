@@ -34,18 +34,18 @@ extern_methods!(
         /// Get the protocol that describes nearby interaction capabilities of the device that generated this token.
         ///
         /// Detailed description on the capability protocol is in NIDeviceCapability.h.
-        #[unsafe(method_family(none))]
         #[method_id(deviceCapabilities)]
+        #[unsafe(method_family = none)]
         pub unsafe fn deviceCapabilities(&self)
             -> Retained<ProtocolObject<dyn NIDeviceCapability>>;
 
         /// Unavailable
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -74,12 +74,12 @@ unsafe impl NSSecureCoding for NIConfiguration {}
 extern_methods!(
     unsafe impl NIConfiguration {
         /// Unavailable
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -110,15 +110,15 @@ unsafe impl NSSecureCoding for NINearbyPeerConfiguration {}
 extern_methods!(
     unsafe impl NINearbyPeerConfiguration {
         /// The discovery token identifying the peer device for this session configuration.
-        #[unsafe(method_family(none))]
         #[method_id(peerDiscoveryToken)]
+        #[unsafe(method_family = none)]
         pub unsafe fn peerDiscoveryToken(&self) -> Retained<NIDiscoveryToken>;
 
         /// Initializes a new configuration with the provided peer token.
         ///
         /// Parameter `peerToken`: A discovery token received from the peer for this session.
-        #[unsafe(method_family(init))]
         #[method_id(initWithPeerToken:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithPeerToken(
             this: Allocated<Self>,
             peer_token: &NIDiscoveryToken,
@@ -157,12 +157,12 @@ extern_methods!(
         );
 
         /// Unavailable
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -193,8 +193,8 @@ extern_methods!(
         /// The discovery token identifying the accessory device for this session configuration.
         ///
         /// NINearbyObject updates for this accessory will contain this discovery token.
-        #[unsafe(method_family(none))]
         #[method_id(accessoryDiscoveryToken)]
+        #[unsafe(method_family = none)]
         pub unsafe fn accessoryDiscoveryToken(&self) -> Retained<NIDiscoveryToken>;
 
         /// Enables camera assistance during the NISession run with this configuration
@@ -217,8 +217,8 @@ extern_methods!(
         /// Parameter `data`: Configuration data received from the accessory.
         ///
         /// Parameter `error`: An optional out error parameter that will be populated with an error if the provided data is invalid or unsupported.
-        #[unsafe(method_family(init))]
         #[method_id(initWithData:error:_)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithData_error(
             this: Allocated<Self>,
             data: &NSData,
@@ -235,8 +235,8 @@ extern_methods!(
         ///
         ///
         /// The accessory must be a Bluetooth LE peripheral that is paired, actively connected, and implements the Nearby Interaction Service and Accessory Configuration Characteristic.
-        #[unsafe(method_family(init))]
         #[method_id(initWithAccessoryData:bluetoothPeerIdentifier:error:_)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithAccessoryData_bluetoothPeerIdentifier_error(
             this: Allocated<Self>,
             accessory_data: &NSData,
@@ -244,12 +244,12 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         /// Unavailable
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

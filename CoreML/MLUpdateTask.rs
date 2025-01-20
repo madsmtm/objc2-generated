@@ -29,8 +29,8 @@ extern_methods!(
             feature = "MLUpdateContext",
             feature = "block2"
         ))]
-        #[unsafe(method_family(none))]
         #[method_id(updateTaskForModelAtURL:trainingData:configuration:completionHandler:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updateTaskForModelAtURL_trainingData_configuration_completionHandler_error(
             model_url: &NSURL,
             training_data: &ProtocolObject<dyn MLBatchProvider>,
@@ -43,8 +43,8 @@ extern_methods!(
             feature = "MLUpdateContext",
             feature = "block2"
         ))]
-        #[unsafe(method_family(none))]
         #[method_id(updateTaskForModelAtURL:trainingData:completionHandler:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updateTaskForModelAtURL_trainingData_completionHandler_error(
             model_url: &NSURL,
             training_data: &ProtocolObject<dyn MLBatchProvider>,
@@ -56,8 +56,8 @@ extern_methods!(
             feature = "MLModelConfiguration",
             feature = "MLUpdateProgressHandlers"
         ))]
-        #[unsafe(method_family(none))]
         #[method_id(updateTaskForModelAtURL:trainingData:configuration:progressHandlers:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updateTaskForModelAtURL_trainingData_configuration_progressHandlers_error(
             model_url: &NSURL,
             training_data: &ProtocolObject<dyn MLBatchProvider>,
@@ -66,8 +66,8 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "MLBatchProvider", feature = "MLUpdateProgressHandlers"))]
-        #[unsafe(method_family(none))]
         #[method_id(updateTaskForModelAtURL:trainingData:progressHandlers:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updateTaskForModelAtURL_trainingData_progressHandlers_error(
             model_url: &NSURL,
             training_data: &ProtocolObject<dyn MLBatchProvider>,
@@ -81,12 +81,12 @@ extern_methods!(
             update_parameters: &NSDictionary<MLParameterKey, AnyObject>,
         );
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

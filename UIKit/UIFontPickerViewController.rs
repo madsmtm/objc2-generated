@@ -76,20 +76,20 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIFontPickerViewController {
         #[cfg(feature = "UIFontPickerViewControllerConfiguration")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithConfiguration:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithConfiguration(
             this: Allocated<Self>,
             configuration: &UIFontPickerViewControllerConfiguration,
         ) -> Retained<Self>;
 
         #[cfg(feature = "UIFontPickerViewControllerConfiguration")]
-        #[unsafe(method_family(none))]
         #[method_id(configuration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn configuration(&self) -> Retained<UIFontPickerViewControllerConfiguration>;
 
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIFontPickerViewControllerDelegate>>>;
@@ -103,8 +103,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIFontDescriptor")]
-        #[unsafe(method_family(none))]
         #[method_id(selectedFontDescriptor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectedFontDescriptor(&self) -> Option<Retained<UIFontDescriptor>>;
 
         #[cfg(feature = "UIFontDescriptor")]
@@ -115,8 +115,8 @@ extern_methods!(
             selected_font_descriptor: Option<&UIFontDescriptor>,
         );
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithNibName:bundle:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
@@ -129,8 +129,8 @@ extern_methods!(
     /// Methods declared on superclass `UIViewController`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIFontPickerViewController {
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -142,12 +142,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIFontPickerViewController {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

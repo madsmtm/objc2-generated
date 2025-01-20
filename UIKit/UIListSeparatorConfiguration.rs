@@ -67,20 +67,20 @@ unsafe impl NSSecureCoding for UIListSeparatorConfiguration {}
 
 extern_methods!(
     unsafe impl UIListSeparatorConfiguration {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(feature = "UICollectionLayoutList")]
         /// Initializes a list separator configuration with the appropriate defaults for the passed in list appearance.
         ///
         /// Parameter `listAppearance`: The appearance of the list consuming this separator configuration
-        #[unsafe(method_family(init))]
         #[method_id(initWithListAppearance:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithListAppearance(
             this: Allocated<Self>,
             list_appearance: UICollectionLayoutListAppearance,
@@ -133,8 +133,8 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         /// The color to use for the separators for the item this configuration is applied to.
-        #[unsafe(method_family(none))]
         #[method_id(color)]
+        #[unsafe(method_family = none)]
         pub unsafe fn color(&self) -> Retained<UIColor>;
 
         #[cfg(feature = "UIColor")]
@@ -144,8 +144,8 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         /// The color to use for the separators for the item this configuration is applied to, when the item is in a multiple selection group.
-        #[unsafe(method_family(none))]
         #[method_id(multipleSelectionColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn multipleSelectionColor(&self) -> Retained<UIColor>;
 
         #[cfg(feature = "UIColor")]
@@ -155,8 +155,8 @@ extern_methods!(
 
         #[cfg(feature = "UIVisualEffect")]
         /// The visual effect to use for the separators of the item this configuration is applied to.
-        #[unsafe(method_family(none))]
         #[method_id(visualEffect)]
+        #[unsafe(method_family = none)]
         pub unsafe fn visualEffect(&self) -> Option<Retained<UIVisualEffect>>;
 
         #[cfg(feature = "UIVisualEffect")]

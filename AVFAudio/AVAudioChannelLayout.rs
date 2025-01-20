@@ -34,8 +34,8 @@ unsafe impl NSSecureCoding for AVAudioChannelLayout {}
 
 extern_methods!(
     unsafe impl AVAudioChannelLayout {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-audio-types")]
@@ -45,8 +45,8 @@ extern_methods!(
         ///
         /// Returns nil if the tag is either kAudioChannelLayoutTag_UseChannelDescriptions or
         /// kAudioChannelLayoutTag_UseChannelBitmap.
-        #[unsafe(method_family(init))]
         #[method_id(initWithLayoutTag:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithLayoutTag(
             this: Allocated<Self>,
             layout_tag: AudioChannelLayoutTag,
@@ -59,8 +59,8 @@ extern_methods!(
         ///
         /// If the provided layout's tag is kAudioChannelLayoutTag_UseChannelDescriptions, this
         /// initializer attempts to convert it to a more specific tag.
-        #[unsafe(method_family(init))]
         #[method_id(initWithLayout:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithLayout(
             this: Allocated<Self>,
             layout: NonNull<AudioChannelLayout>,
@@ -76,14 +76,14 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-audio-types")]
         /// Create from a layout tag.
-        #[unsafe(method_family(none))]
         #[method_id(layoutWithLayoutTag:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layoutWithLayoutTag(layout_tag: AudioChannelLayoutTag) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-audio-types")]
         /// Create from an AudioChannelLayout
-        #[unsafe(method_family(none))]
         #[method_id(layoutWithLayout:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layoutWithLayout(layout: NonNull<AudioChannelLayout>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-audio-types")]
@@ -106,8 +106,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAudioChannelLayout {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

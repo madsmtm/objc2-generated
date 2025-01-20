@@ -59,8 +59,8 @@ unsafe impl NSObjectProtocol for UNUserNotificationCenter {}
 
 extern_methods!(
     unsafe impl UNUserNotificationCenter {
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UNUserNotificationCenterDelegate>>>;
@@ -76,12 +76,12 @@ extern_methods!(
         #[method(supportsContentExtensions)]
         pub unsafe fn supportsContentExtensions(&self) -> bool;
 
-        #[unsafe(method_family(none))]
         #[method_id(currentNotificationCenter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn currentNotificationCenter() -> Retained<UNUserNotificationCenter>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
@@ -163,8 +163,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UNUserNotificationCenter {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -134,8 +134,8 @@ extern_methods!(
         /// Parameter `error`: If an error occurs, contains error information.
         ///
         /// Returns: An array of CNContact objects matching the predicate. If no matches are found, an empty array is returned. If an error occurs, nil is returned.
-        #[unsafe(method_family(none))]
         #[method_id(unifiedContactsMatchingPredicate:keysToFetch:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn unifiedContactsMatchingPredicate_keysToFetch_error(
             &self,
             predicate: &NSPredicate,
@@ -156,8 +156,8 @@ extern_methods!(
         /// Parameter `error`: If an error occurs, contains error information.
         ///
         /// Returns: The unified contact matching or linked to the identifier. If no contact with the given identifier is found, nil is returned and error is set to CNErrorCodeRecordDoesNotExist.
-        #[unsafe(method_family(none))]
         #[method_id(unifiedContactWithIdentifier:keysToFetch:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn unifiedContactWithIdentifier_keysToFetch_error(
             &self,
             identifier: &NSString,
@@ -176,8 +176,8 @@ extern_methods!(
         /// Parameter `error`: If an error occurs, contains error information.
         ///
         /// Returns: The unified contact that is the "me" card. If no "me" card is set, nil is returned.
-        #[unsafe(method_family(none))]
         #[method_id(unifiedMeContactWithKeysToFetch:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn unifiedMeContactWithKeysToFetch_error(
             &self,
             keys: &NSArray<ProtocolObject<dyn CNKeyDescriptor>>,
@@ -207,8 +207,8 @@ extern_methods!(
         ///
         /// Returns: An enumerator of the records matching the result, or
         /// `nil`if there was an error.
-        #[unsafe(method_family(none))]
         #[method_id(enumeratorForContactFetchRequest:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn enumeratorForContactFetchRequest_error(
             &self,
             request: &CNContactFetchRequest,
@@ -238,8 +238,8 @@ extern_methods!(
         ///
         /// Returns: An enumerator of the events matching the result, or
         /// `nil`if there was an error.
-        #[unsafe(method_family(none))]
         #[method_id(enumeratorForChangeHistoryFetchRequest:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn enumeratorForChangeHistoryFetchRequest_error(
             &self,
             request: &CNChangeHistoryFetchRequest,
@@ -284,8 +284,8 @@ extern_methods!(
         /// Parameter `error`: If an error occurs, contains error information.
         ///
         /// Returns: An array of CNGroup objects matching the predicate. If no matches are found, an empty array is returned. If an error occurs, nil is returned.
-        #[unsafe(method_family(none))]
         #[method_id(groupsMatchingPredicate:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn groupsMatchingPredicate_error(
             &self,
             predicate: Option<&NSPredicate>,
@@ -303,8 +303,8 @@ extern_methods!(
         /// Parameter `error`: If an error occurs, contains error information.
         ///
         /// Returns: An array of CNContainer objects matching the predicate. If no matches are found, an empty array is returned. If an error occurs, nil is returned.
-        #[unsafe(method_family(none))]
         #[method_id(containersMatchingPredicate:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn containersMatchingPredicate_error(
             &self,
             predicate: Option<&NSPredicate>,
@@ -333,8 +333,8 @@ extern_methods!(
         ///
         /// Retrieve the current history token. If you are fetching contacts or change history events, you should use the token on the
         /// `CNFetchResult`instead.
-        #[unsafe(method_family(none))]
         #[method_id(currentHistoryToken)]
+        #[unsafe(method_family = none)]
         pub unsafe fn currentHistoryToken(&self) -> Option<Retained<NSData>>;
 
         /// The identifier of the default container.
@@ -344,8 +344,8 @@ extern_methods!(
         ///
         ///
         /// Returns: The identifier of the default container. If the caller lacks Contacts authorization or an error occurs, nil is returned.
-        #[unsafe(method_family(none))]
         #[method_id(defaultContainerIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn defaultContainerIdentifier(&self) -> Retained<NSString>;
     }
 );
@@ -353,12 +353,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CNContactStore {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

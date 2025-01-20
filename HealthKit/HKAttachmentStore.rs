@@ -26,8 +26,8 @@ extern_methods!(
         /// The designated initializer to create an HKAttachmentStore.
         ///
         /// Parameter `healthStore`: Specifies the HKHealthStore object to use.
-        #[unsafe(method_family(init))]
         #[method_id(initWithHealthStore:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithHealthStore(
             this: Allocated<Self>,
             health_store: &HKHealthStore,
@@ -105,8 +105,8 @@ extern_methods!(
         /// Parameter `completion`: Called with an NSData or an error.
         ///
         /// Returns: An NSProgress object to use for tracking the progress of downloading the attachment's data from iCloud.
-        #[unsafe(method_family(none))]
         #[method_id(getDataForAttachment:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getDataForAttachment_completion(
             &self,
             attachment: &HKAttachment,
@@ -124,8 +124,8 @@ extern_methods!(
         /// Parameter `dataHandler`: Called with an NSData chunk or an error. When done is YES, the operation has completed.
         ///
         /// Returns: An NSProgress object to use for tracking the progress of downloading the attachment's data from iCloud.
-        #[unsafe(method_family(none))]
         #[method_id(streamDataForAttachment:dataHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn streamDataForAttachment_dataHandler(
             &self,
             attachment: &HKAttachment,
@@ -137,12 +137,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKAttachmentStore {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -83,28 +83,28 @@ unsafe impl UITraitEnvironment for UIActivityViewController {}
 extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIActivityViewController {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithNibName:bundle:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "UIActivity")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithActivityItems:applicationActivities:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithActivityItems_applicationActivities(
             this: Allocated<Self>,
             activity_items: &NSArray,
@@ -140,8 +140,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIActivity")]
-        #[unsafe(method_family(none))]
         #[method_id(excludedActivityTypes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn excludedActivityTypes(&self) -> Option<Retained<NSArray<UIActivityType>>>;
 
         #[cfg(feature = "UIActivity")]
@@ -179,8 +179,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIActivityViewController {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -190,8 +190,8 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIActivityViewController {
         #[cfg(feature = "UIActivityItemsConfigurationReading")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithActivityItemsConfiguration:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithActivityItemsConfiguration(
             this: Allocated<Self>,
             activity_items_configuration: &ProtocolObject<dyn UIActivityItemsConfigurationReading>,

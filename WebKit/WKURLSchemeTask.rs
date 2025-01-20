@@ -11,8 +11,8 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkurlschemetask?language=objc)
     pub unsafe trait WKURLSchemeTask: NSObjectProtocol {
         /// The request to load for this task.
-        #[unsafe(method_family(none))]
         #[method_id(request)]
+        #[unsafe(method_family = none)]
         unsafe fn request(&self) -> Retained<NSURLRequest>;
 
         /// Set the current response object for the task.

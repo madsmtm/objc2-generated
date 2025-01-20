@@ -30,15 +30,15 @@ unsafe impl UIResponderStandardEditActions for UIAccessibilityElement {}
 extern_methods!(
     #[cfg(feature = "UIResponder")]
     unsafe impl UIAccessibilityElement {
-        #[unsafe(method_family(init))]
         #[method_id(initWithAccessibilityContainer:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithAccessibilityContainer(
             this: Allocated<Self>,
             container: &AnyObject,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(accessibilityContainer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn accessibilityContainer(&self) -> Option<Retained<AnyObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -53,24 +53,24 @@ extern_methods!(
         #[method(setIsAccessibilityElement:)]
         pub unsafe fn setIsAccessibilityElement(&self, is_accessibility_element: bool);
 
-        #[unsafe(method_family(none))]
         #[method_id(accessibilityLabel)]
+        #[unsafe(method_family = none)]
         pub unsafe fn accessibilityLabel(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityLabel`][Self::accessibilityLabel].
         #[method(setAccessibilityLabel:)]
         pub unsafe fn setAccessibilityLabel(&self, accessibility_label: Option<&NSString>);
 
-        #[unsafe(method_family(none))]
         #[method_id(accessibilityHint)]
+        #[unsafe(method_family = none)]
         pub unsafe fn accessibilityHint(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityHint`][Self::accessibilityHint].
         #[method(setAccessibilityHint:)]
         pub unsafe fn setAccessibilityHint(&self, accessibility_hint: Option<&NSString>);
 
-        #[unsafe(method_family(none))]
         #[method_id(accessibilityValue)]
+        #[unsafe(method_family = none)]
         pub unsafe fn accessibilityValue(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityValue`][Self::accessibilityValue].
@@ -113,12 +113,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UIResponder")]
     unsafe impl UIAccessibilityElement {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

@@ -27,28 +27,28 @@ unsafe impl NSSecureCoding for UNNotificationAttachment {}
 
 extern_methods!(
     unsafe impl UNNotificationAttachment {
-        #[unsafe(method_family(none))]
         #[method_id(identifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(URL)]
+        #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
 
-        #[unsafe(method_family(none))]
         #[method_id(type)]
+        #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(attachmentWithIdentifier:URL:options:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn attachmentWithIdentifier_URL_options_error(
             identifier: &NSString,
             url: &NSURL,
             options: Option<&NSDictionary>,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -56,8 +56,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UNNotificationAttachment {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

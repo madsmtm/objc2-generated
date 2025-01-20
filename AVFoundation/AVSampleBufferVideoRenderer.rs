@@ -52,8 +52,8 @@ extern_methods!(
         /// If the video renderer's status is AVQueuedSampleBufferRenderingStatusFailed, this describes the error that caused the failure.
         ///
         /// The value of this property is an NSError that describes what caused the video renderer to no longer be able to enqueue sample buffers. If the status is not AVQueuedSampleBufferRenderingStatusFailed, the value of this property is nil.
-        #[unsafe(method_family(none))]
         #[method_id(error)]
+        #[unsafe(method_family = none)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
 
         /// Indicates that the receiver is in a state where it requires a call to -flush to continue decoding frames.
@@ -85,12 +85,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVSampleBufferVideoRenderer {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -104,8 +104,8 @@ extern_methods!(
         /// This will return NULL if the rate is non-zero.  Clients must release the pixel buffer after use.
         ///
         /// Do not write to the returned CVPixelBuffer's attachments or pixel data.
-        #[unsafe(method_family(copy))]
         #[method_id(copyDisplayedPixelBuffer)]
+        #[unsafe(method_family = copy)]
         pub unsafe fn copyDisplayedPixelBuffer(&self) -> Option<Retained<CVPixelBuffer>>;
     }
 );

@@ -150,8 +150,8 @@ extern_methods!(
         ///
         /// Use this, in conjunction with
         /// `CNChangeHistoryFetchRequest.excludedTransactionAuthors,`to suppress fetching of changes the author already knows about.
-        #[unsafe(method_family(none))]
         #[method_id(transactionAuthor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn transactionAuthor(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`transactionAuthor`][Self::transactionAuthor].
@@ -178,12 +178,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CNSaveRequest {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

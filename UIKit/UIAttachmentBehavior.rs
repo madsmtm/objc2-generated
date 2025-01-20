@@ -95,8 +95,8 @@ extern_methods!(
     #[cfg(feature = "UIDynamicBehavior")]
     unsafe impl UIAttachmentBehavior {
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithItem:attachedToAnchor:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithItem_attachedToAnchor(
             this: Allocated<Self>,
             item: &ProtocolObject<dyn UIDynamicItem>,
@@ -104,8 +104,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
-        #[unsafe(method_family(init))]
         #[method_id(initWithItem:offsetFromCenter:attachedToAnchor:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithItem_offsetFromCenter_attachedToAnchor(
             this: Allocated<Self>,
             item: &ProtocolObject<dyn UIDynamicItem>,
@@ -113,8 +113,8 @@ extern_methods!(
             point: CGPoint,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithItem:attachedToItem:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithItem_attachedToItem(
             this: Allocated<Self>,
             item1: &ProtocolObject<dyn UIDynamicItem>,
@@ -122,8 +122,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
-        #[unsafe(method_family(init))]
         #[method_id(initWithItem:offsetFromCenter:attachedToItem:offsetFromCenter:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithItem_offsetFromCenter_attachedToItem_offsetFromCenter(
             this: Allocated<Self>,
             item1: &ProtocolObject<dyn UIDynamicItem>,
@@ -145,8 +145,8 @@ extern_methods!(
         /// Parameter `axis`: Axis of allowed relative translation between local anchor point. Must be a unit vector.
         ///
         /// See: attachmentRange, Represents the slidable range of the attachment with respect to the anchor point along the specified axis, this range must include 0
-        #[unsafe(method_family(none))]
         #[method_id(slidingAttachmentWithItem:attachedToItem:attachmentAnchor:axisOfTranslation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn slidingAttachmentWithItem_attachedToItem_attachmentAnchor_axisOfTranslation(
             item1: &ProtocolObject<dyn UIDynamicItem>,
             item2: &ProtocolObject<dyn UIDynamicItem>,
@@ -165,8 +165,8 @@ extern_methods!(
         /// Parameter `axis`: Axis of allowed translation for the item. Must be a unit vector.
         ///
         /// See: attachmentRange, Represents the slidable range of the attachment with respect to the anchor point along the specified axis, this range must include 0
-        #[unsafe(method_family(none))]
         #[method_id(slidingAttachmentWithItem:attachmentAnchor:axisOfTranslation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn slidingAttachmentWithItem_attachmentAnchor_axisOfTranslation(
             item: &ProtocolObject<dyn UIDynamicItem>,
             point: CGPoint,
@@ -185,8 +185,8 @@ extern_methods!(
         /// Parameter `offset2`: The point, within the dynamic item and described as an offset from its center point, for the attachment behavior.
         ///
         /// See: length
-        #[unsafe(method_family(none))]
         #[method_id(limitAttachmentWithItem:offsetFromCenter:attachedToItem:offsetFromCenter:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn limitAttachmentWithItem_offsetFromCenter_attachedToItem_offsetFromCenter(
             item1: &ProtocolObject<dyn UIDynamicItem>,
             offset1: UIOffset,
@@ -203,8 +203,8 @@ extern_methods!(
         /// Parameter `item2`: The second of two dynamic items connected by the attachment behavior.
         ///
         /// Parameter `point`: The point for which each item will be attached. The anchor point will be converted to each items local coordinate system.
-        #[unsafe(method_family(none))]
         #[method_id(fixedAttachmentWithItem:attachedToItem:attachmentAnchor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fixedAttachmentWithItem_attachedToItem_attachmentAnchor(
             item1: &ProtocolObject<dyn UIDynamicItem>,
             item2: &ProtocolObject<dyn UIDynamicItem>,
@@ -222,16 +222,16 @@ extern_methods!(
         /// Parameter `point`: The point for which each item will be attached. The anchor point will be converted to each items local coordinate system
         ///
         /// See: frictionTorque, resistance to rotation
-        #[unsafe(method_family(none))]
         #[method_id(pinAttachmentWithItem:attachedToItem:attachmentAnchor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pinAttachmentWithItem_attachedToItem_attachmentAnchor(
             item1: &ProtocolObject<dyn UIDynamicItem>,
             item2: &ProtocolObject<dyn UIDynamicItem>,
             point: CGPoint,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(items)]
+        #[unsafe(method_family = none)]
         pub unsafe fn items(&self) -> Retained<NSArray<ProtocolObject<dyn UIDynamicItem>>>;
 
         #[method(attachedBehaviorType)]
@@ -297,12 +297,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UIDynamicBehavior")]
     unsafe impl UIAttachmentBehavior {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

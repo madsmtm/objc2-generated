@@ -13,13 +13,13 @@ extern_protocol!(
     #[cfg(feature = "ASAuthorizationCredential")]
     pub unsafe trait ASPublicKeyCredential: ASAuthorizationCredential {
         /// A byte sequence containing the serialized clientDataJSON blob returned by the authenticator.
-        #[unsafe(method_family(none))]
         #[method_id(rawClientDataJSON)]
+        #[unsafe(method_family = none)]
         unsafe fn rawClientDataJSON(&self) -> Retained<NSData>;
 
         /// An identifier that uniquely identifies this credential.
-        #[unsafe(method_family(none))]
         #[method_id(credentialID)]
+        #[unsafe(method_family = none)]
         unsafe fn credentialID(&self) -> Retained<NSData>;
     }
 );

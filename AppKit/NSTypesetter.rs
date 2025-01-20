@@ -53,8 +53,8 @@ extern_methods!(
         pub unsafe fn setLineFragmentPadding(&self, line_fragment_padding: CGFloat);
 
         #[cfg(feature = "NSFont")]
-        #[unsafe(method_family(none))]
         #[method_id(substituteFontForFont:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn substituteFontForFont(&self, original_font: &NSFont) -> Retained<NSFont>;
 
         #[cfg(all(
@@ -62,8 +62,8 @@ extern_methods!(
             feature = "NSText",
             feature = "objc2-core-foundation"
         ))]
-        #[unsafe(method_family(none))]
         #[method_id(textTabForGlyphLocation:writingDirection:maxLocation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textTabForGlyphLocation_writingDirection_maxLocation(
             &self,
             glyph_location: CGFloat,
@@ -78,8 +78,8 @@ extern_methods!(
         #[method(setBidiProcessingEnabled:)]
         pub unsafe fn setBidiProcessingEnabled(&self, bidi_processing_enabled: bool);
 
-        #[unsafe(method_family(none))]
         #[method_id(attributedString)]
+        #[unsafe(method_family = none)]
         pub unsafe fn attributedString(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Setter for [`attributedString`][Self::attributedString].
@@ -156,30 +156,30 @@ extern_methods!(
             line_origin: NSPoint,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(attributesForExtraLineFragment)]
+        #[unsafe(method_family = none)]
         pub unsafe fn attributesForExtraLineFragment(
             &self,
         ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         #[cfg(feature = "NSLayoutManager")]
-        #[unsafe(method_family(none))]
         #[method_id(layoutManager)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layoutManager(&self) -> Option<Retained<NSLayoutManager>>;
 
         #[cfg(feature = "NSTextContainer")]
-        #[unsafe(method_family(none))]
         #[method_id(textContainers)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textContainers(&self) -> Option<Retained<NSArray<NSTextContainer>>>;
 
         #[cfg(feature = "NSTextContainer")]
-        #[unsafe(method_family(none))]
         #[method_id(currentTextContainer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn currentTextContainer(&self) -> Option<Retained<NSTextContainer>>;
 
         #[cfg(feature = "NSParagraphStyle")]
-        #[unsafe(method_family(none))]
         #[method_id(currentParagraphStyle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn currentParagraphStyle(&self) -> Option<Retained<NSParagraphStyle>>;
 
         #[method(setHardInvalidation:forGlyphRange:)]
@@ -221,13 +221,13 @@ extern_methods!(
             glyph_index: NSUInteger,
         ) -> CGFloat;
 
-        #[unsafe(method_family(none))]
         #[method_id(sharedSystemTypesetter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sharedSystemTypesetter() -> Retained<NSTypesetter>;
 
         #[cfg(feature = "NSLayoutManager")]
-        #[unsafe(method_family(none))]
         #[method_id(sharedSystemTypesetterForBehavior:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sharedSystemTypesetterForBehavior(
             behavior: NSTypesetterBehavior,
         ) -> Retained<AnyObject>;
@@ -241,12 +241,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTypesetter {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

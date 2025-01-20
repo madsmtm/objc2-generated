@@ -11,8 +11,8 @@ extern_methods!(
     #[cfg(feature = "AVAudioSession")]
     unsafe impl AVAudioSession {
         #[deprecated = "No longer supported"]
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVAudioSessionDelegate>>>;

@@ -140,8 +140,8 @@ unsafe impl RefEncode for MDLDataPrecision {
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlnamed?language=objc)
     pub unsafe trait MDLNamed {
-        #[unsafe(method_family(none))]
         #[method_id(name)]
+        #[unsafe(method_family = none)]
         unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
@@ -167,16 +167,16 @@ extern_protocol!(
         unsafe fn removeObject(&self, object: &MDLObject);
 
         #[cfg(feature = "MDLObject")]
-        #[unsafe(method_family(none))]
         #[method_id(objectAtIndexedSubscript:)]
+        #[unsafe(method_family = none)]
         unsafe fn objectAtIndexedSubscript(&self, index: NSUInteger) -> Retained<MDLObject>;
 
         #[method(count)]
         unsafe fn count(&self) -> NSUInteger;
 
         #[cfg(feature = "MDLObject")]
-        #[unsafe(method_family(none))]
         #[method_id(objects)]
+        #[unsafe(method_family = none)]
         unsafe fn objects(&self) -> Retained<NSArray<MDLObject>>;
     }
 );

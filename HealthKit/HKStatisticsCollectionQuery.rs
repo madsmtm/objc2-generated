@@ -22,16 +22,16 @@ unsafe impl NSObjectProtocol for HKStatisticsCollection {}
 
 extern_methods!(
     unsafe impl HKStatisticsCollection {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "HKStatistics")]
         /// Returns the statistics object that this date is inside of
         ///
         /// If there are no samples for the given date, an HKStatistics instance with nil quantities will be returned.
-        #[unsafe(method_family(none))]
         #[method_id(statisticsForDate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn statisticsForDate(&self, date: &NSDate) -> Option<Retained<HKStatistics>>;
 
         #[cfg(all(feature = "HKStatistics", feature = "block2"))]
@@ -51,8 +51,8 @@ extern_methods!(
         /// Returns a copy of the populated statistics objects.
         ///
         /// The statistics objects are ordered chronologically.
-        #[unsafe(method_family(none))]
         #[method_id(statistics)]
+        #[unsafe(method_family = none)]
         pub unsafe fn statistics(&self) -> Retained<NSArray<HKStatistics>>;
 
         #[cfg(feature = "HKSource")]
@@ -60,8 +60,8 @@ extern_methods!(
         ///
         /// Sources will be empty unless HKStatisticsOptionSeparateBySource is specified in the
         /// HKStatisticsCollectionQuery options.
-        #[unsafe(method_family(none))]
         #[method_id(sources)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sources(&self) -> Retained<NSSet<HKSource>>;
     }
 );
@@ -69,8 +69,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKStatisticsCollection {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -95,16 +95,16 @@ unsafe impl NSObjectProtocol for HKStatisticsCollectionQuery {}
 extern_methods!(
     #[cfg(feature = "HKQuery")]
     unsafe impl HKStatisticsCollectionQuery {
-        #[unsafe(method_family(none))]
         #[method_id(anchorDate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn anchorDate(&self) -> Retained<NSDate>;
 
         #[cfg(feature = "HKStatistics")]
         #[method(options)]
         pub unsafe fn options(&self) -> HKStatisticsOptions;
 
-        #[unsafe(method_family(none))]
         #[method_id(intervalComponents)]
+        #[unsafe(method_family = none)]
         pub unsafe fn intervalComponents(&self) -> Retained<NSDateComponents>;
 
         #[cfg(feature = "block2")]
@@ -162,8 +162,8 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "HKObjectType", feature = "HKStatistics"))]
-        #[unsafe(method_family(init))]
         #[method_id(initWithQuantityType:quantitySamplePredicate:options:anchorDate:intervalComponents:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithQuantityType_quantitySamplePredicate_options_anchorDate_intervalComponents(
             this: Allocated<Self>,
             quantity_type: &HKQuantityType,
@@ -179,8 +179,8 @@ extern_methods!(
     /// Methods declared on superclass `HKQuery`
     #[cfg(feature = "HKQuery")]
     unsafe impl HKStatisticsCollectionQuery {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -189,8 +189,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "HKQuery")]
     unsafe impl HKStatisticsCollectionQuery {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

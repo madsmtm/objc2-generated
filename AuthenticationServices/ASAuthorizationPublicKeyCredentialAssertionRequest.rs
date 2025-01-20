@@ -13,8 +13,8 @@ extern_protocol!(
         NSObjectProtocol + NSSecureCoding + NSCopying
     {
         /// The challenge to use when signing the request.
-        #[unsafe(method_family(none))]
         #[method_id(challenge)]
+        #[unsafe(method_family = none)]
         unsafe fn challenge(&self) -> Retained<NSData>;
 
         /// Setter for [`challenge`][Self::challenge].
@@ -22,8 +22,8 @@ extern_protocol!(
         unsafe fn setChallenge(&self, challenge: &NSData);
 
         /// The Relying Party identifier used to scope this request.
-        #[unsafe(method_family(none))]
         #[method_id(relyingPartyIdentifier)]
+        #[unsafe(method_family = none)]
         unsafe fn relyingPartyIdentifier(&self) -> Retained<NSString>;
 
         /// Setter for [`relyingPartyIdentifier`][Self::relyingPartyIdentifier].
@@ -32,8 +32,8 @@ extern_protocol!(
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialDescriptor")]
         /// A list of credentials to allow for this request. If this list is nonempty, only credentials matching the provided descriptors can be used to sign in.
-        #[unsafe(method_family(none))]
         #[method_id(allowedCredentials)]
+        #[unsafe(method_family = none)]
         unsafe fn allowedCredentials(
             &self,
         ) -> Retained<NSArray<ProtocolObject<dyn ASAuthorizationPublicKeyCredentialDescriptor>>>;
@@ -50,8 +50,8 @@ extern_protocol!(
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialConstants")]
         /// A preference for whether the authenticator should attempt to verify that it is being used by its owner, such as through a PIN or biometrics.
-        #[unsafe(method_family(none))]
         #[method_id(userVerificationPreference)]
+        #[unsafe(method_family = none)]
         unsafe fn userVerificationPreference(
             &self,
         ) -> Retained<ASAuthorizationPublicKeyCredentialUserVerificationPreference>;

@@ -107,8 +107,8 @@ unsafe impl UITraitEnvironment for UILabel {}
 extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UILabel {
-        #[unsafe(method_family(none))]
         #[method_id(text)]
+        #[unsafe(method_family = none)]
         pub unsafe fn text(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`text`][Self::text].
@@ -116,8 +116,8 @@ extern_methods!(
         pub unsafe fn setText(&self, text: Option<&NSString>);
 
         #[cfg(feature = "UIFont")]
-        #[unsafe(method_family(none))]
         #[method_id(font)]
+        #[unsafe(method_family = none)]
         pub unsafe fn font(&self) -> Option<Retained<UIFont>>;
 
         #[cfg(feature = "UIFont")]
@@ -126,8 +126,8 @@ extern_methods!(
         pub unsafe fn setFont(&self, font: Option<&UIFont>);
 
         #[cfg(feature = "UIColor")]
-        #[unsafe(method_family(none))]
         #[method_id(textColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -143,8 +143,8 @@ extern_methods!(
         pub unsafe fn setPreferredVibrancy(&self, preferred_vibrancy: UILabelVibrancy);
 
         #[cfg(feature = "UIColor")]
-        #[unsafe(method_family(none))]
         #[method_id(shadowColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shadowColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -179,8 +179,8 @@ extern_methods!(
         #[method(setLineBreakMode:)]
         pub unsafe fn setLineBreakMode(&self, line_break_mode: NSLineBreakMode);
 
-        #[unsafe(method_family(none))]
         #[method_id(attributedText)]
+        #[unsafe(method_family = none)]
         pub unsafe fn attributedText(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Setter for [`attributedText`][Self::attributedText].
@@ -188,8 +188,8 @@ extern_methods!(
         pub unsafe fn setAttributedText(&self, attributed_text: Option<&NSAttributedString>);
 
         #[cfg(feature = "UIColor")]
-        #[unsafe(method_family(none))]
         #[method_id(highlightedTextColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn highlightedTextColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -341,12 +341,12 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UILabel {
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithFrame:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -358,12 +358,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UILabel {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

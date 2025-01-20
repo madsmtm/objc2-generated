@@ -39,17 +39,17 @@ extern_methods!(
         #[method(setTimeRange:)]
         pub unsafe fn setTimeRange(&self, time_range: CMTimeRange);
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-media")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithTimeRange:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithTimeRange(
             this: Allocated<Self>,
             time_range: CMTimeRange,
@@ -70,29 +70,29 @@ extern_methods!(
     unsafe impl MPNowPlayingSession {
         #[cfg(feature = "objc2-av-foundation")]
         /// Creates a session associated with a given AVPlayer instance. This will assert if players is nil or empty.
-        #[unsafe(method_family(init))]
         #[method_id(initWithPlayers:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithPlayers(
             this: Allocated<Self>,
             players: &NSArray<AVPlayer>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-av-foundation")]
         /// AVPlayer instances associated with this session.
-        #[unsafe(method_family(none))]
         #[method_id(players)]
+        #[unsafe(method_family = none)]
         pub unsafe fn players(&self, mtm: MainThreadMarker) -> Retained<NSArray<AVPlayer>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MPNowPlayingSessionDelegate>>>;
@@ -119,14 +119,14 @@ extern_methods!(
 
         #[cfg(feature = "MPNowPlayingInfoCenter")]
         /// The now playing info center that is associated with this session.
-        #[unsafe(method_family(none))]
         #[method_id(nowPlayingInfoCenter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn nowPlayingInfoCenter(&self) -> Retained<MPNowPlayingInfoCenter>;
 
         #[cfg(feature = "MPRemoteCommandCenter")]
         /// The remote command center that is associated with this session.
-        #[unsafe(method_family(none))]
         #[method_id(remoteCommandCenter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn remoteCommandCenter(&self) -> Retained<MPRemoteCommandCenter>;
 
         /// Returns a Boolean value indicating whether this session can become the App's active now playing session.

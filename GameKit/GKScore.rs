@@ -27,8 +27,8 @@ extern_methods!(
     unsafe impl GKScore {
         /// Initialize the score with the local player and current date.
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(initWithLeaderboardIdentifier:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithLeaderboardIdentifier(
             this: Allocated<Self>,
             identifier: &NSString,
@@ -36,8 +36,8 @@ extern_methods!(
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         /// Initialize the achievement for a specific player. Use to submit participant scores when ending a turn-based match.
-        #[unsafe(method_family(init))]
         #[method_id(initWithLeaderboardIdentifier:player:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithLeaderboardIdentifier_player(
             this: Allocated<Self>,
             identifier: &NSString,
@@ -56,13 +56,13 @@ extern_methods!(
 
         /// The score formatted as a string, localized with a label
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(formattedValue)]
+        #[unsafe(method_family = none)]
         pub unsafe fn formattedValue(&self) -> Option<Retained<NSString>>;
 
         /// leaderboard identifier (required)
-        #[unsafe(method_family(none))]
         #[method_id(leaderboardIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn leaderboardIdentifier(&self) -> Retained<NSString>;
 
         /// Setter for [`leaderboardIdentifier`][Self::leaderboardIdentifier].
@@ -79,14 +79,14 @@ extern_methods!(
 
         /// The date this score was recorded. A newly initialized, unsubmitted GKScore records the current date at init time.
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(date)]
+        #[unsafe(method_family = none)]
         pub unsafe fn date(&self) -> Retained<NSDate>;
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         /// The player that recorded the score.
-        #[unsafe(method_family(none))]
         #[method_id(player)]
+        #[unsafe(method_family = none)]
         pub unsafe fn player(&self) -> Option<Retained<GKPlayer>>;
 
         /// The rank of the player within the leaderboard, only valid when returned from GKLeaderboard
@@ -120,12 +120,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKScore {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -142,16 +142,16 @@ extern_methods!(
         );
 
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(initWithCategory:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCategory(
             this: Allocated<Self>,
             category: Option<&NSString>,
         ) -> Retained<Self>;
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(category)]
+        #[unsafe(method_family = none)]
         pub unsafe fn category(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`category`][Self::category].
@@ -166,8 +166,8 @@ extern_methods!(
     unsafe impl GKScore {
         /// * This method is obsolete. Calling this initialiser does nothing and will return nil **
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(initWithLeaderboardIdentifier:forPlayer:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithLeaderboardIdentifier_forPlayer(
             this: Allocated<Self>,
             identifier: &NSString,
@@ -176,8 +176,8 @@ extern_methods!(
 
         /// * This property is obsolete. **
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(playerID)]
+        #[unsafe(method_family = none)]
         pub unsafe fn playerID(&self) -> Option<Retained<NSString>>;
     }
 );

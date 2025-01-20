@@ -285,180 +285,180 @@ extern_methods!(
     /// UIColorSystemColors
     #[cfg(feature = "UIColor")]
     unsafe impl UIColor {
-        #[unsafe(method_family(none))]
         #[method_id(systemRedColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn systemRedColor() -> Retained<UIColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(systemGreenColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn systemGreenColor() -> Retained<UIColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(systemBlueColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn systemBlueColor() -> Retained<UIColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(systemOrangeColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn systemOrangeColor() -> Retained<UIColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(systemYellowColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn systemYellowColor() -> Retained<UIColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(systemPinkColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn systemPinkColor() -> Retained<UIColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(systemPurpleColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn systemPurpleColor() -> Retained<UIColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(systemTealColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn systemTealColor() -> Retained<UIColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(systemIndigoColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn systemIndigoColor() -> Retained<UIColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(systemBrownColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn systemBrownColor() -> Retained<UIColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(systemMintColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn systemMintColor() -> Retained<UIColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(systemCyanColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn systemCyanColor() -> Retained<UIColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(systemGrayColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn systemGrayColor() -> Retained<UIColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(systemGray2Color)]
+        #[unsafe(method_family = none)]
         pub unsafe fn systemGray2Color() -> Retained<UIColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(systemGray3Color)]
+        #[unsafe(method_family = none)]
         pub unsafe fn systemGray3Color() -> Retained<UIColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(systemGray4Color)]
+        #[unsafe(method_family = none)]
         pub unsafe fn systemGray4Color() -> Retained<UIColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(systemGray5Color)]
+        #[unsafe(method_family = none)]
         pub unsafe fn systemGray5Color() -> Retained<UIColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(systemGray6Color)]
+        #[unsafe(method_family = none)]
         pub unsafe fn systemGray6Color() -> Retained<UIColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(tintColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tintColor() -> Retained<UIColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(labelColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn labelColor() -> Retained<UIColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(secondaryLabelColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn secondaryLabelColor() -> Retained<UIColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(tertiaryLabelColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tertiaryLabelColor() -> Retained<UIColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(quaternaryLabelColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn quaternaryLabelColor() -> Retained<UIColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(linkColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn linkColor() -> Retained<UIColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(placeholderTextColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn placeholderTextColor() -> Retained<UIColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(separatorColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn separatorColor() -> Retained<UIColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(opaqueSeparatorColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn opaqueSeparatorColor() -> Retained<UIColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(systemBackgroundColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn systemBackgroundColor() -> Retained<UIColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(secondarySystemBackgroundColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn secondarySystemBackgroundColor() -> Retained<UIColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(tertiarySystemBackgroundColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tertiarySystemBackgroundColor() -> Retained<UIColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(systemGroupedBackgroundColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn systemGroupedBackgroundColor() -> Retained<UIColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(secondarySystemGroupedBackgroundColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn secondarySystemGroupedBackgroundColor() -> Retained<UIColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(tertiarySystemGroupedBackgroundColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tertiarySystemGroupedBackgroundColor() -> Retained<UIColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(systemFillColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn systemFillColor() -> Retained<UIColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(secondarySystemFillColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn secondarySystemFillColor() -> Retained<UIColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(tertiarySystemFillColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tertiarySystemFillColor() -> Retained<UIColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(quaternarySystemFillColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn quaternarySystemFillColor() -> Retained<UIColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(lightTextColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn lightTextColor() -> Retained<UIColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(darkTextColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn darkTextColor() -> Retained<UIColor>;
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(groupTableViewBackgroundColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn groupTableViewBackgroundColor() -> Retained<UIColor>;
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(viewFlipsideBackgroundColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn viewFlipsideBackgroundColor() -> Retained<UIColor>;
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(scrollViewTexturedBackgroundColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scrollViewTexturedBackgroundColor() -> Retained<UIColor>;
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(underPageBackgroundColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn underPageBackgroundColor() -> Retained<UIColor>;
     }
 );

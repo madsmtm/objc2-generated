@@ -128,14 +128,14 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-video")]
         /// The frame’s captured image.
-        #[unsafe(method_family(none))]
         #[method_id(capturedImage)]
+        #[unsafe(method_family = none)]
         pub unsafe fn capturedImage(&self) -> Retained<CVPixelBuffer>;
 
         #[cfg(feature = "objc2-foundation")]
         /// A dictionary of EXIF metadata for the captured image.
-        #[unsafe(method_family(none))]
         #[method_id(exifData)]
+        #[unsafe(method_family = none)]
         pub unsafe fn exifData(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[cfg(feature = "objc2-metal")]
@@ -147,8 +147,8 @@ extern_methods!(
         /// a grainy look and varies with light conditions.
         /// The variations are stored along the depth dimension of the camera grain texture
         /// and can be selected at runtime using the camera grain intensity of the current frame.
-        #[unsafe(method_family(none))]
         #[method_id(cameraGrainTexture)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cameraGrainTexture(&self)
             -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
@@ -166,8 +166,8 @@ extern_methods!(
         /// The frame’s captured depth data.
         ///
         /// Depth data is only provided with face tracking on frames where depth data was captured.
-        #[unsafe(method_family(none))]
         #[method_id(capturedDepthData)]
+        #[unsafe(method_family = none)]
         pub unsafe fn capturedDepthData(&self) -> Option<Retained<AVDepthData>>;
 
         #[cfg(feature = "objc2-foundation")]
@@ -179,30 +179,30 @@ extern_methods!(
         /// The camera used to capture the frame’s image.
         ///
         /// The camera provides the device’s position and orientation as well as camera parameters.
-        #[unsafe(method_family(none))]
         #[method_id(camera)]
+        #[unsafe(method_family = none)]
         pub unsafe fn camera(&self) -> Retained<ARCamera>;
 
         #[cfg(all(feature = "ARAnchor", feature = "objc2-foundation"))]
         /// A list of anchors in the scene.
-        #[unsafe(method_family(none))]
         #[method_id(anchors)]
+        #[unsafe(method_family = none)]
         pub unsafe fn anchors(&self) -> Retained<NSArray<ARAnchor>>;
 
         #[cfg(feature = "ARLightEstimate")]
         /// A light estimate representing the light in the scene.
         ///
         /// Returns nil if there is no light estimation.
-        #[unsafe(method_family(none))]
         #[method_id(lightEstimate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn lightEstimate(&self) -> Option<Retained<ARLightEstimate>>;
 
         #[cfg(feature = "ARPointCloud")]
         /// Feature points in the scene with respect to the frame’s origin.
         ///
         /// The feature points are only provided for configurations using world tracking.
-        #[unsafe(method_family(none))]
         #[method_id(rawFeaturePoints)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rawFeaturePoints(&self) -> Option<Retained<ARPointCloud>>;
 
         /// The status of world mapping for the area visible to the frame.
@@ -221,8 +221,8 @@ extern_methods!(
         /// See: ARSegmentationClass
         ///
         /// See: -[ARConfiguration setFrameSemantics:]
-        #[unsafe(method_family(none))]
         #[method_id(segmentationBuffer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn segmentationBuffer(&self) -> Option<Retained<CVPixelBuffer>>;
 
         #[cfg(feature = "objc2-core-video")]
@@ -233,22 +233,22 @@ extern_methods!(
         /// See: -[ARConfiguration setFrameSemantics:]
         ///
         /// See: -[ARFrame segmentationBuffer]
-        #[unsafe(method_family(none))]
         #[method_id(estimatedDepthData)]
+        #[unsafe(method_family = none)]
         pub unsafe fn estimatedDepthData(&self) -> Option<Retained<CVPixelBuffer>>;
 
         #[cfg(feature = "ARBody2D")]
         /// A detected body in the current frame.
         ///
         /// See: -[ARConfiguration setFrameSemantics:]
-        #[unsafe(method_family(none))]
         #[method_id(detectedBody)]
+        #[unsafe(method_family = none)]
         pub unsafe fn detectedBody(&self) -> Option<Retained<ARBody2D>>;
 
         #[cfg(feature = "ARGeoTrackingTypes")]
         /// The status of geo tracking.
-        #[unsafe(method_family(none))]
         #[method_id(geoTrackingStatus)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geoTrackingStatus(&self) -> Option<Retained<ARGeoTrackingStatus>>;
 
         #[cfg(feature = "ARDepthData")]
@@ -257,8 +257,8 @@ extern_methods!(
         /// See: ARFrameSemanticSceneDepth.
         ///
         /// See: -[ARConfiguration setFrameSemantics:]
-        #[unsafe(method_family(none))]
         #[method_id(sceneDepth)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sceneDepth(&self) -> Option<Retained<ARDepthData>>;
 
         #[cfg(feature = "ARDepthData")]
@@ -267,8 +267,8 @@ extern_methods!(
         /// See: ARFrameSemanticSmoothedSceneDepth.
         ///
         /// See: -[ARConfiguration setFrameSemantics:]
-        #[unsafe(method_family(none))]
         #[method_id(smoothedSceneDepth)]
+        #[unsafe(method_family = none)]
         pub unsafe fn smoothedSceneDepth(&self) -> Option<Retained<ARDepthData>>;
 
         #[cfg(all(
@@ -289,8 +289,8 @@ extern_methods!(
         ///
         /// Returns: An array of all hit-test results sorted from nearest to farthest.
         #[deprecated = "Use [ARSession raycast:]"]
-        #[unsafe(method_family(none))]
         #[method_id(hitTest:types:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hitTest_types(
             &self,
             point: CGPoint,
@@ -308,8 +308,8 @@ extern_methods!(
         /// Parameter `target`: Type of target where the ray should terminate.
         ///
         /// Parameter `alignment`: Alignment of the target.
-        #[unsafe(method_family(none))]
         #[method_id(raycastQueryFromPoint:allowingTarget:alignment:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn raycastQueryFromPoint_allowingTarget_alignment(
             &self,
             point: CGPoint,
@@ -336,12 +336,12 @@ extern_methods!(
         ) -> CGAffineTransform;
 
         /// Unavailable
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

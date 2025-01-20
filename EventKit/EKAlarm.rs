@@ -37,8 +37,8 @@ extern_methods!(
         /// Creates a new autoreleased alarm with an absolute trigger time.
         ///
         /// Parameter `date`: The date the alarm should fire.
-        #[unsafe(method_family(none))]
         #[method_id(alarmWithAbsoluteDate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alarmWithAbsoluteDate(date: &NSDate) -> Retained<EKAlarm>;
 
         /// Creates a new autoreleased alarm with a relative trigger time.
@@ -48,8 +48,8 @@ extern_methods!(
         ///
         ///
         /// Parameter `offset`: The offset from the event start that the alarm should fire.
-        #[unsafe(method_family(none))]
         #[method_id(alarmWithRelativeOffset:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alarmWithRelativeOffset(offset: NSTimeInterval) -> Retained<EKAlarm>;
 
         /// Specifies a relative offset from an event start date to fire an alarm.
@@ -68,8 +68,8 @@ extern_methods!(
         ///
         /// Set this property to a date to establish an absolute alarm trigger. Setting this
         /// clears any relative interval trigger.
-        #[unsafe(method_family(none))]
         #[method_id(absoluteDate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn absoluteDate(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`absoluteDate`][Self::absoluteDate].
@@ -80,8 +80,8 @@ extern_methods!(
         /// Allows you to set a structured location (a location with a potential geo-coordinate)
         /// on an alarm. This is used in conjunction with proximity to do geofence-based
         /// triggering of reminders.
-        #[unsafe(method_family(none))]
         #[method_id(structuredLocation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn structuredLocation(&self) -> Option<Retained<EKStructuredLocation>>;
 
         #[cfg(feature = "EKStructuredLocation")]
@@ -116,8 +116,8 @@ extern_methods!(
         ///
         /// When you set the emailAddress property, the action property is set to EKAlarmTypeEmail,
         /// and the soundName and url properties are set to nil.
-        #[unsafe(method_family(none))]
         #[method_id(emailAddress)]
+        #[unsafe(method_family = none)]
         pub unsafe fn emailAddress(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`emailAddress`][Self::emailAddress].
@@ -129,8 +129,8 @@ extern_methods!(
         /// The value of this property is the name of a system sound that can be used with
         /// the soundNamed: class method to create an NSSound object. When you set the soundName property,
         /// the action property is set to EKAlarmTypeAudio, and the emailAddress and url properties are set to nil.
-        #[unsafe(method_family(none))]
         #[method_id(soundName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn soundName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`soundName`][Self::soundName].
@@ -145,8 +145,8 @@ extern_methods!(
         /// Trying to save or modify a procedure alarm will result in a save error.
         /// Editing other aspects of events or reminders that have existing procedure alarms is allowed as long as the alarm isn't modified.
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(url)]
+        #[unsafe(method_family = none)]
         pub unsafe fn url(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`url`][Self::url].
@@ -160,12 +160,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "EKObject")]
     unsafe impl EKAlarm {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

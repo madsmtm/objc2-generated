@@ -37,8 +37,8 @@ unsafe impl NSObjectProtocol for NSPort {}
 
 extern_methods!(
     unsafe impl NSPort {
-        #[unsafe(method_family(none))]
         #[method_id(port)]
+        #[unsafe(method_family = none)]
         pub unsafe fn port() -> Retained<NSPort>;
 
         #[method(invalidate)]
@@ -50,8 +50,8 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, an_object: Option<&ProtocolObject<dyn NSPortDelegate>>);
 
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSPortDelegate>>>;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSRunLoop", feature = "NSString"))]
@@ -121,12 +121,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPort {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -187,12 +187,12 @@ unsafe impl NSObjectProtocol for NSMachPort {}
 
 extern_methods!(
     unsafe impl NSMachPort {
-        #[unsafe(method_family(none))]
         #[method_id(portWithMachPort:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn portWithMachPort(mach_port: u32) -> Retained<NSPort>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithMachPort:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithMachPort(this: Allocated<Self>, mach_port: u32) -> Retained<Self>;
 
         #[method(setDelegate:)]
@@ -201,19 +201,19 @@ extern_methods!(
             an_object: Option<&ProtocolObject<dyn NSMachPortDelegate>>,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSMachPortDelegate>>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(portWithMachPort:options:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn portWithMachPort_options(
             mach_port: u32,
             f: NSMachPortOptions,
         ) -> Retained<NSPort>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithMachPort:options:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithMachPort_options(
             this: Allocated<Self>,
             mach_port: u32,
@@ -236,12 +236,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSMachPort {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -282,12 +282,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSMessagePort {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -314,20 +314,20 @@ unsafe impl NSObjectProtocol for NSSocketPort {}
 
 extern_methods!(
     unsafe impl NSSocketPort {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithTCPPort:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithTCPPort(
             this: Allocated<Self>,
             port: c_ushort,
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSData")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithProtocolFamily:socketType:protocol:address:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithProtocolFamily_socketType_protocol_address(
             this: Allocated<Self>,
             family: c_int,
@@ -336,8 +336,8 @@ extern_methods!(
             address: &NSData,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithProtocolFamily:socketType:protocol:socket:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithProtocolFamily_socketType_protocol_socket(
             this: Allocated<Self>,
             family: c_int,
@@ -347,8 +347,8 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(init))]
         #[method_id(initRemoteWithTCPPort:host:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initRemoteWithTCPPort_host(
             this: Allocated<Self>,
             port: c_ushort,
@@ -356,8 +356,8 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSData")]
-        #[unsafe(method_family(init))]
         #[method_id(initRemoteWithProtocolFamily:socketType:protocol:address:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initRemoteWithProtocolFamily_socketType_protocol_address(
             this: Allocated<Self>,
             family: c_int,
@@ -376,8 +376,8 @@ extern_methods!(
         pub unsafe fn protocol(&self) -> c_int;
 
         #[cfg(feature = "NSData")]
-        #[unsafe(method_family(none))]
         #[method_id(address)]
+        #[unsafe(method_family = none)]
         pub unsafe fn address(&self) -> Retained<NSData>;
 
         #[method(socket)]
@@ -388,8 +388,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSSocketPort {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

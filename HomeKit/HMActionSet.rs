@@ -25,19 +25,19 @@ unsafe impl NSObjectProtocol for HMActionSet {}
 
 extern_methods!(
     unsafe impl HMActionSet {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// The name of the action set.
-        #[unsafe(method_family(none))]
         #[method_id(name)]
+        #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "HMAction")]
         /// Set of HMAction objects that represent the individual items of the action set.
-        #[unsafe(method_family(none))]
         #[method_id(actions)]
+        #[unsafe(method_family = none)]
         pub unsafe fn actions(&self) -> Retained<NSSet<HMAction>>;
 
         /// Specifies whether the action set is currently executing or not.
@@ -47,18 +47,18 @@ extern_methods!(
         /// Specifies the action set type - user-defined, trigger-owned or one of the builtin types.
         /// Builtin action sets cannot be removed from the home. trigger-owned action sets cannot
         /// be executed, renamed or associated with another trigger.
-        #[unsafe(method_family(none))]
         #[method_id(actionSetType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn actionSetType(&self) -> Retained<NSString>;
 
         /// A unique identifier for the action set.
-        #[unsafe(method_family(none))]
         #[method_id(uniqueIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn uniqueIdentifier(&self) -> Retained<NSUUID>;
 
         /// Specifies the last execution date for the action set.
-        #[unsafe(method_family(none))]
         #[method_id(lastExecutionDate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn lastExecutionDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(all(feature = "HMDefines", feature = "block2"))]
@@ -117,8 +117,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HMActionSet {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

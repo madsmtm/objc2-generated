@@ -43,44 +43,44 @@ extern_methods!(
         pub unsafe fn rearrangeObjects(&self);
 
         #[cfg(feature = "NSTreeNode")]
-        #[unsafe(method_family(none))]
         #[method_id(arrangedObjects)]
+        #[unsafe(method_family = none)]
         pub unsafe fn arrangedObjects(&self) -> Retained<NSTreeNode>;
 
-        #[unsafe(method_family(none))]
         #[method_id(childrenKeyPath)]
+        #[unsafe(method_family = none)]
         pub unsafe fn childrenKeyPath(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`childrenKeyPath`][Self::childrenKeyPath].
         #[method(setChildrenKeyPath:)]
         pub unsafe fn setChildrenKeyPath(&self, children_key_path: Option<&NSString>);
 
-        #[unsafe(method_family(none))]
         #[method_id(countKeyPath)]
+        #[unsafe(method_family = none)]
         pub unsafe fn countKeyPath(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`countKeyPath`][Self::countKeyPath].
         #[method(setCountKeyPath:)]
         pub unsafe fn setCountKeyPath(&self, count_key_path: Option<&NSString>);
 
-        #[unsafe(method_family(none))]
         #[method_id(leafKeyPath)]
+        #[unsafe(method_family = none)]
         pub unsafe fn leafKeyPath(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`leafKeyPath`][Self::leafKeyPath].
         #[method(setLeafKeyPath:)]
         pub unsafe fn setLeafKeyPath(&self, leaf_key_path: Option<&NSString>);
 
-        #[unsafe(method_family(none))]
         #[method_id(sortDescriptors)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sortDescriptors(&self) -> Retained<NSArray<NSSortDescriptor>>;
 
         /// Setter for [`sortDescriptors`][Self::sortDescriptors].
         #[method(setSortDescriptors:)]
         pub unsafe fn setSortDescriptors(&self, sort_descriptors: &NSArray<NSSortDescriptor>);
 
-        #[unsafe(method_family(none))]
         #[method_id(content)]
+        #[unsafe(method_family = none)]
         pub unsafe fn content(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`content`][Self::content].
@@ -165,22 +165,22 @@ extern_methods!(
             always_uses_multiple_values_marker: bool,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(selectedObjects)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectedObjects(&self) -> Retained<NSArray>;
 
         #[method(setSelectionIndexPaths:)]
         pub unsafe fn setSelectionIndexPaths(&self, index_paths: &NSArray<NSIndexPath>) -> bool;
 
-        #[unsafe(method_family(none))]
         #[method_id(selectionIndexPaths)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectionIndexPaths(&self) -> Retained<NSArray<NSIndexPath>>;
 
         #[method(setSelectionIndexPath:)]
         pub unsafe fn setSelectionIndexPath(&self, index_path: Option<&NSIndexPath>) -> bool;
 
-        #[unsafe(method_family(none))]
         #[method_id(selectionIndexPath)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectionIndexPath(&self) -> Option<Retained<NSIndexPath>>;
 
         #[method(addSelectionIndexPaths:)]
@@ -190,8 +190,8 @@ extern_methods!(
         pub unsafe fn removeSelectionIndexPaths(&self, index_paths: &NSArray<NSIndexPath>) -> bool;
 
         #[cfg(feature = "NSTreeNode")]
-        #[unsafe(method_family(none))]
         #[method_id(selectedNodes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectedNodes(&self) -> Retained<NSArray<NSTreeNode>>;
 
         #[cfg(feature = "NSTreeNode")]
@@ -207,21 +207,21 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSTreeNode")]
-        #[unsafe(method_family(none))]
         #[method_id(childrenKeyPathForNode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn childrenKeyPathForNode(
             &self,
             node: &NSTreeNode,
         ) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSTreeNode")]
-        #[unsafe(method_family(none))]
         #[method_id(countKeyPathForNode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn countKeyPathForNode(&self, node: &NSTreeNode) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSTreeNode")]
-        #[unsafe(method_family(none))]
         #[method_id(leafKeyPathForNode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn leafKeyPathForNode(&self, node: &NSTreeNode) -> Option<Retained<NSString>>;
     }
 );
@@ -230,15 +230,15 @@ extern_methods!(
     /// Methods declared on superclass `NSObjectController`
     #[cfg(all(feature = "NSController", feature = "NSObjectController"))]
     unsafe impl NSTreeController {
-        #[unsafe(method_family(init))]
         #[method_id(initWithContent:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithContent(
             this: Allocated<Self>,
             content: Option<&AnyObject>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -250,8 +250,8 @@ extern_methods!(
     /// Methods declared on superclass `NSController`
     #[cfg(all(feature = "NSController", feature = "NSObjectController"))]
     unsafe impl NSTreeController {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -260,8 +260,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSController", feature = "NSObjectController"))]
     unsafe impl NSTreeController {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

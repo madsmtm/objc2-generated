@@ -23,8 +23,8 @@ extern_methods!(
     #[cfg(feature = "UICalendarSelection")]
     unsafe impl UICalendarSelectionMultiDate {
         /// The currently selected dates in the Calendar view.
-        #[unsafe(method_family(none))]
         #[method_id(selectedDates)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectedDates(&self) -> Retained<NSArray<NSDateComponents>>;
 
         /// Setter for [`selectedDates`][Self::selectedDates].
@@ -40,15 +40,15 @@ extern_methods!(
         );
 
         /// The object that acts as the delegate of the calendar view selection
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UICalendarSelectionMultiDateDelegate>>>;
 
         /// Creates a new multi-date selection with the specified delegate.
-        #[unsafe(method_family(init))]
         #[method_id(initWithDelegate:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDelegate(
             this: Allocated<Self>,
             delegate: Option<&ProtocolObject<dyn UICalendarSelectionMultiDateDelegate>>,
@@ -60,12 +60,12 @@ extern_methods!(
     /// Methods declared on superclass `UICalendarSelection`
     #[cfg(feature = "UICalendarSelection")]
     unsafe impl UICalendarSelectionMultiDate {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

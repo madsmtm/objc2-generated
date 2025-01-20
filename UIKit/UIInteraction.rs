@@ -11,8 +11,8 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinteraction?language=objc)
     pub unsafe trait UIInteraction: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[unsafe(method_family(none))]
         #[method_id(view)]
+        #[unsafe(method_family = none)]
         unsafe fn view(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
@@ -35,8 +35,8 @@ extern_methods!(
         #[method(removeInteraction:)]
         pub unsafe fn removeInteraction(&self, interaction: &ProtocolObject<dyn UIInteraction>);
 
-        #[unsafe(method_family(none))]
         #[method_id(interactions)]
+        #[unsafe(method_family = none)]
         pub unsafe fn interactions(&self) -> Retained<NSArray<ProtocolObject<dyn UIInteraction>>>;
 
         /// Setter for [`interactions`][Self::interactions].

@@ -165,8 +165,8 @@ extern_methods!(
         pub unsafe fn setDisableDepthStencilBuffer(&self, disable_depth_stencil_buffer: bool);
 
         /// Optional view delegate, see SKViewDelegate.
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<NSObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -219,8 +219,8 @@ extern_methods!(
 
         #[cfg(all(feature = "SKEffectNode", feature = "SKNode", feature = "SKScene"))]
         /// The currently presented scene, otherwise nil. If in a transition, the 'incoming' scene is returned.
-        #[unsafe(method_family(none))]
         #[method_id(scene)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scene(&self) -> Option<Retained<SKScene>>;
 
         #[cfg(all(feature = "SKNode", feature = "SKTexture"))]
@@ -228,8 +228,8 @@ extern_methods!(
         /// The texture is tightly cropped to the size of the node.
         ///
         /// Parameter `node`: the node subtree to render to the texture.
-        #[unsafe(method_family(none))]
         #[method_id(textureFromNode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureFromNode(&self, node: &SKNode) -> Option<Retained<SKTexture>>;
 
         #[cfg(all(
@@ -243,8 +243,8 @@ extern_methods!(
         /// Parameter `node`: the node subtree to render to the texture.
         ///
         /// Parameter `crop`: the crop
-        #[unsafe(method_family(none))]
         #[method_id(textureFromNode:crop:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureFromNode_crop(
             &self,
             node: &SKNode,
@@ -288,12 +288,12 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl SKView {
-        #[unsafe(method_family(init))]
         #[method_id(initWithFrame:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -306,8 +306,8 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl SKView {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -317,8 +317,8 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl SKView {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

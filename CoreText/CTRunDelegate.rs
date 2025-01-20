@@ -209,8 +209,8 @@ extern_protocol!(
     #[cfg(feature = "objc2")]
     pub unsafe trait CTAdaptiveImageProviding {
         #[cfg(feature = "objc2-core-graphics")]
-        #[unsafe(method_family(none))]
         #[method_id(imageForProposedSize:scaleFactor:imageOffset:imageSize:)]
+        #[unsafe(method_family = none)]
         unsafe fn imageForProposedSize_scaleFactor_imageOffset_imageSize(
             &self,
             proposed_size: CGSize,

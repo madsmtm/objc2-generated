@@ -239,16 +239,16 @@ extern_methods!(
     unsafe impl VNHumanHandPoseObservation {
         #[cfg(feature = "VNTypes")]
         /// All of the joint names available in the observation.
-        #[unsafe(method_family(none))]
         #[method_id(availableJointNames)]
+        #[unsafe(method_family = none)]
         pub unsafe fn availableJointNames(
             &self,
         ) -> Retained<NSArray<VNHumanHandPoseObservationJointName>>;
 
         #[cfg(feature = "VNTypes")]
         /// All of the joints group names available in the observation.
-        #[unsafe(method_family(none))]
         #[method_id(availableJointsGroupNames)]
+        #[unsafe(method_family = none)]
         pub unsafe fn availableJointsGroupNames(
             &self,
         ) -> Retained<NSArray<VNHumanHandPoseObservationJointsGroupName>>;
@@ -266,8 +266,8 @@ extern_methods!(
         /// Parameter `error`: The address of a variable that will be populated with the error that describes the failure.  If the caller does not require this information, NULL can be passed.
         ///
         /// Returns: the recognized point, or nil if the point could not be obtained.
-        #[unsafe(method_family(none))]
         #[method_id(recognizedPointForJointName:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn recognizedPointForJointName_error(
             &self,
             joint_name: &VNHumanHandPoseObservationJointName,
@@ -289,8 +289,8 @@ extern_methods!(
         /// Parameter `error`: The address of a variable that will be populated with the error that describes the failure.  If the caller does not require this information, NULL can be passed.
         ///
         /// Returns: a dictionary of recognized points in the group, or nil if an error was encountered.
-        #[unsafe(method_family(none))]
         #[method_id(recognizedPointsForJointsGroupName:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn recognizedPointsForJointsGroupName_error(
             &self,
             joints_group_name: &VNHumanHandPoseObservationJointsGroupName,
@@ -310,12 +310,12 @@ extern_methods!(
     /// Methods declared on superclass `VNRecognizedPointsObservation`
     #[cfg(feature = "VNObservation")]
     unsafe impl VNHumanHandPoseObservation {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -355,8 +355,8 @@ extern_methods!(
         ///
         /// Returns: An array of VNHumanHandPoseObservationJointName symbols that are supported by the request revision, or nil if a failure occurs.
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(supportedJointNamesForRevision:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn supportedJointNamesForRevision_error(
             revision: NSUInteger,
         ) -> Result<Retained<NSArray<VNHumanHandPoseObservationJointName>>, Retained<NSError>>;
@@ -367,8 +367,8 @@ extern_methods!(
         /// Parameter `error`: The address of a variable that will be populated with an error upon failure.  If the caller does not need this information, NULL can be passed.
         ///
         /// Returns: An array of VNHumanHandPoseObservationJointName symbols that are supported by the request revision, or nil if a failure occurs.
-        #[unsafe(method_family(none))]
         #[method_id(supportedJointNamesAndReturnError:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn supportedJointNamesAndReturnError(
             &self,
         ) -> Result<Retained<NSArray<VNHumanHandPoseObservationJointName>>, Retained<NSError>>;
@@ -382,8 +382,8 @@ extern_methods!(
         ///
         /// Returns: An array of VNHumanHandPoseObservationJointsGroupName symbols that are supported by the request revision, or nil if a failure occurs.
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(supportedJointsGroupNamesForRevision:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn supportedJointsGroupNamesForRevision_error(
             revision: NSUInteger,
         ) -> Result<Retained<NSArray<VNHumanHandPoseObservationJointsGroupName>>, Retained<NSError>>;
@@ -394,8 +394,8 @@ extern_methods!(
         /// Parameter `error`: The address of a variable that will be populated with an error upon failure.  If the caller does not need this information, NULL can be passed.
         ///
         /// Returns: An array of VNHumanHandPoseObservationJointsGroupName symbols that are supported by the request revision, or nil if a failure occurs.
-        #[unsafe(method_family(none))]
         #[method_id(supportedJointsGroupNamesAndReturnError:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn supportedJointsGroupNamesAndReturnError(
             &self,
         ) -> Result<Retained<NSArray<VNHumanHandPoseObservationJointsGroupName>>, Retained<NSError>>;
@@ -412,8 +412,8 @@ extern_methods!(
 
         #[cfg(feature = "VNObservation")]
         /// VNHumanHandPoseObservation results.
-        #[unsafe(method_family(none))]
         #[method_id(results)]
+        #[unsafe(method_family = none)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNHumanHandPoseObservation>>>;
     }
 );
@@ -423,8 +423,8 @@ extern_methods!(
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectHumanHandPoseRequest {
         /// Creates a new VNRequest with no completion handler.
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
@@ -432,8 +432,8 @@ extern_methods!(
         ///
         ///
         /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
-        #[unsafe(method_family(init))]
         #[method_id(initWithCompletionHandler:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
             completion_handler: VNRequestCompletionHandler,
@@ -445,8 +445,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectHumanHandPoseRequest {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

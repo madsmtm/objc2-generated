@@ -34,16 +34,16 @@ extern_methods!(
         /// Dimensioned as NSUnitDuration.
         ///
         /// This represents the time when the first CA commit is finished.
-        #[unsafe(method_family(none))]
         #[method_id(histogrammedTimeToFirstDraw)]
+        #[unsafe(method_family = none)]
         pub unsafe fn histogrammedTimeToFirstDraw(&self) -> Retained<MXHistogram<NSUnitDuration>>;
 
         #[cfg(feature = "MXHistogram")]
         /// Histogrammed application resume time data.
         ///
         /// Dimensioned as NSUnitDuration.
-        #[unsafe(method_family(none))]
         #[method_id(histogrammedApplicationResumeTime)]
+        #[unsafe(method_family = none)]
         pub unsafe fn histogrammedApplicationResumeTime(
             &self,
         ) -> Retained<MXHistogram<NSUnitDuration>>;
@@ -56,8 +56,8 @@ extern_methods!(
         /// This represents the time when the first CA commit is finished where the application launch has been optimized by the system.
         ///
         /// In iOS 15, the system will opportunistically start applications that are not running in the background to reduce the amount of time a user may have to wait before an application is usable. These launches can occur after a system reboot and periodically as system conditions allow.
-        #[unsafe(method_family(none))]
         #[method_id(histogrammedOptimizedTimeToFirstDraw)]
+        #[unsafe(method_family = none)]
         pub unsafe fn histogrammedOptimizedTimeToFirstDraw(
             &self,
         ) -> Retained<MXHistogram<NSUnitDuration>>;
@@ -68,8 +68,8 @@ extern_methods!(
         /// Dimensioned as NSUnitDuration.
         ///
         /// This represents the time when the app has drawn the first frame and finishes all extended launch tasks that assigned by the developer.
-        #[unsafe(method_family(none))]
         #[method_id(histogrammedExtendedLaunch)]
+        #[unsafe(method_family = none)]
         pub unsafe fn histogrammedExtendedLaunch(&self) -> Retained<MXHistogram<NSUnitDuration>>;
     }
 );
@@ -78,12 +78,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MXMetric")]
     unsafe impl MXAppLaunchMetric {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

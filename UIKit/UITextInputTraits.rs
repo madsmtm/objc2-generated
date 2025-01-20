@@ -378,20 +378,20 @@ unsafe impl NSSecureCoding for UITextInputPasswordRules {}
 
 extern_methods!(
     unsafe impl UITextInputPasswordRules {
-        #[unsafe(method_family(none))]
         #[method_id(passwordRulesDescriptor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn passwordRulesDescriptor(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(passwordRulesWithDescriptor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn passwordRulesWithDescriptor(
             password_rules_descriptor: &NSString,
             mtm: MainThreadMarker,
@@ -532,8 +532,8 @@ extern_protocol!(
         unsafe fn setSecureTextEntry(&self, secure_text_entry: bool);
 
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(textContentType)]
+        #[unsafe(method_family = none)]
         unsafe fn textContentType(&self) -> Retained<UITextContentType>;
 
         /// Setter for [`textContentType`][Self::textContentType].
@@ -542,8 +542,8 @@ extern_protocol!(
         unsafe fn setTextContentType(&self, text_content_type: Option<&UITextContentType>);
 
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(passwordRules)]
+        #[unsafe(method_family = none)]
         unsafe fn passwordRules(&self) -> Option<Retained<UITextInputPasswordRules>>;
 
         /// Setter for [`passwordRules`][Self::passwordRules].

@@ -79,19 +79,19 @@ unsafe impl NSTextSelectionDataSource for NSTextLayoutManager {}
 
 extern_methods!(
     unsafe impl NSTextLayoutManager {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSTextLayoutManagerDelegate>>>;
@@ -129,8 +129,8 @@ extern_methods!(
         pub unsafe fn setUsesHyphenation(&self, uses_hyphenation: bool);
 
         #[cfg(feature = "NSTextContentManager")]
-        #[unsafe(method_family(none))]
         #[method_id(textContentManager)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textContentManager(&self) -> Option<Retained<NSTextContentManager>>;
 
         #[cfg(feature = "NSTextContentManager")]
@@ -138,8 +138,8 @@ extern_methods!(
         pub unsafe fn replaceTextContentManager(&self, text_content_manager: &NSTextContentManager);
 
         #[cfg(feature = "NSTextContainer")]
-        #[unsafe(method_family(none))]
         #[method_id(textContainer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textContainer(&self) -> Option<Retained<NSTextContainer>>;
 
         #[cfg(feature = "NSTextContainer")]
@@ -152,14 +152,14 @@ extern_methods!(
         pub unsafe fn usageBoundsForTextContainer(&self) -> CGRect;
 
         #[cfg(feature = "NSTextViewportLayoutController")]
-        #[unsafe(method_family(none))]
         #[method_id(textViewportLayoutController)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textViewportLayoutController(
             &self,
         ) -> Retained<NSTextViewportLayoutController>;
 
-        #[unsafe(method_family(none))]
         #[method_id(layoutQueue)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layoutQueue(&self) -> Option<Retained<NSOperationQueue>>;
 
         /// Setter for [`layoutQueue`][Self::layoutQueue].
@@ -179,16 +179,16 @@ extern_methods!(
         pub unsafe fn invalidateLayoutForRange(&self, range: &NSTextRange);
 
         #[cfg(all(feature = "NSTextLayoutFragment", feature = "objc2-core-foundation"))]
-        #[unsafe(method_family(none))]
         #[method_id(textLayoutFragmentForPosition:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textLayoutFragmentForPosition(
             &self,
             position: CGPoint,
         ) -> Option<Retained<NSTextLayoutFragment>>;
 
         #[cfg(all(feature = "NSTextLayoutFragment", feature = "NSTextRange"))]
-        #[unsafe(method_family(none))]
         #[method_id(textLayoutFragmentForLocation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textLayoutFragmentForLocation(
             &self,
             location: &ProtocolObject<dyn NSTextLocation>,
@@ -199,8 +199,8 @@ extern_methods!(
             feature = "NSTextRange",
             feature = "block2"
         ))]
-        #[unsafe(method_family(none))]
         #[method_id(enumerateTextLayoutFragmentsFromLocation:options:usingBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn enumerateTextLayoutFragmentsFromLocation_options_usingBlock(
             &self,
             location: Option<&ProtocolObject<dyn NSTextLocation>>,
@@ -209,8 +209,8 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn NSTextLocation>>>;
 
         #[cfg(feature = "NSTextSelection")]
-        #[unsafe(method_family(none))]
         #[method_id(textSelections)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textSelections(&self) -> Retained<NSArray<NSTextSelection>>;
 
         #[cfg(feature = "NSTextSelection")]
@@ -219,8 +219,8 @@ extern_methods!(
         pub unsafe fn setTextSelections(&self, text_selections: &NSArray<NSTextSelection>);
 
         #[cfg(feature = "NSTextSelectionNavigation")]
-        #[unsafe(method_family(none))]
         #[method_id(textSelectionNavigation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textSelectionNavigation(&self) -> Retained<NSTextSelectionNavigation>;
 
         #[cfg(feature = "NSTextSelectionNavigation")]
@@ -292,14 +292,14 @@ extern_methods!(
             >,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(linkRenderingAttributes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn linkRenderingAttributes(
         ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         #[cfg(feature = "NSTextRange")]
-        #[unsafe(method_family(none))]
         #[method_id(renderingAttributesForLink:atLocation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn renderingAttributesForLink_atLocation(
             &self,
             link: &AnyObject,
@@ -344,8 +344,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextLayoutManager {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -359,8 +359,8 @@ extern_protocol!(
             feature = "NSTextRange"
         ))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(textLayoutManager:textLayoutFragmentForLocation:inTextElement:)]
+        #[unsafe(method_family = none)]
         unsafe fn textLayoutManager_textLayoutFragmentForLocation_inTextElement(
             &self,
             text_layout_manager: &NSTextLayoutManager,
@@ -380,8 +380,8 @@ extern_protocol!(
 
         #[cfg(feature = "NSTextRange")]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(textLayoutManager:renderingAttributesForLink:atLocation:defaultAttributes:)]
+        #[unsafe(method_family = none)]
         unsafe fn textLayoutManager_renderingAttributesForLink_atLocation_defaultAttributes(
             &self,
             text_layout_manager: &NSTextLayoutManager,

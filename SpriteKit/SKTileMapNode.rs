@@ -59,8 +59,8 @@ extern_methods!(
         /// Parameter `rows`: the number of rows in the map that can hold tiles
         ///
         /// Parameter `tileSize`: the size of each tile in points
-        #[unsafe(method_family(none))]
         #[method_id(tileMapNodeWithTileSet:columns:rows:tileSize:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tileMapNodeWithTileSet_columns_rows_tileSize(
             tile_set: &SKTileSet,
             columns: NSUInteger,
@@ -81,8 +81,8 @@ extern_methods!(
         /// Parameter `tileSize`: the size of each tile in points
         ///
         /// Parameter `tileGroup`: the tile group we wish to fill the tile map with
-        #[unsafe(method_family(none))]
         #[method_id(tileMapNodeWithTileSet:columns:rows:tileSize:fillWithTileGroup:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tileMapNodeWithTileSet_columns_rows_tileSize_fillWithTileGroup(
             tile_set: &SKTileSet,
             columns: NSUInteger,
@@ -104,8 +104,8 @@ extern_methods!(
         /// Parameter `tileSize`: the size of each tile in points
         ///
         /// Parameter `tileGroupLayout`: an array of tile groups that we want to use to fill the tile map
-        #[unsafe(method_family(none))]
         #[method_id(tileMapNodeWithTileSet:columns:rows:tileSize:tileGroupLayout:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tileMapNodeWithTileSet_columns_rows_tileSize_tileGroupLayout(
             tile_set: &SKTileSet,
             columns: NSUInteger,
@@ -125,8 +125,8 @@ extern_methods!(
         /// Parameter `rows`: the number of rows in the map that can hold tiles
         ///
         /// Parameter `tileSize`: the size of each tile in points
-        #[unsafe(method_family(init))]
         #[method_id(initWithTileSet:columns:rows:tileSize:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithTileSet_columns_rows_tileSize(
             this: Allocated<Self>,
             tile_set: &SKTileSet,
@@ -147,8 +147,8 @@ extern_methods!(
         /// Parameter `tileSize`: the size of each tile in points
         ///
         /// Parameter `tileGroup`: the tile group we wish to fill the tile map with
-        #[unsafe(method_family(init))]
         #[method_id(initWithTileSet:columns:rows:tileSize:fillWithTileGroup:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithTileSet_columns_rows_tileSize_fillWithTileGroup(
             this: Allocated<Self>,
             tile_set: &SKTileSet,
@@ -170,8 +170,8 @@ extern_methods!(
         /// Parameter `tileSize`: the size of each tile in points
         ///
         /// Parameter `tileGroupLayout`: an array of tile groups that we want to use to fill the tile map
-        #[unsafe(method_family(init))]
         #[method_id(initWithTileSet:columns:rows:tileSize:tileGroupLayout:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithTileSet_columns_rows_tileSize_tileGroupLayout(
             this: Allocated<Self>,
             tile_set: &SKTileSet,
@@ -214,8 +214,8 @@ extern_methods!(
 
         #[cfg(feature = "SKTileSet")]
         /// The tile set being used by this tile map.
-        #[unsafe(method_family(none))]
         #[method_id(tileSet)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tileSet(&self) -> Retained<SKTileSet>;
 
         #[cfg(feature = "SKTileSet")]
@@ -234,8 +234,8 @@ extern_methods!(
         pub unsafe fn setColorBlendFactor(&self, color_blend_factor: CGFloat);
 
         /// Base color for the tile map (If no texture is present, the color still is drawn).
-        #[unsafe(method_family(none))]
         #[method_id(color)]
+        #[unsafe(method_family = none)]
         pub unsafe fn color(&self) -> Retained<NSColor>;
 
         /// Setter for [`color`][Self::color].
@@ -264,8 +264,8 @@ extern_methods!(
 
         #[cfg(feature = "SKShader")]
         /// A property that determines whether the tile map is rendered using a custom shader.
-        #[unsafe(method_family(none))]
         #[method_id(shader)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shader(&self) -> Option<Retained<SKShader>>;
 
         #[cfg(feature = "SKShader")]
@@ -276,8 +276,8 @@ extern_methods!(
         #[cfg(feature = "SKAttribute")]
         /// Optional dictionary of SKAttributeValues
         /// Attributes can be used with custom SKShaders.
-        #[unsafe(method_family(none))]
         #[method_id(attributeValues)]
+        #[unsafe(method_family = none)]
         pub unsafe fn attributeValues(&self) -> Retained<NSDictionary<NSString, SKAttributeValue>>;
 
         #[cfg(feature = "SKAttribute")]
@@ -289,8 +289,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "SKAttribute")]
-        #[unsafe(method_family(none))]
         #[method_id(valueForAttributeNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn valueForAttributeNamed(
             &self,
             key: &NSString,
@@ -333,8 +333,8 @@ extern_methods!(
         /// Parameter `column`: the column index of the tile
         ///
         /// Parameter `row`: the row index of the tile
-        #[unsafe(method_family(none))]
         #[method_id(tileDefinitionAtColumn:row:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tileDefinitionAtColumn_row(
             &self,
             column: NSUInteger,
@@ -347,8 +347,8 @@ extern_methods!(
         /// Parameter `column`: the column index of the tile
         ///
         /// Parameter `row`: the row index of the tile
-        #[unsafe(method_family(none))]
         #[method_id(tileGroupAtColumn:row:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tileGroupAtColumn_row(
             &self,
             column: NSUInteger,
@@ -424,31 +424,31 @@ extern_methods!(
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl SKTileMapNode {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Support coding and decoding via NSKeyedArchiver.
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(node)]
+        #[unsafe(method_family = none)]
         pub unsafe fn node(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(nodeWithFileNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn nodeWithFileNamed(
             filename: &NSString,
             mtm: MainThreadMarker,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(nodeWithFileNamed:securelyWithClasses:andError:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn nodeWithFileNamed_securelyWithClasses_andError(
             filename: &NSString,
             classes: &NSSet<AnyClass>,
@@ -462,8 +462,8 @@ extern_methods!(
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl SKTileMapNode {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

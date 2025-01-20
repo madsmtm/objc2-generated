@@ -18,37 +18,37 @@ unsafe impl NSObjectProtocol for NSManagedObjectModelReference {}
 extern_methods!(
     unsafe impl NSManagedObjectModelReference {
         #[cfg(feature = "NSManagedObjectModel")]
-        #[unsafe(method_family(none))]
         #[method_id(resolvedModel)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resolvedModel(&self) -> Retained<NSManagedObjectModel>;
 
-        #[unsafe(method_family(none))]
         #[method_id(versionChecksum)]
+        #[unsafe(method_family = none)]
         pub unsafe fn versionChecksum(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSManagedObjectModel")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithModel:versionChecksum:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithModel_versionChecksum(
             this: Allocated<Self>,
             model: &NSManagedObjectModel,
             version_checksum: &NSString,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithFileURL:versionChecksum:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFileURL_versionChecksum(
             this: Allocated<Self>,
             file_url: &NSURL,
             version_checksum: &NSString,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithEntityVersionHashes:inBundle:versionChecksum:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithEntityVersionHashes_inBundle_versionChecksum(
             this: Allocated<Self>,
             version_hash: &NSDictionary,
@@ -56,8 +56,8 @@ extern_methods!(
             version_checksum: &NSString,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithName:inBundle:versionChecksum:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithName_inBundle_versionChecksum(
             this: Allocated<Self>,
             model_name: &NSString,
@@ -70,8 +70,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSManagedObjectModelReference {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

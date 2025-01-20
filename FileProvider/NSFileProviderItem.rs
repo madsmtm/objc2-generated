@@ -87,16 +87,16 @@ extern_methods!(
         ///
         /// This constant is used by the system to represent that specific version that was communicated by the system to
         /// the extension but does not have a corresponding version assigned by the extension.
-        #[unsafe(method_family(none))]
         #[method_id(beforeFirstSyncComponent)]
+        #[unsafe(method_family = none)]
         pub unsafe fn beforeFirstSyncComponent() -> Retained<NSData>;
 
         /// Items versions have two distinct components, one for the file contents and one
         /// for metadata.
         ///
         /// Components are limited to 128 bytes in size.
-        #[unsafe(method_family(init))]
         #[method_id(initWithContentVersion:metadataVersion:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithContentVersion_metadataVersion(
             this: Allocated<Self>,
             content_version: &NSData,
@@ -114,8 +114,8 @@ extern_methods!(
         ///
         /// Note that the resource fork of the file is considered content, so this version
         /// data should change when either the data fork or the resource fork changes.
-        #[unsafe(method_family(none))]
         #[method_id(contentVersion)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contentVersion(&self) -> Retained<NSData>;
 
         /// Version data for the metadata of the item, i.e everything but the data fork and
@@ -126,8 +126,8 @@ extern_methods!(
         /// - if the metadata version changes without any corresponding observable changes in the metadata returned
         /// to the system, the system will simply store the updated metadata version (to return it as the base version
         /// of a possible future change request).
-        #[unsafe(method_family(none))]
         #[method_id(metadataVersion)]
+        #[unsafe(method_family = none)]
         pub unsafe fn metadataVersion(&self) -> Retained<NSData>;
     }
 );
@@ -135,12 +135,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSFileProviderItemVersion {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -386,8 +386,8 @@ extern_protocol!(
         ///
         /// The itemIdentifier should not contain sensitive information, as it may be recorded in system logs and
         /// diagnostic files.
-        #[unsafe(method_family(none))]
         #[method_id(itemIdentifier)]
+        #[unsafe(method_family = none)]
         unsafe fn itemIdentifier(&self) -> Retained<NSFileProviderItemIdentifier>;
 
         /// The parent identifier specifies the parent of the item in the hierarchy.
@@ -402,8 +402,8 @@ extern_protocol!(
         /// hierarchy (ie. it is not NSFileProviderWorkingSetContainerItemIdentifier).
         ///
         /// The parents of trashed items and of the root item are ignored.
-        #[unsafe(method_family(none))]
         #[method_id(parentItemIdentifier)]
+        #[unsafe(method_family = none)]
         unsafe fn parentItemIdentifier(&self) -> Retained<NSFileProviderItemIdentifier>;
 
         /// The file or directory name, complete with its file extension.
@@ -411,8 +411,8 @@ extern_protocol!(
         /// The filename property must not be an empty string, including when the item identifier is
         /// NSFileProviderRootContainerItemIdentifier. The filename for NSFileProviderRootContainerItemIdentifier
         /// may be displayed in the user interface. Therefore it should be a user-friendly string.
-        #[unsafe(method_family(none))]
         #[method_id(filename)]
+        #[unsafe(method_family = none)]
         unsafe fn filename(&self) -> Retained<NSString>;
 
         #[cfg(feature = "objc2-uniform-type-identifiers")]
@@ -435,8 +435,8 @@ extern_protocol!(
         /// Changing the contentType for a given item that would result in a transition to/from a folder
         /// or to/from a symlink is not supported.
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(contentType)]
+        #[unsafe(method_family = none)]
         unsafe fn contentType(&self) -> Retained<UTType>;
 
         /// Uniform type identifier (UTI) for the item.
@@ -451,8 +451,8 @@ extern_protocol!(
         /// is required in order to target iOS 13 and earlier.
         #[deprecated]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(typeIdentifier)]
+        #[unsafe(method_family = none)]
         unsafe fn typeIdentifier(&self) -> Retained<NSString>;
 
         /// File type and creator code for the item.
@@ -486,23 +486,23 @@ extern_protocol!(
         unsafe fn fileSystemFlags(&self) -> NSFileProviderFileSystemFlags;
 
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(documentSize)]
+        #[unsafe(method_family = none)]
         unsafe fn documentSize(&self) -> Option<Retained<NSNumber>>;
 
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(childItemCount)]
+        #[unsafe(method_family = none)]
         unsafe fn childItemCount(&self) -> Option<Retained<NSNumber>>;
 
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(creationDate)]
+        #[unsafe(method_family = none)]
         unsafe fn creationDate(&self) -> Option<Retained<NSDate>>;
 
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(contentModificationDate)]
+        #[unsafe(method_family = none)]
         unsafe fn contentModificationDate(&self) -> Option<Retained<NSDate>>;
 
         /// Syncable extended attributes on the file.
@@ -540,8 +540,8 @@ extern_protocol!(
         /// will be communicated under NSFileProviderItemContents.  Remote changes to
         /// the resource fork should bump itemVersion.contentVersion.
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(extendedAttributes)]
+        #[unsafe(method_family = none)]
         unsafe fn extendedAttributes(&self) -> Retained<NSDictionary<NSString, NSData>>;
 
         /// The date this item was last used.  This is neither the modification date nor
@@ -554,8 +554,8 @@ extern_protocol!(
         ///
         /// This property must not be shared between users, even if the item is.
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(lastUsedDate)]
+        #[unsafe(method_family = none)]
         unsafe fn lastUsedDate(&self) -> Option<Retained<NSDate>>;
 
         /// An abstract data blob representing the tags associated with the item.  The same
@@ -568,8 +568,8 @@ extern_protocol!(
         /// Starting in macOS 12 and iOS 15, the system suppports the value of the
         /// `com.apple.metadata:_kMDItemUserTags` xattr as a valid `tagData` blob input.
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(tagData)]
+        #[unsafe(method_family = none)]
         unsafe fn tagData(&self) -> Option<Retained<NSData>>;
 
         /// The presence of a favorite rank indicates that a directory is a favorite.
@@ -587,8 +587,8 @@ extern_protocol!(
         ///
         /// This property must not be shared between users, even if the item is.
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(favoriteRank)]
+        #[unsafe(method_family = none)]
         unsafe fn favoriteRank(&self) -> Option<Retained<NSNumber>>;
 
         /// Set on a directory or a document if it should appear in the trash.
@@ -628,8 +628,8 @@ extern_protocol!(
         ///
         /// See also: NSFileProviderErrorServerUnreachable
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(uploadingError)]
+        #[unsafe(method_family = none)]
         unsafe fn uploadingError(&self) -> Option<Retained<NSError>>;
 
         /// When using NSFileProviderExtension, downloaded and downloading are used to inform the cloud badge
@@ -647,8 +647,8 @@ extern_protocol!(
 
         /// An error that occurred while downloading from your remote server.
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(downloadingError)]
+        #[unsafe(method_family = none)]
         unsafe fn downloadingError(&self) -> Option<Retained<NSError>>;
 
         #[optional]
@@ -666,13 +666,13 @@ extern_protocol!(
         /// ownerNameComponents should be nil when sharedByCurrentUser is equal to YES or
         /// when the item is not shared.
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(ownerNameComponents)]
+        #[unsafe(method_family = none)]
         unsafe fn ownerNameComponents(&self) -> Option<Retained<NSPersonNameComponents>>;
 
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(mostRecentEditorNameComponents)]
+        #[unsafe(method_family = none)]
         unsafe fn mostRecentEditorNameComponents(&self)
             -> Option<Retained<NSPersonNameComponents>>;
 
@@ -683,14 +683,14 @@ extern_protocol!(
         ///
         /// This property is deprecated in favor of the "itemVersion" property.
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(versionIdentifier)]
+        #[unsafe(method_family = none)]
         unsafe fn versionIdentifier(&self) -> Option<Retained<NSData>>;
 
         /// The version is used to track which version of an item has been modified when informing a provider about changes. It is also used to invalidate the thumbnail cache.
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(itemVersion)]
+        #[unsafe(method_family = none)]
         unsafe fn itemVersion(&self) -> Retained<NSFileProviderItemVersion>;
 
         /// The target of a symlink.
@@ -698,8 +698,8 @@ extern_protocol!(
         /// If a replicated extension expose an item with the contentType public.symlink (UTTypeSymbolicLink),
         /// this field should contain the target of the symlink.
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(symlinkTargetPath)]
+        #[unsafe(method_family = none)]
         unsafe fn symlinkTargetPath(&self) -> Option<Retained<NSString>>;
 
         /// Use this dictionary to add state information to the item. Entries are accessible to
@@ -1097,8 +1097,8 @@ extern_protocol!(
         /// >
         /// ```
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(userInfo)]
+        #[unsafe(method_family = none)]
         unsafe fn userInfo(&self) -> Option<Retained<NSDictionary>>;
 
         /// Declarative API to define the item content policy according to the available NSFileProviderContentPolicy

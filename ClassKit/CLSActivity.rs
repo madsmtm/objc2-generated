@@ -60,8 +60,8 @@ extern_methods!(
         ///
         /// This can be nil indicating
         /// `progress`property is the primary data instead of any activityItems.
-        #[unsafe(method_family(none))]
         #[method_id(primaryActivityItem)]
+        #[unsafe(method_family = none)]
         pub unsafe fn primaryActivityItem(&self) -> Option<Retained<CLSActivityItem>>;
 
         #[cfg(feature = "CLSActivityItem")]
@@ -89,8 +89,8 @@ extern_methods!(
 
         #[cfg(feature = "CLSActivityItem")]
         /// Array of all additional activity items on this CLSActivity.
-        #[unsafe(method_family(none))]
         #[method_id(additionalActivityItems)]
+        #[unsafe(method_family = none)]
         pub unsafe fn additionalActivityItems(&self) -> Retained<NSArray<CLSActivityItem>>;
     }
 );
@@ -99,12 +99,12 @@ extern_methods!(
     /// Methods declared on superclass `CLSObject`
     #[cfg(feature = "CLSObject")]
     unsafe impl CLSActivity {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -145,15 +145,15 @@ extern_methods!(
         ///
         /// Activity associated with a context.  If no activity was ever created this is nil. See:
         /// `-[CLSContext`createNewActivity]; for more details.
-        #[unsafe(method_family(none))]
         #[method_id(currentActivity)]
+        #[unsafe(method_family = none)]
         pub unsafe fn currentActivity(&self) -> Option<Retained<CLSActivity>>;
 
         /// Creates a new activity
         ///
         /// Creates a new activity and sets it as the current activity.
-        #[unsafe(method_family(none))]
         #[method_id(createNewActivity)]
+        #[unsafe(method_family = none)]
         pub unsafe fn createNewActivity(&self) -> Retained<CLSActivity>;
     }
 );

@@ -231,8 +231,8 @@ extern_protocol!(
         /// Returns: The WebView for the new window.
         #[deprecated]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(webView:createWebViewWithRequest:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_createWebViewWithRequest(
             &self,
             sender: Option<&WebView>,
@@ -268,8 +268,8 @@ extern_protocol!(
         /// Returns: The WebView for the new window.
         #[deprecated]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(webView:createWebViewModalDialogWithRequest:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_createWebViewModalDialogWithRequest(
             &self,
             sender: Option<&WebView>,
@@ -345,8 +345,8 @@ extern_protocol!(
         /// real first responder if some control not in the window has focus.
         #[deprecated]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(webViewFirstResponder:)]
+        #[unsafe(method_family = none)]
         unsafe fn webViewFirstResponder(
             &self,
             sender: Option<&WebView>,
@@ -396,8 +396,8 @@ extern_protocol!(
         /// Returns: The status text
         #[deprecated]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(webViewStatusText:)]
+        #[unsafe(method_family = none)]
         unsafe fn webViewStatusText(&self, sender: Option<&WebView>) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
@@ -584,8 +584,8 @@ extern_protocol!(
         /// two buttons, e.g. "OK" and "Cancel", and an area to type text.
         #[deprecated]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(webView:runJavaScriptTextInputPanelWithPrompt:defaultText:initiatedByFrame:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_runJavaScriptTextInputPanelWithPrompt_defaultText_initiatedByFrame(
             &self,
             sender: Option<&WebView>,
@@ -692,8 +692,8 @@ extern_protocol!(
         /// Returns: An array of NSMenuItems to include in the contextual menu.
         #[deprecated]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(webView:contextMenuItemsForElement:defaultMenuItems:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_contextMenuItemsForElement_defaultMenuItems(
             &self,
             sender: Option<&WebView>,
@@ -941,8 +941,8 @@ extern_protocol!(
         #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(webView:runJavaScriptTextInputPanelWithPrompt:defaultText:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_runJavaScriptTextInputPanelWithPrompt_defaultText(
             &self,
             sender: Option<&WebView>,

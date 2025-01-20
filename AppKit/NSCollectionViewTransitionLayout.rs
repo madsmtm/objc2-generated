@@ -38,16 +38,16 @@ extern_methods!(
         #[method(setTransitionProgress:)]
         pub unsafe fn setTransitionProgress(&self, transition_progress: CGFloat);
 
-        #[unsafe(method_family(none))]
         #[method_id(currentLayout)]
+        #[unsafe(method_family = none)]
         pub unsafe fn currentLayout(&self) -> Retained<NSCollectionViewLayout>;
 
-        #[unsafe(method_family(none))]
         #[method_id(nextLayout)]
+        #[unsafe(method_family = none)]
         pub unsafe fn nextLayout(&self) -> Retained<NSCollectionViewLayout>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCurrentLayout:nextLayout:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCurrentLayout_nextLayout(
             this: Allocated<Self>,
             current_layout: &NSCollectionViewLayout,
@@ -75,12 +75,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSCollectionViewLayout")]
     unsafe impl NSCollectionViewTransitionLayout {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

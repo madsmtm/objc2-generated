@@ -17,8 +17,8 @@ unsafe impl NSObjectProtocol for NSSpellServer {}
 
 extern_methods!(
     unsafe impl NSSpellServer {
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSSpellServerDelegate>>>;
@@ -54,12 +54,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSSpellServer {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -99,8 +99,8 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(spellServer:suggestGuessesForWord:inLanguage:)]
+        #[unsafe(method_family = none)]
         unsafe fn spellServer_suggestGuessesForWord_inLanguage(
             &self,
             sender: &NSSpellServer,
@@ -130,8 +130,8 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSArray", feature = "NSRange", feature = "NSString"))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(spellServer:suggestCompletionsForPartialWordRange:inString:language:)]
+        #[unsafe(method_family = none)]
         unsafe fn spellServer_suggestCompletionsForPartialWordRange_inString_language(
             &self,
             sender: &NSSpellServer,
@@ -164,8 +164,8 @@ extern_protocol!(
             feature = "NSTextCheckingResult"
         ))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(spellServer:checkString:offset:types:options:orthography:wordCount:)]
+        #[unsafe(method_family = none)]
         unsafe fn spellServer_checkString_offset_types_options_orthography_wordCount(
             &self,
             sender: &NSSpellServer,

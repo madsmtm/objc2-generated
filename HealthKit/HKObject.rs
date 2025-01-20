@@ -26,38 +26,38 @@ unsafe impl NSSecureCoding for HKObject {}
 extern_methods!(
     unsafe impl HKObject {
         /// A unique identifier of the receiver in the HealthKit database.
-        #[unsafe(method_family(none))]
         #[method_id(UUID)]
+        #[unsafe(method_family = none)]
         pub unsafe fn UUID(&self) -> Retained<NSUUID>;
 
         #[cfg(feature = "HKSource")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(source)]
+        #[unsafe(method_family = none)]
         pub unsafe fn source(&self) -> Retained<HKSource>;
 
         #[cfg(feature = "HKSourceRevision")]
         /// Represents the revision of the source responsible for saving the receiver.
-        #[unsafe(method_family(none))]
         #[method_id(sourceRevision)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sourceRevision(&self) -> Retained<HKSourceRevision>;
 
         #[cfg(feature = "HKDevice")]
         /// Represents the device that generated the data of the receiver.
-        #[unsafe(method_family(none))]
         #[method_id(device)]
+        #[unsafe(method_family = none)]
         pub unsafe fn device(&self) -> Option<Retained<HKDevice>>;
 
         /// Extra information describing properties of the receiver.
         ///
         /// Keys must be NSString and values must be either NSString, NSNumber, NSDate, or
         /// HKQuantity. See HKMetadata.h for potential metadata keys and values.
-        #[unsafe(method_family(none))]
         #[method_id(metadata)]
+        #[unsafe(method_family = none)]
         pub unsafe fn metadata(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -65,8 +65,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKObject {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

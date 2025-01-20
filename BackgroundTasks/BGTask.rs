@@ -25,8 +25,8 @@ extern_methods!(
         ///
         /// The identifier is the same as the one used to register the launch handler in
         /// ``BGTaskScheduler/registerForTaskWithIdentifier:usingQueue:launchHandler:``.
-        #[unsafe(method_family(none))]
         #[method_id(identifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         #[cfg(feature = "block2")]
@@ -60,12 +60,12 @@ extern_methods!(
             expiration_handler: Option<&block2::Block<dyn Fn()>>,
         );
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Informs the background task scheduler that the task is complete.
@@ -119,12 +119,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `BGTask`
     unsafe impl BGProcessingTask {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -151,12 +151,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `BGTask`
     unsafe impl BGHealthResearchTask {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -189,12 +189,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `BGTask`
     unsafe impl BGAppRefreshTask {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -167,15 +167,15 @@ unsafe impl SCNAnimatable for SCNLight {}
 extern_methods!(
     unsafe impl SCNLight {
         /// Creates and returns a light instance.
-        #[unsafe(method_family(none))]
         #[method_id(light)]
+        #[unsafe(method_family = none)]
         pub unsafe fn light() -> Retained<Self>;
 
         /// Specifies the receiver's type.
         ///
         /// Defaults to SCNLightTypeOmni on iOS 8 and later, and on macOS 10.10 and later (otherwise defaults to SCNLightTypeAmbient).
-        #[unsafe(method_family(none))]
         #[method_id(type)]
+        #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> Retained<SCNLightType>;
 
         /// Setter for [`type`][Self::type].
@@ -185,8 +185,8 @@ extern_methods!(
         /// Specifies the receiver's color (NSColor or CGColorRef). Animatable. Defaults to white.
         ///
         /// The initial value is a NSColor. The renderer multiplies the light's color is by the color derived from the light's temperature.
-        #[unsafe(method_family(none))]
         #[method_id(color)]
+        #[unsafe(method_family = none)]
         pub unsafe fn color(&self) -> Retained<AnyObject>;
 
         /// Setter for [`color`][Self::color].
@@ -218,8 +218,8 @@ extern_methods!(
         pub unsafe fn setIntensity(&self, intensity: CGFloat);
 
         /// Determines the name of the receiver.
-        #[unsafe(method_family(none))]
         #[method_id(name)]
+        #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
@@ -239,8 +239,8 @@ extern_methods!(
         /// Specifies the color (CGColorRef or NSColor) of the shadow casted by the receiver. Defaults to black. Animatable.
         ///
         /// On iOS 9 or earlier and macOS 10.11 or earlier, this defaults to black 50% transparent.
-        #[unsafe(method_family(none))]
         #[method_id(shadowColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shadowColor(&self) -> Retained<AnyObject>;
 
         /// Setter for [`shadowColor`][Self::shadowColor].
@@ -440,8 +440,8 @@ extern_methods!(
         pub unsafe fn setSpotOuterAngle(&self, spot_outer_angle: CGFloat);
 
         /// Specifies the IES file from which the shape, direction, and intensity of illumination is determined. Defaults to nil.
-        #[unsafe(method_family(none))]
         #[method_id(IESProfileURL)]
+        #[unsafe(method_family = none)]
         pub unsafe fn IESProfileURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`IESProfileURL`][Self::IESProfileURL].
@@ -451,8 +451,8 @@ extern_methods!(
         /// The receiver's spherical harmonics coefficients.
         ///
         /// Currently spherical harmonics are only supported by light probes (SCNLightTypeProbe). The data is an array of 27 32-bit floating-point values, containing three non-interleaved data sets corresponding to the red, green, and blue sets of coefficients.
-        #[unsafe(method_family(none))]
         #[method_id(sphericalHarmonicsCoefficients)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sphericalHarmonicsCoefficients(&self) -> Retained<NSData>;
 
         #[method(probeType)]
@@ -477,8 +477,8 @@ extern_methods!(
         pub unsafe fn setParallaxCorrectionEnabled(&self, parallax_correction_enabled: bool);
 
         #[cfg(feature = "SCNMaterialProperty")]
-        #[unsafe(method_family(none))]
         #[method_id(probeEnvironment)]
+        #[unsafe(method_family = none)]
         pub unsafe fn probeEnvironment(&self) -> Option<Retained<SCNMaterialProperty>>;
 
         /// Determines the shape of a light of type SCNLightTypeArea. Defaults to SCNLightAreaTypeRectangle.
@@ -492,8 +492,8 @@ extern_methods!(
         /// Determines the shape of light of an area light of type SCNLightAreaTypePolygon. Defaults nil.
         ///
         /// An array of CGPoint values corresponding to the coordinates of the polygon's vertices in the XY plane.
-        #[unsafe(method_family(none))]
         #[method_id(areaPolygonVertices)]
+        #[unsafe(method_family = none)]
         pub unsafe fn areaPolygonVertices(&self) -> Option<Retained<NSArray<NSValue>>>;
 
         /// Setter for [`areaPolygonVertices`][Self::areaPolygonVertices].
@@ -525,8 +525,8 @@ extern_methods!(
         /// Specifies the gobo (or "cookie") of the light, used to control the shape of emitted light.
         ///
         /// Gobos are only supported by spot lights.
-        #[unsafe(method_family(none))]
         #[method_id(gobo)]
+        #[unsafe(method_family = none)]
         pub unsafe fn gobo(&self) -> Option<Retained<SCNMaterialProperty>>;
 
         /// Determines the node categories that will be lit by the receiver. Defaults to all bit set.
@@ -542,12 +542,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNLight {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

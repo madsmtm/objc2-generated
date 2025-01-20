@@ -22,13 +22,13 @@ unsafe impl NSObjectProtocol for UIWindowSceneGeometryPreferencesIOS {}
 extern_methods!(
     #[cfg(feature = "UIWindowSceneGeometryPreferences")]
     unsafe impl UIWindowSceneGeometryPreferencesIOS {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "UIOrientation")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithInterfaceOrientations:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithInterfaceOrientations(
             this: Allocated<Self>,
             interface_orientations: UIInterfaceOrientationMask,
@@ -54,8 +54,8 @@ extern_methods!(
     /// Methods declared on superclass `UIWindowSceneGeometryPreferences`
     #[cfg(feature = "UIWindowSceneGeometryPreferences")]
     unsafe impl UIWindowSceneGeometryPreferencesIOS {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

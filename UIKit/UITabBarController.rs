@@ -97,8 +97,8 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UITabBarController {
         /// The object managing the delegate of the tab bar controller. Default is nil.
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UITabBarControllerDelegate>>>;
@@ -121,14 +121,14 @@ extern_methods!(
 
         #[cfg(feature = "UITabBarControllerSidebar")]
         /// The object managing the tab sidebar for the tab bar controller.
-        #[unsafe(method_family(none))]
         #[method_id(sidebar)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sidebar(&self) -> Retained<UITabBarControllerSidebar>;
 
         /// The customization identifier for the tab bar and sidebar for persistence. The identifier is useful for when an app has multiple tab bar controllers,
         /// each with their own customizations. If the identifier is nil, a system default is used. Default is nil.
-        #[unsafe(method_family(none))]
         #[method_id(customizationIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn customizationIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`customizationIdentifier`][Self::customizationIdentifier].
@@ -139,8 +139,8 @@ extern_methods!(
         );
 
         /// An optional filter to display only select root-level tabs when in a compact appearance. Default is nil, which would make all tabs available.
-        #[unsafe(method_family(none))]
         #[method_id(compactTabIdentifiers)]
+        #[unsafe(method_family = none)]
         pub unsafe fn compactTabIdentifiers(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`compactTabIdentifiers`][Self::compactTabIdentifiers].
@@ -152,8 +152,8 @@ extern_methods!(
 
         #[cfg(feature = "UITab")]
         /// The currently selected tab, which can be a root tab or any of their descendants. Default is nil.
-        #[unsafe(method_family(none))]
         #[method_id(selectedTab)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectedTab(&self) -> Option<Retained<UITab>>;
 
         #[cfg(feature = "UITab")]
@@ -164,8 +164,8 @@ extern_methods!(
         #[cfg(feature = "UITab")]
         /// An array of root tabs representing view controllers to display by the tab bar interface. Default is empty.
         /// Once set, `UITabBarController.viewControllers` and related properties and methods will not be called.
-        #[unsafe(method_family(none))]
         #[method_id(tabs)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tabs(&self) -> Retained<NSArray<UITab>>;
 
         #[cfg(feature = "UITab")]
@@ -180,14 +180,14 @@ extern_methods!(
 
         #[cfg(feature = "UITab")]
         /// Returns the `tab` matching the specified `identifier` in the tab bar controller's tabs. Returns nil if no tab is found matching the `identifier`.
-        #[unsafe(method_family(none))]
         #[method_id(tabForIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tabForIdentifier(&self, identifier: &NSString) -> Option<Retained<UITab>>;
 
         #[cfg(feature = "UITab")]
         /// Creates a tab bar controller with the specified tabs.
-        #[unsafe(method_family(init))]
         #[method_id(initWithTabs:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithTabs(this: Allocated<Self>, tabs: &NSArray<UITab>) -> Retained<Self>;
 
         /// Determines if the active tab bar is currently hidden. Default is NO.
@@ -202,8 +202,8 @@ extern_methods!(
         #[method(setTabBarHidden:animated:)]
         pub unsafe fn setTabBarHidden_animated(&self, hidden: bool, animated: bool);
 
-        #[unsafe(method_family(none))]
         #[method_id(viewControllers)]
+        #[unsafe(method_family = none)]
         pub unsafe fn viewControllers(&self) -> Option<Retained<NSArray<UIViewController>>>;
 
         /// Setter for [`viewControllers`][Self::viewControllers].
@@ -220,8 +220,8 @@ extern_methods!(
             animated: bool,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(selectedViewController)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectedViewController(&self) -> Option<Retained<UIViewController>>;
 
         /// Setter for [`selectedViewController`][Self::selectedViewController].
@@ -239,12 +239,12 @@ extern_methods!(
         pub unsafe fn setSelectedIndex(&self, selected_index: NSUInteger);
 
         #[cfg(feature = "UINavigationController")]
-        #[unsafe(method_family(none))]
         #[method_id(moreNavigationController)]
+        #[unsafe(method_family = none)]
         pub unsafe fn moreNavigationController(&self) -> Retained<UINavigationController>;
 
-        #[unsafe(method_family(none))]
         #[method_id(customizableViewControllers)]
+        #[unsafe(method_family = none)]
         pub unsafe fn customizableViewControllers(
             &self,
         ) -> Option<Retained<NSArray<UIViewController>>>;
@@ -257,8 +257,8 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UITabBar", feature = "UIView"))]
-        #[unsafe(method_family(none))]
         #[method_id(tabBar)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tabBar(&self) -> Retained<UITabBar>;
     }
 );
@@ -267,16 +267,16 @@ extern_methods!(
     /// Methods declared on superclass `UIViewController`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UITabBarController {
-        #[unsafe(method_family(init))]
         #[method_id(initWithNibName:bundle:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -288,12 +288,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UITabBarController {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -428,8 +428,8 @@ extern_protocol!(
         ///
         /// Returns: A list of view controllers represented by the tab in the navigation stack.
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(tabBarController:displayedViewControllersForTab:proposedViewControllers:)]
+        #[unsafe(method_family = none)]
         unsafe fn tabBarController_displayedViewControllersForTab_proposedViewControllers(
             &self,
             tab_bar_controller: &UITabBarController,
@@ -514,8 +514,8 @@ extern_protocol!(
             feature = "UIViewControllerTransitioning"
         ))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(tabBarController:interactionControllerForAnimationController:)]
+        #[unsafe(method_family = none)]
         unsafe fn tabBarController_interactionControllerForAnimationController(
             &self,
             tab_bar_controller: &UITabBarController,
@@ -528,8 +528,8 @@ extern_protocol!(
             feature = "UIViewControllerTransitioning"
         ))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(tabBarController:animationControllerForTransitionFromViewController:toViewController:)]
+        #[unsafe(method_family = none)]
         unsafe fn tabBarController_animationControllerForTransitionFromViewController_toViewController(
             &self,
             tab_bar_controller: &UITabBarController,
@@ -544,8 +544,8 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIViewController {
         #[cfg(all(feature = "UIBarItem", feature = "UITabBarItem"))]
-        #[unsafe(method_family(none))]
         #[method_id(tabBarItem)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tabBarItem(&self) -> Option<Retained<UITabBarItem>>;
 
         #[cfg(all(feature = "UIBarItem", feature = "UITabBarItem"))]
@@ -553,14 +553,14 @@ extern_methods!(
         #[method(setTabBarItem:)]
         pub unsafe fn setTabBarItem(&self, tab_bar_item: Option<&UITabBarItem>);
 
-        #[unsafe(method_family(none))]
         #[method_id(tabBarController)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tabBarController(&self) -> Option<Retained<UITabBarController>>;
 
         #[cfg(all(feature = "UIScrollView", feature = "UIView"))]
         #[deprecated = "Use -setContentScrollView:forEdge: instead."]
-        #[unsafe(method_family(none))]
         #[method_id(tabBarObservedScrollView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tabBarObservedScrollView(&self) -> Option<Retained<UIScrollView>>;
 
         #[cfg(all(feature = "UIScrollView", feature = "UIView"))]

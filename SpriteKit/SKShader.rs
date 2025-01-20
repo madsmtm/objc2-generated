@@ -32,8 +32,8 @@ extern_methods!(
         ///
         ///
         /// Parameter `source`: the source code for the custom fragment shader.
-        #[unsafe(method_family(init))]
         #[method_id(initWithSource:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithSource(this: Allocated<Self>, source: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "SKUniform")]
@@ -43,25 +43,25 @@ extern_methods!(
         /// Parameter `source`: the source code for the custom fragment shader.
         ///
         /// Parameter `uniforms`: the array of uniforms supplied to this shader
-        #[unsafe(method_family(init))]
         #[method_id(initWithSource:uniforms:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithSource_uniforms(
             this: Allocated<Self>,
             source: &NSString,
             uniforms: &NSArray<SKUniform>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(shader)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shader() -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(shaderWithSource:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shaderWithSource(source: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "SKUniform")]
-        #[unsafe(method_family(none))]
         #[method_id(shaderWithSource:uniforms:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shaderWithSource_uniforms(
             source: &NSString,
             uniforms: &NSArray<SKUniform>,
@@ -76,8 +76,8 @@ extern_methods!(
         /// error:NULL]];
         ///
         /// The encoding is assumed to be NSUTF8StringEncoding.
-        #[unsafe(method_family(none))]
         #[method_id(shaderWithFileNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shaderWithFileNamed(name: &NSString) -> Retained<Self>;
 
         /// Shader source must define the 'main' method of the fragment shader
@@ -103,8 +103,8 @@ extern_methods!(
         /// Sample shader source that produces the same result are SpriteKit's normal rendering:
         ///
         /// "void main() { gl_FragColor = SKDefaultShading(); }"
-        #[unsafe(method_family(none))]
         #[method_id(source)]
+        #[unsafe(method_family = none)]
         pub unsafe fn source(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`source`][Self::source].
@@ -116,8 +116,8 @@ extern_methods!(
         /// There is no need to declare them in you source, just use them by name.
         ///
         /// All uniforms declared must be used within the source.
-        #[unsafe(method_family(none))]
         #[method_id(uniforms)]
+        #[unsafe(method_family = none)]
         pub unsafe fn uniforms(&self) -> Retained<NSArray<SKUniform>>;
 
         #[cfg(feature = "SKUniform")]
@@ -130,16 +130,16 @@ extern_methods!(
         pub unsafe fn addUniform(&self, uniform: &SKUniform);
 
         #[cfg(feature = "SKUniform")]
-        #[unsafe(method_family(none))]
         #[method_id(uniformNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn uniformNamed(&self, name: &NSString) -> Option<Retained<SKUniform>>;
 
         #[method(removeUniformNamed:)]
         pub unsafe fn removeUniformNamed(&self, name: &NSString);
 
         #[cfg(feature = "SKAttribute")]
-        #[unsafe(method_family(none))]
         #[method_id(attributes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn attributes(&self) -> Retained<NSArray<SKAttribute>>;
 
         #[cfg(feature = "SKAttribute")]
@@ -152,12 +152,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKShader {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

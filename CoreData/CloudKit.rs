@@ -69,16 +69,16 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSManagedObjectID", feature = "objc2-cloud-kit"))]
-        #[unsafe(method_family(none))]
         #[method_id(fetchSharesMatchingObjectIDs:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fetchSharesMatchingObjectIDs_error(
             &self,
             object_i_ds: &NSArray<NSManagedObjectID>,
         ) -> Result<Retained<NSDictionary<NSManagedObjectID, CKShare>>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSPersistentStore", feature = "objc2-cloud-kit"))]
-        #[unsafe(method_family(none))]
         #[method_id(fetchSharesInPersistentStore:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fetchSharesInPersistentStore_error(
             &self,
             persistent_store: Option<&NSPersistentStore>,

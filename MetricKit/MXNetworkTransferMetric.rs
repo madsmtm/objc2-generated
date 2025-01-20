@@ -31,8 +31,8 @@ extern_methods!(
         /// Cumulative amount of data uploaded over WiFi.
         ///
         /// Dimensioned as NSUnitInformationStorage.
-        #[unsafe(method_family(none))]
         #[method_id(cumulativeWifiUpload)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cumulativeWifiUpload(
             &self,
         ) -> Retained<NSMeasurement<NSUnitInformationStorage>>;
@@ -40,8 +40,8 @@ extern_methods!(
         /// Cumulative amount of data downloaded over WiFi.
         ///
         /// Dimensioned as NSUnitInformationStorage.
-        #[unsafe(method_family(none))]
         #[method_id(cumulativeWifiDownload)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cumulativeWifiDownload(
             &self,
         ) -> Retained<NSMeasurement<NSUnitInformationStorage>>;
@@ -51,8 +51,8 @@ extern_methods!(
         /// This data is radio access technology agnostic.
         ///
         /// Dimensioned as NSUnitInformationStorage.
-        #[unsafe(method_family(none))]
         #[method_id(cumulativeCellularUpload)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cumulativeCellularUpload(
             &self,
         ) -> Retained<NSMeasurement<NSUnitInformationStorage>>;
@@ -62,8 +62,8 @@ extern_methods!(
         /// This data is radio access technology agnostic.
         ///
         /// Dimensioned as NSUnitInformationStorage.
-        #[unsafe(method_family(none))]
         #[method_id(cumulativeCellularDownload)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cumulativeCellularDownload(
             &self,
         ) -> Retained<NSMeasurement<NSUnitInformationStorage>>;
@@ -74,12 +74,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MXMetric")]
     unsafe impl MXNetworkTransferMetric {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

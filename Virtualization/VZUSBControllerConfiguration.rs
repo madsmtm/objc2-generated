@@ -31,12 +31,12 @@ unsafe impl NSObjectProtocol for VZUSBControllerConfiguration {}
 
 extern_methods!(
     unsafe impl VZUSBControllerConfiguration {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZUSBDeviceConfiguration")]
@@ -50,8 +50,8 @@ extern_methods!(
         /// See: VZUSBDeviceConfiguration
         ///
         /// See: VZUSBMassStorageDeviceConfiguration
-        #[unsafe(method_family(none))]
         #[method_id(usbDevices)]
+        #[unsafe(method_family = none)]
         pub unsafe fn usbDevices(
             &self,
         ) -> Retained<NSArray<ProtocolObject<dyn VZUSBDeviceConfiguration>>>;

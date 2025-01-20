@@ -169,8 +169,8 @@ extern_methods!(
 
         #[cfg(feature = "NSColor")]
         /// Sets the fill color used by Continuous and Discrete Capacity indicators when drawing the "normal" state, and by the Rating indicator when drawing stars. The default value is a system-defined color which may vary between level indicator styles and OS releases.
-        #[unsafe(method_family(none))]
         #[method_id(fillColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fillColor(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
@@ -180,8 +180,8 @@ extern_methods!(
 
         #[cfg(feature = "NSColor")]
         /// Sets the fill color used by Continuous and Discrete Capacity indicators when drawing values above the "warning" threshold. The default value is a system-defined color which may vary between level indicator styles and OS releases.
-        #[unsafe(method_family(none))]
         #[method_id(warningFillColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn warningFillColor(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
@@ -191,8 +191,8 @@ extern_methods!(
 
         #[cfg(feature = "NSColor")]
         /// Sets the fill color used by Continuous and Discrete Capacity indicators when drawing values above the "critical" threshold. The default value is a system-defined color which may vary between level indicator styles and OS releases.
-        #[unsafe(method_family(none))]
         #[method_id(criticalFillColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn criticalFillColor(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
@@ -221,8 +221,8 @@ extern_methods!(
 
         #[cfg(feature = "NSImage")]
         /// If non-nil, sets the image used by the Rating indicator style in place of the default star image. The default value is nil.
-        #[unsafe(method_family(none))]
         #[method_id(ratingImage)]
+        #[unsafe(method_family = none)]
         pub unsafe fn ratingImage(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
@@ -236,8 +236,8 @@ extern_methods!(
         /// If the custom placeholder is a template image, its fill opacity can be adjusted by modifying the opacity of the template image.
         ///
         /// If both a ratingImage and ratingPlaceholderImage are set, each rating position is sized such that either image will fit without scaling (i.e. sized to the maximum width and height of both images).
-        #[unsafe(method_family(none))]
         #[method_id(ratingPlaceholderImage)]
+        #[unsafe(method_family = none)]
         pub unsafe fn ratingPlaceholderImage(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
@@ -251,12 +251,12 @@ extern_methods!(
     /// Methods declared on superclass `NSControl`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSLevelIndicator {
-        #[unsafe(method_family(init))]
         #[method_id(initWithFrame:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -268,8 +268,8 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSLevelIndicator {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -278,8 +278,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSLevelIndicator {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

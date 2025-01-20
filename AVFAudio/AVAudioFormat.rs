@@ -76,8 +76,8 @@ extern_methods!(
         /// Parameter `asbd`: the AudioStreamBasicDescription
         ///
         /// If the format specifies more than 2 channels, this method fails (returns nil).
-        #[unsafe(method_family(init))]
         #[method_id(initWithStreamDescription:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithStreamDescription(
             this: Allocated<Self>,
             asbd: NonNull<AudioStreamBasicDescription>,
@@ -92,8 +92,8 @@ extern_methods!(
         ///
         /// If the format specifies more than 2 channels, this method fails (returns nil) unless layout
         /// is non-nil.
-        #[unsafe(method_family(init))]
         #[method_id(initWithStreamDescription:channelLayout:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithStreamDescription_channelLayout(
             this: Allocated<Self>,
             asbd: NonNull<AudioStreamBasicDescription>,
@@ -108,8 +108,8 @@ extern_methods!(
         /// Parameter `channels`: the channel count
         ///
         /// If the format specifies more than 2 channels, this method fails (returns nil).
-        #[unsafe(method_family(init))]
         #[method_id(initStandardFormatWithSampleRate:channels:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initStandardFormatWithSampleRate_channels(
             this: Allocated<Self>,
             sample_rate: c_double,
@@ -122,8 +122,8 @@ extern_methods!(
         /// Parameter `sampleRate`: the sample rate
         ///
         /// Parameter `layout`: the channel layout. must not be nil.
-        #[unsafe(method_family(init))]
         #[method_id(initStandardFormatWithSampleRate:channelLayout:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initStandardFormatWithSampleRate_channelLayout(
             this: Allocated<Self>,
             sample_rate: c_double,
@@ -142,8 +142,8 @@ extern_methods!(
         /// Parameter `interleaved`: true if interleaved
         ///
         /// If the format specifies more than 2 channels, this method fails (returns nil).
-        #[unsafe(method_family(init))]
         #[method_id(initWithCommonFormat:sampleRate:channels:interleaved:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCommonFormat_sampleRate_channels_interleaved(
             this: Allocated<Self>,
             format: AVAudioCommonFormat,
@@ -162,8 +162,8 @@ extern_methods!(
         /// Parameter `interleaved`: true if interleaved
         ///
         /// Parameter `layout`: the channel layout. must not be nil.
-        #[unsafe(method_family(init))]
         #[method_id(initWithCommonFormat:sampleRate:interleaved:channelLayout:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCommonFormat_sampleRate_interleaved_channelLayout(
             this: Allocated<Self>,
             format: AVAudioCommonFormat,
@@ -183,8 +183,8 @@ extern_methods!(
         /// - AVLinearPCMBitDepthKey for linear PCM format specifies less than 8 or greater
         /// than 32 bits
         /// - values for the keys are not of the expected types
-        #[unsafe(method_family(init))]
         #[method_id(initWithSettings:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithSettings(
             this: Allocated<Self>,
             settings: &NSDictionary<NSString, AnyObject>,
@@ -196,8 +196,8 @@ extern_methods!(
         /// Parameter `formatDescription`: the CMAudioFormatDescriptionRef.
         ///
         /// If formatDescription is invalid, this method fails (returns nil).
-        #[unsafe(method_family(init))]
         #[method_id(initWithCMAudioFormatDescription:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCMAudioFormatDescription(
             this: Allocated<Self>,
             format_description: &CMAudioFormatDescription,
@@ -248,16 +248,16 @@ extern_methods!(
         /// The underlying AVAudioChannelLayout, if any.
         ///
         /// Only formats with more than 2 channels are required to have channel layouts.
-        #[unsafe(method_family(none))]
         #[method_id(channelLayout)]
+        #[unsafe(method_family = none)]
         pub unsafe fn channelLayout(&self) -> Option<Retained<AVAudioChannelLayout>>;
 
         /// The underlying magic cookie, if any.
         ///
         /// A magic cookie contains metadata associated with encoders and decoders.
         /// Encoders produce a magic cookie, and some decoders require a magic cookie to decode properly.
-        #[unsafe(method_family(none))]
         #[method_id(magicCookie)]
+        #[unsafe(method_family = none)]
         pub unsafe fn magicCookie(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`magicCookie`][Self::magicCookie].
@@ -265,14 +265,14 @@ extern_methods!(
         pub unsafe fn setMagicCookie(&self, magic_cookie: Option<&NSData>);
 
         /// Returns the format represented as a dictionary with keys from AVAudioSettings.h.
-        #[unsafe(method_family(none))]
         #[method_id(settings)]
+        #[unsafe(method_family = none)]
         pub unsafe fn settings(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[cfg(feature = "objc2-core-media")]
         /// Converts to a CMAudioFormatDescriptionRef, for use with Core Media API's.
-        #[unsafe(method_family(none))]
         #[method_id(formatDescription)]
+        #[unsafe(method_family = none)]
         pub unsafe fn formatDescription(&self) -> Retained<CMAudioFormatDescription>;
     }
 );
@@ -280,12 +280,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAudioFormat {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

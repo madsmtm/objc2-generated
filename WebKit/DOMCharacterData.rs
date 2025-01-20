@@ -59,8 +59,8 @@ extern_methods!(
     ))]
     unsafe impl DOMCharacterData {
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(data)]
+        #[unsafe(method_family = none)]
         pub unsafe fn data(&self) -> Retained<NSString>;
 
         /// Setter for [`data`][Self::data].
@@ -72,8 +72,8 @@ extern_methods!(
         #[method(length)]
         pub unsafe fn length(&self) -> c_uint;
 
-        #[unsafe(method_family(none))]
         #[method_id(substringData:length:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn substringData_length(
             &self,
             offset: c_uint,
@@ -109,8 +109,8 @@ extern_methods!(
     ))]
     unsafe impl DOMCharacterData {
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -123,8 +123,8 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMCharacterData {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -138,8 +138,8 @@ extern_methods!(
     ))]
     unsafe impl DOMCharacterData {
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(substringData::)]
+        #[unsafe(method_family = none)]
         pub unsafe fn substringData(
             &self,
             offset: c_uint,

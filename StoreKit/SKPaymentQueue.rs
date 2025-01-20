@@ -24,8 +24,8 @@ unsafe impl NSObjectProtocol for SKPaymentQueue {}
 extern_methods!(
     unsafe impl SKPaymentQueue {
         #[deprecated = "No longer supported"]
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn SKPaymentQueueDelegate>>>;
@@ -41,13 +41,13 @@ extern_methods!(
 
         #[cfg(feature = "SKStorefront")]
         #[deprecated = "Use Storefront.current"]
-        #[unsafe(method_family(none))]
         #[method_id(storefront)]
+        #[unsafe(method_family = none)]
         pub unsafe fn storefront(&self) -> Option<Retained<SKStorefront>>;
 
         #[deprecated = "No longer supported"]
-        #[unsafe(method_family(none))]
         #[method_id(defaultQueue)]
+        #[unsafe(method_family = none)]
         pub unsafe fn defaultQueue() -> Retained<Self>;
 
         #[deprecated = "Use AppStore.canMakePayments"]
@@ -110,16 +110,16 @@ extern_methods!(
         );
 
         #[deprecated = "Use Transaction.updates or PurchaseResult from Product.purchase(confirmIn:options:)"]
-        #[unsafe(method_family(none))]
         #[method_id(transactionObservers)]
+        #[unsafe(method_family = none)]
         pub unsafe fn transactionObservers(
             &self,
         ) -> Retained<NSArray<ProtocolObject<dyn SKPaymentTransactionObserver>>>;
 
         #[cfg(feature = "SKPaymentTransaction")]
         #[deprecated = "Use Transaction.unfinished"]
-        #[unsafe(method_family(none))]
         #[method_id(transactions)]
+        #[unsafe(method_family = none)]
         pub unsafe fn transactions(&self) -> Retained<NSArray<SKPaymentTransaction>>;
 
         #[deprecated = "Use Message.messages and Message.display(in:)"]
@@ -135,12 +135,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKPaymentQueue {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

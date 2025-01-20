@@ -49,8 +49,8 @@ unsafe impl NSObjectProtocol for SLRequest {}
 
 extern_methods!(
     unsafe impl SLRequest {
-        #[unsafe(method_family(none))]
         #[method_id(requestForServiceType:requestMethod:URL:parameters:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestForServiceType_requestMethod_URL_parameters(
             service_type: Option<&NSString>,
             request_method: SLRequestMethod,
@@ -59,8 +59,8 @@ extern_methods!(
         ) -> Option<Retained<SLRequest>>;
 
         #[cfg(feature = "objc2-accounts")]
-        #[unsafe(method_family(none))]
         #[method_id(account)]
+        #[unsafe(method_family = none)]
         pub unsafe fn account(&self) -> Option<Retained<ACAccount>>;
 
         #[cfg(feature = "objc2-accounts")]
@@ -71,12 +71,12 @@ extern_methods!(
         #[method(requestMethod)]
         pub unsafe fn requestMethod(&self) -> SLRequestMethod;
 
-        #[unsafe(method_family(none))]
         #[method_id(URL)]
+        #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(parameters)]
+        #[unsafe(method_family = none)]
         pub unsafe fn parameters(&self) -> Option<Retained<NSDictionary>>;
 
         #[method(addMultipartData:withName:type:filename:)]
@@ -96,8 +96,8 @@ extern_methods!(
             r#type: Option<&NSString>,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(preparedURLRequest)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preparedURLRequest(&self) -> Option<Retained<NSURLRequest>>;
 
         #[cfg(feature = "block2")]
@@ -109,12 +109,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SLRequest {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

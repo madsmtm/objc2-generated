@@ -42,8 +42,8 @@ extern_methods!(
         ) -> CGRect;
 
         #[cfg(all(feature = "CIVector", feature = "objc2-core-foundation"))]
-        #[unsafe(method_family(none))]
         #[method_id(roiTileArrayForInput:arguments:outputRect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn roiTileArrayForInput_arguments_outputRect(
             input: c_int,
             arguments: Option<&NSDictionary<NSString, AnyObject>>,
@@ -65,8 +65,8 @@ extern_methods!(
         pub unsafe fn synchronizeInputs() -> bool;
 
         #[cfg(all(feature = "CIImage", feature = "objc2-core-foundation"))]
-        #[unsafe(method_family(none))]
         #[method_id(applyWithExtent:inputs:arguments:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn applyWithExtent_inputs_arguments_error(
             extent: CGRect,
             inputs: Option<&NSArray<CIImage>>,
@@ -78,12 +78,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIImageProcessorKernel {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -106,18 +106,18 @@ extern_protocol!(
         unsafe fn baseAddress(&self) -> NonNull<c_void>;
 
         #[cfg(feature = "objc2-io-surface")]
-        #[unsafe(method_family(none))]
         #[method_id(surface)]
+        #[unsafe(method_family = none)]
         unsafe fn surface(&self) -> Retained<IOSurfaceRef>;
 
         #[cfg(feature = "objc2-core-video")]
-        #[unsafe(method_family(none))]
         #[method_id(pixelBuffer)]
+        #[unsafe(method_family = none)]
         unsafe fn pixelBuffer(&self) -> Option<Retained<CVPixelBuffer>>;
 
         #[cfg(feature = "objc2-metal")]
-        #[unsafe(method_family(none))]
         #[method_id(metalTexture)]
+        #[unsafe(method_family = none)]
         unsafe fn metalTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         #[method(digest)]
@@ -149,23 +149,23 @@ extern_protocol!(
         unsafe fn baseAddress(&self) -> NonNull<c_void>;
 
         #[cfg(feature = "objc2-io-surface")]
-        #[unsafe(method_family(none))]
         #[method_id(surface)]
+        #[unsafe(method_family = none)]
         unsafe fn surface(&self) -> Retained<IOSurfaceRef>;
 
         #[cfg(feature = "objc2-core-video")]
-        #[unsafe(method_family(none))]
         #[method_id(pixelBuffer)]
+        #[unsafe(method_family = none)]
         unsafe fn pixelBuffer(&self) -> Option<Retained<CVPixelBuffer>>;
 
         #[cfg(feature = "objc2-metal")]
-        #[unsafe(method_family(none))]
         #[method_id(metalTexture)]
+        #[unsafe(method_family = none)]
         unsafe fn metalTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         #[cfg(feature = "objc2-metal")]
-        #[unsafe(method_family(none))]
         #[method_id(metalCommandBuffer)]
+        #[unsafe(method_family = none)]
         unsafe fn metalCommandBuffer(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MTLCommandBuffer>>>;

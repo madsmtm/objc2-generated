@@ -54,16 +54,16 @@ extern_methods!(
         #[method(presentationAnimationDidFinish)]
         pub unsafe fn presentationAnimationDidFinish(&self);
 
-        #[unsafe(method_family(none))]
         #[method_id(textView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textView(&self) -> Option<Retained<NSTextView>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(contentText)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contentText(&self) -> Option<Retained<NSString>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(placeholder)]
+        #[unsafe(method_family = none)]
         pub unsafe fn placeholder(&self) -> Retained<NSString>;
 
         /// Setter for [`placeholder`][Self::placeholder].
@@ -85,8 +85,8 @@ extern_methods!(
         #[method(validateContent)]
         pub unsafe fn validateContent(&self);
 
-        #[unsafe(method_family(none))]
         #[method_id(charactersRemaining)]
+        #[unsafe(method_family = none)]
         pub unsafe fn charactersRemaining(&self) -> Option<Retained<NSNumber>>;
 
         /// Setter for [`charactersRemaining`][Self::charactersRemaining].
@@ -100,16 +100,16 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl SLComposeServiceViewController {
-        #[unsafe(method_family(init))]
         #[method_id(initWithNibName:bundle:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSNibName>,
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -122,8 +122,8 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl SLComposeServiceViewController {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -133,8 +133,8 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl SLComposeServiceViewController {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

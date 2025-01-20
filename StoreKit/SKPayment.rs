@@ -33,23 +33,23 @@ extern_methods!(
     unsafe impl SKPayment {
         #[cfg(feature = "SKProduct")]
         #[deprecated = "Use Product.purchase(confirmIn:options:)"]
-        #[unsafe(method_family(none))]
         #[method_id(paymentWithProduct:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn paymentWithProduct(product: &SKProduct) -> Retained<Self>;
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(paymentWithProductIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn paymentWithProductIdentifier(identifier: &NSString) -> Retained<AnyObject>;
 
         #[deprecated = "Use Product.purchase(confirmIn:options:)"]
-        #[unsafe(method_family(none))]
         #[method_id(productIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn productIdentifier(&self) -> Retained<NSString>;
 
         #[deprecated = "Create Product.PurchaseOption.custom values to use in Product.purchase(confirmIn:options:)"]
-        #[unsafe(method_family(none))]
         #[method_id(requestData)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestData(&self) -> Option<Retained<NSData>>;
 
         #[deprecated = "Create a Product.PurchaseOption.quantity to use in Product.purchase(confirmIn:options:)"]
@@ -57,8 +57,8 @@ extern_methods!(
         pub unsafe fn quantity(&self) -> NSInteger;
 
         #[deprecated = "Create a Product.PurchaseOption.appAccountToken to use in Product.purchase(confirmIn:options:)"]
-        #[unsafe(method_family(none))]
         #[method_id(applicationUsername)]
+        #[unsafe(method_family = none)]
         pub unsafe fn applicationUsername(&self) -> Option<Retained<NSString>>;
 
         #[deprecated = "Create a Product.PurchaseOption.simulatesAskToBuyInSandbox to use in Product.purchase(confirmIn:options:)"]
@@ -67,8 +67,8 @@ extern_methods!(
 
         #[cfg(feature = "SKPaymentDiscount")]
         #[deprecated = "Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)"]
-        #[unsafe(method_family(none))]
         #[method_id(paymentDiscount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn paymentDiscount(&self) -> Option<Retained<SKPaymentDiscount>>;
     }
 );
@@ -76,12 +76,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKPayment {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -111,8 +111,8 @@ unsafe impl NSObjectProtocol for SKMutablePayment {}
 extern_methods!(
     unsafe impl SKMutablePayment {
         #[deprecated = "Create a Product.PurchaseOption.appAccountToken to use in Product.purchase(confirmIn:options:)"]
-        #[unsafe(method_family(none))]
         #[method_id(applicationUsername)]
+        #[unsafe(method_family = none)]
         pub unsafe fn applicationUsername(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`applicationUsername`][Self::applicationUsername].
@@ -122,8 +122,8 @@ extern_methods!(
 
         #[cfg(feature = "SKPaymentDiscount")]
         #[deprecated = "Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)"]
-        #[unsafe(method_family(none))]
         #[method_id(paymentDiscount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn paymentDiscount(&self) -> Option<Retained<SKPaymentDiscount>>;
 
         #[cfg(feature = "SKPaymentDiscount")]
@@ -133,8 +133,8 @@ extern_methods!(
         pub unsafe fn setPaymentDiscount(&self, payment_discount: Option<&SKPaymentDiscount>);
 
         #[deprecated = "Use Product.purchase(confirmIn:options:)"]
-        #[unsafe(method_family(none))]
         #[method_id(productIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn productIdentifier(&self) -> Retained<NSString>;
 
         /// Setter for [`productIdentifier`][Self::productIdentifier].
@@ -152,8 +152,8 @@ extern_methods!(
         pub unsafe fn setQuantity(&self, quantity: NSInteger);
 
         #[deprecated = "Create Product.PurchaseOption.custom values to use in Product.purchase(confirmIn:options:)"]
-        #[unsafe(method_family(none))]
         #[method_id(requestData)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestData(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`requestData`][Self::requestData].
@@ -177,8 +177,8 @@ extern_methods!(
     unsafe impl SKMutablePayment {
         #[cfg(feature = "SKProduct")]
         #[deprecated = "Use Product.purchase(confirmIn:options:)"]
-        #[unsafe(method_family(none))]
         #[method_id(paymentWithProduct:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn paymentWithProduct(product: &SKProduct) -> Retained<Self>;
     }
 );
@@ -186,12 +186,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKMutablePayment {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

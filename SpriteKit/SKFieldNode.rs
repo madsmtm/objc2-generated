@@ -49,8 +49,8 @@ extern_methods!(
     unsafe impl SKFieldNode {
         #[cfg(feature = "SKRegion")]
         /// The region property is the domain of the field's effect. No force is applied to objects outside the region.
-        #[unsafe(method_family(none))]
         #[method_id(region)]
+        #[unsafe(method_family = none)]
         pub unsafe fn region(&self) -> Option<Retained<SKRegion>>;
 
         #[cfg(feature = "SKRegion")]
@@ -158,8 +158,8 @@ extern_methods!(
         ///
         ///
         /// See: velocityFieldWithTexture:velocityTexture
-        #[unsafe(method_family(none))]
         #[method_id(texture)]
+        #[unsafe(method_family = none)]
         pub unsafe fn texture(&self) -> Option<Retained<SKTexture>>;
 
         #[cfg(feature = "SKTexture")]
@@ -169,23 +169,23 @@ extern_methods!(
 
         /// Slows an object proportionally to the object’s velocity.
         /// Use this to simulate effects such as friction from motion through the air.
-        #[unsafe(method_family(none))]
         #[method_id(dragField)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dragField(mtm: MainThreadMarker) -> Retained<SKFieldNode>;
 
         /// Applies a force tangential to the direction from the sample point to the field's position.
         /// The force will be CCW to the direction. Make the strength negative to apply force in the CW direction.
         /// Amount is proportional to distance from center and the object's mass.
         /// Use this to create effects such as tornadoes.
-        #[unsafe(method_family(none))]
         #[method_id(vortexField)]
+        #[unsafe(method_family = none)]
         pub unsafe fn vortexField(mtm: MainThreadMarker) -> Retained<SKFieldNode>;
 
         /// Applies a force in the direction of the origin of the field in local space. To repel objects, use a negative strength.
         /// The force is proportional to the distance from the field origin. Varies with the mass of the object according to F = ma
         /// The field node's rotation property can be used to orient the gravity in a particular direction.
-        #[unsafe(method_family(none))]
         #[method_id(radialGravityField)]
+        #[unsafe(method_family = none)]
         pub unsafe fn radialGravityField(mtm: MainThreadMarker) -> Retained<SKFieldNode>;
 
         #[cfg(feature = "SKTexture")]
@@ -200,8 +200,8 @@ extern_methods!(
         ///
         ///
         /// See: texture
-        #[unsafe(method_family(none))]
         #[method_id(velocityFieldWithTexture:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn velocityFieldWithTexture(
             velocity_texture: &SKTexture,
             mtm: MainThreadMarker,
@@ -221,8 +221,8 @@ extern_methods!(
         /// See: smoothness
         ///
         /// See: animationSpeed
-        #[unsafe(method_family(none))]
         #[method_id(noiseFieldWithSmoothness:animationSpeed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn noiseFieldWithSmoothness_animationSpeed(
             smoothness: CGFloat,
             speed: CGFloat,
@@ -241,8 +241,8 @@ extern_methods!(
         /// See: smoothness
         ///
         /// See: animationSpeed
-        #[unsafe(method_family(none))]
         #[method_id(turbulenceFieldWithSmoothness:animationSpeed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn turbulenceFieldWithSmoothness_animationSpeed(
             smoothness: CGFloat,
             speed: CGFloat,
@@ -252,24 +252,24 @@ extern_methods!(
         /// A Hooke’s law force - a force linearly proportional to distance from the center of the field. An object in this
         /// field will oscillate with a period proportional to the inverse of the mass.
         /// An example use is to keep objects confined to a particular region.
-        #[unsafe(method_family(none))]
         #[method_id(springField)]
+        #[unsafe(method_family = none)]
         pub unsafe fn springField(mtm: MainThreadMarker) -> Retained<SKFieldNode>;
 
         /// A force proportional to the charge on the object. A charge property has been
         /// added to SKPhysicsBodies to accomplish this. An example use of this field is to make objects behavior differently
         /// from one another when they enter a region, or to make an object's behavior different than its mass based behavior
         /// This field models the first part of the Lorentz equation, F = qE
-        #[unsafe(method_family(none))]
         #[method_id(electricField)]
+        #[unsafe(method_family = none)]
         pub unsafe fn electricField(mtm: MainThreadMarker) -> Retained<SKFieldNode>;
 
         /// A force proportional to the charge on the object and the object’s velocity. A charge property has been
         /// added to SKPhysicsBodies to accomplish this. An example use of this field is to make objects behavior differently
         /// from one another when they enter a region, or to make an object's behavior different than its mass based behavior
         /// This field models the second part of the Lorentz equation, F = qvB
-        #[unsafe(method_family(none))]
         #[method_id(magneticField)]
+        #[unsafe(method_family = none)]
         pub unsafe fn magneticField(mtm: MainThreadMarker) -> Retained<SKFieldNode>;
     }
 );
@@ -279,31 +279,31 @@ extern_methods!(
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl SKFieldNode {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Support coding and decoding via NSKeyedArchiver.
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(node)]
+        #[unsafe(method_family = none)]
         pub unsafe fn node(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(nodeWithFileNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn nodeWithFileNamed(
             filename: &NSString,
             mtm: MainThreadMarker,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(nodeWithFileNamed:securelyWithClasses:andError:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn nodeWithFileNamed_securelyWithClasses_andError(
             filename: &NSString,
             classes: &NSSet<AnyClass>,
@@ -317,8 +317,8 @@ extern_methods!(
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl SKFieldNode {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

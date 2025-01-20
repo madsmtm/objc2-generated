@@ -16,18 +16,18 @@ extern_protocol!(
         ASPublicKeyCredential
     {
         /// A byte sequence containing the encoded authenticatorData blob returned by the authenticator.
-        #[unsafe(method_family(none))]
         #[method_id(rawAuthenticatorData)]
+        #[unsafe(method_family = none)]
         unsafe fn rawAuthenticatorData(&self) -> Retained<NSData>;
 
         /// The userID provided when creating this credential.
-        #[unsafe(method_family(none))]
         #[method_id(userID)]
+        #[unsafe(method_family = none)]
         unsafe fn userID(&self) -> Retained<NSData>;
 
         /// The signature provided by the authenticator using the credential's private key.
-        #[unsafe(method_family(none))]
         #[method_id(signature)]
+        #[unsafe(method_family = none)]
         unsafe fn signature(&self) -> Retained<NSData>;
     }
 );

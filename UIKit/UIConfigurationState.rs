@@ -18,16 +18,16 @@ extern_protocol!(
     {
         #[cfg(feature = "UITraitCollection")]
         /// Returns a new instance with the specified trait collection.
-        #[unsafe(method_family(init))]
         #[method_id(initWithTraitCollection:)]
+        #[unsafe(method_family = init)]
         unsafe fn initWithTraitCollection(
             this: Allocated<Self>,
             trait_collection: &UITraitCollection,
         ) -> Retained<Self>;
 
         #[cfg(feature = "UITraitCollection")]
-        #[unsafe(method_family(none))]
         #[method_id(traitCollection)]
+        #[unsafe(method_family = none)]
         unsafe fn traitCollection(&self) -> Retained<UITraitCollection>;
 
         #[cfg(feature = "UITraitCollection")]
@@ -36,8 +36,8 @@ extern_protocol!(
         unsafe fn setTraitCollection(&self, trait_collection: &UITraitCollection);
 
         /// Returns the custom state for the specified key.
-        #[unsafe(method_family(none))]
         #[method_id(customStateForKey:)]
+        #[unsafe(method_family = none)]
         unsafe fn customStateForKey(
             &self,
             key: &UIConfigurationStateCustomKey,
@@ -51,8 +51,8 @@ extern_protocol!(
             key: &UIConfigurationStateCustomKey,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(objectForKeyedSubscript:)]
+        #[unsafe(method_family = none)]
         unsafe fn objectForKeyedSubscript(
             &self,
             key: &UIConfigurationStateCustomKey,

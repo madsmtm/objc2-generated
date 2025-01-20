@@ -92,31 +92,31 @@ unsafe impl UITraitEnvironment for UINavigationController {}
 extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UINavigationController {
-        #[unsafe(method_family(init))]
         #[method_id(initWithNavigationBarClass:toolbarClass:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithNavigationBarClass_toolbarClass(
             this: Allocated<Self>,
             navigation_bar_class: Option<&AnyClass>,
             toolbar_class: Option<&AnyClass>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithRootViewController:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithRootViewController(
             this: Allocated<Self>,
             root_view_controller: &UIViewController,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithNibName:bundle:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -129,38 +129,38 @@ extern_methods!(
             animated: bool,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(popViewControllerAnimated:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn popViewControllerAnimated(
             &self,
             animated: bool,
         ) -> Option<Retained<UIViewController>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(popToViewController:animated:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn popToViewController_animated(
             &self,
             view_controller: &UIViewController,
             animated: bool,
         ) -> Option<Retained<NSArray<UIViewController>>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(popToRootViewControllerAnimated:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn popToRootViewControllerAnimated(
             &self,
             animated: bool,
         ) -> Option<Retained<NSArray<UIViewController>>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(topViewController)]
+        #[unsafe(method_family = none)]
         pub unsafe fn topViewController(&self) -> Option<Retained<UIViewController>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(visibleViewController)]
+        #[unsafe(method_family = none)]
         pub unsafe fn visibleViewController(&self) -> Option<Retained<UIViewController>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(viewControllers)]
+        #[unsafe(method_family = none)]
         pub unsafe fn viewControllers(&self) -> Retained<NSArray<UIViewController>>;
 
         /// Setter for [`viewControllers`][Self::viewControllers].
@@ -185,8 +185,8 @@ extern_methods!(
         pub unsafe fn setNavigationBarHidden_animated(&self, hidden: bool, animated: bool);
 
         #[cfg(all(feature = "UINavigationBar", feature = "UIView"))]
-        #[unsafe(method_family(none))]
         #[method_id(navigationBar)]
+        #[unsafe(method_family = none)]
         pub unsafe fn navigationBar(&self) -> Retained<UINavigationBar>;
 
         #[method(isToolbarHidden)]
@@ -200,12 +200,12 @@ extern_methods!(
         pub unsafe fn setToolbarHidden_animated(&self, hidden: bool, animated: bool);
 
         #[cfg(all(feature = "UIToolbar", feature = "UIView"))]
-        #[unsafe(method_family(none))]
         #[method_id(toolbar)]
+        #[unsafe(method_family = none)]
         pub unsafe fn toolbar(&self) -> Option<Retained<UIToolbar>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UINavigationControllerDelegate>>>;
@@ -219,8 +219,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIGestureRecognizer")]
-        #[unsafe(method_family(none))]
         #[method_id(interactivePopGestureRecognizer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn interactivePopGestureRecognizer(
             &self,
         ) -> Option<Retained<UIGestureRecognizer>>;
@@ -255,8 +255,8 @@ extern_methods!(
 
         #[cfg(all(feature = "UIGestureRecognizer", feature = "UIPanGestureRecognizer"))]
         /// The gesture recognizer that triggers if the bars will hide or show due to a swipe. Do not change the delegate or attempt to replace this gesture by overriding this method.
-        #[unsafe(method_family(none))]
         #[method_id(barHideOnSwipeGestureRecognizer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn barHideOnSwipeGestureRecognizer(&self) -> Retained<UIPanGestureRecognizer>;
 
         /// When the UINavigationController's vertical size class is compact, hide the UINavigationBar and UIToolbar. Unhandled taps in the regions that would normally be occupied by these bars will reveal the bars.
@@ -282,8 +282,8 @@ extern_methods!(
 
         #[cfg(all(feature = "UIGestureRecognizer", feature = "UITapGestureRecognizer"))]
         /// The gesture recognizer used to recognize if the bars will hide or show due to a tap in content. Do not change the delegate or attempt to replace this gesture by overriding this method.
-        #[unsafe(method_family(none))]
         #[method_id(barHideOnTapGestureRecognizer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn barHideOnTapGestureRecognizer(&self) -> Retained<UITapGestureRecognizer>;
     }
 );
@@ -292,12 +292,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UINavigationController {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -357,8 +357,8 @@ extern_protocol!(
             feature = "UIViewControllerTransitioning"
         ))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(navigationController:interactionControllerForAnimationController:)]
+        #[unsafe(method_family = none)]
         unsafe fn navigationController_interactionControllerForAnimationController(
             &self,
             navigation_controller: &UINavigationController,
@@ -371,8 +371,8 @@ extern_protocol!(
             feature = "UIViewControllerTransitioning"
         ))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(navigationController:animationControllerForOperation:fromViewController:toViewController:)]
+        #[unsafe(method_family = none)]
         unsafe fn navigationController_animationControllerForOperation_fromViewController_toViewController(
             &self,
             navigation_controller: &UINavigationController,
@@ -388,8 +388,8 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIViewController {
         #[cfg(feature = "UINavigationItem")]
-        #[unsafe(method_family(none))]
         #[method_id(navigationItem)]
+        #[unsafe(method_family = none)]
         pub unsafe fn navigationItem(&self) -> Retained<UINavigationItem>;
 
         #[method(hidesBottomBarWhenPushed)]
@@ -399,8 +399,8 @@ extern_methods!(
         #[method(setHidesBottomBarWhenPushed:)]
         pub unsafe fn setHidesBottomBarWhenPushed(&self, hides_bottom_bar_when_pushed: bool);
 
-        #[unsafe(method_family(none))]
         #[method_id(navigationController)]
+        #[unsafe(method_family = none)]
         pub unsafe fn navigationController(&self) -> Option<Retained<UINavigationController>>;
     }
 );
@@ -410,8 +410,8 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIViewController {
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
-        #[unsafe(method_family(none))]
         #[method_id(toolbarItems)]
+        #[unsafe(method_family = none)]
         pub unsafe fn toolbarItems(&self) -> Option<Retained<NSArray<UIBarButtonItem>>>;
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]

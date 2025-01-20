@@ -60,22 +60,22 @@ extern_methods!(
         #[cfg(feature = "WebHistoryItem")]
         /// The entry right before the current entry, or nil if there isn't one.
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(backItem)]
+        #[unsafe(method_family = none)]
         pub unsafe fn backItem(&self) -> Option<Retained<WebHistoryItem>>;
 
         #[cfg(feature = "WebHistoryItem")]
         /// Returns the current entry.
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(currentItem)]
+        #[unsafe(method_family = none)]
         pub unsafe fn currentItem(&self) -> Option<Retained<WebHistoryItem>>;
 
         #[cfg(feature = "WebHistoryItem")]
         /// The entry right after the current entry, or nil if there isn't one.
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(forwardItem)]
+        #[unsafe(method_family = none)]
         pub unsafe fn forwardItem(&self) -> Option<Retained<WebHistoryItem>>;
 
         /// Returns a portion of the list before the current entry.
@@ -84,8 +84,8 @@ extern_methods!(
         ///
         /// Returns: An array of items before the current entry, or nil if there are none.  The entries are in the order that they were originally visited.
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(backListWithLimit:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn backListWithLimit(&self, limit: c_int) -> Option<Retained<NSArray>>;
 
         /// Returns a portion of the list after the current entry.
@@ -94,8 +94,8 @@ extern_methods!(
         ///
         /// Returns: An array of items after the current entry, or nil if there are none.  The entries are in the order that they were originally visited.
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(forwardListWithLimit:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn forwardListWithLimit(&self, limit: c_int) -> Option<Retained<NSArray>>;
 
         /// The list's maximum size.
@@ -133,8 +133,8 @@ extern_methods!(
         ///
         /// Returns: The entry the given distance from the current entry. If index exceeds the limits of the list, nil is returned.
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(itemAtIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn itemAtIndex(&self, index: c_int) -> Option<Retained<WebHistoryItem>>;
     }
 );
@@ -142,12 +142,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WebBackForwardList {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

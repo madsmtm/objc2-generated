@@ -27,35 +27,35 @@ unsafe impl NSObjectProtocol for HKWorkoutBuilder {}
 
 extern_methods!(
     unsafe impl HKWorkoutBuilder {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "HKDevice")]
         /// The HKDevice to be associated with the workout.
-        #[unsafe(method_family(none))]
         #[method_id(device)]
+        #[unsafe(method_family = none)]
         pub unsafe fn device(&self) -> Option<Retained<HKDevice>>;
 
         /// The start date for the workout, as provided by beginCollectionWithStartDate:completion:
-        #[unsafe(method_family(none))]
         #[method_id(startDate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn startDate(&self) -> Option<Retained<NSDate>>;
 
         /// The end date for the workout, as provided by endCollectionWithEndDate:completion:
-        #[unsafe(method_family(none))]
         #[method_id(endDate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn endDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "HKWorkoutConfiguration")]
         /// The configuration for the workout being built.
-        #[unsafe(method_family(none))]
         #[method_id(workoutConfiguration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn workoutConfiguration(&self) -> Retained<HKWorkoutConfiguration>;
 
         /// The metadata that will be used when the workout is finished.
-        #[unsafe(method_family(none))]
         #[method_id(metadata)]
+        #[unsafe(method_family = none)]
         pub unsafe fn metadata(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[cfg(feature = "HKWorkout")]
@@ -63,8 +63,8 @@ extern_methods!(
         ///
         /// New events that are added using addWorkoutEvents:completion: will be appended to this array once the
         /// completion is called.
-        #[unsafe(method_family(none))]
         #[method_id(workoutEvents)]
+        #[unsafe(method_family = none)]
         pub unsafe fn workoutEvents(&self) -> Retained<NSArray<HKWorkoutEvent>>;
 
         #[cfg(feature = "HKWorkoutActivity")]
@@ -72,8 +72,8 @@ extern_methods!(
         ///
         /// New activities that are added using addWorkoutActivity:completion: will be appended to this array once the
         /// completion is called.
-        #[unsafe(method_family(none))]
         #[method_id(workoutActivities)]
+        #[unsafe(method_family = none)]
         pub unsafe fn workoutActivities(&self) -> Retained<NSArray<HKWorkoutActivity>>;
 
         #[cfg(all(feature = "HKObjectType", feature = "HKStatistics"))]
@@ -81,8 +81,8 @@ extern_methods!(
         ///
         /// This dictionary will contain HKStatistics objects containing the statistics by quantity
         /// sample type for all of the samples that have been added to the builder.
-        #[unsafe(method_family(none))]
         #[method_id(allStatistics)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allStatistics(&self) -> Retained<NSDictionary<HKQuantityType, HKStatistics>>;
 
         #[cfg(all(
@@ -101,8 +101,8 @@ extern_methods!(
         /// Parameter `configuration`: The workout configuration to be used.
         ///
         /// Parameter `device`: The HKDevice to attach to the resulting HKWorkout.
-        #[unsafe(method_family(init))]
         #[method_id(initWithHealthStore:configuration:device:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithHealthStore_configuration_device(
             this: Allocated<Self>,
             health_store: &HKHealthStore,
@@ -302,8 +302,8 @@ extern_methods!(
         ///
         ///
         /// Parameter `quantityType`: The quantity type to gather statistics about.
-        #[unsafe(method_family(none))]
         #[method_id(statisticsForType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn statisticsForType(
             &self,
             quantity_type: &HKQuantityType,
@@ -317,8 +317,8 @@ extern_methods!(
         ///
         ///
         /// Parameter `seriesType`: The series type for which the builder should be retrieved.
-        #[unsafe(method_family(none))]
         #[method_id(seriesBuilderForType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn seriesBuilderForType(
             &self,
             series_type: &HKSeriesType,
@@ -329,8 +329,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKWorkoutBuilder {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

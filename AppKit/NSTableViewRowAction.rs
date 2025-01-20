@@ -45,8 +45,8 @@ unsafe impl NSObjectProtocol for NSTableViewRowAction {}
 extern_methods!(
     unsafe impl NSTableViewRowAction {
         #[cfg(feature = "block2")]
-        #[unsafe(method_family(none))]
         #[method_id(rowActionWithStyle:title:handler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rowActionWithStyle_title_handler(
             style: NSTableViewRowActionStyle,
             title: &NSString,
@@ -56,8 +56,8 @@ extern_methods!(
         #[method(style)]
         pub unsafe fn style(&self) -> NSTableViewRowActionStyle;
 
-        #[unsafe(method_family(none))]
         #[method_id(title)]
+        #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
@@ -65,8 +65,8 @@ extern_methods!(
         pub unsafe fn setTitle(&self, title: &NSString);
 
         #[cfg(feature = "NSColor")]
-        #[unsafe(method_family(none))]
         #[method_id(backgroundColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn backgroundColor(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
@@ -75,8 +75,8 @@ extern_methods!(
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&NSColor>);
 
         #[cfg(feature = "NSImage")]
-        #[unsafe(method_family(none))]
         #[method_id(image)]
+        #[unsafe(method_family = none)]
         pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
@@ -89,12 +89,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTableViewRowAction {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -31,8 +31,8 @@ unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSEnumerator<ObjectType> {}
 
 extern_methods!(
     unsafe impl<ObjectType: Message> NSEnumerator<ObjectType> {
-        #[unsafe(method_family(none))]
         #[method_id(nextObject)]
+        #[unsafe(method_family = none)]
         pub fn nextObject(&self) -> Option<Retained<ObjectType>>;
     }
 );
@@ -40,12 +40,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<ObjectType: Message> NSEnumerator<ObjectType> {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -54,8 +54,8 @@ extern_methods!(
     /// NSExtendedEnumerator
     unsafe impl<ObjectType: Message> NSEnumerator<ObjectType> {
         #[cfg(feature = "NSArray")]
-        #[unsafe(method_family(none))]
         #[method_id(allObjects)]
+        #[unsafe(method_family = none)]
         pub fn allObjects(&self) -> Retained<NSArray<ObjectType>>;
     }
 );

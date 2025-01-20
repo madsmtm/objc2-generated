@@ -95,8 +95,8 @@ unsafe impl UITraitEnvironment for UITabBar {}
 extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UITabBar {
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn UITabBarDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -105,8 +105,8 @@ extern_methods!(
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn UITabBarDelegate>>);
 
         #[cfg(all(feature = "UIBarItem", feature = "UITabBarItem"))]
-        #[unsafe(method_family(none))]
         #[method_id(items)]
+        #[unsafe(method_family = none)]
         pub unsafe fn items(&self) -> Option<Retained<NSArray<UITabBarItem>>>;
 
         #[cfg(all(feature = "UIBarItem", feature = "UITabBarItem"))]
@@ -115,8 +115,8 @@ extern_methods!(
         pub unsafe fn setItems(&self, items: Option<&NSArray<UITabBarItem>>);
 
         #[cfg(all(feature = "UIBarItem", feature = "UITabBarItem"))]
-        #[unsafe(method_family(none))]
         #[method_id(selectedItem)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectedItem(&self) -> Option<Retained<UITabBarItem>>;
 
         #[cfg(all(feature = "UIBarItem", feature = "UITabBarItem"))]
@@ -144,8 +144,8 @@ extern_methods!(
         pub unsafe fn isCustomizing(&self) -> bool;
 
         #[cfg(feature = "UIColor")]
-        #[unsafe(method_family(none))]
         #[method_id(tintColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -154,8 +154,8 @@ extern_methods!(
         pub unsafe fn setTintColor(&self, tint_color: Option<&UIColor>);
 
         #[cfg(feature = "UIColor")]
-        #[unsafe(method_family(none))]
         #[method_id(barTintColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn barTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -165,8 +165,8 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         /// Unselected items in this tab bar will be tinted with this color. Setting this value to nil indicates that UITabBar should use its default value instead.
-        #[unsafe(method_family(none))]
         #[method_id(unselectedItemTintColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn unselectedItemTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -179,8 +179,8 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(selectedImageTintColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectedImageTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -190,8 +190,8 @@ extern_methods!(
         pub unsafe fn setSelectedImageTintColor(&self, selected_image_tint_color: Option<&UIColor>);
 
         #[cfg(feature = "UIImage")]
-        #[unsafe(method_family(none))]
         #[method_id(backgroundImage)]
+        #[unsafe(method_family = none)]
         pub unsafe fn backgroundImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
@@ -200,8 +200,8 @@ extern_methods!(
         pub unsafe fn setBackgroundImage(&self, background_image: Option<&UIImage>);
 
         #[cfg(feature = "UIImage")]
-        #[unsafe(method_family(none))]
         #[method_id(selectionIndicatorImage)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectionIndicatorImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
@@ -213,8 +213,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIImage")]
-        #[unsafe(method_family(none))]
         #[method_id(shadowImage)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shadowImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
@@ -265,8 +265,8 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UITabBarAppearance"))]
         /// Describes the appearance attributes for the tab bar to use.
-        #[unsafe(method_family(none))]
         #[method_id(standardAppearance)]
+        #[unsafe(method_family = none)]
         pub unsafe fn standardAppearance(&self) -> Retained<UITabBarAppearance>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UITabBarAppearance"))]
@@ -276,8 +276,8 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UITabBarAppearance"))]
         /// Describes the appearance attributes for the tabBar to use when an observable scroll view is scrolled to the bottom. If not set, standardAppearance will be used instead.
-        #[unsafe(method_family(none))]
         #[method_id(scrollEdgeAppearance)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scrollEdgeAppearance(&self) -> Option<Retained<UITabBarAppearance>>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UITabBarAppearance"))]
@@ -288,12 +288,12 @@ extern_methods!(
             scroll_edge_appearance: Option<&UITabBarAppearance>,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(leadingAccessoryView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn leadingAccessoryView(&self) -> Retained<UIView>;
 
-        #[unsafe(method_family(none))]
         #[method_id(trailingAccessoryView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn trailingAccessoryView(&self) -> Retained<UIView>;
     }
 );
@@ -303,12 +303,12 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UITabBar {
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithFrame:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -320,12 +320,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UITabBar {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

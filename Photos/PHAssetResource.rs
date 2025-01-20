@@ -21,16 +21,16 @@ extern_methods!(
         #[method(type)]
         pub unsafe fn r#type(&self) -> PHAssetResourceType;
 
-        #[unsafe(method_family(none))]
         #[method_id(assetLocalIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn assetLocalIdentifier(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(uniformTypeIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn uniformTypeIdentifier(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(originalFilename)]
+        #[unsafe(method_family = none)]
         pub unsafe fn originalFilename(&self) -> Retained<NSString>;
 
         #[method(pixelWidth)]
@@ -40,14 +40,14 @@ extern_methods!(
         pub unsafe fn pixelHeight(&self) -> NSInteger;
 
         #[cfg(all(feature = "PHAsset", feature = "PHObject"))]
-        #[unsafe(method_family(none))]
         #[method_id(assetResourcesForAsset:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn assetResourcesForAsset(asset: &PHAsset)
             -> Retained<NSArray<PHAssetResource>>;
 
         #[cfg(feature = "PHLivePhoto")]
-        #[unsafe(method_family(none))]
         #[method_id(assetResourcesForLivePhoto:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn assetResourcesForLivePhoto(
             live_photo: &PHLivePhoto,
         ) -> Retained<NSArray<PHAssetResource>>;
@@ -57,12 +57,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHAssetResource {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

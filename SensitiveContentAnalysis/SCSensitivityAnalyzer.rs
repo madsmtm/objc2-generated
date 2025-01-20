@@ -55,8 +55,8 @@ unsafe impl NSObjectProtocol for SCSensitivityAnalyzer {}
 
 extern_methods!(
     unsafe impl SCSensitivityAnalyzer {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Current SCSensitivityAnalysisPolicy set on device. Can be used to determine whether analysis is available or not
@@ -101,8 +101,8 @@ extern_methods!(
         /// Parameter `completionHandler`: Block to be called on completion (callback is called on unspecified queue)
         ///
         /// Returns: An NSProgress instance for tracking video file analysis progress
-        #[unsafe(method_family(none))]
         #[method_id(analyzeVideoFile:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn analyzeVideoFile_completionHandler(
             &self,
             file_url: &NSURL,
@@ -114,8 +114,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCSensitivityAnalyzer {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

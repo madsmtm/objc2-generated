@@ -276,16 +276,16 @@ unsafe impl UITraitEnvironment for UITableViewCell {}
 extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UITableViewCell {
-        #[unsafe(method_family(init))]
         #[method_id(initWithStyle:reuseIdentifier:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithStyle_reuseIdentifier(
             this: Allocated<Self>,
             style: UITableViewCellStyle,
             reuse_identifier: Option<&NSString>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -298,8 +298,8 @@ extern_methods!(
         /// Returns the current configuration state for the cell.
         /// To add your own custom state(s), override the getter and call super to obtain an instance with the
         /// system properties set, then set your own custom states as desired.
-        #[unsafe(method_family(none))]
         #[method_id(configurationState)]
+        #[unsafe(method_family = none)]
         pub unsafe fn configurationState(&self) -> Retained<UICellConfigurationState>;
 
         /// Requests the cell update its configuration for its current state. This method is called automatically
@@ -343,16 +343,16 @@ extern_methods!(
 
         #[cfg(feature = "UIListContentConfiguration")]
         /// Returns a default list content configuration for the cell's style.
-        #[unsafe(method_family(none))]
         #[method_id(defaultContentConfiguration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn defaultContentConfiguration(&self) -> Retained<UIListContentConfiguration>;
 
         #[cfg(feature = "UIContentConfiguration")]
         /// Setting a content configuration replaces the existing contentView of the cell with a new content view instance from the configuration,
         /// or directly applies the configuration to the existing content view if the configuration is compatible with the existing content view type.
         /// The default value is nil. After a configuration has been set, setting this property to nil will replace the current content view with a new content view.
-        #[unsafe(method_family(none))]
         #[method_id(contentConfiguration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contentConfiguration(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIContentConfiguration>>>;
@@ -377,39 +377,39 @@ extern_methods!(
             automatically_updates_content_configuration: bool,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(contentView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contentView(&self) -> Retained<UIView>;
 
         #[cfg(feature = "UIImageView")]
         #[deprecated = "Use UIListContentConfiguration instead, this property will be deprecated in a future release."]
-        #[unsafe(method_family(none))]
         #[method_id(imageView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn imageView(&self) -> Option<Retained<UIImageView>>;
 
         #[cfg(feature = "UILabel")]
         #[deprecated = "Use UIListContentConfiguration instead, this property will be deprecated in a future release."]
-        #[unsafe(method_family(none))]
         #[method_id(textLabel)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textLabel(&self) -> Option<Retained<UILabel>>;
 
         #[cfg(feature = "UILabel")]
         #[deprecated = "Use UIListContentConfiguration instead, this property will be deprecated in a future release."]
-        #[unsafe(method_family(none))]
         #[method_id(detailTextLabel)]
+        #[unsafe(method_family = none)]
         pub unsafe fn detailTextLabel(&self) -> Option<Retained<UILabel>>;
 
         #[cfg(feature = "UIBackgroundConfiguration")]
         /// Returns a default background configuration for the cell's style.
         /// This background configuration represents the default appearance that the cell will use.
-        #[unsafe(method_family(none))]
         #[method_id(defaultBackgroundConfiguration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn defaultBackgroundConfiguration(&self) -> Retained<UIBackgroundConfiguration>;
 
         #[cfg(feature = "UIBackgroundConfiguration")]
         /// Setting a background configuration supersedes the cell's backgroundView, selectedBackgroundView, and multipleSelectionBackgroundView. The default value is nil.
-        #[unsafe(method_family(none))]
         #[method_id(backgroundConfiguration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn backgroundConfiguration(&self)
             -> Option<Retained<UIBackgroundConfiguration>>;
 
@@ -433,24 +433,24 @@ extern_methods!(
             automatically_updates_background_configuration: bool,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(backgroundView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn backgroundView(&self) -> Option<Retained<UIView>>;
 
         /// Setter for [`backgroundView`][Self::backgroundView].
         #[method(setBackgroundView:)]
         pub unsafe fn setBackgroundView(&self, background_view: Option<&UIView>);
 
-        #[unsafe(method_family(none))]
         #[method_id(selectedBackgroundView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectedBackgroundView(&self) -> Option<Retained<UIView>>;
 
         /// Setter for [`selectedBackgroundView`][Self::selectedBackgroundView].
         #[method(setSelectedBackgroundView:)]
         pub unsafe fn setSelectedBackgroundView(&self, selected_background_view: Option<&UIView>);
 
-        #[unsafe(method_family(none))]
         #[method_id(multipleSelectionBackgroundView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn multipleSelectionBackgroundView(&self) -> Option<Retained<UIView>>;
 
         /// Setter for [`multipleSelectionBackgroundView`][Self::multipleSelectionBackgroundView].
@@ -460,8 +460,8 @@ extern_methods!(
             multiple_selection_background_view: Option<&UIView>,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(reuseIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reuseIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[method(prepareForReuse)]
@@ -518,8 +518,8 @@ extern_methods!(
         #[method(setAccessoryType:)]
         pub unsafe fn setAccessoryType(&self, accessory_type: UITableViewCellAccessoryType);
 
-        #[unsafe(method_family(none))]
         #[method_id(accessoryView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn accessoryView(&self) -> Option<Retained<UIView>>;
 
         /// Setter for [`accessoryView`][Self::accessoryView].
@@ -536,8 +536,8 @@ extern_methods!(
             editing_accessory_type: UITableViewCellAccessoryType,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(editingAccessoryView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn editingAccessoryView(&self) -> Option<Retained<UIView>>;
 
         /// Setter for [`editingAccessoryView`][Self::editingAccessoryView].
@@ -615,8 +615,8 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UITableViewCell {
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithFrame:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
     }
 );
@@ -625,12 +625,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UITableViewCell {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -641,8 +641,8 @@ extern_methods!(
     unsafe impl UITableViewCell {
         #[cfg(feature = "objc2-core-foundation")]
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(initWithFrame:reuseIdentifier:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame_reuseIdentifier(
             this: Allocated<Self>,
             frame: CGRect,
@@ -650,8 +650,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(text)]
+        #[unsafe(method_family = none)]
         pub unsafe fn text(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`text`][Self::text].
@@ -661,8 +661,8 @@ extern_methods!(
 
         #[cfg(feature = "UIFont")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(font)]
+        #[unsafe(method_family = none)]
         pub unsafe fn font(&self) -> Option<Retained<UIFont>>;
 
         #[cfg(feature = "UIFont")]
@@ -695,8 +695,8 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(textColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -707,8 +707,8 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(selectedTextColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectedTextColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -719,8 +719,8 @@ extern_methods!(
 
         #[cfg(feature = "UIImage")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(image)]
+        #[unsafe(method_family = none)]
         pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
@@ -731,8 +731,8 @@ extern_methods!(
 
         #[cfg(feature = "UIImage")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(selectedImage)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectedImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
@@ -751,8 +751,8 @@ extern_methods!(
         pub unsafe fn setHidesAccessoryWhenEditing(&self, hides_accessory_when_editing: bool);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(target)]
+        #[unsafe(method_family = none)]
         pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`target`][Self::target].

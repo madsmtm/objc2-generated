@@ -29,28 +29,28 @@ extern_methods!(
     unsafe impl MLCEmbeddingLayer {
         #[cfg(feature = "MLCEmbeddingDescriptor")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(descriptor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn descriptor(&self) -> Retained<MLCEmbeddingDescriptor>;
 
         #[cfg(feature = "MLCTensor")]
         /// The array of word embeddings
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(weights)]
+        #[unsafe(method_family = none)]
         pub unsafe fn weights(&self) -> Retained<MLCTensor>;
 
         #[cfg(feature = "MLCTensorParameter")]
         /// The weights tensor parameter used for optimizer update
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(weightsParameter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn weightsParameter(&self) -> Retained<MLCTensorParameter>;
 
         #[cfg(all(feature = "MLCEmbeddingDescriptor", feature = "MLCTensor"))]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(layerWithDescriptor:weights:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layerWithDescriptor_weights(
             descriptor: &MLCEmbeddingDescriptor,
             weights: &MLCTensor,
@@ -63,13 +63,13 @@ extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCEmbeddingLayer {
         #[deprecated]
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

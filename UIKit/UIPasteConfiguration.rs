@@ -29,8 +29,8 @@ unsafe impl NSSecureCoding for UIPasteConfiguration {}
 
 extern_methods!(
     unsafe impl UIPasteConfiguration {
-        #[unsafe(method_family(none))]
         #[method_id(acceptableTypeIdentifiers)]
+        #[unsafe(method_family = none)]
         pub unsafe fn acceptableTypeIdentifiers(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`acceptableTypeIdentifiers`][Self::acceptableTypeIdentifiers].
@@ -40,12 +40,12 @@ extern_methods!(
             acceptable_type_identifiers: &NSArray<NSString>,
         );
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithAcceptableTypeIdentifiers:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithAcceptableTypeIdentifiers(
             this: Allocated<Self>,
             acceptable_type_identifiers: &NSArray<NSString>,
@@ -57,8 +57,8 @@ extern_methods!(
             acceptable_type_identifiers: &NSArray<NSString>,
         );
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithTypeIdentifiersForAcceptingClass:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithTypeIdentifiersForAcceptingClass(
             this: Allocated<Self>,
             a_class: &AnyClass,
@@ -72,8 +72,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIPasteConfiguration {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

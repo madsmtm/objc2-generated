@@ -43,12 +43,12 @@ unsafe impl NSObjectProtocol for NSWorkspace {}
 
 extern_methods!(
     unsafe impl NSWorkspace {
-        #[unsafe(method_family(none))]
         #[method_id(sharedWorkspace)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sharedWorkspace() -> Retained<NSWorkspace>;
 
-        #[unsafe(method_family(none))]
         #[method_id(notificationCenter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn notificationCenter(&self) -> Retained<NSNotificationCenter>;
 
         #[method(openURL:)]
@@ -108,13 +108,13 @@ extern_methods!(
         pub unsafe fn isFilePackageAtPath(&self, full_path: &NSString) -> bool;
 
         #[cfg(feature = "NSImage")]
-        #[unsafe(method_family(none))]
         #[method_id(iconForFile:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn iconForFile(&self, full_path: &NSString) -> Retained<NSImage>;
 
         #[cfg(feature = "NSImage")]
-        #[unsafe(method_family(none))]
         #[method_id(iconForFiles:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn iconForFiles(
             &self,
             full_paths: &NSArray<NSString>,
@@ -122,8 +122,8 @@ extern_methods!(
 
         #[cfg(all(feature = "NSImage", feature = "objc2-uniform-type-identifiers"))]
         #[cfg(target_vendor = "apple")]
-        #[unsafe(method_family(none))]
         #[method_id(iconForContentType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn iconForContentType(&self, content_type: &UTType) -> Retained<NSImage>;
 
         #[cfg(feature = "NSImage")]
@@ -135,13 +135,13 @@ extern_methods!(
             options: NSWorkspaceIconCreationOptions,
         ) -> bool;
 
-        #[unsafe(method_family(none))]
         #[method_id(fileLabels)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fileLabels(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSColor")]
-        #[unsafe(method_family(none))]
         #[method_id(fileLabelColors)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fileLabelColors(&self) -> Retained<NSArray<NSColor>>;
 
         #[cfg(feature = "block2")]
@@ -190,26 +190,26 @@ extern_methods!(
         #[method(hideOtherApplications)]
         pub unsafe fn hideOtherApplications(&self);
 
-        #[unsafe(method_family(none))]
         #[method_id(URLForApplicationWithBundleIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn URLForApplicationWithBundleIdentifier(
             &self,
             bundle_identifier: &NSString,
         ) -> Option<Retained<NSURL>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(URLsForApplicationsWithBundleIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn URLsForApplicationsWithBundleIdentifier(
             &self,
             bundle_identifier: &NSString,
         ) -> Retained<NSArray<NSURL>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(URLForApplicationToOpenURL:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn URLForApplicationToOpenURL(&self, url: &NSURL) -> Option<Retained<NSURL>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(URLsForApplicationsToOpenURL:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn URLsForApplicationsToOpenURL(&self, url: &NSURL) -> Retained<NSArray<NSURL>>;
 
         #[cfg(feature = "block2")]
@@ -241,8 +241,8 @@ extern_methods!(
 
         #[cfg(feature = "objc2-uniform-type-identifiers")]
         #[cfg(target_vendor = "apple")]
-        #[unsafe(method_family(none))]
         #[method_id(URLForApplicationToOpenContentType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn URLForApplicationToOpenContentType(
             &self,
             content_type: &UTType,
@@ -250,8 +250,8 @@ extern_methods!(
 
         #[cfg(feature = "objc2-uniform-type-identifiers")]
         #[cfg(target_vendor = "apple")]
-        #[unsafe(method_family(none))]
         #[method_id(URLsForApplicationsToOpenContentType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn URLsForApplicationsToOpenContentType(
             &self,
             content_type: &UTType,
@@ -268,13 +268,13 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSRunningApplication")]
-        #[unsafe(method_family(none))]
         #[method_id(frontmostApplication)]
+        #[unsafe(method_family = none)]
         pub unsafe fn frontmostApplication(&self) -> Option<Retained<NSRunningApplication>>;
 
         #[cfg(feature = "NSRunningApplication")]
-        #[unsafe(method_family(none))]
         #[method_id(menuBarOwningApplication)]
+        #[unsafe(method_family = none)]
         pub unsafe fn menuBarOwningApplication(&self) -> Option<Retained<NSRunningApplication>>;
     }
 );
@@ -282,12 +282,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSWorkspace {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -309,8 +309,8 @@ unsafe impl NSObjectProtocol for NSWorkspaceOpenConfiguration {}
 
 extern_methods!(
     unsafe impl NSWorkspaceOpenConfiguration {
-        #[unsafe(method_family(none))]
         #[method_id(configuration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn configuration() -> Retained<Self>;
 
         #[method(promptsUserIfNeeded)]
@@ -375,24 +375,24 @@ extern_methods!(
             allows_running_application_substitution: bool,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(arguments)]
+        #[unsafe(method_family = none)]
         pub unsafe fn arguments(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`arguments`][Self::arguments].
         #[method(setArguments:)]
         pub unsafe fn setArguments(&self, arguments: &NSArray<NSString>);
 
-        #[unsafe(method_family(none))]
         #[method_id(environment)]
+        #[unsafe(method_family = none)]
         pub unsafe fn environment(&self) -> Retained<NSDictionary<NSString, NSString>>;
 
         /// Setter for [`environment`][Self::environment].
         #[method(setEnvironment:)]
         pub unsafe fn setEnvironment(&self, environment: &NSDictionary<NSString, NSString>);
 
-        #[unsafe(method_family(none))]
         #[method_id(appleEvent)]
+        #[unsafe(method_family = none)]
         pub unsafe fn appleEvent(&self) -> Option<Retained<NSAppleEventDescriptor>>;
 
         /// Setter for [`appleEvent`][Self::appleEvent].
@@ -411,12 +411,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSWorkspaceOpenConfiguration {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -453,14 +453,14 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "NSScreen")]
-        #[unsafe(method_family(none))]
         #[method_id(desktopImageURLForScreen:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn desktopImageURLForScreen(&self, screen: &NSScreen)
             -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSScreen")]
-        #[unsafe(method_family(none))]
         #[method_id(desktopImageOptionsForScreen:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn desktopImageOptionsForScreen(
             &self,
             screen: &NSScreen,
@@ -506,12 +506,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSWorkspaceAuthorization {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -533,8 +533,8 @@ extern_category!(
     /// Category "NSWorkspaceAuthorization" on [`NSFileManager`].
     #[doc(alias = "NSWorkspaceAuthorization")]
     pub unsafe trait NSFileManagerNSWorkspaceAuthorization {
-        #[unsafe(method_family(none))]
         #[method_id(fileManagerWithAuthorization:)]
+        #[unsafe(method_family = none)]
         unsafe fn fileManagerWithAuthorization(
             authorization: &NSWorkspaceAuthorization,
         ) -> Retained<Self>;
@@ -782,8 +782,8 @@ extern_methods!(
 
         #[cfg(feature = "NSRunningApplication")]
         #[deprecated = "Use -[NSWorkspace openApplicationAtURL:configuration:completionHandler:] instead."]
-        #[unsafe(method_family(none))]
         #[method_id(launchApplicationAtURL:options:configuration:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn launchApplicationAtURL_options_configuration_error(
             &self,
             url: &NSURL,
@@ -793,8 +793,8 @@ extern_methods!(
 
         #[cfg(feature = "NSRunningApplication")]
         #[deprecated = "Use -[NSWorkspace openURL:configuration:completionHandler:] instead."]
-        #[unsafe(method_family(none))]
         #[method_id(openURL:options:configuration:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn openURL_options_configuration_error(
             &self,
             url: &NSURL,
@@ -804,8 +804,8 @@ extern_methods!(
 
         #[cfg(feature = "NSRunningApplication")]
         #[deprecated = "Use -[NSWorkspace openURLs:withApplicationAtURL:configuration:completionHandler:] instead."]
-        #[unsafe(method_family(none))]
         #[method_id(openURLs:withApplicationAtURL:options:configuration:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn openURLs_withApplicationAtURL_options_configuration_error(
             &self,
             urls: &NSArray<NSURL>,
@@ -824,16 +824,16 @@ extern_methods!(
         ) -> bool;
 
         #[deprecated = "Use -[NSWorkspace URLForApplicationWithBundleIdentifier:] instead."]
-        #[unsafe(method_family(none))]
         #[method_id(fullPathForApplication:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fullPathForApplication(
             &self,
             app_name: &NSString,
         ) -> Option<Retained<NSString>>;
 
         #[deprecated = "Use -[NSWorkspace URLForApplicationWithBundleIdentifier:] instead."]
-        #[unsafe(method_family(none))]
         #[method_id(absolutePathForAppBundleWithIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn absolutePathForAppBundleWithIdentifier(
             &self,
             bundle_identifier: &NSString,
@@ -899,28 +899,28 @@ extern_methods!(
         pub unsafe fn userDefaultsChanged(&self) -> bool;
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(mountNewRemovableMedia)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mountNewRemovableMedia(&self) -> Option<Retained<NSArray>>;
 
         #[deprecated = "Use -[NSWorkspace frontmostApplication] instead."]
-        #[unsafe(method_family(none))]
         #[method_id(activeApplication)]
+        #[unsafe(method_family = none)]
         pub unsafe fn activeApplication(&self) -> Option<Retained<NSDictionary>>;
 
         #[deprecated = "Use -[NSFileManager mountedVolumeURLsIncludingResourceValuesForKeys:options:] instead."]
-        #[unsafe(method_family(none))]
         #[method_id(mountedLocalVolumePaths)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mountedLocalVolumePaths(&self) -> Option<Retained<NSArray>>;
 
         #[deprecated = "Use -[NSFileManager mountedVolumeURLsIncludingResourceValuesForKeys:options:] instead."]
-        #[unsafe(method_family(none))]
         #[method_id(mountedRemovableMedia)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mountedRemovableMedia(&self) -> Option<Retained<NSArray>>;
 
         #[deprecated = "Use -[NSWorkspace runningApplications] instead."]
-        #[unsafe(method_family(none))]
         #[method_id(launchedApplications)]
+        #[unsafe(method_family = none)]
         pub unsafe fn launchedApplications(&self) -> Option<Retained<NSArray>>;
 
         #[cfg(all(feature = "NSImage", feature = "NSResponder", feature = "NSView"))]
@@ -956,29 +956,29 @@ extern_methods!(
 
         #[cfg(feature = "NSImage")]
         #[deprecated = "Use -[NSWorkspace iconForContentType:] instead."]
-        #[unsafe(method_family(none))]
         #[method_id(iconForFileType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn iconForFileType(&self, file_type: &NSString) -> Retained<NSImage>;
 
         #[deprecated = "Use -[NSURL getResourceValue:forKey:error:] with NSURLContentTypeKey instead."]
-        #[unsafe(method_family(none))]
         #[method_id(typeOfFile:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn typeOfFile_error(
             &self,
             absolute_file_path: &NSString,
         ) -> Result<Retained<NSString>, Retained<NSError>>;
 
         #[deprecated = "Use UTType.localizedDescription instead."]
-        #[unsafe(method_family(none))]
         #[method_id(localizedDescriptionForType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn localizedDescriptionForType(
             &self,
             type_name: &NSString,
         ) -> Option<Retained<NSString>>;
 
         #[deprecated = "Use UTType.preferredFilenameExtension instead."]
-        #[unsafe(method_family(none))]
         #[method_id(preferredFilenameExtensionForType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preferredFilenameExtensionForType(
             &self,
             type_name: &NSString,

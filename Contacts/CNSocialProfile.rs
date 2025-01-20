@@ -32,24 +32,24 @@ unsafe impl NSSecureCoding for CNSocialProfile {}
 
 extern_methods!(
     unsafe impl CNSocialProfile {
-        #[unsafe(method_family(none))]
         #[method_id(urlString)]
+        #[unsafe(method_family = none)]
         pub unsafe fn urlString(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(username)]
+        #[unsafe(method_family = none)]
         pub unsafe fn username(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(userIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn userIdentifier(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(service)]
+        #[unsafe(method_family = none)]
         pub unsafe fn service(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithUrlString:username:userIdentifier:service:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithUrlString_username_userIdentifier_service(
             this: Allocated<Self>,
             url_string: Option<&NSString>,
@@ -59,13 +59,13 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Returns a user displayable property name.
-        #[unsafe(method_family(none))]
         #[method_id(localizedStringForKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn localizedStringForKey(key: &NSString) -> Retained<NSString>;
 
         /// Returns a user displayable service name.
-        #[unsafe(method_family(none))]
         #[method_id(localizedStringForService:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn localizedStringForService(service: &NSString) -> Retained<NSString>;
     }
 );
@@ -73,12 +73,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CNSocialProfile {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

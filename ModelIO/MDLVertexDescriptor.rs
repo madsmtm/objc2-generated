@@ -287,8 +287,8 @@ unsafe impl NSObjectProtocol for MDLVertexBufferLayout {}
 
 extern_methods!(
     unsafe impl MDLVertexBufferLayout {
-        #[unsafe(method_family(init))]
         #[method_id(initWithStride:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithStride(this: Allocated<Self>, stride: NSUInteger) -> Retained<Self>;
 
         /// stride in bytes of each vertex element in the buffer.
@@ -310,12 +310,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLVertexBufferLayout {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -340,8 +340,8 @@ unsafe impl NSObjectProtocol for MDLVertexAttribute {}
 extern_methods!(
     unsafe impl MDLVertexAttribute {
         /// Initialize attribute object with all properties
-        #[unsafe(method_family(init))]
         #[method_id(initWithName:format:offset:bufferIndex:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithName_format_offset_bufferIndex(
             this: Allocated<Self>,
             name: &NSString,
@@ -352,8 +352,8 @@ extern_methods!(
 
         /// Identifying name of the attribute derived from model file, or one of
         /// the predefined MDLVertexAttribute strings
-        #[unsafe(method_family(none))]
         #[method_id(name)]
+        #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
@@ -404,12 +404,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLVertexAttribute {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -444,8 +444,8 @@ extern_methods!(
         /// Initializes the object with values from supplied vertexDescriptor
         ///
         /// This performs a deep copy of all data in the supplied descriptor.
-        #[unsafe(method_family(init))]
         #[method_id(initWithVertexDescriptor:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithVertexDescriptor(
             this: Allocated<Self>,
             vertex_descriptor: &MDLVertexDescriptor,
@@ -455,8 +455,8 @@ extern_methods!(
         ///
         /// Returns: The attribute with the supplied name or nil if attribute with the given
         /// name does not exist in the descriptor object
-        #[unsafe(method_family(none))]
         #[method_id(attributeNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn attributeNamed(
             &self,
             name: &NSString,
@@ -475,8 +475,8 @@ extern_methods!(
         ///
         /// ay describing the current attribute state of vertex buffers in an
         /// MDLMesh mesh
-        #[unsafe(method_family(none))]
         #[method_id(attributes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn attributes(&self) -> Retained<NSMutableArray<MDLVertexAttribute>>;
 
         /// Setter for [`attributes`][Self::attributes].
@@ -487,8 +487,8 @@ extern_methods!(
         ///
         /// An array describing the current layout state of vertex buffers in an
         /// MDLMesh mesh
-        #[unsafe(method_family(none))]
         #[method_id(layouts)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layouts(&self) -> Retained<NSMutableArray<MDLVertexBufferLayout>>;
 
         /// Setter for [`layouts`][Self::layouts].
@@ -515,12 +515,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLVertexDescriptor {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

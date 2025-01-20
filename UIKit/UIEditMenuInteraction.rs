@@ -48,8 +48,8 @@ unsafe impl NSObjectProtocol for UIEditMenuConfiguration {}
 extern_methods!(
     unsafe impl UIEditMenuConfiguration {
         /// The unique identifier of the configuration.
-        #[unsafe(method_family(none))]
         #[method_id(identifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<ProtocolObject<dyn NSCopying>>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -74,20 +74,20 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Creates a new configuration with the specified source location.
-        #[unsafe(method_family(none))]
         #[method_id(configurationWithIdentifier:sourcePoint:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn configurationWithIdentifier_sourcePoint(
             identifier: Option<&ProtocolObject<dyn NSCopying>>,
             source_point: CGPoint,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -108,15 +108,15 @@ unsafe impl UIInteraction for UIEditMenuInteraction {}
 extern_methods!(
     unsafe impl UIEditMenuInteraction {
         /// The object that defines the delegate of the interaction.
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIEditMenuInteractionDelegate>>>;
 
         /// Creates a new edit menu interaction with the specified delegate.
-        #[unsafe(method_family(init))]
         #[method_id(initWithDelegate:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDelegate(
             this: Allocated<Self>,
             delegate: Option<&ProtocolObject<dyn UIEditMenuInteractionDelegate>>,
@@ -159,12 +159,12 @@ extern_methods!(
         #[method(locationInView:)]
         pub unsafe fn locationInView(&self, view: Option<&UIView>) -> CGPoint;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -202,8 +202,8 @@ extern_protocol!(
         /// Returns: Return a UIMenu describing the desired menu hierarchy. Return
         /// `nil`to present the default system menu.
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(editMenuInteraction:menuForConfiguration:suggestedActions:)]
+        #[unsafe(method_family = none)]
         unsafe fn editMenuInteraction_menuForConfiguration_suggestedActions(
             &self,
             interaction: &UIEditMenuInteraction,

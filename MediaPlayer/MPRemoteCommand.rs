@@ -55,12 +55,12 @@ unsafe impl NSObjectProtocol for MPRemoteCommand {}
 
 extern_methods!(
     unsafe impl MPRemoteCommand {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Whether a button (for example) should be enabled and tappable for this
@@ -83,8 +83,8 @@ extern_methods!(
 
         #[cfg(all(feature = "MPRemoteCommandEvent", feature = "block2"))]
         /// Returns an opaque object to act as the target.
-        #[unsafe(method_family(none))]
         #[method_id(addTargetWithHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addTargetWithHandler(
             &self,
             handler: &block2::Block<
@@ -106,8 +106,8 @@ unsafe impl NSObjectProtocol for MPSkipIntervalCommand {}
 extern_methods!(
     unsafe impl MPSkipIntervalCommand {
         /// An array of NSNumbers (NSTimeIntervals) that contain preferred skip intervals.
-        #[unsafe(method_family(none))]
         #[method_id(preferredIntervals)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preferredIntervals(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Setter for [`preferredIntervals`][Self::preferredIntervals].
@@ -119,12 +119,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPRemoteCommand`
     unsafe impl MPSkipIntervalCommand {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -151,8 +151,8 @@ extern_methods!(
         pub unsafe fn setActive(&self, active: bool);
 
         /// A localized string briefly describing the context of the command.
-        #[unsafe(method_family(none))]
         #[method_id(localizedTitle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn localizedTitle(&self) -> Retained<NSString>;
 
         /// Setter for [`localizedTitle`][Self::localizedTitle].
@@ -162,8 +162,8 @@ extern_methods!(
         /// An optional shorter version of the localized title for this feedback
         /// command. MediaPlayer uses this property to display this command's title on
         /// remote control interfaces with little screen space.
-        #[unsafe(method_family(none))]
         #[method_id(localizedShortTitle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn localizedShortTitle(&self) -> Retained<NSString>;
 
         /// Setter for [`localizedShortTitle`][Self::localizedShortTitle].
@@ -175,12 +175,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPRemoteCommand`
     unsafe impl MPFeedbackCommand {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -217,12 +217,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPRemoteCommand`
     unsafe impl MPRatingCommand {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -240,8 +240,8 @@ extern_methods!(
     unsafe impl MPChangePlaybackRateCommand {
         /// An array of NSNumbers (floats) that contain supported playback rates that
         /// the command can send.
-        #[unsafe(method_family(none))]
         #[method_id(supportedPlaybackRates)]
+        #[unsafe(method_family = none)]
         pub unsafe fn supportedPlaybackRates(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Setter for [`supportedPlaybackRates`][Self::supportedPlaybackRates].
@@ -256,12 +256,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPRemoteCommand`
     unsafe impl MPChangePlaybackRateCommand {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -285,12 +285,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPRemoteCommand`
     unsafe impl MPChangePlaybackPositionCommand {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -326,12 +326,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPRemoteCommand`
     unsafe impl MPChangeShuffleModeCommand {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -367,12 +367,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPRemoteCommand`
     unsafe impl MPChangeRepeatModeCommand {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

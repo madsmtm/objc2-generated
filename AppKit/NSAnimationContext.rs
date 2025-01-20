@@ -40,8 +40,8 @@ extern_methods!(
         #[method(endGrouping)]
         pub unsafe fn endGrouping();
 
-        #[unsafe(method_family(none))]
         #[method_id(currentContext)]
+        #[unsafe(method_family = none)]
         pub unsafe fn currentContext() -> Retained<NSAnimationContext>;
 
         #[method(duration)]
@@ -53,8 +53,8 @@ extern_methods!(
 
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(target_vendor = "apple")]
-        #[unsafe(method_family(none))]
         #[method_id(timingFunction)]
+        #[unsafe(method_family = none)]
         pub unsafe fn timingFunction(&self) -> Option<Retained<CAMediaTimingFunction>>;
 
         #[cfg(feature = "objc2-quartz-core")]
@@ -87,12 +87,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSAnimationContext {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

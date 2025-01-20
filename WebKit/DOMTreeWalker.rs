@@ -32,8 +32,8 @@ extern_methods!(
     unsafe impl DOMTreeWalker {
         #[cfg(feature = "DOMNode")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(root)]
+        #[unsafe(method_family = none)]
         pub unsafe fn root(&self) -> Option<Retained<DOMNode>>;
 
         #[deprecated]
@@ -42,8 +42,8 @@ extern_methods!(
 
         #[cfg(feature = "DOMNodeFilter")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(filter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn filter(&self) -> Option<Retained<ProtocolObject<dyn DOMNodeFilter>>>;
 
         #[deprecated]
@@ -52,8 +52,8 @@ extern_methods!(
 
         #[cfg(feature = "DOMNode")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(currentNode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn currentNode(&self) -> Option<Retained<DOMNode>>;
 
         #[cfg(feature = "DOMNode")]
@@ -64,44 +64,44 @@ extern_methods!(
 
         #[cfg(feature = "DOMNode")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(parentNode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn parentNode(&self) -> Option<Retained<DOMNode>>;
 
         #[cfg(feature = "DOMNode")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(firstChild)]
+        #[unsafe(method_family = none)]
         pub unsafe fn firstChild(&self) -> Option<Retained<DOMNode>>;
 
         #[cfg(feature = "DOMNode")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(lastChild)]
+        #[unsafe(method_family = none)]
         pub unsafe fn lastChild(&self) -> Option<Retained<DOMNode>>;
 
         #[cfg(feature = "DOMNode")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(previousSibling)]
+        #[unsafe(method_family = none)]
         pub unsafe fn previousSibling(&self) -> Option<Retained<DOMNode>>;
 
         #[cfg(feature = "DOMNode")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(nextSibling)]
+        #[unsafe(method_family = none)]
         pub unsafe fn nextSibling(&self) -> Option<Retained<DOMNode>>;
 
         #[cfg(feature = "DOMNode")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(previousNode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn previousNode(&self) -> Option<Retained<DOMNode>>;
 
         #[cfg(feature = "DOMNode")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(nextNode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn nextNode(&self) -> Option<Retained<DOMNode>>;
     }
 );
@@ -111,8 +111,8 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMTreeWalker {
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -121,8 +121,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMTreeWalker {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -59,13 +59,13 @@ unsafe impl NSObjectProtocol for UITab {}
 extern_methods!(
     unsafe impl UITab {
         /// The identifier associated with the tab, must be unique across the tab bar controller.
-        #[unsafe(method_family(none))]
         #[method_id(identifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         /// The title of the tab.
-        #[unsafe(method_family(none))]
         #[method_id(title)]
+        #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
@@ -74,8 +74,8 @@ extern_methods!(
 
         #[cfg(feature = "UIImage")]
         /// The image of the tab. Default is nil.
-        #[unsafe(method_family(none))]
         #[method_id(image)]
+        #[unsafe(method_family = none)]
         pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
@@ -84,8 +84,8 @@ extern_methods!(
         pub unsafe fn setImage(&self, image: Option<&UIImage>);
 
         /// The subtitle of the tab. This is displayed only in certain contexts, like the sidebar. Default is nil.
-        #[unsafe(method_family(none))]
         #[method_id(subtitle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn subtitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`subtitle`][Self::subtitle].
@@ -93,8 +93,8 @@ extern_methods!(
         pub unsafe fn setSubtitle(&self, subtitle: Option<&NSString>);
 
         /// The badge value of the tab. Default is nil.
-        #[unsafe(method_family(none))]
         #[method_id(badgeValue)]
+        #[unsafe(method_family = none)]
         pub unsafe fn badgeValue(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`badgeValue`][Self::badgeValue].
@@ -111,8 +111,8 @@ extern_methods!(
         pub unsafe fn setPreferredPlacement(&self, preferred_placement: UITabPlacement);
 
         /// A custom object associated with the tab. Default is nil.
-        #[unsafe(method_family(none))]
         #[method_id(userInfo)]
+        #[unsafe(method_family = none)]
         pub unsafe fn userInfo(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`userInfo`][Self::userInfo].
@@ -121,8 +121,8 @@ extern_methods!(
 
         #[cfg(feature = "UITabGroup")]
         /// The parent group of the tab. This is only non-nil if the tab is part of a parent group, and returns nil otherwise.
-        #[unsafe(method_family(none))]
         #[method_id(parent)]
+        #[unsafe(method_family = none)]
         pub unsafe fn parent(&self) -> Option<Retained<UITabGroup>>;
 
         #[cfg(all(
@@ -133,15 +133,15 @@ extern_methods!(
         /// The tab bar controller managing the tab. This is non-nil when the tab
         /// or any of its ancestors is added to a UITabBarController; and is nil
         /// otherwise.
-        #[unsafe(method_family(none))]
         #[method_id(tabBarController)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tabBarController(&self) -> Option<Retained<UITabBarController>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         /// The view controller owned by the tab. The view controller provider is used to resolve the view controller
         /// if it is currently nil. For root level tabs, the view controller for the tab must be non-nil.
-        #[unsafe(method_family(none))]
         #[method_id(viewController)]
+        #[unsafe(method_family = none)]
         pub unsafe fn viewController(&self) -> Option<Retained<UIViewController>>;
 
         #[cfg(feature = "UITabGroup")]
@@ -149,8 +149,8 @@ extern_methods!(
         /// active `managingNavigationController`. This can be different to `parent` if the tab is nested in multiple
         /// levels of tab groups. If the tab does not belong to a hierarchy with a managing navigation controller, then this
         /// will return nil. Default is nil.
-        #[unsafe(method_family(none))]
         #[method_id(managingTabGroup)]
+        #[unsafe(method_family = none)]
         pub unsafe fn managingTabGroup(&self) -> Option<Retained<UITabGroup>>;
 
         /// Determines if the tab is currently hidden. Default is NO.
@@ -188,8 +188,8 @@ extern_methods!(
         /// Creates a tab with the specified identifier, title, image, and view controller provider.
         /// The view controller provider is called when a view controller is requested and is currently nil.
         /// For root level tabs on `UITabBarController`, the resolved view controller must be non-nil.
-        #[unsafe(method_family(init))]
         #[method_id(initWithTitle:image:identifier:viewControllerProvider:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithTitle_image_identifier_viewControllerProvider(
             this: Allocated<Self>,
             title: &NSString,
@@ -200,12 +200,12 @@ extern_methods!(
             >,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -239,8 +239,8 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIViewController {
         /// The `UITab` instance that was used to create the receiver, and represents the view controller. Default is nil.
-        #[unsafe(method_family(none))]
         #[method_id(tab)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tab(&self) -> Option<Retained<UITab>>;
     }
 );

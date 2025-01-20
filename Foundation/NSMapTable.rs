@@ -79,8 +79,8 @@ unsafe impl<KeyType: ?Sized + NSSecureCoding, ObjectType: ?Sized + NSSecureCodin
 extern_methods!(
     unsafe impl<KeyType: Message, ObjectType: Message> NSMapTable<KeyType, ObjectType> {
         #[cfg(feature = "NSPointerFunctions")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithKeyOptions:valueOptions:capacity:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithKeyOptions_valueOptions_capacity(
             this: Allocated<Self>,
             key_options: NSPointerFunctionsOptions,
@@ -89,8 +89,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSPointerFunctions")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithKeyPointerFunctions:valuePointerFunctions:capacity:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithKeyPointerFunctions_valuePointerFunctions_capacity(
             this: Allocated<Self>,
             key_functions: &NSPointerFunctions,
@@ -99,61 +99,61 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSPointerFunctions")]
-        #[unsafe(method_family(none))]
         #[method_id(mapTableWithKeyOptions:valueOptions:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mapTableWithKeyOptions_valueOptions(
             key_options: NSPointerFunctionsOptions,
             value_options: NSPointerFunctionsOptions,
         ) -> Retained<NSMapTable<KeyType, ObjectType>>;
 
         #[deprecated = "GC no longer supported"]
-        #[unsafe(method_family(none))]
         #[method_id(mapTableWithStrongToStrongObjects)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mapTableWithStrongToStrongObjects() -> Retained<AnyObject>;
 
         #[deprecated = "GC no longer supported"]
-        #[unsafe(method_family(none))]
         #[method_id(mapTableWithWeakToStrongObjects)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mapTableWithWeakToStrongObjects() -> Retained<AnyObject>;
 
         #[deprecated = "GC no longer supported"]
-        #[unsafe(method_family(none))]
         #[method_id(mapTableWithStrongToWeakObjects)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mapTableWithStrongToWeakObjects() -> Retained<AnyObject>;
 
         #[deprecated = "GC no longer supported"]
-        #[unsafe(method_family(none))]
         #[method_id(mapTableWithWeakToWeakObjects)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mapTableWithWeakToWeakObjects() -> Retained<AnyObject>;
 
-        #[unsafe(method_family(none))]
         #[method_id(strongToStrongObjectsMapTable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn strongToStrongObjectsMapTable() -> Retained<NSMapTable<KeyType, ObjectType>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(weakToStrongObjectsMapTable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn weakToStrongObjectsMapTable() -> Retained<NSMapTable<KeyType, ObjectType>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(strongToWeakObjectsMapTable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn strongToWeakObjectsMapTable() -> Retained<NSMapTable<KeyType, ObjectType>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(weakToWeakObjectsMapTable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn weakToWeakObjectsMapTable() -> Retained<NSMapTable<KeyType, ObjectType>>;
 
         #[cfg(feature = "NSPointerFunctions")]
-        #[unsafe(method_family(none))]
         #[method_id(keyPointerFunctions)]
+        #[unsafe(method_family = none)]
         pub unsafe fn keyPointerFunctions(&self) -> Retained<NSPointerFunctions>;
 
         #[cfg(feature = "NSPointerFunctions")]
-        #[unsafe(method_family(none))]
         #[method_id(valuePointerFunctions)]
+        #[unsafe(method_family = none)]
         pub unsafe fn valuePointerFunctions(&self) -> Retained<NSPointerFunctions>;
 
-        #[unsafe(method_family(none))]
         #[method_id(objectForKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn objectForKey(&self, a_key: Option<&KeyType>) -> Option<Retained<ObjectType>>;
 
         #[method(removeObjectForKey:)]
@@ -170,21 +170,21 @@ extern_methods!(
         pub unsafe fn count(&self) -> NSUInteger;
 
         #[cfg(feature = "NSEnumerator")]
-        #[unsafe(method_family(none))]
         #[method_id(keyEnumerator)]
+        #[unsafe(method_family = none)]
         pub unsafe fn keyEnumerator(&self) -> Retained<NSEnumerator<KeyType>>;
 
         #[cfg(feature = "NSEnumerator")]
-        #[unsafe(method_family(none))]
         #[method_id(objectEnumerator)]
+        #[unsafe(method_family = none)]
         pub unsafe fn objectEnumerator(&self) -> Option<Retained<NSEnumerator<ObjectType>>>;
 
         #[method(removeAllObjects)]
         pub unsafe fn removeAllObjects(&self);
 
         #[cfg(feature = "NSDictionary")]
-        #[unsafe(method_family(none))]
         #[method_id(dictionaryRepresentation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dictionaryRepresentation(
             &self,
         ) -> Retained<NSDictionary<KeyType, ObjectType>>;
@@ -194,12 +194,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<KeyType: Message, ObjectType: Message> NSMapTable<KeyType, ObjectType> {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

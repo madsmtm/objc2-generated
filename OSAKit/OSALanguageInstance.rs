@@ -19,33 +19,33 @@ unsafe impl NSObjectProtocol for OSALanguageInstance {}
 extern_methods!(
     unsafe impl OSALanguageInstance {
         #[cfg(feature = "OSALanguage")]
-        #[unsafe(method_family(none))]
         #[method_id(languageInstanceWithLanguage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn languageInstanceWithLanguage(language: &OSALanguage) -> Retained<Self>;
 
         #[cfg(feature = "OSALanguage")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithLanguage:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithLanguage(
             this: Allocated<Self>,
             language: &OSALanguage,
         ) -> Retained<Self>;
 
         #[cfg(feature = "OSALanguage")]
-        #[unsafe(method_family(none))]
         #[method_id(language)]
+        #[unsafe(method_family = none)]
         pub unsafe fn language(&self) -> Retained<OSALanguage>;
 
-        #[unsafe(method_family(none))]
         #[method_id(defaultTarget)]
+        #[unsafe(method_family = none)]
         pub unsafe fn defaultTarget(&self) -> Option<Retained<NSAppleEventDescriptor>>;
 
         /// Setter for [`defaultTarget`][Self::defaultTarget].
         #[method(setDefaultTarget:)]
         pub unsafe fn setDefaultTarget(&self, default_target: Option<&NSAppleEventDescriptor>);
 
-        #[unsafe(method_family(none))]
         #[method_id(richTextFromDescriptor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn richTextFromDescriptor(
             &self,
             descriptor: &NSAppleEventDescriptor,
@@ -56,12 +56,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl OSALanguageInstance {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

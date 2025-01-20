@@ -30,8 +30,8 @@ unsafe impl NSSecureCoding for UISceneConfiguration {}
 extern_methods!(
     unsafe impl UISceneConfiguration {
         #[cfg(feature = "UISceneDefinitions")]
-        #[unsafe(method_family(none))]
         #[method_id(configurationWithName:sessionRole:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn configurationWithName_sessionRole(
             name: Option<&NSString>,
             session_role: &UISceneSessionRole,
@@ -39,21 +39,21 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "UISceneDefinitions")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithName:sessionRole:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithName_sessionRole(
             this: Allocated<Self>,
             name: Option<&NSString>,
             session_role: &UISceneSessionRole,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(name)]
+        #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "UISceneDefinitions")]
-        #[unsafe(method_family(none))]
         #[method_id(role)]
+        #[unsafe(method_family = none)]
         pub unsafe fn role(&self) -> Retained<UISceneSessionRole>;
 
         #[method(sceneClass)]
@@ -71,8 +71,8 @@ extern_methods!(
         pub unsafe fn setDelegateClass(&self, delegate_class: Option<&AnyClass>);
 
         #[cfg(feature = "UIStoryboard")]
-        #[unsafe(method_family(none))]
         #[method_id(storyboard)]
+        #[unsafe(method_family = none)]
         pub unsafe fn storyboard(&self) -> Option<Retained<UIStoryboard>>;
 
         #[cfg(feature = "UIStoryboard")]
@@ -85,12 +85,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UISceneConfiguration {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -111,34 +111,34 @@ unsafe impl NSSecureCoding for UISceneSession {}
 
 extern_methods!(
     unsafe impl UISceneSession {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIScene"))]
-        #[unsafe(method_family(none))]
         #[method_id(scene)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scene(&self) -> Option<Retained<UIScene>>;
 
         #[cfg(feature = "UISceneDefinitions")]
-        #[unsafe(method_family(none))]
         #[method_id(role)]
+        #[unsafe(method_family = none)]
         pub unsafe fn role(&self) -> Retained<UISceneSessionRole>;
 
-        #[unsafe(method_family(none))]
         #[method_id(configuration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn configuration(&self) -> Retained<UISceneConfiguration>;
 
-        #[unsafe(method_family(none))]
         #[method_id(persistentIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn persistentIdentifier(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(stateRestorationActivity)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stateRestorationActivity(&self) -> Option<Retained<NSUserActivity>>;
 
         /// Setter for [`stateRestorationActivity`][Self::stateRestorationActivity].
@@ -148,8 +148,8 @@ extern_methods!(
             state_restoration_activity: Option<&NSUserActivity>,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(userInfo)]
+        #[unsafe(method_family = none)]
         pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         /// Setter for [`userInfo`][Self::userInfo].

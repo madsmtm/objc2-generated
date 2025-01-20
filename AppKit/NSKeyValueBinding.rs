@@ -35,20 +35,20 @@ unsafe impl NSObjectProtocol for NSBindingSelectionMarker {}
 
 extern_methods!(
     unsafe impl NSBindingSelectionMarker {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(multipleValuesSelectionMarker)]
+        #[unsafe(method_family = none)]
         pub unsafe fn multipleValuesSelectionMarker() -> Retained<NSBindingSelectionMarker>;
 
-        #[unsafe(method_family(none))]
         #[method_id(noSelectionMarker)]
+        #[unsafe(method_family = none)]
         pub unsafe fn noSelectionMarker() -> Retained<NSBindingSelectionMarker>;
 
-        #[unsafe(method_family(none))]
         #[method_id(notApplicableSelectionMarker)]
+        #[unsafe(method_family = none)]
         pub unsafe fn notApplicableSelectionMarker() -> Retained<NSBindingSelectionMarker>;
 
         #[method(setDefaultPlaceholder:forMarker:onClass:withBinding:)]
@@ -59,8 +59,8 @@ extern_methods!(
             binding: &NSBindingName,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(defaultPlaceholderForMarker:onClass:withBinding:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn defaultPlaceholderForMarker_onClass_withBinding(
             marker: Option<&NSBindingSelectionMarker>,
             object_class: &AnyClass,
@@ -72,8 +72,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSBindingSelectionMarker {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -127,8 +127,8 @@ extern_category!(
         #[method(exposeBinding:)]
         unsafe fn exposeBinding(binding: &NSBindingName);
 
-        #[unsafe(method_family(none))]
         #[method_id(exposedBindings)]
+        #[unsafe(method_family = none)]
         unsafe fn exposedBindings(&self) -> Retained<NSArray<NSBindingName>>;
 
         #[method(valueClassForBinding:)]
@@ -147,8 +147,8 @@ extern_category!(
         #[method(unbind:)]
         unsafe fn unbind(&self, binding: &NSBindingName);
 
-        #[unsafe(method_family(none))]
         #[method_id(infoForBinding:)]
+        #[unsafe(method_family = none)]
         unsafe fn infoForBinding(
             &self,
             binding: &NSBindingName,
@@ -156,8 +156,8 @@ extern_category!(
 
         #[cfg(feature = "objc2-core-data")]
         #[cfg(target_vendor = "apple")]
-        #[unsafe(method_family(none))]
         #[method_id(optionDescriptionsForBinding:)]
+        #[unsafe(method_family = none)]
         unsafe fn optionDescriptionsForBinding(
             &self,
             binding: &NSBindingName,

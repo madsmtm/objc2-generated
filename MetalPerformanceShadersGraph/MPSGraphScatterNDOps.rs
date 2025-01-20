@@ -86,8 +86,8 @@ extern_methods!(
         /// - mode: The type of update to use on the destination
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[unsafe(method_family(none))]
         #[method_id(scatterNDWithUpdatesTensor:indicesTensor:shape:batchDimensions:mode:name:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scatterNDWithUpdatesTensor_indicesTensor_shape_batchDimensions_mode_name(
             &self,
             updates_tensor: &MPSGraphTensor,
@@ -132,8 +132,8 @@ extern_methods!(
         /// - batchDimensions: The number of batch dimensions
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[unsafe(method_family(none))]
         #[method_id(scatterNDWithUpdatesTensor:indicesTensor:shape:batchDimensions:name:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scatterNDWithUpdatesTensor_indicesTensor_shape_batchDimensions_name(
             &self,
             updates_tensor: &MPSGraphTensor,
@@ -177,8 +177,8 @@ extern_methods!(
         /// - mode: The type of update to use on the destination
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[unsafe(method_family(none))]
         #[method_id(scatterNDWithDataTensor:updatesTensor:indicesTensor:batchDimensions:mode:name:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scatterNDWithDataTensor_updatesTensor_indicesTensor_batchDimensions_mode_name(
             &self,
             data_tensor: &MPSGraphTensor,
@@ -225,8 +225,8 @@ extern_methods!(
         /// - mode: The type of update to use on the destination.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[unsafe(method_family(none))]
         #[method_id(scatterWithUpdatesTensor:indicesTensor:shape:axis:mode:name:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scatterWithUpdatesTensor_indicesTensor_shape_axis_mode_name(
             &self,
             updates_tensor: &MPSGraphTensor,
@@ -266,8 +266,8 @@ extern_methods!(
         /// - mode: The type of update to use on the destination
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[unsafe(method_family(none))]
         #[method_id(scatterWithDataTensor:updatesTensor:indicesTensor:axis:mode:name:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scatterWithDataTensor_updatesTensor_indicesTensor_axis_mode_name(
             &self,
             data_tensor: &MPSGraphTensor,
@@ -303,8 +303,8 @@ extern_methods!(
         /// - mode: The type of update to use
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[unsafe(method_family(none))]
         #[method_id(scatterAlongAxis:withUpdatesTensor:indicesTensor:shape:mode:name:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scatterAlongAxis_withUpdatesTensor_indicesTensor_shape_mode_name(
             &self,
             axis: NSInteger,
@@ -334,8 +334,8 @@ extern_methods!(
         /// - mode: The type of update to use
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[unsafe(method_family(none))]
         #[method_id(scatterAlongAxisTensor:withUpdatesTensor:indicesTensor:shape:mode:name:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scatterAlongAxisTensor_withUpdatesTensor_indicesTensor_shape_mode_name(
             &self,
             axis_tensor: &MPSGraphTensor,
@@ -379,8 +379,8 @@ extern_methods!(
         /// - mode: The type of update to use
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[unsafe(method_family(none))]
         #[method_id(scatterAlongAxis:withDataTensor:updatesTensor:indicesTensor:mode:name:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scatterAlongAxis_withDataTensor_updatesTensor_indicesTensor_mode_name(
             &self,
             axis: NSInteger,
@@ -424,8 +424,8 @@ extern_methods!(
         /// - mode: The type of update to use
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[unsafe(method_family(none))]
         #[method_id(scatterAlongAxisTensor:withDataTensor:updatesTensor:indicesTensor:mode:name:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scatterAlongAxisTensor_withDataTensor_updatesTensor_indicesTensor_mode_name(
             &self,
             axis_tensor: &MPSGraphTensor,

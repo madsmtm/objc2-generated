@@ -23,20 +23,20 @@ unsafe impl NSObjectProtocol for SNClassification {}
 extern_methods!(
     unsafe impl SNClassification {
         /// The identifier of a classification request. An example classification could be a string like 'laughter' or 'applause'. The string is defined in the model that was used for the classification. Usually these are technical labels that are not localized and not meant to be used directly to be presented to an end user in the UI.
-        #[unsafe(method_family(none))]
         #[method_id(identifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         /// The level of confidence normalized to [0, 1], where 1 is most confident
         #[method(confidence)]
         pub unsafe fn confidence(&self) -> c_double;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -58,8 +58,8 @@ unsafe impl SNResult for SNClassificationResult {}
 extern_methods!(
     unsafe impl SNClassificationResult {
         /// All classification candidates, sorted with highest confidence first.
-        #[unsafe(method_family(none))]
         #[method_id(classifications)]
+        #[unsafe(method_family = none)]
         pub unsafe fn classifications(&self) -> Retained<NSArray<SNClassification>>;
 
         #[cfg(feature = "objc2-core-media")]
@@ -69,12 +69,12 @@ extern_methods!(
         #[method(timeRange)]
         pub unsafe fn timeRange(&self) -> CMTimeRange;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Retrieves the classification candidate with the specified identifier.
@@ -82,8 +82,8 @@ extern_methods!(
         /// - Parameter identifier: An identifier on which to query for a particular classification candidate. The query will match to any classification candidate whose `identifier` property (see `identifier` property of `SNClassification`) contains a value equal to the provided argument.
         ///
         /// - Returns: The classification candidate which has the specified identifier, if it exists. If no such candidate exists, `nil` will be returned.
-        #[unsafe(method_family(none))]
         #[method_id(classificationForIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn classificationForIdentifier(
             &self,
             identifier: &NSString,

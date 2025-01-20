@@ -59,8 +59,8 @@ extern_methods!(
         /// Returns: The initialized NSURLResponse.
         ///
         /// This is the designated initializer for NSURLResponse.
-        #[unsafe(method_family(init))]
         #[method_id(initWithURL:MIMEType:expectedContentLength:textEncodingName:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithURL_MIMEType_expectedContentLength_textEncodingName(
             this: Allocated<Self>,
             url: &NSURL,
@@ -73,8 +73,8 @@ extern_methods!(
         /// Returns the URL of the receiver.
         ///
         /// Returns: The URL of the receiver.
-        #[unsafe(method_family(none))]
         #[method_id(URL)]
+        #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSString")]
@@ -88,8 +88,8 @@ extern_methods!(
         /// be made if the origin source did not report any such information.
         ///
         /// Returns: The MIME type of the receiver.
-        #[unsafe(method_family(none))]
         #[method_id(MIMEType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn MIMEType(&self) -> Option<Retained<NSString>>;
 
         /// Returns the expected content length of the receiver.
@@ -118,8 +118,8 @@ extern_methods!(
         ///
         /// Returns: The name of the text encoding of the receiver, or nil if no
         /// text encoding was specified.
-        #[unsafe(method_family(none))]
         #[method_id(textEncodingName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textEncodingName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
@@ -134,8 +134,8 @@ extern_methods!(
         /// This method always returns a valid filename.
         ///
         /// Returns: A suggested filename to use if saving the resource to disk.
-        #[unsafe(method_family(none))]
         #[method_id(suggestedFilename)]
+        #[unsafe(method_family = none)]
         pub unsafe fn suggestedFilename(&self) -> Option<Retained<NSString>>;
     }
 );
@@ -143,12 +143,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSURLResponse {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -201,8 +201,8 @@ extern_methods!(
         /// Returns: the instance of the object, or NULL if an error occurred during initialization.
         ///
         /// This API was introduced in Mac OS X 10.7.2 and iOS 5.0 and is not available prior to those releases.
-        #[unsafe(method_family(init))]
         #[method_id(initWithURL:statusCode:HTTPVersion:headerFields:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithURL_statusCode_HTTPVersion_headerFields(
             this: Allocated<Self>,
             url: &NSURL,
@@ -228,8 +228,8 @@ extern_methods!(
         ///
         /// Returns: A dictionary containing all the HTTP header fields of the
         /// receiver.
-        #[unsafe(method_family(none))]
         #[method_id(allHeaderFields)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allHeaderFields(&self) -> Retained<NSDictionary>;
 
         #[cfg(feature = "NSString")]
@@ -242,8 +242,8 @@ extern_methods!(
         ///
         /// Returns: the value associated with the given header field, or nil if
         /// there is no value associated with the given header field.
-        #[unsafe(method_family(none))]
         #[method_id(valueForHTTPHeaderField:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn valueForHTTPHeaderField(
             &self,
             field: &NSString,
@@ -256,8 +256,8 @@ extern_methods!(
         /// Parameter `statusCode`: the status code to use to produce a localized string.
         ///
         /// Returns: A localized string corresponding to the given status code.
-        #[unsafe(method_family(none))]
         #[method_id(localizedStringForStatusCode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn localizedStringForStatusCode(status_code: NSInteger) -> Retained<NSString>;
     }
 );
@@ -279,8 +279,8 @@ extern_methods!(
         /// Returns: The initialized NSURLResponse.
         ///
         /// This is the designated initializer for NSURLResponse.
-        #[unsafe(method_family(init))]
         #[method_id(initWithURL:MIMEType:expectedContentLength:textEncodingName:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithURL_MIMEType_expectedContentLength_textEncodingName(
             this: Allocated<Self>,
             url: &NSURL,
@@ -294,12 +294,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSHTTPURLResponse {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

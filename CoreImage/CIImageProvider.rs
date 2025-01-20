@@ -14,8 +14,8 @@ extern_methods!(
     #[cfg(feature = "CIImage")]
     unsafe impl CIImage {
         #[cfg(feature = "objc2-core-graphics")]
-        #[unsafe(method_family(none))]
         #[method_id(imageWithImageProvider:size::format:colorSpace:options:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn imageWithImageProvider_size__format_colorSpace_options(
             p: &AnyObject,
             width: usize,
@@ -26,8 +26,8 @@ extern_methods!(
         ) -> Retained<CIImage>;
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithImageProvider:size::format:colorSpace:options:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithImageProvider_size__format_colorSpace_options(
             this: Allocated<Self>,
             p: &AnyObject,

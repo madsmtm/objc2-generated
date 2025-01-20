@@ -50,8 +50,8 @@ unsafe impl NSObjectProtocol for CMWaterSubmersionManager {}
 
 extern_methods!(
     unsafe impl CMWaterSubmersionManager {
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn CMWaterSubmersionManagerDelegate>>>;
@@ -71,8 +71,8 @@ extern_methods!(
         #[method(authorizationStatus)]
         pub unsafe fn authorizationStatus() -> CMAuthorizationStatus;
 
-        #[unsafe(method_family(none))]
         #[method_id(maximumDepth)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maximumDepth(&self) -> Option<Retained<NSMeasurement<NSUnitLength>>>;
     }
 );
@@ -80,12 +80,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CMWaterSubmersionManager {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

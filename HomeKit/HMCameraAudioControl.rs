@@ -25,20 +25,20 @@ unsafe impl NSObjectProtocol for HMCameraAudioControl {}
 extern_methods!(
     #[cfg(feature = "HMCameraControl")]
     unsafe impl HMCameraAudioControl {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "HMCharacteristic")]
         /// Characteristic corresponding to mute setting on the camera.
-        #[unsafe(method_family(none))]
         #[method_id(mute)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mute(&self) -> Option<Retained<HMCharacteristic>>;
 
         #[cfg(feature = "HMCharacteristic")]
         /// Characteristic corresponding to volume setting on the camera.
-        #[unsafe(method_family(none))]
         #[method_id(volume)]
+        #[unsafe(method_family = none)]
         pub unsafe fn volume(&self) -> Option<Retained<HMCharacteristic>>;
     }
 );
@@ -47,8 +47,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "HMCameraControl")]
     unsafe impl HMCameraAudioControl {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

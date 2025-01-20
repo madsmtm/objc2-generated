@@ -57,8 +57,8 @@ extern_methods!(
     unsafe impl DOMRange {
         #[cfg(feature = "DOMNode")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(startContainer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn startContainer(&self) -> Option<Retained<DOMNode>>;
 
         #[deprecated]
@@ -67,8 +67,8 @@ extern_methods!(
 
         #[cfg(feature = "DOMNode")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(endContainer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn endContainer(&self) -> Option<Retained<DOMNode>>;
 
         #[deprecated]
@@ -81,12 +81,12 @@ extern_methods!(
 
         #[cfg(feature = "DOMNode")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(commonAncestorContainer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn commonAncestorContainer(&self) -> Option<Retained<DOMNode>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(text)]
+        #[unsafe(method_family = none)]
         pub unsafe fn text(&self) -> Retained<NSString>;
 
         #[cfg(feature = "DOMNode")]
@@ -144,14 +144,14 @@ extern_methods!(
 
         #[cfg(all(feature = "DOMDocumentFragment", feature = "DOMNode"))]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(extractContents)]
+        #[unsafe(method_family = none)]
         pub unsafe fn extractContents(&self) -> Option<Retained<DOMDocumentFragment>>;
 
         #[cfg(all(feature = "DOMDocumentFragment", feature = "DOMNode"))]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(cloneContents)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cloneContents(&self) -> Option<Retained<DOMDocumentFragment>>;
 
         #[cfg(feature = "DOMNode")]
@@ -165,13 +165,13 @@ extern_methods!(
         pub unsafe fn surroundContents(&self, new_parent: Option<&DOMNode>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(cloneRange)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cloneRange(&self) -> Option<Retained<DOMRange>>;
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(toString)]
+        #[unsafe(method_family = none)]
         pub unsafe fn toString(&self) -> Option<Retained<NSString>>;
 
         #[deprecated]
@@ -179,8 +179,8 @@ extern_methods!(
         pub unsafe fn detach(&self);
 
         #[cfg(all(feature = "DOMDocumentFragment", feature = "DOMNode"))]
-        #[unsafe(method_family(none))]
         #[method_id(createContextualFragment:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn createContextualFragment(
             &self,
             html: Option<&NSString>,
@@ -217,8 +217,8 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMRange {
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -227,8 +227,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMRange {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

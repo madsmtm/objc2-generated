@@ -19,8 +19,8 @@ extern_category!(
         /// `@["swift-programming-book",``"chapter1"],`your app should direct the user to
         /// _chapter1_in
         /// _swift-programming-book._
-        #[unsafe(method_family(none))]
         #[method_id(contextIdentifierPath)]
+        #[unsafe(method_family = none)]
         unsafe fn contextIdentifierPath(&self) -> Option<Retained<NSArray<NSString>>>;
     }
 

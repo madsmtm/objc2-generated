@@ -58,8 +58,8 @@ extern_methods!(
         /// using a default NSData based allocator
         ///
         /// Submeshes will be converted to triangle topology.
-        #[unsafe(method_family(init))]
         #[method_id(initWithURL:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
         #[cfg(all(feature = "MDLMeshBuffer", feature = "MDLVertexDescriptor"))]
@@ -78,8 +78,8 @@ extern_methods!(
         /// using a default NSData based allocator.
         ///
         /// Submeshes will be converted to triangle topology.
-        #[unsafe(method_family(init))]
         #[method_id(initWithURL:vertexDescriptor:bufferAllocator:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithURL_vertexDescriptor_bufferAllocator(
             this: Allocated<Self>,
             url: Option<&NSURL>,
@@ -90,8 +90,8 @@ extern_methods!(
         #[cfg(feature = "MDLMeshBuffer")]
         /// Initialize an empty MDLAsset with a buffer allocator to be used during
         /// other operations.
-        #[unsafe(method_family(init))]
         #[method_id(initWithBufferAllocator:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithBufferAllocator(
             this: Allocated<Self>,
             buffer_allocator: Option<&ProtocolObject<dyn MDLMeshBufferAllocator>>,
@@ -111,8 +111,8 @@ extern_methods!(
 
         #[cfg(feature = "MDLObject")]
         /// Return the object at the specified path, or nil if none exists there
-        #[unsafe(method_family(none))]
         #[method_id(objectAtPath:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn objectAtPath(&self, path: &NSString) -> Retained<MDLObject>;
 
         /// Indicates whether MDLAsset object can be initialized with resource
@@ -139,8 +139,8 @@ extern_methods!(
         /// This can be used to get references to all MDLMesh objects, MDLLights,
         /// etc. if objectClass is not a subclass of MDLObject, an exception will be
         /// raised.
-        #[unsafe(method_family(none))]
         #[method_id(childObjectsOfClass:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn childObjectsOfClass(
             &self,
             object_class: &AnyClass,
@@ -192,16 +192,16 @@ extern_methods!(
         /// URL used to create the asset
         ///
         /// If the asset was not created with a URL, nil will be returned.
-        #[unsafe(method_family(none))]
         #[method_id(URL)]
+        #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "MDLAssetResolver")]
         /// Resolver asset that helps find associated files
         ///
         /// The default asset resolver is the RelativeAssetResolver
-        #[unsafe(method_family(none))]
         #[method_id(resolver)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resolver(&self) -> Option<Retained<ProtocolObject<dyn MDLAssetResolver>>>;
 
         #[cfg(feature = "MDLAssetResolver")]
@@ -211,8 +211,8 @@ extern_methods!(
 
         #[cfg(feature = "MDLMeshBuffer")]
         /// Allocator used to create vertex and index buffers
-        #[unsafe(method_family(none))]
         #[method_id(bufferAllocator)]
+        #[unsafe(method_family = none)]
         pub unsafe fn bufferAllocator(
             &self,
         ) -> Retained<ProtocolObject<dyn MDLMeshBufferAllocator>>;
@@ -221,8 +221,8 @@ extern_methods!(
         /// Vertex descriptor set upon asset initialization
         ///
         /// Will be nil if there was no descriptor set
-        #[unsafe(method_family(none))]
         #[method_id(vertexDescriptor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn vertexDescriptor(&self) -> Option<Retained<MDLVertexDescriptor>>;
 
         #[cfg(feature = "MDLObject")]
@@ -245,8 +245,8 @@ extern_methods!(
 
         #[cfg(feature = "MDLObject")]
         /// return the indexed top level object
-        #[unsafe(method_family(none))]
         #[method_id(objectAtIndexedSubscript:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             index: NSUInteger,
@@ -254,14 +254,14 @@ extern_methods!(
 
         #[cfg(feature = "MDLObject")]
         /// return the indexed top level object
-        #[unsafe(method_family(none))]
         #[method_id(objectAtIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn objectAtIndex(&self, index: NSUInteger) -> Retained<MDLObject>;
 
         #[cfg(feature = "MDLTypes")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(masters)]
+        #[unsafe(method_family = none)]
         pub unsafe fn masters(&self) -> Retained<ProtocolObject<dyn MDLObjectContainerComponent>>;
 
         #[cfg(feature = "MDLTypes")]
@@ -274,8 +274,8 @@ extern_methods!(
         /// Original objects that can be instanced into the asset's object hierarchy
         ///
         /// See: MDLObjectContainerComponent
-        #[unsafe(method_family(none))]
         #[method_id(originals)]
+        #[unsafe(method_family = none)]
         pub unsafe fn originals(&self)
             -> Retained<ProtocolObject<dyn MDLObjectContainerComponent>>;
 
@@ -293,8 +293,8 @@ extern_methods!(
         /// See: MDLAnimationBindComponent)
         ///
         /// See: MDLObjectContainerComponent
-        #[unsafe(method_family(none))]
         #[method_id(animations)]
+        #[unsafe(method_family = none)]
         pub unsafe fn animations(
             &self,
         ) -> Retained<ProtocolObject<dyn MDLObjectContainerComponent>>;
@@ -312,12 +312,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLAsset {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -348,8 +348,8 @@ extern_methods!(
     /// places the light probes in areas of greatest irradiance change.
     unsafe impl MDLAsset {
         #[cfg(all(feature = "MDLLight", feature = "MDLObject", feature = "MDLTypes"))]
-        #[unsafe(method_family(none))]
         #[method_id(placeLightProbesWithDensity:heuristic:usingIrradianceDataSource:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn placeLightProbesWithDensity_heuristic_usingIrradianceDataSource(
             value: c_float,
             r#type: MDLProbePlacement,

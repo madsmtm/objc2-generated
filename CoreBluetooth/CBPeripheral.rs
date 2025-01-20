@@ -80,8 +80,8 @@ extern_methods!(
     #[cfg(feature = "CBPeer")]
     unsafe impl CBPeripheral {
         /// The delegate object that will receive peripheral events.
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self)
             -> Option<Retained<ProtocolObject<dyn CBPeripheralDelegate>>>;
 
@@ -94,8 +94,8 @@ extern_methods!(
         );
 
         /// The name of the peripheral.
-        #[unsafe(method_family(none))]
         #[method_id(name)]
+        #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         /// The most recently read RSSI, in decibels.
@@ -107,8 +107,8 @@ extern_methods!(
         ///
         /// ```
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(RSSI)]
+        #[unsafe(method_family = none)]
         pub unsafe fn RSSI(&self) -> Option<Retained<NSNumber>>;
 
         /// The current connection state of the peripheral.
@@ -121,8 +121,8 @@ extern_methods!(
         /// CBService
         /// </code>
         /// objects that have been discovered on the peripheral.
-        #[unsafe(method_family(none))]
         #[method_id(services)]
+        #[unsafe(method_family = none)]
         pub unsafe fn services(&self) -> Option<Retained<NSArray<CBService>>>;
 
         /// YES if the remote device has space to send a write without response. If this value is NO,
@@ -420,8 +420,8 @@ extern_methods!(
     /// Methods declared on superclass `CBPeer`
     #[cfg(feature = "CBPeer")]
     unsafe impl CBPeripheral {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -430,8 +430,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CBPeer")]
     unsafe impl CBPeripheral {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

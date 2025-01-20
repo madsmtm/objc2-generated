@@ -122,13 +122,13 @@ extern_methods!(
         /// The device this texture was created against.
         ///
         /// This shared texture handle can only be used with this device.
-        #[unsafe(method_family(none))]
         #[method_id(device)]
+        #[unsafe(method_family = none)]
         pub fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         /// A copy of the original texture's label property, if any
-        #[unsafe(method_family(none))]
         #[method_id(label)]
+        #[unsafe(method_family = none)]
         pub fn label(&self) -> Option<Retained<NSString>>;
     }
 );
@@ -136,12 +136,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLSharedTextureHandle {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -219,8 +219,8 @@ extern_methods!(
     unsafe impl MTLTextureDescriptor {
         #[cfg(feature = "MTLPixelFormat")]
         /// Create a TextureDescriptor for a common 2D texture.
-        #[unsafe(method_family(none))]
         #[method_id(texture2DDescriptorWithPixelFormat:width:height:mipmapped:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn texture2DDescriptorWithPixelFormat_width_height_mipmapped(
             pixel_format: MTLPixelFormat,
             width: NSUInteger,
@@ -230,8 +230,8 @@ extern_methods!(
 
         #[cfg(feature = "MTLPixelFormat")]
         /// Create a TextureDescriptor for a common Cube texture.
-        #[unsafe(method_family(none))]
         #[method_id(textureCubeDescriptorWithPixelFormat:size:mipmapped:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureCubeDescriptorWithPixelFormat_size_mipmapped(
             pixel_format: MTLPixelFormat,
             size: NSUInteger,
@@ -240,8 +240,8 @@ extern_methods!(
 
         #[cfg(all(feature = "MTLPixelFormat", feature = "MTLResource"))]
         /// Create a TextureDescriptor for a common texture buffer.
-        #[unsafe(method_family(none))]
         #[method_id(textureBufferDescriptorWithPixelFormat:width:resourceOptions:usage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureBufferDescriptorWithPixelFormat_width_resourceOptions_usage(
             pixel_format: MTLPixelFormat,
             width: NSUInteger,
@@ -420,12 +420,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLTextureDescriptor {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -442,13 +442,13 @@ extern_protocol!(
     pub unsafe trait MTLTexture: MTLResource {
         /// The resource this texture was created from. It may be a texture or a buffer. If this texture is not reusing storage of another MTLResource, then nil is returned.
         #[deprecated = "Use parentTexture or buffer instead"]
-        #[unsafe(method_family(none))]
         #[method_id(rootResource)]
+        #[unsafe(method_family = none)]
         fn rootResource(&self) -> Option<Retained<ProtocolObject<dyn MTLResource>>>;
 
         /// The texture this texture view was created from, or nil if this is not a texture view or it was not created from a texture.
-        #[unsafe(method_family(none))]
         #[method_id(parentTexture)]
+        #[unsafe(method_family = none)]
         fn parentTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         /// The base level of the texture this texture view was created from, or 0 if this is not a texture view.
@@ -461,8 +461,8 @@ extern_protocol!(
 
         #[cfg(feature = "MTLBuffer")]
         /// The buffer this texture view was created from, or nil if this is not a texture view or it was not created from a buffer.
-        #[unsafe(method_family(none))]
         #[method_id(buffer)]
+        #[unsafe(method_family = none)]
         fn buffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         /// The offset of the buffer this texture view was created from, or 0 if this is not a texture view.
@@ -475,8 +475,8 @@ extern_protocol!(
 
         #[cfg(feature = "objc2-io-surface")]
         /// If this texture was created from an IOSurface, this returns a reference to that IOSurface. iosurface is nil if this texture was not created from an IOSurface.
-        #[unsafe(method_family(none))]
         #[method_id(iosurface)]
+        #[unsafe(method_family = none)]
         unsafe fn iosurface(&self) -> Option<Retained<IOSurfaceRef>>;
 
         /// If this texture was created from an IOSurface, this returns the plane of the IOSurface from which the texture was created. iosurfacePlane is 0 if this texture was not created from an IOSurface.
@@ -622,8 +622,8 @@ extern_protocol!(
 
         #[cfg(feature = "MTLPixelFormat")]
         /// Create a new texture which shares the same storage as the source texture, but with a different (but compatible) pixel format.
-        #[unsafe(method_family(new))]
         #[method_id(newTextureViewWithPixelFormat:)]
+        #[unsafe(method_family = new)]
         fn newTextureViewWithPixelFormat(
             &self,
             pixel_format: MTLPixelFormat,
@@ -631,8 +631,8 @@ extern_protocol!(
 
         #[cfg(feature = "MTLPixelFormat")]
         /// Create a new texture which shares the same storage as the source texture, but with a different (but compatible) pixel format, texture type, levels and slices.
-        #[unsafe(method_family(new))]
         #[method_id(newTextureViewWithPixelFormat:textureType:levels:slices:)]
+        #[unsafe(method_family = new)]
         unsafe fn newTextureViewWithPixelFormat_textureType_levels_slices(
             &self,
             pixel_format: MTLPixelFormat,
@@ -642,20 +642,20 @@ extern_protocol!(
         ) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         /// Create a new texture handle, that can be shared across process addres space boundaries.
-        #[unsafe(method_family(new))]
         #[method_id(newSharedTextureHandle)]
+        #[unsafe(method_family = new)]
         fn newSharedTextureHandle(&self) -> Option<Retained<MTLSharedTextureHandle>>;
 
         /// For Metal texture objects that are remote views, this returns the texture associated with the storage on the originating device.
-        #[unsafe(method_family(none))]
         #[method_id(remoteStorageTexture)]
+        #[unsafe(method_family = none)]
         fn remoteStorageTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         #[cfg(feature = "MTLDevice")]
         /// On Metal devices that support peer to peer transfers, this method is used to create a remote texture view on another device
         /// within the peer group.  The receiver must use MTLStorageModePrivate or be backed by an IOSurface.
-        #[unsafe(method_family(new))]
         #[method_id(newRemoteTextureViewForDevice:)]
+        #[unsafe(method_family = new)]
         unsafe fn newRemoteTextureViewForDevice(
             &self,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -667,8 +667,8 @@ extern_protocol!(
 
         #[cfg(feature = "MTLPixelFormat")]
         /// Create a new texture which shares the same storage as the source texture, but with a different (but compatible) pixel format, texture type, levels, slices and swizzle.
-        #[unsafe(method_family(new))]
         #[method_id(newTextureViewWithPixelFormat:textureType:levels:slices:swizzle:)]
+        #[unsafe(method_family = new)]
         unsafe fn newTextureViewWithPixelFormat_textureType_levels_slices_swizzle(
             &self,
             pixel_format: MTLPixelFormat,

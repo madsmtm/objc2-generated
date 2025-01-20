@@ -17,8 +17,8 @@ extern_protocol!(
     pub unsafe trait UITextDroppable:
         UITextInput + UITextPasteConfigurationSupporting + MainThreadOnly
     {
-        #[unsafe(method_family(none))]
         #[method_id(textDropDelegate)]
+        #[unsafe(method_family = none)]
         unsafe fn textDropDelegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UITextDropDelegate>>>;
@@ -32,8 +32,8 @@ extern_protocol!(
         );
 
         #[cfg(feature = "UIDropInteraction")]
-        #[unsafe(method_family(none))]
         #[method_id(textDropInteraction)]
+        #[unsafe(method_family = none)]
         unsafe fn textDropInteraction(&self) -> Option<Retained<UIDropInteraction>>;
 
         #[method(isTextDropActive)]
@@ -93,8 +93,8 @@ extern_protocol!(
             feature = "UIView"
         ))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(textDroppableView:proposalForDrop:)]
+        #[unsafe(method_family = none)]
         unsafe fn textDroppableView_proposalForDrop(
             &self,
             text_droppable_view: &UIView,
@@ -128,8 +128,8 @@ extern_protocol!(
             feature = "UIView"
         ))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(textDroppableView:previewForDroppingAllItemsWithDefault:)]
+        #[unsafe(method_family = none)]
         unsafe fn textDroppableView_previewForDroppingAllItemsWithDefault(
             &self,
             text_droppable_view: &UIView,
@@ -210,21 +210,21 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdroprequest?language=objc)
     pub unsafe trait UITextDropRequest: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UITextInput")]
-        #[unsafe(method_family(none))]
         #[method_id(dropPosition)]
+        #[unsafe(method_family = none)]
         unsafe fn dropPosition(&self) -> Retained<UITextPosition>;
 
         #[cfg(all(feature = "UIDropInteraction", feature = "UITextDropProposal"))]
-        #[unsafe(method_family(none))]
         #[method_id(suggestedProposal)]
+        #[unsafe(method_family = none)]
         unsafe fn suggestedProposal(&self) -> Retained<UITextDropProposal>;
 
         #[method(isSameView)]
         unsafe fn isSameView(&self) -> bool;
 
         #[cfg(feature = "UIDragSession")]
-        #[unsafe(method_family(none))]
         #[method_id(dropSession)]
+        #[unsafe(method_family = none)]
         unsafe fn dropSession(&self) -> Retained<ProtocolObject<dyn UIDropSession>>;
     }
 );

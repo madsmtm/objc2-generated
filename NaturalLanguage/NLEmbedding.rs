@@ -40,37 +40,37 @@ unsafe impl NSObjectProtocol for NLEmbedding {}
 extern_methods!(
     unsafe impl NLEmbedding {
         #[cfg(feature = "NLLanguage")]
-        #[unsafe(method_family(none))]
         #[method_id(wordEmbeddingForLanguage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn wordEmbeddingForLanguage(
             language: &NLLanguage,
         ) -> Option<Retained<NLEmbedding>>;
 
         #[cfg(feature = "NLLanguage")]
-        #[unsafe(method_family(none))]
         #[method_id(wordEmbeddingForLanguage:revision:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn wordEmbeddingForLanguage_revision(
             language: &NLLanguage,
             revision: NSUInteger,
         ) -> Option<Retained<NLEmbedding>>;
 
         #[cfg(feature = "NLLanguage")]
-        #[unsafe(method_family(none))]
         #[method_id(sentenceEmbeddingForLanguage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sentenceEmbeddingForLanguage(
             language: &NLLanguage,
         ) -> Option<Retained<NLEmbedding>>;
 
         #[cfg(feature = "NLLanguage")]
-        #[unsafe(method_family(none))]
         #[method_id(sentenceEmbeddingForLanguage:revision:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sentenceEmbeddingForLanguage_revision(
             language: &NLLanguage,
             revision: NSUInteger,
         ) -> Option<Retained<NLEmbedding>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(embeddingWithContentsOfURL:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn embeddingWithContentsOfURL_error(
             url: &NSURL,
         ) -> Result<Retained<Self>, Retained<NSError>>;
@@ -107,8 +107,8 @@ extern_methods!(
             block: &block2::Block<dyn Fn(NonNull<NSString>, NLDistance, NonNull<Bool>) + '_>,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(neighborsForString:maximumCount:distanceType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn neighborsForString_maximumCount_distanceType(
             &self,
             string: &NSString,
@@ -116,8 +116,8 @@ extern_methods!(
             distance_type: NLDistanceType,
         ) -> Option<Retained<NSArray<NSString>>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(neighborsForString:maximumCount:maximumDistance:distanceType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn neighborsForString_maximumCount_maximumDistance_distanceType(
             &self,
             string: &NSString,
@@ -126,8 +126,8 @@ extern_methods!(
             distance_type: NLDistanceType,
         ) -> Option<Retained<NSArray<NSString>>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(vectorForString:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn vectorForString(
             &self,
             string: &NSString,
@@ -161,8 +161,8 @@ extern_methods!(
             block: &block2::Block<dyn Fn(NonNull<NSString>, NLDistance, NonNull<Bool>) + '_>,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(neighborsForVector:maximumCount:distanceType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn neighborsForVector_maximumCount_distanceType(
             &self,
             vector: &NSArray<NSNumber>,
@@ -170,8 +170,8 @@ extern_methods!(
             distance_type: NLDistanceType,
         ) -> Retained<NSArray<NSString>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(neighborsForVector:maximumCount:maximumDistance:distanceType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn neighborsForVector_maximumCount_maximumDistance_distanceType(
             &self,
             vector: &NSArray<NSNumber>,
@@ -187,16 +187,16 @@ extern_methods!(
         pub unsafe fn vocabularySize(&self) -> NSUInteger;
 
         #[cfg(feature = "NLLanguage")]
-        #[unsafe(method_family(none))]
         #[method_id(language)]
+        #[unsafe(method_family = none)]
         pub unsafe fn language(&self) -> Option<Retained<NLLanguage>>;
 
         #[method(revision)]
         pub unsafe fn revision(&self) -> NSUInteger;
 
         #[cfg(feature = "NLLanguage")]
-        #[unsafe(method_family(none))]
         #[method_id(supportedRevisionsForLanguage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn supportedRevisionsForLanguage(language: &NLLanguage) -> Retained<NSIndexSet>;
 
         #[cfg(feature = "NLLanguage")]
@@ -204,8 +204,8 @@ extern_methods!(
         pub unsafe fn currentRevisionForLanguage(language: &NLLanguage) -> NSUInteger;
 
         #[cfg(feature = "NLLanguage")]
-        #[unsafe(method_family(none))]
         #[method_id(supportedSentenceEmbeddingRevisionsForLanguage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn supportedSentenceEmbeddingRevisionsForLanguage(
             language: &NLLanguage,
         ) -> Retained<NSIndexSet>;
@@ -230,12 +230,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NLEmbedding {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -38,16 +38,16 @@ extern_methods!(
     #[cfg(feature = "SKRequest")]
     unsafe impl SKProductsRequest {
         #[deprecated = "Use Product.products(for:)"]
-        #[unsafe(method_family(init))]
         #[method_id(initWithProductIdentifiers:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithProductIdentifiers(
             this: Allocated<Self>,
             product_identifiers: &NSSet<NSString>,
         ) -> Retained<Self>;
 
         #[deprecated = "Use Product.products(for:)"]
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn SKProductsRequestDelegate>>>;
@@ -67,12 +67,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "SKRequest")]
     unsafe impl SKProductsRequest {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -95,13 +95,13 @@ extern_methods!(
     unsafe impl SKProductsResponse {
         #[cfg(feature = "SKProduct")]
         #[deprecated = "Get products using Product.products(for:)"]
-        #[unsafe(method_family(none))]
         #[method_id(products)]
+        #[unsafe(method_family = none)]
         pub unsafe fn products(&self) -> Retained<NSArray<SKProduct>>;
 
         #[deprecated = "Get products using Product.products(for:)"]
-        #[unsafe(method_family(none))]
         #[method_id(invalidProductIdentifiers)]
+        #[unsafe(method_family = none)]
         pub unsafe fn invalidProductIdentifiers(&self) -> Retained<NSArray<NSString>>;
     }
 );
@@ -109,12 +109,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKProductsResponse {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

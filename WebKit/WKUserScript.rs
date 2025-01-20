@@ -54,8 +54,8 @@ unsafe impl NSObjectProtocol for WKUserScript {}
 
 extern_methods!(
     unsafe impl WKUserScript {
-        #[unsafe(method_family(none))]
         #[method_id(source)]
+        #[unsafe(method_family = none)]
         pub unsafe fn source(&self) -> Retained<NSString>;
 
         #[method(injectionTime)]
@@ -79,8 +79,8 @@ extern_methods!(
         /// Parameter `forMainFrameOnly`: Whether the script should be injected into all frames or just the main frame.
         ///
         /// Calling this method is the same as calling `initWithSource:injectionTime:forMainFrameOnly:inContentWorld:` with a `contentWorld` value of `WKContentWorld.pageWorld`
-        #[unsafe(method_family(init))]
         #[method_id(initWithSource:injectionTime:forMainFrameOnly:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithSource_injectionTime_forMainFrameOnly(
             this: Allocated<Self>,
             source: &NSString,
@@ -104,8 +104,8 @@ extern_methods!(
         /// Parameter `forMainFrameOnly`: Whether the script should be injected into all frames or just the main frame.
         ///
         /// Parameter `contentWorld`: The WKContentWorld in which to inject the script.
-        #[unsafe(method_family(init))]
         #[method_id(initWithSource:injectionTime:forMainFrameOnly:inContentWorld:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithSource_injectionTime_forMainFrameOnly_inContentWorld(
             this: Allocated<Self>,
             source: &NSString,
@@ -119,12 +119,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKUserScript {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

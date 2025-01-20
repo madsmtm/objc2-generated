@@ -87,13 +87,13 @@ unsafe impl NSObjectProtocol for GKChallengeEventHandler {}
 extern_methods!(
     unsafe impl GKChallengeEventHandler {
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(challengeEventHandler)]
+        #[unsafe(method_family = none)]
         pub unsafe fn challengeEventHandler() -> Option<Retained<GKChallengeEventHandler>>;
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn GKChallengeEventHandlerDelegate>>>;
@@ -112,12 +112,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKChallengeEventHandler {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

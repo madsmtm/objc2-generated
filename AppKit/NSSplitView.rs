@@ -95,16 +95,16 @@ extern_methods!(
         #[method(setDividerStyle:)]
         pub unsafe fn setDividerStyle(&self, divider_style: NSSplitViewDividerStyle);
 
-        #[unsafe(method_family(none))]
         #[method_id(autosaveName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn autosaveName(&self) -> Option<Retained<NSSplitViewAutosaveName>>;
 
         /// Setter for [`autosaveName`][Self::autosaveName].
         #[method(setAutosaveName:)]
         pub unsafe fn setAutosaveName(&self, autosave_name: Option<&NSSplitViewAutosaveName>);
 
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSSplitViewDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -119,8 +119,8 @@ extern_methods!(
         pub unsafe fn drawDividerInRect(&self, rect: NSRect);
 
         #[cfg(feature = "NSColor")]
-        #[unsafe(method_family(none))]
         #[method_id(dividerColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dividerColor(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -176,12 +176,12 @@ extern_methods!(
     /// Methods declared on superclass `NSView`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSSplitView {
-        #[unsafe(method_family(init))]
         #[method_id(initWithFrame:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -193,8 +193,8 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSSplitView {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -203,8 +203,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSSplitView {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -233,8 +233,8 @@ extern_methods!(
         /// `-arrangesAllSubviews`is YES, then
         /// `-arrangedSubviews`is identical to
         /// `-subviews.`
-        #[unsafe(method_family(none))]
         #[method_id(arrangedSubviews)]
+        #[unsafe(method_family = none)]
         pub unsafe fn arrangedSubviews(&self) -> Retained<NSArray<NSView>>;
 
         /// Adds a view as arranged split pane. If the view is not a subview of the receiver, it will be added as one.

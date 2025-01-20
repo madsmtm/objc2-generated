@@ -54,16 +54,16 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl GKTurnBasedMatchmakerViewController {
-        #[unsafe(method_family(init))]
         #[method_id(initWithNibName:bundle:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSNibName>,
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -76,8 +76,8 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl GKTurnBasedMatchmakerViewController {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -87,8 +87,8 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl GKTurnBasedMatchmakerViewController {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -97,8 +97,8 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl GKTurnBasedMatchmakerViewController {
-        #[unsafe(method_family(none))]
         #[method_id(turnBasedMatchmakerDelegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn turnBasedMatchmakerDelegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn GKTurnBasedMatchmakerViewControllerDelegate>>>;
@@ -131,8 +131,8 @@ extern_methods!(
         pub unsafe fn setMatchmakingMode(&self, matchmaking_mode: GKMatchmakingMode);
 
         #[cfg(feature = "GKMatchmaker")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithMatchRequest:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithMatchRequest(
             this: Allocated<Self>,
             request: &GKMatchRequest,

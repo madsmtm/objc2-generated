@@ -31,21 +31,21 @@ unsafe impl NSObjectProtocol for UILocalNotification {}
 extern_methods!(
     unsafe impl UILocalNotification {
         #[deprecated = "Use UserNotifications Framework's UNNotificationRequest"]
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[deprecated = "Use UserNotifications Framework's UNNotificationRequest"]
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
         #[deprecated = "Use UserNotifications Framework's UNNotificationRequest"]
-        #[unsafe(method_family(none))]
         #[method_id(fireDate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fireDate(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`fireDate`][Self::fireDate].
@@ -54,8 +54,8 @@ extern_methods!(
         pub unsafe fn setFireDate(&self, fire_date: Option<&NSDate>);
 
         #[deprecated = "Use UserNotifications Framework's UNNotificationRequest"]
-        #[unsafe(method_family(none))]
         #[method_id(timeZone)]
+        #[unsafe(method_family = none)]
         pub unsafe fn timeZone(&self) -> Option<Retained<NSTimeZone>>;
 
         /// Setter for [`timeZone`][Self::timeZone].
@@ -73,8 +73,8 @@ extern_methods!(
         pub unsafe fn setRepeatInterval(&self, repeat_interval: NSCalendarUnit);
 
         #[deprecated = "Use UserNotifications Framework's UNNotificationRequest"]
-        #[unsafe(method_family(none))]
         #[method_id(repeatCalendar)]
+        #[unsafe(method_family = none)]
         pub unsafe fn repeatCalendar(&self) -> Option<Retained<NSCalendar>>;
 
         /// Setter for [`repeatCalendar`][Self::repeatCalendar].
@@ -83,8 +83,8 @@ extern_methods!(
         pub unsafe fn setRepeatCalendar(&self, repeat_calendar: Option<&NSCalendar>);
 
         #[cfg(feature = "objc2-core-location")]
-        #[unsafe(method_family(none))]
         #[method_id(region)]
+        #[unsafe(method_family = none)]
         pub unsafe fn region(&self) -> Option<Retained<CLRegion>>;
 
         #[cfg(feature = "objc2-core-location")]
@@ -100,8 +100,8 @@ extern_methods!(
         pub unsafe fn setRegionTriggersOnce(&self, region_triggers_once: bool);
 
         #[deprecated = "Use UserNotifications Framework's UNNotificationRequest"]
-        #[unsafe(method_family(none))]
         #[method_id(alertBody)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alertBody(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`alertBody`][Self::alertBody].
@@ -119,8 +119,8 @@ extern_methods!(
         pub unsafe fn setHasAction(&self, has_action: bool);
 
         #[deprecated = "Use UserNotifications Framework's UNNotificationRequest"]
-        #[unsafe(method_family(none))]
         #[method_id(alertAction)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alertAction(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`alertAction`][Self::alertAction].
@@ -129,8 +129,8 @@ extern_methods!(
         pub unsafe fn setAlertAction(&self, alert_action: Option<&NSString>);
 
         #[deprecated = "Use UserNotifications Framework's UNNotificationRequest"]
-        #[unsafe(method_family(none))]
         #[method_id(alertLaunchImage)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alertLaunchImage(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`alertLaunchImage`][Self::alertLaunchImage].
@@ -138,8 +138,8 @@ extern_methods!(
         #[method(setAlertLaunchImage:)]
         pub unsafe fn setAlertLaunchImage(&self, alert_launch_image: Option<&NSString>);
 
-        #[unsafe(method_family(none))]
         #[method_id(alertTitle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alertTitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`alertTitle`][Self::alertTitle].
@@ -147,8 +147,8 @@ extern_methods!(
         pub unsafe fn setAlertTitle(&self, alert_title: Option<&NSString>);
 
         #[deprecated = "Use UserNotifications Framework's UNNotificationRequest"]
-        #[unsafe(method_family(none))]
         #[method_id(soundName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn soundName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`soundName`][Self::soundName].
@@ -169,8 +169,8 @@ extern_methods!(
         );
 
         #[deprecated = "Use UserNotifications Framework's UNNotificationRequest"]
-        #[unsafe(method_family(none))]
         #[method_id(userInfo)]
+        #[unsafe(method_family = none)]
         pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary>>;
 
         /// Setter for [`userInfo`][Self::userInfo].
@@ -178,8 +178,8 @@ extern_methods!(
         #[method(setUserInfo:)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary>);
 
-        #[unsafe(method_family(none))]
         #[method_id(category)]
+        #[unsafe(method_family = none)]
         pub unsafe fn category(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`category`][Self::category].
@@ -191,8 +191,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UILocalNotification {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

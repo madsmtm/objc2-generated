@@ -27,12 +27,12 @@ unsafe impl NSObjectProtocol for AVVideoPerformanceMetrics {}
 
 extern_methods!(
     unsafe impl AVVideoPerformanceMetrics {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// [SPI] The total number of frames that would have been displayed if no frames are dropped.

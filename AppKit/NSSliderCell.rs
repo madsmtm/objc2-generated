@@ -162,24 +162,24 @@ extern_methods!(
     /// Methods declared on superclass `NSCell`
     #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     unsafe impl NSSliderCell {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initTextCell:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
-        #[unsafe(method_family(init))]
         #[method_id(initImageCell:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initImageCell(
             this: Allocated<Self>,
             image: Option<&NSImage>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
     }
 );
@@ -188,8 +188,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     unsafe impl NSSliderCell {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -251,8 +251,8 @@ extern_methods!(
         pub unsafe fn setTitleCell(&self, cell: Option<&NSCell>);
 
         #[deprecated = "-titleCell has returned nil since 10.0"]
-        #[unsafe(method_family(none))]
         #[method_id(titleCell)]
+        #[unsafe(method_family = none)]
         pub unsafe fn titleCell(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSColor")]
@@ -262,8 +262,8 @@ extern_methods!(
 
         #[cfg(feature = "NSColor")]
         #[deprecated = "-titleColor has returned nil since 10.0"]
-        #[unsafe(method_family(none))]
         #[method_id(titleColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn titleColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSFont")]
@@ -273,13 +273,13 @@ extern_methods!(
 
         #[cfg(feature = "NSFont")]
         #[deprecated = "-titleFont has returned nil since 10.0"]
-        #[unsafe(method_family(none))]
         #[method_id(titleFont)]
+        #[unsafe(method_family = none)]
         pub unsafe fn titleFont(&self) -> Option<Retained<NSFont>>;
 
         #[deprecated = "-title has returned nil since 10.0"]
-        #[unsafe(method_family(none))]
         #[method_id(title)]
+        #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         #[deprecated = "-setTitle: had no effect since 10.0"]
@@ -298,8 +298,8 @@ extern_methods!(
 
         #[cfg(feature = "NSImage")]
         #[deprecated = "-image has returned nil since 10.0"]
-        #[unsafe(method_family(none))]
         #[method_id(image)]
+        #[unsafe(method_family = none)]
         pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
     }
 );

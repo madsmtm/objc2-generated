@@ -28,13 +28,13 @@ unsafe impl NSObjectProtocol for LAEnvironmentState {}
 extern_methods!(
     unsafe impl LAEnvironmentState {
         /// Clients shall not create environment state.
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Clients shall not create environment state.
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(all(
@@ -44,8 +44,8 @@ extern_methods!(
         /// Information about biometric authentication (Touch ID, Face ID or Optic ID).
         ///
         /// `nil`if biometry is not supported by this device.
-        #[unsafe(method_family(none))]
         #[method_id(biometry)]
+        #[unsafe(method_family = none)]
         pub unsafe fn biometry(&self) -> Option<Retained<LAEnvironmentMechanismBiometry>>;
 
         #[cfg(all(
@@ -55,8 +55,8 @@ extern_methods!(
         /// Information about local user password (on macOS) or passcode (on embedded platforms).
         ///
         /// `nil`if user password or passcode is not supported by this device.
-        #[unsafe(method_family(none))]
         #[method_id(userPassword)]
+        #[unsafe(method_family = none)]
         pub unsafe fn userPassword(&self) -> Option<Retained<LAEnvironmentMechanismUserPassword>>;
 
         #[cfg(all(
@@ -72,8 +72,8 @@ extern_methods!(
         /// has paired multiple Apple Watch devices for companion authentication, the array will contain only one
         /// `LAEnvironmentMechanimsCompanion`instance of type
         /// `LACompanionTypeWatch.`
-        #[unsafe(method_family(none))]
         #[method_id(companions)]
+        #[unsafe(method_family = none)]
         pub unsafe fn companions(&self) -> Retained<NSArray<LAEnvironmentMechanismCompanion>>;
 
         #[cfg(feature = "LAEnvironmentMechanism")]
@@ -82,8 +82,8 @@ extern_methods!(
         /// This property aggregates
         /// `biometry,``userPassword,``companions`and any future
         /// authentication mechanisms.
-        #[unsafe(method_family(none))]
         #[method_id(allMechanisms)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allMechanisms(&self) -> Retained<NSArray<LAEnvironmentMechanism>>;
     }
 );

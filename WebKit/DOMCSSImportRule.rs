@@ -50,20 +50,20 @@ extern_methods!(
     ))]
     unsafe impl DOMCSSImportRule {
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(href)]
+        #[unsafe(method_family = none)]
         pub unsafe fn href(&self) -> Retained<NSString>;
 
         #[cfg(feature = "DOMMediaList")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(media)]
+        #[unsafe(method_family = none)]
         pub unsafe fn media(&self) -> Option<Retained<DOMMediaList>>;
 
         #[cfg(all(feature = "DOMCSSStyleSheet", feature = "DOMStyleSheet"))]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(styleSheet)]
+        #[unsafe(method_family = none)]
         pub unsafe fn styleSheet(&self) -> Option<Retained<DOMCSSStyleSheet>>;
     }
 );
@@ -77,8 +77,8 @@ extern_methods!(
     ))]
     unsafe impl DOMCSSImportRule {
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -91,8 +91,8 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMCSSImportRule {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

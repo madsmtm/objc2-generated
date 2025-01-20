@@ -81,8 +81,8 @@ unsafe impl UITraitEnvironment for UIPopoverPresentationController {}
 extern_methods!(
     #[cfg(feature = "UIPresentationController")]
     unsafe impl UIPopoverPresentationController {
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIPopoverPresentationControllerDelegate>>>;
@@ -108,8 +108,8 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[unsafe(method_family(none))]
         #[method_id(sourceView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sourceView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
@@ -134,8 +134,8 @@ extern_methods!(
         pub unsafe fn setCanOverlapSourceViewRect(&self, can_overlap_source_view_rect: bool);
 
         #[cfg(feature = "UIPopoverPresentationControllerSourceItem")]
-        #[unsafe(method_family(none))]
         #[method_id(sourceItem)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sourceItem(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIPopoverPresentationControllerSourceItem>>>;
@@ -150,8 +150,8 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(barButtonItem)]
+        #[unsafe(method_family = none)]
         pub unsafe fn barButtonItem(&self) -> Option<Retained<UIBarButtonItem>>;
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
@@ -165,8 +165,8 @@ extern_methods!(
         pub unsafe fn arrowDirection(&self) -> UIPopoverArrowDirection;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[unsafe(method_family(none))]
         #[method_id(passthroughViews)]
+        #[unsafe(method_family = none)]
         pub unsafe fn passthroughViews(&self) -> Option<Retained<NSArray<UIView>>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
@@ -175,8 +175,8 @@ extern_methods!(
         pub unsafe fn setPassthroughViews(&self, passthrough_views: Option<&NSArray<UIView>>);
 
         #[cfg(feature = "UIColor")]
-        #[unsafe(method_family(none))]
         #[method_id(backgroundColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn backgroundColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -206,8 +206,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "UISheetPresentationController")]
-        #[unsafe(method_family(none))]
         #[method_id(adaptiveSheetPresentationController)]
+        #[unsafe(method_family = none)]
         pub unsafe fn adaptiveSheetPresentationController(
             &self,
         ) -> Retained<UISheetPresentationController>;
@@ -219,16 +219,16 @@ extern_methods!(
     #[cfg(feature = "UIPresentationController")]
     unsafe impl UIPopoverPresentationController {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-        #[unsafe(method_family(init))]
         #[method_id(initWithPresentedViewController:presentingViewController:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithPresentedViewController_presentingViewController(
             this: Allocated<Self>,
             presented_view_controller: &UIViewController,
             presenting_view_controller: Option<&UIViewController>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -237,8 +237,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UIPresentationController")]
     unsafe impl UIPopoverPresentationController {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

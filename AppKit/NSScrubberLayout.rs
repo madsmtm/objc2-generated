@@ -58,8 +58,8 @@ extern_methods!(
         #[method(setAlpha:)]
         pub unsafe fn setAlpha(&self, alpha: CGFloat);
 
-        #[unsafe(method_family(none))]
         #[method_id(layoutAttributesForItemAtIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layoutAttributesForItemAtIndex(index: NSInteger) -> Retained<Self>;
     }
 );
@@ -67,12 +67,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSScrubberLayoutAttributes {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -103,8 +103,8 @@ extern_methods!(
         #[cfg(all(feature = "NSResponder", feature = "NSScrubber", feature = "NSView"))]
         /// The NSScrubber control that this layout is assigned to, or
         /// `nil`if the receiver is not assigned to a scrubber.
-        #[unsafe(method_family(none))]
         #[method_id(scrubber)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scrubber(&self) -> Option<Retained<NSScrubber>>;
 
         /// The currently visible rectangle, in the coordinate space of the scrubber content. Returns
@@ -112,12 +112,12 @@ extern_methods!(
         #[method(visibleRect)]
         pub unsafe fn visibleRect(&self) -> NSRect;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         /// Signals that layout has been invalidated and the NSScrubber should run a fresh layout pass. Subclasses may define more granular invalidation methods suitable for their own data structures, but those methods should always call up to -invalidateLayout.
@@ -137,16 +137,16 @@ extern_methods!(
 
         /// Returns the layout attributes for a single item within the scrubber. The base implementation returns
         /// `nil.`
-        #[unsafe(method_family(none))]
         #[method_id(layoutAttributesForItemAtIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layoutAttributesForItemAtIndex(
             &self,
             index: NSInteger,
         ) -> Option<Retained<NSScrubberLayoutAttributes>>;
 
         /// Returns the set of layout attributes for all items within the provided rectangle. The base implementation returns an empty set.
-        #[unsafe(method_family(none))]
         #[method_id(layoutAttributesForItemsInRect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layoutAttributesForItemsInRect(
             &self,
             rect: NSRect,
@@ -189,8 +189,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSScrubberLayout {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -260,12 +260,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSScrubberLayout`
     unsafe impl NSScrubberFlowLayout {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
     }
 );
@@ -273,8 +273,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSScrubberFlowLayout {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -302,15 +302,15 @@ extern_methods!(
         #[method(setNumberOfVisibleItems:)]
         pub unsafe fn setNumberOfVisibleItems(&self, number_of_visible_items: NSInteger);
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithNumberOfVisibleItems:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithNumberOfVisibleItems(
             this: Allocated<Self>,
             number_of_visible_items: NSInteger,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
     }
 );
@@ -318,8 +318,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSScrubberLayout`
     unsafe impl NSScrubberProportionalLayout {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -327,8 +327,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSScrubberProportionalLayout {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

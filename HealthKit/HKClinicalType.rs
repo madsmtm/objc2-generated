@@ -77,8 +77,8 @@ extern_methods!(
     /// ClinicalType
     #[cfg(feature = "HKObjectType")]
     unsafe impl HKObjectType {
-        #[unsafe(method_family(none))]
         #[method_id(clinicalTypeForIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn clinicalTypeForIdentifier(
             identifier: &HKClinicalTypeIdentifier,
         ) -> Option<Retained<HKClinicalType>>;
@@ -127,8 +127,8 @@ extern_methods!(
     /// Methods declared on superclass `HKObjectType`
     #[cfg(feature = "HKObjectType")]
     unsafe impl HKClinicalType {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -137,8 +137,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "HKObjectType")]
     unsafe impl HKClinicalType {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

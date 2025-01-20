@@ -56,28 +56,28 @@ unsafe impl NSObjectProtocol for NSPrinter {}
 
 extern_methods!(
     unsafe impl NSPrinter {
-        #[unsafe(method_family(none))]
         #[method_id(printerNames)]
+        #[unsafe(method_family = none)]
         pub unsafe fn printerNames() -> Retained<NSArray<NSString>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(printerTypes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn printerTypes() -> Retained<NSArray<NSPrinterTypeName>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(printerWithName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn printerWithName(name: &NSString) -> Option<Retained<NSPrinter>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(printerWithType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn printerWithType(r#type: &NSPrinterTypeName) -> Option<Retained<NSPrinter>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(name)]
+        #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(type)]
+        #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> Retained<NSPrinterTypeName>;
 
         #[method(languageLevel)]
@@ -87,8 +87,8 @@ extern_methods!(
         pub unsafe fn pageSizeForPaper(&self, paper_name: &NSPrinterPaperName) -> NSSize;
 
         #[cfg(feature = "NSGraphics")]
-        #[unsafe(method_family(none))]
         #[method_id(deviceDescription)]
+        #[unsafe(method_family = none)]
         pub unsafe fn deviceDescription(
             &self,
         ) -> Retained<NSDictionary<NSDeviceDescriptionKey, AnyObject>>;
@@ -98,12 +98,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPrinter {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -150,8 +150,8 @@ extern_methods!(
             -> NSSize;
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(stringForKey:inTable:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stringForKey_inTable(
             &self,
             key: Option<&NSString>,
@@ -159,8 +159,8 @@ extern_methods!(
         ) -> Option<Retained<NSString>>;
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(stringListForKey:inTable:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stringListForKey_inTable(
             &self,
             key: Option<&NSString>,
@@ -188,8 +188,8 @@ extern_methods!(
         pub unsafe fn isOutputStackInReverseOrder(&self) -> bool;
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(printerWithName:domain:includeUnavailable:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn printerWithName_domain_includeUnavailable(
             name: &NSString,
             domain: Option<&NSString>,
@@ -197,18 +197,18 @@ extern_methods!(
         ) -> Option<Retained<NSPrinter>>;
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(domain)]
+        #[unsafe(method_family = none)]
         pub unsafe fn domain(&self) -> Retained<NSString>;
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(host)]
+        #[unsafe(method_family = none)]
         pub unsafe fn host(&self) -> Retained<NSString>;
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(note)]
+        #[unsafe(method_family = none)]
         pub unsafe fn note(&self) -> Retained<NSString>;
     }
 );

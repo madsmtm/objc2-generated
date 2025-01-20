@@ -90,48 +90,48 @@ unsafe impl NSSecureCoding for MEMessageAction {}
 extern_methods!(
     unsafe impl MEMessageAction {
         /// Moves the mail message to the user's trash mailbox for the account.
-        #[unsafe(method_family(none))]
         #[method_id(moveToTrashAction)]
+        #[unsafe(method_family = none)]
         pub unsafe fn moveToTrashAction() -> Retained<MEMessageAction>;
 
         /// Moves the mail message to the user's archive mailbox for the account.
-        #[unsafe(method_family(none))]
         #[method_id(moveToArchiveAction)]
+        #[unsafe(method_family = none)]
         pub unsafe fn moveToArchiveAction() -> Retained<MEMessageAction>;
 
         /// Moves the mail message to the user's junk mailbox for the account.
-        #[unsafe(method_family(none))]
         #[method_id(moveToJunkAction)]
+        #[unsafe(method_family = none)]
         pub unsafe fn moveToJunkAction() -> Retained<MEMessageAction>;
 
         /// Marks the mail message as read.
-        #[unsafe(method_family(none))]
         #[method_id(markAsReadAction)]
+        #[unsafe(method_family = none)]
         pub unsafe fn markAsReadAction() -> Retained<MEMessageAction>;
 
         /// Marks the mail  message as unread.
-        #[unsafe(method_family(none))]
         #[method_id(markAsUnreadAction)]
+        #[unsafe(method_family = none)]
         pub unsafe fn markAsUnreadAction() -> Retained<MEMessageAction>;
 
         /// Marks the message as flagged with the provided color.
-        #[unsafe(method_family(none))]
         #[method_id(flagActionWithFlag:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn flagActionWithFlag(flag: MEMessageActionFlag) -> Retained<Self>;
 
         /// Adds a color to the message when shown in the message list.
-        #[unsafe(method_family(none))]
         #[method_id(setBackgroundColorActionWithColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColorActionWithColor(
             color: MEMessageActionMessageColor,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

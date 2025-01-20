@@ -51,23 +51,23 @@ unsafe impl NSObjectProtocol for NSGestureRecognizer {}
 
 extern_methods!(
     unsafe impl NSGestureRecognizer {
-        #[unsafe(method_family(init))]
         #[method_id(initWithTarget:action:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithTarget_action(
             this: Allocated<Self>,
             target: Option<&AnyObject>,
             action: Option<Sel>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(target)]
+        #[unsafe(method_family = none)]
         pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -82,8 +82,8 @@ extern_methods!(
         #[method(setAction:)]
         pub unsafe fn setAction(&self, action: Option<Sel>);
 
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSGestureRecognizerDelegate>>>;
@@ -104,13 +104,13 @@ extern_methods!(
         pub unsafe fn setEnabled(&self, enabled: bool);
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-        #[unsafe(method_family(none))]
         #[method_id(view)]
+        #[unsafe(method_family = none)]
         pub unsafe fn view(&self) -> Option<Retained<NSView>>;
 
         #[cfg(feature = "NSPressureConfiguration")]
-        #[unsafe(method_family(none))]
         #[method_id(pressureConfiguration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pressureConfiguration(&self) -> Retained<NSPressureConfiguration>;
 
         #[cfg(feature = "NSPressureConfiguration")]
@@ -181,12 +181,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSGestureRecognizer {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

@@ -130,8 +130,8 @@ extern_methods!(
             feature = "MTLTexture"
         ))]
         /// The MTLTexture object for this attachment.
-        #[unsafe(method_family(none))]
         #[method_id(texture)]
+        #[unsafe(method_family = none)]
         pub fn texture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         #[cfg(all(
@@ -174,8 +174,8 @@ extern_methods!(
         ))]
         /// The texture used for multisample resolve operations.  Only used (and required)
         /// if the store action is set to MTLStoreActionMultisampleResolve.
-        #[unsafe(method_family(none))]
         #[method_id(resolveTexture)]
+        #[unsafe(method_family = none)]
         pub fn resolveTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         #[cfg(all(
@@ -243,12 +243,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLRenderPassAttachmentDescriptor {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -283,12 +283,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLRenderPassColorAttachmentDescriptor {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
     }
 );
@@ -362,12 +362,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLRenderPassDepthAttachmentDescriptor {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -437,12 +437,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLRenderPassStencilAttachmentDescriptor {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -458,8 +458,8 @@ unsafe impl NSObjectProtocol for MTLRenderPassColorAttachmentDescriptorArray {}
 
 extern_methods!(
     unsafe impl MTLRenderPassColorAttachmentDescriptorArray {
-        #[unsafe(method_family(none))]
         #[method_id(objectAtIndexedSubscript:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             attachment_index: NSUInteger,
@@ -477,12 +477,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLRenderPassColorAttachmentDescriptorArray {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -510,8 +510,8 @@ extern_methods!(
         /// the sample buffer.  If no sample buffer is provided, no samples will be taken.
         /// If any of the sample indices are specified as MTLCounterDontSample, no sample
         /// will be taken for that action.
-        #[unsafe(method_family(none))]
         #[method_id(sampleBuffer)]
+        #[unsafe(method_family = none)]
         pub fn sampleBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLCounterSampleBuffer>>>;
 
         #[cfg(feature = "MTLCounters")]
@@ -582,12 +582,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLRenderPassSampleBufferAttachmentDescriptor {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -603,8 +603,8 @@ unsafe impl NSObjectProtocol for MTLRenderPassSampleBufferAttachmentDescriptorAr
 
 extern_methods!(
     unsafe impl MTLRenderPassSampleBufferAttachmentDescriptorArray {
-        #[unsafe(method_family(none))]
         #[method_id(objectAtIndexedSubscript:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             attachment_index: NSUInteger,
@@ -622,12 +622,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLRenderPassSampleBufferAttachmentDescriptorArray {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -652,16 +652,16 @@ unsafe impl NSObjectProtocol for MTLRenderPassDescriptor {}
 extern_methods!(
     unsafe impl MTLRenderPassDescriptor {
         /// Create an autoreleased default frame buffer descriptor
-        #[unsafe(method_family(none))]
         #[method_id(renderPassDescriptor)]
+        #[unsafe(method_family = none)]
         pub fn renderPassDescriptor() -> Retained<MTLRenderPassDescriptor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(colorAttachments)]
+        #[unsafe(method_family = none)]
         pub fn colorAttachments(&self) -> Retained<MTLRenderPassColorAttachmentDescriptorArray>;
 
-        #[unsafe(method_family(none))]
         #[method_id(depthAttachment)]
+        #[unsafe(method_family = none)]
         pub fn depthAttachment(&self) -> Retained<MTLRenderPassDepthAttachmentDescriptor>;
 
         /// Setter for [`depthAttachment`][Self::depthAttachment].
@@ -671,8 +671,8 @@ extern_methods!(
             depth_attachment: Option<&MTLRenderPassDepthAttachmentDescriptor>,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(stencilAttachment)]
+        #[unsafe(method_family = none)]
         pub fn stencilAttachment(&self) -> Retained<MTLRenderPassStencilAttachmentDescriptor>;
 
         /// Setter for [`stencilAttachment`][Self::stencilAttachment].
@@ -688,8 +688,8 @@ extern_methods!(
             feature = "MTLResource"
         ))]
         /// Buffer into which samples passing the depth and stencil tests are counted.
-        #[unsafe(method_family(none))]
         #[method_id(visibilityResultBuffer)]
+        #[unsafe(method_family = none)]
         pub fn visibilityResultBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         #[cfg(all(
@@ -808,8 +808,8 @@ extern_methods!(
         /// The variable rasterization rate map to use when rendering this pass, or nil to not use variable rasterization rate.
         ///
         /// The default value is nil. Enabling variable rasterization rate allows for decreasing the rasterization rate in unimportant regions of screen space.
-        #[unsafe(method_family(none))]
         #[method_id(rasterizationRateMap)]
+        #[unsafe(method_family = none)]
         pub fn rasterizationRateMap(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MTLRasterizationRateMap>>>;
@@ -823,8 +823,8 @@ extern_methods!(
         );
 
         /// An array of sample buffers and associated sample indices.
-        #[unsafe(method_family(none))]
         #[method_id(sampleBufferAttachments)]
+        #[unsafe(method_family = none)]
         pub fn sampleBufferAttachments(
             &self,
         ) -> Retained<MTLRenderPassSampleBufferAttachmentDescriptorArray>;
@@ -834,12 +834,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLRenderPassDescriptor {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

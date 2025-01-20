@@ -78,8 +78,8 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLAnchorElement {
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(charset)]
+        #[unsafe(method_family = none)]
         pub unsafe fn charset(&self) -> Retained<NSString>;
 
         /// Setter for [`charset`][Self::charset].
@@ -88,8 +88,8 @@ extern_methods!(
         pub unsafe fn setCharset(&self, charset: Option<&NSString>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(coords)]
+        #[unsafe(method_family = none)]
         pub unsafe fn coords(&self) -> Retained<NSString>;
 
         /// Setter for [`coords`][Self::coords].
@@ -98,8 +98,8 @@ extern_methods!(
         pub unsafe fn setCoords(&self, coords: Option<&NSString>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(hreflang)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hreflang(&self) -> Retained<NSString>;
 
         /// Setter for [`hreflang`][Self::hreflang].
@@ -108,8 +108,8 @@ extern_methods!(
         pub unsafe fn setHreflang(&self, hreflang: Option<&NSString>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(name)]
+        #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
@@ -118,8 +118,8 @@ extern_methods!(
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(rel)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rel(&self) -> Retained<NSString>;
 
         /// Setter for [`rel`][Self::rel].
@@ -128,8 +128,8 @@ extern_methods!(
         pub unsafe fn setRel(&self, rel: Option<&NSString>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(rev)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rev(&self) -> Retained<NSString>;
 
         /// Setter for [`rev`][Self::rev].
@@ -138,8 +138,8 @@ extern_methods!(
         pub unsafe fn setRev(&self, rev: Option<&NSString>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(shape)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shape(&self) -> Retained<NSString>;
 
         /// Setter for [`shape`][Self::shape].
@@ -148,8 +148,8 @@ extern_methods!(
         pub unsafe fn setShape(&self, shape: Option<&NSString>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(target)]
+        #[unsafe(method_family = none)]
         pub unsafe fn target(&self) -> Retained<NSString>;
 
         /// Setter for [`target`][Self::target].
@@ -158,8 +158,8 @@ extern_methods!(
         pub unsafe fn setTarget(&self, target: Option<&NSString>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(type)]
+        #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> Retained<NSString>;
 
         /// Setter for [`type`][Self::type].
@@ -168,8 +168,8 @@ extern_methods!(
         pub unsafe fn setType(&self, r#type: Option<&NSString>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(accessKey)]
+        #[unsafe(method_family = none)]
         pub unsafe fn accessKey(&self) -> Retained<NSString>;
 
         /// Setter for [`accessKey`][Self::accessKey].
@@ -177,17 +177,17 @@ extern_methods!(
         #[method(setAccessKey:)]
         pub unsafe fn setAccessKey(&self, access_key: Option<&NSString>);
 
-        #[unsafe(method_family(none))]
         #[method_id(text)]
+        #[unsafe(method_family = none)]
         pub unsafe fn text(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(absoluteLinkURL)]
+        #[unsafe(method_family = none)]
         pub unsafe fn absoluteLinkURL(&self) -> Retained<NSURL>;
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(href)]
+        #[unsafe(method_family = none)]
         pub unsafe fn href(&self) -> Retained<NSString>;
 
         /// Setter for [`href`][Self::href].
@@ -195,32 +195,32 @@ extern_methods!(
         #[method(setHref:)]
         pub unsafe fn setHref(&self, href: Option<&NSString>);
 
-        #[unsafe(method_family(none))]
         #[method_id(protocol)]
+        #[unsafe(method_family = none)]
         pub unsafe fn protocol(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(host)]
+        #[unsafe(method_family = none)]
         pub unsafe fn host(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(hostname)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hostname(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(port)]
+        #[unsafe(method_family = none)]
         pub unsafe fn port(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(pathname)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pathname(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(search)]
+        #[unsafe(method_family = none)]
         pub unsafe fn search(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(hashName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hashName(&self) -> Retained<NSString>;
     }
 );
@@ -236,8 +236,8 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLAnchorElement {
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -252,8 +252,8 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLAnchorElement {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -72,29 +72,29 @@ extern_methods!(
     #[cfg(feature = "SCNNode")]
     unsafe impl SCNReferenceNode {
         /// Creates a reference node with a url.
-        #[unsafe(method_family(init))]
         #[method_id(initWithURL:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithURL(
             this: Allocated<Self>,
             reference_url: &NSURL,
         ) -> Option<Retained<Self>>;
 
         /// Support coding and decoding via NSKeyedArchiver.
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
         /// Creates a reference node with a url.
-        #[unsafe(method_family(none))]
         #[method_id(referenceNodeWithURL:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn referenceNodeWithURL(reference_url: &NSURL) -> Option<Retained<Self>>;
 
         /// Specifies the url to resolve.
-        #[unsafe(method_family(none))]
         #[method_id(referenceURL)]
+        #[unsafe(method_family = none)]
         pub unsafe fn referenceURL(&self) -> Retained<NSURL>;
 
         /// Setter for [`referenceURL`][Self::referenceURL].
@@ -129,8 +129,8 @@ extern_methods!(
     #[cfg(feature = "SCNNode")]
     unsafe impl SCNReferenceNode {
         /// Creates and initializes a node instance.
-        #[unsafe(method_family(none))]
         #[method_id(node)]
+        #[unsafe(method_family = none)]
         pub unsafe fn node() -> Retained<Self>;
     }
 );
@@ -139,12 +139,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "SCNNode")]
     unsafe impl SCNReferenceNode {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

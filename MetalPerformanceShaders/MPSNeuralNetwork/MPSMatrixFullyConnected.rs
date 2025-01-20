@@ -205,8 +205,8 @@ extern_methods!(
         #[method(neuronParameterC)]
         pub unsafe fn neuronParameterC(&self) -> c_float;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithDevice:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -260,8 +260,8 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSMatrixFullyConnected object.
         ///
         /// Returns: A new MPSMatrixFullyConnected object, or nil if failure.
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:device:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -280,8 +280,8 @@ extern_methods!(
         /// Returns: A pointer to a copy of this MPSKernel. This will fail, returning
         /// nil if the device is not supported. Devices must be
         /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
-        #[unsafe(method_family(copy))]
         #[method_id(copyWithZone:device:)]
+        #[unsafe(method_family = copy)]
         pub unsafe fn copyWithZone_device(
             &self,
             zone: *mut NSZone,
@@ -307,8 +307,8 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -325,12 +325,12 @@ extern_methods!(
         feature = "MPSMatrixTypes"
     ))]
     unsafe impl MPSMatrixFullyConnected {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -472,8 +472,8 @@ extern_methods!(
         #[method(setAlpha:)]
         pub unsafe fn setAlpha(&self, alpha: c_double);
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithDevice:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -552,8 +552,8 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSMatrixFullyConnectedGradient object.
         ///
         /// Returns: A new MPSMatrixFullyConnected object, or nil if failure.
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:device:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -572,8 +572,8 @@ extern_methods!(
         /// Returns: A pointer to a copy of this MPSKernel. This will fail, returning
         /// nil if the device is not supported. Devices must be
         /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
-        #[unsafe(method_family(copy))]
         #[method_id(copyWithZone:device:)]
+        #[unsafe(method_family = copy)]
         pub unsafe fn copyWithZone_device(
             &self,
             zone: *mut NSZone,
@@ -599,8 +599,8 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -617,12 +617,12 @@ extern_methods!(
         feature = "MPSMatrixTypes"
     ))]
     unsafe impl MPSMatrixFullyConnectedGradient {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

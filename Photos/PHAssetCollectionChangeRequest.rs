@@ -21,15 +21,15 @@ unsafe impl NSObjectProtocol for PHAssetCollectionChangeRequest {}
 extern_methods!(
     #[cfg(feature = "PHChangeRequest")]
     unsafe impl PHAssetCollectionChangeRequest {
-        #[unsafe(method_family(none))]
         #[method_id(creationRequestForAssetCollectionWithTitle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn creationRequestForAssetCollectionWithTitle(
             title: &NSString,
         ) -> Retained<Self>;
 
         #[cfg(feature = "PHObject")]
-        #[unsafe(method_family(none))]
         #[method_id(placeholderForCreatedAssetCollection)]
+        #[unsafe(method_family = none)]
         pub unsafe fn placeholderForCreatedAssetCollection(&self) -> Retained<PHObjectPlaceholder>;
 
         #[method(deleteAssetCollections:)]
@@ -38,8 +38,8 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "PHCollection", feature = "PHObject"))]
-        #[unsafe(method_family(none))]
         #[method_id(changeRequestForAssetCollection:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn changeRequestForAssetCollection(
             asset_collection: &PHAssetCollection,
         ) -> Option<Retained<Self>>;
@@ -50,15 +50,15 @@ extern_methods!(
             feature = "PHFetchResult",
             feature = "PHObject"
         ))]
-        #[unsafe(method_family(none))]
         #[method_id(changeRequestForAssetCollection:assets:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn changeRequestForAssetCollection_assets(
             asset_collection: &PHAssetCollection,
             assets: Option<&PHFetchResult<PHAsset>>,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(title)]
+        #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
@@ -101,12 +101,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "PHChangeRequest")]
     unsafe impl PHAssetCollectionChangeRequest {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

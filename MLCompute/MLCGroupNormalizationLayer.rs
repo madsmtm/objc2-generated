@@ -36,29 +36,29 @@ extern_methods!(
         #[cfg(feature = "MLCTensor")]
         /// The beta tensor
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(beta)]
+        #[unsafe(method_family = none)]
         pub unsafe fn beta(&self) -> Option<Retained<MLCTensor>>;
 
         #[cfg(feature = "MLCTensor")]
         /// The gamma tensor
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(gamma)]
+        #[unsafe(method_family = none)]
         pub unsafe fn gamma(&self) -> Option<Retained<MLCTensor>>;
 
         #[cfg(feature = "MLCTensorParameter")]
         /// The beta tensor parameter used for optimizer update
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(betaParameter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn betaParameter(&self) -> Option<Retained<MLCTensorParameter>>;
 
         #[cfg(feature = "MLCTensorParameter")]
         /// The gamma tensor parameter used for optimizer update
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(gammaParameter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn gammaParameter(&self) -> Option<Retained<MLCTensorParameter>>;
 
         /// A value used for numerical stability
@@ -81,8 +81,8 @@ extern_methods!(
         ///
         /// Returns: A new group normalization layer.
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(layerWithFeatureChannelCount:groupCount:beta:gamma:varianceEpsilon:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layerWithFeatureChannelCount_groupCount_beta_gamma_varianceEpsilon(
             feature_channel_count: NSUInteger,
             group_count: NSUInteger,
@@ -98,13 +98,13 @@ extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCGroupNormalizationLayer {
         #[deprecated]
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

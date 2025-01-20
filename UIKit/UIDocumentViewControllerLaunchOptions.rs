@@ -25,8 +25,8 @@ extern_methods!(
             feature = "UIViewController"
         ))]
         /// The view controller for browsing documents to open.
-        #[unsafe(method_family(none))]
         #[method_id(browserViewController)]
+        #[unsafe(method_family = none)]
         pub unsafe fn browserViewController(&self) -> Retained<UIDocumentBrowserViewController>;
 
         #[cfg(all(
@@ -42,8 +42,8 @@ extern_methods!(
         );
 
         /// The title of the view. Default is the application's name.
-        #[unsafe(method_family(none))]
         #[method_id(title)]
+        #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
@@ -52,8 +52,8 @@ extern_methods!(
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         /// The primary action.
-        #[unsafe(method_family(none))]
         #[method_id(primaryAction)]
+        #[unsafe(method_family = none)]
         pub unsafe fn primaryAction(&self) -> Option<Retained<UIAction>>;
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
@@ -63,8 +63,8 @@ extern_methods!(
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         /// The secondary action.
-        #[unsafe(method_family(none))]
         #[method_id(secondaryAction)]
+        #[unsafe(method_family = none)]
         pub unsafe fn secondaryAction(&self) -> Option<Retained<UIAction>>;
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
@@ -74,8 +74,8 @@ extern_methods!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// The view which displays an open document. Default is the view controller's view.
-        #[unsafe(method_family(none))]
         #[method_id(documentTargetView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn documentTargetView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
@@ -85,8 +85,8 @@ extern_methods!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// The foreground accessory view.
-        #[unsafe(method_family(none))]
         #[method_id(foregroundAccessoryView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn foregroundAccessoryView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
@@ -96,8 +96,8 @@ extern_methods!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// The background accessory view.
-        #[unsafe(method_family(none))]
         #[method_id(backgroundAccessoryView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn backgroundAccessoryView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
@@ -107,8 +107,8 @@ extern_methods!(
 
         #[cfg(feature = "UIBackgroundConfiguration")]
         /// The background configuration.
-        #[unsafe(method_family(none))]
         #[method_id(background)]
+        #[unsafe(method_family = none)]
         pub unsafe fn background(&self) -> Retained<UIBackgroundConfiguration>;
 
         #[cfg(feature = "UIBackgroundConfiguration")]
@@ -123,8 +123,8 @@ extern_methods!(
         ))]
         /// Returns an action which requests the creation of a new document with the specified intent.
         /// Can be used for either the primary or secondary action.
-        #[unsafe(method_family(none))]
         #[method_id(createDocumentActionWithIntent:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn createDocumentActionWithIntent(
             intent: &UIDocumentCreationIntent,
             mtm: MainThreadMarker,
@@ -135,12 +135,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIDocumentViewControllerLaunchOptions {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

@@ -22,16 +22,16 @@ unsafe impl NSObjectProtocol for NSNib {}
 
 extern_methods!(
     unsafe impl NSNib {
-        #[unsafe(method_family(init))]
         #[method_id(initWithNibNamed:bundle:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithNibNamed_bundle(
             this: Allocated<Self>,
             nib_name: &NSNibName,
             bundle: Option<&NSBundle>,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithNibData:bundle:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithNibData_bundle(
             this: Allocated<Self>,
             nib_data: &NSData,
@@ -43,12 +43,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSNib {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -57,8 +57,8 @@ extern_methods!(
     /// NSDeprecated
     unsafe impl NSNib {
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(initWithContentsOfURL:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL(
             this: Allocated<Self>,
             nib_file_url: Option<&NSURL>,

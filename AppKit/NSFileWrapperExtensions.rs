@@ -11,8 +11,8 @@ extern_category!(
     #[doc(alias = "NSExtensions")]
     pub unsafe trait NSFileWrapperNSExtensions {
         #[cfg(feature = "NSImage")]
-        #[unsafe(method_family(none))]
         #[method_id(icon)]
+        #[unsafe(method_family = none)]
         unsafe fn icon(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]

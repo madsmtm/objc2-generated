@@ -37,8 +37,8 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(all(feature = "DOMDocumentType", feature = "DOMNode"))]
-        #[unsafe(method_family(none))]
         #[method_id(createDocumentType:publicId:systemId:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn createDocumentType_publicId_systemId(
             &self,
             qualified_name: Option<&NSString>,
@@ -51,8 +51,8 @@ extern_methods!(
             feature = "DOMDocumentType",
             feature = "DOMNode"
         ))]
-        #[unsafe(method_family(none))]
         #[method_id(createDocument:qualifiedName:doctype:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn createDocument_qualifiedName_doctype(
             &self,
             namespace_uri: Option<&NSString>,
@@ -61,8 +61,8 @@ extern_methods!(
         ) -> Option<Retained<DOMDocument>>;
 
         #[cfg(all(feature = "DOMCSSStyleSheet", feature = "DOMStyleSheet"))]
-        #[unsafe(method_family(none))]
         #[method_id(createCSSStyleSheet:media:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn createCSSStyleSheet_media(
             &self,
             title: Option<&NSString>,
@@ -74,8 +74,8 @@ extern_methods!(
             feature = "DOMHTMLDocument",
             feature = "DOMNode"
         ))]
-        #[unsafe(method_family(none))]
         #[method_id(createHTMLDocument:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn createHTMLDocument(
             &self,
             title: Option<&NSString>,
@@ -88,8 +88,8 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMImplementation {
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -98,8 +98,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMImplementation {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -118,8 +118,8 @@ extern_methods!(
 
         #[cfg(all(feature = "DOMDocumentType", feature = "DOMNode"))]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(createDocumentType:::)]
+        #[unsafe(method_family = none)]
         pub unsafe fn createDocumentType(
             &self,
             qualified_name: Option<&NSString>,
@@ -133,8 +133,8 @@ extern_methods!(
             feature = "DOMNode"
         ))]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(createDocument:::)]
+        #[unsafe(method_family = none)]
         pub unsafe fn createDocument(
             &self,
             namespace_uri: Option<&NSString>,
@@ -144,8 +144,8 @@ extern_methods!(
 
         #[cfg(all(feature = "DOMCSSStyleSheet", feature = "DOMStyleSheet"))]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(createCSSStyleSheet::)]
+        #[unsafe(method_family = none)]
         pub unsafe fn createCSSStyleSheet(
             &self,
             title: Option<&NSString>,

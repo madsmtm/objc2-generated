@@ -23,8 +23,8 @@ extern_methods!(
         /// Retrieves the sample value at the specified index.
         ///
         /// Returns: NSNumber instance describing the value of the sample at the specified index, or 0 if the index is out of range.
-        #[unsafe(method_family(none))]
         #[method_id(objectAtIndexedSubscript:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn objectAtIndexedSubscript(&self, index: NSUInteger) -> Retained<NSNumber>;
 
         /// Stores a sample value at the specified index.
@@ -38,12 +38,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLRasterizationRateSampleArray {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -76,8 +76,8 @@ unsafe impl NSObjectProtocol for MTLRasterizationRateLayerDescriptor {}
 extern_methods!(
     unsafe impl MTLRasterizationRateLayerDescriptor {
         /// Do not use, instead use initWithNumSamples:
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "MTLTypes")]
@@ -86,8 +86,8 @@ extern_methods!(
         /// Parameter `sampleCount`: The width and height components are the number of samples on the horizontal and vertical axis respectively. The depth component is ignored.
         ///
         /// All values are initialized to zero.
-        #[unsafe(method_family(init))]
         #[method_id(initWithSampleCount:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithSampleCount(
             this: Allocated<Self>,
             sample_count: MTLSize,
@@ -103,8 +103,8 @@ extern_methods!(
         /// Parameter `vertical`: The initial sample values on the vertical axis. Must point to an array of sampleCount.height elements, of which the values will be copied into the MTLRasterizationRateLayerDescriptor.
         ///
         /// Use initWithSampleCount: to initialize with zeroes instead.
-        #[unsafe(method_family(init))]
         #[method_id(initWithSampleCount:horizontal:vertical:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithSampleCount_horizontal_vertical(
             this: Allocated<Self>,
             sample_count: MTLSize,
@@ -136,15 +136,15 @@ extern_methods!(
         /// Provide convenient bounds-checked access to the quality samples stored in the descriptor.
         ///
         /// Returns: Returns a syntactic sugar helper to get or set sample values on the horizontal axis.
-        #[unsafe(method_family(none))]
         #[method_id(horizontal)]
+        #[unsafe(method_family = none)]
         pub unsafe fn horizontal(&self) -> Retained<MTLRasterizationRateSampleArray>;
 
         /// Provide convenient bounds-checked access to the quality samples stored in the descriptor.
         ///
         /// Returns: Returns a syntactic sugar helper to get or set sample values on the vertical axis.
-        #[unsafe(method_family(none))]
         #[method_id(vertical)]
+        #[unsafe(method_family = none)]
         pub unsafe fn vertical(&self) -> Retained<MTLRasterizationRateSampleArray>;
     }
 );
@@ -152,8 +152,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLRasterizationRateLayerDescriptor {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -183,8 +183,8 @@ extern_methods!(
         /// Returns: The MTLRasterizationRateLayerDescriptor instance for the given layerIndex, or nil if no instance hasn't been set for this index.
         ///
         /// Use setObject:atIndexedSubscript: to set the layer
-        #[unsafe(method_family(none))]
         #[method_id(objectAtIndexedSubscript:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             layer_index: NSUInteger,
@@ -205,12 +205,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLRasterizationRateLayerArray {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -242,8 +242,8 @@ extern_methods!(
         /// Parameter `screenSize`: The dimensions, in screen space pixels, of the region where variable rasterization is applied. The depth component of MTLSize is ignored.
         ///
         /// Returns: A descriptor containing no layers. Add or remove layers using setObject:atIndexedSubscript:.
-        #[unsafe(method_family(none))]
         #[method_id(rasterizationRateMapDescriptorWithScreenSize:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rasterizationRateMapDescriptorWithScreenSize(
             screen_size: MTLSize,
         ) -> Retained<MTLRasterizationRateMapDescriptor>;
@@ -256,8 +256,8 @@ extern_methods!(
         /// Parameter `layer`: The single layer describing how the rasterization rate varies in screen space
         ///
         /// Returns: A descriptor containing a single layer. Add or remove layers using setObject:atIndexedSubscript:.
-        #[unsafe(method_family(none))]
         #[method_id(rasterizationRateMapDescriptorWithScreenSize:layer:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rasterizationRateMapDescriptorWithScreenSize_layer(
             screen_size: MTLSize,
             layer: &MTLRasterizationRateLayerDescriptor,
@@ -275,8 +275,8 @@ extern_methods!(
         /// Returns: A descriptor containing all the specified layers. Add or remove layers using setObject:atIndexedSubscript:.
         ///
         /// The function copies the array of pointers internally, the caller need not keep the array alive after creating the descriptor.
-        #[unsafe(method_family(none))]
         #[method_id(rasterizationRateMapDescriptorWithScreenSize:layerCount:layers:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rasterizationRateMapDescriptorWithScreenSize_layerCount_layers(
             screen_size: MTLSize,
             layer_count: NSUInteger,
@@ -287,8 +287,8 @@ extern_methods!(
         ///
         /// Use setLayer:atIndex: to add or set the layer.
         /// Identical to "layers[layerIndex]".
-        #[unsafe(method_family(none))]
         #[method_id(layerAtIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layerAtIndex(
             &self,
             layer_index: NSUInteger,
@@ -310,8 +310,8 @@ extern_methods!(
         ///
         /// Accesses the layers currently stored in the descriptor.
         /// Syntactic sugar around "layerAtIndex:" and "setLayer:atIndex:"
-        #[unsafe(method_family(none))]
         #[method_id(layers)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layers(&self) -> Retained<MTLRasterizationRateLayerArray>;
 
         #[cfg(feature = "MTLTypes")]
@@ -330,8 +330,8 @@ extern_methods!(
         /// A string to help identify this object.
         ///
         /// The default value is nil.
-        #[unsafe(method_family(none))]
         #[method_id(label)]
+        #[unsafe(method_family = none)]
         pub unsafe fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
@@ -349,12 +349,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLRasterizationRateMapDescriptor {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -374,13 +374,13 @@ extern_protocol!(
     pub unsafe trait MTLRasterizationRateMap: NSObjectProtocol {
         #[cfg(feature = "MTLDevice")]
         /// Returns: The device on which the rasterization rate map was created
-        #[unsafe(method_family(none))]
         #[method_id(device)]
+        #[unsafe(method_family = none)]
         unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         /// A string to help identify this object.
-        #[unsafe(method_family(none))]
         #[method_id(label)]
+        #[unsafe(method_family = none)]
         unsafe fn label(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "MTLTypes")]

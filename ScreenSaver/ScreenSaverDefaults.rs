@@ -39,8 +39,8 @@ extern_methods!(
         ///
         /// - Parameters:
         /// - inModuleName: The bundle identifier for the module.
-        #[unsafe(method_family(none))]
         #[method_id(defaultsForModuleWithName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn defaultsForModuleWithName(
             in_module_name: &NSString,
         ) -> Option<Retained<Self>>;
@@ -51,13 +51,13 @@ extern_methods!(
     /// Methods declared on superclass `NSUserDefaults`
     unsafe impl ScreenSaverDefaults {
         /// -init is equivalent to -initWithSuiteName:nil
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// -initWithSuiteName: initializes an instance of NSUserDefaults that searches the shared preferences search list for the domain 'suitename'. For example, using the identifier of an application group will cause the receiver to search the preferences for that group. Passing the current application's bundle identifier, NSGlobalDomain, or the corresponding CFPreferences constants is an error. Passing nil will search the default search list.
-        #[unsafe(method_family(init))]
         #[method_id(initWithSuiteName:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithSuiteName(
             this: Allocated<Self>,
             suitename: Option<&NSString>,
@@ -65,8 +65,8 @@ extern_methods!(
 
         /// -initWithUser: is equivalent to -init
         #[deprecated = "Use -init instead"]
-        #[unsafe(method_family(init))]
         #[method_id(initWithUser:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithUser(
             this: Allocated<Self>,
             username: &NSString,
@@ -77,8 +77,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ScreenSaverDefaults {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

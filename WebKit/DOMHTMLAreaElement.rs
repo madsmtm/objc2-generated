@@ -78,8 +78,8 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLAreaElement {
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(alt)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alt(&self) -> Retained<NSString>;
 
         /// Setter for [`alt`][Self::alt].
@@ -88,8 +88,8 @@ extern_methods!(
         pub unsafe fn setAlt(&self, alt: Option<&NSString>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(coords)]
+        #[unsafe(method_family = none)]
         pub unsafe fn coords(&self) -> Retained<NSString>;
 
         /// Setter for [`coords`][Self::coords].
@@ -107,8 +107,8 @@ extern_methods!(
         pub unsafe fn setNoHref(&self, no_href: bool);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(shape)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shape(&self) -> Retained<NSString>;
 
         /// Setter for [`shape`][Self::shape].
@@ -117,8 +117,8 @@ extern_methods!(
         pub unsafe fn setShape(&self, shape: Option<&NSString>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(target)]
+        #[unsafe(method_family = none)]
         pub unsafe fn target(&self) -> Retained<NSString>;
 
         /// Setter for [`target`][Self::target].
@@ -127,8 +127,8 @@ extern_methods!(
         pub unsafe fn setTarget(&self, target: Option<&NSString>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(accessKey)]
+        #[unsafe(method_family = none)]
         pub unsafe fn accessKey(&self) -> Retained<NSString>;
 
         /// Setter for [`accessKey`][Self::accessKey].
@@ -136,13 +136,13 @@ extern_methods!(
         #[method(setAccessKey:)]
         pub unsafe fn setAccessKey(&self, access_key: Option<&NSString>);
 
-        #[unsafe(method_family(none))]
         #[method_id(absoluteLinkURL)]
+        #[unsafe(method_family = none)]
         pub unsafe fn absoluteLinkURL(&self) -> Retained<NSURL>;
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(href)]
+        #[unsafe(method_family = none)]
         pub unsafe fn href(&self) -> Retained<NSString>;
 
         /// Setter for [`href`][Self::href].
@@ -150,32 +150,32 @@ extern_methods!(
         #[method(setHref:)]
         pub unsafe fn setHref(&self, href: Option<&NSString>);
 
-        #[unsafe(method_family(none))]
         #[method_id(protocol)]
+        #[unsafe(method_family = none)]
         pub unsafe fn protocol(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(host)]
+        #[unsafe(method_family = none)]
         pub unsafe fn host(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(hostname)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hostname(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(port)]
+        #[unsafe(method_family = none)]
         pub unsafe fn port(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(pathname)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pathname(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(search)]
+        #[unsafe(method_family = none)]
         pub unsafe fn search(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(hashName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hashName(&self) -> Retained<NSString>;
     }
 );
@@ -191,8 +191,8 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLAreaElement {
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -207,8 +207,8 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLAreaElement {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

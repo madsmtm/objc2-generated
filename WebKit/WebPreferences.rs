@@ -76,8 +76,8 @@ unsafe impl NSObjectProtocol for WebPreferences {}
 extern_methods!(
     unsafe impl WebPreferences {
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(standardPreferences)]
+        #[unsafe(method_family = none)]
         pub unsafe fn standardPreferences() -> Option<Retained<WebPreferences>>;
 
         /// Parameter `anIdentifier`: A string used to identify the WebPreferences.
@@ -89,8 +89,8 @@ extern_methods!(
         ///
         /// Returns: Returns a new instance of WebPreferences or a previously allocated instance with the same identifier.
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(initWithIdentifier:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,
             an_identifier: Option<&NSString>,
@@ -98,13 +98,13 @@ extern_methods!(
 
         /// Returns: Returns the identifier for this WebPreferences.
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(identifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(standardFontFamily)]
+        #[unsafe(method_family = none)]
         pub unsafe fn standardFontFamily(&self) -> Retained<NSString>;
 
         /// Setter for [`standardFontFamily`][Self::standardFontFamily].
@@ -113,8 +113,8 @@ extern_methods!(
         pub unsafe fn setStandardFontFamily(&self, standard_font_family: Option<&NSString>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(fixedFontFamily)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fixedFontFamily(&self) -> Retained<NSString>;
 
         /// Setter for [`fixedFontFamily`][Self::fixedFontFamily].
@@ -123,8 +123,8 @@ extern_methods!(
         pub unsafe fn setFixedFontFamily(&self, fixed_font_family: Option<&NSString>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(serifFontFamily)]
+        #[unsafe(method_family = none)]
         pub unsafe fn serifFontFamily(&self) -> Retained<NSString>;
 
         /// Setter for [`serifFontFamily`][Self::serifFontFamily].
@@ -133,8 +133,8 @@ extern_methods!(
         pub unsafe fn setSerifFontFamily(&self, serif_font_family: Option<&NSString>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(sansSerifFontFamily)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sansSerifFontFamily(&self) -> Retained<NSString>;
 
         /// Setter for [`sansSerifFontFamily`][Self::sansSerifFontFamily].
@@ -143,8 +143,8 @@ extern_methods!(
         pub unsafe fn setSansSerifFontFamily(&self, sans_serif_font_family: Option<&NSString>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(cursiveFontFamily)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cursiveFontFamily(&self) -> Retained<NSString>;
 
         /// Setter for [`cursiveFontFamily`][Self::cursiveFontFamily].
@@ -153,8 +153,8 @@ extern_methods!(
         pub unsafe fn setCursiveFontFamily(&self, cursive_font_family: Option<&NSString>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(fantasyFontFamily)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fantasyFontFamily(&self) -> Retained<NSString>;
 
         /// Setter for [`fantasyFontFamily`][Self::fantasyFontFamily].
@@ -199,8 +199,8 @@ extern_methods!(
         pub unsafe fn setMinimumLogicalFontSize(&self, minimum_logical_font_size: c_int);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(defaultTextEncodingName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn defaultTextEncodingName(&self) -> Retained<NSString>;
 
         /// Setter for [`defaultTextEncodingName`][Self::defaultTextEncodingName].
@@ -222,8 +222,8 @@ extern_methods!(
 
         /// The location of the user style sheet.
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(userStyleSheetLocation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn userStyleSheetLocation(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`userStyleSheetLocation`][Self::userStyleSheetLocation].
@@ -412,12 +412,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WebPreferences {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

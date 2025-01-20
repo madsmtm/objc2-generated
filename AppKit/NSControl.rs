@@ -54,19 +54,19 @@ unsafe impl NSUserInterfaceItemIdentification for NSControl {}
 extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSControl {
-        #[unsafe(method_family(init))]
         #[method_id(initWithFrame:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(target)]
+        #[unsafe(method_family = none)]
         pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -132,32 +132,32 @@ extern_methods!(
         #[method(setControlSize:)]
         pub unsafe fn setControlSize(&self, control_size: NSControlSize);
 
-        #[unsafe(method_family(none))]
         #[method_id(formatter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn formatter(&self) -> Option<Retained<NSFormatter>>;
 
         /// Setter for [`formatter`][Self::formatter].
         #[method(setFormatter:)]
         pub unsafe fn setFormatter(&self, formatter: Option<&NSFormatter>);
 
-        #[unsafe(method_family(none))]
         #[method_id(objectValue)]
+        #[unsafe(method_family = none)]
         pub unsafe fn objectValue(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`objectValue`][Self::objectValue].
         #[method(setObjectValue:)]
         pub unsafe fn setObjectValue(&self, object_value: Option<&AnyObject>);
 
-        #[unsafe(method_family(none))]
         #[method_id(stringValue)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stringValue(&self) -> Retained<NSString>;
 
         /// Setter for [`stringValue`][Self::stringValue].
         #[method(setStringValue:)]
         pub unsafe fn setStringValue(&self, string_value: &NSString);
 
-        #[unsafe(method_family(none))]
         #[method_id(attributedStringValue)]
+        #[unsafe(method_family = none)]
         pub unsafe fn attributedStringValue(&self) -> Retained<NSAttributedString>;
 
         /// Setter for [`attributedStringValue`][Self::attributedStringValue].
@@ -232,8 +232,8 @@ extern_methods!(
         pub unsafe fn performClick(&self, sender: Option<&AnyObject>);
 
         #[cfg(feature = "NSFont")]
-        #[unsafe(method_family(none))]
         #[method_id(font)]
+        #[unsafe(method_family = none)]
         pub unsafe fn font(&self) -> Option<Retained<NSFont>>;
 
         #[cfg(feature = "NSFont")]
@@ -294,8 +294,8 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSControl {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -304,8 +304,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSControl {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -315,8 +315,8 @@ extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSControl {
         #[cfg(feature = "NSText")]
-        #[unsafe(method_family(none))]
         #[method_id(currentEditor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn currentEditor(&self) -> Option<Retained<NSText>>;
 
         #[method(abortEditing)]
@@ -438,8 +438,8 @@ extern_protocol!(
             feature = "NSView"
         ))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(control:textView:completions:forPartialWordRange:indexOfSelectedItem:)]
+        #[unsafe(method_family = none)]
         unsafe fn control_textView_completions_forPartialWordRange_indexOfSelectedItem(
             &self,
             control: &NSControl,
@@ -487,8 +487,8 @@ extern_methods!(
         pub unsafe fn setCellClass(cell_class: Option<&AnyClass>, mtm: MainThreadMarker);
 
         #[cfg(feature = "NSCell")]
-        #[unsafe(method_family(none))]
         #[method_id(cell)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cell(&self) -> Option<Retained<NSCell>>;
 
         #[cfg(feature = "NSCell")]
@@ -497,8 +497,8 @@ extern_methods!(
         pub unsafe fn setCell(&self, cell: Option<&NSCell>);
 
         #[cfg(feature = "NSCell")]
-        #[unsafe(method_family(none))]
         #[method_id(selectedCell)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectedCell(&self) -> Option<Retained<NSCell>>;
 
         #[method(selectedTag)]

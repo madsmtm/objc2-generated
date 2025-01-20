@@ -22,17 +22,17 @@ unsafe impl NSObjectProtocol for NSDistributedLock {}
 extern_methods!(
     unsafe impl NSDistributedLock {
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(lockWithPath:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn lockWithPath(path: &NSString) -> Option<Retained<NSDistributedLock>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithPath:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithPath(
             this: Allocated<Self>,
             path: &NSString,
@@ -48,8 +48,8 @@ extern_methods!(
         pub unsafe fn breakLock(&self);
 
         #[cfg(feature = "NSDate")]
-        #[unsafe(method_family(none))]
         #[method_id(lockDate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn lockDate(&self) -> Retained<NSDate>;
     }
 );
@@ -57,8 +57,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSDistributedLock {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

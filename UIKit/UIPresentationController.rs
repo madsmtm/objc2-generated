@@ -40,8 +40,8 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(presentationController:viewControllerForAdaptivePresentationStyle:)]
+        #[unsafe(method_family = none)]
         unsafe fn presentationController_viewControllerForAdaptivePresentationStyle(
             &self,
             controller: &UIPresentationController,
@@ -118,13 +118,13 @@ unsafe impl UITraitEnvironment for UIPresentationController {}
 extern_methods!(
     unsafe impl UIPresentationController {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-        #[unsafe(method_family(none))]
         #[method_id(presentingViewController)]
+        #[unsafe(method_family = none)]
         pub unsafe fn presentingViewController(&self) -> Retained<UIViewController>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-        #[unsafe(method_family(none))]
         #[method_id(presentedViewController)]
+        #[unsafe(method_family = none)]
         pub unsafe fn presentedViewController(&self) -> Retained<UIViewController>;
 
         #[cfg(feature = "UIViewController")]
@@ -132,12 +132,12 @@ extern_methods!(
         pub unsafe fn presentationStyle(&self) -> UIModalPresentationStyle;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[unsafe(method_family(none))]
         #[method_id(containerView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn containerView(&self) -> Option<Retained<UIView>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIAdaptivePresentationControllerDelegate>>>;
@@ -151,16 +151,16 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-        #[unsafe(method_family(init))]
         #[method_id(initWithPresentedViewController:presentingViewController:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithPresentedViewController_presentingViewController(
             this: Allocated<Self>,
             presented_view_controller: &UIViewController,
             presenting_view_controller: Option<&UIViewController>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "UIViewController")]
@@ -181,8 +181,8 @@ extern_methods!(
         pub unsafe fn containerViewDidLayoutSubviews(&self);
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[unsafe(method_family(none))]
         #[method_id(presentedView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn presentedView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -209,8 +209,8 @@ extern_methods!(
 
         #[cfg(feature = "UITraitCollection")]
         #[deprecated = "Use the traitOverrides property instead"]
-        #[unsafe(method_family(none))]
         #[method_id(overrideTraitCollection)]
+        #[unsafe(method_family = none)]
         pub unsafe fn overrideTraitCollection(&self) -> Option<Retained<UITraitCollection>>;
 
         #[cfg(feature = "UITraitCollection")]
@@ -227,8 +227,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIPresentationController {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -236,8 +236,8 @@ extern_methods!(
 extern_methods!(
     unsafe impl UIPresentationController {
         #[cfg(feature = "UITraitCollection")]
-        #[unsafe(method_family(none))]
         #[method_id(traitOverrides)]
+        #[unsafe(method_family = none)]
         pub unsafe fn traitOverrides(&self) -> Retained<ProtocolObject<dyn UITraitOverrides>>;
     }
 );

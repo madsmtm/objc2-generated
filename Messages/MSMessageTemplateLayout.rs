@@ -35,8 +35,8 @@ extern_methods!(
     #[cfg(feature = "MSMessageLayout")]
     unsafe impl MSMessageTemplateLayout {
         /// Text to be used as a caption related to the message content.
-        #[unsafe(method_family(none))]
         #[method_id(caption)]
+        #[unsafe(method_family = none)]
         pub unsafe fn caption(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`caption`][Self::caption].
@@ -44,8 +44,8 @@ extern_methods!(
         pub unsafe fn setCaption(&self, caption: Option<&NSString>);
 
         /// Text to be used as a subcaption related to the message content.
-        #[unsafe(method_family(none))]
         #[method_id(subcaption)]
+        #[unsafe(method_family = none)]
         pub unsafe fn subcaption(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`subcaption`][Self::subcaption].
@@ -53,8 +53,8 @@ extern_methods!(
         pub unsafe fn setSubcaption(&self, subcaption: Option<&NSString>);
 
         /// Text to be drawn right aligned on the same line as the caption text.
-        #[unsafe(method_family(none))]
         #[method_id(trailingCaption)]
+        #[unsafe(method_family = none)]
         pub unsafe fn trailingCaption(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`trailingCaption`][Self::trailingCaption].
@@ -62,8 +62,8 @@ extern_methods!(
         pub unsafe fn setTrailingCaption(&self, trailing_caption: Option<&NSString>);
 
         /// Text to be drawn right aligned on the same line as the subcaption text.
-        #[unsafe(method_family(none))]
         #[method_id(trailingSubcaption)]
+        #[unsafe(method_family = none)]
         pub unsafe fn trailingSubcaption(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`trailingSubcaption`][Self::trailingSubcaption].
@@ -75,8 +75,8 @@ extern_methods!(
         ///
         /// When this property and the mediaURL property are both set, the mediaURL
         /// property will be ignored.
-        #[unsafe(method_family(none))]
         #[method_id(image)]
+        #[unsafe(method_family = none)]
         pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "objc2-ui-kit")]
@@ -89,8 +89,8 @@ extern_methods!(
         /// This must be a file URL, the data contained in the file must conform to
         /// kUTTypeImage or kUTTypeMovie. When image property and
         /// this property are both set, then this property will be ignored.
-        #[unsafe(method_family(none))]
         #[method_id(mediaFileURL)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mediaFileURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`mediaFileURL`][Self::mediaFileURL].
@@ -98,8 +98,8 @@ extern_methods!(
         pub unsafe fn setMediaFileURL(&self, media_file_url: Option<&NSURL>);
 
         /// Title text associated with the image or media .
-        #[unsafe(method_family(none))]
         #[method_id(imageTitle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn imageTitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`imageTitle`][Self::imageTitle].
@@ -107,8 +107,8 @@ extern_methods!(
         pub unsafe fn setImageTitle(&self, image_title: Option<&NSString>);
 
         /// Subtitle text associated with the image or media .
-        #[unsafe(method_family(none))]
         #[method_id(imageSubtitle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn imageSubtitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`imageSubtitle`][Self::imageSubtitle].
@@ -121,12 +121,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MSMessageLayout")]
     unsafe impl MSMessageTemplateLayout {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -101,16 +101,16 @@ extern_methods!(
         /// Create a new request that can statefully track the optical from from one image to another.
         ///
         /// This is a convenience initializer for a frame analysis spacing of kCMTimeZero and a nil completion handler.
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         /// Create a new request that can statefully track the optical from from one image to another.
         ///
         /// This is a convenience initializer for a frame analysis spacing of kCMTimeZero.
-        #[unsafe(method_family(init))]
         #[method_id(initWithCompletionHandler:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
             completion_handler: VNRequestCompletionHandler,
@@ -149,8 +149,8 @@ extern_methods!(
 
         #[cfg(feature = "VNObservation")]
         /// VNPixelBufferObservation results.
-        #[unsafe(method_family(none))]
         #[method_id(results)]
+        #[unsafe(method_family = none)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNPixelBufferObservation>>>;
     }
 );
@@ -159,8 +159,8 @@ extern_methods!(
     /// Methods declared on superclass `VNStatefulRequest`
     #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
     unsafe impl VNTrackOpticalFlowRequest {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
@@ -170,8 +170,8 @@ extern_methods!(
         /// Parameter `frameAnalysisSpacing`: The reciprocal of maximum rate at which buffers will be processed. The request will not process buffers that fall within the frameAnalysisSpacing after it has performed the analysis. The analysis is not done by wall time but by analysis of of the time stamps of the samplebuffers being processed.
         ///
         /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
-        #[unsafe(method_family(init))]
         #[method_id(initWithFrameAnalysisSpacing:completionHandler:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFrameAnalysisSpacing_completionHandler(
             this: Allocated<Self>,
             frame_analysis_spacing: CMTime,

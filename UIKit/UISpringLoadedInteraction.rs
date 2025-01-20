@@ -55,12 +55,12 @@ unsafe impl UIInteraction for UISpringLoadedInteraction {}
 
 extern_methods!(
     unsafe impl UISpringLoadedInteraction {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
@@ -74,8 +74,8 @@ extern_methods!(
         /// Parameter `handler`: The handler to be performed when springloading is activated.
         ///
         /// Returns: An initialized springloaded interaction object or `nil` if the springloaded interaction could not be initialized.
-        #[unsafe(method_family(init))]
         #[method_id(initWithInteractionBehavior:interactionEffect:activationHandler:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithInteractionBehavior_interactionEffect_activationHandler(
             this: Allocated<Self>,
             interaction_behavior: Option<&ProtocolObject<dyn UISpringLoadedInteractionBehavior>>,
@@ -95,8 +95,8 @@ extern_methods!(
         /// Parameter `handler`: The handler to be performed when springloading is activated.
         ///
         /// Returns: An initialized springloaded interaction object or `nil` if the springloaded interaction could not be initialized.
-        #[unsafe(method_family(init))]
         #[method_id(initWithActivationHandler:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithActivationHandler(
             this: Allocated<Self>,
             handler: &block2::Block<
@@ -107,14 +107,14 @@ extern_methods!(
             >,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(interactionBehavior)]
+        #[unsafe(method_family = none)]
         pub unsafe fn interactionBehavior(
             &self,
         ) -> Retained<ProtocolObject<dyn UISpringLoadedInteractionBehavior>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(interactionEffect)]
+        #[unsafe(method_family = none)]
         pub unsafe fn interactionEffect(
             &self,
         ) -> Retained<ProtocolObject<dyn UISpringLoadedInteractionEffect>>;
@@ -189,8 +189,8 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// The view to which the interaction effect is applied. Defaults to the interaction's view.
-        #[unsafe(method_family(none))]
         #[method_id(targetView)]
+        #[unsafe(method_family = none)]
         unsafe fn targetView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
@@ -200,8 +200,8 @@ extern_protocol!(
 
         /// The `targetItem` allows to distinguish a region of the view on which the interaction is installed.
         /// It is convenient to set this property to a model object associated to `targetView`.
-        #[unsafe(method_family(none))]
         #[method_id(targetItem)]
+        #[unsafe(method_family = none)]
         unsafe fn targetItem(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`targetItem`][Self::targetItem].

@@ -25,12 +25,12 @@ unsafe impl NSObjectProtocol for AVCameraCalibrationData {}
 
 extern_methods!(
     unsafe impl AVCameraCalibrationData {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -51,8 +51,8 @@ extern_methods!(
         /// Images captured by a camera are geometrically warped by radial distortions in the lens. In order to project from the 2D image plane back into the 3D world, the images must be distortion corrected, or made rectilinear. Lens distortion is modeled using a one-dimensional lookup table of 32-bit float values evenly distributed along a radius from the center of the distortion to the farthest corner, with each value representing an elongation or compression of the radius (0.0 for any given point indicates no elongation). This model assumes radially symmetric lens distortion. When dealing with AVDepthData, the disparity / depth map representations are geometrically distorted to align with images produced by the camera. For more information, see the reference implementation below.
         ///
         /// If the camera lacks the calibration data needed to accurately characterize lens distortions, this property's value is nil.
-        #[unsafe(method_family(none))]
         #[method_id(lensDistortionLookupTable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn lensDistortionLookupTable(&self) -> Option<Retained<NSData>>;
 
         /// An NSData of floats describing the inverse lookup table required to reapply the camera lens' radial distortions to a rectified image.
@@ -61,8 +61,8 @@ extern_methods!(
         /// See lensDistortionLookupTable. If you've rectified an image by removing the distortions characterized by the lensDistortionLookupTable, and now wish to go back to geometrically distorted, you may use the inverseLensDistortionLookupTable. For more information, see the reference implementation below.
         ///
         /// If the camera lacks the calibration data needed to accurately characterize lens distortions, this property's value is nil.
-        #[unsafe(method_family(none))]
         #[method_id(inverseLensDistortionLookupTable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn inverseLensDistortionLookupTable(&self) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "objc2-core-foundation")]

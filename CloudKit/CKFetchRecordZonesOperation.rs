@@ -21,25 +21,25 @@ unsafe impl NSObjectProtocol for CKFetchRecordZonesOperation {}
 extern_methods!(
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchRecordZonesOperation {
-        #[unsafe(method_family(none))]
         #[method_id(fetchAllRecordZonesOperation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fetchAllRecordZonesOperation() -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordZoneID")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithRecordZoneIDs:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithRecordZoneIDs(
             this: Allocated<Self>,
             zone_i_ds: &NSArray<CKRecordZoneID>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordZoneID")]
-        #[unsafe(method_family(none))]
         #[method_id(recordZoneIDs)]
+        #[unsafe(method_family = none)]
         pub unsafe fn recordZoneIDs(&self) -> Option<Retained<NSArray<CKRecordZoneID>>>;
 
         #[cfg(feature = "CKRecordZoneID")]
@@ -129,8 +129,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchRecordZonesOperation {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

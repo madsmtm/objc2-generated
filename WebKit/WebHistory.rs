@@ -56,8 +56,8 @@ extern_methods!(
         ///
         /// Returns: A WebHistory object.
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(optionalSharedHistory)]
+        #[unsafe(method_family = none)]
         pub unsafe fn optionalSharedHistory() -> Option<Retained<WebHistory>>;
 
         /// Parameter `history`: The history to use for the global WebHistory.
@@ -84,13 +84,13 @@ extern_methods!(
         /// An array of NSCalendarDates, each one representing a unique day that contains one
         /// or more history items, ordered from most recent to oldest.
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(orderedLastVisitedDays)]
+        #[unsafe(method_family = none)]
         pub unsafe fn orderedLastVisitedDays(&self) -> Retained<NSArray>;
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(orderedItemsLastVisitedOnDay:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn orderedItemsLastVisitedOnDay(
             &self,
             calendar_date: Option<&NSCalendarDate>,
@@ -103,8 +103,8 @@ extern_methods!(
         ///
         /// Returns: Returns an item matching the URL
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(itemForURL:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn itemForURL(&self, url: Option<&NSURL>) -> Option<Retained<WebHistoryItem>>;
 
         /// The maximum number of items that will be stored by the WebHistory.
@@ -132,12 +132,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WebHistory {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

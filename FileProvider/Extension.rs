@@ -19,8 +19,8 @@ unsafe impl NSObjectProtocol for NSFileProviderExtension {}
 extern_methods!(
     unsafe impl NSFileProviderExtension {
         #[cfg(feature = "NSFileProviderItem")]
-        #[unsafe(method_family(none))]
         #[method_id(itemForIdentifier:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn itemForIdentifier_error(
             &self,
             identifier: &NSFileProviderItemIdentifier,
@@ -33,16 +33,16 @@ extern_methods!(
         /// This is a static mapping; each identifier must always return a path
         /// corresponding to the same file. By default, this returns the path relative to
         /// the path returned by documentStorageURL.
-        #[unsafe(method_family(none))]
         #[method_id(URLForItemWithPersistentIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn URLForItemWithPersistentIdentifier(
             &self,
             identifier: &NSFileProviderItemIdentifier,
         ) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSFileProviderItem")]
-        #[unsafe(method_family(none))]
         #[method_id(persistentIdentifierForItemAtURL:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn persistentIdentifierForItemAtURL(
             &self,
             url: &NSURL,
@@ -91,12 +91,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSFileProviderExtension {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -121,8 +121,8 @@ extern_methods!(
         /// performance. To write out a placeholder, use the writePlaceHolderAtURL: method
         /// above.
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(placeholderURLForURL:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn placeholderURLForURL(url: &NSURL) -> Retained<NSURL>;
 
         /// An identifier unique to this provider.
@@ -131,8 +131,8 @@ extern_methods!(
         /// documentStorageURL, you should pass this identifier to your file coordinator's
         /// setPurposeIdentifier: method.
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(providerIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn providerIdentifier(&self) -> Retained<NSString>;
 
         /// The root URL for provided documents. This URL is derived by consulting the
@@ -140,8 +140,8 @@ extern_methods!(
         /// storage URL is the folder "File Provider Storage" in the corresponding
         /// container.
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(documentStorageURL)]
+        #[unsafe(method_family = none)]
         pub unsafe fn documentStorageURL(&self) -> Retained<NSURL>;
     }
 );
@@ -204,19 +204,19 @@ unsafe impl NSObjectProtocol for NSFileProviderManager {}
 
 extern_methods!(
     unsafe impl NSFileProviderManager {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Return the manager responsible for the default domain.
-        #[unsafe(method_family(none))]
         #[method_id(defaultManager)]
+        #[unsafe(method_family = none)]
         pub unsafe fn defaultManager() -> Retained<NSFileProviderManager>;
 
         #[cfg(feature = "NSFileProviderDomain")]
         /// Return the manager for the specified domain.
-        #[unsafe(method_family(none))]
         #[method_id(managerForDomain:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn managerForDomain(domain: &NSFileProviderDomain) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
@@ -328,8 +328,8 @@ extern_methods!(
         /// file coordinator with this purpose identifier set will not trigger your file
         /// provider extension. You can use this to e.g. perform speculative work on behalf
         /// of the file provider from the main app.
-        #[unsafe(method_family(none))]
         #[method_id(providerIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn providerIdentifier(&self) -> Retained<NSString>;
 
         /// The root URL for provided documents. This URL is derived by consulting the
@@ -339,8 +339,8 @@ extern_methods!(
         ///
         /// If the NSExtensionFileProviderDocumentGroup property is not set, calling this
         /// method will result in an error.
-        #[unsafe(method_family(none))]
         #[method_id(documentStorageURL)]
+        #[unsafe(method_family = none)]
         pub unsafe fn documentStorageURL(&self) -> Retained<NSURL>;
 
         /// A temporary directory suitable to store files that will be exchanged with the system.
@@ -358,8 +358,8 @@ extern_methods!(
         /// `-[NSFileProviderExternalVolumeHandling shouldConnectExternalDomainWithCompletionHandler:]`.
         /// It can also fail in the extension process if the domain (external) is being setup for the very first time
         /// (meaning it never existed).
-        #[unsafe(method_family(none))]
         #[method_id(temporaryDirectoryURLWithError:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn temporaryDirectoryURLWithError(
             &self,
         ) -> Result<Retained<NSURL>, Retained<NSError>>;
@@ -391,8 +391,8 @@ extern_methods!(
 
         /// Returns the designated placeholder URL for a given file URL. Used in
         /// conjunction with writePlaceholderAtURL.
-        #[unsafe(method_family(none))]
         #[method_id(placeholderURLForURL:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn placeholderURLForURL(url: &NSURL) -> Retained<NSURL>;
 
         #[cfg(all(feature = "NSFileProviderDomain", feature = "block2"))]
@@ -484,8 +484,8 @@ extern_methods!(
         /// - NSProgressFileOperationKindDownloading
         ///
         /// The returned progress will have its fileOperationKind property set.
-        #[unsafe(method_family(none))]
         #[method_id(globalProgressForKind:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn globalProgressForKind(
             &self,
             kind: &NSProgressFileOperationKind,
@@ -496,8 +496,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSFileProviderManager {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -530,8 +530,8 @@ extern_methods!(
         /// 'signalEnumeratorForContainerItemIdentifier';
         /// - The app/extension enumerates the materialized set after the system calls
         /// 'materializedItemsDidChangeWithCompletionHandler'.
-        #[unsafe(method_family(none))]
         #[method_id(enumeratorForMaterializedItems)]
+        #[unsafe(method_family = none)]
         pub unsafe fn enumeratorForMaterializedItems(
             &self,
         ) -> Retained<ProtocolObject<dyn NSFileProviderEnumerator>>;
@@ -558,8 +558,8 @@ extern_protocol!(
         ///
         /// This property is updated when the enumeration methods are called on the pending set enumerator. The value
         /// is initially nil.
-        #[unsafe(method_family(none))]
         #[method_id(domainVersion)]
+        #[unsafe(method_family = none)]
         unsafe fn domainVersion(&self) -> Option<Retained<NSFileProviderDomainVersion>>;
 
         /// The amount of time in seconds at which the pending set is refreshed on modifications.
@@ -583,8 +583,8 @@ extern_methods!(
         /// This enumerator behaves like the materialized set enumerator.
         /// On later modifications in the set, the system will call
         /// 'pendingItemsDidChangeWithCompletionHandler'.
-        #[unsafe(method_family(none))]
         #[method_id(enumeratorForPendingItems)]
+        #[unsafe(method_family = none)]
         pub unsafe fn enumeratorForPendingItems(
             &self,
         ) -> Retained<ProtocolObject<dyn NSFileProviderPendingSetEnumerator>>;
@@ -867,8 +867,8 @@ extern_methods!(
         /// for that domain unless the domain is being setup for the very first time (meaning it never existed).
         ///
         /// Removing the domain will remove the corresponding directory along with it.
-        #[unsafe(method_family(none))]
         #[method_id(stateDirectoryURLWithError:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stateDirectoryURLWithError(
             &self,
         ) -> Result<Retained<NSURL>, Retained<NSError>>;

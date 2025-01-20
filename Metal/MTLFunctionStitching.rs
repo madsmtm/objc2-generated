@@ -67,12 +67,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLFunctionStitchingAttributeAlwaysInline {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -112,8 +112,8 @@ extern_methods!(
         #[method(setArgumentIndex:)]
         pub unsafe fn setArgumentIndex(&self, argument_index: NSUInteger);
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithArgumentIndex:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithArgumentIndex(
             this: Allocated<Self>,
             argument: NSUInteger,
@@ -124,12 +124,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLFunctionStitchingInputNode {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -155,16 +155,16 @@ unsafe impl NSObjectProtocol for MTLFunctionStitchingFunctionNode {}
 
 extern_methods!(
     unsafe impl MTLFunctionStitchingFunctionNode {
-        #[unsafe(method_family(none))]
         #[method_id(name)]
+        #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
         #[method(setName:)]
         pub unsafe fn setName(&self, name: &NSString);
 
-        #[unsafe(method_family(none))]
         #[method_id(arguments)]
+        #[unsafe(method_family = none)]
         pub unsafe fn arguments(
             &self,
         ) -> Retained<NSArray<ProtocolObject<dyn MTLFunctionStitchingNode>>>;
@@ -176,8 +176,8 @@ extern_methods!(
             arguments: &NSArray<ProtocolObject<dyn MTLFunctionStitchingNode>>,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(controlDependencies)]
+        #[unsafe(method_family = none)]
         pub unsafe fn controlDependencies(
             &self,
         ) -> Retained<NSArray<MTLFunctionStitchingFunctionNode>>;
@@ -189,8 +189,8 @@ extern_methods!(
             control_dependencies: &NSArray<MTLFunctionStitchingFunctionNode>,
         );
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithName:arguments:controlDependencies:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithName_arguments_controlDependencies(
             this: Allocated<Self>,
             name: &NSString,
@@ -203,12 +203,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLFunctionStitchingFunctionNode {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -234,32 +234,32 @@ unsafe impl NSObjectProtocol for MTLFunctionStitchingGraph {}
 
 extern_methods!(
     unsafe impl MTLFunctionStitchingGraph {
-        #[unsafe(method_family(none))]
         #[method_id(functionName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn functionName(&self) -> Retained<NSString>;
 
         /// Setter for [`functionName`][Self::functionName].
         #[method(setFunctionName:)]
         pub unsafe fn setFunctionName(&self, function_name: &NSString);
 
-        #[unsafe(method_family(none))]
         #[method_id(nodes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn nodes(&self) -> Retained<NSArray<MTLFunctionStitchingFunctionNode>>;
 
         /// Setter for [`nodes`][Self::nodes].
         #[method(setNodes:)]
         pub unsafe fn setNodes(&self, nodes: &NSArray<MTLFunctionStitchingFunctionNode>);
 
-        #[unsafe(method_family(none))]
         #[method_id(outputNode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn outputNode(&self) -> Option<Retained<MTLFunctionStitchingFunctionNode>>;
 
         /// Setter for [`outputNode`][Self::outputNode].
         #[method(setOutputNode:)]
         pub unsafe fn setOutputNode(&self, output_node: Option<&MTLFunctionStitchingFunctionNode>);
 
-        #[unsafe(method_family(none))]
         #[method_id(attributes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn attributes(
             &self,
         ) -> Retained<NSArray<ProtocolObject<dyn MTLFunctionStitchingAttribute>>>;
@@ -271,8 +271,8 @@ extern_methods!(
             attributes: &NSArray<ProtocolObject<dyn MTLFunctionStitchingAttribute>>,
         );
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithFunctionName:nodes:outputNode:attributes:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFunctionName_nodes_outputNode_attributes(
             this: Allocated<Self>,
             function_name: &NSString,
@@ -286,12 +286,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLFunctionStitchingGraph {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -315,8 +315,8 @@ unsafe impl NSObjectProtocol for MTLStitchedLibraryDescriptor {}
 
 extern_methods!(
     unsafe impl MTLStitchedLibraryDescriptor {
-        #[unsafe(method_family(none))]
         #[method_id(functionGraphs)]
+        #[unsafe(method_family = none)]
         pub unsafe fn functionGraphs(&self) -> Retained<NSArray<MTLFunctionStitchingGraph>>;
 
         /// Setter for [`functionGraphs`][Self::functionGraphs].
@@ -327,8 +327,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "MTLLibrary")]
-        #[unsafe(method_family(none))]
         #[method_id(functions)]
+        #[unsafe(method_family = none)]
         pub unsafe fn functions(&self) -> Retained<NSArray<ProtocolObject<dyn MTLFunction>>>;
 
         #[cfg(feature = "MTLLibrary")]
@@ -340,8 +340,8 @@ extern_methods!(
         /// The array of archives to be searched.
         ///
         /// Binary archives to be searched for precompiled stitched libraries during the compilation of this library.
-        #[unsafe(method_family(none))]
         #[method_id(binaryArchives)]
+        #[unsafe(method_family = none)]
         pub unsafe fn binaryArchives(
             &self,
         ) -> Retained<NSArray<ProtocolObject<dyn MTLBinaryArchive>>>;
@@ -367,12 +367,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLStitchedLibraryDescriptor {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

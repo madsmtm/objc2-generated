@@ -77,8 +77,8 @@ extern_methods!(
         /// Parameter `device`: A Metal device.
         ///
         /// Returns: A new plane geometry.
-        #[unsafe(method_family(none))]
         #[method_id(planeGeometryWithDevice:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn planeGeometryWithDevice(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
@@ -101,8 +101,8 @@ extern_methods!(
         /// Creates and returns an empty geometry object.
         ///
         /// An empty geometry may be used as the lowest level of detail of a geometry.
-        #[unsafe(method_family(none))]
         #[method_id(geometry)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geometry() -> Retained<Self>;
 
         #[cfg(feature = "objc2-foundation")]
@@ -113,8 +113,8 @@ extern_methods!(
         /// Parameter `elements`: An array of geometry elements. The sort order in the array determines the mapping between materials and geometry elements.
         ///
         /// A geometry is made of geometry sources (at least `SCNGeometrySourceSemanticVertex`) and at least one geometry element. Multiple sources for texture coordinates are accepted. In that case the `mappingChannel` is implicitly set based on the order of the texture sources, starting at index 0.
-        #[unsafe(method_family(none))]
         #[method_id(geometryWithSources:elements:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements(
             sources: &NSArray<SCNGeometrySource>,
             elements: Option<&NSArray<SCNGeometryElement>>,
@@ -188,8 +188,8 @@ extern_methods!(
         /// @
         /// [0, 0]];                                                                                                                                               ┆
         /// ```
-        #[unsafe(method_family(none))]
         #[method_id(geometryWithSources:elements:sourceChannels:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements_sourceChannels(
             sources: &NSArray<SCNGeometrySource>,
             elements: Option<&NSArray<SCNGeometryElement>>,
@@ -203,12 +203,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "objc2", feature = "objc2-scene-kit"))]
     unsafe impl ARSCNPlaneGeometry {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

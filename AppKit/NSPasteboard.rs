@@ -166,20 +166,20 @@ unsafe impl NSObjectProtocol for NSPasteboard {}
 
 extern_methods!(
     unsafe impl NSPasteboard {
-        #[unsafe(method_family(none))]
         #[method_id(generalPasteboard)]
+        #[unsafe(method_family = none)]
         pub unsafe fn generalPasteboard() -> Retained<NSPasteboard>;
 
-        #[unsafe(method_family(none))]
         #[method_id(pasteboardWithName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pasteboardWithName(name: &NSPasteboardName) -> Retained<NSPasteboard>;
 
-        #[unsafe(method_family(none))]
         #[method_id(pasteboardWithUniqueName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pasteboardWithUniqueName() -> Retained<NSPasteboard>;
 
-        #[unsafe(method_family(none))]
         #[method_id(name)]
+        #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSPasteboardName>;
 
         #[method(changeCount)]
@@ -200,8 +200,8 @@ extern_methods!(
             objects: &NSArray<ProtocolObject<dyn NSPasteboardWriting>>,
         ) -> bool;
 
-        #[unsafe(method_family(none))]
         #[method_id(readObjectsForClasses:options:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn readObjectsForClasses_options(
             &self,
             class_array: &NSArray<AnyClass>,
@@ -209,8 +209,8 @@ extern_methods!(
         ) -> Option<Retained<NSArray>>;
 
         #[cfg(feature = "NSPasteboardItem")]
-        #[unsafe(method_family(none))]
         #[method_id(pasteboardItems)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pasteboardItems(&self) -> Option<Retained<NSArray<NSPasteboardItem>>>;
 
         #[cfg(feature = "NSPasteboardItem")]
@@ -247,12 +247,12 @@ extern_methods!(
             new_owner: Option<&AnyObject>,
         ) -> NSInteger;
 
-        #[unsafe(method_family(none))]
         #[method_id(types)]
+        #[unsafe(method_family = none)]
         pub unsafe fn types(&self) -> Option<Retained<NSArray<NSPasteboardType>>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(availableTypeFromArray:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn availableTypeFromArray(
             &self,
             types: &NSArray<NSPasteboardType>,
@@ -279,19 +279,19 @@ extern_methods!(
             data_type: &NSPasteboardType,
         ) -> bool;
 
-        #[unsafe(method_family(none))]
         #[method_id(dataForType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dataForType(&self, data_type: &NSPasteboardType) -> Option<Retained<NSData>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(propertyListForType:)]
+        #[unsafe(method_family = none)]
         pub fn propertyListForType(
             &self,
             data_type: &NSPasteboardType,
         ) -> Option<Retained<AnyObject>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(stringForType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stringForType(
             &self,
             data_type: &NSPasteboardType,
@@ -302,12 +302,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPasteboard {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -315,25 +315,25 @@ extern_methods!(
 extern_methods!(
     /// FilterServices
     unsafe impl NSPasteboard {
-        #[unsafe(method_family(none))]
         #[method_id(typesFilterableTo:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn typesFilterableTo(
             r#type: &NSPasteboardType,
         ) -> Retained<NSArray<NSPasteboardType>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(pasteboardByFilteringFile:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pasteboardByFilteringFile(filename: &NSString) -> Retained<NSPasteboard>;
 
-        #[unsafe(method_family(none))]
         #[method_id(pasteboardByFilteringData:ofType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pasteboardByFilteringData_ofType(
             data: &NSData,
             r#type: &NSPasteboardType,
         ) -> Retained<NSPasteboard>;
 
-        #[unsafe(method_family(none))]
         #[method_id(pasteboardByFilteringTypesInPasteboard:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pasteboardByFilteringTypesInPasteboard(
             pboard: &NSPasteboard,
         ) -> Retained<NSPasteboard>;
@@ -381,8 +381,8 @@ unsafe impl RefEncode for NSPasteboardWritingOptions {
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardwriting?language=objc)
     pub unsafe trait NSPasteboardWriting: NSObjectProtocol {
-        #[unsafe(method_family(none))]
         #[method_id(writableTypesForPasteboard:)]
+        #[unsafe(method_family = none)]
         unsafe fn writableTypesForPasteboard(
             &self,
             pasteboard: &NSPasteboard,
@@ -396,8 +396,8 @@ extern_protocol!(
             pasteboard: &NSPasteboard,
         ) -> NSPasteboardWritingOptions;
 
-        #[unsafe(method_family(none))]
         #[method_id(pasteboardPropertyListForType:)]
+        #[unsafe(method_family = none)]
         unsafe fn pasteboardPropertyListForType(
             &self,
             r#type: &NSPasteboardType,
@@ -434,8 +434,8 @@ unsafe impl RefEncode for NSPasteboardReadingOptions {
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardreading?language=objc)
     pub unsafe trait NSPasteboardReading: NSObjectProtocol {
-        #[unsafe(method_family(none))]
         #[method_id(readableTypesForPasteboard:)]
+        #[unsafe(method_family = none)]
         unsafe fn readableTypesForPasteboard(
             pasteboard: &NSPasteboard,
         ) -> Retained<NSArray<NSPasteboardType>>;
@@ -448,8 +448,8 @@ extern_protocol!(
         ) -> NSPasteboardReadingOptions;
 
         #[optional]
-        #[unsafe(method_family(init))]
         #[method_id(initWithPasteboardPropertyList:ofType:)]
+        #[unsafe(method_family = init)]
         unsafe fn initWithPasteboardPropertyList_ofType(
             this: Allocated<Self>,
             property_list: &AnyObject,
@@ -462,8 +462,8 @@ extern_category!(
     /// Category "NSPasteboardSupport" on [`NSURL`].
     #[doc(alias = "NSPasteboardSupport")]
     pub unsafe trait NSURLNSPasteboardSupport {
-        #[unsafe(method_family(none))]
         #[method_id(URLFromPasteboard:)]
+        #[unsafe(method_family = none)]
         unsafe fn URLFromPasteboard(paste_board: &NSPasteboard) -> Option<Retained<NSURL>>;
 
         #[method(writeToPasteboard:)]
@@ -488,8 +488,8 @@ extern_methods!(
         #[method(writeFileContents:)]
         pub unsafe fn writeFileContents(&self, filename: &NSString) -> bool;
 
-        #[unsafe(method_family(none))]
         #[method_id(readFileContentsType:toFile:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn readFileContentsType_toFile(
             &self,
             r#type: Option<&NSPasteboardType>,
@@ -499,8 +499,8 @@ extern_methods!(
         #[method(writeFileWrapper:)]
         pub unsafe fn writeFileWrapper(&self, wrapper: &NSFileWrapper) -> bool;
 
-        #[unsafe(method_family(none))]
         #[method_id(readFileWrapper)]
+        #[unsafe(method_family = none)]
         pub unsafe fn readFileWrapper(&self) -> Option<Retained<NSFileWrapper>>;
     }
 );

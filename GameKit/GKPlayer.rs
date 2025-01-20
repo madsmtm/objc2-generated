@@ -36,33 +36,33 @@ extern_methods!(
         pub unsafe fn scopedIDsArePersistent(&self) -> bool;
 
         /// This is the player's unique and persistent ID that is scoped to this application.
-        #[unsafe(method_family(none))]
         #[method_id(gamePlayerID)]
+        #[unsafe(method_family = none)]
         pub unsafe fn gamePlayerID(&self) -> Retained<NSString>;
 
         /// This is the player's unique and persistent ID that is scoped to the Apple Store Connect Team identifier of this application.
-        #[unsafe(method_family(none))]
         #[method_id(teamPlayerID)]
+        #[unsafe(method_family = none)]
         pub unsafe fn teamPlayerID(&self) -> Retained<NSString>;
 
         /// This is player's alias to be displayed. The display name may be very long, so be sure to use appropriate string truncation API when drawing.
-        #[unsafe(method_family(none))]
         #[method_id(displayName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn displayName(&self) -> Retained<NSString>;
 
         /// The alias property contains the player's nickname. When you need to display the name to the user, consider using displayName instead. The nickname is unique but not invariant: the player may change their nickname. The nickname may be very long, so be sure to use appropriate string truncation API when drawing.
-        #[unsafe(method_family(none))]
         #[method_id(alias)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alias(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(anonymousGuestPlayerWithIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn anonymousGuestPlayerWithIdentifier(
             guest_identifier: &NSString,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(guestIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn guestIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[method(isInvitable)]
@@ -74,12 +74,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "GKBasePlayer")]
     unsafe impl GKPlayer {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -135,8 +135,8 @@ extern_methods!(
         pub unsafe fn isFriend(&self) -> bool;
 
         #[deprecated = "Use either the gamePlayerID or teamPlayerID property to identify a player."]
-        #[unsafe(method_family(none))]
         #[method_id(playerID)]
+        #[unsafe(method_family = none)]
         pub unsafe fn playerID(&self) -> Retained<NSString>;
 
         #[cfg(feature = "block2")]

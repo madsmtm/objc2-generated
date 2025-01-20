@@ -103,16 +103,16 @@ extern_methods!(
         pub unsafe fn highQualityRendering(&self) -> bool;
 
         #[cfg(feature = "AVVideoComposition")]
-        #[unsafe(method_family(none))]
         #[method_id(videoComposition)]
+        #[unsafe(method_family = none)]
         pub unsafe fn videoComposition(&self) -> Retained<AVVideoComposition>;
 
         #[cfg(feature = "objc2-core-video")]
         /// Vends a CVPixelBuffer to use for rendering
         ///
         /// The buffer will have its kCVImageBufferCleanApertureKey and kCVImageBufferPixelAspectRatioKey attachments set to match the current composition processor properties.
-        #[unsafe(method_family(new))]
         #[method_id(newPixelBuffer)]
+        #[unsafe(method_family = new)]
         pub unsafe fn newPixelBuffer(&self) -> Option<Retained<CVPixelBuffer>>;
     }
 );
@@ -120,12 +120,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVVideoCompositionRenderContext {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -160,12 +160,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVVideoCompositionRenderHint {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -181,14 +181,14 @@ extern_protocol!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocompositing?language=objc)
     pub unsafe trait AVVideoCompositing: NSObjectProtocol {
-        #[unsafe(method_family(none))]
         #[method_id(sourcePixelBufferAttributes)]
+        #[unsafe(method_family = none)]
         unsafe fn sourcePixelBufferAttributes(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(requiredPixelBufferAttributesForRenderContext)]
+        #[unsafe(method_family = none)]
         unsafe fn requiredPixelBufferAttributesForRenderContext(
             &self,
         ) -> Retained<NSDictionary<NSString, AnyObject>>;
@@ -305,24 +305,24 @@ unsafe impl NSObjectProtocol for AVAsynchronousVideoCompositionRequest {}
 
 extern_methods!(
     unsafe impl AVAsynchronousVideoCompositionRequest {
-        #[unsafe(method_family(none))]
         #[method_id(renderContext)]
+        #[unsafe(method_family = none)]
         pub unsafe fn renderContext(&self) -> Retained<AVVideoCompositionRenderContext>;
 
         #[cfg(feature = "objc2-core-media")]
         #[method(compositionTime)]
         pub unsafe fn compositionTime(&self) -> CMTime;
 
-        #[unsafe(method_family(none))]
         #[method_id(sourceTrackIDs)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sourceTrackIDs(&self) -> Retained<NSArray<NSNumber>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(sourceSampleDataTrackIDs)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sourceSampleDataTrackIDs(&self) -> Retained<NSArray<NSNumber>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(videoCompositionInstruction)]
+        #[unsafe(method_family = none)]
         pub unsafe fn videoCompositionInstruction(
             &self,
         ) -> Retained<ProtocolObject<dyn AVVideoCompositionInstructionProtocol>>;
@@ -331,8 +331,8 @@ extern_methods!(
         /// Returns the source CVPixelBufferRef for the given track ID
         ///
         /// Parameter `trackID`: The track ID for the requested source frame
-        #[unsafe(method_family(none))]
         #[method_id(sourceFrameByTrackID:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sourceFrameByTrackID(
             &self,
             track_id: CMPersistentTrackID,
@@ -342,8 +342,8 @@ extern_methods!(
         /// Returns the source CMSampleBufferRef for the given track ID
         ///
         /// Parameter `trackID`: The track ID for the requested source sample buffer
-        #[unsafe(method_family(none))]
         #[method_id(sourceSampleBufferByTrackID:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sourceSampleBufferByTrackID(
             &self,
             track_id: CMPersistentTrackID,
@@ -353,8 +353,8 @@ extern_methods!(
         /// Returns the source AVTimedMetadataGroup * for the given track ID
         ///
         /// Parameter `trackID`: The track ID for the requested source timed metadata group.
-        #[unsafe(method_family(none))]
         #[method_id(sourceTimedMetadataByTrackID:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sourceTimedMetadataByTrackID(
             &self,
             track_id: CMPersistentTrackID,
@@ -378,12 +378,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAsynchronousVideoCompositionRequest {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -415,8 +415,8 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-image")]
         #[cfg(not(target_os = "watchos"))]
-        #[unsafe(method_family(none))]
         #[method_id(sourceImage)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sourceImage(&self) -> Retained<CIImage>;
 
         #[cfg(feature = "objc2-core-image")]
@@ -436,12 +436,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAsynchronousCIImageFilteringRequest {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -462,8 +462,8 @@ extern_protocol!(
         #[method(containsTweening)]
         unsafe fn containsTweening(&self) -> bool;
 
-        #[unsafe(method_family(none))]
         #[method_id(requiredSourceTrackIDs)]
+        #[unsafe(method_family = none)]
         unsafe fn requiredSourceTrackIDs(&self) -> Option<Retained<NSArray<NSValue>>>;
 
         #[cfg(feature = "objc2-core-media")]
@@ -471,8 +471,8 @@ extern_protocol!(
         unsafe fn passthroughTrackID(&self) -> CMPersistentTrackID;
 
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(requiredSourceSampleDataTrackIDs)]
+        #[unsafe(method_family = none)]
         unsafe fn requiredSourceSampleDataTrackIDs(&self) -> Retained<NSArray<NSNumber>>;
     }
 );

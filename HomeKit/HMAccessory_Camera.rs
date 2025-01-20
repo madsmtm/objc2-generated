@@ -17,8 +17,8 @@ extern_methods!(
         /// An accessory can contain one or more cameras. Each camera is represented as a
         /// an HMCameraProfile object. If the accessory does not contain a camera, this property
         /// will be nil.
-        #[unsafe(method_family(none))]
         #[method_id(cameraProfiles)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cameraProfiles(&self) -> Option<Retained<NSArray<HMCameraProfile>>>;
     }
 );

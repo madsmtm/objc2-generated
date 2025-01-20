@@ -74,12 +74,12 @@ unsafe impl NSObjectProtocol for VZMacAuxiliaryStorage {}
 
 extern_methods!(
     unsafe impl VZMacAuxiliaryStorage {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Initialize the auxiliary storage from the URL of an existing file.
@@ -87,8 +87,8 @@ extern_methods!(
         /// Parameter `URL`: The URL of the auxiliary storage on the local file system.
         ///
         /// To create a new auxiliary storage, use -[VZMacAuxiliaryStorage initCreatingStorageAtURL:hardwareModel:options:error].
-        #[unsafe(method_family(init))]
         #[method_id(initWithURL:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
         #[cfg(feature = "VZMacHardwareModel")]
@@ -105,8 +105,8 @@ extern_methods!(
         /// Returns: A newly initialized VZMacAuxiliaryStorage on success. If an error was encountered returns
         /// `nil,`and
         /// `error`contains the error.
-        #[unsafe(method_family(init))]
         #[method_id(initCreatingStorageAtURL:hardwareModel:options:error:_)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initCreatingStorageAtURL_hardwareModel_options_error(
             this: Allocated<Self>,
             url: &NSURL,
@@ -115,8 +115,8 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         /// The URL of the auxiliary storage on the local file system.
-        #[unsafe(method_family(none))]
         #[method_id(URL)]
+        #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
     }
 );
@@ -125,8 +125,8 @@ extern_methods!(
     /// VZDeprecated
     unsafe impl VZMacAuxiliaryStorage {
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(initWithContentsOfURL:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
     }
 );

@@ -32,13 +32,13 @@ extern_methods!(
         /// Get the protocol that describes nearby interaction capabilities on this device.
         ///
         /// Detailed description on the capability protocol is in NIDeviceCapability.h.
-        #[unsafe(method_family(none))]
         #[method_id(deviceCapabilities)]
+        #[unsafe(method_family = none)]
         pub unsafe fn deviceCapabilities() -> Retained<ProtocolObject<dyn NIDeviceCapability>>;
 
         /// A delegate for receiving NISession updates.
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NISessionDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -52,14 +52,14 @@ extern_methods!(
         ///
         /// Copy this discoveryToken and share it with a peer device.
         /// The discoveryToken is unique to this device and this session.
-        #[unsafe(method_family(none))]
         #[method_id(discoveryToken)]
+        #[unsafe(method_family = none)]
         pub unsafe fn discoveryToken(&self) -> Option<Retained<NIDiscoveryToken>>;
 
         #[cfg(feature = "NIConfiguration")]
         /// The nearby interaction configuration currently being used by the session.
-        #[unsafe(method_family(none))]
         #[method_id(configuration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn configuration(&self) -> Option<Retained<NIConfiguration>>;
 
         #[cfg(feature = "NIConfiguration")]
@@ -104,12 +104,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NISession {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -191,17 +191,17 @@ extern_methods!(
         pub unsafe fn status(&self) -> NIAlgorithmConvergenceStatus;
 
         #[cfg(feature = "NIAlgorithmConvergenceStatusReason")]
-        #[unsafe(method_family(none))]
         #[method_id(reasons)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reasons(&self) -> Retained<NSArray<NIAlgorithmConvergenceStatusReason>>;
 
         /// Unavailable
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

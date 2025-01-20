@@ -78,8 +78,8 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLHRElement {
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(align)]
+        #[unsafe(method_family = none)]
         pub unsafe fn align(&self) -> Retained<NSString>;
 
         /// Setter for [`align`][Self::align].
@@ -97,8 +97,8 @@ extern_methods!(
         pub unsafe fn setNoShade(&self, no_shade: bool);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(size)]
+        #[unsafe(method_family = none)]
         pub unsafe fn size(&self) -> Retained<NSString>;
 
         /// Setter for [`size`][Self::size].
@@ -107,8 +107,8 @@ extern_methods!(
         pub unsafe fn setSize(&self, size: Option<&NSString>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(width)]
+        #[unsafe(method_family = none)]
         pub unsafe fn width(&self) -> Retained<NSString>;
 
         /// Setter for [`width`][Self::width].
@@ -129,8 +129,8 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLHRElement {
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -145,8 +145,8 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLHRElement {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

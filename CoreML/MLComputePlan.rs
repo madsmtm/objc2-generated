@@ -57,12 +57,12 @@ unsafe impl NSObjectProtocol for MLComputePlan {}
 
 extern_methods!(
     unsafe impl MLComputePlan {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(all(feature = "MLModelConfiguration", feature = "block2"))]
@@ -111,8 +111,8 @@ extern_methods!(
         /// Parameter `operation`: An ML Program operation.
         ///
         /// Returns: The estimated cost of executing the operation or nil if the cost couldn't be estimated.
-        #[unsafe(method_family(none))]
         #[method_id(estimatedCostOfMLProgramOperation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn estimatedCostOfMLProgramOperation(
             &self,
             operation: &MLModelStructureProgramOperation,
@@ -128,8 +128,8 @@ extern_methods!(
         /// Parameter `layer`: A NeuralNetwork layer.
         ///
         /// Returns: The anticipated compute devices that would be used for executing the layer or `nil` if the usage couldn't be determined.
-        #[unsafe(method_family(none))]
         #[method_id(computeDeviceUsageForNeuralNetworkLayer:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn computeDeviceUsageForNeuralNetworkLayer(
             &self,
             layer: &MLModelStructureNeuralNetworkLayer,
@@ -145,8 +145,8 @@ extern_methods!(
         /// Parameter `operation`: An ML Program operation.
         ///
         /// Returns: The anticipated compute devices that would be used for executing the operation or `nil`if the usage couldn't be determined.
-        #[unsafe(method_family(none))]
         #[method_id(computeDeviceUsageForMLProgramOperation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn computeDeviceUsageForMLProgramOperation(
             &self,
             operation: &MLModelStructureProgramOperation,
@@ -154,8 +154,8 @@ extern_methods!(
 
         #[cfg(feature = "MLModelStructure")]
         /// The model structure.
-        #[unsafe(method_family(none))]
         #[method_id(modelStructure)]
+        #[unsafe(method_family = none)]
         pub unsafe fn modelStructure(&self) -> Retained<MLModelStructure>;
     }
 );

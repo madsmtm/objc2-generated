@@ -42,8 +42,8 @@ extern_methods!(
         );
 
         /// Designated initializer
-        #[unsafe(method_family(init))]
         #[method_id(initWithIdentifier:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,
             identifier: &NSString,
@@ -51,8 +51,8 @@ extern_methods!(
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         /// Initialize the achievement for a specific player. Use to submit participant achievements when ending a turn-based match.
-        #[unsafe(method_family(init))]
         #[method_id(initWithIdentifier:player:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifier_player(
             this: Allocated<Self>,
             identifier: &NSString,
@@ -72,8 +72,8 @@ extern_methods!(
         );
 
         /// Achievement identifier
-        #[unsafe(method_family(none))]
         #[method_id(identifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         /// Setter for [`identifier`][Self::identifier].
@@ -93,8 +93,8 @@ extern_methods!(
         pub unsafe fn isCompleted(&self) -> bool;
 
         /// Date the achievement was last reported. Read-only. Created at initialization
-        #[unsafe(method_family(none))]
         #[method_id(lastReportedDate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn lastReportedDate(&self) -> Retained<NSDate>;
 
         /// A banner will be momentarily displayed after reporting a completed achievement
@@ -107,8 +107,8 @@ extern_methods!(
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         /// The identifier of the player that earned the achievement.
-        #[unsafe(method_family(none))]
         #[method_id(player)]
+        #[unsafe(method_family = none)]
         pub unsafe fn player(&self) -> Option<Retained<GKPlayer>>;
     }
 );
@@ -116,12 +116,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKAchievement {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -148,8 +148,8 @@ extern_methods!(
     unsafe impl GKAchievement {
         /// * This method is obsolete. Calling this initialiser does nothing and will return nil **
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(initWithIdentifier:forPlayer:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifier_forPlayer(
             this: Allocated<Self>,
             identifier: Option<&NSString>,
@@ -158,8 +158,8 @@ extern_methods!(
 
         /// * This property is obsolete. **
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(playerID)]
+        #[unsafe(method_family = none)]
         pub unsafe fn playerID(&self) -> Option<Retained<NSString>>;
     }
 );

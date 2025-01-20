@@ -33,8 +33,8 @@ extern_methods!(
         /// model by applying "patches" of radius patchRadius to any holes found in the
         /// orginal mesh. Choose a patch radius that will be large enough to fill in the largest
         /// hole in the model.
-        #[unsafe(method_family(init))]
         #[method_id(initWithAsset:divisions:patchRadius:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithAsset_divisions_patchRadius(
             this: Allocated<Self>,
             asset: &MDLAsset,
@@ -58,8 +58,8 @@ extern_methods!(
         ///
         /// Parameter `patchRadius`: The radius of the largest model mending patch in world space units
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(initWithAsset:divisions:interiorShells:exteriorShells:patchRadius:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithAsset_divisions_interiorShells_exteriorShells_patchRadius(
             this: Allocated<Self>,
             asset: &MDLAsset,
@@ -85,8 +85,8 @@ extern_methods!(
         ///
         /// Parameter `patchRadius`: The radius of the largest model mending patch in world space units
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(initWithAsset:divisions:interiorNBWidth:exteriorNBWidth:patchRadius:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithAsset_divisions_interiorNBWidth_exteriorNBWidth_patchRadius(
             this: Allocated<Self>,
             asset: &MDLAsset,
@@ -101,8 +101,8 @@ extern_methods!(
         pub unsafe fn count(&self) -> NSUInteger;
 
         /// Returns an NSData containing the indices of all voxels in the voxel grid
-        #[unsafe(method_family(none))]
         #[method_id(voxelIndices)]
+        #[unsafe(method_family = none)]
         pub unsafe fn voxelIndices(&self) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "MDLMesh")]
@@ -230,13 +230,13 @@ extern_methods!(
 
         #[cfg(feature = "MDLMesh")]
         /// Creates a coarse mesh from the voxel grid
-        #[unsafe(method_family(none))]
         #[method_id(coarseMesh)]
+        #[unsafe(method_family = none)]
         pub unsafe fn coarseMesh(&self) -> Option<Retained<MDLMesh>>;
 
         #[cfg(all(feature = "MDLMesh", feature = "MDLMeshBuffer"))]
-        #[unsafe(method_family(none))]
         #[method_id(coarseMeshUsingAllocator:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn coarseMeshUsingAllocator(
             &self,
             allocator: Option<&ProtocolObject<dyn MDLMeshBufferAllocator>>,
@@ -244,8 +244,8 @@ extern_methods!(
 
         #[cfg(all(feature = "MDLMesh", feature = "MDLMeshBuffer"))]
         /// Creates a smooth mesh from the voxel grid
-        #[unsafe(method_family(none))]
         #[method_id(meshUsingAllocator:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn meshUsingAllocator(
             &self,
             allocator: Option<&ProtocolObject<dyn MDLMeshBufferAllocator>>,
@@ -257,12 +257,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MDLObject")]
     unsafe impl MDLVoxelArray {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

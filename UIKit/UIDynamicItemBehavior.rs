@@ -24,8 +24,8 @@ unsafe impl NSObjectProtocol for UIDynamicItemBehavior {}
 extern_methods!(
     #[cfg(feature = "UIDynamicBehavior")]
     unsafe impl UIDynamicItemBehavior {
-        #[unsafe(method_family(init))]
         #[method_id(initWithItems:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithItems(
             this: Allocated<Self>,
             items: &NSArray<ProtocolObject<dyn UIDynamicItem>>,
@@ -37,8 +37,8 @@ extern_methods!(
         #[method(removeItem:)]
         pub unsafe fn removeItem(&self, item: &ProtocolObject<dyn UIDynamicItem>);
 
-        #[unsafe(method_family(none))]
         #[method_id(items)]
+        #[unsafe(method_family = none)]
         pub unsafe fn items(&self) -> Retained<NSArray<ProtocolObject<dyn UIDynamicItem>>>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -151,12 +151,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UIDynamicBehavior")]
     unsafe impl UIDynamicItemBehavior {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

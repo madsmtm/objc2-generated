@@ -17,8 +17,8 @@ extern_category!(
     #[doc(alias = "NSScriptKeyValueCoding")]
     pub unsafe trait NSObjectNSScriptKeyValueCoding {
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(valueAtIndex:inPropertyWithKey:)]
+        #[unsafe(method_family = none)]
         unsafe fn valueAtIndex_inPropertyWithKey(
             &self,
             index: NSUInteger,
@@ -26,8 +26,8 @@ extern_category!(
         ) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(valueWithName:inPropertyWithKey:)]
+        #[unsafe(method_family = none)]
         unsafe fn valueWithName_inPropertyWithKey(
             &self,
             name: &NSString,
@@ -35,8 +35,8 @@ extern_category!(
         ) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(valueWithUniqueID:inPropertyWithKey:)]
+        #[unsafe(method_family = none)]
         unsafe fn valueWithUniqueID_inPropertyWithKey(
             &self,
             unique_id: &AnyObject,
@@ -70,8 +70,8 @@ extern_category!(
         unsafe fn insertValue_inPropertyWithKey(&self, value: &AnyObject, key: &NSString);
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(coerceValue:forKey:)]
+        #[unsafe(method_family = none)]
         unsafe fn coerceValue_forKey(
             &self,
             value: Option<&AnyObject>,

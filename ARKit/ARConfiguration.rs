@@ -213,14 +213,14 @@ extern_methods!(
         /// A list of supported video formats for this configuration and device.
         ///
         /// The first element in the list is the default format for session output.
-        #[unsafe(method_family(none))]
         #[method_id(supportedVideoFormats)]
+        #[unsafe(method_family = none)]
         pub unsafe fn supportedVideoFormats() -> Retained<NSArray<ARVideoFormat>>;
 
         #[cfg(feature = "ARVideoFormat")]
         /// Video format of the session output.
-        #[unsafe(method_family(none))]
         #[method_id(videoFormat)]
+        #[unsafe(method_family = none)]
         pub unsafe fn videoFormat(&self) -> Retained<ARVideoFormat>;
 
         #[cfg(feature = "ARVideoFormat")]
@@ -291,8 +291,8 @@ extern_methods!(
         /// Returns a pointer to the capture device of the camera that's used for rendering, so developers can adjust capture settings.
         ///
         /// May return nil if it is not recommended to modify capture settings, for example if the primary camera is used for tracking.
-        #[unsafe(method_family(none))]
         #[method_id(configurableCaptureDeviceForPrimaryCamera)]
+        #[unsafe(method_family = none)]
         pub unsafe fn configurableCaptureDeviceForPrimaryCamera(
         ) -> Option<Retained<AVCaptureDevice>>;
 
@@ -300,8 +300,8 @@ extern_methods!(
         /// Returns a video format using a 4K resolution from the list of supported video formats.
         ///
         /// May return nil if 4K is not supported for this configuration or device.
-        #[unsafe(method_family(none))]
         #[method_id(recommendedVideoFormatFor4KResolution)]
+        #[unsafe(method_family = none)]
         pub unsafe fn recommendedVideoFormatFor4KResolution() -> Option<Retained<ARVideoFormat>>;
 
         #[cfg(feature = "ARVideoFormat")]
@@ -310,8 +310,8 @@ extern_methods!(
         /// Using this format may consume more power. Other video formats may support capturing high resolution frames as well, albeit at a lower quality or resolution.
         ///
         /// See: [ARSession captureHighResolutionFrameWithCompletion:]
-        #[unsafe(method_family(none))]
         #[method_id(recommendedVideoFormatForHighResolutionFrameCapturing)]
+        #[unsafe(method_family = none)]
         pub unsafe fn recommendedVideoFormatForHighResolutionFrameCapturing(
         ) -> Option<Retained<ARVideoFormat>>;
 
@@ -325,12 +325,12 @@ extern_methods!(
         pub unsafe fn setVideoHDRAllowed(&self, video_hdr_allowed: bool);
 
         /// Unavailable
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -416,8 +416,8 @@ extern_methods!(
         /// a limited tracking state until localization is successful or run is called again
         /// with a different (or no) initial map specified. Once localized, the map will be extended
         /// and can again be saved using the `getCurrentWorldMap` method on the session.
-        #[unsafe(method_family(none))]
         #[method_id(initialWorldMap)]
+        #[unsafe(method_family = none)]
         pub unsafe fn initialWorldMap(&self) -> Option<Retained<ARWorldMap>>;
 
         #[cfg(feature = "ARWorldMap")]
@@ -429,8 +429,8 @@ extern_methods!(
         /// Images to detect in the scene.
         ///
         /// If set the session will attempt to detect the specified images. When an image is detected an ARImageAnchor will be added to the session.
-        #[unsafe(method_family(none))]
         #[method_id(detectionImages)]
+        #[unsafe(method_family = none)]
         pub unsafe fn detectionImages(&self) -> Retained<NSSet<ARReferenceImage>>;
 
         #[cfg(all(feature = "ARReferenceImage", feature = "objc2-foundation"))]
@@ -473,8 +473,8 @@ extern_methods!(
         /// Objects to detect in the scene.
         ///
         /// If set the session will attempt to detect the specified objects. When an object is detected an ARObjectAnchor will be added to the session.
-        #[unsafe(method_family(none))]
         #[method_id(detectionObjects)]
+        #[unsafe(method_family = none)]
         pub unsafe fn detectionObjects(&self) -> Retained<NSSet<ARReferenceObject>>;
 
         #[cfg(all(feature = "ARReferenceObject", feature = "objc2-foundation"))]
@@ -545,12 +545,12 @@ extern_methods!(
         #[method(setSceneReconstruction:)]
         pub unsafe fn setSceneReconstruction(&self, scene_reconstruction: ARSceneReconstruction);
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -594,12 +594,12 @@ extern_methods!(
         #[method(setAutoFocusEnabled:)]
         pub unsafe fn setAutoFocusEnabled(&self, auto_focus_enabled: bool);
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -669,12 +669,12 @@ extern_methods!(
         #[method(setWorldTrackingEnabled:)]
         pub unsafe fn setWorldTrackingEnabled(&self, world_tracking_enabled: bool);
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -720,8 +720,8 @@ extern_methods!(
 
         #[cfg(all(feature = "ARReferenceImage", feature = "objc2-foundation"))]
         /// Images to track in the scene.
-        #[unsafe(method_family(none))]
         #[method_id(trackingImages)]
+        #[unsafe(method_family = none)]
         pub unsafe fn trackingImages(&self) -> Retained<NSSet<ARReferenceImage>>;
 
         #[cfg(all(feature = "ARReferenceImage", feature = "objc2-foundation"))]
@@ -744,12 +744,12 @@ extern_methods!(
             maximum_number_of_tracked_images: NSInteger,
         );
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -808,12 +808,12 @@ extern_methods!(
         #[method(setPlaneDetection:)]
         pub unsafe fn setPlaneDetection(&self, plane_detection: ARPlaneDetection);
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -869,8 +869,8 @@ extern_methods!(
         /// a limited tracking state until localization is successful or run is called again
         /// with a different (or no) initial map specified. Once localized, the map will be extended
         /// and can again be saved using the `getCurrentWorldMap` method on the session.
-        #[unsafe(method_family(none))]
         #[method_id(initialWorldMap)]
+        #[unsafe(method_family = none)]
         pub unsafe fn initialWorldMap(&self) -> Option<Retained<ARWorldMap>>;
 
         #[cfg(feature = "ARWorldMap")]
@@ -915,8 +915,8 @@ extern_methods!(
         /// Images to detect in the scene.
         ///
         /// If set the session will attempt to detect the specified images. When an image is detected an ARImageAnchor will be added to the session.
-        #[unsafe(method_family(none))]
         #[method_id(detectionImages)]
+        #[unsafe(method_family = none)]
         pub unsafe fn detectionImages(&self) -> Retained<NSSet<ARReferenceImage>>;
 
         #[cfg(all(feature = "ARReferenceImage", feature = "objc2-foundation"))]
@@ -983,12 +983,12 @@ extern_methods!(
         #[method(supportsAppClipCodeTracking)]
         pub unsafe fn supportsAppClipCodeTracking() -> bool;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -1042,8 +1042,8 @@ extern_methods!(
         /// a limited tracking state until localization is successful or run is called again
         /// with a different (or no) initial map specified. Once localized, the map will be extended
         /// and can again be saved using the `getCurrentWorldMap` method on the session.
-        #[unsafe(method_family(none))]
         #[method_id(initialWorldMap)]
+        #[unsafe(method_family = none)]
         pub unsafe fn initialWorldMap(&self) -> Option<Retained<ARWorldMap>>;
 
         #[cfg(feature = "ARWorldMap")]
@@ -1051,12 +1051,12 @@ extern_methods!(
         #[method(setInitialWorldMap:)]
         pub unsafe fn setInitialWorldMap(&self, initial_world_map: Option<&ARWorldMap>);
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -1135,8 +1135,8 @@ extern_methods!(
         /// Images to detect in the scene.
         ///
         /// If set the session will attempt to detect the specified images. When an image is detected an ARImageAnchor will be added to the session.
-        #[unsafe(method_family(none))]
         #[method_id(detectionImages)]
+        #[unsafe(method_family = none)]
         pub unsafe fn detectionImages(&self) -> Retained<NSSet<ARReferenceImage>>;
 
         #[cfg(all(feature = "ARReferenceImage", feature = "objc2-foundation"))]
@@ -1179,8 +1179,8 @@ extern_methods!(
         /// Objects to detect in the scene.
         ///
         /// If set the session will attempt to detect the specified objects. When an object is detected an ARObjectAnchor will be added to the session.
-        #[unsafe(method_family(none))]
         #[method_id(detectionObjects)]
+        #[unsafe(method_family = none)]
         pub unsafe fn detectionObjects(&self) -> Retained<NSSet<ARReferenceObject>>;
 
         #[cfg(all(feature = "ARReferenceObject", feature = "objc2-foundation"))]
@@ -1233,12 +1233,12 @@ extern_methods!(
             completion_handler: &block2::Block<dyn Fn(Bool, *mut NSError)>,
         );
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

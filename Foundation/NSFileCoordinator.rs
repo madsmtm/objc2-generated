@@ -76,24 +76,24 @@ unsafe impl NSObjectProtocol for NSFileAccessIntent {}
 extern_methods!(
     unsafe impl NSFileAccessIntent {
         #[cfg(feature = "NSURL")]
-        #[unsafe(method_family(none))]
         #[method_id(readingIntentWithURL:options:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn readingIntentWithURL_options(
             url: &NSURL,
             options: NSFileCoordinatorReadingOptions,
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSURL")]
-        #[unsafe(method_family(none))]
         #[method_id(writingIntentWithURL:options:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn writingIntentWithURL_options(
             url: &NSURL,
             options: NSFileCoordinatorWritingOptions,
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSURL")]
-        #[unsafe(method_family(none))]
         #[method_id(URL)]
+        #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
     }
 );
@@ -101,12 +101,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSFileAccessIntent {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -131,21 +131,21 @@ extern_methods!(
         pub unsafe fn removeFilePresenter(file_presenter: &ProtocolObject<dyn NSFilePresenter>);
 
         #[cfg(all(feature = "NSArray", feature = "NSFilePresenter"))]
-        #[unsafe(method_family(none))]
         #[method_id(filePresenters)]
+        #[unsafe(method_family = none)]
         pub unsafe fn filePresenters() -> Retained<NSArray<ProtocolObject<dyn NSFilePresenter>>>;
 
         #[cfg(feature = "NSFilePresenter")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithFilePresenter:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFilePresenter(
             this: Allocated<Self>,
             file_presenter_or_nil: Option<&ProtocolObject<dyn NSFilePresenter>>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(purposeIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn purposeIdentifier(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
@@ -252,12 +252,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSFileCoordinator {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

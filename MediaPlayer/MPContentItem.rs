@@ -25,22 +25,22 @@ extern_methods!(
     unsafe impl MPContentItem {
         /// Designated initializer. A unique identifier is required to identify the item
         /// for later use.
-        #[unsafe(method_family(init))]
         #[method_id(initWithIdentifier:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,
             identifier: &NSString,
         ) -> Retained<Self>;
 
         /// A unique identifier for this content item. (Required)
-        #[unsafe(method_family(none))]
         #[method_id(identifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         /// A title for this item. Usually this would be the track name, if representing
         /// a song, the episode name of a podcast, etc.
-        #[unsafe(method_family(none))]
         #[method_id(title)]
+        #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`title`][Self::title].
@@ -49,8 +49,8 @@ extern_methods!(
 
         /// A subtitle for this item. If this were representing a song, this would
         /// usually be the artist or composer.
-        #[unsafe(method_family(none))]
         #[method_id(subtitle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn subtitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`subtitle`][Self::subtitle].
@@ -60,8 +60,8 @@ extern_methods!(
         #[cfg(feature = "MPMediaItem")]
         /// Artwork for this item. Examples of artwork for a content item are the album
         /// cover for a song, or a movie poster for a movie.
-        #[unsafe(method_family(none))]
         #[method_id(artwork)]
+        #[unsafe(method_family = none)]
         pub unsafe fn artwork(&self) -> Option<Retained<MPMediaItemArtwork>>;
 
         #[cfg(feature = "MPMediaItem")]
@@ -122,12 +122,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPContentItem {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -63,8 +63,8 @@ extern_protocol!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldynamiclibrary?language=objc)
     pub unsafe trait MTLDynamicLibrary: NSObjectProtocol {
         /// A string to help identify this object.
-        #[unsafe(method_family(none))]
         #[method_id(label)]
+        #[unsafe(method_family = none)]
         fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
@@ -73,13 +73,13 @@ extern_protocol!(
 
         #[cfg(feature = "MTLDevice")]
         /// The device this resource was created against.  This resource can only be used with this device.
-        #[unsafe(method_family(none))]
         #[method_id(device)]
+        #[unsafe(method_family = none)]
         fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         /// The installName of this dynamic library. Can not be nil.
-        #[unsafe(method_family(none))]
         #[method_id(installName)]
+        #[unsafe(method_family = none)]
         fn installName(&self) -> Retained<NSString>;
 
         /// Writes the contents of the MTLDynamicLibrary to a file.

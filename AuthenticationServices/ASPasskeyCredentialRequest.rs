@@ -31,8 +31,8 @@ unsafe impl NSSecureCoding for ASPasskeyCredentialRequest {}
 
 extern_methods!(
     unsafe impl ASPasskeyCredentialRequest {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(
@@ -46,8 +46,8 @@ extern_methods!(
         /// Parameter `clientDataHash`: the client data to be signed for this assertion request.
         ///
         /// Parameter `userVerificationPreference`: user verification preference setting of this assertion request.
-        #[unsafe(method_family(init))]
         #[method_id(initWithCredentialIdentity:clientDataHash:userVerificationPreference:supportedAlgorithms:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCredentialIdentity_clientDataHash_userVerificationPreference_supportedAlgorithms(
             this: Allocated<Self>,
             credential_identity: &ASPasskeyCredentialIdentity,
@@ -72,8 +72,8 @@ extern_methods!(
         /// Parameter `supportedAlgorithms`: the set of support algorithms for the credential's key.
         ///
         /// Parameter `assertionExtensionInput`: input for any requested passkey extensions.
-        #[unsafe(method_family(init))]
         #[method_id(initWithCredentialIdentity:clientDataHash:userVerificationPreference:supportedAlgorithms:assertionExtensionInput:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCredentialIdentity_clientDataHash_userVerificationPreference_supportedAlgorithms_assertionExtensionInput(
             this: Allocated<Self>,
             credential_identity: &ASPasskeyCredentialIdentity,
@@ -99,8 +99,8 @@ extern_methods!(
         /// Parameter `supportedAlgorithms`: the set of support algorithms for the credential's key.
         ///
         /// Parameter `registrationExtensionInput`: input for any requested passkey extensions.
-        #[unsafe(method_family(init))]
         #[method_id(initWithCredentialIdentity:clientDataHash:userVerificationPreference:supportedAlgorithms:registrationExtensionInput:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCredentialIdentity_clientDataHash_userVerificationPreference_supportedAlgorithms_registrationExtensionInput(
             this: Allocated<Self>,
             credential_identity: &ASPasskeyCredentialIdentity,
@@ -121,8 +121,8 @@ extern_methods!(
         /// Parameter `clientDataHash`: the client data to be signed for this assertion request.
         ///
         /// Parameter `userVerificationPreference`: user verification preference setting of this assertion request.
-        #[unsafe(method_family(none))]
         #[method_id(requestWithCredentialIdentity:clientDataHash:userVerificationPreference:supportedAlgorithms:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestWithCredentialIdentity_clientDataHash_userVerificationPreference_supportedAlgorithms(
             credential_identity: &ASPasskeyCredentialIdentity,
             client_data_hash: &NSData,
@@ -131,15 +131,15 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Hash of client data for credential provider to sign as part of the assertion/registration operation.
-        #[unsafe(method_family(none))]
         #[method_id(clientDataHash)]
+        #[unsafe(method_family = none)]
         pub unsafe fn clientDataHash(&self) -> Retained<NSData>;
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialConstants")]
         /// A preference for whether the authenticator should attempt to verify that
         /// it is being used by its owner, such as through a PIN or biometrics.
-        #[unsafe(method_family(none))]
         #[method_id(userVerificationPreference)]
+        #[unsafe(method_family = none)]
         pub unsafe fn userVerificationPreference(
             &self,
         ) -> Retained<ASAuthorizationPublicKeyCredentialUserVerificationPreference>;
@@ -153,29 +153,29 @@ extern_methods!(
         );
 
         /// A list of signing algorithms supported by the relying party. Will be empty for assertion requests.
-        #[unsafe(method_family(none))]
         #[method_id(supportedAlgorithms)]
+        #[unsafe(method_family = none)]
         pub unsafe fn supportedAlgorithms(&self) -> Retained<NSArray<NSNumber>>;
 
         #[cfg(feature = "ASAuthorizationPlatformPublicKeyCredentialDescriptor")]
-        #[unsafe(method_family(none))]
         #[method_id(excludedCredentials)]
+        #[unsafe(method_family = none)]
         pub unsafe fn excludedCredentials(
             &self,
         ) -> Option<Retained<NSArray<ASAuthorizationPlatformPublicKeyCredentialDescriptor>>>;
 
         #[cfg(feature = "ASPasskeyAssertionCredentialExtensionInput")]
         /// Inputs for WebAuthn extensions used for passkey assertion. Will be nil for registration requests.
-        #[unsafe(method_family(none))]
         #[method_id(assertionExtensionInput)]
+        #[unsafe(method_family = none)]
         pub unsafe fn assertionExtensionInput(
             &self,
         ) -> Option<Retained<ASPasskeyAssertionCredentialExtensionInput>>;
 
         #[cfg(feature = "ASPasskeyRegistrationCredentialExtensionInput")]
         /// Inputs for WebAuthn extensions used for passkey registration. Will be nil for assertion requests.
-        #[unsafe(method_family(none))]
         #[method_id(registrationExtensionInput)]
+        #[unsafe(method_family = none)]
         pub unsafe fn registrationExtensionInput(
             &self,
         ) -> Option<Retained<ASPasskeyRegistrationCredentialExtensionInput>>;
@@ -185,8 +185,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASPasskeyCredentialRequest {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

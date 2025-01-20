@@ -111,13 +111,13 @@ unsafe impl NSObjectProtocol for AVAudioSessionChannelDescription {}
 extern_methods!(
     unsafe impl AVAudioSessionChannelDescription {
         /// A human-readable name for the channel.
-        #[unsafe(method_family(none))]
         #[method_id(channelName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn channelName(&self) -> Retained<NSString>;
 
         /// The UID (unique identifier) of the port owning the channel.
-        #[unsafe(method_family(none))]
         #[method_id(owningPortUID)]
+        #[unsafe(method_family = none)]
         pub unsafe fn owningPortUID(&self) -> Retained<NSString>;
 
         /// The index of this channel in its owning port's array of channels.
@@ -134,12 +134,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAudioSessionChannelDescription {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -162,45 +162,45 @@ unsafe impl NSObjectProtocol for AVAudioSessionDataSourceDescription {}
 extern_methods!(
     unsafe impl AVAudioSessionDataSourceDescription {
         /// System-assigned ID for the data source.
-        #[unsafe(method_family(none))]
         #[method_id(dataSourceID)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dataSourceID(&self) -> Retained<NSNumber>;
 
         /// Human-readable name for the data source.
-        #[unsafe(method_family(none))]
         #[method_id(dataSourceName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dataSourceName(&self) -> Retained<NSString>;
 
         /// Describes the general location of a data source. Will be nil for data sources for which the
         /// location is not known.
-        #[unsafe(method_family(none))]
         #[method_id(location)]
+        #[unsafe(method_family = none)]
         pub unsafe fn location(&self) -> Option<Retained<AVAudioSessionLocation>>;
 
         /// Describes the orientation of a data source.  Will be nil for data sources for which the
         /// orientation is not known.
-        #[unsafe(method_family(none))]
         #[method_id(orientation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn orientation(&self) -> Option<Retained<AVAudioSessionOrientation>>;
 
         /// Array of one or more AVAudioSessionPolarPatterns describing the supported polar patterns for a
         /// data source.  Will be nil for data sources that have no selectable patterns.
-        #[unsafe(method_family(none))]
         #[method_id(supportedPolarPatterns)]
+        #[unsafe(method_family = none)]
         pub unsafe fn supportedPolarPatterns(
             &self,
         ) -> Option<Retained<NSArray<AVAudioSessionPolarPattern>>>;
 
         /// Describes the currently selected polar pattern.  Will be nil for data sources that have no
         /// selectable patterns.
-        #[unsafe(method_family(none))]
         #[method_id(selectedPolarPattern)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectedPolarPattern(&self) -> Option<Retained<AVAudioSessionPolarPattern>>;
 
         /// Describes the preferred polar pattern.  Will be nil for data sources that have no selectable
         /// patterns or if no preference has been set.
-        #[unsafe(method_family(none))]
         #[method_id(preferredPolarPattern)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preferredPolarPattern(&self) -> Option<Retained<AVAudioSessionPolarPattern>>;
 
         /// Select the desired polar pattern from the set of available patterns. Setting a nil value
@@ -225,12 +225,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAudioSessionDataSourceDescription {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -253,18 +253,18 @@ unsafe impl NSObjectProtocol for AVAudioSessionPortDescription {}
 extern_methods!(
     unsafe impl AVAudioSessionPortDescription {
         #[cfg(feature = "AVAudioSessionTypes")]
-        #[unsafe(method_family(none))]
         #[method_id(portType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn portType(&self) -> Retained<AVAudioSessionPort>;
 
         /// A descriptive name for the associated hardware port
-        #[unsafe(method_family(none))]
         #[method_id(portName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn portName(&self) -> Retained<NSString>;
 
         /// A system-assigned unique identifier for the associated hardware port
-        #[unsafe(method_family(none))]
         #[method_id(UID)]
+        #[unsafe(method_family = none)]
         pub unsafe fn UID(&self) -> Retained<NSString>;
 
         /// This property's value will be true if the associated hardware port has built-in
@@ -296,31 +296,31 @@ extern_methods!(
         #[method(isSpatialAudioEnabled)]
         pub unsafe fn isSpatialAudioEnabled(&self) -> bool;
 
-        #[unsafe(method_family(none))]
         #[method_id(channels)]
+        #[unsafe(method_family = none)]
         pub unsafe fn channels(
             &self,
         ) -> Option<Retained<NSArray<AVAudioSessionChannelDescription>>>;
 
         /// Will be nil if there are no selectable data sources.
-        #[unsafe(method_family(none))]
         #[method_id(dataSources)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dataSources(
             &self,
         ) -> Option<Retained<NSArray<AVAudioSessionDataSourceDescription>>>;
 
         /// Will be nil if there are no selectable data sources. In all other cases, this property reflects
         /// the currently selected data source.
-        #[unsafe(method_family(none))]
         #[method_id(selectedDataSource)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectedDataSource(
             &self,
         ) -> Option<Retained<AVAudioSessionDataSourceDescription>>;
 
         /// This property reflects the application's preferred data source for the Port. Will be nil if
         /// there are no selectable data sources or if no preference has been set.
-        #[unsafe(method_family(none))]
         #[method_id(preferredDataSource)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preferredDataSource(
             &self,
         ) -> Option<Retained<AVAudioSessionDataSourceDescription>>;
@@ -342,12 +342,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAudioSessionPortDescription {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -370,13 +370,13 @@ unsafe impl NSObjectProtocol for AVAudioSessionRouteDescription {}
 extern_methods!(
     unsafe impl AVAudioSessionRouteDescription {
         /// Flattened list of all input port descriptions associated with all the streams as part of the route.
-        #[unsafe(method_family(none))]
         #[method_id(inputs)]
+        #[unsafe(method_family = none)]
         pub unsafe fn inputs(&self) -> Retained<NSArray<AVAudioSessionPortDescription>>;
 
         /// Flattened list of all output port descriptions associated with all the streams as part of the route.
-        #[unsafe(method_family(none))]
         #[method_id(outputs)]
+        #[unsafe(method_family = none)]
         pub unsafe fn outputs(&self) -> Retained<NSArray<AVAudioSessionPortDescription>>;
     }
 );
@@ -384,12 +384,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAudioSessionRouteDescription {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -49,24 +49,24 @@ unsafe impl NSSecureCoding for ASWebAuthenticationSessionRequest {}
 
 extern_methods!(
     unsafe impl ASWebAuthenticationSessionRequest {
-        #[unsafe(method_family(none))]
         #[method_id(UUID)]
+        #[unsafe(method_family = none)]
         pub unsafe fn UUID(&self) -> Retained<NSUUID>;
 
-        #[unsafe(method_family(none))]
         #[method_id(URL)]
+        #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
 
         #[deprecated = "Use `callback` to match all callback types."]
-        #[unsafe(method_family(none))]
         #[method_id(callbackURLScheme)]
+        #[unsafe(method_family = none)]
         pub unsafe fn callbackURLScheme(&self) -> Option<Retained<NSString>>;
 
         #[method(shouldUseEphemeralSession)]
         pub unsafe fn shouldUseEphemeralSession(&self) -> bool;
 
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn ASWebAuthenticationSessionRequestDelegate>>>;
@@ -82,8 +82,8 @@ extern_methods!(
         /// Additional headers to be sent when loading the initial URL.
         /// These should _only_ apply to the initial page, and should not overwrite any headers normally sent by the browser.
         /// Add `AdditionalHeaderFieldsAreSupported: true` to `ASWebAuthenticationSessionWebBrowserSupportCapabilities` in your browser's Info.plist file to indicate support for this.
-        #[unsafe(method_family(none))]
         #[method_id(additionalHeaderFields)]
+        #[unsafe(method_family = none)]
         pub unsafe fn additionalHeaderFields(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, NSString>>>;
@@ -93,16 +93,16 @@ extern_methods!(
         /// Check all main-frame navigations loaded during the request with this callback. It is used to handle all callback types, including custom schemes and HTTPS navigations.
         /// When a match is found, invoke `-completeWithCallbackURL:` with that URL.
         /// Add `CallbackURLMatchingIsSupported: true` to `ASWebAuthenticationSessionWebBrowserSupportCapabilities` in your browser's Info.plist file to indicate support for this.
-        #[unsafe(method_family(none))]
         #[method_id(callback)]
+        #[unsafe(method_family = none)]
         pub unsafe fn callback(&self) -> Option<Retained<ASWebAuthenticationSessionCallback>>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(cancelWithError:)]

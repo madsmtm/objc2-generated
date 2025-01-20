@@ -32,8 +32,8 @@ extern_methods!(
         pub unsafe fn pixelsHighRange(&self) -> NSRange;
 
         #[cfg(feature = "MLImageSize")]
-        #[unsafe(method_family(none))]
         #[method_id(enumeratedImageSizes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn enumeratedImageSizes(&self) -> Retained<NSArray<MLImageSize>>;
     }
 );
@@ -41,12 +41,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MLImageSizeConstraint {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

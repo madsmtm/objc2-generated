@@ -37,8 +37,8 @@ extern_methods!(
         #[method(identifier)]
         pub unsafe fn identifier(&self) -> u64;
 
-        #[unsafe(method_family(none))]
         #[method_id(startDate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn startDate(&self) -> Retained<NSDate>;
     }
 );
@@ -47,12 +47,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "CMAccelerometer", feature = "CMLogItem"))]
     unsafe impl CMRecordedAccelerometerData {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

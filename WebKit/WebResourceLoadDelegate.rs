@@ -41,8 +41,8 @@ extern_protocol!(
         /// The identifier will be retained.
         #[deprecated]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(webView:identifierForInitialRequest:fromDataSource:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_identifierForInitialRequest_fromDataSource(
             &self,
             sender: Option<&WebView>,
@@ -75,8 +75,8 @@ extern_protocol!(
         /// will be request.
         #[deprecated]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(webView:resource:willSendRequest:redirectResponse:fromDataSource:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_resource_willSendRequest_redirectResponse_fromDataSource(
             &self,
             sender: Option<&WebView>,

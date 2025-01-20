@@ -88,13 +88,13 @@ extern_methods!(
         pub unsafe fn state(&self) -> BADownloadState;
 
         /// A client defined identifier that uniquely identifies this asset.
-        #[unsafe(method_family(none))]
         #[method_id(identifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         /// A UUID that uniquely identifies the download object.
-        #[unsafe(method_family(none))]
         #[method_id(uniqueIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn uniqueIdentifier(&self) -> Retained<NSString>;
 
         /// A client set priority to try to order downloads in order of importance
@@ -115,16 +115,16 @@ extern_methods!(
         /// download. It is important to note that essential downloads can only be enqueued by
         /// the app extension during a content request. If an essential download fails, `copyAsNonEssential`
         /// can be used to create a copy with `isEssential == false` that can be re-queued with `BADownloadManager`.
-        #[unsafe(method_family(copy))]
         #[method_id(copyAsNonEssential)]
+        #[unsafe(method_family = copy)]
         pub unsafe fn copyAsNonEssential(&self) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

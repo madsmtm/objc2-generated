@@ -42,28 +42,28 @@ unsafe impl NSObjectProtocol for NSXMLParser {}
 extern_methods!(
     unsafe impl NSXMLParser {
         #[cfg(feature = "NSURL")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithContentsOfURL:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL(
             this: Allocated<Self>,
             url: &NSURL,
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSData")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithData:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithData(this: Allocated<Self>, data: &NSData) -> Retained<Self>;
 
         #[cfg(feature = "NSStream")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithStream:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithStream(
             this: Allocated<Self>,
             stream: &NSInputStream,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSXMLParserDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
@@ -103,8 +103,8 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSSet", feature = "NSURL"))]
-        #[unsafe(method_family(none))]
         #[method_id(allowedExternalEntityURLs)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowedExternalEntityURLs(&self) -> Option<Retained<NSSet<NSURL>>>;
 
         #[cfg(all(feature = "NSSet", feature = "NSURL"))]
@@ -122,8 +122,8 @@ extern_methods!(
         pub unsafe fn abortParsing(&self);
 
         #[cfg(feature = "NSError")]
-        #[unsafe(method_family(none))]
         #[method_id(parserError)]
+        #[unsafe(method_family = none)]
         pub unsafe fn parserError(&self) -> Option<Retained<NSError>>;
 
         #[method(shouldResolveExternalEntities)]
@@ -141,12 +141,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSXMLParser {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -155,13 +155,13 @@ extern_methods!(
     /// NSXMLParserLocatorAdditions
     unsafe impl NSXMLParser {
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(publicID)]
+        #[unsafe(method_family = none)]
         pub unsafe fn publicID(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(systemID)]
+        #[unsafe(method_family = none)]
         pub unsafe fn systemID(&self) -> Option<Retained<NSString>>;
 
         #[method(lineNumber)]
@@ -323,8 +323,8 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSData", feature = "NSString"))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(parser:resolveExternalEntityName:systemID:)]
+        #[unsafe(method_family = none)]
         unsafe fn parser_resolveExternalEntityName_systemID(
             &self,
             parser: &NSXMLParser,

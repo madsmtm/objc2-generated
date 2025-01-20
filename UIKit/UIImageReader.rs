@@ -67,12 +67,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIImageReaderConfiguration {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -89,31 +89,31 @@ unsafe impl NSObjectProtocol for UIImageReader {}
 extern_methods!(
     unsafe impl UIImageReader {
         /// Returns a reader that uses the default configuration options. This method is thread safe.
-        #[unsafe(method_family(none))]
         #[method_id(defaultReader)]
+        #[unsafe(method_family = none)]
         pub unsafe fn defaultReader() -> Retained<UIImageReader>;
 
         /// Returns a loader of the given configuration. Loaders are thread safe and sharable.
-        #[unsafe(method_family(none))]
         #[method_id(readerWithConfiguration:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn readerWithConfiguration(
             configuration: &UIImageReaderConfiguration,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(configuration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn configuration(&self) -> Retained<UIImageReaderConfiguration>;
 
         #[cfg(feature = "UIImage")]
         /// Synchronously generate an image from the given file URL. If an image could not be generated, returns nil.
-        #[unsafe(method_family(none))]
         #[method_id(imageWithContentsOfFileURL:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn imageWithContentsOfFileURL(&self, url: &NSURL) -> Retained<UIImage>;
 
         #[cfg(feature = "UIImage")]
         /// Synchronously generate an image from the given data. If an image could not be generated, returns nil.
-        #[unsafe(method_family(none))]
         #[method_id(imageWithData:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn imageWithData(&self, data: &NSData) -> Retained<UIImage>;
 
         #[cfg(all(feature = "UIImage", feature = "block2"))]
@@ -139,12 +139,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIImageReader {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

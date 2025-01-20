@@ -20,8 +20,8 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: The name for the operation.
         /// - Returns: A valid ``MPSGraphTensor`` object.
-        #[unsafe(method_family(none))]
         #[method_id(reLUWithTensor:name:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reLUWithTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -36,8 +36,8 @@ extern_methods!(
         /// - source: The input tensor from forward pass.
         /// - name: The name for the operation.
         /// - Returns: A valid ``MPSGraphTensor`` object.
-        #[unsafe(method_family(none))]
         #[method_id(reLUGradientWithIncomingGradient:sourceTensor:name:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reLUGradientWithIncomingGradient_sourceTensor_name(
             &self,
             gradient: &MPSGraphTensor,
@@ -52,8 +52,8 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: The name for the operation.
         /// - Returns: A valid ``MPSGraphTensor`` object.
-        #[unsafe(method_family(none))]
         #[method_id(sigmoidWithTensor:name:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sigmoidWithTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -68,8 +68,8 @@ extern_methods!(
         /// - source: The input tensor.
         /// - name: The name for the operation.
         /// - Returns: A valid ``MPSGraphTensor`` object
-        #[unsafe(method_family(none))]
         #[method_id(sigmoidGradientWithIncomingGradient:sourceTensor:name:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sigmoidGradientWithIncomingGradient_sourceTensor_name(
             &self,
             gradient: &MPSGraphTensor,
@@ -85,8 +85,8 @@ extern_methods!(
         /// - axis: The axis along which softmax is computed.
         /// - name: The name for the operation.
         /// - Returns: A valid ``MPSGraphTensor`` object
-        #[unsafe(method_family(none))]
         #[method_id(softMaxWithTensor:axis:name:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn softMaxWithTensor_axis_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -103,8 +103,8 @@ extern_methods!(
         /// - axis: The axis along which softmax is computed.
         /// - name: The name for the operation.
         /// - Returns: A valid ``MPSGraphTensor`` object
-        #[unsafe(method_family(none))]
         #[method_id(softMaxGradientWithIncomingGradient:sourceTensor:axis:name:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn softMaxGradientWithIncomingGradient_sourceTensor_axis_name(
             &self,
             gradient: &MPSGraphTensor,
@@ -123,8 +123,8 @@ extern_methods!(
         /// - alpha: The scalar value alpha used by all elements in the input tensor.
         /// - name: The name for the operation.
         /// - Returns: A valid ``MPSGraphTensor`` object
-        #[unsafe(method_family(none))]
         #[method_id(leakyReLUWithTensor:alpha:name:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn leakyReLUWithTensor_alpha_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -143,8 +143,8 @@ extern_methods!(
         /// - alpha: The alpha tensor.
         /// - name: The name for the operation.
         /// - Returns: A valid ``MPSGraphTensor`` object
-        #[unsafe(method_family(none))]
         #[method_id(leakyReLUWithTensor:alphaTensor:name:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn leakyReLUWithTensor_alphaTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -163,8 +163,8 @@ extern_methods!(
         /// - alpha: The alpha tensor
         /// - name: The name for the operation.
         /// - Returns: A valid ``MPSGraphTensor`` object
-        #[unsafe(method_family(none))]
         #[method_id(leakyReLUGradientWithIncomingGradient:sourceTensor:alphaTensor:name:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn leakyReLUGradientWithIncomingGradient_sourceTensor_alphaTensor_name(
             &self,
             gradient: &MPSGraphTensor,

@@ -103,8 +103,8 @@ extern_methods!(
     unsafe impl NSURLConnection {
         #[cfg(feature = "NSURLRequest")]
         #[deprecated = "Use NSURLSession (see NSURLSession.h)"]
-        #[unsafe(method_family(init))]
         #[method_id(initWithRequest:delegate:startImmediately:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithRequest_delegate_startImmediately(
             this: Allocated<Self>,
             request: &NSURLRequest,
@@ -114,8 +114,8 @@ extern_methods!(
 
         #[cfg(feature = "NSURLRequest")]
         #[deprecated = "Use NSURLSession (see NSURLSession.h)"]
-        #[unsafe(method_family(init))]
         #[method_id(initWithRequest:delegate:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithRequest_delegate(
             this: Allocated<Self>,
             request: &NSURLRequest,
@@ -124,21 +124,21 @@ extern_methods!(
 
         #[cfg(feature = "NSURLRequest")]
         #[deprecated = "Use NSURLSession (see NSURLSession.h)"]
-        #[unsafe(method_family(none))]
         #[method_id(connectionWithRequest:delegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn connectionWithRequest_delegate(
             request: &NSURLRequest,
             delegate: Option<&AnyObject>,
         ) -> Option<Retained<NSURLConnection>>;
 
         #[cfg(feature = "NSURLRequest")]
-        #[unsafe(method_family(none))]
         #[method_id(originalRequest)]
+        #[unsafe(method_family = none)]
         pub unsafe fn originalRequest(&self) -> Retained<NSURLRequest>;
 
         #[cfg(feature = "NSURLRequest")]
-        #[unsafe(method_family(none))]
         #[method_id(currentRequest)]
+        #[unsafe(method_family = none)]
         pub unsafe fn currentRequest(&self) -> Retained<NSURLRequest>;
 
         #[method(start)]
@@ -197,12 +197,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSURLConnection {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -386,8 +386,8 @@ extern_protocol!(
     pub unsafe trait NSURLConnectionDataDelegate: NSURLConnectionDelegate {
         #[cfg(all(feature = "NSURLRequest", feature = "NSURLResponse"))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(connection:willSendRequest:redirectResponse:)]
+        #[unsafe(method_family = none)]
         unsafe fn connection_willSendRequest_redirectResponse(
             &self,
             connection: &NSURLConnection,
@@ -411,8 +411,8 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSStream", feature = "NSURLRequest"))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(connection:needNewBodyStream:)]
+        #[unsafe(method_family = none)]
         unsafe fn connection_needNewBodyStream(
             &self,
             connection: &NSURLConnection,
@@ -431,8 +431,8 @@ extern_protocol!(
 
         #[cfg(feature = "NSURLCache")]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(connection:willCacheResponse:)]
+        #[unsafe(method_family = none)]
         unsafe fn connection_willCacheResponse(
             &self,
             connection: &NSURLConnection,
@@ -556,8 +556,8 @@ extern_methods!(
         /// Returns: The content of the URL resulting from performing the load,
         /// or nil if the load failed.
         #[deprecated = "Use [NSURLSession dataTaskWithRequest:completionHandler:] (see NSURLSession.h"]
-        #[unsafe(method_family(none))]
         #[method_id(sendSynchronousRequest:returningResponse:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sendSynchronousRequest_returningResponse_error(
             request: &NSURLRequest,
             response: Option<&mut Option<Retained<NSURLResponse>>>,

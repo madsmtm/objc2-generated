@@ -80,8 +80,8 @@ extern_methods!(
 
         #[cfg(feature = "SKTexture")]
         /// The texture to be used for the particles.
-        #[unsafe(method_family(none))]
         #[method_id(particleTexture)]
+        #[unsafe(method_family = none)]
         pub unsafe fn particleTexture(&self) -> Option<Retained<SKTexture>>;
 
         #[cfg(feature = "SKTexture")]
@@ -98,8 +98,8 @@ extern_methods!(
         pub unsafe fn setParticleBlendMode(&self, particle_blend_mode: SKBlendMode);
 
         /// The starting color for each particle. Defaults to clear.
-        #[unsafe(method_family(none))]
         #[method_id(particleColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn particleColor(&self) -> Retained<NSColor>;
 
         /// Setter for [`particleColor`][Self::particleColor].
@@ -181,8 +181,8 @@ extern_methods!(
         pub unsafe fn setParticleColorAlphaSpeed(&self, particle_color_alpha_speed: CGFloat);
 
         #[cfg(feature = "SKKeyframeSequence")]
-        #[unsafe(method_family(none))]
         #[method_id(particleColorSequence)]
+        #[unsafe(method_family = none)]
         pub unsafe fn particleColorSequence(&self) -> Option<Retained<SKKeyframeSequence>>;
 
         #[cfg(feature = "SKKeyframeSequence")]
@@ -230,8 +230,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "SKKeyframeSequence")]
-        #[unsafe(method_family(none))]
         #[method_id(particleColorBlendFactorSequence)]
+        #[unsafe(method_family = none)]
         pub unsafe fn particleColorBlendFactorSequence(
             &self,
         ) -> Option<Retained<SKKeyframeSequence>>;
@@ -432,8 +432,8 @@ extern_methods!(
         pub unsafe fn setParticleScaleSpeed(&self, particle_scale_speed: CGFloat);
 
         #[cfg(feature = "SKKeyframeSequence")]
-        #[unsafe(method_family(none))]
         #[method_id(particleScaleSequence)]
+        #[unsafe(method_family = none)]
         pub unsafe fn particleScaleSequence(&self) -> Option<Retained<SKKeyframeSequence>>;
 
         #[cfg(feature = "SKKeyframeSequence")]
@@ -475,8 +475,8 @@ extern_methods!(
         pub unsafe fn setParticleAlphaSpeed(&self, particle_alpha_speed: CGFloat);
 
         #[cfg(feature = "SKKeyframeSequence")]
-        #[unsafe(method_family(none))]
         #[method_id(particleAlphaSequence)]
+        #[unsafe(method_family = none)]
         pub unsafe fn particleAlphaSequence(&self) -> Option<Retained<SKKeyframeSequence>>;
 
         #[cfg(feature = "SKKeyframeSequence")]
@@ -489,8 +489,8 @@ extern_methods!(
 
         #[cfg(feature = "SKAction")]
         /// Specifies an action executed by new particles.
-        #[unsafe(method_family(none))]
         #[method_id(particleAction)]
+        #[unsafe(method_family = none)]
         pub unsafe fn particleAction(&self) -> Option<Retained<SKAction>>;
 
         #[cfg(feature = "SKAction")]
@@ -508,8 +508,8 @@ extern_methods!(
         pub unsafe fn setFieldBitMask(&self, field_bit_mask: u32);
 
         /// Normally the particles are rendered as if they were a child of the SKEmitterNode, they can also be rendered as if they were a child of any other node in the scene by setting the targetNode property. Defaults to nil (standard behavior).
-        #[unsafe(method_family(none))]
         #[method_id(targetNode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn targetNode(&self) -> Option<Retained<SKNode>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -518,8 +518,8 @@ extern_methods!(
         pub unsafe fn setTargetNode(&self, target_node: Option<&SKNode>);
 
         #[cfg(feature = "SKShader")]
-        #[unsafe(method_family(none))]
         #[method_id(shader)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shader(&self) -> Option<Retained<SKShader>>;
 
         #[cfg(feature = "SKShader")]
@@ -530,8 +530,8 @@ extern_methods!(
         #[cfg(feature = "SKAttribute")]
         /// Optional dictionary of SKAttributeValues
         /// Attributes can be used with custom SKShaders.
-        #[unsafe(method_family(none))]
         #[method_id(attributeValues)]
+        #[unsafe(method_family = none)]
         pub unsafe fn attributeValues(&self) -> Retained<NSDictionary<NSString, SKAttributeValue>>;
 
         #[cfg(feature = "SKAttribute")]
@@ -543,8 +543,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "SKAttribute")]
-        #[unsafe(method_family(none))]
         #[method_id(valueForAttributeNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn valueForAttributeNamed(
             &self,
             key: &NSString,
@@ -603,31 +603,31 @@ extern_methods!(
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl SKEmitterNode {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Support coding and decoding via NSKeyedArchiver.
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(node)]
+        #[unsafe(method_family = none)]
         pub unsafe fn node(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(nodeWithFileNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn nodeWithFileNamed(
             filename: &NSString,
             mtm: MainThreadMarker,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(nodeWithFileNamed:securelyWithClasses:andError:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn nodeWithFileNamed_securelyWithClasses_andError(
             filename: &NSString,
             classes: &NSSet<AnyClass>,
@@ -641,8 +641,8 @@ extern_methods!(
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl SKEmitterNode {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

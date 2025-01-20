@@ -44,8 +44,8 @@ extern_methods!(
     /// NSValueRangeExtensions
     #[cfg(feature = "NSValue")]
     unsafe impl NSValue {
-        #[unsafe(method_family(none))]
         #[method_id(valueWithRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn valueWithRange(range: NSRange) -> Retained<NSValue>;
 
         #[method(rangeValue)]

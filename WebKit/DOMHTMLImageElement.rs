@@ -78,8 +78,8 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLImageElement {
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(name)]
+        #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
@@ -88,8 +88,8 @@ extern_methods!(
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(align)]
+        #[unsafe(method_family = none)]
         pub unsafe fn align(&self) -> Retained<NSString>;
 
         /// Setter for [`align`][Self::align].
@@ -98,8 +98,8 @@ extern_methods!(
         pub unsafe fn setAlign(&self, align: Option<&NSString>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(alt)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alt(&self) -> Retained<NSString>;
 
         /// Setter for [`alt`][Self::alt].
@@ -108,8 +108,8 @@ extern_methods!(
         pub unsafe fn setAlt(&self, alt: Option<&NSString>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(border)]
+        #[unsafe(method_family = none)]
         pub unsafe fn border(&self) -> Retained<NSString>;
 
         /// Setter for [`border`][Self::border].
@@ -145,8 +145,8 @@ extern_methods!(
         pub unsafe fn setIsMap(&self, is_map: bool);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(longDesc)]
+        #[unsafe(method_family = none)]
         pub unsafe fn longDesc(&self) -> Retained<NSString>;
 
         /// Setter for [`longDesc`][Self::longDesc].
@@ -155,8 +155,8 @@ extern_methods!(
         pub unsafe fn setLongDesc(&self, long_desc: Option<&NSString>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(src)]
+        #[unsafe(method_family = none)]
         pub unsafe fn src(&self) -> Retained<NSString>;
 
         /// Setter for [`src`][Self::src].
@@ -165,8 +165,8 @@ extern_methods!(
         pub unsafe fn setSrc(&self, src: Option<&NSString>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(useMap)]
+        #[unsafe(method_family = none)]
         pub unsafe fn useMap(&self) -> Retained<NSString>;
 
         /// Setter for [`useMap`][Self::useMap].
@@ -195,8 +195,8 @@ extern_methods!(
         #[method(complete)]
         pub unsafe fn complete(&self) -> bool;
 
-        #[unsafe(method_family(none))]
         #[method_id(lowsrc)]
+        #[unsafe(method_family = none)]
         pub unsafe fn lowsrc(&self) -> Retained<NSString>;
 
         /// Setter for [`lowsrc`][Self::lowsrc].
@@ -215,12 +215,12 @@ extern_methods!(
         #[method(y)]
         pub unsafe fn y(&self) -> c_int;
 
-        #[unsafe(method_family(none))]
         #[method_id(altDisplayString)]
+        #[unsafe(method_family = none)]
         pub unsafe fn altDisplayString(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(absoluteImageURL)]
+        #[unsafe(method_family = none)]
         pub unsafe fn absoluteImageURL(&self) -> Retained<NSURL>;
     }
 );
@@ -236,8 +236,8 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLImageElement {
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -252,8 +252,8 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLImageElement {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

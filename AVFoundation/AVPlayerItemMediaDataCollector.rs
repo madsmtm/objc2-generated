@@ -38,12 +38,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVPlayerItemMediaDataCollector {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -79,8 +79,8 @@ extern_methods!(
         ///
         /// Some metadata available in some formats - such as timed metadata embedded in HLS segments - is not available for collector output.
         /// The default init method can be used as an alternative to setting both identifiers and classifyingLabels to nil.
-        #[unsafe(method_family(init))]
         #[method_id(initWithIdentifiers:classifyingLabels:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifiers_classifyingLabels(
             this: Allocated<Self>,
             identifiers: Option<&NSArray<NSString>>,
@@ -90,8 +90,8 @@ extern_methods!(
         /// The receiver's delegate.
         ///
         /// The delegate is held using a zeroing-weak reference, so this property will have a value of nil after a delegate that was previously set has been deallocated.  This property is not key-value observable.
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVPlayerItemMetadataCollectorPushDelegate>>>;
@@ -101,12 +101,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVPlayerItemMetadataCollector {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

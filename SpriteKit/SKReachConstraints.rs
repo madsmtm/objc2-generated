@@ -45,8 +45,8 @@ extern_methods!(
         pub unsafe fn setUpperAngleLimit(&self, upper_angle_limit: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithLowerAngleLimit:upperAngleLimit:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithLowerAngleLimit_upperAngleLimit(
             this: Allocated<Self>,
             lower_angle_limit: CGFloat,
@@ -58,12 +58,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKReachConstraints {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

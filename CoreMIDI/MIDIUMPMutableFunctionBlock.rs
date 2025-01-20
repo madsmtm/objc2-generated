@@ -35,12 +35,12 @@ extern_methods!(
     unsafe impl MIDIUMPMutableFunctionBlock {
         #[cfg(all(feature = "MIDIUMPEndpoint", feature = "MIDIUMPMutableEndpoint"))]
         /// The UMP Endpoint to which this Function Block is registered.
-        #[unsafe(method_family(none))]
         #[method_id(UMPEndpoint)]
+        #[unsafe(method_family = none)]
         pub unsafe fn UMPEndpoint(&self) -> Option<Retained<MIDIUMPMutableEndpoint>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "MIDIMessages", feature = "objc2-foundation"))]
@@ -66,8 +66,8 @@ extern_methods!(
         ///
         /// This operation will fail if virtual MIDI endpoint creation is not allowed
         /// (for example, on iOS, if your app doesn't list 'audio' in UIBackgroundModes).
-        #[unsafe(method_family(init))]
         #[method_id(initWithName:direction:firstGroup:totalGroupsSpanned:maxSysEx8Streams:MIDI1Info:UIHint:isEnabled:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithName_direction_firstGroup_totalGroupsSpanned_maxSysEx8Streams_MIDI1Info_UIHint_isEnabled(
             this: Allocated<Self>,
             name: &NSString,
@@ -149,8 +149,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MIDIUMPFunctionBlock", feature = "objc2"))]
     unsafe impl MIDIUMPMutableFunctionBlock {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

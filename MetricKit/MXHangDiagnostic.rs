@@ -34,15 +34,15 @@ extern_methods!(
     unsafe impl MXHangDiagnostic {
         #[cfg(feature = "MXCallStackTree")]
         /// The application call stack tree associated with the hang.
-        #[unsafe(method_family(none))]
         #[method_id(callStackTree)]
+        #[unsafe(method_family = none)]
         pub unsafe fn callStackTree(&self) -> Retained<MXCallStackTree>;
 
         /// Total hang duration for this diagnostic.
         ///
         /// Dimensioned as NSUnitDuration.
-        #[unsafe(method_family(none))]
         #[method_id(hangDuration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hangDuration(&self) -> Retained<NSMeasurement<NSUnitDuration>>;
     }
 );
@@ -51,12 +51,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MXDiagnostic")]
     unsafe impl MXHangDiagnostic {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

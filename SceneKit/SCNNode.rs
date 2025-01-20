@@ -131,16 +131,16 @@ unsafe impl SCNBoundingVolume for SCNNode {}
 extern_methods!(
     unsafe impl SCNNode {
         /// Creates and initializes a node instance.
-        #[unsafe(method_family(none))]
         #[method_id(node)]
+        #[unsafe(method_family = none)]
         pub unsafe fn node() -> Retained<Self>;
 
         #[cfg(feature = "SCNGeometry")]
         /// Creates and initializes a node instance with the specified geometry attached.
         ///
         /// Parameter `geometry`: The geometry to attach.
-        #[unsafe(method_family(none))]
         #[method_id(nodeWithGeometry:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn nodeWithGeometry(geometry: Option<&SCNGeometry>) -> Retained<SCNNode>;
 
         /// Returns a copy of the receiver. The returned instance is autoreleased.
@@ -149,17 +149,17 @@ extern_methods!(
         /// The copied nodes will share their attached objects (light, geometry, camera, ...) with the original instances;
         /// if you want, for example, to change the materials of the copy independently of the original object, you'll
         /// have to copy the geometry of the node separately.
-        #[unsafe(method_family(none))]
         #[method_id(clone)]
+        #[unsafe(method_family = none)]
         pub unsafe fn clone(&self) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(flattenedClone)]
+        #[unsafe(method_family = none)]
         pub unsafe fn flattenedClone(&self) -> Retained<Self>;
 
         /// Determines the name of the receiver.
-        #[unsafe(method_family(none))]
         #[method_id(name)]
+        #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
@@ -168,8 +168,8 @@ extern_methods!(
 
         #[cfg(feature = "SCNLight")]
         /// Determines the light attached to the receiver.
-        #[unsafe(method_family(none))]
         #[method_id(light)]
+        #[unsafe(method_family = none)]
         pub unsafe fn light(&self) -> Option<Retained<SCNLight>>;
 
         #[cfg(feature = "SCNLight")]
@@ -179,8 +179,8 @@ extern_methods!(
 
         #[cfg(feature = "SCNCamera")]
         /// Determines the camera attached to the receiver.
-        #[unsafe(method_family(none))]
         #[method_id(camera)]
+        #[unsafe(method_family = none)]
         pub unsafe fn camera(&self) -> Option<Retained<SCNCamera>>;
 
         #[cfg(feature = "SCNCamera")]
@@ -190,8 +190,8 @@ extern_methods!(
 
         #[cfg(feature = "SCNGeometry")]
         /// Returns the geometry attached to the receiver.
-        #[unsafe(method_family(none))]
         #[method_id(geometry)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geometry(&self) -> Option<Retained<SCNGeometry>>;
 
         #[cfg(feature = "SCNGeometry")]
@@ -201,8 +201,8 @@ extern_methods!(
 
         #[cfg(feature = "SCNSkinner")]
         /// Returns the skinner attached to the receiver.
-        #[unsafe(method_family(none))]
         #[method_id(skinner)]
+        #[unsafe(method_family = none)]
         pub unsafe fn skinner(&self) -> Option<Retained<SCNSkinner>>;
 
         #[cfg(feature = "SCNSkinner")]
@@ -212,8 +212,8 @@ extern_methods!(
 
         #[cfg(feature = "SCNMorpher")]
         /// Returns the morpher attached to the receiver.
-        #[unsafe(method_family(none))]
         #[method_id(morpher)]
+        #[unsafe(method_family = none)]
         pub unsafe fn morpher(&self) -> Option<Retained<SCNMorpher>>;
 
         #[cfg(feature = "SCNMorpher")]
@@ -384,13 +384,13 @@ extern_methods!(
         pub unsafe fn setMovabilityHint(&self, movability_hint: SCNMovabilityHint);
 
         /// Returns the parent node of the receiver.
-        #[unsafe(method_family(none))]
         #[method_id(parentNode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn parentNode(&self) -> Option<Retained<SCNNode>>;
 
         /// Returns the child node array of the receiver.
-        #[unsafe(method_family(none))]
         #[method_id(childNodes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn childNodes(&self) -> Retained<NSArray<SCNNode>>;
 
         /// Appends the node to the receiver’s childNodes array.
@@ -428,8 +428,8 @@ extern_methods!(
         /// Parameter `name`: The name of the node you are searching for.
         ///
         /// Parameter `recursively`: Set to YES if you want the search to look through the sub-nodes recursively.
-        #[unsafe(method_family(none))]
         #[method_id(childNodeWithName:recursively:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn childNodeWithName_recursively(
             &self,
             name: &NSString,
@@ -442,8 +442,8 @@ extern_methods!(
         /// The search is recursive and uses a pre-order tree traversal.
         ///
         /// Parameter `predicate`: The block to apply to child nodes of the receiver. The block takes two arguments: "child" is a child node and "stop" is a reference to a Boolean value. The block can set the value to YES to stop further processing of the node hierarchy. The stop argument is an out-only argument. You should only ever set this Boolean to YES within the Block. The Block returns a Boolean value that indicates whether "child" passed the test.
-        #[unsafe(method_family(none))]
         #[method_id(childNodesPassingTest:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn childNodesPassingTest(
             &self,
             predicate: &block2::Block<dyn Fn(NonNull<SCNNode>, NonNull<Bool>) -> Bool + '_>,
@@ -565,8 +565,8 @@ extern_methods!(
         /// The description of the physics body of the receiver.
         ///
         /// Default is nil.
-        #[unsafe(method_family(none))]
         #[method_id(physicsBody)]
+        #[unsafe(method_family = none)]
         pub unsafe fn physicsBody(&self) -> Option<Retained<SCNPhysicsBody>>;
 
         #[cfg(feature = "SCNPhysicsBody")]
@@ -578,8 +578,8 @@ extern_methods!(
         /// The description of the physics field of the receiver.
         ///
         /// Default is nil.
-        #[unsafe(method_family(none))]
         #[method_id(physicsField)]
+        #[unsafe(method_family = none)]
         pub unsafe fn physicsField(&self) -> Option<Retained<SCNPhysicsField>>;
 
         #[cfg(feature = "SCNPhysicsField")]
@@ -591,8 +591,8 @@ extern_methods!(
         /// An array of SCNConstraint that are applied to the receiver.
         ///
         /// Adding or removing a constraint can be implicitly animated based on the current transaction.
-        #[unsafe(method_family(none))]
         #[method_id(constraints)]
+        #[unsafe(method_family = none)]
         pub unsafe fn constraints(&self) -> Option<Retained<NSArray<SCNConstraint>>>;
 
         #[cfg(feature = "SCNConstraint")]
@@ -605,8 +605,8 @@ extern_methods!(
         /// An array of Core Image filters that are applied to the rendering of the receiver and its child nodes. Animatable.
         ///
         /// Defaults to nil. Filter properties should be modified by calling setValue:forKeyPath: on each node that the filter is attached to. If the inputs of the filter are modified directly after the filter is attached to a node, the behavior is undefined.
-        #[unsafe(method_family(none))]
         #[method_id(filters)]
+        #[unsafe(method_family = none)]
         pub unsafe fn filters(&self) -> Option<Retained<NSArray<CIFilter>>>;
 
         #[cfg(feature = "objc2-core-image")]
@@ -620,8 +620,8 @@ extern_methods!(
         /// Returns a copy of the node containing all the properties as they were at the start of the current transaction, with any active animations applied.
         /// This gives a close approximation to the version of the node that is currently displayed.
         /// The effect of attempting to modify the returned node in any way is undefined. The returned node has no parent and no child nodes.
-        #[unsafe(method_family(none))]
         #[method_id(presentationNode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn presentationNode(&self) -> Retained<SCNNode>;
 
         /// Controls whether or not the node's actions and animations are updated or paused. Defaults to NO.
@@ -637,8 +637,8 @@ extern_methods!(
         /// Setting a renderer delegate prevents the SceneKit renderer from drawing the node and lets you use custom OpenGL code instead.
         /// The preferred way to customize the rendering is to tweak the material properties of the different materials of the node's geometry. SCNMaterial conforms to the SCNShadable protocol and allows for more advanced rendering using GLSL.
         /// You would typically use a renderer delegate with a node that has no geometry and only serves as a location in space. An example would be attaching a particle system to that node and render it with custom OpenGL code.
-        #[unsafe(method_family(none))]
         #[method_id(rendererDelegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rendererDelegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn SCNNodeRendererDelegate>>>;
@@ -664,8 +664,8 @@ extern_methods!(
         /// Parameter `options`: Optional parameters (see the "Hit test options" section in SCNSceneRenderer.h for the available options).
         ///
         /// See SCNSceneRenderer.h for a screen-space hit testing method.
-        #[unsafe(method_family(none))]
         #[method_id(hitTestWithSegmentFromPoint:toPoint:options:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hitTestWithSegmentFromPoint_toPoint_options(
             &self,
             point_a: SCNVector3,
@@ -691,12 +691,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNNode {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

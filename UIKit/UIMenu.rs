@@ -96,8 +96,8 @@ extern_methods!(
     #[cfg(feature = "UIMenuElement")]
     unsafe impl UIMenu {
         /// Unique identifier.
-        #[unsafe(method_family(none))]
         #[method_id(identifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<UIMenuIdentifier>;
 
         /// Options.
@@ -113,20 +113,20 @@ extern_methods!(
         pub unsafe fn setPreferredElementSize(&self, preferred_element_size: UIMenuElementSize);
 
         /// The menu's sub-elements and sub-menus. On iOS 14.0, elements of your own menus are mutable, -copying a menu will produce mutable elements, and UIKit will take immutable copies of menus it receives. Prior to iOS 14.0, menus are always fully immutable.
-        #[unsafe(method_family(none))]
         #[method_id(children)]
+        #[unsafe(method_family = none)]
         pub unsafe fn children(&self) -> Retained<NSArray<UIMenuElement>>;
 
         /// The element(s) in the menu and sub-menus that have an "on" menu item state.
-        #[unsafe(method_family(none))]
         #[method_id(selectedElements)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectedElements(&self) -> Retained<NSArray<UIMenuElement>>;
 
         #[cfg(feature = "UIMenuDisplayPreferences")]
         /// Display preferences for this menu's immediate children. Preferences are not inherited by sub menus,
         /// and may be ignored or overridden by the system in certain element sizes or menu layouts.
-        #[unsafe(method_family(none))]
         #[method_id(displayPreferences)]
+        #[unsafe(method_family = none)]
         pub unsafe fn displayPreferences(&self) -> Option<Retained<UIMenuDisplayPreferences>>;
 
         #[cfg(feature = "UIMenuDisplayPreferences")]
@@ -144,8 +144,8 @@ extern_methods!(
         ///
         ///
         /// Returns: A new UIMenu.
-        #[unsafe(method_family(none))]
         #[method_id(menuWithChildren:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn menuWithChildren(
             children: &NSArray<UIMenuElement>,
             mtm: MainThreadMarker,
@@ -160,8 +160,8 @@ extern_methods!(
         ///
         ///
         /// Returns: A new UIMenu.
-        #[unsafe(method_family(none))]
         #[method_id(menuWithTitle:children:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn menuWithTitle_children(
             title: &NSString,
             children: &NSArray<UIMenuElement>,
@@ -184,8 +184,8 @@ extern_methods!(
         ///
         ///
         /// Returns: A new UIMenu.
-        #[unsafe(method_family(none))]
         #[method_id(menuWithTitle:image:identifier:options:children:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn menuWithTitle_image_identifier_options_children(
             title: &NSString,
             image: Option<&UIImage>,
@@ -195,19 +195,19 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Retained<UIMenu>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// Copies this menu and replaces its children.
@@ -217,8 +217,8 @@ extern_methods!(
         ///
         ///
         /// Returns: A copy of this menu with updated children.
-        #[unsafe(method_family(none))]
         #[method_id(menuByReplacingChildren:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn menuByReplacingChildren(
             &self,
             new_children: &NSArray<UIMenuElement>,

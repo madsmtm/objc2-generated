@@ -20,44 +20,44 @@ extern_protocol!(
     pub unsafe trait GCDirectionPadElement: GCPhysicalInputElement {
         #[cfg(feature = "GCAxis2DInput")]
         /// The x,y position of the dpad input.
-        #[unsafe(method_family(none))]
         #[method_id(xyAxes)]
+        #[unsafe(method_family = none)]
         unsafe fn xyAxes(&self) -> Retained<ProtocolObject<dyn GCAxis2DInput>>;
 
         #[cfg(feature = "GCAxisInput")]
         /// The horizontal/x-component of the dpad input.
-        #[unsafe(method_family(none))]
         #[method_id(xAxis)]
+        #[unsafe(method_family = none)]
         unsafe fn xAxis(&self) -> Retained<ProtocolObject<dyn GCAxisInput>>;
 
         #[cfg(feature = "GCAxisInput")]
         /// The vertical/y-component of the dpad input.
-        #[unsafe(method_family(none))]
         #[method_id(yAxis)]
+        #[unsafe(method_family = none)]
         unsafe fn yAxis(&self) -> Retained<ProtocolObject<dyn GCAxisInput>>;
 
         #[cfg(all(feature = "GCLinearInput", feature = "GCPressedStateInput"))]
         /// The positive y-component of the dpad input.
-        #[unsafe(method_family(none))]
         #[method_id(up)]
+        #[unsafe(method_family = none)]
         unsafe fn up(&self) -> Retained<AnyObject /* GCLinearInput+ GCPressedStateInput */>;
 
         #[cfg(all(feature = "GCLinearInput", feature = "GCPressedStateInput"))]
         /// The negative y-component of the dpad input.
-        #[unsafe(method_family(none))]
         #[method_id(down)]
+        #[unsafe(method_family = none)]
         unsafe fn down(&self) -> Retained<AnyObject /* GCLinearInput+ GCPressedStateInput */>;
 
         #[cfg(all(feature = "GCLinearInput", feature = "GCPressedStateInput"))]
         /// The negative x-component of the dpad input.
-        #[unsafe(method_family(none))]
         #[method_id(left)]
+        #[unsafe(method_family = none)]
         unsafe fn left(&self) -> Retained<AnyObject /* GCLinearInput+ GCPressedStateInput */>;
 
         #[cfg(all(feature = "GCLinearInput", feature = "GCPressedStateInput"))]
         /// The positive x-component of the dpad input.
-        #[unsafe(method_family(none))]
         #[method_id(right)]
+        #[unsafe(method_family = none)]
         unsafe fn right(&self) -> Retained<AnyObject /* GCLinearInput+ GCPressedStateInput */>;
     }
 );

@@ -71,8 +71,8 @@ extern_methods!(
         pub unsafe fn numberOfPages(&self) -> NSInteger;
 
         #[cfg(feature = "UIPrintFormatter")]
-        #[unsafe(method_family(none))]
         #[method_id(printFormatters)]
+        #[unsafe(method_family = none)]
         pub unsafe fn printFormatters(&self) -> Option<Retained<NSArray<UIPrintFormatter>>>;
 
         #[cfg(feature = "UIPrintFormatter")]
@@ -84,8 +84,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIPrintFormatter")]
-        #[unsafe(method_family(none))]
         #[method_id(printFormattersForPageAtIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn printFormattersForPageAtIndex(
             &self,
             page_index: NSInteger,
@@ -149,12 +149,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIPrintPageRenderer {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

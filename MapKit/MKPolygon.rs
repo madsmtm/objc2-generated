@@ -38,16 +38,16 @@ extern_methods!(
     #[cfg(all(feature = "MKMultiPoint", feature = "MKShape"))]
     unsafe impl MKPolygon {
         #[cfg(feature = "MKGeometry")]
-        #[unsafe(method_family(none))]
         #[method_id(polygonWithPoints:count:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn polygonWithPoints_count(
             points: NonNull<MKMapPoint>,
             count: NSUInteger,
         ) -> Retained<Self>;
 
         #[cfg(feature = "MKGeometry")]
-        #[unsafe(method_family(none))]
         #[method_id(polygonWithPoints:count:interiorPolygons:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn polygonWithPoints_count_interiorPolygons(
             points: NonNull<MKMapPoint>,
             count: NSUInteger,
@@ -55,24 +55,24 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-location")]
-        #[unsafe(method_family(none))]
         #[method_id(polygonWithCoordinates:count:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn polygonWithCoordinates_count(
             coords: NonNull<CLLocationCoordinate2D>,
             count: NSUInteger,
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-location")]
-        #[unsafe(method_family(none))]
         #[method_id(polygonWithCoordinates:count:interiorPolygons:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn polygonWithCoordinates_count_interiorPolygons(
             coords: NonNull<CLLocationCoordinate2D>,
             count: NSUInteger,
             interior_polygons: Option<&NSArray<MKPolygon>>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(interiorPolygons)]
+        #[unsafe(method_family = none)]
         pub unsafe fn interiorPolygons(&self) -> Option<Retained<NSArray<MKPolygon>>>;
     }
 );
@@ -81,12 +81,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MKMultiPoint", feature = "MKShape"))]
     unsafe impl MKPolygon {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

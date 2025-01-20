@@ -197,8 +197,8 @@ extern_protocol!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcounter?language=objc)
     pub unsafe trait MTLCounter: NSObjectProtocol {
-        #[unsafe(method_family(none))]
         #[method_id(name)]
+        #[unsafe(method_family = none)]
         unsafe fn name(&self) -> Retained<NSString>;
     }
 );
@@ -209,8 +209,8 @@ extern_protocol!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcounterset?language=objc)
     pub unsafe trait MTLCounterSet: NSObjectProtocol {
-        #[unsafe(method_family(none))]
         #[method_id(name)]
+        #[unsafe(method_family = none)]
         unsafe fn name(&self) -> Retained<NSString>;
 
         /// The counters array contains all the counters that will be written
@@ -218,8 +218,8 @@ extern_protocol!(
         /// will not be written to the resolved buffer when the samples are resolved, even if
         /// they appear in the corresponding resolved counter structure.  Instead
         /// MTLCounterErrorValue will be written in the resolved buffer.
-        #[unsafe(method_family(none))]
         #[method_id(counters)]
+        #[unsafe(method_family = none)]
         unsafe fn counters(&self) -> Retained<NSArray<ProtocolObject<dyn MTLCounter>>>;
     }
 );
@@ -243,16 +243,16 @@ unsafe impl NSObjectProtocol for MTLCounterSampleBufferDescriptor {}
 
 extern_methods!(
     unsafe impl MTLCounterSampleBufferDescriptor {
-        #[unsafe(method_family(none))]
         #[method_id(counterSet)]
+        #[unsafe(method_family = none)]
         pub unsafe fn counterSet(&self) -> Option<Retained<ProtocolObject<dyn MTLCounterSet>>>;
 
         /// Setter for [`counterSet`][Self::counterSet].
         #[method(setCounterSet:)]
         pub unsafe fn setCounterSet(&self, counter_set: Option<&ProtocolObject<dyn MTLCounterSet>>);
 
-        #[unsafe(method_family(none))]
         #[method_id(label)]
+        #[unsafe(method_family = none)]
         pub unsafe fn label(&self) -> Retained<NSString>;
 
         /// Setter for [`label`][Self::label].
@@ -282,12 +282,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLCounterSampleBufferDescriptor {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -300,13 +300,13 @@ extern_protocol!(
     pub unsafe trait MTLCounterSampleBuffer: NSObjectProtocol {
         #[cfg(feature = "MTLDevice")]
         /// to use the sample buffer with this device.
-        #[unsafe(method_family(none))]
         #[method_id(device)]
+        #[unsafe(method_family = none)]
         unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         /// property of the descriptor that is used to create the sample buffer.
-        #[unsafe(method_family(none))]
         #[method_id(label)]
+        #[unsafe(method_family = none)]
         unsafe fn label(&self) -> Retained<NSString>;
 
         #[method(sampleCount)]
@@ -322,8 +322,8 @@ extern_protocol!(
         ///
         /// Samples that encountered an error during resolve will be set to
         /// MTLCounterErrorValue.
-        #[unsafe(method_family(none))]
         #[method_id(resolveCounterRange:)]
+        #[unsafe(method_family = none)]
         unsafe fn resolveCounterRange(&self, range: NSRange) -> Option<Retained<NSData>>;
     }
 );

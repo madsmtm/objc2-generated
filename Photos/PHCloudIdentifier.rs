@@ -27,17 +27,17 @@ extern_methods!(
     unsafe impl PHCloudIdentifier {
         /// DEPRECATED: If there is a failure to determine the global identifier for a local identifier, the notFoundIdentifier is provided in that array slot.
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(notFoundIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn notFoundIdentifier() -> Retained<PHCloudIdentifier>;
 
-        #[unsafe(method_family(none))]
         #[method_id(stringValue)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stringValue(&self) -> Retained<NSString>;
 
         /// For use in serialization
-        #[unsafe(method_family(init))]
         #[method_id(initWithStringValue:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithStringValue(
             this: Allocated<Self>,
             string_value: &NSString,
@@ -48,12 +48,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHCloudIdentifier {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -77,13 +77,13 @@ unsafe impl NSObjectProtocol for PHCloudIdentifierMapping {}
 
 extern_methods!(
     unsafe impl PHCloudIdentifierMapping {
-        #[unsafe(method_family(none))]
         #[method_id(cloudIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cloudIdentifier(&self) -> Option<Retained<PHCloudIdentifier>>;
 
         /// The cloud identifier of the resource found for this local identifier
-        #[unsafe(method_family(none))]
         #[method_id(error)]
+        #[unsafe(method_family = none)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
     }
 );
@@ -91,12 +91,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHCloudIdentifierMapping {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -120,14 +120,14 @@ unsafe impl NSObjectProtocol for PHLocalIdentifierMapping {}
 
 extern_methods!(
     unsafe impl PHLocalIdentifierMapping {
-        #[unsafe(method_family(none))]
         #[method_id(localIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn localIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// The
         /// `NSString`representing the local identifier of the resource found for this cloud identifier, or nil if the match was not found.
-        #[unsafe(method_family(none))]
         #[method_id(error)]
+        #[unsafe(method_family = none)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
     }
 );
@@ -135,12 +135,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHLocalIdentifierMapping {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -165,8 +165,8 @@ extern_methods!(
         ///
         /// Parameter `cloudIdentifiers`: The array of
         /// `PHCloudIdentifier`instances whose local identifiers are to being requested.
-        #[unsafe(method_family(none))]
         #[method_id(localIdentifierMappingsForCloudIdentifiers:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn localIdentifierMappingsForCloudIdentifiers(
             &self,
             cloud_identifiers: &NSArray<PHCloudIdentifier>,
@@ -178,8 +178,8 @@ extern_methods!(
         ///
         /// Parameter `localIdentifiers`: The array of
         /// `NSString`instances whose cloud identifiers are to being requested.
-        #[unsafe(method_family(none))]
         #[method_id(cloudIdentifierMappingsForLocalIdentifiers:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cloudIdentifierMappingsForLocalIdentifiers(
             &self,
             local_identifiers: &NSArray<NSString>,
@@ -187,16 +187,16 @@ extern_methods!(
 
         /// DEPRECATED: These two methods can be very expensive so they should be used sparingly for batch lookup of all needed identifiers. Clients should work in terms of local identifiers and call these methods only once after loading from and before saving to persistent storage.
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(localIdentifiersForCloudIdentifiers:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn localIdentifiersForCloudIdentifiers(
             &self,
             cloud_identifiers: &NSArray<PHCloudIdentifier>,
         ) -> Retained<NSArray<NSString>>;
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(cloudIdentifiersForLocalIdentifiers:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cloudIdentifiersForLocalIdentifiers(
             &self,
             local_identifiers: &NSArray<NSString>,

@@ -19,8 +19,8 @@ unsafe impl NSObjectProtocol for GKLeaderboardScore {}
 extern_methods!(
     unsafe impl GKLeaderboardScore {
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
-        #[unsafe(method_family(none))]
         #[method_id(player)]
+        #[unsafe(method_family = none)]
         pub unsafe fn player(&self) -> Retained<GKPlayer>;
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
@@ -42,8 +42,8 @@ extern_methods!(
         #[method(setContext:)]
         pub unsafe fn setContext(&self, context: NSUInteger);
 
-        #[unsafe(method_family(none))]
         #[method_id(leaderboardID)]
+        #[unsafe(method_family = none)]
         pub unsafe fn leaderboardID(&self) -> Retained<NSString>;
 
         /// Setter for [`leaderboardID`][Self::leaderboardID].
@@ -55,12 +55,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKLeaderboardScore {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

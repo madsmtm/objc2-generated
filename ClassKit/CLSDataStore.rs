@@ -38,8 +38,8 @@ extern_protocol!(
         ///
         ///
         /// Returns: The new context for the supplied identifier. The new context is automatically saved.
-        #[unsafe(method_family(none))]
         #[method_id(createContextForIdentifier:parentContext:parentIdentifierPath:)]
+        #[unsafe(method_family = none)]
         unsafe fn createContextForIdentifier_parentContext_parentIdentifierPath(
             &self,
             identifier: &NSString,
@@ -65,33 +65,33 @@ extern_methods!(
         /// The data store provides read/write access to your app's ClassKit data.
         ///
         /// Data written to the data store is automatically synced via iCloud across the user's devices.
-        #[unsafe(method_family(none))]
         #[method_id(shared)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shared() -> Retained<CLSDataStore>;
 
         #[cfg(all(feature = "CLSContext", feature = "CLSObject"))]
         /// Fetch the top level context for the current app.
         ///
         /// The main context is automatically created. Add child contexts to this context to persist them in the data store.
-        #[unsafe(method_family(none))]
         #[method_id(mainAppContext)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mainAppContext(&self) -> Retained<CLSContext>;
 
         #[cfg(all(feature = "CLSContext", feature = "CLSObject"))]
         /// Returns the context that is currently active. If no context is active, this will return nil.
-        #[unsafe(method_family(none))]
         #[method_id(activeContext)]
+        #[unsafe(method_family = none)]
         pub unsafe fn activeContext(&self) -> Option<Retained<CLSContext>>;
 
         #[cfg(all(feature = "CLSActivity", feature = "CLSObject"))]
         /// Returns the most recently started activity that is running.
-        #[unsafe(method_family(none))]
         #[method_id(runningActivity)]
+        #[unsafe(method_family = none)]
         pub unsafe fn runningActivity(&self) -> Option<Retained<CLSActivity>>;
 
         /// The data store delegate allows for easy population of the app's context hierarchy.
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self)
             -> Option<Retained<ProtocolObject<dyn CLSDataStoreDelegate>>>;
 
@@ -103,12 +103,12 @@ extern_methods!(
             delegate: Option<&ProtocolObject<dyn CLSDataStoreDelegate>>,
         );
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]

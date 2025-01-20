@@ -59,8 +59,8 @@ unsafe impl NSUserInterfaceValidations for OSAScriptView {}
 
 extern_methods!(
     unsafe impl OSAScriptView {
-        #[unsafe(method_family(none))]
         #[method_id(source)]
+        #[unsafe(method_family = none)]
         pub unsafe fn source(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`source`][Self::source].
@@ -115,34 +115,34 @@ extern_methods!(
     /// Methods declared on superclass `NSTextView`
     unsafe impl OSAScriptView {
         /// ************************** Initializing ***************************
-        #[unsafe(method_family(init))]
         #[method_id(initWithFrame:textContainer:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame_textContainer(
             this: Allocated<Self>,
             frame_rect: NSRect,
             container: Option<&NSTextContainer>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithFrame:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initUsingTextLayoutManager:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initUsingTextLayoutManager(
             this: Allocated<Self>,
             using_text_layout_manager: bool,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(textViewUsingTextLayoutManager:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textViewUsingTextLayoutManager(
             using_text_layout_manager: bool,
             mtm: MainThreadMarker,
@@ -153,8 +153,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSResponder`
     unsafe impl OSAScriptView {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -162,8 +162,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl OSAScriptView {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

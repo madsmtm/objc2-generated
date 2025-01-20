@@ -21,25 +21,25 @@ unsafe impl NSObjectProtocol for CKFetchRecordsOperation {}
 extern_methods!(
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchRecordsOperation {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordID")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithRecordIDs:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithRecordIDs(
             this: Allocated<Self>,
             record_i_ds: &NSArray<CKRecordID>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(fetchCurrentUserRecordOperation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fetchCurrentUserRecordOperation() -> Retained<Self>;
 
         #[cfg(feature = "CKRecordID")]
-        #[unsafe(method_family(none))]
         #[method_id(recordIDs)]
+        #[unsafe(method_family = none)]
         pub unsafe fn recordIDs(&self) -> Option<Retained<NSArray<CKRecordID>>>;
 
         #[cfg(feature = "CKRecordID")]
@@ -54,8 +54,8 @@ extern_methods!(
         /// If nil, declares the entire record should be downloaded. If set to an empty array, declares that no user fields should be downloaded.
         /// Defaults to
         /// `nil.`
-        #[unsafe(method_family(none))]
         #[method_id(desiredKeys)]
+        #[unsafe(method_family = none)]
         pub unsafe fn desiredKeys(&self) -> Option<Retained<NSArray<CKRecordFieldKey>>>;
 
         #[cfg(feature = "CKRecord")]
@@ -152,8 +152,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchRecordsOperation {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

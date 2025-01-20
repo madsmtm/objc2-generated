@@ -149,19 +149,19 @@ unsafe impl NSObjectProtocol for OSAScript {}
 
 extern_methods!(
     unsafe impl OSAScript {
-        #[unsafe(method_family(none))]
         #[method_id(scriptDataDescriptorWithContentsOfURL:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scriptDataDescriptorWithContentsOfURL(
             url: &NSURL,
         ) -> Option<Retained<NSAppleEventDescriptor>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithSource:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithSource(this: Allocated<Self>, source: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "OSALanguage")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithSource:language:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithSource_language(
             this: Allocated<Self>,
             source: &NSString,
@@ -169,8 +169,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "OSALanguageInstance")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithSource:fromURL:languageInstance:usingStorageOptions:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithSource_fromURL_languageInstance_usingStorageOptions(
             this: Allocated<Self>,
             source: &NSString,
@@ -179,8 +179,8 @@ extern_methods!(
             storage_options: OSAStorageOptions,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithContentsOfURL:error:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL_error(
             this: Allocated<Self>,
             url: &NSURL,
@@ -189,8 +189,8 @@ extern_methods!(
 
         #[cfg(feature = "OSALanguage")]
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(initWithContentsOfURL:language:error:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL_language_error(
             this: Allocated<Self>,
             url: &NSURL,
@@ -199,8 +199,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "OSALanguageInstance")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithContentsOfURL:languageInstance:usingStorageOptions:error:_)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL_languageInstance_usingStorageOptions_error(
             this: Allocated<Self>,
             url: &NSURL,
@@ -209,16 +209,16 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(initWithCompiledData:error:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCompiledData_error(
             this: Allocated<Self>,
             data: &NSData,
             error_info: Option<&mut Option<Retained<NSDictionary<NSString, AnyObject>>>>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCompiledData:fromURL:usingStorageOptions:error:_)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCompiledData_fromURL_usingStorageOptions_error(
             this: Allocated<Self>,
             data: &NSData,
@@ -227,8 +227,8 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "OSALanguageInstance")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithScriptDataDescriptor:fromURL:languageInstance:usingStorageOptions:error:_)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithScriptDataDescriptor_fromURL_languageInstance_usingStorageOptions_error(
             this: Allocated<Self>,
             data: &NSAppleEventDescriptor,
@@ -237,17 +237,17 @@ extern_methods!(
             storage_options: OSAStorageOptions,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(source)]
+        #[unsafe(method_family = none)]
         pub unsafe fn source(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(url)]
+        #[unsafe(method_family = none)]
         pub unsafe fn url(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "OSALanguage")]
-        #[unsafe(method_family(none))]
         #[method_id(language)]
+        #[unsafe(method_family = none)]
         pub unsafe fn language(&self) -> Retained<OSALanguage>;
 
         #[cfg(feature = "OSALanguage")]
@@ -256,8 +256,8 @@ extern_methods!(
         pub unsafe fn setLanguage(&self, language: &OSALanguage);
 
         #[cfg(feature = "OSALanguageInstance")]
-        #[unsafe(method_family(none))]
         #[method_id(languageInstance)]
+        #[unsafe(method_family = none)]
         pub unsafe fn languageInstance(&self) -> Retained<OSALanguageInstance>;
 
         #[cfg(feature = "OSALanguageInstance")]
@@ -274,31 +274,31 @@ extern_methods!(
             error_info: Option<&mut Option<Retained<NSDictionary<NSString, AnyObject>>>>,
         ) -> bool;
 
-        #[unsafe(method_family(none))]
         #[method_id(executeAndReturnError:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn executeAndReturnError(
             &self,
             error_info: Option<&mut Option<Retained<NSDictionary<NSString, AnyObject>>>>,
         ) -> Option<Retained<NSAppleEventDescriptor>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(executeAppleEvent:error:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn executeAppleEvent_error(
             &self,
             event: &NSAppleEventDescriptor,
             error_info: Option<&mut Option<Retained<NSDictionary<NSString, AnyObject>>>>,
         ) -> Option<Retained<NSAppleEventDescriptor>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(executeAndReturnDisplayValue:error:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn executeAndReturnDisplayValue_error(
             &self,
             display_value: &mut Option<Retained<NSAttributedString>>,
             error_info: Option<&mut Option<Retained<NSDictionary<NSString, AnyObject>>>>,
         ) -> Option<Retained<NSAppleEventDescriptor>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(executeHandlerWithName:arguments:error:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn executeHandlerWithName_arguments_error(
             &self,
             name: &NSString,
@@ -306,12 +306,12 @@ extern_methods!(
             error_info: Option<&mut Option<Retained<NSDictionary<NSString, AnyObject>>>>,
         ) -> Option<Retained<NSAppleEventDescriptor>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(richTextSource)]
+        #[unsafe(method_family = none)]
         pub unsafe fn richTextSource(&self) -> Option<Retained<NSAttributedString>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(richTextFromDescriptor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn richTextFromDescriptor(
             &self,
             descriptor: &NSAppleEventDescriptor,
@@ -334,8 +334,8 @@ extern_methods!(
             error_info: Option<&mut Option<Retained<NSDictionary<NSString, AnyObject>>>>,
         ) -> bool;
 
-        #[unsafe(method_family(none))]
         #[method_id(compiledDataForType:usingStorageOptions:error:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn compiledDataForType_usingStorageOptions_error(
             &self,
             r#type: &NSString,
@@ -348,12 +348,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl OSAScript {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

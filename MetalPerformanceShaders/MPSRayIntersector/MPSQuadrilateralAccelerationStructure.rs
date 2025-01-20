@@ -105,14 +105,14 @@ extern_methods!(
     ))]
     unsafe impl MPSQuadrilateralAccelerationStructure {
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Initialize the acceleration structure with a Metal device
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(initWithDevice:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -122,8 +122,8 @@ extern_methods!(
         /// properties such as the vertex buffer, instance buffer, etc. are set to nil. Encode and decode
         /// these buffers along with the acceleration structure instead.
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:device:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -138,8 +138,8 @@ extern_methods!(
         /// The Metal device is determined from the acceleration structure group. All
         /// acceleration structures in the instance hierarchy must share the same group.
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(initWithGroup:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithGroup(
             this: Allocated<Self>,
             group: &MPSAccelerationStructureGroup,
@@ -152,8 +152,8 @@ extern_methods!(
         /// vertex buffer, instance buffer, etc. are set to nil. Encode and decode these buffers along with
         /// the acceleration structure instead.
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:group:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_group(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -179,8 +179,8 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -197,8 +197,8 @@ extern_methods!(
         feature = "MPSPolygonAccelerationStructure"
     ))]
     unsafe impl MPSQuadrilateralAccelerationStructure {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

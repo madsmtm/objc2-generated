@@ -27,8 +27,8 @@ unsafe impl NSObjectProtocol for BGTaskRequest {}
 extern_methods!(
     unsafe impl BGTaskRequest {
         /// The identifier of the task associated with the request.
-        #[unsafe(method_family(none))]
         #[method_id(identifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         /// The earliest date and time at which to run the task.
@@ -38,20 +38,20 @@ extern_methods!(
         /// Setting the property indicates that the background task shouldn’t start any
         /// earlier than this date. However, the system doesn’t guarantee launching the
         /// task at the specified date, but only that it won’t begin sooner.
-        #[unsafe(method_family(none))]
         #[method_id(earliestBeginDate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn earliestBeginDate(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`earliestBeginDate`][Self::earliestBeginDate].
         #[method(setEarliestBeginDate:)]
         pub unsafe fn setEarliestBeginDate(&self, earliest_begin_date: Option<&NSDate>);
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -79,8 +79,8 @@ extern_methods!(
         ///
         /// - Parameters:
         /// - identifier: The string identifier of the refresh task associated with the request.
-        #[unsafe(method_family(init))]
         #[method_id(initWithIdentifier:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,
             identifier: &NSString,
@@ -91,12 +91,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `BGTaskRequest`
     unsafe impl BGAppRefreshTaskRequest {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -125,8 +125,8 @@ extern_methods!(
         ///
         /// - Parameters:
         /// - identifier: The string identifier of the processing task associated with the request.
-        #[unsafe(method_family(init))]
         #[method_id(initWithIdentifier:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,
             identifier: &NSString,
@@ -153,12 +153,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `BGTaskRequest`
     unsafe impl BGProcessingTaskRequest {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -184,8 +184,8 @@ unsafe impl NSObjectProtocol for BGHealthResearchTaskRequest {}
 extern_methods!(
     unsafe impl BGHealthResearchTaskRequest {
         /// A String indicating file protection availability required for processing.
-        #[unsafe(method_family(none))]
         #[method_id(protectionTypeOfRequiredData)]
+        #[unsafe(method_family = none)]
         pub unsafe fn protectionTypeOfRequiredData(&self) -> Retained<NSFileProtectionType>;
 
         /// Setter for [`protectionTypeOfRequiredData`][Self::protectionTypeOfRequiredData].
@@ -204,8 +204,8 @@ extern_methods!(
         ///
         /// - Parameters:
         /// - identifier: The string identifier of the processing task associated with the request.
-        #[unsafe(method_family(init))]
         #[method_id(initWithIdentifier:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,
             identifier: &NSString,
@@ -216,12 +216,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `BGTaskRequest`
     unsafe impl BGHealthResearchTaskRequest {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

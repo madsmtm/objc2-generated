@@ -32,13 +32,13 @@ unsafe impl NSObjectProtocol for MKLocalPointsOfInterestRequest {}
 
 extern_methods!(
     unsafe impl MKLocalPointsOfInterestRequest {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-location")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithCenterCoordinate:radius:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCenterCoordinate_radius(
             this: Allocated<Self>,
             coordinate: CLLocationCoordinate2D,
@@ -46,8 +46,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoordinateRegion:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoordinateRegion(
             this: Allocated<Self>,
             region: MKCoordinateRegion,
@@ -66,8 +66,8 @@ extern_methods!(
         pub unsafe fn region(&self) -> MKCoordinateRegion;
 
         #[cfg(feature = "MKPointOfInterestFilter")]
-        #[unsafe(method_family(none))]
         #[method_id(pointOfInterestFilter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pointOfInterestFilter(&self) -> Option<Retained<MKPointOfInterestFilter>>;
 
         #[cfg(feature = "MKPointOfInterestFilter")]
@@ -83,8 +83,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKLocalPointsOfInterestRequest {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -41,8 +41,8 @@ extern_methods!(
         /// Parameter `device`: The metal device to use. Pass nil to let SceneKit choose a default device.
         ///
         /// Parameter `options`: An optional dictionary for future extensions.
-        #[unsafe(method_family(none))]
         #[method_id(rendererWithDevice:options:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rendererWithDevice_options(
             device: Option<&ProtocolObject<dyn MTLDevice>>,
             options: Option<&NSDictionary>,
@@ -50,8 +50,8 @@ extern_methods!(
 
         #[cfg(feature = "SCNScene")]
         /// Specifies the scene of the receiver
-        #[unsafe(method_family(none))]
         #[method_id(scene)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scene(&self) -> Option<Retained<SCNScene>>;
 
         #[cfg(feature = "SCNScene")]
@@ -110,8 +110,8 @@ extern_methods!(
         ))]
         #[cfg(target_os = "macos")]
         /// renders the receiver's scene at the specified time (system time) into an image.
-        #[unsafe(method_family(none))]
         #[method_id(snapshotAtTime:withSize:antialiasingMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn snapshotAtTime_withSize_antialiasingMode(
             &self,
             time: CFTimeInterval,
@@ -139,12 +139,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNRenderer {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

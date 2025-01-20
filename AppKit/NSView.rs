@@ -179,28 +179,28 @@ unsafe impl NSUserInterfaceItemIdentification for NSView {}
 extern_methods!(
     #[cfg(feature = "NSResponder")]
     unsafe impl NSView {
-        #[unsafe(method_family(init))]
         #[method_id(initWithFrame:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSWindow")]
-        #[unsafe(method_family(none))]
         #[method_id(window)]
+        #[unsafe(method_family = none)]
         pub fn window(&self) -> Option<Retained<NSWindow>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(superview)]
+        #[unsafe(method_family = none)]
         pub unsafe fn superview(&self) -> Option<Retained<NSView>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(subviews)]
+        #[unsafe(method_family = none)]
         pub unsafe fn subviews(&self) -> Retained<NSArray<NSView>>;
 
         /// Setter for [`subviews`][Self::subviews].
@@ -210,12 +210,12 @@ extern_methods!(
         #[method(isDescendantOf:)]
         pub unsafe fn isDescendantOf(&self, view: &NSView) -> bool;
 
-        #[unsafe(method_family(none))]
         #[method_id(ancestorSharedWithView:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn ancestorSharedWithView(&self, view: &NSView) -> Option<Retained<NSView>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(opaqueAncestor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn opaqueAncestor(&self) -> Option<Retained<NSView>>;
 
         #[method(isHidden)]
@@ -505,8 +505,8 @@ extern_methods!(
         #[method(lockFocusIfCanDrawInContext:)]
         pub unsafe fn lockFocusIfCanDrawInContext(&self, context: &NSGraphicsContext) -> bool;
 
-        #[unsafe(method_family(none))]
         #[method_id(focusView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn focusView(mtm: MainThreadMarker) -> Option<Retained<NSView>>;
 
         /// The portion of the view that isn’t clipped by its superviews.
@@ -550,8 +550,8 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSBitmapImageRep", feature = "NSImageRep"))]
-        #[unsafe(method_family(none))]
         #[method_id(bitmapImageRepForCachingDisplayInRect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn bitmapImageRepForCachingDisplayInRect(
             &self,
             rect: NSRect,
@@ -592,15 +592,15 @@ extern_methods!(
             delta: NSSize,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(hitTest:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hitTest(&self, point: NSPoint) -> Option<Retained<NSView>>;
 
         #[method(mouse:inRect:)]
         pub unsafe fn mouse_inRect(&self, point: NSPoint, rect: NSRect) -> bool;
 
-        #[unsafe(method_family(none))]
         #[method_id(viewWithTag:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn viewWithTag(&self, tag: NSInteger) -> Option<Retained<NSView>>;
 
         #[method(tag)]
@@ -642,8 +642,8 @@ extern_methods!(
 
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(target_vendor = "apple")]
-        #[unsafe(method_family(none))]
         #[method_id(makeBackingLayer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn makeBackingLayer(&self) -> Retained<CALayer>;
 
         #[method(layerContentsRedrawPolicy)]
@@ -675,8 +675,8 @@ extern_methods!(
 
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(target_vendor = "apple")]
-        #[unsafe(method_family(none))]
         #[method_id(layer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layer(&self) -> Option<Retained<CALayer>>;
 
         #[cfg(feature = "objc2-quartz-core")]
@@ -729,8 +729,8 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-image")]
         #[cfg(target_vendor = "apple")]
-        #[unsafe(method_family(none))]
         #[method_id(backgroundFilters)]
+        #[unsafe(method_family = none)]
         pub unsafe fn backgroundFilters(&self) -> Retained<NSArray<CIFilter>>;
 
         #[cfg(feature = "objc2-core-image")]
@@ -741,8 +741,8 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-image")]
         #[cfg(target_vendor = "apple")]
-        #[unsafe(method_family(none))]
         #[method_id(compositingFilter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn compositingFilter(&self) -> Option<Retained<CIFilter>>;
 
         #[cfg(feature = "objc2-core-image")]
@@ -753,8 +753,8 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-image")]
         #[cfg(target_vendor = "apple")]
-        #[unsafe(method_family(none))]
         #[method_id(contentFilters)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contentFilters(&self) -> Retained<NSArray<CIFilter>>;
 
         #[cfg(feature = "objc2-core-image")]
@@ -764,8 +764,8 @@ extern_methods!(
         pub unsafe fn setContentFilters(&self, content_filters: &NSArray<CIFilter>);
 
         #[cfg(feature = "NSShadow")]
-        #[unsafe(method_family(none))]
         #[method_id(shadow)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shadow(&self) -> Option<Retained<NSShadow>>;
 
         #[cfg(feature = "NSShadow")]
@@ -791,18 +791,18 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSScrollView")]
-        #[unsafe(method_family(none))]
         #[method_id(enclosingScrollView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn enclosingScrollView(&self) -> Option<Retained<NSScrollView>>;
 
         #[cfg(all(feature = "NSEvent", feature = "NSMenu"))]
-        #[unsafe(method_family(none))]
         #[method_id(menuForEvent:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn menuForEvent(&self, event: &NSEvent) -> Option<Retained<NSMenu>>;
 
         #[cfg(feature = "NSMenu")]
-        #[unsafe(method_family(none))]
         #[method_id(defaultMenu)]
+        #[unsafe(method_family = none)]
         pub unsafe fn defaultMenu(mtm: MainThreadMarker) -> Option<Retained<NSMenu>>;
 
         #[cfg(all(feature = "NSEvent", feature = "NSMenu"))]
@@ -825,8 +825,8 @@ extern_methods!(
         #[method(didCloseMenu:withEvent:)]
         pub unsafe fn didCloseMenu_withEvent(&self, menu: &NSMenu, event: Option<&NSEvent>);
 
-        #[unsafe(method_family(none))]
         #[method_id(toolTip)]
+        #[unsafe(method_family = none)]
         pub unsafe fn toolTip(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`toolTip`][Self::toolTip].
@@ -863,8 +863,8 @@ extern_methods!(
         pub unsafe fn rectPreservedDuringLiveResize(&self) -> NSRect;
 
         #[cfg(feature = "NSTextInputContext")]
-        #[unsafe(method_family(none))]
         #[method_id(inputContext)]
+        #[unsafe(method_family = none)]
         pub fn inputContext(&self) -> Option<Retained<NSTextInputContext>>;
 
         #[method(rectForSmartMagnificationAtPoint:inRect:)]
@@ -915,8 +915,8 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(feature = "NSResponder")]
     unsafe impl NSView {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -925,8 +925,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSResponder")]
     unsafe impl NSView {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -956,8 +956,8 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewtooltipowner?language=objc)
     pub unsafe trait NSViewToolTipOwner: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "NSResponder")]
-        #[unsafe(method_family(none))]
         #[method_id(view:stringForToolTip:point:userData:)]
+        #[unsafe(method_family = none)]
         unsafe fn view_stringForToolTip_point_userData(
             &self,
             view: &NSView,
@@ -983,24 +983,24 @@ extern_methods!(
     /// NSKeyboardUI
     #[cfg(feature = "NSResponder")]
     unsafe impl NSView {
-        #[unsafe(method_family(none))]
         #[method_id(nextKeyView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn nextKeyView(&self) -> Option<Retained<NSView>>;
 
         /// Setter for [`nextKeyView`][Self::nextKeyView].
         #[method(setNextKeyView:)]
         pub unsafe fn setNextKeyView(&self, next_key_view: Option<&NSView>);
 
-        #[unsafe(method_family(none))]
         #[method_id(previousKeyView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn previousKeyView(&self) -> Option<Retained<NSView>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(nextValidKeyView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn nextValidKeyView(&self) -> Option<Retained<NSView>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(previousValidKeyView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn previousValidKeyView(&self) -> Option<Retained<NSView>>;
 
         #[method(canBecomeKeyView)]
@@ -1045,8 +1045,8 @@ extern_methods!(
             pasteboard: &NSPasteboard,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(dataWithEPSInsideRect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dataWithEPSInsideRect(&self, rect: NSRect) -> Retained<NSData>;
 
         #[cfg(feature = "NSPasteboard")]
@@ -1057,8 +1057,8 @@ extern_methods!(
             pasteboard: &NSPasteboard,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(dataWithPDFInsideRect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dataWithPDFInsideRect(&self, rect: NSRect) -> Retained<NSData>;
 
         #[method(print:)]
@@ -1104,12 +1104,12 @@ extern_methods!(
         #[method(drawPageBorderWithSize:)]
         pub unsafe fn drawPageBorderWithSize(&self, border_size: NSSize);
 
-        #[unsafe(method_family(none))]
         #[method_id(pageHeader)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pageHeader(&self) -> Retained<NSAttributedString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(pageFooter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pageFooter(&self) -> Retained<NSAttributedString>;
 
         /// * This method is obsolete.  It will never be invoked from within AppKit, and NSView's implementation of it does nothing. **
@@ -1117,8 +1117,8 @@ extern_methods!(
         #[method(drawSheetBorderWithSize:)]
         pub unsafe fn drawSheetBorderWithSize(&self, border_size: NSSize);
 
-        #[unsafe(method_family(none))]
         #[method_id(printJobTitle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn printJobTitle(&self) -> Retained<NSString>;
 
         #[method(beginDocument)]
@@ -1145,8 +1145,8 @@ extern_methods!(
             feature = "NSDraggingSession",
             feature = "NSEvent"
         ))]
-        #[unsafe(method_family(none))]
         #[method_id(beginDraggingSessionWithItems:event:source:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn beginDraggingSessionWithItems_event_source(
             &self,
             items: &NSArray<NSDraggingItem>,
@@ -1155,8 +1155,8 @@ extern_methods!(
         ) -> Retained<NSDraggingSession>;
 
         #[cfg(feature = "NSPasteboard")]
-        #[unsafe(method_family(none))]
         #[method_id(registeredDraggedTypes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn registeredDraggedTypes(&self) -> Retained<NSArray<NSPasteboardType>>;
 
         #[cfg(feature = "NSPasteboard")]
@@ -1277,8 +1277,8 @@ extern_methods!(
     #[cfg(feature = "NSResponder")]
     unsafe impl NSView {
         #[cfg(feature = "NSGestureRecognizer")]
-        #[unsafe(method_family(none))]
         #[method_id(gestureRecognizers)]
+        #[unsafe(method_family = none)]
         pub unsafe fn gestureRecognizers(&self) -> Retained<NSArray<NSGestureRecognizer>>;
 
         #[cfg(feature = "NSGestureRecognizer")]
@@ -1329,16 +1329,16 @@ extern_methods!(
         pub unsafe fn setAdditionalSafeAreaInsets(&self, additional_safe_area_insets: NSEdgeInsets);
 
         #[cfg(feature = "NSLayoutGuide")]
-        #[unsafe(method_family(none))]
         #[method_id(safeAreaLayoutGuide)]
+        #[unsafe(method_family = none)]
         pub unsafe fn safeAreaLayoutGuide(&self) -> Retained<NSLayoutGuide>;
 
         #[method(safeAreaRect)]
         pub unsafe fn safeAreaRect(&self) -> NSRect;
 
         #[cfg(feature = "NSLayoutGuide")]
-        #[unsafe(method_family(none))]
         #[method_id(layoutMarginsGuide)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layoutMarginsGuide(&self) -> Retained<NSLayoutGuide>;
     }
 );
@@ -1356,8 +1356,8 @@ extern_methods!(
         pub unsafe fn removeTrackingArea(&self, tracking_area: &NSTrackingArea);
 
         #[cfg(feature = "NSTrackingArea")]
-        #[unsafe(method_family(none))]
         #[method_id(trackingAreas)]
+        #[unsafe(method_family = none)]
         pub unsafe fn trackingAreas(&self) -> Retained<NSArray<NSTrackingArea>>;
 
         #[method(updateTrackingAreas)]
@@ -1397,8 +1397,8 @@ extern_methods!(
     unsafe impl NSView {
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(target_vendor = "apple")]
-        #[unsafe(method_family(none))]
         #[method_id(displayLinkWithTarget:selector:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn displayLinkWithTarget_selector(
             &self,
             target: &AnyObject,
@@ -1503,8 +1503,8 @@ extern_methods!(
     #[cfg(feature = "NSResponder")]
     unsafe impl NSView {
         #[cfg(feature = "NSWritingToolsCoordinator")]
-        #[unsafe(method_family(none))]
         #[method_id(writingToolsCoordinator)]
+        #[unsafe(method_family = none)]
         pub unsafe fn writingToolsCoordinator(&self)
             -> Option<Retained<NSWritingToolsCoordinator>>;
 

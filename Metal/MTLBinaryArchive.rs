@@ -58,8 +58,8 @@ unsafe impl NSObjectProtocol for MTLBinaryArchiveDescriptor {}
 extern_methods!(
     unsafe impl MTLBinaryArchiveDescriptor {
         /// The file URL from which to open a MTLBinaryArchive, or nil to create an empty MTLBinaryArchive.
-        #[unsafe(method_family(none))]
         #[method_id(url)]
+        #[unsafe(method_family = none)]
         pub fn url(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`url`][Self::url].
@@ -71,12 +71,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLBinaryArchiveDescriptor {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
     }
 );
@@ -108,8 +108,8 @@ extern_protocol!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbinaryarchive?language=objc)
     pub unsafe trait MTLBinaryArchive: NSObjectProtocol {
         /// A string to help identify this object.
-        #[unsafe(method_family(none))]
         #[method_id(label)]
+        #[unsafe(method_family = none)]
         fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
@@ -118,8 +118,8 @@ extern_protocol!(
 
         #[cfg(feature = "MTLDevice")]
         /// The device this resource was created against.  This resource can only be used with this device.
-        #[unsafe(method_family(none))]
         #[method_id(device)]
+        #[unsafe(method_family = none)]
         fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         #[cfg(feature = "MTLComputePipeline")]

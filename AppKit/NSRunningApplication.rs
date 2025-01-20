@@ -123,23 +123,23 @@ extern_methods!(
 
         /// Indicates the name of the application.
         /// This is dependent on the current localization of the referenced app, and is suitable for presentation to the user.
-        #[unsafe(method_family(none))]
         #[method_id(localizedName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn localizedName(&self) -> Option<Retained<NSString>>;
 
         /// Indicates the `CFBundleIdentifier` of the application, or nil if the application does not have an `Info.plist`.
-        #[unsafe(method_family(none))]
         #[method_id(bundleIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn bundleIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Indicates the URL to the application's bundle, or nil if the application does not have a bundle.
-        #[unsafe(method_family(none))]
         #[method_id(bundleURL)]
+        #[unsafe(method_family = none)]
         pub unsafe fn bundleURL(&self) -> Option<Retained<NSURL>>;
 
         /// Indicates the URL to the application's executable.
-        #[unsafe(method_family(none))]
         #[method_id(executableURL)]
+        #[unsafe(method_family = none)]
         pub unsafe fn executableURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "libc")]
@@ -154,14 +154,14 @@ extern_methods!(
         /// Indicates the date when the application was launched.
         /// This property is not available for all applications.
         /// Specifically, it is not available for applications that were launched without going through `LaunchServices`.
-        #[unsafe(method_family(none))]
         #[method_id(launchDate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn launchDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSImage")]
         /// Returns: The icon of the application.
-        #[unsafe(method_family(none))]
         #[method_id(icon)]
+        #[unsafe(method_family = none)]
         pub unsafe fn icon(&self) -> Option<Retained<NSImage>>;
 
         /// Indicates the executing processor architecture for the application, as an
@@ -224,8 +224,8 @@ extern_methods!(
         pub unsafe fn forceTerminate(&self) -> bool;
 
         /// Returns: An array of currently running applications with the given bundle identifier, or an empty array if no apps match.
-        #[unsafe(method_family(none))]
         #[method_id(runningApplicationsWithBundleIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn runningApplicationsWithBundleIdentifier(
             bundle_identifier: &NSString,
         ) -> Retained<NSArray<NSRunningApplication>>;
@@ -233,16 +233,16 @@ extern_methods!(
         #[cfg(feature = "libc")]
         /// Returns: The running application with the given process identifier, or nil if no application has that pid.
         /// Applications that do not have PIDs cannot be returned from this method.
-        #[unsafe(method_family(none))]
         #[method_id(runningApplicationWithProcessIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn runningApplicationWithProcessIdentifier(
             pid: libc::pid_t,
         ) -> Option<Retained<Self>>;
 
         /// Returns: An
         /// `NSRunningApplication`representing this application.
-        #[unsafe(method_family(none))]
         #[method_id(currentApplication)]
+        #[unsafe(method_family = none)]
         pub unsafe fn currentApplication() -> Retained<NSRunningApplication>;
 
         /// Cause any applications that are invisibly still running (see `NSProcessInfo.h` automatic termination methods and docs) to terminate as if triggered by system memory pressure.
@@ -255,12 +255,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSRunningApplication {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -273,8 +273,8 @@ extern_methods!(
         /// The order of the array is unspecified, but it is stable, meaning that the relative order of particular applications will not change across multiple calls to `runningApplications`.
         /// Similar to `NSRunningApplication`'s properties, this property will only change when the main run loop is run in a common mode.  Instead of polling, use key-value observing to be notified of changes to this array property.
         /// This property is thread safe, in that it may be called from background threads and the result is returned atomically.  This property is observable through KVO.
-        #[unsafe(method_family(none))]
         #[method_id(runningApplications)]
+        #[unsafe(method_family = none)]
         pub unsafe fn runningApplications(&self) -> Retained<NSArray<NSRunningApplication>>;
     }
 );

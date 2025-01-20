@@ -46,37 +46,37 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl SKReferenceNode {
         /// Create a reference node with a url
-        #[unsafe(method_family(init))]
         #[method_id(initWithURL:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithURL(this: Allocated<Self>, url: Option<&NSURL>) -> Retained<Self>;
 
         /// Create a reference node with a url
-        #[unsafe(method_family(init))]
         #[method_id(initWithFileNamed:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFileNamed(
             this: Allocated<Self>,
             file_name: Option<&NSString>,
         ) -> Retained<Self>;
 
         /// Support coding and decoding via NSKeyedArchiver.
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
         /// Create a reference node with a url
-        #[unsafe(method_family(none))]
         #[method_id(referenceNodeWithFileNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn referenceNodeWithFileNamed(
             file_name: &NSString,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
         /// Create a reference node with a url
-        #[unsafe(method_family(none))]
         #[method_id(referenceNodeWithURL:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn referenceNodeWithURL(
             reference_url: &NSURL,
             mtm: MainThreadMarker,
@@ -100,23 +100,23 @@ extern_methods!(
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl SKReferenceNode {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(node)]
+        #[unsafe(method_family = none)]
         pub unsafe fn node(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(nodeWithFileNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn nodeWithFileNamed(
             filename: &NSString,
             mtm: MainThreadMarker,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(nodeWithFileNamed:securelyWithClasses:andError:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn nodeWithFileNamed_securelyWithClasses_andError(
             filename: &NSString,
             classes: &NSSet<AnyClass>,
@@ -130,8 +130,8 @@ extern_methods!(
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl SKReferenceNode {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

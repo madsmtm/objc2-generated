@@ -72,24 +72,24 @@ unsafe impl NSObjectProtocol for SKProductDiscount {}
 extern_methods!(
     unsafe impl SKProductDiscount {
         #[deprecated = "Use Product.SubscriptionOffer.displayPrice"]
-        #[unsafe(method_family(none))]
         #[method_id(price)]
+        #[unsafe(method_family = none)]
         pub unsafe fn price(&self) -> Retained<NSDecimalNumber>;
 
         #[deprecated = "Use Product.SubscriptionOffer.displayPrice"]
-        #[unsafe(method_family(none))]
         #[method_id(priceLocale)]
+        #[unsafe(method_family = none)]
         pub unsafe fn priceLocale(&self) -> Retained<NSLocale>;
 
         #[deprecated = "Use Product.SubscriptionOffer.id"]
-        #[unsafe(method_family(none))]
         #[method_id(identifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "SKProduct")]
         #[deprecated = "Use Product.SubscriptionOffer.period"]
-        #[unsafe(method_family(none))]
         #[method_id(subscriptionPeriod)]
+        #[unsafe(method_family = none)]
         pub unsafe fn subscriptionPeriod(&self) -> Retained<SKProductSubscriptionPeriod>;
 
         #[deprecated = "Use Product.SubscriptionOffer.periodCount"]
@@ -109,12 +109,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKProductDiscount {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

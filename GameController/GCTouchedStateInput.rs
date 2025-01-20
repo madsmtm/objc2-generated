@@ -78,8 +78,8 @@ extern_protocol!(
         #[cfg(feature = "GCPhysicalInputSource")]
         /// An object describing the physical action(s) the user performs to manipulate
         /// this input.
-        #[unsafe(method_family(none))]
         #[method_id(sources)]
+        #[unsafe(method_family = none)]
         unsafe fn sources(&self) -> Retained<NSSet<ProtocolObject<dyn GCPhysicalInputSource>>>;
     }
 );

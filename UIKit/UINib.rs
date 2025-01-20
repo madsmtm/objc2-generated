@@ -20,8 +20,8 @@ unsafe impl NSObjectProtocol for UINib {}
 extern_methods!(
     unsafe impl UINib {
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
-        #[unsafe(method_family(none))]
         #[method_id(nibWithNibName:bundle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn nibWithNibName_bundle(
             name: &NSString,
             bundle_or_nil: Option<&NSBundle>,
@@ -29,8 +29,8 @@ extern_methods!(
         ) -> Retained<UINib>;
 
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
-        #[unsafe(method_family(none))]
         #[method_id(nibWithData:bundle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn nibWithData_bundle(
             data: &NSData,
             bundle_or_nil: Option<&NSBundle>,
@@ -39,8 +39,8 @@ extern_methods!(
 
         #[cfg(feature = "UINibLoading")]
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
-        #[unsafe(method_family(none))]
         #[method_id(instantiateWithOwner:options:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn instantiateWithOwner_options(
             &self,
             owner_or_nil: Option<&AnyObject>,
@@ -52,12 +52,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UINib {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

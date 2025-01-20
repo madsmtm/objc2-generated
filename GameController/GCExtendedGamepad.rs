@@ -39,8 +39,8 @@ extern_methods!(
     #[cfg(feature = "GCPhysicalInputProfile")]
     unsafe impl GCExtendedGamepad {
         #[cfg(feature = "GCController")]
-        #[unsafe(method_family(none))]
         #[method_id(controller)]
+        #[unsafe(method_family = none)]
         pub unsafe fn controller(&self) -> Option<Retained<GCController>>;
 
         #[cfg(all(feature = "GCControllerElement", feature = "block2"))]
@@ -63,14 +63,14 @@ extern_methods!(
         /// If your application is heavily multithreaded this may also be useful to guarantee atomicity of input handling as
         /// a snapshot will not change based on user input once it is taken.
         #[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController capture] instead"]
-        #[unsafe(method_family(none))]
         #[method_id(saveSnapshot)]
+        #[unsafe(method_family = none)]
         pub unsafe fn saveSnapshot(&self) -> Retained<GCExtendedGamepadSnapshot>;
 
         #[cfg(all(feature = "GCControllerDirectionPad", feature = "GCControllerElement"))]
         /// Required to be analog in the Extended profile. All the elements of this directional input are thus analog.
-        #[unsafe(method_family(none))]
         #[method_id(dpad)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dpad(&self) -> Retained<GCControllerDirectionPad>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
@@ -84,87 +84,87 @@ extern_methods!(
         /// \
         /// /
         /// A
-        #[unsafe(method_family(none))]
         #[method_id(buttonA)]
+        #[unsafe(method_family = none)]
         pub unsafe fn buttonA(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
-        #[unsafe(method_family(none))]
         #[method_id(buttonB)]
+        #[unsafe(method_family = none)]
         pub unsafe fn buttonB(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
-        #[unsafe(method_family(none))]
         #[method_id(buttonX)]
+        #[unsafe(method_family = none)]
         pub unsafe fn buttonX(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
-        #[unsafe(method_family(none))]
         #[method_id(buttonY)]
+        #[unsafe(method_family = none)]
         pub unsafe fn buttonY(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         /// Button menu is the primary menu button, and should be used to enter the main menu and pause the game.
-        #[unsafe(method_family(none))]
         #[method_id(buttonMenu)]
+        #[unsafe(method_family = none)]
         pub unsafe fn buttonMenu(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         /// Button options is the secondary menu button. It should be used to enter a secondary menu, such as graphics and sound configuration, and pause the game.
-        #[unsafe(method_family(none))]
         #[method_id(buttonOptions)]
+        #[unsafe(method_family = none)]
         pub unsafe fn buttonOptions(&self) -> Option<Retained<GCControllerButtonInput>>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         /// Button home is a special menu button. If the system does not consume button home events, they will be passed to your application and should be used to enter a secondary menu, and pause the game.
-        #[unsafe(method_family(none))]
         #[method_id(buttonHome)]
+        #[unsafe(method_family = none)]
         pub unsafe fn buttonHome(&self) -> Option<Retained<GCControllerButtonInput>>;
 
         #[cfg(all(feature = "GCControllerDirectionPad", feature = "GCControllerElement"))]
         /// A thumbstick is a 2-axis control that is physically required to be analog. All the elements of this directional input are thus analog.
-        #[unsafe(method_family(none))]
         #[method_id(leftThumbstick)]
+        #[unsafe(method_family = none)]
         pub unsafe fn leftThumbstick(&self) -> Retained<GCControllerDirectionPad>;
 
         #[cfg(all(feature = "GCControllerDirectionPad", feature = "GCControllerElement"))]
         /// A thumbstick is a 2-axis control that is physically required to be analog. All the elements of this directional input are thus analog.
-        #[unsafe(method_family(none))]
         #[method_id(rightThumbstick)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rightThumbstick(&self) -> Retained<GCControllerDirectionPad>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         /// Shoulder buttons are required to be analog inputs.
-        #[unsafe(method_family(none))]
         #[method_id(leftShoulder)]
+        #[unsafe(method_family = none)]
         pub unsafe fn leftShoulder(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         /// Shoulder buttons are required to be analog inputs.
-        #[unsafe(method_family(none))]
         #[method_id(rightShoulder)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rightShoulder(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         /// Triggers are required to be analog inputs. Common uses would be acceleration and decelleration in a driving game for example.
-        #[unsafe(method_family(none))]
         #[method_id(leftTrigger)]
+        #[unsafe(method_family = none)]
         pub unsafe fn leftTrigger(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
-        #[unsafe(method_family(none))]
         #[method_id(rightTrigger)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rightTrigger(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         /// A thumbstick may also have a clickable component, which is treated as a non-analog button.
-        #[unsafe(method_family(none))]
         #[method_id(leftThumbstickButton)]
+        #[unsafe(method_family = none)]
         pub unsafe fn leftThumbstickButton(&self) -> Option<Retained<GCControllerButtonInput>>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
-        #[unsafe(method_family(none))]
         #[method_id(rightThumbstickButton)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rightThumbstickButton(&self) -> Option<Retained<GCControllerButtonInput>>;
 
         /// Sets the state vector of the extended gamepad to a copy of the input extended gamepad's state vector.
@@ -182,12 +182,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "GCPhysicalInputProfile")]
     unsafe impl GCExtendedGamepad {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

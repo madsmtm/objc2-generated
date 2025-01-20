@@ -123,13 +123,13 @@ extern_methods!(
         /// Parameter `image`: The image to display within the view.
         ///
         /// Returns: An initialized image view.
-        #[unsafe(method_family(none))]
         #[method_id(imageViewWithImage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn imageViewWithImage(image: &NSImage, mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
-        #[unsafe(method_family(none))]
         #[method_id(image)]
+        #[unsafe(method_family = none)]
         pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
@@ -173,8 +173,8 @@ extern_methods!(
 
         #[cfg(feature = "NSImage")]
         /// Specifies a combination of point size, weight, and scale to use when sizing and displaying symbol images. If a symbol configuration isn't provided, the image view uses a default size, weight, and scale provided by the system. The default value is `nil`.
-        #[unsafe(method_family(none))]
         #[method_id(symbolConfiguration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn symbolConfiguration(&self) -> Option<Retained<NSImageSymbolConfiguration>>;
 
         #[cfg(feature = "NSImage")]
@@ -187,8 +187,8 @@ extern_methods!(
 
         #[cfg(feature = "NSColor")]
         /// A tint color to be used when rendering template image content. This color may be combined with other effects to produce a theme-appropriate rendition of the template image. A nil value indicates the standard set of effects without color modification. The default value is nil.
-        #[unsafe(method_family(none))]
         #[method_id(contentTintColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contentTintColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColor")]
@@ -244,12 +244,12 @@ extern_methods!(
     /// Methods declared on superclass `NSControl`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSImageView {
-        #[unsafe(method_family(init))]
         #[method_id(initWithFrame:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -261,8 +261,8 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSImageView {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -271,8 +271,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSImageView {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

@@ -60,14 +60,14 @@ unsafe impl NSObjectProtocol for ACAccountStore {}
 extern_methods!(
     unsafe impl ACAccountStore {
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
-        #[unsafe(method_family(none))]
         #[method_id(accounts)]
+        #[unsafe(method_family = none)]
         pub unsafe fn accounts(&self) -> Option<Retained<NSArray>>;
 
         #[cfg(feature = "ACAccount")]
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
-        #[unsafe(method_family(none))]
         #[method_id(accountWithIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn accountWithIdentifier(
             &self,
             identifier: Option<&NSString>,
@@ -75,8 +75,8 @@ extern_methods!(
 
         #[cfg(feature = "ACAccountType")]
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
-        #[unsafe(method_family(none))]
         #[method_id(accountTypeWithAccountTypeIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn accountTypeWithAccountTypeIdentifier(
             &self,
             type_identifier: Option<&NSString>,
@@ -84,8 +84,8 @@ extern_methods!(
 
         #[cfg(feature = "ACAccountType")]
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
-        #[unsafe(method_family(none))]
         #[method_id(accountsWithAccountType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn accountsWithAccountType(
             &self,
             account_type: Option<&ACAccountType>,
@@ -142,12 +142,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ACAccountStore {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

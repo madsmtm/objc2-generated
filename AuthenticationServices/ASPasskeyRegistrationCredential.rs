@@ -40,8 +40,8 @@ extern_methods!(
         /// Parameter `credentialID`: The unique identifier for this passkey.
         ///
         /// Parameter `attestationObject`: The attestation object for this passkey registration result.
-        #[unsafe(method_family(init))]
         #[method_id(initWithRelyingParty:clientDataHash:credentialID:attestationObject:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithRelyingParty_clientDataHash_credentialID_attestationObject(
             this: Allocated<Self>,
             relying_party: &NSString,
@@ -62,8 +62,8 @@ extern_methods!(
         /// Parameter `attestationObject`: The attestation object for this passkey registration result.
         ///
         /// Parameter `extensionOutput`: The output of WebAuthn extensions processed by the credential provider.
-        #[unsafe(method_family(init))]
         #[method_id(initWithRelyingParty:clientDataHash:credentialID:attestationObject:extensionOutput:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithRelyingParty_clientDataHash_credentialID_attestationObject_extensionOutput(
             this: Allocated<Self>,
             relying_party: &NSString,
@@ -82,8 +82,8 @@ extern_methods!(
         /// Parameter `credentialID`: The unique identifier for this passkey.
         ///
         /// Parameter `attestationObject`: The attestation object for this passkey registration result.
-        #[unsafe(method_family(none))]
         #[method_id(credentialWithRelyingParty:clientDataHash:credentialID:attestationObject:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn credentialWithRelyingParty_clientDataHash_credentialID_attestationObject(
             relying_party: &NSString,
             client_data_hash: &NSData,
@@ -92,29 +92,29 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The relying party identifier associated with this passkey.
-        #[unsafe(method_family(none))]
         #[method_id(relyingParty)]
+        #[unsafe(method_family = none)]
         pub unsafe fn relyingParty(&self) -> Retained<NSString>;
 
         /// The hash of the client data for this registration result.
-        #[unsafe(method_family(none))]
         #[method_id(clientDataHash)]
+        #[unsafe(method_family = none)]
         pub unsafe fn clientDataHash(&self) -> Retained<NSData>;
 
         /// The raw credential identifier of this passkey.
-        #[unsafe(method_family(none))]
         #[method_id(credentialID)]
+        #[unsafe(method_family = none)]
         pub unsafe fn credentialID(&self) -> Retained<NSData>;
 
         /// The attestation object for this passkey registration result.
-        #[unsafe(method_family(none))]
         #[method_id(attestationObject)]
+        #[unsafe(method_family = none)]
         pub unsafe fn attestationObject(&self) -> Retained<NSData>;
 
         #[cfg(feature = "ASPasskeyRegistrationCredentialExtensionOutput")]
         /// The outputs for WebAuthn extensions processed by the credential provider.
-        #[unsafe(method_family(none))]
         #[method_id(extensionOutput)]
+        #[unsafe(method_family = none)]
         pub unsafe fn extensionOutput(
             &self,
         ) -> Option<Retained<ASPasskeyRegistrationCredentialExtensionOutput>>;
@@ -132,12 +132,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASPasskeyRegistrationCredential {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

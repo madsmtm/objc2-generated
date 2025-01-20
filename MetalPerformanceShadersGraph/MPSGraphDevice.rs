@@ -48,8 +48,8 @@ extern_methods!(
         pub unsafe fn r#type(&self) -> MPSGraphDeviceType;
 
         /// If device type is Metal then returns the corresponding MTLDevice else nil.
-        #[unsafe(method_family(none))]
         #[method_id(metalDevice)]
+        #[unsafe(method_family = none)]
         pub unsafe fn metalDevice(&self) -> Option<Retained<ProtocolObject<dyn MTLDevice>>>;
 
         /// Creates a device from a given Metal device.
@@ -57,8 +57,8 @@ extern_methods!(
         /// - Parameters:
         /// - metalDevice: `MTLDevice` to create an MPSGraphDevice from.
         /// - Returns: A valid device.
-        #[unsafe(method_family(none))]
         #[method_id(deviceWithMTLDevice:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn deviceWithMTLDevice(
             metal_device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
@@ -69,12 +69,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MPSGraphCore")]
     unsafe impl MPSGraphDevice {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

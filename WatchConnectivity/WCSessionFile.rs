@@ -20,12 +20,12 @@ unsafe impl NSObjectProtocol for WCSessionFile {}
 
 extern_methods!(
     unsafe impl WCSessionFile {
-        #[unsafe(method_family(none))]
         #[method_id(fileURL)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fileURL(&self) -> Retained<NSURL>;
 
-        #[unsafe(method_family(none))]
         #[method_id(metadata)]
+        #[unsafe(method_family = none)]
         pub unsafe fn metadata(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
     }
 );
@@ -33,12 +33,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WCSessionFile {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -56,12 +56,12 @@ unsafe impl NSObjectProtocol for WCSessionFileTransfer {}
 
 extern_methods!(
     unsafe impl WCSessionFileTransfer {
-        #[unsafe(method_family(none))]
         #[method_id(file)]
+        #[unsafe(method_family = none)]
         pub unsafe fn file(&self) -> Retained<WCSessionFile>;
 
-        #[unsafe(method_family(none))]
         #[method_id(progress)]
+        #[unsafe(method_family = none)]
         pub unsafe fn progress(&self) -> Retained<NSProgress>;
 
         #[method(isTransferring)]
@@ -75,12 +75,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WCSessionFileTransfer {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

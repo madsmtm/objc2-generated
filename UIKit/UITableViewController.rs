@@ -75,31 +75,31 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UITableViewController {
         #[cfg(feature = "UITableView")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithStyle:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithStyle(
             this: Allocated<Self>,
             style: UITableViewStyle,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithNibName:bundle:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "UIScrollView", feature = "UITableView", feature = "UIView"))]
-        #[unsafe(method_family(none))]
         #[method_id(tableView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tableView(&self) -> Option<Retained<UITableView>>;
 
         #[cfg(all(feature = "UIScrollView", feature = "UITableView", feature = "UIView"))]
@@ -122,8 +122,8 @@ extern_methods!(
             feature = "UIRefreshControl",
             feature = "UIView"
         ))]
-        #[unsafe(method_family(none))]
         #[method_id(refreshControl)]
+        #[unsafe(method_family = none)]
         pub unsafe fn refreshControl(&self) -> Option<Retained<UIRefreshControl>>;
 
         #[cfg(all(
@@ -141,12 +141,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UITableViewController {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

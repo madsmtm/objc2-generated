@@ -70,15 +70,15 @@ unsafe impl NSObjectProtocol for NSPointerFunctions {}
 
 extern_methods!(
     unsafe impl NSPointerFunctions {
-        #[unsafe(method_family(init))]
         #[method_id(initWithOptions:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithOptions(
             this: Allocated<Self>,
             options: NSPointerFunctionsOptions,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(pointerFunctionsWithOptions:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pointerFunctionsWithOptions(
             options: NSPointerFunctionsOptions,
         ) -> Retained<NSPointerFunctions>;
@@ -229,12 +229,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPointerFunctions {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

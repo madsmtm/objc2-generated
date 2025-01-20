@@ -164,8 +164,8 @@ extern_methods!(
         /// - dataLayout: See `dataLayout` property.
         /// - weightsLayout: See `weightsLayout` property.
         /// - Returns: The descriptor on autoreleasepool.
-        #[unsafe(method_family(none))]
         #[method_id(descriptorWithStrideInX:strideInY:dilationRateInX:dilationRateInY:paddingLeft:paddingRight:paddingTop:paddingBottom:paddingStyle:dataLayout:weightsLayout:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithStrideInX_strideInY_dilationRateInX_dilationRateInY_paddingLeft_paddingRight_paddingTop_paddingBottom_paddingStyle_dataLayout_weightsLayout(
             stride_in_x: NSUInteger,
             stride_in_y: NSUInteger,
@@ -186,8 +186,8 @@ extern_methods!(
         /// - dataLayout: See `dataLayout` property.
         /// - weightsLayout: See `weightsLayout` property.
         /// - Returns: The descriptor on autoreleasepool.
-        #[unsafe(method_family(none))]
         #[method_id(descriptorWithDataLayout:weightsLayout:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithDataLayout_weightsLayout(
             data_layout: MPSGraphTensorNamedDataLayout,
             weights_layout: MPSGraphTensorNamedDataLayout,
@@ -217,12 +217,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MPSGraphCore")]
     unsafe impl MPSGraphDepthwiseConvolution2DOpDescriptor {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -269,8 +269,8 @@ extern_methods!(
         /// 1,
         /// @
         /// 1 ]`
-        #[unsafe(method_family(none))]
         #[method_id(strides)]
+        #[unsafe(method_family = none)]
         pub unsafe fn strides(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Setter for [`strides`][Self::strides].
@@ -289,8 +289,8 @@ extern_methods!(
         /// 1,
         /// @
         /// 1 ]`
-        #[unsafe(method_family(none))]
         #[method_id(dilationRates)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dilationRates(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Setter for [`dilationRates`][Self::dilationRates].
@@ -319,8 +319,8 @@ extern_methods!(
         /// 0,
         /// @
         /// 0 ]`
-        #[unsafe(method_family(none))]
         #[method_id(paddingValues)]
+        #[unsafe(method_family = none)]
         pub unsafe fn paddingValues(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Setter for [`paddingValues`][Self::paddingValues].
@@ -360,8 +360,8 @@ extern_methods!(
         /// - paddingValues: See `paddingValues` property.
         /// - paddingStyle: See `paddingStyle` property.
         /// - Returns: The descriptor on autoreleasepool.
-        #[unsafe(method_family(none))]
         #[method_id(descriptorWithStrides:dilationRates:paddingValues:paddingStyle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithStrides_dilationRates_paddingValues_paddingStyle(
             strides: &NSArray<NSNumber>,
             dilation_rates: &NSArray<NSNumber>,
@@ -374,8 +374,8 @@ extern_methods!(
         /// - Parameters:
         /// - paddingStyle: See `paddingStyle` property.
         /// - Returns: The descriptor on autoreleasepool.
-        #[unsafe(method_family(none))]
         #[method_id(descriptorWithPaddingStyle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithPaddingStyle(
             padding_style: MPSGraphPaddingStyle,
         ) -> Option<Retained<Self>>;
@@ -386,12 +386,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MPSGraphCore")]
     unsafe impl MPSGraphDepthwiseConvolution3DOpDescriptor {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -409,8 +409,8 @@ extern_methods!(
         /// - descriptor: The descriptor object that specifies strides, dilation rates, paddings and layouts.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[unsafe(method_family(none))]
         #[method_id(depthwiseConvolution2DWithSourceTensor:weightsTensor:descriptor:name:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn depthwiseConvolution2DWithSourceTensor_weightsTensor_descriptor_name(
             &self,
             source: &MPSGraphTensor,
@@ -432,8 +432,8 @@ extern_methods!(
         /// - descriptor: The descriptor object that specifies strides, dilation rates, paddings and layouts.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[unsafe(method_family(none))]
         #[method_id(depthwiseConvolution2DDataGradientWithIncomingGradientTensor:weightsTensor:outputShape:descriptor:name:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn depthwiseConvolution2DDataGradientWithIncomingGradientTensor_weightsTensor_outputShape_descriptor_name(
             &self,
             incoming_gradient: &MPSGraphTensor,
@@ -456,8 +456,8 @@ extern_methods!(
         /// - descriptor: The descriptor object that specifies strides, dilation rates, paddings and layouts.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[unsafe(method_family(none))]
         #[method_id(depthwiseConvolution2DWeightsGradientWithIncomingGradientTensor:sourceTensor:outputShape:descriptor:name:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn depthwiseConvolution2DWeightsGradientWithIncomingGradientTensor_sourceTensor_outputShape_descriptor_name(
             &self,
             incoming_gradient: &MPSGraphTensor,
@@ -480,8 +480,8 @@ extern_methods!(
         /// - descriptor: The descriptor object that specifies strides, dilation rates and paddings.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[unsafe(method_family(none))]
         #[method_id(depthwiseConvolution3DWithSourceTensor:weightsTensor:descriptor:name:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn depthwiseConvolution3DWithSourceTensor_weightsTensor_descriptor_name(
             &self,
             source: &MPSGraphTensor,
@@ -503,8 +503,8 @@ extern_methods!(
         /// - descriptor: The descriptor object that  specifies strides, dilation rates and paddings.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[unsafe(method_family(none))]
         #[method_id(depthwiseConvolution3DDataGradientWithIncomingGradientTensor:weightsTensor:outputShape:descriptor:name:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn depthwiseConvolution3DDataGradientWithIncomingGradientTensor_weightsTensor_outputShape_descriptor_name(
             &self,
             incoming_gradient: &MPSGraphTensor,
@@ -527,8 +527,8 @@ extern_methods!(
         /// - descriptor: The descriptor object that specifies strides, dilation rates and paddings.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[unsafe(method_family(none))]
         #[method_id(depthwiseConvolution3DWeightsGradientWithIncomingGradientTensor:sourceTensor:outputShape:descriptor:name:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn depthwiseConvolution3DWeightsGradientWithIncomingGradientTensor_sourceTensor_outputShape_descriptor_name(
             &self,
             incoming_gradient: &MPSGraphTensor,

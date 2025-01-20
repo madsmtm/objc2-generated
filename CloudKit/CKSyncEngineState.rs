@@ -44,12 +44,12 @@ unsafe impl NSObjectProtocol for CKSyncEngineState {}
 
 extern_methods!(
     unsafe impl CKSyncEngineState {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// A list of record changes that need to be sent to the server.
@@ -67,15 +67,15 @@ extern_methods!(
         /// If it fails to send a change due to some retryable error (e.g. a network failure), it will keep that change in this list.
         ///
         /// If you'd prefer to track pending changes yourself, you can use `hasPendingUntrackedChanges` instead.
-        #[unsafe(method_family(none))]
         #[method_id(pendingRecordZoneChanges)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pendingRecordZoneChanges(
             &self,
         ) -> Retained<NSArray<CKSyncEnginePendingRecordZoneChange>>;
 
         /// A list of database changes that need to be sent to the server, similar to `pendingRecordZoneChanges`.
-        #[unsafe(method_family(none))]
         #[method_id(pendingDatabaseChanges)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pendingDatabaseChanges(
             &self,
         ) -> Retained<NSArray<CKSyncEnginePendingDatabaseChange>>;
@@ -95,8 +95,8 @@ extern_methods!(
         #[cfg(feature = "CKRecordZoneID")]
         /// The list of zone IDs that have new changes to fetch from the server.
         /// `CKSyncEngine` keeps track of these zones and will update this list as it receives new information.
-        #[unsafe(method_family(none))]
         #[method_id(zoneIDsWithUnfetchedServerChanges)]
+        #[unsafe(method_family = none)]
         pub unsafe fn zoneIDsWithUnfetchedServerChanges(&self)
             -> Retained<NSArray<CKRecordZoneID>>;
 
@@ -162,12 +162,12 @@ unsafe impl NSSecureCoding for CKSyncEngineStateSerialization {}
 
 extern_methods!(
     unsafe impl CKSyncEngineStateSerialization {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -210,25 +210,25 @@ unsafe impl NSObjectProtocol for CKSyncEnginePendingRecordZoneChange {}
 extern_methods!(
     unsafe impl CKSyncEnginePendingRecordZoneChange {
         #[cfg(feature = "CKRecordID")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithRecordID:type:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithRecordID_type(
             this: Allocated<Self>,
             record_id: &CKRecordID,
             r#type: CKSyncEnginePendingRecordZoneChangeType,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "CKRecordID")]
-        #[unsafe(method_family(none))]
         #[method_id(recordID)]
+        #[unsafe(method_family = none)]
         pub unsafe fn recordID(&self) -> Retained<CKRecordID>;
 
         #[method(type)]
@@ -273,17 +273,17 @@ unsafe impl NSObjectProtocol for CKSyncEnginePendingDatabaseChange {}
 
 extern_methods!(
     unsafe impl CKSyncEnginePendingDatabaseChange {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "CKRecordZoneID")]
-        #[unsafe(method_family(none))]
         #[method_id(zoneID)]
+        #[unsafe(method_family = none)]
         pub unsafe fn zoneID(&self) -> Retained<CKRecordZoneID>;
 
         #[method(type)]
@@ -309,13 +309,13 @@ unsafe impl NSObjectProtocol for CKSyncEnginePendingZoneSave {}
 extern_methods!(
     unsafe impl CKSyncEnginePendingZoneSave {
         #[cfg(feature = "CKRecordZone")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithZone:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithZone(this: Allocated<Self>, zone: &CKRecordZone) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordZone")]
-        #[unsafe(method_family(none))]
         #[method_id(zone)]
+        #[unsafe(method_family = none)]
         pub unsafe fn zone(&self) -> Retained<CKRecordZone>;
     }
 );
@@ -323,12 +323,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `CKSyncEnginePendingDatabaseChange`
     unsafe impl CKSyncEnginePendingZoneSave {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -351,8 +351,8 @@ unsafe impl NSObjectProtocol for CKSyncEnginePendingZoneDelete {}
 extern_methods!(
     unsafe impl CKSyncEnginePendingZoneDelete {
         #[cfg(feature = "CKRecordZoneID")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithZoneID:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithZoneID(
             this: Allocated<Self>,
             zone_id: &CKRecordZoneID,
@@ -363,12 +363,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `CKSyncEnginePendingDatabaseChange`
     unsafe impl CKSyncEnginePendingZoneDelete {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -49,13 +49,13 @@ extern_methods!(
         pub unsafe fn c(&self) -> c_float;
 
         #[deprecated]
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
@@ -65,8 +65,8 @@ extern_methods!(
         ///
         /// Returns: A new neuron descriptor or nil if failure
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(descriptorWithType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithType(
             activation_type: MLCActivationType,
         ) -> Option<Retained<Self>>;
@@ -80,8 +80,8 @@ extern_methods!(
         ///
         /// Returns: A new neuron descriptor or nil if failure
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(descriptorWithType:a:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithType_a(
             activation_type: MLCActivationType,
             a: c_float,
@@ -98,8 +98,8 @@ extern_methods!(
         ///
         /// Returns: A new neuron descriptor or nil if failure
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(descriptorWithType:a:b:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithType_a_b(
             activation_type: MLCActivationType,
             a: c_float,
@@ -119,8 +119,8 @@ extern_methods!(
         ///
         /// Returns: A new neuron descriptor or nil if failure
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(descriptorWithType:a:b:c:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithType_a_b_c(
             activation_type: MLCActivationType,
             a: c_float,

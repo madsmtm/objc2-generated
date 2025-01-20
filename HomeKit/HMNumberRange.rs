@@ -23,8 +23,8 @@ unsafe impl NSObjectProtocol for HMNumberRange {}
 
 extern_methods!(
     unsafe impl HMNumberRange {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Initializes a new range of numbers
@@ -34,8 +34,8 @@ extern_methods!(
         ///
         ///
         /// Parameter `maxValue`: The maximum value of the range.
-        #[unsafe(method_family(none))]
         #[method_id(numberRangeWithMinValue:maxValue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn numberRangeWithMinValue_maxValue(
             min_value: &NSNumber,
             max_value: &NSNumber,
@@ -45,26 +45,26 @@ extern_methods!(
         ///
         ///
         /// Parameter `minValue`: The minimum value of the range.
-        #[unsafe(method_family(none))]
         #[method_id(numberRangeWithMinValue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn numberRangeWithMinValue(min_value: &NSNumber) -> Retained<Self>;
 
         /// Initializes a new range of numbers. The minimum value is set to a small value.
         ///
         ///
         /// Parameter `maxValue`: The maximum value of the range.
-        #[unsafe(method_family(none))]
         #[method_id(numberRangeWithMaxValue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn numberRangeWithMaxValue(max_value: &NSNumber) -> Retained<Self>;
 
         /// The minimum value of the range.
-        #[unsafe(method_family(none))]
         #[method_id(minValue)]
+        #[unsafe(method_family = none)]
         pub unsafe fn minValue(&self) -> Option<Retained<NSNumber>>;
 
         /// The maximum value of the range.
-        #[unsafe(method_family(none))]
         #[method_id(maxValue)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maxValue(&self) -> Option<Retained<NSNumber>>;
     }
 );
@@ -72,8 +72,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HMNumberRange {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

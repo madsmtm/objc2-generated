@@ -24,25 +24,25 @@ unsafe impl NSObjectProtocol for HMRoom {}
 
 extern_methods!(
     unsafe impl HMRoom {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Name of the room.
-        #[unsafe(method_family(none))]
         #[method_id(name)]
+        #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "HMAccessory")]
         /// Array of HMAccessory objects that correspond to the accessories
         /// associated with this room.
-        #[unsafe(method_family(none))]
         #[method_id(accessories)]
+        #[unsafe(method_family = none)]
         pub unsafe fn accessories(&self) -> Retained<NSArray<HMAccessory>>;
 
         /// A unique identifier for the room.
-        #[unsafe(method_family(none))]
         #[method_id(uniqueIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn uniqueIdentifier(&self) -> Retained<NSUUID>;
 
         #[cfg(feature = "block2")]
@@ -67,8 +67,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HMRoom {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

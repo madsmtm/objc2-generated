@@ -23,16 +23,16 @@ unsafe impl NSObjectProtocol for AVAudioSession {}
 extern_methods!(
     unsafe impl AVAudioSession {
         /// Return singleton instance.
-        #[unsafe(method_family(none))]
         #[method_id(sharedInstance)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sharedInstance() -> Retained<AVAudioSession>;
 
         #[cfg(feature = "AVAudioSessionTypes")]
         /// Get the list of categories available on the device.  Certain categories may be unavailable on
         /// particular devices.  For example, AVAudioSessionCategoryRecord will not be available on devices
         /// that have no support for audio input.
-        #[unsafe(method_family(none))]
         #[method_id(availableCategories)]
+        #[unsafe(method_family = none)]
         pub unsafe fn availableCategories(&self) -> Retained<NSArray<AVAudioSessionCategory>>;
 
         #[cfg(feature = "AVAudioSessionTypes")]
@@ -87,8 +87,8 @@ extern_methods!(
         #[cfg(feature = "AVAudioSessionTypes")]
         /// Get session category.
         /// Examples: AVAudioSessionCategoryRecord, AVAudioSessionCategoryPlayAndRecord, etc.
-        #[unsafe(method_family(none))]
         #[method_id(category)]
+        #[unsafe(method_family = none)]
         pub unsafe fn category(&self) -> Retained<AVAudioSessionCategory>;
 
         #[cfg(feature = "AVAudioSessionTypes")]
@@ -108,8 +108,8 @@ extern_methods!(
         /// Get the list of modes available on the device.  Certain modes may be unavailable on particular
         /// devices.  For example, AVAudioSessionModeVideoRecording will not be available on devices that
         /// have no support for recording video.
-        #[unsafe(method_family(none))]
         #[method_id(availableModes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn availableModes(&self) -> Retained<NSArray<AVAudioSessionMode>>;
 
         #[cfg(feature = "AVAudioSessionTypes")]
@@ -126,8 +126,8 @@ extern_methods!(
 
         #[cfg(feature = "AVAudioSessionTypes")]
         /// Get the session's mode.
-        #[unsafe(method_family(none))]
         #[method_id(mode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mode(&self) -> Retained<AVAudioSessionMode>;
 
         /// Set allowHapticsAndSystemSoundsDuringRecording to YES in order to allow system sounds and haptics to play while the session is actively using audio input.
@@ -188,8 +188,8 @@ extern_methods!(
 
         #[cfg(feature = "AVAudioSessionRoute")]
         /// Get the preferred input port.  Will be nil if no preference has been set.
-        #[unsafe(method_family(none))]
         #[method_id(preferredInput)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preferredInput(&self) -> Option<Retained<AVAudioSessionPortDescription>>;
 
         /// Set ringtone and alert interruption preference.
@@ -420,16 +420,16 @@ extern_methods!(
         /// ports.
         ///
         /// Key-value observable.
-        #[unsafe(method_family(none))]
         #[method_id(inputDataSources)]
+        #[unsafe(method_family = none)]
         pub unsafe fn inputDataSources(
             &self,
         ) -> Option<Retained<NSArray<AVAudioSessionDataSourceDescription>>>;
 
         #[cfg(feature = "AVAudioSessionRoute")]
         /// Obtain the currently selected input data source.  Will be nil if no data sources are available.
-        #[unsafe(method_family(none))]
         #[method_id(inputDataSource)]
+        #[unsafe(method_family = none)]
         pub unsafe fn inputDataSource(
             &self,
         ) -> Option<Retained<AVAudioSessionDataSourceDescription>>;
@@ -444,16 +444,16 @@ extern_methods!(
 
         #[cfg(feature = "AVAudioSessionRoute")]
         /// See inputDataSources for background. Key-value observable.
-        #[unsafe(method_family(none))]
         #[method_id(outputDataSources)]
+        #[unsafe(method_family = none)]
         pub unsafe fn outputDataSources(
             &self,
         ) -> Option<Retained<NSArray<AVAudioSessionDataSourceDescription>>>;
 
         #[cfg(feature = "AVAudioSessionRoute")]
         /// Obtain the currently selected output data source.  Will be nil if no data sources are available.
-        #[unsafe(method_family(none))]
         #[method_id(outputDataSource)]
+        #[unsafe(method_family = none)]
         pub unsafe fn outputDataSource(
             &self,
         ) -> Option<Retained<AVAudioSessionDataSourceDescription>>;
@@ -495,8 +495,8 @@ extern_methods!(
         /// This property is only supported when the output is routed to ports of type AVAudioSessionPortCarAudio or AVAudioSessionPortAirPlay
         /// Otherwise, an empty array will be returned. Note that this will return an empty array if session is inactive.
         /// Clients should listen to AVAudioSessionRenderingCapabilitiesChangeNotification to be notified when this changes.
-        #[unsafe(method_family(none))]
         #[method_id(supportedOutputChannelLayouts)]
+        #[unsafe(method_family = none)]
         pub unsafe fn supportedOutputChannelLayouts(
             &self,
         ) -> Retained<NSArray<AVAudioChannelLayout>>;
@@ -548,8 +548,8 @@ extern_methods!(
         /// Note that this property only applies to the session's current category and mode. For
         /// example, if the session's current category is AVAudioSessionCategoryPlayback, there will be
         /// no available inputs.
-        #[unsafe(method_family(none))]
         #[method_id(availableInputs)]
+        #[unsafe(method_family = none)]
         pub unsafe fn availableInputs(
             &self,
         ) -> Option<Retained<NSArray<AVAudioSessionPortDescription>>>;
@@ -557,8 +557,8 @@ extern_methods!(
         #[cfg(feature = "AVAudioSessionRoute")]
         /// A description of the current route, consisting of zero or more input ports and zero or more
         /// output ports
-        #[unsafe(method_family(none))]
         #[method_id(currentRoute)]
+        #[unsafe(method_family = none)]
         pub unsafe fn currentRoute(&self) -> Retained<AVAudioSessionRouteDescription>;
 
         #[cfg(feature = "AVAudioSessionTypes")]

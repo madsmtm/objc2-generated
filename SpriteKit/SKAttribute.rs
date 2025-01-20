@@ -56,23 +56,23 @@ unsafe impl NSSecureCoding for SKAttribute {}
 
 extern_methods!(
     unsafe impl SKAttribute {
-        #[unsafe(method_family(none))]
         #[method_id(attributeWithName:type:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn attributeWithName_type(
             name: &NSString,
             r#type: SKAttributeType,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithName:type:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithName_type(
             this: Allocated<Self>,
             name: &NSString,
             r#type: SKAttributeType,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(name)]
+        #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[method(type)]
@@ -83,12 +83,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKAttribute {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -108,12 +108,12 @@ unsafe impl NSSecureCoding for SKAttributeValue {}
 
 extern_methods!(
     unsafe impl SKAttributeValue {
-        #[unsafe(method_family(none))]
         #[method_id(valueWithFloat:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn valueWithFloat(value: c_float) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(floatValue)]
@@ -128,8 +128,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKAttributeValue {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

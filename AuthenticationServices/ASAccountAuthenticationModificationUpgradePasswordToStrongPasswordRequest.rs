@@ -36,8 +36,8 @@ extern_methods!(
         /// will receive an empty password for the credential to upgrade. It should check that it is authorized to perform
         /// the upgrade. The authorization check should ideally be done with information in userInfo, but may involve
         /// communicating with a backend server or using a shared data container between the app and extension.
-        #[unsafe(method_family(init))]
         #[method_id(initWithUser:serviceIdentifier:userInfo:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithUser_serviceIdentifier_userInfo(
             this: Allocated<Self>,
             user: &NSString,
@@ -45,17 +45,17 @@ extern_methods!(
             user_info: Option<&NSDictionary>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(user)]
+        #[unsafe(method_family = none)]
         pub unsafe fn user(&self) -> Retained<NSString>;
 
         #[cfg(feature = "ASCredentialServiceIdentifier")]
-        #[unsafe(method_family(none))]
         #[method_id(serviceIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn serviceIdentifier(&self) -> Retained<ASCredentialServiceIdentifier>;
 
-        #[unsafe(method_family(none))]
         #[method_id(userInfo)]
+        #[unsafe(method_family = none)]
         pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary>>;
     }
 );
@@ -64,12 +64,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "ASAccountAuthenticationModificationRequest")]
     unsafe impl ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

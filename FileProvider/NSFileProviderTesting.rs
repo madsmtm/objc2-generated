@@ -52,8 +52,8 @@ extern_protocol!(
         /// Returns the operation as an Ingestion.
         ///
         /// Returns the operation if it conforms to NSFileProviderTestingIngestion, otherwise returns nil.
-        #[unsafe(method_family(none))]
         #[method_id(asIngestion)]
+        #[unsafe(method_family = none)]
         unsafe fn asIngestion(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSFileProviderTestingIngestion>>>;
@@ -61,8 +61,8 @@ extern_protocol!(
         /// Returns the operation as an Lookup.
         ///
         /// Returns the operation if it conforms to NSFileProviderTestingLookup, otherwise returns nil.
-        #[unsafe(method_family(none))]
         #[method_id(asLookup)]
+        #[unsafe(method_family = none)]
         unsafe fn asLookup(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSFileProviderTestingLookup>>>;
@@ -70,8 +70,8 @@ extern_protocol!(
         /// Returns the operation as an Creation.
         ///
         /// Returns the operation if it conforms to NSFileProviderTestingCreation, otherwise returns nil.
-        #[unsafe(method_family(none))]
         #[method_id(asCreation)]
+        #[unsafe(method_family = none)]
         unsafe fn asCreation(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSFileProviderTestingCreation>>>;
@@ -79,8 +79,8 @@ extern_protocol!(
         /// Returns the operation as an Modification.
         ///
         /// Returns the operation if it conforms to NSFileProviderTestingModification, otherwise returns nil.
-        #[unsafe(method_family(none))]
         #[method_id(asModification)]
+        #[unsafe(method_family = none)]
         unsafe fn asModification(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSFileProviderTestingModification>>>;
@@ -88,8 +88,8 @@ extern_protocol!(
         /// Returns the operation as an Deletion.
         ///
         /// Returns the operation if it conforms to NSFileProviderTestingDeletion, otherwise returns nil.
-        #[unsafe(method_family(none))]
         #[method_id(asDeletion)]
+        #[unsafe(method_family = none)]
         unsafe fn asDeletion(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSFileProviderTestingDeletion>>>;
@@ -97,8 +97,8 @@ extern_protocol!(
         /// Returns the operation as an ContentFetch.
         ///
         /// Returns the operation if it conforms to NSFileProviderTestingContentFetch, otherwise returns nil.
-        #[unsafe(method_family(none))]
         #[method_id(asContentFetch)]
+        #[unsafe(method_family = none)]
         unsafe fn asContentFetch(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSFileProviderTestingContentFetch>>>;
@@ -106,8 +106,8 @@ extern_protocol!(
         /// Returns the operation as an ChildrenEnumeration.
         ///
         /// Returns the operation if it conforms to NSFileProviderTestingChildrenEnumeration, otherwise returns nil.
-        #[unsafe(method_family(none))]
         #[method_id(asChildrenEnumeration)]
+        #[unsafe(method_family = none)]
         unsafe fn asChildrenEnumeration(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSFileProviderTestingChildrenEnumeration>>>;
@@ -115,8 +115,8 @@ extern_protocol!(
         /// Returns the operation as an Bounce.
         ///
         /// Returns the operation if it conforms to NSFileProviderTestingCollisionResolution, otherwise returns nil.
-        #[unsafe(method_family(none))]
         #[method_id(asCollisionResolution)]
+        #[unsafe(method_family = none)]
         unsafe fn asCollisionResolution(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSFileProviderTestingCollisionResolution>>>;
@@ -149,8 +149,8 @@ extern_methods!(
         ///
         /// The operations that are returned may become invalid if the system receives new disk or working
         /// set events, or if some operation are scheduled using -runTestingOperations:error:.
-        #[unsafe(method_family(none))]
         #[method_id(listAvailableTestingOperationsWithError:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn listAvailableTestingOperationsWithError(
             &self,
         ) -> Result<
@@ -162,8 +162,8 @@ extern_methods!(
         ///
         /// Ask the system to schedule the execution of the listed operations. The system will wait until all
         /// those operations have completed and report a per-operation error in case an operation fails.
-        #[unsafe(method_family(none))]
         #[method_id(runTestingOperations:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn runTestingOperations_error(
             &self,
             operations: &NSArray<ProtocolObject<dyn NSFileProviderTestingOperation>>,
@@ -211,16 +211,16 @@ extern_protocol!(
 
         #[cfg(feature = "NSFileProviderItem")]
         /// Identifier of the affected item.
-        #[unsafe(method_family(none))]
         #[method_id(itemIdentifier)]
+        #[unsafe(method_family = none)]
         unsafe fn itemIdentifier(&self) -> Retained<NSFileProviderItemIdentifier>;
 
         #[cfg(feature = "NSFileProviderItem")]
         /// The metadata of the item.
         ///
         /// This will be nil if the item is being deleted.
-        #[unsafe(method_family(none))]
         #[method_id(item)]
+        #[unsafe(method_family = none)]
         unsafe fn item(&self) -> Option<Retained<NSFileProviderItem>>;
     }
 );
@@ -236,8 +236,8 @@ extern_protocol!(
 
         #[cfg(feature = "NSFileProviderItem")]
         /// Identifier of the affected item.
-        #[unsafe(method_family(none))]
         #[method_id(itemIdentifier)]
+        #[unsafe(method_family = none)]
         unsafe fn itemIdentifier(&self) -> Retained<NSFileProviderItemIdentifier>;
     }
 );
@@ -253,14 +253,14 @@ extern_protocol!(
 
         #[cfg(feature = "NSFileProviderItem")]
         /// The description of the item.
-        #[unsafe(method_family(none))]
         #[method_id(sourceItem)]
+        #[unsafe(method_family = none)]
         unsafe fn sourceItem(&self) -> Retained<NSFileProviderItem>;
 
         #[cfg(feature = "NSFileProviderDomain")]
         /// The domain version at the time the creation was discovered on the source side.
-        #[unsafe(method_family(none))]
         #[method_id(domainVersion)]
+        #[unsafe(method_family = none)]
         unsafe fn domainVersion(&self) -> Option<Retained<NSFileProviderDomainVersion>>;
     }
 );
@@ -280,20 +280,20 @@ extern_protocol!(
 
         #[cfg(feature = "NSFileProviderItem")]
         /// The description of the item.
-        #[unsafe(method_family(none))]
         #[method_id(sourceItem)]
+        #[unsafe(method_family = none)]
         unsafe fn sourceItem(&self) -> Retained<NSFileProviderItem>;
 
         #[cfg(feature = "NSFileProviderItem")]
         /// The identifier of the target item.
-        #[unsafe(method_family(none))]
         #[method_id(targetItemIdentifier)]
+        #[unsafe(method_family = none)]
         unsafe fn targetItemIdentifier(&self) -> Retained<NSFileProviderItemIdentifier>;
 
         #[cfg(feature = "NSFileProviderItem")]
         /// The version of the target item on top of which the modification is applied
-        #[unsafe(method_family(none))]
         #[method_id(targetItemBaseVersion)]
+        #[unsafe(method_family = none)]
         unsafe fn targetItemBaseVersion(&self) -> Retained<NSFileProviderItemVersion>;
 
         #[cfg(feature = "NSFileProviderItem")]
@@ -303,8 +303,8 @@ extern_protocol!(
 
         #[cfg(feature = "NSFileProviderDomain")]
         /// The domain version at the time the change was discovered on the source side.
-        #[unsafe(method_family(none))]
         #[method_id(domainVersion)]
+        #[unsafe(method_family = none)]
         unsafe fn domainVersion(&self) -> Option<Retained<NSFileProviderDomainVersion>>;
     }
 );
@@ -322,26 +322,26 @@ extern_protocol!(
 
         #[cfg(feature = "NSFileProviderItem")]
         /// The identifier of the source item.
-        #[unsafe(method_family(none))]
         #[method_id(sourceItemIdentifier)]
+        #[unsafe(method_family = none)]
         unsafe fn sourceItemIdentifier(&self) -> Retained<NSFileProviderItemIdentifier>;
 
         #[cfg(feature = "NSFileProviderItem")]
         /// The identifier of the target item.
-        #[unsafe(method_family(none))]
         #[method_id(targetItemIdentifier)]
+        #[unsafe(method_family = none)]
         unsafe fn targetItemIdentifier(&self) -> Retained<NSFileProviderItemIdentifier>;
 
         #[cfg(feature = "NSFileProviderItem")]
         /// The version of the target item on top of which the deletion is applied
-        #[unsafe(method_family(none))]
         #[method_id(targetItemBaseVersion)]
+        #[unsafe(method_family = none)]
         unsafe fn targetItemBaseVersion(&self) -> Retained<NSFileProviderItemVersion>;
 
         #[cfg(feature = "NSFileProviderDomain")]
         /// The domain version at the time the change was discovered on the source side.
-        #[unsafe(method_family(none))]
         #[method_id(domainVersion)]
+        #[unsafe(method_family = none)]
         unsafe fn domainVersion(&self) -> Option<Retained<NSFileProviderDomainVersion>>;
     }
 );
@@ -359,8 +359,8 @@ extern_protocol!(
 
         #[cfg(feature = "NSFileProviderItem")]
         /// The identifier of the item.
-        #[unsafe(method_family(none))]
         #[method_id(itemIdentifier)]
+        #[unsafe(method_family = none)]
         unsafe fn itemIdentifier(&self) -> Retained<NSFileProviderItemIdentifier>;
     }
 );
@@ -378,8 +378,8 @@ extern_protocol!(
 
         #[cfg(feature = "NSFileProviderItem")]
         /// The identifier of the item.
-        #[unsafe(method_family(none))]
         #[method_id(itemIdentifier)]
+        #[unsafe(method_family = none)]
         unsafe fn itemIdentifier(&self) -> Retained<NSFileProviderItemIdentifier>;
     }
 );
@@ -403,8 +403,8 @@ extern_protocol!(
 
         #[cfg(feature = "NSFileProviderItem")]
         /// The state of the item.
-        #[unsafe(method_family(none))]
         #[method_id(renamedItem)]
+        #[unsafe(method_family = none)]
         unsafe fn renamedItem(&self) -> Retained<NSFileProviderItem>;
     }
 );

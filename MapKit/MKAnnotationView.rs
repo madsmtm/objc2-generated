@@ -140,23 +140,23 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl MKAnnotationView {
         #[cfg(feature = "MKAnnotation")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithAnnotation:reuseIdentifier:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithAnnotation_reuseIdentifier(
             this: Allocated<Self>,
             annotation: Option<&ProtocolObject<dyn MKAnnotation>>,
             reuse_identifier: Option<&NSString>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(reuseIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reuseIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[method(prepareForReuse)]
@@ -166,8 +166,8 @@ extern_methods!(
         pub unsafe fn prepareForDisplay(&self);
 
         #[cfg(feature = "MKAnnotation")]
-        #[unsafe(method_family(none))]
         #[method_id(annotation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn annotation(&self) -> Option<Retained<ProtocolObject<dyn MKAnnotation>>>;
 
         #[cfg(feature = "MKAnnotation")]
@@ -175,8 +175,8 @@ extern_methods!(
         #[method(setAnnotation:)]
         pub unsafe fn setAnnotation(&self, annotation: Option<&ProtocolObject<dyn MKAnnotation>>);
 
-        #[unsafe(method_family(none))]
         #[method_id(image)]
+        #[unsafe(method_family = none)]
         pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
 
         /// Setter for [`image`][Self::image].
@@ -259,8 +259,8 @@ extern_methods!(
         #[method(setCanShowCallout:)]
         pub unsafe fn setCanShowCallout(&self, can_show_callout: bool);
 
-        #[unsafe(method_family(none))]
         #[method_id(leftCalloutAccessoryView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn leftCalloutAccessoryView(&self) -> Option<Retained<NSView>>;
 
         /// Setter for [`leftCalloutAccessoryView`][Self::leftCalloutAccessoryView].
@@ -270,8 +270,8 @@ extern_methods!(
             left_callout_accessory_view: Option<&NSView>,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(rightCalloutAccessoryView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rightCalloutAccessoryView(&self) -> Option<Retained<NSView>>;
 
         /// Setter for [`rightCalloutAccessoryView`][Self::rightCalloutAccessoryView].
@@ -281,8 +281,8 @@ extern_methods!(
             right_callout_accessory_view: Option<&NSView>,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(detailCalloutAccessoryView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn detailCalloutAccessoryView(&self) -> Option<Retained<NSView>>;
 
         /// Setter for [`detailCalloutAccessoryView`][Self::detailCalloutAccessoryView].
@@ -313,16 +313,16 @@ extern_methods!(
             animated: bool,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(clusteringIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn clusteringIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`clusteringIdentifier`][Self::clusteringIdentifier].
         #[method(setClusteringIdentifier:)]
         pub unsafe fn setClusteringIdentifier(&self, clustering_identifier: Option<&NSString>);
 
-        #[unsafe(method_family(none))]
         #[method_id(clusterAnnotationView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn clusterAnnotationView(&self) -> Option<Retained<MKAnnotationView>>;
 
         #[method(displayPriority)]
@@ -360,8 +360,8 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl MKAnnotationView {
-        #[unsafe(method_family(init))]
         #[method_id(initWithFrame:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
     }
 );
@@ -371,8 +371,8 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl MKAnnotationView {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -382,8 +382,8 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl MKAnnotationView {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

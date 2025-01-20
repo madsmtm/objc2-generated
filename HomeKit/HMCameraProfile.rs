@@ -30,38 +30,38 @@ unsafe impl NSObjectProtocol for HMCameraProfile {}
 extern_methods!(
     #[cfg(feature = "HMAccessoryProfile")]
     unsafe impl HMCameraProfile {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "HMCameraControl", feature = "HMCameraStreamControl"))]
         /// Object that can be used to control the camera stream.
-        #[unsafe(method_family(none))]
         #[method_id(streamControl)]
+        #[unsafe(method_family = none)]
         pub unsafe fn streamControl(&self) -> Option<Retained<HMCameraStreamControl>>;
 
         #[cfg(all(feature = "HMCameraControl", feature = "HMCameraSnapshotControl"))]
         /// Object that can be used to take image snapshots from the camera.
-        #[unsafe(method_family(none))]
         #[method_id(snapshotControl)]
+        #[unsafe(method_family = none)]
         pub unsafe fn snapshotControl(&self) -> Option<Retained<HMCameraSnapshotControl>>;
 
         #[cfg(all(feature = "HMCameraControl", feature = "HMCameraSettingsControl"))]
         /// Object that can be used to control the settings on the camera.
-        #[unsafe(method_family(none))]
         #[method_id(settingsControl)]
+        #[unsafe(method_family = none)]
         pub unsafe fn settingsControl(&self) -> Option<Retained<HMCameraSettingsControl>>;
 
         #[cfg(all(feature = "HMCameraAudioControl", feature = "HMCameraControl"))]
         /// Object that can be used to control the speaker settings on the camera.
-        #[unsafe(method_family(none))]
         #[method_id(speakerControl)]
+        #[unsafe(method_family = none)]
         pub unsafe fn speakerControl(&self) -> Option<Retained<HMCameraAudioControl>>;
 
         #[cfg(all(feature = "HMCameraAudioControl", feature = "HMCameraControl"))]
         /// Object that can be used to control the microphone settings on the camera.
-        #[unsafe(method_family(none))]
         #[method_id(microphoneControl)]
+        #[unsafe(method_family = none)]
         pub unsafe fn microphoneControl(&self) -> Option<Retained<HMCameraAudioControl>>;
     }
 );
@@ -70,8 +70,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "HMAccessoryProfile")]
     unsafe impl HMCameraProfile {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

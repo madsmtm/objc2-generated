@@ -33,17 +33,17 @@ unsafe impl NSObjectProtocol for EKStructuredLocation {}
 extern_methods!(
     #[cfg(feature = "EKObject")]
     unsafe impl EKStructuredLocation {
-        #[unsafe(method_family(none))]
         #[method_id(locationWithTitle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn locationWithTitle(title: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "objc2-map-kit")]
-        #[unsafe(method_family(none))]
         #[method_id(locationWithMapItem:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn locationWithMapItem(map_item: &MKMapItem) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(title)]
+        #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`title`][Self::title].
@@ -51,8 +51,8 @@ extern_methods!(
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
         #[cfg(feature = "objc2-core-location")]
-        #[unsafe(method_family(none))]
         #[method_id(geoLocation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geoLocation(&self) -> Option<Retained<CLLocation>>;
 
         #[cfg(feature = "objc2-core-location")]
@@ -73,12 +73,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "EKObject")]
     unsafe impl EKStructuredLocation {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

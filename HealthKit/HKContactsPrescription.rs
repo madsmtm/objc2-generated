@@ -83,8 +83,8 @@ extern_methods!(
             feature = "HKLensSpecification"
         ))]
         /// The right eye lens specification
-        #[unsafe(method_family(none))]
         #[method_id(rightEye)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rightEye(&self) -> Option<Retained<HKContactsLensSpecification>>;
 
         #[cfg(all(
@@ -92,13 +92,13 @@ extern_methods!(
             feature = "HKLensSpecification"
         ))]
         /// The left eye lens specification
-        #[unsafe(method_family(none))]
         #[method_id(leftEye)]
+        #[unsafe(method_family = none)]
         pub unsafe fn leftEye(&self) -> Option<Retained<HKContactsLensSpecification>>;
 
         /// The prescribed brand after contact lens fitting
-        #[unsafe(method_family(none))]
         #[method_id(brand)]
+        #[unsafe(method_family = none)]
         pub unsafe fn brand(&self) -> Retained<NSString>;
 
         #[cfg(all(
@@ -119,8 +119,8 @@ extern_methods!(
         /// Parameter `device`: The device that generated the sample
         ///
         /// Parameter `metadata`: The metadata for the sample
-        #[unsafe(method_family(none))]
         #[method_id(prescriptionWithRightEyeSpecification:leftEyeSpecification:brand:dateIssued:expirationDate:device:metadata:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn prescriptionWithRightEyeSpecification_leftEyeSpecification_brand_dateIssued_expirationDate_device_metadata(
             right_eye_specification: Option<&HKContactsLensSpecification>,
             left_eye_specification: Option<&HKContactsLensSpecification>,
@@ -131,17 +131,17 @@ extern_methods!(
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "HKDevice")]
-        #[unsafe(method_family(none))]
         #[method_id(prescriptionWithType:dateIssued:expirationDate:device:metadata:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn prescriptionWithType_dateIssued_expirationDate_device_metadata(
             r#type: HKVisionPrescriptionType,
             date_issued: &NSDate,

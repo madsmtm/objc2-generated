@@ -67,13 +67,13 @@ extern_methods!(
     unsafe impl UIContextMenuConfiguration {
         /// This configuration's identifier. When representing multiple items in your app, this identifier
         /// corresponds to the primary item (i.e. the one with which the user interacted when invoking the menu).
-        #[unsafe(method_family(none))]
         #[method_id(identifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<ProtocolObject<dyn NSCopying>>;
 
         /// When this menu acts on multiple items, you may include the identifiers of secondary items to display a multi-item menu.
-        #[unsafe(method_family(none))]
         #[method_id(secondaryItemIdentifiers)]
+        #[unsafe(method_family = none)]
         pub unsafe fn secondaryItemIdentifiers(
             &self,
         ) -> Retained<NSSet<ProtocolObject<dyn NSCopying>>>;
@@ -121,8 +121,8 @@ extern_methods!(
         /// Parameter `previewProvider`: Optional preview view controller provider block, called when the menu is about to be presented.
         ///
         /// Parameter `actionProvider`: Optional action provider block, called when the menu is about to be presented.
-        #[unsafe(method_family(none))]
         #[method_id(configurationWithIdentifier:previewProvider:actionProvider:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn configurationWithIdentifier_previewProvider_actionProvider(
             identifier: Option<&ProtocolObject<dyn NSCopying>>,
             preview_provider: UIContextMenuContentPreviewProvider,
@@ -135,12 +135,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIContextMenuConfiguration {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

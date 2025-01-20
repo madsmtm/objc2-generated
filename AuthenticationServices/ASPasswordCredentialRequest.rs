@@ -30,16 +30,16 @@ unsafe impl NSSecureCoding for ASPasswordCredentialRequest {}
 
 extern_methods!(
     unsafe impl ASPasswordCredentialRequest {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "ASPasswordCredentialIdentity")]
         /// Initializes an instance of ASPasswordCredentialRequest.
         ///
         /// Parameter `credentialIdentity`: the credential identity to use for this request.
-        #[unsafe(method_family(init))]
         #[method_id(initWithCredentialIdentity:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCredentialIdentity(
             this: Allocated<Self>,
             credential_identity: &ASPasswordCredentialIdentity,
@@ -49,8 +49,8 @@ extern_methods!(
         /// Creates and initializes an instance of ASPasswordCredentialRequest.
         ///
         /// Parameter `credentialIdentity`: the credential identity to use for this request.
-        #[unsafe(method_family(none))]
         #[method_id(requestWithCredentialIdentity:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestWithCredentialIdentity(
             credential_identity: &ASPasswordCredentialIdentity,
         ) -> Retained<Self>;
@@ -60,8 +60,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASPasswordCredentialRequest {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

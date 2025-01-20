@@ -60,15 +60,15 @@ unsafe impl NSSecureCoding for MPMediaQuery {}
 
 extern_methods!(
     unsafe impl MPMediaQuery {
-        #[unsafe(method_family(init))]
         #[method_id(initWithFilterPredicates:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFilterPredicates(
             this: Allocated<Self>,
             filter_predicates: Option<&NSSet<MPMediaPredicate>>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(filterPredicates)]
+        #[unsafe(method_family = none)]
         pub unsafe fn filterPredicates(&self) -> Option<Retained<NSSet<MPMediaPredicate>>>;
 
         /// Setter for [`filterPredicates`][Self::filterPredicates].
@@ -85,13 +85,13 @@ extern_methods!(
         pub unsafe fn removeFilterPredicate(&self, predicate: &MPMediaPredicate);
 
         #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItem"))]
-        #[unsafe(method_family(none))]
         #[method_id(items)]
+        #[unsafe(method_family = none)]
         pub unsafe fn items(&self) -> Option<Retained<NSArray<MPMediaItem>>>;
 
         #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItemCollection"))]
-        #[unsafe(method_family(none))]
         #[method_id(collections)]
+        #[unsafe(method_family = none)]
         pub unsafe fn collections(&self) -> Option<Retained<NSArray<MPMediaItemCollection>>>;
 
         #[method(groupingType)]
@@ -102,49 +102,49 @@ extern_methods!(
         pub unsafe fn setGroupingType(&self, grouping_type: MPMediaGrouping);
 
         #[cfg(feature = "MPMediaQuerySection")]
-        #[unsafe(method_family(none))]
         #[method_id(itemSections)]
+        #[unsafe(method_family = none)]
         pub unsafe fn itemSections(&self) -> Option<Retained<NSArray<MPMediaQuerySection>>>;
 
         #[cfg(feature = "MPMediaQuerySection")]
-        #[unsafe(method_family(none))]
         #[method_id(collectionSections)]
+        #[unsafe(method_family = none)]
         pub unsafe fn collectionSections(&self) -> Option<Retained<NSArray<MPMediaQuerySection>>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(albumsQuery)]
+        #[unsafe(method_family = none)]
         pub unsafe fn albumsQuery() -> Retained<MPMediaQuery>;
 
-        #[unsafe(method_family(none))]
         #[method_id(artistsQuery)]
+        #[unsafe(method_family = none)]
         pub unsafe fn artistsQuery() -> Retained<MPMediaQuery>;
 
-        #[unsafe(method_family(none))]
         #[method_id(songsQuery)]
+        #[unsafe(method_family = none)]
         pub unsafe fn songsQuery() -> Retained<MPMediaQuery>;
 
-        #[unsafe(method_family(none))]
         #[method_id(playlistsQuery)]
+        #[unsafe(method_family = none)]
         pub unsafe fn playlistsQuery() -> Retained<MPMediaQuery>;
 
-        #[unsafe(method_family(none))]
         #[method_id(podcastsQuery)]
+        #[unsafe(method_family = none)]
         pub unsafe fn podcastsQuery() -> Retained<MPMediaQuery>;
 
-        #[unsafe(method_family(none))]
         #[method_id(audiobooksQuery)]
+        #[unsafe(method_family = none)]
         pub unsafe fn audiobooksQuery() -> Retained<MPMediaQuery>;
 
-        #[unsafe(method_family(none))]
         #[method_id(compilationsQuery)]
+        #[unsafe(method_family = none)]
         pub unsafe fn compilationsQuery() -> Retained<MPMediaQuery>;
 
-        #[unsafe(method_family(none))]
         #[method_id(composersQuery)]
+        #[unsafe(method_family = none)]
         pub unsafe fn composersQuery() -> Retained<MPMediaQuery>;
 
-        #[unsafe(method_family(none))]
         #[method_id(genresQuery)]
+        #[unsafe(method_family = none)]
         pub unsafe fn genresQuery() -> Retained<MPMediaQuery>;
     }
 );
@@ -152,12 +152,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPMediaQuery {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -182,12 +182,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPMediaPredicate {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -227,27 +227,27 @@ unsafe impl NSSecureCoding for MPMediaPropertyPredicate {}
 
 extern_methods!(
     unsafe impl MPMediaPropertyPredicate {
-        #[unsafe(method_family(none))]
         #[method_id(predicateWithValue:forProperty:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn predicateWithValue_forProperty(
             value: Option<&AnyObject>,
             property: &NSString,
         ) -> Retained<MPMediaPropertyPredicate>;
 
-        #[unsafe(method_family(none))]
         #[method_id(predicateWithValue:forProperty:comparisonType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn predicateWithValue_forProperty_comparisonType(
             value: Option<&AnyObject>,
             property: &NSString,
             comparison_type: MPMediaPredicateComparison,
         ) -> Retained<MPMediaPropertyPredicate>;
 
-        #[unsafe(method_family(none))]
         #[method_id(property)]
+        #[unsafe(method_family = none)]
         pub unsafe fn property(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(value)]
+        #[unsafe(method_family = none)]
         pub unsafe fn value(&self) -> Option<Retained<AnyObject>>;
 
         #[method(comparisonType)]
@@ -258,12 +258,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPMediaPropertyPredicate {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -272,14 +272,14 @@ extern_methods!(
     /// MPMediaQueryAdditions
     #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItem"))]
     unsafe impl MPMediaItem {
-        #[unsafe(method_family(none))]
         #[method_id(persistentIDPropertyForGroupingType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn persistentIDPropertyForGroupingType(
             grouping_type: MPMediaGrouping,
         ) -> Retained<NSString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(titlePropertyForGroupingType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn titlePropertyForGroupingType(
             grouping_type: MPMediaGrouping,
         ) -> Retained<NSString>;

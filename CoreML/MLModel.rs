@@ -26,27 +26,27 @@ extern_methods!(
     unsafe impl MLModel {
         #[cfg(feature = "MLModelDescription")]
         /// A model holds a description of its required inputs and expected outputs.
-        #[unsafe(method_family(none))]
         #[method_id(modelDescription)]
+        #[unsafe(method_family = none)]
         pub unsafe fn modelDescription(&self) -> Retained<MLModelDescription>;
 
         #[cfg(feature = "MLModelConfiguration")]
         /// The load-time parameters used to instantiate this MLModel object.
-        #[unsafe(method_family(none))]
         #[method_id(configuration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn configuration(&self) -> Retained<MLModelConfiguration>;
 
         /// Construct a model with a default MLModelConfiguration object
-        #[unsafe(method_family(none))]
         #[method_id(modelWithContentsOfURL:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn modelWithContentsOfURL_error(
             url: &NSURL,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "MLModelConfiguration")]
         /// Construct a model given the location of its on-disk representation. Returns nil on error.
-        #[unsafe(method_family(none))]
         #[method_id(modelWithContentsOfURL:configuration:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn modelWithContentsOfURL_configuration_error(
             url: &NSURL,
             configuration: &MLModelConfiguration,
@@ -79,8 +79,8 @@ extern_methods!(
         /// - input: The input features to make a prediction from.
         /// - error: The output parameter to be filled with error information on failure.
         /// - Returns: The output features from the prediction.
-        #[unsafe(method_family(none))]
         #[method_id(predictionFromFeatures:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn predictionFromFeatures_error(
             &self,
             input: &ProtocolObject<dyn MLFeatureProvider>,
@@ -94,8 +94,8 @@ extern_methods!(
         /// - options: Prediction options to modify how the prediction is run.
         /// - error: The output parameter to be filled with error information on failure.
         /// - Returns: The output features from the prediction.
-        #[unsafe(method_family(none))]
         #[method_id(predictionFromFeatures:options:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn predictionFromFeatures_options_error(
             &self,
             input: &ProtocolObject<dyn MLFeatureProvider>,
@@ -142,8 +142,8 @@ extern_methods!(
 
         #[cfg(feature = "MLBatchProvider")]
         /// Batch prediction without explicit options
-        #[unsafe(method_family(none))]
         #[method_id(predictionsFromBatch:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn predictionsFromBatch_error(
             &self,
             input_batch: &ProtocolObject<dyn MLBatchProvider>,
@@ -151,8 +151,8 @@ extern_methods!(
 
         #[cfg(all(feature = "MLBatchProvider", feature = "MLPredictionOptions"))]
         /// Batch prediction with explicit options
-        #[unsafe(method_family(none))]
         #[method_id(predictionsFromBatch:options:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn predictionsFromBatch_options_error(
             &self,
             input_batch: &ProtocolObject<dyn MLBatchProvider>,
@@ -161,8 +161,8 @@ extern_methods!(
 
         #[cfg(all(feature = "MLKey", feature = "MLParameterKey"))]
         /// Provides value for the given parameter. Returns nil on error.
-        #[unsafe(method_family(none))]
         #[method_id(parameterValueForKey:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn parameterValueForKey_error(
             &self,
             key: &MLParameterKey,
@@ -193,12 +193,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MLModel {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

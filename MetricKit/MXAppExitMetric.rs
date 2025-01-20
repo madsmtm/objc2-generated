@@ -62,12 +62,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MXForegroundExitData {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -148,12 +148,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MXBackgroundExitData {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -187,15 +187,15 @@ extern_methods!(
         /// Cumulative foreground exit data.
         ///
         /// This includes application exit data when the application was on screen and visible to the user.
-        #[unsafe(method_family(none))]
         #[method_id(foregroundExitData)]
+        #[unsafe(method_family = none)]
         pub unsafe fn foregroundExitData(&self) -> Retained<MXForegroundExitData>;
 
         /// Cumulative background exit data.
         ///
         /// This includes application exit data when the application was off screen and not visible to the user.
-        #[unsafe(method_family(none))]
         #[method_id(backgroundExitData)]
+        #[unsafe(method_family = none)]
         pub unsafe fn backgroundExitData(&self) -> Retained<MXBackgroundExitData>;
     }
 );
@@ -204,12 +204,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MXMetric")]
     unsafe impl MXAppExitMetric {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

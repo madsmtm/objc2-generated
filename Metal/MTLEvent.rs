@@ -12,13 +12,13 @@ extern_protocol!(
     pub unsafe trait MTLEvent: NSObjectProtocol {
         #[cfg(feature = "MTLDevice")]
         /// The device this event can be used with. Will be nil when the event is shared across devices (i.e. MTLSharedEvent).
-        #[unsafe(method_family(none))]
         #[method_id(device)]
+        #[unsafe(method_family = none)]
         fn device(&self) -> Option<Retained<ProtocolObject<dyn MTLDevice>>>;
 
         /// A string to help identify this object.
-        #[unsafe(method_family(none))]
         #[method_id(label)]
+        #[unsafe(method_family = none)]
         fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
@@ -40,8 +40,8 @@ unsafe impl NSObjectProtocol for MTLSharedEventListener {}
 
 extern_methods!(
     unsafe impl MTLSharedEventListener {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -49,8 +49,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLSharedEventListener {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
     }
 );
@@ -79,8 +79,8 @@ extern_protocol!(
             block: MTLSharedEventNotificationBlock,
         );
 
-        #[unsafe(method_family(new))]
         #[method_id(newSharedEventHandle)]
+        #[unsafe(method_family = new)]
         unsafe fn newSharedEventHandle(&self) -> Retained<MTLSharedEventHandle>;
 
         #[method(waitUntilSignaledValue:timeoutMS:)]
@@ -110,8 +110,8 @@ unsafe impl NSSecureCoding for MTLSharedEventHandle {}
 
 extern_methods!(
     unsafe impl MTLSharedEventHandle {
-        #[unsafe(method_family(none))]
         #[method_id(label)]
+        #[unsafe(method_family = none)]
         pub fn label(&self) -> Option<Retained<NSString>>;
     }
 );
@@ -119,12 +119,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLSharedEventHandle {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

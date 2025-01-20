@@ -64,8 +64,8 @@ extern_methods!(
         #[method(setBytesPerImage:)]
         pub unsafe fn setBytesPerImage(&self, bytes_per_image: NSUInteger);
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "MPSCore", feature = "MPSImage"))]
@@ -81,8 +81,8 @@ extern_methods!(
         /// Parameter `size`: The size of loss data.
         ///
         /// Returns: A valid MPSCNNLossDataDescriptor object or nil, if failure.
-        #[unsafe(method_family(none))]
         #[method_id(cnnLossDataDescriptorWithData:layout:size:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cnnLossDataDescriptorWithData_layout_size(
             data: &NSData,
             layout: MPSDataLayout,
@@ -94,8 +94,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNLossDataDescriptor {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -122,8 +122,8 @@ extern_methods!(
     #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
     unsafe impl MPSCNNLossLabels {
         /// Use one of the interfaces below instead.
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Set labels (aka targets, ground truth) for the MPSCNNLossLabels object.
@@ -143,8 +143,8 @@ extern_methods!(
         /// - Size of labels data: (width, height, feature channels}.
         /// - Optionally, row bytes of labels data.
         /// - Optionally, slice bytes of labels data.
-        #[unsafe(method_family(init))]
         #[method_id(initWithDevice:labelsDescriptor:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_labelsDescriptor(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -179,8 +179,8 @@ extern_methods!(
         /// - Optionally, slice bytes of weights data.
         /// This parameter is optional. If you are using a single weight, please use the
         /// weight property of the MPSCNNLossDescriptor object.
-        #[unsafe(method_family(init))]
         #[method_id(initWithDevice:lossImageSize:labelsDescriptor:weightsDescriptor:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_lossImageSize_labelsDescriptor_weightsDescriptor(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -209,8 +209,8 @@ extern_methods!(
         /// Parameter `weightsImage`: Describes the weights data.
         /// This parameter is optional. If you are using a single weight, please use the
         /// weight property of the MPSCNNLossDescriptor object.
-        #[unsafe(method_family(init))]
         #[method_id(initWithDevice:lossImageSize:labelsImage:weightsImage:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_lossImageSize_labelsImage_weightsImage(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -229,8 +229,8 @@ extern_methods!(
         /// In order to guarantee that the image is correctly synchronized for CPU side access,
         /// it is the application's responsibility to call the [gradientState synchronizeOnCommandBuffer:]
         /// method before accessing the data in the image.
-        #[unsafe(method_family(none))]
         #[method_id(lossImage)]
+        #[unsafe(method_family = none)]
         pub unsafe fn lossImage(&self) -> Retained<MPSImage>;
 
         #[cfg(feature = "MPSImage")]
@@ -242,8 +242,8 @@ extern_methods!(
         /// In order to guarantee that the image is correctly synchronized for CPU side access,
         /// it is the application's responsibility to call the [gradientState synchronizeOnCommandBuffer:]
         /// method before accessing the data in the image.
-        #[unsafe(method_family(none))]
         #[method_id(labelsImage)]
+        #[unsafe(method_family = none)]
         pub unsafe fn labelsImage(&self) -> Retained<MPSImage>;
 
         #[cfg(feature = "MPSImage")]
@@ -255,8 +255,8 @@ extern_methods!(
         /// In order to guarantee that the image is correctly synchronized for CPU side access,
         /// it is the application's responsibility to call the [gradientState synchronizeOnCommandBuffer:]
         /// method before accessing the data in the image.
-        #[unsafe(method_family(none))]
         #[method_id(weightsImage)]
+        #[unsafe(method_family = none)]
         pub unsafe fn weightsImage(&self) -> Retained<MPSImage>;
     }
 );
@@ -270,8 +270,8 @@ extern_methods!(
         /// Parameter `cmdBuf`: The command buffer against which the temporary resource is allocated
         ///
         /// Parameter `bufferSize`: The size of the buffer in bytes
-        #[unsafe(method_family(none))]
         #[method_id(temporaryStateWithCommandBuffer:bufferSize:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn temporaryStateWithCommandBuffer_bufferSize(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
             buffer_size: usize,
@@ -282,8 +282,8 @@ extern_methods!(
         /// Parameter `cmdBuf`: The command buffer against which the temporary resource is allocated
         ///
         /// Parameter `descriptor`: A descriptor for the new temporary texture
-        #[unsafe(method_family(none))]
         #[method_id(temporaryStateWithCommandBuffer:textureDescriptor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn temporaryStateWithCommandBuffer_textureDescriptor(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
             descriptor: &MTLTextureDescriptor,
@@ -292,22 +292,22 @@ extern_methods!(
         /// Create a new autoreleased temporary state object without underlying resource
         ///
         /// Parameter `cmdBuf`: The command buffer with which the temporary resource is associated
-        #[unsafe(method_family(none))]
         #[method_id(temporaryStateWithCommandBuffer:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn temporaryStateWithCommandBuffer(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithDevice:bufferSize:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_bufferSize(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
             buffer_size: usize,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithDevice:textureDescriptor:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_textureDescriptor(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -317,8 +317,8 @@ extern_methods!(
         /// Create a MPSState with a non-temporary MTLResource
         ///
         /// Parameter `resource`: A MTLBuffer or MTLTexture. May be nil.
-        #[unsafe(method_family(init))]
         #[method_id(initWithResource:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithResource(
             this: Allocated<Self>,
             resource: Option<&ProtocolObject<dyn MTLResource>>,
@@ -330,8 +330,8 @@ extern_methods!(
         /// This occurs when -resource or -resourceAtIndex: is called.
         ///
         /// Parameter `resourceList`: The list of resources to create.
-        #[unsafe(method_family(init))]
         #[method_id(initWithDevice:resourceList:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_resourceList(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -341,8 +341,8 @@ extern_methods!(
         /// Initialize a temporary state to hold a number of textures and buffers
         ///
         /// The textures occur first in sequence
-        #[unsafe(method_family(none))]
         #[method_id(temporaryStateWithCommandBuffer:resourceList:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn temporaryStateWithCommandBuffer_resourceList(
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
             resource_list: &MPSStateResourceList,
@@ -354,8 +354,8 @@ extern_methods!(
         /// your application should use -initWithTextures:bufferSizes:bufferCount:
         /// whenever possible. This method is useful for cases when the
         /// MTLResources must be initialized by the CPU.
-        #[unsafe(method_family(init))]
         #[method_id(initWithResources:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithResources(
             this: Allocated<Self>,
             resources: Option<&NSArray<ProtocolObject<dyn MTLResource>>>,
@@ -367,8 +367,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
     unsafe impl MPSCNNLossLabels {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -516,8 +516,8 @@ extern_methods!(
         #[method(setDelta:)]
         pub unsafe fn setDelta(&self, delta: c_float);
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "MPSCNNTypes")]
@@ -529,8 +529,8 @@ extern_methods!(
         /// This argument is ignored in the MPSNNLossGradient filter.
         ///
         /// Returns: A valid MPSCNNLossDescriptor object or nil, if failure.
-        #[unsafe(method_family(none))]
         #[method_id(cnnLossDescriptorWithType:reductionType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cnnLossDescriptorWithType_reductionType(
             loss_type: MPSCNNLossType,
             reduction_type: MPSCNNReductionType,
@@ -541,8 +541,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNLossDescriptor {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -790,8 +790,8 @@ extern_methods!(
         #[method(reduceAcrossBatch)]
         pub unsafe fn reduceAcrossBatch(&self) -> bool;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithDevice:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -804,8 +804,8 @@ extern_methods!(
         /// Parameter `lossDescriptor`: The loss descriptor.
         ///
         /// Returns: A valid MPSCNNLoss object or nil, if failure.
-        #[unsafe(method_family(init))]
         #[method_id(initWithDevice:lossDescriptor:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_lossDescriptor(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -814,8 +814,8 @@ extern_methods!(
 
         /// <NSSecureCoding
         /// > support
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:device:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -862,8 +862,8 @@ extern_methods!(
         /// Parameter `labels`: The object containing the target data (labels) and optionally, weights for the labels.
         ///
         /// Returns: The MPSImage containing the gradient result.
-        #[unsafe(method_family(none))]
         #[method_id(encodeToCommandBuffer:sourceImage:labels:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceImage_labels(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -882,8 +882,8 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "MPSImage", feature = "MPSNDArray", feature = "MPSState"))]
-        #[unsafe(method_family(none))]
         #[method_id(encodeBatchToCommandBuffer:sourceImages:labels:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeBatchToCommandBuffer_sourceImages_labels(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -905,8 +905,8 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -918,12 +918,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNLoss {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -986,8 +986,8 @@ extern_methods!(
         /// The type of a loss filter.
         ///
         /// This parameter specifies the type of a loss filter.
-        #[unsafe(method_family(none))]
         #[method_id(XYLossDescriptor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn XYLossDescriptor(&self) -> Retained<MPSCNNLossDescriptor>;
 
         /// Setter for [`XYLossDescriptor`][Self::XYLossDescriptor].
@@ -997,8 +997,8 @@ extern_methods!(
         /// The type of a loss filter.
         ///
         /// This parameter specifies the type of a loss filter.
-        #[unsafe(method_family(none))]
         #[method_id(WHLossDescriptor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn WHLossDescriptor(&self) -> Retained<MPSCNNLossDescriptor>;
 
         /// Setter for [`WHLossDescriptor`][Self::WHLossDescriptor].
@@ -1008,8 +1008,8 @@ extern_methods!(
         /// The type of a loss filter.
         ///
         /// This parameter specifies the type of a loss filter.
-        #[unsafe(method_family(none))]
         #[method_id(confidenceLossDescriptor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn confidenceLossDescriptor(&self) -> Retained<MPSCNNLossDescriptor>;
 
         /// Setter for [`confidenceLossDescriptor`][Self::confidenceLossDescriptor].
@@ -1022,8 +1022,8 @@ extern_methods!(
         /// The type of a loss filter.
         ///
         /// This parameter specifies the type of a loss filter.
-        #[unsafe(method_family(none))]
         #[method_id(classesLossDescriptor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn classesLossDescriptor(&self) -> Retained<MPSCNNLossDescriptor>;
 
         /// Setter for [`classesLossDescriptor`][Self::classesLossDescriptor].
@@ -1154,16 +1154,16 @@ extern_methods!(
         ///               };
         ///               NSData* labelsInputData = [NSData dataWithBytes: gAnchorBoxes length: MAX_NUM_ANCHOR_BOXES * sizeof(anchorBox)];
         /// ```
-        #[unsafe(method_family(none))]
         #[method_id(anchorBoxes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn anchorBoxes(&self) -> Retained<NSData>;
 
         /// Setter for [`anchorBoxes`][Self::anchorBoxes].
         #[method(setAnchorBoxes:)]
         pub unsafe fn setAnchorBoxes(&self, anchor_boxes: &NSData);
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "MPSCNNTypes")]
@@ -1182,8 +1182,8 @@ extern_methods!(
         /// Parameter `anchorBoxes`: This is an NSData which has an array of anchorBoxes defined as a struct{ float width; float height; };
         ///
         /// Returns: A valid MPSCNNYOLOLossDescriptor object or nil, if failure.
-        #[unsafe(method_family(none))]
         #[method_id(cnnLossDescriptorWithXYLossType:WHLossType:confidenceLossType:classesLossType:reductionType:anchorBoxes:numberOfAnchorBoxes:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cnnLossDescriptorWithXYLossType_WHLossType_confidenceLossType_classesLossType_reductionType_anchorBoxes_numberOfAnchorBoxes(
             xy_loss_type: MPSCNNLossType,
             wh_loss_type: MPSCNNLossType,
@@ -1199,8 +1199,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNYOLOLossDescriptor {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -1234,23 +1234,23 @@ extern_methods!(
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNYOLOLoss {
         /// loss filter for prediction of bounding box position
-        #[unsafe(method_family(none))]
         #[method_id(lossXY)]
+        #[unsafe(method_family = none)]
         pub unsafe fn lossXY(&self) -> Retained<MPSCNNLoss>;
 
         /// loss filter for prediction of bounding box size
-        #[unsafe(method_family(none))]
         #[method_id(lossWH)]
+        #[unsafe(method_family = none)]
         pub unsafe fn lossWH(&self) -> Retained<MPSCNNLoss>;
 
         /// loss filter for prediction of bounding box probability of presence of object
-        #[unsafe(method_family(none))]
         #[method_id(lossConfidence)]
+        #[unsafe(method_family = none)]
         pub unsafe fn lossConfidence(&self) -> Retained<MPSCNNLoss>;
 
         /// loss filter for prediction of bounding box predicted class of the detected object
-        #[unsafe(method_family(none))]
         #[method_id(lossClasses)]
+        #[unsafe(method_family = none)]
         pub unsafe fn lossClasses(&self) -> Retained<MPSCNNLoss>;
 
         /// See MPSCNNYOLOLossDescriptor for information about the following properties.
@@ -1282,15 +1282,15 @@ extern_methods!(
         #[method(numberOfAnchorBoxes)]
         pub unsafe fn numberOfAnchorBoxes(&self) -> NSUInteger;
 
-        #[unsafe(method_family(none))]
         #[method_id(anchorBoxes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn anchorBoxes(&self) -> Retained<NSData>;
 
         #[method(reduceAcrossBatch)]
         pub unsafe fn reduceAcrossBatch(&self) -> bool;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithDevice:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -1303,8 +1303,8 @@ extern_methods!(
         /// Parameter `lossDescriptor`: The loss descriptor.
         ///
         /// Returns: A valid MPSCNNLoss object or nil, if failure.
-        #[unsafe(method_family(init))]
         #[method_id(initWithDevice:lossDescriptor:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_lossDescriptor(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -1313,8 +1313,8 @@ extern_methods!(
 
         /// <NSSecureCoding
         /// > support
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:device:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -1361,8 +1361,8 @@ extern_methods!(
         /// Parameter `labels`: The object containing the target data (labels) and optionally, weights for the labels.
         ///
         /// Returns: The MPSImage containing the gradient result.
-        #[unsafe(method_family(none))]
         #[method_id(encodeToCommandBuffer:sourceImage:labels:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceImage_labels(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1381,8 +1381,8 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "MPSImage", feature = "MPSNDArray", feature = "MPSState"))]
-        #[unsafe(method_family(none))]
         #[method_id(encodeBatchToCommandBuffer:sourceImages:labels:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeBatchToCommandBuffer_sourceImages_labels(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1404,8 +1404,8 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -1417,12 +1417,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNYOLOLoss {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -1509,8 +1509,8 @@ extern_methods!(
         #[method(setDelta:)]
         pub unsafe fn setDelta(&self, delta: c_float);
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithDevice:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -1523,8 +1523,8 @@ extern_methods!(
         /// Parameter `lossDescriptor`: The loss descriptor.
         ///
         /// Returns: A valid MPSNNForwardLoss object or nil, if failure.
-        #[unsafe(method_family(init))]
         #[method_id(initWithDevice:lossDescriptor:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_lossDescriptor(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -1533,8 +1533,8 @@ extern_methods!(
 
         /// <NSSecureCoding
         /// > support
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:device:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -1590,8 +1590,8 @@ extern_methods!(
         /// Parameter `isTemporary`: Whether the returned state (if any) should be temporary or not.
         ///
         /// Returns: The MPSImages containing the loss computation results.
-        #[unsafe(method_family(none))]
         #[method_id(encodeBatchToCommandBuffer:sourceImages:labels:weights:destinationStates:destinationStateIsTemporary:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeBatchToCommandBuffer_sourceImages_labels_weights_destinationStates_destinationStateIsTemporary(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1616,8 +1616,8 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -1629,12 +1629,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNNForwardLoss {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -1725,8 +1725,8 @@ extern_methods!(
         #[method(setComputeLabelGradients:)]
         pub unsafe fn setComputeLabelGradients(&self, compute_label_gradients: bool);
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithDevice:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -1739,8 +1739,8 @@ extern_methods!(
         /// Parameter `lossDescriptor`: The loss descriptor.
         ///
         /// Returns: A valid MPSNNLossGradient object or nil, if failure.
-        #[unsafe(method_family(init))]
         #[method_id(initWithDevice:lossDescriptor:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_lossDescriptor(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -1749,8 +1749,8 @@ extern_methods!(
 
         /// <NSSecureCoding
         /// > support
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:device:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -1772,8 +1772,8 @@ extern_methods!(
         ///
         /// Parameter `sourceStates`: Optional gradient state - carries dynamical property values from the forward pass
         /// (weight, labelSmoothing, epsilon, delta).
-        #[unsafe(method_family(none))]
         #[method_id(encodeBatchToCommandBuffer:sourceGradients:sourceImages:labels:weights:sourceStates:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeBatchToCommandBuffer_sourceGradients_sourceImages_labels_weights_sourceStates(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1827,8 +1827,8 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -1840,12 +1840,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNNLossGradient {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -1917,8 +1917,8 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which this MPSNNInitialGradient filter will be used.
         ///
         /// Returns: A valid MPSNNInitialGradient object or nil, if failure.
-        #[unsafe(method_family(init))]
         #[method_id(initWithDevice:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -1943,8 +1943,8 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:device:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -1965,8 +1965,8 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -1978,12 +1978,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNNInitialGradient {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

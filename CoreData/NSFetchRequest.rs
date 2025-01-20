@@ -85,28 +85,28 @@ unsafe impl<ResultType: ?Sized> NSObjectProtocol for NSFetchRequest<ResultType> 
 extern_methods!(
     #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl<ResultType: Message> NSFetchRequest<ResultType> {
-        #[unsafe(method_family(none))]
         #[method_id(fetchRequestWithEntityName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fetchRequestWithEntityName(entity_name: &NSString) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithEntityName:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithEntityName(
             this: Allocated<Self>,
             entity_name: &NSString,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(execute:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn execute(&self) -> Result<Retained<NSArray<ResultType>>, Retained<NSError>>;
 
         #[cfg(feature = "NSEntityDescription")]
-        #[unsafe(method_family(none))]
         #[method_id(entity)]
+        #[unsafe(method_family = none)]
         pub unsafe fn entity(&self) -> Option<Retained<NSEntityDescription>>;
 
         #[cfg(feature = "NSEntityDescription")]
@@ -114,20 +114,20 @@ extern_methods!(
         #[method(setEntity:)]
         pub unsafe fn setEntity(&self, entity: Option<&NSEntityDescription>);
 
-        #[unsafe(method_family(none))]
         #[method_id(entityName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn entityName(&self) -> Option<Retained<NSString>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(predicate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn predicate(&self) -> Option<Retained<NSPredicate>>;
 
         /// Setter for [`predicate`][Self::predicate].
         #[method(setPredicate:)]
         pub unsafe fn setPredicate(&self, predicate: Option<&NSPredicate>);
 
-        #[unsafe(method_family(none))]
         #[method_id(sortDescriptors)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sortDescriptors(&self) -> Option<Retained<NSArray<NSSortDescriptor>>>;
 
         /// Setter for [`sortDescriptors`][Self::sortDescriptors].
@@ -145,8 +145,8 @@ extern_methods!(
         pub unsafe fn setFetchLimit(&self, fetch_limit: NSUInteger);
 
         #[cfg(feature = "NSPersistentStore")]
-        #[unsafe(method_family(none))]
         #[method_id(affectedStores)]
+        #[unsafe(method_family = none)]
         pub unsafe fn affectedStores(&self) -> Option<Retained<NSArray<NSPersistentStore>>>;
 
         #[cfg(feature = "NSPersistentStore")]
@@ -185,8 +185,8 @@ extern_methods!(
         #[method(setReturnsObjectsAsFaults:)]
         pub unsafe fn setReturnsObjectsAsFaults(&self, returns_objects_as_faults: bool);
 
-        #[unsafe(method_family(none))]
         #[method_id(relationshipKeyPathsForPrefetching)]
+        #[unsafe(method_family = none)]
         pub unsafe fn relationshipKeyPathsForPrefetching(
             &self,
         ) -> Option<Retained<NSArray<NSString>>>;
@@ -212,8 +212,8 @@ extern_methods!(
         #[method(setReturnsDistinctResults:)]
         pub unsafe fn setReturnsDistinctResults(&self, returns_distinct_results: bool);
 
-        #[unsafe(method_family(none))]
         #[method_id(propertiesToFetch)]
+        #[unsafe(method_family = none)]
         pub unsafe fn propertiesToFetch(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`propertiesToFetch`][Self::propertiesToFetch].
@@ -244,16 +244,16 @@ extern_methods!(
             should_refresh_refetched_objects: bool,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(propertiesToGroupBy)]
+        #[unsafe(method_family = none)]
         pub unsafe fn propertiesToGroupBy(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`propertiesToGroupBy`][Self::propertiesToGroupBy].
         #[method(setPropertiesToGroupBy:)]
         pub unsafe fn setPropertiesToGroupBy(&self, properties_to_group_by: Option<&NSArray>);
 
-        #[unsafe(method_family(none))]
         #[method_id(havingPredicate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn havingPredicate(&self) -> Option<Retained<NSPredicate>>;
 
         /// Setter for [`havingPredicate`][Self::havingPredicate].
@@ -266,8 +266,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl<ResultType: Message> NSFetchRequest<ResultType> {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -299,8 +299,8 @@ unsafe impl<ResultType: ?Sized> NSObjectProtocol for NSAsynchronousFetchRequest<
 extern_methods!(
     #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl<ResultType: Message> NSAsynchronousFetchRequest<ResultType> {
-        #[unsafe(method_family(none))]
         #[method_id(fetchRequest)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fetchRequest(&self) -> Retained<NSFetchRequest<ResultType>>;
 
         #[cfg(all(feature = "NSPersistentStoreResult", feature = "block2"))]
@@ -317,8 +317,8 @@ extern_methods!(
         pub unsafe fn setEstimatedResultCount(&self, estimated_result_count: NSInteger);
 
         #[cfg(all(feature = "NSPersistentStoreResult", feature = "block2"))]
-        #[unsafe(method_family(init))]
         #[method_id(initWithFetchRequest:completionBlock:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFetchRequest_completionBlock(
             this: Allocated<Self>,
             request: &NSFetchRequest<ResultType>,
@@ -331,12 +331,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl<ResultType: Message> NSAsynchronousFetchRequest<ResultType> {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

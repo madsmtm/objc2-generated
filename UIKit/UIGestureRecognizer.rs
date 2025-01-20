@@ -51,20 +51,20 @@ unsafe impl NSObjectProtocol for UIGestureRecognizer {}
 
 extern_methods!(
     unsafe impl UIGestureRecognizer {
-        #[unsafe(method_family(init))]
         #[method_id(initWithTarget:action:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithTarget_action(
             this: Allocated<Self>,
             target: Option<&AnyObject>,
             action: Option<Sel>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -76,8 +76,8 @@ extern_methods!(
         #[method(removeTarget:action:)]
         pub unsafe fn removeTarget_action(&self, target: Option<&AnyObject>, action: Option<Sel>);
 
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub fn delegate(&self)
             -> Option<Retained<ProtocolObject<dyn UIGestureRecognizerDelegate>>>;
 
@@ -97,8 +97,8 @@ extern_methods!(
         pub unsafe fn setEnabled(&self, enabled: bool);
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[unsafe(method_family(none))]
         #[method_id(view)]
+        #[unsafe(method_family = none)]
         pub unsafe fn view(&self) -> Option<Retained<UIView>>;
 
         #[method(cancelsTouchesInView)]
@@ -122,16 +122,16 @@ extern_methods!(
         #[method(setDelaysTouchesEnded:)]
         pub unsafe fn setDelaysTouchesEnded(&self, delays_touches_ended: bool);
 
-        #[unsafe(method_family(none))]
         #[method_id(allowedTouchTypes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowedTouchTypes(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Setter for [`allowedTouchTypes`][Self::allowedTouchTypes].
         #[method(setAllowedTouchTypes:)]
         pub unsafe fn setAllowedTouchTypes(&self, allowed_touch_types: &NSArray<NSNumber>);
 
-        #[unsafe(method_family(none))]
         #[method_id(allowedPressTypes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowedPressTypes(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Setter for [`allowedPressTypes`][Self::allowedPressTypes].
@@ -174,8 +174,8 @@ extern_methods!(
             view: Option<&UIView>,
         ) -> CGPoint;
 
-        #[unsafe(method_family(none))]
         #[method_id(name)]
+        #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
@@ -195,8 +195,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIGestureRecognizer {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

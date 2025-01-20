@@ -11,8 +11,8 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuleaf?language=objc)
     pub unsafe trait UIMenuLeaf: NSObjectProtocol + MainThreadOnly {
         /// Short display title.
-        #[unsafe(method_family(none))]
         #[method_id(title)]
+        #[unsafe(method_family = none)]
         unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
@@ -21,8 +21,8 @@ extern_protocol!(
 
         #[cfg(feature = "UIImage")]
         /// Image that can appear next to this element.
-        #[unsafe(method_family(none))]
         #[method_id(image)]
+        #[unsafe(method_family = none)]
         unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
@@ -32,8 +32,8 @@ extern_protocol!(
 
         #[cfg(feature = "UIImage")]
         /// Image that can appear next to this action when the `state` is `UIMenuElementStateOn`
-        #[unsafe(method_family(none))]
         #[method_id(selectedImage)]
+        #[unsafe(method_family = none)]
         unsafe fn selectedImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
@@ -42,8 +42,8 @@ extern_protocol!(
         unsafe fn setSelectedImage(&self, selected_image: Option<&UIImage>);
 
         /// Elaborated title used in keyboard shortcut overlay.
-        #[unsafe(method_family(none))]
         #[method_id(discoverabilityTitle)]
+        #[unsafe(method_family = none)]
         unsafe fn discoverabilityTitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`discoverabilityTitle`][Self::discoverabilityTitle].
@@ -73,16 +73,16 @@ extern_protocol!(
         /// The object on behalf of which the element's primary action is being performed.
         /// This property is only populated during the execution of the element's
         /// primary action (i.e. its handler or selector) if available.
-        #[unsafe(method_family(none))]
         #[method_id(sender)]
+        #[unsafe(method_family = none)]
         unsafe fn sender(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "UIPopoverPresentationControllerSourceItem")]
         /// Source item for subsequent presentations. For example, an element displayed in a menu attached to a
         /// `UIButton`may return the button so that a popover may be presented from it when the element is tapped.
         /// If available, this property is only populated during the execution of the element's action (i.e. its handler or selector).
-        #[unsafe(method_family(none))]
         #[method_id(presentationSourceItem)]
+        #[unsafe(method_family = none)]
         unsafe fn presentationSourceItem(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIPopoverPresentationControllerSourceItem>>>;

@@ -88,8 +88,8 @@ unsafe impl NSObjectProtocol for UIAlertAction {}
 extern_methods!(
     unsafe impl UIAlertAction {
         #[cfg(feature = "block2")]
-        #[unsafe(method_family(none))]
         #[method_id(actionWithTitle:style:handler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn actionWithTitle_style_handler(
             title: Option<&NSString>,
             style: UIAlertActionStyle,
@@ -97,8 +97,8 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(title)]
+        #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         #[method(style)]
@@ -116,12 +116,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIAlertAction {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -171,8 +171,8 @@ unsafe impl UITraitEnvironment for UIAlertController {}
 extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIAlertController {
-        #[unsafe(method_family(none))]
         #[method_id(alertControllerWithTitle:message:preferredStyle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alertControllerWithTitle_message_preferredStyle(
             title: Option<&NSString>,
             message: Option<&NSString>,
@@ -183,12 +183,12 @@ extern_methods!(
         #[method(addAction:)]
         pub unsafe fn addAction(&self, action: &UIAlertAction);
 
-        #[unsafe(method_family(none))]
         #[method_id(actions)]
+        #[unsafe(method_family = none)]
         pub unsafe fn actions(&self) -> Retained<NSArray<UIAlertAction>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(preferredAction)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preferredAction(&self) -> Option<Retained<UIAlertAction>>;
 
         /// Setter for [`preferredAction`][Self::preferredAction].
@@ -208,20 +208,20 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIControl", feature = "UITextField", feature = "UIView"))]
-        #[unsafe(method_family(none))]
         #[method_id(textFields)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textFields(&self) -> Option<Retained<NSArray<UITextField>>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(title)]
+        #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
-        #[unsafe(method_family(none))]
         #[method_id(message)]
+        #[unsafe(method_family = none)]
         pub unsafe fn message(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`message`][Self::message].
@@ -244,16 +244,16 @@ extern_methods!(
     /// Methods declared on superclass `UIViewController`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIAlertController {
-        #[unsafe(method_family(init))]
         #[method_id(initWithNibName:bundle:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -265,12 +265,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIAlertController {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

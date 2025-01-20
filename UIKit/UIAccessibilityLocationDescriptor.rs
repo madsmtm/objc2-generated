@@ -20,17 +20,17 @@ unsafe impl NSObjectProtocol for UIAccessibilityLocationDescriptor {}
 
 extern_methods!(
     unsafe impl UIAccessibilityLocationDescriptor {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[unsafe(method_family(init))]
         #[method_id(initWithName:view:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithName_view(
             this: Allocated<Self>,
             name: &NSString,
@@ -42,8 +42,8 @@ extern_methods!(
             feature = "UIView",
             feature = "objc2-core-foundation"
         ))]
-        #[unsafe(method_family(init))]
         #[method_id(initWithName:point:inView:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithName_point_inView(
             this: Allocated<Self>,
             name: &NSString,
@@ -56,8 +56,8 @@ extern_methods!(
             feature = "UIView",
             feature = "objc2-core-foundation"
         ))]
-        #[unsafe(method_family(init))]
         #[method_id(initWithAttributedName:point:inView:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithAttributedName_point_inView(
             this: Allocated<Self>,
             attributed_name: &NSAttributedString,
@@ -66,20 +66,20 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[unsafe(method_family(none))]
         #[method_id(view)]
+        #[unsafe(method_family = none)]
         pub unsafe fn view(&self) -> Option<Retained<UIView>>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(point)]
         pub unsafe fn point(&self) -> CGPoint;
 
-        #[unsafe(method_family(none))]
         #[method_id(name)]
+        #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(attributedName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn attributedName(&self) -> Retained<NSAttributedString>;
     }
 );

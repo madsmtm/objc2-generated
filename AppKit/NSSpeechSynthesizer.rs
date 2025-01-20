@@ -240,8 +240,8 @@ unsafe impl NSObjectProtocol for NSSpeechSynthesizer {}
 extern_methods!(
     unsafe impl NSSpeechSynthesizer {
         #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
-        #[unsafe(method_family(init))]
         #[method_id(initWithVoice:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithVoice(
             this: Allocated<Self>,
             voice: Option<&NSSpeechSynthesizerVoiceName>,
@@ -273,8 +273,8 @@ extern_methods!(
         pub unsafe fn continueSpeaking(&self);
 
         #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
             mtm: MainThreadMarker,
@@ -290,8 +290,8 @@ extern_methods!(
         );
 
         #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
-        #[unsafe(method_family(none))]
         #[method_id(voice)]
+        #[unsafe(method_family = none)]
         pub unsafe fn voice(&self) -> Option<Retained<NSSpeechSynthesizerVoiceName>>;
 
         #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
@@ -327,12 +327,12 @@ extern_methods!(
             speech_dictionary: &NSDictionary<NSSpeechDictionaryKey, AnyObject>,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(phonemesFromText:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn phonemesFromText(&self, text: &NSString) -> Retained<NSString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(objectForProperty:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn objectForProperty_error(
             &self,
             property: &NSSpeechPropertyKey,
@@ -350,18 +350,18 @@ extern_methods!(
         pub unsafe fn isAnyApplicationSpeaking() -> bool;
 
         #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
-        #[unsafe(method_family(none))]
         #[method_id(defaultVoice)]
+        #[unsafe(method_family = none)]
         pub unsafe fn defaultVoice() -> Retained<NSSpeechSynthesizerVoiceName>;
 
         #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
-        #[unsafe(method_family(none))]
         #[method_id(availableVoices)]
+        #[unsafe(method_family = none)]
         pub unsafe fn availableVoices() -> Retained<NSArray<NSSpeechSynthesizerVoiceName>>;
 
         #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
-        #[unsafe(method_family(none))]
         #[method_id(attributesForVoice:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn attributesForVoice(
             voice: &NSSpeechSynthesizerVoiceName,
         ) -> Retained<NSDictionary<NSVoiceAttributeKey, AnyObject>>;
@@ -371,12 +371,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSSpeechSynthesizer {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

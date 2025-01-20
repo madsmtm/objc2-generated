@@ -71,8 +71,8 @@ unsafe impl NSObjectProtocol for NSUserDefaults {}
 extern_methods!(
     unsafe impl NSUserDefaults {
         /// +standardUserDefaults returns a global instance of NSUserDefaults configured to search the current application's search list.
-        #[unsafe(method_family(none))]
         #[method_id(standardUserDefaults)]
+        #[unsafe(method_family = none)]
         pub unsafe fn standardUserDefaults() -> Retained<NSUserDefaults>;
 
         /// +resetStandardUserDefaults releases the standardUserDefaults and sets it to nil. A new standardUserDefaults will be created the next time it's accessed. The only visible effect this has is that all KVO observers of the previous standardUserDefaults will no longer be observing it.
@@ -80,14 +80,14 @@ extern_methods!(
         pub unsafe fn resetStandardUserDefaults();
 
         /// -init is equivalent to -initWithSuiteName:nil
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         /// -initWithSuiteName: initializes an instance of NSUserDefaults that searches the shared preferences search list for the domain 'suitename'. For example, using the identifier of an application group will cause the receiver to search the preferences for that group. Passing the current application's bundle identifier, NSGlobalDomain, or the corresponding CFPreferences constants is an error. Passing nil will search the default search list.
-        #[unsafe(method_family(init))]
         #[method_id(initWithSuiteName:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithSuiteName(
             this: Allocated<Self>,
             suitename: Option<&NSString>,
@@ -96,8 +96,8 @@ extern_methods!(
         #[cfg(feature = "NSString")]
         /// -initWithUser: is equivalent to -init
         #[deprecated = "Use -init instead"]
-        #[unsafe(method_family(init))]
         #[method_id(initWithUser:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithUser(
             this: Allocated<Self>,
             username: &NSString,
@@ -105,8 +105,8 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         /// -objectForKey: will search the receiver's search list for a default with the key 'defaultName' and return it. If another process has changed defaults in the search list, NSUserDefaults will automatically update to the latest values. If the key in question has been marked as ubiquitous via a Defaults Configuration File, the latest value may not be immediately available, and the registered value will be returned instead.
-        #[unsafe(method_family(none))]
         #[method_id(objectForKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn objectForKey(&self, default_name: &NSString) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
@@ -121,20 +121,20 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         /// -stringForKey: is equivalent to -objectForKey:, except that it will convert NSNumber values to their NSString representation. If a non-string non-number value is found, nil will be returned.
-        #[unsafe(method_family(none))]
         #[method_id(stringForKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stringForKey(&self, default_name: &NSString) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         /// -arrayForKey: is equivalent to -objectForKey:, except that it will return nil if the value is not an NSArray.
-        #[unsafe(method_family(none))]
         #[method_id(arrayForKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn arrayForKey(&self, default_name: &NSString) -> Option<Retained<NSArray>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         /// -dictionaryForKey: is equivalent to -objectForKey:, except that it will return nil if the value is not an NSDictionary.
-        #[unsafe(method_family(none))]
         #[method_id(dictionaryForKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dictionaryForKey(
             &self,
             default_name: &NSString,
@@ -142,16 +142,16 @@ extern_methods!(
 
         #[cfg(all(feature = "NSData", feature = "NSString"))]
         /// -dataForKey: is equivalent to -objectForKey:, except that it will return nil if the value is not an NSData.
-        #[unsafe(method_family(none))]
         #[method_id(dataForKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dataForKey(&self, default_name: &NSString) -> Option<Retained<NSData>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         /// -stringForKey: is equivalent to -objectForKey:, except that it will return nil if the value is not an NSArray
         /// <NSString
         /// *>. Note that unlike -stringForKey:, NSNumbers are not converted to NSStrings.
-        #[unsafe(method_family(none))]
         #[method_id(stringArrayForKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stringArrayForKey(
             &self,
             default_name: &NSString,
@@ -179,8 +179,8 @@ extern_methods!(
 
         #[cfg(all(feature = "NSString", feature = "NSURL"))]
         /// -URLForKey: is equivalent to -objectForKey: except that it converts the returned value to an NSURL. If the value is an NSString path, then it will construct a file URL to that path. If the value is an archived URL from -setURL:forKey: it will be unarchived. If the value is absent or can't be converted to an NSURL, nil will be returned.
-        #[unsafe(method_family(none))]
         #[method_id(URLForKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn URLForKey(&self, default_name: &NSString) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSString")]
@@ -230,20 +230,20 @@ extern_methods!(
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         /// -dictionaryRepresentation returns a composite snapshot of the values in the receiver's search list, such that [[receiver dictionaryRepresentation] objectForKey:x] will return the same thing as [receiver objectForKey:x].
-        #[unsafe(method_family(none))]
         #[method_id(dictionaryRepresentation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dictionaryRepresentation(
             &self,
         ) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(volatileDomainNames)]
+        #[unsafe(method_family = none)]
         pub unsafe fn volatileDomainNames(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(volatileDomainForName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn volatileDomainForName(
             &self,
             domain_name: &NSString,
@@ -264,14 +264,14 @@ extern_methods!(
         #[cfg(feature = "NSArray")]
         /// -persistentDomainNames returns an incomplete list of domains that have preferences stored in them.
         #[deprecated = "Not recommended"]
-        #[unsafe(method_family(none))]
         #[method_id(persistentDomainNames)]
+        #[unsafe(method_family = none)]
         pub unsafe fn persistentDomainNames(&self) -> Retained<NSArray>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         /// -persistentDomainForName: returns a dictionary representation of the search list entry specified by 'domainName', the current user, and any host.
-        #[unsafe(method_family(none))]
         #[method_id(persistentDomainForName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn persistentDomainForName(
             &self,
             domain_name: &NSString,
@@ -318,8 +318,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSUserDefaults {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -88,8 +88,8 @@ extern_methods!(
         pub unsafe fn dataType(&self) -> MLMultiArrayDataType;
 
         /// Shape of the multi-dimensional space that this instance represents.
-        #[unsafe(method_family(none))]
         #[method_id(shape)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shape(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Strides.
@@ -98,8 +98,8 @@ extern_methods!(
         /// ```text
         /// scalarOffset = sum_d index[d]*strides[d]
         /// ```
-        #[unsafe(method_family(none))]
         #[method_id(strides)]
+        #[unsafe(method_family = none)]
         pub unsafe fn strides(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Count of total number of addressable scalars.
@@ -110,8 +110,8 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-video")]
         /// Returns the backing pixel buffer if exists, otherwise nil.
-        #[unsafe(method_family(none))]
         #[method_id(pixelBuffer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pixelBuffer(&self) -> Option<Retained<CVPixelBuffer>>;
     }
 );
@@ -119,12 +119,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MLMultiArray {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -142,8 +142,8 @@ extern_methods!(
         /// - shape: The shape
         /// - dataType: The data type
         /// - error: Filled with error information on error.
-        #[unsafe(method_family(init))]
         #[method_id(initWithShape:dataType:error:_)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithShape_dataType_error(
             this: Allocated<Self>,
             shape: &NSArray<NSNumber>,
@@ -194,8 +194,8 @@ extern_methods!(
         /// - shape: The shape
         /// - dataType: The data type
         /// - strides: The strides.
-        #[unsafe(method_family(init))]
         #[method_id(initWithShape:dataType:strides:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithShape_dataType_strides(
             this: Allocated<Self>,
             shape: &NSArray<NSNumber>,
@@ -241,8 +241,8 @@ extern_methods!(
         /// - strides: The strides.
         /// - deallocator: Block to be called on the deallocation of the instance.
         /// - error: Filled with error information on error.
-        #[unsafe(method_family(init))]
         #[method_id(initWithDataPointer:shape:dataType:strides:deallocator:error:_)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDataPointer_shape_dataType_strides_deallocator_error(
             this: Allocated<Self>,
             data_pointer: NonNull<c_void>,
@@ -289,8 +289,8 @@ extern_methods!(
         /// - Parameters:
         /// - pixelBuffer: The pixel buffer to be owned by the instance.
         /// - shape: The shape of the MLMultiArray. The last dimension of `shape` must match the pixel buffer's width. The product of the rest of the dimensions must match the height.
-        #[unsafe(method_family(init))]
         #[method_id(initWithPixelBuffer:shape:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithPixelBuffer_shape(
             this: Allocated<Self>,
             pixel_buffer: &CVPixelBuffer,
@@ -433,8 +433,8 @@ extern_methods!(
         /// - multiArrays: Array of MLMultiArray instances to be concatenated.
         /// - axis: Axis index with which the concatenation will performed. The value is wrapped by the dimension of the axis. For example, -1 is the last axis.
         /// - dataType: The data type of the resultant MLMultiArray.
-        #[unsafe(method_family(none))]
         #[method_id(multiArrayByConcatenatingMultiArrays:alongAxis:dataType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn multiArrayByConcatenatingMultiArrays_alongAxis_dataType(
             multi_arrays: &NSArray<MLMultiArray>,
             axis: NSInteger,
@@ -447,15 +447,15 @@ extern_methods!(
     /// NSNumberDataAccess
     unsafe impl MLMultiArray {
         /// Get a value by its linear index (assumes C-style index ordering)
-        #[unsafe(method_family(none))]
         #[method_id(objectAtIndexedSubscript:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn objectAtIndexedSubscript(&self, idx: NSInteger) -> Retained<NSNumber>;
 
         /// Get a value by its multidimensional index (NSArray
         /// <NSNumber
         /// *>)
-        #[unsafe(method_family(none))]
         #[method_id(objectForKeyedSubscript:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn objectForKeyedSubscript(&self, key: &NSArray<NSNumber>)
             -> Retained<NSNumber>;
 

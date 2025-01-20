@@ -55,20 +55,20 @@ unsafe impl NSUserInterfaceItemIdentification for NSFormCell {}
 extern_methods!(
     #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     unsafe impl NSFormCell {
-        #[unsafe(method_family(init))]
         #[method_id(initTextCell:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initTextCell(
             this: Allocated<Self>,
             string: Option<&NSString>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
-        #[unsafe(method_family(init))]
         #[method_id(initImageCell:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initImageCell(
             this: Allocated<Self>,
             image: Option<&NSImage>,
@@ -87,8 +87,8 @@ extern_methods!(
         #[method(setTitleWidth:)]
         pub unsafe fn setTitleWidth(&self, title_width: CGFloat);
 
-        #[unsafe(method_family(none))]
         #[method_id(title)]
+        #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
@@ -96,8 +96,8 @@ extern_methods!(
         pub unsafe fn setTitle(&self, title: &NSString);
 
         #[cfg(feature = "NSFont")]
-        #[unsafe(method_family(none))]
         #[method_id(titleFont)]
+        #[unsafe(method_family = none)]
         pub unsafe fn titleFont(&self) -> Retained<NSFont>;
 
         #[cfg(feature = "NSFont")]
@@ -108,16 +108,16 @@ extern_methods!(
         #[method(isOpaque)]
         pub unsafe fn isOpaque(&self) -> bool;
 
-        #[unsafe(method_family(none))]
         #[method_id(placeholderString)]
+        #[unsafe(method_family = none)]
         pub unsafe fn placeholderString(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`placeholderString`][Self::placeholderString].
         #[method(setPlaceholderString:)]
         pub unsafe fn setPlaceholderString(&self, placeholder_string: Option<&NSString>);
 
-        #[unsafe(method_family(none))]
         #[method_id(placeholderAttributedString)]
+        #[unsafe(method_family = none)]
         pub unsafe fn placeholderAttributedString(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Setter for [`placeholderAttributedString`][Self::placeholderAttributedString].
@@ -163,8 +163,8 @@ extern_methods!(
     /// Methods declared on superclass `NSCell`
     #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     unsafe impl NSFormCell {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -173,8 +173,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     unsafe impl NSFormCell {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -193,8 +193,8 @@ extern_methods!(
     /// NSFormCellAttributedStringMethods
     #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     unsafe impl NSFormCell {
-        #[unsafe(method_family(none))]
         #[method_id(attributedTitle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn attributedTitle(&self) -> Retained<NSAttributedString>;
 
         /// Setter for [`attributedTitle`][Self::attributedTitle].

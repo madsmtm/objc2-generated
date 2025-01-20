@@ -159,8 +159,8 @@ extern_methods!(
         /// Parameter `client`: The NSURLProtocolClient object that serves as the
         /// interface the protocol implementation can use to report results back
         /// to the URL loading system.
-        #[unsafe(method_family(init))]
         #[method_id(initWithRequest:cachedResponse:client:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithRequest_cachedResponse_client(
             this: Allocated<Self>,
             request: &NSURLRequest,
@@ -171,24 +171,24 @@ extern_methods!(
         /// Returns the NSURLProtocolClient of the receiver.
         ///
         /// Returns: The NSURLProtocolClient of the receiver.
-        #[unsafe(method_family(none))]
         #[method_id(client)]
+        #[unsafe(method_family = none)]
         pub unsafe fn client(&self) -> Option<Retained<ProtocolObject<dyn NSURLProtocolClient>>>;
 
         #[cfg(feature = "NSURLRequest")]
         /// Returns the NSURLRequest of the receiver.
         ///
         /// Returns: The NSURLRequest of the receiver.
-        #[unsafe(method_family(none))]
         #[method_id(request)]
+        #[unsafe(method_family = none)]
         pub unsafe fn request(&self) -> Retained<NSURLRequest>;
 
         #[cfg(feature = "NSURLCache")]
         /// Returns the NSCachedURLResponse of the receiver.
         ///
         /// Returns: The NSCachedURLResponse of the receiver.
-        #[unsafe(method_family(none))]
         #[method_id(cachedResponse)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cachedResponse(&self) -> Option<Retained<NSCachedURLResponse>>;
 
         #[cfg(feature = "NSURLRequest")]
@@ -224,8 +224,8 @@ extern_methods!(
         /// Parameter `request`: A request to make canonical.
         ///
         /// Returns: The canonical form of the given request.
-        #[unsafe(method_family(none))]
         #[method_id(canonicalRequestForRequest:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn canonicalRequestForRequest(request: &NSURLRequest) -> Retained<NSURLRequest>;
 
         #[cfg(feature = "NSURLRequest")]
@@ -273,8 +273,8 @@ extern_methods!(
         ///
         /// Returns: The property stored with the given key, or nil if no property
         /// had previously been stored with the given key in the given request.
-        #[unsafe(method_family(none))]
         #[method_id(propertyForKey:inRequest:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn propertyForKey_inRequest(
             key: &NSString,
             request: &NSURLRequest,
@@ -364,12 +364,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSURLProtocol {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -382,8 +382,8 @@ extern_methods!(
         pub unsafe fn canInitWithTask(task: &NSURLSessionTask) -> bool;
 
         #[cfg(all(feature = "NSURLCache", feature = "NSURLSession"))]
-        #[unsafe(method_family(init))]
         #[method_id(initWithTask:cachedResponse:client:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithTask_cachedResponse_client(
             this: Allocated<Self>,
             task: &NSURLSessionTask,
@@ -392,8 +392,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSURLSession")]
-        #[unsafe(method_family(none))]
         #[method_id(task)]
+        #[unsafe(method_family = none)]
         pub unsafe fn task(&self) -> Option<Retained<NSURLSessionTask>>;
     }
 );

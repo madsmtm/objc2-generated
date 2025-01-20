@@ -56,8 +56,8 @@ extern_methods!(
         /// It does not directly map to the enrolled templates, e.g. if a finger is added to Touch ID enrollement and then
         /// removed, the final state would be different.
         /// It also returns different values to different apps to prevent tracking of user identity.
-        #[unsafe(method_family(none))]
         #[method_id(stateHash)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stateHash(&self) -> Retained<NSData>;
 
         /// Whether the built in biometric sensor is inaccessible in the current configuration, preventing the use of biometry.
@@ -75,13 +75,13 @@ extern_methods!(
     #[cfg(feature = "LAEnvironmentMechanism")]
     unsafe impl LAEnvironmentMechanismBiometry {
         /// Clients should only consume environment mechanisms..
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// The Clients should only consume environment mechanisms..
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

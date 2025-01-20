@@ -31,35 +31,35 @@ unsafe impl NSSecureCoding for NSIndexPath {}
 
 extern_methods!(
     unsafe impl NSIndexPath {
-        #[unsafe(method_family(none))]
         #[method_id(indexPathWithIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indexPathWithIndex(index: NSUInteger) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(indexPathWithIndexes:length:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indexPathWithIndexes_length(
             indexes: *mut NSUInteger,
             length: NSUInteger,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithIndexes:length:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithIndexes_length(
             this: Allocated<Self>,
             indexes: *mut NSUInteger,
             length: NSUInteger,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithIndex:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithIndex(this: Allocated<Self>, index: NSUInteger) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(indexPathByAddingIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indexPathByAddingIndex(&self, index: NSUInteger) -> Retained<NSIndexPath>;
 
-        #[unsafe(method_family(none))]
         #[method_id(indexPathByRemovingLastIndex)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indexPathByRemovingLastIndex(&self) -> Retained<NSIndexPath>;
 
         #[method(indexAtPosition:)]
@@ -92,12 +92,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSIndexPath {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

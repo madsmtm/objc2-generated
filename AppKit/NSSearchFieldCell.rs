@@ -92,25 +92,25 @@ extern_methods!(
         feature = "NSTextFieldCell"
     ))]
     unsafe impl NSSearchFieldCell {
-        #[unsafe(method_family(init))]
         #[method_id(initTextCell:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
-        #[unsafe(method_family(init))]
         #[method_id(initImageCell:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initImageCell(
             this: Allocated<Self>,
             image: Option<&NSImage>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSButtonCell")]
-        #[unsafe(method_family(none))]
         #[method_id(searchButtonCell)]
+        #[unsafe(method_family = none)]
         pub unsafe fn searchButtonCell(&self) -> Option<Retained<NSButtonCell>>;
 
         #[cfg(feature = "NSButtonCell")]
@@ -119,8 +119,8 @@ extern_methods!(
         pub unsafe fn setSearchButtonCell(&self, search_button_cell: Option<&NSButtonCell>);
 
         #[cfg(feature = "NSButtonCell")]
-        #[unsafe(method_family(none))]
         #[method_id(cancelButtonCell)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cancelButtonCell(&self) -> Option<Retained<NSButtonCell>>;
 
         #[cfg(feature = "NSButtonCell")]
@@ -144,8 +144,8 @@ extern_methods!(
         pub unsafe fn cancelButtonRectForBounds(&self, rect: NSRect) -> NSRect;
 
         #[cfg(feature = "NSMenu")]
-        #[unsafe(method_family(none))]
         #[method_id(searchMenuTemplate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn searchMenuTemplate(&self) -> Option<Retained<NSMenu>>;
 
         #[cfg(feature = "NSMenu")]
@@ -167,8 +167,8 @@ extern_methods!(
         #[method(setMaximumRecents:)]
         pub unsafe fn setMaximumRecents(&self, maximum_recents: NSInteger);
 
-        #[unsafe(method_family(none))]
         #[method_id(recentSearches)]
+        #[unsafe(method_family = none)]
         pub unsafe fn recentSearches(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`recentSearches`][Self::recentSearches].
@@ -176,8 +176,8 @@ extern_methods!(
         pub unsafe fn setRecentSearches(&self, recent_searches: Option<&NSArray<NSString>>);
 
         #[cfg(feature = "NSSearchField")]
-        #[unsafe(method_family(none))]
         #[method_id(recentsAutosaveName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn recentsAutosaveName(
             &self,
         ) -> Option<Retained<NSSearchFieldRecentsAutosaveName>>;
@@ -207,8 +207,8 @@ extern_methods!(
         feature = "NSTextFieldCell"
     ))]
     unsafe impl NSSearchFieldCell {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -221,8 +221,8 @@ extern_methods!(
         feature = "NSTextFieldCell"
     ))]
     unsafe impl NSSearchFieldCell {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

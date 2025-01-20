@@ -78,8 +78,8 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLFrameElement {
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(frameBorder)]
+        #[unsafe(method_family = none)]
         pub unsafe fn frameBorder(&self) -> Retained<NSString>;
 
         /// Setter for [`frameBorder`][Self::frameBorder].
@@ -88,8 +88,8 @@ extern_methods!(
         pub unsafe fn setFrameBorder(&self, frame_border: Option<&NSString>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(longDesc)]
+        #[unsafe(method_family = none)]
         pub unsafe fn longDesc(&self) -> Retained<NSString>;
 
         /// Setter for [`longDesc`][Self::longDesc].
@@ -98,8 +98,8 @@ extern_methods!(
         pub unsafe fn setLongDesc(&self, long_desc: Option<&NSString>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(marginHeight)]
+        #[unsafe(method_family = none)]
         pub unsafe fn marginHeight(&self) -> Retained<NSString>;
 
         /// Setter for [`marginHeight`][Self::marginHeight].
@@ -108,8 +108,8 @@ extern_methods!(
         pub unsafe fn setMarginHeight(&self, margin_height: Option<&NSString>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(marginWidth)]
+        #[unsafe(method_family = none)]
         pub unsafe fn marginWidth(&self) -> Retained<NSString>;
 
         /// Setter for [`marginWidth`][Self::marginWidth].
@@ -118,8 +118,8 @@ extern_methods!(
         pub unsafe fn setMarginWidth(&self, margin_width: Option<&NSString>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(name)]
+        #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
@@ -137,8 +137,8 @@ extern_methods!(
         pub unsafe fn setNoResize(&self, no_resize: bool);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(scrolling)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scrolling(&self) -> Retained<NSString>;
 
         /// Setter for [`scrolling`][Self::scrolling].
@@ -147,8 +147,8 @@ extern_methods!(
         pub unsafe fn setScrolling(&self, scrolling: Option<&NSString>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(src)]
+        #[unsafe(method_family = none)]
         pub unsafe fn src(&self) -> Retained<NSString>;
 
         /// Setter for [`src`][Self::src].
@@ -158,17 +158,17 @@ extern_methods!(
 
         #[cfg(feature = "DOMDocument")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(contentDocument)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contentDocument(&self) -> Option<Retained<DOMDocument>>;
 
         #[cfg(feature = "DOMAbstractView")]
-        #[unsafe(method_family(none))]
         #[method_id(contentWindow)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contentWindow(&self) -> Option<Retained<DOMAbstractView>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(location)]
+        #[unsafe(method_family = none)]
         pub unsafe fn location(&self) -> Retained<NSString>;
 
         /// Setter for [`location`][Self::location].
@@ -194,8 +194,8 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLFrameElement {
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -210,8 +210,8 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLFrameElement {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

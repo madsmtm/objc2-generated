@@ -17,8 +17,8 @@ unsafe impl NSObjectProtocol for NSThread {}
 
 extern_methods!(
     unsafe impl NSThread {
-        #[unsafe(method_family(none))]
         #[method_id(currentThread)]
+        #[unsafe(method_family = none)]
         pub fn currentThread() -> Retained<NSThread>;
 
         #[cfg(feature = "block2")]
@@ -36,8 +36,8 @@ extern_methods!(
         pub fn isMultiThreaded() -> bool;
 
         #[cfg(feature = "NSDictionary")]
-        #[unsafe(method_family(none))]
         #[method_id(threadDictionary)]
+        #[unsafe(method_family = none)]
         pub unsafe fn threadDictionary(&self) -> Retained<NSMutableDictionary>;
 
         #[cfg(feature = "NSDate")]
@@ -74,18 +74,18 @@ extern_methods!(
         pub unsafe fn setQualityOfService(&self, quality_of_service: NSQualityOfService);
 
         #[cfg(all(feature = "NSArray", feature = "NSValue"))]
-        #[unsafe(method_family(none))]
         #[method_id(callStackReturnAddresses)]
+        #[unsafe(method_family = none)]
         pub unsafe fn callStackReturnAddresses() -> Retained<NSArray<NSNumber>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(callStackSymbols)]
+        #[unsafe(method_family = none)]
         pub unsafe fn callStackSymbols() -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(name)]
+        #[unsafe(method_family = none)]
         pub fn name(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
@@ -106,16 +106,16 @@ extern_methods!(
         #[method(isMainThread)]
         pub fn isMainThread_class() -> bool;
 
-        #[unsafe(method_family(none))]
         #[method_id(mainThread)]
+        #[unsafe(method_family = none)]
         pub fn mainThread() -> Retained<NSThread>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithTarget:selector:object:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithTarget_selector_object(
             this: Allocated<Self>,
             target: &AnyObject,
@@ -124,8 +124,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithBlock:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithBlock(
             this: Allocated<Self>,
             block: &block2::Block<dyn Fn()>,
@@ -154,8 +154,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSThread {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
     }
 );

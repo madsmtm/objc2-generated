@@ -72,8 +72,8 @@ extern_protocol!(
         /// Returns the content item at the specified index path. If the content item is
         /// mutated after returning, its updated contents will be sent to MediaPlayer.
         #[deprecated = "Use CarPlay framework"]
-        #[unsafe(method_family(none))]
         #[method_id(contentItemAtIndexPath:)]
+        #[unsafe(method_family = none)]
         unsafe fn contentItemAtIndexPath(
             &self,
             index_path: &NSIndexPath,

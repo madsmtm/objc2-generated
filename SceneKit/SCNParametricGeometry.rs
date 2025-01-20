@@ -57,8 +57,8 @@ extern_methods!(
         /// Parameter `width`: The width of the plane.
         ///
         /// Parameter `height`: The height of the plane.
-        #[unsafe(method_family(none))]
         #[method_id(planeWithWidth:height:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn planeWithWidth_height(width: CGFloat, height: CGFloat) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -136,8 +136,8 @@ extern_methods!(
         /// Creates and returns an empty geometry object.
         ///
         /// An empty geometry may be used as the lowest level of detail of a geometry.
-        #[unsafe(method_family(none))]
         #[method_id(geometry)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geometry() -> Retained<Self>;
 
         /// Creates and returns a new geometry built from geometry sources and geometry elements.
@@ -147,8 +147,8 @@ extern_methods!(
         /// Parameter `elements`: An array of geometry elements. The sort order in the array determines the mapping between materials and geometry elements.
         ///
         /// A geometry is made of geometry sources (at least `SCNGeometrySourceSemanticVertex`) and at least one geometry element. Multiple sources for texture coordinates are accepted. In that case the `mappingChannel` is implicitly set based on the order of the texture sources, starting at index 0.
-        #[unsafe(method_family(none))]
         #[method_id(geometryWithSources:elements:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements(
             sources: &NSArray<SCNGeometrySource>,
             elements: Option<&NSArray<SCNGeometryElement>>,
@@ -221,8 +221,8 @@ extern_methods!(
         /// @
         /// [0, 0]];                                                                                                                                               ┆
         /// ```
-        #[unsafe(method_family(none))]
         #[method_id(geometryWithSources:elements:sourceChannels:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements_sourceChannels(
             sources: &NSArray<SCNGeometrySource>,
             elements: Option<&NSArray<SCNGeometryElement>>,
@@ -235,12 +235,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "SCNGeometry")]
     unsafe impl SCNPlane {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -294,8 +294,8 @@ extern_methods!(
         /// Parameter `length`: The length of the box.
         ///
         /// Parameter `chamferRadius`: The chamfer radius of the box.
-        #[unsafe(method_family(none))]
         #[method_id(boxWithWidth:height:length:chamferRadius:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn boxWithWidth_height_length_chamferRadius(
             width: CGFloat,
             height: CGFloat,
@@ -400,8 +400,8 @@ extern_methods!(
         /// Creates and returns an empty geometry object.
         ///
         /// An empty geometry may be used as the lowest level of detail of a geometry.
-        #[unsafe(method_family(none))]
         #[method_id(geometry)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geometry() -> Retained<Self>;
 
         /// Creates and returns a new geometry built from geometry sources and geometry elements.
@@ -411,8 +411,8 @@ extern_methods!(
         /// Parameter `elements`: An array of geometry elements. The sort order in the array determines the mapping between materials and geometry elements.
         ///
         /// A geometry is made of geometry sources (at least `SCNGeometrySourceSemanticVertex`) and at least one geometry element. Multiple sources for texture coordinates are accepted. In that case the `mappingChannel` is implicitly set based on the order of the texture sources, starting at index 0.
-        #[unsafe(method_family(none))]
         #[method_id(geometryWithSources:elements:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements(
             sources: &NSArray<SCNGeometrySource>,
             elements: Option<&NSArray<SCNGeometryElement>>,
@@ -485,8 +485,8 @@ extern_methods!(
         /// @
         /// [0, 0]];                                                                                                                                               ┆
         /// ```
-        #[unsafe(method_family(none))]
         #[method_id(geometryWithSources:elements:sourceChannels:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements_sourceChannels(
             sources: &NSArray<SCNGeometrySource>,
             elements: Option<&NSArray<SCNGeometryElement>>,
@@ -499,12 +499,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "SCNGeometry")]
     unsafe impl SCNBox {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -556,8 +556,8 @@ extern_methods!(
         /// Parameter `height`: The height of the pyramid.
         ///
         /// Parameter `length`: The length of the pyramid.
-        #[unsafe(method_family(none))]
         #[method_id(pyramidWithWidth:height:length:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pyramidWithWidth_height_length(
             width: CGFloat,
             height: CGFloat,
@@ -639,8 +639,8 @@ extern_methods!(
         /// Creates and returns an empty geometry object.
         ///
         /// An empty geometry may be used as the lowest level of detail of a geometry.
-        #[unsafe(method_family(none))]
         #[method_id(geometry)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geometry() -> Retained<Self>;
 
         /// Creates and returns a new geometry built from geometry sources and geometry elements.
@@ -650,8 +650,8 @@ extern_methods!(
         /// Parameter `elements`: An array of geometry elements. The sort order in the array determines the mapping between materials and geometry elements.
         ///
         /// A geometry is made of geometry sources (at least `SCNGeometrySourceSemanticVertex`) and at least one geometry element. Multiple sources for texture coordinates are accepted. In that case the `mappingChannel` is implicitly set based on the order of the texture sources, starting at index 0.
-        #[unsafe(method_family(none))]
         #[method_id(geometryWithSources:elements:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements(
             sources: &NSArray<SCNGeometrySource>,
             elements: Option<&NSArray<SCNGeometryElement>>,
@@ -724,8 +724,8 @@ extern_methods!(
         /// @
         /// [0, 0]];                                                                                                                                               ┆
         /// ```
-        #[unsafe(method_family(none))]
         #[method_id(geometryWithSources:elements:sourceChannels:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements_sourceChannels(
             sources: &NSArray<SCNGeometrySource>,
             elements: Option<&NSArray<SCNGeometryElement>>,
@@ -738,12 +738,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "SCNGeometry")]
     unsafe impl SCNPyramid {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -791,8 +791,8 @@ extern_methods!(
         /// Creates and returns a sphere with given radius.
         ///
         /// Parameter `radius`: The radius of the sphere.
-        #[unsafe(method_family(none))]
         #[method_id(sphereWithRadius:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sphereWithRadius(radius: CGFloat) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -836,8 +836,8 @@ extern_methods!(
         /// Creates and returns an empty geometry object.
         ///
         /// An empty geometry may be used as the lowest level of detail of a geometry.
-        #[unsafe(method_family(none))]
         #[method_id(geometry)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geometry() -> Retained<Self>;
 
         /// Creates and returns a new geometry built from geometry sources and geometry elements.
@@ -847,8 +847,8 @@ extern_methods!(
         /// Parameter `elements`: An array of geometry elements. The sort order in the array determines the mapping between materials and geometry elements.
         ///
         /// A geometry is made of geometry sources (at least `SCNGeometrySourceSemanticVertex`) and at least one geometry element. Multiple sources for texture coordinates are accepted. In that case the `mappingChannel` is implicitly set based on the order of the texture sources, starting at index 0.
-        #[unsafe(method_family(none))]
         #[method_id(geometryWithSources:elements:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements(
             sources: &NSArray<SCNGeometrySource>,
             elements: Option<&NSArray<SCNGeometryElement>>,
@@ -921,8 +921,8 @@ extern_methods!(
         /// @
         /// [0, 0]];                                                                                                                                               ┆
         /// ```
-        #[unsafe(method_family(none))]
         #[method_id(geometryWithSources:elements:sourceChannels:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements_sourceChannels(
             sources: &NSArray<SCNGeometrySource>,
             elements: Option<&NSArray<SCNGeometryElement>>,
@@ -935,12 +935,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "SCNGeometry")]
     unsafe impl SCNSphere {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -990,8 +990,8 @@ extern_methods!(
         /// Parameter `radius`: The radius of the cylinder.
         ///
         /// Parameter `height`: The height of the cylinder.
-        #[unsafe(method_family(none))]
         #[method_id(cylinderWithRadius:height:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cylinderWithRadius_height(radius: CGFloat, height: CGFloat)
             -> Retained<Self>;
 
@@ -1048,8 +1048,8 @@ extern_methods!(
         /// Creates and returns an empty geometry object.
         ///
         /// An empty geometry may be used as the lowest level of detail of a geometry.
-        #[unsafe(method_family(none))]
         #[method_id(geometry)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geometry() -> Retained<Self>;
 
         /// Creates and returns a new geometry built from geometry sources and geometry elements.
@@ -1059,8 +1059,8 @@ extern_methods!(
         /// Parameter `elements`: An array of geometry elements. The sort order in the array determines the mapping between materials and geometry elements.
         ///
         /// A geometry is made of geometry sources (at least `SCNGeometrySourceSemanticVertex`) and at least one geometry element. Multiple sources for texture coordinates are accepted. In that case the `mappingChannel` is implicitly set based on the order of the texture sources, starting at index 0.
-        #[unsafe(method_family(none))]
         #[method_id(geometryWithSources:elements:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements(
             sources: &NSArray<SCNGeometrySource>,
             elements: Option<&NSArray<SCNGeometryElement>>,
@@ -1133,8 +1133,8 @@ extern_methods!(
         /// @
         /// [0, 0]];                                                                                                                                               ┆
         /// ```
-        #[unsafe(method_family(none))]
         #[method_id(geometryWithSources:elements:sourceChannels:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements_sourceChannels(
             sources: &NSArray<SCNGeometrySource>,
             elements: Option<&NSArray<SCNGeometryElement>>,
@@ -1147,12 +1147,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "SCNGeometry")]
     unsafe impl SCNCylinder {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -1204,8 +1204,8 @@ extern_methods!(
         /// Parameter `bottomRadius`: The radius at the bottom of the cone.
         ///
         /// Parameter `height`: The height of the cone.
-        #[unsafe(method_family(none))]
         #[method_id(coneWithTopRadius:bottomRadius:height:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn coneWithTopRadius_bottomRadius_height(
             top_radius: CGFloat,
             bottom_radius: CGFloat,
@@ -1277,8 +1277,8 @@ extern_methods!(
         /// Creates and returns an empty geometry object.
         ///
         /// An empty geometry may be used as the lowest level of detail of a geometry.
-        #[unsafe(method_family(none))]
         #[method_id(geometry)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geometry() -> Retained<Self>;
 
         /// Creates and returns a new geometry built from geometry sources and geometry elements.
@@ -1288,8 +1288,8 @@ extern_methods!(
         /// Parameter `elements`: An array of geometry elements. The sort order in the array determines the mapping between materials and geometry elements.
         ///
         /// A geometry is made of geometry sources (at least `SCNGeometrySourceSemanticVertex`) and at least one geometry element. Multiple sources for texture coordinates are accepted. In that case the `mappingChannel` is implicitly set based on the order of the texture sources, starting at index 0.
-        #[unsafe(method_family(none))]
         #[method_id(geometryWithSources:elements:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements(
             sources: &NSArray<SCNGeometrySource>,
             elements: Option<&NSArray<SCNGeometryElement>>,
@@ -1362,8 +1362,8 @@ extern_methods!(
         /// @
         /// [0, 0]];                                                                                                                                               ┆
         /// ```
-        #[unsafe(method_family(none))]
         #[method_id(geometryWithSources:elements:sourceChannels:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements_sourceChannels(
             sources: &NSArray<SCNGeometrySource>,
             elements: Option<&NSArray<SCNGeometryElement>>,
@@ -1376,12 +1376,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "SCNGeometry")]
     unsafe impl SCNCone {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -1433,8 +1433,8 @@ extern_methods!(
         /// Parameter `outerRadius`: The outer radius of the tube.
         ///
         /// Parameter `height`: The height of the tube.
-        #[unsafe(method_family(none))]
         #[method_id(tubeWithInnerRadius:outerRadius:height:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tubeWithInnerRadius_outerRadius_height(
             inner_radius: CGFloat,
             outer_radius: CGFloat,
@@ -1506,8 +1506,8 @@ extern_methods!(
         /// Creates and returns an empty geometry object.
         ///
         /// An empty geometry may be used as the lowest level of detail of a geometry.
-        #[unsafe(method_family(none))]
         #[method_id(geometry)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geometry() -> Retained<Self>;
 
         /// Creates and returns a new geometry built from geometry sources and geometry elements.
@@ -1517,8 +1517,8 @@ extern_methods!(
         /// Parameter `elements`: An array of geometry elements. The sort order in the array determines the mapping between materials and geometry elements.
         ///
         /// A geometry is made of geometry sources (at least `SCNGeometrySourceSemanticVertex`) and at least one geometry element. Multiple sources for texture coordinates are accepted. In that case the `mappingChannel` is implicitly set based on the order of the texture sources, starting at index 0.
-        #[unsafe(method_family(none))]
         #[method_id(geometryWithSources:elements:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements(
             sources: &NSArray<SCNGeometrySource>,
             elements: Option<&NSArray<SCNGeometryElement>>,
@@ -1591,8 +1591,8 @@ extern_methods!(
         /// @
         /// [0, 0]];                                                                                                                                               ┆
         /// ```
-        #[unsafe(method_family(none))]
         #[method_id(geometryWithSources:elements:sourceChannels:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements_sourceChannels(
             sources: &NSArray<SCNGeometrySource>,
             elements: Option<&NSArray<SCNGeometryElement>>,
@@ -1605,12 +1605,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "SCNGeometry")]
     unsafe impl SCNTube {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -1660,8 +1660,8 @@ extern_methods!(
         /// Parameter `capRadius`: The radius of the capsule.
         ///
         /// Parameter `height`: The height of the capsule.
-        #[unsafe(method_family(none))]
         #[method_id(capsuleWithCapRadius:height:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn capsuleWithCapRadius_height(
             cap_radius: CGFloat,
             height: CGFloat,
@@ -1730,8 +1730,8 @@ extern_methods!(
         /// Creates and returns an empty geometry object.
         ///
         /// An empty geometry may be used as the lowest level of detail of a geometry.
-        #[unsafe(method_family(none))]
         #[method_id(geometry)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geometry() -> Retained<Self>;
 
         /// Creates and returns a new geometry built from geometry sources and geometry elements.
@@ -1741,8 +1741,8 @@ extern_methods!(
         /// Parameter `elements`: An array of geometry elements. The sort order in the array determines the mapping between materials and geometry elements.
         ///
         /// A geometry is made of geometry sources (at least `SCNGeometrySourceSemanticVertex`) and at least one geometry element. Multiple sources for texture coordinates are accepted. In that case the `mappingChannel` is implicitly set based on the order of the texture sources, starting at index 0.
-        #[unsafe(method_family(none))]
         #[method_id(geometryWithSources:elements:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements(
             sources: &NSArray<SCNGeometrySource>,
             elements: Option<&NSArray<SCNGeometryElement>>,
@@ -1815,8 +1815,8 @@ extern_methods!(
         /// @
         /// [0, 0]];                                                                                                                                               ┆
         /// ```
-        #[unsafe(method_family(none))]
         #[method_id(geometryWithSources:elements:sourceChannels:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements_sourceChannels(
             sources: &NSArray<SCNGeometrySource>,
             elements: Option<&NSArray<SCNGeometryElement>>,
@@ -1829,12 +1829,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "SCNGeometry")]
     unsafe impl SCNCapsule {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -1884,8 +1884,8 @@ extern_methods!(
         /// Parameter `ringRadius`: The radius of the ring.
         ///
         /// Parameter `pipeRadius`: The radius of the pipe.
-        #[unsafe(method_family(none))]
         #[method_id(torusWithRingRadius:pipeRadius:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn torusWithRingRadius_pipeRadius(
             ring_radius: CGFloat,
             pipe_radius: CGFloat,
@@ -1944,8 +1944,8 @@ extern_methods!(
         /// Creates and returns an empty geometry object.
         ///
         /// An empty geometry may be used as the lowest level of detail of a geometry.
-        #[unsafe(method_family(none))]
         #[method_id(geometry)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geometry() -> Retained<Self>;
 
         /// Creates and returns a new geometry built from geometry sources and geometry elements.
@@ -1955,8 +1955,8 @@ extern_methods!(
         /// Parameter `elements`: An array of geometry elements. The sort order in the array determines the mapping between materials and geometry elements.
         ///
         /// A geometry is made of geometry sources (at least `SCNGeometrySourceSemanticVertex`) and at least one geometry element. Multiple sources for texture coordinates are accepted. In that case the `mappingChannel` is implicitly set based on the order of the texture sources, starting at index 0.
-        #[unsafe(method_family(none))]
         #[method_id(geometryWithSources:elements:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements(
             sources: &NSArray<SCNGeometrySource>,
             elements: Option<&NSArray<SCNGeometryElement>>,
@@ -2029,8 +2029,8 @@ extern_methods!(
         /// @
         /// [0, 0]];                                                                                                                                               ┆
         /// ```
-        #[unsafe(method_family(none))]
         #[method_id(geometryWithSources:elements:sourceChannels:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements_sourceChannels(
             sources: &NSArray<SCNGeometrySource>,
             elements: Option<&NSArray<SCNGeometryElement>>,
@@ -2043,12 +2043,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "SCNGeometry")]
     unsafe impl SCNTorus {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -2095,8 +2095,8 @@ extern_methods!(
         /// Creates and returns a floor.
         ///
         /// A floor is an infinite plane.
-        #[unsafe(method_family(none))]
         #[method_id(floor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn floor() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -2191,8 +2191,8 @@ extern_methods!(
         /// Creates and returns an empty geometry object.
         ///
         /// An empty geometry may be used as the lowest level of detail of a geometry.
-        #[unsafe(method_family(none))]
         #[method_id(geometry)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geometry() -> Retained<Self>;
 
         /// Creates and returns a new geometry built from geometry sources and geometry elements.
@@ -2202,8 +2202,8 @@ extern_methods!(
         /// Parameter `elements`: An array of geometry elements. The sort order in the array determines the mapping between materials and geometry elements.
         ///
         /// A geometry is made of geometry sources (at least `SCNGeometrySourceSemanticVertex`) and at least one geometry element. Multiple sources for texture coordinates are accepted. In that case the `mappingChannel` is implicitly set based on the order of the texture sources, starting at index 0.
-        #[unsafe(method_family(none))]
         #[method_id(geometryWithSources:elements:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements(
             sources: &NSArray<SCNGeometrySource>,
             elements: Option<&NSArray<SCNGeometryElement>>,
@@ -2276,8 +2276,8 @@ extern_methods!(
         /// @
         /// [0, 0]];                                                                                                                                               ┆
         /// ```
-        #[unsafe(method_family(none))]
         #[method_id(geometryWithSources:elements:sourceChannels:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements_sourceChannels(
             sources: &NSArray<SCNGeometrySource>,
             elements: Option<&NSArray<SCNGeometryElement>>,
@@ -2290,12 +2290,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "SCNGeometry")]
     unsafe impl SCNFloor {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -2345,8 +2345,8 @@ extern_methods!(
         /// Parameter `string`: The text to be represented.
         ///
         /// Parameter `extrusionDepth`: The extrusion depth.
-        #[unsafe(method_family(none))]
         #[method_id(textWithString:extrusionDepth:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textWithString_extrusionDepth(
             string: Option<&AnyObject>,
             extrusion_depth: CGFloat,
@@ -2367,8 +2367,8 @@ extern_methods!(
         /// The text to be represented. The text must be an instance of NSString or NSAttributedString.
         ///
         /// The default value is nil.
-        #[unsafe(method_family(none))]
         #[method_id(string)]
+        #[unsafe(method_family = none)]
         pub unsafe fn string(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`string`][Self::string].
@@ -2380,8 +2380,8 @@ extern_methods!(
         /// The font used to represent the text.
         ///
         /// The font property is only used when the string property is not an NSAttributedString. Defaults to the system font (12 point).
-        #[unsafe(method_family(none))]
         #[method_id(font)]
+        #[unsafe(method_family = none)]
         pub unsafe fn font(&self) -> Option<Retained<NSFont>>;
 
         #[cfg(feature = "objc2-app-kit")]
@@ -2420,8 +2420,8 @@ extern_methods!(
         /// Describes how the text is truncated to fit within the bounds.
         ///
         /// For the text to be truncated you first need to set its bounds, otherwise the text is not truncated. The default value is kCATruncationNone. See truncation modes in CATextLayer.h.
-        #[unsafe(method_family(none))]
         #[method_id(truncationMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn truncationMode(&self) -> Retained<NSString>;
 
         /// Setter for [`truncationMode`][Self::truncationMode].
@@ -2431,8 +2431,8 @@ extern_methods!(
         /// Determines how individual lines of text are horizontally aligned within the bounds.
         ///
         /// For the text to be aligned you first need to set its bounds, otherwise the text is not aligned. The default value is kCAAlignmentNatural. See alignments in CATextLayer.h.
-        #[unsafe(method_family(none))]
         #[method_id(alignmentMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alignmentMode(&self) -> Retained<NSString>;
 
         /// Setter for [`alignmentMode`][Self::alignmentMode].
@@ -2468,8 +2468,8 @@ extern_methods!(
         /// Describes the profile used to when "chamferRadius" is not nil. When "chamferProfile" is nil we fallback on a path representing a quadrant.
         ///
         /// The profile should be a 2D curve beginning at (0,1) and ending at (1,0). The "flatness" property is also used to flatten this path. The default value is nil.
-        #[unsafe(method_family(none))]
         #[method_id(chamferProfile)]
+        #[unsafe(method_family = none)]
         pub unsafe fn chamferProfile(&self) -> Option<Retained<NSBezierPath>>;
 
         #[cfg(feature = "objc2-app-kit")]
@@ -2499,8 +2499,8 @@ extern_methods!(
         /// Creates and returns an empty geometry object.
         ///
         /// An empty geometry may be used as the lowest level of detail of a geometry.
-        #[unsafe(method_family(none))]
         #[method_id(geometry)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geometry() -> Retained<Self>;
 
         /// Creates and returns a new geometry built from geometry sources and geometry elements.
@@ -2510,8 +2510,8 @@ extern_methods!(
         /// Parameter `elements`: An array of geometry elements. The sort order in the array determines the mapping between materials and geometry elements.
         ///
         /// A geometry is made of geometry sources (at least `SCNGeometrySourceSemanticVertex`) and at least one geometry element. Multiple sources for texture coordinates are accepted. In that case the `mappingChannel` is implicitly set based on the order of the texture sources, starting at index 0.
-        #[unsafe(method_family(none))]
         #[method_id(geometryWithSources:elements:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements(
             sources: &NSArray<SCNGeometrySource>,
             elements: Option<&NSArray<SCNGeometryElement>>,
@@ -2584,8 +2584,8 @@ extern_methods!(
         /// @
         /// [0, 0]];                                                                                                                                               ┆
         /// ```
-        #[unsafe(method_family(none))]
         #[method_id(geometryWithSources:elements:sourceChannels:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements_sourceChannels(
             sources: &NSArray<SCNGeometrySource>,
             elements: Option<&NSArray<SCNGeometryElement>>,
@@ -2598,12 +2598,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "SCNGeometry")]
     unsafe impl SCNText {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -2676,8 +2676,8 @@ extern_methods!(
         /// Parameter `path`: The cubic Bezier spline to extrude.
         ///
         /// Parameter `extrusionDepth`: The extrusion depth.
-        #[unsafe(method_family(none))]
         #[method_id(shapeWithPath:extrusionDepth:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shapeWithPath_extrusionDepth(
             path: Option<&NSBezierPath>,
             extrusion_depth: CGFloat,
@@ -2688,8 +2688,8 @@ extern_methods!(
         /// The path defining the shape to be rendered.
         ///
         /// The path defines the outline of the shape. The path is filled using the even-odd rule. If the path is self-intersecting, the behavior is undefined.
-        #[unsafe(method_family(none))]
         #[method_id(path)]
+        #[unsafe(method_family = none)]
         pub unsafe fn path(&self) -> Option<Retained<NSBezierPath>>;
 
         #[cfg(feature = "objc2-app-kit")]
@@ -2737,8 +2737,8 @@ extern_methods!(
         /// Describes the profile used to when "chamferRadius" is not nil. When "chamferProfile" is nil we fallback on a path representing a quadrant.
         ///
         /// The profile should be a 2D curve beginning at (0,1) and ending at (1,0). The "flatness" property is also used to flatten this path. The default value is nil.
-        #[unsafe(method_family(none))]
         #[method_id(chamferProfile)]
+        #[unsafe(method_family = none)]
         pub unsafe fn chamferProfile(&self) -> Option<Retained<NSBezierPath>>;
 
         #[cfg(feature = "objc2-app-kit")]
@@ -2756,8 +2756,8 @@ extern_methods!(
         /// Creates and returns an empty geometry object.
         ///
         /// An empty geometry may be used as the lowest level of detail of a geometry.
-        #[unsafe(method_family(none))]
         #[method_id(geometry)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geometry() -> Retained<Self>;
 
         /// Creates and returns a new geometry built from geometry sources and geometry elements.
@@ -2767,8 +2767,8 @@ extern_methods!(
         /// Parameter `elements`: An array of geometry elements. The sort order in the array determines the mapping between materials and geometry elements.
         ///
         /// A geometry is made of geometry sources (at least `SCNGeometrySourceSemanticVertex`) and at least one geometry element. Multiple sources for texture coordinates are accepted. In that case the `mappingChannel` is implicitly set based on the order of the texture sources, starting at index 0.
-        #[unsafe(method_family(none))]
         #[method_id(geometryWithSources:elements:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements(
             sources: &NSArray<SCNGeometrySource>,
             elements: Option<&NSArray<SCNGeometryElement>>,
@@ -2841,8 +2841,8 @@ extern_methods!(
         /// @
         /// [0, 0]];                                                                                                                                               ┆
         /// ```
-        #[unsafe(method_family(none))]
         #[method_id(geometryWithSources:elements:sourceChannels:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geometryWithSources_elements_sourceChannels(
             sources: &NSArray<SCNGeometrySource>,
             elements: Option<&NSArray<SCNGeometryElement>>,
@@ -2855,12 +2855,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "SCNGeometry")]
     unsafe impl SCNShape {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

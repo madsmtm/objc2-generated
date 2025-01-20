@@ -46,8 +46,8 @@ extern_methods!(
     unsafe impl AVComposition {
         #[cfg(all(feature = "AVAssetTrack", feature = "AVCompositionTrack"))]
         /// Provides the array of AVCompositionTracks contained by the composition.
-        #[unsafe(method_family(none))]
         #[method_id(tracks)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tracks(&self) -> Retained<NSArray<AVCompositionTrack>>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -59,8 +59,8 @@ extern_methods!(
         ///
         /// AVCompositions create AVURLAssets internally for URLs specified by AVCompositionTrackSegments of AVCompositionTracks, as needed, whenever AVCompositionTrackSegments were originally added to a track via -[AVMutableCompositionTrack setSegments:] rather than by inserting timeranges of already existing AVAssets or AVAssetTracks.
         /// The value of URLAssetInitializationOptions can be specified at the time an AVMutableComposition is created via +compositionWithURLAssetInitializationOptions:.
-        #[unsafe(method_family(none))]
         #[method_id(URLAssetInitializationOptions)]
+        #[unsafe(method_family = none)]
         pub unsafe fn URLAssetInitializationOptions(
             &self,
         ) -> Retained<NSDictionary<NSString, AnyObject>>;
@@ -78,8 +78,8 @@ extern_methods!(
         /// Returns: An instance of AVAsset.
         ///
         /// Returns a newly allocated instance of a subclass of AVAsset initialized with the specified URL.
-        #[unsafe(method_family(none))]
         #[method_id(assetWithURL:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn assetWithURL(url: &NSURL) -> Retained<Self>;
     }
 );
@@ -88,12 +88,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "AVAsset")]
     unsafe impl AVComposition {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -116,8 +116,8 @@ extern_methods!(
         /// Becomes callable without blocking when the key
         /// "
         /// tracks" has been loaded
-        #[unsafe(method_family(none))]
         #[method_id(trackWithTrackID:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn trackWithTrackID(
             &self,
             track_id: CMPersistentTrackID,
@@ -155,8 +155,8 @@ extern_methods!(
         /// Becomes callable without blocking when the key
         /// "
         /// tracks" has been loaded
-        #[unsafe(method_family(none))]
         #[method_id(tracksWithMediaType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tracksWithMediaType(
             &self,
             media_type: &AVMediaType,
@@ -196,8 +196,8 @@ extern_methods!(
         /// Becomes callable without blocking when the key
         /// "
         /// tracks" has been loaded
-        #[unsafe(method_family(none))]
         #[method_id(tracksWithMediaCharacteristic:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tracksWithMediaCharacteristic(
             &self,
             media_characteristic: &AVMediaCharacteristic,
@@ -260,8 +260,8 @@ extern_methods!(
     unsafe impl AVMutableComposition {
         #[cfg(all(feature = "AVAssetTrack", feature = "AVCompositionTrack"))]
         /// Provides the array of AVMutableCompositionTracks contained by the composition.
-        #[unsafe(method_family(none))]
         #[method_id(tracks)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tracks(&self) -> Retained<NSArray<AVMutableCompositionTrack>>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -277,8 +277,8 @@ extern_methods!(
         pub unsafe fn setNaturalSize(&self, natural_size: CGSize);
 
         /// Returns an empty AVMutableComposition.
-        #[unsafe(method_family(none))]
         #[method_id(composition)]
+        #[unsafe(method_family = none)]
         pub unsafe fn composition() -> Retained<Self>;
 
         /// Returns an empty AVMutableComposition.
@@ -286,8 +286,8 @@ extern_methods!(
         /// Parameter `URLAssetInitializationOptions`: Specifies the initialization options that the receiver should use when creating AVURLAssets internally, e.g. AVURLAssetPreferPreciseDurationAndTimingKey. The default behavior for creation of AVURLAssets by an AVMutableComposition is equivalent to the behavior of +[AVURLAsset URLAssetWithURL:options:] when specifying no initialization options.
         ///
         /// AVMutableCompositions create AVURLAssets internally for URLs specified by AVCompositionTrackSegments of AVMutableCompositionTracks, as needed, whenever AVCompositionTrackSegments are added to tracks via -[AVMutableCompositionTrack setSegments:] rather than by inserting timeranges of already existing AVAssets or AVAssetTracks.
-        #[unsafe(method_family(none))]
         #[method_id(compositionWithURLAssetInitializationOptions:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn compositionWithURLAssetInitializationOptions(
             url_asset_initialization_options: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Retained<Self>;
@@ -305,8 +305,8 @@ extern_methods!(
         /// Returns: An instance of AVAsset.
         ///
         /// Returns a newly allocated instance of a subclass of AVAsset initialized with the specified URL.
-        #[unsafe(method_family(none))]
         #[method_id(assetWithURL:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn assetWithURL(url: &NSURL) -> Retained<Self>;
     }
 );
@@ -315,12 +315,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "AVAsset")]
     unsafe impl AVMutableComposition {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -436,8 +436,8 @@ extern_methods!(
         /// trackID" key.
         ///
         /// If the specified preferred track ID is not available, or kCMPersistentTrackID_Invalid was passed in, a unique track ID will be generated.
-        #[unsafe(method_family(none))]
         #[method_id(addMutableTrackWithMediaType:preferredTrackID:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addMutableTrackWithMediaType_preferredTrackID(
             &self,
             media_type: &AVMediaType,
@@ -467,8 +467,8 @@ extern_methods!(
         /// For best performance, the number of tracks of a composition should be kept to a minimum, corresponding to the number for which media data must be presented in parallel. If media data of the same type is to be presented serially, even from multiple assets, a single track of that media type should be used. This method, -mutableTrackCompatibleWithTrack:, can help the client to identify an existing target track for an insertion.
         ///
         /// Similar to -[AVAsset compatibleTrackForCompositionTrack:].
-        #[unsafe(method_family(none))]
         #[method_id(mutableTrackCompatibleWithTrack:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mutableTrackCompatibleWithTrack(
             &self,
             track: &AVAssetTrack,
@@ -494,8 +494,8 @@ extern_methods!(
         /// Becomes callable without blocking when the key
         /// "
         /// tracks" has been loaded
-        #[unsafe(method_family(none))]
         #[method_id(trackWithTrackID:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn trackWithTrackID(
             &self,
             track_id: CMPersistentTrackID,
@@ -535,8 +535,8 @@ extern_methods!(
         /// Becomes callable without blocking when the key
         /// "
         /// tracks" has been loaded
-        #[unsafe(method_family(none))]
         #[method_id(tracksWithMediaType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tracksWithMediaType(
             &self,
             media_type: &AVMediaType,
@@ -576,8 +576,8 @@ extern_methods!(
         /// Becomes callable without blocking when the key
         /// "
         /// tracks" has been loaded
-        #[unsafe(method_family(none))]
         #[method_id(tracksWithMediaCharacteristic:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tracksWithMediaCharacteristic(
             &self,
             media_characteristic: &AVMediaCharacteristic,
@@ -613,16 +613,16 @@ extern_methods!(
     #[cfg(feature = "AVAsset")]
     unsafe impl AVComposition {
         #[cfg(all(feature = "AVMetadataFormat", feature = "AVMetadataItem"))]
-        #[unsafe(method_family(none))]
         #[method_id(metadataForFormat:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn metadataForFormat(
             &self,
             format: &AVMetadataFormat,
         ) -> Retained<NSArray<AVMetadataItem>>;
 
         #[cfg(all(feature = "AVMetadataFormat", feature = "AVTimedMetadataGroup"))]
-        #[unsafe(method_family(none))]
         #[method_id(chapterMetadataGroupsWithTitleLocale:containingItemsWithCommonKeys:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn chapterMetadataGroupsWithTitleLocale_containingItemsWithCommonKeys(
             &self,
             locale: &NSLocale,
@@ -630,16 +630,16 @@ extern_methods!(
         ) -> Retained<NSArray<AVTimedMetadataGroup>>;
 
         #[cfg(feature = "AVTimedMetadataGroup")]
-        #[unsafe(method_family(none))]
         #[method_id(chapterMetadataGroupsBestMatchingPreferredLanguages:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn chapterMetadataGroupsBestMatchingPreferredLanguages(
             &self,
             preferred_languages: &NSArray<NSString>,
         ) -> Retained<NSArray<AVTimedMetadataGroup>>;
 
         #[cfg(all(feature = "AVMediaFormat", feature = "AVMediaSelectionGroup"))]
-        #[unsafe(method_family(none))]
         #[method_id(mediaSelectionGroupForMediaCharacteristic:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mediaSelectionGroupForMediaCharacteristic(
             &self,
             media_characteristic: &AVMediaCharacteristic,

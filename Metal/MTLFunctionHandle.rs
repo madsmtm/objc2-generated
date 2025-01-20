@@ -13,13 +13,13 @@ extern_protocol!(
         #[method(functionType)]
         fn functionType(&self) -> MTLFunctionType;
 
-        #[unsafe(method_family(none))]
         #[method_id(name)]
+        #[unsafe(method_family = none)]
         fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "MTLDevice")]
-        #[unsafe(method_family(none))]
         #[method_id(device)]
+        #[unsafe(method_family = none)]
         fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
     }
 );

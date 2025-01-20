@@ -35,8 +35,8 @@ extern_methods!(
     unsafe impl MIDIUMPFunctionBlock {
         #[cfg(feature = "objc2-foundation")]
         /// A string containing the Function Block's name.
-        #[unsafe(method_family(none))]
         #[method_id(name)]
+        #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(all(feature = "MIDIMessages", feature = "MIDIUMPCI"))]
@@ -78,8 +78,8 @@ extern_methods!(
         ///
         ///
         /// If the function block does not belong to an endpoint this property will be nil.
-        #[unsafe(method_family(none))]
         #[method_id(UMPEndpoint)]
+        #[unsafe(method_family = none)]
         pub unsafe fn UMPEndpoint(&self) -> Option<Retained<MIDIUMPEndpoint>>;
 
         #[cfg(feature = "MIDICIDevice")]
@@ -89,16 +89,16 @@ extern_methods!(
         /// If a Function Block was created as a MIDICIDevice object, this property will
         /// provide an in-place MIDICIDevice interface that may be used with MIDI-CI API. If the
         /// device was not created as a MIDICIDevice, this method returns nil.
-        #[unsafe(method_family(none))]
         #[method_id(midiCIDevice)]
+        #[unsafe(method_family = none)]
         pub unsafe fn midiCIDevice(&self) -> Option<Retained<MIDICIDevice>>;
 
         /// The enable state of this Function Block.
         #[method(isEnabled)]
         pub unsafe fn isEnabled(&self) -> bool;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -108,8 +108,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2")]
     unsafe impl MIDIUMPFunctionBlock {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

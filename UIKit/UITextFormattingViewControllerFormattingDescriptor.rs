@@ -142,16 +142,16 @@ unsafe impl NSSecureCoding for UITextFormattingViewControllerFormattingDescripto
 extern_methods!(
     unsafe impl UITextFormattingViewControllerFormattingDescriptor {
         /// Initializes formatting descriptor with default property values.
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Initializes formatting descriptor with a string and selected range of string.
         /// - Parameters:
         /// - string: Attributed string for which we are creating formatting descriptor.
         /// - range: Range of string that is being represented by descriptor
-        #[unsafe(method_family(init))]
         #[method_id(initWithString:range:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithString_range(
             this: Allocated<Self>,
             string: &NSAttributedString,
@@ -160,16 +160,16 @@ extern_methods!(
 
         /// Initializes formatting descriptor with attribute dictionary.
         /// - Parameter attributes: Attribute dictionary that is being represented by descriptor.
-        #[unsafe(method_family(init))]
         #[method_id(initWithAttributes:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithAttributes(
             this: Allocated<Self>,
             attributes: &NSDictionary<NSAttributedStringKey, AnyObject>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "UIFont")]
-        #[unsafe(method_family(none))]
         #[method_id(fonts)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fonts(&self) -> Option<Retained<NSArray<UIFont>>>;
 
         #[cfg(feature = "UIFont")]
@@ -178,8 +178,8 @@ extern_methods!(
         pub unsafe fn setFonts(&self, fonts: Option<&NSArray<UIFont>>);
 
         #[cfg(feature = "UIColor")]
-        #[unsafe(method_family(none))]
         #[method_id(textColors)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textColors(&self) -> Option<Retained<NSArray<UIColor>>>;
 
         #[cfg(feature = "UIColor")]
@@ -210,8 +210,8 @@ extern_methods!(
         #[method(setStrikethroughPresent:)]
         pub unsafe fn setStrikethroughPresent(&self, strikethrough_present: bool);
 
-        #[unsafe(method_family(none))]
         #[method_id(textAlignments)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textAlignments(
             &self,
         ) -> Retained<NSSet<UITextFormattingViewControllerTextAlignment>>;
@@ -223,8 +223,8 @@ extern_methods!(
             text_alignments: &NSSet<UITextFormattingViewControllerTextAlignment>,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(textLists)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textLists(&self) -> Retained<NSSet<UITextFormattingViewControllerTextList>>;
 
         /// Setter for [`textLists`][Self::textLists].
@@ -234,8 +234,8 @@ extern_methods!(
             text_lists: &NSSet<UITextFormattingViewControllerTextList>,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(highlights)]
+        #[unsafe(method_family = none)]
         pub unsafe fn highlights(&self)
             -> Retained<NSSet<UITextFormattingViewControllerHighlight>>;
 
@@ -246,8 +246,8 @@ extern_methods!(
             highlights: &NSSet<UITextFormattingViewControllerHighlight>,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(formattingStyleKey)]
+        #[unsafe(method_family = none)]
         pub unsafe fn formattingStyleKey(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`formattingStyleKey`][Self::formattingStyleKey].
@@ -259,8 +259,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITextFormattingViewControllerFormattingDescriptor {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

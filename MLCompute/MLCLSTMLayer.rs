@@ -28,8 +28,8 @@ extern_methods!(
         #[cfg(feature = "MLCLSTMDescriptor")]
         /// The LSTM descriptor
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(descriptor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn descriptor(&self) -> Retained<MLCLSTMDescriptor>;
 
         #[cfg(feature = "MLCActivationDescriptor")]
@@ -37,64 +37,64 @@ extern_methods!(
         ///
         /// The default gate activations are: sigmoid, sigmoid, tanh, sigmoid
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(gateActivations)]
+        #[unsafe(method_family = none)]
         pub unsafe fn gateActivations(&self) -> Retained<NSArray<MLCActivationDescriptor>>;
 
         #[cfg(feature = "MLCActivationDescriptor")]
         /// The output activation descriptor
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(outputResultActivation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn outputResultActivation(&self) -> Retained<MLCActivationDescriptor>;
 
         #[cfg(feature = "MLCTensor")]
         /// The array of tensors describing the input weights for the input, hidden, cell and output gates
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(inputWeights)]
+        #[unsafe(method_family = none)]
         pub unsafe fn inputWeights(&self) -> Retained<NSArray<MLCTensor>>;
 
         #[cfg(feature = "MLCTensor")]
         /// The array of tensors describing the hidden weights for the input, hidden, cell and output gates
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(hiddenWeights)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hiddenWeights(&self) -> Retained<NSArray<MLCTensor>>;
 
         #[cfg(feature = "MLCTensor")]
         /// The array of tensors describing the peephole weights for the input, hidden, cell and output gates
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(peepholeWeights)]
+        #[unsafe(method_family = none)]
         pub unsafe fn peepholeWeights(&self) -> Option<Retained<NSArray<MLCTensor>>>;
 
         #[cfg(feature = "MLCTensor")]
         /// The array of tensors describing the bias terms for the input, hidden, cell and output gates
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(biases)]
+        #[unsafe(method_family = none)]
         pub unsafe fn biases(&self) -> Option<Retained<NSArray<MLCTensor>>>;
 
         #[cfg(feature = "MLCTensorParameter")]
         /// The input weights tensor parameters used for optimizer update
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(inputWeightsParameters)]
+        #[unsafe(method_family = none)]
         pub unsafe fn inputWeightsParameters(&self) -> Retained<NSArray<MLCTensorParameter>>;
 
         #[cfg(feature = "MLCTensorParameter")]
         /// The hidden weights tensor parameters used for optimizer update
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(hiddenWeightsParameters)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hiddenWeightsParameters(&self) -> Retained<NSArray<MLCTensorParameter>>;
 
         #[cfg(feature = "MLCTensorParameter")]
         /// The peephole weights tensor parameters used for optimizer update
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(peepholeWeightsParameters)]
+        #[unsafe(method_family = none)]
         pub unsafe fn peepholeWeightsParameters(
             &self,
         ) -> Option<Retained<NSArray<MLCTensorParameter>>>;
@@ -102,8 +102,8 @@ extern_methods!(
         #[cfg(feature = "MLCTensorParameter")]
         /// The bias tensor parameter used for optimizer update
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(biasesParameters)]
+        #[unsafe(method_family = none)]
         pub unsafe fn biasesParameters(&self) -> Option<Retained<NSArray<MLCTensorParameter>>>;
 
         #[cfg(all(feature = "MLCLSTMDescriptor", feature = "MLCTensor"))]
@@ -119,8 +119,8 @@ extern_methods!(
         ///
         /// Returns: A new LSTM layer.
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(layerWithDescriptor:inputWeights:hiddenWeights:biases:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layerWithDescriptor_inputWeights_hiddenWeights_biases(
             descriptor: &MLCLSTMDescriptor,
             input_weights: &NSArray<MLCTensor>,
@@ -144,8 +144,8 @@ extern_methods!(
         ///
         /// Returns: A new LSTM layer.
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(layerWithDescriptor:inputWeights:hiddenWeights:peepholeWeights:biases:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layerWithDescriptor_inputWeights_hiddenWeights_peepholeWeights_biases(
             descriptor: &MLCLSTMDescriptor,
             input_weights: &NSArray<MLCTensor>,
@@ -184,8 +184,8 @@ extern_methods!(
         ///
         /// Returns: A new  LSTM layer.
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(layerWithDescriptor:inputWeights:hiddenWeights:peepholeWeights:biases:gateActivations:outputResultActivation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layerWithDescriptor_inputWeights_hiddenWeights_peepholeWeights_biases_gateActivations_outputResultActivation(
             descriptor: &MLCLSTMDescriptor,
             input_weights: &NSArray<MLCTensor>,
@@ -203,13 +203,13 @@ extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCLSTMLayer {
         #[deprecated]
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

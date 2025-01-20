@@ -39,16 +39,16 @@ extern_methods!(
     #[cfg(all(feature = "MKMultiPoint", feature = "MKPolyline", feature = "MKShape"))]
     unsafe impl MKGeodesicPolyline {
         #[cfg(feature = "MKGeometry")]
-        #[unsafe(method_family(none))]
         #[method_id(polylineWithPoints:count:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn polylineWithPoints_count(
             points: NonNull<MKMapPoint>,
             count: NSUInteger,
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-location")]
-        #[unsafe(method_family(none))]
         #[method_id(polylineWithCoordinates:count:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn polylineWithCoordinates_count(
             coords: NonNull<CLLocationCoordinate2D>,
             count: NSUInteger,
@@ -60,12 +60,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MKMultiPoint", feature = "MKPolyline", feature = "MKShape"))]
     unsafe impl MKGeodesicPolyline {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

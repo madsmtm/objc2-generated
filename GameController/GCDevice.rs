@@ -11,16 +11,16 @@ extern_protocol!(
     pub unsafe trait GCDevice: NSObjectProtocol {
         /// A vendor supplied name. May be nil, and is not guaranteed to be unique. This should not be used as a key in a dictionary,
         /// but simply as a way to present some basic information about the device in testing or to the user.
-        #[unsafe(method_family(none))]
         #[method_id(vendorName)]
+        #[unsafe(method_family = none)]
         unsafe fn vendorName(&self) -> Option<Retained<NSString>>;
 
         /// The product category the device belongs to. This is useful for setting appropriate UI elements based on what type of device is connected.
         ///
         ///
         /// See: GCProductCategories.h
-        #[unsafe(method_family(none))]
         #[method_id(productCategory)]
+        #[unsafe(method_family = none)]
         unsafe fn productCategory(&self) -> Retained<NSString>;
 
         #[cfg(feature = "GCPhysicalInputProfile")]
@@ -33,8 +33,8 @@ extern_protocol!(
         ///
         /// See: GCController.extendedGamepad
         #[deprecated = "Use the physicalInputProfile property on GCController instead.  For GCKeyboard, use the keyboardInput property.  For GCMouse, use the mouseInput property."]
-        #[unsafe(method_family(none))]
         #[method_id(physicalInputProfile)]
+        #[unsafe(method_family = none)]
         unsafe fn physicalInputProfile(&self) -> Retained<GCPhysicalInputProfile>;
     }
 );

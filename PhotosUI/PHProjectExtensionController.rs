@@ -25,8 +25,8 @@ extern_protocol!(
         /// DEPRECATED implement -[PHProjectExtensionController typeDescriptionDataSourceForCategory:invalidator:] instead.
         #[deprecated]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(supportedProjectTypes)]
+        #[unsafe(method_family = none)]
         unsafe fn supportedProjectTypes(&self) -> Retained<NSArray<PHProjectTypeDescription>>;
 
         #[cfg(all(
@@ -43,8 +43,8 @@ extern_protocol!(
         ///
         /// Parameter `invalidator`: is an object that can be used to invalidate information returned from the data source
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(typeDescriptionDataSourceForCategory:invalidator:)]
+        #[unsafe(method_family = none)]
         unsafe fn typeDescriptionDataSourceForCategory_invalidator(
             &self,
             category: &PHProjectCategory,

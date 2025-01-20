@@ -30,8 +30,8 @@ extern_methods!(
     #[cfg(feature = "NSToolbarItem")]
     unsafe impl NSSharingServicePickerToolbarItem {
         #[cfg(feature = "NSSharingService")]
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSSharingServicePickerToolbarItemDelegate>>>;
@@ -53,8 +53,8 @@ extern_methods!(
     unsafe impl NSSharingServicePickerToolbarItem {
         #[cfg(feature = "NSToolbar")]
         /// Initialize the toolbar item with an identifier which is a development language string used by the toolbar and its delegate for identification purposes.
-        #[unsafe(method_family(init))]
         #[method_id(initWithItemIdentifier:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithItemIdentifier(
             this: Allocated<Self>,
             item_identifier: &NSToolbarItemIdentifier,
@@ -66,12 +66,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSToolbarItem")]
     unsafe impl NSSharingServicePickerToolbarItem {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -87,8 +87,8 @@ extern_protocol!(
         /// They must conform to the
         /// <NSPasteboardWriting
         /// > protocol or be an NSItemProvider. (e.g. NSString, NSImage, NSURL, etc.).
-        #[unsafe(method_family(none))]
         #[method_id(itemsForSharingServicePickerToolbarItem:)]
+        #[unsafe(method_family = none)]
         unsafe fn itemsForSharingServicePickerToolbarItem(
             &self,
             picker_toolbar_item: &NSSharingServicePickerToolbarItem,

@@ -157,12 +157,12 @@ extern_methods!(
         #[method(setCompletes:)]
         pub unsafe fn setCompletes(&self, completes: bool);
 
-        #[unsafe(method_family(none))]
         #[method_id(completedString:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn completedString(&self, string: &NSString) -> Option<Retained<NSString>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(dataSource)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dataSource(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSComboBoxCellDataSource>>>;
@@ -199,19 +199,19 @@ extern_methods!(
         #[method(selectItemWithObjectValue:)]
         pub unsafe fn selectItemWithObjectValue(&self, object: Option<&AnyObject>);
 
-        #[unsafe(method_family(none))]
         #[method_id(itemObjectValueAtIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn itemObjectValueAtIndex(&self, index: NSInteger) -> Retained<AnyObject>;
 
-        #[unsafe(method_family(none))]
         #[method_id(objectValueOfSelectedItem)]
+        #[unsafe(method_family = none)]
         pub unsafe fn objectValueOfSelectedItem(&self) -> Option<Retained<AnyObject>>;
 
         #[method(indexOfItemWithObjectValue:)]
         pub unsafe fn indexOfItemWithObjectValue(&self, object: &AnyObject) -> NSInteger;
 
-        #[unsafe(method_family(none))]
         #[method_id(objectValues)]
+        #[unsafe(method_family = none)]
         pub unsafe fn objectValues(&self) -> Retained<NSArray>;
     }
 );
@@ -224,17 +224,17 @@ extern_methods!(
         feature = "NSTextFieldCell"
     ))]
     unsafe impl NSComboBoxCell {
-        #[unsafe(method_family(init))]
         #[method_id(initTextCell:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
-        #[unsafe(method_family(init))]
         #[method_id(initImageCell:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initImageCell(
             this: Allocated<Self>,
             image: Option<&NSImage>,
@@ -250,8 +250,8 @@ extern_methods!(
         feature = "NSTextFieldCell"
     ))]
     unsafe impl NSComboBoxCell {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -264,8 +264,8 @@ extern_methods!(
         feature = "NSTextFieldCell"
     ))]
     unsafe impl NSComboBoxCell {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -288,8 +288,8 @@ extern_protocol!(
             feature = "NSTextFieldCell"
         ))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(comboBoxCell:objectValueForItemAtIndex:)]
+        #[unsafe(method_family = none)]
         unsafe fn comboBoxCell_objectValueForItemAtIndex(
             &self,
             combo_box_cell: &NSComboBoxCell,
@@ -315,8 +315,8 @@ extern_protocol!(
             feature = "NSTextFieldCell"
         ))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(comboBoxCell:completedString:)]
+        #[unsafe(method_family = none)]
         unsafe fn comboBoxCell_completedString(
             &self,
             combo_box_cell: &NSComboBoxCell,

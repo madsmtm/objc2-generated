@@ -38,16 +38,16 @@ unsafe impl NSObjectProtocol for ASAuthorizationPublicKeyCredentialLargeBlobAsse
 
 extern_methods!(
     unsafe impl ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithOperation:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithOperation(
             this: Allocated<Self>,
             operation: ASAuthorizationPublicKeyCredentialLargeBlobAssertionOperation,
@@ -58,8 +58,8 @@ extern_methods!(
             &self,
         ) -> ASAuthorizationPublicKeyCredentialLargeBlobAssertionOperation;
 
-        #[unsafe(method_family(none))]
         #[method_id(dataToWrite)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dataToWrite(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`dataToWrite`][Self::dataToWrite].

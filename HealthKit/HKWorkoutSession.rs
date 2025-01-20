@@ -99,16 +99,16 @@ extern_methods!(
         ///
         /// This returns a copy of the configuration passed when creating the HKWorkoutSession. Changes made to
         /// the returned object have no impact on the HKWorkoutSession.
-        #[unsafe(method_family(none))]
         #[method_id(workoutConfiguration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn workoutConfiguration(&self) -> Retained<HKWorkoutConfiguration>;
 
         /// The session delegate, which receives
         ///
         /// The session delegate object is the one implementing the methods that get called when the session
         /// state changes or a failure occurs in the session.
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn HKWorkoutSessionDelegate>>>;
@@ -139,16 +139,16 @@ extern_methods!(
         ///
         /// This value is nil when a workout session is initialized. It is set when the workout session state
         /// changes to HKWorkoutSessionStateRunning.
-        #[unsafe(method_family(none))]
         #[method_id(startDate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn startDate(&self) -> Option<Retained<NSDate>>;
 
         /// Indicates the date when the workout session ended.
         ///
         /// This value is nil when a workout session is initialized. It is set when the workout session state
         /// changes to HKWorkoutSessionStateEnded.
-        #[unsafe(method_family(none))]
         #[method_id(endDate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn endDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "HKWorkoutActivity")]
@@ -157,8 +157,8 @@ extern_methods!(
         /// This returns a copy of the session's current workout activity. It will return
         /// a copy of the main workout activity if no new activity has begun. Changes made
         /// to the returned object have no impact on the HKWorkoutSession.
-        #[unsafe(method_family(none))]
         #[method_id(currentActivity)]
+        #[unsafe(method_family = none)]
         pub unsafe fn currentActivity(&self) -> Retained<HKWorkoutActivity>;
 
         #[cfg(all(feature = "HKWorkout", feature = "HKWorkoutConfiguration"))]
@@ -166,8 +166,8 @@ extern_methods!(
         ///
         /// Parameter `locationType`: The type of location where the workout will be performed.
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(initWithActivityType:locationType:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithActivityType_locationType(
             this: Allocated<Self>,
             activity_type: HKWorkoutActivityType,
@@ -180,8 +180,8 @@ extern_methods!(
         /// Parameter `error`: If the configuration does not specify valid configuration properties, an
         /// an NSError describing the error is set and nil is returned.
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(initWithConfiguration:error:_)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithConfiguration_error(
             this: Allocated<Self>,
             workout_configuration: &HKWorkoutConfiguration,
@@ -194,16 +194,16 @@ extern_methods!(
         ///
         /// Parameter `error`: If the configuration does not specify valid configuration properties, an
         /// an NSError describing the error is set and nil is returned.
-        #[unsafe(method_family(init))]
         #[method_id(initWithHealthStore:configuration:error:_)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithHealthStore_configuration_error(
             this: Allocated<Self>,
             health_store: &HKHealthStore,
             workout_configuration: &HKWorkoutConfiguration,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Prepares the workout session for starting.
@@ -269,8 +269,8 @@ extern_methods!(
         /// for this session. This method will return the session's associated builder, creating it if needed.
         /// Calling this method more than once will return the previously-created builder. If this session was not
         /// initialized with initWithHealthStore:configuration:error:, an exception will be thrown.
-        #[unsafe(method_family(none))]
         #[method_id(associatedWorkoutBuilder)]
+        #[unsafe(method_family = none)]
         pub unsafe fn associatedWorkoutBuilder(&self) -> Retained<HKLiveWorkoutBuilder>;
 
         #[cfg(feature = "HKWorkoutConfiguration")]
@@ -344,8 +344,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKWorkoutSession {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

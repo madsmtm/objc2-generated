@@ -64,8 +64,8 @@ extern_methods!(
     #[cfg(feature = "NSFormatter")]
     unsafe impl NSDateIntervalFormatter {
         #[cfg(feature = "NSLocale")]
-        #[unsafe(method_family(none))]
         #[method_id(locale)]
+        #[unsafe(method_family = none)]
         pub unsafe fn locale(&self) -> Retained<NSLocale>;
 
         #[cfg(feature = "NSLocale")]
@@ -74,8 +74,8 @@ extern_methods!(
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
 
         #[cfg(feature = "NSCalendar")]
-        #[unsafe(method_family(none))]
         #[method_id(calendar)]
+        #[unsafe(method_family = none)]
         pub unsafe fn calendar(&self) -> Retained<NSCalendar>;
 
         #[cfg(feature = "NSCalendar")]
@@ -84,8 +84,8 @@ extern_methods!(
         pub unsafe fn setCalendar(&self, calendar: Option<&NSCalendar>);
 
         #[cfg(feature = "NSTimeZone")]
-        #[unsafe(method_family(none))]
         #[method_id(timeZone)]
+        #[unsafe(method_family = none)]
         pub unsafe fn timeZone(&self) -> Retained<NSTimeZone>;
 
         #[cfg(feature = "NSTimeZone")]
@@ -94,8 +94,8 @@ extern_methods!(
         pub unsafe fn setTimeZone(&self, time_zone: Option<&NSTimeZone>);
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(dateTemplate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dateTemplate(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
@@ -118,8 +118,8 @@ extern_methods!(
         pub unsafe fn setTimeStyle(&self, time_style: NSDateIntervalFormatterStyle);
 
         #[cfg(all(feature = "NSDate", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(stringFromDate:toDate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stringFromDate_toDate(
             &self,
             from_date: &NSDate,
@@ -127,8 +127,8 @@ extern_methods!(
         ) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSDateInterval", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(stringFromDateInterval:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stringFromDateInterval(
             &self,
             date_interval: &NSDateInterval,
@@ -140,12 +140,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSFormatter")]
     unsafe impl NSDateIntervalFormatter {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

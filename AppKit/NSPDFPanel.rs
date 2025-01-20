@@ -43,13 +43,13 @@ unsafe impl NSObjectProtocol for NSPDFPanel {}
 
 extern_methods!(
     unsafe impl NSPDFPanel {
-        #[unsafe(method_family(none))]
         #[method_id(panel)]
+        #[unsafe(method_family = none)]
         pub unsafe fn panel(mtm: MainThreadMarker) -> Retained<NSPDFPanel>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
-        #[unsafe(method_family(none))]
         #[method_id(accessoryController)]
+        #[unsafe(method_family = none)]
         pub unsafe fn accessoryController(&self) -> Option<Retained<NSViewController>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
@@ -67,8 +67,8 @@ extern_methods!(
         #[method(setOptions:)]
         pub unsafe fn setOptions(&self, options: NSPDFPanelOptions);
 
-        #[unsafe(method_family(none))]
         #[method_id(defaultFileName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn defaultFileName(&self) -> Retained<NSString>;
 
         /// Setter for [`defaultFileName`][Self::defaultFileName].
@@ -94,12 +94,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPDFPanel {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

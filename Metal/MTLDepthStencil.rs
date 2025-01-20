@@ -141,12 +141,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLStencilDescriptor {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -182,16 +182,16 @@ extern_methods!(
         #[method(setDepthWriteEnabled:)]
         pub fn setDepthWriteEnabled(&self, depth_write_enabled: bool);
 
-        #[unsafe(method_family(none))]
         #[method_id(frontFaceStencil)]
+        #[unsafe(method_family = none)]
         pub fn frontFaceStencil(&self) -> Retained<MTLStencilDescriptor>;
 
         /// Setter for [`frontFaceStencil`][Self::frontFaceStencil].
         #[method(setFrontFaceStencil:)]
         pub fn setFrontFaceStencil(&self, front_face_stencil: Option<&MTLStencilDescriptor>);
 
-        #[unsafe(method_family(none))]
         #[method_id(backFaceStencil)]
+        #[unsafe(method_family = none)]
         pub fn backFaceStencil(&self) -> Retained<MTLStencilDescriptor>;
 
         /// Setter for [`backFaceStencil`][Self::backFaceStencil].
@@ -199,8 +199,8 @@ extern_methods!(
         pub fn setBackFaceStencil(&self, back_face_stencil: Option<&MTLStencilDescriptor>);
 
         /// A string to help identify the created object.
-        #[unsafe(method_family(none))]
         #[method_id(label)]
+        #[unsafe(method_family = none)]
         pub fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
@@ -212,12 +212,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLDepthStencilDescriptor {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -226,14 +226,14 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldepthstencilstate?language=objc)
     pub unsafe trait MTLDepthStencilState: NSObjectProtocol {
         /// A string to help identify this object.
-        #[unsafe(method_family(none))]
         #[method_id(label)]
+        #[unsafe(method_family = none)]
         fn label(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "MTLDevice")]
         /// The device this resource was created against.  This resource can only be used with this device.
-        #[unsafe(method_family(none))]
         #[method_id(device)]
+        #[unsafe(method_family = none)]
         fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
     }
 );

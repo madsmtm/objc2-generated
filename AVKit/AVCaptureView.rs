@@ -95,8 +95,8 @@ extern_methods!(
         /// A capture session represented by this view.
         ///
         /// Modifying the capture session will impact its visual representation in the view. The default value is a session configured for movie file recordings of audio and video media data. Use -setSession:showVideoPreview:showAudioPreview: to change the value of this property.
-        #[unsafe(method_family(none))]
         #[method_id(session)]
+        #[unsafe(method_family = none)]
         pub unsafe fn session(&self) -> Option<Retained<AVCaptureSession>>;
 
         #[cfg(feature = "objc2-av-foundation")]
@@ -121,15 +121,15 @@ extern_methods!(
         /// A capture file output used to record media data.
         ///
         /// The value of this property is the first instance of AVCaptureFileOutput contained in the session's outputs array or nil if no such instance is found. In the latter case the capture view's start recording button will be disabled. However, the controls for choosing input sources may still be enabled.
-        #[unsafe(method_family(none))]
         #[method_id(fileOutput)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fileOutput(&self) -> Option<Retained<AVCaptureFileOutput>>;
 
         /// The capture view's delegate.
         ///
         /// The start recording button will be disabled if the delegate is not set.
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVCaptureViewDelegate>>>;
@@ -154,8 +154,8 @@ extern_methods!(
         /// A string defining how the video is displayed within the views bounds rect.
         ///
         /// Options are AVLayerVideoGravityResize, AVLayerVideoGravityResizeAspect and AVLayerVideoGravityResizeAspectFill. AVLayerVideoGravityResizeAspect is default.
-        #[unsafe(method_family(none))]
         #[method_id(videoGravity)]
+        #[unsafe(method_family = none)]
         pub unsafe fn videoGravity(&self) -> Retained<AVLayerVideoGravity>;
 
         #[cfg(feature = "objc2-av-foundation")]
@@ -170,12 +170,12 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl AVCaptureView {
-        #[unsafe(method_family(init))]
         #[method_id(initWithFrame:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -188,8 +188,8 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl AVCaptureView {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -199,8 +199,8 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl AVCaptureView {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

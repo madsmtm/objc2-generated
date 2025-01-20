@@ -17,13 +17,13 @@ unsafe impl NSObjectProtocol for NSUbiquitousKeyValueStore {}
 
 extern_methods!(
     unsafe impl NSUbiquitousKeyValueStore {
-        #[unsafe(method_family(none))]
         #[method_id(defaultStore)]
+        #[unsafe(method_family = none)]
         pub unsafe fn defaultStore() -> Retained<NSUbiquitousKeyValueStore>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(objectForKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn objectForKey(&self, a_key: &NSString) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
@@ -35,26 +35,26 @@ extern_methods!(
         pub unsafe fn removeObjectForKey(&self, a_key: &NSString);
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(stringForKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stringForKey(&self, a_key: &NSString) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(arrayForKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn arrayForKey(&self, a_key: &NSString) -> Option<Retained<NSArray>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(dictionaryForKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dictionaryForKey(
             &self,
             a_key: &NSString,
         ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(all(feature = "NSData", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(dataForKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dataForKey(&self, a_key: &NSString) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "NSString")]
@@ -102,8 +102,8 @@ extern_methods!(
         pub unsafe fn setBool_forKey(&self, value: bool, a_key: &NSString);
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(dictionaryRepresentation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dictionaryRepresentation(
             &self,
         ) -> Retained<NSDictionary<NSString, AnyObject>>;
@@ -116,12 +116,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSUbiquitousKeyValueStore {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

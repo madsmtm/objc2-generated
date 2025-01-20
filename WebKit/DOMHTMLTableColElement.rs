@@ -78,8 +78,8 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLTableColElement {
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(align)]
+        #[unsafe(method_family = none)]
         pub unsafe fn align(&self) -> Retained<NSString>;
 
         /// Setter for [`align`][Self::align].
@@ -88,8 +88,8 @@ extern_methods!(
         pub unsafe fn setAlign(&self, align: Option<&NSString>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(ch)]
+        #[unsafe(method_family = none)]
         pub unsafe fn ch(&self) -> Retained<NSString>;
 
         /// Setter for [`ch`][Self::ch].
@@ -98,8 +98,8 @@ extern_methods!(
         pub unsafe fn setCh(&self, ch: Option<&NSString>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(chOff)]
+        #[unsafe(method_family = none)]
         pub unsafe fn chOff(&self) -> Retained<NSString>;
 
         /// Setter for [`chOff`][Self::chOff].
@@ -117,8 +117,8 @@ extern_methods!(
         pub unsafe fn setSpan(&self, span: c_int);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(vAlign)]
+        #[unsafe(method_family = none)]
         pub unsafe fn vAlign(&self) -> Retained<NSString>;
 
         /// Setter for [`vAlign`][Self::vAlign].
@@ -127,8 +127,8 @@ extern_methods!(
         pub unsafe fn setVAlign(&self, v_align: Option<&NSString>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(width)]
+        #[unsafe(method_family = none)]
         pub unsafe fn width(&self) -> Retained<NSString>;
 
         /// Setter for [`width`][Self::width].
@@ -149,8 +149,8 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLTableColElement {
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -165,8 +165,8 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLTableColElement {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

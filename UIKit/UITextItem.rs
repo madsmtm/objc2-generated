@@ -59,27 +59,27 @@ extern_methods!(
         pub unsafe fn range(&self) -> NSRange;
 
         /// The link represented by the text item. This value is `nil` if the `contentType != UITextItemContentTypeLink`
-        #[unsafe(method_family(none))]
         #[method_id(link)]
+        #[unsafe(method_family = none)]
         pub unsafe fn link(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSTextAttachment")]
         /// The text attachment represented by the text item. This value is `nil` if the `contentType != UITextItemContentTypeTextAttachment`
-        #[unsafe(method_family(none))]
         #[method_id(textAttachment)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textAttachment(&self) -> Option<Retained<NSTextAttachment>>;
 
         /// The custom tag identifier represented by the text item. This value is `nil` if the `contentType != UITextItemContentTypeTag`
-        #[unsafe(method_family(none))]
         #[method_id(tagIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tagIdentifier(&self) -> Option<Retained<NSString>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -99,22 +99,22 @@ unsafe impl NSObjectProtocol for UITextItemMenuPreview {}
 extern_methods!(
     unsafe impl UITextItemMenuPreview {
         /// Show the default system preview for the given text item.
-        #[unsafe(method_family(none))]
         #[method_id(defaultPreview)]
+        #[unsafe(method_family = none)]
         pub unsafe fn defaultPreview(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// Show the specified preview view for the given text item.
-        #[unsafe(method_family(init))]
         #[method_id(initWithView:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithView(this: Allocated<Self>, view: &UIView) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -136,8 +136,8 @@ extern_methods!(
         ///
         ///
         /// Parameter `menu`: The menu to be presented.
-        #[unsafe(method_family(none))]
         #[method_id(configurationWithMenu:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn configurationWithMenu(menu: &UIMenu) -> Retained<Self>;
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
@@ -148,19 +148,19 @@ extern_methods!(
         ///
         /// Parameter `preview`: The preview associated with the menu. Specify
         /// `nil`for no preview.
-        #[unsafe(method_family(none))]
         #[method_id(configurationWithPreview:menu:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn configurationWithPreview_menu(
             preview: Option<&UITextItemMenuPreview>,
             menu: &UIMenu,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

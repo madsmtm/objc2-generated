@@ -53,13 +53,13 @@ unsafe impl NSObjectProtocol for HMHomeManager {}
 
 extern_methods!(
     unsafe impl HMHomeManager {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Delegate that receives updates on the collection of homes.
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn HMHomeManagerDelegate>>>;
@@ -81,8 +81,8 @@ extern_methods!(
         #[cfg(feature = "HMHome")]
         /// The primary home for this collection.
         #[deprecated = "No longer supported."]
-        #[unsafe(method_family(none))]
         #[method_id(primaryHome)]
+        #[unsafe(method_family = none)]
         pub unsafe fn primaryHome(&self) -> Option<Retained<HMHome>>;
 
         #[cfg(feature = "HMHome")]
@@ -92,8 +92,8 @@ extern_methods!(
         /// When a new home manager is created, this array is initialized as an empty array. It is
         /// not guaranteed to be filled with the list of homes, represented as HMHome objects,
         /// until the homeManagerDidUpdateHomes: delegate method has been invoked.
-        #[unsafe(method_family(none))]
         #[method_id(homes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn homes(&self) -> Retained<NSArray<HMHome>>;
 
         #[cfg(all(feature = "HMHome", feature = "block2"))]
@@ -153,8 +153,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HMHomeManager {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

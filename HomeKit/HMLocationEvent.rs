@@ -48,8 +48,8 @@ unsafe impl NSObjectProtocol for HMLocationEvent {}
 extern_methods!(
     #[cfg(feature = "HMEvent")]
     unsafe impl HMLocationEvent {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-location")]
@@ -60,15 +60,15 @@ extern_methods!(
         ///
         ///
         /// Returns: Instance object representing the location event.
-        #[unsafe(method_family(init))]
         #[method_id(initWithRegion:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithRegion(this: Allocated<Self>, region: &CLRegion) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-location")]
         /// Region on which events are triggered based on the properties notifyOnEntry and notifyOnExit.
         /// This property will be nil when an application is not authorized for location services.
-        #[unsafe(method_family(none))]
         #[method_id(region)]
+        #[unsafe(method_family = none)]
         pub unsafe fn region(&self) -> Option<Retained<CLRegion>>;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-location"))]
@@ -96,8 +96,8 @@ extern_methods!(
     #[cfg(feature = "HMEvent")]
     unsafe impl HMLocationEvent {
         #[deprecated = "HMEvent is abstract"]
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -141,15 +141,15 @@ unsafe impl NSObjectProtocol for HMMutableLocationEvent {}
 extern_methods!(
     #[cfg(feature = "HMEvent")]
     unsafe impl HMMutableLocationEvent {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-location")]
         /// Region on which events are triggered based on the properties notifyOnEntry and notifyOnExit.
         /// This property will be nil when an application is not authorized for location services.
-        #[unsafe(method_family(none))]
         #[method_id(region)]
+        #[unsafe(method_family = none)]
         pub unsafe fn region(&self) -> Option<Retained<CLRegion>>;
 
         #[cfg(feature = "objc2-core-location")]
@@ -171,8 +171,8 @@ extern_methods!(
         ///
         ///
         /// Returns: Instance object representing the location event.
-        #[unsafe(method_family(init))]
         #[method_id(initWithRegion:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithRegion(this: Allocated<Self>, region: &CLRegion) -> Retained<Self>;
     }
 );
@@ -182,8 +182,8 @@ extern_methods!(
     #[cfg(feature = "HMEvent")]
     unsafe impl HMMutableLocationEvent {
         #[deprecated = "HMEvent is abstract"]
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

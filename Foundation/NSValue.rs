@@ -37,8 +37,8 @@ extern_methods!(
         #[method(objCType)]
         pub fn objCType(&self) -> NonNull<c_char>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithBytes:objCType:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithBytes_objCType(
             this: Allocated<Self>,
             value: NonNull<c_void>,
@@ -46,8 +46,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -58,15 +58,15 @@ extern_methods!(
 extern_methods!(
     /// NSValueCreation
     unsafe impl NSValue {
-        #[unsafe(method_family(none))]
         #[method_id(valueWithBytes:objCType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn valueWithBytes_objCType(
             value: NonNull<c_void>,
             r#type: NonNull<c_char>,
         ) -> Retained<NSValue>;
 
-        #[unsafe(method_family(none))]
         #[method_id(value:withObjCType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn value_withObjCType(
             value: NonNull<c_void>,
             r#type: NonNull<c_char>,
@@ -77,18 +77,18 @@ extern_methods!(
 extern_methods!(
     /// NSValueExtensionMethods
     unsafe impl NSValue {
-        #[unsafe(method_family(none))]
         #[method_id(valueWithNonretainedObject:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn valueWithNonretainedObject(
             an_object: Option<&AnyObject>,
         ) -> Retained<NSValue>;
 
-        #[unsafe(method_family(none))]
         #[method_id(nonretainedObjectValue)]
+        #[unsafe(method_family = none)]
         pub unsafe fn nonretainedObjectValue(&self) -> Option<Retained<AnyObject>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(valueWithPointer:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn valueWithPointer(pointer: *const c_void) -> Retained<NSValue>;
 
         #[method(pointerValue)]
@@ -129,74 +129,74 @@ unsafe impl NSSecureCoding for NSNumber {}
 extern_methods!(
     unsafe impl NSNumber {
         #[cfg(feature = "NSCoder")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithChar:)]
+        #[unsafe(method_family = init)]
         pub fn initWithChar(this: Allocated<Self>, value: c_char) -> Retained<NSNumber>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithUnsignedChar:)]
+        #[unsafe(method_family = init)]
         pub fn initWithUnsignedChar(this: Allocated<Self>, value: c_uchar) -> Retained<NSNumber>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithShort:)]
+        #[unsafe(method_family = init)]
         pub fn initWithShort(this: Allocated<Self>, value: c_short) -> Retained<NSNumber>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithUnsignedShort:)]
+        #[unsafe(method_family = init)]
         pub fn initWithUnsignedShort(this: Allocated<Self>, value: c_ushort) -> Retained<NSNumber>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithInt:)]
+        #[unsafe(method_family = init)]
         pub fn initWithInt(this: Allocated<Self>, value: c_int) -> Retained<NSNumber>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithUnsignedInt:)]
+        #[unsafe(method_family = init)]
         pub fn initWithUnsignedInt(this: Allocated<Self>, value: c_uint) -> Retained<NSNumber>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithLong:)]
+        #[unsafe(method_family = init)]
         pub fn initWithLong(this: Allocated<Self>, value: c_long) -> Retained<NSNumber>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithUnsignedLong:)]
+        #[unsafe(method_family = init)]
         pub fn initWithUnsignedLong(this: Allocated<Self>, value: c_ulong) -> Retained<NSNumber>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithLongLong:)]
+        #[unsafe(method_family = init)]
         pub fn initWithLongLong(this: Allocated<Self>, value: c_longlong) -> Retained<NSNumber>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithUnsignedLongLong:)]
+        #[unsafe(method_family = init)]
         pub fn initWithUnsignedLongLong(
             this: Allocated<Self>,
             value: c_ulonglong,
         ) -> Retained<NSNumber>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithFloat:)]
+        #[unsafe(method_family = init)]
         pub fn initWithFloat(this: Allocated<Self>, value: c_float) -> Retained<NSNumber>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithDouble:)]
+        #[unsafe(method_family = init)]
         pub fn initWithDouble(this: Allocated<Self>, value: c_double) -> Retained<NSNumber>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithBool:)]
+        #[unsafe(method_family = init)]
         pub fn initWithBool(this: Allocated<Self>, value: bool) -> Retained<NSNumber>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithInteger:)]
+        #[unsafe(method_family = init)]
         pub fn initWithInteger(this: Allocated<Self>, value: NSInteger) -> Retained<NSNumber>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithUnsignedInteger:)]
+        #[unsafe(method_family = init)]
         pub fn initWithUnsignedInteger(
             this: Allocated<Self>,
             value: NSUInteger,
@@ -248,8 +248,8 @@ extern_methods!(
         pub fn unsignedIntegerValue(&self) -> NSUInteger;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(stringValue)]
+        #[unsafe(method_family = none)]
         pub fn stringValue(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSObjCRuntime")]
@@ -260,8 +260,8 @@ extern_methods!(
         pub fn isEqualToNumber(&self, number: &NSNumber) -> bool;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(descriptionWithLocale:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn descriptionWithLocale(
             &self,
             locale: Option<&AnyObject>,
@@ -272,8 +272,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSValue`
     unsafe impl NSNumber {
-        #[unsafe(method_family(init))]
         #[method_id(initWithBytes:objCType:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithBytes_objCType(
             this: Allocated<Self>,
             value: NonNull<c_void>,
@@ -285,64 +285,64 @@ extern_methods!(
 extern_methods!(
     /// NSNumberCreation
     unsafe impl NSNumber {
-        #[unsafe(method_family(none))]
         #[method_id(numberWithChar:)]
+        #[unsafe(method_family = none)]
         pub fn numberWithChar(value: c_char) -> Retained<NSNumber>;
 
-        #[unsafe(method_family(none))]
         #[method_id(numberWithUnsignedChar:)]
+        #[unsafe(method_family = none)]
         pub fn numberWithUnsignedChar(value: c_uchar) -> Retained<NSNumber>;
 
-        #[unsafe(method_family(none))]
         #[method_id(numberWithShort:)]
+        #[unsafe(method_family = none)]
         pub fn numberWithShort(value: c_short) -> Retained<NSNumber>;
 
-        #[unsafe(method_family(none))]
         #[method_id(numberWithUnsignedShort:)]
+        #[unsafe(method_family = none)]
         pub fn numberWithUnsignedShort(value: c_ushort) -> Retained<NSNumber>;
 
-        #[unsafe(method_family(none))]
         #[method_id(numberWithInt:)]
+        #[unsafe(method_family = none)]
         pub fn numberWithInt(value: c_int) -> Retained<NSNumber>;
 
-        #[unsafe(method_family(none))]
         #[method_id(numberWithUnsignedInt:)]
+        #[unsafe(method_family = none)]
         pub fn numberWithUnsignedInt(value: c_uint) -> Retained<NSNumber>;
 
-        #[unsafe(method_family(none))]
         #[method_id(numberWithLong:)]
+        #[unsafe(method_family = none)]
         pub fn numberWithLong(value: c_long) -> Retained<NSNumber>;
 
-        #[unsafe(method_family(none))]
         #[method_id(numberWithUnsignedLong:)]
+        #[unsafe(method_family = none)]
         pub fn numberWithUnsignedLong(value: c_ulong) -> Retained<NSNumber>;
 
-        #[unsafe(method_family(none))]
         #[method_id(numberWithLongLong:)]
+        #[unsafe(method_family = none)]
         pub fn numberWithLongLong(value: c_longlong) -> Retained<NSNumber>;
 
-        #[unsafe(method_family(none))]
         #[method_id(numberWithUnsignedLongLong:)]
+        #[unsafe(method_family = none)]
         pub fn numberWithUnsignedLongLong(value: c_ulonglong) -> Retained<NSNumber>;
 
-        #[unsafe(method_family(none))]
         #[method_id(numberWithFloat:)]
+        #[unsafe(method_family = none)]
         pub fn numberWithFloat(value: c_float) -> Retained<NSNumber>;
 
-        #[unsafe(method_family(none))]
         #[method_id(numberWithDouble:)]
+        #[unsafe(method_family = none)]
         pub fn numberWithDouble(value: c_double) -> Retained<NSNumber>;
 
-        #[unsafe(method_family(none))]
         #[method_id(numberWithBool:)]
+        #[unsafe(method_family = none)]
         pub fn numberWithBool(value: bool) -> Retained<NSNumber>;
 
-        #[unsafe(method_family(none))]
         #[method_id(numberWithInteger:)]
+        #[unsafe(method_family = none)]
         pub fn numberWithInteger(value: NSInteger) -> Retained<NSNumber>;
 
-        #[unsafe(method_family(none))]
         #[method_id(numberWithUnsignedInteger:)]
+        #[unsafe(method_family = none)]
         pub fn numberWithUnsignedInteger(value: NSUInteger) -> Retained<NSNumber>;
     }
 );

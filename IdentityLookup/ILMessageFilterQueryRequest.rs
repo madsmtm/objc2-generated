@@ -24,26 +24,26 @@ unsafe impl NSSecureCoding for ILMessageFilterQueryRequest {}
 extern_methods!(
     unsafe impl ILMessageFilterQueryRequest {
         /// The sender of the message the receiver relates to.
-        #[unsafe(method_family(none))]
         #[method_id(sender)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sender(&self) -> Option<Retained<NSString>>;
 
         /// The body of the message the receiver relates to.
-        #[unsafe(method_family(none))]
         #[method_id(messageBody)]
+        #[unsafe(method_family = none)]
         pub unsafe fn messageBody(&self) -> Option<Retained<NSString>>;
 
         /// The ISO Country Code of the receiving phone number, in format specified by the ISO 3166-2 standard
-        #[unsafe(method_family(none))]
         #[method_id(receiverISOCountryCode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn receiverISOCountryCode(&self) -> Option<Retained<NSString>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -71,8 +71,8 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl GKMatchmakerViewController {
-        #[unsafe(method_family(none))]
         #[method_id(matchmakerDelegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn matchmakerDelegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn GKMatchmakerViewControllerDelegate>>>;
@@ -86,8 +86,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "GKMatchmaker")]
-        #[unsafe(method_family(none))]
         #[method_id(matchRequest)]
+        #[unsafe(method_family = none)]
         pub unsafe fn matchRequest(&self) -> Retained<GKMatchRequest>;
 
         /// set to YES to receive hosted (eg. not peer-to-peer) match results. Will cause the controller to return an array of players instead of a match.
@@ -118,8 +118,8 @@ extern_methods!(
 
         #[cfg(feature = "GKMatchmaker")]
         /// Initialize with a matchmaking request, allowing the user to send invites and/or start matchmaking
-        #[unsafe(method_family(init))]
         #[method_id(initWithMatchRequest:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithMatchRequest(
             this: Allocated<Self>,
             request: &GKMatchRequest,
@@ -127,8 +127,8 @@ extern_methods!(
 
         #[cfg(feature = "GKMatchmaker")]
         /// Initialize with an accepted invite, allowing the user to see the status of other invited players and get notified when the game starts
-        #[unsafe(method_family(init))]
         #[method_id(initWithInvite:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithInvite(
             this: Allocated<Self>,
             invite: &GKInvite,
@@ -146,8 +146,8 @@ extern_methods!(
 
         /// deprecated, set the message on the match request instead
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(defaultInvitationMessage)]
+        #[unsafe(method_family = none)]
         pub unsafe fn defaultInvitationMessage(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`defaultInvitationMessage`][Self::defaultInvitationMessage].
@@ -165,16 +165,16 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl GKMatchmakerViewController {
-        #[unsafe(method_family(init))]
         #[method_id(initWithNibName:bundle:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSNibName>,
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -187,8 +187,8 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl GKMatchmakerViewController {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -198,8 +198,8 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl GKMatchmakerViewController {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

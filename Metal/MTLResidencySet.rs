@@ -27,8 +27,8 @@ unsafe impl NSObjectProtocol for MTLResidencySetDescriptor {}
 extern_methods!(
     unsafe impl MTLResidencySetDescriptor {
         /// An optional label for the MTLResidencySet.
-        #[unsafe(method_family(none))]
         #[method_id(label)]
+        #[unsafe(method_family = none)]
         pub unsafe fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
@@ -48,12 +48,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLResidencySetDescriptor {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -68,13 +68,13 @@ extern_protocol!(
     pub unsafe trait MTLResidencySet: NSObjectProtocol {
         #[cfg(feature = "MTLDevice")]
         /// The device that created the residency set
-        #[unsafe(method_family(none))]
         #[method_id(device)]
+        #[unsafe(method_family = none)]
         unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         /// The label specified at creation.
-        #[unsafe(method_family(none))]
         #[method_id(label)]
+        #[unsafe(method_family = none)]
         unsafe fn label(&self) -> Option<Retained<NSString>>;
 
         /// The memory footprint of the set in bytes at the last commit operation. This may include internal allocations as well.
@@ -135,8 +135,8 @@ extern_protocol!(
         /// Array of all allocations associated with the set.
         ///
         /// This property includes non-committed allocations in the set.
-        #[unsafe(method_family(none))]
         #[method_id(allAllocations)]
+        #[unsafe(method_family = none)]
         unsafe fn allAllocations(&self) -> Retained<NSArray<ProtocolObject<dyn MTLAllocation>>>;
 
         /// Returns the current number of unique allocations present in the set.

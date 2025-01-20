@@ -18,8 +18,8 @@ unsafe impl NSObjectProtocol for EASession {}
 extern_methods!(
     unsafe impl EASession {
         #[cfg(feature = "EAAccessory")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithAccessory:forProtocol:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithAccessory_forProtocol(
             this: Allocated<Self>,
             accessory: &EAAccessory,
@@ -27,20 +27,20 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "EAAccessory")]
-        #[unsafe(method_family(none))]
         #[method_id(accessory)]
+        #[unsafe(method_family = none)]
         pub unsafe fn accessory(&self) -> Option<Retained<EAAccessory>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(protocolString)]
+        #[unsafe(method_family = none)]
         pub unsafe fn protocolString(&self) -> Option<Retained<NSString>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(inputStream)]
+        #[unsafe(method_family = none)]
         pub unsafe fn inputStream(&self) -> Option<Retained<NSInputStream>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(outputStream)]
+        #[unsafe(method_family = none)]
         pub unsafe fn outputStream(&self) -> Option<Retained<NSOutputStream>>;
     }
 );
@@ -48,12 +48,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl EASession {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

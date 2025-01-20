@@ -28,8 +28,8 @@ extern_methods!(
             feature = "NSManagedObjectContext",
             feature = "NSPersistentStoreRequest"
         ))]
-        #[unsafe(method_family(none))]
         #[method_id(executeRequest:withContext:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn executeRequest_withContext_error(
             &self,
             request: &NSPersistentStoreRequest,
@@ -41,8 +41,8 @@ extern_methods!(
             feature = "NSManagedObjectContext",
             feature = "NSManagedObjectID"
         ))]
-        #[unsafe(method_family(new))]
         #[method_id(newValuesForObjectWithID:withContext:error:_)]
+        #[unsafe(method_family = new)]
         pub unsafe fn newValuesForObjectWithID_withContext_error(
             &self,
             object_id: &NSManagedObjectID,
@@ -55,8 +55,8 @@ extern_methods!(
             feature = "NSPropertyDescription",
             feature = "NSRelationshipDescription"
         ))]
-        #[unsafe(method_family(new))]
         #[method_id(newValueForRelationship:forObjectWithID:withContext:error:_)]
+        #[unsafe(method_family = new)]
         pub unsafe fn newValueForRelationship_forObjectWithID_withContext_error(
             &self,
             relationship: &NSRelationshipDescription,
@@ -64,13 +64,13 @@ extern_methods!(
             context: Option<&NSManagedObjectContext>,
         ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(identifierForNewStoreAtURL:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn identifierForNewStoreAtURL(store_url: &NSURL) -> Retained<AnyObject>;
 
         #[cfg(all(feature = "NSManagedObject", feature = "NSManagedObjectID"))]
-        #[unsafe(method_family(none))]
         #[method_id(obtainPermanentIDsForObjects:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn obtainPermanentIDsForObjects_error(
             &self,
             array: &NSArray<NSManagedObject>,
@@ -91,8 +91,8 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSEntityDescription", feature = "NSManagedObjectID"))]
-        #[unsafe(method_family(new))]
         #[method_id(newObjectIDForEntity:referenceObject:)]
+        #[unsafe(method_family = new)]
         pub unsafe fn newObjectIDForEntity_referenceObject(
             &self,
             entity: &NSEntityDescription,
@@ -100,8 +100,8 @@ extern_methods!(
         ) -> Retained<NSManagedObjectID>;
 
         #[cfg(feature = "NSManagedObjectID")]
-        #[unsafe(method_family(none))]
         #[method_id(referenceObjectForObjectID:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn referenceObjectForObjectID(
             &self,
             object_id: &NSManagedObjectID,
@@ -114,8 +114,8 @@ extern_methods!(
     #[cfg(feature = "NSPersistentStore")]
     unsafe impl NSIncrementalStore {
         #[cfg(feature = "NSPersistentStoreCoordinator")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithPersistentStoreCoordinator:configurationName:URL:options:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithPersistentStoreCoordinator_configurationName_URL_options(
             this: Allocated<Self>,
             root: Option<&NSPersistentStoreCoordinator>,
@@ -124,8 +124,8 @@ extern_methods!(
             options: Option<&NSDictionary>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -134,8 +134,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSPersistentStore")]
     unsafe impl NSIncrementalStore {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

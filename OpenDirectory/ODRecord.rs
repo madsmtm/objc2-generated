@@ -75,8 +75,8 @@ extern_methods!(
         /// Returns a dictionary containing the password policy for the record if available.  If no policy for record
         /// nil will be returned.  outError is optional parameter, nil can be passed if error details are not needed.
         #[deprecated = "use effectivePoliciesAndReturnError"]
-        #[unsafe(method_family(none))]
         #[method_id(passwordPolicyAndReturnError:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn passwordPolicyAndReturnError(
             &self,
             out_error: Option<&mut Option<Retained<NSError>>>,
@@ -139,15 +139,15 @@ extern_methods!(
         /// Type of the record.
         ///
         /// The record type.
-        #[unsafe(method_family(none))]
         #[method_id(recordType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn recordType(&self) -> Retained<NSString>;
 
         /// Name of the record.
         ///
         /// This is the official record name.
-        #[unsafe(method_family(none))]
         #[method_id(recordName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn recordName(&self) -> Retained<NSString>;
 
         /// Returns the attributes and values in the form of a key-value pair set.
@@ -157,8 +157,8 @@ extern_methods!(
         /// of either NSData or NSString depending on the type of data.  Binary data will be returned as NSData.
         /// If nil is passed, then all currently retrieved attributes will be returned.  outError is optional parameter,
         /// nil can be passed if error details are not needed.
-        #[unsafe(method_family(none))]
         #[method_id(recordDetailsForAttributes:error:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn recordDetailsForAttributes_error(
             &self,
             in_attributes: Option<&NSArray>,
@@ -170,8 +170,8 @@ extern_methods!(
         ///
         /// Returns an NSArray of NSString or NSData depending on the type of data.  Binary data will be
         /// returned as NSData.  outError is optional parameter, nil can be passed if error details are not needed.
-        #[unsafe(method_family(none))]
         #[method_id(valuesForAttribute:error:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn valuesForAttribute_error(
             &self,
             in_attribute: Option<&ODAttributeType>,
@@ -243,8 +243,8 @@ extern_methods!(
         ///
         /// This will copy any policies configured for the record.
         #[deprecated = "use accountPoliciesAndReturnError:"]
-        #[unsafe(method_family(none))]
         #[method_id(policiesAndReturnError:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn policiesAndReturnError(
             &self,
             error: Option<&mut Option<Retained<NSError>>>,
@@ -254,8 +254,8 @@ extern_methods!(
         ///
         /// This will copy any policies configured for the record.
         #[deprecated = "use authenticationAllowedAndReturnError: and similar methods"]
-        #[unsafe(method_family(none))]
         #[method_id(effectivePoliciesAndReturnError:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn effectivePoliciesAndReturnError(
             &self,
             error: Option<&mut Option<Retained<NSError>>>,
@@ -267,8 +267,8 @@ extern_methods!(
         /// for the policy in question.  For example, if password history is available, it will state how much history is
         /// supported.
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(supportedPoliciesAndReturnError:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn supportedPoliciesAndReturnError(
             &self,
             error: Option<&mut Option<Retained<NSError>>>,
@@ -401,8 +401,8 @@ extern_methods!(
         /// Returns: a NSDictionary containing all currently set policies.  The
         /// format of the dictionary is the same as described in
         /// setAccountPolicies.
-        #[unsafe(method_family(none))]
         #[method_id(accountPoliciesAndReturnError:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn accountPoliciesAndReturnError(
             &self,
             error: Option<&mut Option<Retained<NSError>>>,
@@ -533,12 +533,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ODRecord {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -28,12 +28,12 @@ unsafe impl NSObjectProtocol for AVCaptureOutput {}
 
 extern_methods!(
     unsafe impl AVCaptureOutput {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "AVCaptureSession")]
@@ -41,8 +41,8 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an NSArray of AVCaptureConnection objects, each describing the mapping between the receiver and the AVCaptureInputPorts of one or more AVCaptureInputs.
-        #[unsafe(method_family(none))]
         #[method_id(connections)]
+        #[unsafe(method_family = none)]
         pub unsafe fn connections(&self) -> Retained<NSArray<AVCaptureConnection>>;
 
         #[cfg(all(feature = "AVCaptureSession", feature = "AVMediaFormat"))]
@@ -53,8 +53,8 @@ extern_methods!(
         ///
         ///
         /// This convenience method returns the first AVCaptureConnection in the receiver's connections array that has an AVCaptureInputPort of the specified mediaType. If no connection with the specified mediaType is found, nil is returned.
-        #[unsafe(method_family(none))]
         #[method_id(connectionWithMediaType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn connectionWithMediaType(
             &self,
             media_type: &AVMediaType,
@@ -76,8 +76,8 @@ extern_methods!(
         /// If an AVCaptureVideoDataOutput instance's connection's videoOrientation or videoMirrored properties are set to non-default values, the output applies the desired mirroring and orientation by physically rotating and or flipping sample buffers as they pass through it. AVCaptureStillImageOutput, on the other hand, does not physically rotate its buffers. It attaches an appropriate kCGImagePropertyOrientation number to captured still image buffers (see ImageIO/CGImageProperties.h) indicating how the image should be displayed on playback. Likewise, AVCaptureMovieFileOutput does not physically apply orientation/mirroring to its sample buffers -- it uses a QuickTime track matrix to indicate how the buffers should be rotated and/or flipped on playback.
         ///
         /// transformedMetadataObjectForMetadataObject:connection: alters the visual properties of the provided metadata object to match the physical rotation / mirroring of the sample buffers provided by the receiver through the indicated connection. I.e., for video data output, adjusted metadata object coordinates are rotated/mirrored. For still image and movie file output, they are not.
-        #[unsafe(method_family(none))]
         #[method_id(transformedMetadataObjectForMetadataObject:connection:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn transformedMetadataObjectForMetadataObject_connection(
             &self,
             metadata_object: &AVMetadataObject,

@@ -50,8 +50,8 @@ extern_methods!(
         pub unsafe fn setReceiversSpecifier(&self, receivers_ref: Option<&NSScriptObjectSpecifier>);
 
         #[cfg(feature = "NSScriptObjectSpecifiers")]
-        #[unsafe(method_family(none))]
         #[method_id(keySpecifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn keySpecifier(&self) -> Retained<NSScriptObjectSpecifier>;
     }
 );
@@ -61,16 +61,16 @@ extern_methods!(
     #[cfg(feature = "NSScriptCommand")]
     unsafe impl NSCloneCommand {
         #[cfg(feature = "NSScriptCommandDescription")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithCommandDescription:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCommandDescription(
             this: Allocated<Self>,
             command_def: &NSScriptCommandDescription,
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             in_coder: &NSCoder,
@@ -82,12 +82,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSScriptCommand")]
     unsafe impl NSCloneCommand {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -119,16 +119,16 @@ extern_methods!(
     #[cfg(feature = "NSScriptCommand")]
     unsafe impl NSCloseCommand {
         #[cfg(feature = "NSScriptCommandDescription")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithCommandDescription:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCommandDescription(
             this: Allocated<Self>,
             command_def: &NSScriptCommandDescription,
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             in_coder: &NSCoder,
@@ -140,12 +140,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSScriptCommand")]
     unsafe impl NSCloseCommand {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -174,16 +174,16 @@ extern_methods!(
     #[cfg(feature = "NSScriptCommand")]
     unsafe impl NSCountCommand {
         #[cfg(feature = "NSScriptCommandDescription")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithCommandDescription:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCommandDescription(
             this: Allocated<Self>,
             command_def: &NSScriptCommandDescription,
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             in_coder: &NSCoder,
@@ -195,12 +195,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSScriptCommand")]
     unsafe impl NSCountCommand {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -223,13 +223,13 @@ extern_methods!(
     #[cfg(feature = "NSScriptCommand")]
     unsafe impl NSCreateCommand {
         #[cfg(all(feature = "NSClassDescription", feature = "NSScriptClassDescription"))]
-        #[unsafe(method_family(none))]
         #[method_id(createClassDescription)]
+        #[unsafe(method_family = none)]
         pub unsafe fn createClassDescription(&self) -> Retained<NSScriptClassDescription>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(resolvedKeyDictionary)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resolvedKeyDictionary(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
     }
 );
@@ -239,16 +239,16 @@ extern_methods!(
     #[cfg(feature = "NSScriptCommand")]
     unsafe impl NSCreateCommand {
         #[cfg(feature = "NSScriptCommandDescription")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithCommandDescription:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCommandDescription(
             this: Allocated<Self>,
             command_def: &NSScriptCommandDescription,
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             in_coder: &NSCoder,
@@ -260,12 +260,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSScriptCommand")]
     unsafe impl NSCreateCommand {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -292,8 +292,8 @@ extern_methods!(
         pub unsafe fn setReceiversSpecifier(&self, receivers_ref: Option<&NSScriptObjectSpecifier>);
 
         #[cfg(feature = "NSScriptObjectSpecifiers")]
-        #[unsafe(method_family(none))]
         #[method_id(keySpecifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn keySpecifier(&self) -> Retained<NSScriptObjectSpecifier>;
     }
 );
@@ -303,16 +303,16 @@ extern_methods!(
     #[cfg(feature = "NSScriptCommand")]
     unsafe impl NSDeleteCommand {
         #[cfg(feature = "NSScriptCommandDescription")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithCommandDescription:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCommandDescription(
             this: Allocated<Self>,
             command_def: &NSScriptCommandDescription,
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             in_coder: &NSCoder,
@@ -324,12 +324,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSScriptCommand")]
     unsafe impl NSDeleteCommand {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -358,16 +358,16 @@ extern_methods!(
     #[cfg(feature = "NSScriptCommand")]
     unsafe impl NSExistsCommand {
         #[cfg(feature = "NSScriptCommandDescription")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithCommandDescription:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCommandDescription(
             this: Allocated<Self>,
             command_def: &NSScriptCommandDescription,
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             in_coder: &NSCoder,
@@ -379,12 +379,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSScriptCommand")]
     unsafe impl NSExistsCommand {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -413,16 +413,16 @@ extern_methods!(
     #[cfg(feature = "NSScriptCommand")]
     unsafe impl NSGetCommand {
         #[cfg(feature = "NSScriptCommandDescription")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithCommandDescription:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCommandDescription(
             this: Allocated<Self>,
             command_def: &NSScriptCommandDescription,
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             in_coder: &NSCoder,
@@ -434,12 +434,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSScriptCommand")]
     unsafe impl NSGetCommand {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -466,8 +466,8 @@ extern_methods!(
         pub unsafe fn setReceiversSpecifier(&self, receivers_ref: Option<&NSScriptObjectSpecifier>);
 
         #[cfg(feature = "NSScriptObjectSpecifiers")]
-        #[unsafe(method_family(none))]
         #[method_id(keySpecifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn keySpecifier(&self) -> Retained<NSScriptObjectSpecifier>;
     }
 );
@@ -477,16 +477,16 @@ extern_methods!(
     #[cfg(feature = "NSScriptCommand")]
     unsafe impl NSMoveCommand {
         #[cfg(feature = "NSScriptCommandDescription")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithCommandDescription:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCommandDescription(
             this: Allocated<Self>,
             command_def: &NSScriptCommandDescription,
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             in_coder: &NSCoder,
@@ -498,12 +498,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSScriptCommand")]
     unsafe impl NSMoveCommand {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -535,16 +535,16 @@ extern_methods!(
     #[cfg(feature = "NSScriptCommand")]
     unsafe impl NSQuitCommand {
         #[cfg(feature = "NSScriptCommandDescription")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithCommandDescription:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCommandDescription(
             this: Allocated<Self>,
             command_def: &NSScriptCommandDescription,
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             in_coder: &NSCoder,
@@ -556,12 +556,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSScriptCommand")]
     unsafe impl NSQuitCommand {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -588,8 +588,8 @@ extern_methods!(
         pub unsafe fn setReceiversSpecifier(&self, receivers_ref: Option<&NSScriptObjectSpecifier>);
 
         #[cfg(feature = "NSScriptObjectSpecifiers")]
-        #[unsafe(method_family(none))]
         #[method_id(keySpecifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn keySpecifier(&self) -> Retained<NSScriptObjectSpecifier>;
     }
 );
@@ -599,16 +599,16 @@ extern_methods!(
     #[cfg(feature = "NSScriptCommand")]
     unsafe impl NSSetCommand {
         #[cfg(feature = "NSScriptCommandDescription")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithCommandDescription:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCommandDescription(
             this: Allocated<Self>,
             command_def: &NSScriptCommandDescription,
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             in_coder: &NSCoder,
@@ -620,12 +620,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSScriptCommand")]
     unsafe impl NSSetCommand {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

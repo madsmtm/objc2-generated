@@ -56,8 +56,8 @@ extern_methods!(
     #[cfg(feature = "NSFormatter")]
     unsafe impl NSEnergyFormatter {
         #[cfg(feature = "NSNumberFormatter")]
-        #[unsafe(method_family(none))]
         #[method_id(numberFormatter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn numberFormatter(&self) -> Retained<NSNumberFormatter>;
 
         #[cfg(feature = "NSNumberFormatter")]
@@ -80,8 +80,8 @@ extern_methods!(
         pub unsafe fn setForFoodEnergyUse(&self, for_food_energy_use: bool);
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(stringFromValue:unit:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stringFromValue_unit(
             &self,
             value: c_double,
@@ -89,13 +89,13 @@ extern_methods!(
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(stringFromJoules:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stringFromJoules(&self, number_in_joules: c_double) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(unitStringFromValue:unit:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn unitStringFromValue_unit(
             &self,
             value: c_double,
@@ -103,8 +103,8 @@ extern_methods!(
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(unitStringFromJoules:usedUnit:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn unitStringFromJoules_usedUnit(
             &self,
             number_in_joules: c_double,
@@ -126,12 +126,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSFormatter")]
     unsafe impl NSEnergyFormatter {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

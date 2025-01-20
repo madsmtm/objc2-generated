@@ -41,8 +41,8 @@ extern_category!(
         ///
         ///
         /// This extension simplifies converting CMVideoDimensions struct values into NSValue objects.
-        #[unsafe(method_family(none))]
         #[method_id(valueWithCMVideoDimensions:)]
+        #[unsafe(method_family = none)]
         unsafe fn valueWithCMVideoDimensions(
             dimensions: CMVideoDimensions,
         ) -> Option<Retained<NSValue>>;

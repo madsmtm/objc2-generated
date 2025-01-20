@@ -37,14 +37,14 @@ extern_methods!(
     unsafe impl NSEPSImageRep {
         /// Creates and returns a representation of an image initialized with the specified EPS data. Convenience of `-initWithData:`.
         /// - Note: This method always returns `nil` on macOS 14.0 and later.
-        #[unsafe(method_family(none))]
         #[method_id(imageRepWithData:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn imageRepWithData(eps_data: &NSData) -> Option<Retained<Self>>;
 
         /// Returns a representation of an image initialized with the specified EPS data.
         /// - Note: This method always returns `nil` on macOS 14.0 and later.
-        #[unsafe(method_family(init))]
         #[method_id(initWithData:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithData(
             this: Allocated<Self>,
             eps_data: &NSData,
@@ -55,8 +55,8 @@ extern_methods!(
         pub unsafe fn boundingBox(&self) -> NSRect;
 
         /// The EPS representation of the image representation.
-        #[unsafe(method_family(none))]
         #[method_id(EPSRepresentation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn EPSRepresentation(&self) -> Retained<NSData>;
 
         /// The `-[NSEPSImageRep draw]` method sends this message to itself just before rendering the EPS code. The default implementation of this method does nothing. It can be overridden in a subclass to prepare the graphics state as needed.
@@ -70,12 +70,12 @@ extern_methods!(
     /// Methods declared on superclass `NSImageRep`
     #[cfg(feature = "NSImageRep")]
     unsafe impl NSEPSImageRep {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -87,8 +87,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSImageRep")]
     unsafe impl NSEPSImageRep {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

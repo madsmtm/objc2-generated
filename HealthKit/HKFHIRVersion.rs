@@ -48,31 +48,31 @@ extern_methods!(
         pub unsafe fn patchVersion(&self) -> NSInteger;
 
         #[cfg(feature = "HKFHIRRelease")]
-        #[unsafe(method_family(none))]
         #[method_id(FHIRRelease)]
+        #[unsafe(method_family = none)]
         pub unsafe fn FHIRRelease(&self) -> Retained<HKFHIRRelease>;
 
         /// A string representation in the format "{major}.{minor}.{patch}".
-        #[unsafe(method_family(none))]
         #[method_id(stringRepresentation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stringRepresentation(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(versionFromVersionString:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn versionFromVersionString_error(
             version_string: &NSString,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(primaryDSTU2Version)]
+        #[unsafe(method_family = none)]
         pub unsafe fn primaryDSTU2Version() -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(primaryR4Version)]
+        #[unsafe(method_family = none)]
         pub unsafe fn primaryR4Version() -> Retained<Self>;
     }
 );
@@ -80,8 +80,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKFHIRVersion {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -61,8 +61,8 @@ extern_methods!(
     unsafe impl VNRecognizeTextRequest {
         /// Returns all the supported languages for a given text recognition level. Note that a language supported in one recognition level might not be available in another.
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(supportedRecognitionLanguagesForTextRecognitionLevel:revision:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn supportedRecognitionLanguagesForTextRecognitionLevel_revision_error(
             recognition_level: VNRequestTextRecognitionLevel,
             request_revision: NSUInteger,
@@ -77,16 +77,16 @@ extern_methods!(
         ///
         ///
         /// Returns: The collection of language identifiers, or nil if a failure occurs.
-        #[unsafe(method_family(none))]
         #[method_id(supportedRecognitionLanguagesAndReturnError:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn supportedRecognitionLanguagesAndReturnError(
             &self,
         ) -> Result<Retained<NSArray<NSString>>, Retained<NSError>>;
 
         /// Specify the languages used for the detection. The order of the languages in the array defines the order in which languages will be used during the language processing.
         /// The languages are specified as ISO language codes.
-        #[unsafe(method_family(none))]
         #[method_id(recognitionLanguages)]
+        #[unsafe(method_family = none)]
         pub unsafe fn recognitionLanguages(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`recognitionLanguages`][Self::recognitionLanguages].
@@ -94,8 +94,8 @@ extern_methods!(
         pub fn setRecognitionLanguages(&self, recognition_languages: &NSArray<NSString>);
 
         /// An array of strings that will be used at the word recognition stage in addition to the recognition languages. The customWords list takes precedence over the standard lexicon.
-        #[unsafe(method_family(none))]
         #[method_id(customWords)]
+        #[unsafe(method_family = none)]
         pub fn customWords(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`customWords`][Self::customWords].
@@ -135,8 +135,8 @@ extern_methods!(
 
         #[cfg(feature = "VNObservation")]
         /// VNRecognizedTextObservation results.
-        #[unsafe(method_family(none))]
         #[method_id(results)]
+        #[unsafe(method_family = none)]
         pub fn results(&self) -> Option<Retained<NSArray<VNRecognizedTextObservation>>>;
     }
 );
@@ -146,8 +146,8 @@ extern_methods!(
     #[cfg(feature = "VNRequest")]
     unsafe impl VNRecognizeTextRequest {
         /// Creates a new VNRequest with no completion handler.
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
@@ -155,8 +155,8 @@ extern_methods!(
         ///
         ///
         /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
-        #[unsafe(method_family(init))]
         #[method_id(initWithCompletionHandler:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
             completion_handler: VNRequestCompletionHandler,
@@ -168,8 +168,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "VNRequest")]
     unsafe impl VNRecognizeTextRequest {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
     }
 );

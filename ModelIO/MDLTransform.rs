@@ -35,8 +35,8 @@ extern_protocol!(
 
         /// An array of sample times for which a key has been stored
         /// If no animation data is present, the array will contain a single value of zero
-        #[unsafe(method_family(none))]
         #[method_id(keyTimes)]
+        #[unsafe(method_family = none)]
         unsafe fn keyTimes(&self) -> Retained<NSArray<NSNumber>>;
     }
 );
@@ -76,26 +76,26 @@ unsafe impl NSObjectProtocol for MDLTransform {}
 extern_methods!(
     unsafe impl MDLTransform {
         /// Initialize an MDLTransform's matrices with identity
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(initWithIdentity)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentity(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "MDLTypes")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithTransformComponent:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithTransformComponent(
             this: Allocated<Self>,
             component: &ProtocolObject<dyn MDLTransformComponent>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "MDLTypes")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithTransformComponent:resetsTransform:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithTransformComponent_resetsTransform(
             this: Allocated<Self>,
             component: &ProtocolObject<dyn MDLTransformComponent>,
@@ -111,8 +111,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLTransform {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

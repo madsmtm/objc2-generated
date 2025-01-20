@@ -138,8 +138,8 @@ extern_protocol!(
         /// Called when we begin renaming. Implementing this method allows for customizing the initial text that will show up in the text field as well as the
         /// selected range of that text.
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(navigationItem:willBeginRenamingWithSuggestedTitle:selectedRange:)]
+        #[unsafe(method_family = none)]
         unsafe fn navigationItem_willBeginRenamingWithSuggestedTitle_selectedRange(
             &self,
             navigation_item: &UINavigationItem,
@@ -174,20 +174,20 @@ unsafe impl NSObjectProtocol for UINavigationItem {}
 
 extern_methods!(
     unsafe impl UINavigationItem {
-        #[unsafe(method_family(init))]
         #[method_id(initWithTitle:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithTitle(this: Allocated<Self>, title: &NSString) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
         /// Title when topmost on the stack. default is nil
-        #[unsafe(method_family(none))]
         #[method_id(title)]
+        #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`title`][Self::title].
@@ -196,8 +196,8 @@ extern_methods!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// Custom view to use in lieu of a title. May be sized horizontally. Only used when item is topmost on the stack.
-        #[unsafe(method_family(none))]
         #[method_id(titleView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn titleView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
@@ -206,8 +206,8 @@ extern_methods!(
         pub unsafe fn setTitleView(&self, title_view: Option<&UIView>);
 
         /// Explanatory text to display above the navigation bar buttons.
-        #[unsafe(method_family(none))]
         #[method_id(prompt)]
+        #[unsafe(method_family = none)]
         pub unsafe fn prompt(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`prompt`][Self::prompt].
@@ -216,8 +216,8 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         /// Bar button item to use for the back button when this item is the navigation bar's backItem.
-        #[unsafe(method_family(none))]
         #[method_id(backBarButtonItem)]
+        #[unsafe(method_family = none)]
         pub unsafe fn backBarButtonItem(&self) -> Option<Retained<UIBarButtonItem>>;
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
@@ -226,8 +226,8 @@ extern_methods!(
         pub unsafe fn setBackBarButtonItem(&self, back_bar_button_item: Option<&UIBarButtonItem>);
 
         /// Title to use when this item is the navigation bar's backItem. Default is nil. backBarButtonItem takes precedence if both are specified.
-        #[unsafe(method_family(none))]
         #[method_id(backButtonTitle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn backButtonTitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`backButtonTitle`][Self::backButtonTitle].
@@ -258,8 +258,8 @@ extern_methods!(
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         /// Replaces the back action for the navigation bar. if a back button is naturally present, this replaces only its action, otherwise a back button will be synthesized with the image or title from the action.
-        #[unsafe(method_family(none))]
         #[method_id(backAction)]
+        #[unsafe(method_family = none)]
         pub unsafe fn backAction(&self) -> Option<Retained<UIAction>>;
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
@@ -286,8 +286,8 @@ extern_methods!(
 
         /// When non-nil, enables the UINavigationBar to respond to the rename: action by providing an inline UI.
         /// Setting this property to nil while a rename operation is in progress will cancel the operation immediately.
-        #[unsafe(method_family(none))]
         #[method_id(renameDelegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn renameDelegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UINavigationItemRenameDelegate>>>;
@@ -302,8 +302,8 @@ extern_methods!(
 
         #[cfg(feature = "UIDocumentProperties")]
         /// When non-nil, UIKit will use the metadata provided to generate additional controls displayed from the title.
-        #[unsafe(method_family(none))]
         #[method_id(documentProperties)]
+        #[unsafe(method_family = none)]
         pub unsafe fn documentProperties(&self) -> Option<Retained<UIDocumentProperties>>;
 
         #[cfg(feature = "UIDocumentProperties")]
@@ -315,8 +315,8 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
-        #[unsafe(method_family(none))]
         #[method_id(leftBarButtonItems)]
+        #[unsafe(method_family = none)]
         pub unsafe fn leftBarButtonItems(&self) -> Option<Retained<NSArray<UIBarButtonItem>>>;
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
@@ -328,8 +328,8 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
-        #[unsafe(method_family(none))]
         #[method_id(rightBarButtonItems)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rightBarButtonItems(&self) -> Option<Retained<NSArray<UIBarButtonItem>>>;
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
@@ -368,8 +368,8 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         /// Some navigation items want to display a custom left or right item when they're on top of the stack. A custom left item replaces the regular back button unless you set leftItemsSupplementBackButton to YES
-        #[unsafe(method_family(none))]
         #[method_id(leftBarButtonItem)]
+        #[unsafe(method_family = none)]
         pub unsafe fn leftBarButtonItem(&self) -> Option<Retained<UIBarButtonItem>>;
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
@@ -378,8 +378,8 @@ extern_methods!(
         pub unsafe fn setLeftBarButtonItem(&self, left_bar_button_item: Option<&UIBarButtonItem>);
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
-        #[unsafe(method_family(none))]
         #[method_id(rightBarButtonItem)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rightBarButtonItem(&self) -> Option<Retained<UIBarButtonItem>>;
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
@@ -406,8 +406,8 @@ extern_methods!(
         /// Setting a non-nil customizationIdentifier enables customization and UIKit will automatically save
         /// &
         /// restore customizations based on this identifier. The identifier must be unique within the scope of the application.
-        #[unsafe(method_family(none))]
         #[method_id(customizationIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn customizationIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`customizationIdentifier`][Self::customizationIdentifier].
@@ -419,8 +419,8 @@ extern_methods!(
 
         #[cfg(feature = "UIBarButtonItemGroup")]
         /// UIBarButtonItemGroups to be displayed in the leading section of the navigation bar. Items set via this method will replace items set via .leftBarButtonItem or .leftBarButtonItems.
-        #[unsafe(method_family(none))]
         #[method_id(leadingItemGroups)]
+        #[unsafe(method_family = none)]
         pub unsafe fn leadingItemGroups(&self) -> Retained<NSArray<UIBarButtonItemGroup>>;
 
         #[cfg(feature = "UIBarButtonItemGroup")]
@@ -433,8 +433,8 @@ extern_methods!(
 
         #[cfg(feature = "UIBarButtonItemGroup")]
         /// Customizable UIBarButtonItemGroups that will be placed in the center region when the navigation bar is the browser or editor modes. In navigation mode, these items will be placed in the overflow.
-        #[unsafe(method_family(none))]
         #[method_id(centerItemGroups)]
+        #[unsafe(method_family = none)]
         pub unsafe fn centerItemGroups(&self) -> Retained<NSArray<UIBarButtonItemGroup>>;
 
         #[cfg(feature = "UIBarButtonItemGroup")]
@@ -447,8 +447,8 @@ extern_methods!(
 
         #[cfg(feature = "UIBarButtonItemGroup")]
         /// UIBarButtonItemGroups to be displayed in the trailing section of the navigation bar. Items set via this method will replace items set via .rightBarButtonItem or .rightBarButtonItems.
-        #[unsafe(method_family(none))]
         #[method_id(trailingItemGroups)]
+        #[unsafe(method_family = none)]
         pub unsafe fn trailingItemGroups(&self) -> Retained<NSArray<UIBarButtonItemGroup>>;
 
         #[cfg(feature = "UIBarButtonItemGroup")]
@@ -463,8 +463,8 @@ extern_methods!(
         /// Set a group of items to be placed on the trailing edge of the bar, past the overflow
         /// &
         /// search items (if present). If you wish to have more than 1 item, it is HIGHLY recommended to assign a representative item to the group to avoid overflowing the bar as this group cannot move to the overflow.
-        #[unsafe(method_family(none))]
         #[method_id(pinnedTrailingGroup)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pinnedTrailingGroup(&self) -> Option<Retained<UIBarButtonItemGroup>>;
 
         #[cfg(feature = "UIBarButtonItemGroup")]
@@ -477,8 +477,8 @@ extern_methods!(
 
         #[cfg(all(feature = "UIDeferredMenuElement", feature = "UIMenuElement"))]
         /// Additional items to add to the overflow menu. Setting this property to a non-nil value will force the overflow button to appear, regardless of if you provide any content in the element's callback. Items returned are displayed directly in the presented menu.
-        #[unsafe(method_family(none))]
         #[method_id(additionalOverflowItems)]
+        #[unsafe(method_family = none)]
         pub unsafe fn additionalOverflowItems(&self) -> Option<Retained<UIDeferredMenuElement>>;
 
         #[cfg(all(feature = "UIDeferredMenuElement", feature = "UIMenuElement"))]
@@ -491,8 +491,8 @@ extern_methods!(
 
         #[cfg(feature = "UIPopoverPresentationControllerSourceItem")]
         /// If the overflow button for this item is currently present, then this will return a non-nil item that can be used as a presentation source (e.g. for popovers). Otherwise it will return nil.
-        #[unsafe(method_family(none))]
         #[method_id(overflowPresentationSource)]
+        #[unsafe(method_family = none)]
         pub unsafe fn overflowPresentationSource(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIPopoverPresentationControllerSourceItem>>>;
@@ -522,8 +522,8 @@ extern_methods!(
             feature = "UIViewController"
         ))]
         /// A view controller that will be shown inside of a navigation controller can assign a UISearchController to this property to display the search controller’s search bar in its containing navigation controller’s navigation bar.
-        #[unsafe(method_family(none))]
         #[method_id(searchController)]
+        #[unsafe(method_family = none)]
         pub unsafe fn searchController(&self) -> Option<Retained<UISearchController>>;
 
         #[cfg(all(
@@ -561,8 +561,8 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UINavigationBarAppearance"))]
         /// When set and this item is topmost, overrides the hosting navigation bar's standardAppearance. See UINavigationBar.standardAppearance for further details.
-        #[unsafe(method_family(none))]
         #[method_id(standardAppearance)]
+        #[unsafe(method_family = none)]
         pub unsafe fn standardAppearance(&self) -> Option<Retained<UINavigationBarAppearance>>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UINavigationBarAppearance"))]
@@ -575,8 +575,8 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UINavigationBarAppearance"))]
         /// When set and this item is topmost, overrides the hosting navigation bar's compactAppearance. See UINavigationBar.compactAppearance for further details.
-        #[unsafe(method_family(none))]
         #[method_id(compactAppearance)]
+        #[unsafe(method_family = none)]
         pub unsafe fn compactAppearance(&self) -> Option<Retained<UINavigationBarAppearance>>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UINavigationBarAppearance"))]
@@ -589,8 +589,8 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UINavigationBarAppearance"))]
         /// When set and this item is topmost, overrides the hosting navigation bar's scrollEdgeAppearance. See UINavigationBar.scrollEdgeAppearance for further details.
-        #[unsafe(method_family(none))]
         #[method_id(scrollEdgeAppearance)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scrollEdgeAppearance(&self) -> Option<Retained<UINavigationBarAppearance>>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UINavigationBarAppearance"))]
@@ -603,8 +603,8 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UINavigationBarAppearance"))]
         /// When set and this item is topmost, overrides the hosting navigation bar's compactScrollEdgeAppearance. See UINavigationBar.h for further details.
-        #[unsafe(method_family(none))]
         #[method_id(compactScrollEdgeAppearance)]
+        #[unsafe(method_family = none)]
         pub unsafe fn compactScrollEdgeAppearance(
             &self,
         ) -> Option<Retained<UINavigationBarAppearance>>;
@@ -622,12 +622,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UINavigationItem {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

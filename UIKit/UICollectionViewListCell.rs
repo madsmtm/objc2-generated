@@ -133,8 +133,8 @@ extern_methods!(
     unsafe impl UICollectionViewListCell {
         #[cfg(feature = "UIListContentConfiguration")]
         /// Returns a default list content configuration for the cell's style.
-        #[unsafe(method_family(none))]
         #[method_id(defaultContentConfiguration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn defaultContentConfiguration(&self) -> Retained<UIListContentConfiguration>;
 
         /// Defines the level of indentation for this cell. This is set automatically when using a hierarchical data source.
@@ -167,8 +167,8 @@ extern_methods!(
         #[cfg(feature = "UICellAccessory")]
         /// All the accessories that should be decorating the cell. The order and whether an accessory is
         /// rendered on the leading or trailing side of the cell is defined by the system.
-        #[unsafe(method_family(none))]
         #[method_id(accessories)]
+        #[unsafe(method_family = none)]
         pub unsafe fn accessories(&self) -> Retained<NSArray<UICellAccessory>>;
 
         #[cfg(feature = "UICellAccessory")]
@@ -183,8 +183,8 @@ extern_methods!(
         /// to the cell, the separator will be automatically aligned to the primary text in the content view.
         ///
         /// See: UICollectionLayoutListConfiguration
-        #[unsafe(method_family(none))]
         #[method_id(separatorLayoutGuide)]
+        #[unsafe(method_family = none)]
         pub unsafe fn separatorLayoutGuide(&self) -> Retained<UILayoutGuide>;
     }
 );
@@ -198,12 +198,12 @@ extern_methods!(
     ))]
     unsafe impl UICollectionViewListCell {
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithFrame:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -219,12 +219,12 @@ extern_methods!(
         feature = "UIView"
     ))]
     unsafe impl UICollectionViewListCell {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

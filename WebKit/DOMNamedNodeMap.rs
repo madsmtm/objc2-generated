@@ -36,31 +36,31 @@ extern_methods!(
 
         #[cfg(feature = "DOMNode")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(getNamedItem:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getNamedItem(&self, name: Option<&NSString>) -> Option<Retained<DOMNode>>;
 
         #[cfg(feature = "DOMNode")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(setNamedItem:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setNamedItem(&self, node: Option<&DOMNode>) -> Option<Retained<DOMNode>>;
 
         #[cfg(feature = "DOMNode")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(removeNamedItem:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeNamedItem(&self, name: Option<&NSString>) -> Option<Retained<DOMNode>>;
 
         #[cfg(feature = "DOMNode")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(item:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn item(&self, index: c_uint) -> Option<Retained<DOMNode>>;
 
         #[cfg(feature = "DOMNode")]
-        #[unsafe(method_family(none))]
         #[method_id(getNamedItemNS:localName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getNamedItemNS_localName(
             &self,
             namespace_uri: Option<&NSString>,
@@ -69,13 +69,13 @@ extern_methods!(
 
         #[cfg(feature = "DOMNode")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(setNamedItemNS:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setNamedItemNS(&self, node: Option<&DOMNode>) -> Option<Retained<DOMNode>>;
 
         #[cfg(feature = "DOMNode")]
-        #[unsafe(method_family(none))]
         #[method_id(removeNamedItemNS:localName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeNamedItemNS_localName(
             &self,
             namespace_uri: Option<&NSString>,
@@ -89,8 +89,8 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMNamedNodeMap {
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -99,8 +99,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMNamedNodeMap {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -111,8 +111,8 @@ extern_methods!(
     unsafe impl DOMNamedNodeMap {
         #[cfg(feature = "DOMNode")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(getNamedItemNS::)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getNamedItemNS(
             &self,
             namespace_uri: Option<&NSString>,
@@ -121,8 +121,8 @@ extern_methods!(
 
         #[cfg(feature = "DOMNode")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(removeNamedItemNS::)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeNamedItemNS(
             &self,
             namespace_uri: Option<&NSString>,

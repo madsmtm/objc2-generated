@@ -24,19 +24,19 @@ unsafe impl NSObjectProtocol for AMWorkflow {}
 
 extern_methods!(
     unsafe impl AMWorkflow {
-        #[unsafe(method_family(none))]
         #[method_id(runWorkflowAtURL:withInput:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn runWorkflowAtURL_withInput_error(
             file_url: &NSURL,
             input: Option<&AnyObject>,
         ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithContentsOfURL:error:_)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL_error(
             this: Allocated<Self>,
             file_url: &NSURL,
@@ -52,8 +52,8 @@ extern_methods!(
             variable_name: &NSString,
         ) -> bool;
 
-        #[unsafe(method_family(none))]
         #[method_id(valueForVariableWithName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn valueForVariableWithName(
             &self,
             variable_name: &NSString,
@@ -78,25 +78,25 @@ extern_methods!(
             end_index: NSUInteger,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(fileURL)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fileURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "AMAction")]
-        #[unsafe(method_family(none))]
         #[method_id(actions)]
+        #[unsafe(method_family = none)]
         pub unsafe fn actions(&self) -> Retained<NSArray<AMAction>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(input)]
+        #[unsafe(method_family = none)]
         pub unsafe fn input(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`input`][Self::input].
         #[method(setInput:)]
         pub unsafe fn setInput(&self, input: Option<&AnyObject>);
 
-        #[unsafe(method_family(none))]
         #[method_id(output)]
+        #[unsafe(method_family = none)]
         pub unsafe fn output(&self) -> Option<Retained<AnyObject>>;
     }
 );
@@ -104,8 +104,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AMWorkflow {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

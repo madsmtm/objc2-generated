@@ -32,8 +32,8 @@ extern_methods!(
     unsafe impl VNDetectDocumentSegmentationRequest {
         #[cfg(feature = "VNObservation")]
         /// VNRectangleObservation results.
-        #[unsafe(method_family(none))]
         #[method_id(results)]
+        #[unsafe(method_family = none)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNRectangleObservation>>>;
     }
 );
@@ -43,8 +43,8 @@ extern_methods!(
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectDocumentSegmentationRequest {
         /// Creates a new VNRequest with no completion handler.
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
@@ -52,8 +52,8 @@ extern_methods!(
         ///
         ///
         /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
-        #[unsafe(method_family(init))]
         #[method_id(initWithCompletionHandler:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
             completion_handler: VNRequestCompletionHandler,
@@ -65,8 +65,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectDocumentSegmentationRequest {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

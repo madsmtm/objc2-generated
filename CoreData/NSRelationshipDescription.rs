@@ -57,8 +57,8 @@ extern_methods!(
     #[cfg(feature = "NSPropertyDescription")]
     unsafe impl NSRelationshipDescription {
         #[cfg(feature = "NSEntityDescription")]
-        #[unsafe(method_family(none))]
         #[method_id(destinationEntity)]
+        #[unsafe(method_family = none)]
         pub unsafe fn destinationEntity(&self) -> Option<Retained<NSEntityDescription>>;
 
         #[cfg(feature = "NSEntityDescription")]
@@ -66,8 +66,8 @@ extern_methods!(
         #[method(setDestinationEntity:)]
         pub unsafe fn setDestinationEntity(&self, destination_entity: Option<&NSEntityDescription>);
 
-        #[unsafe(method_family(none))]
         #[method_id(inverseRelationship)]
+        #[unsafe(method_family = none)]
         pub unsafe fn inverseRelationship(&self) -> Option<Retained<NSRelationshipDescription>>;
 
         /// Setter for [`inverseRelationship`][Self::inverseRelationship].
@@ -101,8 +101,8 @@ extern_methods!(
         #[method(isToMany)]
         pub unsafe fn isToMany(&self) -> bool;
 
-        #[unsafe(method_family(none))]
         #[method_id(versionHash)]
+        #[unsafe(method_family = none)]
         pub unsafe fn versionHash(&self) -> Retained<NSData>;
 
         #[method(isOrdered)]
@@ -118,12 +118,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSPropertyDescription")]
     unsafe impl NSRelationshipDescription {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

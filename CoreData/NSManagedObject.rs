@@ -52,18 +52,18 @@ extern_methods!(
         pub unsafe fn contextShouldIgnoreUnmodeledPropertyChanges() -> bool;
 
         #[cfg(feature = "NSEntityDescription")]
-        #[unsafe(method_family(none))]
         #[method_id(entity)]
+        #[unsafe(method_family = none)]
         pub unsafe fn entity_class() -> Retained<NSEntityDescription>;
 
         #[cfg(all(feature = "NSFetchRequest", feature = "NSPersistentStoreRequest"))]
-        #[unsafe(method_family(none))]
         #[method_id(fetchRequest)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fetchRequest() -> Retained<NSFetchRequest>;
 
         #[cfg(all(feature = "NSEntityDescription", feature = "NSManagedObjectContext"))]
-        #[unsafe(method_family(init))]
         #[method_id(initWithEntity:insertIntoManagedObjectContext:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithEntity_insertIntoManagedObjectContext(
             this: Allocated<Self>,
             entity: &NSEntityDescription,
@@ -71,26 +71,26 @@ extern_methods!(
         ) -> Retained<NSManagedObject>;
 
         #[cfg(feature = "NSManagedObjectContext")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithContext:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithContext(
             this: Allocated<Self>,
             moc: &NSManagedObjectContext,
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSManagedObjectContext")]
-        #[unsafe(method_family(none))]
         #[method_id(managedObjectContext)]
+        #[unsafe(method_family = none)]
         pub unsafe fn managedObjectContext(&self) -> Option<Retained<NSManagedObjectContext>>;
 
         #[cfg(feature = "NSEntityDescription")]
-        #[unsafe(method_family(none))]
         #[method_id(entity)]
+        #[unsafe(method_family = none)]
         pub unsafe fn entity(&self) -> Retained<NSEntityDescription>;
 
         #[cfg(feature = "NSManagedObjectID")]
-        #[unsafe(method_family(none))]
         #[method_id(objectID)]
+        #[unsafe(method_family = none)]
         pub unsafe fn objectID(&self) -> Retained<NSManagedObjectID>;
 
         #[method(isInserted)]
@@ -115,8 +115,8 @@ extern_methods!(
         pub unsafe fn hasFaultForRelationshipNamed(&self, key: &NSString) -> bool;
 
         #[cfg(feature = "NSManagedObjectID")]
-        #[unsafe(method_family(none))]
         #[method_id(objectIDsForRelationshipNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn objectIDsForRelationshipNamed(
             &self,
             key: &NSString,
@@ -177,33 +177,33 @@ extern_methods!(
         #[method(didTurnIntoFault)]
         pub unsafe fn didTurnIntoFault(&self);
 
-        #[unsafe(method_family(none))]
         #[method_id(valueForKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn valueForKey(&self, key: &NSString) -> Option<Retained<AnyObject>>;
 
         #[method(setValue:forKey:)]
         pub unsafe fn setValue_forKey(&self, value: Option<&AnyObject>, key: &NSString);
 
-        #[unsafe(method_family(none))]
         #[method_id(primitiveValueForKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn primitiveValueForKey(&self, key: &NSString) -> Option<Retained<AnyObject>>;
 
         #[method(setPrimitiveValue:forKey:)]
         pub unsafe fn setPrimitiveValue_forKey(&self, value: Option<&AnyObject>, key: &NSString);
 
-        #[unsafe(method_family(none))]
         #[method_id(committedValuesForKeys:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn committedValuesForKeys(
             &self,
             keys: Option<&NSArray<NSString>>,
         ) -> Retained<NSDictionary<NSString, AnyObject>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(changedValues)]
+        #[unsafe(method_family = none)]
         pub unsafe fn changedValues(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(changedValuesForCurrentEvent)]
+        #[unsafe(method_family = none)]
         pub unsafe fn changedValuesForCurrentEvent(
             &self,
         ) -> Retained<NSDictionary<NSString, AnyObject>>;
@@ -235,12 +235,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSManagedObject {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

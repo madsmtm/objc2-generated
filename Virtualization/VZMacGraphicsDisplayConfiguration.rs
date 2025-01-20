@@ -42,8 +42,8 @@ extern_methods!(
         /// Parameter `heightInPixels`: The height of the display, in pixels.
         ///
         /// Parameter `pixelsPerInch`: The pixel density as a number of pixels per inch.
-        #[unsafe(method_family(init))]
         #[method_id(initWithWidthInPixels:heightInPixels:pixelsPerInch:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithWidthInPixels_heightInPixels_pixelsPerInch(
             this: Allocated<Self>,
             width_in_pixels: NSInteger,
@@ -61,8 +61,8 @@ extern_methods!(
         /// The pixel dimensions and pixel density will be initialized based on the specified screen and
         /// size. Note: an instance of macOS running in the virtual machine may not necessarily provide
         /// a display mode with a backing scale factor matching the specified screen.
-        #[unsafe(method_family(init))]
         #[method_id(initForScreen:sizeInPoints:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initForScreen_sizeInPoints(
             this: Allocated<Self>,
             screen: &NSScreen,
@@ -99,12 +99,12 @@ extern_methods!(
     /// Methods declared on superclass `VZGraphicsDisplayConfiguration`
     #[cfg(feature = "VZGraphicsDisplayConfiguration")]
     unsafe impl VZMacGraphicsDisplayConfiguration {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

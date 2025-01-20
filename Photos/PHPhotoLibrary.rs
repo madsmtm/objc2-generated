@@ -85,8 +85,8 @@ unsafe impl NSObjectProtocol for PHPhotoLibrary {}
 
 extern_methods!(
     unsafe impl PHPhotoLibrary {
-        #[unsafe(method_family(none))]
         #[method_id(sharedPhotoLibrary)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sharedPhotoLibrary() -> Retained<PHPhotoLibrary>;
 
         /// Replaces
@@ -114,8 +114,8 @@ extern_methods!(
         #[method(requestAuthorization:)]
         pub unsafe fn requestAuthorization(handler: &block2::Block<dyn Fn(PHAuthorizationStatus)>);
 
-        #[unsafe(method_family(none))]
         #[method_id(unavailabilityReason)]
+        #[unsafe(method_family = none)]
         pub unsafe fn unavailabilityReason(&self) -> Option<Retained<NSError>>;
 
         #[method(registerAvailabilityObserver:)]
@@ -146,16 +146,16 @@ extern_methods!(
             feature = "PHPersistentChangeFetchResult",
             feature = "PHPersistentChangeToken"
         ))]
-        #[unsafe(method_family(none))]
         #[method_id(fetchPersistentChangesSinceToken:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fetchPersistentChangesSinceToken_error(
             &self,
             token: &PHPersistentChangeToken,
         ) -> Result<Retained<PHPersistentChangeFetchResult>, Retained<NSError>>;
 
         #[cfg(feature = "PHPersistentChangeToken")]
-        #[unsafe(method_family(none))]
         #[method_id(currentChangeToken)]
+        #[unsafe(method_family = none)]
         pub unsafe fn currentChangeToken(&self) -> Retained<PHPersistentChangeToken>;
     }
 );
@@ -163,12 +163,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHPhotoLibrary {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

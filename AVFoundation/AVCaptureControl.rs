@@ -26,12 +26,12 @@ unsafe impl NSObjectProtocol for AVCaptureControl {}
 
 extern_methods!(
     unsafe impl AVCaptureControl {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Indicates whether the control should be enabled for user interaction.

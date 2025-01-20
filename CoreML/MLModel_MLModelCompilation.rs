@@ -33,8 +33,8 @@ extern_methods!(
         ///  [MLModel modelWithContentsOfURL:error:]
         /// ```
         #[deprecated = "Use the asynchronous interface compileModelAtURL:completionHandler:error: instead."]
-        #[unsafe(method_family(none))]
         #[method_id(compileModelAtURL:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn compileModelAtURL_error(
             model_url: &NSURL,
         ) -> Result<Retained<NSURL>, Retained<NSError>>;

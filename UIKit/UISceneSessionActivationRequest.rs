@@ -27,22 +27,22 @@ extern_methods!(
         #[cfg(feature = "UISceneDefinitions")]
         /// The role to request. If the request was created using `requestWithSession:`, this reflects
         /// the role of the `session`.
-        #[unsafe(method_family(none))]
         #[method_id(role)]
+        #[unsafe(method_family = none)]
         pub unsafe fn role(&self) -> Retained<UISceneSessionRole>;
 
         #[cfg(feature = "UISceneSession")]
         /// The specific scene session that should be activated, if provided when creating the request.
-        #[unsafe(method_family(none))]
         #[method_id(session)]
+        #[unsafe(method_family = none)]
         pub unsafe fn session(&self, mtm: MainThreadMarker) -> Option<Retained<UISceneSession>>;
 
         /// An optional user activity to send to the newly activated scene.
         ///
         /// Only sessions with a matching `role` will have their `activationConditions` evaluated
         /// against the user activity's `targetContentIdentifier`.
-        #[unsafe(method_family(none))]
         #[method_id(userActivity)]
+        #[unsafe(method_family = none)]
         pub unsafe fn userActivity(&self) -> Option<Retained<NSUserActivity>>;
 
         /// Setter for [`userActivity`][Self::userActivity].
@@ -51,8 +51,8 @@ extern_methods!(
 
         #[cfg(feature = "UISceneOptions")]
         /// Optional parameters used for further customizing the request.
-        #[unsafe(method_family(none))]
         #[method_id(options)]
+        #[unsafe(method_family = none)]
         pub unsafe fn options(
             &self,
             mtm: MainThreadMarker,
@@ -64,30 +64,30 @@ extern_methods!(
         pub unsafe fn setOptions(&self, options: Option<&UISceneActivationRequestOptions>);
 
         /// Creates a request for activating a session with the role of `UIWindowSceneSessionRoleApplication`.
-        #[unsafe(method_family(none))]
         #[method_id(request)]
+        #[unsafe(method_family = none)]
         pub unsafe fn request() -> Retained<Self>;
 
         #[cfg(feature = "UISceneDefinitions")]
         /// Creates a request for activating a session with the specified `role`.
         /// - Parameter role: The requested scene session role.
-        #[unsafe(method_family(none))]
         #[method_id(requestWithRole:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestWithRole(role: &UISceneSessionRole) -> Retained<Self>;
 
         #[cfg(feature = "UISceneSession")]
         /// Creates a request for activating an existing scene session.
         /// - Parameter session: The existing session to activate.
-        #[unsafe(method_family(none))]
         #[method_id(requestWithSession:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestWithSession(session: &UISceneSession) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -86,26 +86,26 @@ extern_methods!(
     unsafe impl HKVisionPrism {
         #[cfg(feature = "HKQuantity")]
         /// The compensation in prism diopters to correct eye misalignment [polar coordinates]
-        #[unsafe(method_family(none))]
         #[method_id(amount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn amount(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
         /// The direction of the prism base [polar coordinates]
-        #[unsafe(method_family(none))]
         #[method_id(angle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn angle(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
         /// The vertical component of compensation in prism diopters [rectangular coordinates]
-        #[unsafe(method_family(none))]
         #[method_id(verticalAmount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn verticalAmount(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
         /// The horizontal component of compensation in prism diopters [rectangular coordinates]
-        #[unsafe(method_family(none))]
         #[method_id(horizontalAmount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn horizontalAmount(&self) -> Retained<HKQuantity>;
 
         /// The direction of the prism base relative to the vertical axis of the lens;
@@ -128,8 +128,8 @@ extern_methods!(
         /// Parameter `angle`: The angle of the lens required to correct diplopia
         ///
         /// Parameter `eye`: The eye associated with the prism values
-        #[unsafe(method_family(init))]
         #[method_id(initWithAmount:angle:eye:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithAmount_angle_eye(
             this: Allocated<Self>,
             amount: &HKQuantity,
@@ -149,8 +149,8 @@ extern_methods!(
         /// base in (toward the nose) or base out (away from the nose).
         ///
         /// Parameter `eye`: The eye associated with the prism values
-        #[unsafe(method_family(init))]
         #[method_id(initWithVerticalAmount:verticalBase:horizontalAmount:horizontalBase:eye:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithVerticalAmount_verticalBase_horizontalAmount_horizontalBase_eye(
             this: Allocated<Self>,
             vertical_amount: &HKQuantity,
@@ -160,12 +160,12 @@ extern_methods!(
             eye: HKVisionEye,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

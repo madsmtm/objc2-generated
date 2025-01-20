@@ -18,8 +18,8 @@ extern_protocol!(
         /// Or the type of project types that promised to provide subtypes.
         ///
         /// Returns: An array of subtype descriptions for the projectType.
-        #[unsafe(method_family(none))]
         #[method_id(subtypesForProjectType:)]
+        #[unsafe(method_family = none)]
         unsafe fn subtypesForProjectType(
             &self,
             project_type: &PHProjectType,
@@ -32,8 +32,8 @@ extern_protocol!(
         ///
         /// Returns: Return the current PHProjectTypeDescription for the given project type.
         /// The returned PHProjectTypeDescription's projectType has to be equal to the given projectType.
-        #[unsafe(method_family(none))]
         #[method_id(typeDescriptionForProjectType:)]
+        #[unsafe(method_family = none)]
         unsafe fn typeDescriptionForProjectType(
             &self,
             project_type: &PHProjectType,
@@ -46,8 +46,8 @@ extern_protocol!(
         /// it's the parent project type of the currently visible subtype descriptions.
         ///
         /// Returns: Return a footer text for the projectType.
-        #[unsafe(method_family(none))]
         #[method_id(footerTextForSubtypesOfProjectType:)]
+        #[unsafe(method_family = none)]
         unsafe fn footerTextForSubtypesOfProjectType(
             &self,
             project_type: &PHProjectType,

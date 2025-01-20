@@ -98,8 +98,8 @@ extern_methods!(
         #[method(setHidden:)]
         pub unsafe fn setHidden(&self, hidden: bool);
 
-        #[unsafe(method_family(none))]
         #[method_id(indexPath)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indexPath(&self) -> Option<Retained<NSIndexPath>>;
 
         /// Setter for [`indexPath`][Self::indexPath].
@@ -109,35 +109,35 @@ extern_methods!(
         #[method(representedElementCategory)]
         pub unsafe fn representedElementCategory(&self) -> NSCollectionElementCategory;
 
-        #[unsafe(method_family(none))]
         #[method_id(representedElementKind)]
+        #[unsafe(method_family = none)]
         pub unsafe fn representedElementKind(&self) -> Option<Retained<NSString>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(layoutAttributesForItemWithIndexPath:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layoutAttributesForItemWithIndexPath(
             index_path: &NSIndexPath,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(layoutAttributesForInterItemGapBeforeIndexPath:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layoutAttributesForInterItemGapBeforeIndexPath(
             index_path: &NSIndexPath,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSCollectionView")]
-        #[unsafe(method_family(none))]
         #[method_id(layoutAttributesForSupplementaryViewOfKind:withIndexPath:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layoutAttributesForSupplementaryViewOfKind_withIndexPath(
             element_kind: &NSCollectionViewSupplementaryElementKind,
             index_path: &NSIndexPath,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(layoutAttributesForDecorationViewOfKind:withIndexPath:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layoutAttributesForDecorationViewOfKind_withIndexPath(
             decoration_view_kind: &NSCollectionViewDecorationElementKind,
             index_path: &NSIndexPath,
@@ -149,12 +149,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSCollectionViewLayoutAttributes {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -197,12 +197,12 @@ unsafe impl NSObjectProtocol for NSCollectionViewUpdateItem {}
 
 extern_methods!(
     unsafe impl NSCollectionViewUpdateItem {
-        #[unsafe(method_family(none))]
         #[method_id(indexPathBeforeUpdate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indexPathBeforeUpdate(&self) -> Option<Retained<NSIndexPath>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(indexPathAfterUpdate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indexPathAfterUpdate(&self) -> Option<Retained<NSIndexPath>>;
 
         #[method(updateAction)]
@@ -213,12 +213,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSCollectionViewUpdateItem {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -259,21 +259,21 @@ extern_methods!(
             index_paths: &NSSet<NSIndexPath>,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(invalidatedItemIndexPaths)]
+        #[unsafe(method_family = none)]
         pub unsafe fn invalidatedItemIndexPaths(&self) -> Option<Retained<NSSet<NSIndexPath>>>;
 
         #[cfg(feature = "NSCollectionView")]
-        #[unsafe(method_family(none))]
         #[method_id(invalidatedSupplementaryIndexPaths)]
+        #[unsafe(method_family = none)]
         pub unsafe fn invalidatedSupplementaryIndexPaths(
             &self,
         ) -> Option<
             Retained<NSDictionary<NSCollectionViewSupplementaryElementKind, NSSet<NSIndexPath>>>,
         >;
 
-        #[unsafe(method_family(none))]
         #[method_id(invalidatedDecorationIndexPaths)]
+        #[unsafe(method_family = none)]
         pub unsafe fn invalidatedDecorationIndexPaths(
             &self,
         ) -> Option<Retained<NSDictionary<NSCollectionViewDecorationElementKind, NSSet<NSIndexPath>>>>;
@@ -297,12 +297,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSCollectionViewLayoutInvalidationContext {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -326,8 +326,8 @@ extern_methods!(
             feature = "NSResponder",
             feature = "NSView"
         ))]
-        #[unsafe(method_family(none))]
         #[method_id(collectionView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn collectionView(&self) -> Option<Retained<NSCollectionView>>;
 
         #[method(invalidateLayout)]
@@ -359,12 +359,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSCollectionViewLayout {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -381,46 +381,46 @@ extern_methods!(
         #[method(prepareLayout)]
         pub unsafe fn prepareLayout(&self);
 
-        #[unsafe(method_family(none))]
         #[method_id(layoutAttributesForElementsInRect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layoutAttributesForElementsInRect(
             &self,
             rect: NSRect,
         ) -> Retained<NSArray<NSCollectionViewLayoutAttributes>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(layoutAttributesForItemAtIndexPath:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layoutAttributesForItemAtIndexPath(
             &self,
             index_path: &NSIndexPath,
         ) -> Option<Retained<NSCollectionViewLayoutAttributes>>;
 
         #[cfg(feature = "NSCollectionView")]
-        #[unsafe(method_family(none))]
         #[method_id(layoutAttributesForSupplementaryViewOfKind:atIndexPath:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layoutAttributesForSupplementaryViewOfKind_atIndexPath(
             &self,
             element_kind: &NSCollectionViewSupplementaryElementKind,
             index_path: &NSIndexPath,
         ) -> Option<Retained<NSCollectionViewLayoutAttributes>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(layoutAttributesForDecorationViewOfKind:atIndexPath:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layoutAttributesForDecorationViewOfKind_atIndexPath(
             &self,
             element_kind: &NSCollectionViewDecorationElementKind,
             index_path: &NSIndexPath,
         ) -> Option<Retained<NSCollectionViewLayoutAttributes>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(layoutAttributesForDropTargetAtPoint:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layoutAttributesForDropTargetAtPoint(
             &self,
             point_in_collection_view: NSPoint,
         ) -> Option<Retained<NSCollectionViewLayoutAttributes>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(layoutAttributesForInterItemGapBeforeIndexPath:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layoutAttributesForInterItemGapBeforeIndexPath(
             &self,
             index_path: &NSIndexPath,
@@ -429,8 +429,8 @@ extern_methods!(
         #[method(shouldInvalidateLayoutForBoundsChange:)]
         pub unsafe fn shouldInvalidateLayoutForBoundsChange(&self, new_bounds: NSRect) -> bool;
 
-        #[unsafe(method_family(none))]
         #[method_id(invalidationContextForBoundsChange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn invalidationContextForBoundsChange(
             &self,
             new_bounds: NSRect,
@@ -443,8 +443,8 @@ extern_methods!(
             original_attributes: &NSCollectionViewLayoutAttributes,
         ) -> bool;
 
-        #[unsafe(method_family(none))]
         #[method_id(invalidationContextForPreferredLayoutAttributes:withOriginalAttributes:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn invalidationContextForPreferredLayoutAttributes_withOriginalAttributes(
             &self,
             preferred_attributes: &NSCollectionViewLayoutAttributes,
@@ -496,23 +496,23 @@ extern_methods!(
         #[method(finalizeLayoutTransition)]
         pub unsafe fn finalizeLayoutTransition(&self);
 
-        #[unsafe(method_family(none))]
         #[method_id(initialLayoutAttributesForAppearingItemAtIndexPath:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn initialLayoutAttributesForAppearingItemAtIndexPath(
             &self,
             item_index_path: &NSIndexPath,
         ) -> Option<Retained<NSCollectionViewLayoutAttributes>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(finalLayoutAttributesForDisappearingItemAtIndexPath:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn finalLayoutAttributesForDisappearingItemAtIndexPath(
             &self,
             item_index_path: &NSIndexPath,
         ) -> Option<Retained<NSCollectionViewLayoutAttributes>>;
 
         #[cfg(feature = "NSCollectionView")]
-        #[unsafe(method_family(none))]
         #[method_id(initialLayoutAttributesForAppearingSupplementaryElementOfKind:atIndexPath:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn initialLayoutAttributesForAppearingSupplementaryElementOfKind_atIndexPath(
             &self,
             element_kind: &NSCollectionViewSupplementaryElementKind,
@@ -520,24 +520,24 @@ extern_methods!(
         ) -> Option<Retained<NSCollectionViewLayoutAttributes>>;
 
         #[cfg(feature = "NSCollectionView")]
-        #[unsafe(method_family(none))]
         #[method_id(finalLayoutAttributesForDisappearingSupplementaryElementOfKind:atIndexPath:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn finalLayoutAttributesForDisappearingSupplementaryElementOfKind_atIndexPath(
             &self,
             element_kind: &NSCollectionViewSupplementaryElementKind,
             element_index_path: &NSIndexPath,
         ) -> Option<Retained<NSCollectionViewLayoutAttributes>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(initialLayoutAttributesForAppearingDecorationElementOfKind:atIndexPath:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn initialLayoutAttributesForAppearingDecorationElementOfKind_atIndexPath(
             &self,
             element_kind: &NSCollectionViewDecorationElementKind,
             decoration_index_path: &NSIndexPath,
         ) -> Option<Retained<NSCollectionViewLayoutAttributes>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(finalLayoutAttributesForDisappearingDecorationElementOfKind:atIndexPath:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn finalLayoutAttributesForDisappearingDecorationElementOfKind_atIndexPath(
             &self,
             element_kind: &NSCollectionViewDecorationElementKind,
@@ -545,30 +545,30 @@ extern_methods!(
         ) -> Option<Retained<NSCollectionViewLayoutAttributes>>;
 
         #[cfg(feature = "NSCollectionView")]
-        #[unsafe(method_family(none))]
         #[method_id(indexPathsToDeleteForSupplementaryViewOfKind:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indexPathsToDeleteForSupplementaryViewOfKind(
             &self,
             element_kind: &NSCollectionViewSupplementaryElementKind,
         ) -> Retained<NSSet<NSIndexPath>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(indexPathsToDeleteForDecorationViewOfKind:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indexPathsToDeleteForDecorationViewOfKind(
             &self,
             element_kind: &NSCollectionViewDecorationElementKind,
         ) -> Retained<NSSet<NSIndexPath>>;
 
         #[cfg(feature = "NSCollectionView")]
-        #[unsafe(method_family(none))]
         #[method_id(indexPathsToInsertForSupplementaryViewOfKind:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indexPathsToInsertForSupplementaryViewOfKind(
             &self,
             element_kind: &NSCollectionViewSupplementaryElementKind,
         ) -> Retained<NSSet<NSIndexPath>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(indexPathsToInsertForDecorationViewOfKind:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indexPathsToInsertForDecorationViewOfKind(
             &self,
             element_kind: &NSCollectionViewDecorationElementKind,

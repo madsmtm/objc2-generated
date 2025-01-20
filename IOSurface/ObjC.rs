@@ -169,8 +169,8 @@ extern_methods!(
     #[cfg(feature = "objc2")]
     unsafe impl IOSurface {
         #[cfg(feature = "objc2-foundation")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithProperties:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithProperties(
             this: Allocated<Self>,
             properties: &NSDictionary<IOSurfacePropertyKey, AnyObject>,
@@ -254,8 +254,8 @@ extern_methods!(
         pub unsafe fn setAttachment_forKey(&self, an_object: &AnyObject, key: &NSString);
 
         #[cfg(feature = "objc2-foundation")]
-        #[unsafe(method_family(none))]
         #[method_id(attachmentForKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn attachmentForKey(&self, key: &NSString) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "objc2-foundation")]
@@ -267,8 +267,8 @@ extern_methods!(
         pub unsafe fn setAllAttachments(&self, dict: &NSDictionary<NSString, AnyObject>);
 
         #[cfg(feature = "objc2-foundation")]
-        #[unsafe(method_family(none))]
         #[method_id(allAttachments)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allAttachments(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         #[method(removeAllAttachments)]
@@ -304,12 +304,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2")]
     unsafe impl IOSurface {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

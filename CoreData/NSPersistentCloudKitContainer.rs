@@ -80,25 +80,25 @@ extern_methods!(
     /// Methods declared on superclass `NSPersistentContainer`
     #[cfg(feature = "NSPersistentContainer")]
     unsafe impl NSPersistentCloudKitContainer {
-        #[unsafe(method_family(none))]
         #[method_id(persistentContainerWithName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn persistentContainerWithName(name: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "NSManagedObjectModel")]
-        #[unsafe(method_family(none))]
         #[method_id(persistentContainerWithName:managedObjectModel:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn persistentContainerWithName_managedObjectModel(
             name: &NSString,
             model: &NSManagedObjectModel,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithName:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithName(this: Allocated<Self>, name: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "NSManagedObjectModel")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithName:managedObjectModel:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithName_managedObjectModel(
             this: Allocated<Self>,
             name: &NSString,
@@ -111,12 +111,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSPersistentContainer")]
     unsafe impl NSPersistentCloudKitContainer {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

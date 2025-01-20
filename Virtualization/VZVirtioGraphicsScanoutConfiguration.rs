@@ -40,8 +40,8 @@ extern_methods!(
         /// Parameter `widthInPixels`: The width of the scanout, in pixels.
         ///
         /// Parameter `heightInPixels`: The height of the scanout, in pixels.
-        #[unsafe(method_family(init))]
         #[method_id(initWithWidthInPixels:heightInPixels:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithWidthInPixels_heightInPixels(
             this: Allocated<Self>,
             width_in_pixels: NSInteger,
@@ -70,12 +70,12 @@ extern_methods!(
     /// Methods declared on superclass `VZGraphicsDisplayConfiguration`
     #[cfg(feature = "VZGraphicsDisplayConfiguration")]
     unsafe impl VZVirtioGraphicsScanoutConfiguration {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

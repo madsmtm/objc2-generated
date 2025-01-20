@@ -38,12 +38,12 @@ unsafe impl NSObjectProtocol for SKOverlayConfiguration {}
 
 extern_methods!(
     unsafe impl SKOverlayConfiguration {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -61,12 +61,12 @@ unsafe impl NSObjectProtocol for SKOverlayAppConfiguration {}
 
 extern_methods!(
     unsafe impl SKOverlayAppConfiguration {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Creates a new app overlay configuration that will show an app from the App Store.
@@ -74,8 +74,8 @@ extern_methods!(
         /// Parameter `appIdentifier`: the app identifier of the app to show.
         ///
         /// Parameter `position`: the desired position of the overlay.
-        #[unsafe(method_family(init))]
         #[method_id(initWithAppIdentifier:position:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithAppIdentifier_position(
             this: Allocated<Self>,
             app_identifier: &NSString,
@@ -83,8 +83,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The identifier of the app that will be shown.
-        #[unsafe(method_family(none))]
         #[method_id(appIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn appIdentifier(&self) -> Retained<NSString>;
 
         /// Setter for [`appIdentifier`][Self::appIdentifier].
@@ -92,8 +92,8 @@ extern_methods!(
         pub unsafe fn setAppIdentifier(&self, app_identifier: &NSString);
 
         /// A token representing an App Analytics campaign.
-        #[unsafe(method_family(none))]
         #[method_id(campaignToken)]
+        #[unsafe(method_family = none)]
         pub unsafe fn campaignToken(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`campaignToken`][Self::campaignToken].
@@ -101,8 +101,8 @@ extern_methods!(
         pub unsafe fn setCampaignToken(&self, campaign_token: Option<&NSString>);
 
         /// The provider token for the developer that created the app being presented.
-        #[unsafe(method_family(none))]
         #[method_id(providerToken)]
+        #[unsafe(method_family = none)]
         pub unsafe fn providerToken(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`providerToken`][Self::providerToken].
@@ -110,8 +110,8 @@ extern_methods!(
         pub unsafe fn setProviderToken(&self, provider_token: Option<&NSString>);
 
         /// An optional identifier for an app's custom product page.
-        #[unsafe(method_family(none))]
         #[method_id(customProductPageIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn customProductPageIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`customProductPageIdentifier`][Self::customProductPageIdentifier].
@@ -122,8 +122,8 @@ extern_methods!(
         );
 
         /// An optional extra parameter for specifying the version of your app that will be shown to the user.
-        #[unsafe(method_family(none))]
         #[method_id(latestReleaseID)]
+        #[unsafe(method_family = none)]
         pub unsafe fn latestReleaseID(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`latestReleaseID`][Self::latestReleaseID].
@@ -150,8 +150,8 @@ extern_methods!(
         pub unsafe fn setAdditionalValue_forKey(&self, value: Option<&AnyObject>, key: &NSString);
 
         #[must_use]
-        #[unsafe(method_family(none))]
         #[method_id(additionalValueForKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn additionalValueForKey(&self, key: &NSString) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "SKAdImpression")]
@@ -173,27 +173,27 @@ unsafe impl NSObjectProtocol for SKOverlayAppClipConfiguration {}
 
 extern_methods!(
     unsafe impl SKOverlayAppClipConfiguration {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Creates a new app overlay configuration that will show an app clip's full app.
         ///
         /// Parameter `position`: the desired position of the overlay.
-        #[unsafe(method_family(init))]
         #[method_id(initWithPosition:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithPosition(
             this: Allocated<Self>,
             position: SKOverlayPosition,
         ) -> Retained<Self>;
 
         /// A token representing an App Analytics campaign.
-        #[unsafe(method_family(none))]
         #[method_id(campaignToken)]
+        #[unsafe(method_family = none)]
         pub unsafe fn campaignToken(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`campaignToken`][Self::campaignToken].
@@ -201,8 +201,8 @@ extern_methods!(
         pub unsafe fn setCampaignToken(&self, campaign_token: Option<&NSString>);
 
         /// The provider token for the developer that created the app being presented.
-        #[unsafe(method_family(none))]
         #[method_id(providerToken)]
+        #[unsafe(method_family = none)]
         pub unsafe fn providerToken(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`providerToken`][Self::providerToken].
@@ -210,8 +210,8 @@ extern_methods!(
         pub unsafe fn setProviderToken(&self, provider_token: Option<&NSString>);
 
         /// An optional identifier for a parent app's custom product page.
-        #[unsafe(method_family(none))]
         #[method_id(customProductPageIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn customProductPageIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`customProductPageIdentifier`][Self::customProductPageIdentifier].
@@ -222,8 +222,8 @@ extern_methods!(
         );
 
         /// An optional extra parameter for specifying the version of your app that will be shown to the user.
-        #[unsafe(method_family(none))]
         #[method_id(latestReleaseID)]
+        #[unsafe(method_family = none)]
         pub unsafe fn latestReleaseID(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`latestReleaseID`][Self::latestReleaseID].
@@ -242,8 +242,8 @@ extern_methods!(
         pub unsafe fn setAdditionalValue_forKey(&self, value: Option<&AnyObject>, key: &NSString);
 
         #[must_use]
-        #[unsafe(method_family(none))]
         #[method_id(additionalValueForKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn additionalValueForKey(&self, key: &NSString) -> Option<Retained<AnyObject>>;
     }
 );

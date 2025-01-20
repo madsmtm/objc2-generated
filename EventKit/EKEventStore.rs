@@ -86,23 +86,23 @@ extern_methods!(
         ///
         /// Parameter `entityTypes`: A bit mask of entity types to which you want access
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(initWithAccessToEntityTypes:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithAccessToEntityTypes(
             this: Allocated<Self>,
             entity_types: EKEntityMask,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "EKObject", feature = "EKSource"))]
         /// Creates a new event store that only includes items and calendars for a subset of sources.
         ///
         /// Parameter `sources`: The sources you want this event store to recognize. This may include delegate sources.
-        #[unsafe(method_family(init))]
         #[method_id(initWithSources:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithSources(
             this: Allocated<Self>,
             sources: &NSArray<EKSource>,
@@ -139,26 +139,26 @@ extern_methods!(
         );
 
         /// Returns a unique identifier string representing this calendar store.
-        #[unsafe(method_family(none))]
         #[method_id(eventStoreIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn eventStoreIdentifier(&self) -> Retained<NSString>;
 
         #[cfg(all(feature = "EKObject", feature = "EKSource"))]
         /// Returns an unordered array of sources for all available delegates.
-        #[unsafe(method_family(none))]
         #[method_id(delegateSources)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegateSources(&self) -> Retained<NSArray<EKSource>>;
 
         #[cfg(all(feature = "EKObject", feature = "EKSource"))]
         /// Returns an unordered array of sources.
-        #[unsafe(method_family(none))]
         #[method_id(sources)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sources(&self) -> Retained<NSArray<EKSource>>;
 
         #[cfg(all(feature = "EKObject", feature = "EKSource"))]
         /// Returns a source with a specified identifier.
-        #[unsafe(method_family(none))]
         #[method_id(sourceWithIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sourceWithIdentifier(
             &self,
             identifier: &NSString,
@@ -168,14 +168,14 @@ extern_methods!(
         /// While this returns an array, the calendars are unordered. This call is deprecated
         /// and only returns calendars that support events. If you want reminder calendars
         /// you should use calendarsForEntityType:
-        #[unsafe(method_family(none))]
         #[method_id(calendars)]
+        #[unsafe(method_family = none)]
         pub unsafe fn calendars(&self) -> Retained<NSArray<EKCalendar>>;
 
         #[cfg(all(feature = "EKCalendar", feature = "EKObject", feature = "EKTypes"))]
         /// Returns calendars that support a given entity type (reminders, events)
-        #[unsafe(method_family(none))]
         #[method_id(calendarsForEntityType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn calendarsForEntityType(
             &self,
             entity_type: EKEntityType,
@@ -185,22 +185,22 @@ extern_methods!(
         /// Returns the calendar that events should be added to by default.
         ///
         /// This may be nil if there is no default calendar for new events.
-        #[unsafe(method_family(none))]
         #[method_id(defaultCalendarForNewEvents)]
+        #[unsafe(method_family = none)]
         pub unsafe fn defaultCalendarForNewEvents(&self) -> Option<Retained<EKCalendar>>;
 
         #[cfg(all(feature = "EKCalendar", feature = "EKObject"))]
         /// Returns the calendar that reminders should be added to by default.
         ///
         /// This may be nil if there is no default calendar for new reminders.
-        #[unsafe(method_family(none))]
         #[method_id(defaultCalendarForNewReminders)]
+        #[unsafe(method_family = none)]
         pub unsafe fn defaultCalendarForNewReminders(&self) -> Option<Retained<EKCalendar>>;
 
         #[cfg(all(feature = "EKCalendar", feature = "EKObject"))]
         /// Returns a calendar with a specified identifier.
-        #[unsafe(method_family(none))]
         #[method_id(calendarWithIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn calendarWithIdentifier(
             &self,
             identifier: &NSString,
@@ -262,8 +262,8 @@ extern_methods!(
 
         #[cfg(all(feature = "EKCalendarItem", feature = "EKObject"))]
         /// Returns either a reminder or the first occurrence of an event.
-        #[unsafe(method_family(none))]
         #[method_id(calendarItemWithIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn calendarItemWithIdentifier(
             &self,
             identifier: &NSString,
@@ -282,8 +282,8 @@ extern_methods!(
         /// calendarItemExternalIdentifier property
         ///
         /// Returns: An unsorted array of EKCalendarItem instances
-        #[unsafe(method_family(none))]
         #[method_id(calendarItemsWithExternalIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn calendarItemsWithExternalIdentifier(
             &self,
             external_identifier: &NSString,
@@ -370,8 +370,8 @@ extern_methods!(
         /// Parameter `identifier`: The eventIdentifier to search for.
         ///
         /// Returns: An EKEvent object, or nil if not found.
-        #[unsafe(method_family(none))]
         #[method_id(eventWithIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn eventWithIdentifier(
             &self,
             identifier: &NSString,
@@ -391,8 +391,8 @@ extern_methods!(
         /// creation functions in this class, an exception is raised.
         ///
         /// Returns: An array of EKEvent objects, or nil. There is no guaranteed order to the events.
-        #[unsafe(method_family(none))]
         #[method_id(eventsMatchingPredicate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn eventsMatchingPredicate(
             &self,
             predicate: &NSPredicate,
@@ -441,8 +441,8 @@ extern_methods!(
         /// Parameter `endDate`: The end date.
         ///
         /// Parameter `calendars`: The calendars to search for events in, or nil to search all calendars.
-        #[unsafe(method_family(none))]
         #[method_id(predicateForEventsWithStartDate:endDate:calendars:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn predicateForEventsWithStartDate_endDate_calendars(
             &self,
             start_date: &NSDate,
@@ -518,8 +518,8 @@ extern_methods!(
         /// This method fetches reminders asynchronously and returns a value which can be
         /// used in cancelFetchRequest: to cancel the request later if desired. The completion
         /// block is called with an array of reminders that match the given predicate (or potentially nil).
-        #[unsafe(method_family(none))]
         #[method_id(fetchRemindersMatchingPredicate:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fetchRemindersMatchingPredicate_completion(
             &self,
             predicate: &NSPredicate,
@@ -536,8 +536,8 @@ extern_methods!(
         /// Fetch all reminders in a set of calendars.
         ///
         /// You can pass nil for calendars to fetch from all available calendars.
-        #[unsafe(method_family(none))]
         #[method_id(predicateForRemindersInCalendars:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn predicateForRemindersInCalendars(
             &self,
             calendars: Option<&NSArray<EKCalendar>>,
@@ -551,8 +551,8 @@ extern_methods!(
         /// You can pass nil for both start and end date to get all incomplete reminders
         /// in the specified calendars.
         /// You can pass nil for calendars to fetch from all available calendars.
-        #[unsafe(method_family(none))]
         #[method_id(predicateForIncompleteRemindersWithDueDateStarting:ending:calendars:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn predicateForIncompleteRemindersWithDueDateStarting_ending_calendars(
             &self,
             start_date: Option<&NSDate>,
@@ -568,8 +568,8 @@ extern_methods!(
         /// You can pass nil for both start and end date to get all completed reminders
         /// in the specified calendars.
         /// You can pass nil for calendars to fetch from all available calendars.
-        #[unsafe(method_family(none))]
         #[method_id(predicateForCompletedRemindersWithCompletionDateStarting:ending:calendars:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn predicateForCompletedRemindersWithCompletionDateStarting_ending_calendars(
             &self,
             start_date: Option<&NSDate>,
@@ -615,8 +615,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl EKEventStore {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

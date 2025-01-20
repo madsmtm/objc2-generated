@@ -19,12 +19,12 @@ unsafe impl NSObjectProtocol for UIStatusBarManager {}
 
 extern_methods!(
     unsafe impl UIStatusBarManager {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(feature = "UIApplication")]
@@ -48,8 +48,8 @@ extern_methods!(
         feature = "UIWindowScene"
     ))]
     unsafe impl UIWindowScene {
-        #[unsafe(method_family(none))]
         #[method_id(statusBarManager)]
+        #[unsafe(method_family = none)]
         pub unsafe fn statusBarManager(&self) -> Option<Retained<UIStatusBarManager>>;
     }
 );

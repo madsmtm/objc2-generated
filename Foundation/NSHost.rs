@@ -28,20 +28,20 @@ unsafe impl NSObjectProtocol for NSHost {}
 extern_methods!(
     unsafe impl NSHost {
         #[deprecated = "Use Network framework instead, see deprecation notice in <Foundation/NSHost.h>"]
-        #[unsafe(method_family(none))]
         #[method_id(currentHost)]
+        #[unsafe(method_family = none)]
         pub unsafe fn currentHost() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use Network framework instead, see deprecation notice in <Foundation/NSHost.h>"]
-        #[unsafe(method_family(none))]
         #[method_id(hostWithName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hostWithName(name: Option<&NSString>) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use Network framework instead, see deprecation notice in <Foundation/NSHost.h>"]
-        #[unsafe(method_family(none))]
         #[method_id(hostWithAddress:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hostWithAddress(address: &NSString) -> Retained<Self>;
 
         #[deprecated = "Use Network framework instead, see deprecation notice in <Foundation/NSHost.h>"]
@@ -50,31 +50,31 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use Network framework instead, see deprecation notice in <Foundation/NSHost.h>"]
-        #[unsafe(method_family(none))]
         #[method_id(name)]
+        #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[deprecated = "Use Network framework instead, see deprecation notice in <Foundation/NSHost.h>"]
-        #[unsafe(method_family(none))]
         #[method_id(names)]
+        #[unsafe(method_family = none)]
         pub unsafe fn names(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use Network framework instead, see deprecation notice in <Foundation/NSHost.h>"]
-        #[unsafe(method_family(none))]
         #[method_id(address)]
+        #[unsafe(method_family = none)]
         pub unsafe fn address(&self) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[deprecated = "Use Network framework instead, see deprecation notice in <Foundation/NSHost.h>"]
-        #[unsafe(method_family(none))]
         #[method_id(addresses)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addresses(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(localizedName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn localizedName(&self) -> Option<Retained<NSString>>;
 
         #[deprecated = "Caching no longer supported"]
@@ -94,12 +94,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSHost {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

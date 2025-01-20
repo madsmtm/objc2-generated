@@ -36,31 +36,31 @@ extern_methods!(
         #[method(setTransitionProgress:)]
         pub unsafe fn setTransitionProgress(&self, transition_progress: CGFloat);
 
-        #[unsafe(method_family(none))]
         #[method_id(currentLayout)]
+        #[unsafe(method_family = none)]
         pub unsafe fn currentLayout(&self) -> Retained<UICollectionViewLayout>;
 
-        #[unsafe(method_family(none))]
         #[method_id(nextLayout)]
+        #[unsafe(method_family = none)]
         pub unsafe fn nextLayout(&self) -> Retained<UICollectionViewLayout>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCurrentLayout:nextLayout:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCurrentLayout_nextLayout(
             this: Allocated<Self>,
             current_layout: &UICollectionViewLayout,
             new_layout: &UICollectionViewLayout,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -77,8 +77,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UICollectionViewLayout")]
     unsafe impl UICollectionViewTransitionLayout {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

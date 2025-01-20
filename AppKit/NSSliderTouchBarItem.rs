@@ -52,8 +52,8 @@ extern_methods!(
             feature = "NSUserInterfaceCompression",
             feature = "NSView"
         ))]
-        #[unsafe(method_family(none))]
         #[method_id(view)]
+        #[unsafe(method_family = none)]
         pub unsafe fn view(&self) -> Retained<NSView>;
 
         #[cfg(all(
@@ -63,8 +63,8 @@ extern_methods!(
             feature = "NSView"
         ))]
         /// The slider displayed by the bar item. It is automatically created, but can be set to a custom subclass. doubleValue, minValue, maxValue, etc can all be read and set through the slider.
-        #[unsafe(method_family(none))]
         #[method_id(slider)]
+        #[unsafe(method_family = none)]
         pub unsafe fn slider(&self) -> Retained<NSSlider>;
 
         #[cfg(all(
@@ -106,8 +106,8 @@ extern_methods!(
         pub unsafe fn setMaximumSliderWidth(&self, maximum_slider_width: CGFloat);
 
         /// The text label displayed along with the slider. If set to nil, the label will not have space reserved in the item.
-        #[unsafe(method_family(none))]
         #[method_id(label)]
+        #[unsafe(method_family = none)]
         pub unsafe fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
@@ -116,8 +116,8 @@ extern_methods!(
 
         #[cfg(feature = "NSSliderAccessory")]
         /// The accessory that appears on the end of the slider with the minimum value
-        #[unsafe(method_family(none))]
         #[method_id(minimumValueAccessory)]
+        #[unsafe(method_family = none)]
         pub unsafe fn minimumValueAccessory(&self) -> Option<Retained<NSSliderAccessory>>;
 
         #[cfg(feature = "NSSliderAccessory")]
@@ -130,8 +130,8 @@ extern_methods!(
 
         #[cfg(feature = "NSSliderAccessory")]
         /// The accessory that appears on the end of the slider with the maximum value
-        #[unsafe(method_family(none))]
         #[method_id(maximumValueAccessory)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maximumValueAccessory(&self) -> Option<Retained<NSSliderAccessory>>;
 
         #[cfg(feature = "NSSliderAccessory")]
@@ -153,8 +153,8 @@ extern_methods!(
         pub unsafe fn setValueAccessoryWidth(&self, value_accessory_width: NSSliderAccessoryWidth);
 
         /// The target of the item, notified when the slider or accessories receive user interaction.
-        #[unsafe(method_family(none))]
         #[method_id(target)]
+        #[unsafe(method_family = none)]
         pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -171,8 +171,8 @@ extern_methods!(
         pub unsafe fn setAction(&self, action: Option<Sel>);
 
         /// The localized string labelling this item during user customization. The default value is empty string.
-        #[unsafe(method_family(none))]
         #[method_id(customizationLabel)]
+        #[unsafe(method_family = none)]
         pub unsafe fn customizationLabel(&self) -> Retained<NSString>;
 
         /// Setter for [`customizationLabel`][Self::customizationLabel].
@@ -185,22 +185,22 @@ extern_methods!(
     /// Methods declared on superclass `NSTouchBarItem`
     #[cfg(feature = "NSTouchBarItem")]
     unsafe impl NSSliderTouchBarItem {
-        #[unsafe(method_family(init))]
         #[method_id(initWithIdentifier:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,
             identifier: &NSTouchBarItemIdentifier,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -209,8 +209,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSTouchBarItem")]
     unsafe impl NSSliderTouchBarItem {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

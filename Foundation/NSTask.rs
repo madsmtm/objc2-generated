@@ -41,13 +41,13 @@ unsafe impl NSObjectProtocol for NSTask {}
 
 extern_methods!(
     unsafe impl NSTask {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSURL")]
-        #[unsafe(method_family(none))]
         #[method_id(executableURL)]
+        #[unsafe(method_family = none)]
         pub unsafe fn executableURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSURL")]
@@ -56,8 +56,8 @@ extern_methods!(
         pub unsafe fn setExecutableURL(&self, executable_url: Option<&NSURL>);
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(arguments)]
+        #[unsafe(method_family = none)]
         pub unsafe fn arguments(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
@@ -66,8 +66,8 @@ extern_methods!(
         pub unsafe fn setArguments(&self, arguments: Option<&NSArray<NSString>>);
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(environment)]
+        #[unsafe(method_family = none)]
         pub unsafe fn environment(&self) -> Option<Retained<NSDictionary<NSString, NSString>>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
@@ -76,8 +76,8 @@ extern_methods!(
         pub unsafe fn setEnvironment(&self, environment: Option<&NSDictionary<NSString, NSString>>);
 
         #[cfg(feature = "NSURL")]
-        #[unsafe(method_family(none))]
         #[method_id(currentDirectoryURL)]
+        #[unsafe(method_family = none)]
         pub unsafe fn currentDirectoryURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSURL")]
@@ -86,8 +86,8 @@ extern_methods!(
         pub unsafe fn setCurrentDirectoryURL(&self, current_directory_url: Option<&NSURL>);
 
         #[cfg(feature = "NSData")]
-        #[unsafe(method_family(none))]
         #[method_id(launchRequirementData)]
+        #[unsafe(method_family = none)]
         pub unsafe fn launchRequirementData(&self) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "NSData")]
@@ -95,24 +95,24 @@ extern_methods!(
         #[method(setLaunchRequirementData:)]
         pub unsafe fn setLaunchRequirementData(&self, launch_requirement_data: Option<&NSData>);
 
-        #[unsafe(method_family(none))]
         #[method_id(standardInput)]
+        #[unsafe(method_family = none)]
         pub unsafe fn standardInput(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`standardInput`][Self::standardInput].
         #[method(setStandardInput:)]
         pub unsafe fn setStandardInput(&self, standard_input: Option<&AnyObject>);
 
-        #[unsafe(method_family(none))]
         #[method_id(standardOutput)]
+        #[unsafe(method_family = none)]
         pub unsafe fn standardOutput(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`standardOutput`][Self::standardOutput].
         #[method(setStandardOutput:)]
         pub unsafe fn setStandardOutput(&self, standard_output: Option<&AnyObject>);
 
-        #[unsafe(method_family(none))]
         #[method_id(standardError)]
+        #[unsafe(method_family = none)]
         pub unsafe fn standardError(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`standardError`][Self::standardError].
@@ -173,8 +173,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTask {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -189,8 +189,8 @@ extern_methods!(
             feature = "NSURL",
             feature = "block2"
         ))]
-        #[unsafe(method_family(none))]
         #[method_id(launchedTaskWithExecutableURL:arguments:error:terminationHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn launchedTaskWithExecutableURL_arguments_error_terminationHandler(
             url: &NSURL,
             arguments: &NSArray<NSString>,
@@ -208,8 +208,8 @@ extern_methods!(
     unsafe impl NSTask {
         #[cfg(feature = "NSString")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(launchPath)]
+        #[unsafe(method_family = none)]
         pub unsafe fn launchPath(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
@@ -220,8 +220,8 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(currentDirectoryPath)]
+        #[unsafe(method_family = none)]
         pub unsafe fn currentDirectoryPath(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
@@ -236,8 +236,8 @@ extern_methods!(
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(launchedTaskWithLaunchPath:arguments:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn launchedTaskWithLaunchPath_arguments(
             path: &NSString,
             arguments: &NSArray<NSString>,

@@ -78,8 +78,8 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLScriptElement {
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(text)]
+        #[unsafe(method_family = none)]
         pub unsafe fn text(&self) -> Retained<NSString>;
 
         /// Setter for [`text`][Self::text].
@@ -88,8 +88,8 @@ extern_methods!(
         pub unsafe fn setText(&self, text: Option<&NSString>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(htmlFor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn htmlFor(&self) -> Retained<NSString>;
 
         /// Setter for [`htmlFor`][Self::htmlFor].
@@ -98,8 +98,8 @@ extern_methods!(
         pub unsafe fn setHtmlFor(&self, html_for: Option<&NSString>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(event)]
+        #[unsafe(method_family = none)]
         pub unsafe fn event(&self) -> Retained<NSString>;
 
         /// Setter for [`event`][Self::event].
@@ -108,8 +108,8 @@ extern_methods!(
         pub unsafe fn setEvent(&self, event: Option<&NSString>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(charset)]
+        #[unsafe(method_family = none)]
         pub unsafe fn charset(&self) -> Retained<NSString>;
 
         /// Setter for [`charset`][Self::charset].
@@ -127,8 +127,8 @@ extern_methods!(
         pub unsafe fn setDefer(&self, defer: bool);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(src)]
+        #[unsafe(method_family = none)]
         pub unsafe fn src(&self) -> Retained<NSString>;
 
         /// Setter for [`src`][Self::src].
@@ -137,8 +137,8 @@ extern_methods!(
         pub unsafe fn setSrc(&self, src: Option<&NSString>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(type)]
+        #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> Retained<NSString>;
 
         /// Setter for [`type`][Self::type].
@@ -159,8 +159,8 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLScriptElement {
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -175,8 +175,8 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLScriptElement {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

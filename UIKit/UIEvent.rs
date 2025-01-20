@@ -144,8 +144,8 @@ extern_methods!(
         pub unsafe fn buttonMask(&self) -> UIEventButtonMask;
 
         #[cfg(feature = "UITouch")]
-        #[unsafe(method_family(none))]
         #[method_id(allTouches)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allTouches(&self) -> Option<Retained<NSSet<UITouch>>>;
 
         #[cfg(all(
@@ -154,37 +154,37 @@ extern_methods!(
             feature = "UIView",
             feature = "UIWindow"
         ))]
-        #[unsafe(method_family(none))]
         #[method_id(touchesForWindow:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn touchesForWindow(
             &self,
             window: &UIWindow,
         ) -> Option<Retained<NSSet<UITouch>>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UITouch", feature = "UIView"))]
-        #[unsafe(method_family(none))]
         #[method_id(touchesForView:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn touchesForView(&self, view: &UIView) -> Option<Retained<NSSet<UITouch>>>;
 
         #[cfg(all(feature = "UIGestureRecognizer", feature = "UITouch"))]
-        #[unsafe(method_family(none))]
         #[method_id(touchesForGestureRecognizer:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn touchesForGestureRecognizer(
             &self,
             gesture: &UIGestureRecognizer,
         ) -> Option<Retained<NSSet<UITouch>>>;
 
         #[cfg(feature = "UITouch")]
-        #[unsafe(method_family(none))]
         #[method_id(coalescedTouchesForTouch:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn coalescedTouchesForTouch(
             &self,
             touch: &UITouch,
         ) -> Option<Retained<NSArray<UITouch>>>;
 
         #[cfg(feature = "UITouch")]
-        #[unsafe(method_family(none))]
         #[method_id(predictedTouchesForTouch:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn predictedTouchesForTouch(
             &self,
             touch: &UITouch,
@@ -195,12 +195,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIEvent {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

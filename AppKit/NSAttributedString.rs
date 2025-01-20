@@ -439,8 +439,8 @@ extern "C" {
 extern_category!(
     /// Category on [`NSAttributedString`].
     pub unsafe trait NSAttributedStringDocumentFormats {
-        #[unsafe(method_family(init))]
         #[method_id(initWithURL:options:documentAttributes:error:_)]
+        #[unsafe(method_family = init)]
         unsafe fn initWithURL_options_documentAttributes_error(
             this: Allocated<Self>,
             url: &NSURL,
@@ -452,8 +452,8 @@ extern_category!(
             >,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithData:options:documentAttributes:error:_)]
+        #[unsafe(method_family = init)]
         unsafe fn initWithData_options_documentAttributes_error(
             this: Allocated<Self>,
             data: &NSData,
@@ -465,16 +465,16 @@ extern_category!(
             >,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(dataFromRange:documentAttributes:error:_)]
+        #[unsafe(method_family = none)]
         unsafe fn dataFromRange_documentAttributes_error(
             &self,
             range: NSRange,
             dict: &NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>,
         ) -> Result<Retained<NSData>, Retained<NSError>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(fileWrapperFromRange:documentAttributes:error:_)]
+        #[unsafe(method_family = none)]
         unsafe fn fileWrapperFromRange_documentAttributes_error(
             &self,
             range: NSRange,
@@ -783,8 +783,8 @@ extern "C" {
 extern_category!(
     /// Category on [`NSAttributedString`].
     pub unsafe trait NSAttributedStringAppKitDocumentFormats {
-        #[unsafe(method_family(init))]
         #[method_id(initWithRTF:documentAttributes:)]
+        #[unsafe(method_family = init)]
         unsafe fn initWithRTF_documentAttributes(
             this: Allocated<Self>,
             data: &NSData,
@@ -795,8 +795,8 @@ extern_category!(
             >,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithRTFD:documentAttributes:)]
+        #[unsafe(method_family = init)]
         unsafe fn initWithRTFD_documentAttributes(
             this: Allocated<Self>,
             data: &NSData,
@@ -807,8 +807,8 @@ extern_category!(
             >,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithHTML:documentAttributes:)]
+        #[unsafe(method_family = init)]
         unsafe fn initWithHTML_documentAttributes(
             this: Allocated<Self>,
             data: &NSData,
@@ -819,8 +819,8 @@ extern_category!(
             >,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithHTML:baseURL:documentAttributes:)]
+        #[unsafe(method_family = init)]
         unsafe fn initWithHTML_baseURL_documentAttributes(
             this: Allocated<Self>,
             data: &NSData,
@@ -832,8 +832,8 @@ extern_category!(
             >,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithDocFormat:documentAttributes:)]
+        #[unsafe(method_family = init)]
         unsafe fn initWithDocFormat_documentAttributes(
             this: Allocated<Self>,
             data: &NSData,
@@ -844,8 +844,8 @@ extern_category!(
             >,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithHTML:options:documentAttributes:)]
+        #[unsafe(method_family = init)]
         unsafe fn initWithHTML_options_documentAttributes(
             this: Allocated<Self>,
             data: &NSData,
@@ -857,8 +857,8 @@ extern_category!(
             >,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithRTFDFileWrapper:documentAttributes:)]
+        #[unsafe(method_family = init)]
         unsafe fn initWithRTFDFileWrapper_documentAttributes(
             this: Allocated<Self>,
             wrapper: &NSFileWrapper,
@@ -869,32 +869,32 @@ extern_category!(
             >,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(RTFFromRange:documentAttributes:)]
+        #[unsafe(method_family = none)]
         unsafe fn RTFFromRange_documentAttributes(
             &self,
             range: NSRange,
             dict: &NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>,
         ) -> Option<Retained<NSData>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(RTFDFromRange:documentAttributes:)]
+        #[unsafe(method_family = none)]
         unsafe fn RTFDFromRange_documentAttributes(
             &self,
             range: NSRange,
             dict: &NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>,
         ) -> Option<Retained<NSData>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(RTFDFileWrapperFromRange:documentAttributes:)]
+        #[unsafe(method_family = none)]
         unsafe fn RTFDFileWrapperFromRange_documentAttributes(
             &self,
             range: NSRange,
             dict: &NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>,
         ) -> Option<Retained<NSFileWrapper>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(docFormatFromRange:documentAttributes:)]
+        #[unsafe(method_family = none)]
         unsafe fn docFormatFromRange_documentAttributes(
             &self,
             range: NSRange,
@@ -909,15 +909,15 @@ extern_category!(
     /// Category on [`NSAttributedString`].
     /// ********************** Misc methods ***********************
     pub unsafe trait NSAttributedStringAppKitAdditions {
-        #[unsafe(method_family(none))]
         #[method_id(fontAttributesInRange:)]
+        #[unsafe(method_family = none)]
         unsafe fn fontAttributesInRange(
             &self,
             range: NSRange,
         ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(rulerAttributesInRange:)]
+        #[unsafe(method_family = none)]
         unsafe fn rulerAttributesInRange(
             &self,
             range: NSRange,
@@ -986,12 +986,12 @@ extern_category!(
 extern_category!(
     /// Category on [`NSAttributedString`].
     pub unsafe trait NSAttributedStringPasteboardAdditions {
-        #[unsafe(method_family(none))]
         #[method_id(textTypes)]
+        #[unsafe(method_family = none)]
         unsafe fn textTypes() -> Retained<NSArray<NSString>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(textUnfilteredTypes)]
+        #[unsafe(method_family = none)]
         unsafe fn textUnfilteredTypes() -> Retained<NSArray<NSString>>;
     }
 
@@ -1111,28 +1111,28 @@ extern_category!(
         unsafe fn containsAttachments(&self) -> bool;
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(textFileTypes)]
+        #[unsafe(method_family = none)]
         unsafe fn textFileTypes() -> Retained<NSArray>;
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(textPasteboardTypes)]
+        #[unsafe(method_family = none)]
         unsafe fn textPasteboardTypes() -> Retained<NSArray>;
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(textUnfilteredFileTypes)]
+        #[unsafe(method_family = none)]
         unsafe fn textUnfilteredFileTypes() -> Retained<NSArray>;
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(textUnfilteredPasteboardTypes)]
+        #[unsafe(method_family = none)]
         unsafe fn textUnfilteredPasteboardTypes() -> Retained<NSArray>;
 
         #[deprecated = "Use -initWithURL:options:documentAttributes:error: instead"]
-        #[unsafe(method_family(init))]
         #[method_id(initWithURL:documentAttributes:)]
+        #[unsafe(method_family = init)]
         unsafe fn initWithURL_documentAttributes(
             this: Allocated<Self>,
             url: &NSURL,
@@ -1140,8 +1140,8 @@ extern_category!(
         ) -> Option<Retained<Self>>;
 
         #[deprecated = "Use -initWithURL:options:documentAttributes:error: instead"]
-        #[unsafe(method_family(init))]
         #[method_id(initWithPath:documentAttributes:)]
+        #[unsafe(method_family = init)]
         unsafe fn initWithPath_documentAttributes(
             this: Allocated<Self>,
             path: &NSString,
@@ -1149,8 +1149,8 @@ extern_category!(
         ) -> Option<Retained<Self>>;
 
         #[deprecated = "Use NSDataDetector instead"]
-        #[unsafe(method_family(none))]
         #[method_id(URLAtIndex:effectiveRange:)]
+        #[unsafe(method_family = none)]
         unsafe fn URLAtIndex_effectiveRange(
             &self,
             location: NSUInteger,

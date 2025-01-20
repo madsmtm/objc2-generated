@@ -30,12 +30,12 @@ unsafe impl NSSecureCoding for NSInflectionRule {}
 
 extern_methods!(
     unsafe impl NSInflectionRule {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(automaticRule)]
+        #[unsafe(method_family = none)]
         pub unsafe fn automaticRule() -> Retained<NSInflectionRule>;
     }
 );
@@ -43,8 +43,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSInflectionRule {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -75,16 +75,16 @@ unsafe impl NSSecureCoding for NSInflectionRuleExplicit {}
 extern_methods!(
     unsafe impl NSInflectionRuleExplicit {
         #[cfg(feature = "NSMorphology")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithMorphology:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithMorphology(
             this: Allocated<Self>,
             morphology: &NSMorphology,
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSMorphology")]
-        #[unsafe(method_family(none))]
         #[method_id(morphology)]
+        #[unsafe(method_family = none)]
         pub unsafe fn morphology(&self) -> Retained<NSMorphology>;
     }
 );
@@ -92,8 +92,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSInflectionRule`
     unsafe impl NSInflectionRuleExplicit {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -101,8 +101,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSInflectionRuleExplicit {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

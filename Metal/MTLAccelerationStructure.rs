@@ -129,12 +129,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLAccelerationStructureDescriptor {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -190,8 +190,8 @@ extern_methods!(
         );
 
         /// Label
-        #[unsafe(method_family(none))]
         #[method_id(label)]
+        #[unsafe(method_family = none)]
         pub unsafe fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
@@ -204,8 +204,8 @@ extern_methods!(
             feature = "MTLResource"
         ))]
         /// Data buffer containing per-primitive data. May be nil.
-        #[unsafe(method_family(none))]
         #[method_id(primitiveDataBuffer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn primitiveDataBuffer(&self)
             -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
@@ -252,12 +252,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLAccelerationStructureGeometryDescriptor {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -308,8 +308,8 @@ extern_methods!(
     unsafe impl MTLPrimitiveAccelerationStructureDescriptor {
         /// Array of geometry descriptors. If motionKeyframeCount is greater than one all geometryDescriptors
         /// must be motion versions and have motionKeyframeCount of primitive buffers.
-        #[unsafe(method_family(none))]
         #[method_id(geometryDescriptors)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geometryDescriptors(
             &self,
         ) -> Option<Retained<NSArray<MTLAccelerationStructureGeometryDescriptor>>>;
@@ -366,8 +366,8 @@ extern_methods!(
         #[method(setMotionKeyframeCount:)]
         pub unsafe fn setMotionKeyframeCount(&self, motion_keyframe_count: NSUInteger);
 
-        #[unsafe(method_family(none))]
         #[method_id(descriptor)]
+        #[unsafe(method_family = none)]
         pub fn descriptor() -> Retained<Self>;
     }
 );
@@ -375,12 +375,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLPrimitiveAccelerationStructureDescriptor {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -411,8 +411,8 @@ extern_methods!(
         ))]
         /// Vertex buffer containing triangle vertices. Each vertex position must be formatted
         /// according to the vertex format. Must not be nil.
-        #[unsafe(method_family(none))]
         #[method_id(vertexBuffer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn vertexBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         #[cfg(all(
@@ -459,8 +459,8 @@ extern_methods!(
             feature = "MTLResource"
         ))]
         /// Optional index buffer containing references to vertices in the vertex buffer. May be nil.
-        #[unsafe(method_family(none))]
         #[method_id(indexBuffer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indexBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         #[cfg(all(
@@ -506,8 +506,8 @@ extern_methods!(
         ))]
         /// Buffer containing packed float4x3 transformation matrix. Transform is applied to the vertex data when building the acceleration structure. Input vertex buffers are not modified.
         /// When set to nil, transformation matrix is not applied to vertex data.
-        #[unsafe(method_family(none))]
         #[method_id(transformationMatrixBuffer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn transformationMatrixBuffer(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
@@ -547,8 +547,8 @@ extern_methods!(
             transformation_matrix_layout: MTLMatrixLayout,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(descriptor)]
+        #[unsafe(method_family = none)]
         pub fn descriptor() -> Retained<Self>;
     }
 );
@@ -556,12 +556,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLAccelerationStructureTriangleGeometryDescriptor {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -591,8 +591,8 @@ extern_methods!(
             feature = "MTLResource"
         ))]
         /// Bounding box buffer containing MTLAxisAlignedBoundingBoxes. Must not be nil.
-        #[unsafe(method_family(none))]
         #[method_id(boundingBoxBuffer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn boundingBoxBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         #[cfg(all(
@@ -633,8 +633,8 @@ extern_methods!(
         #[method(setBoundingBoxCount:)]
         pub fn setBoundingBoxCount(&self, bounding_box_count: NSUInteger);
 
-        #[unsafe(method_family(none))]
         #[method_id(descriptor)]
+        #[unsafe(method_family = none)]
         pub fn descriptor() -> Retained<Self>;
     }
 );
@@ -642,12 +642,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLAccelerationStructureBoundingBoxGeometryDescriptor {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -671,8 +671,8 @@ extern_methods!(
             feature = "MTLResource"
         ))]
         /// Buffer containing the data of a single keyframe. Multiple keyframes can be interleaved in one MTLBuffer.
-        #[unsafe(method_family(none))]
         #[method_id(buffer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn buffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         #[cfg(all(
@@ -692,8 +692,8 @@ extern_methods!(
         #[method(setOffset:)]
         pub unsafe fn setOffset(&self, offset: NSUInteger);
 
-        #[unsafe(method_family(none))]
         #[method_id(data)]
+        #[unsafe(method_family = none)]
         pub unsafe fn data() -> Retained<Self>;
     }
 );
@@ -701,12 +701,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLMotionKeyframeData {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -731,8 +731,8 @@ unsafe impl NSObjectProtocol for MTLAccelerationStructureMotionTriangleGeometryD
 extern_methods!(
     unsafe impl MTLAccelerationStructureMotionTriangleGeometryDescriptor {
         /// Vertex buffer containing triangle vertices similar to what MTLAccelerationStructureTriangleGeometryDescriptor has but array of the values.
-        #[unsafe(method_family(none))]
         #[method_id(vertexBuffers)]
+        #[unsafe(method_family = none)]
         pub unsafe fn vertexBuffers(&self) -> Retained<NSArray<MTLMotionKeyframeData>>;
 
         /// Setter for [`vertexBuffers`][Self::vertexBuffers].
@@ -765,8 +765,8 @@ extern_methods!(
             feature = "MTLResource"
         ))]
         /// Optional index buffer containing references to vertices in the vertex buffer. May be nil.
-        #[unsafe(method_family(none))]
         #[method_id(indexBuffer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indexBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         #[cfg(all(
@@ -813,8 +813,8 @@ extern_methods!(
         /// Buffer containing packed float4x3 transformation matrix. Transform is applied to the vertex data when building the acceleration structure. Input vertex buffers are not modified.
         /// The transformation matrix is applied to all keyframes' vertex data.
         /// When set to nil, transformation matrix is not applied to vertex data.
-        #[unsafe(method_family(none))]
         #[method_id(transformationMatrixBuffer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn transformationMatrixBuffer(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
@@ -854,8 +854,8 @@ extern_methods!(
             transformation_matrix_layout: MTLMatrixLayout,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(descriptor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn descriptor() -> Retained<Self>;
     }
 );
@@ -863,12 +863,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLAccelerationStructureMotionTriangleGeometryDescriptor {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -893,8 +893,8 @@ unsafe impl NSObjectProtocol for MTLAccelerationStructureMotionBoundingBoxGeomet
 extern_methods!(
     unsafe impl MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor {
         /// Bounding box buffer containing MTLAxisAlignedBoundingBoxes similar to what MTLAccelerationStructureBoundingBoxGeometryDescriptor has but array of the values.
-        #[unsafe(method_family(none))]
         #[method_id(boundingBoxBuffers)]
+        #[unsafe(method_family = none)]
         pub unsafe fn boundingBoxBuffers(&self) -> Retained<NSArray<MTLMotionKeyframeData>>;
 
         /// Setter for [`boundingBoxBuffers`][Self::boundingBoxBuffers].
@@ -921,8 +921,8 @@ extern_methods!(
         #[method(setBoundingBoxCount:)]
         pub unsafe fn setBoundingBoxCount(&self, bounding_box_count: NSUInteger);
 
-        #[unsafe(method_family(none))]
         #[method_id(descriptor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn descriptor() -> Retained<Self>;
     }
 );
@@ -930,12 +930,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -1076,8 +1076,8 @@ extern_methods!(
         /// Buffer containing curve control points. Each control point must
         /// be of the format specified by the control point format. Must not be
         /// nil when the acceleration structure is built.
-        #[unsafe(method_family(none))]
         #[method_id(controlPointBuffer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn controlPointBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         #[cfg(all(
@@ -1141,8 +1141,8 @@ extern_methods!(
         /// radius must be of the type specified by the radius format. Each radius
         /// must be at least zero. Must not be nil when the acceleration structure
         /// is built.
-        #[unsafe(method_family(none))]
         #[method_id(radiusBuffer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn radiusBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         #[cfg(all(
@@ -1191,8 +1191,8 @@ extern_methods!(
         ))]
         /// Index buffer containing references to control points in the control
         /// point buffer. Must not be nil when the acceleration structure is built.
-        #[unsafe(method_family(none))]
         #[method_id(indexBuffer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indexBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         #[cfg(all(
@@ -1264,8 +1264,8 @@ extern_methods!(
         #[method(setCurveEndCaps:)]
         pub unsafe fn setCurveEndCaps(&self, curve_end_caps: MTLCurveEndCaps);
 
-        #[unsafe(method_family(none))]
         #[method_id(descriptor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn descriptor() -> Retained<Self>;
     }
 );
@@ -1273,12 +1273,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLAccelerationStructureCurveGeometryDescriptor {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -1309,8 +1309,8 @@ extern_methods!(
         /// point format's element size and must be aligned to the platform's
         /// buffer offset alignment. Must not be nil when the acceleration
         /// structure is built.
-        #[unsafe(method_family(none))]
         #[method_id(controlPointBuffers)]
+        #[unsafe(method_family = none)]
         pub unsafe fn controlPointBuffers(&self) -> Retained<NSArray<MTLMotionKeyframeData>>;
 
         /// Setter for [`controlPointBuffers`][Self::controlPointBuffers].
@@ -1356,8 +1356,8 @@ extern_methods!(
         /// and must be aligned to the platform's buffer offset alignment. Each radius
         /// must be at least zero. Must not be nil when the acceleration structure
         /// is built.
-        #[unsafe(method_family(none))]
         #[method_id(radiusBuffers)]
+        #[unsafe(method_family = none)]
         pub unsafe fn radiusBuffers(&self) -> Retained<NSArray<MTLMotionKeyframeData>>;
 
         /// Setter for [`radiusBuffers`][Self::radiusBuffers].
@@ -1391,8 +1391,8 @@ extern_methods!(
         ))]
         /// Index buffer containing references to control points in the control
         /// point buffer. Must not be nil.
-        #[unsafe(method_family(none))]
         #[method_id(indexBuffer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indexBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         #[cfg(all(
@@ -1464,8 +1464,8 @@ extern_methods!(
         #[method(setCurveEndCaps:)]
         pub unsafe fn setCurveEndCaps(&self, curve_end_caps: MTLCurveEndCaps);
 
-        #[unsafe(method_family(none))]
         #[method_id(descriptor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn descriptor() -> Retained<Self>;
     }
 );
@@ -1473,12 +1473,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLAccelerationStructureMotionCurveGeometryDescriptor {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -1797,8 +1797,8 @@ extern_methods!(
             feature = "MTLResource"
         ))]
         /// Buffer containing instance descriptors of the type specified by the instanceDescriptorType property
-        #[unsafe(method_family(none))]
         #[method_id(instanceDescriptorBuffer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn instanceDescriptorBuffer(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
@@ -1847,8 +1847,8 @@ extern_methods!(
 
         #[cfg(all(feature = "MTLAllocation", feature = "MTLResource"))]
         /// Acceleration structures to be instanced
-        #[unsafe(method_family(none))]
         #[method_id(instancedAccelerationStructures)]
+        #[unsafe(method_family = none)]
         pub unsafe fn instancedAccelerationStructures(
             &self,
         ) -> Option<Retained<NSArray<ProtocolObject<dyn MTLAccelerationStructure>>>>;
@@ -1883,8 +1883,8 @@ extern_methods!(
             feature = "MTLResource"
         ))]
         /// Buffer containing transformation information for motion
-        #[unsafe(method_family(none))]
         #[method_id(motionTransformBuffer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn motionTransformBuffer(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
@@ -1951,8 +1951,8 @@ extern_methods!(
         #[method(setMotionTransformStride:)]
         pub unsafe fn setMotionTransformStride(&self, motion_transform_stride: NSUInteger);
 
-        #[unsafe(method_family(none))]
         #[method_id(descriptor)]
+        #[unsafe(method_family = none)]
         pub fn descriptor() -> Retained<Self>;
     }
 );
@@ -1960,12 +1960,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLInstanceAccelerationStructureDescriptor {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -1995,8 +1995,8 @@ extern_methods!(
             feature = "MTLResource"
         ))]
         /// Buffer containing instance descriptors of the type specified by the instanceDescriptorType property
-        #[unsafe(method_family(none))]
         #[method_id(instanceDescriptorBuffer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn instanceDescriptorBuffer(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
@@ -2050,8 +2050,8 @@ extern_methods!(
         ))]
         /// Buffer containing the instance count as a uint32_t value. Value at build time
         /// must be less than or equal to maxInstanceCount.
-        #[unsafe(method_family(none))]
         #[method_id(instanceCountBuffer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn instanceCountBuffer(&self)
             -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
@@ -2098,8 +2098,8 @@ extern_methods!(
             feature = "MTLResource"
         ))]
         /// Buffer containing transformation information for motion
-        #[unsafe(method_family(none))]
         #[method_id(motionTransformBuffer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn motionTransformBuffer(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
@@ -2143,8 +2143,8 @@ extern_methods!(
         ))]
         /// Buffer containing the motion transform count as a uint32_t value. Value at build time
         /// must be less than or equal to maxMotionTransformCount.
-        #[unsafe(method_family(none))]
         #[method_id(motionTransformCountBuffer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn motionTransformCountBuffer(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
@@ -2203,8 +2203,8 @@ extern_methods!(
         #[method(setMotionTransformStride:)]
         pub unsafe fn setMotionTransformStride(&self, motion_transform_stride: NSUInteger);
 
-        #[unsafe(method_family(none))]
         #[method_id(descriptor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn descriptor() -> Retained<Self>;
     }
 );
@@ -2212,12 +2212,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLIndirectInstanceAccelerationStructureDescriptor {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

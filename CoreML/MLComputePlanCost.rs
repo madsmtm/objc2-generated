@@ -23,12 +23,12 @@ unsafe impl NSObjectProtocol for MLComputePlanCost {}
 
 extern_methods!(
     unsafe impl MLComputePlanCost {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// The estimated workload of executing the operation over the total model execution. The value is between [0.0, 1.0].

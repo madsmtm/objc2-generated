@@ -211,20 +211,20 @@ extern_methods!(
 
         #[cfg(feature = "SCShareableContent")]
         /// SCDisplays that are included in the content filter
-        #[unsafe(method_family(none))]
         #[method_id(includedDisplays)]
+        #[unsafe(method_family = none)]
         pub unsafe fn includedDisplays(&self) -> Retained<NSArray<SCDisplay>>;
 
         #[cfg(feature = "SCShareableContent")]
         /// Applications that are included in the content filter
-        #[unsafe(method_family(none))]
         #[method_id(includedApplications)]
+        #[unsafe(method_family = none)]
         pub unsafe fn includedApplications(&self) -> Retained<NSArray<SCRunningApplication>>;
 
         #[cfg(feature = "SCShareableContent")]
         /// Windows that are included in the content filter
-        #[unsafe(method_family(none))]
         #[method_id(includedWindows)]
+        #[unsafe(method_family = none)]
         pub unsafe fn includedWindows(&self) -> Retained<NSArray<SCWindow>>;
 
         #[cfg(feature = "SCShareableContent")]
@@ -233,8 +233,8 @@ extern_methods!(
         /// Parameter `window`: the independent SCWindow you wish to capture
         ///
         /// this method will create a SCContentFilter that captures just the independent window passed in.
-        #[unsafe(method_family(init))]
         #[method_id(initWithDesktopIndependentWindow:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDesktopIndependentWindow(
             this: Allocated<Self>,
             window: &SCWindow,
@@ -248,8 +248,8 @@ extern_methods!(
         /// Parameter `excluded`: the SCWindow(s) you wish to exclude from the passed in SCDisplay
         ///
         /// This method will create a SCContentFilter that captures the SCDisplay, excluding the passed in excluded SCWindow(s). The desktop background and dock will be included with this content filter.
-        #[unsafe(method_family(init))]
         #[method_id(initWithDisplay:excludingWindows:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDisplay_excludingWindows(
             this: Allocated<Self>,
             display: &SCDisplay,
@@ -264,8 +264,8 @@ extern_methods!(
         /// Parameter `includedWindows`: a set of SCWindows you wish to capture
         ///
         /// This method will create a SCContentFilter that captures a group of SCWindows. The desktop background and dock will be excluded with this content filter.
-        #[unsafe(method_family(init))]
         #[method_id(initWithDisplay:includingWindows:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDisplay_includingWindows(
             this: Allocated<Self>,
             display: &SCDisplay,
@@ -282,8 +282,8 @@ extern_methods!(
         /// Parameter `exceptingWindows`: the NSSet of SCWindows that you wish to be an exception to the filter
         ///
         /// This method creates a SCContentFilter that captures all windows owned by the passed in SCRunningApplications. Any windows that are an exception to the filter will not be shown if their owning application is in the provided list and will be shown otherwise. The desktop background and dock will be excluded with this content filter.
-        #[unsafe(method_family(init))]
         #[method_id(initWithDisplay:includingApplications:exceptingWindows:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDisplay_includingApplications_exceptingWindows(
             this: Allocated<Self>,
             display: &SCDisplay,
@@ -301,8 +301,8 @@ extern_methods!(
         /// Parameter `exceptingWindows`: the NSSet of SCWindows that you wish to be an exception to the filter
         ///
         /// This method creates a SCContentFilter that captures all windows not owned by the passed in SCRunningApplications. Any windows that are an exception to the filter will be shown if their owning application is in the provided list and will not be shown otherwise. The desktop background and dock will be included with this content filter.
-        #[unsafe(method_family(init))]
         #[method_id(initWithDisplay:excludingApplications:exceptingWindows:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDisplay_excludingApplications_exceptingWindows(
             this: Allocated<Self>,
             display: &SCDisplay,
@@ -315,12 +315,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCContentFilter {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -424,8 +424,8 @@ extern_methods!(
         pub unsafe fn setPreservesAspectRatio(&self, preserves_aspect_ratio: bool);
 
         /// SCStreamProperty the name of the stream
-        #[unsafe(method_family(none))]
         #[method_id(streamName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn streamName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`streamName`][Self::streamName].
@@ -450,8 +450,8 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-graphics")]
         /// SCStreamProperty for background color. By default the background color is clear.
-        #[unsafe(method_family(none))]
         #[method_id(backgroundColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn backgroundColor(&self) -> Retained<CGColor>;
 
         #[cfg(feature = "objc2-core-graphics")]
@@ -489,8 +489,8 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         /// SCStreamProperty that specifies the YCbCr matrix applied to the output surface.  The value must be one of the strings specified in https://developer.apple.com/documentation/coregraphics/quartz_display_services/display_stream_ycbcr_to_rgb_conversion_matrix_options. Should only be used if your pixel format is 420v or 420f.
-        #[unsafe(method_family(none))]
         #[method_id(colorMatrix)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colorMatrix(&self) -> Retained<CFString>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -501,8 +501,8 @@ extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// SCStreamProperty that specifies the color space of the output buffer.  If not set the output buffer uses the same color space as the display. The value must be one of the strings specified in
         /// https://developer.apple.com/documentation/coregraphics/cgcolorspace/color_space_names.
-        #[unsafe(method_family(none))]
         #[method_id(colorSpaceName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colorSpaceName(&self) -> Retained<CFString>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -629,8 +629,8 @@ extern_methods!(
         pub unsafe fn setCaptureMicrophone(&self, capture_microphone: bool);
 
         /// SCStreamProperty that specifies which microphone device to capture. This deviceID is the uniqueID from AVCaptureDevice for the microphone. System Default Microphone will be used if not specified by client. For Mac Catalyst apps, the System Default Microphone will be captured.
-        #[unsafe(method_family(none))]
         #[method_id(microphoneCaptureDeviceID)]
+        #[unsafe(method_family = none)]
         pub unsafe fn microphoneCaptureDeviceID(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`microphoneCaptureDeviceID`][Self::microphoneCaptureDeviceID].
@@ -653,8 +653,8 @@ extern_methods!(
         /// Parameter `preset`: The enum identifier for the desired preset
         ///
         /// The SCStreamConfiguration of the returned object can be used as a guide for creating and configuring an SCStream. If all the suggested properties are respected in creating the SCStream, the resulting capture result will conform to the criteria implied by the preset.
-        #[unsafe(method_family(none))]
         #[method_id(streamConfigurationWithPreset:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn streamConfigurationWithPreset(
             preset: SCStreamConfigurationPreset,
         ) -> Retained<Self>;
@@ -664,12 +664,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCStreamConfiguration {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -773,16 +773,16 @@ extern_methods!(
     unsafe impl SCStream {
         #[cfg(feature = "objc2-core-media")]
         /// Synchronization clock used for media capture.
-        #[unsafe(method_family(none))]
         #[method_id(synchronizationClock)]
+        #[unsafe(method_family = none)]
         pub unsafe fn synchronizationClock(&self) -> Option<Retained<CMClock>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// initWithFilter:configuration:delegate:
@@ -794,8 +794,8 @@ extern_methods!(
         /// Parameter `delegate`: the SCStream delegate object
         ///
         /// this method create a SCStream object that has the particular output settings for the content stream
-        #[unsafe(method_family(init))]
         #[method_id(initWithFilter:configuration:delegate:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFilter_configuration_delegate(
             this: Allocated<Self>,
             content_filter: &SCContentFilter,

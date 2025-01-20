@@ -83,8 +83,8 @@ extern_methods!(
         /// The item returned will have a custom view for representing the control and automatically create subitems for the group.
         /// The labels array, if not nil, will be used to provide individual labels under the item for each segment of the control.
         /// When space in the toolbar is tight, the control may switch to a smaller alternate representation as necessary to remain in the toolbar.
-        #[unsafe(method_family(none))]
         #[method_id(groupWithItemIdentifier:titles:selectionMode:labels:target:action:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn groupWithItemIdentifier_titles_selectionMode_labels_target_action(
             item_identifier: &NSToolbarItemIdentifier,
             titles: &NSArray<NSString>,
@@ -96,8 +96,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSImage", feature = "NSToolbar"))]
-        #[unsafe(method_family(none))]
         #[method_id(groupWithItemIdentifier:images:selectionMode:labels:target:action:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn groupWithItemIdentifier_images_selectionMode_labels_target_action(
             item_identifier: &NSToolbarItemIdentifier,
             images: &NSArray<NSImage>,
@@ -112,8 +112,8 @@ extern_methods!(
         /// By default, a `NSToolbarItemGroup` has an empty array of subitems.
         /// You should call this to set the subitems before returning the item to the toolbar.
         /// `NSToolbarItemGroups` may not contain other `NSToolbarItemGroups` as subitems.
-        #[unsafe(method_family(none))]
         #[method_id(subitems)]
+        #[unsafe(method_family = none)]
         pub unsafe fn subitems(&self) -> Retained<NSArray<NSToolbarItem>>;
 
         /// Setter for [`subitems`][Self::subitems].
@@ -164,8 +164,8 @@ extern_methods!(
     unsafe impl NSToolbarItemGroup {
         #[cfg(feature = "NSToolbar")]
         /// Initialize the toolbar item with an identifier which is a development language string used by the toolbar and its delegate for identification purposes.
-        #[unsafe(method_family(init))]
         #[method_id(initWithItemIdentifier:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithItemIdentifier(
             this: Allocated<Self>,
             item_identifier: &NSToolbarItemIdentifier,
@@ -177,12 +177,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSToolbarItem")]
     unsafe impl NSToolbarItemGroup {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

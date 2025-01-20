@@ -197,19 +197,19 @@ extern_methods!(
     unsafe impl CXProvider {
         #[cfg(feature = "CXProviderConfiguration")]
         /// Initialize a new provider instance with the supplied configuration
-        #[unsafe(method_family(init))]
         #[method_id(initWithConfiguration:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithConfiguration(
             this: Allocated<Self>,
             configuration: &CXProviderConfiguration,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "CXCallUpdate", feature = "block2"))]
@@ -266,8 +266,8 @@ extern_methods!(
 
         #[cfg(feature = "CXProviderConfiguration")]
         /// The receiver's current configuration.
-        #[unsafe(method_family(none))]
         #[method_id(configuration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn configuration(&self) -> Retained<CXProviderConfiguration>;
 
         #[cfg(feature = "CXProviderConfiguration")]
@@ -281,14 +281,14 @@ extern_methods!(
 
         #[cfg(feature = "CXTransaction")]
         /// List of all transactions that are incomplete.
-        #[unsafe(method_family(none))]
         #[method_id(pendingTransactions)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pendingTransactions(&self) -> Retained<NSArray<CXTransaction>>;
 
         #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
         /// Returns subset of call actions contained in any transaction in -pendingTransactions of the specified class and with the specified call UUID.
-        #[unsafe(method_family(none))]
         #[method_id(pendingCallActionsOfClass:withCallUUID:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pendingCallActionsOfClass_withCallUUID(
             &self,
             call_action_class: &AnyClass,

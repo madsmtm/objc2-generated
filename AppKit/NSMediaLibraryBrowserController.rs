@@ -52,8 +52,8 @@ unsafe impl NSObjectProtocol for NSMediaLibraryBrowserController {}
 
 extern_methods!(
     unsafe impl NSMediaLibraryBrowserController {
-        #[unsafe(method_family(none))]
         #[method_id(sharedMediaLibraryBrowserController)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sharedMediaLibraryBrowserController(
         ) -> Retained<NSMediaLibraryBrowserController>;
 
@@ -86,12 +86,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSMediaLibraryBrowserController {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

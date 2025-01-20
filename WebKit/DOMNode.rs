@@ -93,13 +93,13 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMNode {
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(nodeName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn nodeName(&self) -> Retained<NSString>;
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(nodeValue)]
+        #[unsafe(method_family = none)]
         pub unsafe fn nodeValue(&self) -> Retained<NSString>;
 
         /// Setter for [`nodeValue`][Self::nodeValue].
@@ -112,50 +112,50 @@ extern_methods!(
         pub unsafe fn nodeType(&self) -> c_ushort;
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(parentNode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn parentNode(&self) -> Option<Retained<DOMNode>>;
 
         #[cfg(feature = "DOMNodeList")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(childNodes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn childNodes(&self) -> Option<Retained<DOMNodeList>>;
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(firstChild)]
+        #[unsafe(method_family = none)]
         pub unsafe fn firstChild(&self) -> Option<Retained<DOMNode>>;
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(lastChild)]
+        #[unsafe(method_family = none)]
         pub unsafe fn lastChild(&self) -> Option<Retained<DOMNode>>;
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(previousSibling)]
+        #[unsafe(method_family = none)]
         pub unsafe fn previousSibling(&self) -> Option<Retained<DOMNode>>;
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(nextSibling)]
+        #[unsafe(method_family = none)]
         pub unsafe fn nextSibling(&self) -> Option<Retained<DOMNode>>;
 
         #[cfg(feature = "DOMDocument")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(ownerDocument)]
+        #[unsafe(method_family = none)]
         pub unsafe fn ownerDocument(&self) -> Option<Retained<DOMDocument>>;
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(namespaceURI)]
+        #[unsafe(method_family = none)]
         pub unsafe fn namespaceURI(&self) -> Retained<NSString>;
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(prefix)]
+        #[unsafe(method_family = none)]
         pub unsafe fn prefix(&self) -> Retained<NSString>;
 
         /// Setter for [`prefix`][Self::prefix].
@@ -164,22 +164,22 @@ extern_methods!(
         pub unsafe fn setPrefix(&self, prefix: Option<&NSString>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(localName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn localName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "DOMNamedNodeMap")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(attributes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn attributes(&self) -> Option<Retained<DOMNamedNodeMap>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(baseURI)]
+        #[unsafe(method_family = none)]
         pub unsafe fn baseURI(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(textContent)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textContent(&self) -> Retained<NSString>;
 
         /// Setter for [`textContent`][Self::textContent].
@@ -187,23 +187,23 @@ extern_methods!(
         pub unsafe fn setTextContent(&self, text_content: Option<&NSString>);
 
         #[cfg(feature = "DOMElement")]
-        #[unsafe(method_family(none))]
         #[method_id(parentElement)]
+        #[unsafe(method_family = none)]
         pub unsafe fn parentElement(&self) -> Option<Retained<DOMElement>>;
 
         #[method(isContentEditable)]
         pub unsafe fn isContentEditable(&self) -> bool;
 
-        #[unsafe(method_family(none))]
         #[method_id(insertBefore:refChild:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn insertBefore_refChild(
             &self,
             new_child: Option<&DOMNode>,
             ref_child: Option<&DOMNode>,
         ) -> Option<Retained<DOMNode>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(replaceChild:oldChild:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn replaceChild_oldChild(
             &self,
             new_child: Option<&DOMNode>,
@@ -211,13 +211,13 @@ extern_methods!(
         ) -> Option<Retained<DOMNode>>;
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(removeChild:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeChild(&self, old_child: Option<&DOMNode>) -> Option<Retained<DOMNode>>;
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(appendChild:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn appendChild(&self, new_child: Option<&DOMNode>) -> Option<Retained<DOMNode>>;
 
         #[deprecated]
@@ -225,8 +225,8 @@ extern_methods!(
         pub unsafe fn hasChildNodes(&self) -> bool;
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(cloneNode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cloneNode(&self, deep: bool) -> Option<Retained<DOMNode>>;
 
         #[deprecated]
@@ -250,15 +250,15 @@ extern_methods!(
         #[method(isEqualNode:)]
         pub unsafe fn isEqualNode(&self, other: Option<&DOMNode>) -> bool;
 
-        #[unsafe(method_family(none))]
         #[method_id(lookupPrefix:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn lookupPrefix(
             &self,
             namespace_uri: Option<&NSString>,
         ) -> Option<Retained<NSString>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(lookupNamespaceURI:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn lookupNamespaceURI(
             &self,
             prefix: Option<&NSString>,
@@ -280,8 +280,8 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMNode {
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -290,8 +290,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMNode {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -301,8 +301,8 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMNode {
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(insertBefore::)]
+        #[unsafe(method_family = none)]
         pub unsafe fn insertBefore(
             &self,
             new_child: Option<&DOMNode>,
@@ -310,8 +310,8 @@ extern_methods!(
         ) -> Option<Retained<DOMNode>>;
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(replaceChild::)]
+        #[unsafe(method_family = none)]
         pub unsafe fn replaceChild(
             &self,
             new_child: Option<&DOMNode>,

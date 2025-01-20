@@ -17,8 +17,8 @@ extern_protocol!(
     pub unsafe trait GCButtonElement: GCPhysicalInputElement {
         #[cfg(all(feature = "GCLinearInput", feature = "GCPressedStateInput"))]
         /// Get the input containing the pressed state of the button.
-        #[unsafe(method_family(none))]
         #[method_id(pressedInput)]
+        #[unsafe(method_family = none)]
         unsafe fn pressedInput(
             &self,
         ) -> Retained<AnyObject /* GCPressedStateInput+ GCLinearInput */>;
@@ -28,8 +28,8 @@ extern_protocol!(
         ///
         /// Some buttons feature capacitive touch capabilities where the user can touch the
         /// button without pressing it.
-        #[unsafe(method_family(none))]
         #[method_id(touchedInput)]
+        #[unsafe(method_family = none)]
         unsafe fn touchedInput(&self) -> Option<Retained<ProtocolObject<dyn GCTouchedStateInput>>>;
     }
 );

@@ -18,16 +18,16 @@ unsafe impl NSObjectProtocol for ODAttributeMap {}
 
 extern_methods!(
     unsafe impl ODAttributeMap {
-        #[unsafe(method_family(none))]
         #[method_id(customQueryFunction)]
+        #[unsafe(method_family = none)]
         pub unsafe fn customQueryFunction(&self) -> Retained<NSString>;
 
         /// Setter for [`customQueryFunction`][Self::customQueryFunction].
         #[method(setCustomQueryFunction:)]
         pub unsafe fn setCustomQueryFunction(&self, custom_query_function: Option<&NSString>);
 
-        #[unsafe(method_family(none))]
         #[method_id(customTranslationFunction)]
+        #[unsafe(method_family = none)]
         pub unsafe fn customTranslationFunction(&self) -> Retained<NSString>;
 
         /// Setter for [`customTranslationFunction`][Self::customTranslationFunction].
@@ -37,16 +37,16 @@ extern_methods!(
             custom_translation_function: Option<&NSString>,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(customAttributes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn customAttributes(&self) -> Retained<NSArray>;
 
         /// Setter for [`customAttributes`][Self::customAttributes].
         #[method(setCustomAttributes:)]
         pub unsafe fn setCustomAttributes(&self, custom_attributes: Option<&NSArray>);
 
-        #[unsafe(method_family(none))]
         #[method_id(value)]
+        #[unsafe(method_family = none)]
         pub unsafe fn value(&self) -> Retained<NSString>;
 
         /// Setter for [`value`][Self::value].
@@ -57,16 +57,16 @@ extern_methods!(
         ///
         ///
         /// Returns an initialized and autoreleased ODAttributeMap object with the given value mapped.
-        #[unsafe(method_family(none))]
         #[method_id(attributeMapWithValue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn attributeMapWithValue(value: Option<&NSString>) -> Option<Retained<Self>>;
 
         /// Returns an initialized and autoreleased ODAttributeMap object with the given static value.
         ///
         ///
         /// Returns an initialized and autoreleased ODAttributeMap object with the given static value.
-        #[unsafe(method_family(none))]
         #[method_id(attributeMapWithStaticValue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn attributeMapWithStaticValue(
             static_value: Option<&NSString>,
         ) -> Option<Retained<Self>>;
@@ -92,12 +92,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ODAttributeMap {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

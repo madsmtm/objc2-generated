@@ -26,8 +26,8 @@ unsafe impl NSObjectProtocol for NSScanner {}
 extern_methods!(
     unsafe impl NSScanner {
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(string)]
+        #[unsafe(method_family = none)]
         pub unsafe fn string(&self) -> Retained<NSString>;
 
         #[method(scanLocation)]
@@ -38,8 +38,8 @@ extern_methods!(
         pub unsafe fn setScanLocation(&self, scan_location: NSUInteger);
 
         #[cfg(feature = "NSCharacterSet")]
-        #[unsafe(method_family(none))]
         #[method_id(charactersToBeSkipped)]
+        #[unsafe(method_family = none)]
         pub unsafe fn charactersToBeSkipped(&self) -> Option<Retained<NSCharacterSet>>;
 
         #[cfg(feature = "NSCharacterSet")]
@@ -57,8 +57,8 @@ extern_methods!(
         #[method(setCaseSensitive:)]
         pub unsafe fn setCaseSensitive(&self, case_sensitive: bool);
 
-        #[unsafe(method_family(none))]
         #[method_id(locale)]
+        #[unsafe(method_family = none)]
         pub unsafe fn locale(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`locale`][Self::locale].
@@ -66,8 +66,8 @@ extern_methods!(
         pub unsafe fn setLocale(&self, locale: Option<&AnyObject>);
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithString:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithString(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
     }
 );
@@ -75,12 +75,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSScanner {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -154,13 +154,13 @@ extern_methods!(
         pub unsafe fn isAtEnd(&self) -> bool;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(scannerWithString:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scannerWithString(string: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(localizedScannerWithString:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn localizedScannerWithString(string: &NSString) -> Retained<AnyObject>;
     }
 );

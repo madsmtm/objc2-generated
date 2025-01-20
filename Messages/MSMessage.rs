@@ -31,8 +31,8 @@ unsafe impl NSSecureCoding for MSMessage {}
 extern_methods!(
     unsafe impl MSMessage {
         /// Initializes a new message that is not part of a session.
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "MSSession")]
@@ -45,15 +45,15 @@ extern_methods!(
         /// A message initialized with a session will be updated
         /// and moved to the bottom of the conversation transcript when another message created
         /// with the same session is sent.
-        #[unsafe(method_family(init))]
         #[method_id(initWithSession:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithSession(this: Allocated<Self>, session: &MSSession)
             -> Retained<Self>;
 
         #[cfg(feature = "MSSession")]
         /// An MSSession that identifies the session that message belongs to.
-        #[unsafe(method_family(none))]
         #[method_id(session)]
+        #[unsafe(method_family = none)]
         pub unsafe fn session(&self) -> Option<Retained<MSSession>>;
 
         /// A BOOL representing whether the message is a pending message or is a message that has been sent/received.
@@ -67,8 +67,8 @@ extern_methods!(
         /// This NSUUID identifies the message's sender. This value is scoped to
         /// the current device and will be different on all devices that participate in the
         /// conversation.
-        #[unsafe(method_family(none))]
         #[method_id(senderParticipantIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn senderParticipantIdentifier(&self) -> Retained<NSUUID>;
 
         #[cfg(feature = "MSMessageLayout")]
@@ -76,8 +76,8 @@ extern_methods!(
         ///
         /// The MSMessageLayout subclass will be used to construct UI
         /// representing the message in the conversation transcript.
-        #[unsafe(method_family(none))]
         #[method_id(layout)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layout(&self) -> Option<Retained<MSMessageLayout>>;
 
         #[cfg(feature = "MSMessageLayout")]
@@ -90,8 +90,8 @@ extern_methods!(
         /// This URL should encode any data that is to be delivered to the extension running
         /// on the recipient's device(s). When no app exists on the receiving device that
         /// can consume the message, if this URL is a HTTP(S) url, it will be loaded in a web browser.
-        #[unsafe(method_family(none))]
         #[method_id(URL)]
+        #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`URL`][Self::URL].
@@ -115,8 +115,8 @@ extern_methods!(
         /// This string should provide a succinct description of the message. This
         /// will be used by the Accessibility Speech feature when speaking the message for users
         /// with disabilities.
-        #[unsafe(method_family(none))]
         #[method_id(accessibilityLabel)]
+        #[unsafe(method_family = none)]
         pub unsafe fn accessibilityLabel(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityLabel`][Self::accessibilityLabel].
@@ -127,8 +127,8 @@ extern_methods!(
         ///
         /// This string should provide a succinct description of the message. This
         /// will be used to provide a summary of the message in the UI.
-        #[unsafe(method_family(none))]
         #[method_id(summaryText)]
+        #[unsafe(method_family = none)]
         pub unsafe fn summaryText(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`summaryText`][Self::summaryText].
@@ -139,8 +139,8 @@ extern_methods!(
         ///
         /// This value is nil if the message is has not yet been sent, is still
         /// sending or has been sent successfully.
-        #[unsafe(method_family(none))]
         #[method_id(error)]
+        #[unsafe(method_family = none)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
 
         /// Setter for [`error`][Self::error].
@@ -152,8 +152,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MSMessage {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -58,17 +58,17 @@ unsafe impl NSUserInterfaceItemIdentification for NSMenuItemCell {}
 extern_methods!(
     #[cfg(all(feature = "NSActionCell", feature = "NSButtonCell", feature = "NSCell"))]
     unsafe impl NSMenuItemCell {
-        #[unsafe(method_family(init))]
         #[method_id(initTextCell:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "NSMenuItem")]
-        #[unsafe(method_family(none))]
         #[method_id(menuItem)]
+        #[unsafe(method_family = none)]
         pub unsafe fn menuItem(&self) -> Option<Retained<NSMenuItem>>;
 
         #[cfg(feature = "NSMenuItem")]
@@ -172,8 +172,8 @@ extern_methods!(
     #[cfg(all(feature = "NSActionCell", feature = "NSButtonCell", feature = "NSCell"))]
     unsafe impl NSMenuItemCell {
         #[cfg(feature = "NSImage")]
-        #[unsafe(method_family(init))]
         #[method_id(initImageCell:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initImageCell(
             this: Allocated<Self>,
             image: Option<&NSImage>,
@@ -185,8 +185,8 @@ extern_methods!(
     /// Methods declared on superclass `NSCell`
     #[cfg(all(feature = "NSActionCell", feature = "NSButtonCell", feature = "NSCell"))]
     unsafe impl NSMenuItemCell {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -195,8 +195,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSActionCell", feature = "NSButtonCell", feature = "NSCell"))]
     unsafe impl NSMenuItemCell {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

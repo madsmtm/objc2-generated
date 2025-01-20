@@ -25,8 +25,8 @@ unsafe impl<UnitType: ?Sized + NSSecureCoding> NSSecureCoding for MXAverage<Unit
 extern_methods!(
     unsafe impl<UnitType: Message> MXAverage<UnitType> {
         /// An NSMeasurement that contains the average measurement.
-        #[unsafe(method_family(none))]
         #[method_id(averageMeasurement)]
+        #[unsafe(method_family = none)]
         pub unsafe fn averageMeasurement(&self) -> Retained<NSMeasurement<UnitType>>;
 
         /// An NSInteger representation of the number of samples in the distribution used to formulate the average.
@@ -46,12 +46,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<UnitType: Message> MXAverage<UnitType> {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

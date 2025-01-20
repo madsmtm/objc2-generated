@@ -13,8 +13,8 @@ extern_protocol!(
         #[cfg(all(feature = "UIFindSession", feature = "UIResponder", feature = "UIView"))]
         /// Called when a find session is requested to begin by the user. Return an instance of a UIFindSession implementation to allow the
         /// find session to begin, otherwise return nil to prevent the system find panel from appearing.
-        #[unsafe(method_family(none))]
         #[method_id(findInteraction:sessionForView:)]
+        #[unsafe(method_family = none)]
         unsafe fn findInteraction_sessionForView(
             &self,
             interaction: &UIFindInteraction,
@@ -68,13 +68,13 @@ extern_methods!(
 
         #[cfg(feature = "UIFindSession")]
         /// If there's a currently active find session (implying isFindNavigatorVisible is true), returns the active find session.
-        #[unsafe(method_family(none))]
         #[method_id(activeFindSession)]
+        #[unsafe(method_family = none)]
         pub unsafe fn activeFindSession(&self) -> Option<Retained<UIFindSession>>;
 
         /// Assign this property to pre-populate the system find panel's search text field with a search query.
-        #[unsafe(method_family(none))]
         #[method_id(searchText)]
+        #[unsafe(method_family = none)]
         pub unsafe fn searchText(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`searchText`][Self::searchText].
@@ -82,8 +82,8 @@ extern_methods!(
         pub unsafe fn setSearchText(&self, search_text: Option<&NSString>);
 
         /// If replacement is supported, assign this property to pre-populate the system find panel's replace text field with a replacement string.
-        #[unsafe(method_family(none))]
         #[method_id(replacementText)]
+        #[unsafe(method_family = none)]
         pub unsafe fn replacementText(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`replacementText`][Self::replacementText].
@@ -110,15 +110,15 @@ extern_methods!(
         );
 
         /// See UIFindInteractionDelegate above.
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIFindInteractionDelegate>>>;
 
         /// Creates a find interaction object with the specified delegate.
-        #[unsafe(method_family(init))]
         #[method_id(initWithSessionDelegate:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithSessionDelegate(
             this: Allocated<Self>,
             session_delegate: &ProtocolObject<dyn UIFindInteractionDelegate>,
@@ -148,12 +148,12 @@ extern_methods!(
         #[method(updateResultCount)]
         pub unsafe fn updateResultCount(&self);
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

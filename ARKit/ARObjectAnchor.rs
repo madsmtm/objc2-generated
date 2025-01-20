@@ -51,8 +51,8 @@ extern_methods!(
     unsafe impl ARObjectAnchor {
         #[cfg(feature = "ARReferenceObject")]
         /// Reference to the detected object.
-        #[unsafe(method_family(none))]
         #[method_id(referenceObject)]
+        #[unsafe(method_family = none)]
         pub unsafe fn referenceObject(&self) -> Retained<ARReferenceObject>;
     }
 );
@@ -63,12 +63,12 @@ extern_methods!(
     #[cfg(all(feature = "ARAnchor", feature = "objc2"))]
     unsafe impl ARObjectAnchor {
         /// Unavailable
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

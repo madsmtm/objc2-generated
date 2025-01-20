@@ -52,20 +52,20 @@ extern_methods!(
         #[method(type)]
         pub unsafe fn r#type(&self) -> CXHandleType;
 
-        #[unsafe(method_family(none))]
         #[method_id(value)]
+        #[unsafe(method_family = none)]
         pub unsafe fn value(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithType:value:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithType_value(
             this: Allocated<Self>,
             r#type: CXHandleType,
             value: &NSString,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(isEqualToHandle:)]
@@ -76,8 +76,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CXHandle {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

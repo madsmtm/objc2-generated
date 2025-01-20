@@ -80,48 +80,48 @@ unsafe impl NSSecureCoding for NSTextLayoutFragment {}
 extern_methods!(
     unsafe impl NSTextLayoutFragment {
         #[cfg(all(feature = "NSTextElement", feature = "NSTextRange"))]
-        #[unsafe(method_family(init))]
         #[method_id(initWithTextElement:range:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithTextElement_range(
             this: Allocated<Self>,
             text_element: &NSTextElement,
             range_in_element: Option<&NSTextRange>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSTextLayoutManager")]
-        #[unsafe(method_family(none))]
         #[method_id(textLayoutManager)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textLayoutManager(&self) -> Option<Retained<NSTextLayoutManager>>;
 
         #[cfg(feature = "NSTextElement")]
-        #[unsafe(method_family(none))]
         #[method_id(textElement)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textElement(&self) -> Option<Retained<NSTextElement>>;
 
         #[cfg(feature = "NSTextRange")]
-        #[unsafe(method_family(none))]
         #[method_id(rangeInElement)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rangeInElement(&self) -> Retained<NSTextRange>;
 
         #[cfg(feature = "NSTextLineFragment")]
-        #[unsafe(method_family(none))]
         #[method_id(textLineFragments)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textLineFragments(&self) -> Retained<NSArray<NSTextLineFragment>>;
 
         #[cfg(all(feature = "NSTextLineFragment", feature = "objc2-core-foundation"))]
-        #[unsafe(method_family(none))]
         #[method_id(textLineFragmentForVerticalOffset:requiresExactMatch:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textLineFragmentForVerticalOffset_requiresExactMatch(
             &self,
             vertical_offset: CGFloat,
@@ -129,16 +129,16 @@ extern_methods!(
         ) -> Option<Retained<NSTextLineFragment>>;
 
         #[cfg(all(feature = "NSTextLineFragment", feature = "NSTextRange"))]
-        #[unsafe(method_family(none))]
         #[method_id(textLineFragmentForTextLocation:isUpstreamAffinity:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textLineFragmentForTextLocation_isUpstreamAffinity(
             &self,
             text_location: &ProtocolObject<dyn NSTextLocation>,
             is_upstream_affinity: bool,
         ) -> Option<Retained<NSTextLineFragment>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(layoutQueue)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layoutQueue(&self) -> Option<Retained<NSOperationQueue>>;
 
         /// Setter for [`layoutQueue`][Self::layoutQueue].
@@ -181,8 +181,8 @@ extern_methods!(
         pub unsafe fn drawAtPoint_inContext(&self, point: CGPoint, context: &CGContext);
 
         #[cfg(feature = "NSTextAttachment")]
-        #[unsafe(method_family(none))]
         #[method_id(textAttachmentViewProviders)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textAttachmentViewProviders(
             &self,
         ) -> Retained<NSArray<NSTextAttachmentViewProvider>>;
@@ -199,8 +199,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextLayoutFragment {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

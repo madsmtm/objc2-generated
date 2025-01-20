@@ -94,19 +94,19 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIProgressView {
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithFrame:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithProgressViewStyle:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithProgressViewStyle(
             this: Allocated<Self>,
             style: UIProgressViewStyle,
@@ -127,8 +127,8 @@ extern_methods!(
         pub unsafe fn setProgress(&self, progress: c_float);
 
         #[cfg(feature = "UIColor")]
-        #[unsafe(method_family(none))]
         #[method_id(progressTintColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn progressTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -137,8 +137,8 @@ extern_methods!(
         pub unsafe fn setProgressTintColor(&self, progress_tint_color: Option<&UIColor>);
 
         #[cfg(feature = "UIColor")]
-        #[unsafe(method_family(none))]
         #[method_id(trackTintColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn trackTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -147,8 +147,8 @@ extern_methods!(
         pub unsafe fn setTrackTintColor(&self, track_tint_color: Option<&UIColor>);
 
         #[cfg(feature = "UIImage")]
-        #[unsafe(method_family(none))]
         #[method_id(progressImage)]
+        #[unsafe(method_family = none)]
         pub unsafe fn progressImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
@@ -157,8 +157,8 @@ extern_methods!(
         pub unsafe fn setProgressImage(&self, progress_image: Option<&UIImage>);
 
         #[cfg(feature = "UIImage")]
-        #[unsafe(method_family(none))]
         #[method_id(trackImage)]
+        #[unsafe(method_family = none)]
         pub unsafe fn trackImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
@@ -169,8 +169,8 @@ extern_methods!(
         #[method(setProgress:animated:)]
         pub unsafe fn setProgress_animated(&self, progress: c_float, animated: bool);
 
-        #[unsafe(method_family(none))]
         #[method_id(observedProgress)]
+        #[unsafe(method_family = none)]
         pub unsafe fn observedProgress(&self) -> Option<Retained<NSProgress>>;
 
         /// Setter for [`observedProgress`][Self::observedProgress].
@@ -183,12 +183,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIProgressView {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

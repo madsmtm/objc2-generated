@@ -41,78 +41,78 @@ extern_methods!(
         /// From iOS 18 onwards, the configuration will automatically adopt the appropriate style for a list when updating for a
         /// new configuration state, by reading the `listEnvironment` trait from the state's trait collection.
         /// Defaults to a cell in a plain-style list.
-        #[unsafe(method_family(none))]
         #[method_id(cellConfiguration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cellConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// Returns the default configuration for a list cell with subtitle text.
         /// From iOS 18 onwards, the configuration will automatically adopt the appropriate style for a list when updating for a
         /// new configuration state, by reading the `listEnvironment` trait from the state's trait collection.
         /// Defaults to a subtitle cell in a plain-style list.
-        #[unsafe(method_family(none))]
         #[method_id(subtitleCellConfiguration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn subtitleCellConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// Returns the default configuration for a list cell with side-by-side value text.
         /// From iOS 18 onwards, the configuration will automatically adopt the appropriate style for a list when updating for a
         /// new configuration state, by reading the `listEnvironment` trait from the state's trait collection.
         /// Defaults to the appearance of a value cell in a plain-style list.
-        #[unsafe(method_family(none))]
         #[method_id(valueCellConfiguration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn valueCellConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// Represents a generic header configuration that automatically adopts the style of a containing list when updating for a
         /// new configuration state, by reading the `listEnvironment` trait from the state's trait collection.
         /// Defaults to the header configuration for a plain-style list.
-        #[unsafe(method_family(none))]
         #[method_id(headerConfiguration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn headerConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// Represents a generic footer configuration that automatically adopts the style of a containing list when updating for a
         /// new configuration state, by reading the `listEnvironment` trait from the state's trait collection.
         /// Defaults to the footer configuration for a plain-style list.
-        #[unsafe(method_family(none))]
         #[method_id(footerConfiguration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn footerConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// Returns the default configuration for a prominent inset grouped list header.
-        #[unsafe(method_family(none))]
         #[method_id(prominentInsetGroupedHeaderConfiguration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn prominentInsetGroupedHeaderConfiguration(
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
         /// Returns the default configuration for an extra prominent inset grouped list header.
-        #[unsafe(method_family(none))]
         #[method_id(extraProminentInsetGroupedHeaderConfiguration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn extraProminentInsetGroupedHeaderConfiguration(
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
         /// Returns the default configuration for an accompanied sidebar list cell.
-        #[unsafe(method_family(none))]
         #[method_id(accompaniedSidebarCellConfiguration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn accompaniedSidebarCellConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// Returns the default configuration for an accompanied sidebar list cell with subtitle text.
-        #[unsafe(method_family(none))]
         #[method_id(accompaniedSidebarSubtitleCellConfiguration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn accompaniedSidebarSubtitleCellConfiguration(
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "UIImage")]
         /// The image to display.
-        #[unsafe(method_family(none))]
         #[method_id(image)]
+        #[unsafe(method_family = none)]
         pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
@@ -122,13 +122,13 @@ extern_methods!(
 
         #[cfg(feature = "UIListContentImageProperties")]
         /// Additional properties to configure the image.
-        #[unsafe(method_family(none))]
         #[method_id(imageProperties)]
+        #[unsafe(method_family = none)]
         pub unsafe fn imageProperties(&self) -> Retained<UIListContentImageProperties>;
 
         /// The primary text.
-        #[unsafe(method_family(none))]
         #[method_id(text)]
+        #[unsafe(method_family = none)]
         pub unsafe fn text(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`text`][Self::text].
@@ -136,8 +136,8 @@ extern_methods!(
         pub unsafe fn setText(&self, text: Option<&NSString>);
 
         /// An attributed variant of the primary text, which supersedes the `text` and some properties of the `textProperties` if set.
-        #[unsafe(method_family(none))]
         #[method_id(attributedText)]
+        #[unsafe(method_family = none)]
         pub unsafe fn attributedText(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Setter for [`attributedText`][Self::attributedText].
@@ -146,13 +146,13 @@ extern_methods!(
 
         #[cfg(feature = "UIListContentTextProperties")]
         /// Additional properties to configure the primary text.
-        #[unsafe(method_family(none))]
         #[method_id(textProperties)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textProperties(&self) -> Retained<UIListContentTextProperties>;
 
         /// The secondary text.
-        #[unsafe(method_family(none))]
         #[method_id(secondaryText)]
+        #[unsafe(method_family = none)]
         pub unsafe fn secondaryText(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`secondaryText`][Self::secondaryText].
@@ -160,8 +160,8 @@ extern_methods!(
         pub unsafe fn setSecondaryText(&self, secondary_text: Option<&NSString>);
 
         /// An attributed variant of the secondary text, which supersedes the `secondaryText` and some properties of the `secondaryTextProperties` if set.
-        #[unsafe(method_family(none))]
         #[method_id(secondaryAttributedText)]
+        #[unsafe(method_family = none)]
         pub unsafe fn secondaryAttributedText(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Setter for [`secondaryAttributedText`][Self::secondaryAttributedText].
@@ -173,8 +173,8 @@ extern_methods!(
 
         #[cfg(feature = "UIListContentTextProperties")]
         /// Additional properties to configure the secondary text.
-        #[unsafe(method_family(none))]
         #[method_id(secondaryTextProperties)]
+        #[unsafe(method_family = none)]
         pub unsafe fn secondaryTextProperties(&self) -> Retained<UIListContentTextProperties>;
 
         #[cfg(feature = "UIGeometry")]
@@ -262,44 +262,44 @@ extern_methods!(
 
         /// Returns the default configuration for a sidebar list cell.
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(sidebarCellConfiguration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sidebarCellConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// Returns the default configuration for a sidebar list cell with subtitle text.
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(sidebarSubtitleCellConfiguration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sidebarSubtitleCellConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// Returns the default configuration for a plain list header.
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(plainHeaderConfiguration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn plainHeaderConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// Returns the default configuration for a plain list footer.
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(plainFooterConfiguration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn plainFooterConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// Returns the default configuration for a grouped list header.
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(groupedHeaderConfiguration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn groupedHeaderConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// Returns the default configuration for a grouped list footer.
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(groupedFooterConfiguration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn groupedFooterConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// Returns the default configuration for a sidebar list header.
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(sidebarHeaderConfiguration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sidebarHeaderConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -372,35 +372,35 @@ unsafe impl UITraitEnvironment for UIListContentView {}
 extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIListContentView {
-        #[unsafe(method_family(init))]
         #[method_id(initWithConfiguration:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithConfiguration(
             this: Allocated<Self>,
             configuration: &UIListContentConfiguration,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithFrame:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(configuration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn configuration(&self) -> Retained<UIListContentConfiguration>;
 
         /// Setter for [`configuration`][Self::configuration].
@@ -412,8 +412,8 @@ extern_methods!(
         ///
         /// Returns nil if there is no primary text. If a new configuration is applied that does not contain primary text, then this layout
         /// guide is removed from the view, and any constraints associated with it will be deactivated.
-        #[unsafe(method_family(none))]
         #[method_id(textLayoutGuide)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textLayoutGuide(&self) -> Option<Retained<UILayoutGuide>>;
 
         #[cfg(feature = "UILayoutGuide")]
@@ -421,8 +421,8 @@ extern_methods!(
         ///
         /// Returns nil if there is no secondary text. If a new configuration is applied that does not contain secondary text, then this layout
         /// guide is removed from the view, and any constraints associated with it will be deactivated.
-        #[unsafe(method_family(none))]
         #[method_id(secondaryTextLayoutGuide)]
+        #[unsafe(method_family = none)]
         pub unsafe fn secondaryTextLayoutGuide(&self) -> Option<Retained<UILayoutGuide>>;
 
         #[cfg(feature = "UILayoutGuide")]
@@ -430,8 +430,8 @@ extern_methods!(
         ///
         /// Returns nil if there is no image. If a new configuration is applied that does contain an image, then this layout
         /// guide is removed from the view, and any constraints associated with it will be deactivated.
-        #[unsafe(method_family(none))]
         #[method_id(imageLayoutGuide)]
+        #[unsafe(method_family = none)]
         pub unsafe fn imageLayoutGuide(&self) -> Option<Retained<UILayoutGuide>>;
     }
 );

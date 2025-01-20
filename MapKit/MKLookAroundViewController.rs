@@ -70,30 +70,30 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl MKLookAroundViewController {
         #[cfg(feature = "MKLookAroundScene")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithScene:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithScene(
             this: Allocated<Self>,
             scene: &MKLookAroundScene,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithNibName:bundle:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MKLookAroundViewControllerDelegate>>>;
@@ -107,8 +107,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "MKLookAroundScene")]
-        #[unsafe(method_family(none))]
         #[method_id(scene)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scene(&self) -> Option<Retained<MKLookAroundScene>>;
 
         #[cfg(feature = "MKLookAroundScene")]
@@ -131,8 +131,8 @@ extern_methods!(
         pub unsafe fn setShowsRoadLabels(&self, shows_road_labels: bool);
 
         #[cfg(feature = "MKPointOfInterestFilter")]
-        #[unsafe(method_family(none))]
         #[method_id(pointOfInterestFilter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pointOfInterestFilter(&self) -> Option<Retained<MKPointOfInterestFilter>>;
 
         #[cfg(feature = "MKPointOfInterestFilter")]
@@ -157,8 +157,8 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl MKLookAroundViewController {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -168,8 +168,8 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl MKLookAroundViewController {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

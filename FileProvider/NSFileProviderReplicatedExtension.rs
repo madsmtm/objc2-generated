@@ -232,8 +232,8 @@ extern_protocol!(
         /// should construct an NSError with domain NSCocoaErrorDomain and code NSXPCConnectionReplyInvalid.
         /// The extension should set the NSUnderlyingErrorKey in the NSError's userInfo to the error which could not
         /// be represented.
-        #[unsafe(method_family(none))]
         #[method_id(enumeratorForContainerItemIdentifier:request:error:_)]
+        #[unsafe(method_family = none)]
         unsafe fn enumeratorForContainerItemIdentifier_request_error(
             &self,
             container_item_identifier: &NSFileProviderItemIdentifier,
@@ -292,8 +292,8 @@ extern_protocol!(
     {
         #[cfg(feature = "NSFileProviderDomain")]
         /// Create a new instance of the replicated provider for the specified domain.
-        #[unsafe(method_family(init))]
         #[method_id(initWithDomain:)]
+        #[unsafe(method_family = init)]
         unsafe fn initWithDomain(
             this: Allocated<Self>,
             domain: &NSFileProviderDomain,
@@ -354,8 +354,8 @@ extern_protocol!(
         /// NSFileProviderErrorServerUnreachable). The system will call `cancel` on the progress if the
         /// operation takes too much time. The extension is then expected to quickly call the completion
         /// handler.
-        #[unsafe(method_family(none))]
         #[method_id(itemForIdentifier:request:completionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn itemForIdentifier_request_completionHandler(
             &self,
             identifier: &NSFileProviderItemIdentifier,
@@ -464,8 +464,8 @@ extern_protocol!(
         /// call if it stops making progress or if download takes an unexpectedly long time. In that case, the system
         /// will call `cancel` on the progress. The extension is then expected to quickly call the completion
         /// handler.
-        #[unsafe(method_family(none))]
         #[method_id(fetchContentsForItemWithIdentifier:version:request:completionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn fetchContentsForItemWithIdentifier_version_request_completionHandler(
             &self,
             item_identifier: &NSFileProviderItemIdentifier,
@@ -641,8 +641,8 @@ extern_protocol!(
         /// call if it stops making progress or if upload takes an unexpectedly long time. In that case, the system
         /// will call `cancel` on the progress. The extension is then expected to quickly call the completion
         /// handler.
-        #[unsafe(method_family(none))]
         #[method_id(createItemBasedOnTemplate:fields:contents:options:request:completionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn createItemBasedOnTemplate_fields_contents_options_request_completionHandler(
             &self,
             item_template: &NSFileProviderItem,
@@ -825,8 +825,8 @@ extern_protocol!(
         /// call if it stops making progress or if upload takes an unexpectedly long time. In that case, the system
         /// will call `cancel` on the progress. The extension is then expected to quickly call the completion
         /// handler.
-        #[unsafe(method_family(none))]
         #[method_id(modifyItem:baseVersion:changedFields:contents:options:request:completionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn modifyItem_baseVersion_changedFields_contents_options_request_completionHandler(
             &self,
             item: &NSFileProviderItem,
@@ -925,8 +925,8 @@ extern_protocol!(
         /// call if it stops making progress or if the deletion takes an unexpectedly long time. In that case,the system
         /// will call `cancel` on the progress. The extension is then expected to quickly call the completion
         /// handler.
-        #[unsafe(method_family(none))]
         #[method_id(deleteItemWithIdentifier:baseVersion:options:request:completionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn deleteItemWithIdentifier_baseVersion_options_request_completionHandler(
             &self,
             identifier: &NSFileProviderItemIdentifier,
@@ -1105,8 +1105,8 @@ extern_protocol!(
         /// version.
         ///
         /// The semantics of the requestedVersion parameter are the same as for the non-delta update method above.
-        #[unsafe(method_family(none))]
         #[method_id(fetchContentsForItemWithIdentifier:version:usingExistingContentsAtURL:existingVersion:request:completionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn fetchContentsForItemWithIdentifier_version_usingExistingContentsAtURL_existingVersion_request_completionHandler(
             &self,
             item_identifier: &NSFileProviderItemIdentifier,
@@ -1148,8 +1148,8 @@ extern_protocol!(
         /// thumbnails. The system will call `cancel` on the progress if the
         /// operation takes too much time. The extension is then expected to quickly call the completion
         /// handler.
-        #[unsafe(method_family(none))]
         #[method_id(supportedServiceSourcesForItemIdentifier:completionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn supportedServiceSourcesForItemIdentifier_completionHandler(
             &self,
             item_identifier: &NSFileProviderItemIdentifier,
@@ -1218,8 +1218,8 @@ extern_protocol!(
         /// services exposed on the item. The system will call `cancel` on the progress if the
         /// operation takes too much time. The extension is then expected to quickly call the completion
         /// handler.
-        #[unsafe(method_family(none))]
         #[method_id(fetchThumbnailsForItemIdentifiers:requestedSize:perThumbnailCompletionHandler:completionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn fetchThumbnailsForItemIdentifiers_requestedSize_perThumbnailCompletionHandler_completionHandler(
             &self,
             item_identifiers: &NSArray<NSFileProviderItemIdentifier>,
@@ -1252,8 +1252,8 @@ extern_protocol!(
         /// If the NSProgress returned by this method is cancelled, the extension should
         /// call the completion handler with (NSUserCancelledError) in the NSProgress
         /// cancellation handler.
-        #[unsafe(method_family(none))]
         #[method_id(performActionWithIdentifier:onItemsWithIdentifiers:completionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn performActionWithIdentifier_onItemsWithIdentifiers_completionHandler(
             &self,
             action_identifier: &NSFileProviderExtensionActionIdentifier,
@@ -1325,8 +1325,8 @@ extern_protocol!(
         /// updated, the provider must notify the system by signaling the working set.
         ///
         /// The system ignore any domain version that is smaller than the previously known version.
-        #[unsafe(method_family(none))]
         #[method_id(domainVersion)]
+        #[unsafe(method_family = none)]
         unsafe fn domainVersion(&self) -> Retained<NSFileProviderDomainVersion>;
 
         /// Global state of the domain.
@@ -1340,8 +1340,8 @@ extern_protocol!(
         ///
         /// The system expects the domainVersion to be updated when the value of the userInfo property
         /// changes.
-        #[unsafe(method_family(none))]
         #[method_id(userInfo)]
+        #[unsafe(method_family = none)]
         unsafe fn userInfo(&self) -> Retained<NSDictionary>;
     }
 );
@@ -1462,8 +1462,8 @@ extern_protocol!(
         /// call if it stops making progress or if download takes an unexpectedly long time. In that case, the system
         /// will call `cancel` on the progress. The extension is then expected to quickly call the completion
         /// handler.
-        #[unsafe(method_family(none))]
         #[method_id(fetchPartialContentsForItemWithIdentifier:version:request:minimalRange:aligningTo:options:completionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn fetchPartialContentsForItemWithIdentifier_version_request_minimalRange_aligningTo_options_completionHandler(
             &self,
             item_identifier: &NSFileProviderItemIdentifier,

@@ -46,8 +46,8 @@ extern_methods!(
     /// The additions to CALayer for constraint layout. *
     #[cfg(feature = "CALayer")]
     unsafe impl CALayer {
-        #[unsafe(method_family(none))]
         #[method_id(constraints)]
+        #[unsafe(method_family = none)]
         pub unsafe fn constraints(&self) -> Option<Retained<NSArray<CAConstraint>>>;
 
         /// Setter for [`constraints`][Self::constraints].
@@ -75,8 +75,8 @@ unsafe impl NSObjectProtocol for CAConstraintLayoutManager {}
 
 extern_methods!(
     unsafe impl CAConstraintLayoutManager {
-        #[unsafe(method_family(none))]
         #[method_id(layoutManager)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layoutManager() -> Retained<Self>;
     }
 );
@@ -84,12 +84,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CAConstraintLayoutManager {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -112,8 +112,8 @@ unsafe impl NSSecureCoding for CAConstraint {}
 extern_methods!(
     unsafe impl CAConstraint {
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(none))]
         #[method_id(constraintWithAttribute:relativeTo:attribute:scale:offset:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn constraintWithAttribute_relativeTo_attribute_scale_offset(
             attr: CAConstraintAttribute,
             src_id: &NSString,
@@ -123,8 +123,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(none))]
         #[method_id(constraintWithAttribute:relativeTo:attribute:offset:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn constraintWithAttribute_relativeTo_attribute_offset(
             attr: CAConstraintAttribute,
             src_id: &NSString,
@@ -132,8 +132,8 @@ extern_methods!(
             c: CGFloat,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(constraintWithAttribute:relativeTo:attribute:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn constraintWithAttribute_relativeTo_attribute(
             attr: CAConstraintAttribute,
             src_id: &NSString,
@@ -141,8 +141,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithAttribute:relativeTo:attribute:scale:offset:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithAttribute_relativeTo_attribute_scale_offset(
             this: Allocated<Self>,
             attr: CAConstraintAttribute,
@@ -155,8 +155,8 @@ extern_methods!(
         #[method(attribute)]
         pub unsafe fn attribute(&self) -> CAConstraintAttribute;
 
-        #[unsafe(method_family(none))]
         #[method_id(sourceName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sourceName(&self) -> Retained<NSString>;
 
         #[method(sourceAttribute)]
@@ -175,12 +175,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CAConstraint {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -15,8 +15,8 @@ extern_protocol!(
         ASPublicKeyCredential
     {
         /// The raw data containing the authenticator's attestation statement, if one was provided.
-        #[unsafe(method_family(none))]
         #[method_id(rawAttestationObject)]
+        #[unsafe(method_family = none)]
         unsafe fn rawAttestationObject(&self) -> Option<Retained<NSData>>;
     }
 );

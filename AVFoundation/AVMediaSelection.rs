@@ -31,8 +31,8 @@ unsafe impl NSObjectProtocol for AVMediaSelection {}
 extern_methods!(
     unsafe impl AVMediaSelection {
         #[cfg(feature = "AVAsset")]
-        #[unsafe(method_family(none))]
         #[method_id(asset)]
+        #[unsafe(method_family = none)]
         pub unsafe fn asset(&self) -> Option<Retained<AVAsset>>;
 
         #[cfg(feature = "AVMediaSelectionGroup")]
@@ -43,8 +43,8 @@ extern_methods!(
         /// Returns: An instance of AVMediaSelectionOption that describes the currently selection option in the group.
         ///
         /// If the value of the property allowsEmptySelection of the AVMediaSelectionGroup is YES, the currently selected option in the group may be nil.
-        #[unsafe(method_family(none))]
         #[method_id(selectedMediaOptionInMediaSelectionGroup:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectedMediaOptionInMediaSelectionGroup(
             &self,
             media_selection_group: &AVMediaSelectionGroup,
@@ -69,12 +69,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVMediaSelection {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -123,12 +123,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVMutableMediaSelection {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

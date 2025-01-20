@@ -91,8 +91,8 @@ extern_methods!(
         ///
         /// Returns: A new MLCOptimizerDescriptor object.
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(descriptorWithLearningRate:gradientRescale:regularizationType:regularizationScale:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithLearningRate_gradientRescale_regularizationType_regularizationScale(
             learning_rate: c_float,
             gradient_rescale: c_float,
@@ -119,8 +119,8 @@ extern_methods!(
         ///
         /// Returns: A new MLCOptimizerDescriptor object.
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(descriptorWithLearningRate:gradientRescale:appliesGradientClipping:gradientClipMax:gradientClipMin:regularizationType:regularizationScale:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithLearningRate_gradientRescale_appliesGradientClipping_gradientClipMax_gradientClipMin_regularizationType_regularizationScale(
             learning_rate: c_float,
             gradient_rescale: c_float,
@@ -155,8 +155,8 @@ extern_methods!(
         /// Parameter `regularizationScale`: The regularization scale
         ///
         /// Returns: A new MLCOptimizerDescriptor object.
-        #[unsafe(method_family(none))]
         #[method_id(descriptorWithLearningRate:gradientRescale:appliesGradientClipping:gradientClippingType:gradientClipMax:gradientClipMin:maximumClippingNorm:customGlobalNorm:regularizationType:regularizationScale:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithLearningRate_gradientRescale_appliesGradientClipping_gradientClippingType_gradientClipMax_gradientClipMin_maximumClippingNorm_customGlobalNorm_regularizationType_regularizationScale(
             learning_rate: c_float,
             gradient_rescale: c_float,
@@ -175,12 +175,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MLCOptimizerDescriptor {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

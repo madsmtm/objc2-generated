@@ -18,8 +18,8 @@ extern_methods!(
         /// - tensors: Tensors to do the differentiation with (denominator).
         /// - name: Name for the gradient operation.
         /// - Returns: A valid MPSGraphTensor dictionary object containing partial derivative d(primaryTensor)/d(secondaryTensor) for each tensor as key.
-        #[unsafe(method_family(none))]
         #[method_id(gradientForPrimaryTensor:withTensors:name:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn gradientForPrimaryTensor_withTensors_name(
             &self,
             primary_tensor: &MPSGraphTensor,

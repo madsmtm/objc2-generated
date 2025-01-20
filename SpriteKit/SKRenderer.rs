@@ -33,8 +33,8 @@ extern_methods!(
         /// Parameter `device`: A Metal device.
         ///
         /// Returns: A new renderer object.
-        #[unsafe(method_family(none))]
         #[method_id(rendererWithDevice:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rendererWithDevice(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<SKRenderer>;
@@ -93,8 +93,8 @@ extern_methods!(
         ))]
         #[cfg(target_os = "macos")]
         /// The currently presented scene, otherwise nil. If in a transition, the 'incoming' scene is returned.
-        #[unsafe(method_family(none))]
         #[method_id(scene)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scene(&self, mtm: MainThreadMarker) -> Option<Retained<SKScene>>;
 
         #[cfg(all(
@@ -171,12 +171,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKRenderer {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

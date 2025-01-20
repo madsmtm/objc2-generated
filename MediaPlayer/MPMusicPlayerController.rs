@@ -108,27 +108,27 @@ unsafe impl NSObjectProtocol for MPMusicPlayerController {}
 extern_methods!(
     unsafe impl MPMusicPlayerController {
         /// Playing items with applicationMusicPlayer does not affect Music's playback state.
-        #[unsafe(method_family(none))]
         #[method_id(applicationMusicPlayer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn applicationMusicPlayer() -> Retained<MPMusicPlayerController>;
 
         #[cfg(feature = "MPMusicPlayerApplicationController")]
         /// Similar to applicationMusicPlayer, but allows direct manipulation of the queue.
-        #[unsafe(method_family(none))]
         #[method_id(applicationQueuePlayer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn applicationQueuePlayer() -> Retained<MPMusicPlayerApplicationController>;
 
         /// Playing media items with the systemMusicPlayer will replace the user's current Music state.
-        #[unsafe(method_family(none))]
         #[method_id(systemMusicPlayer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn systemMusicPlayer() -> Retained<MPMusicPlayerController>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(playbackState)]
@@ -158,8 +158,8 @@ extern_methods!(
         pub unsafe fn setVolume(&self, volume: c_float);
 
         #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItem"))]
-        #[unsafe(method_family(none))]
         #[method_id(nowPlayingItem)]
+        #[unsafe(method_family = none)]
         pub unsafe fn nowPlayingItem(&self) -> Option<Retained<MPMediaItem>>;
 
         #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItem"))]
@@ -216,8 +216,8 @@ extern_methods!(
         pub unsafe fn endGeneratingPlaybackNotifications(&self);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(iPodMusicPlayer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn iPodMusicPlayer() -> Retained<MPMusicPlayerController>;
     }
 );

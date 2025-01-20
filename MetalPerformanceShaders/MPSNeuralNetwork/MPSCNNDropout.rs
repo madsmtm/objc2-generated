@@ -45,8 +45,8 @@ extern_methods!(
         feature = "MPSState"
     ))]
     unsafe impl MPSCNNDropoutGradientState {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Mask data accessor method.
@@ -59,8 +59,8 @@ extern_methods!(
         /// In order to gaurantee that the mask data is correctly synchronized for CPU side access,
         /// it is the application's responsibility to call the [gradientState synchronizeOnCommandBuffer:]
         /// method before accessing the mask data.
-        #[unsafe(method_family(none))]
         #[method_id(maskData)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maskData(&self) -> Retained<NSData>;
     }
 );
@@ -78,8 +78,8 @@ extern_methods!(
         /// Parameter `cmdBuf`: The command buffer against which the temporary resource is allocated
         ///
         /// Parameter `bufferSize`: The size of the buffer in bytes
-        #[unsafe(method_family(none))]
         #[method_id(temporaryStateWithCommandBuffer:bufferSize:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn temporaryStateWithCommandBuffer_bufferSize(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
             buffer_size: usize,
@@ -90,8 +90,8 @@ extern_methods!(
         /// Parameter `cmdBuf`: The command buffer against which the temporary resource is allocated
         ///
         /// Parameter `descriptor`: A descriptor for the new temporary texture
-        #[unsafe(method_family(none))]
         #[method_id(temporaryStateWithCommandBuffer:textureDescriptor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn temporaryStateWithCommandBuffer_textureDescriptor(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
             descriptor: &MTLTextureDescriptor,
@@ -100,22 +100,22 @@ extern_methods!(
         /// Create a new autoreleased temporary state object without underlying resource
         ///
         /// Parameter `cmdBuf`: The command buffer with which the temporary resource is associated
-        #[unsafe(method_family(none))]
         #[method_id(temporaryStateWithCommandBuffer:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn temporaryStateWithCommandBuffer(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithDevice:bufferSize:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_bufferSize(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
             buffer_size: usize,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithDevice:textureDescriptor:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_textureDescriptor(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -125,8 +125,8 @@ extern_methods!(
         /// Create a MPSState with a non-temporary MTLResource
         ///
         /// Parameter `resource`: A MTLBuffer or MTLTexture. May be nil.
-        #[unsafe(method_family(init))]
         #[method_id(initWithResource:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithResource(
             this: Allocated<Self>,
             resource: Option<&ProtocolObject<dyn MTLResource>>,
@@ -138,8 +138,8 @@ extern_methods!(
         /// This occurs when -resource or -resourceAtIndex: is called.
         ///
         /// Parameter `resourceList`: The list of resources to create.
-        #[unsafe(method_family(init))]
         #[method_id(initWithDevice:resourceList:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_resourceList(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -149,8 +149,8 @@ extern_methods!(
         /// Initialize a temporary state to hold a number of textures and buffers
         ///
         /// The textures occur first in sequence
-        #[unsafe(method_family(none))]
         #[method_id(temporaryStateWithCommandBuffer:resourceList:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn temporaryStateWithCommandBuffer_resourceList(
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
             resource_list: &MPSStateResourceList,
@@ -162,8 +162,8 @@ extern_methods!(
         /// your application should use -initWithTextures:bufferSizes:bufferCount:
         /// whenever possible. This method is useful for cases when the
         /// MTLResources must be initialized by the CPU.
-        #[unsafe(method_family(init))]
         #[method_id(initWithResources:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithResources(
             this: Allocated<Self>,
             resources: Option<&NSArray<ProtocolObject<dyn MTLResource>>>,
@@ -179,8 +179,8 @@ extern_methods!(
         feature = "MPSState"
     ))]
     unsafe impl MPSCNNDropoutGradientState {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -247,8 +247,8 @@ extern_methods!(
         #[method(maskStrideInPixels)]
         pub unsafe fn maskStrideInPixels(&self) -> MTLSize;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithDevice:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -256,8 +256,8 @@ extern_methods!(
 
         /// <NSSecureCoding
         /// > support
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:device:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -280,8 +280,8 @@ extern_methods!(
         /// For broadcasting, set desired values to 0.
         ///
         /// Returns: A valid MPSCNNDropout object or nil, if failure.
-        #[unsafe(method_family(init))]
         #[method_id(initWithDevice:keepProbability:seed:maskStrideInPixels:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_keepProbability_seed_maskStrideInPixels(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -295,8 +295,8 @@ extern_methods!(
             feature = "MPSNNGradientState",
             feature = "MPSState"
         ))]
-        #[unsafe(method_family(none))]
         #[method_id(resultStateForSourceImage:sourceStates:destinationImage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resultStateForSourceImage_sourceStates_destinationImage(
             &self,
             source_image: &MPSImage,
@@ -310,8 +310,8 @@ extern_methods!(
             feature = "MPSNNGradientState",
             feature = "MPSState"
         ))]
-        #[unsafe(method_family(none))]
         #[method_id(resultStateBatchForSourceImage:sourceStates:destinationImage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resultStateBatchForSourceImage_sourceStates_destinationImage(
             &self,
             source_image: &MPSImageBatch,
@@ -324,8 +324,8 @@ extern_methods!(
             feature = "MPSNNGradientState",
             feature = "MPSState"
         ))]
-        #[unsafe(method_family(none))]
         #[method_id(temporaryResultStateForCommandBuffer:sourceImage:sourceStates:destinationImage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn temporaryResultStateForCommandBuffer_sourceImage_sourceStates_destinationImage(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -340,8 +340,8 @@ extern_methods!(
             feature = "MPSNNGradientState",
             feature = "MPSState"
         ))]
-        #[unsafe(method_family(none))]
         #[method_id(temporaryResultStateBatchForCommandBuffer:sourceImage:sourceStates:destinationImage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn temporaryResultStateBatchForCommandBuffer_sourceImage_sourceStates_destinationImage(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -364,8 +364,8 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -377,12 +377,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNDropout {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -442,8 +442,8 @@ extern_methods!(
         #[method(maskStrideInPixels)]
         pub unsafe fn maskStrideInPixels(&self) -> MTLSize;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithDevice:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -451,8 +451,8 @@ extern_methods!(
 
         /// <NSSecureCoding
         /// > support
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:device:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -475,8 +475,8 @@ extern_methods!(
         /// For broadcasting, set desired values to 0.
         ///
         /// Returns: A valid MPSCNNDropoutGradient object or nil, if failure.
-        #[unsafe(method_family(init))]
         #[method_id(initWithDevice:keepProbability:seed:maskStrideInPixels:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_keepProbability_seed_maskStrideInPixels(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -499,8 +499,8 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -512,12 +512,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNDropoutGradient {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

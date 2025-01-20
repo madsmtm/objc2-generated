@@ -36,8 +36,8 @@ extern_methods!(
             feature = "UIView",
             feature = "block2"
         ))]
-        #[unsafe(method_family(none))]
         #[method_id(registrationWithCellClass:configurationHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn registrationWithCellClass_configurationHandler(
             cell_class: &AnyClass,
             configuration_handler: UICollectionViewCellRegistrationConfigurationHandler,
@@ -52,8 +52,8 @@ extern_methods!(
             feature = "block2"
         ))]
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
-        #[unsafe(method_family(none))]
         #[method_id(registrationWithCellNib:configurationHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn registrationWithCellNib_configurationHandler(
             cell_nib: &UINib,
             configuration_handler: UICollectionViewCellRegistrationConfigurationHandler,
@@ -63,8 +63,8 @@ extern_methods!(
         pub unsafe fn cellClass(&self) -> Option<&'static AnyClass>;
 
         #[cfg(feature = "UINib")]
-        #[unsafe(method_family(none))]
         #[method_id(cellNib)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cellNib(&self) -> Option<Retained<UINib>>;
 
         #[cfg(all(
@@ -83,12 +83,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UICollectionViewCellRegistration {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -122,8 +122,8 @@ extern_methods!(
             feature = "UIView",
             feature = "block2"
         ))]
-        #[unsafe(method_family(none))]
         #[method_id(registrationWithSupplementaryClass:elementKind:configurationHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn registrationWithSupplementaryClass_elementKind_configurationHandler(
             supplementary_class: &AnyClass,
             element_kind: &NSString,
@@ -139,8 +139,8 @@ extern_methods!(
             feature = "block2"
         ))]
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
-        #[unsafe(method_family(none))]
         #[method_id(registrationWithSupplementaryNib:elementKind:configurationHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn registrationWithSupplementaryNib_elementKind_configurationHandler(
             supplementary_nib: &UINib,
             element_kind: &NSString,
@@ -151,12 +151,12 @@ extern_methods!(
         pub unsafe fn supplementaryClass(&self) -> Option<&'static AnyClass>;
 
         #[cfg(feature = "UINib")]
-        #[unsafe(method_family(none))]
         #[method_id(supplementaryNib)]
+        #[unsafe(method_family = none)]
         pub unsafe fn supplementaryNib(&self) -> Option<Retained<UINib>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(elementKind)]
+        #[unsafe(method_family = none)]
         pub unsafe fn elementKind(&self) -> Retained<NSString>;
 
         #[cfg(all(
@@ -175,12 +175,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UICollectionViewSupplementaryRegistration {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

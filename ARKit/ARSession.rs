@@ -74,13 +74,13 @@ extern_methods!(
         ///
         ///
         /// The identifier may change after calling runWithConfiguration.
-        #[unsafe(method_family(none))]
         #[method_id(identifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSUUID>;
 
         /// A delegate for receiving ARSession updates.
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn ARSessionDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -90,14 +90,14 @@ extern_methods!(
 
         #[cfg(feature = "ARFrame")]
         /// The current frame of the session.
-        #[unsafe(method_family(none))]
         #[method_id(currentFrame)]
+        #[unsafe(method_family = none)]
         pub unsafe fn currentFrame(&self) -> Option<Retained<ARFrame>>;
 
         #[cfg(feature = "ARConfiguration")]
         /// The configuration currently being used by the session.
-        #[unsafe(method_family(none))]
         #[method_id(configuration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn configuration(&self) -> Option<Retained<ARConfiguration>>;
 
         #[cfg(feature = "ARConfiguration")]
@@ -181,8 +181,8 @@ extern_methods!(
         /// Parameter `query`: Raycast query used for raycasting.
         ///
         /// Returns: List of raycast results, sorted from nearest to farthest (in distance from the camera). The results could be empty if raycast fails.
-        #[unsafe(method_family(none))]
         #[method_id(raycast:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn raycast(&self, query: &ARRaycastQuery) -> Retained<NSArray<ARRaycastResult>>;
 
         #[cfg(all(
@@ -204,8 +204,8 @@ extern_methods!(
         ///
         /// Returns: Tracked raycast object used to update or stop raycasting. This could be nil if the raycast fails or if the
         /// configuration is not `ARWorldTrackingConfiguration` or its subclasses.
-        #[unsafe(method_family(none))]
         #[method_id(trackedRaycast:updateHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn trackedRaycast_updateHandler(
             &self,
             query: &ARRaycastQuery,
@@ -247,12 +247,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2")]
     unsafe impl ARSession {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -447,8 +447,8 @@ extern_protocol!(
     pub unsafe trait ARSessionProviding: NSObjectProtocol {
         /// To ensure session changes are detected, Swift classes should mark this property as `
         /// ` and `dynamic`
-        #[unsafe(method_family(none))]
         #[method_id(session)]
+        #[unsafe(method_family = none)]
         unsafe fn session(&self) -> Retained<ARSession>;
     }
 );

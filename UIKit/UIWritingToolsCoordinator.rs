@@ -198,8 +198,8 @@ extern_methods!(
         /// Create the coordinator object during your view’s initialization, and assign
         /// the object to your view. Use the ``UIView/addInteraction(_:)``
         /// method to add the object to your view.
-        #[unsafe(method_family(init))]
         #[method_id(initWithDelegate:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDelegate(
             this: Allocated<Self>,
             delegate: Option<&ProtocolObject<dyn UIWritingToolsCoordinatorDelegate>>,
@@ -211,8 +211,8 @@ extern_methods!(
         /// object. The object must adopt the ``UIWritingToolsCoordinator/Delegate``
         /// protocol, and be capable of modifying your view’s text storage and
         /// refreshing the view’s layout and appearance.
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIWritingToolsCoordinatorDelegate>>>;
@@ -232,8 +232,8 @@ extern_methods!(
         /// If you display your view’s text using multiple text containers, implement the
         /// ``UIWritingToolsCoordinator/Delegate/writingToolsCoordinator(_:singleContainerSubrangesOf:in:)``
         /// method to request multiple previews.
-        #[unsafe(method_family(none))]
         #[method_id(effectContainerView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn effectContainerView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
@@ -259,8 +259,8 @@ extern_methods!(
         /// ``UIWritingToolsCoordinator/Delegate/writingToolsCoordinator(_:singleContainerSubrangesOf:in:)``
         /// and ``UIWritingToolsCoordinator/Delegate/writingToolsCoordinator(_:decorationContainerViewFor:in:)``
         /// methods to provide separate decoration views for each container.
-        #[unsafe(method_family(none))]
         #[method_id(decorationContainerView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn decorationContainerView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
@@ -419,12 +419,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIWritingToolsCoordinator {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

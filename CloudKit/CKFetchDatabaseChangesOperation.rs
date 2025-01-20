@@ -35,21 +35,21 @@ unsafe impl NSObjectProtocol for CKFetchDatabaseChangesOperation {}
 extern_methods!(
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchDatabaseChangesOperation {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "CKServerChangeToken")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithPreviousServerChangeToken:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithPreviousServerChangeToken(
             this: Allocated<Self>,
             previous_server_change_token: Option<&CKServerChangeToken>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKServerChangeToken")]
-        #[unsafe(method_family(none))]
         #[method_id(previousServerChangeToken)]
+        #[unsafe(method_family = none)]
         pub unsafe fn previousServerChangeToken(&self) -> Option<Retained<CKServerChangeToken>>;
 
         #[cfg(feature = "CKServerChangeToken")]
@@ -232,8 +232,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchDatabaseChangesOperation {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

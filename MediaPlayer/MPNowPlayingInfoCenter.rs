@@ -68,22 +68,22 @@ extern_methods!(
     unsafe impl MPNowPlayingInfoCenter {
         /// Returns the default now playing info center.
         /// The default center holds now playing info about the current application.
-        #[unsafe(method_family(none))]
         #[method_id(defaultCenter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn defaultCenter() -> Retained<MPNowPlayingInfoCenter>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// The current now playing info for the center.
         /// Setting the info to nil will clear it.
-        #[unsafe(method_family(none))]
         #[method_id(nowPlayingInfo)]
+        #[unsafe(method_family = none)]
         pub unsafe fn nowPlayingInfo(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         /// Setter for [`nowPlayingInfo`][Self::nowPlayingInfo].

@@ -12,8 +12,8 @@ extern_protocol!(
     pub unsafe trait NSFileProviderServiceSource {
         /// The service name that uniquely identifies the service (using reverse domain
         /// name notation for you service name is recommended).
-        #[unsafe(method_family(none))]
         #[method_id(serviceName)]
+        #[unsafe(method_family = none)]
         unsafe fn serviceName(&self) -> Retained<NSFileProviderServiceName>;
 
         /// Return an endpoint object to allow the client application to connect to the
@@ -26,8 +26,8 @@ extern_protocol!(
         /// and setting up properties on the new connection, like its exported object and
         /// interfaces (that both the file provider and the client application have agreed
         /// on).
-        #[unsafe(method_family(none))]
         #[method_id(makeListenerEndpointAndReturnError:_)]
+        #[unsafe(method_family = none)]
         unsafe fn makeListenerEndpointAndReturnError(
             &self,
         ) -> Result<Retained<NSXPCListenerEndpoint>, Retained<NSError>>;
@@ -52,8 +52,8 @@ extern_methods!(
     #[cfg(feature = "Extension")]
     unsafe impl NSFileProviderExtension {
         #[cfg(feature = "NSFileProviderItem")]
-        #[unsafe(method_family(none))]
         #[method_id(supportedServiceSourcesForItemIdentifier:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn supportedServiceSourcesForItemIdentifier_error(
             &self,
             item_identifier: &NSFileProviderItemIdentifier,

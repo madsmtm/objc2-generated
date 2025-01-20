@@ -18,47 +18,47 @@ unsafe impl NSObjectProtocol for NSTreeNode {}
 
 extern_methods!(
     unsafe impl NSTreeNode {
-        #[unsafe(method_family(none))]
         #[method_id(treeNodeWithRepresentedObject:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn treeNodeWithRepresentedObject(
             model_object: Option<&AnyObject>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithRepresentedObject:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithRepresentedObject(
             this: Allocated<Self>,
             model_object: Option<&AnyObject>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(representedObject)]
+        #[unsafe(method_family = none)]
         pub unsafe fn representedObject(&self) -> Option<Retained<AnyObject>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(indexPath)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indexPath(&self) -> Retained<NSIndexPath>;
 
         #[method(isLeaf)]
         pub unsafe fn isLeaf(&self) -> bool;
 
-        #[unsafe(method_family(none))]
         #[method_id(childNodes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn childNodes(&self) -> Option<Retained<NSArray<NSTreeNode>>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(mutableChildNodes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mutableChildNodes(&self) -> Retained<NSMutableArray<NSTreeNode>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(descendantNodeAtIndexPath:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn descendantNodeAtIndexPath(
             &self,
             index_path: &NSIndexPath,
         ) -> Option<Retained<NSTreeNode>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(parentNode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn parentNode(&self) -> Option<Retained<NSTreeNode>>;
 
         #[method(sortWithSortDescriptors:recursively:)]
@@ -73,12 +73,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTreeNode {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

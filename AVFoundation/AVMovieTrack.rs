@@ -55,12 +55,12 @@ extern_methods!(
     /// Methods declared on superclass `AVAssetTrack`
     #[cfg(feature = "AVAssetTrack")]
     unsafe impl AVMovieTrack {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -73,8 +73,8 @@ extern_methods!(
         /// The storage container for media data added to a track.
         ///
         /// The value of this property is an AVMediaDataStorage object that indicates the location at which media data inserted or appended to the track will be written.
-        #[unsafe(method_family(none))]
         #[method_id(mediaDataStorage)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mediaDataStorage(&self) -> Option<Retained<AVMediaDataStorage>>;
     }
 );
@@ -108,8 +108,8 @@ extern_methods!(
         /// The storage container for media data added to a track.
         ///
         /// The value of this property is an AVMediaDataStorage object that indicates the location at which media data inserted or appended to the track will be written.
-        #[unsafe(method_family(none))]
         #[method_id(mediaDataStorage)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mediaDataStorage(&self) -> Option<Retained<AVMediaDataStorage>>;
 
         #[cfg(feature = "AVMovie")]
@@ -124,8 +124,8 @@ extern_methods!(
         /// If the value of the property cannot be resolved as an absolute URL or if it points to a location that is not contained by any common parent directory of the locations that will be referenced, the location will be written unmodified.
         ///
         /// The default value is nil, which means that the location will be written unmodified.
-        #[unsafe(method_family(none))]
         #[method_id(sampleReferenceBaseURL)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sampleReferenceBaseURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`sampleReferenceBaseURL`][Self::sampleReferenceBaseURL].
@@ -184,12 +184,12 @@ extern_methods!(
     /// Methods declared on superclass `AVAssetTrack`
     #[cfg(feature = "AVAssetTrack")]
     unsafe impl AVMutableMovieTrack {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -201,8 +201,8 @@ extern_methods!(
         /// The language associated with the track.
         ///
         /// The value of this property is an ISO 639-2/T language code indicating the language associated with the track; may be nil if no language is indicated.
-        #[unsafe(method_family(none))]
         #[method_id(languageCode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn languageCode(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`languageCode`][Self::languageCode].
@@ -212,8 +212,8 @@ extern_methods!(
         /// The language tag associated with the track.
         ///
         /// The value of this property is an IETF BCP 47 (RFC 4646) language identifier indicating the language tag associated with the track; may be nil if no language tag is indicated.
-        #[unsafe(method_family(none))]
         #[method_id(extendedLanguageTag)]
+        #[unsafe(method_family = none)]
         pub unsafe fn extendedLanguageTag(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`extendedLanguageTag`][Self::extendedLanguageTag].
@@ -415,8 +415,8 @@ extern_methods!(
         /// A collection of metadata stored by the track.
         ///
         /// The value of this property is an array of AVMetadataItem objects representing the collection of metadata stored by the track.
-        #[unsafe(method_family(none))]
         #[method_id(metadata)]
+        #[unsafe(method_family = none)]
         pub unsafe fn metadata(&self) -> Retained<NSArray<AVMetadataItem>>;
 
         #[cfg(feature = "AVMetadataItem")]
@@ -616,12 +616,12 @@ extern_methods!(
     /// Methods declared on superclass `AVAssetTrack`
     #[cfg(feature = "AVAssetTrack")]
     unsafe impl AVFragmentedMovieTrack {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -641,8 +641,8 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(all(feature = "AVAssetTrackSegment", feature = "objc2-core-media"))]
-        #[unsafe(method_family(none))]
         #[method_id(segmentForTrackTime:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn segmentForTrackTime(
             &self,
             track_time: CMTime,
@@ -653,15 +653,15 @@ extern_methods!(
         pub unsafe fn samplePresentationTimeForTrackTime(&self, track_time: CMTime) -> CMTime;
 
         #[cfg(all(feature = "AVMetadataFormat", feature = "AVMetadataItem"))]
-        #[unsafe(method_family(none))]
         #[method_id(metadataForFormat:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn metadataForFormat(
             &self,
             format: &AVMetadataFormat,
         ) -> Retained<NSArray<AVMetadataItem>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(associatedTracksOfType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn associatedTracksOfType(
             &self,
             track_association_type: &AVTrackAssociationType,

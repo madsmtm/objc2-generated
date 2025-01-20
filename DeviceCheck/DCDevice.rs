@@ -56,8 +56,8 @@ extern_methods!(
     unsafe impl DCDevice {
         /// A representation of the device for which you want to query the two bits of
         /// data.
-        #[unsafe(method_family(none))]
         #[method_id(currentDevice)]
+        #[unsafe(method_family = none)]
         pub unsafe fn currentDevice() -> Retained<DCDevice>;
 
         /// A Boolean value that indicates whether the device supports the DeviceCheck
@@ -108,12 +108,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl DCDevice {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -82,20 +82,20 @@ extern_methods!(
     #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl MKPinAnnotationView {
-        #[unsafe(method_family(none))]
         #[method_id(redPinColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn redPinColor(mtm: MainThreadMarker) -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(greenPinColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn greenPinColor(mtm: MainThreadMarker) -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(purplePinColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn purplePinColor(mtm: MainThreadMarker) -> Retained<NSColor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(pinTintColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pinTintColor(&self) -> Option<Retained<NSColor>>;
 
         /// Setter for [`pinTintColor`][Self::pinTintColor].
@@ -128,16 +128,16 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl MKPinAnnotationView {
         #[cfg(feature = "MKAnnotation")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithAnnotation:reuseIdentifier:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithAnnotation_reuseIdentifier(
             this: Allocated<Self>,
             annotation: Option<&ProtocolObject<dyn MKAnnotation>>,
             reuse_identifier: Option<&NSString>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -150,8 +150,8 @@ extern_methods!(
     #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl MKPinAnnotationView {
-        #[unsafe(method_family(init))]
         #[method_id(initWithFrame:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
     }
 );
@@ -161,8 +161,8 @@ extern_methods!(
     #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl MKPinAnnotationView {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -172,8 +172,8 @@ extern_methods!(
     #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl MKPinAnnotationView {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

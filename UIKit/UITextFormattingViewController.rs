@@ -132,15 +132,15 @@ extern_methods!(
     unsafe impl UITextFormattingViewController {
         #[cfg(feature = "UITextFormattingViewControllerConfiguration")]
         /// Current text formatting configuration object.
-        #[unsafe(method_family(none))]
         #[method_id(configuration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn configuration(&self)
             -> Retained<UITextFormattingViewControllerConfiguration>;
 
         #[cfg(feature = "UITextFormattingViewControllerFormattingDescriptor")]
         /// Current formatting descriptor.
-        #[unsafe(method_family(none))]
         #[method_id(formattingDescriptor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn formattingDescriptor(
             &self,
         ) -> Option<Retained<UITextFormattingViewControllerFormattingDescriptor>>;
@@ -154,8 +154,8 @@ extern_methods!(
         );
 
         /// Text formatting delegate.
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UITextFormattingViewControllerDelegate>>>;
@@ -168,12 +168,12 @@ extern_methods!(
             delegate: Option<&ProtocolObject<dyn UITextFormattingViewControllerDelegate>>,
         );
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithNibName:bundle:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
@@ -181,8 +181,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "UITextFormattingViewControllerConfiguration")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithConfiguration:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithConfiguration(
             this: Allocated<Self>,
             configuration: &UITextFormattingViewControllerConfiguration,
@@ -194,8 +194,8 @@ extern_methods!(
     /// Methods declared on superclass `UIViewController`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UITextFormattingViewController {
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -207,8 +207,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UITextFormattingViewController {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

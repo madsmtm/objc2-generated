@@ -137,8 +137,8 @@ unsafe impl NSSecureCoding for NSTextList {}
 
 extern_methods!(
     unsafe impl NSTextList {
-        #[unsafe(method_family(init))]
         #[method_id(initWithMarkerFormat:options:startingItemNumber:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithMarkerFormat_options_startingItemNumber(
             this: Allocated<Self>,
             marker_format: &NSTextListMarkerFormat,
@@ -146,23 +146,23 @@ extern_methods!(
             starting_item_number: NSInteger,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithMarkerFormat:options:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithMarkerFormat_options(
             this: Allocated<Self>,
             marker_format: &NSTextListMarkerFormat,
             options: NSUInteger,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(markerFormat)]
+        #[unsafe(method_family = none)]
         pub unsafe fn markerFormat(&self) -> Retained<NSTextListMarkerFormat>;
 
         #[method(listOptions)]
@@ -178,8 +178,8 @@ extern_methods!(
         #[method(isOrdered)]
         pub unsafe fn isOrdered(&self) -> bool;
 
-        #[unsafe(method_family(none))]
         #[method_id(markerForItemNumber:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn markerForItemNumber(&self, item_number: NSInteger) -> Retained<NSString>;
     }
 );
@@ -187,12 +187,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextList {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

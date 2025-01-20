@@ -21,13 +21,13 @@ unsafe impl NSObjectProtocol for CKModifySubscriptionsOperation {}
 extern_methods!(
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKModifySubscriptionsOperation {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "CKSubscription")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithSubscriptionsToSave:subscriptionIDsToDelete:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithSubscriptionsToSave_subscriptionIDsToDelete(
             this: Allocated<Self>,
             subscriptions_to_save: Option<&NSArray<CKSubscription>>,
@@ -35,8 +35,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKSubscription")]
-        #[unsafe(method_family(none))]
         #[method_id(subscriptionsToSave)]
+        #[unsafe(method_family = none)]
         pub unsafe fn subscriptionsToSave(&self) -> Option<Retained<NSArray<CKSubscription>>>;
 
         #[cfg(feature = "CKSubscription")]
@@ -48,8 +48,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "CKSubscription")]
-        #[unsafe(method_family(none))]
         #[method_id(subscriptionIDsToDelete)]
+        #[unsafe(method_family = none)]
         pub unsafe fn subscriptionIDsToDelete(&self)
             -> Option<Retained<NSArray<CKSubscriptionID>>>;
 
@@ -159,8 +159,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKModifySubscriptionsOperation {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -33,8 +33,8 @@ extern_methods!(
         /// The data here represents the total GPU time an application consumed over the date range of the containing payload.
         ///
         /// Dimensioned as NSUnitDuration.
-        #[unsafe(method_family(none))]
         #[method_id(cumulativeGPUTime)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cumulativeGPUTime(&self) -> Retained<NSMeasurement<NSUnitDuration>>;
     }
 );
@@ -43,12 +43,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MXMetric")]
     unsafe impl MXGPUMetric {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

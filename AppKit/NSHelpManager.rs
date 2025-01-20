@@ -28,8 +28,8 @@ unsafe impl NSObjectProtocol for NSHelpManager {}
 
 extern_methods!(
     unsafe impl NSHelpManager {
-        #[unsafe(method_family(none))]
         #[method_id(sharedHelpManager)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sharedHelpManager(mtm: MainThreadMarker) -> Retained<NSHelpManager>;
 
         #[method(isContextHelpModeActive)]
@@ -52,8 +52,8 @@ extern_methods!(
         #[method(removeContextHelpForObject:)]
         pub unsafe fn removeContextHelpForObject(&self, object: &AnyObject);
 
-        #[unsafe(method_family(none))]
         #[method_id(contextHelpForObject:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contextHelpForObject(
             &self,
             object: &AnyObject,
@@ -84,12 +84,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSHelpManager {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -107,8 +107,8 @@ extern "C" {
 extern_category!(
     /// Category on [`NSBundle`].
     pub unsafe trait NSBundleHelpExtension {
-        #[unsafe(method_family(none))]
         #[method_id(contextHelpForKey:)]
+        #[unsafe(method_family = none)]
         unsafe fn contextHelpForKey(
             &self,
             key: &NSHelpManagerContextHelpKey,

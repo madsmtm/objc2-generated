@@ -681,8 +681,8 @@ extern_methods!(
         pub unsafe fn timestamp(&self) -> NSTimeInterval;
 
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
-        #[unsafe(method_family(none))]
         #[method_id(window)]
+        #[unsafe(method_family = none)]
         pub unsafe fn window(&self, mtm: MainThreadMarker) -> Option<Retained<NSWindow>>;
 
         #[method(windowNumber)]
@@ -690,8 +690,8 @@ extern_methods!(
 
         #[cfg(feature = "NSGraphicsContext")]
         #[deprecated = "This method always returns nil. If you need access to the current drawing context, use [NSGraphicsContext currentContext] inside of a draw operation."]
-        #[unsafe(method_family(none))]
         #[method_id(context)]
+        #[unsafe(method_family = none)]
         pub unsafe fn context(&self) -> Option<Retained<NSGraphicsContext>>;
 
         #[method(clickCount)]
@@ -738,16 +738,16 @@ extern_methods!(
         #[method(isDirectionInvertedFromDevice)]
         pub unsafe fn isDirectionInvertedFromDevice(&self) -> bool;
 
-        #[unsafe(method_family(none))]
         #[method_id(characters)]
+        #[unsafe(method_family = none)]
         pub unsafe fn characters(&self) -> Option<Retained<NSString>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(charactersIgnoringModifiers)]
+        #[unsafe(method_family = none)]
         pub unsafe fn charactersIgnoringModifiers(&self) -> Option<Retained<NSString>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(charactersByApplyingModifiers:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn charactersByApplyingModifiers(
             &self,
             modifiers: NSEventModifierFlags,
@@ -766,8 +766,8 @@ extern_methods!(
         pub unsafe fn userData(&self) -> *mut c_void;
 
         #[cfg(feature = "NSTrackingArea")]
-        #[unsafe(method_family(none))]
         #[method_id(trackingArea)]
+        #[unsafe(method_family = none)]
         pub unsafe fn trackingArea(&self) -> Option<Retained<NSTrackingArea>>;
 
         #[method(subtype)]
@@ -782,20 +782,20 @@ extern_methods!(
         #[method(eventRef)]
         pub unsafe fn eventRef(&self) -> *const c_void;
 
-        #[unsafe(method_family(none))]
         #[method_id(eventWithEventRef:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn eventWithEventRef(event_ref: NonNull<c_void>) -> Option<Retained<NSEvent>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         #[cfg(target_vendor = "apple")]
-        #[unsafe(method_family(none))]
         #[method_id(CGEvent)]
+        #[unsafe(method_family = none)]
         pub unsafe fn CGEvent(&self) -> Option<Retained<CGEvent>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         #[cfg(target_vendor = "apple")]
-        #[unsafe(method_family(none))]
         #[method_id(eventWithCGEvent:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn eventWithCGEvent(cg_event: &CGEvent) -> Option<Retained<NSEvent>>;
 
         #[method(isMouseCoalescingEnabled)]
@@ -833,8 +833,8 @@ extern_methods!(
         #[method(tangentialPressure)]
         pub unsafe fn tangentialPressure(&self) -> c_float;
 
-        #[unsafe(method_family(none))]
         #[method_id(vendorDefined)]
+        #[unsafe(method_family = none)]
         pub unsafe fn vendorDefined(&self) -> Retained<AnyObject>;
 
         #[method(vendorID)]
@@ -868,8 +868,8 @@ extern_methods!(
         pub unsafe fn isEnteringProximity(&self) -> bool;
 
         #[cfg(all(feature = "NSResponder", feature = "NSTouch", feature = "NSView"))]
-        #[unsafe(method_family(none))]
         #[method_id(touchesMatchingPhase:inView:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn touchesMatchingPhase_inView(
             &self,
             phase: NSTouchPhase,
@@ -877,18 +877,18 @@ extern_methods!(
         ) -> Retained<NSSet<NSTouch>>;
 
         #[cfg(feature = "NSTouch")]
-        #[unsafe(method_family(none))]
         #[method_id(allTouches)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allTouches(&self) -> Retained<NSSet<NSTouch>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSTouch", feature = "NSView"))]
-        #[unsafe(method_family(none))]
         #[method_id(touchesForView:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn touchesForView(&self, view: &NSView) -> Retained<NSSet<NSTouch>>;
 
         #[cfg(feature = "NSTouch")]
-        #[unsafe(method_family(none))]
         #[method_id(coalescedTouchesForTouch:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn coalescedTouchesForTouch(
             &self,
             touch: &NSTouch,
@@ -933,8 +933,8 @@ extern_methods!(
         pub unsafe fn stopPeriodicEvents();
 
         #[cfg(feature = "NSGraphicsContext")]
-        #[unsafe(method_family(none))]
         #[method_id(mouseEventWithType:location:modifierFlags:timestamp:windowNumber:context:eventNumber:clickCount:pressure:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mouseEventWithType_location_modifierFlags_timestamp_windowNumber_context_eventNumber_clickCount_pressure(
             r#type: NSEventType,
             location: NSPoint,
@@ -948,8 +948,8 @@ extern_methods!(
         ) -> Option<Retained<NSEvent>>;
 
         #[cfg(feature = "NSGraphicsContext")]
-        #[unsafe(method_family(none))]
         #[method_id(keyEventWithType:location:modifierFlags:timestamp:windowNumber:context:characters:charactersIgnoringModifiers:isARepeat:keyCode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn keyEventWithType_location_modifierFlags_timestamp_windowNumber_context_characters_charactersIgnoringModifiers_isARepeat_keyCode(
             r#type: NSEventType,
             location: NSPoint,
@@ -964,8 +964,8 @@ extern_methods!(
         ) -> Option<Retained<NSEvent>>;
 
         #[cfg(feature = "NSGraphicsContext")]
-        #[unsafe(method_family(none))]
         #[method_id(enterExitEventWithType:location:modifierFlags:timestamp:windowNumber:context:eventNumber:trackingNumber:userData:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn enterExitEventWithType_location_modifierFlags_timestamp_windowNumber_context_eventNumber_trackingNumber_userData(
             r#type: NSEventType,
             location: NSPoint,
@@ -979,8 +979,8 @@ extern_methods!(
         ) -> Option<Retained<NSEvent>>;
 
         #[cfg(feature = "NSGraphicsContext")]
-        #[unsafe(method_family(none))]
         #[method_id(otherEventWithType:location:modifierFlags:timestamp:windowNumber:context:subtype:data1:data2:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn otherEventWithType_location_modifierFlags_timestamp_windowNumber_context_subtype_data1_data2(
             r#type: NSEventType,
             location: NSPoint,
@@ -1012,16 +1012,16 @@ extern_methods!(
         pub unsafe fn keyRepeatInterval() -> NSTimeInterval;
 
         #[cfg(feature = "block2")]
-        #[unsafe(method_family(none))]
         #[method_id(addGlobalMonitorForEventsMatchingMask:handler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addGlobalMonitorForEventsMatchingMask_handler(
             mask: NSEventMask,
             block: &block2::Block<dyn Fn(NonNull<NSEvent>)>,
         ) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "block2")]
-        #[unsafe(method_family(none))]
         #[method_id(addLocalMonitorForEventsMatchingMask:handler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addLocalMonitorForEventsMatchingMask_handler(
             mask: NSEventMask,
             block: &block2::Block<dyn Fn(NonNull<NSEvent>) -> *mut NSEvent>,
@@ -1035,12 +1035,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSEvent {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

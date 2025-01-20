@@ -399,8 +399,8 @@ extern_methods!(
         /// the sample buffer.  If no sample buffer is provided, no samples will be taken.
         /// If any of the sample indices are specified as MTLCounterDontSample, no sample
         /// will be taken for that action.
-        #[unsafe(method_family(none))]
         #[method_id(sampleBuffer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sampleBuffer(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MTLCounterSampleBuffer>>>;
@@ -449,12 +449,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLAccelerationStructurePassSampleBufferAttachmentDescriptor {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -470,8 +470,8 @@ unsafe impl NSObjectProtocol for MTLAccelerationStructurePassSampleBufferAttachm
 
 extern_methods!(
     unsafe impl MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray {
-        #[unsafe(method_family(none))]
         #[method_id(objectAtIndexedSubscript:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             attachment_index: NSUInteger,
@@ -489,12 +489,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -519,14 +519,14 @@ unsafe impl NSObjectProtocol for MTLAccelerationStructurePassDescriptor {}
 extern_methods!(
     unsafe impl MTLAccelerationStructurePassDescriptor {
         /// Create an autoreleased default acceleration structure pass descriptor
-        #[unsafe(method_family(none))]
         #[method_id(accelerationStructurePassDescriptor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn accelerationStructurePassDescriptor(
         ) -> Retained<MTLAccelerationStructurePassDescriptor>;
 
         /// An array of sample buffers and associated sample indices.
-        #[unsafe(method_family(none))]
         #[method_id(sampleBufferAttachments)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sampleBufferAttachments(
             &self,
         ) -> Retained<MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray>;
@@ -536,12 +536,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLAccelerationStructurePassDescriptor {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

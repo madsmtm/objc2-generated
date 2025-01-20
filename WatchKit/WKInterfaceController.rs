@@ -281,8 +281,8 @@ unsafe impl NSObjectProtocol for WKInterfaceController {}
 
 extern_methods!(
     unsafe impl WKInterfaceController {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(awakeWithContext:)]
@@ -293,8 +293,8 @@ extern_methods!(
         pub unsafe fn contentFrame(&self) -> CGRect;
 
         #[cfg(feature = "WKCrownSequencer")]
-        #[unsafe(method_family(none))]
         #[method_id(crownSequencer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn crownSequencer(&self) -> Retained<WKCrownSequencer>;
 
         #[cfg(feature = "objc2-ui-kit")]
@@ -456,23 +456,23 @@ extern_methods!(
         #[method(dismissAudioRecorderController)]
         pub unsafe fn dismissAudioRecorderController(&self);
 
-        #[unsafe(method_family(none))]
         #[method_id(contextForSegueWithIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contextForSegueWithIdentifier(
             &self,
             segue_identifier: &NSString,
         ) -> Option<Retained<AnyObject>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(contextsForSegueWithIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contextsForSegueWithIdentifier(
             &self,
             segue_identifier: &NSString,
         ) -> Option<Retained<NSArray>>;
 
         #[cfg(all(feature = "WKInterfaceObject", feature = "WKInterfaceTable"))]
-        #[unsafe(method_family(none))]
         #[method_id(contextForSegueWithIdentifier:inTable:rowIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contextForSegueWithIdentifier_inTable_rowIndex(
             &self,
             segue_identifier: &NSString,
@@ -481,8 +481,8 @@ extern_methods!(
         ) -> Option<Retained<AnyObject>>;
 
         #[cfg(all(feature = "WKInterfaceObject", feature = "WKInterfaceTable"))]
-        #[unsafe(method_family(none))]
         #[method_id(contextsForSegueWithIdentifier:inTable:rowIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contextsForSegueWithIdentifier_inTable_rowIndex(
             &self,
             segue_identifier: &NSString,
@@ -583,8 +583,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKInterfaceController {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -601,13 +601,13 @@ unsafe impl NSObjectProtocol for WKUserNotificationInterfaceController {}
 
 extern_methods!(
     unsafe impl WKUserNotificationInterfaceController {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-user-notifications")]
-        #[unsafe(method_family(none))]
         #[method_id(notificationActions)]
+        #[unsafe(method_family = none)]
         pub unsafe fn notificationActions(&self) -> Retained<NSArray<UNNotificationAction>>;
 
         #[cfg(feature = "objc2-user-notifications")]
@@ -623,8 +623,8 @@ extern_methods!(
         pub unsafe fn didReceiveNotification(&self, notification: &UNNotification);
 
         #[cfg(feature = "objc2-user-notifications")]
-        #[unsafe(method_family(none))]
         #[method_id(suggestionsForResponseToActionWithIdentifier:forNotification:inputLanguage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn suggestionsForResponseToActionWithIdentifier_forNotification_inputLanguage(
             &self,
             identifier: &NSString,
@@ -656,8 +656,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKUserNotificationInterfaceController {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

@@ -26,8 +26,8 @@ extern_methods!(
             feature = "CKSyncEngine",
             feature = "CKSyncEngineState"
         ))]
-        #[unsafe(method_family(init))]
         #[method_id(initWithDatabase:stateSerialization:delegate:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDatabase_stateSerialization_delegate(
             this: Allocated<Self>,
             database: &CKDatabase,
@@ -35,12 +35,12 @@ extern_methods!(
             delegate: &ProtocolObject<dyn CKSyncEngineDelegate>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "CKDatabase")]
@@ -52,8 +52,8 @@ extern_methods!(
         /// It's also technically possible to have multiple instances of `CKSyncEngine` for the same `CKDatabase`.
         /// This isn't recommended for production code, but it can be helpful for testing your `CKSyncEngine` integration.
         /// For example, you might make multiple `CKSyncEngine` instances to simulate multiple devices syncing back and forth.
-        #[unsafe(method_family(none))]
         #[method_id(database)]
+        #[unsafe(method_family = none)]
         pub unsafe fn database(&self) -> Retained<CKDatabase>;
 
         #[cfg(feature = "CKDatabase")]
@@ -65,8 +65,8 @@ extern_methods!(
         /// The state serialization you last received in a `CKSyncEngineStateUpdateEvent`.
         ///
         /// If this is the first time ever initializing your `CKSyncEngine`, you can provide `nil`.
-        #[unsafe(method_family(none))]
         #[method_id(stateSerialization)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stateSerialization(&self)
             -> Option<Retained<CKSyncEngineStateSerialization>>;
 
@@ -80,8 +80,8 @@ extern_methods!(
 
         #[cfg(feature = "CKSyncEngine")]
         /// Your implementation of `CKSyncEngineDelegate`.
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self)
             -> Option<Retained<ProtocolObject<dyn CKSyncEngineDelegate>>>;
 
@@ -127,8 +127,8 @@ extern_methods!(
         ///
         /// >Note: `CKSyncEngine` will automatically attempt to discover any previous database subscriptions,
         /// but you can be more explicit by giving the subscription ID through this configuration option.
-        #[unsafe(method_family(none))]
         #[method_id(subscriptionID)]
+        #[unsafe(method_family = none)]
         pub unsafe fn subscriptionID(&self) -> Option<Retained<CKSubscriptionID>>;
 
         #[cfg(feature = "CKSubscription")]

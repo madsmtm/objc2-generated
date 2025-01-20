@@ -10,13 +10,13 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationwebbrowserplatformpublickeycredentialregistrationrequest?language=objc)
     pub unsafe trait ASAuthorizationWebBrowserPlatformPublicKeyCredentialRegistrationRequest {
         #[cfg(feature = "ASPublicKeyCredentialClientData")]
-        #[unsafe(method_family(none))]
         #[method_id(clientData)]
+        #[unsafe(method_family = none)]
         unsafe fn clientData(&self) -> Option<Retained<ASPublicKeyCredentialClientData>>;
 
         #[cfg(feature = "ASAuthorizationPlatformPublicKeyCredentialDescriptor")]
-        #[unsafe(method_family(none))]
         #[method_id(excludedCredentials)]
+        #[unsafe(method_family = none)]
         unsafe fn excludedCredentials(
             &self,
         ) -> Option<Retained<NSArray<ASAuthorizationPlatformPublicKeyCredentialDescriptor>>>;

@@ -20,12 +20,12 @@ unsafe impl NSObjectProtocol for AVCaptionFormatConformer {}
 
 extern_methods!(
     unsafe impl AVCaptionFormatConformer {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "AVCaptionSettings")]
@@ -34,8 +34,8 @@ extern_methods!(
         /// Parameter `conversionSettings`: Describes the conversion operation for which the caption is to be conformed.
         ///
         /// Returns: A new instance of AVCaptionFormatConformer configured to perform the specified conversion.
-        #[unsafe(method_family(none))]
         #[method_id(captionFormatConformerWithConversionSettings:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn captionFormatConformerWithConversionSettings(
             conversion_settings: &NSDictionary<AVCaptionSettingsKey, AnyObject>,
         ) -> Retained<Self>;
@@ -48,8 +48,8 @@ extern_methods!(
         /// Returns: A new instance of AVCaptionFormatConformer configured to perform the specified conversion.
         ///
         /// This method throws an exception if the conversion setting's AVCaptionMediaTypeKey is not equal to AVMediaTypeClosedCaption, or if its AVCaptionMediaSubTypeKey is not equal to kCMClosedCaptionFormatType_CEA608.
-        #[unsafe(method_family(init))]
         #[method_id(initWithConversionSettings:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithConversionSettings(
             this: Allocated<Self>,
             conversion_settings: &NSDictionary<AVCaptionSettingsKey, AnyObject>,
@@ -77,8 +77,8 @@ extern_methods!(
         /// Parameter `outError`: A pointer where a NSError object may be returned.
         ///
         /// Returns: A format-compliant caption that conforms to a specific format.
-        #[unsafe(method_family(none))]
         #[method_id(conformedCaptionForCaption:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn conformedCaptionForCaption_error(
             &self,
             caption: &AVCaption,

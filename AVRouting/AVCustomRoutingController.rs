@@ -33,8 +33,8 @@ unsafe impl NSObjectProtocol for AVCustomRoutingController {}
 extern_methods!(
     unsafe impl AVCustomRoutingController {
         /// A delegate object for a routing controller.
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVCustomRoutingControllerDelegate>>>;
@@ -55,13 +55,13 @@ extern_methods!(
         /// app may reactivate any one of these routes when appropriate, but it needs to
         /// inform the system by calling
         /// ``AVCustomRoutingController/setActive:forRoute:``.
-        #[unsafe(method_family(none))]
         #[method_id(authorizedRoutes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn authorizedRoutes(&self) -> Retained<NSArray<AVCustomDeviceRoute>>;
 
         /// An array of route addresses known to be on the local network.
-        #[unsafe(method_family(none))]
         #[method_id(knownRouteIPs)]
+        #[unsafe(method_family = none)]
         pub unsafe fn knownRouteIPs(&self) -> Retained<NSArray<AVCustomRoutingPartialIP>>;
 
         /// Setter for [`knownRouteIPs`][Self::knownRouteIPs].
@@ -70,8 +70,8 @@ extern_methods!(
 
         #[cfg(feature = "AVCustomRoutingActionItem")]
         /// An array of custom action items to add to a route picker.
-        #[unsafe(method_family(none))]
         #[method_id(customActionItems)]
+        #[unsafe(method_family = none)]
         pub unsafe fn customActionItems(&self) -> Retained<NSArray<AVCustomRoutingActionItem>>;
 
         #[cfg(feature = "AVCustomRoutingActionItem")]
@@ -131,12 +131,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVCustomRoutingController {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -234,8 +234,8 @@ extern_methods!(
         /// var mask = Data(bytes: aMaskInBytes, length: aMaskInBytes.count)
         /// var partialIP = AVCustomRoutingPartialIP(address: address, mask: mask)
         /// ```
-        #[unsafe(method_family(none))]
         #[method_id(address)]
+        #[unsafe(method_family = none)]
         pub unsafe fn address(&self) -> Retained<NSData>;
 
         /// A mask representing how many octets of the IP  address to respect.
@@ -248,28 +248,28 @@ extern_methods!(
         /// var mask = Data(bytes: aMaskInBytes, length: aMaskInBytes.count)
         /// var partialIP =AVCustomRoutingPartialIP(address: address, mask: mask)
         /// ```
-        #[unsafe(method_family(none))]
         #[method_id(mask)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mask(&self) -> Retained<NSData>;
 
         /// Creates an IP fragment.
         /// - Parameters:
         /// - address: The IP address.
         /// - mask: The address mask.
-        #[unsafe(method_family(init))]
         #[method_id(initWithAddress:mask:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithAddress_mask(
             this: Allocated<Self>,
             address: &NSData,
             mask: &NSData,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

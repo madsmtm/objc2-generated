@@ -38,16 +38,16 @@ unsafe impl NSSecureCoding for UNNotificationResponse {}
 extern_methods!(
     unsafe impl UNNotificationResponse {
         #[cfg(feature = "UNNotification")]
-        #[unsafe(method_family(none))]
         #[method_id(notification)]
+        #[unsafe(method_family = none)]
         pub unsafe fn notification(&self) -> Retained<UNNotification>;
 
-        #[unsafe(method_family(none))]
         #[method_id(actionIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn actionIdentifier(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -55,8 +55,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UNNotificationResponse {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -82,8 +82,8 @@ unsafe impl NSSecureCoding for UNTextInputNotificationResponse {}
 
 extern_methods!(
     unsafe impl UNTextInputNotificationResponse {
-        #[unsafe(method_family(none))]
         #[method_id(userText)]
+        #[unsafe(method_family = none)]
         pub unsafe fn userText(&self) -> Retained<NSString>;
     }
 );
@@ -91,8 +91,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `UNNotificationResponse`
     unsafe impl UNTextInputNotificationResponse {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -100,8 +100,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UNTextInputNotificationResponse {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

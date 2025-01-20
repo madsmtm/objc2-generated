@@ -34,8 +34,8 @@ unsafe impl NSObjectProtocol for UIDynamicAnimator {}
 extern_methods!(
     unsafe impl UIDynamicAnimator {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[unsafe(method_family(init))]
         #[method_id(initWithReferenceView:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithReferenceView(this: Allocated<Self>, view: &UIView)
             -> Retained<Self>;
 
@@ -51,21 +51,21 @@ extern_methods!(
         pub unsafe fn removeAllBehaviors(&self);
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[unsafe(method_family(none))]
         #[method_id(referenceView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn referenceView(&self, mtm: MainThreadMarker) -> Option<Retained<UIView>>;
 
         #[cfg(feature = "UIDynamicBehavior")]
-        #[unsafe(method_family(none))]
         #[method_id(behaviors)]
+        #[unsafe(method_family = none)]
         pub unsafe fn behaviors(
             &self,
             mtm: MainThreadMarker,
         ) -> Retained<NSArray<UIDynamicBehavior>>;
 
         #[cfg(all(feature = "UIDynamicBehavior", feature = "objc2-core-foundation"))]
-        #[unsafe(method_family(none))]
         #[method_id(itemsInRect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn itemsInRect(
             &self,
             rect: CGRect,
@@ -82,8 +82,8 @@ extern_methods!(
         #[method(elapsedTime)]
         pub unsafe fn elapsedTime(&self) -> NSTimeInterval;
 
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
             mtm: MainThreadMarker,
@@ -102,12 +102,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIDynamicAnimator {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -116,16 +116,16 @@ extern_methods!(
     /// UICollectionViewAdditions
     unsafe impl UIDynamicAnimator {
         #[cfg(feature = "UICollectionViewLayout")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithCollectionViewLayout:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCollectionViewLayout(
             this: Allocated<Self>,
             layout: &UICollectionViewLayout,
         ) -> Retained<Self>;
 
         #[cfg(feature = "UICollectionViewLayout")]
-        #[unsafe(method_family(none))]
         #[method_id(layoutAttributesForCellAtIndexPath:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layoutAttributesForCellAtIndexPath(
             &self,
             index_path: &NSIndexPath,
@@ -133,8 +133,8 @@ extern_methods!(
         ) -> Option<Retained<UICollectionViewLayoutAttributes>>;
 
         #[cfg(feature = "UICollectionViewLayout")]
-        #[unsafe(method_family(none))]
         #[method_id(layoutAttributesForSupplementaryViewOfKind:atIndexPath:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layoutAttributesForSupplementaryViewOfKind_atIndexPath(
             &self,
             kind: &NSString,
@@ -143,8 +143,8 @@ extern_methods!(
         ) -> Option<Retained<UICollectionViewLayoutAttributes>>;
 
         #[cfg(feature = "UICollectionViewLayout")]
-        #[unsafe(method_family(none))]
         #[method_id(layoutAttributesForDecorationViewOfKind:atIndexPath:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layoutAttributesForDecorationViewOfKind_atIndexPath(
             &self,
             decoration_view_kind: &NSString,

@@ -100,8 +100,8 @@ extern_methods!(
         ///
         /// An array of string constants specifying the current run-loop modes.
         /// By default, the sole run-loop mode is ``NSDefaultRunLoopMode`` (which excludes data from ``NSConnection`` objects). Some examples of other uses are to limit the input to data received during a mouse-tracking session by setting the mode to ``NSEventTrackingRunLoopMode``, or limit it to data received from a modal panel with ``NSModalPanelRunLoopMode``.
-        #[unsafe(method_family(none))]
         #[method_id(runLoopModes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn runLoopModes(&self) -> Retained<NSArray<NSRunLoopMode>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSObjCRuntime", feature = "NSString"))]
@@ -197,8 +197,8 @@ extern_methods!(
         ///
         /// - Parameter target: The target of the undo operation. The undo manager maintains a weak reference to `target`.
         /// - Returns:  A proxy object that forwards messages to the undo manager for recording as undo actions.
-        #[unsafe(method_family(none))]
         #[method_id(prepareWithInvocationTarget:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn prepareWithInvocationTarget(&self, target: &AnyObject)
             -> Retained<AnyObject>;
 
@@ -245,8 +245,8 @@ extern_methods!(
         ///
         /// The undo action name. Returns an empty string if no action name has been assigned or if there is nothing to undo.
         /// For example, if the menu title is “Undo Delete,” the string returned is “Delete.”
-        #[unsafe(method_family(none))]
         #[method_id(undoActionName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn undoActionName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
@@ -254,8 +254,8 @@ extern_methods!(
         ///
         /// The redo action name. Returns an empty string if no action name has been assigned or if there is nothing to redo.
         /// For example, if the menu title is “Redo Delete,” the string returned is “Delete.”
-        #[unsafe(method_family(none))]
         #[method_id(redoActionName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn redoActionName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
@@ -271,8 +271,8 @@ extern_methods!(
         /// Get a value from the undo action's user info
         ///
         /// - Parameter key: Which value should be retrieved
-        #[unsafe(method_family(none))]
         #[method_id(undoActionUserInfoValueForKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn undoActionUserInfoValueForKey(
             &self,
             key: &NSUndoManagerUserInfoKey,
@@ -282,8 +282,8 @@ extern_methods!(
         /// Get a value from the redo action's user info
         ///
         /// - Parameter key: Which value should be retrieved
-        #[unsafe(method_family(none))]
         #[method_id(redoActionUserInfoValueForKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn redoActionUserInfoValueForKey(
             &self,
             key: &NSUndoManagerUserInfoKey,
@@ -304,16 +304,16 @@ extern_methods!(
         /// The complete title of the Undo menu command, for example, “Undo Paste.”
         ///
         /// Returns “Undo” if no action name has been assigned or nil if there is nothing to undo.
-        #[unsafe(method_family(none))]
         #[method_id(undoMenuItemTitle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn undoMenuItemTitle(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         /// The complete title of the Redo menu command, for example, “Redo Paste.”
         ///
         /// Returns “Redo” if no action name has been assigned or nil if there is nothing to redo.
-        #[unsafe(method_family(none))]
         #[method_id(redoMenuItemTitle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn redoMenuItemTitle(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
@@ -323,8 +323,8 @@ extern_methods!(
         ///
         /// - Parameter actionName: The name of the undo action.
         /// - Returns: The localized title of the undo menu item.
-        #[unsafe(method_family(none))]
         #[method_id(undoMenuTitleForUndoActionName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn undoMenuTitleForUndoActionName(
             &self,
             action_name: &NSString,
@@ -337,8 +337,8 @@ extern_methods!(
         ///
         /// - Parameter actionName: The name of the redo action.
         /// - Returns: The localized title of the redo menu item.
-        #[unsafe(method_family(none))]
         #[method_id(redoMenuTitleForUndoActionName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn redoMenuTitleForUndoActionName(
             &self,
             action_name: &NSString,
@@ -349,12 +349,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSUndoManager {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

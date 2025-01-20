@@ -42,8 +42,8 @@ extern_protocol!(
         #[cfg(feature = "ASFoundation")]
         #[cfg(target_os = "macos")]
         /// Return a view anchor that is most appropriate for authorization UI to be presented over.
-        #[unsafe(method_family(none))]
         #[method_id(presentationAnchorForAccountAuthenticationModificationController:)]
+        #[unsafe(method_family = none)]
         unsafe fn presentationAnchorForAccountAuthenticationModificationController(
             &self,
             controller: &ASAccountAuthenticationModificationController,
@@ -63,8 +63,8 @@ unsafe impl NSObjectProtocol for ASAccountAuthenticationModificationController {
 extern_methods!(
     unsafe impl ASAccountAuthenticationModificationController {
         /// This delegate will be notified upon completion of the upgrade to report success or failure.
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<
@@ -82,8 +82,8 @@ extern_methods!(
         );
 
         /// This will be used to provide a presentation context to display authorization UI.
-        #[unsafe(method_family(none))]
         #[method_id(presentationContextProvider)]
+        #[unsafe(method_family = none)]
         pub unsafe fn presentationContextProvider(
             &self,
             mtm: MainThreadMarker,
@@ -117,12 +117,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASAccountAuthenticationModificationController {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

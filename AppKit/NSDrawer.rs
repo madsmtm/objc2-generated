@@ -61,8 +61,8 @@ unsafe impl NSObjectProtocol for NSDrawer {}
 extern_methods!(
     #[cfg(feature = "NSResponder")]
     unsafe impl NSDrawer {
-        #[unsafe(method_family(init))]
         #[method_id(initWithContentSize:preferredEdge:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithContentSize_preferredEdge(
             this: Allocated<Self>,
             content_size: NSSize,
@@ -70,8 +70,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSWindow")]
-        #[unsafe(method_family(none))]
         #[method_id(parentWindow)]
+        #[unsafe(method_family = none)]
         pub unsafe fn parentWindow(&self) -> Option<Retained<NSWindow>>;
 
         #[cfg(feature = "NSWindow")]
@@ -80,8 +80,8 @@ extern_methods!(
         pub unsafe fn setParentWindow(&self, parent_window: Option<&NSWindow>);
 
         #[cfg(feature = "NSView")]
-        #[unsafe(method_family(none))]
         #[method_id(contentView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contentView(&self) -> Option<Retained<NSView>>;
 
         #[cfg(feature = "NSView")]
@@ -96,8 +96,8 @@ extern_methods!(
         #[method(setPreferredEdge:)]
         pub unsafe fn setPreferredEdge(&self, preferred_edge: NSRectEdge);
 
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSDrawerDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
@@ -173,12 +173,12 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(feature = "NSResponder")]
     unsafe impl NSDrawer {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -190,8 +190,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSResponder")]
     unsafe impl NSDrawer {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -201,8 +201,8 @@ extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
     unsafe impl NSWindow {
         #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
-        #[unsafe(method_family(none))]
         #[method_id(drawers)]
+        #[unsafe(method_family = none)]
         pub unsafe fn drawers(&self) -> Option<Retained<NSArray<NSDrawer>>>;
     }
 );

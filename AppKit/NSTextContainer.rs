@@ -26,17 +26,17 @@ extern_methods!(
     unsafe impl NSTextContainer {
         #[cfg(feature = "objc2-core-foundation")]
         /// ************************** Initialization ***************************
-        #[unsafe(method_family(init))]
         #[method_id(initWithSize:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithSize(this: Allocated<Self>, size: CGSize) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "NSTextLayoutManager")]
-        #[unsafe(method_family(none))]
         #[method_id(textLayoutManager)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textLayoutManager(&self) -> Option<Retained<NSTextLayoutManager>>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -109,12 +109,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextContainer {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -122,8 +122,8 @@ extern_methods!(
 extern_methods!(
     unsafe impl NSTextContainer {
         #[cfg(feature = "NSLayoutManager")]
-        #[unsafe(method_family(none))]
         #[method_id(layoutManager)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layoutManager(&self) -> Option<Retained<NSLayoutManager>>;
 
         #[cfg(feature = "NSLayoutManager")]
@@ -136,8 +136,8 @@ extern_methods!(
         pub unsafe fn replaceLayoutManager(&self, new_layout_manager: &NSLayoutManager);
 
         #[cfg(feature = "NSBezierPath")]
-        #[unsafe(method_family(none))]
         #[method_id(exclusionPaths)]
+        #[unsafe(method_family = none)]
         pub unsafe fn exclusionPaths(&self) -> Retained<NSArray<NSBezierPath>>;
 
         #[cfg(feature = "NSBezierPath")]
@@ -151,8 +151,8 @@ extern_methods!(
             feature = "NSTextView",
             feature = "NSView"
         ))]
-        #[unsafe(method_family(none))]
         #[method_id(textView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textView(&self, mtm: MainThreadMarker) -> Option<Retained<NSTextView>>;
 
         #[cfg(all(
@@ -226,8 +226,8 @@ unsafe impl RefEncode for NSLineMovementDirection {
 extern_methods!(
     /// NSTextContainerDeprecated
     unsafe impl NSTextContainer {
-        #[unsafe(method_family(init))]
         #[method_id(initWithContainerSize:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithContainerSize(
             this: Allocated<Self>,
             a_container_size: NSSize,

@@ -247,12 +247,12 @@ unsafe impl NSObjectProtocol for AVAssetExportSession {}
 
 extern_methods!(
     unsafe impl AVAssetExportSession {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "AVAsset")]
@@ -265,8 +265,8 @@ extern_methods!(
         /// Returns: An instance of AVAssetExportSession.
         ///
         /// If the specified asset belongs to a mutable subclass of AVAsset, AVMutableComposition or AVMutableMovie, the results of any export-related operation are undefined if you mutate the asset after the operation commences. These operations include but are not limited to: 1) testing the compatibility of export presets with the asset, 2) calculating the maximum duration or estimated length of the output file, and 3) the export operation itself.
-        #[unsafe(method_family(none))]
         #[method_id(exportSessionWithAsset:presetName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn exportSessionWithAsset_presetName(
             asset: &AVAsset,
             preset_name: &NSString,
@@ -282,26 +282,26 @@ extern_methods!(
         /// Returns: Returns the initialized AVAssetExportSession.
         ///
         /// If the specified asset belongs to a mutable subclass of AVAsset, AVMutableComposition or AVMutableMovie, the results of any export-related operation are undefined if you mutate the asset after the operation commences. These operations include but are not limited to: 1) testing the compatibility of export presets with the asset, 2) calculating the maximum duration or estimated length of the output file, and 3) the export operation itself.
-        #[unsafe(method_family(init))]
         #[method_id(initWithAsset:presetName:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithAsset_presetName(
             this: Allocated<Self>,
             asset: &AVAsset,
             preset_name: &NSString,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(presetName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn presetName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "AVAsset")]
-        #[unsafe(method_family(none))]
         #[method_id(asset)]
+        #[unsafe(method_family = none)]
         pub unsafe fn asset(&self) -> Retained<AVAsset>;
 
         #[cfg(feature = "AVMediaFormat")]
-        #[unsafe(method_family(none))]
         #[method_id(outputFileType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn outputFileType(&self) -> Option<Retained<AVFileType>>;
 
         #[cfg(feature = "AVMediaFormat")]
@@ -309,8 +309,8 @@ extern_methods!(
         #[method(setOutputFileType:)]
         pub unsafe fn setOutputFileType(&self, output_file_type: Option<&AVFileType>);
 
-        #[unsafe(method_family(none))]
         #[method_id(outputURL)]
+        #[unsafe(method_family = none)]
         pub unsafe fn outputURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`outputURL`][Self::outputURL].
@@ -341,8 +341,8 @@ extern_methods!(
         #[method(status)]
         pub unsafe fn status(&self) -> AVAssetExportSessionStatus;
 
-        #[unsafe(method_family(none))]
         #[method_id(error)]
+        #[unsafe(method_family = none)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
 
         #[cfg(feature = "block2")]
@@ -384,8 +384,8 @@ extern_methods!(
         /// compatible with all AVAssets.
         ///
         /// Returns: An NSArray containing an NSString for each of the available preset names.
-        #[unsafe(method_family(none))]
         #[method_id(allExportPresets)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allExportPresets() -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "AVAsset")]
@@ -405,8 +405,8 @@ extern_methods!(
         /// The array is a complete list of the valid identifiers that can be used as arguments to
         /// initWithAsset:presetName: with the specified asset.
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(exportPresetsCompatibleWithAsset:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn exportPresetsCompatibleWithAsset(
             asset: &AVAsset,
         ) -> Retained<NSArray<NSString>>;
@@ -440,8 +440,8 @@ extern_methods!(
     /// AVAssetExportSessionFileTypes
     unsafe impl AVAssetExportSession {
         #[cfg(feature = "AVMediaFormat")]
-        #[unsafe(method_family(none))]
         #[method_id(supportedFileTypes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn supportedFileTypes(&self) -> Retained<NSArray<AVFileType>>;
 
         #[cfg(all(feature = "AVMediaFormat", feature = "block2"))]
@@ -516,8 +516,8 @@ extern_methods!(
     /// AVAssetExportSessionMetadata
     unsafe impl AVAssetExportSession {
         #[cfg(feature = "AVMetadataItem")]
-        #[unsafe(method_family(none))]
         #[method_id(metadata)]
+        #[unsafe(method_family = none)]
         pub unsafe fn metadata(&self) -> Option<Retained<NSArray<AVMetadataItem>>>;
 
         #[cfg(feature = "AVMetadataItem")]
@@ -526,8 +526,8 @@ extern_methods!(
         pub unsafe fn setMetadata(&self, metadata: Option<&NSArray<AVMetadataItem>>);
 
         #[cfg(feature = "AVMetadataItem")]
-        #[unsafe(method_family(none))]
         #[method_id(metadataItemFilter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn metadataItemFilter(&self) -> Option<Retained<AVMetadataItemFilter>>;
 
         #[cfg(feature = "AVMetadataItem")]
@@ -544,8 +544,8 @@ extern_methods!(
     /// AVAssetExportSessionMediaProcessing
     unsafe impl AVAssetExportSession {
         #[cfg(feature = "AVAudioProcessingSettings")]
-        #[unsafe(method_family(none))]
         #[method_id(audioTimePitchAlgorithm)]
+        #[unsafe(method_family = none)]
         pub unsafe fn audioTimePitchAlgorithm(&self) -> Retained<AVAudioTimePitchAlgorithm>;
 
         #[cfg(feature = "AVAudioProcessingSettings")]
@@ -557,8 +557,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "AVAudioMix")]
-        #[unsafe(method_family(none))]
         #[method_id(audioMix)]
+        #[unsafe(method_family = none)]
         pub unsafe fn audioMix(&self) -> Option<Retained<AVAudioMix>>;
 
         #[cfg(feature = "AVAudioMix")]
@@ -567,8 +567,8 @@ extern_methods!(
         pub unsafe fn setAudioMix(&self, audio_mix: Option<&AVAudioMix>);
 
         #[cfg(feature = "AVVideoComposition")]
-        #[unsafe(method_family(none))]
         #[method_id(videoComposition)]
+        #[unsafe(method_family = none)]
         pub unsafe fn videoComposition(&self) -> Option<Retained<AVVideoComposition>>;
 
         #[cfg(feature = "AVVideoComposition")]
@@ -577,8 +577,8 @@ extern_methods!(
         pub unsafe fn setVideoComposition(&self, video_composition: Option<&AVVideoComposition>);
 
         #[cfg(feature = "AVVideoCompositing")]
-        #[unsafe(method_family(none))]
         #[method_id(customVideoCompositor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn customVideoCompositor(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVVideoCompositing>>>;
@@ -631,8 +631,8 @@ extern_methods!(
         /// When the value of this property is nil, the export session will choose a suitable location when writing temporary files.  The default value is nil.
         ///
         /// This property cannot be set after the export has started.  The export will fail if the URL points to a location that is not a directory, does not exist, is not on the local file system, or if a file cannot be created in this directory (for example, due to insufficient permissions or sandboxing restrictions).
-        #[unsafe(method_family(none))]
         #[method_id(directoryForTemporaryFiles)]
+        #[unsafe(method_family = none)]
         pub unsafe fn directoryForTemporaryFiles(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`directoryForTemporaryFiles`][Self::directoryForTemporaryFiles].

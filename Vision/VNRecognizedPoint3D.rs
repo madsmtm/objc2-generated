@@ -38,20 +38,20 @@ unsafe impl NSSecureCoding for VNRecognizedPoint3D {}
 extern_methods!(
     #[cfg(feature = "VNGeometry")]
     unsafe impl VNRecognizedPoint3D {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VNTypes")]
         /// The is the identifier that provides context as to the kind of point that was recognized.
         ///
         /// The string is defined by the model that recognized the point. Usually these are technical labels that are not localized and not meant to be used directly to be presented to an end user in the UI.
-        #[unsafe(method_family(none))]
         #[method_id(identifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<VNRecognizedPointKey>;
     }
 );

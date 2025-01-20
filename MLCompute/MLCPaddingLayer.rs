@@ -69,8 +69,8 @@ extern_methods!(
         ///
         /// Returns: A new padding layer
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(layerWithReflectionPadding:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layerWithReflectionPadding(padding: &NSArray<NSNumber>) -> Retained<Self>;
 
         /// Create a padding layer with symmetric padding
@@ -79,8 +79,8 @@ extern_methods!(
         ///
         /// Returns: A new padding layer
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(layerWithSymmetricPadding:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layerWithSymmetricPadding(padding: &NSArray<NSNumber>) -> Retained<Self>;
 
         /// Create a padding layer with zero padding
@@ -89,8 +89,8 @@ extern_methods!(
         ///
         /// Returns: A new padding layer
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(layerWithZeroPadding:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layerWithZeroPadding(padding: &NSArray<NSNumber>) -> Retained<Self>;
 
         /// Create a padding layer with constant padding
@@ -101,8 +101,8 @@ extern_methods!(
         ///
         /// Returns: A new padding layer
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(layerWithConstantPadding:constantValue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layerWithConstantPadding_constantValue(
             padding: &NSArray<NSNumber>,
             constant_value: c_float,
@@ -115,13 +115,13 @@ extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCPaddingLayer {
         #[deprecated]
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

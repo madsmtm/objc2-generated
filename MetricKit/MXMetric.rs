@@ -28,23 +28,23 @@ extern_methods!(
         /// Convenience method to return a JSON representation of this metric.
         ///
         /// Returns: An NSData object containing the JSON representation
-        #[unsafe(method_family(none))]
         #[method_id(JSONRepresentation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn JSONRepresentation(&self) -> Retained<NSData>;
 
         /// Convenience method to return a NSDictionary representation of this metric.
         ///
         /// Returns: An NSDictionary object containing the dictionary representation
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(DictionaryRepresentation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn DictionaryRepresentation(&self) -> Retained<NSDictionary>;
 
         /// Convenience method to return a NSDictionary representation of this metric.
         ///
         /// Returns: An NSDictionary object containing the dictionary representation
-        #[unsafe(method_family(none))]
         #[method_id(dictionaryRepresentation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dictionaryRepresentation(&self) -> Retained<NSDictionary>;
     }
 );
@@ -52,12 +52,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MXMetric {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

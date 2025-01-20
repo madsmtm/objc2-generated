@@ -19,8 +19,8 @@ unsafe impl NSObjectProtocol for NSMappingModel {}
 extern_methods!(
     unsafe impl NSMappingModel {
         #[cfg(feature = "NSManagedObjectModel")]
-        #[unsafe(method_family(none))]
         #[method_id(mappingModelFromBundles:forSourceModel:destinationModel:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mappingModelFromBundles_forSourceModel_destinationModel(
             bundles: Option<&NSArray<NSBundle>>,
             source_model: Option<&NSManagedObjectModel>,
@@ -28,23 +28,23 @@ extern_methods!(
         ) -> Option<Retained<NSMappingModel>>;
 
         #[cfg(feature = "NSManagedObjectModel")]
-        #[unsafe(method_family(none))]
         #[method_id(inferredMappingModelForSourceModel:destinationModel:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn inferredMappingModelForSourceModel_destinationModel_error(
             source_model: &NSManagedObjectModel,
             destination_model: &NSManagedObjectModel,
         ) -> Result<Retained<NSMappingModel>, Retained<NSError>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithContentsOfURL:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL(
             this: Allocated<Self>,
             url: Option<&NSURL>,
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSEntityMapping")]
-        #[unsafe(method_family(none))]
         #[method_id(entityMappings)]
+        #[unsafe(method_family = none)]
         pub unsafe fn entityMappings(&self) -> Option<Retained<NSArray<NSEntityMapping>>>;
 
         #[cfg(feature = "NSEntityMapping")]
@@ -53,8 +53,8 @@ extern_methods!(
         pub unsafe fn setEntityMappings(&self, entity_mappings: Option<&NSArray<NSEntityMapping>>);
 
         #[cfg(feature = "NSEntityMapping")]
-        #[unsafe(method_family(none))]
         #[method_id(entityMappingsByName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn entityMappingsByName(
             &self,
         ) -> Retained<NSDictionary<NSString, NSEntityMapping>>;
@@ -64,12 +64,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSMappingModel {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

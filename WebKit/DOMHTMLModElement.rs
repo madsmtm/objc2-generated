@@ -78,8 +78,8 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLModElement {
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(cite)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cite(&self) -> Retained<NSString>;
 
         /// Setter for [`cite`][Self::cite].
@@ -88,8 +88,8 @@ extern_methods!(
         pub unsafe fn setCite(&self, cite: Option<&NSString>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(dateTime)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dateTime(&self) -> Retained<NSString>;
 
         /// Setter for [`dateTime`][Self::dateTime].
@@ -110,8 +110,8 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLModElement {
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -126,8 +126,8 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLModElement {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

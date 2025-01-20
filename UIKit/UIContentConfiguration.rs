@@ -14,14 +14,14 @@ extern_protocol!(
     {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// Initializes and returns a new instance of the content view using this configuration.
-        #[unsafe(method_family(none))]
         #[method_id(makeContentView)]
+        #[unsafe(method_family = none)]
         unsafe fn makeContentView(&self) -> Retained<UIView>;
 
         #[cfg(feature = "UIConfigurationState")]
         /// Returns a copy of the configuration updated for the specified state, by applying the configuration's default values for that state to any properties that have not been customized.
-        #[unsafe(method_family(none))]
         #[method_id(updatedConfigurationForState:)]
+        #[unsafe(method_family = none)]
         unsafe fn updatedConfigurationForState(
             &self,
             state: &ProtocolObject<dyn UIConfigurationState>,
@@ -33,8 +33,8 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentview?language=objc)
     pub unsafe trait UIContentView: NSObjectProtocol + MainThreadOnly {
         /// Returns the current configuration of the view. Setting this property applies the new configuration to the view.
-        #[unsafe(method_family(none))]
         #[method_id(configuration)]
+        #[unsafe(method_family = none)]
         unsafe fn configuration(&self) -> Retained<ProtocolObject<dyn UIContentConfiguration>>;
 
         /// Setter for [`configuration`][Self::configuration].

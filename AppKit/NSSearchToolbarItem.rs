@@ -45,8 +45,8 @@ extern_methods!(
         /// The field should be configured before assigned.
         /// The width constraint for the field could be updated after assigned.
         /// When set to nil, will reset to a search field with the default configuration.
-        #[unsafe(method_family(none))]
         #[method_id(searchField)]
+        #[unsafe(method_family = none)]
         pub unsafe fn searchField(&self) -> Retained<NSSearchField>;
 
         #[cfg(all(
@@ -62,8 +62,8 @@ extern_methods!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         /// The base view property is owned by the toolbar item and not available for customization.
-        #[unsafe(method_family(none))]
         #[method_id(view)]
+        #[unsafe(method_family = none)]
         pub unsafe fn view(&self) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -117,8 +117,8 @@ extern_methods!(
     unsafe impl NSSearchToolbarItem {
         #[cfg(feature = "NSToolbar")]
         /// Initialize the toolbar item with an identifier which is a development language string used by the toolbar and its delegate for identification purposes.
-        #[unsafe(method_family(init))]
         #[method_id(initWithItemIdentifier:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithItemIdentifier(
             this: Allocated<Self>,
             item_identifier: &NSToolbarItemIdentifier,
@@ -130,12 +130,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSToolbarItem")]
     unsafe impl NSSearchToolbarItem {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

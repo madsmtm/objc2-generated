@@ -37,20 +37,20 @@ extern_methods!(
         #[cfg(feature = "MLCTensorDescriptor")]
         /// The tensor descriptor
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(descriptor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn descriptor(&self) -> Retained<MLCTensorDescriptor>;
 
         /// The tensor data
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(data)]
+        #[unsafe(method_family = none)]
         pub unsafe fn data(&self) -> Option<Retained<NSData>>;
 
         /// A string to help identify this object.
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(label)]
+        #[unsafe(method_family = none)]
         pub unsafe fn label(&self) -> Retained<NSString>;
 
         /// Setter for [`label`][Self::label].
@@ -61,8 +61,8 @@ extern_methods!(
         #[cfg(feature = "MLCDevice")]
         /// The device associated with this tensor.
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(device)]
+        #[unsafe(method_family = none)]
         pub unsafe fn device(&self) -> Option<Retained<MLCDevice>>;
 
         #[cfg(feature = "MLCTensorData")]
@@ -71,26 +71,26 @@ extern_methods!(
         /// When customizing optimizer data, the contents of these buffers must be initialized before executing optimizer
         /// update for a graph.
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(optimizerData)]
+        #[unsafe(method_family = none)]
         pub unsafe fn optimizerData(&self) -> Retained<NSArray<MLCTensorData>>;
 
         #[cfg(feature = "MLCTensorOptimizerDeviceData")]
         /// These are the device side optimizer (momentum and velocity) buffers which developers can query
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(optimizerDeviceData)]
+        #[unsafe(method_family = none)]
         pub unsafe fn optimizerDeviceData(&self)
             -> Retained<NSArray<MLCTensorOptimizerDeviceData>>;
 
         #[deprecated]
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "MLCTensorDescriptor")]
@@ -100,8 +100,8 @@ extern_methods!(
         ///
         /// Returns: A new MLCTensor object
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(tensorWithDescriptor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tensorWithDescriptor(
             tensor_descriptor: &MLCTensorDescriptor,
         ) -> Retained<Self>;
@@ -117,8 +117,8 @@ extern_methods!(
         ///
         /// Returns: A new MLCTensor object
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(tensorWithDescriptor:randomInitializerType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tensorWithDescriptor_randomInitializerType(
             tensor_descriptor: &MLCTensorDescriptor,
             random_initializer_type: MLCRandomInitializerType,
@@ -135,8 +135,8 @@ extern_methods!(
         ///
         /// Returns: A new MLCTensor object
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(tensorWithDescriptor:fillWithData:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tensorWithDescriptor_fillWithData(
             tensor_descriptor: &MLCTensorDescriptor,
             fill_data: &NSNumber,
@@ -153,8 +153,8 @@ extern_methods!(
         ///
         /// Returns: A new MLCTensor object
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(tensorWithDescriptor:data:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tensorWithDescriptor_data(
             tensor_descriptor: &MLCTensorDescriptor,
             data: &MLCTensorData,
@@ -168,8 +168,8 @@ extern_methods!(
         ///
         /// Returns: A new MLCTensor object
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(tensorWithShape:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tensorWithShape(shape: &NSArray<NSNumber>) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
@@ -184,8 +184,8 @@ extern_methods!(
         ///
         /// Returns: A new MLCTensor object
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(tensorWithShape:randomInitializerType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tensorWithShape_randomInitializerType(
             shape: &NSArray<NSNumber>,
             random_initializer_type: MLCRandomInitializerType,
@@ -205,8 +205,8 @@ extern_methods!(
         ///
         /// Returns: A new MLCTensor object
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(tensorWithShape:randomInitializerType:dataType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tensorWithShape_randomInitializerType_dataType(
             shape: &NSArray<NSNumber>,
             random_initializer_type: MLCRandomInitializerType,
@@ -224,8 +224,8 @@ extern_methods!(
         ///
         /// Returns: A new MLCTensor object
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(tensorWithShape:dataType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tensorWithShape_dataType(
             shape: &NSArray<NSNumber>,
             data_type: MLCDataType,
@@ -244,8 +244,8 @@ extern_methods!(
         ///
         /// Returns: A new MLCTensor object
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(tensorWithShape:data:dataType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tensorWithShape_data_dataType(
             shape: &NSArray<NSNumber>,
             data: &MLCTensorData,
@@ -265,8 +265,8 @@ extern_methods!(
         ///
         /// Returns: A new MLCTensor object
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(tensorWithShape:fillWithData:dataType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tensorWithShape_fillWithData_dataType(
             shape: &NSArray<NSNumber>,
             fill_data: &NSNumber,
@@ -287,8 +287,8 @@ extern_methods!(
         ///
         /// Returns: A new MLCTensor object
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(tensorWithWidth:height:featureChannelCount:batchSize:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tensorWithWidth_height_featureChannelCount_batchSize(
             width: NSUInteger,
             height: NSUInteger,
@@ -315,8 +315,8 @@ extern_methods!(
         ///
         /// Returns: A new MLCTensorData object
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(tensorWithWidth:height:featureChannelCount:batchSize:fillWithData:dataType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tensorWithWidth_height_featureChannelCount_batchSize_fillWithData_dataType(
             width: NSUInteger,
             height: NSUInteger,
@@ -344,8 +344,8 @@ extern_methods!(
         ///
         /// Returns: A new MLCTensor object
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(tensorWithWidth:height:featureChannelCount:batchSize:randomInitializerType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tensorWithWidth_height_featureChannelCount_batchSize_randomInitializerType(
             width: NSUInteger,
             height: NSUInteger,
@@ -372,8 +372,8 @@ extern_methods!(
         ///
         /// Returns: A new MLCTensor object
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(tensorWithWidth:height:featureChannelCount:batchSize:data:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tensorWithWidth_height_featureChannelCount_batchSize_data(
             width: NSUInteger,
             height: NSUInteger,
@@ -402,8 +402,8 @@ extern_methods!(
         ///
         /// Returns: A new MLCTensor object
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(tensorWithWidth:height:featureChannelCount:batchSize:data:dataType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tensorWithWidth_height_featureChannelCount_batchSize_data_dataType(
             width: NSUInteger,
             height: NSUInteger,
@@ -426,8 +426,8 @@ extern_methods!(
         ///
         /// Returns: A new MLCTensor object
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(tensorWithSequenceLength:featureChannelCount:batchSize:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tensorWithSequenceLength_featureChannelCount_batchSize(
             sequence_length: NSUInteger,
             feature_channel_count: NSUInteger,
@@ -450,8 +450,8 @@ extern_methods!(
         ///
         /// Returns: A new MLCTensor object
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(tensorWithSequenceLength:featureChannelCount:batchSize:randomInitializerType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tensorWithSequenceLength_featureChannelCount_batchSize_randomInitializerType(
             sequence_length: NSUInteger,
             feature_channel_count: NSUInteger,
@@ -475,8 +475,8 @@ extern_methods!(
         ///
         /// Returns: A new MLCTensor object
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(tensorWithSequenceLength:featureChannelCount:batchSize:data:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tensorWithSequenceLength_featureChannelCount_batchSize_data(
             sequence_length: NSUInteger,
             feature_channel_count: NSUInteger,
@@ -502,8 +502,8 @@ extern_methods!(
         ///
         /// Returns: A new MLCTensor object
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(tensorWithSequenceLengths:sortedSequences:featureChannelCount:batchSize:randomInitializerType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tensorWithSequenceLengths_sortedSequences_featureChannelCount_batchSize_randomInitializerType(
             sequence_lengths: &NSArray<NSNumber>,
             sorted_sequences: bool,
@@ -530,8 +530,8 @@ extern_methods!(
         ///
         /// Returns: A new MLCTensor object
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(tensorWithSequenceLengths:sortedSequences:featureChannelCount:batchSize:data:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tensorWithSequenceLengths_sortedSequences_featureChannelCount_batchSize_data(
             sequence_lengths: &NSArray<NSNumber>,
             sorted_sequences: bool,
@@ -654,8 +654,8 @@ extern_methods!(
         /// Parameter `bias`: The offset value that maps to float zero
         ///
         /// Returns: A quantized tensor
-        #[unsafe(method_family(none))]
         #[method_id(tensorByQuantizingToType:scale:bias:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tensorByQuantizingToType_scale_bias(
             &self,
             r#type: MLCDataType,
@@ -676,8 +676,8 @@ extern_methods!(
         /// Parameter `axis`: The dimension on which to apply per-channel quantization
         ///
         /// Returns: A quantized tensor
-        #[unsafe(method_family(none))]
         #[method_id(tensorByQuantizingToType:scale:bias:axis:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tensorByQuantizingToType_scale_bias_axis(
             &self,
             r#type: MLCDataType,
@@ -699,8 +699,8 @@ extern_methods!(
         /// Parameter `axis`: The dimension on which to apply per-channel quantization
         ///
         /// Returns: A quantized tensor
-        #[unsafe(method_family(none))]
         #[method_id(tensorByDequantizingToType:scale:bias:axis:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tensorByDequantizingToType_scale_bias_axis(
             &self,
             r#type: MLCDataType,

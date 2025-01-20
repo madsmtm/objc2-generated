@@ -18,8 +18,8 @@ unsafe impl NSObjectProtocol for NSPortMessage {}
 extern_methods!(
     unsafe impl NSPortMessage {
         #[cfg(all(feature = "NSArray", feature = "NSPort"))]
-        #[unsafe(method_family(init))]
         #[method_id(initWithSendPort:receivePort:components:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithSendPort_receivePort_components(
             this: Allocated<Self>,
             send_port: Option<&NSPort>,
@@ -28,18 +28,18 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSArray")]
-        #[unsafe(method_family(none))]
         #[method_id(components)]
+        #[unsafe(method_family = none)]
         pub unsafe fn components(&self) -> Option<Retained<NSArray>>;
 
         #[cfg(feature = "NSPort")]
-        #[unsafe(method_family(none))]
         #[method_id(receivePort)]
+        #[unsafe(method_family = none)]
         pub unsafe fn receivePort(&self) -> Option<Retained<NSPort>>;
 
         #[cfg(feature = "NSPort")]
-        #[unsafe(method_family(none))]
         #[method_id(sendPort)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sendPort(&self) -> Option<Retained<NSPort>>;
 
         #[cfg(feature = "NSDate")]
@@ -58,12 +58,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPortMessage {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

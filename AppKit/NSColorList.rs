@@ -28,29 +28,29 @@ unsafe impl NSSecureCoding for NSColorList {}
 
 extern_methods!(
     unsafe impl NSColorList {
-        #[unsafe(method_family(none))]
         #[method_id(availableColorLists)]
+        #[unsafe(method_family = none)]
         pub unsafe fn availableColorLists() -> Retained<NSArray<NSColorList>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(colorListNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colorListNamed(name: &NSColorListName) -> Option<Retained<NSColorList>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithName:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithName(this: Allocated<Self>, name: &NSColorListName)
             -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithName:fromFile:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithName_fromFile(
             this: Allocated<Self>,
             name: &NSColorListName,
             path: Option<&NSString>,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(name)]
+        #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSColorListName>>;
 
         #[cfg(feature = "NSColor")]
@@ -70,12 +70,12 @@ extern_methods!(
         pub unsafe fn removeColorWithKey(&self, key: &NSColorName);
 
         #[cfg(feature = "NSColor")]
-        #[unsafe(method_family(none))]
         #[method_id(colorWithKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colorWithKey(&self, key: &NSColorName) -> Option<Retained<NSColor>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(allKeys)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allKeys(&self) -> Retained<NSArray<NSColorName>>;
 
         #[method(isEditable)]
@@ -97,12 +97,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSColorList {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

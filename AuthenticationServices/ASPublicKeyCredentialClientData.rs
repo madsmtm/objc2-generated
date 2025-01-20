@@ -42,16 +42,16 @@ unsafe impl NSObjectProtocol for ASPublicKeyCredentialClientData {}
 
 extern_methods!(
     unsafe impl ASPublicKeyCredentialClientData {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithChallenge:origin:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithChallenge_origin(
             this: Allocated<Self>,
             challenge: &NSData,
@@ -59,8 +59,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The challenge to be signed during the operation.
-        #[unsafe(method_family(none))]
         #[method_id(challenge)]
+        #[unsafe(method_family = none)]
         pub unsafe fn challenge(&self) -> Retained<NSData>;
 
         /// Setter for [`challenge`][Self::challenge].
@@ -68,8 +68,8 @@ extern_methods!(
         pub unsafe fn setChallenge(&self, challenge: &NSData);
 
         /// The origin for where the request was performed.
-        #[unsafe(method_family(none))]
         #[method_id(origin)]
+        #[unsafe(method_family = none)]
         pub unsafe fn origin(&self) -> Retained<NSString>;
 
         /// Setter for [`origin`][Self::origin].
@@ -77,8 +77,8 @@ extern_methods!(
         pub unsafe fn setOrigin(&self, origin: &NSString);
 
         /// The top-level origin, if applicable.
-        #[unsafe(method_family(none))]
         #[method_id(topOrigin)]
+        #[unsafe(method_family = none)]
         pub unsafe fn topOrigin(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`topOrigin`][Self::topOrigin].

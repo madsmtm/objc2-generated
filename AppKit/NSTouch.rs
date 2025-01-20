@@ -103,8 +103,8 @@ unsafe impl NSObjectProtocol for NSTouch {}
 
 extern_methods!(
     unsafe impl NSTouch {
-        #[unsafe(method_family(none))]
         #[method_id(identity)]
+        #[unsafe(method_family = none)]
         pub unsafe fn identity(&self) -> Retained<AnyObject /* NSObjectProtocol+ NSCopying */>;
 
         #[method(phase)]
@@ -116,8 +116,8 @@ extern_methods!(
         #[method(isResting)]
         pub unsafe fn isResting(&self) -> bool;
 
-        #[unsafe(method_family(none))]
         #[method_id(device)]
+        #[unsafe(method_family = none)]
         pub unsafe fn device(&self) -> Option<Retained<AnyObject>>;
 
         #[method(deviceSize)]
@@ -128,12 +128,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTouch {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

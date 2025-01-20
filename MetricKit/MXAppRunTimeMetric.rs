@@ -35,8 +35,8 @@ extern_methods!(
         /// Time spent on screen and visible to the user.
         ///
         /// Dimensioned as NSUnitDuration.
-        #[unsafe(method_family(none))]
         #[method_id(cumulativeForegroundTime)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cumulativeForegroundTime(&self) -> Retained<NSMeasurement<NSUnitDuration>>;
 
         /// Cumulative application background time.
@@ -44,15 +44,15 @@ extern_methods!(
         /// Time spent off screen and in the background, invisible to the user.
         ///
         /// Dimensioned as NSUnitDuration.
-        #[unsafe(method_family(none))]
         #[method_id(cumulativeBackgroundTime)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cumulativeBackgroundTime(&self) -> Retained<NSMeasurement<NSUnitDuration>>;
 
         /// Cumulative time the application spent running in the background to play audio
         ///
         /// Dimensioned as NSUnitDuration.
-        #[unsafe(method_family(none))]
         #[method_id(cumulativeBackgroundAudioTime)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cumulativeBackgroundAudioTime(
             &self,
         ) -> Retained<NSMeasurement<NSUnitDuration>>;
@@ -60,8 +60,8 @@ extern_methods!(
         /// Cumulative time the application spent running in the background to acquire or process location.
         ///
         /// Dimensioned as NSUnitDuration.
-        #[unsafe(method_family(none))]
         #[method_id(cumulativeBackgroundLocationTime)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cumulativeBackgroundLocationTime(
             &self,
         ) -> Retained<NSMeasurement<NSUnitDuration>>;
@@ -72,12 +72,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MXMetric")]
     unsafe impl MXAppRunTimeMetric {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

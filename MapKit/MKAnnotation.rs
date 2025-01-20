@@ -16,13 +16,13 @@ extern_protocol!(
         unsafe fn coordinate(&self) -> CLLocationCoordinate2D;
 
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(title)]
+        #[unsafe(method_family = none)]
         unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(subtitle)]
+        #[unsafe(method_family = none)]
         unsafe fn subtitle(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "objc2-core-location")]

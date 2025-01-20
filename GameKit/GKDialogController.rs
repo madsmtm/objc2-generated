@@ -36,8 +36,8 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl GKDialogController {
-        #[unsafe(method_family(none))]
         #[method_id(parentWindow)]
+        #[unsafe(method_family = none)]
         pub unsafe fn parentWindow(&self) -> Option<Retained<NSWindow>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -58,12 +58,12 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl GKDialogController {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -76,8 +76,8 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl GKDialogController {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -87,8 +87,8 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl GKDialogController {
-        #[unsafe(method_family(none))]
         #[method_id(sharedDialogController)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sharedDialogController(mtm: MainThreadMarker)
             -> Retained<GKDialogController>;
     }

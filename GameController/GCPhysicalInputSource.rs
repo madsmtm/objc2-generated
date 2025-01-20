@@ -75,18 +75,18 @@ extern_protocol!(
     pub unsafe trait GCPhysicalInputSource: NSObjectProtocol {
         #[cfg(feature = "GCInputNames")]
         /// The set of aliases for the element that the user interacts with.
-        #[unsafe(method_family(none))]
         #[method_id(elementAliases)]
+        #[unsafe(method_family = none)]
         unsafe fn elementAliases(&self) -> Retained<NSSet<NSString>>;
 
         /// The localized name of the element that the user interacts with.
-        #[unsafe(method_family(none))]
         #[method_id(elementLocalizedName)]
+        #[unsafe(method_family = none)]
         unsafe fn elementLocalizedName(&self) -> Option<Retained<NSString>>;
 
         /// The SF Symbol of the element that the user interacts with.
-        #[unsafe(method_family(none))]
         #[method_id(sfSymbolsName)]
+        #[unsafe(method_family = none)]
         unsafe fn sfSymbolsName(&self) -> Option<Retained<NSString>>;
 
         /// One or more directions associated with the source.

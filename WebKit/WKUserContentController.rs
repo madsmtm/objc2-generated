@@ -31,8 +31,8 @@ extern_methods!(
         #[cfg(feature = "WKUserScript")]
         /// The user scripts associated with this user content
         /// controller.
-        #[unsafe(method_family(none))]
         #[method_id(userScripts)]
+        #[unsafe(method_family = none)]
         pub unsafe fn userScripts(&self) -> Retained<NSArray<WKUserScript>>;
 
         #[cfg(feature = "WKUserScript")]
@@ -192,12 +192,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKUserContentController {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

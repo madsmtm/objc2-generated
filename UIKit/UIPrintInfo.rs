@@ -93,34 +93,34 @@ unsafe impl NSObjectProtocol for UIPrintInfo {}
 
 extern_methods!(
     unsafe impl UIPrintInfo {
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(printInfo)]
+        #[unsafe(method_family = none)]
         pub unsafe fn printInfo(mtm: MainThreadMarker) -> Retained<UIPrintInfo>;
 
-        #[unsafe(method_family(none))]
         #[method_id(printInfoWithDictionary:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn printInfoWithDictionary(
             dictionary: Option<&NSDictionary>,
             mtm: MainThreadMarker,
         ) -> Retained<UIPrintInfo>;
 
-        #[unsafe(method_family(none))]
         #[method_id(printerID)]
+        #[unsafe(method_family = none)]
         pub unsafe fn printerID(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`printerID`][Self::printerID].
         #[method(setPrinterID:)]
         pub unsafe fn setPrinterID(&self, printer_id: Option<&NSString>);
 
-        #[unsafe(method_family(none))]
         #[method_id(jobName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn jobName(&self) -> Retained<NSString>;
 
         /// Setter for [`jobName`][Self::jobName].
@@ -148,8 +148,8 @@ extern_methods!(
         #[method(setDuplex:)]
         pub unsafe fn setDuplex(&self, duplex: UIPrintInfoDuplex);
 
-        #[unsafe(method_family(none))]
         #[method_id(dictionaryRepresentation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dictionaryRepresentation(&self) -> Retained<NSDictionary>;
     }
 );
@@ -157,12 +157,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIPrintInfo {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

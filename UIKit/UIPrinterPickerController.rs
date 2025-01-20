@@ -21,8 +21,8 @@ extern_protocol!(
     {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(printerPickerControllerParentViewController:)]
+        #[unsafe(method_family = none)]
         unsafe fn printerPickerControllerParentViewController(
             &self,
             printer_picker_controller: &UIPrinterPickerController,
@@ -98,8 +98,8 @@ extern_methods!(
         /// UI that allows the user to select a printer. This is only used with the
         /// UIPrintInteractionController's printWithoutUIToPrinter: method.
         /// If no printer should be preselected, use a value of nil for the parameter.
-        #[unsafe(method_family(none))]
         #[method_id(printerPickerControllerWithInitiallySelectedPrinter:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn printerPickerControllerWithInitiallySelectedPrinter(
             printer: Option<&UIPrinter>,
             mtm: MainThreadMarker,
@@ -108,12 +108,12 @@ extern_methods!(
         #[cfg(feature = "UIPrinter")]
         /// The selected printer. Set this before presenting the UI to show the currently
         /// selected printer. Use this to determine which printer the user selected.
-        #[unsafe(method_family(none))]
         #[method_id(selectedPrinter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectedPrinter(&self) -> Option<Retained<UIPrinter>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIPrinterPickerControllerDelegate>>>;
@@ -166,12 +166,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIPrinterPickerController {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

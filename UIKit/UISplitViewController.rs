@@ -232,23 +232,23 @@ unsafe impl UITraitEnvironment for UISplitViewController {}
 extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UISplitViewController {
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithNibName:bundle:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithStyle:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithStyle(
             this: Allocated<Self>,
             style: UISplitViewControllerStyle,
@@ -257,8 +257,8 @@ extern_methods!(
         #[method(style)]
         pub unsafe fn style(&self) -> UISplitViewControllerStyle;
 
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UISplitViewControllerDelegate>>>;
@@ -298,8 +298,8 @@ extern_methods!(
             column: UISplitViewControllerColumn,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(viewControllerForColumn:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn viewControllerForColumn(
             &self,
             column: UISplitViewControllerColumn,
@@ -311,8 +311,8 @@ extern_methods!(
         #[method(showColumn:)]
         pub unsafe fn showColumn(&self, column: UISplitViewControllerColumn);
 
-        #[unsafe(method_family(none))]
         #[method_id(viewControllers)]
+        #[unsafe(method_family = none)]
         pub unsafe fn viewControllers(&self) -> Retained<NSArray<UIViewController>>;
 
         /// Setter for [`viewControllers`][Self::viewControllers].
@@ -343,8 +343,8 @@ extern_methods!(
         pub unsafe fn displayMode(&self) -> UISplitViewControllerDisplayMode;
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
-        #[unsafe(method_family(none))]
         #[method_id(displayModeButtonItem)]
+        #[unsafe(method_family = none)]
         pub unsafe fn displayModeButtonItem(&self) -> Retained<UIBarButtonItem>;
 
         #[method(displayModeButtonVisibility)]
@@ -494,12 +494,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UISplitViewController {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -546,8 +546,8 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(primaryViewControllerForCollapsingSplitViewController:)]
+        #[unsafe(method_family = none)]
         unsafe fn primaryViewControllerForCollapsingSplitViewController(
             &self,
             split_view_controller: &UISplitViewController,
@@ -555,8 +555,8 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(primaryViewControllerForExpandingSplitViewController:)]
+        #[unsafe(method_family = none)]
         unsafe fn primaryViewControllerForExpandingSplitViewController(
             &self,
             split_view_controller: &UISplitViewController,
@@ -574,8 +574,8 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(splitViewController:separateSecondaryViewControllerFromPrimaryViewController:)]
+        #[unsafe(method_family = none)]
         unsafe fn splitViewController_separateSecondaryViewControllerFromPrimaryViewController(
             &self,
             split_view_controller: &UISplitViewController,
@@ -738,8 +738,8 @@ extern_methods!(
     /// UISplitViewController
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIViewController {
-        #[unsafe(method_family(none))]
         #[method_id(splitViewController)]
+        #[unsafe(method_family = none)]
         pub unsafe fn splitViewController(&self) -> Option<Retained<UISplitViewController>>;
 
         #[method(collapseSecondaryViewController:forSplitViewController:)]
@@ -749,8 +749,8 @@ extern_methods!(
             split_view_controller: &UISplitViewController,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(separateSecondaryViewControllerForSplitViewController:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn separateSecondaryViewControllerForSplitViewController(
             &self,
             split_view_controller: &UISplitViewController,

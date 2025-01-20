@@ -35,8 +35,8 @@ unsafe impl NSObjectProtocol for VZGenericMachineIdentifier {}
 extern_methods!(
     unsafe impl VZGenericMachineIdentifier {
         /// Create a new unique machine identifier.
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Get the machine identifier described by the specified data representation.
@@ -46,8 +46,8 @@ extern_methods!(
         /// Returns: A unique identifier identical to the one that generated the dataRepresentation, or nil if the data is invalid.
         ///
         /// See: VZGenericMachineIdentifier.dataRepresentation
-        #[unsafe(method_family(init))]
         #[method_id(initWithDataRepresentation:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDataRepresentation(
             this: Allocated<Self>,
             data_representation: &NSData,
@@ -58,8 +58,8 @@ extern_methods!(
         /// This can be used to recreate the same machine identifier with -[VZGenericMachineIdentifier initWithDataRepresentation:].
         ///
         /// See: -[VZGenericMachineIdentifier initWithDataRepresentation:]
-        #[unsafe(method_family(none))]
         #[method_id(dataRepresentation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dataRepresentation(&self) -> Retained<NSData>;
     }
 );
@@ -67,8 +67,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VZGenericMachineIdentifier {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

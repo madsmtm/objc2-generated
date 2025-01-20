@@ -35,16 +35,16 @@ extern_methods!(
     #[cfg(feature = "HKObject")]
     unsafe impl HKSample {
         #[cfg(feature = "HKObjectType")]
-        #[unsafe(method_family(none))]
         #[method_id(sampleType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sampleType(&self) -> Retained<HKSampleType>;
 
-        #[unsafe(method_family(none))]
         #[method_id(startDate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn startDate(&self) -> Retained<NSDate>;
 
-        #[unsafe(method_family(none))]
         #[method_id(endDate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn endDate(&self) -> Retained<NSDate>;
 
         /// Indicates whether a sample has an undetermined duration.
@@ -59,8 +59,8 @@ extern_methods!(
     /// Methods declared on superclass `HKObject`
     #[cfg(feature = "HKObject")]
     unsafe impl HKSample {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -69,8 +69,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "HKObject")]
     unsafe impl HKSample {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

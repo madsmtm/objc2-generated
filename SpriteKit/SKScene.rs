@@ -176,13 +176,13 @@ extern_methods!(
         ///
         ///
         /// Parameter `size`: a size in points that signifies the viewport into the scene that defines your framing of the scene.
-        #[unsafe(method_family(init))]
         #[method_id(initWithSize:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithSize(this: Allocated<Self>, size: CGSize) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(none))]
         #[method_id(sceneWithSize:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sceneWithSize(size: CGSize, mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method(sceneDidLoad)]
@@ -207,8 +207,8 @@ extern_methods!(
 
         #[cfg(feature = "SKCameraNode")]
         /// The camera that is used to obtain the view scale and translation based on where the camera is in relation to the scene.
-        #[unsafe(method_family(none))]
         #[method_id(camera)]
+        #[unsafe(method_family = none)]
         pub unsafe fn camera(&self) -> Option<Retained<SKCameraNode>>;
 
         #[cfg(feature = "SKCameraNode")]
@@ -220,8 +220,8 @@ extern_methods!(
         /// The node that is currently the listener for positional audio coming from SKAudioNodes
         ///
         /// See: SKAudioNode
-        #[unsafe(method_family(none))]
         #[method_id(listener)]
+        #[unsafe(method_family = none)]
         pub unsafe fn listener(&self) -> Option<Retained<SKNode>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -230,21 +230,21 @@ extern_methods!(
         pub unsafe fn setListener(&self, listener: Option<&SKNode>);
 
         #[cfg(feature = "objc2-avf-audio")]
-        #[unsafe(method_family(none))]
         #[method_id(audioEngine)]
+        #[unsafe(method_family = none)]
         pub unsafe fn audioEngine(&self) -> Retained<AVAudioEngine>;
 
         /// Background color, defaults to gray
-        #[unsafe(method_family(none))]
         #[method_id(backgroundColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn backgroundColor(&self) -> Retained<NSColor>;
 
         /// Setter for [`backgroundColor`][Self::backgroundColor].
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, background_color: &NSColor);
 
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn SKSceneDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -264,14 +264,14 @@ extern_methods!(
 
         #[cfg(feature = "SKPhysicsWorld")]
         /// Physics simulation functionality
-        #[unsafe(method_family(none))]
         #[method_id(physicsWorld)]
+        #[unsafe(method_family = none)]
         pub unsafe fn physicsWorld(&self) -> Retained<SKPhysicsWorld>;
 
         #[cfg(feature = "SKView")]
         /// The SKView this scene is currently presented in, or nil if it is not being presented.
-        #[unsafe(method_family(none))]
         #[method_id(view)]
+        #[unsafe(method_family = none)]
         pub unsafe fn view(&self) -> Option<Retained<SKView>>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -330,31 +330,31 @@ extern_methods!(
     ))]
     #[cfg(target_os = "macos")]
     unsafe impl SKScene {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Support coding and decoding via NSKeyedArchiver.
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(node)]
+        #[unsafe(method_family = none)]
         pub unsafe fn node(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(nodeWithFileNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn nodeWithFileNamed(
             filename: &NSString,
             mtm: MainThreadMarker,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(nodeWithFileNamed:securelyWithClasses:andError:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn nodeWithFileNamed_securelyWithClasses_andError(
             filename: &NSString,
             classes: &NSSet<AnyClass>,
@@ -372,8 +372,8 @@ extern_methods!(
     ))]
     #[cfg(target_os = "macos")]
     unsafe impl SKScene {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

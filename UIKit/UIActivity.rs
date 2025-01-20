@@ -145,17 +145,17 @@ extern_methods!(
         #[method(activityCategory)]
         pub unsafe fn activityCategory() -> UIActivityCategory;
 
-        #[unsafe(method_family(none))]
         #[method_id(activityType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn activityType(&self) -> Option<Retained<UIActivityType>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(activityTitle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn activityTitle(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "UIImage")]
-        #[unsafe(method_family(none))]
         #[method_id(activityImage)]
+        #[unsafe(method_family = none)]
         pub unsafe fn activityImage(&self) -> Option<Retained<UIImage>>;
 
         #[method(canPerformWithActivityItems:)]
@@ -165,8 +165,8 @@ extern_methods!(
         pub unsafe fn prepareWithActivityItems(&self, activity_items: &NSArray);
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-        #[unsafe(method_family(none))]
         #[method_id(activityViewController)]
+        #[unsafe(method_family = none)]
         pub unsafe fn activityViewController(
             &self,
             mtm: MainThreadMarker,
@@ -183,12 +183,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIActivity {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

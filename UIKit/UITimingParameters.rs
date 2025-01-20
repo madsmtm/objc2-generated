@@ -43,28 +43,28 @@ extern_methods!(
         #[method(controlPoint2)]
         pub unsafe fn controlPoint2(&self) -> CGPoint;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "UIView")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithAnimationCurve:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithAnimationCurve(
             this: Allocated<Self>,
             curve: UIViewAnimationCurve,
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithControlPoint1:controlPoint2:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithControlPoint1_controlPoint2(
             this: Allocated<Self>,
             point1: CGPoint,
@@ -76,8 +76,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UICubicTimingParameters {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -109,20 +109,20 @@ extern_methods!(
         #[method(initialVelocity)]
         pub unsafe fn initialVelocity(&self) -> CGVector;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithDampingRatio:initialVelocity:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDampingRatio_initialVelocity(
             this: Allocated<Self>,
             ratio: CGFloat,
@@ -130,8 +130,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithMass:stiffness:damping:initialVelocity:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithMass_stiffness_damping_initialVelocity(
             this: Allocated<Self>,
             mass: CGFloat,
@@ -141,14 +141,14 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithDampingRatio:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDampingRatio(this: Allocated<Self>, ratio: CGFloat)
             -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithDuration:bounce:initialVelocity:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDuration_bounce_initialVelocity(
             this: Allocated<Self>,
             duration: NSTimeInterval,
@@ -157,8 +157,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithDuration:bounce:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDuration_bounce(
             this: Allocated<Self>,
             duration: NSTimeInterval,
@@ -170,8 +170,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UISpringTimingParameters {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

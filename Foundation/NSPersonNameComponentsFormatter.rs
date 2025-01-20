@@ -98,8 +98,8 @@ extern_methods!(
         pub unsafe fn setPhonetic(&self, phonetic: bool);
 
         #[cfg(feature = "NSLocale")]
-        #[unsafe(method_family(none))]
         #[method_id(locale)]
+        #[unsafe(method_family = none)]
         pub unsafe fn locale(&self) -> Retained<NSLocale>;
 
         #[cfg(feature = "NSLocale")]
@@ -108,8 +108,8 @@ extern_methods!(
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
 
         #[cfg(all(feature = "NSPersonNameComponents", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(localizedStringFromPersonNameComponents:style:options:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn localizedStringFromPersonNameComponents_style_options(
             components: &NSPersonNameComponents,
             name_format_style: NSPersonNameComponentsFormatterStyle,
@@ -117,24 +117,24 @@ extern_methods!(
         ) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSPersonNameComponents", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(stringFromPersonNameComponents:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stringFromPersonNameComponents(
             &self,
             components: &NSPersonNameComponents,
         ) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSAttributedString", feature = "NSPersonNameComponents"))]
-        #[unsafe(method_family(none))]
         #[method_id(annotatedStringFromPersonNameComponents:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn annotatedStringFromPersonNameComponents(
             &self,
             components: &NSPersonNameComponents,
         ) -> Retained<NSAttributedString>;
 
         #[cfg(all(feature = "NSPersonNameComponents", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(personNameComponentsFromString:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn personNameComponentsFromString(
             &self,
             string: &NSString,
@@ -155,12 +155,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSFormatter")]
     unsafe impl NSPersonNameComponentsFormatter {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

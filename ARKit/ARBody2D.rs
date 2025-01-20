@@ -32,17 +32,17 @@ extern_methods!(
     unsafe impl ARBody2D {
         #[cfg(feature = "ARSkeleton")]
         /// The body's skeleton.
-        #[unsafe(method_family(none))]
         #[method_id(skeleton)]
+        #[unsafe(method_family = none)]
         pub unsafe fn skeleton(&self) -> Retained<ARSkeleton2D>;
 
         /// Unavailable
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

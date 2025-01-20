@@ -37,8 +37,8 @@ extern_protocol!(
         NSObjectProtocol + MainThreadOnly
     {
         #[cfg(feature = "UITraitCollection")]
-        #[unsafe(method_family(none))]
         #[method_id(containerTraitCollection)]
+        #[unsafe(method_family = none)]
         unsafe fn containerTraitCollection(&self) -> Retained<UITraitCollection>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -59,25 +59,25 @@ unsafe impl NSObjectProtocol for UISheetPresentationControllerDetent {}
 
 extern_methods!(
     unsafe impl UISheetPresentationControllerDetent {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(mediumDetent)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mediumDetent(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(largeDetent)]
+        #[unsafe(method_family = none)]
         pub unsafe fn largeDetent(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
-        #[unsafe(method_family(none))]
         #[method_id(customDetentWithIdentifier:resolver:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn customDetentWithIdentifier_resolver(
             identifier: Option<&UISheetPresentationControllerDetentIdentifier>,
             resolver: &block2::Block<
@@ -90,8 +90,8 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(identifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<UISheetPresentationControllerDetentIdentifier>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -151,8 +151,8 @@ unsafe impl UITraitEnvironment for UISheetPresentationController {}
 extern_methods!(
     #[cfg(feature = "UIPresentationController")]
     unsafe impl UISheetPresentationController {
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UISheetPresentationControllerDelegate>>>;
@@ -166,8 +166,8 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[unsafe(method_family(none))]
         #[method_id(sourceView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sourceView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
@@ -218,8 +218,8 @@ extern_methods!(
         #[method(setPreferredCornerRadius:)]
         pub unsafe fn setPreferredCornerRadius(&self, preferred_corner_radius: CGFloat);
 
-        #[unsafe(method_family(none))]
         #[method_id(detents)]
+        #[unsafe(method_family = none)]
         pub unsafe fn detents(&self) -> Retained<NSArray<UISheetPresentationControllerDetent>>;
 
         /// Setter for [`detents`][Self::detents].
@@ -229,8 +229,8 @@ extern_methods!(
         #[method(invalidateDetents)]
         pub unsafe fn invalidateDetents(&self);
 
-        #[unsafe(method_family(none))]
         #[method_id(selectedDetentIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectedDetentIdentifier(
             &self,
         ) -> Option<Retained<UISheetPresentationControllerDetentIdentifier>>;
@@ -242,8 +242,8 @@ extern_methods!(
             selected_detent_identifier: Option<&UISheetPresentationControllerDetentIdentifier>,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(largestUndimmedDetentIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn largestUndimmedDetentIdentifier(
             &self,
         ) -> Option<Retained<UISheetPresentationControllerDetentIdentifier>>;
@@ -278,16 +278,16 @@ extern_methods!(
     #[cfg(feature = "UIPresentationController")]
     unsafe impl UISheetPresentationController {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-        #[unsafe(method_family(init))]
         #[method_id(initWithPresentedViewController:presentingViewController:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithPresentedViewController_presentingViewController(
             this: Allocated<Self>,
             presented_view_controller: &UIViewController,
             presenting_view_controller: Option<&UIViewController>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -296,8 +296,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UIPresentationController")]
     unsafe impl UISheetPresentationController {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

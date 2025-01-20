@@ -30,8 +30,8 @@ extern_methods!(
             feature = "UIView"
         ))]
         /// The cursor view to be animated.
-        #[unsafe(method_family(none))]
         #[method_id(cursorView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cursorView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(
@@ -41,8 +41,8 @@ extern_methods!(
             feature = "UIView"
         ))]
         /// The object that implements the UITextInput protocol, used to query for geometry information regarding cursor placement.
-        #[unsafe(method_family(none))]
         #[method_id(textInput)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textInput(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(
@@ -53,8 +53,8 @@ extern_methods!(
             feature = "UIView"
         ))]
         /// Creates an animator for the given text cursor view implementation, and the document object that implements the UITextInput protocol.
-        #[unsafe(method_family(init))]
         #[method_id(initWithTextCursorView:textInput:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithTextCursorView_textInput(
             this: Allocated<Self>,
             cursor_view: Option<&UIView>,
@@ -85,8 +85,8 @@ extern_methods!(
             completion: Option<&block2::Block<dyn Fn()>>,
         );
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -94,8 +94,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITextCursorDropPositionAnimator {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

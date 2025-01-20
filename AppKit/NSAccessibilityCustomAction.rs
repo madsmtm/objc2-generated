@@ -19,16 +19,16 @@ unsafe impl NSObjectProtocol for NSAccessibilityCustomAction {}
 extern_methods!(
     unsafe impl NSAccessibilityCustomAction {
         #[cfg(feature = "block2")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithName:handler:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithName_handler(
             this: Allocated<Self>,
             name: &NSString,
             handler: Option<&block2::Block<dyn Fn() -> Bool>>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithName:target:selector:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithName_target_selector(
             this: Allocated<Self>,
             name: &NSString,
@@ -36,8 +36,8 @@ extern_methods!(
             selector: Sel,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(name)]
+        #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
@@ -53,8 +53,8 @@ extern_methods!(
         #[method(setHandler:)]
         pub unsafe fn setHandler(&self, handler: Option<&block2::Block<dyn Fn() -> Bool>>);
 
-        #[unsafe(method_family(none))]
         #[method_id(target)]
+        #[unsafe(method_family = none)]
         pub unsafe fn target(&self) -> Option<Retained<ProtocolObject<dyn NSObjectProtocol>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -74,12 +74,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSAccessibilityCustomAction {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

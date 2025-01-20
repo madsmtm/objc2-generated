@@ -99,8 +99,8 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         /// The tint color to apply to the accessory. Default value is nil, which uses the system default.
-        #[unsafe(method_family(none))]
         #[method_id(tintColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -108,15 +108,15 @@ extern_methods!(
         #[method(setTintColor:)]
         pub unsafe fn setTintColor(&self, tint_color: Option<&UIColor>);
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -124,8 +124,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UICellAccessory {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -159,15 +159,15 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `UICellAccessory`
     unsafe impl UICellAccessoryDisclosureIndicator {
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -175,8 +175,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UICellAccessoryDisclosureIndicator {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -220,15 +220,15 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `UICellAccessory`
     unsafe impl UICellAccessoryDetail {
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -236,8 +236,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UICellAccessoryDetail {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -271,15 +271,15 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `UICellAccessory`
     unsafe impl UICellAccessoryCheckmark {
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -287,8 +287,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UICellAccessoryCheckmark {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -319,8 +319,8 @@ extern_methods!(
     unsafe impl UICellAccessoryDelete {
         #[cfg(feature = "UIColor")]
         /// The background color to apply to the accessory. Default value is nil, which uses the system default.
-        #[unsafe(method_family(none))]
         #[method_id(backgroundColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn backgroundColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -343,15 +343,15 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `UICellAccessory`
     unsafe impl UICellAccessoryDelete {
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -359,8 +359,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UICellAccessoryDelete {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -391,8 +391,8 @@ extern_methods!(
     unsafe impl UICellAccessoryInsert {
         #[cfg(feature = "UIColor")]
         /// The background color to apply to the accessory. Default value is nil, which uses the system default.
-        #[unsafe(method_family(none))]
         #[method_id(backgroundColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn backgroundColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -415,15 +415,15 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `UICellAccessory`
     unsafe impl UICellAccessoryInsert {
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -431,8 +431,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UICellAccessoryInsert {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -475,15 +475,15 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `UICellAccessory`
     unsafe impl UICellAccessoryReorder {
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -491,8 +491,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UICellAccessoryReorder {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -524,8 +524,8 @@ extern_methods!(
     unsafe impl UICellAccessoryMultiselect {
         #[cfg(feature = "UIColor")]
         /// The background color to apply to the accessory. Default value is nil, which uses the system default.
-        #[unsafe(method_family(none))]
         #[method_id(backgroundColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn backgroundColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -538,15 +538,15 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `UICellAccessory`
     unsafe impl UICellAccessoryMultiselect {
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -554,8 +554,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UICellAccessoryMultiselect {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -635,15 +635,15 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `UICellAccessory`
     unsafe impl UICellAccessoryOutlineDisclosure {
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -651,8 +651,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UICellAccessoryOutlineDisclosure {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -683,13 +683,13 @@ extern_methods!(
     unsafe impl UICellAccessoryPopUpMenu {
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
         /// Creates a new pop-up menu accessory using the provided menu.
-        #[unsafe(method_family(init))]
         #[method_id(initWithMenu:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithMenu(this: Allocated<Self>, menu: &UIMenu) -> Retained<Self>;
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
-        #[unsafe(method_family(none))]
         #[method_id(menu)]
+        #[unsafe(method_family = none)]
         pub unsafe fn menu(&self) -> Retained<UIMenu>;
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement", feature = "block2"))]
@@ -707,19 +707,19 @@ extern_methods!(
             selected_element_did_change_handler: Option<&block2::Block<dyn Fn(NonNull<UIMenu>)>>,
         );
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -749,18 +749,18 @@ unsafe impl NSSecureCoding for UICellAccessoryLabel {}
 extern_methods!(
     unsafe impl UICellAccessoryLabel {
         /// Creates a new label accessory using the provided text.
-        #[unsafe(method_family(init))]
         #[method_id(initWithText:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithText(this: Allocated<Self>, text: &NSString) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(text)]
+        #[unsafe(method_family = none)]
         pub unsafe fn text(&self) -> Retained<NSString>;
 
         #[cfg(feature = "UIFont")]
         /// The font used for the label. Default is the preferred font for UIFontTextStyleBody.
-        #[unsafe(method_family(none))]
         #[method_id(font)]
+        #[unsafe(method_family = none)]
         pub unsafe fn font(&self) -> Retained<UIFont>;
 
         #[cfg(feature = "UIFont")]
@@ -779,19 +779,19 @@ extern_methods!(
             adjusts_font_for_content_size_category: bool,
         );
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -868,8 +868,8 @@ extern_methods!(
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// Creates a new custom view accessory using the provided view and specified placement. The custom view must have translatesAutoresizingMaskIntoConstraints
         /// enabled, but may use auto layout constraints internally for layout of subviews and/or to indicate its preferred size.
-        #[unsafe(method_family(init))]
         #[method_id(initWithCustomView:placement:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCustomView_placement(
             this: Allocated<Self>,
             custom_view: &UIView,
@@ -877,8 +877,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[unsafe(method_family(none))]
         #[method_id(customView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn customView(&self) -> Retained<UIView>;
 
         #[method(placement)]
@@ -903,19 +903,19 @@ extern_methods!(
         #[method(setPosition:)]
         pub unsafe fn setPosition(&self, position: UICellAccessoryPosition);
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

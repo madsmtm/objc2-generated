@@ -27,49 +27,49 @@ unsafe impl NSSecureCoding for MXCrashDiagnosticObjectiveCExceptionReason {}
 extern_methods!(
     unsafe impl MXCrashDiagnosticObjectiveCExceptionReason {
         /// A human-readable message string summarizing the reason for the exception.
-        #[unsafe(method_family(none))]
         #[method_id(composedMessage)]
+        #[unsafe(method_family = none)]
         pub unsafe fn composedMessage(&self) -> Retained<NSString>;
 
         /// A string representing the exception message before arguments are substituted into the message
-        #[unsafe(method_family(none))]
         #[method_id(formatString)]
+        #[unsafe(method_family = none)]
         pub unsafe fn formatString(&self) -> Retained<NSString>;
 
         /// An NSArray of strings representing arguments passed to the formatString.
-        #[unsafe(method_family(none))]
         #[method_id(arguments)]
+        #[unsafe(method_family = none)]
         pub unsafe fn arguments(&self) -> Retained<NSArray<NSString>>;
 
         /// A human-readable string denoting type of the exception
-        #[unsafe(method_family(none))]
         #[method_id(exceptionType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn exceptionType(&self) -> Retained<NSString>;
 
         /// A string representing the class name of the exception, for example NSException.
-        #[unsafe(method_family(none))]
         #[method_id(className)]
+        #[unsafe(method_family = none)]
         pub unsafe fn className(&self) -> Retained<NSString>;
 
         /// A string representing name of the exception
         ///
         /// This will align with the "name" field of the NSException
-        #[unsafe(method_family(none))]
         #[method_id(exceptionName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn exceptionName(&self) -> Retained<NSString>;
 
         /// Convenience method to return a JSON representation of this MXCrashDiagnosticObjectiveCExceptionReason object.
         ///
         /// Returns: An NSData object containing the JSON representation
-        #[unsafe(method_family(none))]
         #[method_id(JSONRepresentation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn JSONRepresentation(&self) -> Retained<NSData>;
 
         /// Convenience method to return a NSDictionary representation of this MXCrashDiagnosticObjectiveCExceptionReason object.
         ///
         /// Returns: An NSDictionary object containing the dictionary representation
-        #[unsafe(method_family(none))]
         #[method_id(dictionaryRepresentation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dictionaryRepresentation(&self) -> Retained<NSDictionary>;
     }
 );
@@ -77,12 +77,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MXCrashDiagnosticObjectiveCExceptionReason {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

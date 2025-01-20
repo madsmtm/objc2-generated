@@ -144,8 +144,8 @@ unsafe impl NSSecureCoding for UITextFormattingViewControllerComponent {}
 extern_methods!(
     unsafe impl UITextFormattingViewControllerComponent {
         /// Unique key that identifies text formatting view component.
-        #[unsafe(method_family(none))]
         #[method_id(componentKey)]
+        #[unsafe(method_family = none)]
         pub unsafe fn componentKey(&self) -> Retained<UITextFormattingViewControllerComponentKey>;
 
         /// Specifies preferred size of the component in text formatting view.
@@ -157,20 +157,20 @@ extern_methods!(
         /// - Parameters:
         /// - componentKey: Component key.
         /// - preferredSize: Preferred size of component in text formatting view.
-        #[unsafe(method_family(init))]
         #[method_id(initWithComponentKey:preferredSize:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithComponentKey_preferredSize(
             this: Allocated<Self>,
             component_key: &UITextFormattingViewControllerComponentKey,
             preferred_size: UITextFormattingViewControllerComponentSize,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -199,27 +199,27 @@ unsafe impl NSSecureCoding for UITextFormattingViewControllerComponentGroup {}
 extern_methods!(
     unsafe impl UITextFormattingViewControllerComponentGroup {
         /// Components in group.
-        #[unsafe(method_family(none))]
         #[method_id(components)]
+        #[unsafe(method_family = none)]
         pub unsafe fn components(
             &self,
         ) -> Retained<NSArray<UITextFormattingViewControllerComponent>>;
 
         /// Creates a group of components.
         /// - Parameter components: Components to be included in the group.
-        #[unsafe(method_family(init))]
         #[method_id(initWithComponents:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithComponents(
             this: Allocated<Self>,
             components: &NSArray<UITextFormattingViewControllerComponent>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

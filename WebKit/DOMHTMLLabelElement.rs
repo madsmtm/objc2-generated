@@ -79,13 +79,13 @@ extern_methods!(
     unsafe impl DOMHTMLLabelElement {
         #[cfg(feature = "DOMHTMLFormElement")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(form)]
+        #[unsafe(method_family = none)]
         pub unsafe fn form(&self) -> Option<Retained<DOMHTMLFormElement>>;
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(htmlFor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn htmlFor(&self) -> Retained<NSString>;
 
         /// Setter for [`htmlFor`][Self::htmlFor].
@@ -94,8 +94,8 @@ extern_methods!(
         pub unsafe fn setHtmlFor(&self, html_for: Option<&NSString>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(accessKey)]
+        #[unsafe(method_family = none)]
         pub unsafe fn accessKey(&self) -> Retained<NSString>;
 
         /// Setter for [`accessKey`][Self::accessKey].
@@ -116,8 +116,8 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLLabelElement {
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -132,8 +132,8 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLLabelElement {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

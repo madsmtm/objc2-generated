@@ -139,8 +139,8 @@ extern_methods!(
             reactive_mask_texture_format: MTLPixelFormat,
         );
 
-        #[unsafe(method_family(new))]
         #[method_id(newTemporalScalerWithDevice:)]
+        #[unsafe(method_family = new)]
         pub unsafe fn newTemporalScalerWithDevice(
             &self,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -164,12 +164,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLFXTemporalScalerDescriptor {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -206,40 +206,40 @@ extern_protocol!(
         #[method(setInputContentHeight:)]
         unsafe fn setInputContentHeight(&self, input_content_height: NSUInteger);
 
-        #[unsafe(method_family(none))]
         #[method_id(colorTexture)]
+        #[unsafe(method_family = none)]
         unsafe fn colorTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         /// Setter for [`colorTexture`][Self::colorTexture].
         #[method(setColorTexture:)]
         unsafe fn setColorTexture(&self, color_texture: Option<&ProtocolObject<dyn MTLTexture>>);
 
-        #[unsafe(method_family(none))]
         #[method_id(depthTexture)]
+        #[unsafe(method_family = none)]
         unsafe fn depthTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         /// Setter for [`depthTexture`][Self::depthTexture].
         #[method(setDepthTexture:)]
         unsafe fn setDepthTexture(&self, depth_texture: Option<&ProtocolObject<dyn MTLTexture>>);
 
-        #[unsafe(method_family(none))]
         #[method_id(motionTexture)]
+        #[unsafe(method_family = none)]
         unsafe fn motionTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         /// Setter for [`motionTexture`][Self::motionTexture].
         #[method(setMotionTexture:)]
         unsafe fn setMotionTexture(&self, motion_texture: Option<&ProtocolObject<dyn MTLTexture>>);
 
-        #[unsafe(method_family(none))]
         #[method_id(outputTexture)]
+        #[unsafe(method_family = none)]
         unsafe fn outputTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         /// Setter for [`outputTexture`][Self::outputTexture].
         #[method(setOutputTexture:)]
         unsafe fn setOutputTexture(&self, output_texture: Option<&ProtocolObject<dyn MTLTexture>>);
 
-        #[unsafe(method_family(none))]
         #[method_id(exposureTexture)]
+        #[unsafe(method_family = none)]
         unsafe fn exposureTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         /// Setter for [`exposureTexture`][Self::exposureTexture].
@@ -249,8 +249,8 @@ extern_protocol!(
             exposure_texture: Option<&ProtocolObject<dyn MTLTexture>>,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(reactiveMaskTexture)]
+        #[unsafe(method_family = none)]
         unsafe fn reactiveMaskTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         /// Setter for [`reactiveMaskTexture`][Self::reactiveMaskTexture].
@@ -339,8 +339,8 @@ extern_protocol!(
         #[method(inputContentMaxScale)]
         unsafe fn inputContentMaxScale(&self) -> c_float;
 
-        #[unsafe(method_family(none))]
         #[method_id(fence)]
+        #[unsafe(method_family = none)]
         unsafe fn fence(&self) -> Option<Retained<ProtocolObject<dyn MTLFence>>>;
 
         /// Setter for [`fence`][Self::fence].

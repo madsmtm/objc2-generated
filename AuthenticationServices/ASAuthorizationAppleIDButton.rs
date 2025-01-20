@@ -87,16 +87,16 @@ unsafe impl NSUserInterfaceItemIdentification for ASAuthorizationAppleIDButton {
 extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl ASAuthorizationAppleIDButton {
-        #[unsafe(method_family(none))]
         #[method_id(buttonWithType:style:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn buttonWithType_style(
             r#type: ASAuthorizationAppleIDButtonType,
             style: ASAuthorizationAppleIDButtonStyle,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithAuthorizationButtonType:authorizationButtonStyle:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithAuthorizationButtonType_authorizationButtonStyle(
             this: Allocated<Self>,
             r#type: ASAuthorizationAppleIDButtonType,
@@ -119,12 +119,12 @@ extern_methods!(
     /// Methods declared on superclass `NSControl`
     #[cfg(target_os = "macos")]
     unsafe impl ASAuthorizationAppleIDButton {
-        #[unsafe(method_family(init))]
         #[method_id(initWithFrame:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -136,8 +136,8 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(target_os = "macos")]
     unsafe impl ASAuthorizationAppleIDButton {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -146,8 +146,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(target_os = "macos")]
     unsafe impl ASAuthorizationAppleIDButton {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

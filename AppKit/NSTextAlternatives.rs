@@ -22,20 +22,20 @@ unsafe impl NSSecureCoding for NSTextAlternatives {}
 
 extern_methods!(
     unsafe impl NSTextAlternatives {
-        #[unsafe(method_family(init))]
         #[method_id(initWithPrimaryString:alternativeStrings:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithPrimaryString_alternativeStrings(
             this: Allocated<Self>,
             primary_string: &NSString,
             alternative_strings: &NSArray<NSString>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(primaryString)]
+        #[unsafe(method_family = none)]
         pub unsafe fn primaryString(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(alternativeStrings)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alternativeStrings(&self) -> Retained<NSArray<NSString>>;
 
         #[method(noteSelectedAlternativeString:)]
@@ -46,12 +46,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextAlternatives {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

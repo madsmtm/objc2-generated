@@ -22,8 +22,8 @@ unsafe impl NSObjectProtocol for NSStoryboardSegue {}
 extern_methods!(
     unsafe impl NSStoryboardSegue {
         #[cfg(feature = "block2")]
-        #[unsafe(method_family(none))]
         #[method_id(segueWithIdentifier:source:destination:performHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn segueWithIdentifier_source_destination_performHandler(
             identifier: &NSStoryboardSegueIdentifier,
             source_controller: &AnyObject,
@@ -31,8 +31,8 @@ extern_methods!(
             perform_handler: &block2::Block<dyn Fn()>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithIdentifier:source:destination:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifier_source_destination(
             this: Allocated<Self>,
             identifier: &NSStoryboardSegueIdentifier,
@@ -40,16 +40,16 @@ extern_methods!(
             destination_controller: &AnyObject,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(identifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Option<Retained<NSStoryboardSegueIdentifier>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(sourceController)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sourceController(&self) -> Retained<AnyObject>;
 
-        #[unsafe(method_family(none))]
         #[method_id(destinationController)]
+        #[unsafe(method_family = none)]
         pub unsafe fn destinationController(&self) -> Retained<AnyObject>;
 
         #[method(perform)]
@@ -60,12 +60,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSStoryboardSegue {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

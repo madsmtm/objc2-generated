@@ -460,45 +460,45 @@ extern_category!(
     /// Category on [`NSValue`].
     pub unsafe trait NSValueUIGeometryExtensions {
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(none))]
         #[method_id(valueWithCGPoint:)]
+        #[unsafe(method_family = none)]
         unsafe fn valueWithCGPoint(point: CGPoint) -> Retained<NSValue>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(none))]
         #[method_id(valueWithCGVector:)]
+        #[unsafe(method_family = none)]
         unsafe fn valueWithCGVector(vector: CGVector) -> Retained<NSValue>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(none))]
         #[method_id(valueWithCGSize:)]
+        #[unsafe(method_family = none)]
         unsafe fn valueWithCGSize(size: CGSize) -> Retained<NSValue>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(none))]
         #[method_id(valueWithCGRect:)]
+        #[unsafe(method_family = none)]
         unsafe fn valueWithCGRect(rect: CGRect) -> Retained<NSValue>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(none))]
         #[method_id(valueWithCGAffineTransform:)]
+        #[unsafe(method_family = none)]
         unsafe fn valueWithCGAffineTransform(transform: CGAffineTransform) -> Retained<NSValue>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(none))]
         #[method_id(valueWithUIEdgeInsets:)]
+        #[unsafe(method_family = none)]
         unsafe fn valueWithUIEdgeInsets(insets: UIEdgeInsets) -> Retained<NSValue>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(none))]
         #[method_id(valueWithDirectionalEdgeInsets:)]
+        #[unsafe(method_family = none)]
         unsafe fn valueWithDirectionalEdgeInsets(
             insets: NSDirectionalEdgeInsets,
         ) -> Retained<NSValue>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(none))]
         #[method_id(valueWithUIOffset:)]
+        #[unsafe(method_family = none)]
         unsafe fn valueWithUIOffset(insets: UIOffset) -> Retained<NSValue>;
 
         #[cfg(feature = "objc2-core-foundation")]

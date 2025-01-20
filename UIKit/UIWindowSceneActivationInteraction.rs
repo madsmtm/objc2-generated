@@ -60,20 +60,20 @@ extern_methods!(
         /// `UIWindowSceneActivationConfiguration`whose user activity will be used to request scene activation.
         ///
         /// Parameter `errorHandler`: Called when the activation request fails.
-        #[unsafe(method_family(init))]
         #[method_id(initWithConfigurationProvider:errorHandler:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithConfigurationProvider_errorHandler(
             this: Allocated<Self>,
             configuration_provider: UIWindowSceneActivationInteractionConfigurationProvider,
             error_handler: &block2::Block<dyn Fn(NonNull<NSError>)>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

@@ -18,28 +18,28 @@ unsafe impl NSObjectProtocol for NSDictionaryControllerKeyValuePair {}
 
 extern_methods!(
     unsafe impl NSDictionaryControllerKeyValuePair {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(key)]
+        #[unsafe(method_family = none)]
         pub unsafe fn key(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`key`][Self::key].
         #[method(setKey:)]
         pub unsafe fn setKey(&self, key: Option<&NSString>);
 
-        #[unsafe(method_family(none))]
         #[method_id(value)]
+        #[unsafe(method_family = none)]
         pub unsafe fn value(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`value`][Self::value].
         #[method(setValue:)]
         pub unsafe fn setValue(&self, value: Option<&AnyObject>);
 
-        #[unsafe(method_family(none))]
         #[method_id(localizedKey)]
+        #[unsafe(method_family = none)]
         pub unsafe fn localizedKey(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`localizedKey`][Self::localizedKey].
@@ -54,8 +54,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSDictionaryControllerKeyValuePair {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -110,44 +110,44 @@ extern_methods!(
         feature = "NSObjectController"
     ))]
     unsafe impl NSDictionaryController {
-        #[unsafe(method_family(new))]
         #[method_id(newObject)]
+        #[unsafe(method_family = new)]
         pub unsafe fn newObject(&self) -> Retained<NSDictionaryControllerKeyValuePair>;
 
-        #[unsafe(method_family(none))]
         #[method_id(initialKey)]
+        #[unsafe(method_family = none)]
         pub unsafe fn initialKey(&self) -> Retained<NSString>;
 
         /// Setter for [`initialKey`][Self::initialKey].
         #[method(setInitialKey:)]
         pub unsafe fn setInitialKey(&self, initial_key: &NSString);
 
-        #[unsafe(method_family(none))]
         #[method_id(initialValue)]
+        #[unsafe(method_family = none)]
         pub unsafe fn initialValue(&self) -> Retained<AnyObject>;
 
         /// Setter for [`initialValue`][Self::initialValue].
         #[method(setInitialValue:)]
         pub unsafe fn setInitialValue(&self, initial_value: &AnyObject);
 
-        #[unsafe(method_family(none))]
         #[method_id(includedKeys)]
+        #[unsafe(method_family = none)]
         pub unsafe fn includedKeys(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`includedKeys`][Self::includedKeys].
         #[method(setIncludedKeys:)]
         pub unsafe fn setIncludedKeys(&self, included_keys: &NSArray<NSString>);
 
-        #[unsafe(method_family(none))]
         #[method_id(excludedKeys)]
+        #[unsafe(method_family = none)]
         pub unsafe fn excludedKeys(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`excludedKeys`][Self::excludedKeys].
         #[method(setExcludedKeys:)]
         pub unsafe fn setExcludedKeys(&self, excluded_keys: &NSArray<NSString>);
 
-        #[unsafe(method_family(none))]
         #[method_id(localizedKeyDictionary)]
+        #[unsafe(method_family = none)]
         pub unsafe fn localizedKeyDictionary(&self) -> Retained<NSDictionary<NSString, NSString>>;
 
         /// Setter for [`localizedKeyDictionary`][Self::localizedKeyDictionary].
@@ -157,8 +157,8 @@ extern_methods!(
             localized_key_dictionary: &NSDictionary<NSString, NSString>,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(localizedKeyTable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn localizedKeyTable(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`localizedKeyTable`][Self::localizedKeyTable].
@@ -175,15 +175,15 @@ extern_methods!(
         feature = "NSObjectController"
     ))]
     unsafe impl NSDictionaryController {
-        #[unsafe(method_family(init))]
         #[method_id(initWithContent:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithContent(
             this: Allocated<Self>,
             content: Option<&AnyObject>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -199,8 +199,8 @@ extern_methods!(
         feature = "NSObjectController"
     ))]
     unsafe impl NSDictionaryController {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -213,8 +213,8 @@ extern_methods!(
         feature = "NSObjectController"
     ))]
     unsafe impl NSDictionaryController {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

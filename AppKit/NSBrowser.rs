@@ -146,16 +146,16 @@ extern_methods!(
         #[method(setCellClass:)]
         pub unsafe fn setCellClass(&self, factory_id: &AnyClass);
 
-        #[unsafe(method_family(none))]
         #[method_id(cellPrototype)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cellPrototype(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`cellPrototype`][Self::cellPrototype].
         #[method(setCellPrototype:)]
         pub unsafe fn setCellPrototype(&self, cell_prototype: Option<&AnyObject>);
 
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSBrowserDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -252,23 +252,23 @@ extern_methods!(
         #[method(setSendsActionOnArrowKeys:)]
         pub unsafe fn setSendsActionOnArrowKeys(&self, sends_action_on_arrow_keys: bool);
 
-        #[unsafe(method_family(none))]
         #[method_id(itemAtIndexPath:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn itemAtIndexPath(
             &self,
             index_path: &NSIndexPath,
         ) -> Option<Retained<AnyObject>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(itemAtRow:inColumn:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn itemAtRow_inColumn(
             &self,
             row: NSInteger,
             column: NSInteger,
         ) -> Option<Retained<AnyObject>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(indexPathForColumn:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indexPathForColumn(&self, column: NSInteger) -> Retained<NSIndexPath>;
 
         #[method(isLeafItem:)]
@@ -281,8 +281,8 @@ extern_methods!(
             column: NSInteger,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(parentForItemsInColumn:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn parentForItemsInColumn(
             &self,
             column: NSInteger,
@@ -294,12 +294,12 @@ extern_methods!(
         #[method(setTitle:ofColumn:)]
         pub unsafe fn setTitle_ofColumn(&self, string: &NSString, column: NSInteger);
 
-        #[unsafe(method_family(none))]
         #[method_id(titleOfColumn:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn titleOfColumn(&self, column: NSInteger) -> Option<Retained<NSString>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(pathSeparator)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pathSeparator(&self) -> Retained<NSString>;
 
         /// Setter for [`pathSeparator`][Self::pathSeparator].
@@ -309,12 +309,12 @@ extern_methods!(
         #[method(setPath:)]
         pub unsafe fn setPath(&self, path: &NSString) -> bool;
 
-        #[unsafe(method_family(none))]
         #[method_id(path)]
+        #[unsafe(method_family = none)]
         pub unsafe fn path(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(pathToColumn:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pathToColumn(&self, column: NSInteger) -> Retained<NSString>;
 
         #[method(clickedColumn)]
@@ -326,18 +326,18 @@ extern_methods!(
         #[method(selectedColumn)]
         pub unsafe fn selectedColumn(&self) -> NSInteger;
 
-        #[unsafe(method_family(none))]
         #[method_id(selectedCell)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectedCell(&self) -> Option<Retained<AnyObject>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(selectedCellInColumn:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectedCellInColumn(&self, column: NSInteger)
             -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSCell")]
-        #[unsafe(method_family(none))]
         #[method_id(selectedCells)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectedCells(&self) -> Option<Retained<NSArray<NSCell>>>;
 
         #[method(selectRow:inColumn:)]
@@ -346,16 +346,16 @@ extern_methods!(
         #[method(selectedRowInColumn:)]
         pub unsafe fn selectedRowInColumn(&self, column: NSInteger) -> NSInteger;
 
-        #[unsafe(method_family(none))]
         #[method_id(selectionIndexPath)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectionIndexPath(&self) -> Option<Retained<NSIndexPath>>;
 
         /// Setter for [`selectionIndexPath`][Self::selectionIndexPath].
         #[method(setSelectionIndexPath:)]
         pub unsafe fn setSelectionIndexPath(&self, selection_index_path: Option<&NSIndexPath>);
 
-        #[unsafe(method_family(none))]
         #[method_id(selectionIndexPaths)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectionIndexPaths(&self) -> Retained<NSArray<NSIndexPath>>;
 
         /// Setter for [`selectionIndexPaths`][Self::selectionIndexPaths].
@@ -365,8 +365,8 @@ extern_methods!(
         #[method(selectRowIndexes:inColumn:)]
         pub unsafe fn selectRowIndexes_inColumn(&self, indexes: &NSIndexSet, column: NSInteger);
 
-        #[unsafe(method_family(none))]
         #[method_id(selectedRowIndexesInColumn:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectedRowIndexesInColumn(
             &self,
             column: NSInteger,
@@ -406,8 +406,8 @@ extern_methods!(
         #[method(lastVisibleColumn)]
         pub unsafe fn lastVisibleColumn(&self) -> NSInteger;
 
-        #[unsafe(method_family(none))]
         #[method_id(loadedCellAtRow:column:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loadedCellAtRow_column(
             &self,
             row: NSInteger,
@@ -519,8 +519,8 @@ extern_methods!(
         #[method(defaultColumnWidth)]
         pub unsafe fn defaultColumnWidth(&self) -> CGFloat;
 
-        #[unsafe(method_family(none))]
         #[method_id(columnsAutosaveName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn columnsAutosaveName(&self) -> Retained<NSBrowserColumnsAutosaveName>;
 
         /// Setter for [`columnsAutosaveName`][Self::columnsAutosaveName].
@@ -546,8 +546,8 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(all(feature = "NSEvent", feature = "NSImage"))]
-        #[unsafe(method_family(none))]
         #[method_id(draggingImageForRowsWithIndexes:inColumn:withEvent:offset:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn draggingImageForRowsWithIndexes_inColumn_withEvent_offset(
             &self,
             row_indexes: &NSIndexSet,
@@ -572,8 +572,8 @@ extern_methods!(
         pub unsafe fn setAllowsTypeSelect(&self, allows_type_select: bool);
 
         #[cfg(feature = "NSColor")]
-        #[unsafe(method_family(none))]
         #[method_id(backgroundColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn backgroundColor(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
@@ -596,12 +596,12 @@ extern_methods!(
     /// Methods declared on superclass `NSControl`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSBrowser {
-        #[unsafe(method_family(init))]
         #[method_id(initWithFrame:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -613,8 +613,8 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSBrowser {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -623,8 +623,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSBrowser {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -672,8 +672,8 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(browser:child:ofItem:)]
+        #[unsafe(method_family = none)]
         unsafe fn browser_child_ofItem(
             &self,
             browser: &NSBrowser,
@@ -688,8 +688,8 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(browser:objectValueForItem:)]
+        #[unsafe(method_family = none)]
         unsafe fn browser_objectValueForItem(
             &self,
             browser: &NSBrowser,
@@ -713,8 +713,8 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(rootItemForBrowser:)]
+        #[unsafe(method_family = none)]
         unsafe fn rootItemForBrowser(&self, browser: &NSBrowser) -> Option<Retained<AnyObject>>;
 
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
@@ -749,8 +749,8 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(browser:titleOfColumn:)]
+        #[unsafe(method_family = none)]
         unsafe fn browser_titleOfColumn(
             &self,
             sender: &NSBrowser,
@@ -855,8 +855,8 @@ extern_protocol!(
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[deprecated = "Use NSFilePromiseReceiver objects instead"]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(browser:namesOfPromisedFilesDroppedAtDestination:forDraggedRowsWithIndexes:inColumn:)]
+        #[unsafe(method_family = none)]
         unsafe fn browser_namesOfPromisedFilesDroppedAtDestination_forDraggedRowsWithIndexes_inColumn(
             &self,
             browser: &NSBrowser,
@@ -889,8 +889,8 @@ extern_protocol!(
             feature = "NSView"
         ))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(browser:draggingImageForRowsWithIndexes:inColumn:withEvent:offset:)]
+        #[unsafe(method_family = none)]
         unsafe fn browser_draggingImageForRowsWithIndexes_inColumn_withEvent_offset(
             &self,
             browser: &NSBrowser,
@@ -936,8 +936,8 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(browser:typeSelectStringForRow:inColumn:)]
+        #[unsafe(method_family = none)]
         unsafe fn browser_typeSelectStringForRow_inColumn(
             &self,
             browser: &NSBrowser,
@@ -979,8 +979,8 @@ extern_protocol!(
             feature = "NSViewController"
         ))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(browser:previewViewControllerForLeafItem:)]
+        #[unsafe(method_family = none)]
         unsafe fn browser_previewViewControllerForLeafItem(
             &self,
             browser: &NSBrowser,
@@ -994,8 +994,8 @@ extern_protocol!(
             feature = "NSViewController"
         ))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(browser:headerViewControllerForItem:)]
+        #[unsafe(method_family = none)]
         unsafe fn browser_headerViewControllerForItem(
             &self,
             browser: &NSBrowser,
@@ -1014,8 +1014,8 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(browser:selectionIndexesForProposedSelection:inColumn:)]
+        #[unsafe(method_family = none)]
         unsafe fn browser_selectionIndexesForProposedSelection_inColumn(
             &self,
             browser: &NSBrowser,
@@ -1069,8 +1069,8 @@ extern_methods!(
 
         #[cfg(feature = "NSMatrix")]
         #[deprecated = "Use the item based NSBrowser instead"]
-        #[unsafe(method_family(none))]
         #[method_id(matrixInColumn:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn matrixInColumn(&self, column: NSInteger) -> Option<Retained<NSMatrix>>;
     }
 );

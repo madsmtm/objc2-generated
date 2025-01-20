@@ -32,8 +32,8 @@ extern_methods!(
         pub unsafe fn accelerometerDataFrequency(&self) -> NSInteger;
 
         #[cfg(all(feature = "CMAccelerometer", feature = "CMLogItem"))]
-        #[unsafe(method_family(none))]
         #[method_id(accelerometerBatch)]
+        #[unsafe(method_family = none)]
         pub unsafe fn accelerometerBatch(&self) -> Option<Retained<NSArray<CMAccelerometerData>>>;
 
         #[method(startAccelerometerUpdates)]
@@ -59,8 +59,8 @@ extern_methods!(
         pub unsafe fn isDeviceMotionActive(&self) -> bool;
 
         #[cfg(all(feature = "CMDeviceMotion", feature = "CMLogItem"))]
-        #[unsafe(method_family(none))]
         #[method_id(deviceMotionBatch)]
+        #[unsafe(method_family = none)]
         pub unsafe fn deviceMotionBatch(&self) -> Option<Retained<NSArray<CMDeviceMotion>>>;
 
         #[method(startDeviceMotionUpdates)]
@@ -81,12 +81,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CMBatchedSensorManager {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

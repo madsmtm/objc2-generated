@@ -25,8 +25,8 @@ extern_methods!(
         pub unsafe fn isForMainFrame(&self) -> bool;
 
         /// The frame's response.
-        #[unsafe(method_family(none))]
         #[method_id(response)]
+        #[unsafe(method_family = none)]
         pub unsafe fn response(&self) -> Retained<NSURLResponse>;
 
         /// A Boolean value indicating whether WebKit can display the response's MIME type natively.
@@ -40,12 +40,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKNavigationResponse {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

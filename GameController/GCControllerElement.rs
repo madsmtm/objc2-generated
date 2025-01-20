@@ -67,8 +67,8 @@ extern_methods!(
     unsafe impl GCControllerElement {
         /// Each element can be part of a wider collection of inputs that map to a single logical element. A directional pad (dpad)
         /// is a logical collection of two axis inputs and thus each axis belongs to the same collection element - the dpad.
-        #[unsafe(method_family(none))]
         #[method_id(collection)]
+        #[unsafe(method_family = none)]
         pub unsafe fn collection(&self) -> Option<Retained<GCControllerElement>>;
 
         /// Check if the element can support more than just digital values, such as decimal ranges between 0 and 1.
@@ -110,8 +110,8 @@ extern_methods!(
         ///
         ///
         /// Note: In almost all instances, you should use this over unmappedSfSymbolsName in your UI.
-        #[unsafe(method_family(none))]
         #[method_id(sfSymbolsName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sfSymbolsName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`sfSymbolsName`][Self::sfSymbolsName].
@@ -122,8 +122,8 @@ extern_methods!(
         ///
         ///
         /// Note: In almost all instances, you should use this over unmappedLocalizedName in your UI.
-        #[unsafe(method_family(none))]
         #[method_id(localizedName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn localizedName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`localizedName`][Self::localizedName].
@@ -134,8 +134,8 @@ extern_methods!(
         ///
         ///
         /// Note: Use this in your games own remapping UI, or when you need to prompt a user that a given button has no mapping (sfSymbolsName is nil).
-        #[unsafe(method_family(none))]
         #[method_id(unmappedSfSymbolsName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn unmappedSfSymbolsName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`unmappedSfSymbolsName`][Self::unmappedSfSymbolsName].
@@ -146,8 +146,8 @@ extern_methods!(
         ///
         ///
         /// Note: Use this in your games own remapping UI, or when you need to prompt a user that a given button has no mapping (localizedName is nil).
-        #[unsafe(method_family(none))]
         #[method_id(unmappedLocalizedName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn unmappedLocalizedName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`unmappedLocalizedName`][Self::unmappedLocalizedName].
@@ -155,8 +155,8 @@ extern_methods!(
         pub unsafe fn setUnmappedLocalizedName(&self, unmapped_localized_name: Option<&NSString>);
 
         /// A set of aliases that can be used to access this element with keyed subscript notation.
-        #[unsafe(method_family(none))]
         #[method_id(aliases)]
+        #[unsafe(method_family = none)]
         pub unsafe fn aliases(&self) -> Retained<NSSet<NSString>>;
     }
 );
@@ -164,12 +164,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GCControllerElement {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

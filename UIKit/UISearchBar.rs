@@ -145,17 +145,17 @@ unsafe impl UITraitEnvironment for UISearchBar {}
 extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UISearchBar {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithFrame:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -171,8 +171,8 @@ extern_methods!(
         pub unsafe fn setBarStyle(&self, bar_style: UIBarStyle);
 
         #[cfg(feature = "UIBarCommon")]
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn UISearchBarDelegate>>>;
 
         #[cfg(feature = "UIBarCommon")]
@@ -184,24 +184,24 @@ extern_methods!(
             delegate: Option<&ProtocolObject<dyn UISearchBarDelegate>>,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(text)]
+        #[unsafe(method_family = none)]
         pub unsafe fn text(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`text`][Self::text].
         #[method(setText:)]
         pub unsafe fn setText(&self, text: Option<&NSString>);
 
-        #[unsafe(method_family(none))]
         #[method_id(prompt)]
+        #[unsafe(method_family = none)]
         pub unsafe fn prompt(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`prompt`][Self::prompt].
         #[method(setPrompt:)]
         pub unsafe fn setPrompt(&self, prompt: Option<&NSString>);
 
-        #[unsafe(method_family(none))]
         #[method_id(placeholder)]
+        #[unsafe(method_family = none)]
         pub unsafe fn placeholder(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`placeholder`][Self::placeholder].
@@ -220,8 +220,8 @@ extern_methods!(
             feature = "UISearchTextField",
             feature = "UITextField"
         ))]
-        #[unsafe(method_family(none))]
         #[method_id(searchTextField)]
+        #[unsafe(method_family = none)]
         pub unsafe fn searchTextField(&self) -> Retained<UISearchTextField>;
 
         #[method(showsCancelButton)]
@@ -256,13 +256,13 @@ extern_methods!(
         /// Use this method to modify the contents of the Unified Content Bar, shown on top of the keyboard when search is engaged.
         /// You may modify the returned inputAssistantItem to add to or replace the existing items on the bar.
         /// Modifications made to the returned UITextInputAssistantItem are reflected automatically.
-        #[unsafe(method_family(none))]
         #[method_id(inputAssistantItem)]
+        #[unsafe(method_family = none)]
         pub unsafe fn inputAssistantItem(&self) -> Retained<UITextInputAssistantItem>;
 
         #[cfg(feature = "UIColor")]
-        #[unsafe(method_family(none))]
         #[method_id(tintColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -271,8 +271,8 @@ extern_methods!(
         pub unsafe fn setTintColor(&self, tint_color: Option<&UIColor>);
 
         #[cfg(feature = "UIColor")]
-        #[unsafe(method_family(none))]
         #[method_id(barTintColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn barTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -294,8 +294,8 @@ extern_methods!(
         #[method(setTranslucent:)]
         pub unsafe fn setTranslucent(&self, translucent: bool);
 
-        #[unsafe(method_family(none))]
         #[method_id(scopeButtonTitles)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scopeButtonTitles(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`scopeButtonTitles`][Self::scopeButtonTitles].
@@ -319,8 +319,8 @@ extern_methods!(
         #[method(setShowsScopeBar:animated:)]
         pub unsafe fn setShowsScopeBar_animated(&self, show: bool, animate: bool);
 
-        #[unsafe(method_family(none))]
         #[method_id(inputAccessoryView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn inputAccessoryView(&self) -> Option<Retained<UIView>>;
 
         /// Setter for [`inputAccessoryView`][Self::inputAccessoryView].
@@ -338,8 +338,8 @@ extern_methods!(
         pub unsafe fn setEnabled(&self, enabled: bool);
 
         #[cfg(feature = "UIImage")]
-        #[unsafe(method_family(none))]
         #[method_id(backgroundImage)]
+        #[unsafe(method_family = none)]
         pub unsafe fn backgroundImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
@@ -348,8 +348,8 @@ extern_methods!(
         pub unsafe fn setBackgroundImage(&self, background_image: Option<&UIImage>);
 
         #[cfg(feature = "UIImage")]
-        #[unsafe(method_family(none))]
         #[method_id(scopeBarBackgroundImage)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scopeBarBackgroundImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
@@ -370,8 +370,8 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIBarCommon", feature = "UIImage"))]
-        #[unsafe(method_family(none))]
         #[method_id(backgroundImageForBarPosition:barMetrics:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn backgroundImageForBarPosition_barMetrics(
             &self,
             bar_position: UIBarPosition,
@@ -387,8 +387,8 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIControl", feature = "UIImage"))]
-        #[unsafe(method_family(none))]
         #[method_id(searchFieldBackgroundImageForState:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn searchFieldBackgroundImageForState(
             &self,
             state: UIControlState,
@@ -404,8 +404,8 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIControl", feature = "UIImage"))]
-        #[unsafe(method_family(none))]
         #[method_id(imageForSearchBarIcon:state:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn imageForSearchBarIcon_state(
             &self,
             icon: UISearchBarIcon,
@@ -421,8 +421,8 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIControl", feature = "UIImage"))]
-        #[unsafe(method_family(none))]
         #[method_id(scopeBarButtonBackgroundImageForState:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scopeBarButtonBackgroundImageForState(
             &self,
             state: UIControlState,
@@ -438,8 +438,8 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIControl", feature = "UIImage"))]
-        #[unsafe(method_family(none))]
         #[method_id(scopeBarButtonDividerImageForLeftSegmentState:rightSegmentState:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scopeBarButtonDividerImageForLeftSegmentState_rightSegmentState(
             &self,
             left_state: UIControlState,
@@ -455,8 +455,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIControl")]
-        #[unsafe(method_family(none))]
         #[method_id(scopeBarButtonTitleTextAttributesForState:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scopeBarButtonTitleTextAttributesForState(
             &self,
             state: UIControlState,
@@ -511,8 +511,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UISearchBar {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

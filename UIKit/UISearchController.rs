@@ -175,30 +175,30 @@ unsafe impl UIViewControllerTransitioningDelegate for UISearchController {}
 extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UISearchController {
-        #[unsafe(method_family(init))]
         #[method_id(initWithSearchResultsController:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithSearchResultsController(
             this: Allocated<Self>,
             search_results_controller: Option<&UIViewController>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithNibName:bundle:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(searchResultsUpdater)]
+        #[unsafe(method_family = none)]
         pub unsafe fn searchResultsUpdater(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UISearchResultsUpdating>>>;
@@ -218,8 +218,8 @@ extern_methods!(
         #[method(setActive:)]
         pub unsafe fn setActive(&self, active: bool);
 
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UISearchControllerDelegate>>>;
@@ -264,13 +264,13 @@ extern_methods!(
             hides_navigation_bar_during_presentation: bool,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(searchResultsController)]
+        #[unsafe(method_family = none)]
         pub unsafe fn searchResultsController(&self) -> Option<Retained<UIViewController>>;
 
         #[cfg(all(feature = "UISearchBar", feature = "UIView"))]
-        #[unsafe(method_family(none))]
         #[method_id(searchBar)]
+        #[unsafe(method_family = none)]
         pub unsafe fn searchBar(&self) -> Retained<UISearchBar>;
 
         #[cfg(feature = "UINavigationItem")]
@@ -338,8 +338,8 @@ extern_methods!(
         /// searchSuggestions is set to nil when user interaction selects a suggestion,
         /// or when the user otherwise interacts with search (e.g., typing in the search field, choosing a different search scope, canceling search)
         /// after dismissing the menu by tapping outside
-        #[unsafe(method_family(none))]
         #[method_id(searchSuggestions)]
+        #[unsafe(method_family = none)]
         pub unsafe fn searchSuggestions(
             &self,
         ) -> Option<Retained<NSArray<ProtocolObject<dyn UISearchSuggestion>>>>;
@@ -368,8 +368,8 @@ extern_methods!(
 
         #[cfg(all(feature = "UIScrollView", feature = "UIView"))]
         #[deprecated = "Use -[UIViewController setContentScrollView:forEdge:] on the searchResultsController instead."]
-        #[unsafe(method_family(none))]
         #[method_id(searchControllerObservedScrollView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn searchControllerObservedScrollView(&self) -> Option<Retained<UIScrollView>>;
 
         #[cfg(all(feature = "UIScrollView", feature = "UIView"))]
@@ -387,12 +387,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UISearchController {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

@@ -23,16 +23,16 @@ unsafe impl NSObjectProtocol for NSScreen {}
 
 extern_methods!(
     unsafe impl NSScreen {
-        #[unsafe(method_family(none))]
         #[method_id(screens)]
+        #[unsafe(method_family = none)]
         pub fn screens(mtm: MainThreadMarker) -> Retained<NSArray<NSScreen>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(mainScreen)]
+        #[unsafe(method_family = none)]
         pub fn mainScreen(mtm: MainThreadMarker) -> Option<Retained<NSScreen>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(deepestScreen)]
+        #[unsafe(method_family = none)]
         pub unsafe fn deepestScreen(mtm: MainThreadMarker) -> Option<Retained<NSScreen>>;
 
         #[method(screensHaveSeparateSpaces)]
@@ -49,15 +49,15 @@ extern_methods!(
         pub fn visibleFrame(&self) -> NSRect;
 
         #[cfg(feature = "NSGraphics")]
-        #[unsafe(method_family(none))]
         #[method_id(deviceDescription)]
+        #[unsafe(method_family = none)]
         pub fn deviceDescription(
             &self,
         ) -> Retained<NSDictionary<NSDeviceDescriptionKey, AnyObject>>;
 
         #[cfg(feature = "NSColorSpace")]
-        #[unsafe(method_family(none))]
         #[method_id(colorSpace)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colorSpace(&self) -> Option<Retained<NSColorSpace>>;
 
         #[cfg(feature = "NSGraphics")]
@@ -85,8 +85,8 @@ extern_methods!(
         #[method(backingScaleFactor)]
         pub fn backingScaleFactor(&self) -> CGFloat;
 
-        #[unsafe(method_family(none))]
         #[method_id(localizedName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn localizedName(&self) -> Retained<NSString>;
 
         #[method(safeAreaInsets)]
@@ -103,12 +103,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSScreen {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -170,8 +170,8 @@ extern_methods!(
     unsafe impl NSScreen {
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(target_vendor = "apple")]
-        #[unsafe(method_family(none))]
         #[method_id(displayLinkWithTarget:selector:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn displayLinkWithTarget_selector(
             &self,
             target: &AnyObject,

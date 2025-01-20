@@ -67,8 +67,8 @@ extern_protocol!(
     pub unsafe trait UIActivityItemsConfigurationReading:
         NSObjectProtocol + MainThreadOnly
     {
-        #[unsafe(method_family(none))]
         #[method_id(itemProvidersForActivityItemsConfiguration)]
+        #[unsafe(method_family = none)]
         unsafe fn itemProvidersForActivityItemsConfiguration(
             &self,
         ) -> Retained<NSArray<NSItemProvider>>;
@@ -81,16 +81,16 @@ extern_protocol!(
         ) -> bool;
 
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(activityItemsConfigurationMetadataForKey:)]
+        #[unsafe(method_family = none)]
         unsafe fn activityItemsConfigurationMetadataForKey(
             &self,
             key: &UIActivityItemsConfigurationMetadataKey,
         ) -> Option<Retained<AnyObject>>;
 
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(activityItemsConfigurationMetadataForItemAtIndex:key:)]
+        #[unsafe(method_family = none)]
         unsafe fn activityItemsConfigurationMetadataForItemAtIndex_key(
             &self,
             index: NSInteger,
@@ -99,8 +99,8 @@ extern_protocol!(
 
         #[cfg(feature = "objc2-core-foundation")]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(activityItemsConfigurationPreviewForItemAtIndex:intent:suggestedSize:)]
+        #[unsafe(method_family = none)]
         unsafe fn activityItemsConfigurationPreviewForItemAtIndex_intent_suggestedSize(
             &self,
             index: NSInteger,
@@ -110,8 +110,8 @@ extern_protocol!(
 
         #[cfg(feature = "UIActivity")]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(applicationActivitiesForActivityItemsConfiguration)]
+        #[unsafe(method_family = none)]
         unsafe fn applicationActivitiesForActivityItemsConfiguration(
             &self,
         ) -> Option<Retained<NSArray<UIActivity>>>;
@@ -123,8 +123,8 @@ extern_protocol!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationproviding?language=objc)
     pub unsafe trait UIActivityItemsConfigurationProviding: NSObjectProtocol {
-        #[unsafe(method_family(none))]
         #[method_id(activityItemsConfiguration)]
+        #[unsafe(method_family = none)]
         unsafe fn activityItemsConfiguration(
             &self,
             mtm: MainThreadMarker,

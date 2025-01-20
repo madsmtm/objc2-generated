@@ -25,20 +25,20 @@ unsafe impl NSObjectProtocol for UIPreviewParameters {}
 
 extern_methods!(
     unsafe impl UIPreviewParameters {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithTextLineRects:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithTextLineRects(
             this: Allocated<Self>,
             text_line_rects: &NSArray<NSValue>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "UIBezierPath")]
-        #[unsafe(method_family(none))]
         #[method_id(visiblePath)]
+        #[unsafe(method_family = none)]
         pub unsafe fn visiblePath(&self) -> Option<Retained<UIBezierPath>>;
 
         #[cfg(feature = "UIBezierPath")]
@@ -47,8 +47,8 @@ extern_methods!(
         pub unsafe fn setVisiblePath(&self, visible_path: Option<&UIBezierPath>);
 
         #[cfg(feature = "UIBezierPath")]
-        #[unsafe(method_family(none))]
         #[method_id(shadowPath)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shadowPath(&self) -> Option<Retained<UIBezierPath>>;
 
         #[cfg(feature = "UIBezierPath")]
@@ -57,8 +57,8 @@ extern_methods!(
         pub unsafe fn setShadowPath(&self, shadow_path: Option<&UIBezierPath>);
 
         #[cfg(feature = "UIColor")]
-        #[unsafe(method_family(none))]
         #[method_id(backgroundColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn backgroundColor(&self) -> Retained<UIColor>;
 
         #[cfg(feature = "UIColor")]
@@ -71,8 +71,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIPreviewParameters {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

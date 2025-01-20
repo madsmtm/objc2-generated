@@ -22,16 +22,16 @@ extern_methods!(
     #[cfg(feature = "EKObject")]
     unsafe impl EKCalendarItem {
         /// This is now deprecated; use calendarItemIdentifier instead.
-        #[unsafe(method_family(none))]
         #[method_id(UUID)]
+        #[unsafe(method_family = none)]
         pub unsafe fn UUID(&self) -> Retained<NSString>;
 
         #[cfg(feature = "EKCalendar")]
         /// The calendar that this calendar item belongs to.
         ///
         /// This will be nil for new calendar items until you set it.
-        #[unsafe(method_family(none))]
         #[method_id(calendar)]
+        #[unsafe(method_family = none)]
         pub unsafe fn calendar(&self) -> Option<Retained<EKCalendar>>;
 
         #[cfg(feature = "EKCalendar")]
@@ -45,8 +45,8 @@ extern_methods!(
         /// this identifier, so you should always have a back up plan for dealing
         /// with a reminder that is no longer fetchable by this property, e.g. by title, etc.
         /// Use [EKEventStore calendarItemWithIdentifier:] to look up the item by this value.
-        #[unsafe(method_family(none))]
         #[method_id(calendarItemIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn calendarItemIdentifier(&self) -> Retained<NSString>;
 
         /// A server-provided identifier for this calendar item
@@ -72,55 +72,55 @@ extern_methods!(
         /// In addition, there are two caveats for Exchange-based calendars:
         /// - This identifier will be different between EventKit on iOS versus OS X
         /// - This identifier will be different between devices for EKReminders
-        #[unsafe(method_family(none))]
         #[method_id(calendarItemExternalIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn calendarItemExternalIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// The title of this calendar item.
         ///
         /// This will be an empty string for new calendar items until you set it.
-        #[unsafe(method_family(none))]
         #[method_id(title)]
+        #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
-        #[unsafe(method_family(none))]
         #[method_id(location)]
+        #[unsafe(method_family = none)]
         pub unsafe fn location(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`location`][Self::location].
         #[method(setLocation:)]
         pub unsafe fn setLocation(&self, location: Option<&NSString>);
 
-        #[unsafe(method_family(none))]
         #[method_id(notes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn notes(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`notes`][Self::notes].
         #[method(setNotes:)]
         pub unsafe fn setNotes(&self, notes: Option<&NSString>);
 
-        #[unsafe(method_family(none))]
         #[method_id(URL)]
+        #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`URL`][Self::URL].
         #[method(setURL:)]
         pub unsafe fn setURL(&self, url: Option<&NSURL>);
 
-        #[unsafe(method_family(none))]
         #[method_id(lastModifiedDate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn lastModifiedDate(&self) -> Option<Retained<NSDate>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(creationDate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn creationDate(&self) -> Option<Retained<NSDate>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(timeZone)]
+        #[unsafe(method_family = none)]
         pub unsafe fn timeZone(&self) -> Option<Retained<NSTimeZone>>;
 
         /// Setter for [`timeZone`][Self::timeZone].
@@ -140,13 +140,13 @@ extern_methods!(
         pub unsafe fn hasNotes(&self) -> bool;
 
         #[cfg(feature = "EKParticipant")]
-        #[unsafe(method_family(none))]
         #[method_id(attendees)]
+        #[unsafe(method_family = none)]
         pub unsafe fn attendees(&self) -> Option<Retained<NSArray<EKParticipant>>>;
 
         #[cfg(feature = "EKAlarm")]
-        #[unsafe(method_family(none))]
         #[method_id(alarms)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alarms(&self) -> Option<Retained<NSArray<EKAlarm>>>;
 
         #[cfg(feature = "EKAlarm")]
@@ -170,8 +170,8 @@ extern_methods!(
 
         #[cfg(feature = "EKRecurrenceRule")]
         /// An array of EKRecurrenceRules, or nil if none.
-        #[unsafe(method_family(none))]
         #[method_id(recurrenceRules)]
+        #[unsafe(method_family = none)]
         pub unsafe fn recurrenceRules(&self) -> Option<Retained<NSArray<EKRecurrenceRule>>>;
 
         #[cfg(feature = "EKRecurrenceRule")]
@@ -196,12 +196,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "EKObject")]
     unsafe impl EKCalendarItem {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

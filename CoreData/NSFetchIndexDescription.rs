@@ -27,16 +27,16 @@ unsafe impl NSObjectProtocol for NSFetchIndexDescription {}
 extern_methods!(
     unsafe impl NSFetchIndexDescription {
         #[cfg(feature = "NSFetchIndexElementDescription")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithName:elements:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithName_elements(
             this: Allocated<Self>,
             name: &NSString,
             elements: Option<&NSArray<NSFetchIndexElementDescription>>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(name)]
+        #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
@@ -44,8 +44,8 @@ extern_methods!(
         pub unsafe fn setName(&self, name: &NSString);
 
         #[cfg(feature = "NSFetchIndexElementDescription")]
-        #[unsafe(method_family(none))]
         #[method_id(elements)]
+        #[unsafe(method_family = none)]
         pub unsafe fn elements(&self) -> Retained<NSArray<NSFetchIndexElementDescription>>;
 
         #[cfg(feature = "NSFetchIndexElementDescription")]
@@ -54,12 +54,12 @@ extern_methods!(
         pub unsafe fn setElements(&self, elements: &NSArray<NSFetchIndexElementDescription>);
 
         #[cfg(feature = "NSEntityDescription")]
-        #[unsafe(method_family(none))]
         #[method_id(entity)]
+        #[unsafe(method_family = none)]
         pub unsafe fn entity(&self) -> Option<Retained<NSEntityDescription>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(partialIndexPredicate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn partialIndexPredicate(&self) -> Option<Retained<NSPredicate>>;
 
         /// Setter for [`partialIndexPredicate`][Self::partialIndexPredicate].
@@ -74,12 +74,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSFetchIndexDescription {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

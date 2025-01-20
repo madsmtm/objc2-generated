@@ -154,8 +154,8 @@ extern_methods!(
         /// Parameter `frame`: The frame rectangle for the created view object.
         ///
         /// Parameter `options`: An optional dictionary. See "View initialization options" above.
-        #[unsafe(method_family(init))]
         #[method_id(initWithFrame:options:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame_options(
             this: Allocated<Self>,
             frame: NSRect,
@@ -164,8 +164,8 @@ extern_methods!(
 
         #[cfg(feature = "SCNScene")]
         /// Specifies the scene of the receiver
-        #[unsafe(method_family(none))]
         #[method_id(scene)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scene(&self) -> Option<Retained<SCNScene>>;
 
         #[cfg(feature = "SCNScene")]
@@ -182,8 +182,8 @@ extern_methods!(
         pub unsafe fn setRendersContinuously(&self, renders_continuously: bool);
 
         /// Specifies the background color of the receiver. Defaults to opaque white.
-        #[unsafe(method_family(none))]
         #[method_id(backgroundColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn backgroundColor(&self) -> Retained<NSColor>;
 
         /// Setter for [`backgroundColor`][Self::backgroundColor].
@@ -213,23 +213,23 @@ extern_methods!(
         /// An object describing the current configuration of the event handler which pilot the default camera controller.
         ///
         /// This object will be used to configure the event handler when allowCameraControl is set to YES.
-        #[unsafe(method_family(none))]
         #[method_id(cameraControlConfiguration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cameraControlConfiguration(
             &self,
         ) -> Retained<ProtocolObject<dyn SCNCameraControlConfiguration>>;
 
         #[cfg(feature = "SCNCameraController")]
         /// Returns the default SCNCameraController used to drive the current point of view when allowCameraController is set to YES.
-        #[unsafe(method_family(none))]
         #[method_id(defaultCameraController)]
+        #[unsafe(method_family = none)]
         pub unsafe fn defaultCameraController(&self) -> Retained<SCNCameraController>;
 
         /// Draws the contents of the view and returns them as a new image object
         ///
         /// This method is thread-safe and may be called at any time.
-        #[unsafe(method_family(none))]
         #[method_id(snapshot)]
+        #[unsafe(method_family = none)]
         pub unsafe fn snapshot(&self) -> Retained<NSImage>;
 
         /// This action method begins playing the scene at its current location.
@@ -295,12 +295,12 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl SCNView {
-        #[unsafe(method_family(init))]
         #[method_id(initWithFrame:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -313,8 +313,8 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl SCNView {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -324,8 +324,8 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl SCNView {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

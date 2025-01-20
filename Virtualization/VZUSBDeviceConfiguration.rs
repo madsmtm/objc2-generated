@@ -22,8 +22,8 @@ extern_protocol!(
         ///
         /// Device UUID is auto-generated.
         /// Before restoring the virtual machine, it should be replaced with the uuid of a previously attached device when the virtual machine was saved.
-        #[unsafe(method_family(none))]
         #[method_id(uuid)]
+        #[unsafe(method_family = none)]
         unsafe fn uuid(&self) -> Retained<NSUUID>;
 
         /// Setter for [`uuid`][Self::uuid].

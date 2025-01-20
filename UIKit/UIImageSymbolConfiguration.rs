@@ -114,34 +114,34 @@ unsafe impl NSSecureCoding for UIImageSymbolConfiguration {}
 extern_methods!(
     #[cfg(feature = "UIImageConfiguration")]
     unsafe impl UIImageSymbolConfiguration {
-        #[unsafe(method_family(none))]
         #[method_id(unspecifiedConfiguration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn unspecifiedConfiguration() -> Retained<UIImageSymbolConfiguration>;
 
-        #[unsafe(method_family(none))]
         #[method_id(configurationWithScale:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn configurationWithScale(scale: UIImageSymbolScale) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(none))]
         #[method_id(configurationWithPointSize:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn configurationWithPointSize(point_size: CGFloat) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(configurationWithWeight:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn configurationWithWeight(weight: UIImageSymbolWeight) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(none))]
         #[method_id(configurationWithPointSize:weight:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn configurationWithPointSize_weight(
             point_size: CGFloat,
             weight: UIImageSymbolWeight,
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(none))]
         #[method_id(configurationWithPointSize:weight:scale:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn configurationWithPointSize_weight_scale(
             point_size: CGFloat,
             weight: UIImageSymbolWeight,
@@ -149,67 +149,67 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "UIFontDescriptor")]
-        #[unsafe(method_family(none))]
         #[method_id(configurationWithTextStyle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn configurationWithTextStyle(text_style: &UIFontTextStyle) -> Retained<Self>;
 
         #[cfg(feature = "UIFontDescriptor")]
-        #[unsafe(method_family(none))]
         #[method_id(configurationWithTextStyle:scale:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn configurationWithTextStyle_scale(
             text_style: &UIFontTextStyle,
             scale: UIImageSymbolScale,
         ) -> Retained<Self>;
 
         #[cfg(feature = "UIFont")]
-        #[unsafe(method_family(none))]
         #[method_id(configurationWithFont:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn configurationWithFont(font: &UIFont) -> Retained<Self>;
 
         #[cfg(feature = "UIFont")]
-        #[unsafe(method_family(none))]
         #[method_id(configurationWithFont:scale:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn configurationWithFont_scale(
             font: &UIFont,
             scale: UIImageSymbolScale,
         ) -> Retained<Self>;
 
         #[cfg(feature = "UIColor")]
-        #[unsafe(method_family(none))]
         #[method_id(configurationWithHierarchicalColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn configurationWithHierarchicalColor(
             hierarchical_color: &UIColor,
         ) -> Retained<Self>;
 
         #[cfg(feature = "UIColor")]
-        #[unsafe(method_family(none))]
         #[method_id(configurationWithPaletteColors:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn configurationWithPaletteColors(
             palette_colors: &NSArray<UIColor>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(configurationPreferringMulticolor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn configurationPreferringMulticolor() -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(configurationPreferringMonochrome)]
+        #[unsafe(method_family = none)]
         pub unsafe fn configurationPreferringMonochrome() -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(configurationWithoutTextStyle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn configurationWithoutTextStyle(&self) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(configurationWithoutScale)]
+        #[unsafe(method_family = none)]
         pub unsafe fn configurationWithoutScale(&self) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(configurationWithoutWeight)]
+        #[unsafe(method_family = none)]
         pub unsafe fn configurationWithoutWeight(&self) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(configurationWithoutPointSizeAndWeight)]
+        #[unsafe(method_family = none)]
         pub unsafe fn configurationWithoutPointSizeAndWeight(&self) -> Retained<Self>;
 
         #[method(isEqualToConfiguration:)]
@@ -224,23 +224,23 @@ extern_methods!(
     /// Methods declared on superclass `UIImageConfiguration`
     #[cfg(feature = "UIImageConfiguration")]
     unsafe impl UIImageSymbolConfiguration {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "UITraitCollection")]
-        #[unsafe(method_family(none))]
         #[method_id(configurationWithTraitCollection:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn configurationWithTraitCollection(
             trait_collection: Option<&UITraitCollection>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(configurationWithLocale:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn configurationWithLocale(locale: Option<&NSLocale>) -> Retained<Self>;
     }
 );

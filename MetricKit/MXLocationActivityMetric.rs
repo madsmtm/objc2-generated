@@ -33,15 +33,15 @@ extern_methods!(
         /// Cumulative time spent acquiring location at kCLLocationAccuracyBest.
         ///
         /// Dimensioned as NSUnitDuration.
-        #[unsafe(method_family(none))]
         #[method_id(cumulativeBestAccuracyTime)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cumulativeBestAccuracyTime(&self) -> Retained<NSMeasurement<NSUnitDuration>>;
 
         /// Cumulative time spent acquiring location at kCLLocationAccuracyBestForNavigation.
         ///
         /// Dimensioned as NSUnitDuration.
-        #[unsafe(method_family(none))]
         #[method_id(cumulativeBestAccuracyForNavigationTime)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cumulativeBestAccuracyForNavigationTime(
             &self,
         ) -> Retained<NSMeasurement<NSUnitDuration>>;
@@ -49,8 +49,8 @@ extern_methods!(
         /// Cumulative time spent acquiring location at kCLLocationAccuracyNearestTenMeters.
         ///
         /// Dimensioned as NSUnitDuration.
-        #[unsafe(method_family(none))]
         #[method_id(cumulativeNearestTenMetersAccuracyTime)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cumulativeNearestTenMetersAccuracyTime(
             &self,
         ) -> Retained<NSMeasurement<NSUnitDuration>>;
@@ -58,8 +58,8 @@ extern_methods!(
         /// Cumulative time spent acquiring location at kCLLocationAccuracyHundredMeters.
         ///
         /// Dimensioned as NSUnitDuration.
-        #[unsafe(method_family(none))]
         #[method_id(cumulativeHundredMetersAccuracyTime)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cumulativeHundredMetersAccuracyTime(
             &self,
         ) -> Retained<NSMeasurement<NSUnitDuration>>;
@@ -67,8 +67,8 @@ extern_methods!(
         /// Cumulative time spent acquiring location at kCLLocationAccuracyKilometer.
         ///
         /// Dimensioned as NSUnitDuration.
-        #[unsafe(method_family(none))]
         #[method_id(cumulativeKilometerAccuracyTime)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cumulativeKilometerAccuracyTime(
             &self,
         ) -> Retained<NSMeasurement<NSUnitDuration>>;
@@ -76,8 +76,8 @@ extern_methods!(
         /// Cumulative time spent acquiring location at kCLLocationAccuracyThreeKilometers.
         ///
         /// Dimensioned as NSUnitDuration.
-        #[unsafe(method_family(none))]
         #[method_id(cumulativeThreeKilometersAccuracyTime)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cumulativeThreeKilometersAccuracyTime(
             &self,
         ) -> Retained<NSMeasurement<NSUnitDuration>>;
@@ -88,12 +88,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MXMetric")]
     unsafe impl MXLocationActivityMetric {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

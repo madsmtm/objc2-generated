@@ -78,8 +78,8 @@ extern_methods!(
         pub unsafe fn r#type(&self) -> c_ushort;
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(cssText)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cssText(&self) -> Retained<NSString>;
 
         /// Setter for [`cssText`][Self::cssText].
@@ -89,13 +89,13 @@ extern_methods!(
 
         #[cfg(all(feature = "DOMCSSStyleSheet", feature = "DOMStyleSheet"))]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(parentStyleSheet)]
+        #[unsafe(method_family = none)]
         pub unsafe fn parentStyleSheet(&self) -> Option<Retained<DOMCSSStyleSheet>>;
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(parentRule)]
+        #[unsafe(method_family = none)]
         pub unsafe fn parentRule(&self) -> Option<Retained<DOMCSSRule>>;
     }
 );
@@ -105,8 +105,8 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMCSSRule {
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -115,8 +115,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMCSSRule {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

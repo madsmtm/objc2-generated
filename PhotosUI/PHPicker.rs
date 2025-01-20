@@ -165,99 +165,99 @@ unsafe impl NSObjectProtocol for PHPickerFilter {}
 extern_methods!(
     unsafe impl PHPickerFilter {
         /// The filter for images.
-        #[unsafe(method_family(none))]
         #[method_id(imagesFilter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn imagesFilter() -> Retained<PHPickerFilter>;
 
         /// The filter for videos.
-        #[unsafe(method_family(none))]
         #[method_id(videosFilter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn videosFilter() -> Retained<PHPickerFilter>;
 
         /// The filter for live photos.
-        #[unsafe(method_family(none))]
         #[method_id(livePhotosFilter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn livePhotosFilter() -> Retained<PHPickerFilter>;
 
         /// The filter for Depth Effect photos.
-        #[unsafe(method_family(none))]
         #[method_id(depthEffectPhotosFilter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn depthEffectPhotosFilter() -> Retained<PHPickerFilter>;
 
         /// The filter for bursts.
-        #[unsafe(method_family(none))]
         #[method_id(burstsFilter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn burstsFilter() -> Retained<PHPickerFilter>;
 
         /// The filter for panorama photos.
-        #[unsafe(method_family(none))]
         #[method_id(panoramasFilter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn panoramasFilter() -> Retained<PHPickerFilter>;
 
         /// The filter for screenshots.
-        #[unsafe(method_family(none))]
         #[method_id(screenshotsFilter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn screenshotsFilter() -> Retained<PHPickerFilter>;
 
         /// The filter for screen recordings.
-        #[unsafe(method_family(none))]
         #[method_id(screenRecordingsFilter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn screenRecordingsFilter() -> Retained<PHPickerFilter>;
 
         /// The filter for Cinematic videos.
-        #[unsafe(method_family(none))]
         #[method_id(cinematicVideosFilter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cinematicVideosFilter() -> Retained<PHPickerFilter>;
 
         /// The filter for Slow-Mo videos.
-        #[unsafe(method_family(none))]
         #[method_id(slomoVideosFilter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn slomoVideosFilter() -> Retained<PHPickerFilter>;
 
         /// The filter for time-lapse videos.
-        #[unsafe(method_family(none))]
         #[method_id(timelapseVideosFilter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn timelapseVideosFilter() -> Retained<PHPickerFilter>;
 
         /// The filter for spatial media.
-        #[unsafe(method_family(none))]
         #[method_id(spatialMediaFilter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn spatialMediaFilter() -> Retained<PHPickerFilter>;
 
         #[cfg(feature = "objc2-photos")]
         #[cfg(not(target_os = "watchos"))]
         /// Returns a new filter based on the asset playback style.
-        #[unsafe(method_family(none))]
         #[method_id(playbackStyleFilter:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn playbackStyleFilter(
             playback_style: PHAssetPlaybackStyle,
         ) -> Retained<PHPickerFilter>;
 
         /// Returns a new filter formed by OR-ing the filters in a given array.
-        #[unsafe(method_family(none))]
         #[method_id(anyFilterMatchingSubfilters:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn anyFilterMatchingSubfilters(
             subfilters: &NSArray<PHPickerFilter>,
         ) -> Retained<PHPickerFilter>;
 
         /// Returns a new filter formed by AND-ing the filters in a given array.
-        #[unsafe(method_family(none))]
         #[method_id(allFilterMatchingSubfilters:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allFilterMatchingSubfilters(
             subfilters: &NSArray<PHPickerFilter>,
         ) -> Retained<PHPickerFilter>;
 
         /// Returns a new filter formed by negating the given filter.
-        #[unsafe(method_family(none))]
         #[method_id(notFilterOfSubfilter:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn notFilterOfSubfilter(subfilter: &PHPickerFilter) -> Retained<PHPickerFilter>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -310,12 +310,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHPickerUpdateConfiguration {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -382,8 +382,8 @@ extern_methods!(
         /// Setting
         /// `filter`to
         /// `nil`means all asset types can be shown.
-        #[unsafe(method_family(none))]
         #[method_id(filter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn filter(&self) -> Option<Retained<PHPickerFilter>>;
 
         /// Setter for [`filter`][Self::filter].
@@ -395,8 +395,8 @@ extern_methods!(
         /// `preselectedAssetIdentifiers`should be an empty array if
         /// `selectionLimit`is 1 or
         /// `photoLibrary`is not specified. Returned item providers for preselected assets are always empty.
-        #[unsafe(method_family(none))]
         #[method_id(preselectedAssetIdentifiers)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preselectedAssetIdentifiers(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`preselectedAssetIdentifiers`][Self::preselectedAssetIdentifiers].
@@ -444,16 +444,16 @@ extern_methods!(
         #[cfg(not(target_os = "watchos"))]
         /// Initializes a new configuration with the
         /// `photoLibrary`the picker should use.
-        #[unsafe(method_family(init))]
         #[method_id(initWithPhotoLibrary:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithPhotoLibrary(
             this: Allocated<Self>,
             photo_library: &PHPhotoLibrary,
         ) -> Retained<Self>;
 
         /// Initializes a new configuration with the system photo library. This configuration never returns asset identifiers.
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -461,8 +461,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHPickerConfiguration {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -482,21 +482,21 @@ unsafe impl NSObjectProtocol for PHPickerResult {}
 extern_methods!(
     unsafe impl PHPickerResult {
         /// Representations of the selected asset.
-        #[unsafe(method_family(none))]
         #[method_id(itemProvider)]
+        #[unsafe(method_family = none)]
         pub unsafe fn itemProvider(&self) -> Retained<NSItemProvider>;
 
         /// The local identifier of the selected asset.
-        #[unsafe(method_family(none))]
         #[method_id(assetIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn assetIdentifier(&self) -> Option<Retained<NSString>>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -558,13 +558,13 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl PHPickerViewController {
         /// The configuration passed in during initialization.
-        #[unsafe(method_family(none))]
         #[method_id(configuration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn configuration(&self) -> Retained<PHPickerConfiguration>;
 
         /// The delegate to be notified.
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn PHPickerViewControllerDelegate>>>;
@@ -579,8 +579,8 @@ extern_methods!(
 
         /// Initializes a new picker with the
         /// `configuration`the picker should use.
-        #[unsafe(method_family(init))]
         #[method_id(initWithConfiguration:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithConfiguration(
             this: Allocated<Self>,
             configuration: &PHPickerConfiguration,
@@ -624,24 +624,24 @@ extern_methods!(
         #[method(zoomOut)]
         pub unsafe fn zoomOut(&self);
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithNibName:bundle:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSNibName>,
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,

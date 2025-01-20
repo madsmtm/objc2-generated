@@ -103,31 +103,31 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl SKNode {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Support coding and decoding via NSKeyedArchiver.
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(node)]
+        #[unsafe(method_family = none)]
         pub unsafe fn node(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(nodeWithFileNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn nodeWithFileNamed(
             filename: &NSString,
             mtm: MainThreadMarker,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(nodeWithFileNamed:securelyWithClasses:andError:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn nodeWithFileNamed_securelyWithClasses_andError(
             filename: &NSString,
             classes: &NSSet<AnyClass>,
@@ -248,20 +248,20 @@ extern_methods!(
         /// The parent of the node.
         ///
         /// If this is nil the node has not been added to another group and is thus the root node of its own graph.
-        #[unsafe(method_family(none))]
         #[method_id(parent)]
+        #[unsafe(method_family = none)]
         pub unsafe fn parent(&self) -> Option<Retained<SKNode>>;
 
         /// The children of this node.
-        #[unsafe(method_family(none))]
         #[method_id(children)]
+        #[unsafe(method_family = none)]
         pub unsafe fn children(&self) -> Retained<NSArray<SKNode>>;
 
         /// The client assignable name.
         ///
         /// In general, this should be unique among peers in the scene graph.
-        #[unsafe(method_family(none))]
         #[method_id(name)]
+        #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
@@ -270,14 +270,14 @@ extern_methods!(
 
         #[cfg(all(feature = "SKEffectNode", feature = "SKScene"))]
         /// The scene that the node is currently in.
-        #[unsafe(method_family(none))]
         #[method_id(scene)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scene(&self) -> Option<Retained<SKScene>>;
 
         #[cfg(feature = "SKPhysicsBody")]
         /// Physics body attached to the node, with synchronized scale, rotation, and position
-        #[unsafe(method_family(none))]
         #[method_id(physicsBody)]
+        #[unsafe(method_family = none)]
         pub unsafe fn physicsBody(&self) -> Option<Retained<SKPhysicsBody>>;
 
         #[cfg(feature = "SKPhysicsBody")]
@@ -286,8 +286,8 @@ extern_methods!(
         pub unsafe fn setPhysicsBody(&self, physics_body: Option<&SKPhysicsBody>);
 
         /// An optional dictionary that can be used to store your own data in a node. Defaults to nil.
-        #[unsafe(method_family(none))]
         #[method_id(userData)]
+        #[unsafe(method_family = none)]
         pub unsafe fn userData(&self) -> Option<Retained<NSMutableDictionary>>;
 
         /// Setter for [`userData`][Self::userData].
@@ -296,8 +296,8 @@ extern_methods!(
 
         #[cfg(feature = "SKReachConstraints")]
         /// Kinematic constraints, used in IK solving
-        #[unsafe(method_family(none))]
         #[method_id(reachConstraints)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reachConstraints(&self) -> Option<Retained<SKReachConstraints>>;
 
         #[cfg(feature = "SKReachConstraints")]
@@ -309,8 +309,8 @@ extern_methods!(
         /// Optional array of SKConstraints
         /// Constraints are evaluated each frame after actions and physics.
         /// The node's transform will be changed to satisfy the constraint.
-        #[unsafe(method_family(none))]
         #[method_id(constraints)]
+        #[unsafe(method_family = none)]
         pub unsafe fn constraints(&self) -> Option<Retained<NSArray<SKConstraint>>>;
 
         #[cfg(feature = "SKConstraint")]
@@ -323,8 +323,8 @@ extern_methods!(
         /// Attributes can be used with custom SKShaders.
         /// DEPRECATED: Attributes are only available for node classes supporting SKShader (see SKSpriteNode etc.).
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(attributeValues)]
+        #[unsafe(method_family = none)]
         pub unsafe fn attributeValues(&self) -> Retained<NSDictionary<NSString, SKAttributeValue>>;
 
         #[cfg(feature = "SKAttribute")]
@@ -338,8 +338,8 @@ extern_methods!(
 
         #[cfg(feature = "SKAttribute")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(valueForAttributeNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn valueForAttributeNamed(
             &self,
             key: &NSString,
@@ -384,8 +384,8 @@ extern_methods!(
         #[method(moveToParent:)]
         pub unsafe fn moveToParent(&self, parent: &SKNode);
 
-        #[unsafe(method_family(none))]
         #[method_id(childNodeWithName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn childNodeWithName(&self, name: &NSString) -> Option<Retained<SKNode>>;
 
         #[cfg(feature = "block2")]
@@ -411,8 +411,8 @@ extern_methods!(
         /// Parameter `name`: An Xpath style path that can include simple regular expressions for matching node names.
         ///
         /// See: enumerateChildNodesWithName:usingBlock:
-        #[unsafe(method_family(none))]
         #[method_id(objectForKeyedSubscript:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn objectForKeyedSubscript(&self, name: &NSString) -> Retained<NSArray<SKNode>>;
 
         #[method(inParentHierarchy:)]
@@ -438,8 +438,8 @@ extern_methods!(
         pub unsafe fn hasActions(&self) -> bool;
 
         #[cfg(feature = "SKAction")]
-        #[unsafe(method_family(none))]
         #[method_id(actionForKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn actionForKey(&self, key: &NSString) -> Option<Retained<SKAction>>;
 
         #[method(removeActionForKey:)]
@@ -457,13 +457,13 @@ extern_methods!(
         /// If the receiver is returned there is no child node at the given point.
         ///
         /// Returns: a child node or self at the given location.
-        #[unsafe(method_family(none))]
         #[method_id(nodeAtPoint:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn nodeAtPoint(&self, p: CGPoint) -> Retained<SKNode>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(none))]
         #[method_id(nodesAtPoint:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn nodesAtPoint(&self, p: CGPoint) -> Retained<NSArray<SKNode>>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -487,8 +487,8 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl SKNode {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

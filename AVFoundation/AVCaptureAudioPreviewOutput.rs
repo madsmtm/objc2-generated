@@ -26,20 +26,20 @@ unsafe impl NSObjectProtocol for AVCaptureAudioPreviewOutput {}
 extern_methods!(
     #[cfg(feature = "AVCaptureOutputBase")]
     unsafe impl AVCaptureAudioPreviewOutput {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Specifies the unique ID of the Core Audio output device being used to play preview audio.
         ///
         ///
         /// The value of this property is an NSString containing the unique ID of the Core Audio device to be used for output, or nil if the default system output should be used.
-        #[unsafe(method_family(none))]
         #[method_id(outputDeviceUniqueID)]
+        #[unsafe(method_family = none)]
         pub unsafe fn outputDeviceUniqueID(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`outputDeviceUniqueID`][Self::outputDeviceUniqueID].

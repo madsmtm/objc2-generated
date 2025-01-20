@@ -31,16 +31,16 @@ extern_methods!(
         /// A single value representing the peak memory consumption of the application.
         ///
         /// Dimensioned as NSUnitInformationStorage.
-        #[unsafe(method_family(none))]
         #[method_id(peakMemoryUsage)]
+        #[unsafe(method_family = none)]
         pub unsafe fn peakMemoryUsage(&self) -> Retained<NSMeasurement<NSUnitInformationStorage>>;
 
         #[cfg(feature = "MXAverage")]
         /// Average memory of the application upon suspend.
         ///
         /// Dimensioned as NSUnitInformationStorage.
-        #[unsafe(method_family(none))]
         #[method_id(averageSuspendedMemory)]
+        #[unsafe(method_family = none)]
         pub unsafe fn averageSuspendedMemory(
             &self,
         ) -> Retained<MXAverage<NSUnitInformationStorage>>;
@@ -51,12 +51,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MXMetric")]
     unsafe impl MXMemoryMetric {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

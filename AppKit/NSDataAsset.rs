@@ -26,21 +26,21 @@ unsafe impl NSObjectProtocol for NSDataAsset {}
 
 extern_methods!(
     unsafe impl NSDataAsset {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Equivalent to -initWithName:name bundle:[NSBundle mainBundle];
-        #[unsafe(method_family(init))]
         #[method_id(initWithName:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithName(
             this: Allocated<Self>,
             name: &NSDataAssetName,
         ) -> Option<Retained<Self>>;
 
         /// Create a data asset with the given name from the given bundle. Returns nil if the asset was not found.
-        #[unsafe(method_family(init))]
         #[method_id(initWithName:bundle:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithName_bundle(
             this: Allocated<Self>,
             name: &NSDataAssetName,
@@ -48,18 +48,18 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         /// The name used to reference the data asset
-        #[unsafe(method_family(none))]
         #[method_id(name)]
+        #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSDataAssetName>;
 
         /// The data for this asset, as stored in the asset catalog
-        #[unsafe(method_family(none))]
         #[method_id(data)]
+        #[unsafe(method_family = none)]
         pub unsafe fn data(&self) -> Retained<NSData>;
 
         /// The Uniform Type Identifier for this data object.
-        #[unsafe(method_family(none))]
         #[method_id(typeIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn typeIdentifier(&self) -> Retained<NSString>;
     }
 );
@@ -67,8 +67,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSDataAsset {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

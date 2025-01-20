@@ -78,8 +78,8 @@ unsafe impl NSObjectProtocol for NSFormatter {}
 extern_methods!(
     unsafe impl NSFormatter {
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(stringForObjectValue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stringForObjectValue(
             &self,
             obj: Option<&AnyObject>,
@@ -90,8 +90,8 @@ extern_methods!(
             feature = "NSDictionary",
             feature = "NSString"
         ))]
-        #[unsafe(method_family(none))]
         #[method_id(attributedStringForObjectValue:withDefaultAttributes:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn attributedStringForObjectValue_withDefaultAttributes(
             &self,
             obj: &AnyObject,
@@ -99,8 +99,8 @@ extern_methods!(
         ) -> Option<Retained<NSAttributedString>>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(editingStringForObjectValue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn editingStringForObjectValue(
             &self,
             obj: &AnyObject,
@@ -140,12 +140,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSFormatter {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

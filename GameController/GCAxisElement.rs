@@ -12,8 +12,8 @@ extern_protocol!(
         #[cfg(feature = "GCAxisInput")]
         /// The input reporting the value of the axis as the position between a lower and
         /// upper bound, if available.
-        #[unsafe(method_family(none))]
         #[method_id(absoluteInput)]
+        #[unsafe(method_family = none)]
         unsafe fn absoluteInput(&self) -> Option<Retained<ProtocolObject<dyn GCAxisInput>>>;
 
         #[cfg(feature = "GCRelativeInput")]
@@ -24,8 +24,8 @@ extern_protocol!(
         /// change in position since the last event is reported.  Some freely-rotating
         /// dials may also only report a value indicating which direction the dial was
         /// turned.
-        #[unsafe(method_family(none))]
         #[method_id(relativeInput)]
+        #[unsafe(method_family = none)]
         unsafe fn relativeInput(&self) -> Retained<ProtocolObject<dyn GCRelativeInput>>;
     }
 );

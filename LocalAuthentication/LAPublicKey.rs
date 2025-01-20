@@ -91,15 +91,15 @@ extern_methods!(
         /// Clients cannot create
         /// `LAPublicKey`instances directly. They can only obtain them from a related
         /// `LAPrivateKey`instance
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Clients cannot create
         /// `LAPublicKey`instances directly. They can only obtain them from a related
         /// `LAPrivateKey`instance
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

@@ -16,8 +16,8 @@ extern_protocol!(
 
         #[cfg(feature = "MLFeatureProvider")]
         /// Indexed access to collection
-        #[unsafe(method_family(none))]
         #[method_id(featuresAtIndex:)]
+        #[unsafe(method_family = none)]
         unsafe fn featuresAtIndex(
             &self,
             index: NSInteger,

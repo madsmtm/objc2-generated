@@ -34,14 +34,14 @@ extern_methods!(
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchRecordChangesOperation {
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "CKRecordZoneID", feature = "CKServerChangeToken"))]
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(initWithRecordZoneID:previousServerChangeToken:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithRecordZoneID_previousServerChangeToken(
             this: Allocated<Self>,
             record_zone_id: &CKRecordZoneID,
@@ -50,8 +50,8 @@ extern_methods!(
 
         #[cfg(feature = "CKRecordZoneID")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(recordZoneID)]
+        #[unsafe(method_family = none)]
         pub unsafe fn recordZoneID(&self) -> Option<Retained<CKRecordZoneID>>;
 
         #[cfg(feature = "CKRecordZoneID")]
@@ -62,8 +62,8 @@ extern_methods!(
 
         #[cfg(feature = "CKServerChangeToken")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(previousServerChangeToken)]
+        #[unsafe(method_family = none)]
         pub unsafe fn previousServerChangeToken(&self) -> Option<Retained<CKServerChangeToken>>;
 
         #[cfg(feature = "CKServerChangeToken")]
@@ -92,8 +92,8 @@ extern_methods!(
         /// Defaults to
         /// `nil.`
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(desiredKeys)]
+        #[unsafe(method_family = none)]
         pub unsafe fn desiredKeys(&self) -> Option<Retained<NSArray<CKRecordFieldKey>>>;
 
         #[cfg(feature = "CKRecord")]
@@ -188,8 +188,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchRecordChangesOperation {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

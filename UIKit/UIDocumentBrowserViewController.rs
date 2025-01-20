@@ -128,8 +128,8 @@ extern_methods!(
     unsafe impl UIDocumentBrowserViewController {
         /// Parameter `allowedContentTypes`: The document types that the user should be able to open. If nil, the types specified via the CFBundleDocumentTypes key in the application plist will be used instead.
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(initForOpeningFilesWithContentTypes:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initForOpeningFilesWithContentTypes(
             this: Allocated<Self>,
             allowed_content_types: Option<&NSArray<NSString>>,
@@ -137,24 +137,24 @@ extern_methods!(
 
         #[cfg(feature = "objc2-uniform-type-identifiers")]
         /// Parameter `contentTypes`: The content types that the user should be able to open. If nil, the types specified via the CFBundleDocumentTypes key in the application plist will be used instead.
-        #[unsafe(method_family(init))]
         #[method_id(initForOpeningContentTypes:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initForOpeningContentTypes(
             this: Allocated<Self>,
             content_types: Option<&NSArray<UTType>>,
         ) -> Retained<Self>;
 
         /// Please use the designated initializers above instead.
-        #[unsafe(method_family(init))]
         #[method_id(initWithNibName:bundle:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name: Option<&NSString>,
             bundle: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIDocumentBrowserViewControllerDelegate>>>;
@@ -177,8 +177,8 @@ extern_methods!(
 
         #[cfg(feature = "UIDocument")]
         /// The active document creation intent.
-        #[unsafe(method_family(none))]
         #[method_id(activeDocumentCreationIntent)]
+        #[unsafe(method_family = none)]
         pub unsafe fn activeDocumentCreationIntent(
             &self,
         ) -> Option<Retained<UIDocumentCreationIntent>>;
@@ -192,8 +192,8 @@ extern_methods!(
         pub unsafe fn setAllowsPickingMultipleItems(&self, allows_picking_multiple_items: bool);
 
         #[deprecated = "allowedContentTypes is no longer supported"]
-        #[unsafe(method_family(none))]
         #[method_id(allowedContentTypes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowedContentTypes(&self) -> Retained<NSArray<NSString>>;
 
         /// Array of content types supported for Recents documents.
@@ -201,8 +201,8 @@ extern_methods!(
         /// Can be defined via the 'UIDocumentBrowserRecentDocumentContentTypes' key in the app Info.plist.
         /// Note that the recentDocumentsContentTypes must be a subset conforming to the types declared in allowedContentTypes.
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(recentDocumentsContentTypes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn recentDocumentsContentTypes(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "objc2-uniform-type-identifiers")]
@@ -210,8 +210,8 @@ extern_methods!(
         /// Default is same as content types passed in the designated initializer or as CFBundleDocumentTypes  in the app Info.plist.
         /// Can be defined via the 'UIDocumentBrowserRecentDocumentContentTypes' key in the app Info.plist.
         /// Note that the contentTypesForRecentDocuments must be a subset conforming to the types passed in the initializer or Info.plist.
-        #[unsafe(method_family(none))]
         #[method_id(contentTypesForRecentDocuments)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contentTypesForRecentDocuments(&self) -> Retained<NSArray<UTType>>;
 
         /// Force the display of file extensions (default: NO).
@@ -224,8 +224,8 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         /// An array of buttons that will be added to the existing buttons in the UIDocumentBrowserViewController navigation bar
-        #[unsafe(method_family(none))]
         #[method_id(additionalLeadingNavigationBarButtonItems)]
+        #[unsafe(method_family = none)]
         pub unsafe fn additionalLeadingNavigationBarButtonItems(
             &self,
         ) -> Retained<NSArray<UIBarButtonItem>>;
@@ -240,8 +240,8 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         /// An array of buttons that will be added to the existing buttons in the UIDocumentBrowserViewController navigation bar
-        #[unsafe(method_family(none))]
         #[method_id(additionalTrailingNavigationBarButtonItems)]
+        #[unsafe(method_family = none)]
         pub unsafe fn additionalTrailingNavigationBarButtonItems(
             &self,
         ) -> Retained<NSArray<UIBarButtonItem>>;
@@ -289,16 +289,16 @@ extern_methods!(
         );
 
         /// A UIDocumentBrowserTransitionController object is used to display a loading indicator, while the application is spending time on time-consuming operations (e.g., loading, parsing, …) after having finished the file download, and before presenting it. To be used together with the UIViewControllerTransitioningDelegate protocol for custom view controller transitions.
-        #[unsafe(method_family(none))]
         #[method_id(transitionControllerForDocumentAtURL:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn transitionControllerForDocumentAtURL(
             &self,
             document_url: &NSURL,
         ) -> Retained<UIDocumentBrowserTransitionController>;
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(transitionControllerForDocumentURL:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn transitionControllerForDocumentURL(
             &self,
             document_url: &NSURL,
@@ -306,8 +306,8 @@ extern_methods!(
 
         #[cfg(feature = "UIDocumentBrowserAction")]
         /// Allows clients to add custom actions in the menu and the navigation bar. These actions are contextual to the document items.
-        #[unsafe(method_family(none))]
         #[method_id(customActions)]
+        #[unsafe(method_family = none)]
         pub unsafe fn customActions(&self) -> Retained<NSArray<UIDocumentBrowserAction>>;
 
         #[cfg(feature = "UIDocumentBrowserAction")]
@@ -327,8 +327,8 @@ extern_methods!(
         );
 
         /// Title of the Create Document button (default: "Create Document”).
-        #[unsafe(method_family(none))]
         #[method_id(localizedCreateDocumentActionTitle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn localizedCreateDocumentActionTitle(&self) -> Retained<NSString>;
 
         /// Setter for [`localizedCreateDocumentActionTitle`][Self::localizedCreateDocumentActionTitle].
@@ -354,8 +354,8 @@ extern_methods!(
     /// Methods declared on superclass `UIViewController`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIDocumentBrowserViewController {
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -367,12 +367,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIDocumentBrowserViewController {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -452,8 +452,8 @@ extern_protocol!(
         ))]
         /// Allows clients to add application specific UIActivity instances
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(documentBrowser:applicationActivitiesForDocumentURLs:)]
+        #[unsafe(method_family = none)]
         unsafe fn documentBrowser_applicationActivitiesForDocumentURLs(
             &self,
             controller: &UIDocumentBrowserViewController,
@@ -497,13 +497,13 @@ unsafe impl UIViewControllerAnimatedTransitioning for UIDocumentBrowserTransitio
 
 extern_methods!(
     unsafe impl UIDocumentBrowserTransitionController {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// An optional progress can be displayed on the document thumbnail while the document is loading (during opening).
-        #[unsafe(method_family(none))]
         #[method_id(loadingProgress)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loadingProgress(&self) -> Option<Retained<NSProgress>>;
 
         /// Setter for [`loadingProgress`][Self::loadingProgress].
@@ -514,8 +514,8 @@ extern_methods!(
         /// This view will be used for the zoom transition from/to the document collection view.
         /// If UIDocumentBrowserViewController is being dismissed, this view should be a subview of the presented view controller's view
         /// If UIDocumentBrowserViewController is being presented, this view should be a subview of the presenting view controller's view
-        #[unsafe(method_family(none))]
         #[method_id(targetView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn targetView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
@@ -529,8 +529,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIDocumentBrowserTransitionController {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

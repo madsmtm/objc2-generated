@@ -43,8 +43,8 @@ extern_methods!(
         ///
         /// To specify that the segment be played at the asset's normal rate, set source.duration == target.duration in the timeMapping.
         /// Otherwise, the segment will be played at a rate equal to the ratio source.duration / target.duration.
-        #[unsafe(method_family(none))]
         #[method_id(compositionTrackSegmentWithURL:trackID:sourceTimeRange:targetTimeRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn compositionTrackSegmentWithURL_trackID_sourceTimeRange_targetTimeRange(
             url: &NSURL,
             track_id: CMPersistentTrackID,
@@ -58,8 +58,8 @@ extern_methods!(
         /// Parameter `timeRange`: The timeRange of the empty AVCompositionTrackSegment.
         ///
         /// Returns: An instance of AVCompositionTrackSegment.
-        #[unsafe(method_family(none))]
         #[method_id(compositionTrackSegmentWithTimeRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn compositionTrackSegmentWithTimeRange(
             time_range: CMTimeRange,
         ) -> Retained<Self>;
@@ -79,8 +79,8 @@ extern_methods!(
         ///
         /// To specify that the segment be played at the asset's normal rate, set source.duration == target.duration in the timeMapping.
         /// Otherwise, the segment will be played at a rate equal to the ratio source.duration / target.duration.
-        #[unsafe(method_family(init))]
         #[method_id(initWithURL:trackID:sourceTimeRange:targetTimeRange:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithURL_trackID_sourceTimeRange_targetTimeRange(
             this: Allocated<Self>,
             url: &NSURL,
@@ -95,8 +95,8 @@ extern_methods!(
         /// Parameter `timeRange`: The timeRange of the empty AVCompositionTrackSegment.
         ///
         /// Returns: An instance of AVCompositionTrackSegment.
-        #[unsafe(method_family(init))]
         #[method_id(initWithTimeRange:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithTimeRange(
             this: Allocated<Self>,
             time_range: CMTimeRange,
@@ -105,8 +105,8 @@ extern_methods!(
         #[method(isEmpty)]
         pub unsafe fn isEmpty(&self) -> bool;
 
-        #[unsafe(method_family(none))]
         #[method_id(sourceURL)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sourceURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "objc2-core-media")]
@@ -119,12 +119,12 @@ extern_methods!(
     /// Methods declared on superclass `AVAssetTrackSegment`
     #[cfg(feature = "AVAssetTrackSegment")]
     unsafe impl AVCompositionTrackSegment {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

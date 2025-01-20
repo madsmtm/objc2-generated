@@ -153,8 +153,8 @@ extern_protocol!(
         unsafe fn signalEvent_value(&self, event: &ProtocolObject<dyn MTLSharedEvent>, value: u64);
 
         /// An optional label for this handle.
-        #[unsafe(method_family(none))]
         #[method_id(label)]
+        #[unsafe(method_family = none)]
         unsafe fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
@@ -166,8 +166,8 @@ extern_protocol!(
         unsafe fn status(&self) -> MTLIOStatus;
 
         /// If an error occurred during execution, the NSError may contain more details about the problem.
-        #[unsafe(method_family(none))]
         #[method_id(error)]
+        #[unsafe(method_family = none)]
         unsafe fn error(&self) -> Option<Retained<NSError>>;
     }
 );

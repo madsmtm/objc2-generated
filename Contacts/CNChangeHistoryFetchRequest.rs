@@ -42,8 +42,8 @@ extern_methods!(
         /// If nil, a
         /// `CNChangeHistoryDropEverythingEvent`will be returned, followed by an add event
         /// for every contact and group currently in the contacts database.
-        #[unsafe(method_family(none))]
         #[method_id(startingToken)]
+        #[unsafe(method_family = none)]
         pub unsafe fn startingToken(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`startingToken`][Self::startingToken].
@@ -61,8 +61,8 @@ extern_methods!(
         ///
         /// `CNContactIdentifierKey`will always be fetched, whether you
         /// request it or not.
-        #[unsafe(method_family(none))]
         #[method_id(additionalContactKeyDescriptors)]
+        #[unsafe(method_family = none)]
         pub unsafe fn additionalContactKeyDescriptors(
             &self,
         ) -> Option<Retained<NSArray<ProtocolObject<dyn CNKeyDescriptor>>>>;
@@ -122,8 +122,8 @@ extern_methods!(
         /// If set, transactions made by the specified authors will be excluded
         /// from the results. Use this, in conjunction with
         /// `CNSaveRequest.transactionAuthor,`to suppress processing of changes you already know about.
-        #[unsafe(method_family(none))]
         #[method_id(excludedTransactionAuthors)]
+        #[unsafe(method_family = none)]
         pub unsafe fn excludedTransactionAuthors(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`excludedTransactionAuthors`][Self::excludedTransactionAuthors].
@@ -139,12 +139,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CNFetchRequest")]
     unsafe impl CNChangeHistoryFetchRequest {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

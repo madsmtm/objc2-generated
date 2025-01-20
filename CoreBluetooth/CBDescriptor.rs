@@ -23,8 +23,8 @@ extern_methods!(
     unsafe impl CBDescriptor {
         #[cfg(feature = "CBCharacteristic")]
         /// A back-pointer to the characteristic this descriptor belongs to.
-        #[unsafe(method_family(none))]
         #[method_id(characteristic)]
+        #[unsafe(method_family = none)]
         pub unsafe fn characteristic(&self) -> Option<Retained<CBCharacteristic>>;
 
         /// The value of the descriptor. The corresponding value types for the various descriptors are detailed in
@@ -34,8 +34,8 @@ extern_methods!(
         /// ```
         ///
         /// .
-        #[unsafe(method_family(none))]
         #[method_id(value)]
+        #[unsafe(method_family = none)]
         pub unsafe fn value(&self) -> Option<Retained<AnyObject>>;
     }
 );
@@ -44,8 +44,8 @@ extern_methods!(
     /// Methods declared on superclass `CBAttribute`
     #[cfg(feature = "CBAttribute")]
     unsafe impl CBDescriptor {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -54,8 +54,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CBAttribute")]
     unsafe impl CBDescriptor {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -118,8 +118,8 @@ extern_methods!(
         /// </i>
         /// is required and cannot be updated dynamically
         /// once the parent service has been published.
-        #[unsafe(method_family(init))]
         #[method_id(initWithType:value:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithType_value(
             this: Allocated<Self>,
             uuid: &CBUUID,
@@ -132,8 +132,8 @@ extern_methods!(
     /// Methods declared on superclass `CBAttribute`
     #[cfg(feature = "CBAttribute")]
     unsafe impl CBMutableDescriptor {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -142,8 +142,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CBAttribute")]
     unsafe impl CBMutableDescriptor {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

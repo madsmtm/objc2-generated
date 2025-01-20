@@ -73,8 +73,8 @@ extern_methods!(
         feature = "MPSNDArrayKernel"
     ))]
     unsafe impl MPSNDArrayIdentity {
-        #[unsafe(method_family(init))]
         #[method_id(initWithDevice:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -95,8 +95,8 @@ extern_methods!(
         /// due to existing slices or transposes nil is returned. If aliasing is successful, then a new arrayview of `sourceArray`
         /// is returned; If `sourceArray` is a `MPSTemporaryArray` then a `MPSTemporaryArray` is returned referencing the same data,
         /// otherwise a `MPSNDArray` type result is returned.
-        #[unsafe(method_family(none))]
         #[method_id(reshapeWithCommandBuffer:sourceArray:shape:destinationArray:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reshapeWithCommandBuffer_sourceArray_shape_destinationArray(
             &self,
             cmd_buf: Option<&ProtocolObject<dyn MTLCommandBuffer>>,
@@ -105,8 +105,8 @@ extern_methods!(
             destination_array: Option<&MPSNDArray>,
         ) -> Option<Retained<MPSNDArray>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(reshapeWithCommandBuffer:sourceArray:dimensionCount:dimensionSizes:destinationArray:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reshapeWithCommandBuffer_sourceArray_dimensionCount_dimensionSizes_destinationArray(
             &self,
             cmd_buf: Option<&ProtocolObject<dyn MTLCommandBuffer>>,
@@ -117,8 +117,8 @@ extern_methods!(
         ) -> Option<Retained<MPSNDArray>>;
 
         #[cfg(feature = "MPSCoreTypes")]
-        #[unsafe(method_family(none))]
         #[method_id(reshapeWithCommandEncoder:commandBuffer:sourceArray:shape:destinationArray:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reshapeWithCommandEncoder_commandBuffer_sourceArray_shape_destinationArray(
             &self,
             encoder: Option<&ProtocolObject<dyn MTLComputeCommandEncoder>>,
@@ -128,8 +128,8 @@ extern_methods!(
             destination_array: Option<&MPSNDArray>,
         ) -> Option<Retained<MPSNDArray>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(reshapeWithCommandEncoder:commandBuffer:sourceArray:dimensionCount:dimensionSizes:destinationArray:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reshapeWithCommandEncoder_commandBuffer_sourceArray_dimensionCount_dimensionSizes_destinationArray(
             &self,
             encoder: Option<&ProtocolObject<dyn MTLComputeCommandEncoder>>,
@@ -150,16 +150,16 @@ extern_methods!(
         feature = "MPSNDArrayKernel"
     ))]
     unsafe impl MPSNDArrayIdentity {
-        #[unsafe(method_family(init))]
         #[method_id(initWithDevice:sourceCount:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_sourceCount(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
             count: NSUInteger,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:device:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -184,8 +184,8 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -201,12 +201,12 @@ extern_methods!(
         feature = "MPSNDArrayKernel"
     ))]
     unsafe impl MPSNDArrayIdentity {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

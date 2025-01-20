@@ -43,8 +43,8 @@ extern_methods!(
         /// Parameter `attachment`: The storage device attachment. This defines how the virtualized device operates on the host side.
         ///
         /// See: VZDiskImageStorageDeviceAttachment
-        #[unsafe(method_family(init))]
         #[method_id(initWithAttachment:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithAttachment(
             this: Allocated<Self>,
             attachment: &VZStorageDeviceAttachment,
@@ -70,8 +70,8 @@ extern_methods!(
         /// This property can be checked with +[VZVirtioBlockDeviceConfiguration validateBlockDeviceIdentifier:error:].
         ///
         /// See: +[VZVirtioBlockDeviceConfiguration validateBlockDeviceIdentifier:error:]
-        #[unsafe(method_family(none))]
         #[method_id(blockDeviceIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn blockDeviceIdentifier(&self) -> Retained<NSString>;
 
         /// Setter for [`blockDeviceIdentifier`][Self::blockDeviceIdentifier].
@@ -84,12 +84,12 @@ extern_methods!(
     /// Methods declared on superclass `VZStorageDeviceConfiguration`
     #[cfg(feature = "VZStorageDeviceConfiguration")]
     unsafe impl VZVirtioBlockDeviceConfiguration {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

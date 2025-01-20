@@ -64,8 +64,8 @@ unsafe impl NSSecureCoding for UICommandAlternate {}
 extern_methods!(
     unsafe impl UICommandAlternate {
         /// Short display title.
-        #[unsafe(method_family(none))]
         #[method_id(title)]
+        #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Action to take on choosing this command alternate.
@@ -86,8 +86,8 @@ extern_methods!(
         /// Parameter `modifierFlags`: Bitmask of modifier flags to choose this command alternate.
         ///
         /// Returns: A new command alternate.
-        #[unsafe(method_family(none))]
         #[method_id(alternateWithTitle:action:modifierFlags:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alternateWithTitle_action_modifierFlags(
             title: &NSString,
             action: Sel,
@@ -95,16 +95,16 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -147,8 +147,8 @@ extern_methods!(
     #[cfg(feature = "UIMenuElement")]
     unsafe impl UICommand {
         /// Short display title.
-        #[unsafe(method_family(none))]
         #[method_id(title)]
+        #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
@@ -157,8 +157,8 @@ extern_methods!(
 
         #[cfg(feature = "UIImage")]
         /// Image that can appear next to this command
-        #[unsafe(method_family(none))]
         #[method_id(image)]
+        #[unsafe(method_family = none)]
         pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
@@ -167,8 +167,8 @@ extern_methods!(
         pub unsafe fn setImage(&self, image: Option<&UIImage>);
 
         /// Elaborated title used in keyboard shortcut overlay.
-        #[unsafe(method_family(none))]
         #[method_id(discoverabilityTitle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn discoverabilityTitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`discoverabilityTitle`][Self::discoverabilityTitle].
@@ -180,8 +180,8 @@ extern_methods!(
         pub unsafe fn action(&self) -> Sel;
 
         /// Property list object to distinguish commands, if needed.
-        #[unsafe(method_family(none))]
         #[method_id(propertyList)]
+        #[unsafe(method_family = none)]
         pub unsafe fn propertyList(&self) -> Option<Retained<AnyObject>>;
 
         /// Command attributes.
@@ -201,8 +201,8 @@ extern_methods!(
         pub unsafe fn setState(&self, state: UIMenuElementState);
 
         /// Alternates that differ in modifier flags, if any.
-        #[unsafe(method_family(none))]
         #[method_id(alternates)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alternates(&self) -> Retained<NSArray<UICommandAlternate>>;
 
         #[cfg(feature = "UIImage")]
@@ -218,8 +218,8 @@ extern_methods!(
         /// Parameter `propertyList`: Property list object to distinguish commands, if needed.
         ///
         /// Returns: A new keyless command.
-        #[unsafe(method_family(none))]
         #[method_id(commandWithTitle:image:action:propertyList:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn commandWithTitle_image_action_propertyList(
             title: &NSString,
             image: Option<&UIImage>,
@@ -243,8 +243,8 @@ extern_methods!(
         /// Parameter `alternates`: Alternates that differ in modifier flags.
         ///
         /// Returns: A new keyless command with alternates.
-        #[unsafe(method_family(none))]
         #[method_id(commandWithTitle:image:action:propertyList:alternates:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn commandWithTitle_image_action_propertyList_alternates(
             title: &NSString,
             image: Option<&UIImage>,
@@ -254,16 +254,16 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,

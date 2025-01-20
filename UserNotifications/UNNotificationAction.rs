@@ -55,24 +55,24 @@ unsafe impl NSSecureCoding for UNNotificationAction {}
 
 extern_methods!(
     unsafe impl UNNotificationAction {
-        #[unsafe(method_family(none))]
         #[method_id(identifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(title)]
+        #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         #[method(options)]
         pub unsafe fn options(&self) -> UNNotificationActionOptions;
 
         #[cfg(feature = "UNNotificationActionIcon")]
-        #[unsafe(method_family(none))]
         #[method_id(icon)]
+        #[unsafe(method_family = none)]
         pub unsafe fn icon(&self) -> Option<Retained<UNNotificationActionIcon>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(actionWithIdentifier:title:options:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn actionWithIdentifier_title_options(
             identifier: &NSString,
             title: &NSString,
@@ -80,8 +80,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "UNNotificationActionIcon")]
-        #[unsafe(method_family(none))]
         #[method_id(actionWithIdentifier:title:options:icon:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn actionWithIdentifier_title_options_icon(
             identifier: &NSString,
             title: &NSString,
@@ -89,8 +89,8 @@ extern_methods!(
             icon: Option<&UNNotificationActionIcon>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -98,8 +98,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UNNotificationAction {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -125,8 +125,8 @@ unsafe impl NSSecureCoding for UNTextInputNotificationAction {}
 
 extern_methods!(
     unsafe impl UNTextInputNotificationAction {
-        #[unsafe(method_family(none))]
         #[method_id(actionWithIdentifier:title:options:textInputButtonTitle:textInputPlaceholder:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn actionWithIdentifier_title_options_textInputButtonTitle_textInputPlaceholder(
             identifier: &NSString,
             title: &NSString,
@@ -136,8 +136,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "UNNotificationActionIcon")]
-        #[unsafe(method_family(none))]
         #[method_id(actionWithIdentifier:title:options:icon:textInputButtonTitle:textInputPlaceholder:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn actionWithIdentifier_title_options_icon_textInputButtonTitle_textInputPlaceholder(
             identifier: &NSString,
             title: &NSString,
@@ -147,12 +147,12 @@ extern_methods!(
             text_input_placeholder: &NSString,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(textInputButtonTitle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textInputButtonTitle(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(textInputPlaceholder)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textInputPlaceholder(&self) -> Retained<NSString>;
     }
 );
@@ -160,8 +160,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `UNNotificationAction`
     unsafe impl UNTextInputNotificationAction {
-        #[unsafe(method_family(none))]
         #[method_id(actionWithIdentifier:title:options:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn actionWithIdentifier_title_options(
             identifier: &NSString,
             title: &NSString,
@@ -169,8 +169,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "UNNotificationActionIcon")]
-        #[unsafe(method_family(none))]
         #[method_id(actionWithIdentifier:title:options:icon:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn actionWithIdentifier_title_options_icon(
             identifier: &NSString,
             title: &NSString,
@@ -178,8 +178,8 @@ extern_methods!(
             icon: Option<&UNNotificationActionIcon>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -187,8 +187,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UNTextInputNotificationAction {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

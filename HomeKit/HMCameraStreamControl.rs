@@ -30,8 +30,8 @@ extern_methods!(
     #[cfg(feature = "HMCameraControl")]
     unsafe impl HMCameraStreamControl {
         /// Delegate that receives updates on the camera stream changes.
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn HMCameraStreamControlDelegate>>>;
@@ -51,8 +51,8 @@ extern_methods!(
 
         #[cfg(all(feature = "HMCameraSource", feature = "HMCameraStream"))]
         /// Represents the current camera stream.
-        #[unsafe(method_family(none))]
         #[method_id(cameraStream)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cameraStream(&self) -> Option<Retained<HMCameraStream>>;
 
         /// Starts the camera stream. 'currentCameraStream' will be updated upon
@@ -65,8 +65,8 @@ extern_methods!(
         pub unsafe fn stopStream(&self);
 
         #[deprecated = "HMCameraStreamControl objects are created by their parent container objects. Directly creating them is not supported."]
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -75,8 +75,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "HMCameraControl")]
     unsafe impl HMCameraStreamControl {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

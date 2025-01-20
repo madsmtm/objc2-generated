@@ -20,17 +20,17 @@ unsafe impl NSObjectProtocol for AVPlaybackSpeed {}
 
 extern_methods!(
     unsafe impl AVPlaybackSpeed {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// A list of playback speeds to be used by default across the system.
-        #[unsafe(method_family(none))]
         #[method_id(systemDefaultSpeeds)]
+        #[unsafe(method_family = none)]
         pub unsafe fn systemDefaultSpeeds() -> Retained<NSArray<AVPlaybackSpeed>>;
 
         /// Parameter `rate`: The rate to be used when this playback speed is selected.
@@ -38,8 +38,8 @@ extern_methods!(
         /// Parameter `localizedName`: A localized name to be displayed representing this playback speed in a UI.
         ///
         /// Initializes an AVPlaybackSpeed.
-        #[unsafe(method_family(init))]
         #[method_id(initWithRate:localizedName:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithRate_localizedName(
             this: Allocated<Self>,
             rate: c_float,
@@ -53,15 +53,15 @@ extern_methods!(
         /// A localized name for this playback speed.
         ///
         /// This name will be used to represent this playback speed in playback UIs where more space is available.
-        #[unsafe(method_family(none))]
         #[method_id(localizedName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn localizedName(&self) -> Retained<NSString>;
 
         /// A localized name for this playback speed used when space is limited.
         ///
         /// This name will be used to represent this playback speed in playback UIs where limited space is available.
-        #[unsafe(method_family(none))]
         #[method_id(localizedNumericName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn localizedNumericName(&self) -> Retained<NSString>;
     }
 );

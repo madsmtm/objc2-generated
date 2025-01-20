@@ -25,8 +25,8 @@ extern_methods!(
     #[cfg(feature = "NSTouchBarItem")]
     unsafe impl NSPopoverTouchBarItem {
         #[cfg(feature = "NSTouchBar")]
-        #[unsafe(method_family(none))]
         #[method_id(popoverTouchBar)]
+        #[unsafe(method_family = none)]
         pub unsafe fn popoverTouchBar(&self) -> Retained<NSTouchBar>;
 
         #[cfg(feature = "NSTouchBar")]
@@ -34,8 +34,8 @@ extern_methods!(
         #[method(setPopoverTouchBar:)]
         pub unsafe fn setPopoverTouchBar(&self, popover_touch_bar: &NSTouchBar);
 
-        #[unsafe(method_family(none))]
         #[method_id(customizationLabel)]
+        #[unsafe(method_family = none)]
         pub unsafe fn customizationLabel(&self) -> Retained<NSString>;
 
         /// Setter for [`customizationLabel`][Self::customizationLabel].
@@ -43,8 +43,8 @@ extern_methods!(
         pub unsafe fn setCustomizationLabel(&self, customization_label: Option<&NSString>);
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-        #[unsafe(method_family(none))]
         #[method_id(collapsedRepresentation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn collapsedRepresentation(&self) -> Retained<NSView>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -53,8 +53,8 @@ extern_methods!(
         pub unsafe fn setCollapsedRepresentation(&self, collapsed_representation: &NSView);
 
         #[cfg(feature = "NSImage")]
-        #[unsafe(method_family(none))]
         #[method_id(collapsedRepresentationImage)]
+        #[unsafe(method_family = none)]
         pub unsafe fn collapsedRepresentationImage(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
@@ -65,8 +65,8 @@ extern_methods!(
             collapsed_representation_image: Option<&NSImage>,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(collapsedRepresentationLabel)]
+        #[unsafe(method_family = none)]
         pub unsafe fn collapsedRepresentationLabel(&self) -> Retained<NSString>;
 
         /// Setter for [`collapsedRepresentationLabel`][Self::collapsedRepresentationLabel].
@@ -77,8 +77,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSTouchBar")]
-        #[unsafe(method_family(none))]
         #[method_id(pressAndHoldTouchBar)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pressAndHoldTouchBar(&self) -> Option<Retained<NSTouchBar>>;
 
         #[cfg(feature = "NSTouchBar")]
@@ -100,8 +100,8 @@ extern_methods!(
         pub unsafe fn dismissPopover(&self, sender: Option<&AnyObject>);
 
         #[cfg(feature = "NSGestureRecognizer")]
-        #[unsafe(method_family(none))]
         #[method_id(makeStandardActivatePopoverGestureRecognizer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn makeStandardActivatePopoverGestureRecognizer(
             &self,
         ) -> Retained<NSGestureRecognizer>;
@@ -112,22 +112,22 @@ extern_methods!(
     /// Methods declared on superclass `NSTouchBarItem`
     #[cfg(feature = "NSTouchBarItem")]
     unsafe impl NSPopoverTouchBarItem {
-        #[unsafe(method_family(init))]
         #[method_id(initWithIdentifier:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,
             identifier: &NSTouchBarItemIdentifier,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -136,8 +136,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSTouchBarItem")]
     unsafe impl NSPopoverTouchBarItem {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

@@ -23,8 +23,8 @@ unsafe impl UIInteraction for UIPointerInteraction {}
 
 extern_methods!(
     unsafe impl UIPointerInteraction {
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIPointerInteractionDelegate>>>;
@@ -36,8 +36,8 @@ extern_methods!(
         #[method(setEnabled:)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithDelegate:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDelegate(
             this: Allocated<Self>,
             delegate: Option<&ProtocolObject<dyn UIPointerInteractionDelegate>>,
@@ -52,12 +52,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIPointerInteraction {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -80,8 +80,8 @@ extern_protocol!(
         ///
         /// Returns: A UIPointerRegion in which to apply a pointer style. Return nil to indicate that this interaction should not customize the pointer for the current location.
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(pointerInteraction:regionForRequest:defaultRegion:)]
+        #[unsafe(method_family = none)]
         unsafe fn pointerInteraction_regionForRequest_defaultRegion(
             &self,
             interaction: &UIPointerInteraction,
@@ -104,8 +104,8 @@ extern_protocol!(
         ///
         /// Returns: A UIPointerStyle describing the desired hover effect or pointer appearance for the given UIPointerRegion.
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(pointerInteraction:styleForRegion:)]
+        #[unsafe(method_family = none)]
         unsafe fn pointerInteraction_styleForRegion(
             &self,
             interaction: &UIPointerInteraction,
@@ -177,12 +177,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIPointerRegionRequest {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

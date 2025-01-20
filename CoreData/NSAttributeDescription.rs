@@ -87,8 +87,8 @@ extern_methods!(
         #[method(setAttributeType:)]
         pub unsafe fn setAttributeType(&self, attribute_type: NSAttributeType);
 
-        #[unsafe(method_family(none))]
         #[method_id(attributeValueClassName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn attributeValueClassName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`attributeValueClassName`][Self::attributeValueClassName].
@@ -98,20 +98,20 @@ extern_methods!(
             attribute_value_class_name: Option<&NSString>,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(defaultValue)]
+        #[unsafe(method_family = none)]
         pub unsafe fn defaultValue(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`defaultValue`][Self::defaultValue].
         #[method(setDefaultValue:)]
         pub unsafe fn setDefaultValue(&self, default_value: Option<&AnyObject>);
 
-        #[unsafe(method_family(none))]
         #[method_id(versionHash)]
+        #[unsafe(method_family = none)]
         pub unsafe fn versionHash(&self) -> Retained<NSData>;
 
-        #[unsafe(method_family(none))]
         #[method_id(valueTransformerName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn valueTransformerName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`valueTransformerName`][Self::valueTransformerName].
@@ -151,12 +151,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSPropertyDescription")]
     unsafe impl NSAttributeDescription {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

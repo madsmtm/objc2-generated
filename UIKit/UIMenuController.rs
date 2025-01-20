@@ -51,8 +51,8 @@ unsafe impl NSObjectProtocol for UIMenuController {}
 extern_methods!(
     unsafe impl UIMenuController {
         #[deprecated = "UIMenuController is deprecated. Use UIEditMenuInteraction instead."]
-        #[unsafe(method_family(none))]
         #[method_id(sharedMenuController)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sharedMenuController(mtm: MainThreadMarker) -> Retained<UIMenuController>;
 
         #[deprecated = "UIMenuController is deprecated. Use UIEditMenuInteraction instead."]
@@ -99,8 +99,8 @@ extern_methods!(
         #[method(setArrowDirection:)]
         pub unsafe fn setArrowDirection(&self, arrow_direction: UIMenuControllerArrowDirection);
 
-        #[unsafe(method_family(none))]
         #[method_id(menuItems)]
+        #[unsafe(method_family = none)]
         pub unsafe fn menuItems(&self) -> Option<Retained<NSArray<UIMenuItem>>>;
 
         /// Setter for [`menuItems`][Self::menuItems].
@@ -121,12 +121,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIMenuController {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -170,8 +170,8 @@ unsafe impl NSObjectProtocol for UIMenuItem {}
 extern_methods!(
     unsafe impl UIMenuItem {
         #[deprecated = "UIMenuItem is deprecated. Use UIEditMenuInteraction instead."]
-        #[unsafe(method_family(init))]
         #[method_id(initWithTitle:action:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithTitle_action(
             this: Allocated<Self>,
             title: &NSString,
@@ -179,8 +179,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[deprecated = "UIMenuItem is deprecated. Use UIEditMenuInteraction instead."]
-        #[unsafe(method_family(none))]
         #[method_id(title)]
+        #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
@@ -202,12 +202,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIMenuItem {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

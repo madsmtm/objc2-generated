@@ -47,8 +47,8 @@ extern_methods!(
         /// Parameter `healthStore`: Specifies the HKHealthStore object to use for building the series.
         ///
         /// Parameter `device`: The optional device represents the HKDevice from which the data is provided.
-        #[unsafe(method_family(init))]
         #[method_id(initWithHealthStore:device:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithHealthStore_device(
             this: Allocated<Self>,
             health_store: &HKHealthStore,
@@ -139,8 +139,8 @@ extern_methods!(
     #[cfg(feature = "HKSeriesBuilder")]
     unsafe impl HKWorkoutRouteBuilder {
         /// Use only subclass initializer methods.
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -149,8 +149,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "HKSeriesBuilder")]
     unsafe impl HKWorkoutRouteBuilder {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

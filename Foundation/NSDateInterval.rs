@@ -35,31 +35,31 @@ unsafe impl NSSecureCoding for NSDateInterval {}
 extern_methods!(
     unsafe impl NSDateInterval {
         #[cfg(feature = "NSDate")]
-        #[unsafe(method_family(none))]
         #[method_id(startDate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn startDate(&self) -> Retained<NSDate>;
 
         #[cfg(feature = "NSDate")]
-        #[unsafe(method_family(none))]
         #[method_id(endDate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn endDate(&self) -> Retained<NSDate>;
 
         #[cfg(feature = "NSDate")]
         #[method(duration)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "NSDate")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithStartDate:duration:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithStartDate_duration(
             this: Allocated<Self>,
             start_date: &NSDate,
@@ -67,8 +67,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSDate")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithStartDate:endDate:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithStartDate_endDate(
             this: Allocated<Self>,
             start_date: &NSDate,
@@ -85,8 +85,8 @@ extern_methods!(
         #[method(intersectsDateInterval:)]
         pub unsafe fn intersectsDateInterval(&self, date_interval: &NSDateInterval) -> bool;
 
-        #[unsafe(method_family(none))]
         #[method_id(intersectionWithDateInterval:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn intersectionWithDateInterval(
             &self,
             date_interval: &NSDateInterval,
@@ -101,8 +101,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSDateInterval {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

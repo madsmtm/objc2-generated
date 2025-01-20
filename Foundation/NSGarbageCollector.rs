@@ -19,8 +19,8 @@ unsafe impl NSObjectProtocol for NSGarbageCollector {}
 extern_methods!(
     unsafe impl NSGarbageCollector {
         #[deprecated = "Building Garbage Collected apps is no longer supported."]
-        #[unsafe(method_family(none))]
         #[method_id(defaultCollector)]
+        #[unsafe(method_family = none)]
         pub unsafe fn defaultCollector() -> Retained<AnyObject>;
 
         #[deprecated]
@@ -65,12 +65,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSGarbageCollector {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

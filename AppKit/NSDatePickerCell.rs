@@ -125,17 +125,17 @@ unsafe impl NSUserInterfaceItemIdentification for NSDatePickerCell {}
 extern_methods!(
     #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     unsafe impl NSDatePickerCell {
-        #[unsafe(method_family(init))]
         #[method_id(initTextCell:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
-        #[unsafe(method_family(init))]
         #[method_id(initImageCell:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initImageCell(
             this: Allocated<Self>,
             image: Option<&NSImage>,
@@ -156,8 +156,8 @@ extern_methods!(
         pub unsafe fn setDrawsBackground(&self, draws_background: bool);
 
         #[cfg(feature = "NSColor")]
-        #[unsafe(method_family(none))]
         #[method_id(backgroundColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn backgroundColor(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
@@ -166,8 +166,8 @@ extern_methods!(
         pub unsafe fn setBackgroundColor(&self, background_color: &NSColor);
 
         #[cfg(feature = "NSColor")]
-        #[unsafe(method_family(none))]
         #[method_id(textColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textColor(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
@@ -189,32 +189,32 @@ extern_methods!(
         #[method(setDatePickerElements:)]
         pub unsafe fn setDatePickerElements(&self, date_picker_elements: NSDatePickerElementFlags);
 
-        #[unsafe(method_family(none))]
         #[method_id(calendar)]
+        #[unsafe(method_family = none)]
         pub unsafe fn calendar(&self) -> Option<Retained<NSCalendar>>;
 
         /// Setter for [`calendar`][Self::calendar].
         #[method(setCalendar:)]
         pub unsafe fn setCalendar(&self, calendar: Option<&NSCalendar>);
 
-        #[unsafe(method_family(none))]
         #[method_id(locale)]
+        #[unsafe(method_family = none)]
         pub unsafe fn locale(&self) -> Option<Retained<NSLocale>>;
 
         /// Setter for [`locale`][Self::locale].
         #[method(setLocale:)]
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
 
-        #[unsafe(method_family(none))]
         #[method_id(timeZone)]
+        #[unsafe(method_family = none)]
         pub unsafe fn timeZone(&self) -> Option<Retained<NSTimeZone>>;
 
         /// Setter for [`timeZone`][Self::timeZone].
         #[method(setTimeZone:)]
         pub unsafe fn setTimeZone(&self, time_zone: Option<&NSTimeZone>);
 
-        #[unsafe(method_family(none))]
         #[method_id(dateValue)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dateValue(&self) -> Retained<NSDate>;
 
         /// Setter for [`dateValue`][Self::dateValue].
@@ -228,24 +228,24 @@ extern_methods!(
         #[method(setTimeInterval:)]
         pub unsafe fn setTimeInterval(&self, time_interval: NSTimeInterval);
 
-        #[unsafe(method_family(none))]
         #[method_id(minDate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn minDate(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`minDate`][Self::minDate].
         #[method(setMinDate:)]
         pub unsafe fn setMinDate(&self, min_date: Option<&NSDate>);
 
-        #[unsafe(method_family(none))]
         #[method_id(maxDate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maxDate(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`maxDate`][Self::maxDate].
         #[method(setMaxDate:)]
         pub unsafe fn setMaxDate(&self, max_date: Option<&NSDate>);
 
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSDatePickerCellDelegate>>>;
@@ -264,8 +264,8 @@ extern_methods!(
     /// Methods declared on superclass `NSCell`
     #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     unsafe impl NSDatePickerCell {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -274,8 +274,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     unsafe impl NSDatePickerCell {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

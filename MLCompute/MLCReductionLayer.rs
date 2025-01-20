@@ -39,8 +39,8 @@ extern_methods!(
         pub unsafe fn dimension(&self) -> NSUInteger;
 
         /// The dimensions over which to perform the reduction operation
-        #[unsafe(method_family(none))]
         #[method_id(dimensions)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dimensions(&self) -> Retained<NSArray<NSNumber>>;
 
         #[cfg(feature = "MLCTypes")]
@@ -52,8 +52,8 @@ extern_methods!(
         ///
         /// Returns: A new reduction layer.
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(layerWithReductionType:dimension:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layerWithReductionType_dimension(
             reduction_type: MLCReductionType,
             dimension: NSUInteger,
@@ -67,8 +67,8 @@ extern_methods!(
         /// Parameter `dimensions`: The list of dimensions to reduce over
         ///
         /// Returns: A new reduction layer.
-        #[unsafe(method_family(none))]
         #[method_id(layerWithReductionType:dimensions:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layerWithReductionType_dimensions(
             reduction_type: MLCReductionType,
             dimensions: &NSArray<NSNumber>,
@@ -81,13 +81,13 @@ extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCReductionLayer {
         #[deprecated]
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

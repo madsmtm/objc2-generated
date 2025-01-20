@@ -137,8 +137,8 @@ extern_methods!(
         /// If `menu` is non-empty, the pop-up button uses the first item for its initial selection.
         ///
         /// Returns: An initialized pop-up button object.
-        #[unsafe(method_family(none))]
         #[method_id(popUpButtonWithMenu:target:action:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn popUpButtonWithMenu_target_action(
             menu: &NSMenu,
             target: Option<&AnyObject>,
@@ -155,8 +155,8 @@ extern_methods!(
         /// Pull-down buttons created using this method have the `usesItemFromMenu` property set to `NO`.
         ///
         /// Returns: An initialized pull-down button object.
-        #[unsafe(method_family(none))]
         #[method_id(pullDownButtonWithTitle:menu:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pullDownButtonWithTitle_menu(
             title: &NSString,
             menu: &NSMenu,
@@ -172,8 +172,8 @@ extern_methods!(
         /// Pull-down buttons created using this method have the `usesItemFromMenu` property set to `NO`.
         ///
         /// Returns: An initialized pull-down button object.
-        #[unsafe(method_family(none))]
         #[method_id(pullDownButtonWithImage:menu:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pullDownButtonWithImage_menu(
             image: &NSImage,
             menu: &NSMenu,
@@ -191,16 +191,16 @@ extern_methods!(
         /// Pull-down buttons created using this method have the `usesItemFromMenu` property set to `NO`.
         ///
         /// Returns: An initialized pull-down button object.
-        #[unsafe(method_family(none))]
         #[method_id(pullDownButtonWithTitle:image:menu:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pullDownButtonWithTitle_image_menu(
             title: &NSString,
             image: &NSImage,
             menu: &NSMenu,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithFrame:pullsDown:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame_pullsDown(
             this: Allocated<Self>,
             button_frame: NSRect,
@@ -209,8 +209,8 @@ extern_methods!(
 
         #[cfg(feature = "NSMenu")]
         /// The menu that is presented by the popup button. This overrides the inherited NSView property and replaces NSView's standard context menu behavior.
-        #[unsafe(method_family(none))]
         #[method_id(menu)]
+        #[unsafe(method_family = none)]
         pub unsafe fn menu(&self) -> Option<Retained<NSMenu>>;
 
         #[cfg(feature = "NSMenu")]
@@ -277,8 +277,8 @@ extern_methods!(
         pub unsafe fn removeAllItems(&self);
 
         #[cfg(feature = "NSMenuItem")]
-        #[unsafe(method_family(none))]
         #[method_id(itemArray)]
+        #[unsafe(method_family = none)]
         pub unsafe fn itemArray(&self) -> Retained<NSArray<NSMenuItem>>;
 
         #[method(numberOfItems)]
@@ -306,18 +306,18 @@ extern_methods!(
         ) -> NSInteger;
 
         #[cfg(feature = "NSMenuItem")]
-        #[unsafe(method_family(none))]
         #[method_id(itemAtIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn itemAtIndex(&self, index: NSInteger) -> Option<Retained<NSMenuItem>>;
 
         #[cfg(feature = "NSMenuItem")]
-        #[unsafe(method_family(none))]
         #[method_id(itemWithTitle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn itemWithTitle(&self, title: &NSString) -> Option<Retained<NSMenuItem>>;
 
         #[cfg(feature = "NSMenuItem")]
-        #[unsafe(method_family(none))]
         #[method_id(lastItem)]
+        #[unsafe(method_family = none)]
         pub unsafe fn lastItem(&self) -> Option<Retained<NSMenuItem>>;
 
         #[cfg(feature = "NSMenuItem")]
@@ -337,8 +337,8 @@ extern_methods!(
         pub unsafe fn setTitle(&self, string: &NSString);
 
         #[cfg(feature = "NSMenuItem")]
-        #[unsafe(method_family(none))]
         #[method_id(selectedItem)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectedItem(&self) -> Option<Retained<NSMenuItem>>;
 
         #[method(indexOfSelectedItem)]
@@ -350,16 +350,16 @@ extern_methods!(
         #[method(synchronizeTitleAndSelectedItem)]
         pub unsafe fn synchronizeTitleAndSelectedItem(&self);
 
-        #[unsafe(method_family(none))]
         #[method_id(itemTitleAtIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn itemTitleAtIndex(&self, index: NSInteger) -> Retained<NSString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(itemTitles)]
+        #[unsafe(method_family = none)]
         pub unsafe fn itemTitles(&self) -> Retained<NSArray<NSString>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(titleOfSelectedItem)]
+        #[unsafe(method_family = none)]
         pub unsafe fn titleOfSelectedItem(&self) -> Option<Retained<NSString>>;
     }
 );
@@ -385,8 +385,8 @@ extern_methods!(
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized button object.
-        #[unsafe(method_family(none))]
         #[method_id(buttonWithTitle:image:target:action:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn buttonWithTitle_image_target_action(
             title: &NSString,
             image: &NSImage,
@@ -404,8 +404,8 @@ extern_methods!(
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized button object.
-        #[unsafe(method_family(none))]
         #[method_id(buttonWithTitle:target:action:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn buttonWithTitle_target_action(
             title: &NSString,
             target: Option<&AnyObject>,
@@ -423,8 +423,8 @@ extern_methods!(
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized button object.
-        #[unsafe(method_family(none))]
         #[method_id(buttonWithImage:target:action:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn buttonWithImage_target_action(
             image: &NSImage,
             target: Option<&AnyObject>,
@@ -441,8 +441,8 @@ extern_methods!(
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized button object.
-        #[unsafe(method_family(none))]
         #[method_id(checkboxWithTitle:target:action:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn checkboxWithTitle_target_action(
             title: &NSString,
             target: Option<&AnyObject>,
@@ -459,8 +459,8 @@ extern_methods!(
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized button object.
-        #[unsafe(method_family(none))]
         #[method_id(radioButtonWithTitle:target:action:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn radioButtonWithTitle_target_action(
             title: &NSString,
             target: Option<&AnyObject>,
@@ -479,12 +479,12 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSPopUpButton {
-        #[unsafe(method_family(init))]
         #[method_id(initWithFrame:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -501,8 +501,8 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSPopUpButton {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -516,8 +516,8 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSPopUpButton {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

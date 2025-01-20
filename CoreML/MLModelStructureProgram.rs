@@ -23,18 +23,18 @@ unsafe impl NSObjectProtocol for MLModelStructureProgram {}
 
 extern_methods!(
     unsafe impl MLModelStructureProgram {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "MLModelStructureProgramFunction")]
         /// The functions in the program.
-        #[unsafe(method_family(none))]
         #[method_id(functions)]
+        #[unsafe(method_family = none)]
         pub unsafe fn functions(
             &self,
         ) -> Retained<NSDictionary<NSString, MLModelStructureProgramFunction>>;

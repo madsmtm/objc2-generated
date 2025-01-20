@@ -98,8 +98,8 @@ extern_methods!(
         pub unsafe fn setRoundToOddHermitean(&self, round_to_odd_hermitean: bool);
 
         /// Creates a fast Fourier transform descriptor with default parameter values.
-        #[unsafe(method_family(none))]
         #[method_id(descriptor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn descriptor() -> Option<Retained<Self>>;
     }
 );
@@ -108,12 +108,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MPSGraphCore")]
     unsafe impl MPSGraphFFTDescriptor {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -150,8 +150,8 @@ extern_methods!(
         /// - descriptor: A descriptor that defines the parameters of the Fourier transform operation - see ``MPSGraphFFTDescriptor``.
         /// - name: The name for the operation.
         /// - Returns: A valid complex-valued MPSGraphTensor of the same shape as `tensor`.
-        #[unsafe(method_family(none))]
         #[method_id(fastFourierTransformWithTensor:axes:descriptor:name:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fastFourierTransformWithTensor_axes_descriptor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -188,8 +188,8 @@ extern_methods!(
         /// - descriptor: A descriptor that defines the parameters of the Fourier transform operation - see ``MPSGraphFFTDescriptor``.
         /// - name: The name for the operation.
         /// - Returns: A valid complex-valued MPSGraphTensor of the same shape as `tensor`.
-        #[unsafe(method_family(none))]
         #[method_id(fastFourierTransformWithTensor:axesTensor:descriptor:name:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fastFourierTransformWithTensor_axesTensor_descriptor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -227,8 +227,8 @@ extern_methods!(
         /// - descriptor: A descriptor that defines the parameters of the Fourier transform operation - see ``MPSGraphFFTDescriptor``.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor of type `MPSDataTypeComplexFloat32` or `MPSDataTypeComplexFloat16` with reduced size (see Discussion).
-        #[unsafe(method_family(none))]
         #[method_id(realToHermiteanFFTWithTensor:axes:descriptor:name:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn realToHermiteanFFTWithTensor_axes_descriptor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -266,8 +266,8 @@ extern_methods!(
         /// - descriptor: A descriptor that defines the parameters of the Fourier transform operation - see ``MPSGraphFFTDescriptor``.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor of type `MPSDataTypeComplexFloat32` or `MPSDataTypeComplexFloat16`  with reduced size (see Discussion).
-        #[unsafe(method_family(none))]
         #[method_id(realToHermiteanFFTWithTensor:axesTensor:descriptor:name:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn realToHermiteanFFTWithTensor_axesTensor_descriptor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -308,8 +308,8 @@ extern_methods!(
         /// - descriptor: A descriptor that defines the parameters of the Fourier transform operation - see ``MPSGraphFFTDescriptor``.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor of type `MPSDataTypeFloat32` or `MPSDataTypeFloat16` (full size).
-        #[unsafe(method_family(none))]
         #[method_id(HermiteanToRealFFTWithTensor:axes:descriptor:name:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn HermiteanToRealFFTWithTensor_axes_descriptor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -350,8 +350,8 @@ extern_methods!(
         /// - descriptor: A descriptor that defines the parameters of the Fourier transform operation - see ``MPSGraphFFTDescriptor``.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor of type `MPSDataTypeFloat32` or `MPSDataTypeFloat16` (full size).
-        #[unsafe(method_family(none))]
         #[method_id(HermiteanToRealFFTWithTensor:axesTensor:descriptor:name:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn HermiteanToRealFFTWithTensor_axesTensor_descriptor_name(
             &self,
             tensor: &MPSGraphTensor,

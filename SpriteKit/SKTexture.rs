@@ -64,8 +64,8 @@ extern_methods!(
         ///
         ///
         /// Parameter `name`: the name or path of the image to load.
-        #[unsafe(method_family(none))]
         #[method_id(textureWithImageNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureWithImageNamed(name: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -75,8 +75,8 @@ extern_methods!(
         /// Parameter `rect`: the source rectangle to use in creating a logical copy of the given texture.
         ///
         /// Parameter `texture`: the existing texture to reference in the copy.
-        #[unsafe(method_family(none))]
         #[method_id(textureWithRect:inTexture:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureWithRect_inTexture(
             rect: CGRect,
             texture: &SKTexture,
@@ -90,8 +90,8 @@ extern_methods!(
         /// Parameter `size`: the size of the resulting texture.
         ///
         /// Parameter `smoothness`: how similar neighboring pixels are. A value of zero is like static, one is smooth.
-        #[unsafe(method_family(none))]
         #[method_id(textureVectorNoiseWithSmoothness:size:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureVectorNoiseWithSmoothness_size(
             smoothness: CGFloat,
             size: CGSize,
@@ -106,8 +106,8 @@ extern_methods!(
         /// Parameter `smoothness`: how similar neighboring pixels are. A value of zero is like static, one is smooth.
         ///
         /// Parameter `grayscale`: if YES, RGB and A will all be the same. If no, RGB and A will all be different. A is not pre-multiplied, because the intent is that if you read a texel in a shader, all four values will be exactly the same value if grayscale, or four different, uncorrelated values if not grayscale.
-        #[unsafe(method_family(none))]
         #[method_id(textureNoiseWithSmoothness:size:grayscale:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureNoiseWithSmoothness_size_grayscale(
             smoothness: CGFloat,
             size: CGSize,
@@ -119,14 +119,14 @@ extern_methods!(
         ///
         ///
         /// Parameter `image`: the CGImageRef to create the texture from
-        #[unsafe(method_family(none))]
         #[method_id(textureWithCGImage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureWithCGImage(image: &CGImage) -> Retained<Self>;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
-        #[unsafe(method_family(none))]
         #[method_id(textureWithImage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureWithImage(image: &NSImage) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -136,13 +136,13 @@ extern_methods!(
         /// Parameter `pixelData`: the pixelData to read in creating the texture.
         ///
         /// Parameter `size`: the dimensions of the pixelData given.
-        #[unsafe(method_family(none))]
         #[method_id(textureWithData:size:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureWithData_size(pixel_data: &NSData, size: CGSize) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(none))]
         #[method_id(textureWithData:size:flipped:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureWithData_size_flipped(
             pixel_data: &NSData,
             size: CGSize,
@@ -160,8 +160,8 @@ extern_methods!(
         /// Parameter `rowLength`: the length of each row in pixels (allows byte row pitches greater than the width for aligned data)
         ///
         /// Parameter `alignment`: the byte alignment of the data, provide 0 for tightly packed data.
-        #[unsafe(method_family(none))]
         #[method_id(textureWithData:size:rowLength:alignment:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureWithData_size_rowLength_alignment(
             pixel_data: &NSData,
             size: CGSize,
@@ -175,13 +175,13 @@ extern_methods!(
         ///
         ///
         /// Parameter `filter`: the CI filter to apply in the copy.
-        #[unsafe(method_family(none))]
         #[method_id(textureByApplyingCIFilter:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureByApplyingCIFilter(&self, filter: &CIFilter) -> Retained<Self>;
 
         /// Create new texture by generating a normal map texture.
-        #[unsafe(method_family(none))]
         #[method_id(textureByGeneratingNormalMap)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureByGeneratingNormalMap(&self) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -191,8 +191,8 @@ extern_methods!(
         /// Parameter `smoothness`: the smooth level of the generated normal map.
         ///
         /// Parameter `contrast`: the scale applied to the generated normal map.
-        #[unsafe(method_family(none))]
         #[method_id(textureByGeneratingNormalMapWithSmoothness:contrast:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureByGeneratingNormalMapWithSmoothness_contrast(
             &self,
             smoothness: CGFloat,
@@ -227,8 +227,8 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Convert the current SKTexture into a CGImageRef object
-        #[unsafe(method_family(none))]
         #[method_id(CGImage)]
+        #[unsafe(method_family = none)]
         pub unsafe fn CGImage(&self) -> Retained<CGImage>;
 
         #[cfg(feature = "block2")]
@@ -257,12 +257,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKTexture {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

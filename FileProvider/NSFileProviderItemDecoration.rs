@@ -108,8 +108,8 @@ extern_protocol!(
         ///
         /// To adopt this protocol, implement the -decorations method on your NSFileProviderItem to return valid decoration identifiers
         /// from your Info.plist.
-        #[unsafe(method_family(none))]
         #[method_id(decorations)]
+        #[unsafe(method_family = none)]
         unsafe fn decorations(
             &self,
         ) -> Option<Retained<NSArray<NSFileProviderItemDecorationIdentifier>>>;

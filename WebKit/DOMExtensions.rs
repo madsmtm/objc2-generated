@@ -19,8 +19,8 @@ extern_methods!(
         #[method(boundingBox)]
         pub unsafe fn boundingBox(&self) -> NSRect;
 
-        #[unsafe(method_family(none))]
         #[method_id(lineBoxRects)]
+        #[unsafe(method_family = none)]
         pub unsafe fn lineBoxRects(&self) -> Option<Retained<NSArray>>;
     }
 );
@@ -36,8 +36,8 @@ extern_methods!(
     unsafe impl DOMElement {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
-        #[unsafe(method_family(none))]
         #[method_id(image)]
+        #[unsafe(method_family = none)]
         pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
     }
 );
@@ -53,8 +53,8 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLDocument {
         #[cfg(feature = "DOMDocumentFragment")]
-        #[unsafe(method_family(none))]
         #[method_id(createDocumentFragmentWithMarkupString:baseURL:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn createDocumentFragmentWithMarkupString_baseURL(
             &self,
             markup_string: Option<&NSString>,
@@ -62,8 +62,8 @@ extern_methods!(
         ) -> Option<Retained<DOMDocumentFragment>>;
 
         #[cfg(feature = "DOMDocumentFragment")]
-        #[unsafe(method_family(none))]
         #[method_id(createDocumentFragmentWithText:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn createDocumentFragmentWithText(
             &self,
             text: Option<&NSString>,

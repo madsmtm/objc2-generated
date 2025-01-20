@@ -90,19 +90,19 @@ unsafe impl NSUserInterfaceItemIdentification for NSText {}
 extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSText {
-        #[unsafe(method_family(init))]
         #[method_id(initWithFrame:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(string)]
+        #[unsafe(method_family = none)]
         pub unsafe fn string(&self) -> Retained<NSString>;
 
         /// Setter for [`string`][Self::string].
@@ -118,12 +118,12 @@ extern_methods!(
         #[method(replaceCharactersInRange:withRTFD:)]
         pub unsafe fn replaceCharactersInRange_withRTFD(&self, range: NSRange, rtfd_data: &NSData);
 
-        #[unsafe(method_family(none))]
         #[method_id(RTFFromRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn RTFFromRange(&self, range: NSRange) -> Option<Retained<NSData>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(RTFDFromRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn RTFDFromRange(&self, range: NSRange) -> Option<Retained<NSData>>;
 
         #[method(writeRTFDToFile:atomically:)]
@@ -132,8 +132,8 @@ extern_methods!(
         #[method(readRTFDFromFile:)]
         pub unsafe fn readRTFDFromFile(&self, path: &NSString) -> bool;
 
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSTextDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
@@ -190,8 +190,8 @@ extern_methods!(
         pub unsafe fn setDrawsBackground(&self, draws_background: bool);
 
         #[cfg(feature = "NSColor")]
-        #[unsafe(method_family(none))]
         #[method_id(backgroundColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn backgroundColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColor")]
@@ -213,8 +213,8 @@ extern_methods!(
         pub unsafe fn scrollRangeToVisible(&self, range: NSRange);
 
         #[cfg(feature = "NSFont")]
-        #[unsafe(method_family(none))]
         #[method_id(font)]
+        #[unsafe(method_family = none)]
         pub unsafe fn font(&self) -> Option<Retained<NSFont>>;
 
         #[cfg(feature = "NSFont")]
@@ -223,8 +223,8 @@ extern_methods!(
         pub unsafe fn setFont(&self, font: Option<&NSFont>);
 
         #[cfg(feature = "NSColor")]
-        #[unsafe(method_family(none))]
         #[method_id(textColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColor")]
@@ -351,8 +351,8 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSText {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -361,8 +361,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSText {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

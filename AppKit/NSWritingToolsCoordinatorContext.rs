@@ -96,16 +96,16 @@ extern_methods!(
         /// text, set the `range` parameter to the portion of `attributedString` with
         /// the current selection. Don’t use the `range` parameter to specify the
         /// location of the text in your view’s text storage.
-        #[unsafe(method_family(init))]
         #[method_id(initWithAttributedString:range:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithAttributedString_range(
             this: Allocated<Self>,
             attributed_string: &NSAttributedString,
             range: NSRange,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// The portion of your view’s text to evaluate.
@@ -122,8 +122,8 @@ extern_methods!(
         /// this property with a subset of your view’s content, you must adjust
         /// any ranges that Writing Tools provides to get the correct location
         /// in your text storage.
-        #[unsafe(method_family(none))]
         #[method_id(attributedString)]
+        #[unsafe(method_family = none)]
         pub unsafe fn attributedString(&self) -> Retained<NSAttributedString>;
 
         /// The unique identifier of the context object.
@@ -138,8 +138,8 @@ extern_methods!(
         /// The ``NSWritingToolsCoordinator/Context`` object initializes the value of
         /// this property at creation time. Use this value to identify the
         /// context object within your app.
-        #[unsafe(method_family(none))]
         #[method_id(identifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSUUID>;
 
         /// The actual range of text that Writing Tools might change, which can
@@ -166,8 +166,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSWritingToolsCoordinatorContext {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -27,8 +27,8 @@ extern_methods!(
     unsafe impl GCPhysicalInputProfile {
         #[cfg(feature = "GCDevice")]
         /// A profile keeps a reference to the device that this profile is mapping input from
-        #[unsafe(method_family(none))]
         #[method_id(device)]
+        #[unsafe(method_family = none)]
         pub unsafe fn device(&self) -> Option<Retained<ProtocolObject<dyn GCDevice>>>;
 
         /// The last time elements of this profile were updated.
@@ -69,54 +69,54 @@ extern_methods!(
 
         #[cfg(feature = "GCControllerElement")]
         /// The following properties allow for runtime lookup of any input element on a profile, when provided with a valid alias.
-        #[unsafe(method_family(none))]
         #[method_id(elements)]
+        #[unsafe(method_family = none)]
         pub unsafe fn elements(&self) -> Retained<NSDictionary<NSString, GCControllerElement>>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
-        #[unsafe(method_family(none))]
         #[method_id(buttons)]
+        #[unsafe(method_family = none)]
         pub unsafe fn buttons(&self) -> Retained<NSDictionary<NSString, GCControllerButtonInput>>;
 
         #[cfg(all(feature = "GCControllerAxisInput", feature = "GCControllerElement"))]
-        #[unsafe(method_family(none))]
         #[method_id(axes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn axes(&self) -> Retained<NSDictionary<NSString, GCControllerAxisInput>>;
 
         #[cfg(all(feature = "GCControllerDirectionPad", feature = "GCControllerElement"))]
-        #[unsafe(method_family(none))]
         #[method_id(dpads)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dpads(&self) -> Retained<NSDictionary<NSString, GCControllerDirectionPad>>;
 
         #[cfg(all(feature = "GCControllerElement", feature = "GCControllerTouchpad"))]
-        #[unsafe(method_family(none))]
         #[method_id(touchpads)]
+        #[unsafe(method_family = none)]
         pub unsafe fn touchpads(&self) -> Retained<NSDictionary<NSString, GCControllerTouchpad>>;
 
         #[cfg(feature = "GCControllerElement")]
         /// The following properties allow for dynamic querying of the input elements available on a profile.
-        #[unsafe(method_family(none))]
         #[method_id(allElements)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allElements(&self) -> Retained<NSSet<GCControllerElement>>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
-        #[unsafe(method_family(none))]
         #[method_id(allButtons)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allButtons(&self) -> Retained<NSSet<GCControllerButtonInput>>;
 
         #[cfg(all(feature = "GCControllerAxisInput", feature = "GCControllerElement"))]
-        #[unsafe(method_family(none))]
         #[method_id(allAxes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allAxes(&self) -> Retained<NSSet<GCControllerAxisInput>>;
 
         #[cfg(all(feature = "GCControllerDirectionPad", feature = "GCControllerElement"))]
-        #[unsafe(method_family(none))]
         #[method_id(allDpads)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allDpads(&self) -> Retained<NSSet<GCControllerDirectionPad>>;
 
         #[cfg(all(feature = "GCControllerElement", feature = "GCControllerTouchpad"))]
-        #[unsafe(method_family(none))]
         #[method_id(allTouchpads)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allTouchpads(&self) -> Retained<NSSet<GCControllerTouchpad>>;
 
         #[cfg(feature = "GCControllerElement")]
@@ -126,8 +126,8 @@ extern_methods!(
         ///
         ///
         /// Note: Equivalent to -elements
-        #[unsafe(method_family(none))]
         #[method_id(objectForKeyedSubscript:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn objectForKeyedSubscript(
             &self,
             key: &NSString,
@@ -142,8 +142,8 @@ extern_methods!(
         /// See: snapshot
         ///
         /// Returns: A new physical input profile with the duplicated state vector of the current physical input
-        #[unsafe(method_family(none))]
         #[method_id(capture)]
+        #[unsafe(method_family = none)]
         pub unsafe fn capture(&self) -> Retained<Self>;
 
         /// Sets the state vector of the physical input profile to a copy of the passed in physical input profile's state vector.
@@ -168,8 +168,8 @@ extern_methods!(
         ///
         ///
         /// Returns: A GCInput string corresponding to the primary alias of the GCControllerElement that a given physical button maps to, or nil if there is no mapping.
-        #[unsafe(method_family(none))]
         #[method_id(mappedElementAliasForPhysicalInputName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mappedElementAliasForPhysicalInputName(
             &self,
             input_name: &NSString,
@@ -188,8 +188,8 @@ extern_methods!(
         ///
         ///
         /// Returns: A set of GCInput strings corresponding to physical inputs that are mapped to a given GCControllerElement, or an empty set if there are no mappings.
-        #[unsafe(method_family(none))]
         #[method_id(mappedPhysicalInputNamesForElementAlias:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mappedPhysicalInputNamesForElementAlias(
             &self,
             element_alias: &NSString,
@@ -200,12 +200,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GCPhysicalInputProfile {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

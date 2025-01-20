@@ -44,12 +44,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIAcceleration {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -68,8 +68,8 @@ unsafe impl NSObjectProtocol for UIAccelerometer {}
 extern_methods!(
     unsafe impl UIAccelerometer {
         #[deprecated = "UIAccelerometer has been replaced by the CoreMotion framework"]
-        #[unsafe(method_family(none))]
         #[method_id(sharedAccelerometer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sharedAccelerometer(mtm: MainThreadMarker) -> Retained<UIAccelerometer>;
 
         #[deprecated = "UIAccelerometer has been replaced by the CoreMotion framework"]
@@ -82,8 +82,8 @@ extern_methods!(
         pub unsafe fn setUpdateInterval(&self, update_interval: NSTimeInterval);
 
         #[deprecated = "UIAccelerometer has been replaced by the CoreMotion framework"]
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIAccelerometerDelegate>>>;
@@ -102,12 +102,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIAccelerometer {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

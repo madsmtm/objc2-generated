@@ -20,8 +20,8 @@ unsafe impl NSObjectProtocol for NSNibConnector {}
 
 extern_methods!(
     unsafe impl NSNibConnector {
-        #[unsafe(method_family(none))]
         #[method_id(source)]
+        #[unsafe(method_family = none)]
         pub unsafe fn source(&self) -> Option<Retained<AnyObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -29,8 +29,8 @@ extern_methods!(
         #[method(setSource:)]
         pub unsafe fn setSource(&self, source: Option<&AnyObject>);
 
-        #[unsafe(method_family(none))]
         #[method_id(destination)]
+        #[unsafe(method_family = none)]
         pub unsafe fn destination(&self) -> Option<Retained<AnyObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -38,8 +38,8 @@ extern_methods!(
         #[method(setDestination:)]
         pub unsafe fn setDestination(&self, destination: Option<&AnyObject>);
 
-        #[unsafe(method_family(none))]
         #[method_id(label)]
+        #[unsafe(method_family = none)]
         pub unsafe fn label(&self) -> Retained<NSString>;
 
         /// Setter for [`label`][Self::label].
@@ -61,12 +61,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSNibConnector {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

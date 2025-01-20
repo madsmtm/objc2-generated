@@ -21,8 +21,8 @@ extern_methods!(
     #[cfg(feature = "NSTextElement")]
     unsafe impl NSTextListElement {
         #[cfg(feature = "NSTextList")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithParentElement:textList:contents:markerAttributes:childElements:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithParentElement_textList_contents_markerAttributes_childElements(
             this: Allocated<Self>,
             parent: Option<&NSTextListElement>,
@@ -32,16 +32,16 @@ extern_methods!(
             children: Option<&NSArray<NSTextListElement>>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithAttributedString:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithAttributedString(
             this: Allocated<Self>,
             attributed_string: Option<&NSAttributedString>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSTextList")]
-        #[unsafe(method_family(none))]
         #[method_id(textListElementWithContents:markerAttributes:textList:childElements:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textListElementWithContents_markerAttributes_textList_childElements(
             contents: &NSAttributedString,
             marker_attributes: Option<&NSDictionary<NSAttributedStringKey, AnyObject>>,
@@ -50,8 +50,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSTextList")]
-        #[unsafe(method_family(none))]
         #[method_id(textListElementWithChildElements:textList:nestingLevel:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textListElementWithChildElements_textList_nestingLevel(
             children: &NSArray<NSTextListElement>,
             text_list: &NSTextList,
@@ -59,30 +59,30 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSTextList")]
-        #[unsafe(method_family(none))]
         #[method_id(textList)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textList(&self) -> Retained<NSTextList>;
 
-        #[unsafe(method_family(none))]
         #[method_id(contents)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contents(&self) -> Option<Retained<NSAttributedString>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(markerAttributes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn markerAttributes(
             &self,
         ) -> Option<Retained<NSDictionary<NSAttributedStringKey, AnyObject>>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(attributedString)]
+        #[unsafe(method_family = none)]
         pub unsafe fn attributedString(&self) -> Retained<NSAttributedString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(childElements)]
+        #[unsafe(method_family = none)]
         pub unsafe fn childElements(&self) -> Retained<NSArray<NSTextListElement>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(parentElement)]
+        #[unsafe(method_family = none)]
         pub unsafe fn parentElement(&self) -> Option<Retained<NSTextListElement>>;
     }
 );
@@ -92,8 +92,8 @@ extern_methods!(
     #[cfg(feature = "NSTextElement")]
     unsafe impl NSTextListElement {
         #[cfg(feature = "NSTextContentManager")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithTextContentManager:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithTextContentManager(
             this: Allocated<Self>,
             text_content_manager: Option<&NSTextContentManager>,
@@ -105,12 +105,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSTextElement")]
     unsafe impl NSTextListElement {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

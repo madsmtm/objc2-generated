@@ -50,8 +50,8 @@ unsafe impl NSObjectProtocol for HMDurationEvent {}
 extern_methods!(
     #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
     unsafe impl HMDurationEvent {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Creates a duration time event.
@@ -61,8 +61,8 @@ extern_methods!(
         ///
         ///
         /// Returns: Instance object representing the duration event.
-        #[unsafe(method_family(init))]
         #[method_id(initWithDuration:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDuration(
             this: Allocated<Self>,
             duration: NSTimeInterval,
@@ -79,8 +79,8 @@ extern_methods!(
     #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
     unsafe impl HMDurationEvent {
         #[deprecated = "HMEvent is abstract"]
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -123,8 +123,8 @@ unsafe impl NSObjectProtocol for HMMutableDurationEvent {}
 extern_methods!(
     #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
     unsafe impl HMMutableDurationEvent {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// duration The duration of time in seconds.
@@ -148,8 +148,8 @@ extern_methods!(
         ///
         ///
         /// Returns: Instance object representing the duration event.
-        #[unsafe(method_family(init))]
         #[method_id(initWithDuration:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDuration(
             this: Allocated<Self>,
             duration: NSTimeInterval,
@@ -162,8 +162,8 @@ extern_methods!(
     #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
     unsafe impl HMMutableDurationEvent {
         #[deprecated = "HMEvent is abstract"]
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

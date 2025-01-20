@@ -126,21 +126,21 @@ unsafe impl NSSecureCoding for NSBezierPath {}
 
 extern_methods!(
     unsafe impl NSBezierPath {
-        #[unsafe(method_family(none))]
         #[method_id(bezierPath)]
+        #[unsafe(method_family = none)]
         pub unsafe fn bezierPath() -> Retained<NSBezierPath>;
 
-        #[unsafe(method_family(none))]
         #[method_id(bezierPathWithRect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn bezierPathWithRect(rect: NSRect) -> Retained<NSBezierPath>;
 
-        #[unsafe(method_family(none))]
         #[method_id(bezierPathWithOvalInRect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn bezierPathWithOvalInRect(rect: NSRect) -> Retained<NSBezierPath>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(none))]
         #[method_id(bezierPathWithRoundedRect:xRadius:yRadius:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn bezierPathWithRoundedRect_xRadius_yRadius(
             rect: NSRect,
             x_radius: CGFloat,
@@ -149,14 +149,14 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-graphics")]
         #[cfg(target_vendor = "apple")]
-        #[unsafe(method_family(none))]
         #[method_id(bezierPathWithCGPath:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn bezierPathWithCGPath(cg_path: &CGPath) -> Retained<NSBezierPath>;
 
         #[cfg(feature = "objc2-core-graphics")]
         #[cfg(target_vendor = "apple")]
-        #[unsafe(method_family(none))]
         #[method_id(CGPath)]
+        #[unsafe(method_family = none)]
         pub unsafe fn CGPath(&self) -> Retained<CGPath>;
 
         #[cfg(feature = "objc2-core-graphics")]
@@ -350,12 +350,12 @@ extern_methods!(
         #[method(setClip)]
         pub unsafe fn setClip(&self);
 
-        #[unsafe(method_family(none))]
         #[method_id(bezierPathByFlatteningPath)]
+        #[unsafe(method_family = none)]
         pub unsafe fn bezierPathByFlatteningPath(&self) -> Retained<NSBezierPath>;
 
-        #[unsafe(method_family(none))]
         #[method_id(bezierPathByReversingPath)]
+        #[unsafe(method_family = none)]
         pub unsafe fn bezierPathByReversingPath(&self) -> Retained<NSBezierPath>;
 
         #[method(transformUsingAffineTransform:)]
@@ -467,12 +467,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSBezierPath {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

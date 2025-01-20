@@ -68,23 +68,23 @@ extern_methods!(
         pub unsafe fn documentPickerMode(&self) -> UIDocumentPickerMode;
 
         #[deprecated = "Use enumeration based NSFileProviderExtension instead"]
-        #[unsafe(method_family(none))]
         #[method_id(originalURL)]
+        #[unsafe(method_family = none)]
         pub unsafe fn originalURL(&self) -> Option<Retained<NSURL>>;
 
         #[deprecated = "Use enumeration based NSFileProviderExtension instead"]
-        #[unsafe(method_family(none))]
         #[method_id(validTypes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn validTypes(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[deprecated = "Use enumeration based NSFileProviderExtension instead"]
-        #[unsafe(method_family(none))]
         #[method_id(providerIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn providerIdentifier(&self) -> Retained<NSString>;
 
         #[deprecated = "Use enumeration based NSFileProviderExtension instead"]
-        #[unsafe(method_family(none))]
         #[method_id(documentStorageURL)]
+        #[unsafe(method_family = none)]
         pub unsafe fn documentStorageURL(&self) -> Option<Retained<NSURL>>;
     }
 );
@@ -93,16 +93,16 @@ extern_methods!(
     /// Methods declared on superclass `UIViewController`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIDocumentPickerExtensionViewController {
-        #[unsafe(method_family(init))]
         #[method_id(initWithNibName:bundle:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -114,12 +114,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIDocumentPickerExtensionViewController {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

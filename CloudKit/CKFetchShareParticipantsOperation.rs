@@ -21,21 +21,21 @@ unsafe impl NSObjectProtocol for CKFetchShareParticipantsOperation {}
 extern_methods!(
     #[cfg(feature = "CKOperation")]
     unsafe impl CKFetchShareParticipantsOperation {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "CKUserIdentityLookupInfo")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithUserIdentityLookupInfos:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithUserIdentityLookupInfos(
             this: Allocated<Self>,
             user_identity_lookup_infos: &NSArray<CKUserIdentityLookupInfo>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKUserIdentityLookupInfo")]
-        #[unsafe(method_family(none))]
         #[method_id(userIdentityLookupInfos)]
+        #[unsafe(method_family = none)]
         pub unsafe fn userIdentityLookupInfos(
             &self,
         ) -> Option<Retained<NSArray<CKUserIdentityLookupInfo>>>;
@@ -152,8 +152,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CKOperation")]
     unsafe impl CKFetchShareParticipantsOperation {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

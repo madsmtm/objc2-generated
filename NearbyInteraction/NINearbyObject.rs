@@ -78,8 +78,8 @@ extern_methods!(
         /// Nearby interaction discovery token
         ///
         /// This discovery token will be equal to the token provided in the configuration with which the session was run.
-        #[unsafe(method_family(none))]
         #[method_id(discoveryToken)]
+        #[unsafe(method_family = none)]
         pub unsafe fn discoveryToken(&self) -> Retained<NIDiscoveryToken>;
 
         /// Distance to the nearby object in meters. If not available in this update, the value of this property will be equal to NINearbyObjectDistanceNotAvailable in Objective C, or nil in Swift.
@@ -97,12 +97,12 @@ extern_methods!(
         pub unsafe fn horizontalAngle(&self) -> c_float;
 
         /// Unavailable
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

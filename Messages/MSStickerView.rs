@@ -68,8 +68,8 @@ extern_methods!(
     unsafe impl MSStickerView {
         #[cfg(all(feature = "MSSticker", feature = "objc2-core-foundation"))]
         /// Initializes a MSStickerView with a frame and a MSSticker conforming object to display.
-        #[unsafe(method_family(init))]
         #[method_id(initWithFrame:sticker:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame_sticker(
             this: Allocated<Self>,
             frame: CGRect,
@@ -82,8 +82,8 @@ extern_methods!(
         /// Set this property to nil to remove the current sticker. Setting the
         /// sticker property does not change the size of a MSStickerView. Call sizeToFit to
         /// adjust the size of the view to match the sticker.
-        #[unsafe(method_family(none))]
         #[method_id(sticker)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sticker(&self) -> Option<Retained<MSSticker>>;
 
         #[cfg(feature = "MSSticker")]
@@ -116,12 +116,12 @@ extern_methods!(
     #[cfg(feature = "objc2-ui-kit")]
     unsafe impl MSStickerView {
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithFrame:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -133,12 +133,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2-ui-kit")]
     unsafe impl MSStickerView {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

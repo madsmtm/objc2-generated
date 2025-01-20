@@ -40,8 +40,8 @@ extern_methods!(
         /// Returns an HKQuantity for the specified lead with a unit compatible with [HKUnit voltUnit].
         ///
         /// Parameter `lead`: The HKElectrocardiogramLead for which voltage quantity will be returned.
-        #[unsafe(method_family(none))]
         #[method_id(quantityForLead:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn quantityForLead(
             &self,
             lead: HKElectrocardiogramLead,
@@ -52,12 +52,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKElectrocardiogramVoltageMeasurement {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -95,8 +95,8 @@ extern_methods!(
         /// Parameter `electrocardiogram`: The sample for which the lead data will be returned.
         ///
         /// Parameter `dataHandler`: The block to invoke with results from the query. It will be called once for each voltage measurement. Call [query stop] to stop enumeration, if desired.
-        #[unsafe(method_family(init))]
         #[method_id(initWithElectrocardiogram:dataHandler:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithElectrocardiogram_dataHandler(
             this: Allocated<Self>,
             electrocardiogram: &HKElectrocardiogram,
@@ -116,8 +116,8 @@ extern_methods!(
     /// Methods declared on superclass `HKQuery`
     #[cfg(feature = "HKQuery")]
     unsafe impl HKElectrocardiogramQuery {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -126,8 +126,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "HKQuery")]
     unsafe impl HKElectrocardiogramQuery {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

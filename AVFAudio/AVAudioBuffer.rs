@@ -32,8 +32,8 @@ extern_methods!(
     unsafe impl AVAudioBuffer {
         #[cfg(feature = "AVAudioFormat")]
         /// The format of the audio in the buffer.
-        #[unsafe(method_family(none))]
         #[method_id(format)]
+        #[unsafe(method_family = none)]
         pub unsafe fn format(&self) -> Retained<AVAudioFormat>;
 
         #[cfg(feature = "objc2-core-audio-types")]
@@ -63,12 +63,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAudioBuffer {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -108,8 +108,8 @@ extern_methods!(
         /// - if the format has zero bytes per frame (format.streamDescription->mBytesPerFrame == 0)
         /// - if the buffer byte capacity (frameCapacity * format.streamDescription->mBytesPerFrame)
         /// cannot be represented by an uint32_t
-        #[unsafe(method_family(init))]
         #[method_id(initWithPCMFormat:frameCapacity:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithPCMFormat_frameCapacity(
             this: Allocated<Self>,
             format: &AVAudioFormat,
@@ -145,8 +145,8 @@ extern_methods!(
         ///
         /// The AudioBufferList passed to the deallocator is identical to the one which was passed to the initializer,
         /// in terms of the buffer count, and each buffer's mData and mDataByteSize members.
-        #[unsafe(method_family(init))]
         #[method_id(initWithPCMFormat:bufferListNoCopy:deallocator:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithPCMFormat_bufferListNoCopy_deallocator(
             this: Allocated<Self>,
             format: &AVAudioFormat,
@@ -220,12 +220,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAudioPCMBuffer {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -260,8 +260,8 @@ extern_methods!(
         /// The maximum packet size can be obtained from the maximumOutputPacketSize property of an AVAudioConverter configured for encoding this format.
         ///
         /// An exception is raised if the format is PCM.
-        #[unsafe(method_family(init))]
         #[method_id(initWithFormat:packetCapacity:maximumPacketSize:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFormat_packetCapacity_maximumPacketSize(
             this: Allocated<Self>,
             format: &AVAudioFormat,
@@ -277,8 +277,8 @@ extern_methods!(
         /// Parameter `packetCapacity`: The capacity of the buffer in packets.
         ///
         /// This fails if the format is PCM or if the format has variable bytes per packet (format.streamDescription->mBytesPerPacket == 0).
-        #[unsafe(method_family(init))]
         #[method_id(initWithFormat:packetCapacity:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFormat_packetCapacity(
             this: Allocated<Self>,
             format: &AVAudioFormat,
@@ -337,12 +337,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAudioCompressedBuffer {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

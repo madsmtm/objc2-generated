@@ -30,12 +30,12 @@ unsafe impl NSSecureCoding for NSShadow {}
 
 extern_methods!(
     unsafe impl NSShadow {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -59,8 +59,8 @@ extern_methods!(
         #[method(setShadowBlurRadius:)]
         pub unsafe fn setShadowBlurRadius(&self, shadow_blur_radius: CGFloat);
 
-        #[unsafe(method_family(none))]
         #[method_id(shadowColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shadowColor(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`shadowColor`][Self::shadowColor].
@@ -72,8 +72,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSShadow {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

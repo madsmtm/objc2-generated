@@ -63,25 +63,25 @@ unsafe impl NSObjectProtocol for VNGeneratePersonSegmentationRequest {}
 extern_methods!(
     #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
     unsafe impl VNGeneratePersonSegmentationRequest {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithCompletionHandler:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
-        #[unsafe(method_family(init))]
         #[method_id(initWithFrameAnalysisSpacing:completionHandler:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFrameAnalysisSpacing_completionHandler(
             this: Allocated<Self>,
             frame_analysis_spacing: CMTime,
@@ -100,8 +100,8 @@ extern_methods!(
         );
 
         /// Obtain the collection of supported output pixel formats for the configured request.
-        #[unsafe(method_family(none))]
         #[method_id(supportedOutputPixelFormatsAndReturnError:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn supportedOutputPixelFormatsAndReturnError(
             &self,
         ) -> Result<Retained<NSArray<NSNumber>>, Retained<NSError>>;
@@ -115,8 +115,8 @@ extern_methods!(
         pub unsafe fn setOutputPixelFormat(&self, output_pixel_format: OSType);
 
         #[cfg(feature = "VNObservation")]
-        #[unsafe(method_family(none))]
         #[method_id(results)]
+        #[unsafe(method_family = none)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNPixelBufferObservation>>>;
     }
 );

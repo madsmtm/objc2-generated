@@ -46,8 +46,8 @@ unsafe impl NSObjectProtocol for NSEntityMapping {}
 
 extern_methods!(
     unsafe impl NSEntityMapping {
-        #[unsafe(method_family(none))]
         #[method_id(name)]
+        #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
@@ -61,16 +61,16 @@ extern_methods!(
         #[method(setMappingType:)]
         pub unsafe fn setMappingType(&self, mapping_type: NSEntityMappingType);
 
-        #[unsafe(method_family(none))]
         #[method_id(sourceEntityName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sourceEntityName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`sourceEntityName`][Self::sourceEntityName].
         #[method(setSourceEntityName:)]
         pub unsafe fn setSourceEntityName(&self, source_entity_name: Option<&NSString>);
 
-        #[unsafe(method_family(none))]
         #[method_id(sourceEntityVersionHash)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sourceEntityVersionHash(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`sourceEntityVersionHash`][Self::sourceEntityVersionHash].
@@ -80,16 +80,16 @@ extern_methods!(
             source_entity_version_hash: Option<&NSData>,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(destinationEntityName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn destinationEntityName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`destinationEntityName`][Self::destinationEntityName].
         #[method(setDestinationEntityName:)]
         pub unsafe fn setDestinationEntityName(&self, destination_entity_name: Option<&NSString>);
 
-        #[unsafe(method_family(none))]
         #[method_id(destinationEntityVersionHash)]
+        #[unsafe(method_family = none)]
         pub unsafe fn destinationEntityVersionHash(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`destinationEntityVersionHash`][Self::destinationEntityVersionHash].
@@ -100,8 +100,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSPropertyMapping")]
-        #[unsafe(method_family(none))]
         #[method_id(attributeMappings)]
+        #[unsafe(method_family = none)]
         pub unsafe fn attributeMappings(&self) -> Option<Retained<NSArray<NSPropertyMapping>>>;
 
         #[cfg(feature = "NSPropertyMapping")]
@@ -113,8 +113,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSPropertyMapping")]
-        #[unsafe(method_family(none))]
         #[method_id(relationshipMappings)]
+        #[unsafe(method_family = none)]
         pub unsafe fn relationshipMappings(&self) -> Option<Retained<NSArray<NSPropertyMapping>>>;
 
         #[cfg(feature = "NSPropertyMapping")]
@@ -125,24 +125,24 @@ extern_methods!(
             relationship_mappings: Option<&NSArray<NSPropertyMapping>>,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(sourceExpression)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sourceExpression(&self) -> Option<Retained<NSExpression>>;
 
         /// Setter for [`sourceExpression`][Self::sourceExpression].
         #[method(setSourceExpression:)]
         pub unsafe fn setSourceExpression(&self, source_expression: Option<&NSExpression>);
 
-        #[unsafe(method_family(none))]
         #[method_id(userInfo)]
+        #[unsafe(method_family = none)]
         pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary>>;
 
         /// Setter for [`userInfo`][Self::userInfo].
         #[method(setUserInfo:)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary>);
 
-        #[unsafe(method_family(none))]
         #[method_id(entityMigrationPolicyClassName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn entityMigrationPolicyClassName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`entityMigrationPolicyClassName`][Self::entityMigrationPolicyClassName].
@@ -157,12 +157,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSEntityMapping {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

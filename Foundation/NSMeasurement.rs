@@ -31,19 +31,19 @@ unsafe impl<UnitType: ?Sized + NSSecureCoding> NSSecureCoding for NSMeasurement<
 
 extern_methods!(
     unsafe impl<UnitType: Message> NSMeasurement<UnitType> {
-        #[unsafe(method_family(none))]
         #[method_id(unit)]
+        #[unsafe(method_family = none)]
         pub unsafe fn unit(&self) -> Retained<UnitType>;
 
         #[method(doubleValue)]
         pub unsafe fn doubleValue(&self) -> c_double;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithDoubleValue:unit:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDoubleValue_unit(
             this: Allocated<Self>,
             double_value: c_double,
@@ -55,22 +55,22 @@ extern_methods!(
         pub unsafe fn canBeConvertedToUnit(&self, unit: &NSUnit) -> bool;
 
         #[cfg(feature = "NSUnit")]
-        #[unsafe(method_family(none))]
         #[method_id(measurementByConvertingToUnit:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn measurementByConvertingToUnit(
             &self,
             unit: &NSUnit,
         ) -> Retained<NSMeasurement>;
 
-        #[unsafe(method_family(none))]
         #[method_id(measurementByAddingMeasurement:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn measurementByAddingMeasurement(
             &self,
             measurement: &NSMeasurement<UnitType>,
         ) -> Retained<NSMeasurement<UnitType>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(measurementBySubtractingMeasurement:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn measurementBySubtractingMeasurement(
             &self,
             measurement: &NSMeasurement<UnitType>,
@@ -81,8 +81,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<UnitType: Message> NSMeasurement<UnitType> {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

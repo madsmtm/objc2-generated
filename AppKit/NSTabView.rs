@@ -162,13 +162,13 @@ extern_methods!(
         pub unsafe fn selectPreviousTabViewItem(&self, sender: Option<&AnyObject>);
 
         #[cfg(feature = "NSTabViewItem")]
-        #[unsafe(method_family(none))]
         #[method_id(selectedTabViewItem)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectedTabViewItem(&self) -> Option<Retained<NSTabViewItem>>;
 
         #[cfg(feature = "NSFont")]
-        #[unsafe(method_family(none))]
         #[method_id(font)]
+        #[unsafe(method_family = none)]
         pub unsafe fn font(&self) -> Retained<NSFont>;
 
         #[cfg(feature = "NSFont")]
@@ -198,8 +198,8 @@ extern_methods!(
         pub unsafe fn setTabViewBorderType(&self, tab_view_border_type: NSTabViewBorderType);
 
         #[cfg(feature = "NSTabViewItem")]
-        #[unsafe(method_family(none))]
         #[method_id(tabViewItems)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tabViewItems(&self) -> Retained<NSArray<NSTabViewItem>>;
 
         #[cfg(feature = "NSTabViewItem")]
@@ -249,8 +249,8 @@ extern_methods!(
         #[method(removeTabViewItem:)]
         pub unsafe fn removeTabViewItem(&self, tab_view_item: &NSTabViewItem);
 
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSTabViewDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -259,8 +259,8 @@ extern_methods!(
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSTabViewDelegate>>);
 
         #[cfg(feature = "NSTabViewItem")]
-        #[unsafe(method_family(none))]
         #[method_id(tabViewItemAtPoint:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tabViewItemAtPoint(&self, point: NSPoint) -> Option<Retained<NSTabViewItem>>;
 
         #[method(contentRect)]
@@ -274,8 +274,8 @@ extern_methods!(
         pub unsafe fn indexOfTabViewItem(&self, tab_view_item: &NSTabViewItem) -> NSInteger;
 
         #[cfg(feature = "NSTabViewItem")]
-        #[unsafe(method_family(none))]
         #[method_id(tabViewItemAtIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tabViewItemAtIndex(&self, index: NSInteger) -> Retained<NSTabViewItem>;
 
         #[method(indexOfTabViewItemWithIdentifier:)]
@@ -298,12 +298,12 @@ extern_methods!(
     /// Methods declared on superclass `NSView`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSTabView {
-        #[unsafe(method_family(init))]
         #[method_id(initWithFrame:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -315,8 +315,8 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSTabView {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -325,8 +325,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSTabView {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

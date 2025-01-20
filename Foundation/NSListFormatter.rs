@@ -32,8 +32,8 @@ extern_methods!(
     #[cfg(feature = "NSFormatter")]
     unsafe impl NSListFormatter {
         #[cfg(feature = "NSLocale")]
-        #[unsafe(method_family(none))]
         #[method_id(locale)]
+        #[unsafe(method_family = none)]
         pub unsafe fn locale(&self) -> Retained<NSLocale>;
 
         #[cfg(feature = "NSLocale")]
@@ -41,8 +41,8 @@ extern_methods!(
         #[method(setLocale:)]
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
 
-        #[unsafe(method_family(none))]
         #[method_id(itemFormatter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn itemFormatter(&self) -> Option<Retained<NSFormatter>>;
 
         /// Setter for [`itemFormatter`][Self::itemFormatter].
@@ -50,20 +50,20 @@ extern_methods!(
         pub unsafe fn setItemFormatter(&self, item_formatter: Option<&NSFormatter>);
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(localizedStringByJoiningStrings:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn localizedStringByJoiningStrings(
             strings: &NSArray<NSString>,
         ) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(stringFromItems:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stringFromItems(&self, items: &NSArray) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(stringForObjectValue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stringForObjectValue(
             &self,
             obj: Option<&AnyObject>,
@@ -75,12 +75,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSFormatter")]
     unsafe impl NSListFormatter {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

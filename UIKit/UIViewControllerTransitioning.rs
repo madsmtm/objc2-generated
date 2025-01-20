@@ -41,8 +41,8 @@ extern_protocol!(
         NSObjectProtocol + MainThreadOnly
     {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[unsafe(method_family(none))]
         #[method_id(containerView)]
+        #[unsafe(method_family = none)]
         unsafe fn containerView(&self) -> Retained<UIView>;
 
         #[method(isAnimated)]
@@ -79,8 +79,8 @@ extern_protocol!(
             feature = "UIViewController",
             feature = "UIViewControllerTransitionCoordinator"
         ))]
-        #[unsafe(method_family(none))]
         #[method_id(viewControllerForKey:)]
+        #[unsafe(method_family = none)]
         unsafe fn viewControllerForKey(
             &self,
             key: &UITransitionContextViewControllerKey,
@@ -91,8 +91,8 @@ extern_protocol!(
             feature = "UIView",
             feature = "UIViewControllerTransitionCoordinator"
         ))]
-        #[unsafe(method_family(none))]
         #[method_id(viewForKey:)]
+        #[unsafe(method_family = none)]
         unsafe fn viewForKey(&self, key: &UITransitionContextViewKey) -> Option<Retained<UIView>>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -140,8 +140,8 @@ extern_protocol!(
         /// UIViewPropertyAnimator. It is expected that this method will return the same
         /// instance for the life of a transition.
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(interruptibleAnimatorForTransition:)]
+        #[unsafe(method_family = none)]
         unsafe fn interruptibleAnimatorForTransition(
             &self,
             transition_context: &ProtocolObject<dyn UIViewControllerContextTransitioning>,
@@ -192,8 +192,8 @@ extern_protocol!(
     {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(animationControllerForPresentedController:presentingController:sourceController:)]
+        #[unsafe(method_family = none)]
         unsafe fn animationControllerForPresentedController_presentingController_sourceController(
             &self,
             presented: &UIViewController,
@@ -203,24 +203,24 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(animationControllerForDismissedController:)]
+        #[unsafe(method_family = none)]
         unsafe fn animationControllerForDismissedController(
             &self,
             dismissed: &UIViewController,
         ) -> Option<Retained<ProtocolObject<dyn UIViewControllerAnimatedTransitioning>>>;
 
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(interactionControllerForPresentation:)]
+        #[unsafe(method_family = none)]
         unsafe fn interactionControllerForPresentation(
             &self,
             animator: &ProtocolObject<dyn UIViewControllerAnimatedTransitioning>,
         ) -> Option<Retained<ProtocolObject<dyn UIViewControllerInteractiveTransitioning>>>;
 
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(interactionControllerForDismissal:)]
+        #[unsafe(method_family = none)]
         unsafe fn interactionControllerForDismissal(
             &self,
             animator: &ProtocolObject<dyn UIViewControllerAnimatedTransitioning>,
@@ -232,8 +232,8 @@ extern_protocol!(
             feature = "UIViewController"
         ))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(presentationControllerForPresentedViewController:presentingViewController:sourceViewController:)]
+        #[unsafe(method_family = none)]
         unsafe fn presentationControllerForPresentedViewController_presentingViewController_sourceViewController(
             &self,
             presented: &UIViewController,
@@ -299,8 +299,8 @@ extern_methods!(
         /// For an interruptible animator, one can specify a different timing curve provider to use when the
         /// transition is continued. This property is ignored if the animated transitioning object does not
         /// vend an interruptible animator.
-        #[unsafe(method_family(none))]
         #[method_id(timingCurve)]
+        #[unsafe(method_family = none)]
         pub unsafe fn timingCurve(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UITimingCurveProvider>>>;
@@ -344,12 +344,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIPercentDrivenInteractiveTransition {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

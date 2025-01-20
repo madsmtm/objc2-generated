@@ -44,38 +44,38 @@ unsafe impl NSObjectProtocol for AMAction {}
 
 extern_methods!(
     unsafe impl AMAction {
-        #[unsafe(method_family(init))]
         #[method_id(initWithDefinition:fromArchive:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDefinition_fromArchive(
             this: Allocated<Self>,
             dict: Option<&NSDictionary<NSString, AnyObject>>,
             archived: bool,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithContentsOfURL:error:_)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL_error(
             this: Allocated<Self>,
             file_url: &NSURL,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(name)]
+        #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[method(ignoresInput)]
         pub unsafe fn ignoresInput(&self) -> bool;
 
-        #[unsafe(method_family(none))]
         #[method_id(selectedInputType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectedInputType(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`selectedInputType`][Self::selectedInputType].
         #[method(setSelectedInputType:)]
         pub unsafe fn setSelectedInputType(&self, selected_input_type: Option<&NSString>);
 
-        #[unsafe(method_family(none))]
         #[method_id(selectedOutputType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectedOutputType(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`selectedOutputType`][Self::selectedOutputType].
@@ -92,8 +92,8 @@ extern_methods!(
         pub unsafe fn setProgressValue(&self, progress_value: CGFloat);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(runWithInput:fromAction:error:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn runWithInput_fromAction_error(
             &self,
             input: Option<&AnyObject>,
@@ -101,8 +101,8 @@ extern_methods!(
             error_info: Option<&mut Option<Retained<NSDictionary<NSString, AnyObject>>>>,
         ) -> Option<Retained<AnyObject>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(runWithInput:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn runWithInput_error(
             &self,
             input: Option<&AnyObject>,
@@ -124,8 +124,8 @@ extern_methods!(
         #[method(finishRunningWithError:)]
         pub unsafe fn finishRunningWithError(&self, error: Option<&NSError>);
 
-        #[unsafe(method_family(none))]
         #[method_id(output)]
+        #[unsafe(method_family = none)]
         pub unsafe fn output(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`output`][Self::output].
@@ -167,12 +167,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AMAction {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -130,8 +130,8 @@ extern_methods!(
         ///
         /// On some platforms, only samples with end dates newer than the value returned by earliestPermittedSampleDate
         /// may be saved or retrieved.
-        #[unsafe(method_family(none))]
         #[method_id(earliestPermittedSampleDate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn earliestPermittedSampleDate(&self) -> Retained<NSDate>;
 
         #[cfg(all(feature = "HKObject", feature = "block2"))]
@@ -245,16 +245,16 @@ extern_methods!(
         );
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(dateOfBirthWithError:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dateOfBirthWithError(&self) -> Result<Retained<NSDate>, Retained<NSError>>;
 
         /// Returns the user's date of birth in the Gregorian calendar.
         ///
         /// Before calling this method, the application should request authorization to access objects with the
         /// HKCharacteristicType identified by HKCharacteristicTypeIdentifierDateOfBirth.
-        #[unsafe(method_family(none))]
         #[method_id(dateOfBirthComponentsWithError:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dateOfBirthComponentsWithError(
             &self,
         ) -> Result<Retained<NSDateComponents>, Retained<NSError>>;
@@ -264,8 +264,8 @@ extern_methods!(
         ///
         /// Before calling this method, the application should request authorization to access objects with the
         /// HKCharacteristicType identified by HKCharacteristicTypeIdentifierBiologicalSex.
-        #[unsafe(method_family(none))]
         #[method_id(biologicalSexWithError:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn biologicalSexWithError(
             &self,
         ) -> Result<Retained<HKBiologicalSexObject>, Retained<NSError>>;
@@ -275,8 +275,8 @@ extern_methods!(
         ///
         /// Before calling this method, the application should request authorization to access objects with the
         /// HKCharacteristicType identified by HKCharacteristicTypeIdentifierBloodType.
-        #[unsafe(method_family(none))]
         #[method_id(bloodTypeWithError:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn bloodTypeWithError(
             &self,
         ) -> Result<Retained<HKBloodTypeObject>, Retained<NSError>>;
@@ -286,8 +286,8 @@ extern_methods!(
         ///
         /// Before calling this method, the application should request authorization to access objects with the
         /// HKCharacteristicType identified by HKCharacteristicTypeIdentifierFitzpatrickSkinType.
-        #[unsafe(method_family(none))]
         #[method_id(fitzpatrickSkinTypeWithError:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fitzpatrickSkinTypeWithError(
             &self,
         ) -> Result<Retained<HKFitzpatrickSkinTypeObject>, Retained<NSError>>;
@@ -297,8 +297,8 @@ extern_methods!(
         ///
         /// Before calling this method, the application should request authorization to access objects with the
         /// HKCharacteristicType identified by HKCharacteristicTypeIdentifierWheelchairUse.
-        #[unsafe(method_family(none))]
         #[method_id(wheelchairUseWithError:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn wheelchairUseWithError(
             &self,
         ) -> Result<Retained<HKWheelchairUseObject>, Retained<NSError>>;
@@ -308,8 +308,8 @@ extern_methods!(
         ///
         /// Before calling this method, the application should request authorization to access objects with the
         /// HKCharacteristicType identified by HKCharacteristicTypeIdentifierActivityMoveMode.
-        #[unsafe(method_family(none))]
         #[method_id(activityMoveModeWithError:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn activityMoveModeWithError(
             &self,
         ) -> Result<Retained<HKActivityMoveModeObject>, Retained<NSError>>;
@@ -319,12 +319,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKHealthStore {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

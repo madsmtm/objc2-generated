@@ -25,35 +25,35 @@ unsafe impl NSObjectProtocol for WKApplication {}
 
 extern_methods!(
     unsafe impl WKApplication {
-        #[unsafe(method_family(none))]
         #[method_id(sharedApplication)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sharedApplication(mtm: MainThreadMarker) -> Retained<WKApplication>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(&self) -> Retained<Self>;
 
         #[method(openSystemURL:)]
         pub unsafe fn openSystemURL(&self, url: &NSURL);
 
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn WKApplicationDelegate>>>;
 
         #[cfg(feature = "WKInterfaceController")]
-        #[unsafe(method_family(none))]
         #[method_id(rootInterfaceController)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rootInterfaceController(&self) -> Option<Retained<WKInterfaceController>>;
 
         #[cfg(feature = "WKInterfaceController")]
-        #[unsafe(method_family(none))]
         #[method_id(visibleInterfaceController)]
+        #[unsafe(method_family = none)]
         pub unsafe fn visibleInterfaceController(&self) -> Option<Retained<WKInterfaceController>>;
 
         #[cfg(feature = "WKExtension")]
@@ -83,8 +83,8 @@ extern_methods!(
         pub unsafe fn isRegisteredForRemoteNotifications(&self) -> bool;
 
         #[cfg(feature = "objc2-ui-kit")]
-        #[unsafe(method_family(none))]
         #[method_id(globalTintColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn globalTintColor(&self) -> Retained<UIColor>;
     }
 );
@@ -92,8 +92,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKApplication {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new_class(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

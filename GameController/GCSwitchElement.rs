@@ -16,8 +16,8 @@ extern_protocol!(
     pub unsafe trait GCSwitchElement: GCPhysicalInputElement {
         #[cfg(feature = "GCSwitchPositionInput")]
         /// Get the input containing the absolute position of the switch.
-        #[unsafe(method_family(none))]
         #[method_id(positionInput)]
+        #[unsafe(method_family = none)]
         unsafe fn positionInput(&self) -> Retained<ProtocolObject<dyn GCSwitchPositionInput>>;
     }
 );

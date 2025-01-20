@@ -23,17 +23,17 @@ unsafe impl NSObjectProtocol for UIScreenshotService {}
 
 extern_methods!(
     unsafe impl UIScreenshotService {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// Assign a delegate in order to send PDF data to accompany the screenshot taken by the user
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIScreenshotServiceDelegate>>>;
@@ -52,8 +52,8 @@ extern_methods!(
             feature = "UIWindowScene"
         ))]
         /// The window scene associated with the screenshot service
-        #[unsafe(method_family(none))]
         #[method_id(windowScene)]
+        #[unsafe(method_family = none)]
         pub unsafe fn windowScene(&self) -> Option<Retained<UIWindowScene>>;
     }
 );
@@ -69,8 +69,8 @@ extern_methods!(
         /// The screenshot object associated with the scene
         ///
         /// This is non-null if the screenshot service is available for this window scene
-        #[unsafe(method_family(none))]
         #[method_id(screenshotService)]
+        #[unsafe(method_family = none)]
         pub unsafe fn screenshotService(&self) -> Option<Retained<UIScreenshotService>>;
     }
 );

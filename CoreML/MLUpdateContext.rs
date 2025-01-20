@@ -20,13 +20,13 @@ unsafe impl NSObjectProtocol for MLUpdateContext {}
 extern_methods!(
     unsafe impl MLUpdateContext {
         #[cfg(all(feature = "MLTask", feature = "MLUpdateTask"))]
-        #[unsafe(method_family(none))]
         #[method_id(task)]
+        #[unsafe(method_family = none)]
         pub unsafe fn task(&self) -> Retained<MLUpdateTask>;
 
         #[cfg(all(feature = "MLModel", feature = "MLWritable"))]
-        #[unsafe(method_family(none))]
         #[method_id(model)]
+        #[unsafe(method_family = none)]
         pub unsafe fn model(&self) -> Retained<MLModel>;
 
         #[cfg(feature = "MLUpdateProgressEvent")]
@@ -34,13 +34,13 @@ extern_methods!(
         pub unsafe fn event(&self) -> MLUpdateProgressEvent;
 
         #[cfg(all(feature = "MLKey", feature = "MLMetricKey"))]
-        #[unsafe(method_family(none))]
         #[method_id(metrics)]
+        #[unsafe(method_family = none)]
         pub unsafe fn metrics(&self) -> Retained<NSDictionary<MLMetricKey, AnyObject>>;
 
         #[cfg(all(feature = "MLKey", feature = "MLParameterKey"))]
-        #[unsafe(method_family(none))]
         #[method_id(parameters)]
+        #[unsafe(method_family = none)]
         pub unsafe fn parameters(&self) -> Retained<NSDictionary<MLParameterKey, AnyObject>>;
     }
 );
@@ -48,12 +48,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MLUpdateContext {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

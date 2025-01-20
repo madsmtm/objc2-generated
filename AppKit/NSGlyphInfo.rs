@@ -32,8 +32,8 @@ extern_methods!(
     unsafe impl NSGlyphInfo {
         #[cfg(all(feature = "NSFont", feature = "objc2-core-graphics"))]
         #[cfg(target_vendor = "apple")]
-        #[unsafe(method_family(none))]
         #[method_id(glyphInfoWithCGGlyph:forFont:baseString:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn glyphInfoWithCGGlyph_forFont_baseString(
             glyph: CGGlyph,
             font: &NSFont,
@@ -45,8 +45,8 @@ extern_methods!(
         #[method(glyphID)]
         pub unsafe fn glyphID(&self) -> CGGlyph;
 
-        #[unsafe(method_family(none))]
         #[method_id(baseString)]
+        #[unsafe(method_family = none)]
         pub unsafe fn baseString(&self) -> Retained<NSString>;
     }
 );
@@ -54,12 +54,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSGlyphInfo {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -96,8 +96,8 @@ extern_methods!(
     /// NSGlyphInfo_Deprecated
     unsafe impl NSGlyphInfo {
         #[cfg(feature = "NSFont")]
-        #[unsafe(method_family(none))]
         #[method_id(glyphInfoWithGlyphName:forFont:baseString:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn glyphInfoWithGlyphName_forFont_baseString(
             glyph_name: &NSString,
             font: &NSFont,
@@ -105,24 +105,24 @@ extern_methods!(
         ) -> Option<Retained<NSGlyphInfo>>;
 
         #[cfg(feature = "NSFont")]
-        #[unsafe(method_family(none))]
         #[method_id(glyphInfoWithGlyph:forFont:baseString:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn glyphInfoWithGlyph_forFont_baseString(
             glyph: NSGlyph,
             font: &NSFont,
             string: &NSString,
         ) -> Option<Retained<NSGlyphInfo>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(glyphInfoWithCharacterIdentifier:collection:baseString:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn glyphInfoWithCharacterIdentifier_collection_baseString(
             cid: NSUInteger,
             character_collection: NSCharacterCollection,
             string: &NSString,
         ) -> Option<Retained<NSGlyphInfo>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(glyphName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn glyphName(&self) -> Option<Retained<NSString>>;
 
         #[method(characterIdentifier)]

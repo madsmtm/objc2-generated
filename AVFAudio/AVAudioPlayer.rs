@@ -18,30 +18,30 @@ unsafe impl NSObjectProtocol for AVAudioPlayer {}
 
 extern_methods!(
     unsafe impl AVAudioPlayer {
-        #[unsafe(method_family(init))]
         #[method_id(initWithContentsOfURL:error:_)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL_error(
             this: Allocated<Self>,
             url: &NSURL,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithData:error:_)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithData_error(
             this: Allocated<Self>,
             data: &NSData,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithContentsOfURL:fileTypeHint:error:_)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL_fileTypeHint_error(
             this: Allocated<Self>,
             url: &NSURL,
             uti_string: Option<&NSString>,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithData:fileTypeHint:error:_)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithData_fileTypeHint_error(
             this: Allocated<Self>,
             data: &NSData,
@@ -72,16 +72,16 @@ extern_methods!(
         #[method(duration)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
-        #[unsafe(method_family(none))]
         #[method_id(currentDevice)]
+        #[unsafe(method_family = none)]
         pub unsafe fn currentDevice(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`currentDevice`][Self::currentDevice].
         #[method(setCurrentDevice:)]
         pub unsafe fn setCurrentDevice(&self, current_device: Option<&NSString>);
 
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVAudioPlayerDelegate>>>;
@@ -94,12 +94,12 @@ extern_methods!(
             delegate: Option<&ProtocolObject<dyn AVAudioPlayerDelegate>>,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(url)]
+        #[unsafe(method_family = none)]
         pub unsafe fn url(&self) -> Option<Retained<NSURL>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(data)]
+        #[unsafe(method_family = none)]
         pub unsafe fn data(&self) -> Option<Retained<NSData>>;
 
         #[method(pan)]
@@ -150,13 +150,13 @@ extern_methods!(
         #[method(setNumberOfLoops:)]
         pub unsafe fn setNumberOfLoops(&self, number_of_loops: NSInteger);
 
-        #[unsafe(method_family(none))]
         #[method_id(settings)]
+        #[unsafe(method_family = none)]
         pub unsafe fn settings(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[cfg(feature = "AVAudioFormat")]
-        #[unsafe(method_family(none))]
         #[method_id(format)]
+        #[unsafe(method_family = none)]
         pub unsafe fn format(&self) -> Retained<AVAudioFormat>;
 
         #[method(isMeteringEnabled)]
@@ -176,8 +176,8 @@ extern_methods!(
         pub unsafe fn averagePowerForChannel(&self, channel_number: NSUInteger) -> c_float;
 
         #[cfg(feature = "AVAudioSessionRoute")]
-        #[unsafe(method_family(none))]
         #[method_id(channelAssignments)]
+        #[unsafe(method_family = none)]
         pub unsafe fn channelAssignments(
             &self,
         ) -> Option<Retained<NSArray<AVAudioSessionChannelDescription>>>;
@@ -195,12 +195,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAudioPlayer {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

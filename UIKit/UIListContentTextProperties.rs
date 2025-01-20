@@ -79,8 +79,8 @@ extern_methods!(
     unsafe impl UIListContentTextProperties {
         #[cfg(feature = "UIFont")]
         /// The font used for the text.
-        #[unsafe(method_family(none))]
         #[method_id(font)]
+        #[unsafe(method_family = none)]
         pub unsafe fn font(&self) -> Retained<UIFont>;
 
         #[cfg(feature = "UIFont")]
@@ -90,8 +90,8 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         /// The color of the text.
-        #[unsafe(method_family(none))]
         #[method_id(color)]
+        #[unsafe(method_family = none)]
         pub unsafe fn color(&self) -> Retained<UIColor>;
 
         #[cfg(feature = "UIColor")]
@@ -122,8 +122,8 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         /// Returns the resolved color, based on the `color` and `colorTransformer`.
-        #[unsafe(method_family(none))]
         #[method_id(resolvedColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resolvedColor(&self) -> Retained<UIColor>;
 
         /// The alignment for the text.
@@ -216,12 +216,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIListContentTextProperties {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

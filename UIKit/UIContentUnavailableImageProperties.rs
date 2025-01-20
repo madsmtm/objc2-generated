@@ -36,8 +36,8 @@ extern_methods!(
             feature = "UIImageSymbolConfiguration"
         ))]
         /// The symbol configuration to use.
-        #[unsafe(method_family(none))]
         #[method_id(preferredSymbolConfiguration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preferredSymbolConfiguration(
             &self,
         ) -> Option<Retained<UIImageSymbolConfiguration>>;
@@ -55,8 +55,8 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         /// The tint color to apply to the image view. Nil will use the image view's normal inherited tint color.
-        #[unsafe(method_family(none))]
         #[method_id(tintColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -104,12 +104,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIContentUnavailableImageProperties {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

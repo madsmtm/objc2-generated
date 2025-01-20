@@ -95,8 +95,8 @@ extern_methods!(
         /// Returns: A pointer to the newly initialized object. This will fail, returning
         /// nil if the device is not supported. Devices must be
         /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
-        #[unsafe(method_family(init))]
         #[method_id(initWithDevice:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -297,8 +297,8 @@ extern_methods!(
         /// This influences how the destination image is sized and how
         /// the offset into the source image is set.  It is used by the
         /// -encode methods that return a MPSImage from the left hand side.
-        #[unsafe(method_family(none))]
         #[method_id(padding)]
+        #[unsafe(method_family = none)]
         pub unsafe fn padding(&self) -> Retained<ProtocolObject<dyn MPSNNPadding>>;
 
         #[cfg(feature = "MPSNeuralNetworkTypes")]
@@ -310,8 +310,8 @@ extern_methods!(
         /// Method to allocate the result image for -encodeToCommandBuffer:sourceImage:
         ///
         /// Default: MPSTemporaryImage.defaultAllocator
-        #[unsafe(method_family(none))]
         #[method_id(destinationImageAllocator)]
+        #[unsafe(method_family = none)]
         pub unsafe fn destinationImageAllocator(
             &self,
         ) -> Retained<ProtocolObject<dyn MPSImageAllocator>>;
@@ -337,8 +337,8 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:device:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -454,8 +454,8 @@ extern_methods!(
         /// The offset property will be adjusted to reflect the offset used during the encode.
         /// The returned image will be automatically released when the command buffer completes. If you want to
         /// keep it around for longer, retain the image. (ARC will do this for you if you use it later.)
-        #[unsafe(method_family(none))]
         #[method_id(encodeToCommandBuffer:sourceImage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceImage(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -487,8 +487,8 @@ extern_methods!(
         /// The offset property will be adjusted to reflect the offset used during the encode.
         /// The returned image will be automatically released when the command buffer completes. If you want to
         /// keep it around for longer, retain the image. (ARC will do this for you if you use it later.)
-        #[unsafe(method_family(none))]
         #[method_id(encodeToCommandBuffer:sourceImage:destinationState:destinationStateIsTemporary:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceImage_destinationState_destinationStateIsTemporary(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -520,8 +520,8 @@ extern_methods!(
         /// containing the output of the graph. The offset property will be adjusted to reflect the
         /// offset used during the encode. The returned images will be automatically released when
         /// the command buffer completes. If you want to keep them around for longer, retain the images.
-        #[unsafe(method_family(none))]
         #[method_id(encodeBatchToCommandBuffer:sourceImages:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeBatchToCommandBuffer_sourceImages(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -562,8 +562,8 @@ extern_methods!(
         /// containing the output of the graph. The offset property will be adjusted to reflect the
         /// offset used during the encode. The returned images will be automatically released when
         /// the command buffer completes. If you want to keep them around for longer, retain the images.
-        #[unsafe(method_family(none))]
         #[method_id(encodeBatchToCommandBuffer:sourceImages:destinationStates:destinationStateIsTemporary:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeBatchToCommandBuffer_sourceImages_destinationStates_destinationStateIsTemporary(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -639,8 +639,8 @@ extern_methods!(
         /// -isResultStateReusedAcrossBatch returns YES. If  -isResultStateReusedAcrossBatch
         /// returns YES, then it will be called once per batch and the MPSStateBatch array will
         /// contain MPSStateBatch.length references to the same object.
-        #[unsafe(method_family(none))]
         #[method_id(resultStateForSourceImage:sourceStates:destinationImage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resultStateForSourceImage_sourceStates_destinationImage(
             &self,
             source_image: &MPSImage,
@@ -649,8 +649,8 @@ extern_methods!(
         ) -> Option<Retained<MPSState>>;
 
         #[cfg(all(feature = "MPSImage", feature = "MPSNDArray", feature = "MPSState"))]
-        #[unsafe(method_family(none))]
         #[method_id(resultStateBatchForSourceImage:sourceStates:destinationImage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resultStateBatchForSourceImage_sourceStates_destinationImage(
             &self,
             source_image: &MPSImageBatch,
@@ -728,8 +728,8 @@ extern_methods!(
         /// -isResultStateReusedAcrossBatch returns YES. If  -isResultStateReusedAcrossBatch
         /// returns YES, then it will be called once per batch and the MPSStateBatch array will
         /// contain MPSStateBatch.length references to the same object.
-        #[unsafe(method_family(none))]
         #[method_id(temporaryResultStateForCommandBuffer:sourceImage:sourceStates:destinationImage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn temporaryResultStateForCommandBuffer_sourceImage_sourceStates_destinationImage(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -739,8 +739,8 @@ extern_methods!(
         ) -> Option<Retained<MPSState>>;
 
         #[cfg(all(feature = "MPSImage", feature = "MPSNDArray", feature = "MPSState"))]
-        #[unsafe(method_family(none))]
         #[method_id(temporaryResultStateBatchForCommandBuffer:sourceImage:sourceStates:destinationImage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn temporaryResultStateBatchForCommandBuffer_sourceImage_sourceStates_destinationImage(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -869,8 +869,8 @@ extern_methods!(
         /// Parameter `sourceStates`: An optional array of source states that will be passed into the -encode call
         ///
         /// Returns: an image descriptor allocated on the autorelease pool
-        #[unsafe(method_family(none))]
         #[method_id(destinationImageDescriptorForSourceImages:sourceStates:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn destinationImageDescriptorForSourceImages_sourceStates(
             &self,
             source_images: &NSArray<MPSImage>,
@@ -921,8 +921,8 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -934,12 +934,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNKernel {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -985,8 +985,8 @@ extern_methods!(
         /// Returns: A pointer to the newly initialized object. This will fail, returning
         /// nil if the device is not supported. Devices must be
         /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
-        #[unsafe(method_family(init))]
         #[method_id(initWithDevice:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -1297,8 +1297,8 @@ extern_methods!(
         /// This influences how strideInPixelsX/Y should be interpreted.
         /// Default:  MPSNNPaddingMethodAlignCentered | MPSNNPaddingMethodAddRemainderToTopLeft | MPSNNPaddingMethodSizeSame
         /// Some object types (e.g. MPSCNNFullyConnected) may override this default with something appropriate to its operation.
-        #[unsafe(method_family(none))]
         #[method_id(padding)]
+        #[unsafe(method_family = none)]
         pub unsafe fn padding(&self) -> Retained<ProtocolObject<dyn MPSNNPadding>>;
 
         #[cfg(feature = "MPSNeuralNetworkTypes")]
@@ -1310,8 +1310,8 @@ extern_methods!(
         /// Method to allocate the result image for -encodeToCommandBuffer:sourceImage:
         ///
         /// Default: MPSTemporaryImage.defaultAllocator
-        #[unsafe(method_family(none))]
         #[method_id(destinationImageAllocator)]
+        #[unsafe(method_family = none)]
         pub unsafe fn destinationImageAllocator(
             &self,
         ) -> Retained<ProtocolObject<dyn MPSImageAllocator>>;
@@ -1337,8 +1337,8 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:device:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -1415,8 +1415,8 @@ extern_methods!(
         /// Returns: A MPSImage or MPSTemporaryImage allocated per the destinationImageAllocator containing the output of the graph.
         /// The returned image will be automatically released when the command buffer completes. If you want to
         /// keep it around for longer, retain the image. (ARC will do this for you if you use it later.)
-        #[unsafe(method_family(none))]
         #[method_id(encodeToCommandBuffer:primaryImage:secondaryImage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_primaryImage_secondaryImage(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1448,8 +1448,8 @@ extern_methods!(
         /// Returns: A MPSImage or MPSTemporaryImage allocated per the destinationImageAllocator containing the output of the graph.
         /// The returned image will be automatically released when the command buffer completes. If you want to
         /// keep it around for longer, retain the image. (ARC will do this for you if you use it later.)
-        #[unsafe(method_family(none))]
         #[method_id(encodeBatchToCommandBuffer:primaryImages:secondaryImages:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeBatchToCommandBuffer_primaryImages_secondaryImages(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1486,8 +1486,8 @@ extern_methods!(
         /// The offset property will be adjusted to reflect the offset used during the encode.
         /// The returned image will be automatically released when the command buffer completes. If you want to
         /// keep it around for longer, retain the image. (ARC will do this for you if you use it later.)
-        #[unsafe(method_family(none))]
         #[method_id(encodeToCommandBuffer:primaryImage:secondaryImage:destinationState:destinationStateIsTemporary:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_primaryImage_secondaryImage_destinationState_destinationStateIsTemporary(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1526,8 +1526,8 @@ extern_methods!(
         /// The offset property will be adjusted to reflect the offset used during the encode.
         /// The returned image will be automatically released when the command buffer completes. If you want to
         /// keep it around for longer, retain the image. (ARC will do this for you if you use it later.)
-        #[unsafe(method_family(none))]
         #[method_id(encodeBatchToCommandBuffer:primaryImages:secondaryImages:destinationStates:destinationStateIsTemporary:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeBatchToCommandBuffer_primaryImages_secondaryImages_destinationStates_destinationStateIsTemporary(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1575,8 +1575,8 @@ extern_methods!(
         /// -isResultStateReusedAcrossBatch returns YES. If  -isResultStateReusedAcrossBatch
         /// returns YES, then it will be called once per batch and the MPSStateBatch array will
         /// contain MPSStateBatch.length references to the same object.
-        #[unsafe(method_family(none))]
         #[method_id(resultStateForPrimaryImage:secondaryImage:sourceStates:destinationImage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resultStateForPrimaryImage_secondaryImage_sourceStates_destinationImage(
             &self,
             primary_image: &MPSImage,
@@ -1586,8 +1586,8 @@ extern_methods!(
         ) -> Option<Retained<MPSState>>;
 
         #[cfg(all(feature = "MPSImage", feature = "MPSNDArray", feature = "MPSState"))]
-        #[unsafe(method_family(none))]
         #[method_id(resultStateBatchForPrimaryImage:secondaryImage:sourceStates:destinationImage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resultStateBatchForPrimaryImage_secondaryImage_sourceStates_destinationImage(
             &self,
             primary_image: &MPSImageBatch,
@@ -1637,8 +1637,8 @@ extern_methods!(
         /// -isResultStateReusedAcrossBatch returns YES. If  -isResultStateReusedAcrossBatch
         /// returns YES, then it will be called once per batch and the MPSStateBatch array will
         /// contain MPSStateBatch.length references to the same object.
-        #[unsafe(method_family(none))]
         #[method_id(temporaryResultStateForCommandBuffer:primaryImage:secondaryImage:sourceStates:destinationImage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn temporaryResultStateForCommandBuffer_primaryImage_secondaryImage_sourceStates_destinationImage(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1649,8 +1649,8 @@ extern_methods!(
         ) -> Option<Retained<MPSState>>;
 
         #[cfg(all(feature = "MPSImage", feature = "MPSNDArray", feature = "MPSState"))]
-        #[unsafe(method_family(none))]
         #[method_id(temporaryResultStateBatchForCommandBuffer:primaryImage:secondaryImage:sourceStates:destinationImage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn temporaryResultStateBatchForCommandBuffer_primaryImage_secondaryImage_sourceStates_destinationImage(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1767,8 +1767,8 @@ extern_methods!(
         /// Parameter `sourceStates`: An optional array of source states that will be passed into the -encode call
         ///
         /// Returns: an image descriptor allocated on the autorelease pool
-        #[unsafe(method_family(none))]
         #[method_id(destinationImageDescriptorForSourceImages:sourceStates:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn destinationImageDescriptorForSourceImages_sourceStates(
             &self,
             source_images: &NSArray<MPSImage>,
@@ -1821,8 +1821,8 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -1834,12 +1834,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNBinaryKernel {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -1924,8 +1924,8 @@ extern_methods!(
         /// Returns: A pointer to the newly initialized object. This will fail, returning
         /// nil if the device is not supported. Devices must be
         /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
-        #[unsafe(method_family(init))]
         #[method_id(initWithDevice:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -1944,8 +1944,8 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:device:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -2012,8 +2012,8 @@ extern_methods!(
         /// inference pass
         ///
         /// Returns: The result gradient from the gradient filter
-        #[unsafe(method_family(none))]
         #[method_id(encodeToCommandBuffer:sourceGradient:sourceImage:gradientState:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceGradient_sourceImage_gradientState(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -2088,8 +2088,8 @@ extern_methods!(
         ///
         /// Parameter `gradientStates`: The MPSNNGradientState or MPSNNBinaryGradientState subclass produced by the
         /// forward pass
-        #[unsafe(method_family(none))]
         #[method_id(encodeBatchToCommandBuffer:sourceGradients:sourceImages:gradientStates:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeBatchToCommandBuffer_sourceGradients_sourceImages_gradientStates(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -2152,8 +2152,8 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -2165,12 +2165,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNGradientKernel {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -2218,16 +2218,16 @@ extern_methods!(
         /// Returns: A pointer to the newly initialized object. This will fail, returning
         /// nil if the device is not supported. Devices must be
         /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
-        #[unsafe(method_family(init))]
         #[method_id(initWithDevice:sourceCount:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_sourceCount(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
             source_count: NSUInteger,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithDevice:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -2294,8 +2294,8 @@ extern_methods!(
         /// This influences how strideInPixelsX/Y should be interpreted.
         /// Default:  MPSNNPaddingMethodAlignCentered | MPSNNPaddingMethodAddRemainderToTopLeft | MPSNNPaddingMethodSizeSame
         /// Some object types (e.g. MPSCNNFullyConnected) may override this default with something appropriate to its operation.
-        #[unsafe(method_family(none))]
         #[method_id(padding)]
+        #[unsafe(method_family = none)]
         pub unsafe fn padding(&self) -> Retained<ProtocolObject<dyn MPSNNPadding>>;
 
         #[cfg(feature = "MPSNeuralNetworkTypes")]
@@ -2307,8 +2307,8 @@ extern_methods!(
         /// Method to allocate the result image for -encodeToCommandBuffer:sourceImage:
         ///
         /// Default: MPSTemporaryImage.defaultAllocator
-        #[unsafe(method_family(none))]
         #[method_id(destinationImageAllocator)]
+        #[unsafe(method_family = none)]
         pub unsafe fn destinationImageAllocator(
             &self,
         ) -> Retained<ProtocolObject<dyn MPSImageAllocator>>;
@@ -2586,8 +2586,8 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:device:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -2656,8 +2656,8 @@ extern_methods!(
         /// Returns: A MPSImage or MPSTemporaryImage allocated per the destinationImageAllocator containing the output of the graph.
         /// The returned image will be automatically released when the command buffer completes. If you want to
         /// keep it around for longer, retain the image. (ARC will do this for you if you use it later.)
-        #[unsafe(method_family(none))]
         #[method_id(encodeToCommandBuffer:sourceImages:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceImages(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -2686,8 +2686,8 @@ extern_methods!(
         /// Returns: A MPSImage or MPSTemporaryImage allocated per the destinationImageAllocator containing the output of the graph.
         /// The returned image will be automatically released when the command buffer completes. If you want to
         /// keep it around for longer, retain the image. (ARC will do this for you if you use it later.)
-        #[unsafe(method_family(none))]
         #[method_id(encodeBatchToCommandBuffer:sourceImages:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeBatchToCommandBuffer_sourceImages(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -2721,8 +2721,8 @@ extern_methods!(
         /// The offset property will be adjusted to reflect the offset used during the encode.
         /// The returned image will be automatically released when the command buffer completes. If you want to
         /// keep it around for longer, retain the image. (ARC will do this for you if you use it later.)
-        #[unsafe(method_family(none))]
         #[method_id(encodeToCommandBuffer:sourceImages:destinationState:destinationStateIsTemporary:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceImages_destinationState_destinationStateIsTemporary(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -2758,8 +2758,8 @@ extern_methods!(
         /// The offset property will be adjusted to reflect the offset used during the encode.
         /// The returned image will be automatically released when the command buffer completes. If you want to
         /// keep it around for longer, retain the image. (ARC will do this for you if you use it later.)
-        #[unsafe(method_family(none))]
         #[method_id(encodeBatchToCommandBuffer:sourceImages:destinationStates:destinationStateIsTemporary:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeBatchToCommandBuffer_sourceImages_destinationStates_destinationStateIsTemporary(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -2876,8 +2876,8 @@ extern_methods!(
         /// -isResultStateReusedAcrossBatch returns YES. If  -isResultStateReusedAcrossBatch
         /// returns YES, then it will be called once per batch and the MPSStateBatch array will
         /// contain MPSStateBatch.length references to the same object.
-        #[unsafe(method_family(none))]
         #[method_id(resultStateForSourceImages:sourceStates:destinationImage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resultStateForSourceImages_sourceStates_destinationImage(
             &self,
             source_images: &NSArray<MPSImage>,
@@ -2886,8 +2886,8 @@ extern_methods!(
         ) -> Option<Retained<MPSState>>;
 
         #[cfg(all(feature = "MPSImage", feature = "MPSNDArray", feature = "MPSState"))]
-        #[unsafe(method_family(none))]
         #[method_id(resultStateBatchForSourceImages:sourceStates:destinationImage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resultStateBatchForSourceImages_sourceStates_destinationImage(
             &self,
             source_images: &NSArray<MPSImageBatch>,
@@ -2965,8 +2965,8 @@ extern_methods!(
         /// -isResultStateReusedAcrossBatch returns YES. If  -isResultStateReusedAcrossBatch
         /// returns YES, then it will be called once per batch and the MPSStateBatch array will
         /// contain MPSStateBatch.length references to the same object.
-        #[unsafe(method_family(none))]
         #[method_id(temporaryResultStateForCommandBuffer:sourceImages:sourceStates:destinationImage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn temporaryResultStateForCommandBuffer_sourceImages_sourceStates_destinationImage(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -2976,8 +2976,8 @@ extern_methods!(
         ) -> Option<Retained<MPSState>>;
 
         #[cfg(all(feature = "MPSImage", feature = "MPSNDArray", feature = "MPSState"))]
-        #[unsafe(method_family(none))]
         #[method_id(temporaryResultStateBatchForCommandBuffer:sourceImages:sourceStates:destinationImage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn temporaryResultStateBatchForCommandBuffer_sourceImages_sourceStates_destinationImage(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -3065,8 +3065,8 @@ extern_methods!(
         /// Parameter `sourceStates`: An optional array of source states that will be passed into the -encode call
         ///
         /// Returns: an image descriptor allocated on the autorelease pool
-        #[unsafe(method_family(none))]
         #[method_id(destinationImageDescriptorForSourceImages:sourceStates:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn destinationImageDescriptorForSourceImages_sourceStates(
             &self,
             source_images: &NSArray<MPSImage>,
@@ -3087,8 +3087,8 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -3100,12 +3100,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNMultiaryKernel {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

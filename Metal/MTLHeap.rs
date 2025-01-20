@@ -146,12 +146,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLHeapDescriptor {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -161,8 +161,8 @@ extern_protocol!(
     #[cfg(feature = "MTLAllocation")]
     pub unsafe trait MTLHeap: MTLAllocation {
         /// A string to help identify this heap.
-        #[unsafe(method_family(none))]
         #[method_id(label)]
+        #[unsafe(method_family = none)]
         fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
@@ -171,8 +171,8 @@ extern_protocol!(
 
         #[cfg(feature = "MTLDevice")]
         /// The device this heap was created against. This heap can only be used with this device.
-        #[unsafe(method_family(none))]
         #[method_id(device)]
+        #[unsafe(method_family = none)]
         fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         #[cfg(feature = "MTLResource")]
@@ -229,8 +229,8 @@ extern_protocol!(
         /// The requested storage and CPU cache modes must match the storage and CPU cache modes of the heap.
         ///
         /// Returns: The buffer or nil if heap is full.
-        #[unsafe(method_family(new))]
         #[method_id(newBufferWithLength:options:)]
+        #[unsafe(method_family = new)]
         fn newBufferWithLength_options(
             &self,
             length: NSUInteger,
@@ -243,8 +243,8 @@ extern_protocol!(
         /// The requested storage and CPU cache modes must match the storage and CPU cache modes of the heap, with the exception that the requested storage mode can be MTLStorageModeMemoryless.
         ///
         /// Returns: The texture or nil if heap is full.
-        #[unsafe(method_family(new))]
         #[method_id(newTextureWithDescriptor:)]
+        #[unsafe(method_family = new)]
         fn newTextureWithDescriptor(
             &self,
             descriptor: &MTLTextureDescriptor,
@@ -275,8 +275,8 @@ extern_protocol!(
         /// Parameter `offset`: The requested offset of the buffer inside the heap, in bytes. Behavior is undefined if "offset + requiredSize > heap.size" or "offset % requiredAlignment != 0".
         ///
         /// Returns: The buffer, or nil if the heap is not a placement heap
-        #[unsafe(method_family(new))]
         #[method_id(newBufferWithLength:options:offset:)]
+        #[unsafe(method_family = new)]
         unsafe fn newBufferWithLength_options_offset(
             &self,
             length: NSUInteger,
@@ -296,8 +296,8 @@ extern_protocol!(
         /// Parameter `offset`: The requested offset of the texture inside the heap, in bytes. Behavior is undefined if "offset + requiredSize > heap.size" and "offset % requiredAlignment != 0".
         ///
         /// Returns: The texture, or nil if the heap is not a placement heap.
-        #[unsafe(method_family(new))]
         #[method_id(newTextureWithDescriptor:offset:)]
+        #[unsafe(method_family = new)]
         unsafe fn newTextureWithDescriptor_offset(
             &self,
             descriptor: &MTLTextureDescriptor,
@@ -308,8 +308,8 @@ extern_protocol!(
         /// Create a new acceleration structure backed by heap memory.
         ///
         /// Returns: The acceleration structure or nil if heap is full. Note that the MTLAccelerationStructure merely represents storage for an acceleration structure. It will still need to be populated via a build, copy, refit, etc.
-        #[unsafe(method_family(new))]
         #[method_id(newAccelerationStructureWithSize:)]
+        #[unsafe(method_family = new)]
         unsafe fn newAccelerationStructureWithSize(
             &self,
             size: NSUInteger,
@@ -321,8 +321,8 @@ extern_protocol!(
         /// This is a convenience method which creates the acceleration structure backed by heap memory. The acceleration structure size is inferred based on the descriptor.
         ///
         /// Returns: The acceleration structure or nil if heap is full. Note that the MTLAccelerationStructure merely represents storage for an acceleration structure. It will still need to be populated via a build, copy, refit, etc.
-        #[unsafe(method_family(new))]
         #[method_id(newAccelerationStructureWithDescriptor:)]
+        #[unsafe(method_family = new)]
         unsafe fn newAccelerationStructureWithDescriptor(
             &self,
             descriptor: &MTLAccelerationStructureDescriptor,
@@ -340,8 +340,8 @@ extern_protocol!(
         /// Parameter `offset`: The requested offset of the acceleration structure inside the heap, in bytes. Behavior is undefined if "offset + requiredSize > heap.size" or "offset % requiredAlignment != 0".
         ///
         /// Returns: The acceleration structure, or nil if the heap is not a placement heap
-        #[unsafe(method_family(new))]
         #[method_id(newAccelerationStructureWithSize:offset:)]
+        #[unsafe(method_family = new)]
         unsafe fn newAccelerationStructureWithSize_offset(
             &self,
             size: NSUInteger,
@@ -361,8 +361,8 @@ extern_protocol!(
         /// Parameter `offset`: The requested offset of the acceleration structure inside the heap, in bytes. Behavior is undefined if "offset + requiredSize > heap.size" or "offset % requiredAlignment != 0".
         ///
         /// Returns: The acceleration structure, or nil if the heap is not a placement heap
-        #[unsafe(method_family(new))]
         #[method_id(newAccelerationStructureWithDescriptor:offset:)]
+        #[unsafe(method_family = new)]
         unsafe fn newAccelerationStructureWithDescriptor_offset(
             &self,
             descriptor: &MTLAccelerationStructureDescriptor,

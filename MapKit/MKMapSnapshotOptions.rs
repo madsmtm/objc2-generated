@@ -28,8 +28,8 @@ unsafe impl NSObjectProtocol for MKMapSnapshotOptions {}
 extern_methods!(
     unsafe impl MKMapSnapshotOptions {
         #[cfg(feature = "MKMapConfiguration")]
-        #[unsafe(method_family(none))]
         #[method_id(preferredConfiguration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preferredConfiguration(&self) -> Retained<MKMapConfiguration>;
 
         #[cfg(feature = "MKMapConfiguration")]
@@ -41,8 +41,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "MKMapCamera")]
-        #[unsafe(method_family(none))]
         #[method_id(camera)]
+        #[unsafe(method_family = none)]
         pub unsafe fn camera(&self) -> Retained<MKMapCamera>;
 
         #[cfg(feature = "MKMapCamera")]
@@ -81,8 +81,8 @@ extern_methods!(
 
         #[cfg(feature = "MKPointOfInterestFilter")]
         #[deprecated = "Use preferredConfiguration"]
-        #[unsafe(method_family(none))]
         #[method_id(pointOfInterestFilter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pointOfInterestFilter(&self) -> Option<Retained<MKPointOfInterestFilter>>;
 
         #[cfg(feature = "MKPointOfInterestFilter")]
@@ -121,8 +121,8 @@ extern_methods!(
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
-        #[unsafe(method_family(none))]
         #[method_id(appearance)]
+        #[unsafe(method_family = none)]
         pub unsafe fn appearance(&self) -> Option<Retained<NSAppearance>>;
 
         #[cfg(feature = "objc2-app-kit")]
@@ -136,12 +136,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKMapSnapshotOptions {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

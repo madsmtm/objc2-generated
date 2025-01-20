@@ -31,8 +31,8 @@ unsafe impl NSObjectProtocol for AVCustomDeviceRoute {}
 extern_methods!(
     unsafe impl AVCustomDeviceRoute {
         /// An identifier to use to establish a connection to a Bluetooth device.
-        #[unsafe(method_family(none))]
         #[method_id(bluetoothIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn bluetoothIdentifier(&self) -> Option<Retained<NSUUID>>;
     }
 );
@@ -40,12 +40,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVCustomDeviceRoute {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

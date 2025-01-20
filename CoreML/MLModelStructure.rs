@@ -43,12 +43,12 @@ unsafe impl NSObjectProtocol for MLModelStructure {}
 
 extern_methods!(
     unsafe impl MLModelStructure {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "block2")]
@@ -79,20 +79,20 @@ extern_methods!(
 
         #[cfg(feature = "MLModelStructureNeuralNetwork")]
         /// If the model is of NeuralNetwork type then it is the structure of the NeuralNetwork otherwise `nil`.
-        #[unsafe(method_family(none))]
         #[method_id(neuralNetwork)]
+        #[unsafe(method_family = none)]
         pub unsafe fn neuralNetwork(&self) -> Option<Retained<MLModelStructureNeuralNetwork>>;
 
         #[cfg(feature = "MLModelStructureProgram")]
         /// If the model is of ML Program type then it is the structure of the ML Program otherwise `nil`.
-        #[unsafe(method_family(none))]
         #[method_id(program)]
+        #[unsafe(method_family = none)]
         pub unsafe fn program(&self) -> Option<Retained<MLModelStructureProgram>>;
 
         #[cfg(feature = "MLModelStructurePipeline")]
         /// If the model is of Pipeline type then it is the structure of the Pipeline otherwise `nil`.
-        #[unsafe(method_family(none))]
         #[method_id(pipeline)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pipeline(&self) -> Option<Retained<MLModelStructurePipeline>>;
     }
 );

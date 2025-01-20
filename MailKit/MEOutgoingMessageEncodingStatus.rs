@@ -32,27 +32,27 @@ extern_methods!(
         pub unsafe fn canEncrypt(&self) -> bool;
 
         /// Any error that occurred while verifying the security status for the outgoing mail message.
-        #[unsafe(method_family(none))]
         #[method_id(securityError)]
+        #[unsafe(method_family = none)]
         pub unsafe fn securityError(&self) -> Option<Retained<NSError>>;
 
         #[cfg(feature = "MEEmailAddress")]
         /// A list of any recipients for which the message should be encrypted but an error occurred. This could include missing the public key for the recipient.
-        #[unsafe(method_family(none))]
         #[method_id(addressesFailingEncryption)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addressesFailingEncryption(&self) -> Retained<NSArray<MEEmailAddress>>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "MEEmailAddress")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithCanSign:canEncrypt:securityError:addressesFailingEncryption:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCanSign_canEncrypt_securityError_addressesFailingEncryption(
             this: Allocated<Self>,
             can_sign: bool,

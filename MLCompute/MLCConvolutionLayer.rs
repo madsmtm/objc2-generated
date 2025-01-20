@@ -25,36 +25,36 @@ extern_methods!(
         #[cfg(feature = "MLCConvolutionDescriptor")]
         /// The convolution descriptor
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(descriptor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn descriptor(&self) -> Retained<MLCConvolutionDescriptor>;
 
         #[cfg(feature = "MLCTensor")]
         /// The weights tensor used by the convolution layer
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(weights)]
+        #[unsafe(method_family = none)]
         pub unsafe fn weights(&self) -> Retained<MLCTensor>;
 
         #[cfg(feature = "MLCTensor")]
         /// The bias tensor used by the convolution layer
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(biases)]
+        #[unsafe(method_family = none)]
         pub unsafe fn biases(&self) -> Option<Retained<MLCTensor>>;
 
         #[cfg(feature = "MLCTensorParameter")]
         /// The weights tensor parameter used for optimizer update
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(weightsParameter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn weightsParameter(&self) -> Retained<MLCTensorParameter>;
 
         #[cfg(feature = "MLCTensorParameter")]
         /// The bias tensor parameter used for optimizer update
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(biasesParameter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn biasesParameter(&self) -> Option<Retained<MLCTensorParameter>>;
 
         #[cfg(all(feature = "MLCConvolutionDescriptor", feature = "MLCTensor"))]
@@ -68,8 +68,8 @@ extern_methods!(
         ///
         /// Returns: A new convolution layer.
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(layerWithWeights:biases:descriptor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layerWithWeights_biases_descriptor(
             weights: &MLCTensor,
             biases: Option<&MLCTensor>,
@@ -83,13 +83,13 @@ extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCConvolutionLayer {
         #[deprecated]
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

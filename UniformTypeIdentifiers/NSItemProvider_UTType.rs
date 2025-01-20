@@ -33,8 +33,8 @@ extern_category!(
         /// `YES`file coordination will be used and this parameter is ignored.
         ///
         /// Parameter `visibility`: The visibility of this representation.
-        #[unsafe(method_family(init))]
         #[method_id(initWithContentsOfURL:contentType:openInPlace:coordinated:visibility:)]
+        #[unsafe(method_family = init)]
         unsafe fn initWithContentsOfURL_contentType_openInPlace_coordinated_visibility(
             this: Allocated<Self>,
             file_url: &NSURL,
@@ -111,14 +111,14 @@ extern_category!(
         ///
         /// Content types should be registered in order of fidelity. Prefer using content types that appear earlier
         /// in the array.
-        #[unsafe(method_family(none))]
         #[method_id(registeredContentTypes)]
+        #[unsafe(method_family = none)]
         unsafe fn registeredContentTypes(&self) -> Retained<NSArray<UTType>>;
 
         #[cfg(feature = "UTType")]
         /// Registered content types that can be loaded as files opened in place
-        #[unsafe(method_family(none))]
         #[method_id(registeredContentTypesForOpenInPlace)]
+        #[unsafe(method_family = none)]
         unsafe fn registeredContentTypesForOpenInPlace(&self) -> Retained<NSArray<UTType>>;
 
         #[cfg(feature = "UTType")]
@@ -126,8 +126,8 @@ extern_category!(
         ///
         /// The returned content types are given in order of fidelity. Prefer content types that appear earlier
         /// in the array.
-        #[unsafe(method_family(none))]
         #[method_id(registeredContentTypesConformingToContentType:)]
+        #[unsafe(method_family = none)]
         unsafe fn registeredContentTypesConformingToContentType(
             &self,
             content_type: &UTType,
@@ -152,8 +152,8 @@ extern_category!(
         /// `error`parameter.
         ///
         /// Returns: A progress object. Use it to monitor loading progress, or to cancel loading.
-        #[unsafe(method_family(none))]
         #[method_id(loadDataRepresentationForContentType:completionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn loadDataRepresentationForContentType_completionHandler(
             &self,
             content_type: &UTType,
@@ -193,8 +193,8 @@ extern_category!(
         /// created in a temporary directory.
         ///
         /// Returns: A progress object. Use it to monitor loading progress, or to cancel loading.
-        #[unsafe(method_family(none))]
         #[method_id(loadFileRepresentationForContentType:openInPlace:completionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn loadFileRepresentationForContentType_openInPlace_completionHandler(
             &self,
             content_type: &UTType,

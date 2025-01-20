@@ -42,13 +42,13 @@ unsafe impl NSObjectProtocol for UIDocumentBrowserAction {}
 
 extern_methods!(
     unsafe impl UIDocumentBrowserAction {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithIdentifier:localizedTitle:availability:handler:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifier_localizedTitle_availability_handler(
             this: Allocated<Self>,
             identifier: &NSString,
@@ -57,20 +57,20 @@ extern_methods!(
             handler: &block2::Block<dyn Fn(NonNull<NSArray<NSURL>>)>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(identifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(localizedTitle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn localizedTitle(&self) -> Retained<NSString>;
 
         #[method(availability)]
         pub unsafe fn availability(&self) -> UIDocumentBrowserActionAvailability;
 
         #[cfg(feature = "UIImage")]
-        #[unsafe(method_family(none))]
         #[method_id(image)]
+        #[unsafe(method_family = none)]
         pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
@@ -79,8 +79,8 @@ extern_methods!(
         pub unsafe fn setImage(&self, image: Option<&UIImage>);
 
         /// Allows clients to restrict the action to only a specific set of content types. Default: [UTTypeItem.identifier]
-        #[unsafe(method_family(none))]
         #[method_id(supportedContentTypes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn supportedContentTypes(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`supportedContentTypes`][Self::supportedContentTypes].
@@ -100,8 +100,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIDocumentBrowserAction {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

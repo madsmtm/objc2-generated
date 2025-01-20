@@ -39,21 +39,21 @@ extern_methods!(
         #[cfg(feature = "PHContentEditingInput")]
         /// Initializer from the specified live photo input
         /// Return nil if the specified input is not for a live photo
-        #[unsafe(method_family(init))]
         #[method_id(initWithLivePhotoEditingInput:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithLivePhotoEditingInput(
             this: Allocated<Self>,
             live_photo_input: &PHContentEditingInput,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-image")]
         /// The original full-size image from the input live photo
-        #[unsafe(method_family(none))]
         #[method_id(fullSizeImage)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fullSizeImage(&self) -> Retained<CIImage>;
 
         #[cfg(feature = "objc2-core-media")]
@@ -124,8 +124,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHLivePhotoEditingContext {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -161,8 +161,8 @@ extern_protocol!(
     pub unsafe trait PHLivePhotoFrame {
         #[cfg(feature = "objc2-core-image")]
         /// Input image for the frame
-        #[unsafe(method_family(none))]
         #[method_id(image)]
+        #[unsafe(method_family = none)]
         unsafe fn image(&self) -> Retained<CIImage>;
 
         #[cfg(feature = "objc2-core-media")]

@@ -99,8 +99,8 @@ extern_methods!(
         /// and computation to produce the last image may be pruned away.
         ///
         /// Returns: A new MPSNNGraph.
-        #[unsafe(method_family(init))]
         #[method_id(initWithDevice:resultImage:resultImageIsNeeded:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_resultImage_resultImageIsNeeded(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -109,8 +109,8 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "MPSNNGraphNodes")]
-        #[unsafe(method_family(none))]
         #[method_id(graphWithDevice:resultImage:resultImageIsNeeded:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn graphWithDevice_resultImage_resultImageIsNeeded(
             device: &ProtocolObject<dyn MTLDevice>,
             result_image: &MPSNNImageNode,
@@ -138,8 +138,8 @@ extern_methods!(
         /// result image, or is needed to update training parameters.
         ///
         /// Returns: A new MPSNNGraph.
-        #[unsafe(method_family(init))]
         #[method_id(initWithDevice:resultImages:resultsAreNeeded:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_resultImages_resultsAreNeeded(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -148,8 +148,8 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "MPSNNGraphNodes")]
-        #[unsafe(method_family(none))]
         #[method_id(graphWithDevice:resultImages:resultsAreNeeded:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn graphWithDevice_resultImages_resultsAreNeeded(
             device: &ProtocolObject<dyn MTLDevice>,
             result_images: &NSArray<MPSNNImageNode>,
@@ -158,8 +158,8 @@ extern_methods!(
 
         #[cfg(feature = "MPSNNGraphNodes")]
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(initWithDevice:resultImage:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_resultImage(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -168,8 +168,8 @@ extern_methods!(
 
         #[cfg(feature = "MPSNNGraphNodes")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(graphWithDevice:resultImage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn graphWithDevice_resultImage(
             device: &ProtocolObject<dyn MTLDevice>,
             result_image: &MPSNNImageNode,
@@ -188,8 +188,8 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:device:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -197,8 +197,8 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         /// Use initWithDevice:resultImage: instead
-        #[unsafe(method_family(init))]
         #[method_id(initWithDevice:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -206,8 +206,8 @@ extern_methods!(
 
         #[cfg(feature = "MPSNNGraphNodes")]
         /// Get a list of identifiers for source images needed to calculate the result image
-        #[unsafe(method_family(none))]
         #[method_id(sourceImageHandles)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sourceImageHandles(&self)
             -> Retained<NSArray<ProtocolObject<dyn MPSHandle>>>;
 
@@ -215,16 +215,16 @@ extern_methods!(
         /// Get a list of identifiers for source state objects needed to calculate the result image
         ///
         /// Not guaranteed to be in the same order as resultStateHandles
-        #[unsafe(method_family(none))]
         #[method_id(sourceStateHandles)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sourceStateHandles(
             &self,
         ) -> Option<Retained<NSArray<ProtocolObject<dyn MPSHandle>>>>;
 
         #[cfg(feature = "MPSNNGraphNodes")]
         /// Get a list of identifiers for intermediate images objects produced by the graph
-        #[unsafe(method_family(none))]
         #[method_id(intermediateImageHandles)]
+        #[unsafe(method_family = none)]
         pub unsafe fn intermediateImageHandles(
             &self,
         ) -> Option<Retained<NSArray<ProtocolObject<dyn MPSHandle>>>>;
@@ -233,16 +233,16 @@ extern_methods!(
         /// Get a list of identifiers for result state objects produced by the graph
         ///
         /// Not guaranteed to be in the same order as sourceStateHandles
-        #[unsafe(method_family(none))]
         #[method_id(resultStateHandles)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resultStateHandles(
             &self,
         ) -> Option<Retained<NSArray<ProtocolObject<dyn MPSHandle>>>>;
 
         #[cfg(feature = "MPSNNGraphNodes")]
         /// Get a handle for the graph result image
-        #[unsafe(method_family(none))]
         #[method_id(resultHandle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resultHandle(&self) -> Option<Retained<ProtocolObject<dyn MPSHandle>>>;
 
         /// Should MPSState objects produced by -encodeToCommandBuffer... be temporary objects.
@@ -260,8 +260,8 @@ extern_methods!(
         ///
         /// This property overrides the allocator for the final result image in
         /// the graph. Default: MPSImage.defaultAllocator
-        #[unsafe(method_family(none))]
         #[method_id(destinationImageAllocator)]
+        #[unsafe(method_family = none)]
         pub unsafe fn destinationImageAllocator(
             &self,
         ) -> Retained<ProtocolObject<dyn MPSImageAllocator>>;
@@ -355,8 +355,8 @@ extern_methods!(
         ///
         /// Returns: A MPSImage or MPSTemporaryImage allocated per the destinationImageAllocator containing the output of the graph.
         /// It will be automatically released when commandBuffer completes.
-        #[unsafe(method_family(none))]
         #[method_id(encodeToCommandBuffer:sourceImages:sourceStates:intermediateImages:destinationStates:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceImages_sourceStates_intermediateImages_destinationStates(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -404,8 +404,8 @@ extern_methods!(
         /// Returns: A MPSImageBatch or MPSTemporaryImageBatch allocated per the destinationImageAllocator containing the output of the graph.
         /// It will be automatically released when commandBuffer completes. If resultIsNeeded == NO, then this
         /// will return nil.
-        #[unsafe(method_family(none))]
         #[method_id(encodeBatchToCommandBuffer:sourceImages:sourceStates:intermediateImages:destinationStates:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeBatchToCommandBuffer_sourceImages_sourceStates_intermediateImages_destinationStates(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -443,8 +443,8 @@ extern_methods!(
         ///
         /// Returns: A MPSImage or MPSTemporaryImage allocated per the destinationImageAllocator containing the output of the graph.
         /// It will be automatically released when commandBuffer completes.  It can be nil if resultImageIsNeeded == NO
-        #[unsafe(method_family(none))]
         #[method_id(encodeToCommandBuffer:sourceImages:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceImages(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -453,8 +453,8 @@ extern_methods!(
 
         #[cfg(all(feature = "MPSImage", feature = "MPSNDArray", feature = "MPSState"))]
         /// Convenience method to encode a batch of images
-        #[unsafe(method_family(none))]
         #[method_id(encodeBatchToCommandBuffer:sourceImages:sourceStates:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeBatchToCommandBuffer_sourceImages_sourceStates(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -513,8 +513,8 @@ extern_methods!(
         ///
         /// Returns: A MPSImage to receive the result. The data in the image will not be valid until
         /// the completionHandler is called.
-        #[unsafe(method_family(none))]
         #[method_id(executeAsyncWithSourceImages:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn executeAsyncWithSourceImages_completionHandler(
             &self,
             source_images: &NSArray<MPSImage>,
@@ -565,8 +565,8 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -578,12 +578,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNNGraph {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

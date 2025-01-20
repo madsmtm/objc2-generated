@@ -21,8 +21,8 @@ extern_protocol!(
         /// A collection of
         /// `UITextSelectionRects`representing the geometry of the current selection. Rects are expected to be in the
         /// receiver's coordinate space.
-        #[unsafe(method_family(none))]
         #[method_id(selectionRects)]
+        #[unsafe(method_family = none)]
         unsafe fn selectionRects(&self) -> Retained<NSArray<UITextSelectionRect>>;
 
         #[cfg(feature = "UITextInput")]

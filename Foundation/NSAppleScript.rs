@@ -55,8 +55,8 @@ unsafe impl NSObjectProtocol for NSAppleScript {}
 extern_methods!(
     unsafe impl NSAppleScript {
         #[cfg(all(feature = "NSDictionary", feature = "NSString", feature = "NSURL"))]
-        #[unsafe(method_family(init))]
         #[method_id(initWithContentsOfURL:error:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL_error(
             this: Allocated<Self>,
             url: &NSURL,
@@ -64,16 +64,16 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithSource:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
             source: &NSString,
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(source)]
+        #[unsafe(method_family = none)]
         pub unsafe fn source(&self) -> Option<Retained<NSString>>;
 
         #[method(isCompiled)]
@@ -91,8 +91,8 @@ extern_methods!(
             feature = "NSDictionary",
             feature = "NSString"
         ))]
-        #[unsafe(method_family(none))]
         #[method_id(executeAndReturnError:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn executeAndReturnError(
             &self,
             error_info: Option<&mut Option<Retained<NSDictionary<NSString, AnyObject>>>>,
@@ -103,8 +103,8 @@ extern_methods!(
             feature = "NSDictionary",
             feature = "NSString"
         ))]
-        #[unsafe(method_family(none))]
         #[method_id(executeAppleEvent:error:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn executeAppleEvent_error(
             &self,
             event: &NSAppleEventDescriptor,
@@ -116,12 +116,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSAppleScript {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

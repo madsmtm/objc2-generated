@@ -22,27 +22,27 @@ unsafe impl NSObjectProtocol for VZVirtioConsolePort {}
 
 extern_methods!(
     unsafe impl VZVirtioConsolePort {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// The console port name currently being used by this port.
         ///
         /// This property may not change while the VM is running. A null value indicates no name has been set.
-        #[unsafe(method_family(none))]
         #[method_id(name)]
+        #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "VZSerialPortAttachment")]
         /// The console port attachment that's currently connected to this console port.
         ///
         /// This property may change at any time while the VM is running.
-        #[unsafe(method_family(none))]
         #[method_id(attachment)]
+        #[unsafe(method_family = none)]
         pub unsafe fn attachment(&self) -> Option<Retained<VZSerialPortAttachment>>;
 
         #[cfg(feature = "VZSerialPortAttachment")]

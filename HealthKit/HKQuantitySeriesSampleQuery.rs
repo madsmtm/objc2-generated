@@ -91,8 +91,8 @@ extern_methods!(
         /// The stopQuery call can be made within the quantityHandler block.
         /// Once done is YES, or stopQuery has been called, the query is
         /// complete and no more calls to quantityHandler will be made.
-        #[unsafe(method_family(init))]
         #[method_id(initWithQuantityType:predicate:quantityHandler:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithQuantityType_predicate_quantityHandler(
             this: Allocated<Self>,
             quantity_type: &HKQuantityType,
@@ -117,8 +117,8 @@ extern_methods!(
             feature = "block2"
         ))]
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(initWithSample:quantityHandler:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithSample_quantityHandler(
             this: Allocated<Self>,
             quantity_sample: &HKQuantitySample,
@@ -139,8 +139,8 @@ extern_methods!(
     /// Methods declared on superclass `HKQuery`
     #[cfg(feature = "HKQuery")]
     unsafe impl HKQuantitySeriesSampleQuery {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -149,8 +149,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "HKQuery")]
     unsafe impl HKQuantitySeriesSampleQuery {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

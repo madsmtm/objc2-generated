@@ -28,8 +28,8 @@ extern_methods!(
         /// Specifies the skeleton of the receiver.
         ///
         /// When setting a new skeleton, the new skeleton must have the same hierarchy of joints.
-        #[unsafe(method_family(none))]
         #[method_id(skeleton)]
+        #[unsafe(method_family = none)]
         pub unsafe fn skeleton(&self) -> Option<Retained<SCNNode>>;
 
         #[cfg(feature = "SCNNode")]
@@ -50,8 +50,8 @@ extern_methods!(
         /// Parameter `boneWeights`: A buffer of weights. This contains the weights of every influence of every vertex. The number of influence per vertex is controlled by the number of component in the geometry source.
         ///
         /// Parameter `boneIndices`: A buffer of bone indexes. This buffer contains the corresponding index in the bones array for every weight in the weights buffer.
-        #[unsafe(method_family(none))]
         #[method_id(skinnerWithBaseGeometry:bones:boneInverseBindTransforms:boneWeights:boneIndices:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn skinnerWithBaseGeometry_bones_boneInverseBindTransforms_boneWeights_boneIndices(
             base_geometry: Option<&SCNGeometry>,
             bones: &NSArray<SCNNode>,
@@ -67,8 +67,8 @@ extern_methods!(
         /// Access the node's geometry if you want to update this specific skinner properties (materials for example).
         /// Access this property if you want a whole new geometry (which will necessarily be shared among the skinner instances), with
         /// different sources, for instance.
-        #[unsafe(method_family(none))]
         #[method_id(baseGeometry)]
+        #[unsafe(method_family = none)]
         pub unsafe fn baseGeometry(&self) -> Option<Retained<SCNGeometry>>;
 
         #[cfg(feature = "SCNGeometry")]
@@ -91,26 +91,26 @@ extern_methods!(
         /// The inverse of the bone’s bind-space transformation matrix at the time the bind shape was bound to this bone.
         ///
         /// boneInverseBindTransforms is an array of SCNMatrix4 wrapped into instances of NSValue.
-        #[unsafe(method_family(none))]
         #[method_id(boneInverseBindTransforms)]
+        #[unsafe(method_family = none)]
         pub unsafe fn boneInverseBindTransforms(&self) -> Option<Retained<NSArray<NSValue>>>;
 
         #[cfg(feature = "SCNNode")]
         /// The bones of the skinner.
-        #[unsafe(method_family(none))]
         #[method_id(bones)]
+        #[unsafe(method_family = none)]
         pub unsafe fn bones(&self) -> Retained<NSArray<SCNNode>>;
 
         #[cfg(feature = "SCNGeometry")]
         /// The bone weights of the receiver.
-        #[unsafe(method_family(none))]
         #[method_id(boneWeights)]
+        #[unsafe(method_family = none)]
         pub unsafe fn boneWeights(&self) -> Retained<SCNGeometrySource>;
 
         #[cfg(feature = "SCNGeometry")]
         /// The bone indices of the receiver.
-        #[unsafe(method_family(none))]
         #[method_id(boneIndices)]
+        #[unsafe(method_family = none)]
         pub unsafe fn boneIndices(&self) -> Retained<SCNGeometrySource>;
     }
 );
@@ -118,12 +118,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNSkinner {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

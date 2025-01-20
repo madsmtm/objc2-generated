@@ -110,8 +110,8 @@ extern_methods!(
         /// Convenience initializer that uses
         /// NSAccessibilityCustomRotorTypeCustom as the default rotor type. Use this
         /// initializer for custom rotors that are not one of the common types.
-        #[unsafe(method_family(init))]
         #[method_id(initWithLabel:itemSearchDelegate:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithLabel_itemSearchDelegate(
             this: Allocated<Self>,
             label: &NSString,
@@ -120,8 +120,8 @@ extern_methods!(
 
         /// Convenience initializer for custom rotors that use a common type
         /// such as links, headings, etc. A default label will be provided.
-        #[unsafe(method_family(init))]
         #[method_id(initWithRotorType:itemSearchDelegate:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithRotorType_itemSearchDelegate(
             this: Allocated<Self>,
             rotor_type: NSAccessibilityCustomRotorType,
@@ -145,8 +145,8 @@ extern_methods!(
         /// The label is only used when the rotor type is
         /// NSAccessibilityCustomRotorTypeCustom since a default is provided
         /// for all other types.
-        #[unsafe(method_family(none))]
         #[method_id(label)]
+        #[unsafe(method_family = none)]
         pub unsafe fn label(&self) -> Retained<NSString>;
 
         /// Setter for [`label`][Self::label].
@@ -155,8 +155,8 @@ extern_methods!(
 
         /// The itemSearchDelegate will be asked to find the next item result
         /// after performing a search with the given search parameters.
-        #[unsafe(method_family(none))]
         #[method_id(itemSearchDelegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn itemSearchDelegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSAccessibilityCustomRotorItemSearchDelegate>>>;
@@ -177,8 +177,8 @@ extern_methods!(
         /// element via the accessibilityElementWithToken protocol method when the
         /// item result is selected by an assistive client. Applications can use the
         /// item result's token to determine which item to return.
-        #[unsafe(method_family(none))]
         #[method_id(itemLoadingDelegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn itemLoadingDelegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSAccessibilityElementLoading>>>;
@@ -197,12 +197,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSAccessibilityCustomRotor {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -226,8 +226,8 @@ extern_methods!(
         /// it is nil, the search should begin from, and include, the first or last
         /// item, depending on which search direction is used (e.g. search direction
         /// next will return the first item and previous will return the last item).
-        #[unsafe(method_family(none))]
         #[method_id(currentItem)]
+        #[unsafe(method_family = none)]
         pub unsafe fn currentItem(&self) -> Option<Retained<NSAccessibilityCustomRotorItemResult>>;
 
         /// Setter for [`currentItem`][Self::currentItem].
@@ -252,8 +252,8 @@ extern_methods!(
         /// A string of text to filter the results against. This is used to get
         /// type-ahead results. For example, given a list of primary colors and filter
         /// text "Re", color item "Red" would be returned as a result.
-        #[unsafe(method_family(none))]
         #[method_id(filterString)]
+        #[unsafe(method_family = none)]
         pub unsafe fn filterString(&self) -> Retained<NSString>;
 
         /// Setter for [`filterString`][Self::filterString].
@@ -265,12 +265,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSAccessibilityCustomRotorSearchParameters {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -289,19 +289,19 @@ unsafe impl NSObjectProtocol for NSAccessibilityCustomRotorItemResult {}
 
 extern_methods!(
     unsafe impl NSAccessibilityCustomRotorItemResult {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSAccessibilityProtocols")]
         /// Creates an item result with a given target element. Assistive
         /// technologies may try to set accessibility focus on the element.
-        #[unsafe(method_family(init))]
         #[method_id(initWithTargetElement:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetElement(
             this: Allocated<Self>,
             target_element: &ProtocolObject<dyn NSAccessibilityElementProtocol>,
@@ -311,8 +311,8 @@ extern_methods!(
         /// Creates an item result with a given item load token and custom label.
         /// Use this initializer if the application has not yet loaded the element
         /// backing the item result.
-        #[unsafe(method_family(init))]
         #[method_id(initWithItemLoadingToken:customLabel:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithItemLoadingToken_customLabel(
             this: Allocated<Self>,
             item_loading_token: &NSAccessibilityLoadingToken,
@@ -323,8 +323,8 @@ extern_methods!(
         /// A target element references an element that will be messaged for
         /// other accessibility properties. If it is not nil, assistive technologies
         /// may try to set accessibility focus on it.
-        #[unsafe(method_family(none))]
         #[method_id(targetElement)]
+        #[unsafe(method_family = none)]
         pub unsafe fn targetElement(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSAccessibilityElementProtocol>>>;
@@ -333,8 +333,8 @@ extern_methods!(
         /// Provide an item load token if the application has not yet
         /// loaded the element backing the item result. Application can use the token
         /// to determine which item to return.
-        #[unsafe(method_family(none))]
         #[method_id(itemLoadingToken)]
+        #[unsafe(method_family = none)]
         pub unsafe fn itemLoadingToken(&self) -> Option<Retained<NSAccessibilityLoadingToken>>;
 
         /// For text-based elements such as an NSTextView, this is an NSRange
@@ -352,8 +352,8 @@ extern_methods!(
         /// label to describe the item result.
         ///
         /// Required if using the loader-based initializer. Optional otherwise.
-        #[unsafe(method_family(none))]
         #[method_id(customLabel)]
+        #[unsafe(method_family = none)]
         pub unsafe fn customLabel(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`customLabel`][Self::customLabel].
@@ -367,8 +367,8 @@ extern_protocol!(
     pub unsafe trait NSAccessibilityCustomRotorItemSearchDelegate: NSObjectProtocol {
         /// Returns the found NSAccessibilityCustomRotorItemResult after
         /// performing a search with the given search parameters.
-        #[unsafe(method_family(none))]
         #[method_id(rotor:resultForSearchParameters:)]
+        #[unsafe(method_family = none)]
         unsafe fn rotor_resultForSearchParameters(
             &self,
             rotor: &NSAccessibilityCustomRotor,

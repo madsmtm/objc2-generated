@@ -30,24 +30,24 @@ unsafe impl NSObjectProtocol for HMZone {}
 
 extern_methods!(
     unsafe impl HMZone {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Name of the zone.
-        #[unsafe(method_family(none))]
         #[method_id(name)]
+        #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "HMRoom")]
         /// Array of HMRoom objects that correspond to the rooms contained in this zone.
-        #[unsafe(method_family(none))]
         #[method_id(rooms)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rooms(&self) -> Retained<NSArray<HMRoom>>;
 
         /// A unique identifier for the zone.
-        #[unsafe(method_family(none))]
         #[method_id(uniqueIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn uniqueIdentifier(&self) -> Retained<NSUUID>;
 
         #[cfg(feature = "block2")]
@@ -110,8 +110,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HMZone {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -24,8 +24,8 @@ unsafe impl NSObjectProtocol for UIFieldBehavior {}
 extern_methods!(
     #[cfg(feature = "UIDynamicBehavior")]
     unsafe impl UIFieldBehavior {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(addItem:)]
@@ -34,8 +34,8 @@ extern_methods!(
         #[method(removeItem:)]
         pub unsafe fn removeItem(&self, item: &ProtocolObject<dyn UIDynamicItem>);
 
-        #[unsafe(method_family(none))]
         #[method_id(items)]
+        #[unsafe(method_family = none)]
         pub unsafe fn items(&self) -> Retained<NSArray<ProtocolObject<dyn UIDynamicItem>>>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -51,8 +51,8 @@ extern_methods!(
         #[cfg(feature = "UIRegion")]
         /// The region property is the domain of the field's effect. No force is applied to objects outside the region.
         /// The default region is the infiniteRegion
-        #[unsafe(method_family(none))]
         #[method_id(region)]
+        #[unsafe(method_family = none)]
         pub unsafe fn region(&self) -> Retained<UIRegion>;
 
         #[cfg(feature = "UIRegion")]
@@ -139,15 +139,15 @@ extern_methods!(
 
         /// Slows an object proportionally to the object’s velocity.
         /// Use this to simulate effects such as friction from motion through the air.
-        #[unsafe(method_family(none))]
         #[method_id(dragField)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dragField(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// Applies a force tangential to the direction from the sample point to the field's position.
         /// The force will be CCW to the direction. Make the strength negative to apply force in the CW direction.
         /// Amount is proportional to distance from center and the object's mass. This can be used to create rotational effects.
-        #[unsafe(method_family(none))]
         #[method_id(vortexField)]
+        #[unsafe(method_family = none)]
         pub unsafe fn vortexField(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -157,8 +157,8 @@ extern_methods!(
         /// Parameter `position`: the origin of the field
         ///
         /// See: position
-        #[unsafe(method_family(none))]
         #[method_id(radialGravityFieldWithPosition:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn radialGravityFieldWithPosition(
             position: CGPoint,
             mtm: MainThreadMarker,
@@ -172,8 +172,8 @@ extern_methods!(
         /// the field's strength property to get the final calculated force. All components of the direction vector are used to calculate the length.
         ///
         /// See: direction
-        #[unsafe(method_family(none))]
         #[method_id(linearGravityFieldWithVector:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn linearGravityFieldWithVector(
             direction: CGVector,
             mtm: MainThreadMarker,
@@ -186,8 +186,8 @@ extern_methods!(
         /// Parameter `direction`: The directed velocity that will be applied to the body.
         ///
         /// See: direction
-        #[unsafe(method_family(none))]
         #[method_id(velocityFieldWithVector:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn velocityFieldWithVector(
             direction: CGVector,
             mtm: MainThreadMarker,
@@ -204,8 +204,8 @@ extern_methods!(
         /// See: smoothness
         ///
         /// See: animationSpeed
-        #[unsafe(method_family(none))]
         #[method_id(noiseFieldWithSmoothness:animationSpeed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn noiseFieldWithSmoothness_animationSpeed(
             smoothness: CGFloat,
             speed: CGFloat,
@@ -222,8 +222,8 @@ extern_methods!(
         /// See: smoothness
         ///
         /// See: animationSpeed
-        #[unsafe(method_family(none))]
         #[method_id(turbulenceFieldWithSmoothness:animationSpeed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn turbulenceFieldWithSmoothness_animationSpeed(
             smoothness: CGFloat,
             speed: CGFloat,
@@ -233,16 +233,16 @@ extern_methods!(
         /// A Hooke’s law force - a force linearly proportional to distance from the center of the field. An object in this
         /// field will oscillate with a period proportional to the inverse of the mass.
         /// An example use is to keep objects confined to a particular region.
-        #[unsafe(method_family(none))]
         #[method_id(springField)]
+        #[unsafe(method_family = none)]
         pub unsafe fn springField(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// A force proportional to the charge on the object. A charge property has been
         /// added to UIDynamicItemBehavior to accomplish this. An example use of this field is to make objects behavior differently
         /// from one another when they enter a region, or to make an object's behavior different than its mass based behavior
         /// This field models the first part of the Lorentz equation, F = qE
-        #[unsafe(method_family(none))]
         #[method_id(electricField)]
+        #[unsafe(method_family = none)]
         pub unsafe fn electricField(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// The magnetic field is a uniform field in the positive-z direction (coming out of the screen). When the velocity
@@ -251,8 +251,8 @@ extern_methods!(
         /// to be negative which will result in circular motion being CW instead of CCW. An example use of this field is to make
         /// objects behavior differently from one another when they enter a region, or to make an object's behavior different
         /// than its mass based behavior. This field models the second part of the Lorentz equation, F = qvB
-        #[unsafe(method_family(none))]
         #[method_id(magneticField)]
+        #[unsafe(method_family = none)]
         pub unsafe fn magneticField(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
@@ -269,8 +269,8 @@ extern_methods!(
         /// Parameter `charge`: The charge to be taken into account during force evaluation
         ///
         /// Parameter `deltaTime`: The current time step
-        #[unsafe(method_family(none))]
         #[method_id(fieldWithEvaluationBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fieldWithEvaluationBlock(
             block: &block2::Block<
                 dyn Fn(
@@ -291,8 +291,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UIDynamicBehavior")]
     unsafe impl UIFieldBehavior {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

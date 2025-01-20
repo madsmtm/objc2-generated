@@ -71,94 +71,94 @@ unsafe impl NSSecureCoding for NSAppleEventDescriptor {}
 
 extern_methods!(
     unsafe impl NSAppleEventDescriptor {
-        #[unsafe(method_family(none))]
         #[method_id(nullDescriptor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn nullDescriptor() -> Retained<NSAppleEventDescriptor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(descriptorWithBoolean:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithBoolean(boolean: Boolean) -> Retained<NSAppleEventDescriptor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(descriptorWithEnumCode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithEnumCode(
             enumerator: OSType,
         ) -> Retained<NSAppleEventDescriptor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(descriptorWithInt32:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithInt32(signed_int: i32) -> Retained<NSAppleEventDescriptor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(descriptorWithDouble:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithDouble(
             double_value: c_double,
         ) -> Retained<NSAppleEventDescriptor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(descriptorWithTypeCode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithTypeCode(type_code: OSType)
             -> Retained<NSAppleEventDescriptor>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(descriptorWithString:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithString(string: &NSString) -> Retained<NSAppleEventDescriptor>;
 
         #[cfg(feature = "NSDate")]
-        #[unsafe(method_family(none))]
         #[method_id(descriptorWithDate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithDate(date: &NSDate) -> Retained<NSAppleEventDescriptor>;
 
         #[cfg(feature = "NSURL")]
-        #[unsafe(method_family(none))]
         #[method_id(descriptorWithFileURL:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithFileURL(file_url: &NSURL) -> Retained<NSAppleEventDescriptor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(listDescriptor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn listDescriptor() -> Retained<NSAppleEventDescriptor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(recordDescriptor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn recordDescriptor() -> Retained<NSAppleEventDescriptor>;
 
-        #[unsafe(method_family(none))]
         #[method_id(currentProcessDescriptor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn currentProcessDescriptor() -> Retained<NSAppleEventDescriptor>;
 
         #[cfg(feature = "libc")]
-        #[unsafe(method_family(none))]
         #[method_id(descriptorWithProcessIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithProcessIdentifier(
             process_identifier: libc::pid_t,
         ) -> Retained<NSAppleEventDescriptor>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(descriptorWithBundleIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithBundleIdentifier(
             bundle_identifier: &NSString,
         ) -> Retained<NSAppleEventDescriptor>;
 
         #[cfg(feature = "NSURL")]
-        #[unsafe(method_family(none))]
         #[method_id(descriptorWithApplicationURL:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithApplicationURL(
             application_url: &NSURL,
         ) -> Retained<NSAppleEventDescriptor>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initListDescriptor)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initListDescriptor(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initRecordDescriptor)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initRecordDescriptor(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSData")]
-        #[unsafe(method_family(none))]
         #[method_id(data)]
+        #[unsafe(method_family = none)]
         pub unsafe fn data(&self) -> Retained<NSData>;
 
         #[method(booleanValue)]
@@ -177,18 +177,18 @@ extern_methods!(
         pub unsafe fn typeCodeValue(&self) -> OSType;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(stringValue)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stringValue(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSDate")]
-        #[unsafe(method_family(none))]
         #[method_id(dateValue)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dateValue(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSURL")]
-        #[unsafe(method_family(none))]
         #[method_id(fileURLValue)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fileURLValue(&self) -> Option<Retained<NSURL>>;
 
         #[method(isRecordDescriptor)]
@@ -204,8 +204,8 @@ extern_methods!(
             index: NSInteger,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(descriptorAtIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn descriptorAtIndex(
             &self,
             index: NSInteger,
@@ -219,12 +219,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSAppleEventDescriptor {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

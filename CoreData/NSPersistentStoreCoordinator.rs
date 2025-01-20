@@ -265,25 +265,25 @@ unsafe impl NSObjectProtocol for NSPersistentStoreCoordinator {}
 extern_methods!(
     unsafe impl NSPersistentStoreCoordinator {
         #[cfg(feature = "NSManagedObjectModel")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithManagedObjectModel:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithManagedObjectModel(
             this: Allocated<Self>,
             model: &NSManagedObjectModel,
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSManagedObjectModel")]
-        #[unsafe(method_family(none))]
         #[method_id(managedObjectModel)]
+        #[unsafe(method_family = none)]
         pub unsafe fn managedObjectModel(&self) -> Retained<NSManagedObjectModel>;
 
         #[cfg(feature = "NSPersistentStore")]
-        #[unsafe(method_family(none))]
         #[method_id(persistentStores)]
+        #[unsafe(method_family = none)]
         pub unsafe fn persistentStores(&self) -> Retained<NSArray<NSPersistentStore>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(name)]
+        #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
@@ -291,16 +291,16 @@ extern_methods!(
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
         #[cfg(feature = "NSPersistentStore")]
-        #[unsafe(method_family(none))]
         #[method_id(persistentStoreForURL:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn persistentStoreForURL(
             &self,
             url: &NSURL,
         ) -> Option<Retained<NSPersistentStore>>;
 
         #[cfg(feature = "NSPersistentStore")]
-        #[unsafe(method_family(none))]
         #[method_id(URLForPersistentStore:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn URLForPersistentStore(&self, store: &NSPersistentStore) -> Retained<NSURL>;
 
         #[cfg(feature = "NSPersistentStore")]
@@ -312,8 +312,8 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "NSPersistentStore")]
-        #[unsafe(method_family(none))]
         #[method_id(addPersistentStoreWithType:configuration:URL:options:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addPersistentStoreWithType_configuration_URL_options_error(
             &self,
             store_type: &NSString,
@@ -346,16 +346,16 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSPersistentStore")]
-        #[unsafe(method_family(none))]
         #[method_id(metadataForPersistentStore:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn metadataForPersistentStore(
             &self,
             store: &NSPersistentStore,
         ) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[cfg(feature = "NSManagedObjectID")]
-        #[unsafe(method_family(none))]
         #[method_id(managedObjectIDForURIRepresentation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn managedObjectIDForURIRepresentation(
             &self,
             url: &NSURL,
@@ -365,16 +365,16 @@ extern_methods!(
             feature = "NSManagedObjectContext",
             feature = "NSPersistentStoreRequest"
         ))]
-        #[unsafe(method_family(none))]
         #[method_id(executeRequest:withContext:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn executeRequest_withContext_error(
             &self,
             request: &NSPersistentStoreRequest,
             context: &NSManagedObjectContext,
         ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(registeredStoreTypes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn registeredStoreTypes() -> Retained<NSDictionary<NSString, NSValue>>;
 
         #[method(registerStoreClass:forStoreType:)]
@@ -383,8 +383,8 @@ extern_methods!(
             store_type: &NSString,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(metadataForPersistentStoreOfType:URL:options:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn metadataForPersistentStoreOfType_URL_options_error(
             store_type: &NSString,
             url: &NSURL,
@@ -400,16 +400,16 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         #[deprecated = "Spotlight integration is deprecated. Use CoreSpotlight integration instead."]
-        #[unsafe(method_family(none))]
         #[method_id(elementsDerivedFromExternalRecordURL:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn elementsDerivedFromExternalRecordURL(
             file_url: &NSURL,
         ) -> Retained<NSDictionary>;
 
         #[cfg(feature = "NSPersistentStore")]
         #[deprecated = "Spotlight integration is deprecated. Use CoreSpotlight integration instead."]
-        #[unsafe(method_family(none))]
         #[method_id(importStoreWithIdentifier:fromExternalRecordsDirectory:toURL:options:withType:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn importStoreWithIdentifier_fromExternalRecordsDirectory_toURL_options_withType_error(
             &self,
             store_identifier: Option<&NSString>,
@@ -420,8 +420,8 @@ extern_methods!(
         ) -> Result<Retained<NSPersistentStore>, Retained<NSError>>;
 
         #[cfg(feature = "NSPersistentStore")]
-        #[unsafe(method_family(none))]
         #[method_id(migratePersistentStore:toURL:options:withType:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn migratePersistentStore_toURL_options_withType_error(
             &self,
             store: &NSPersistentStore,
@@ -457,8 +457,8 @@ extern_methods!(
         pub unsafe fn performBlockAndWait(&self, block: &block2::Block<dyn Fn() + '_>);
 
         #[cfg(feature = "NSPersistentHistoryToken")]
-        #[unsafe(method_family(none))]
         #[method_id(currentPersistentHistoryTokenFromStores:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn currentPersistentHistoryTokenFromStores(
             &self,
             stores: Option<&NSArray>,
@@ -473,8 +473,8 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "NSManagedObjectID")]
-        #[unsafe(method_family(none))]
         #[method_id(managedObjectIDFromUTF8String:length:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn managedObjectIDFromUTF8String_length(
             &self,
             utf8string: NonNull<c_char>,
@@ -482,8 +482,8 @@ extern_methods!(
         ) -> Retained<NSManagedObjectID>;
 
         #[deprecated = "Use -metadataForPersistentStoreOfType:URL:options:error: and pass in an options dictionary matching addPersistentStoreWithType"]
-        #[unsafe(method_family(none))]
         #[method_id(metadataForPersistentStoreWithURL:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn metadataForPersistentStoreWithURL_error(
             url: &NSURL,
         ) -> Result<Retained<NSDictionary>, Retained<NSError>>;
@@ -501,8 +501,8 @@ extern_methods!(
         pub unsafe fn tryLock(&self) -> bool;
 
         #[deprecated = "Use -metadataForPersistentStoreOfType:URL:options:error: and pass in an options dictionary matching addPersistentStoreWithType"]
-        #[unsafe(method_family(none))]
         #[method_id(metadataForPersistentStoreOfType:URL:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn metadataForPersistentStoreOfType_URL_error(
             store_type: Option<&NSString>,
             url: &NSURL,
@@ -528,12 +528,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPersistentStoreCoordinator {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

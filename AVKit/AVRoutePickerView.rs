@@ -118,8 +118,8 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl AVRoutePickerView {
         /// The route picker view's delegate.
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVRoutePickerViewDelegate>>>;
@@ -134,8 +134,8 @@ extern_methods!(
 
         #[cfg(feature = "objc2-av-foundation")]
         /// The player for which to perform routing operations.
-        #[unsafe(method_family(none))]
         #[method_id(player)]
+        #[unsafe(method_family = none)]
         pub unsafe fn player(&self) -> Option<Retained<AVPlayer>>;
 
         #[cfg(feature = "objc2-av-foundation")]
@@ -146,8 +146,8 @@ extern_methods!(
         /// Parameter `state`: The state for which to get the picker button color.
         ///
         /// Returns the color of the picker button for a given state.
-        #[unsafe(method_family(none))]
         #[method_id(routePickerButtonColorForState:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn routePickerButtonColorForState(
             &self,
             state: AVRoutePickerViewButtonState,
@@ -176,8 +176,8 @@ extern_methods!(
         pub unsafe fn setRoutePickerButtonBordered(&self, route_picker_button_bordered: bool);
 
         /// The view's tint color when AirPlay is active.
-        #[unsafe(method_family(none))]
         #[method_id(activeTintColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn activeTintColor(&self) -> Option<Retained<NSColor>>;
 
         /// Setter for [`activeTintColor`][Self::activeTintColor].
@@ -210,12 +210,12 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl AVRoutePickerView {
-        #[unsafe(method_family(init))]
         #[method_id(initWithFrame:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -228,8 +228,8 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl AVRoutePickerView {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -239,8 +239,8 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl AVRoutePickerView {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

@@ -45,20 +45,20 @@ unsafe impl NSSecureCoding for EKRecurrenceEnd {}
 extern_methods!(
     unsafe impl EKRecurrenceEnd {
         /// Creates an autoreleased recurrence end with a specific end date.
-        #[unsafe(method_family(none))]
         #[method_id(recurrenceEndWithEndDate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn recurrenceEndWithEndDate(end_date: &NSDate) -> Retained<Self>;
 
         /// Creates an autoreleased recurrence end with a maximum occurrence count.
-        #[unsafe(method_family(none))]
         #[method_id(recurrenceEndWithOccurrenceCount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn recurrenceEndWithOccurrenceCount(
             occurrence_count: NSUInteger,
         ) -> Retained<Self>;
 
         /// The end date of this recurrence, or nil if it's count-based.
-        #[unsafe(method_family(none))]
         #[method_id(endDate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn endDate(&self) -> Option<Retained<NSDate>>;
 
         /// The maximum occurrence count, or 0 if it's date-based.
@@ -70,12 +70,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl EKRecurrenceEnd {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

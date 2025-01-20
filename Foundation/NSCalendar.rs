@@ -250,41 +250,41 @@ unsafe impl NSSecureCoding for NSCalendar {}
 
 extern_methods!(
     unsafe impl NSCalendar {
-        #[unsafe(method_family(none))]
         #[method_id(currentCalendar)]
+        #[unsafe(method_family = none)]
         pub unsafe fn currentCalendar() -> Retained<NSCalendar>;
 
-        #[unsafe(method_family(none))]
         #[method_id(autoupdatingCurrentCalendar)]
+        #[unsafe(method_family = none)]
         pub unsafe fn autoupdatingCurrentCalendar() -> Retained<NSCalendar>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(calendarWithIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn calendarWithIdentifier(
             calendar_identifier_constant: &NSCalendarIdentifier,
         ) -> Option<Retained<NSCalendar>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithCalendarIdentifier:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCalendarIdentifier(
             this: Allocated<Self>,
             ident: &NSCalendarIdentifier,
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(calendarIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn calendarIdentifier(&self) -> Retained<NSCalendarIdentifier>;
 
         #[cfg(feature = "NSLocale")]
-        #[unsafe(method_family(none))]
         #[method_id(locale)]
+        #[unsafe(method_family = none)]
         pub unsafe fn locale(&self) -> Option<Retained<NSLocale>>;
 
         #[cfg(feature = "NSLocale")]
@@ -293,8 +293,8 @@ extern_methods!(
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
 
         #[cfg(feature = "NSTimeZone")]
-        #[unsafe(method_family(none))]
         #[method_id(timeZone)]
+        #[unsafe(method_family = none)]
         pub unsafe fn timeZone(&self) -> Retained<NSTimeZone>;
 
         #[cfg(feature = "NSTimeZone")]
@@ -317,103 +317,103 @@ extern_methods!(
         pub unsafe fn setMinimumDaysInFirstWeek(&self, minimum_days_in_first_week: NSUInteger);
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(eraSymbols)]
+        #[unsafe(method_family = none)]
         pub unsafe fn eraSymbols(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(longEraSymbols)]
+        #[unsafe(method_family = none)]
         pub unsafe fn longEraSymbols(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(monthSymbols)]
+        #[unsafe(method_family = none)]
         pub unsafe fn monthSymbols(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(shortMonthSymbols)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shortMonthSymbols(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(veryShortMonthSymbols)]
+        #[unsafe(method_family = none)]
         pub unsafe fn veryShortMonthSymbols(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(standaloneMonthSymbols)]
+        #[unsafe(method_family = none)]
         pub unsafe fn standaloneMonthSymbols(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(shortStandaloneMonthSymbols)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shortStandaloneMonthSymbols(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(veryShortStandaloneMonthSymbols)]
+        #[unsafe(method_family = none)]
         pub unsafe fn veryShortStandaloneMonthSymbols(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(weekdaySymbols)]
+        #[unsafe(method_family = none)]
         pub unsafe fn weekdaySymbols(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(shortWeekdaySymbols)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shortWeekdaySymbols(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(veryShortWeekdaySymbols)]
+        #[unsafe(method_family = none)]
         pub unsafe fn veryShortWeekdaySymbols(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(standaloneWeekdaySymbols)]
+        #[unsafe(method_family = none)]
         pub unsafe fn standaloneWeekdaySymbols(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(shortStandaloneWeekdaySymbols)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shortStandaloneWeekdaySymbols(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(veryShortStandaloneWeekdaySymbols)]
+        #[unsafe(method_family = none)]
         pub unsafe fn veryShortStandaloneWeekdaySymbols(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(quarterSymbols)]
+        #[unsafe(method_family = none)]
         pub unsafe fn quarterSymbols(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(shortQuarterSymbols)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shortQuarterSymbols(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(standaloneQuarterSymbols)]
+        #[unsafe(method_family = none)]
         pub unsafe fn standaloneQuarterSymbols(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(shortStandaloneQuarterSymbols)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shortStandaloneQuarterSymbols(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(AMSymbol)]
+        #[unsafe(method_family = none)]
         pub unsafe fn AMSymbol(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(PMSymbol)]
+        #[unsafe(method_family = none)]
         pub unsafe fn PMSymbol(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSRange")]
@@ -453,16 +453,16 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "NSDate")]
-        #[unsafe(method_family(none))]
         #[method_id(dateFromComponents:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dateFromComponents(
             &self,
             comps: &NSDateComponents,
         ) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSDate")]
-        #[unsafe(method_family(none))]
         #[method_id(components:fromDate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn components_fromDate(
             &self,
             unit_flags: NSCalendarUnit,
@@ -470,8 +470,8 @@ extern_methods!(
         ) -> Retained<NSDateComponents>;
 
         #[cfg(feature = "NSDate")]
-        #[unsafe(method_family(none))]
         #[method_id(dateByAddingComponents:toDate:options:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dateByAddingComponents_toDate_options(
             &self,
             comps: &NSDateComponents,
@@ -480,8 +480,8 @@ extern_methods!(
         ) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSDate")]
-        #[unsafe(method_family(none))]
         #[method_id(components:fromDate:toDate:options:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn components_fromDate_toDate_options(
             &self,
             unit_flags: NSCalendarUnit,
@@ -528,8 +528,8 @@ extern_methods!(
         pub unsafe fn component_fromDate(&self, unit: NSCalendarUnit, date: &NSDate) -> NSInteger;
 
         #[cfg(feature = "NSDate")]
-        #[unsafe(method_family(none))]
         #[method_id(dateWithEra:year:month:day:hour:minute:second:nanosecond:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dateWithEra_year_month_day_hour_minute_second_nanosecond(
             &self,
             era_value: NSInteger,
@@ -543,8 +543,8 @@ extern_methods!(
         ) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSDate")]
-        #[unsafe(method_family(none))]
         #[method_id(dateWithEra:yearForWeekOfYear:weekOfYear:weekday:hour:minute:second:nanosecond:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dateWithEra_yearForWeekOfYear_weekOfYear_weekday_hour_minute_second_nanosecond(
             &self,
             era_value: NSInteger,
@@ -558,13 +558,13 @@ extern_methods!(
         ) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSDate")]
-        #[unsafe(method_family(none))]
         #[method_id(startOfDayForDate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn startOfDayForDate(&self, date: &NSDate) -> Retained<NSDate>;
 
         #[cfg(all(feature = "NSDate", feature = "NSTimeZone"))]
-        #[unsafe(method_family(none))]
         #[method_id(componentsInTimeZone:fromDate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn componentsInTimeZone_fromDate(
             &self,
             timezone: &NSTimeZone,
@@ -628,8 +628,8 @@ extern_methods!(
             date: &NSDate,
         ) -> bool;
 
-        #[unsafe(method_family(none))]
         #[method_id(components:fromDateComponents:toDateComponents:options:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn components_fromDateComponents_toDateComponents_options(
             &self,
             unit_flags: NSCalendarUnit,
@@ -639,8 +639,8 @@ extern_methods!(
         ) -> Retained<NSDateComponents>;
 
         #[cfg(feature = "NSDate")]
-        #[unsafe(method_family(none))]
         #[method_id(dateByAddingUnit:value:toDate:options:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dateByAddingUnit_value_toDate_options(
             &self,
             unit: NSCalendarUnit,
@@ -660,8 +660,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSDate")]
-        #[unsafe(method_family(none))]
         #[method_id(nextDateAfterDate:matchingComponents:options:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn nextDateAfterDate_matchingComponents_options(
             &self,
             date: &NSDate,
@@ -670,8 +670,8 @@ extern_methods!(
         ) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSDate")]
-        #[unsafe(method_family(none))]
         #[method_id(nextDateAfterDate:matchingUnit:value:options:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn nextDateAfterDate_matchingUnit_value_options(
             &self,
             date: &NSDate,
@@ -681,8 +681,8 @@ extern_methods!(
         ) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSDate")]
-        #[unsafe(method_family(none))]
         #[method_id(nextDateAfterDate:matchingHour:minute:second:options:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn nextDateAfterDate_matchingHour_minute_second_options(
             &self,
             date: &NSDate,
@@ -693,8 +693,8 @@ extern_methods!(
         ) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSDate")]
-        #[unsafe(method_family(none))]
         #[method_id(dateBySettingUnit:value:ofDate:options:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dateBySettingUnit_value_ofDate_options(
             &self,
             unit: NSCalendarUnit,
@@ -704,8 +704,8 @@ extern_methods!(
         ) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSDate")]
-        #[unsafe(method_family(none))]
         #[method_id(dateBySettingHour:minute:second:ofDate:options:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dateBySettingHour_minute_second_ofDate_options(
             &self,
             h: NSInteger,
@@ -728,8 +728,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSCalendar {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -771,8 +771,8 @@ unsafe impl NSSecureCoding for NSDateComponents {}
 
 extern_methods!(
     unsafe impl NSDateComponents {
-        #[unsafe(method_family(none))]
         #[method_id(calendar)]
+        #[unsafe(method_family = none)]
         pub unsafe fn calendar(&self) -> Option<Retained<NSCalendar>>;
 
         /// Setter for [`calendar`][Self::calendar].
@@ -780,8 +780,8 @@ extern_methods!(
         pub unsafe fn setCalendar(&self, calendar: Option<&NSCalendar>);
 
         #[cfg(feature = "NSTimeZone")]
-        #[unsafe(method_family(none))]
         #[method_id(timeZone)]
+        #[unsafe(method_family = none)]
         pub unsafe fn timeZone(&self) -> Option<Retained<NSTimeZone>>;
 
         #[cfg(feature = "NSTimeZone")]
@@ -902,8 +902,8 @@ extern_methods!(
         pub unsafe fn setLeapMonth(&self, leap_month: bool);
 
         #[cfg(feature = "NSDate")]
-        #[unsafe(method_family(none))]
         #[method_id(date)]
+        #[unsafe(method_family = none)]
         pub unsafe fn date(&self) -> Option<Retained<NSDate>>;
 
         #[deprecated = "Use -weekOfMonth or -weekOfYear, depending on which you mean"]
@@ -931,12 +931,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSDateComponents {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

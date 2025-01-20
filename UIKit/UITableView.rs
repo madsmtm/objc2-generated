@@ -174,8 +174,8 @@ extern_methods!(
     unsafe impl UITableViewRowAction {
         #[cfg(feature = "block2")]
         #[deprecated = "Use UIContextualAction and related APIs instead."]
-        #[unsafe(method_family(none))]
         #[method_id(rowActionWithStyle:title:handler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rowActionWithStyle_title_handler(
             style: UITableViewRowActionStyle,
             title: Option<&NSString>,
@@ -188,8 +188,8 @@ extern_methods!(
         pub unsafe fn style(&self) -> UITableViewRowActionStyle;
 
         #[deprecated = "Use UIContextualAction and related APIs instead."]
-        #[unsafe(method_family(none))]
         #[method_id(title)]
+        #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`title`][Self::title].
@@ -199,8 +199,8 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         #[deprecated = "Use UIContextualAction and related APIs instead."]
-        #[unsafe(method_family(none))]
         #[method_id(backgroundColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn backgroundColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -211,8 +211,8 @@ extern_methods!(
 
         #[cfg(feature = "UIVisualEffect")]
         #[deprecated = "Use UIContextualAction and related APIs instead."]
-        #[unsafe(method_family(none))]
         #[method_id(backgroundEffect)]
+        #[unsafe(method_family = none)]
         pub unsafe fn backgroundEffect(&self) -> Option<Retained<UIVisualEffect>>;
 
         #[cfg(feature = "UIVisualEffect")]
@@ -226,12 +226,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITableViewRowAction {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -251,12 +251,12 @@ unsafe impl NSObjectProtocol for UITableViewFocusUpdateContext {}
 extern_methods!(
     #[cfg(feature = "UIFocus")]
     unsafe impl UITableViewFocusUpdateContext {
-        #[unsafe(method_family(none))]
         #[method_id(previouslyFocusedIndexPath)]
+        #[unsafe(method_family = none)]
         pub unsafe fn previouslyFocusedIndexPath(&self) -> Option<Retained<NSIndexPath>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(nextFocusedIndexPath)]
+        #[unsafe(method_family = none)]
         pub unsafe fn nextFocusedIndexPath(&self) -> Option<Retained<NSIndexPath>>;
     }
 );
@@ -265,12 +265,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UIFocus")]
     unsafe impl UITableViewFocusUpdateContext {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -429,8 +429,8 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(tableView:viewForHeaderInSection:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableView_viewForHeaderInSection(
             &self,
             table_view: &UITableView,
@@ -439,8 +439,8 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(tableView:viewForFooterInSection:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableView_viewForFooterInSection(
             &self,
             table_view: &UITableView,
@@ -499,8 +499,8 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(tableView:willSelectRowAtIndexPath:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableView_willSelectRowAtIndexPath(
             &self,
             table_view: &UITableView,
@@ -509,8 +509,8 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(tableView:willDeselectRowAtIndexPath:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableView_willDeselectRowAtIndexPath(
             &self,
             table_view: &UITableView,
@@ -598,8 +598,8 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(tableView:titleForDeleteConfirmationButtonForRowAtIndexPath:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableView_titleForDeleteConfirmationButtonForRowAtIndexPath(
             &self,
             table_view: &UITableView,
@@ -609,8 +609,8 @@ extern_protocol!(
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[deprecated]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(tableView:editActionsForRowAtIndexPath:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableView_editActionsForRowAtIndexPath(
             &self,
             table_view: &UITableView,
@@ -623,8 +623,8 @@ extern_protocol!(
             feature = "UIView"
         ))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(tableView:leadingSwipeActionsConfigurationForRowAtIndexPath:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableView_leadingSwipeActionsConfigurationForRowAtIndexPath(
             &self,
             table_view: &UITableView,
@@ -637,8 +637,8 @@ extern_protocol!(
             feature = "UIView"
         ))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(tableView:trailingSwipeActionsConfigurationForRowAtIndexPath:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableView_trailingSwipeActionsConfigurationForRowAtIndexPath(
             &self,
             table_view: &UITableView,
@@ -674,8 +674,8 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(tableView:targetIndexPathForMoveFromRowAtIndexPath:toProposedIndexPath:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableView_targetIndexPathForMoveFromRowAtIndexPath_toProposedIndexPath(
             &self,
             table_view: &UITableView,
@@ -761,8 +761,8 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(indexPathForPreferredFocusedViewInTableView:)]
+        #[unsafe(method_family = none)]
         unsafe fn indexPathForPreferredFocusedViewInTableView(
             &self,
             table_view: &UITableView,
@@ -837,8 +837,8 @@ extern_protocol!(
         /// to indicate to users that it's possible for a menu to be presented from this element, but that there are no actions to
         /// present at this particular time.
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(tableView:contextMenuConfigurationForRowAtIndexPath:point:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableView_contextMenuConfigurationForRowAtIndexPath_point(
             &self,
             table_view: &UITableView,
@@ -859,8 +859,8 @@ extern_protocol!(
         ///
         /// Parameter `configuration`: The configuration of the menu about to be displayed by this interaction.
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(tableView:previewForHighlightingContextMenuWithConfiguration:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableView_previewForHighlightingContextMenuWithConfiguration(
             &self,
             table_view: &UITableView,
@@ -881,8 +881,8 @@ extern_protocol!(
         ///
         /// Parameter `configuration`: The configuration of the menu displayed by this interaction.
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(tableView:previewForDismissingContextMenuWithConfiguration:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableView_previewForDismissingContextMenuWithConfiguration(
             &self,
             table_view: &UITableView,
@@ -1117,16 +1117,16 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
     unsafe impl UITableView {
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithFrame:style:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame_style(
             this: Allocated<Self>,
             frame: CGRect,
             style: UITableViewStyle,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -1135,8 +1135,8 @@ extern_methods!(
         #[method(style)]
         pub unsafe fn style(&self) -> UITableViewStyle;
 
-        #[unsafe(method_family(none))]
         #[method_id(dataSource)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dataSource(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UITableViewDataSource>>>;
@@ -1149,8 +1149,8 @@ extern_methods!(
             data_source: Option<&ProtocolObject<dyn UITableViewDataSource>>,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn UITableViewDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -1161,8 +1161,8 @@ extern_methods!(
             delegate: Option<&ProtocolObject<dyn UITableViewDelegate>>,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(prefetchDataSource)]
+        #[unsafe(method_family = none)]
         pub unsafe fn prefetchDataSource(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UITableViewDataSourcePrefetching>>>;
@@ -1182,8 +1182,8 @@ extern_methods!(
         #[method(setPrefetchingEnabled:)]
         pub unsafe fn setPrefetchingEnabled(&self, prefetching_enabled: bool);
 
-        #[unsafe(method_family(none))]
         #[method_id(dragDelegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dragDelegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UITableViewDragDelegate>>>;
@@ -1196,8 +1196,8 @@ extern_methods!(
             drag_delegate: Option<&ProtocolObject<dyn UITableViewDragDelegate>>,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(dropDelegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dropDelegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UITableViewDropDelegate>>>;
@@ -1320,8 +1320,8 @@ extern_methods!(
             self_sizing_invalidation: UITableViewSelfSizingInvalidation,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(backgroundView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn backgroundView(&self) -> Option<Retained<UIView>>;
 
         /// Setter for [`backgroundView`][Self::backgroundView].
@@ -1329,8 +1329,8 @@ extern_methods!(
         pub unsafe fn setBackgroundView(&self, background_view: Option<&UIView>);
 
         #[cfg(feature = "UIContextMenuInteraction")]
-        #[unsafe(method_family(none))]
         #[method_id(contextMenuInteraction)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contextMenuInteraction(&self) -> Option<Retained<UIContextMenuInteraction>>;
 
         #[method(numberOfSections)]
@@ -1356,57 +1356,57 @@ extern_methods!(
         pub unsafe fn rectForRowAtIndexPath(&self, index_path: &NSIndexPath) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(none))]
         #[method_id(indexPathForRowAtPoint:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indexPathForRowAtPoint(
             &self,
             point: CGPoint,
         ) -> Option<Retained<NSIndexPath>>;
 
         #[cfg(feature = "UITableViewCell")]
-        #[unsafe(method_family(none))]
         #[method_id(indexPathForCell:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indexPathForCell(
             &self,
             cell: &UITableViewCell,
         ) -> Option<Retained<NSIndexPath>>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(none))]
         #[method_id(indexPathsForRowsInRect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indexPathsForRowsInRect(
             &self,
             rect: CGRect,
         ) -> Option<Retained<NSArray<NSIndexPath>>>;
 
         #[cfg(feature = "UITableViewCell")]
-        #[unsafe(method_family(none))]
         #[method_id(cellForRowAtIndexPath:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cellForRowAtIndexPath(
             &self,
             index_path: &NSIndexPath,
         ) -> Option<Retained<UITableViewCell>>;
 
         #[cfg(feature = "UITableViewCell")]
-        #[unsafe(method_family(none))]
         #[method_id(visibleCells)]
+        #[unsafe(method_family = none)]
         pub unsafe fn visibleCells(&self) -> Retained<NSArray<UITableViewCell>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(indexPathsForVisibleRows)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indexPathsForVisibleRows(&self) -> Option<Retained<NSArray<NSIndexPath>>>;
 
         #[cfg(feature = "UITableViewHeaderFooterView")]
-        #[unsafe(method_family(none))]
         #[method_id(headerViewForSection:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn headerViewForSection(
             &self,
             section: NSInteger,
         ) -> Option<Retained<UITableViewHeaderFooterView>>;
 
         #[cfg(feature = "UITableViewHeaderFooterView")]
-        #[unsafe(method_family(none))]
         #[method_id(footerViewForSection:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn footerViewForSection(
             &self,
             section: NSInteger,
@@ -1546,12 +1546,12 @@ extern_methods!(
             allows_multiple_selection_during_editing: bool,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(indexPathForSelectedRow)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indexPathForSelectedRow(&self) -> Option<Retained<NSIndexPath>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(indexPathsForSelectedRows)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indexPathsForSelectedRows(&self) -> Option<Retained<NSArray<NSIndexPath>>>;
 
         #[method(selectRowAtIndexPath:animated:scrollPosition:)]
@@ -1580,8 +1580,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIColor")]
-        #[unsafe(method_family(none))]
         #[method_id(sectionIndexColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sectionIndexColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -1590,8 +1590,8 @@ extern_methods!(
         pub unsafe fn setSectionIndexColor(&self, section_index_color: Option<&UIColor>);
 
         #[cfg(feature = "UIColor")]
-        #[unsafe(method_family(none))]
         #[method_id(sectionIndexBackgroundColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sectionIndexBackgroundColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -1603,8 +1603,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIColor")]
-        #[unsafe(method_family(none))]
         #[method_id(sectionIndexTrackingBackgroundColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sectionIndexTrackingBackgroundColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -1625,8 +1625,8 @@ extern_methods!(
         pub unsafe fn setSeparatorStyle(&self, separator_style: UITableViewCellSeparatorStyle);
 
         #[cfg(feature = "UIColor")]
-        #[unsafe(method_family(none))]
         #[method_id(separatorColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn separatorColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -1635,8 +1635,8 @@ extern_methods!(
         pub unsafe fn setSeparatorColor(&self, separator_color: Option<&UIColor>);
 
         #[cfg(feature = "UIVisualEffect")]
-        #[unsafe(method_family(none))]
         #[method_id(separatorEffect)]
+        #[unsafe(method_family = none)]
         pub unsafe fn separatorEffect(&self) -> Option<Retained<UIVisualEffect>>;
 
         #[cfg(feature = "UIVisualEffect")]
@@ -1664,16 +1664,16 @@ extern_methods!(
             insets_content_views_to_safe_area: bool,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(tableHeaderView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tableHeaderView(&self) -> Option<Retained<UIView>>;
 
         /// Setter for [`tableHeaderView`][Self::tableHeaderView].
         #[method(setTableHeaderView:)]
         pub unsafe fn setTableHeaderView(&self, table_header_view: Option<&UIView>);
 
-        #[unsafe(method_family(none))]
         #[method_id(tableFooterView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tableFooterView(&self) -> Option<Retained<UIView>>;
 
         /// Setter for [`tableFooterView`][Self::tableFooterView].
@@ -1681,16 +1681,16 @@ extern_methods!(
         pub unsafe fn setTableFooterView(&self, table_footer_view: Option<&UIView>);
 
         #[cfg(feature = "UITableViewCell")]
-        #[unsafe(method_family(none))]
         #[method_id(dequeueReusableCellWithIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dequeueReusableCellWithIdentifier(
             &self,
             identifier: &NSString,
         ) -> Option<Retained<UITableViewCell>>;
 
         #[cfg(feature = "UITableViewCell")]
-        #[unsafe(method_family(none))]
         #[method_id(dequeueReusableCellWithIdentifier:forIndexPath:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dequeueReusableCellWithIdentifier_forIndexPath(
             &self,
             identifier: &NSString,
@@ -1698,8 +1698,8 @@ extern_methods!(
         ) -> Retained<UITableViewCell>;
 
         #[cfg(feature = "UITableViewHeaderFooterView")]
-        #[unsafe(method_family(none))]
         #[method_id(dequeueReusableHeaderFooterViewWithIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dequeueReusableHeaderFooterViewWithIdentifier(
             &self,
             identifier: &NSString,
@@ -1810,8 +1810,8 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
     unsafe impl UITableView {
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithFrame:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
     }
 );
@@ -1820,12 +1820,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
     unsafe impl UITableView {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -1861,8 +1861,8 @@ extern_protocol!(
             feature = "UITableViewCell",
             feature = "UIView"
         ))]
-        #[unsafe(method_family(none))]
         #[method_id(tableView:cellForRowAtIndexPath:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableView_cellForRowAtIndexPath(
             &self,
             table_view: &UITableView,
@@ -1876,8 +1876,8 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(tableView:titleForHeaderInSection:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableView_titleForHeaderInSection(
             &self,
             table_view: &UITableView,
@@ -1886,8 +1886,8 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(tableView:titleForFooterInSection:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableView_titleForFooterInSection(
             &self,
             table_view: &UITableView,
@@ -1914,8 +1914,8 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(sectionIndexTitlesForTableView:)]
+        #[unsafe(method_family = none)]
         unsafe fn sectionIndexTitlesForTableView(
             &self,
             table_view: &UITableView,
@@ -1992,8 +1992,8 @@ extern_protocol!(
             feature = "UIScrollView",
             feature = "UIView"
         ))]
-        #[unsafe(method_family(none))]
         #[method_id(tableView:itemsForBeginningDragSession:atIndexPath:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableView_itemsForBeginningDragSession_atIndexPath(
             &self,
             table_view: &UITableView,
@@ -2010,8 +2010,8 @@ extern_protocol!(
             feature = "objc2-core-foundation"
         ))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(tableView:itemsForAddingToDragSession:atIndexPath:point:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableView_itemsForAddingToDragSession_atIndexPath_point(
             &self,
             table_view: &UITableView,
@@ -2028,8 +2028,8 @@ extern_protocol!(
             feature = "UIView"
         ))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(tableView:dragPreviewParametersForRowAtIndexPath:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableView_dragPreviewParametersForRowAtIndexPath(
             &self,
             table_view: &UITableView,
@@ -2141,8 +2141,8 @@ extern_protocol!(
             feature = "UIView"
         ))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(tableView:dropSessionDidUpdate:withDestinationIndexPath:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableView_dropSessionDidUpdate_withDestinationIndexPath(
             &self,
             table_view: &UITableView,
@@ -2186,8 +2186,8 @@ extern_protocol!(
             feature = "UIView"
         ))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(tableView:dropPreviewParametersForRowAtIndexPath:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableView_dropPreviewParametersForRowAtIndexPath(
             &self,
             table_view: &UITableView,
@@ -2243,8 +2243,8 @@ unsafe impl NSObjectProtocol for UITableViewDropProposal {}
 extern_methods!(
     #[cfg(feature = "UIDropInteraction")]
     unsafe impl UITableViewDropProposal {
-        #[unsafe(method_family(init))]
         #[method_id(initWithDropOperation:intent:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDropOperation_intent(
             this: Allocated<Self>,
             operation: UIDropOperation,
@@ -2260,19 +2260,19 @@ extern_methods!(
     /// Methods declared on superclass `UIDropProposal`
     #[cfg(feature = "UIDropInteraction")]
     unsafe impl UITableViewDropProposal {
-        #[unsafe(method_family(init))]
         #[method_id(initWithDropOperation:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDropOperation(
             this: Allocated<Self>,
             operation: UIDropOperation,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -2280,27 +2280,27 @@ extern_methods!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdropcoordinator?language=objc)
     pub unsafe trait UITableViewDropCoordinator: NSObjectProtocol + MainThreadOnly {
-        #[unsafe(method_family(none))]
         #[method_id(items)]
+        #[unsafe(method_family = none)]
         unsafe fn items(&self) -> Retained<NSArray<ProtocolObject<dyn UITableViewDropItem>>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(destinationIndexPath)]
+        #[unsafe(method_family = none)]
         unsafe fn destinationIndexPath(&self) -> Option<Retained<NSIndexPath>>;
 
         #[cfg(feature = "UIDropInteraction")]
-        #[unsafe(method_family(none))]
         #[method_id(proposal)]
+        #[unsafe(method_family = none)]
         unsafe fn proposal(&self) -> Retained<UITableViewDropProposal>;
 
         #[cfg(feature = "UIDragSession")]
-        #[unsafe(method_family(none))]
         #[method_id(session)]
+        #[unsafe(method_family = none)]
         unsafe fn session(&self) -> Retained<ProtocolObject<dyn UIDropSession>>;
 
         #[cfg(all(feature = "UIDragInteraction", feature = "UIDragItem"))]
-        #[unsafe(method_family(none))]
         #[method_id(dropItem:toPlaceholder:)]
+        #[unsafe(method_family = none)]
         unsafe fn dropItem_toPlaceholder(
             &self,
             drag_item: &UIDragItem,
@@ -2308,8 +2308,8 @@ extern_protocol!(
         ) -> Retained<ProtocolObject<dyn UITableViewDropPlaceholderContext>>;
 
         #[cfg(all(feature = "UIDragInteraction", feature = "UIDragItem"))]
-        #[unsafe(method_family(none))]
         #[method_id(dropItem:toRowAtIndexPath:)]
+        #[unsafe(method_family = none)]
         unsafe fn dropItem_toRowAtIndexPath(
             &self,
             drag_item: &UIDragItem,
@@ -2321,8 +2321,8 @@ extern_protocol!(
             feature = "UIDragItem",
             feature = "objc2-core-foundation"
         ))]
-        #[unsafe(method_family(none))]
         #[method_id(dropItem:intoRowAtIndexPath:rect:)]
+        #[unsafe(method_family = none)]
         unsafe fn dropItem_intoRowAtIndexPath_rect(
             &self,
             drag_item: &UIDragItem,
@@ -2336,8 +2336,8 @@ extern_protocol!(
             feature = "UITargetedDragPreview",
             feature = "UITargetedPreview"
         ))]
-        #[unsafe(method_family(none))]
         #[method_id(dropItem:toTarget:)]
+        #[unsafe(method_family = none)]
         unsafe fn dropItem_toTarget(
             &self,
             drag_item: &UIDragItem,
@@ -2359,8 +2359,8 @@ unsafe impl NSObjectProtocol for UITableViewPlaceholder {}
 extern_methods!(
     unsafe impl UITableViewPlaceholder {
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithInsertionIndexPath:reuseIdentifier:rowHeight:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithInsertionIndexPath_reuseIdentifier_rowHeight(
             this: Allocated<Self>,
             insertion_index_path: &NSIndexPath,
@@ -2368,12 +2368,12 @@ extern_methods!(
             row_height: CGFloat,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(all(
@@ -2450,8 +2450,8 @@ extern_methods!(
     /// Methods declared on superclass `UITableViewPlaceholder`
     unsafe impl UITableViewDropPlaceholder {
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithInsertionIndexPath:reuseIdentifier:rowHeight:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithInsertionIndexPath_reuseIdentifier_rowHeight(
             this: Allocated<Self>,
             insertion_index_path: &NSIndexPath,
@@ -2459,12 +2459,12 @@ extern_methods!(
             row_height: CGFloat,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -2473,12 +2473,12 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdropitem?language=objc)
     pub unsafe trait UITableViewDropItem: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UIDragItem")]
-        #[unsafe(method_family(none))]
         #[method_id(dragItem)]
+        #[unsafe(method_family = none)]
         unsafe fn dragItem(&self) -> Retained<UIDragItem>;
 
-        #[unsafe(method_family(none))]
         #[method_id(sourceIndexPath)]
+        #[unsafe(method_family = none)]
         unsafe fn sourceIndexPath(&self) -> Option<Retained<NSIndexPath>>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -2494,8 +2494,8 @@ extern_protocol!(
         UIDragAnimating + MainThreadOnly
     {
         #[cfg(feature = "UIDragItem")]
-        #[unsafe(method_family(none))]
         #[method_id(dragItem)]
+        #[unsafe(method_family = none)]
         unsafe fn dragItem(&self) -> Retained<UIDragItem>;
 
         #[cfg(feature = "block2")]

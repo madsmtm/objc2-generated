@@ -28,13 +28,13 @@ unsafe impl NSObjectProtocol for HMTrigger {}
 
 extern_methods!(
     unsafe impl HMTrigger {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Name of the trigger.
-        #[unsafe(method_family(none))]
         #[method_id(name)]
+        #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// State of the trigger.
@@ -47,19 +47,19 @@ extern_methods!(
         #[cfg(feature = "HMActionSet")]
         /// Array of HMActionSet objects that represent all the action sets associated
         /// with this trigger.
-        #[unsafe(method_family(none))]
         #[method_id(actionSets)]
+        #[unsafe(method_family = none)]
         pub unsafe fn actionSets(&self) -> Retained<NSArray<HMActionSet>>;
 
         /// The date that this trigger was most recently fired.
         #[deprecated = "No longer supported"]
-        #[unsafe(method_family(none))]
         #[method_id(lastFireDate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn lastFireDate(&self) -> Option<Retained<NSDate>>;
 
         /// A unique identifier for the trigger.
-        #[unsafe(method_family(none))]
         #[method_id(uniqueIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn uniqueIdentifier(&self) -> Retained<NSUUID>;
 
         #[cfg(feature = "block2")]
@@ -140,8 +140,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HMTrigger {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

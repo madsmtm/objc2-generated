@@ -27,25 +27,25 @@ unsafe impl NSSecureCoding for WKWebsiteDataStore {}
 
 extern_methods!(
     unsafe impl WKWebsiteDataStore {
-        #[unsafe(method_family(none))]
         #[method_id(defaultDataStore)]
+        #[unsafe(method_family = none)]
         pub unsafe fn defaultDataStore(mtm: MainThreadMarker) -> Retained<WKWebsiteDataStore>;
 
         /// Returns a new non-persistent data store.
         ///
         /// If a WKWebView is associated with a non-persistent data store, no data will
         /// be written to the file system. This is useful for implementing "private browsing" in a web view.
-        #[unsafe(method_family(none))]
         #[method_id(nonPersistentDataStore)]
+        #[unsafe(method_family = none)]
         pub unsafe fn nonPersistentDataStore(mtm: MainThreadMarker)
             -> Retained<WKWebsiteDataStore>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(&self) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Whether the data store is persistent or not.
@@ -53,8 +53,8 @@ extern_methods!(
         pub unsafe fn isPersistent(&self) -> bool;
 
         /// Returns a set of all available website data types.
-        #[unsafe(method_family(none))]
         #[method_id(allWebsiteDataTypes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allWebsiteDataTypes(mtm: MainThreadMarker) -> Retained<NSSet<NSString>>;
 
         #[cfg(all(feature = "WKWebsiteDataRecord", feature = "block2"))]
@@ -104,15 +104,15 @@ extern_methods!(
 
         #[cfg(feature = "WKHTTPCookieStore")]
         /// Returns the cookie store representing HTTP cookies in this website data store.
-        #[unsafe(method_family(none))]
         #[method_id(httpCookieStore)]
+        #[unsafe(method_family = none)]
         pub unsafe fn httpCookieStore(&self) -> Retained<WKHTTPCookieStore>;
 
         /// Get identifier for a data store.
         ///
         /// Returns nil for default and non-persistent data store .
-        #[unsafe(method_family(none))]
         #[method_id(identifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Option<Retained<NSUUID>>;
 
         /// Get a persistent data store.
@@ -121,8 +121,8 @@ extern_methods!(
         ///
         /// If a data store with this identifier does not exist yet, it will be created. Throws exception if identifier
         /// is 0.
-        #[unsafe(method_family(none))]
         #[method_id(dataStoreForIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dataStoreForIdentifier(
             identifier: &NSUUID,
             mtm: MainThreadMarker,
@@ -161,8 +161,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKWebsiteDataStore {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new_class(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

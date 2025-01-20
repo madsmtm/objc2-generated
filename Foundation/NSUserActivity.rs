@@ -22,26 +22,26 @@ unsafe impl NSObjectProtocol for NSUserActivity {}
 extern_methods!(
     unsafe impl NSUserActivity {
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithActivityType:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithActivityType(
             this: Allocated<Self>,
             activity_type: &NSString,
         ) -> Retained<Self>;
 
         #[deprecated = "Use initWithActivityType: with a specific activity type string"]
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(activityType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn activityType(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(title)]
+        #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
@@ -50,8 +50,8 @@ extern_methods!(
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
         #[cfg(feature = "NSDictionary")]
-        #[unsafe(method_family(none))]
         #[method_id(userInfo)]
+        #[unsafe(method_family = none)]
         pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary>>;
 
         #[cfg(feature = "NSDictionary")]
@@ -64,8 +64,8 @@ extern_methods!(
         pub unsafe fn addUserInfoEntriesFromDictionary(&self, other_dictionary: &NSDictionary);
 
         #[cfg(all(feature = "NSSet", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(requiredUserInfoKeys)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requiredUserInfoKeys(&self) -> Option<Retained<NSSet<NSString>>>;
 
         #[cfg(all(feature = "NSSet", feature = "NSString"))]
@@ -84,8 +84,8 @@ extern_methods!(
         pub unsafe fn setNeedsSave(&self, needs_save: bool);
 
         #[cfg(feature = "NSURL")]
-        #[unsafe(method_family(none))]
         #[method_id(webpageURL)]
+        #[unsafe(method_family = none)]
         pub unsafe fn webpageURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSURL")]
@@ -94,8 +94,8 @@ extern_methods!(
         pub unsafe fn setWebpageURL(&self, webpage_url: Option<&NSURL>);
 
         #[cfg(feature = "NSURL")]
-        #[unsafe(method_family(none))]
         #[method_id(referrerURL)]
+        #[unsafe(method_family = none)]
         pub unsafe fn referrerURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSURL")]
@@ -104,8 +104,8 @@ extern_methods!(
         pub unsafe fn setReferrerURL(&self, referrer_url: Option<&NSURL>);
 
         #[cfg(feature = "NSDate")]
-        #[unsafe(method_family(none))]
         #[method_id(expirationDate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn expirationDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSDate")]
@@ -114,8 +114,8 @@ extern_methods!(
         pub unsafe fn setExpirationDate(&self, expiration_date: Option<&NSDate>);
 
         #[cfg(all(feature = "NSSet", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(keywords)]
+        #[unsafe(method_family = none)]
         pub unsafe fn keywords(&self) -> Retained<NSSet<NSString>>;
 
         #[cfg(all(feature = "NSSet", feature = "NSString"))]
@@ -130,8 +130,8 @@ extern_methods!(
         #[method(setSupportsContinuationStreams:)]
         pub unsafe fn setSupportsContinuationStreams(&self, supports_continuation_streams: bool);
 
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSUserActivityDelegate>>>;
@@ -145,8 +145,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(targetContentIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn targetContentIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
@@ -204,8 +204,8 @@ extern_methods!(
         pub unsafe fn setEligibleForPrediction(&self, eligible_for_prediction: bool);
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(persistentIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn persistentIdentifier(
             &self,
         ) -> Option<Retained<NSUserActivityPersistentIdentifier>>;
@@ -236,8 +236,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSUserActivity {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -26,13 +26,13 @@ unsafe impl NSSecureCoding for NSAppearance {}
 
 extern_methods!(
     unsafe impl NSAppearance {
-        #[unsafe(method_family(none))]
         #[method_id(name)]
+        #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSAppearanceName>;
 
         #[deprecated = "Use -performAsCurrentDrawingAppearance: to temporarily set the drawing appearance, or +currentDrawingAppearance to access the currently drawing appearance."]
-        #[unsafe(method_family(none))]
         #[method_id(currentAppearance)]
+        #[unsafe(method_family = none)]
         pub unsafe fn currentAppearance() -> Option<Retained<NSAppearance>>;
 
         /// Setter for [`currentAppearance`][Self::currentAppearance].
@@ -40,8 +40,8 @@ extern_methods!(
         #[method(setCurrentAppearance:)]
         pub unsafe fn setCurrentAppearance(current_appearance: Option<&NSAppearance>);
 
-        #[unsafe(method_family(none))]
         #[method_id(currentDrawingAppearance)]
+        #[unsafe(method_family = none)]
         pub unsafe fn currentDrawingAppearance() -> Retained<NSAppearance>;
 
         #[cfg(feature = "block2")]
@@ -51,20 +51,20 @@ extern_methods!(
             block: &block2::Block<dyn Fn() + '_>,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(appearanceNamed:)]
+        #[unsafe(method_family = none)]
         pub fn appearanceNamed(name: &NSAppearanceName) -> Option<Retained<NSAppearance>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithAppearanceNamed:bundle:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithAppearanceNamed_bundle(
             this: Allocated<Self>,
             name: &NSAppearanceName,
             bundle: Option<&NSBundle>,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -73,8 +73,8 @@ extern_methods!(
         #[method(allowsVibrancy)]
         pub unsafe fn allowsVibrancy(&self) -> bool;
 
-        #[unsafe(method_family(none))]
         #[method_id(bestMatchFromAppearancesWithNames:)]
+        #[unsafe(method_family = none)]
         pub fn bestMatchFromAppearancesWithNames(
             &self,
             appearances: &NSArray<NSAppearanceName>,
@@ -85,12 +85,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSAppearance {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -143,16 +143,16 @@ extern "C" {
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappearancecustomization?language=objc)
     pub unsafe trait NSAppearanceCustomization: NSObjectProtocol {
-        #[unsafe(method_family(none))]
         #[method_id(appearance)]
+        #[unsafe(method_family = none)]
         unsafe fn appearance(&self) -> Option<Retained<NSAppearance>>;
 
         /// Setter for [`appearance`][Self::appearance].
         #[method(setAppearance:)]
         unsafe fn setAppearance(&self, appearance: Option<&NSAppearance>);
 
-        #[unsafe(method_family(none))]
         #[method_id(effectiveAppearance)]
+        #[unsafe(method_family = none)]
         unsafe fn effectiveAppearance(&self) -> Retained<NSAppearance>;
     }
 );

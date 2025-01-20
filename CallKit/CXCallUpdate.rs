@@ -26,8 +26,8 @@ extern_methods!(
     unsafe impl CXCallUpdate {
         #[cfg(feature = "CXHandle")]
         /// Handle for the remote party (for an incoming call, the caller; for an outgoing call, the callee)
-        #[unsafe(method_family(none))]
         #[method_id(remoteHandle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn remoteHandle(&self) -> Option<Retained<CXHandle>>;
 
         #[cfg(feature = "CXHandle")]
@@ -37,8 +37,8 @@ extern_methods!(
 
         /// Override the computed caller name to a provider-defined value.
         /// Normally the system will determine the appropriate caller name to display (e.g. using the user's contacts) based on the supplied caller identifier. Set this property to customize.
-        #[unsafe(method_family(none))]
         #[method_id(localizedCallerName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn localizedCallerName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`localizedCallerName`][Self::localizedCallerName].
@@ -90,12 +90,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CXCallUpdate {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

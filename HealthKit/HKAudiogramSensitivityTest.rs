@@ -76,8 +76,8 @@ extern_methods!(
         #[cfg(feature = "HKQuantity")]
         /// Ear sensitivity measured in dB from a baseline of 0 dB. Reduced hearing sensitivity corresponds to an increase from 0 dB.
         /// The unit of measurement is `HKUnit.decibelHearingLevelUnit` or "dBHL".
-        #[unsafe(method_family(none))]
         #[method_id(sensitivity)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sensitivity(&self) -> Retained<HKQuantity>;
 
         /// The conduction type
@@ -94,8 +94,8 @@ extern_methods!(
 
         #[cfg(feature = "HKAudiogramSensitivityPointClampingRange")]
         /// If present, indicates that the range within which the sensitivity point should be clamped.
-        #[unsafe(method_family(none))]
         #[method_id(clampingRange)]
+        #[unsafe(method_family = none)]
         pub unsafe fn clampingRange(
             &self,
         ) -> Option<Retained<HKAudiogramSensitivityPointClampingRange>>;
@@ -120,8 +120,8 @@ extern_methods!(
         ///
         /// Returns: New instance of a Sensitivity Test or nil if there were problems
         /// creating the instance.  Errors may include incorrect quantity units or sensitivity out of range
-        #[unsafe(method_family(init))]
         #[method_id(initWithSensitivity:type:masked:side:clampingRange:error:_)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithSensitivity_type_masked_side_clampingRange_error(
             this: Allocated<Self>,
             sensitivity: &HKQuantity,
@@ -131,12 +131,12 @@ extern_methods!(
             clamping_range: Option<&HKAudiogramSensitivityPointClampingRange>,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

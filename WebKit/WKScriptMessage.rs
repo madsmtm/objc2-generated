@@ -25,32 +25,32 @@ extern_methods!(
         ///
         /// Allowed types are NSNumber, NSString, NSDate, NSArray,
         /// NSDictionary, and NSNull.
-        #[unsafe(method_family(none))]
         #[method_id(body)]
+        #[unsafe(method_family = none)]
         pub unsafe fn body(&self) -> Retained<AnyObject>;
 
         #[cfg(all(feature = "WKWebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         /// The web view sending the message.
-        #[unsafe(method_family(none))]
         #[method_id(webView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn webView(&self) -> Option<Retained<WKWebView>>;
 
         #[cfg(feature = "WKFrameInfo")]
         /// The frame sending the message.
-        #[unsafe(method_family(none))]
         #[method_id(frameInfo)]
+        #[unsafe(method_family = none)]
         pub unsafe fn frameInfo(&self) -> Retained<WKFrameInfo>;
 
         /// The name of the message handler to which the message is sent.
-        #[unsafe(method_family(none))]
         #[method_id(name)]
+        #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "WKContentWorld")]
         /// The content world from which the message was sent.
-        #[unsafe(method_family(none))]
         #[method_id(world)]
+        #[unsafe(method_family = none)]
         pub unsafe fn world(&self) -> Retained<WKContentWorld>;
     }
 );
@@ -58,12 +58,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKScriptMessage {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

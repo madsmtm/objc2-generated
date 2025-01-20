@@ -48,17 +48,17 @@ unsafe impl NSObjectProtocol for AVMetricEventStream {}
 
 extern_methods!(
     unsafe impl AVMetricEventStream {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Returns an autoreleased instance.
-        #[unsafe(method_family(none))]
         #[method_id(eventStream)]
+        #[unsafe(method_family = none)]
         pub unsafe fn eventStream() -> Retained<Self>;
 
         /// The publisher should be an AVFoundation instance conforming to AVMetricEventStreamPublisher.
@@ -109,17 +109,17 @@ unsafe impl NSSecureCoding for AVMetricEvent {}
 
 extern_methods!(
     unsafe impl AVMetricEvent {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Returns the date when the event occurred.
-        #[unsafe(method_family(none))]
         #[method_id(date)]
+        #[unsafe(method_family = none)]
         pub unsafe fn date(&self) -> Retained<NSDate>;
 
         #[cfg(feature = "objc2-core-media")]
@@ -128,8 +128,8 @@ extern_methods!(
         pub unsafe fn mediaTime(&self) -> CMTime;
 
         /// A GUID that identifies the media session. If not available, value is nil.
-        #[unsafe(method_family(none))]
         #[method_id(sessionID)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sessionID(&self) -> Option<Retained<NSString>>;
     }
 );
@@ -157,12 +157,12 @@ unsafe impl NSSecureCoding for AVMetricErrorEvent {}
 
 extern_methods!(
     unsafe impl AVMetricErrorEvent {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Returns whether the error was recoverable.
@@ -170,8 +170,8 @@ extern_methods!(
         pub unsafe fn didRecover(&self) -> bool;
 
         /// Returns the error encountered.
-        #[unsafe(method_family(none))]
         #[method_id(error)]
+        #[unsafe(method_family = none)]
         pub unsafe fn error(&self) -> Retained<NSError>;
     }
 );
@@ -199,42 +199,42 @@ unsafe impl NSSecureCoding for AVMetricMediaResourceRequestEvent {}
 
 extern_methods!(
     unsafe impl AVMetricMediaResourceRequestEvent {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Returns the URL of the resource request. If no value is available, returns nil.
-        #[unsafe(method_family(none))]
         #[method_id(url)]
+        #[unsafe(method_family = none)]
         pub unsafe fn url(&self) -> Option<Retained<NSURL>>;
 
         /// The IP address of the server. If not available, the value is nil.
-        #[unsafe(method_family(none))]
         #[method_id(serverAddress)]
+        #[unsafe(method_family = none)]
         pub unsafe fn serverAddress(&self) -> Option<Retained<NSString>>;
 
         /// Returns the start time of the resource request.
-        #[unsafe(method_family(none))]
         #[method_id(requestStartTime)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestStartTime(&self) -> Retained<NSDate>;
 
         /// Returns the end time of the resource request.
-        #[unsafe(method_family(none))]
         #[method_id(requestEndTime)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestEndTime(&self) -> Retained<NSDate>;
 
         /// Returns the start time of the resource request response.
-        #[unsafe(method_family(none))]
         #[method_id(responseStartTime)]
+        #[unsafe(method_family = none)]
         pub unsafe fn responseStartTime(&self) -> Retained<NSDate>;
 
         /// Returns the end time of the resource request response.
-        #[unsafe(method_family(none))]
         #[method_id(responseEndTime)]
+        #[unsafe(method_family = none)]
         pub unsafe fn responseEndTime(&self) -> Retained<NSDate>;
 
         /// Returns the byte range downloaded for the resource request. If not available, the range start and end will be 0.
@@ -246,13 +246,13 @@ extern_methods!(
         pub unsafe fn wasReadFromCache(&self) -> bool;
 
         /// Returns the error event, if any, encountered during the resource request. If no value is present, returns nil.
-        #[unsafe(method_family(none))]
         #[method_id(errorEvent)]
+        #[unsafe(method_family = none)]
         pub unsafe fn errorEvent(&self) -> Option<Retained<AVMetricErrorEvent>>;
 
         /// Returns the NSURLSessionTaskMetrics associated with the resource request. If no value is present, returns nil
-        #[unsafe(method_family(none))]
         #[method_id(networkTransactionMetrics)]
+        #[unsafe(method_family = none)]
         pub unsafe fn networkTransactionMetrics(&self)
             -> Option<Retained<NSURLSessionTaskMetrics>>;
     }
@@ -281,17 +281,17 @@ unsafe impl NSSecureCoding for AVMetricHLSPlaylistRequestEvent {}
 
 extern_methods!(
     unsafe impl AVMetricHLSPlaylistRequestEvent {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Returns the URL of the playlist. If no value is available, returns nil.
-        #[unsafe(method_family(none))]
         #[method_id(url)]
+        #[unsafe(method_family = none)]
         pub unsafe fn url(&self) -> Option<Retained<NSURL>>;
 
         /// Returns true if the playlist request is for a multivariant playlist.
@@ -300,13 +300,13 @@ extern_methods!(
 
         #[cfg(feature = "AVMediaFormat")]
         /// Returns the media type.  If the value cannot be determined, returns AVMediaTypeMuxed.
-        #[unsafe(method_family(none))]
         #[method_id(mediaType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mediaType(&self) -> Retained<AVMediaType>;
 
         /// Returns the media resource request event which was used to satisfy the playlist.
-        #[unsafe(method_family(none))]
         #[method_id(mediaResourceRequestEvent)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mediaResourceRequestEvent(
             &self,
         ) -> Option<Retained<AVMetricMediaResourceRequestEvent>>;
@@ -336,17 +336,17 @@ unsafe impl NSSecureCoding for AVMetricHLSMediaSegmentRequestEvent {}
 
 extern_methods!(
     unsafe impl AVMetricHLSMediaSegmentRequestEvent {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Returns the URL of the media segment. If no value is available, returns nil.
-        #[unsafe(method_family(none))]
         #[method_id(url)]
+        #[unsafe(method_family = none)]
         pub unsafe fn url(&self) -> Option<Retained<NSURL>>;
 
         /// Returns true if the media segment request is for a map segment.
@@ -355,8 +355,8 @@ extern_methods!(
 
         #[cfg(feature = "AVMediaFormat")]
         /// Returns the media type.  If the value cannot be determined, returns AVMediaTypeMuxed.
-        #[unsafe(method_family(none))]
         #[method_id(mediaType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mediaType(&self) -> Retained<AVMediaType>;
 
         /// Returns the byte range for the media segment. If not available, the range start and end will be 0.
@@ -364,13 +364,13 @@ extern_methods!(
         pub unsafe fn byteRange(&self) -> NSRange;
 
         /// Returns the URL of the index file in which this segment was declared. If not available, returns nil.
-        #[unsafe(method_family(none))]
         #[method_id(indexFileURL)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indexFileURL(&self) -> Retained<NSURL>;
 
         /// Returns the media resource request event which was used to satisfy the media segment.
-        #[unsafe(method_family(none))]
         #[method_id(mediaResourceRequestEvent)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mediaResourceRequestEvent(
             &self,
         ) -> Option<Retained<AVMetricMediaResourceRequestEvent>>;
@@ -400,24 +400,24 @@ unsafe impl NSSecureCoding for AVMetricContentKeyRequestEvent {}
 
 extern_methods!(
     unsafe impl AVMetricContentKeyRequestEvent {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "AVContentKeySession")]
         /// Returns the content key specifier for the request.
-        #[unsafe(method_family(none))]
         #[method_id(contentKeySpecifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contentKeySpecifier(&self) -> Retained<AVContentKeySpecifier>;
 
         #[cfg(feature = "AVMediaFormat")]
         /// Returns the media type.  If the value cannot be determined, returns AVMediaTypeMuxed.
-        #[unsafe(method_family(none))]
         #[method_id(mediaType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mediaType(&self) -> Retained<AVMediaType>;
 
         /// Returns whether the content key resource request was initiated by the client.
@@ -425,8 +425,8 @@ extern_methods!(
         pub unsafe fn isClientInitiated(&self) -> bool;
 
         /// Returns the media resource request event which was used to satisfy the content key.
-        #[unsafe(method_family(none))]
         #[method_id(mediaResourceRequestEvent)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mediaResourceRequestEvent(
             &self,
         ) -> Option<Retained<AVMetricMediaResourceRequestEvent>>;
@@ -456,18 +456,18 @@ unsafe impl NSSecureCoding for AVMetricPlayerItemLikelyToKeepUpEvent {}
 
 extern_methods!(
     unsafe impl AVMetricPlayerItemLikelyToKeepUpEvent {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "AVAssetVariant")]
         /// Returns the variant selected at the time likely to keep up is achieved. If no value is present, returns nil.
-        #[unsafe(method_family(none))]
         #[method_id(variant)]
+        #[unsafe(method_family = none)]
         pub unsafe fn variant(&self) -> Option<Retained<AVAssetVariant>>;
 
         /// Returns the total time taken to reach likely to keep up.
@@ -477,8 +477,8 @@ extern_methods!(
         /// This property provides a collection of time ranges for which the player has the media data readily available. The ranges provided might be discontinuous.
         ///
         /// Returns an NSArray of NSValues containing CMTimeRanges.
-        #[unsafe(method_family(none))]
         #[method_id(loadedTimeRanges)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loadedTimeRanges(&self) -> Retained<NSArray<NSValue>>;
     }
 );
@@ -506,31 +506,31 @@ unsafe impl NSSecureCoding for AVMetricPlayerItemInitialLikelyToKeepUpEvent {}
 
 extern_methods!(
     unsafe impl AVMetricPlayerItemInitialLikelyToKeepUpEvent {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Returns the playlist request events required to reach likely to keep up.
-        #[unsafe(method_family(none))]
         #[method_id(playlistRequestEvents)]
+        #[unsafe(method_family = none)]
         pub unsafe fn playlistRequestEvents(
             &self,
         ) -> Retained<NSArray<AVMetricHLSPlaylistRequestEvent>>;
 
         /// Returns the media segment request events required to reach likely to keep up.
-        #[unsafe(method_family(none))]
         #[method_id(mediaSegmentRequestEvents)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mediaSegmentRequestEvents(
             &self,
         ) -> Retained<NSArray<AVMetricHLSMediaSegmentRequestEvent>>;
 
         /// Returns the content key request required to reach likely to keep up.
-        #[unsafe(method_family(none))]
         #[method_id(contentKeyRequestEvents)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contentKeyRequestEvents(
             &self,
         ) -> Retained<NSArray<AVMetricContentKeyRequestEvent>>;
@@ -560,12 +560,12 @@ unsafe impl NSSecureCoding for AVMetricPlayerItemRateChangeEvent {}
 
 extern_methods!(
     unsafe impl AVMetricPlayerItemRateChangeEvent {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Returns the playback rate after the rate change event.
@@ -578,8 +578,8 @@ extern_methods!(
 
         #[cfg(feature = "AVAssetVariant")]
         /// Returns the variant being played at the time of rate change. If no value is present, returns nil.
-        #[unsafe(method_family(none))]
         #[method_id(variant)]
+        #[unsafe(method_family = none)]
         pub unsafe fn variant(&self) -> Option<Retained<AVAssetVariant>>;
     }
 );
@@ -607,12 +607,12 @@ unsafe impl NSSecureCoding for AVMetricPlayerItemStallEvent {}
 
 extern_methods!(
     unsafe impl AVMetricPlayerItemStallEvent {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -640,12 +640,12 @@ unsafe impl NSSecureCoding for AVMetricPlayerItemSeekEvent {}
 
 extern_methods!(
     unsafe impl AVMetricPlayerItemSeekEvent {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -673,12 +673,12 @@ unsafe impl NSSecureCoding for AVMetricPlayerItemSeekDidCompleteEvent {}
 
 extern_methods!(
     unsafe impl AVMetricPlayerItemSeekDidCompleteEvent {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Returns whether the seek was performed within the available buffer.
@@ -710,31 +710,31 @@ unsafe impl NSSecureCoding for AVMetricPlayerItemVariantSwitchEvent {}
 
 extern_methods!(
     unsafe impl AVMetricPlayerItemVariantSwitchEvent {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "AVAssetVariant")]
         /// Returns the variant before the switch. If no value is available, returns nil
-        #[unsafe(method_family(none))]
         #[method_id(fromVariant)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fromVariant(&self) -> Option<Retained<AVAssetVariant>>;
 
         #[cfg(feature = "AVAssetVariant")]
         /// Returns the variant after the switch.
-        #[unsafe(method_family(none))]
         #[method_id(toVariant)]
+        #[unsafe(method_family = none)]
         pub unsafe fn toVariant(&self) -> Retained<AVAssetVariant>;
 
         /// This property provides a collection of time ranges for which the player has the media data readily available. The ranges provided might be discontinuous.
         ///
         /// Returns an NSArray of NSValues containing CMTimeRanges.
-        #[unsafe(method_family(none))]
         #[method_id(loadedTimeRanges)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loadedTimeRanges(&self) -> Retained<NSArray<NSValue>>;
 
         /// Returns if the switch did succeed.
@@ -766,31 +766,31 @@ unsafe impl NSSecureCoding for AVMetricPlayerItemVariantSwitchStartEvent {}
 
 extern_methods!(
     unsafe impl AVMetricPlayerItemVariantSwitchStartEvent {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "AVAssetVariant")]
         /// Returns the variant from which the switch is attempted. If no value is available, returns nil
-        #[unsafe(method_family(none))]
         #[method_id(fromVariant)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fromVariant(&self) -> Option<Retained<AVAssetVariant>>;
 
         #[cfg(feature = "AVAssetVariant")]
         /// Returns the variant to which the switch is attempted.
-        #[unsafe(method_family(none))]
         #[method_id(toVariant)]
+        #[unsafe(method_family = none)]
         pub unsafe fn toVariant(&self) -> Retained<AVAssetVariant>;
 
         /// This property provides a collection of time ranges for which the player has the media data readily available. The ranges provided might be discontinuous.
         ///
         /// Returns an NSArray of NSValues containing CMTimeRanges.
-        #[unsafe(method_family(none))]
         #[method_id(loadedTimeRanges)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loadedTimeRanges(&self) -> Retained<NSArray<NSValue>>;
     }
 );
@@ -818,17 +818,17 @@ unsafe impl NSSecureCoding for AVMetricPlayerItemPlaybackSummaryEvent {}
 
 extern_methods!(
     unsafe impl AVMetricPlayerItemPlaybackSummaryEvent {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Returns the error event if any. If no value is available, returns nil.
-        #[unsafe(method_family(none))]
         #[method_id(errorEvent)]
+        #[unsafe(method_family = none)]
         pub unsafe fn errorEvent(&self) -> Option<Retained<AVMetricErrorEvent>>;
 
         /// Returns the total count of recoverable errors encountered during playback. If no errors were encountered, returns 0.

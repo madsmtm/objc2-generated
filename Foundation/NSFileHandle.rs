@@ -28,12 +28,12 @@ unsafe impl NSSecureCoding for NSFileHandle {}
 extern_methods!(
     unsafe impl NSFileHandle {
         #[cfg(feature = "NSData")]
-        #[unsafe(method_family(none))]
         #[method_id(availableData)]
+        #[unsafe(method_family = none)]
         pub unsafe fn availableData(&self) -> Retained<NSData>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithFileDescriptor:closeOnDealloc:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFileDescriptor_closeOnDealloc(
             this: Allocated<Self>,
             fd: c_int,
@@ -41,23 +41,23 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "NSData", feature = "NSError"))]
-        #[unsafe(method_family(none))]
         #[method_id(readDataToEndOfFileAndReturnError:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn readDataToEndOfFileAndReturnError(
             &self,
         ) -> Result<Retained<NSData>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSData", feature = "NSError"))]
-        #[unsafe(method_family(none))]
         #[method_id(readDataUpToLength:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn readDataUpToLength_error(
             &self,
             length: NSUInteger,
@@ -108,12 +108,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSFileHandle {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -121,54 +121,54 @@ extern_methods!(
 extern_methods!(
     /// NSFileHandleCreation
     unsafe impl NSFileHandle {
-        #[unsafe(method_family(none))]
         #[method_id(fileHandleWithStandardInput)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fileHandleWithStandardInput() -> Retained<NSFileHandle>;
 
-        #[unsafe(method_family(none))]
         #[method_id(fileHandleWithStandardOutput)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fileHandleWithStandardOutput() -> Retained<NSFileHandle>;
 
-        #[unsafe(method_family(none))]
         #[method_id(fileHandleWithStandardError)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fileHandleWithStandardError() -> Retained<NSFileHandle>;
 
-        #[unsafe(method_family(none))]
         #[method_id(fileHandleWithNullDevice)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fileHandleWithNullDevice() -> Retained<NSFileHandle>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(fileHandleForReadingAtPath:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fileHandleForReadingAtPath(path: &NSString) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(fileHandleForWritingAtPath:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fileHandleForWritingAtPath(path: &NSString) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(fileHandleForUpdatingAtPath:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fileHandleForUpdatingAtPath(path: &NSString) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
-        #[unsafe(method_family(none))]
         #[method_id(fileHandleForReadingFromURL:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fileHandleForReadingFromURL_error(
             url: &NSURL,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
-        #[unsafe(method_family(none))]
         #[method_id(fileHandleForWritingToURL:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fileHandleForWritingToURL_error(
             url: &NSURL,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
-        #[unsafe(method_family(none))]
         #[method_id(fileHandleForUpdatingURL:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fileHandleForUpdatingURL_error(
             url: &NSURL,
         ) -> Result<Retained<Self>, Retained<NSError>>;
@@ -299,8 +299,8 @@ extern_methods!(
 extern_methods!(
     /// NSFileHandlePlatformSpecific
     unsafe impl NSFileHandle {
-        #[unsafe(method_family(init))]
         #[method_id(initWithFileDescriptor:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFileDescriptor(this: Allocated<Self>, fd: c_int) -> Retained<Self>;
 
         #[method(fileDescriptor)]
@@ -312,14 +312,14 @@ extern_methods!(
     unsafe impl NSFileHandle {
         #[cfg(feature = "NSData")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(readDataToEndOfFile)]
+        #[unsafe(method_family = none)]
         pub unsafe fn readDataToEndOfFile(&self) -> Retained<NSData>;
 
         #[cfg(feature = "NSData")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(readDataOfLength:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn readDataOfLength(&self, length: NSUInteger) -> Retained<NSData>;
 
         #[cfg(feature = "NSData")]
@@ -368,16 +368,16 @@ unsafe impl NSObjectProtocol for NSPipe {}
 
 extern_methods!(
     unsafe impl NSPipe {
-        #[unsafe(method_family(none))]
         #[method_id(fileHandleForReading)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fileHandleForReading(&self) -> Retained<NSFileHandle>;
 
-        #[unsafe(method_family(none))]
         #[method_id(fileHandleForWriting)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fileHandleForWriting(&self) -> Retained<NSFileHandle>;
 
-        #[unsafe(method_family(none))]
         #[method_id(pipe)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pipe() -> Retained<NSPipe>;
     }
 );
@@ -385,12 +385,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPipe {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

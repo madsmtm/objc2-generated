@@ -54,14 +54,14 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemproviderwriting?language=objc)
     pub unsafe trait NSItemProviderWriting: NSObjectProtocol {
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(writableTypeIdentifiersForItemProvider)]
+        #[unsafe(method_family = none)]
         unsafe fn writableTypeIdentifiersForItemProvider_class() -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(writableTypeIdentifiersForItemProvider)]
+        #[unsafe(method_family = none)]
         unsafe fn writableTypeIdentifiersForItemProvider(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSString")]
@@ -86,8 +86,8 @@ extern_protocol!(
             feature = "NSString",
             feature = "block2"
         ))]
-        #[unsafe(method_family(none))]
         #[method_id(loadDataWithTypeIdentifier:forItemProviderCompletionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn loadDataWithTypeIdentifier_forItemProviderCompletionHandler(
             &self,
             type_identifier: &NSString,
@@ -100,13 +100,13 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemproviderreading?language=objc)
     pub unsafe trait NSItemProviderReading: NSObjectProtocol {
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(readableTypeIdentifiersForItemProvider)]
+        #[unsafe(method_family = none)]
         unsafe fn readableTypeIdentifiersForItemProvider() -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSData", feature = "NSError", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(objectWithItemProviderData:typeIdentifier:error:_)]
+        #[unsafe(method_family = none)]
         unsafe fn objectWithItemProviderData_typeIdentifier_error(
             data: &NSData,
             type_identifier: &NSString,
@@ -148,8 +148,8 @@ unsafe impl NSObjectProtocol for NSItemProvider {}
 
 extern_methods!(
     unsafe impl NSItemProvider {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(
@@ -192,13 +192,13 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(registeredTypeIdentifiers)]
+        #[unsafe(method_family = none)]
         pub unsafe fn registeredTypeIdentifiers(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(registeredTypeIdentifiersWithFileOptions:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn registeredTypeIdentifiersWithFileOptions(
             &self,
             file_options: NSItemProviderFileOptions,
@@ -223,8 +223,8 @@ extern_methods!(
             feature = "NSString",
             feature = "block2"
         ))]
-        #[unsafe(method_family(none))]
         #[method_id(loadDataRepresentationForTypeIdentifier:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loadDataRepresentationForTypeIdentifier_completionHandler(
             &self,
             type_identifier: &NSString,
@@ -238,8 +238,8 @@ extern_methods!(
             feature = "NSURL",
             feature = "block2"
         ))]
-        #[unsafe(method_family(none))]
         #[method_id(loadFileRepresentationForTypeIdentifier:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loadFileRepresentationForTypeIdentifier_completionHandler(
             &self,
             type_identifier: &NSString,
@@ -253,8 +253,8 @@ extern_methods!(
             feature = "NSURL",
             feature = "block2"
         ))]
-        #[unsafe(method_family(none))]
         #[method_id(loadInPlaceFileRepresentationForTypeIdentifier:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loadInPlaceFileRepresentationForTypeIdentifier_completionHandler(
             &self,
             type_identifier: &NSString,
@@ -262,8 +262,8 @@ extern_methods!(
         ) -> Retained<NSProgress>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(suggestedName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn suggestedName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
@@ -271,8 +271,8 @@ extern_methods!(
         #[method(setSuggestedName:)]
         pub unsafe fn setSuggestedName(&self, suggested_name: Option<&NSString>);
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithObject:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithObject(
             this: Allocated<Self>,
             object: &ProtocolObject<dyn NSItemProviderWriting>,
@@ -286,8 +286,8 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSObject", feature = "NSString"))]
-        #[unsafe(method_family(init))]
         #[method_id(initWithItem:typeIdentifier:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithItem_typeIdentifier(
             this: Allocated<Self>,
             item: Option<&ProtocolObject<dyn NSSecureCoding>>,
@@ -295,8 +295,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSURL")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithContentsOfURL:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL(
             this: Allocated<Self>,
             file_url: Option<&NSURL>,
@@ -336,8 +336,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSItemProvider {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

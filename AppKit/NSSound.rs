@@ -46,48 +46,48 @@ unsafe impl NSSecureCoding for NSSound {}
 
 extern_methods!(
     unsafe impl NSSound {
-        #[unsafe(method_family(none))]
         #[method_id(soundNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn soundNamed(name: &NSSoundName) -> Option<Retained<NSSound>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithContentsOfURL:byReference:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL_byReference(
             this: Allocated<Self>,
             url: &NSURL,
             by_ref: bool,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithContentsOfFile:byReference:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfFile_byReference(
             this: Allocated<Self>,
             path: &NSString,
             by_ref: bool,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithData:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithData(this: Allocated<Self>, data: &NSData) -> Option<Retained<Self>>;
 
         #[method(setName:)]
         pub unsafe fn setName(&self, string: Option<&NSSoundName>) -> bool;
 
-        #[unsafe(method_family(none))]
         #[method_id(name)]
+        #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSSoundName>>;
 
         #[cfg(feature = "NSPasteboard")]
         #[method(canInitWithPasteboard:)]
         pub unsafe fn canInitWithPasteboard(pasteboard: &NSPasteboard) -> bool;
 
-        #[unsafe(method_family(none))]
         #[method_id(soundUnfilteredTypes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn soundUnfilteredTypes() -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSPasteboard")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithPasteboard:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithPasteboard(
             this: Allocated<Self>,
             pasteboard: &NSPasteboard,
@@ -112,8 +112,8 @@ extern_methods!(
         #[method(isPlaying)]
         pub unsafe fn isPlaying(&self) -> bool;
 
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
             mtm: MainThreadMarker,
@@ -148,8 +148,8 @@ extern_methods!(
         #[method(setLoops:)]
         pub unsafe fn setLoops(&self, loops: bool);
 
-        #[unsafe(method_family(none))]
         #[method_id(playbackDeviceIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn playbackDeviceIdentifier(
             &self,
         ) -> Option<Retained<NSSoundPlaybackDeviceIdentifier>>;
@@ -166,8 +166,8 @@ extern_methods!(
         pub unsafe fn setChannelMapping(&self, channel_mapping: Option<&NSArray>);
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(channelMapping)]
+        #[unsafe(method_family = none)]
         pub unsafe fn channelMapping(&self) -> Option<Retained<NSArray>>;
     }
 );
@@ -175,12 +175,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSSound {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -189,13 +189,13 @@ extern_methods!(
     /// NSDeprecated
     unsafe impl NSSound {
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(soundUnfilteredFileTypes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn soundUnfilteredFileTypes() -> Option<Retained<NSArray>>;
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(soundUnfilteredPasteboardTypes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn soundUnfilteredPasteboardTypes() -> Option<Retained<NSArray>>;
     }
 );
@@ -212,8 +212,8 @@ extern_protocol!(
 extern_category!(
     /// Category on [`NSBundle`].
     pub unsafe trait NSBundleSoundExtensions {
-        #[unsafe(method_family(none))]
         #[method_id(pathForSoundResource:)]
+        #[unsafe(method_family = none)]
         unsafe fn pathForSoundResource(&self, name: &NSSoundName) -> Option<Retained<NSString>>;
     }
 

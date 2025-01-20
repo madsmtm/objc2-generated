@@ -81,12 +81,12 @@ unsafe impl NSUserInterfaceItemIdentification for NSScrollView {}
 extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSScrollView {
-        #[unsafe(method_family(init))]
         #[method_id(initWithFrame:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -142,8 +142,8 @@ extern_methods!(
         #[method(contentSize)]
         pub unsafe fn contentSize(&self) -> NSSize;
 
-        #[unsafe(method_family(none))]
         #[method_id(documentView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn documentView(&self) -> Option<Retained<NSView>>;
 
         /// Setter for [`documentView`][Self::documentView].
@@ -151,8 +151,8 @@ extern_methods!(
         pub unsafe fn setDocumentView(&self, document_view: Option<&NSView>);
 
         #[cfg(feature = "NSClipView")]
-        #[unsafe(method_family(none))]
         #[method_id(contentView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contentView(&self) -> Retained<NSClipView>;
 
         #[cfg(feature = "NSClipView")]
@@ -161,8 +161,8 @@ extern_methods!(
         pub unsafe fn setContentView(&self, content_view: &NSClipView);
 
         #[cfg(feature = "NSCursor")]
-        #[unsafe(method_family(none))]
         #[method_id(documentCursor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn documentCursor(&self) -> Option<Retained<NSCursor>>;
 
         #[cfg(feature = "NSCursor")]
@@ -178,8 +178,8 @@ extern_methods!(
         pub unsafe fn setBorderType(&self, border_type: NSBorderType);
 
         #[cfg(feature = "NSColor")]
-        #[unsafe(method_family(none))]
         #[method_id(backgroundColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn backgroundColor(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
@@ -209,8 +209,8 @@ extern_methods!(
         pub unsafe fn setHasHorizontalScroller(&self, has_horizontal_scroller: bool);
 
         #[cfg(all(feature = "NSControl", feature = "NSScroller"))]
-        #[unsafe(method_family(none))]
         #[method_id(verticalScroller)]
+        #[unsafe(method_family = none)]
         pub unsafe fn verticalScroller(&self) -> Option<Retained<NSScroller>>;
 
         #[cfg(all(feature = "NSControl", feature = "NSScroller"))]
@@ -219,8 +219,8 @@ extern_methods!(
         pub unsafe fn setVerticalScroller(&self, vertical_scroller: Option<&NSScroller>);
 
         #[cfg(all(feature = "NSControl", feature = "NSScroller"))]
-        #[unsafe(method_family(none))]
         #[method_id(horizontalScroller)]
+        #[unsafe(method_family = none)]
         pub unsafe fn horizontalScroller(&self) -> Option<Retained<NSScroller>>;
 
         #[cfg(all(feature = "NSControl", feature = "NSScroller"))]
@@ -434,8 +434,8 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSScrollView {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -444,8 +444,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSScrollView {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -508,8 +508,8 @@ extern_methods!(
         pub unsafe fn setHasVerticalRuler(&self, has_vertical_ruler: bool);
 
         #[cfg(feature = "NSRulerView")]
-        #[unsafe(method_family(none))]
         #[method_id(horizontalRulerView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn horizontalRulerView(&self) -> Option<Retained<NSRulerView>>;
 
         #[cfg(feature = "NSRulerView")]
@@ -518,8 +518,8 @@ extern_methods!(
         pub unsafe fn setHorizontalRulerView(&self, horizontal_ruler_view: Option<&NSRulerView>);
 
         #[cfg(feature = "NSRulerView")]
-        #[unsafe(method_family(none))]
         #[method_id(verticalRulerView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn verticalRulerView(&self) -> Option<Retained<NSRulerView>>;
 
         #[cfg(feature = "NSRulerView")]

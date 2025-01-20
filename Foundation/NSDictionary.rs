@@ -66,22 +66,22 @@ extern_methods!(
         #[method(count)]
         pub fn count(&self) -> NSUInteger;
 
-        #[unsafe(method_family(none))]
         #[method_id(objectForKey:)]
+        #[unsafe(method_family = none)]
         pub fn objectForKey(&self, a_key: &KeyType) -> Option<Retained<ObjectType>>;
 
         #[cfg(feature = "NSEnumerator")]
-        #[unsafe(method_family(none))]
         #[method_id(keyEnumerator)]
+        #[unsafe(method_family = none)]
         pub unsafe fn keyEnumerator(&self) -> Retained<NSEnumerator<KeyType>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSObject")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithObjects:forKeys:count:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithObjects_forKeys_count(
             this: Allocated<Self>,
             objects: *mut NonNull<ObjectType>,
@@ -90,8 +90,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -102,8 +102,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
     }
 );
@@ -119,42 +119,42 @@ extern_methods!(
     /// NSExtendedDictionary
     unsafe impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
         #[cfg(feature = "NSArray")]
-        #[unsafe(method_family(none))]
         #[method_id(allKeys)]
+        #[unsafe(method_family = none)]
         pub fn allKeys(&self) -> Retained<NSArray<KeyType>>;
 
         #[cfg(feature = "NSArray")]
-        #[unsafe(method_family(none))]
         #[method_id(allKeysForObject:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allKeysForObject(&self, an_object: &ObjectType)
             -> Retained<NSArray<KeyType>>;
 
         #[cfg(feature = "NSArray")]
-        #[unsafe(method_family(none))]
         #[method_id(allValues)]
+        #[unsafe(method_family = none)]
         pub fn allValues(&self) -> Retained<NSArray<ObjectType>>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(description)]
+        #[unsafe(method_family = none)]
         pub unsafe fn description(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(descriptionInStringsFileFormat)]
+        #[unsafe(method_family = none)]
         pub unsafe fn descriptionInStringsFileFormat(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(descriptionWithLocale:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn descriptionWithLocale(
             &self,
             locale: Option<&AnyObject>,
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(descriptionWithLocale:indent:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn descriptionWithLocale_indent(
             &self,
             locale: Option<&AnyObject>,
@@ -168,13 +168,13 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "NSEnumerator")]
-        #[unsafe(method_family(none))]
         #[method_id(objectEnumerator)]
+        #[unsafe(method_family = none)]
         pub unsafe fn objectEnumerator(&self) -> Retained<NSEnumerator<ObjectType>>;
 
         #[cfg(feature = "NSArray")]
-        #[unsafe(method_family(none))]
         #[method_id(objectsForKeys:notFoundMarker:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn objectsForKeys_notFoundMarker(
             &self,
             keys: &NSArray<KeyType>,
@@ -186,8 +186,8 @@ extern_methods!(
         pub unsafe fn writeToURL_error(&self, url: &NSURL) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "NSArray")]
-        #[unsafe(method_family(none))]
         #[method_id(keysSortedByValueUsingSelector:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn keysSortedByValueUsingSelector(
             &self,
             comparator: Sel,
@@ -201,8 +201,8 @@ extern_methods!(
             count: NSUInteger,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(objectForKeyedSubscript:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn objectForKeyedSubscript(&self, key: &KeyType)
             -> Option<Retained<ObjectType>>;
 
@@ -226,16 +226,16 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSArray", feature = "NSObjCRuntime", feature = "block2"))]
-        #[unsafe(method_family(none))]
         #[method_id(keysSortedByValueUsingComparator:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn keysSortedByValueUsingComparator(
             &self,
             cmptr: NSComparator,
         ) -> Retained<NSArray<KeyType>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSObjCRuntime", feature = "block2"))]
-        #[unsafe(method_family(none))]
         #[method_id(keysSortedByValueWithOptions:usingComparator:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn keysSortedByValueWithOptions_usingComparator(
             &self,
             opts: NSSortOptions,
@@ -243,8 +243,8 @@ extern_methods!(
         ) -> Retained<NSArray<KeyType>>;
 
         #[cfg(all(feature = "NSSet", feature = "block2"))]
-        #[unsafe(method_family(none))]
         #[method_id(keysOfEntriesPassingTest:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn keysOfEntriesPassingTest(
             &self,
             predicate: &block2::Block<
@@ -253,8 +253,8 @@ extern_methods!(
         ) -> Retained<NSSet<KeyType>>;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSSet", feature = "block2"))]
-        #[unsafe(method_family(none))]
         #[method_id(keysOfEntriesWithOptions:passingTest:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn keysOfEntriesWithOptions_passingTest(
             &self,
             opts: NSEnumerationOptions,
@@ -279,24 +279,24 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(dictionaryWithContentsOfFile:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dictionaryWithContentsOfFile(
             path: &NSString,
         ) -> Option<Retained<NSDictionary<KeyType, ObjectType>>>;
 
         #[cfg(feature = "NSURL")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(dictionaryWithContentsOfURL:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dictionaryWithContentsOfURL(
             url: &NSURL,
         ) -> Option<Retained<NSDictionary<KeyType, ObjectType>>>;
 
         #[cfg(feature = "NSString")]
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(initWithContentsOfFile:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfFile(
             this: Allocated<Self>,
             path: &NSString,
@@ -304,8 +304,8 @@ extern_methods!(
 
         #[cfg(feature = "NSURL")]
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(initWithContentsOfURL:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL(
             this: Allocated<Self>,
             url: &NSURL,
@@ -330,50 +330,50 @@ extern_methods!(
 extern_methods!(
     /// NSDictionaryCreation
     unsafe impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
-        #[unsafe(method_family(none))]
         #[method_id(dictionary)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dictionary() -> Retained<Self>;
 
         #[cfg(feature = "NSObject")]
-        #[unsafe(method_family(none))]
         #[method_id(dictionaryWithObject:forKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dictionaryWithObject_forKey(
             object: &ObjectType,
             key: &ProtocolObject<dyn NSCopying>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSObject")]
-        #[unsafe(method_family(none))]
         #[method_id(dictionaryWithObjects:forKeys:count:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dictionaryWithObjects_forKeys_count(
             objects: *mut NonNull<ObjectType>,
             keys: *mut NonNull<ProtocolObject<dyn NSCopying>>,
             cnt: NSUInteger,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(dictionaryWithDictionary:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dictionaryWithDictionary(
             dict: &NSDictionary<KeyType, ObjectType>,
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSArray", feature = "NSObject"))]
-        #[unsafe(method_family(none))]
         #[method_id(dictionaryWithObjects:forKeys:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dictionaryWithObjects_forKeys(
             objects: &NSArray<ObjectType>,
             keys: &NSArray<ProtocolObject<dyn NSCopying>>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithDictionary:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDictionary(
             this: Allocated<Self>,
             other_dictionary: &NSDictionary<KeyType, ObjectType>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithDictionary:copyItems:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDictionary_copyItems(
             this: Allocated<Self>,
             other_dictionary: &NSDictionary<KeyType, ObjectType>,
@@ -381,8 +381,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSArray", feature = "NSObject"))]
-        #[unsafe(method_family(init))]
         #[method_id(initWithObjects:forKeys:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithObjects_forKeys(
             this: Allocated<Self>,
             objects: &NSArray<ObjectType>,
@@ -396,50 +396,50 @@ extern_methods!(
     ///
     /// NSDictionaryCreation
     unsafe impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
-        #[unsafe(method_family(none))]
         #[method_id(dictionary)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dictionary() -> Retained<Self>;
 
         #[cfg(feature = "NSObject")]
-        #[unsafe(method_family(none))]
         #[method_id(dictionaryWithObject:forKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dictionaryWithObject_forKey(
             object: &ObjectType,
             key: &ProtocolObject<dyn NSCopying>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSObject")]
-        #[unsafe(method_family(none))]
         #[method_id(dictionaryWithObjects:forKeys:count:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dictionaryWithObjects_forKeys_count(
             objects: *mut NonNull<ObjectType>,
             keys: *mut NonNull<ProtocolObject<dyn NSCopying>>,
             cnt: NSUInteger,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(dictionaryWithDictionary:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dictionaryWithDictionary(
             dict: &NSDictionary<KeyType, ObjectType>,
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSArray", feature = "NSObject"))]
-        #[unsafe(method_family(none))]
         #[method_id(dictionaryWithObjects:forKeys:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dictionaryWithObjects_forKeys(
             objects: &NSArray<ObjectType>,
             keys: &NSArray<ProtocolObject<dyn NSCopying>>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithDictionary:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDictionary(
             this: Allocated<Self>,
             other_dictionary: &NSDictionary<KeyType, ObjectType>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithDictionary:copyItems:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDictionary_copyItems(
             this: Allocated<Self>,
             other_dictionary: &NSDictionary<KeyType, ObjectType>,
@@ -447,8 +447,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSArray", feature = "NSObject"))]
-        #[unsafe(method_family(init))]
         #[method_id(initWithObjects:forKeys:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithObjects_forKeys(
             this: Allocated<Self>,
             objects: &NSArray<ObjectType>,
@@ -528,17 +528,17 @@ extern_methods!(
             a_key: &ProtocolObject<dyn NSCopying>,
         );
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCapacity:)]
+        #[unsafe(method_family = init)]
         pub fn initWithCapacity(this: Allocated<Self>, num_items: NSUInteger) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -550,8 +550,8 @@ extern_methods!(
     /// Methods declared on superclass `NSDictionary`
     unsafe impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
         #[cfg(feature = "NSObject")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithObjects:forKeys:count:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithObjects_forKeys_count(
             this: Allocated<Self>,
             objects: *mut NonNull<ObjectType>,
@@ -564,8 +564,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
     }
 );
@@ -611,35 +611,35 @@ extern_methods!(
 extern_methods!(
     /// NSMutableDictionaryCreation
     unsafe impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
-        #[unsafe(method_family(none))]
         #[method_id(dictionaryWithCapacity:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dictionaryWithCapacity(num_items: NSUInteger) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(dictionaryWithContentsOfFile:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dictionaryWithContentsOfFile(
             path: &NSString,
         ) -> Option<Retained<NSMutableDictionary<KeyType, ObjectType>>>;
 
         #[cfg(feature = "NSURL")]
-        #[unsafe(method_family(none))]
         #[method_id(dictionaryWithContentsOfURL:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dictionaryWithContentsOfURL(
             url: &NSURL,
         ) -> Option<Retained<NSMutableDictionary<KeyType, ObjectType>>>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithContentsOfFile:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfFile(
             this: Allocated<Self>,
             path: &NSString,
         ) -> Option<Retained<NSMutableDictionary<KeyType, ObjectType>>>;
 
         #[cfg(feature = "NSURL")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithContentsOfURL:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL(
             this: Allocated<Self>,
             url: &NSURL,
@@ -651,8 +651,8 @@ extern_methods!(
     /// NSSharedKeySetDictionary
     unsafe impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
         #[cfg(all(feature = "NSArray", feature = "NSObject"))]
-        #[unsafe(method_family(none))]
         #[method_id(sharedKeySetForKeys:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sharedKeySetForKeys(
             keys: &NSArray<ProtocolObject<dyn NSCopying>>,
         ) -> Retained<AnyObject>;
@@ -662,8 +662,8 @@ extern_methods!(
 extern_methods!(
     /// NSSharedKeySetDictionary
     unsafe impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectType> {
-        #[unsafe(method_family(none))]
         #[method_id(dictionaryWithSharedKeySet:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dictionaryWithSharedKeySet(
             keyset: &AnyObject,
         ) -> Retained<NSMutableDictionary<KeyType, ObjectType>>;

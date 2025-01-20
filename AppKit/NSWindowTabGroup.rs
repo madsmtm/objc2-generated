@@ -20,13 +20,13 @@ unsafe impl NSObjectProtocol for NSWindowTabGroup {}
 extern_methods!(
     unsafe impl NSWindowTabGroup {
         #[cfg(feature = "NSWindow")]
-        #[unsafe(method_family(none))]
         #[method_id(identifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSWindowTabbingIdentifier>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
-        #[unsafe(method_family(none))]
         #[method_id(windows)]
+        #[unsafe(method_family = none)]
         pub fn windows(&self) -> Retained<NSArray<NSWindow>>;
 
         #[method(isOverviewVisible)]
@@ -40,8 +40,8 @@ extern_methods!(
         pub unsafe fn isTabBarVisible(&self) -> bool;
 
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
-        #[unsafe(method_family(none))]
         #[method_id(selectedWindow)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectedWindow(&self) -> Option<Retained<NSWindow>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
@@ -67,12 +67,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSWindowTabGroup {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

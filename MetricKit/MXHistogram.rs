@@ -28,13 +28,13 @@ unsafe impl<UnitType: ?Sized + NSSecureCoding> NSSecureCoding for MXHistogramBuc
 extern_methods!(
     unsafe impl<UnitType: Message> MXHistogramBucket<UnitType> {
         /// An NSMeasurement representing the start of a histogram bucket.
-        #[unsafe(method_family(none))]
         #[method_id(bucketStart)]
+        #[unsafe(method_family = none)]
         pub unsafe fn bucketStart(&self) -> Retained<NSMeasurement<UnitType>>;
 
         /// An NSMeasurement representing the end of a histogram bucket.
-        #[unsafe(method_family(none))]
         #[method_id(bucketEnd)]
+        #[unsafe(method_family = none)]
         pub unsafe fn bucketEnd(&self) -> Retained<NSMeasurement<UnitType>>;
 
         /// An NSUInteger representing the number of samples in this histogram bucket.
@@ -46,12 +46,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<UnitType: Message> MXHistogramBucket<UnitType> {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -80,8 +80,8 @@ extern_methods!(
         pub unsafe fn totalBucketCount(&self) -> NSUInteger;
 
         /// An NSEnumerator that can be used to enumerate the buckets of this histogram.
-        #[unsafe(method_family(none))]
         #[method_id(bucketEnumerator)]
+        #[unsafe(method_family = none)]
         pub unsafe fn bucketEnumerator(
             &self,
         ) -> Retained<NSEnumerator<MXHistogramBucket<UnitType>>>;
@@ -91,12 +91,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<UnitType: Message> MXHistogram<UnitType> {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

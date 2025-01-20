@@ -31,26 +31,26 @@ extern_methods!(
 
         #[cfg(feature = "MLFeatureType")]
         /// Empty sequence of a sepcific type
-        #[unsafe(method_family(none))]
         #[method_id(emptySequenceWithType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn emptySequenceWithType(r#type: MLFeatureType) -> Retained<Self>;
 
         /// String sequences, property will be empty array if type is MLFeatureTypeString
-        #[unsafe(method_family(none))]
         #[method_id(sequenceWithStringArray:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sequenceWithStringArray(string_values: &NSArray<NSString>) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(stringValues)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stringValues(&self) -> Retained<NSArray<NSString>>;
 
         /// int64 sequence, propery will be empty array if type is MLFeatureTypeInt64
-        #[unsafe(method_family(none))]
         #[method_id(sequenceWithInt64Array:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sequenceWithInt64Array(int64_values: &NSArray<NSNumber>) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(int64Values)]
+        #[unsafe(method_family = none)]
         pub unsafe fn int64Values(&self) -> Retained<NSArray<NSNumber>>;
     }
 );
@@ -58,12 +58,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MLSequence {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

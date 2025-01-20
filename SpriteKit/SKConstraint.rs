@@ -33,8 +33,8 @@ unsafe impl NSSecureCoding for SKRange {}
 extern_methods!(
     unsafe impl SKRange {
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithLowerLimit:upperLimit:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithLowerLimit_upperLimit(
             this: Allocated<Self>,
             lower: CGFloat,
@@ -42,35 +42,35 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(none))]
         #[method_id(rangeWithLowerLimit:upperLimit:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rangeWithLowerLimit_upperLimit(
             lower: CGFloat,
             upper: CGFloat,
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(none))]
         #[method_id(rangeWithLowerLimit:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rangeWithLowerLimit(lower: CGFloat) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(none))]
         #[method_id(rangeWithUpperLimit:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rangeWithUpperLimit(upper: CGFloat) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(none))]
         #[method_id(rangeWithConstantValue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rangeWithConstantValue(value: CGFloat) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(none))]
         #[method_id(rangeWithValue:variance:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rangeWithValue_variance(value: CGFloat, variance: CGFloat) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(rangeWithNoLimits)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rangeWithNoLimits() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -96,12 +96,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKRange {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -139,8 +139,8 @@ extern_methods!(
 
         #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
-        #[unsafe(method_family(none))]
         #[method_id(referenceNode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn referenceNode(&self, mtm: MainThreadMarker) -> Option<Retained<SKNode>>;
 
         #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
@@ -150,28 +150,28 @@ extern_methods!(
         pub unsafe fn setReferenceNode(&self, reference_node: Option<&SKNode>);
 
         /// Constrain the node's position to a range
-        #[unsafe(method_family(none))]
         #[method_id(positionX:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn positionX(range: &SKRange) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(positionY:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn positionY(range: &SKRange) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(positionX:Y:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn positionX_Y(x_range: &SKRange, y_range: &SKRange) -> Retained<Self>;
 
         #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         /// Constrain the node's position to be within a distance of a point or node
-        #[unsafe(method_family(none))]
         #[method_id(distance:toNode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn distance_toNode(range: &SKRange, node: &SKNode) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(none))]
         #[method_id(distance:toPoint:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn distance_toPoint(range: &SKRange, point: CGPoint) -> Retained<Self>;
 
         #[cfg(all(
@@ -180,8 +180,8 @@ extern_methods!(
             feature = "objc2-core-foundation"
         ))]
         #[cfg(target_os = "macos")]
-        #[unsafe(method_family(none))]
         #[method_id(distance:toPoint:inNode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn distance_toPoint_inNode(
             range: &SKRange,
             point: CGPoint,
@@ -189,20 +189,20 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Constrain the node's rotation to a range
-        #[unsafe(method_family(none))]
         #[method_id(zRotation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn zRotation(z_range: &SKRange) -> Retained<Self>;
 
         #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         /// Constrain the node's rotation to orient to a point or node
-        #[unsafe(method_family(none))]
         #[method_id(orientToNode:offset:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn orientToNode_offset(node: &SKNode, radians: &SKRange) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method_family(none))]
         #[method_id(orientToPoint:offset:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn orientToPoint_offset(point: CGPoint, radians: &SKRange) -> Retained<Self>;
 
         #[cfg(all(
@@ -211,8 +211,8 @@ extern_methods!(
             feature = "objc2-core-foundation"
         ))]
         #[cfg(target_os = "macos")]
-        #[unsafe(method_family(none))]
         #[method_id(orientToPoint:inNode:offset:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn orientToPoint_inNode_offset(
             point: CGPoint,
             node: &SKNode,
@@ -224,12 +224,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKConstraint {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -27,26 +27,26 @@ unsafe impl NSSecureCoding for CKShareMetadata {}
 
 extern_methods!(
     unsafe impl CKShareMetadata {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(containerIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn containerIdentifier(&self) -> Retained<NSString>;
 
         #[cfg(all(feature = "CKRecord", feature = "CKShare"))]
-        #[unsafe(method_family(none))]
         #[method_id(share)]
+        #[unsafe(method_family = none)]
         pub unsafe fn share(&self) -> Retained<CKShare>;
 
         #[cfg(feature = "CKRecordID")]
-        #[unsafe(method_family(none))]
         #[method_id(hierarchicalRootRecordID)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hierarchicalRootRecordID(&self) -> Option<Retained<CKRecordID>>;
 
         #[cfg(feature = "CKShareParticipant")]
@@ -63,14 +63,14 @@ extern_methods!(
         pub unsafe fn participantPermission(&self) -> CKShareParticipantPermission;
 
         #[cfg(feature = "CKUserIdentity")]
-        #[unsafe(method_family(none))]
         #[method_id(ownerIdentity)]
+        #[unsafe(method_family = none)]
         pub unsafe fn ownerIdentity(&self) -> Retained<CKUserIdentity>;
 
         #[cfg(feature = "CKRecord")]
         /// This is only present if the share metadata was returned from a CKFetchShareMetadataOperation with shouldFetchRootRecord set to YES
-        #[unsafe(method_family(none))]
         #[method_id(rootRecord)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rootRecord(&self) -> Option<Retained<CKRecord>>;
 
         #[cfg(feature = "CKShareParticipant")]
@@ -80,8 +80,8 @@ extern_methods!(
 
         #[cfg(feature = "CKRecordID")]
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(rootRecordID)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rootRecordID(&self) -> Retained<CKRecordID>;
     }
 );

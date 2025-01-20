@@ -33,13 +33,13 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextelementprovider?language=objc)
     pub unsafe trait NSTextElementProvider: NSObjectProtocol {
         #[cfg(feature = "NSTextRange")]
-        #[unsafe(method_family(none))]
         #[method_id(documentRange)]
+        #[unsafe(method_family = none)]
         unsafe fn documentRange(&self) -> Retained<NSTextRange>;
 
         #[cfg(all(feature = "NSTextElement", feature = "NSTextRange", feature = "block2"))]
-        #[unsafe(method_family(none))]
         #[method_id(enumerateTextElementsFromLocation:options:usingBlock:)]
+        #[unsafe(method_family = none)]
         unsafe fn enumerateTextElementsFromLocation_options_usingBlock(
             &self,
             text_location: Option<&ProtocolObject<dyn NSTextLocation>>,
@@ -64,8 +64,8 @@ extern_protocol!(
 
         #[cfg(feature = "NSTextRange")]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(locationFromLocation:withOffset:)]
+        #[unsafe(method_family = none)]
         unsafe fn locationFromLocation_withOffset(
             &self,
             location: &ProtocolObject<dyn NSTextLocation>,
@@ -83,8 +83,8 @@ extern_protocol!(
 
         #[cfg(feature = "NSTextRange")]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(adjustedRangeFromRange:forEditingTextSelection:)]
+        #[unsafe(method_family = none)]
         unsafe fn adjustedRangeFromRange_forEditingTextSelection(
             &self,
             text_range: &NSTextRange,
@@ -110,19 +110,19 @@ unsafe impl NSTextElementProvider for NSTextContentManager {}
 
 extern_methods!(
     unsafe impl NSTextContentManager {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSTextContentManagerDelegate>>>;
@@ -136,8 +136,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSTextLayoutManager")]
-        #[unsafe(method_family(none))]
         #[method_id(textLayoutManagers)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textLayoutManagers(&self) -> Retained<NSArray<NSTextLayoutManager>>;
 
         #[cfg(feature = "NSTextLayoutManager")]
@@ -149,8 +149,8 @@ extern_methods!(
         pub unsafe fn removeTextLayoutManager(&self, text_layout_manager: &NSTextLayoutManager);
 
         #[cfg(feature = "NSTextLayoutManager")]
-        #[unsafe(method_family(none))]
         #[method_id(primaryTextLayoutManager)]
+        #[unsafe(method_family = none)]
         pub unsafe fn primaryTextLayoutManager(&self) -> Option<Retained<NSTextLayoutManager>>;
 
         #[cfg(feature = "NSTextLayoutManager")]
@@ -169,8 +169,8 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSTextElement", feature = "NSTextRange"))]
-        #[unsafe(method_family(none))]
         #[method_id(textElementsForRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textElementsForRange(
             &self,
             range: &NSTextRange,
@@ -219,8 +219,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextContentManager {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -230,8 +230,8 @@ extern_protocol!(
     pub unsafe trait NSTextContentManagerDelegate: NSObjectProtocol {
         #[cfg(all(feature = "NSTextElement", feature = "NSTextRange"))]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(textContentManager:textElementAtLocation:)]
+        #[unsafe(method_family = none)]
         unsafe fn textContentManager_textElementAtLocation(
             &self,
             text_content_manager: &NSTextContentManager,
@@ -255,8 +255,8 @@ extern_protocol!(
     pub unsafe trait NSTextContentStorageDelegate: NSTextContentManagerDelegate {
         #[cfg(feature = "NSTextElement")]
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(textContentStorage:textParagraphWithRange:)]
+        #[unsafe(method_family = none)]
         unsafe fn textContentStorage_textParagraphWithRange(
             &self,
             text_content_storage: &NSTextContentStorage,
@@ -285,8 +285,8 @@ unsafe impl NSTextStorageObserving for NSTextContentStorage {}
 
 extern_methods!(
     unsafe impl NSTextContentStorage {
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSTextContentStorageDelegate>>>;
@@ -299,8 +299,8 @@ extern_methods!(
             delegate: Option<&ProtocolObject<dyn NSTextContentStorageDelegate>>,
         );
 
-        #[unsafe(method_family(none))]
         #[method_id(attributedString)]
+        #[unsafe(method_family = none)]
         pub unsafe fn attributedString(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Setter for [`attributedString`][Self::attributedString].
@@ -308,24 +308,24 @@ extern_methods!(
         pub unsafe fn setAttributedString(&self, attributed_string: Option<&NSAttributedString>);
 
         #[cfg(feature = "NSTextElement")]
-        #[unsafe(method_family(none))]
         #[method_id(attributedStringForTextElement:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn attributedStringForTextElement(
             &self,
             text_element: &NSTextElement,
         ) -> Option<Retained<NSAttributedString>>;
 
         #[cfg(feature = "NSTextElement")]
-        #[unsafe(method_family(none))]
         #[method_id(textElementForAttributedString:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textElementForAttributedString(
             &self,
             attributed_string: &NSAttributedString,
         ) -> Option<Retained<NSTextElement>>;
 
         #[cfg(feature = "NSTextRange")]
-        #[unsafe(method_family(none))]
         #[method_id(locationFromLocation:withOffset:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn locationFromLocation_withOffset(
             &self,
             location: &ProtocolObject<dyn NSTextLocation>,
@@ -341,8 +341,8 @@ extern_methods!(
         ) -> NSInteger;
 
         #[cfg(feature = "NSTextRange")]
-        #[unsafe(method_family(none))]
         #[method_id(adjustedRangeFromRange:forEditingTextSelection:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn adjustedRangeFromRange_forEditingTextSelection(
             &self,
             text_range: &NSTextRange,
@@ -354,12 +354,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSTextContentManager`
     unsafe impl NSTextContentStorage {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -370,8 +370,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextContentStorage {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

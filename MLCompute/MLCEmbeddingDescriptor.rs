@@ -27,43 +27,43 @@ unsafe impl NSObjectProtocol for MLCEmbeddingDescriptor {}
 extern_methods!(
     unsafe impl MLCEmbeddingDescriptor {
         #[deprecated]
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// The size of the dictionary
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(embeddingCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn embeddingCount(&self) -> Retained<NSNumber>;
 
         /// The dimension of embedding vectors
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(embeddingDimension)]
+        #[unsafe(method_family = none)]
         pub unsafe fn embeddingDimension(&self) -> Retained<NSNumber>;
 
         /// If set, the embedding vector at paddingIndex is initialized with zero and will not be updated in gradient pass, Default=nil
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(paddingIndex)]
+        #[unsafe(method_family = none)]
         pub unsafe fn paddingIndex(&self) -> Option<Retained<NSNumber>>;
 
         /// A float, if set, in the forward pass only, the selected embedding vectors will be re-normalized to have an Lp norm of less than maximumNorm in the dictionary, Default=nil
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(maximumNorm)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maximumNorm(&self) -> Option<Retained<NSNumber>>;
 
         /// A float, the p of the Lp norm, can be set to infinity norm by [NSNumber numberWithFloat:INFINITY]. Default=2.0
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(pNorm)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pNorm(&self) -> Option<Retained<NSNumber>>;
 
         /// If set, the gradients are scaled by the inverse of the frequency of the words in batch before the weight update. Default=NO
@@ -72,16 +72,16 @@ extern_methods!(
         pub unsafe fn scalesGradientByFrequency(&self) -> bool;
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(descriptorWithEmbeddingCount:embeddingDimension:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithEmbeddingCount_embeddingDimension(
             embedding_count: &NSNumber,
             embedding_dimension: &NSNumber,
         ) -> Option<Retained<Self>>;
 
         #[deprecated]
-        #[unsafe(method_family(none))]
         #[method_id(descriptorWithEmbeddingCount:embeddingDimension:paddingIndex:maximumNorm:pNorm:scalesGradientByFrequency:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithEmbeddingCount_embeddingDimension_paddingIndex_maximumNorm_pNorm_scalesGradientByFrequency(
             embedding_count: &NSNumber,
             embedding_dimension: &NSNumber,

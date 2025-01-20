@@ -439,8 +439,8 @@ extern "C" {
 extern_category!(
     /// Category on [`NSAttributedString`].
     pub unsafe trait NSAttributedStringDocumentFormats {
-        #[unsafe(method_family(init))]
         #[method_id(initWithURL:options:documentAttributes:error:_)]
+        #[unsafe(method_family = init)]
         unsafe fn initWithURL_options_documentAttributes_error(
             this: Allocated<Self>,
             url: &NSURL,
@@ -452,8 +452,8 @@ extern_category!(
             >,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithData:options:documentAttributes:error:_)]
+        #[unsafe(method_family = init)]
         unsafe fn initWithData_options_documentAttributes_error(
             this: Allocated<Self>,
             data: &NSData,
@@ -465,16 +465,16 @@ extern_category!(
             >,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(dataFromRange:documentAttributes:error:_)]
+        #[unsafe(method_family = none)]
         unsafe fn dataFromRange_documentAttributes_error(
             &self,
             range: NSRange,
             dict: &NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>,
         ) -> Result<Retained<NSData>, Retained<NSError>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(fileWrapperFromRange:documentAttributes:error:_)]
+        #[unsafe(method_family = none)]
         unsafe fn fileWrapperFromRange_documentAttributes_error(
             &self,
             range: NSRange,

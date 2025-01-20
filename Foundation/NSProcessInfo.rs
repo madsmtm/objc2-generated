@@ -71,28 +71,28 @@ unsafe impl NSObjectProtocol for NSProcessInfo {}
 
 extern_methods!(
     unsafe impl NSProcessInfo {
-        #[unsafe(method_family(none))]
         #[method_id(processInfo)]
+        #[unsafe(method_family = none)]
         pub fn processInfo() -> Retained<NSProcessInfo>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(environment)]
+        #[unsafe(method_family = none)]
         pub unsafe fn environment(&self) -> Retained<NSDictionary<NSString, NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[unsafe(method_family(none))]
         #[method_id(arguments)]
+        #[unsafe(method_family = none)]
         pub unsafe fn arguments(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(hostName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hostName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(processName)]
+        #[unsafe(method_family = none)]
         pub fn processName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
@@ -104,8 +104,8 @@ extern_methods!(
         pub unsafe fn processIdentifier(&self) -> c_int;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(globallyUniqueString)]
+        #[unsafe(method_family = none)]
         pub unsafe fn globallyUniqueString(&self) -> Retained<NSString>;
 
         #[deprecated = "-operatingSystem always returns NSMACHOperatingSystem, use -operatingSystemVersion or -isOperatingSystemAtLeastVersion: instead"]
@@ -114,13 +114,13 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[deprecated = "-operatingSystemName always returns NSMACHOperatingSystem, use -operatingSystemVersionString instead"]
-        #[unsafe(method_family(none))]
         #[method_id(operatingSystemName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn operatingSystemName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(operatingSystemVersionString)]
+        #[unsafe(method_family = none)]
         pub unsafe fn operatingSystemVersionString(&self) -> Retained<NSString>;
 
         #[method(operatingSystemVersion)]
@@ -174,12 +174,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSProcessInfo {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -228,8 +228,8 @@ extern_methods!(
     /// NSProcessInfoActivity
     unsafe impl NSProcessInfo {
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(beginActivityWithOptions:reason:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn beginActivityWithOptions_reason(
             &self,
             options: NSActivityOptions,
@@ -262,13 +262,13 @@ extern_methods!(
     /// NSUserInformation
     unsafe impl NSProcessInfo {
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(userName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn userName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(fullUserName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fullUserName(&self) -> Retained<NSString>;
     }
 );

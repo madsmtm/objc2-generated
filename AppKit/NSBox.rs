@@ -122,8 +122,8 @@ extern_methods!(
         #[method(setTitlePosition:)]
         pub unsafe fn setTitlePosition(&self, title_position: NSTitlePosition);
 
-        #[unsafe(method_family(none))]
         #[method_id(title)]
+        #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
@@ -131,8 +131,8 @@ extern_methods!(
         pub unsafe fn setTitle(&self, title: &NSString);
 
         #[cfg(feature = "NSFont")]
-        #[unsafe(method_family(none))]
         #[method_id(titleFont)]
+        #[unsafe(method_family = none)]
         pub unsafe fn titleFont(&self) -> Retained<NSFont>;
 
         #[cfg(feature = "NSFont")]
@@ -146,8 +146,8 @@ extern_methods!(
         #[method(titleRect)]
         pub unsafe fn titleRect(&self) -> NSRect;
 
-        #[unsafe(method_family(none))]
         #[method_id(titleCell)]
+        #[unsafe(method_family = none)]
         pub unsafe fn titleCell(&self) -> Retained<AnyObject>;
 
         #[method(contentViewMargins)]
@@ -163,8 +163,8 @@ extern_methods!(
         #[method(setFrameFromContentFrame:)]
         pub unsafe fn setFrameFromContentFrame(&self, content_frame: NSRect);
 
-        #[unsafe(method_family(none))]
         #[method_id(contentView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contentView(&self) -> Option<Retained<NSView>>;
 
         /// Setter for [`contentView`][Self::contentView].
@@ -197,8 +197,8 @@ extern_methods!(
         pub unsafe fn setCornerRadius(&self, corner_radius: CGFloat);
 
         #[cfg(feature = "NSColor")]
-        #[unsafe(method_family(none))]
         #[method_id(borderColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn borderColor(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
@@ -207,8 +207,8 @@ extern_methods!(
         pub unsafe fn setBorderColor(&self, border_color: &NSColor);
 
         #[cfg(feature = "NSColor")]
-        #[unsafe(method_family(none))]
         #[method_id(fillColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fillColor(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
@@ -222,12 +222,12 @@ extern_methods!(
     /// Methods declared on superclass `NSView`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSBox {
-        #[unsafe(method_family(init))]
         #[method_id(initWithFrame:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -239,8 +239,8 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSBox {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -249,8 +249,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSBox {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

@@ -14,8 +14,8 @@ extern_protocol!(
     pub unsafe trait UIMenuBuilder: MainThreadOnly {
         #[cfg(feature = "UIMenuSystem")]
         /// Which system we are building for.
-        #[unsafe(method_family(none))]
         #[method_id(system)]
+        #[unsafe(method_family = none)]
         unsafe fn system(&self) -> Retained<UIMenuSystem>;
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
@@ -25,8 +25,8 @@ extern_protocol!(
         /// Parameter `identifier`: The identifier of the menu to fetch.
         ///
         /// Returns: The menu with the given identifier, or `nil` if no such menu.
-        #[unsafe(method_family(none))]
         #[method_id(menuForIdentifier:)]
+        #[unsafe(method_family = none)]
         unsafe fn menuForIdentifier(
             &self,
             identifier: &UIMenuIdentifier,
@@ -39,8 +39,8 @@ extern_protocol!(
         /// Parameter `identifier`: The identifier of the action to fetch.
         ///
         /// Returns: The action with the given identifier, or `nil` if no such action.
-        #[unsafe(method_family(none))]
         #[method_id(actionForIdentifier:)]
+        #[unsafe(method_family = none)]
         unsafe fn actionForIdentifier(
             &self,
             identifier: &UIActionIdentifier,
@@ -55,8 +55,8 @@ extern_protocol!(
         /// Parameter `propertyList`: Property list object to distinguish commands, if needed.
         ///
         /// Returns: The command with the given action and property list, or `nil` if no such command.
-        #[unsafe(method_family(none))]
         #[method_id(commandForAction:propertyList:)]
+        #[unsafe(method_family = none)]
         unsafe fn commandForAction_propertyList(
             &self,
             action: Sel,

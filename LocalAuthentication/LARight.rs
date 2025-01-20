@@ -80,8 +80,8 @@ extern_methods!(
         /// For authorizing a right with default requirements a user will be asked to authenticate using biometry or the device passcode.
         ///
         /// Returns: `LARight`instance
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "LARequirement")]
@@ -91,8 +91,8 @@ extern_methods!(
         /// Parameter `requirement`: Requirement that needs to be satisfied to authorize the right
         ///
         /// Returns: `LARight`instance
-        #[unsafe(method_family(init))]
         #[method_id(initWithRequirement:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithRequirement(
             this: Allocated<Self>,
             requirement: &LAAuthenticationRequirement,
@@ -134,8 +134,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl LARight {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

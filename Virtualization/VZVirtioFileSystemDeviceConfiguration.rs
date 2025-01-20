@@ -41,8 +41,8 @@ extern_methods!(
         /// The tag is presented as a label in the guest identifying this device for mounting. The tag must be valid, which can be checked with +[VZVirtioFileSystemDeviceConfiguration validateTag:error:].
         ///
         /// See: +[VZVirtioFileSystemDeviceConfiguration validateTag:error:]
-        #[unsafe(method_family(init))]
         #[method_id(initWithTag:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithTag(this: Allocated<Self>, tag: &NSString) -> Retained<Self>;
 
         /// Check if tag is a valid Virtio file system tag.
@@ -60,8 +60,8 @@ extern_methods!(
         /// The tag is presented as a label in the guest identifying this device for mounting. The tag must be valid, which can be checked with +[VZVirtioFileSystemDeviceConfiguration validateTag:error:].
         ///
         /// See: +[VZVirtioFileSystemDeviceConfiguration validateTag:error:]
-        #[unsafe(method_family(none))]
         #[method_id(tag)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tag(&self) -> Retained<NSString>;
 
         /// Setter for [`tag`][Self::tag].
@@ -76,8 +76,8 @@ extern_methods!(
         /// See: VZMultipleDirectoryShare
         ///
         /// See: VZLinuxRosettaDirectoryShare
-        #[unsafe(method_family(none))]
         #[method_id(share)]
+        #[unsafe(method_family = none)]
         pub unsafe fn share(&self) -> Option<Retained<VZDirectoryShare>>;
 
         #[cfg(feature = "VZDirectoryShare")]
@@ -88,8 +88,8 @@ extern_methods!(
         /// The macOS automount tag.
         ///
         /// A device configured with this tag will be automatically mounted in a macOS guest.
-        #[unsafe(method_family(none))]
         #[method_id(macOSGuestAutomountTag)]
+        #[unsafe(method_family = none)]
         pub unsafe fn macOSGuestAutomountTag() -> Retained<NSString>;
     }
 );
@@ -98,12 +98,12 @@ extern_methods!(
     /// Methods declared on superclass `VZDirectorySharingDeviceConfiguration`
     #[cfg(feature = "VZDirectorySharingDeviceConfiguration")]
     unsafe impl VZVirtioFileSystemDeviceConfiguration {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

@@ -61,8 +61,8 @@ extern_methods!(
         /// Parameter `style`: The formatting style to be used for the postal address.
         ///
         /// Returns: The formatted postal address.
-        #[unsafe(method_family(none))]
         #[method_id(stringFromPostalAddress:style:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stringFromPostalAddress_style(
             postal_address: &CNPostalAddress,
             style: CNPostalAddressFormatterStyle,
@@ -82,8 +82,8 @@ extern_methods!(
         /// Parameter `attributes`: The default attributes to use. See NSFormatter for details.
         ///
         /// Returns: The formatted postal address as an attributed string.
-        #[unsafe(method_family(none))]
         #[method_id(attributedStringFromPostalAddress:style:withDefaultAttributes:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn attributedStringFromPostalAddress_style_withDefaultAttributes(
             postal_address: &CNPostalAddress,
             style: CNPostalAddressFormatterStyle,
@@ -108,8 +108,8 @@ extern_methods!(
         /// Parameter `postalAddress`: The postal address to be formatted.
         ///
         /// Returns: The formatted postal address.
-        #[unsafe(method_family(none))]
         #[method_id(stringFromPostalAddress:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stringFromPostalAddress(
             &self,
             postal_address: &CNPostalAddress,
@@ -127,8 +127,8 @@ extern_methods!(
         /// Parameter `attributes`: The default attributes to use. See NSFormatter for details.
         ///
         /// Returns: The formatted postal address as an attributed string.
-        #[unsafe(method_family(none))]
         #[method_id(attributedStringFromPostalAddress:withDefaultAttributes:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn attributedStringFromPostalAddress_withDefaultAttributes(
             &self,
             postal_address: &CNPostalAddress,
@@ -140,12 +140,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CNPostalAddressFormatter {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

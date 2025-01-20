@@ -113,13 +113,13 @@ extern_methods!(
         );
 
         /// ************************** Initialization ***************************
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "NSScrollView")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithScrollView:orientation:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithScrollView_orientation(
             this: Allocated<Self>,
             scroll_view: Option<&NSScrollView>,
@@ -128,8 +128,8 @@ extern_methods!(
 
         #[cfg(feature = "NSScrollView")]
         /// ************************** Basic setup ***************************
-        #[unsafe(method_family(none))]
         #[method_id(scrollView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scrollView(&self) -> Option<Retained<NSScrollView>>;
 
         #[cfg(feature = "NSScrollView")]
@@ -188,8 +188,8 @@ extern_methods!(
         );
 
         /// ************************** Rule configuration ***************************
-        #[unsafe(method_family(none))]
         #[method_id(measurementUnits)]
+        #[unsafe(method_family = none)]
         pub unsafe fn measurementUnits(&self) -> Retained<NSRulerViewUnitName>;
 
         /// Setter for [`measurementUnits`][Self::measurementUnits].
@@ -206,8 +206,8 @@ extern_methods!(
         pub unsafe fn setOriginOffset(&self, origin_offset: CGFloat);
 
         /// ************************** Client view setup ***************************
-        #[unsafe(method_family(none))]
         #[method_id(clientView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn clientView(&self) -> Option<Retained<NSView>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -224,8 +224,8 @@ extern_methods!(
         pub unsafe fn removeMarker(&self, marker: &NSRulerMarker);
 
         #[cfg(feature = "NSRulerMarker")]
-        #[unsafe(method_family(none))]
         #[method_id(markers)]
+        #[unsafe(method_family = none)]
         pub unsafe fn markers(&self) -> Option<Retained<NSArray<NSRulerMarker>>>;
 
         #[cfg(feature = "NSRulerMarker")]
@@ -241,8 +241,8 @@ extern_methods!(
             event: &NSEvent,
         ) -> bool;
 
-        #[unsafe(method_family(none))]
         #[method_id(accessoryView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn accessoryView(&self) -> Option<Retained<NSView>>;
 
         /// Setter for [`accessoryView`][Self::accessoryView].
@@ -277,8 +277,8 @@ extern_methods!(
     /// Methods declared on superclass `NSView`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSRulerView {
-        #[unsafe(method_family(init))]
         #[method_id(initWithFrame:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
     }
 );
@@ -287,8 +287,8 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSRulerView {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -297,8 +297,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSRulerView {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

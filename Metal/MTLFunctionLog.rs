@@ -31,12 +31,12 @@ extern_protocol!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctionlogdebuglocation?language=objc)
     pub unsafe trait MTLFunctionLogDebugLocation: NSObjectProtocol {
-        #[unsafe(method_family(none))]
         #[method_id(functionName)]
+        #[unsafe(method_family = none)]
         unsafe fn functionName(&self) -> Option<Retained<NSString>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(URL)]
+        #[unsafe(method_family = none)]
         unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
         #[method(line)]
@@ -53,17 +53,17 @@ extern_protocol!(
         #[method(type)]
         unsafe fn r#type(&self) -> MTLFunctionLogType;
 
-        #[unsafe(method_family(none))]
         #[method_id(encoderLabel)]
+        #[unsafe(method_family = none)]
         unsafe fn encoderLabel(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "MTLLibrary")]
-        #[unsafe(method_family(none))]
         #[method_id(function)]
+        #[unsafe(method_family = none)]
         unsafe fn function(&self) -> Option<Retained<ProtocolObject<dyn MTLFunction>>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(debugLocation)]
+        #[unsafe(method_family = none)]
         unsafe fn debugLocation(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MTLFunctionLogDebugLocation>>>;

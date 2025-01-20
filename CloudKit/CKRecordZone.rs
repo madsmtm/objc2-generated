@@ -62,36 +62,36 @@ unsafe impl NSSecureCoding for CKRecordZone {}
 
 extern_methods!(
     unsafe impl CKRecordZone {
-        #[unsafe(method_family(none))]
         #[method_id(defaultRecordZone)]
+        #[unsafe(method_family = none)]
         pub unsafe fn defaultRecordZone() -> Retained<CKRecordZone>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithZoneName:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithZoneName(
             this: Allocated<Self>,
             zone_name: &NSString,
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordZoneID")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithZoneID:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithZoneID(
             this: Allocated<Self>,
             zone_id: &CKRecordZoneID,
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordZoneID")]
-        #[unsafe(method_family(none))]
         #[method_id(zoneID)]
+        #[unsafe(method_family = none)]
         pub unsafe fn zoneID(&self) -> Retained<CKRecordZoneID>;
 
         /// Capabilities on locally-created record zones are not valid until the record zone is saved. Capabilities on record zones fetched from the server are valid.
@@ -113,8 +113,8 @@ extern_methods!(
         /// Zone-wide sharing is only supported in zones with the
         /// `CKRecordZoneCapabilityZoneWideSharing`sharing capability.
         /// You cannot share a zone if it already contains shared records.
-        #[unsafe(method_family(none))]
         #[method_id(share)]
+        #[unsafe(method_family = none)]
         pub unsafe fn share(&self) -> Option<Retained<CKReference>>;
     }
 );

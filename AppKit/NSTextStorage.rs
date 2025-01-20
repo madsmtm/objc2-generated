@@ -46,8 +46,8 @@ extern_methods!(
     unsafe impl NSTextStorage {
         #[cfg(feature = "NSLayoutManager")]
         /// ************************** Layout manager ***************************
-        #[unsafe(method_family(none))]
         #[method_id(layoutManagers)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layoutManagers(&self) -> Retained<NSArray<NSLayoutManager>>;
 
         #[cfg(feature = "NSLayoutManager")]
@@ -69,8 +69,8 @@ extern_methods!(
         pub unsafe fn changeInLength(&self) -> NSInteger;
 
         /// ************************** Delegate ***************************
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSTextStorageDelegate>>>;
@@ -106,8 +106,8 @@ extern_methods!(
         pub unsafe fn ensureAttributesAreFixedInRange(&self, range: NSRange);
 
         /// ************************** NSTextStorageObserving ***************************
-        #[unsafe(method_family(none))]
         #[method_id(textStorageObserver)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textStorageObserver(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSTextStorageObserving>>>;
@@ -125,12 +125,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextStorage {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -177,8 +177,8 @@ extern "C" {
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextstorageobserving?language=objc)
     pub unsafe trait NSTextStorageObserving: NSObjectProtocol {
-        #[unsafe(method_family(none))]
         #[method_id(textStorage)]
+        #[unsafe(method_family = none)]
         unsafe fn textStorage(&self) -> Option<Retained<NSTextStorage>>;
 
         /// Setter for [`textStorage`][Self::textStorage].

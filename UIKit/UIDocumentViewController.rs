@@ -52,16 +52,16 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIDocumentViewController {
         #[cfg(feature = "UIDocument")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithDocument:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDocument(
             this: Allocated<Self>,
             document: Option<&UIDocument>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "UIDocument")]
-        #[unsafe(method_family(none))]
         #[method_id(document)]
+        #[unsafe(method_family = none)]
         pub unsafe fn document(&self) -> Option<Retained<UIDocument>>;
 
         #[cfg(feature = "UIDocument")]
@@ -71,8 +71,8 @@ extern_methods!(
 
         #[cfg(feature = "UIDocumentViewControllerLaunchOptions")]
         /// Properties to configure the view controller when no document is open.
-        #[unsafe(method_family(none))]
         #[method_id(launchOptions)]
+        #[unsafe(method_family = none)]
         pub unsafe fn launchOptions(&self) -> Retained<UIDocumentViewControllerLaunchOptions>;
 
         #[cfg(feature = "UIDocumentViewControllerLaunchOptions")]
@@ -104,8 +104,8 @@ extern_methods!(
 
         #[cfg(feature = "UIBarButtonItemGroup")]
         /// MARK: Custom Navigation Items
-        #[unsafe(method_family(none))]
         #[method_id(undoRedoItemGroup)]
+        #[unsafe(method_family = none)]
         pub unsafe fn undoRedoItemGroup(&self) -> Retained<UIBarButtonItemGroup>;
     }
 );
@@ -114,16 +114,16 @@ extern_methods!(
     /// Methods declared on superclass `UIViewController`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIDocumentViewController {
-        #[unsafe(method_family(init))]
         #[method_id(initWithNibName:bundle:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -135,12 +135,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIDocumentViewController {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

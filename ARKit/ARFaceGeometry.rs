@@ -74,20 +74,20 @@ extern_methods!(
         /// Parameter `blendShapes`: A dictionary of blend shape coefficients.
         ///
         /// Returns: Face geometry after applying the blend shapes.
-        #[unsafe(method_family(init))]
         #[method_id(initWithBlendShapes:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithBlendShapes(
             this: Allocated<Self>,
             blend_shapes: &NSDictionary<ARBlendShapeLocation, NSNumber>,
         ) -> Option<Retained<Self>>;
 
         /// Unavailable
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

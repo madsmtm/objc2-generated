@@ -26,20 +26,20 @@ unsafe impl NSSecureCoding for UIImageAsset {}
 
 extern_methods!(
     unsafe impl UIImageAsset {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "UIImage", feature = "UIImageConfiguration"))]
-        #[unsafe(method_family(none))]
         #[method_id(imageWithConfiguration:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn imageWithConfiguration(
             &self,
             configuration: &UIImageConfiguration,
@@ -58,8 +58,8 @@ extern_methods!(
         pub unsafe fn unregisterImageWithConfiguration(&self, configuration: &UIImageConfiguration);
 
         #[cfg(all(feature = "UIImage", feature = "UITraitCollection"))]
-        #[unsafe(method_family(none))]
         #[method_id(imageWithTraitCollection:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn imageWithTraitCollection(
             &self,
             trait_collection: &UITraitCollection,
@@ -85,8 +85,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIImageAsset {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

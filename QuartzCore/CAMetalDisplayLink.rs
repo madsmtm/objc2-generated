@@ -21,8 +21,8 @@ unsafe impl NSObjectProtocol for CAMetalDisplayLinkUpdate {}
 extern_methods!(
     unsafe impl CAMetalDisplayLinkUpdate {
         #[cfg(all(feature = "CAMetalLayer", feature = "objc2-metal"))]
-        #[unsafe(method_family(none))]
         #[method_id(drawable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn drawable(&self) -> Retained<ProtocolObject<dyn CAMetalDrawable>>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -38,12 +38,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CAMetalDisplayLinkUpdate {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -72,8 +72,8 @@ unsafe impl NSObjectProtocol for CAMetalDisplayLink {}
 extern_methods!(
     unsafe impl CAMetalDisplayLink {
         #[cfg(all(feature = "CALayer", feature = "CAMetalLayer"))]
-        #[unsafe(method_family(init))]
         #[method_id(initWithMetalLayer:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithMetalLayer(
             this: Allocated<Self>,
             layer: &CAMetalLayer,
@@ -88,8 +88,8 @@ extern_methods!(
         #[method(invalidate)]
         pub unsafe fn invalidate(&self);
 
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn CAMetalDisplayLinkDelegate>>>;
@@ -133,12 +133,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CAMetalDisplayLink {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

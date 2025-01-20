@@ -48,14 +48,14 @@ unsafe impl NSObjectProtocol for VZMacPlatformConfiguration {}
 extern_methods!(
     #[cfg(feature = "VZPlatformConfiguration")]
     unsafe impl VZMacPlatformConfiguration {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZMacHardwareModel")]
         /// The Mac hardware model.
-        #[unsafe(method_family(none))]
         #[method_id(hardwareModel)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hardwareModel(&self) -> Retained<VZMacHardwareModel>;
 
         #[cfg(feature = "VZMacHardwareModel")]
@@ -67,8 +67,8 @@ extern_methods!(
         /// The unique Mac machine identifier.
         ///
         /// Running two virtual machines concurrently with the same identifier results in undefined behavior in the guest operating system.
-        #[unsafe(method_family(none))]
         #[method_id(machineIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn machineIdentifier(&self) -> Retained<VZMacMachineIdentifier>;
 
         #[cfg(feature = "VZMacMachineIdentifier")]
@@ -81,8 +81,8 @@ extern_methods!(
         ///
         /// When creating a virtual machine from scratch, the hardware model of the `auxiliaryStorage` must match the hardware model of
         /// the `hardwareModel` property.
-        #[unsafe(method_family(none))]
         #[method_id(auxiliaryStorage)]
+        #[unsafe(method_family = none)]
         pub unsafe fn auxiliaryStorage(&self) -> Option<Retained<VZMacAuxiliaryStorage>>;
 
         #[cfg(feature = "VZMacAuxiliaryStorage")]
@@ -96,8 +96,8 @@ extern_methods!(
     /// Methods declared on superclass `VZPlatformConfiguration`
     #[cfg(feature = "VZPlatformConfiguration")]
     unsafe impl VZMacPlatformConfiguration {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

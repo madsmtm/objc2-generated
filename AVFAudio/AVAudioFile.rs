@@ -35,8 +35,8 @@ extern_methods!(
         /// Parameter `outError`: on exit, if an error occurs, a description of the error
         ///
         /// This opens the file for reading using the standard format (deinterleaved floating point).
-        #[unsafe(method_family(init))]
         #[method_id(initForReading:error:_)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initForReading_error(
             this: Allocated<Self>,
             file_url: &NSURL,
@@ -52,8 +52,8 @@ extern_methods!(
         /// Parameter `interleaved`: whether to use an interleaved processing format
         ///
         /// Parameter `outError`: on exit, if an error occurs, a description of the error
-        #[unsafe(method_family(init))]
         #[method_id(initForReading:commonFormat:interleaved:error:_)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initForReading_commonFormat_interleaved_error(
             this: Allocated<Self>,
             file_url: &NSURL,
@@ -75,8 +75,8 @@ extern_methods!(
         /// inferred from the file extension. Will overwrite a file at the specified URL if a file exists.
         ///
         /// This opens the file for writing using the standard format (deinterleaved floating point).
-        #[unsafe(method_family(init))]
         #[method_id(initForWriting:settings:error:_)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initForWriting_settings_error(
             this: Allocated<Self>,
             file_url: &NSURL,
@@ -100,8 +100,8 @@ extern_methods!(
         ///
         /// The file type to create can be set through the corresponding settings key. If not set, it will be
         /// inferred from the file extension. Will overwrite a file at the specified URL if a file exists.
-        #[unsafe(method_family(init))]
         #[method_id(initForWriting:settings:commonFormat:interleaved:error:_)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initForWriting_settings_commonFormat_interleaved_error(
             this: Allocated<Self>,
             file_url: &NSURL,
@@ -183,20 +183,20 @@ extern_methods!(
         pub unsafe fn isOpen(&self) -> bool;
 
         /// The URL the file is reading or writing.
-        #[unsafe(method_family(none))]
         #[method_id(url)]
+        #[unsafe(method_family = none)]
         pub unsafe fn url(&self) -> Retained<NSURL>;
 
         #[cfg(feature = "AVAudioFormat")]
         /// The on-disk format of the file.
-        #[unsafe(method_family(none))]
         #[method_id(fileFormat)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fileFormat(&self) -> Retained<AVAudioFormat>;
 
         #[cfg(feature = "AVAudioFormat")]
         /// The processing format of the file.
-        #[unsafe(method_family(none))]
         #[method_id(processingFormat)]
+        #[unsafe(method_family = none)]
         pub unsafe fn processingFormat(&self) -> Retained<AVAudioFormat>;
 
         #[cfg(feature = "AVAudioTypes")]
@@ -223,12 +223,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAudioFile {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

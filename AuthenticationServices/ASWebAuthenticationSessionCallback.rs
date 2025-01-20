@@ -27,8 +27,8 @@ extern_methods!(
         /// Creates a callback object that matches against URLs with the given custom scheme.
         ///
         /// Parameter `customScheme`: The custom scheme that the app expects in the callback URL.
-        #[unsafe(method_family(none))]
         #[method_id(callbackWithCustomScheme:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn callbackWithCustomScheme(custom_scheme: &NSString) -> Retained<Self>;
 
         /// Creates a callback object that matches against HTTPS URLs with the given host and path.
@@ -37,19 +37,19 @@ extern_methods!(
         /// app using associated web credentials domains.
         ///
         /// Parameter `path`: The path that the app expects in the callback URL.
-        #[unsafe(method_family(none))]
         #[method_id(callbackWithHTTPSHost:path:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn callbackWithHTTPSHost_path(
             host: &NSString,
             path: &NSString,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Check whether a given main-frame navigation URL matches the callback expected by the client app. Handles all URL-based callback strategies, including custom schemes and HTTPS navigations.

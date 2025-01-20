@@ -28,19 +28,19 @@ extern_methods!(
     unsafe impl MXMetricManager {
         #[cfg(feature = "MXMetricPayload")]
         /// A list of past metric payloads received.
-        #[unsafe(method_family(none))]
         #[method_id(pastPayloads)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pastPayloads(&self) -> Retained<NSArray<MXMetricPayload>>;
 
         #[cfg(feature = "MXDiagnosticPayload")]
         /// A list of past diagnostic payloads received.
-        #[unsafe(method_family(none))]
         #[method_id(pastDiagnosticPayloads)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pastDiagnosticPayloads(&self) -> Retained<NSArray<MXDiagnosticPayload>>;
 
         /// Singleton instance of MXMetricManager.
-        #[unsafe(method_family(none))]
         #[method_id(sharedManager)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sharedManager() -> Retained<MXMetricManager>;
 
         /// Adds a subscriber to the metric manager.
@@ -70,12 +70,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MXMetricManager {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

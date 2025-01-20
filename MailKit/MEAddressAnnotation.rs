@@ -23,19 +23,19 @@ unsafe impl NSSecureCoding for MEAddressAnnotation {}
 
 extern_methods!(
     unsafe impl MEAddressAnnotation {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// An annotation to denote a recipeint email address has an error when composing a mail message.
         ///
         /// Parameter `localizedDescription`: - A localized string with a brief description of the error that may be presented to the user.
-        #[unsafe(method_family(none))]
         #[method_id(errorWithLocalizedDescription:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn errorWithLocalizedDescription(
             localized_description: &NSString,
         ) -> Retained<MEAddressAnnotation>;
@@ -43,8 +43,8 @@ extern_methods!(
         /// An annotation to warn about a recipeint email address when composing a mail message.
         ///
         /// Parameter `localizedDescription`: - A localized string with a brief description of the warning may be presented to the user. .
-        #[unsafe(method_family(none))]
         #[method_id(warningWithLocalizedDescription:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn warningWithLocalizedDescription(
             localized_description: &NSString,
         ) -> Retained<MEAddressAnnotation>;
@@ -52,8 +52,8 @@ extern_methods!(
         /// An annotation to  denote a valid recipeint email address when composing a mail message.
         ///
         /// Parameter `localizedDescription`: - A localized string with a brief description that may be presented to the user. .
-        #[unsafe(method_family(none))]
         #[method_id(successWithLocalizedDescription:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn successWithLocalizedDescription(
             localized_description: &NSString,
         ) -> Retained<MEAddressAnnotation>;

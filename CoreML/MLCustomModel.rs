@@ -10,8 +10,8 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlcustommodel?language=objc)
     pub unsafe trait MLCustomModel {
         #[cfg(feature = "MLModelDescription")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithModelDescription:parameterDictionary:error:_)]
+        #[unsafe(method_family = init)]
         unsafe fn initWithModelDescription_parameterDictionary_error(
             this: Allocated<Self>,
             model_description: &MLModelDescription,
@@ -19,8 +19,8 @@ extern_protocol!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "MLFeatureProvider", feature = "MLPredictionOptions"))]
-        #[unsafe(method_family(none))]
         #[method_id(predictionFromFeatures:options:error:_)]
+        #[unsafe(method_family = none)]
         unsafe fn predictionFromFeatures_options_error(
             &self,
             input: &ProtocolObject<dyn MLFeatureProvider>,
@@ -30,8 +30,8 @@ extern_protocol!(
         #[cfg(all(feature = "MLBatchProvider", feature = "MLPredictionOptions"))]
         /// Batch prediction with explicit options, if not implemented the single input predictionFromFeatures:options:error will be used
         #[optional]
-        #[unsafe(method_family(none))]
         #[method_id(predictionsFromBatch:options:error:_)]
+        #[unsafe(method_family = none)]
         unsafe fn predictionsFromBatch_options_error(
             &self,
             input_batch: &ProtocolObject<dyn MLBatchProvider>,

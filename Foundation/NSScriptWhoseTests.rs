@@ -54,13 +54,13 @@ extern_methods!(
         #[method(isTrue)]
         pub unsafe fn isTrue(&self) -> bool;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             in_coder: &NSCoder,
@@ -71,8 +71,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSScriptWhoseTest {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -92,23 +92,23 @@ unsafe impl NSObjectProtocol for NSLogicalTest {}
 extern_methods!(
     unsafe impl NSLogicalTest {
         #[cfg(feature = "NSArray")]
-        #[unsafe(method_family(init))]
         #[method_id(initAndTestWithTests:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initAndTestWithTests(
             this: Allocated<Self>,
             sub_tests: &NSArray<NSSpecifierTest>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSArray")]
-        #[unsafe(method_family(init))]
         #[method_id(initOrTestWithTests:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initOrTestWithTests(
             this: Allocated<Self>,
             sub_tests: &NSArray<NSSpecifierTest>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initNotTestWithTest:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initNotTestWithTest(
             this: Allocated<Self>,
             sub_test: &NSScriptWhoseTest,
@@ -119,13 +119,13 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSScriptWhoseTest`
     unsafe impl NSLogicalTest {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             in_coder: &NSCoder,
@@ -136,8 +136,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSLogicalTest {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -156,21 +156,21 @@ unsafe impl NSObjectProtocol for NSSpecifierTest {}
 
 extern_methods!(
     unsafe impl NSSpecifierTest {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             in_coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSScriptObjectSpecifiers")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithObjectSpecifier:comparisonOperator:testObject:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithObjectSpecifier_comparisonOperator_testObject(
             this: Allocated<Self>,
             obj1: Option<&NSScriptObjectSpecifier>,
@@ -183,8 +183,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSSpecifierTest {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

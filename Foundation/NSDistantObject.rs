@@ -26,8 +26,8 @@ extern_methods!(
     unsafe impl NSDistantObject {
         #[cfg(feature = "NSConnection")]
         #[deprecated = "Use NSXPCConnection instead"]
-        #[unsafe(method_family(none))]
         #[method_id(proxyWithTarget:connection:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn proxyWithTarget_connection(
             target: &AnyObject,
             connection: &NSConnection,
@@ -35,8 +35,8 @@ extern_methods!(
 
         #[cfg(feature = "NSConnection")]
         #[deprecated = "Use NSXPCConnection instead"]
-        #[unsafe(method_family(init))]
         #[method_id(initWithTarget:connection:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithTarget_connection(
             this: Allocated<Self>,
             target: &AnyObject,
@@ -45,8 +45,8 @@ extern_methods!(
 
         #[cfg(feature = "NSConnection")]
         #[deprecated = "Use NSXPCConnection instead"]
-        #[unsafe(method_family(none))]
         #[method_id(proxyWithLocal:connection:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn proxyWithLocal_connection(
             target: &AnyObject,
             connection: &NSConnection,
@@ -54,8 +54,8 @@ extern_methods!(
 
         #[cfg(feature = "NSConnection")]
         #[deprecated = "Use NSXPCConnection instead"]
-        #[unsafe(method_family(init))]
         #[method_id(initWithLocal:connection:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithLocal_connection(
             this: Allocated<Self>,
             target: &AnyObject,
@@ -64,8 +64,8 @@ extern_methods!(
 
         #[cfg(feature = "NSCoder")]
         #[deprecated = "Use NSXPCConnection instead"]
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             in_coder: &NSCoder,
@@ -77,8 +77,8 @@ extern_methods!(
 
         #[cfg(feature = "NSConnection")]
         #[deprecated = "Use NSXPCConnection instead"]
-        #[unsafe(method_family(none))]
         #[method_id(connectionForProxy)]
+        #[unsafe(method_family = none)]
         pub unsafe fn connectionForProxy(&self) -> Retained<NSConnection>;
     }
 );

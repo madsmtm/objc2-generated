@@ -145,8 +145,8 @@ extern_methods!(
         ///
         ///
         /// Returns: A valid MPSMatrixFindTopK object or nil, if failure.
-        #[unsafe(method_family(init))]
         #[method_id(initWithDevice:numberOfTopKValues:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_numberOfTopKValues(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -154,8 +154,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Use the above initialization method instead.
-        #[unsafe(method_family(init))]
         #[method_id(initWithDevice:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -210,8 +210,8 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSMatrixFindTopK
         ///
         /// Returns: A new MPSMatrixFindTopK object, or nil if failure.
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:device:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -230,8 +230,8 @@ extern_methods!(
         /// Returns: a pointer to a copy of this MPSKernel. This will fail, returning
         /// nil if the device is not supported. Devices must be
         /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
-        #[unsafe(method_family(copy))]
         #[method_id(copyWithZone:device:)]
+        #[unsafe(method_family = copy)]
         pub unsafe fn copyWithZone_device(
             &self,
             zone: *mut NSZone,
@@ -252,8 +252,8 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -265,12 +265,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixFindTopK {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

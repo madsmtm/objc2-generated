@@ -63,8 +63,8 @@ extern_methods!(
         /// The call returns an error if Rosetta is not available for a directory share. To install Rosetta support, use +[VZLinuxRosettaDirectoryShare installRosettaIfNeeded:].
         ///
         /// See: +[VZLinuxRosettaDirectoryShare installRosettaIfNeeded:]
-        #[unsafe(method_family(init))]
         #[method_id(initWithError:_)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithError(
             this: Allocated<Self>,
         ) -> Result<Retained<Self>, Retained<NSError>>;
@@ -84,8 +84,8 @@ extern_methods!(
 
         #[cfg(feature = "VZLinuxRosettaCachingOptions")]
         /// Enable translation caching and configure the socket communication type for Rosetta.
-        #[unsafe(method_family(none))]
         #[method_id(options)]
+        #[unsafe(method_family = none)]
         pub unsafe fn options(&self) -> Option<Retained<VZLinuxRosettaCachingOptions>>;
 
         #[cfg(feature = "VZLinuxRosettaCachingOptions")]
@@ -103,12 +103,12 @@ extern_methods!(
     /// Methods declared on superclass `VZDirectoryShare`
     #[cfg(feature = "VZDirectoryShare")]
     unsafe impl VZLinuxRosettaDirectoryShare {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

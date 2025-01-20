@@ -64,8 +64,8 @@ extern_methods!(
     #[cfg(feature = "NSFormatter")]
     unsafe impl NSLengthFormatter {
         #[cfg(feature = "NSNumberFormatter")]
-        #[unsafe(method_family(none))]
         #[method_id(numberFormatter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn numberFormatter(&self) -> Retained<NSNumberFormatter>;
 
         #[cfg(feature = "NSNumberFormatter")]
@@ -88,8 +88,8 @@ extern_methods!(
         pub unsafe fn setForPersonHeightUse(&self, for_person_height_use: bool);
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(stringFromValue:unit:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stringFromValue_unit(
             &self,
             value: c_double,
@@ -97,13 +97,13 @@ extern_methods!(
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(stringFromMeters:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stringFromMeters(&self, number_in_meters: c_double) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(unitStringFromValue:unit:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn unitStringFromValue_unit(
             &self,
             value: c_double,
@@ -111,8 +111,8 @@ extern_methods!(
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        #[unsafe(method_family(none))]
         #[method_id(unitStringFromMeters:usedUnit:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn unitStringFromMeters_usedUnit(
             &self,
             number_in_meters: c_double,
@@ -134,12 +134,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSFormatter")]
     unsafe impl NSLengthFormatter {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

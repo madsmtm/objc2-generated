@@ -19,20 +19,20 @@ unsafe impl NSObjectProtocol for NSTextCheckingController {}
 extern_methods!(
     unsafe impl NSTextCheckingController {
         #[cfg(all(feature = "NSTextCheckingClient", feature = "NSTextInputClient"))]
-        #[unsafe(method_family(init))]
         #[method_id(initWithClient:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithClient(
             this: Allocated<Self>,
             client: &ProtocolObject<dyn NSTextCheckingClient>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "NSTextCheckingClient", feature = "NSTextInputClient"))]
-        #[unsafe(method_family(none))]
         #[method_id(client)]
+        #[unsafe(method_family = none)]
         pub unsafe fn client(&self) -> Retained<ProtocolObject<dyn NSTextCheckingClient>>;
 
         #[method(invalidate)]
@@ -83,13 +83,13 @@ extern_methods!(
         #[method(updateCandidates)]
         pub unsafe fn updateCandidates(&self);
 
-        #[unsafe(method_family(none))]
         #[method_id(validAnnotations)]
+        #[unsafe(method_family = none)]
         pub unsafe fn validAnnotations(&self) -> Retained<NSArray<NSAttributedStringKey>>;
 
         #[cfg(feature = "NSMenu")]
-        #[unsafe(method_family(none))]
         #[method_id(menuAtIndex:clickedOnSelection:effectiveRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn menuAtIndex_clickedOnSelection_effectiveRange(
             &self,
             location: NSUInteger,
@@ -110,8 +110,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextCheckingController {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

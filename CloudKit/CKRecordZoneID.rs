@@ -28,28 +28,28 @@ unsafe impl NSSecureCoding for CKRecordZoneID {}
 extern_methods!(
     unsafe impl CKRecordZoneID {
         /// Zone names must be 255 characters or less. Most UTF-8 characters are valid.
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithZoneName:ownerName:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithZoneName_ownerName(
             this: Allocated<Self>,
             zone_name: &NSString,
             owner_name: &NSString,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(zoneName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn zoneName(&self) -> Retained<NSString>;
 
-        #[unsafe(method_family(none))]
         #[method_id(ownerName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn ownerName(&self) -> Retained<NSString>;
     }
 );

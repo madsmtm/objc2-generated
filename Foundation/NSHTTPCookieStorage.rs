@@ -61,8 +61,8 @@ extern_methods!(
         ///
         /// Starting in OS X 10.11, each app has its own sharedHTTPCookieStorage singleton,
         /// which will not be shared with other applications.
-        #[unsafe(method_family(none))]
         #[method_id(sharedHTTPCookieStorage)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sharedHTTPCookieStorage() -> Retained<NSHTTPCookieStorage>;
 
         #[cfg(feature = "NSString")]
@@ -77,8 +77,8 @@ extern_methods!(
         /// any app extensions that it contains. This method allows clients to create a persistent cookie storage that can be
         /// shared among all applications and extensions with access to the same application group. Subsequent calls to this
         /// method with the same identifier will return the same cookie storage instance.
-        #[unsafe(method_family(none))]
         #[method_id(sharedCookieStorageForGroupContainerIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sharedCookieStorageForGroupContainerIdentifier(
             identifier: &NSString,
         ) -> Retained<NSHTTPCookieStorage>;
@@ -87,8 +87,8 @@ extern_methods!(
         /// Get all the cookies
         ///
         /// Returns: An NSArray of NSHTTPCookies
-        #[unsafe(method_family(none))]
         #[method_id(cookies)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cookies(&self) -> Option<Retained<NSArray<NSHTTPCookie>>>;
 
         #[cfg(feature = "NSHTTPCookie")]
@@ -123,8 +123,8 @@ extern_methods!(
         /// </tt>
         /// to turn this array
         /// into a set of header fields to add to a request.
-        #[unsafe(method_family(none))]
         #[method_id(cookiesForURL:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cookiesForURL(&self, url: &NSURL) -> Option<Retained<NSArray<NSHTTPCookie>>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSHTTPCookie", feature = "NSURL"))]
@@ -177,8 +177,8 @@ extern_methods!(
         /// Parameter `sortOrder`: an array of NSSortDescriptors which represent the preferred sort order of the resulting array.
         ///
         /// proper sorting of cookies may require extensive string conversion, which can be avoided by allowing the system to perform the sorting.  This API is to be preferred over the more generic -[NSHTTPCookieStorage cookies] API, if sorting is going to be performed.
-        #[unsafe(method_family(none))]
         #[method_id(sortedCookiesUsingDescriptors:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sortedCookiesUsingDescriptors(
             &self,
             sort_order: &NSArray<NSSortDescriptor>,
@@ -189,12 +189,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSHTTPCookieStorage {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

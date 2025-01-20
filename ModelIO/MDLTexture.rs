@@ -94,26 +94,26 @@ unsafe impl NSObjectProtocol for MDLTexture {}
 
 extern_methods!(
     unsafe impl MDLTexture {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Creates a texture from a source in the main bundle named in a manner matching
         /// name.
-        #[unsafe(method_family(none))]
         #[method_id(textureNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureNamed(name: &NSString) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(textureNamed:bundle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureNamed_bundle(
             name: &NSString,
             bundle_or_nil: Option<&NSBundle>,
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "MDLAssetResolver")]
-        #[unsafe(method_family(none))]
         #[method_id(textureNamed:assetResolver:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureNamed_assetResolver(
             name: &NSString,
             resolver: &ProtocolObject<dyn MDLAssetResolver>,
@@ -134,14 +134,14 @@ extern_methods!(
         /// positive set and a negative set in the order +x, +y, +z, then -x, -y, -z.
         /// - if a single image is given it will be used without conversion if in column
         /// orientation and demosaiced in all other instances.
-        #[unsafe(method_family(none))]
         #[method_id(textureCubeWithImagesNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureCubeWithImagesNamed(
             names: &NSArray<NSString>,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(textureCubeWithImagesNamed:bundle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureCubeWithImagesNamed_bundle(
             names: &NSArray<NSString>,
             bundle_or_nil: Option<&NSBundle>,
@@ -171,36 +171,36 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[unsafe(method_family(none))]
         #[method_id(imageFromTexture)]
+        #[unsafe(method_family = none)]
         pub unsafe fn imageFromTexture(&self) -> Option<Retained<CGImage>>;
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[unsafe(method_family(none))]
         #[method_id(imageFromTextureAtLevel:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn imageFromTextureAtLevel(
             &self,
             level: NSUInteger,
         ) -> Option<Retained<CGImage>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(texelDataWithTopLeftOrigin)]
+        #[unsafe(method_family = none)]
         pub unsafe fn texelDataWithTopLeftOrigin(&self) -> Option<Retained<NSData>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(texelDataWithBottomLeftOrigin)]
+        #[unsafe(method_family = none)]
         pub unsafe fn texelDataWithBottomLeftOrigin(&self) -> Option<Retained<NSData>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(texelDataWithTopLeftOriginAtMipLevel:create:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn texelDataWithTopLeftOriginAtMipLevel_create(
             &self,
             level: NSInteger,
             create: bool,
         ) -> Option<Retained<NSData>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(texelDataWithBottomLeftOriginAtMipLevel:create:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn texelDataWithBottomLeftOriginAtMipLevel_create(
             &self,
             level: NSInteger,
@@ -242,8 +242,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLTexture {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -269,16 +269,16 @@ unsafe impl NSObjectProtocol for MDLURLTexture {}
 
 extern_methods!(
     unsafe impl MDLURLTexture {
-        #[unsafe(method_family(init))]
         #[method_id(initWithURL:name:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithURL_name(
             this: Allocated<Self>,
             url: &NSURL,
             name: Option<&NSString>,
         ) -> Retained<Self>;
 
-        #[unsafe(method_family(none))]
         #[method_id(URL)]
+        #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
 
         /// Setter for [`URL`][Self::URL].
@@ -290,26 +290,26 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MDLTexture`
     unsafe impl MDLURLTexture {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Creates a texture from a source in the main bundle named in a manner matching
         /// name.
-        #[unsafe(method_family(none))]
         #[method_id(textureNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureNamed(name: &NSString) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(textureNamed:bundle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureNamed_bundle(
             name: &NSString,
             bundle_or_nil: Option<&NSBundle>,
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "MDLAssetResolver")]
-        #[unsafe(method_family(none))]
         #[method_id(textureNamed:assetResolver:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureNamed_assetResolver(
             name: &NSString,
             resolver: &ProtocolObject<dyn MDLAssetResolver>,
@@ -330,14 +330,14 @@ extern_methods!(
         /// positive set and a negative set in the order +x, +y, +z, then -x, -y, -z.
         /// - if a single image is given it will be used without conversion if in column
         /// orientation and demosaiced in all other instances.
-        #[unsafe(method_family(none))]
         #[method_id(textureCubeWithImagesNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureCubeWithImagesNamed(
             names: &NSArray<NSString>,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(textureCubeWithImagesNamed:bundle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureCubeWithImagesNamed_bundle(
             names: &NSArray<NSString>,
             bundle_or_nil: Option<&NSBundle>,
@@ -348,8 +348,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLURLTexture {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -383,8 +383,8 @@ extern_methods!(
         pub unsafe fn setDivisions(&self, divisions: c_float);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[unsafe(method_family(none))]
         #[method_id(color1)]
+        #[unsafe(method_family = none)]
         pub unsafe fn color1(&self) -> Option<Retained<CGColor>>;
 
         #[cfg(feature = "objc2-core-graphics")]
@@ -393,8 +393,8 @@ extern_methods!(
         pub unsafe fn setColor1(&self, color1: Option<&CGColor>);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[unsafe(method_family(none))]
         #[method_id(color2)]
+        #[unsafe(method_family = none)]
         pub unsafe fn color2(&self) -> Option<Retained<CGColor>>;
 
         #[cfg(feature = "objc2-core-graphics")]
@@ -407,26 +407,26 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MDLTexture`
     unsafe impl MDLCheckerboardTexture {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Creates a texture from a source in the main bundle named in a manner matching
         /// name.
-        #[unsafe(method_family(none))]
         #[method_id(textureNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureNamed(name: &NSString) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(textureNamed:bundle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureNamed_bundle(
             name: &NSString,
             bundle_or_nil: Option<&NSBundle>,
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "MDLAssetResolver")]
-        #[unsafe(method_family(none))]
         #[method_id(textureNamed:assetResolver:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureNamed_assetResolver(
             name: &NSString,
             resolver: &ProtocolObject<dyn MDLAssetResolver>,
@@ -447,14 +447,14 @@ extern_methods!(
         /// positive set and a negative set in the order +x, +y, +z, then -x, -y, -z.
         /// - if a single image is given it will be used without conversion if in column
         /// orientation and demosaiced in all other instances.
-        #[unsafe(method_family(none))]
         #[method_id(textureCubeWithImagesNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureCubeWithImagesNamed(
             names: &NSArray<NSString>,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(textureCubeWithImagesNamed:bundle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureCubeWithImagesNamed_bundle(
             names: &NSArray<NSString>,
             bundle_or_nil: Option<&NSBundle>,
@@ -465,8 +465,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLCheckerboardTexture {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -580,8 +580,8 @@ extern_methods!(
         pub unsafe fn setHorizonElevation(&self, horizon_elevation: c_float);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[unsafe(method_family(none))]
         #[method_id(groundColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn groundColor(&self) -> Option<Retained<CGColor>>;
 
         #[cfg(feature = "objc2-core-graphics")]
@@ -629,26 +629,26 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MDLTexture`
     unsafe impl MDLSkyCubeTexture {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Creates a texture from a source in the main bundle named in a manner matching
         /// name.
-        #[unsafe(method_family(none))]
         #[method_id(textureNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureNamed(name: &NSString) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(textureNamed:bundle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureNamed_bundle(
             name: &NSString,
             bundle_or_nil: Option<&NSBundle>,
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "MDLAssetResolver")]
-        #[unsafe(method_family(none))]
         #[method_id(textureNamed:assetResolver:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureNamed_assetResolver(
             name: &NSString,
             resolver: &ProtocolObject<dyn MDLAssetResolver>,
@@ -669,14 +669,14 @@ extern_methods!(
         /// positive set and a negative set in the order +x, +y, +z, then -x, -y, -z.
         /// - if a single image is given it will be used without conversion if in column
         /// orientation and demosaiced in all other instances.
-        #[unsafe(method_family(none))]
         #[method_id(textureCubeWithImagesNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureCubeWithImagesNamed(
             names: &NSArray<NSString>,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(textureCubeWithImagesNamed:bundle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureCubeWithImagesNamed_bundle(
             names: &NSArray<NSString>,
             bundle_or_nil: Option<&NSBundle>,
@@ -687,8 +687,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLSkyCubeTexture {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -712,26 +712,26 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MDLTexture`
     unsafe impl MDLColorSwatchTexture {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Creates a texture from a source in the main bundle named in a manner matching
         /// name.
-        #[unsafe(method_family(none))]
         #[method_id(textureNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureNamed(name: &NSString) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(textureNamed:bundle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureNamed_bundle(
             name: &NSString,
             bundle_or_nil: Option<&NSBundle>,
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "MDLAssetResolver")]
-        #[unsafe(method_family(none))]
         #[method_id(textureNamed:assetResolver:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureNamed_assetResolver(
             name: &NSString,
             resolver: &ProtocolObject<dyn MDLAssetResolver>,
@@ -752,14 +752,14 @@ extern_methods!(
         /// positive set and a negative set in the order +x, +y, +z, then -x, -y, -z.
         /// - if a single image is given it will be used without conversion if in column
         /// orientation and demosaiced in all other instances.
-        #[unsafe(method_family(none))]
         #[method_id(textureCubeWithImagesNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureCubeWithImagesNamed(
             names: &NSArray<NSString>,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(textureCubeWithImagesNamed:bundle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureCubeWithImagesNamed_bundle(
             names: &NSArray<NSString>,
             bundle_or_nil: Option<&NSBundle>,
@@ -770,8 +770,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLColorSwatchTexture {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -801,26 +801,26 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MDLTexture`
     unsafe impl MDLNoiseTexture {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Creates a texture from a source in the main bundle named in a manner matching
         /// name.
-        #[unsafe(method_family(none))]
         #[method_id(textureNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureNamed(name: &NSString) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(textureNamed:bundle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureNamed_bundle(
             name: &NSString,
             bundle_or_nil: Option<&NSBundle>,
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "MDLAssetResolver")]
-        #[unsafe(method_family(none))]
         #[method_id(textureNamed:assetResolver:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureNamed_assetResolver(
             name: &NSString,
             resolver: &ProtocolObject<dyn MDLAssetResolver>,
@@ -841,14 +841,14 @@ extern_methods!(
         /// positive set and a negative set in the order +x, +y, +z, then -x, -y, -z.
         /// - if a single image is given it will be used without conversion if in column
         /// orientation and demosaiced in all other instances.
-        #[unsafe(method_family(none))]
         #[method_id(textureCubeWithImagesNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureCubeWithImagesNamed(
             names: &NSArray<NSString>,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(textureCubeWithImagesNamed:bundle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureCubeWithImagesNamed_bundle(
             names: &NSArray<NSString>,
             bundle_or_nil: Option<&NSBundle>,
@@ -859,8 +859,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLNoiseTexture {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -879,8 +879,8 @@ unsafe impl NSObjectProtocol for MDLNormalMapTexture {}
 
 extern_methods!(
     unsafe impl MDLNormalMapTexture {
-        #[unsafe(method_family(init))]
         #[method_id(initByGeneratingNormalMapWithTexture:name:smoothness:contrast:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initByGeneratingNormalMapWithTexture_name_smoothness_contrast(
             this: Allocated<Self>,
             source_texture: &MDLTexture,
@@ -894,26 +894,26 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MDLTexture`
     unsafe impl MDLNormalMapTexture {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Creates a texture from a source in the main bundle named in a manner matching
         /// name.
-        #[unsafe(method_family(none))]
         #[method_id(textureNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureNamed(name: &NSString) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(textureNamed:bundle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureNamed_bundle(
             name: &NSString,
             bundle_or_nil: Option<&NSBundle>,
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "MDLAssetResolver")]
-        #[unsafe(method_family(none))]
         #[method_id(textureNamed:assetResolver:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureNamed_assetResolver(
             name: &NSString,
             resolver: &ProtocolObject<dyn MDLAssetResolver>,
@@ -934,14 +934,14 @@ extern_methods!(
         /// positive set and a negative set in the order +x, +y, +z, then -x, -y, -z.
         /// - if a single image is given it will be used without conversion if in column
         /// orientation and demosaiced in all other instances.
-        #[unsafe(method_family(none))]
         #[method_id(textureCubeWithImagesNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureCubeWithImagesNamed(
             names: &NSArray<NSString>,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(textureCubeWithImagesNamed:bundle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureCubeWithImagesNamed_bundle(
             names: &NSArray<NSString>,
             bundle_or_nil: Option<&NSBundle>,
@@ -952,8 +952,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLNormalMapTexture {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

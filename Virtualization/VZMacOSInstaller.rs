@@ -91,12 +91,12 @@ unsafe impl NSObjectProtocol for VZMacOSInstaller {}
 
 extern_methods!(
     unsafe impl VZMacOSInstaller {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZVirtualMachine")]
@@ -108,8 +108,8 @@ extern_methods!(
         ///
         /// The virtual machine platform must be macOS and the restore image URL must be a file URL referring to a file on disk or an exception will be raised.
         /// This method must be called on the virtual machine's queue.
-        #[unsafe(method_family(init))]
         #[method_id(initWithVirtualMachine:restoreImageURL:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithVirtualMachine_restoreImageURL(
             this: Allocated<Self>,
             virtual_machine: &VZVirtualMachine,
@@ -135,19 +135,19 @@ extern_methods!(
         /// An NSProgress object that can be used to observe or cancel installation.
         ///
         /// If the progress object is cancelled before installation is started, an exception will be raised.
-        #[unsafe(method_family(none))]
         #[method_id(progress)]
+        #[unsafe(method_family = none)]
         pub unsafe fn progress(&self) -> Retained<NSProgress>;
 
         #[cfg(feature = "VZVirtualMachine")]
         /// The virtual machine that this installer was initialized with.
-        #[unsafe(method_family(none))]
         #[method_id(virtualMachine)]
+        #[unsafe(method_family = none)]
         pub unsafe fn virtualMachine(&self) -> Retained<VZVirtualMachine>;
 
         /// The restore image URL that this installer was initialized with.
-        #[unsafe(method_family(none))]
         #[method_id(restoreImageURL)]
+        #[unsafe(method_family = none)]
         pub unsafe fn restoreImageURL(&self) -> Retained<NSURL>;
     }
 );

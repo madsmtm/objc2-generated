@@ -37,8 +37,8 @@ extern_methods!(
     #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
     unsafe impl VNDetectTrajectoriesRequest {
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
-        #[unsafe(method_family(init))]
         #[method_id(initWithFrameAnalysisSpacing:completionHandler:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFrameAnalysisSpacing_completionHandler(
             this: Allocated<Self>,
             frame_analysis_spacing: CMTime,
@@ -54,8 +54,8 @@ extern_methods!(
         /// Parameter `trajectoryLength`: The number of points required to analyze a parabola that indicates a trajectory. Must be at least 5.
         ///
         /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
-        #[unsafe(method_family(init))]
         #[method_id(initWithFrameAnalysisSpacing:trajectoryLength:completionHandler:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithFrameAnalysisSpacing_trajectoryLength_completionHandler(
             this: Allocated<Self>,
             frame_analysis_spacing: CMTime,
@@ -119,8 +119,8 @@ extern_methods!(
 
         #[cfg(feature = "VNObservation")]
         /// Provides VNTrajectoryObservation results.
-        #[unsafe(method_family(none))]
         #[method_id(results)]
+        #[unsafe(method_family = none)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNTrajectoryObservation>>>;
     }
 );
@@ -129,17 +129,17 @@ extern_methods!(
     /// Methods declared on superclass `VNStatefulRequest`
     #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
     unsafe impl VNDetectTrajectoriesRequest {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithCompletionHandler:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
             completion_handler: VNRequestCompletionHandler,

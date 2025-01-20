@@ -29,8 +29,8 @@ extern_methods!(
     #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl NSSaveChangesRequest {
         #[cfg(feature = "NSManagedObject")]
-        #[unsafe(method_family(init))]
         #[method_id(initWithInsertedObjects:updatedObjects:deletedObjects:lockedObjects:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithInsertedObjects_updatedObjects_deletedObjects_lockedObjects(
             this: Allocated<Self>,
             inserted_objects: Option<&NSSet<NSManagedObject>>,
@@ -40,23 +40,23 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSManagedObject")]
-        #[unsafe(method_family(none))]
         #[method_id(insertedObjects)]
+        #[unsafe(method_family = none)]
         pub unsafe fn insertedObjects(&self) -> Option<Retained<NSSet<NSManagedObject>>>;
 
         #[cfg(feature = "NSManagedObject")]
-        #[unsafe(method_family(none))]
         #[method_id(updatedObjects)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updatedObjects(&self) -> Option<Retained<NSSet<NSManagedObject>>>;
 
         #[cfg(feature = "NSManagedObject")]
-        #[unsafe(method_family(none))]
         #[method_id(deletedObjects)]
+        #[unsafe(method_family = none)]
         pub unsafe fn deletedObjects(&self) -> Option<Retained<NSSet<NSManagedObject>>>;
 
         #[cfg(feature = "NSManagedObject")]
-        #[unsafe(method_family(none))]
         #[method_id(lockedObjects)]
+        #[unsafe(method_family = none)]
         pub unsafe fn lockedObjects(&self) -> Option<Retained<NSSet<NSManagedObject>>>;
     }
 );
@@ -65,12 +65,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl NSSaveChangesRequest {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

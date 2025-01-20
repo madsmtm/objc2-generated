@@ -170,8 +170,8 @@ extern_methods!(
         ///
         ///
         /// Clients may register for specific Wi-Fi events using -[CWWiFiClient startMonitoringEventWithType:error:].
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<AnyObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -180,19 +180,19 @@ extern_methods!(
         pub unsafe fn setDelegate(&self, delegate: Option<&AnyObject>);
 
         /// Returns the shared CWWiFiClient instance. There is a single shared instance per process.
-        #[unsafe(method_family(none))]
         #[method_id(sharedWiFiClient)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sharedWiFiClient() -> Retained<CWWiFiClient>;
 
         /// Initializes a CWWiFiClient object.
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "CWInterface")]
         /// Returns the CWInterface object for the default Wi-Fi interface.
-        #[unsafe(method_family(none))]
         #[method_id(interface)]
+        #[unsafe(method_family = none)]
         pub unsafe fn interface(&self) -> Option<Retained<CWInterface>>;
 
         /// Returns: An NSArray of NSString objects corresponding to Wi-Fi interface names.
@@ -203,13 +203,13 @@ extern_methods!(
         ///
         /// If no Wi-Fi interfaces are available, this method will return an empty array.
         /// Returns nil if an error occurs.
-        #[unsafe(method_family(none))]
         #[method_id(interfaceNames)]
+        #[unsafe(method_family = none)]
         pub unsafe fn interfaceNames(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[deprecated = "Use -[CWWiFiClient interfaceNames] instead"]
-        #[unsafe(method_family(none))]
         #[method_id(interfaceNames)]
+        #[unsafe(method_family = none)]
         pub unsafe fn interfaceNames_class() -> Option<Retained<NSArray<NSString>>>;
 
         #[cfg(feature = "CWInterface")]
@@ -221,8 +221,8 @@ extern_methods!(
         ///
         /// Use +[CWWiFiClient interfaceNames] to get a list of available Wi-Fi interface names.
         /// Returns a CWInterface object for the default Wi-Fi interface if no interface name is specified.
-        #[unsafe(method_family(none))]
         #[method_id(interfaceWithName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn interfaceWithName(
             &self,
             interface_name: Option<&NSString>,
@@ -237,8 +237,8 @@ extern_methods!(
         ///
         /// If no Wi-Fi interfaces are available, this method will return an empty array.
         /// Returns nil if an error occurs.
-        #[unsafe(method_family(none))]
         #[method_id(interfaces)]
+        #[unsafe(method_family = none)]
         pub unsafe fn interfaces(&self) -> Option<Retained<NSArray<CWInterface>>>;
 
         #[cfg(feature = "CoreWLANTypes")]
@@ -294,8 +294,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CWWiFiClient {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

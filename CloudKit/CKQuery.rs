@@ -44,16 +44,16 @@ unsafe impl NSSecureCoding for CKQuery {}
 
 extern_methods!(
     unsafe impl CKQuery {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "CKRecord")]
@@ -64,8 +64,8 @@ extern_methods!(
         /// ```
         ///
         /// if you want to query for all records of a given type.
-        #[unsafe(method_family(init))]
         #[method_id(initWithRecordType:predicate:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithRecordType_predicate(
             this: Allocated<Self>,
             record_type: &CKRecordType,
@@ -73,16 +73,16 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecord")]
-        #[unsafe(method_family(none))]
         #[method_id(recordType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn recordType(&self) -> Retained<CKRecordType>;
 
-        #[unsafe(method_family(none))]
         #[method_id(predicate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn predicate(&self) -> Retained<NSPredicate>;
 
-        #[unsafe(method_family(none))]
         #[method_id(sortDescriptors)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sortDescriptors(&self) -> Option<Retained<NSArray<NSSortDescriptor>>>;
 
         /// Setter for [`sortDescriptors`][Self::sortDescriptors].

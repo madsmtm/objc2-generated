@@ -46,8 +46,8 @@ unsafe impl NSObjectProtocol for HMCharacteristicThresholdRangeEvent {}
 extern_methods!(
     #[cfg(feature = "HMEvent")]
     unsafe impl HMCharacteristicThresholdRangeEvent {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "HMCharacteristic", feature = "HMNumberRange"))]
@@ -62,8 +62,8 @@ extern_methods!(
         ///
         ///
         /// Returns: Instance object representing the characteristic event.
-        #[unsafe(method_family(init))]
         #[method_id(initWithCharacteristic:thresholdRange:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCharacteristic_thresholdRange(
             this: Allocated<Self>,
             characteristic: &HMCharacteristic,
@@ -72,14 +72,14 @@ extern_methods!(
 
         #[cfg(feature = "HMCharacteristic")]
         /// The characteristic associated with the event.
-        #[unsafe(method_family(none))]
         #[method_id(characteristic)]
+        #[unsafe(method_family = none)]
         pub unsafe fn characteristic(&self) -> Retained<HMCharacteristic>;
 
         #[cfg(feature = "HMNumberRange")]
         /// The range of the characteristic value that triggers the event.
-        #[unsafe(method_family(none))]
         #[method_id(thresholdRange)]
+        #[unsafe(method_family = none)]
         pub unsafe fn thresholdRange(&self) -> Retained<HMNumberRange>;
     }
 );
@@ -89,8 +89,8 @@ extern_methods!(
     #[cfg(feature = "HMEvent")]
     unsafe impl HMCharacteristicThresholdRangeEvent {
         #[deprecated = "HMEvent is abstract"]
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -134,14 +134,14 @@ unsafe impl NSObjectProtocol for HMMutableCharacteristicThresholdRangeEvent {}
 extern_methods!(
     #[cfg(feature = "HMEvent")]
     unsafe impl HMMutableCharacteristicThresholdRangeEvent {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "HMCharacteristic")]
         /// The characteristic associated with the event.
-        #[unsafe(method_family(none))]
         #[method_id(characteristic)]
+        #[unsafe(method_family = none)]
         pub unsafe fn characteristic(&self) -> Retained<HMCharacteristic>;
 
         #[cfg(feature = "HMCharacteristic")]
@@ -151,8 +151,8 @@ extern_methods!(
 
         #[cfg(feature = "HMNumberRange")]
         /// The range of the characteristic value that triggers the event.
-        #[unsafe(method_family(none))]
         #[method_id(thresholdRange)]
+        #[unsafe(method_family = none)]
         pub unsafe fn thresholdRange(&self) -> Retained<HMNumberRange>;
 
         #[cfg(feature = "HMNumberRange")]
@@ -178,8 +178,8 @@ extern_methods!(
         ///
         ///
         /// Returns: Instance object representing the characteristic event.
-        #[unsafe(method_family(init))]
         #[method_id(initWithCharacteristic:thresholdRange:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCharacteristic_thresholdRange(
             this: Allocated<Self>,
             characteristic: &HMCharacteristic,
@@ -193,8 +193,8 @@ extern_methods!(
     #[cfg(feature = "HMEvent")]
     unsafe impl HMMutableCharacteristicThresholdRangeEvent {
         #[deprecated = "HMEvent is abstract"]
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

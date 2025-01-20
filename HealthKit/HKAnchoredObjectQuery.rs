@@ -102,8 +102,8 @@ extern_methods!(
         /// for no limit.
         ///
         /// Parameter `handler`: The block to invoke with results when the query has finished finding.
-        #[unsafe(method_family(init))]
         #[method_id(initWithType:predicate:anchor:limit:resultsHandler:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithType_predicate_anchor_limit_resultsHandler(
             this: Allocated<Self>,
             r#type: &HKSampleType,
@@ -128,8 +128,8 @@ extern_methods!(
             feature = "block2"
         ))]
         #[deprecated]
-        #[unsafe(method_family(init))]
         #[method_id(initWithType:predicate:anchor:limit:completionHandler:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithType_predicate_anchor_limit_completionHandler(
             this: Allocated<Self>,
             r#type: &HKSampleType,
@@ -172,8 +172,8 @@ extern_methods!(
         /// HKObjectQueryNoLimit for no limit.
         ///
         /// Parameter `handler`: The block to invoke with results when the query has finished finding.
-        #[unsafe(method_family(init))]
         #[method_id(initWithQueryDescriptors:anchor:limit:resultsHandler:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithQueryDescriptors_anchor_limit_resultsHandler(
             this: Allocated<Self>,
             query_descriptors: &NSArray<HKQueryDescriptor>,
@@ -196,8 +196,8 @@ extern_methods!(
     /// Methods declared on superclass `HKQuery`
     #[cfg(feature = "HKQuery")]
     unsafe impl HKAnchoredObjectQuery {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -206,8 +206,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "HKQuery")]
     unsafe impl HKAnchoredObjectQuery {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

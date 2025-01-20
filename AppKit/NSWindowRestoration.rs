@@ -105,14 +105,14 @@ extern_methods!(
         #[method(invalidateRestorableState)]
         pub unsafe fn invalidateRestorableState(&self);
 
-        #[unsafe(method_family(none))]
         #[method_id(restorableStateKeyPaths)]
+        #[unsafe(method_family = none)]
         pub unsafe fn restorableStateKeyPaths(mtm: MainThreadMarker)
             -> Retained<NSArray<NSString>>;
 
         /// When secure state restoration is used, values at restorableStateKeyPaths must support NSSecureCoding and this method will be consulted when restoring state. Any values not of an allowed class will not be set.
-        #[unsafe(method_family(none))]
         #[method_id(allowedClassesForRestorableStateKeyPath:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowedClassesForRestorableStateKeyPath(
             key_path: &NSString,
             mtm: MainThreadMarker,
@@ -166,13 +166,13 @@ extern_methods!(
         #[method(invalidateRestorableState)]
         pub unsafe fn invalidateRestorableState(&self);
 
-        #[unsafe(method_family(none))]
         #[method_id(restorableStateKeyPaths)]
+        #[unsafe(method_family = none)]
         pub unsafe fn restorableStateKeyPaths(mtm: MainThreadMarker)
             -> Retained<NSArray<NSString>>;
 
-        #[unsafe(method_family(none))]
         #[method_id(allowedClassesForRestorableStateKeyPath:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowedClassesForRestorableStateKeyPath(
             key_path: &NSString,
             mtm: MainThreadMarker,

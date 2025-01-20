@@ -45,8 +45,8 @@ extern_methods!(
     #[cfg(feature = "CALayer")]
     unsafe impl CAEmitterLayer {
         #[cfg(feature = "CAEmitterCell")]
-        #[unsafe(method_family(none))]
         #[method_id(emitterCells)]
+        #[unsafe(method_family = none)]
         pub unsafe fn emitterCells(&self) -> Option<Retained<NSArray<CAEmitterCell>>>;
 
         #[cfg(feature = "CAEmitterCell")]
@@ -104,24 +104,24 @@ extern_methods!(
         #[method(setEmitterDepth:)]
         pub unsafe fn setEmitterDepth(&self, emitter_depth: CGFloat);
 
-        #[unsafe(method_family(none))]
         #[method_id(emitterShape)]
+        #[unsafe(method_family = none)]
         pub unsafe fn emitterShape(&self) -> Retained<CAEmitterLayerEmitterShape>;
 
         /// Setter for [`emitterShape`][Self::emitterShape].
         #[method(setEmitterShape:)]
         pub unsafe fn setEmitterShape(&self, emitter_shape: &CAEmitterLayerEmitterShape);
 
-        #[unsafe(method_family(none))]
         #[method_id(emitterMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn emitterMode(&self) -> Retained<CAEmitterLayerEmitterMode>;
 
         /// Setter for [`emitterMode`][Self::emitterMode].
         #[method(setEmitterMode:)]
         pub unsafe fn setEmitterMode(&self, emitter_mode: &CAEmitterLayerEmitterMode);
 
-        #[unsafe(method_family(none))]
         #[method_id(renderMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn renderMode(&self) -> Retained<CAEmitterLayerRenderMode>;
 
         /// Setter for [`renderMode`][Self::renderMode].
@@ -170,16 +170,16 @@ extern_methods!(
     #[cfg(feature = "CALayer")]
     unsafe impl CAEmitterLayer {
         /// Layer creation and initialization. *
-        #[unsafe(method_family(none))]
         #[method_id(layer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layer() -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithLayer:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
     }
 );
@@ -188,8 +188,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CALayer")]
     unsafe impl CAEmitterLayer {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

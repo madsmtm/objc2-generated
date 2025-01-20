@@ -17,13 +17,13 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cametaldrawable?language=objc)
     #[cfg(feature = "objc2-metal")]
     pub unsafe trait CAMetalDrawable: MTLDrawable {
-        #[unsafe(method_family(none))]
         #[method_id(texture)]
+        #[unsafe(method_family = none)]
         unsafe fn texture(&self) -> Retained<ProtocolObject<dyn MTLTexture>>;
 
         #[cfg(feature = "CALayer")]
-        #[unsafe(method_family(none))]
         #[method_id(layer)]
+        #[unsafe(method_family = none)]
         unsafe fn layer(&self) -> Retained<CAMetalLayer>;
     }
 );
@@ -52,8 +52,8 @@ extern_methods!(
     #[cfg(feature = "CALayer")]
     unsafe impl CAMetalLayer {
         #[cfg(feature = "objc2-metal")]
-        #[unsafe(method_family(none))]
         #[method_id(device)]
+        #[unsafe(method_family = none)]
         pub unsafe fn device(&self) -> Option<Retained<ProtocolObject<dyn MTLDevice>>>;
 
         #[cfg(feature = "objc2-metal")]
@@ -62,8 +62,8 @@ extern_methods!(
         pub unsafe fn setDevice(&self, device: Option<&ProtocolObject<dyn MTLDevice>>);
 
         #[cfg(feature = "objc2-metal")]
-        #[unsafe(method_family(none))]
         #[method_id(preferredDevice)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preferredDevice(&self) -> Option<Retained<ProtocolObject<dyn MTLDevice>>>;
 
         #[cfg(feature = "objc2-metal")]
@@ -92,8 +92,8 @@ extern_methods!(
         pub unsafe fn setDrawableSize(&self, drawable_size: CGSize);
 
         #[cfg(feature = "objc2-metal")]
-        #[unsafe(method_family(none))]
         #[method_id(nextDrawable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn nextDrawable(&self) -> Option<Retained<ProtocolObject<dyn CAMetalDrawable>>>;
 
         #[method(maximumDrawableCount)]
@@ -111,8 +111,8 @@ extern_methods!(
         pub unsafe fn setPresentsWithTransaction(&self, presents_with_transaction: bool);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[unsafe(method_family(none))]
         #[method_id(colorspace)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colorspace(&self) -> Option<Retained<CGColorSpace>>;
 
         #[cfg(feature = "objc2-core-graphics")]
@@ -131,8 +131,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "CAEDRMetadata")]
-        #[unsafe(method_family(none))]
         #[method_id(EDRMetadata)]
+        #[unsafe(method_family = none)]
         pub unsafe fn EDRMetadata(&self) -> Option<Retained<CAEDRMetadata>>;
 
         #[cfg(feature = "CAEDRMetadata")]
@@ -154,8 +154,8 @@ extern_methods!(
         #[method(setAllowsNextDrawableTimeout:)]
         pub unsafe fn setAllowsNextDrawableTimeout(&self, allows_next_drawable_timeout: bool);
 
-        #[unsafe(method_family(none))]
         #[method_id(developerHUDProperties)]
+        #[unsafe(method_family = none)]
         pub unsafe fn developerHUDProperties(&self) -> Option<Retained<NSDictionary>>;
 
         /// Setter for [`developerHUDProperties`][Self::developerHUDProperties].
@@ -172,16 +172,16 @@ extern_methods!(
     #[cfg(feature = "CALayer")]
     unsafe impl CAMetalLayer {
         /// Layer creation and initialization. *
-        #[unsafe(method_family(none))]
         #[method_id(layer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layer() -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithLayer:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
     }
 );
@@ -190,8 +190,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CALayer")]
     unsafe impl CAMetalLayer {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

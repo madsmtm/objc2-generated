@@ -34,8 +34,8 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl AMWorkflowController {
         #[cfg(feature = "AMWorkflow")]
-        #[unsafe(method_family(none))]
         #[method_id(workflow)]
+        #[unsafe(method_family = none)]
         pub unsafe fn workflow(&self) -> Option<Retained<AMWorkflow>>;
 
         #[cfg(feature = "AMWorkflow")]
@@ -44,8 +44,8 @@ extern_methods!(
         pub unsafe fn setWorkflow(&self, workflow: Option<&AMWorkflow>);
 
         #[cfg(feature = "AMWorkflowView")]
-        #[unsafe(method_family(none))]
         #[method_id(workflowView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn workflowView(&self) -> Option<Retained<AMWorkflowView>>;
 
         #[cfg(feature = "AMWorkflowView")]
@@ -53,8 +53,8 @@ extern_methods!(
         #[method(setWorkflowView:)]
         pub unsafe fn setWorkflowView(&self, workflow_view: Option<&AMWorkflowView>);
 
-        #[unsafe(method_family(none))]
         #[method_id(delegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AMWorkflowControllerDelegate>>>;
@@ -97,12 +97,12 @@ extern_methods!(
     /// Methods declared on superclass `NSController`
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl AMWorkflowController {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method_family(init))]
         #[method_id(initWithCoder:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -114,8 +114,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl AMWorkflowController {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

@@ -19,8 +19,8 @@ unsafe impl NSObjectProtocol for WKInterfacePaymentButton {}
 extern_methods!(
     #[cfg(feature = "WKInterfaceObject")]
     unsafe impl WKInterfacePaymentButton {
-        #[unsafe(method_family(init))]
         #[method_id(initWithTarget:action:)]
+        #[unsafe(method_family = init)]
         pub unsafe fn initWithTarget_action(
             this: Allocated<Self>,
             target: Option<&AnyObject>,
@@ -33,8 +33,8 @@ extern_methods!(
     /// Methods declared on superclass `WKInterfaceObject`
     #[cfg(feature = "WKInterfaceObject")]
     unsafe impl WKInterfacePaymentButton {
-        #[unsafe(method_family(init))]
         #[method_id(init)]
+        #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -43,8 +43,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "WKInterfaceObject")]
     unsafe impl WKInterfacePaymentButton {
-        #[unsafe(method_family(new))]
         #[method_id(new)]
+        #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
