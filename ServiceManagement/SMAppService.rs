@@ -2,7 +2,9 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
+#[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-foundation")]
 use objc2_foundation::*;
 
 use crate::*;
@@ -26,9 +28,11 @@ use crate::*;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/smappservicestatus?language=objc)
 // NS_ENUM
+#[cfg(feature = "objc2")]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SMAppServiceStatus(pub NSInteger);
+#[cfg(feature = "objc2")]
 impl SMAppServiceStatus {
     #[doc(alias = "SMAppServiceStatusNotRegistered")]
     pub const NotRegistered: Self = Self(0);
@@ -40,19 +44,23 @@ impl SMAppServiceStatus {
     pub const NotFound: Self = Self(3);
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl Encode for SMAppServiceStatus {
     const ENCODING: Encoding = NSInteger::ENCODING;
 }
 
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for SMAppServiceStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/smappserviceerrordomain?language=objc)
+    #[cfg(feature = "objc2-foundation")]
     pub static SMAppServiceErrorDomain: &'static NSString;
 }
 
+#[cfg(feature = "objc2")]
 extern_class!(
     /// An SMAppService is used to control helper executables that live inside of an app's main bundle.
     ///
@@ -78,13 +86,18 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/smappservice?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
+    #[cfg(feature = "objc2")]
     pub struct SMAppService;
 );
 
+#[cfg(feature = "objc2")]
 unsafe impl NSObjectProtocol for SMAppService {}
 
+#[cfg(feature = "objc2")]
 extern_methods!(
+    #[cfg(feature = "objc2")]
     unsafe impl SMAppService {
+        #[cfg(feature = "objc2-foundation")]
         /// Initializes a SMAppService for a LoginItem corresponding to the bundle with the specified identifier.
         ///
         ///
@@ -104,6 +117,7 @@ extern_methods!(
         #[unsafe(method_family = none)]
         pub unsafe fn mainAppService() -> Retained<SMAppService>;
 
+        #[cfg(feature = "objc2-foundation")]
         /// Initializes a SMAppService with a LaunchAgent with the specified plist name.
         ///
         ///
@@ -119,6 +133,7 @@ extern_methods!(
         #[unsafe(method_family = none)]
         pub unsafe fn agentServiceWithPlistName(plist_name: &NSString) -> Retained<Self>;
 
+        #[cfg(feature = "objc2-foundation")]
         /// Initializes a SMAppService with a LaunchDaemon with the specified plist name.
         ///
         ///
@@ -138,6 +153,7 @@ extern_methods!(
         #[unsafe(method_family = none)]
         pub unsafe fn daemonServiceWithPlistName(plist_name: &NSString) -> Retained<Self>;
 
+        #[cfg(feature = "objc2-foundation")]
         /// Registers the service such that it may begin launching subject to user consent
         ///
         ///
@@ -176,6 +192,7 @@ extern_methods!(
         #[method(registerAndReturnError:_)]
         pub unsafe fn registerAndReturnError(&self) -> Result<(), Retained<NSError>>;
 
+        #[cfg(feature = "objc2-foundation")]
         /// Unregisters the service such that it will no longer be launched by the system.
         ///
         ///
@@ -201,7 +218,7 @@ extern_methods!(
         #[method(unregisterAndReturnError:_)]
         pub unsafe fn unregisterAndReturnError(&self) -> Result<(), Retained<NSError>>;
 
-        #[cfg(feature = "block2")]
+        #[cfg(all(feature = "block2", feature = "objc2-foundation"))]
         /// Unregisters the service such that it will no longer be launched by the system.
         ///
         ///
@@ -244,6 +261,7 @@ extern_methods!(
         #[method(status)]
         pub unsafe fn status(&self) -> SMAppServiceStatus;
 
+        #[cfg(feature = "objc2-foundation")]
         #[method(statusForLegacyURL:)]
         pub unsafe fn statusForLegacyURL(url: &NSURL) -> SMAppServiceStatus;
 
@@ -258,8 +276,10 @@ extern_methods!(
     }
 );
 
+#[cfg(feature = "objc2")]
 extern_methods!(
     /// Methods declared on superclass `NSObject`
+    #[cfg(feature = "objc2")]
     unsafe impl SMAppService {
         #[method_id(init)]
         #[unsafe(method_family = init)]

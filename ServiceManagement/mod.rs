@@ -31,16 +31,22 @@ mod __SMErrors;
 #[path = "SMLoginItem.rs"]
 mod __SMLoginItem;
 
-#[cfg(feature = "SMAppService")]
+#[cfg(all(feature = "SMAppService", feature = "objc2"))]
 pub use self::__SMAppService::SMAppService;
-#[cfg(feature = "SMAppService")]
+#[cfg(all(feature = "SMAppService", feature = "objc2-foundation"))]
 pub use self::__SMAppService::SMAppServiceErrorDomain;
-#[cfg(feature = "SMAppService")]
+#[cfg(all(feature = "SMAppService", feature = "objc2"))]
 pub use self::__SMAppService::SMAppServiceStatus;
 #[cfg(feature = "SMErrors")]
 pub use self::__SMErrors::kSMErrorAlreadyRegistered;
 #[cfg(feature = "SMErrors")]
 pub use self::__SMErrors::kSMErrorAuthorizationFailure;
+#[cfg(all(feature = "SMErrors", feature = "objc2-core-foundation"))]
+pub use self::__SMErrors::kSMErrorDomainFramework;
+#[cfg(all(feature = "SMErrors", feature = "objc2-core-foundation"))]
+pub use self::__SMErrors::kSMErrorDomainIPC;
+#[cfg(all(feature = "SMErrors", feature = "objc2-core-foundation"))]
+pub use self::__SMErrors::kSMErrorDomainLaunchd;
 #[cfg(feature = "SMErrors")]
 pub use self::__SMErrors::kSMErrorInternalFailure;
 #[cfg(feature = "SMErrors")]
@@ -59,3 +65,319 @@ pub use self::__SMErrors::kSMErrorLaunchDeniedByUser;
 pub use self::__SMErrors::kSMErrorServiceUnavailable;
 #[cfg(feature = "SMErrors")]
 pub use self::__SMErrors::kSMErrorToolNotValid;
+#[cfg(all(feature = "SMLoginItem", feature = "objc2-core-foundation"))]
+pub use self::__SMLoginItem::SMLoginItemSetEnabled;
+use core::ptr::NonNull;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
+#[cfg(feature = "objc2-security")]
+use objc2_security::*;
+
+use crate::*;
+
+extern "C" {
+    /// A constant representing the privileged Mach bootstrap context. Modifications
+    /// to this context require root privileges.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/ksmdomainsystemlaunchd?language=objc)
+    #[cfg(feature = "objc2-core-foundation")]
+    pub static kSMDomainSystemLaunchd: Option<&'static CFString>;
+}
+
+extern "C" {
+    /// A constant representing the Mach bootstrap context associated with the
+    /// caller's UID. On iOS, this symbol is a synonym for
+    /// {
+    ///
+    /// ```text
+    ///  kSMDomainSystemLaunchd}.
+    ///  
+    ///
+    /// ```
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/ksmdomainuserlaunchd?language=objc)
+    #[cfg(feature = "objc2-core-foundation")]
+    pub static kSMDomainUserLaunchd: Option<&'static CFString>;
+}
+
+/// Copy the job description dictionary for the given job label.
+///
+///
+/// Parameter `domain`: The job's domain (e.g. {
+///
+/// ```text
+///  kSMDomainSystemLaunchd} or
+///  {@link kSMDomainUserLaunchd}).
+///
+///  @param jobLabel
+///  The label identifier for the job to copy.
+///
+///  @result
+///  A new dictionary describing the job, or NULL if the job could not be found.
+///  Must be released by the caller.
+///
+///  @discussion
+///  The contents of the returned dictionary are NOT wholy representative of the
+///  property list on-disk and are not stable from release to release. This
+///  routine is deprecated and will be removed in a future release. There will be
+///  no provided replacement.
+///  
+///
+/// ```
+#[cfg(feature = "objc2-core-foundation")]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn SMJobCopyDictionary(
+    domain: Option<&CFString>,
+    job_label: Option<&CFString>,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn SMJobCopyDictionary(
+            domain: Option<&CFString>,
+            job_label: Option<&CFString>,
+        ) -> Option<NonNull<CFDictionary>>;
+    }
+    let ret = unsafe { SMJobCopyDictionary(domain, job_label) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+/// Copy the job description dictionaries for all jobs in the given domain.
+///
+///
+/// Parameter `domain`: The job's domain (e.g. {
+///
+/// ```text
+///  kSMDomainSystemLaunchd} or
+///  {@link kSMDomainUserLaunchd}).
+///
+///  @result
+///  A new array containing all job dictionaries, or NULL if an error occurred.
+///  Must be released by the caller.
+///
+///  @discussion
+///  SMCopyAllJobDictionaries returns an array of the job description dictionaries
+///  for all jobs in the given domain, or NULL if an error occurred. This routine
+///  is deprecated and will be removed in a future release. There will be no
+///  provided replacement.
+///
+///  For the specific use of testing the state of a login item that may have been
+///  enabled with SMLoginItemSetEnabled() in order to show that state to the
+///  user, this function remains the recommended API. A replacement API for this
+///  specific use will be provided before this function is removed.
+///  
+///
+/// ```
+#[cfg(feature = "objc2-core-foundation")]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn SMCopyAllJobDictionaries(
+    domain: Option<&CFString>,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn SMCopyAllJobDictionaries(domain: Option<&CFString>) -> Option<NonNull<CFArray>>;
+    }
+    let ret = unsafe { SMCopyAllJobDictionaries(domain) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+/// Submits the given job to the specified domain.
+///
+///
+/// Parameter `domain`: The job's domain (e.g. {
+///
+/// ```text
+///  kSMDomainSystemLaunchd} or
+///  {@link kSMDomainUserLaunchd}).
+///
+///  @param job
+///  A dictionary describing a job.
+///
+///  @param auth
+///  An AuthorizationRef containing the {@link kSMRightModifySystemDaemons} right
+///  if the given domain is kSMDomainSystemLaunchd. Otherwise, NULL may be passed.
+///
+///  @param outError
+///  Upon unsuccessful return, a new CFError object describing the error.  Upon
+///  successful return, this argument is set to NULL.  This argument may be NULL.
+///  It is the responsibility of the application to release the error reference.
+///
+///  @result
+///  True if the job was submitted successfully, otherwise false.
+///
+///  @discussion
+///  This routine is deprecated and will be removed in a future release. A
+///  replacement will be provided by libxpc.
+///  
+///
+/// ```
+#[cfg(all(feature = "objc2-core-foundation", feature = "objc2-security"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn SMJobSubmit(
+    domain: Option<&CFString>,
+    job: Option<&CFDictionary>,
+    auth: AuthorizationRef,
+    out_error: *mut *mut CFError,
+) -> bool {
+    extern "C-unwind" {
+        fn SMJobSubmit(
+            domain: Option<&CFString>,
+            job: Option<&CFDictionary>,
+            auth: AuthorizationRef,
+            out_error: *mut *mut CFError,
+        ) -> Boolean;
+    }
+    let ret = unsafe { SMJobSubmit(domain, job, auth, out_error) };
+    ret != 0
+}
+
+/// Removes the job with the given label from the specified domain. When this
+/// function is used to remove a job that is running, the invocation blocks
+/// until the job exits, commonly taking several seconds.
+///
+///
+/// Parameter `domain`: The job's domain (e.g. {
+///
+/// ```text
+///  kSMDomainSystemLaunchd} or
+///  {@link kSMDomainUserLaunchd}).
+///
+///  @param jobLabel
+///  The label for the job to remove.
+///
+///  @param auth
+///  An AuthorizationRef containing the {@link kSMRightModifySystemDaemons} right
+///  if the given domain is kSMDomainSystemLaunchd. Otherwise, NULL may be passed.
+///
+///  @param wait
+///  Pass true to block until the process for the given job has exited.
+///
+///  @param outError
+///  Upon unsuccessful return, a new CFError object describing the error.  Upon
+///  successful return, this argument is set to NULL.  This argument may be NULL.
+///  It is the responsibility of the application to release the error reference.
+///
+///  @result
+///  True if the job was removed successfully, otherwise false.
+///
+///  @discussion
+///  This routine is deprecated and will be removed in a future release. A
+///  replacement will be provided by libxpc.
+///  
+///
+/// ```
+#[cfg(all(feature = "objc2-core-foundation", feature = "objc2-security"))]
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn SMJobRemove(
+    domain: Option<&CFString>,
+    job_label: Option<&CFString>,
+    auth: AuthorizationRef,
+    wait: bool,
+    out_error: *mut *mut CFError,
+) -> bool {
+    extern "C-unwind" {
+        fn SMJobRemove(
+            domain: Option<&CFString>,
+            job_label: Option<&CFString>,
+            auth: AuthorizationRef,
+            wait: Boolean,
+            out_error: *mut *mut CFError,
+        ) -> Boolean;
+    }
+    let ret = unsafe { SMJobRemove(domain, job_label, auth, wait as _, out_error) };
+    ret != 0
+}
+
+/// If the job is already installed, success is returned.
+///
+/// In order to use this function the following requirements must be met:
+///
+/// 1.    The calling application and target executable tool must both be signed.
+///
+/// 2.    The calling application's Info.plist must include a
+/// "SMPrivilegedExecutables" dictionary of strings. Each string is a
+/// textual representation of a code signing requirement used to determine
+/// whether the application owns the privileged tool once installed (i.e. in
+/// order for subsequent versions to update the installed version).
+///
+/// Each key of SMPrivilegedExecutables is a reverse-DNS label for the helper
+/// tool (must be globally unique).
+///
+/// 3.    The helper tool must have an embedded Info.plist containing an
+/// "SMAuthorizedClients" array of strings. Each string is a textual
+/// representation of a code signing requirement describing a client which
+/// is allowed to add and remove the tool.
+///
+/// 4.    The helper tool must have an embedded launchd plist. The only required
+/// key in this plist is the Label key. When the launchd plist is extracted
+/// and written to disk, the key for ProgramArguments will be set to an
+/// array of 1 element pointing to a standard location. You cannot specify
+/// your own Program or ProgramArguments, so do not rely on custom command
+/// line arguments being passed to your tool. Pass any parameters via IPC.
+/// This plist must be embedded in the __TEXT,__launchd_plist section of the
+/// binary.
+///
+/// A property list may be embedded in an executable at link-time with the
+/// -sectcreate linker flag.
+///
+/// 5.    The helper tool must reside in the Contents/Library/LaunchServices
+/// directory inside the application bundle, and its name must be its
+/// launchd job label. So if your launchd job label is
+/// "com.apple.Mail.helper", this must be the name of the tool in your
+/// application bundle.
+///
+///
+/// Parameter `domain`: The job's domain. Passing any value other than {
+///
+/// ```text
+///  kSMDomainSystemLaunchd}
+///  will result in undefined behavior.
+///
+///  @param executableLabel
+///  The label of the privileged executable to install. This label must be one of
+///  the keys found in the SMPrivilegedExecutables dictionary in the application's
+///  Info.plist.
+///
+///  @param auth
+///  An authorization reference containing the
+///  {@link kSMRightBlessPrivilegedHelper} right.
+///
+///  @param outError
+///  Upon unsuccessful return, a new CFError object describing the error.  Upon
+///  successful return, this argument is set to NULL.  This argument may be NULL.
+///  It is the responsibility of the application to release the error reference.
+///
+///  @result
+///  True if the helper tool was successfully bootstrapped, otherwise false.
+///
+///  @discussion
+///  SMJobBless has been deprecated in favor of using SMAppService APIs
+///  to install a LaunchDaemon. See SMAppService:daemonServiceWithPlistName
+///
+///  SMJobBless submits the executable for the given label as a launchd job.  This
+///  routine obviates the need for a setuid helper invoked via
+///  AuthorizationExecuteWithPrivileges() in order to install a launchd plist.
+///  
+///
+/// ```
+#[cfg(all(feature = "objc2-core-foundation", feature = "objc2-security"))]
+#[deprecated = "Please use SMAppService instead"]
+#[inline]
+pub unsafe extern "C-unwind" fn SMJobBless(
+    domain: Option<&CFString>,
+    executable_label: Option<&CFString>,
+    auth: AuthorizationRef,
+    out_error: *mut *mut CFError,
+) -> bool {
+    extern "C-unwind" {
+        fn SMJobBless(
+            domain: Option<&CFString>,
+            executable_label: Option<&CFString>,
+            auth: AuthorizationRef,
+            out_error: *mut *mut CFError,
+        ) -> Boolean;
+    }
+    let ret = unsafe { SMJobBless(domain, executable_label, auth, out_error) };
+    ret != 0
+}
