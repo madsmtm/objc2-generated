@@ -50,12 +50,13 @@ extern_methods!(
         /// SKNode to be used as the mask.
         ///
         /// The SKNode supplied as the mask must not be a child of another node, but it may have children. Anywhere the mask's output alpha component is less than 0.05 masks out that area for the SKCropNode's children. If the mask is nil, nothing is masked out.
-        #[method_id(maskNode)]
+        #[method(maskNode)]
         #[unsafe(method_family = none)]
         pub unsafe fn maskNode(&self) -> Option<Retained<SKNode>>;
 
         /// Setter for [`maskNode`][Self::maskNode].
         #[method(setMaskNode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMaskNode(&self, mask_node: Option<&SKNode>);
     }
 );
@@ -65,30 +66,30 @@ extern_methods!(
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl SKCropNode {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Support coding and decoding via NSKeyedArchiver.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(node)]
+        #[method(node)]
         #[unsafe(method_family = none)]
         pub unsafe fn node(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(nodeWithFileNamed:)]
+        #[method(nodeWithFileNamed:)]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeWithFileNamed(
             filename: &NSString,
             mtm: MainThreadMarker,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(nodeWithFileNamed:securelyWithClasses:andError:_)]
+        #[method(nodeWithFileNamed:securelyWithClasses:andError:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeWithFileNamed_securelyWithClasses_andError(
             filename: &NSString,
@@ -103,7 +104,7 @@ extern_methods!(
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl SKCropNode {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

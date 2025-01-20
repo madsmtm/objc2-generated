@@ -30,12 +30,12 @@ unsafe impl NSObjectProtocol for CKFetchRecordZoneChangesOperation {}
 extern_methods!(
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchRecordZoneChangesOperation {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordZoneID")]
-        #[method_id(initWithRecordZoneIDs:configurationsByRecordZoneID:)]
+        #[method(initWithRecordZoneIDs:configurationsByRecordZoneID:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRecordZoneIDs_configurationsByRecordZoneID(
             this: Allocated<Self>,
@@ -46,17 +46,18 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordZoneID")]
-        #[method_id(recordZoneIDs)]
+        #[method(recordZoneIDs)]
         #[unsafe(method_family = none)]
         pub unsafe fn recordZoneIDs(&self) -> Option<Retained<NSArray<CKRecordZoneID>>>;
 
         #[cfg(feature = "CKRecordZoneID")]
         /// Setter for [`recordZoneIDs`][Self::recordZoneIDs].
         #[method(setRecordZoneIDs:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRecordZoneIDs(&self, record_zone_i_ds: Option<&NSArray<CKRecordZoneID>>);
 
         #[cfg(feature = "CKRecordZoneID")]
-        #[method_id(configurationsByRecordZoneID)]
+        #[method(configurationsByRecordZoneID)]
         #[unsafe(method_family = none)]
         pub unsafe fn configurationsByRecordZoneID(
             &self,
@@ -65,6 +66,7 @@ extern_methods!(
         #[cfg(feature = "CKRecordZoneID")]
         /// Setter for [`configurationsByRecordZoneID`][Self::configurationsByRecordZoneID].
         #[method(setConfigurationsByRecordZoneID:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setConfigurationsByRecordZoneID(
             &self,
             configurations_by_record_zone_id: Option<
@@ -86,10 +88,12 @@ extern_methods!(
         ///
         /// `fetchAllChanges`is YES by default
         #[method(fetchAllChanges)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fetchAllChanges(&self) -> bool;
 
         /// Setter for [`fetchAllChanges`][Self::fetchAllChanges].
         #[method(setFetchAllChanges:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFetchAllChanges(&self, fetch_all_changes: bool);
 
         #[cfg(all(feature = "CKRecord", feature = "block2"))]
@@ -101,12 +105,14 @@ extern_methods!(
         /// should not be concurrently used outside of blocks assigned to this operation.
         #[deprecated = "Use recordWasChangedBlock instead, which surfaces per-record errors"]
         #[method(recordChangedBlock)]
+        #[unsafe(method_family = none)]
         pub unsafe fn recordChangedBlock(&self) -> *mut block2::Block<dyn Fn(NonNull<CKRecord>)>;
 
         #[cfg(all(feature = "CKRecord", feature = "block2"))]
         /// Setter for [`recordChangedBlock`][Self::recordChangedBlock].
         #[deprecated = "Use recordWasChangedBlock instead, which surfaces per-record errors"]
         #[method(setRecordChangedBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRecordChangedBlock(
             &self,
             record_changed_block: Option<&block2::Block<dyn Fn(NonNull<CKRecord>)>>,
@@ -120,6 +126,7 @@ extern_methods!(
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(recordWasChangedBlock)]
+        #[unsafe(method_family = none)]
         pub unsafe fn recordWasChangedBlock(
             &self,
         ) -> *mut block2::Block<dyn Fn(NonNull<CKRecordID>, *mut CKRecord, *mut NSError)>;
@@ -127,6 +134,7 @@ extern_methods!(
         #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
         /// Setter for [`recordWasChangedBlock`][Self::recordWasChangedBlock].
         #[method(setRecordWasChangedBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRecordWasChangedBlock(
             &self,
             record_was_changed_block: Option<
@@ -140,6 +148,7 @@ extern_methods!(
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(recordWithIDWasDeletedBlock)]
+        #[unsafe(method_family = none)]
         pub unsafe fn recordWithIDWasDeletedBlock(
             &self,
         ) -> *mut block2::Block<dyn Fn(NonNull<CKRecordID>, NonNull<CKRecordType>)>;
@@ -147,6 +156,7 @@ extern_methods!(
         #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
         /// Setter for [`recordWithIDWasDeletedBlock`][Self::recordWithIDWasDeletedBlock].
         #[method(setRecordWithIDWasDeletedBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRecordWithIDWasDeletedBlock(
             &self,
             record_with_id_was_deleted_block: Option<
@@ -177,6 +187,7 @@ extern_methods!(
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(recordZoneChangeTokensUpdatedBlock)]
+        #[unsafe(method_family = none)]
         pub unsafe fn recordZoneChangeTokensUpdatedBlock(
             &self,
         ) -> *mut block2::Block<
@@ -190,6 +201,7 @@ extern_methods!(
         ))]
         /// Setter for [`recordZoneChangeTokensUpdatedBlock`][Self::recordZoneChangeTokensUpdatedBlock].
         #[method(setRecordZoneChangeTokensUpdatedBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRecordZoneChangeTokensUpdatedBlock(
             &self,
             record_zone_change_tokens_updated_block: Option<
@@ -205,6 +217,7 @@ extern_methods!(
             feature = "block2"
         ))]
         #[method(recordZoneFetchCompletionBlock)]
+        #[unsafe(method_family = none)]
         pub unsafe fn recordZoneFetchCompletionBlock(
             &self,
         ) -> *mut block2::Block<
@@ -224,6 +237,7 @@ extern_methods!(
         ))]
         /// Setter for [`recordZoneFetchCompletionBlock`][Self::recordZoneFetchCompletionBlock].
         #[method(setRecordZoneFetchCompletionBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRecordZoneFetchCompletionBlock(
             &self,
             record_zone_fetch_completion_block: Option<
@@ -253,6 +267,7 @@ extern_methods!(
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(fetchRecordZoneChangesCompletionBlock)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fetchRecordZoneChangesCompletionBlock(
             &self,
         ) -> *mut block2::Block<dyn Fn(*mut NSError)>;
@@ -260,6 +275,7 @@ extern_methods!(
         #[cfg(feature = "block2")]
         /// Setter for [`fetchRecordZoneChangesCompletionBlock`][Self::fetchRecordZoneChangesCompletionBlock].
         #[method(setFetchRecordZoneChangesCompletionBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFetchRecordZoneChangesCompletionBlock(
             &self,
             fetch_record_zone_changes_completion_block: Option<
@@ -273,7 +289,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchRecordZoneChangesOperation {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -285,7 +301,7 @@ extern_methods!(
     unsafe impl CKFetchRecordZoneChangesOperation {
         #[cfg(feature = "CKRecordZoneID")]
         #[deprecated]
-        #[method_id(initWithRecordZoneIDs:optionsByRecordZoneID:)]
+        #[method(initWithRecordZoneIDs:optionsByRecordZoneID:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRecordZoneIDs_optionsByRecordZoneID(
             this: Allocated<Self>,
@@ -297,7 +313,7 @@ extern_methods!(
 
         #[cfg(feature = "CKRecordZoneID")]
         #[deprecated]
-        #[method_id(optionsByRecordZoneID)]
+        #[method(optionsByRecordZoneID)]
         #[unsafe(method_family = none)]
         pub unsafe fn optionsByRecordZoneID(
             &self,
@@ -307,6 +323,7 @@ extern_methods!(
         /// Setter for [`optionsByRecordZoneID`][Self::optionsByRecordZoneID].
         #[deprecated]
         #[method(setOptionsByRecordZoneID:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setOptionsByRecordZoneID(
             &self,
             options_by_record_zone_id: Option<
@@ -338,23 +355,26 @@ unsafe impl NSSecureCoding for CKFetchRecordZoneChangesConfiguration {}
 extern_methods!(
     unsafe impl CKFetchRecordZoneChangesConfiguration {
         #[cfg(feature = "CKServerChangeToken")]
-        #[method_id(previousServerChangeToken)]
+        #[method(previousServerChangeToken)]
         #[unsafe(method_family = none)]
         pub unsafe fn previousServerChangeToken(&self) -> Option<Retained<CKServerChangeToken>>;
 
         #[cfg(feature = "CKServerChangeToken")]
         /// Setter for [`previousServerChangeToken`][Self::previousServerChangeToken].
         #[method(setPreviousServerChangeToken:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreviousServerChangeToken(
             &self,
             previous_server_change_token: Option<&CKServerChangeToken>,
         );
 
         #[method(resultsLimit)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resultsLimit(&self) -> NSUInteger;
 
         /// Setter for [`resultsLimit`][Self::resultsLimit].
         #[method(setResultsLimit:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setResultsLimit(&self, results_limit: NSUInteger);
 
         #[cfg(feature = "CKRecord")]
@@ -364,13 +384,14 @@ extern_methods!(
         /// If nil, declares the entire record should be downloaded. If set to an empty array, declares that no user fields should be downloaded.
         /// Defaults to
         /// `nil.`
-        #[method_id(desiredKeys)]
+        #[method(desiredKeys)]
         #[unsafe(method_family = none)]
         pub unsafe fn desiredKeys(&self) -> Option<Retained<NSArray<CKRecordFieldKey>>>;
 
         #[cfg(feature = "CKRecord")]
         /// Setter for [`desiredKeys`][Self::desiredKeys].
         #[method(setDesiredKeys:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDesiredKeys(&self, desired_keys: Option<&NSArray<CKRecordFieldKey>>);
     }
 );
@@ -378,11 +399,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CKFetchRecordZoneChangesConfiguration {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -412,7 +433,7 @@ extern_methods!(
     unsafe impl CKFetchRecordZoneChangesOptions {
         #[cfg(feature = "CKServerChangeToken")]
         #[deprecated]
-        #[method_id(previousServerChangeToken)]
+        #[method(previousServerChangeToken)]
         #[unsafe(method_family = none)]
         pub unsafe fn previousServerChangeToken(&self) -> Option<Retained<CKServerChangeToken>>;
 
@@ -420,6 +441,7 @@ extern_methods!(
         /// Setter for [`previousServerChangeToken`][Self::previousServerChangeToken].
         #[deprecated]
         #[method(setPreviousServerChangeToken:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreviousServerChangeToken(
             &self,
             previous_server_change_token: Option<&CKServerChangeToken>,
@@ -427,16 +449,18 @@ extern_methods!(
 
         #[deprecated]
         #[method(resultsLimit)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resultsLimit(&self) -> NSUInteger;
 
         /// Setter for [`resultsLimit`][Self::resultsLimit].
         #[deprecated]
         #[method(setResultsLimit:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setResultsLimit(&self, results_limit: NSUInteger);
 
         #[cfg(feature = "CKRecord")]
         #[deprecated]
-        #[method_id(desiredKeys)]
+        #[method(desiredKeys)]
         #[unsafe(method_family = none)]
         pub unsafe fn desiredKeys(&self) -> Option<Retained<NSArray<CKRecordFieldKey>>>;
 
@@ -444,6 +468,7 @@ extern_methods!(
         /// Setter for [`desiredKeys`][Self::desiredKeys].
         #[deprecated]
         #[method(setDesiredKeys:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDesiredKeys(&self, desired_keys: Option<&NSArray<CKRecordFieldKey>>);
     }
 );
@@ -451,11 +476,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CKFetchRecordZoneChangesOptions {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

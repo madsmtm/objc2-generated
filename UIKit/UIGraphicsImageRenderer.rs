@@ -62,42 +62,51 @@ extern_methods!(
     unsafe impl UIGraphicsImageRendererFormat {
         #[cfg(feature = "objc2-core-foundation")]
         #[method(scale)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scale(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`scale`][Self::scale].
         #[method(setScale:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setScale(&self, scale: CGFloat);
 
         #[method(opaque)]
+        #[unsafe(method_family = none)]
         pub unsafe fn opaque(&self) -> bool;
 
         /// Setter for [`opaque`][Self::opaque].
         #[method(setOpaque:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setOpaque(&self, opaque: bool);
 
         #[deprecated = "Use the preferredRange property instead"]
         #[method(prefersExtendedRange)]
+        #[unsafe(method_family = none)]
         pub unsafe fn prefersExtendedRange(&self) -> bool;
 
         /// Setter for [`prefersExtendedRange`][Self::prefersExtendedRange].
         #[deprecated = "Use the preferredRange property instead"]
         #[method(setPrefersExtendedRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPrefersExtendedRange(&self, prefers_extended_range: bool);
 
         #[method(supportsHighDynamicRange)]
+        #[unsafe(method_family = none)]
         pub unsafe fn supportsHighDynamicRange(&self) -> bool;
 
         /// indicates if the format supports high dynamic range rendering.
         #[method(preferredRange)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preferredRange(&self) -> UIGraphicsImageRendererFormatRange;
 
         /// Setter for [`preferredRange`][Self::preferredRange].
         #[method(setPreferredRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreferredRange(&self, preferred_range: UIGraphicsImageRendererFormatRange);
 
         #[cfg(feature = "UITraitCollection")]
-        #[method_id(formatForTraitCollection:)]
+        #[method(formatForTraitCollection:)]
         #[unsafe(method_family = none)]
         pub unsafe fn formatForTraitCollection(
             trait_collection: &UITraitCollection,
@@ -110,11 +119,11 @@ extern_methods!(
     #[cfg(feature = "UIGraphicsRenderer")]
     unsafe impl UIGraphicsImageRendererFormat {
         #[deprecated]
-        #[method_id(defaultFormat)]
+        #[method(defaultFormat)]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultFormat() -> Retained<Self>;
 
-        #[method_id(preferredFormat)]
+        #[method(preferredFormat)]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredFormat() -> Retained<Self>;
     }
@@ -124,11 +133,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UIGraphicsRenderer")]
     unsafe impl UIGraphicsImageRendererFormat {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -149,7 +158,7 @@ extern_methods!(
     #[cfg(feature = "UIGraphicsRenderer")]
     unsafe impl UIGraphicsImageRendererContext {
         #[cfg(feature = "UIImage")]
-        #[method_id(currentImage)]
+        #[method(currentImage)]
         #[unsafe(method_family = none)]
         pub unsafe fn currentImage(&self) -> Retained<UIImage>;
     }
@@ -159,11 +168,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UIGraphicsRenderer")]
     unsafe impl UIGraphicsImageRendererContext {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -184,12 +193,12 @@ extern_methods!(
     #[cfg(feature = "UIGraphicsRenderer")]
     unsafe impl UIGraphicsImageRenderer {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(initWithSize:)]
+        #[method(initWithSize:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSize(this: Allocated<Self>, size: CGSize) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(initWithSize:format:)]
+        #[method(initWithSize:format:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSize_format(
             this: Allocated<Self>,
@@ -198,7 +207,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(initWithBounds:format:)]
+        #[method(initWithBounds:format:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBounds_format(
             this: Allocated<Self>,
@@ -207,7 +216,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIImage", feature = "block2"))]
-        #[method_id(imageWithActions:)]
+        #[method(imageWithActions:)]
         #[unsafe(method_family = none)]
         pub unsafe fn imageWithActions(
             &self,
@@ -215,7 +224,7 @@ extern_methods!(
         ) -> Retained<UIImage>;
 
         #[cfg(feature = "block2")]
-        #[method_id(PNGDataWithActions:)]
+        #[method(PNGDataWithActions:)]
         #[unsafe(method_family = none)]
         pub unsafe fn PNGDataWithActions(
             &self,
@@ -223,7 +232,7 @@ extern_methods!(
         ) -> Retained<NSData>;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
-        #[method_id(JPEGDataWithCompressionQuality:actions:)]
+        #[method(JPEGDataWithCompressionQuality:actions:)]
         #[unsafe(method_family = none)]
         pub unsafe fn JPEGDataWithCompressionQuality_actions(
             &self,
@@ -238,7 +247,7 @@ extern_methods!(
     #[cfg(feature = "UIGraphicsRenderer")]
     unsafe impl UIGraphicsImageRenderer {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(initWithBounds:)]
+        #[method(initWithBounds:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBounds(this: Allocated<Self>, bounds: CGRect) -> Retained<Self>;
     }
@@ -248,11 +257,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UIGraphicsRenderer")]
     unsafe impl UIGraphicsImageRenderer {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

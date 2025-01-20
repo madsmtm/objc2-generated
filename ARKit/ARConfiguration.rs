@@ -207,55 +207,63 @@ extern_methods!(
     unsafe impl ARConfiguration {
         /// Determines whether this device supports the ARConfiguration.
         #[method(isSupported)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isSupported() -> bool;
 
         #[cfg(all(feature = "ARVideoFormat", feature = "objc2-foundation"))]
         /// A list of supported video formats for this configuration and device.
         ///
         /// The first element in the list is the default format for session output.
-        #[method_id(supportedVideoFormats)]
+        #[method(supportedVideoFormats)]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedVideoFormats() -> Retained<NSArray<ARVideoFormat>>;
 
         #[cfg(feature = "ARVideoFormat")]
         /// Video format of the session output.
-        #[method_id(videoFormat)]
+        #[method(videoFormat)]
         #[unsafe(method_family = none)]
         pub unsafe fn videoFormat(&self) -> Retained<ARVideoFormat>;
 
         #[cfg(feature = "ARVideoFormat")]
         /// Setter for [`videoFormat`][Self::videoFormat].
         #[method(setVideoFormat:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setVideoFormat(&self, video_format: &ARVideoFormat);
 
         /// Determines how the coordinate system should be aligned with the world.
         ///
         /// The default is ARWorldAlignmentGravity.
         #[method(worldAlignment)]
+        #[unsafe(method_family = none)]
         pub unsafe fn worldAlignment(&self) -> ARWorldAlignment;
 
         /// Setter for [`worldAlignment`][Self::worldAlignment].
         #[method(setWorldAlignment:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWorldAlignment(&self, world_alignment: ARWorldAlignment);
 
         /// Enable or disable light estimation.
         ///
         /// Enabled by default.
         #[method(isLightEstimationEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isLightEstimationEnabled(&self) -> bool;
 
         /// Setter for [`isLightEstimationEnabled`][Self::isLightEstimationEnabled].
         #[method(setLightEstimationEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLightEstimationEnabled(&self, light_estimation_enabled: bool);
 
         /// Determines whether to capture and provide audio data.
         ///
         /// Disabled by default.
         #[method(providesAudioData)]
+        #[unsafe(method_family = none)]
         pub unsafe fn providesAudioData(&self) -> bool;
 
         /// Setter for [`providesAudioData`][Self::providesAudioData].
         #[method(setProvidesAudioData:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setProvidesAudioData(&self, provides_audio_data: bool);
 
         /// The type of semantic understanding to provide with each frame.
@@ -270,10 +278,12 @@ extern_methods!(
         ///
         /// See: +[ARConfiguration supportsFrameSemantics:]
         #[method(frameSemantics)]
+        #[unsafe(method_family = none)]
         pub unsafe fn frameSemantics(&self) -> ARFrameSemantics;
 
         /// Setter for [`frameSemantics`][Self::frameSemantics].
         #[method(setFrameSemantics:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFrameSemantics(&self, frame_semantics: ARFrameSemantics);
 
         /// Determines whether the type of frame semantics is supported by the device and ARConfiguration class.
@@ -285,13 +295,14 @@ extern_methods!(
         ///
         /// See: ARFrameSemantics
         #[method(supportsFrameSemantics:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn supportsFrameSemantics(frame_semantics: ARFrameSemantics) -> bool;
 
         #[cfg(feature = "objc2-av-foundation")]
         /// Returns a pointer to the capture device of the camera that's used for rendering, so developers can adjust capture settings.
         ///
         /// May return nil if it is not recommended to modify capture settings, for example if the primary camera is used for tracking.
-        #[method_id(configurableCaptureDeviceForPrimaryCamera)]
+        #[method(configurableCaptureDeviceForPrimaryCamera)]
         #[unsafe(method_family = none)]
         pub unsafe fn configurableCaptureDeviceForPrimaryCamera(
         ) -> Option<Retained<AVCaptureDevice>>;
@@ -300,7 +311,7 @@ extern_methods!(
         /// Returns a video format using a 4K resolution from the list of supported video formats.
         ///
         /// May return nil if 4K is not supported for this configuration or device.
-        #[method_id(recommendedVideoFormatFor4KResolution)]
+        #[method(recommendedVideoFormatFor4KResolution)]
         #[unsafe(method_family = none)]
         pub unsafe fn recommendedVideoFormatFor4KResolution() -> Option<Retained<ARVideoFormat>>;
 
@@ -310,7 +321,7 @@ extern_methods!(
         /// Using this format may consume more power. Other video formats may support capturing high resolution frames as well, albeit at a lower quality or resolution.
         ///
         /// See: [ARSession captureHighResolutionFrameWithCompletion:]
-        #[method_id(recommendedVideoFormatForHighResolutionFrameCapturing)]
+        #[method(recommendedVideoFormatForHighResolutionFrameCapturing)]
         #[unsafe(method_family = none)]
         pub unsafe fn recommendedVideoFormatForHighResolutionFrameCapturing(
         ) -> Option<Retained<ARVideoFormat>>;
@@ -318,18 +329,20 @@ extern_methods!(
         /// Whether HDR capturing is allowed if the current video format supports it. Defaults to
         /// `NO.`
         #[method(videoHDRAllowed)]
+        #[unsafe(method_family = none)]
         pub unsafe fn videoHDRAllowed(&self) -> bool;
 
         /// Setter for [`videoHDRAllowed`][Self::videoHDRAllowed].
         #[method(setVideoHDRAllowed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setVideoHDRAllowed(&self, video_hdr_allowed: bool);
 
         /// Unavailable
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -370,10 +383,12 @@ extern_methods!(
         ///
         /// Enabled by default.
         #[method(isAutoFocusEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isAutoFocusEnabled(&self) -> bool;
 
         /// Setter for [`isAutoFocusEnabled`][Self::isAutoFocusEnabled].
         #[method(setAutoFocusEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAutoFocusEnabled(&self, auto_focus_enabled: bool);
 
         /// The mode of environment texturing to run.
@@ -382,18 +397,22 @@ extern_methods!(
         /// will get the current environment texture available from that probe's perspective which can be used for lighting
         /// virtual objects in the scene. Defaults to AREnvironmentTexturingNone.
         #[method(environmentTexturing)]
+        #[unsafe(method_family = none)]
         pub unsafe fn environmentTexturing(&self) -> AREnvironmentTexturing;
 
         /// Setter for [`environmentTexturing`][Self::environmentTexturing].
         #[method(setEnvironmentTexturing:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setEnvironmentTexturing(&self, environment_texturing: AREnvironmentTexturing);
 
         /// Determines whether environment textures will be provided with high dynamic range. Enabled by default.
         #[method(wantsHDREnvironmentTextures)]
+        #[unsafe(method_family = none)]
         pub unsafe fn wantsHDREnvironmentTextures(&self) -> bool;
 
         /// Setter for [`wantsHDREnvironmentTextures`][Self::wantsHDREnvironmentTextures].
         #[method(setWantsHDREnvironmentTextures:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWantsHDREnvironmentTextures(&self, wants_hdr_environment_textures: bool);
 
         #[cfg(feature = "ARPlaneDetectionTypes")]
@@ -402,11 +421,13 @@ extern_methods!(
         /// If set, new planes will continue to be detected and updated over time. Detected planes will be added to the session as
         /// ARPlaneAnchor objects. In the event that two planes are merged, the newer plane will be removed. Defaults to ARPlaneDetectionNone.
         #[method(planeDetection)]
+        #[unsafe(method_family = none)]
         pub unsafe fn planeDetection(&self) -> ARPlaneDetection;
 
         #[cfg(feature = "ARPlaneDetectionTypes")]
         /// Setter for [`planeDetection`][Self::planeDetection].
         #[method(setPlaneDetection:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPlaneDetection(&self, plane_detection: ARPlaneDetection);
 
         #[cfg(feature = "ARWorldMap")]
@@ -416,26 +437,28 @@ extern_methods!(
         /// a limited tracking state until localization is successful or run is called again
         /// with a different (or no) initial map specified. Once localized, the map will be extended
         /// and can again be saved using the `getCurrentWorldMap` method on the session.
-        #[method_id(initialWorldMap)]
+        #[method(initialWorldMap)]
         #[unsafe(method_family = none)]
         pub unsafe fn initialWorldMap(&self) -> Option<Retained<ARWorldMap>>;
 
         #[cfg(feature = "ARWorldMap")]
         /// Setter for [`initialWorldMap`][Self::initialWorldMap].
         #[method(setInitialWorldMap:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setInitialWorldMap(&self, initial_world_map: Option<&ARWorldMap>);
 
         #[cfg(all(feature = "ARReferenceImage", feature = "objc2-foundation"))]
         /// Images to detect in the scene.
         ///
         /// If set the session will attempt to detect the specified images. When an image is detected an ARImageAnchor will be added to the session.
-        #[method_id(detectionImages)]
+        #[method(detectionImages)]
         #[unsafe(method_family = none)]
         pub unsafe fn detectionImages(&self) -> Retained<NSSet<ARReferenceImage>>;
 
         #[cfg(all(feature = "ARReferenceImage", feature = "objc2-foundation"))]
         /// Setter for [`detectionImages`][Self::detectionImages].
         #[method(setDetectionImages:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDetectionImages(&self, detection_images: Option<&NSSet<ARReferenceImage>>);
 
         /// Enables the estimation of a scale factor which may be used to correct the physical size of an image.
@@ -445,10 +468,12 @@ extern_methods!(
         ///
         /// Note: When set to true the transform of a returned ARImageAnchor will use the estimated scale factor to correct the translation. Default value is NO.
         #[method(automaticImageScaleEstimationEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn automaticImageScaleEstimationEnabled(&self) -> bool;
 
         /// Setter for [`automaticImageScaleEstimationEnabled`][Self::automaticImageScaleEstimationEnabled].
         #[method(setAutomaticImageScaleEstimationEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAutomaticImageScaleEstimationEnabled(
             &self,
             automatic_image_scale_estimation_enabled: bool,
@@ -460,10 +485,12 @@ extern_methods!(
         /// If more than the maximum is visible, only the images already being tracked will continue to track until tracking is lost or another image is removed.
         /// Images will continue to be detected regardless of images tracked. Default value is zero.
         #[method(maximumNumberOfTrackedImages)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maximumNumberOfTrackedImages(&self) -> NSInteger;
 
         /// Setter for [`maximumNumberOfTrackedImages`][Self::maximumNumberOfTrackedImages].
         #[method(setMaximumNumberOfTrackedImages:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMaximumNumberOfTrackedImages(
             &self,
             maximum_number_of_tracked_images: NSInteger,
@@ -473,13 +500,14 @@ extern_methods!(
         /// Objects to detect in the scene.
         ///
         /// If set the session will attempt to detect the specified objects. When an object is detected an ARObjectAnchor will be added to the session.
-        #[method_id(detectionObjects)]
+        #[method(detectionObjects)]
         #[unsafe(method_family = none)]
         pub unsafe fn detectionObjects(&self) -> Retained<NSSet<ARReferenceObject>>;
 
         #[cfg(all(feature = "ARReferenceObject", feature = "objc2-foundation"))]
         /// Setter for [`detectionObjects`][Self::detectionObjects].
         #[method(setDetectionObjects:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDetectionObjects(&self, detection_objects: &NSSet<ARReferenceObject>);
 
         /// Enable/disable a collaborative session. Disabled by default.
@@ -489,14 +517,17 @@ extern_methods!(
         /// It is the responsibility of the caller to send the data to each participant. When data is received by a participant, it
         /// should be passed to the ARSession by calling updateWithCollaborationData.
         #[method(isCollaborationEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isCollaborationEnabled(&self) -> bool;
 
         /// Setter for [`isCollaborationEnabled`][Self::isCollaborationEnabled].
         #[method(setCollaborationEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCollaborationEnabled(&self, collaboration_enabled: bool);
 
         /// Indicates whether user face tracking using the front facing camera can be enabled on this device.
         #[method(supportsUserFaceTracking)]
+        #[unsafe(method_family = none)]
         pub unsafe fn supportsUserFaceTracking() -> bool;
 
         /// Enable or disable running Face Tracking using the front facing camera. Disabled by default.
@@ -508,26 +539,32 @@ extern_methods!(
         ///
         /// See: ARFaceAnchor
         #[method(userFaceTrackingEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn userFaceTrackingEnabled(&self) -> bool;
 
         /// Setter for [`userFaceTrackingEnabled`][Self::userFaceTrackingEnabled].
         #[method(setUserFaceTrackingEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUserFaceTrackingEnabled(&self, user_face_tracking_enabled: bool);
 
         /// Enable or disable app clip code tracking. Disabled by default. When enabled, detected app clip codes will be surfaced as an ARAppClipCodeAnchor.
         #[method(appClipCodeTrackingEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn appClipCodeTrackingEnabled(&self) -> bool;
 
         /// Setter for [`appClipCodeTrackingEnabled`][Self::appClipCodeTrackingEnabled].
         #[method(setAppClipCodeTrackingEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAppClipCodeTrackingEnabled(&self, app_clip_code_tracking_enabled: bool);
 
         /// Indicates whether app clip code tracking can be enabled on this device.
         #[method(supportsAppClipCodeTracking)]
+        #[unsafe(method_family = none)]
         pub unsafe fn supportsAppClipCodeTracking() -> bool;
 
         /// Indicates whether the scene reconstruction type is supported for the configuration on this device.
         #[method(supportsSceneReconstruction:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn supportsSceneReconstruction(
             scene_reconstruction: ARSceneReconstruction,
         ) -> bool;
@@ -539,17 +576,19 @@ extern_methods!(
         /// If set to a value other than ARSceneReconstructionNone, output of scene reconstruction will be added to the session as
         /// ARMeshAnchor objects.
         #[method(sceneReconstruction)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sceneReconstruction(&self) -> ARSceneReconstruction;
 
         /// Setter for [`sceneReconstruction`][Self::sceneReconstruction].
         #[method(setSceneReconstruction:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSceneReconstruction(&self, scene_reconstruction: ARSceneReconstruction);
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -588,17 +627,19 @@ extern_methods!(
         ///
         /// Enabled by default.
         #[method(isAutoFocusEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isAutoFocusEnabled(&self) -> bool;
 
         /// Setter for [`isAutoFocusEnabled`][Self::isAutoFocusEnabled].
         #[method(setAutoFocusEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAutoFocusEnabled(&self, auto_focus_enabled: bool);
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -637,6 +678,7 @@ extern_methods!(
     unsafe impl ARFaceTrackingConfiguration {
         /// Maximum number of faces which can be tracked simultaneously.
         #[method(supportedNumberOfTrackedFaces)]
+        #[unsafe(method_family = none)]
         pub unsafe fn supportedNumberOfTrackedFaces() -> NSInteger;
 
         /// Maximum number of faces to track simultaneously.
@@ -645,10 +687,12 @@ extern_methods!(
         /// If more than the maximum is visible, only the faces already being tracked will continue to track until tracking is lost or another face is removed.
         /// Default value is one.
         #[method(maximumNumberOfTrackedFaces)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maximumNumberOfTrackedFaces(&self) -> NSInteger;
 
         /// Setter for [`maximumNumberOfTrackedFaces`][Self::maximumNumberOfTrackedFaces].
         #[method(setMaximumNumberOfTrackedFaces:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMaximumNumberOfTrackedFaces(
             &self,
             maximum_number_of_tracked_faces: NSInteger,
@@ -656,6 +700,7 @@ extern_methods!(
 
         /// Indicates whether world tracking can be enabled on this device.
         #[method(supportsWorldTracking)]
+        #[unsafe(method_family = none)]
         pub unsafe fn supportsWorldTracking() -> bool;
 
         /// Enable or disable World Tracking. Disabled by default.
@@ -663,17 +708,19 @@ extern_methods!(
         ///
         /// When enabled, ARSession uses the back facing camera to track the device's orientation and position in the world. The camera transform and the ARFaceAnchor transform will be in the world coordinate space.
         #[method(isWorldTrackingEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isWorldTrackingEnabled(&self) -> bool;
 
         /// Setter for [`isWorldTrackingEnabled`][Self::isWorldTrackingEnabled].
         #[method(setWorldTrackingEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWorldTrackingEnabled(&self, world_tracking_enabled: bool);
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -712,21 +759,24 @@ extern_methods!(
         ///
         /// Enabled by default.
         #[method(isAutoFocusEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isAutoFocusEnabled(&self) -> bool;
 
         /// Setter for [`isAutoFocusEnabled`][Self::isAutoFocusEnabled].
         #[method(setAutoFocusEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAutoFocusEnabled(&self, auto_focus_enabled: bool);
 
         #[cfg(all(feature = "ARReferenceImage", feature = "objc2-foundation"))]
         /// Images to track in the scene.
-        #[method_id(trackingImages)]
+        #[method(trackingImages)]
         #[unsafe(method_family = none)]
         pub unsafe fn trackingImages(&self) -> Retained<NSSet<ARReferenceImage>>;
 
         #[cfg(all(feature = "ARReferenceImage", feature = "objc2-foundation"))]
         /// Setter for [`trackingImages`][Self::trackingImages].
         #[method(setTrackingImages:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTrackingImages(&self, tracking_images: &NSSet<ARReferenceImage>);
 
         /// Maximum number of images to track simultaneously.
@@ -735,20 +785,22 @@ extern_methods!(
         /// If more than the maximum is visible, only the images already being tracked will continue to track until tracking is lost or another image is removed.
         /// Default value is one.
         #[method(maximumNumberOfTrackedImages)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maximumNumberOfTrackedImages(&self) -> NSInteger;
 
         /// Setter for [`maximumNumberOfTrackedImages`][Self::maximumNumberOfTrackedImages].
         #[method(setMaximumNumberOfTrackedImages:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMaximumNumberOfTrackedImages(
             &self,
             maximum_number_of_tracked_images: NSInteger,
         );
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -789,10 +841,12 @@ extern_methods!(
         ///
         /// Enabled by default.
         #[method(isAutoFocusEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isAutoFocusEnabled(&self) -> bool;
 
         /// Setter for [`isAutoFocusEnabled`][Self::isAutoFocusEnabled].
         #[method(setAutoFocusEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAutoFocusEnabled(&self, auto_focus_enabled: bool);
 
         #[cfg(feature = "ARPlaneDetectionTypes")]
@@ -801,18 +855,20 @@ extern_methods!(
         /// If set, new planes will continue to be detected and updated over time. Detected planes will be added to the session as
         /// ARPlaneAnchor objects. In the event that two planes are merged, the newer plane will be removed. Defaults to ARPlaneDetectionNone.
         #[method(planeDetection)]
+        #[unsafe(method_family = none)]
         pub unsafe fn planeDetection(&self) -> ARPlaneDetection;
 
         #[cfg(feature = "ARPlaneDetectionTypes")]
         /// Setter for [`planeDetection`][Self::planeDetection].
         #[method(setPlaneDetection:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPlaneDetection(&self, plane_detection: ARPlaneDetection);
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -856,10 +912,12 @@ extern_methods!(
         ///
         /// Enabled by default.
         #[method(isAutoFocusEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isAutoFocusEnabled(&self) -> bool;
 
         /// Setter for [`isAutoFocusEnabled`][Self::isAutoFocusEnabled].
         #[method(setAutoFocusEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAutoFocusEnabled(&self, auto_focus_enabled: bool);
 
         #[cfg(feature = "ARWorldMap")]
@@ -869,13 +927,14 @@ extern_methods!(
         /// a limited tracking state until localization is successful or run is called again
         /// with a different (or no) initial map specified. Once localized, the map will be extended
         /// and can again be saved using the `getCurrentWorldMap` method on the session.
-        #[method_id(initialWorldMap)]
+        #[method(initialWorldMap)]
         #[unsafe(method_family = none)]
         pub unsafe fn initialWorldMap(&self) -> Option<Retained<ARWorldMap>>;
 
         #[cfg(feature = "ARWorldMap")]
         /// Setter for [`initialWorldMap`][Self::initialWorldMap].
         #[method(setInitialWorldMap:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setInitialWorldMap(&self, initial_world_map: Option<&ARWorldMap>);
 
         /// The mode of environment texturing to run.
@@ -884,18 +943,22 @@ extern_methods!(
         /// will get the current environment texture available from that probe's perspective which can be used for lighting
         /// virtual objects in the scene. Defaults to AREnvironmentTexturingNone.
         #[method(environmentTexturing)]
+        #[unsafe(method_family = none)]
         pub unsafe fn environmentTexturing(&self) -> AREnvironmentTexturing;
 
         /// Setter for [`environmentTexturing`][Self::environmentTexturing].
         #[method(setEnvironmentTexturing:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setEnvironmentTexturing(&self, environment_texturing: AREnvironmentTexturing);
 
         /// Determines whether environment textures will be provided with high dynamic range. Enabled by default.
         #[method(wantsHDREnvironmentTextures)]
+        #[unsafe(method_family = none)]
         pub unsafe fn wantsHDREnvironmentTextures(&self) -> bool;
 
         /// Setter for [`wantsHDREnvironmentTextures`][Self::wantsHDREnvironmentTextures].
         #[method(setWantsHDREnvironmentTextures:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWantsHDREnvironmentTextures(&self, wants_hdr_environment_textures: bool);
 
         #[cfg(feature = "ARPlaneDetectionTypes")]
@@ -904,24 +967,27 @@ extern_methods!(
         /// If set, new planes will continue to be detected and updated over time. Detected planes will be added to the session as
         /// ARPlaneAnchor objects. In the event that two planes are merged, the newer plane will be removed. Defaults to ARPlaneDetectionNone.
         #[method(planeDetection)]
+        #[unsafe(method_family = none)]
         pub unsafe fn planeDetection(&self) -> ARPlaneDetection;
 
         #[cfg(feature = "ARPlaneDetectionTypes")]
         /// Setter for [`planeDetection`][Self::planeDetection].
         #[method(setPlaneDetection:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPlaneDetection(&self, plane_detection: ARPlaneDetection);
 
         #[cfg(all(feature = "ARReferenceImage", feature = "objc2-foundation"))]
         /// Images to detect in the scene.
         ///
         /// If set the session will attempt to detect the specified images. When an image is detected an ARImageAnchor will be added to the session.
-        #[method_id(detectionImages)]
+        #[method(detectionImages)]
         #[unsafe(method_family = none)]
         pub unsafe fn detectionImages(&self) -> Retained<NSSet<ARReferenceImage>>;
 
         #[cfg(all(feature = "ARReferenceImage", feature = "objc2-foundation"))]
         /// Setter for [`detectionImages`][Self::detectionImages].
         #[method(setDetectionImages:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDetectionImages(&self, detection_images: &NSSet<ARReferenceImage>);
 
         /// Enables the estimation of a scale factor which may be used to correct the physical size of an image.
@@ -931,10 +997,12 @@ extern_methods!(
         ///
         /// Note: When set to true the transform of a returned ARImageAnchor will use the estimated scale factor to correct the translation. Default value is NO.
         #[method(automaticImageScaleEstimationEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn automaticImageScaleEstimationEnabled(&self) -> bool;
 
         /// Setter for [`automaticImageScaleEstimationEnabled`][Self::automaticImageScaleEstimationEnabled].
         #[method(setAutomaticImageScaleEstimationEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAutomaticImageScaleEstimationEnabled(
             &self,
             automatic_image_scale_estimation_enabled: bool,
@@ -947,10 +1015,12 @@ extern_methods!(
         ///
         /// Note: When set to true the transform of a returned ARBodyAnchor will use the estimated scale factor to correct the translation. Default value is NO.
         #[method(automaticSkeletonScaleEstimationEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn automaticSkeletonScaleEstimationEnabled(&self) -> bool;
 
         /// Setter for [`automaticSkeletonScaleEstimationEnabled`][Self::automaticSkeletonScaleEstimationEnabled].
         #[method(setAutomaticSkeletonScaleEstimationEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAutomaticSkeletonScaleEstimationEnabled(
             &self,
             automatic_skeleton_scale_estimation_enabled: bool,
@@ -962,10 +1032,12 @@ extern_methods!(
         /// If more than the maximum is visible, only the images already being tracked will continue to track until tracking is lost or another image is removed.
         /// Images will continue to be detected regardless of images tracked. Default value is zero.
         #[method(maximumNumberOfTrackedImages)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maximumNumberOfTrackedImages(&self) -> NSInteger;
 
         /// Setter for [`maximumNumberOfTrackedImages`][Self::maximumNumberOfTrackedImages].
         #[method(setMaximumNumberOfTrackedImages:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMaximumNumberOfTrackedImages(
             &self,
             maximum_number_of_tracked_images: NSInteger,
@@ -973,21 +1045,24 @@ extern_methods!(
 
         /// Enable or disable app clip code tracking. Disabled by default. When enabled, detected app clip codes will be surfaced as an ARAppClipCodeAnchor.
         #[method(appClipCodeTrackingEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn appClipCodeTrackingEnabled(&self) -> bool;
 
         /// Setter for [`appClipCodeTrackingEnabled`][Self::appClipCodeTrackingEnabled].
         #[method(setAppClipCodeTrackingEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAppClipCodeTrackingEnabled(&self, app_clip_code_tracking_enabled: bool);
 
         /// Indicates whether app clip code tracking can be enabled on this device.
         #[method(supportsAppClipCodeTracking)]
+        #[unsafe(method_family = none)]
         pub unsafe fn supportsAppClipCodeTracking() -> bool;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1028,11 +1103,13 @@ extern_methods!(
         /// If set, new planes will continue to be detected and updated over time. Detected planes will be added to the session as
         /// ARPlaneAnchor objects. In the event that two planes are merged, the newer plane will be removed. Defaults to ARPlaneDetectionNone.
         #[method(planeDetection)]
+        #[unsafe(method_family = none)]
         pub unsafe fn planeDetection(&self) -> ARPlaneDetection;
 
         #[cfg(feature = "ARPlaneDetectionTypes")]
         /// Setter for [`planeDetection`][Self::planeDetection].
         #[method(setPlaneDetection:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPlaneDetection(&self, plane_detection: ARPlaneDetection);
 
         #[cfg(feature = "ARWorldMap")]
@@ -1042,20 +1119,21 @@ extern_methods!(
         /// a limited tracking state until localization is successful or run is called again
         /// with a different (or no) initial map specified. Once localized, the map will be extended
         /// and can again be saved using the `getCurrentWorldMap` method on the session.
-        #[method_id(initialWorldMap)]
+        #[method(initialWorldMap)]
         #[unsafe(method_family = none)]
         pub unsafe fn initialWorldMap(&self) -> Option<Retained<ARWorldMap>>;
 
         #[cfg(feature = "ARWorldMap")]
         /// Setter for [`initialWorldMap`][Self::initialWorldMap].
         #[method(setInitialWorldMap:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setInitialWorldMap(&self, initial_world_map: Option<&ARWorldMap>);
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1092,10 +1170,12 @@ extern_methods!(
     unsafe impl ARGeoTrackingConfiguration {
         /// Unavailable
         #[method(worldAlignment)]
+        #[unsafe(method_family = none)]
         pub unsafe fn worldAlignment(&self) -> ARWorldAlignment;
 
         /// Setter for [`worldAlignment`][Self::worldAlignment].
         #[method(setWorldAlignment:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWorldAlignment(&self, world_alignment: ARWorldAlignment);
 
         /// The mode of environment texturing to run.
@@ -1104,18 +1184,22 @@ extern_methods!(
         /// will get the current environment texture available from that probe's perspective which can be used for lighting
         /// virtual objects in the scene. Defaults to AREnvironmentTexturingNone.
         #[method(environmentTexturing)]
+        #[unsafe(method_family = none)]
         pub unsafe fn environmentTexturing(&self) -> AREnvironmentTexturing;
 
         /// Setter for [`environmentTexturing`][Self::environmentTexturing].
         #[method(setEnvironmentTexturing:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setEnvironmentTexturing(&self, environment_texturing: AREnvironmentTexturing);
 
         /// Determines whether environment textures will be provided with high dynamic range. Enabled by default.
         #[method(wantsHDREnvironmentTextures)]
+        #[unsafe(method_family = none)]
         pub unsafe fn wantsHDREnvironmentTextures(&self) -> bool;
 
         /// Setter for [`wantsHDREnvironmentTextures`][Self::wantsHDREnvironmentTextures].
         #[method(setWantsHDREnvironmentTextures:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWantsHDREnvironmentTextures(&self, wants_hdr_environment_textures: bool);
 
         #[cfg(feature = "ARPlaneDetectionTypes")]
@@ -1124,24 +1208,27 @@ extern_methods!(
         /// If set, new planes will continue to be detected and updated over time. Detected planes will be added to the session as
         /// ARPlaneAnchor objects. In the event that two planes are merged, the newer plane will be removed. Defaults to ARPlaneDetectionNone.
         #[method(planeDetection)]
+        #[unsafe(method_family = none)]
         pub unsafe fn planeDetection(&self) -> ARPlaneDetection;
 
         #[cfg(feature = "ARPlaneDetectionTypes")]
         /// Setter for [`planeDetection`][Self::planeDetection].
         #[method(setPlaneDetection:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPlaneDetection(&self, plane_detection: ARPlaneDetection);
 
         #[cfg(all(feature = "ARReferenceImage", feature = "objc2-foundation"))]
         /// Images to detect in the scene.
         ///
         /// If set the session will attempt to detect the specified images. When an image is detected an ARImageAnchor will be added to the session.
-        #[method_id(detectionImages)]
+        #[method(detectionImages)]
         #[unsafe(method_family = none)]
         pub unsafe fn detectionImages(&self) -> Retained<NSSet<ARReferenceImage>>;
 
         #[cfg(all(feature = "ARReferenceImage", feature = "objc2-foundation"))]
         /// Setter for [`detectionImages`][Self::detectionImages].
         #[method(setDetectionImages:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDetectionImages(&self, detection_images: Option<&NSSet<ARReferenceImage>>);
 
         /// Enables the estimation of a scale factor which may be used to correct the physical size of an image.
@@ -1151,10 +1238,12 @@ extern_methods!(
         ///
         /// Note: When set to true the transform of a returned ARImageAnchor will use the estimated scale factor to correct the translation. Default value is NO.
         #[method(automaticImageScaleEstimationEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn automaticImageScaleEstimationEnabled(&self) -> bool;
 
         /// Setter for [`automaticImageScaleEstimationEnabled`][Self::automaticImageScaleEstimationEnabled].
         #[method(setAutomaticImageScaleEstimationEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAutomaticImageScaleEstimationEnabled(
             &self,
             automatic_image_scale_estimation_enabled: bool,
@@ -1166,10 +1255,12 @@ extern_methods!(
         /// If more than the maximum is visible, only the images already being tracked will continue to track until tracking is lost or another image is removed.
         /// Images will continue to be detected regardless of images tracked. Default value is zero.
         #[method(maximumNumberOfTrackedImages)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maximumNumberOfTrackedImages(&self) -> NSInteger;
 
         /// Setter for [`maximumNumberOfTrackedImages`][Self::maximumNumberOfTrackedImages].
         #[method(setMaximumNumberOfTrackedImages:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMaximumNumberOfTrackedImages(
             &self,
             maximum_number_of_tracked_images: NSInteger,
@@ -1179,25 +1270,29 @@ extern_methods!(
         /// Objects to detect in the scene.
         ///
         /// If set the session will attempt to detect the specified objects. When an object is detected an ARObjectAnchor will be added to the session.
-        #[method_id(detectionObjects)]
+        #[method(detectionObjects)]
         #[unsafe(method_family = none)]
         pub unsafe fn detectionObjects(&self) -> Retained<NSSet<ARReferenceObject>>;
 
         #[cfg(all(feature = "ARReferenceObject", feature = "objc2-foundation"))]
         /// Setter for [`detectionObjects`][Self::detectionObjects].
         #[method(setDetectionObjects:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDetectionObjects(&self, detection_objects: &NSSet<ARReferenceObject>);
 
         /// Enable or disable app clip code tracking. Disabled by default. When enabled, detected app clip codes will be surfaced as an ARAppClipCodeAnchor.
         #[method(appClipCodeTrackingEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn appClipCodeTrackingEnabled(&self) -> bool;
 
         /// Setter for [`appClipCodeTrackingEnabled`][Self::appClipCodeTrackingEnabled].
         #[method(setAppClipCodeTrackingEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAppClipCodeTrackingEnabled(&self, app_clip_code_tracking_enabled: bool);
 
         /// Indicates whether app clip code tracking can be enabled on this device.
         #[method(supportsAppClipCodeTracking)]
+        #[unsafe(method_family = none)]
         pub unsafe fn supportsAppClipCodeTracking() -> bool;
 
         #[cfg(all(feature = "block2", feature = "objc2-foundation"))]
@@ -1211,6 +1306,7 @@ extern_methods!(
         /// isAvailable - True if geo tracking is available at the current location, otherwise false.
         /// error - An error that indicates why geo tracking is not available at the current location.
         #[method(checkAvailabilityWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn checkAvailabilityWithCompletionHandler(
             completion_handler: &block2::Block<dyn Fn(Bool, *mut NSError)>,
         );
@@ -1228,16 +1324,17 @@ extern_methods!(
         /// isAvailable - True if geo tracking is available at the given location, otherwise false.
         /// error - An error that indicates why geo tracking is not available at the given location.
         #[method(checkAvailabilityAtCoordinate:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn checkAvailabilityAtCoordinate_completionHandler(
             coordinate: CLLocationCoordinate2D,
             completion_handler: &block2::Block<dyn Fn(Bool, *mut NSError)>,
         );
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

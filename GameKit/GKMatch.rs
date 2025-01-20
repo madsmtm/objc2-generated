@@ -66,30 +66,32 @@ unsafe impl NSObjectProtocol for GKMatch {}
 extern_methods!(
     unsafe impl GKMatch {
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
-        #[method_id(players)]
+        #[method(players)]
         #[unsafe(method_family = none)]
         pub unsafe fn players(&self) -> Retained<NSArray<GKPlayer>>;
 
         /// all the GKPlayers in the match
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn GKMatchDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn GKMatchDelegate>>);
 
         #[method(expectedPlayerCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn expectedPlayerCount(&self) -> NSUInteger;
 
         #[cfg(feature = "GKDefines")]
-        #[method_id(properties)]
+        #[method(properties)]
         #[unsafe(method_family = none)]
         pub unsafe fn properties(&self) -> Option<Retained<GKMatchProperties>>;
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKDefines", feature = "GKPlayer"))]
-        #[method_id(playerProperties)]
+        #[method(playerProperties)]
         #[unsafe(method_family = none)]
         pub unsafe fn playerProperties(
             &self,
@@ -98,6 +100,7 @@ extern_methods!(
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         /// Asynchronously send data to one or more GKPlayers. Returns YES if delivery started, NO if unable to start sending and error will be set.
         #[method(sendData:toPlayers:dataMode:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sendData_toPlayers_dataMode_error(
             &self,
             data: &NSData,
@@ -107,6 +110,7 @@ extern_methods!(
 
         /// Asynchronously broadcasts data to all players. Returns YES if delivery started, NO if unable to start sending and error will be set.
         #[method(sendDataToAllPlayers:withDataMode:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sendDataToAllPlayers_withDataMode_error(
             &self,
             data: &NSData,
@@ -115,11 +119,13 @@ extern_methods!(
 
         /// Disconnect the match. This will show all other players in the match that the local player has disconnected. This should be called before releasing the match instance.
         #[method(disconnect)]
+        #[unsafe(method_family = none)]
         pub unsafe fn disconnect(&self);
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer", feature = "block2"))]
         /// Choose the best host from among the connected players using gathered estimates for bandwidth and packet loss. This is intended for applications that wish to implement a client-server model on top of the match. The returned player ID will be nil if the best host cannot currently be determined (e.g. players are still connecting).
         #[method(chooseBestHostingPlayerWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn chooseBestHostingPlayerWithCompletionHandler(
             &self,
             completion_handler: &block2::Block<dyn Fn(*mut GKPlayer)>,
@@ -131,6 +137,7 @@ extern_methods!(
         /// 1. Communications failure
         /// 2. Timeout
         #[method(rematchWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rematchWithCompletionHandler(
             &self,
             completion_handler: Option<&block2::Block<dyn Fn(*mut GKMatch, *mut NSError)>>,
@@ -139,7 +146,7 @@ extern_methods!(
         #[cfg(feature = "GKVoiceChat")]
         /// * This method is deprecated. GKVoiceChat is no longer supported. **
         #[deprecated = "No longer supported"]
-        #[method_id(voiceChatWithName:)]
+        #[method(voiceChatWithName:)]
         #[unsafe(method_family = none)]
         pub unsafe fn voiceChatWithName(&self, name: &NSString) -> Option<Retained<GKVoiceChat>>;
     }
@@ -148,11 +155,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKMatch {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -165,6 +172,7 @@ extern_protocol!(
         /// The match received data sent from the player.
         #[optional]
         #[method(match:didReceiveData:fromRemotePlayer:)]
+        #[unsafe(method_family = none)]
         unsafe fn match_didReceiveData_fromRemotePlayer(
             &self,
             r#match: &GKMatch,
@@ -175,6 +183,7 @@ extern_protocol!(
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         #[optional]
         #[method(match:didReceiveData:forRecipient:fromRemotePlayer:)]
+        #[unsafe(method_family = none)]
         unsafe fn match_didReceiveData_forRecipient_fromRemotePlayer(
             &self,
             r#match: &GKMatch,
@@ -187,6 +196,7 @@ extern_protocol!(
         /// The player state changed (eg. connected or disconnected)
         #[optional]
         #[method(match:player:didChangeConnectionState:)]
+        #[unsafe(method_family = none)]
         unsafe fn match_player_didChangeConnectionState(
             &self,
             r#match: &GKMatch,
@@ -197,12 +207,14 @@ extern_protocol!(
         /// The match was unable to be established with any players due to an error.
         #[optional]
         #[method(match:didFailWithError:)]
+        #[unsafe(method_family = none)]
         unsafe fn match_didFailWithError(&self, r#match: &GKMatch, error: Option<&NSError>);
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         /// This method is called when the match is interrupted; if it returns YES, a new invite will be sent to attempt reconnection. This is supported only for 1v1 games
         #[optional]
         #[method(match:shouldReinviteDisconnectedPlayer:)]
+        #[unsafe(method_family = none)]
         unsafe fn match_shouldReinviteDisconnectedPlayer(
             &self,
             r#match: &GKMatch,
@@ -213,6 +225,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(match:didReceiveData:fromPlayer:)]
+        #[unsafe(method_family = none)]
         unsafe fn match_didReceiveData_fromPlayer(
             &self,
             r#match: &GKMatch,
@@ -223,6 +236,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(match:player:didChangeState:)]
+        #[unsafe(method_family = none)]
         unsafe fn match_player_didChangeState(
             &self,
             r#match: &GKMatch,
@@ -233,6 +247,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(match:shouldReinvitePlayer:)]
+        #[unsafe(method_family = none)]
         unsafe fn match_shouldReinvitePlayer(
             &self,
             r#match: &GKMatch,
@@ -248,6 +263,7 @@ extern_methods!(
         /// * This method is obsolete. It will never be invoked and its implementation does nothing**
         #[deprecated]
         #[method(chooseBestHostPlayerWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn chooseBestHostPlayerWithCompletionHandler(
             &self,
             completion_handler: &block2::Block<dyn Fn(*mut NSString)>,
@@ -256,6 +272,7 @@ extern_methods!(
         /// * This method is obsolete. It will never be invoked and its implementation does nothing**
         #[deprecated]
         #[method(sendData:toPlayers:withDataMode:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sendData_toPlayers_withDataMode_error(
             &self,
             data: &NSData,
@@ -265,7 +282,7 @@ extern_methods!(
 
         /// * This property is obsolete.  **
         #[deprecated]
-        #[method_id(playerIDs)]
+        #[method(playerIDs)]
         #[unsafe(method_family = none)]
         pub unsafe fn playerIDs(&self) -> Option<Retained<NSArray<NSString>>>;
     }

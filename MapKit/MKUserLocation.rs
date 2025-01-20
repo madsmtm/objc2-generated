@@ -24,32 +24,35 @@ unsafe impl NSObjectProtocol for MKUserLocation {}
 extern_methods!(
     unsafe impl MKUserLocation {
         #[method(isUpdating)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isUpdating(&self) -> bool;
 
         #[cfg(feature = "objc2-core-location")]
-        #[method_id(location)]
+        #[method(location)]
         #[unsafe(method_family = none)]
         pub unsafe fn location(&self) -> Option<Retained<CLLocation>>;
 
         #[cfg(feature = "objc2-core-location")]
-        #[method_id(heading)]
+        #[method(heading)]
         #[unsafe(method_family = none)]
         pub unsafe fn heading(&self) -> Option<Retained<CLHeading>>;
 
-        #[method_id(title)]
+        #[method(title)]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
-        #[method_id(subtitle)]
+        #[method(subtitle)]
         #[unsafe(method_family = none)]
         pub unsafe fn subtitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`subtitle`][Self::subtitle].
         #[method(setSubtitle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSubtitle(&self, subtitle: Option<&NSString>);
     }
 );
@@ -57,11 +60,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKUserLocation {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

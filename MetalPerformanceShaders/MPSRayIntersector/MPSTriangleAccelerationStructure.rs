@@ -88,11 +88,13 @@ extern_methods!(
         /// Note that this property is an alias for the polygonCount property.
         #[deprecated]
         #[method(triangleCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn triangleCount(&self) -> NSUInteger;
 
         /// Setter for [`triangleCount`][Self::triangleCount].
         #[deprecated]
         #[method(setTriangleCount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTriangleCount(&self, triangle_count: NSUInteger);
     }
 );
@@ -107,13 +109,13 @@ extern_methods!(
     ))]
     unsafe impl MPSTriangleAccelerationStructure {
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Initialize the acceleration structure with a Metal device
         #[deprecated]
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -124,7 +126,7 @@ extern_methods!(
         /// properties such as the vertex buffer, instance buffer, etc. are set to nil. Encode and decode
         /// these buffers along with the acceleration structure instead.
         #[deprecated]
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -140,7 +142,7 @@ extern_methods!(
         /// The Metal device is determined from the acceleration structure group. All
         /// acceleration structures in the instance hierarchy must share the same group.
         #[deprecated]
-        #[method_id(initWithGroup:)]
+        #[method(initWithGroup:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithGroup(
             this: Allocated<Self>,
@@ -154,7 +156,7 @@ extern_methods!(
         /// vertex buffer, instance buffer, etc. are set to nil. Encode and decode these buffers along with
         /// the acceleration structure instead.
         #[deprecated]
-        #[method_id(initWithCoder:group:)]
+        #[method(initWithCoder:group:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_group(
             this: Allocated<Self>,
@@ -181,7 +183,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -199,7 +201,7 @@ extern_methods!(
         feature = "MPSPolygonAccelerationStructure"
     ))]
     unsafe impl MPSTriangleAccelerationStructure {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

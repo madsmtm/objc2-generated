@@ -93,62 +93,70 @@ unsafe impl NSObjectProtocol for UIPrintInfo {}
 
 extern_methods!(
     unsafe impl UIPrintInfo {
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(printInfo)]
+        #[method(printInfo)]
         #[unsafe(method_family = none)]
         pub unsafe fn printInfo(mtm: MainThreadMarker) -> Retained<UIPrintInfo>;
 
-        #[method_id(printInfoWithDictionary:)]
+        #[method(printInfoWithDictionary:)]
         #[unsafe(method_family = none)]
         pub unsafe fn printInfoWithDictionary(
             dictionary: Option<&NSDictionary>,
             mtm: MainThreadMarker,
         ) -> Retained<UIPrintInfo>;
 
-        #[method_id(printerID)]
+        #[method(printerID)]
         #[unsafe(method_family = none)]
         pub unsafe fn printerID(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`printerID`][Self::printerID].
         #[method(setPrinterID:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPrinterID(&self, printer_id: Option<&NSString>);
 
-        #[method_id(jobName)]
+        #[method(jobName)]
         #[unsafe(method_family = none)]
         pub unsafe fn jobName(&self) -> Retained<NSString>;
 
         /// Setter for [`jobName`][Self::jobName].
         #[method(setJobName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setJobName(&self, job_name: &NSString);
 
         #[method(outputType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn outputType(&self) -> UIPrintInfoOutputType;
 
         /// Setter for [`outputType`][Self::outputType].
         #[method(setOutputType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setOutputType(&self, output_type: UIPrintInfoOutputType);
 
         #[method(orientation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn orientation(&self) -> UIPrintInfoOrientation;
 
         /// Setter for [`orientation`][Self::orientation].
         #[method(setOrientation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setOrientation(&self, orientation: UIPrintInfoOrientation);
 
         #[method(duplex)]
+        #[unsafe(method_family = none)]
         pub unsafe fn duplex(&self) -> UIPrintInfoDuplex;
 
         /// Setter for [`duplex`][Self::duplex].
         #[method(setDuplex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDuplex(&self, duplex: UIPrintInfoDuplex);
 
-        #[method_id(dictionaryRepresentation)]
+        #[method(dictionaryRepresentation)]
         #[unsafe(method_family = none)]
         pub unsafe fn dictionaryRepresentation(&self) -> Retained<NSDictionary>;
     }
@@ -157,11 +165,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIPrintInfo {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

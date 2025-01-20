@@ -92,7 +92,7 @@ extern_methods!(
         #[cfg(all(feature = "GCMouseInput", feature = "GCPhysicalInputProfile"))]
         /// Unlike GCController GCMouse supports only one input profile
         /// Profile contains mouse buttons, scroll wheel and  pointer delta.
-        #[method_id(mouseInput)]
+        #[method(mouseInput)]
         #[unsafe(method_family = none)]
         pub unsafe fn mouseInput(&self) -> Option<Retained<GCMouseInput>>;
 
@@ -101,11 +101,11 @@ extern_methods!(
         /// See: GCMouseDidBecomeCurrentNotification
         ///
         /// See: GCMouseDidStopBeingCurrentNotification
-        #[method_id(current)]
+        #[method(current)]
         #[unsafe(method_family = none)]
         pub unsafe fn current() -> Option<Retained<GCMouse>>;
 
-        #[method_id(mice)]
+        #[method(mice)]
         #[unsafe(method_family = none)]
         pub unsafe fn mice() -> Retained<NSArray<GCMouse>>;
     }
@@ -114,11 +114,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GCMouse {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

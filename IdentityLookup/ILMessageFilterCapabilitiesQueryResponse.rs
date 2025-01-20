@@ -25,24 +25,26 @@ unsafe impl NSSecureCoding for ILMessageFilterCapabilitiesQueryResponse {}
 extern_methods!(
     unsafe impl ILMessageFilterCapabilitiesQueryResponse {
         /// Array of type ILMessageFilterSubAction under Transactional
-        #[method_id(transactionalSubActions)]
+        #[method(transactionalSubActions)]
         #[unsafe(method_family = none)]
         pub unsafe fn transactionalSubActions(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Setter for [`transactionalSubActions`][Self::transactionalSubActions].
         #[method(setTransactionalSubActions:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTransactionalSubActions(
             &self,
             transactional_sub_actions: &NSArray<NSNumber>,
         );
 
         /// Array of type ILMessageFilterSubAction under Promotional
-        #[method_id(promotionalSubActions)]
+        #[method(promotionalSubActions)]
         #[unsafe(method_family = none)]
         pub unsafe fn promotionalSubActions(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Setter for [`promotionalSubActions`][Self::promotionalSubActions].
         #[method(setPromotionalSubActions:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPromotionalSubActions(&self, promotional_sub_actions: &NSArray<NSNumber>);
     }
 );
@@ -50,11 +52,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ILMessageFilterCapabilitiesQueryResponse {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

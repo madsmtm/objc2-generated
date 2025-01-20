@@ -56,20 +56,21 @@ unsafe impl NSObjectProtocol for AVAssetSegmentReport {}
 
 extern_methods!(
     unsafe impl AVAssetSegmentReport {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// A segment type of the segment data.
         #[method(segmentType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn segmentType(&self) -> AVAssetSegmentType;
 
         /// Provides an array of AVAssetSegmentTrackReport in the segment data.
-        #[method_id(trackReports)]
+        #[method(trackReports)]
         #[unsafe(method_family = none)]
         pub unsafe fn trackReports(&self) -> Retained<NSArray<AVAssetSegmentTrackReport>>;
     }
@@ -94,37 +95,40 @@ unsafe impl NSObjectProtocol for AVAssetSegmentTrackReport {}
 
 extern_methods!(
     unsafe impl AVAssetSegmentTrackReport {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-media")]
         /// Indicates the persistent unique identifier for this track.
         #[method(trackID)]
+        #[unsafe(method_family = none)]
         pub unsafe fn trackID(&self) -> CMPersistentTrackID;
 
         #[cfg(feature = "AVMediaFormat")]
         /// Indicates the media type for this track. Media types are declared in AVMediaFormat.h.
-        #[method_id(mediaType)]
+        #[method(mediaType)]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaType(&self) -> Retained<AVMediaType>;
 
         #[cfg(feature = "objc2-core-media")]
         /// Indicates the earliest presentation timestamp (PTS) for this track. The value is kCMTimeInvalid if there is no information available.
         #[method(earliestPresentationTimeStamp)]
+        #[unsafe(method_family = none)]
         pub unsafe fn earliestPresentationTimeStamp(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
         /// Indicates the duration for this track. The value is kCMTimeInvalid if there is no information available.
         #[method(duration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn duration(&self) -> CMTime;
 
         /// Provides information on the first video sample in this track. The value is nil if this track is not video track or no information available.
-        #[method_id(firstVideoSampleInformation)]
+        #[method(firstVideoSampleInformation)]
         #[unsafe(method_family = none)]
         pub unsafe fn firstVideoSampleInformation(
             &self,
@@ -151,11 +155,11 @@ unsafe impl NSObjectProtocol for AVAssetSegmentReportSampleInformation {}
 
 extern_methods!(
     unsafe impl AVAssetSegmentReportSampleInformation {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -164,18 +168,22 @@ extern_methods!(
         ///
         /// This timestamp may be different from the earliestPresentationTimeStamp if the video is encoded using frame reordering.
         #[method(presentationTimeStamp)]
+        #[unsafe(method_family = none)]
         pub unsafe fn presentationTimeStamp(&self) -> CMTime;
 
         /// The offset of the sample in the segment.
         #[method(offset)]
+        #[unsafe(method_family = none)]
         pub unsafe fn offset(&self) -> NSInteger;
 
         /// The length of the sample.
         #[method(length)]
+        #[unsafe(method_family = none)]
         pub unsafe fn length(&self) -> NSInteger;
 
         /// Indicates whether the sample is a sync sample.
         #[method(isSyncSample)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isSyncSample(&self) -> bool;
     }
 );

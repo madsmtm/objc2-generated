@@ -72,36 +72,39 @@ unsafe impl NSObjectProtocol for SKProductDiscount {}
 extern_methods!(
     unsafe impl SKProductDiscount {
         #[deprecated = "Use Product.SubscriptionOffer.displayPrice"]
-        #[method_id(price)]
+        #[method(price)]
         #[unsafe(method_family = none)]
         pub unsafe fn price(&self) -> Retained<NSDecimalNumber>;
 
         #[deprecated = "Use Product.SubscriptionOffer.displayPrice"]
-        #[method_id(priceLocale)]
+        #[method(priceLocale)]
         #[unsafe(method_family = none)]
         pub unsafe fn priceLocale(&self) -> Retained<NSLocale>;
 
         #[deprecated = "Use Product.SubscriptionOffer.id"]
-        #[method_id(identifier)]
+        #[method(identifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "SKProduct")]
         #[deprecated = "Use Product.SubscriptionOffer.period"]
-        #[method_id(subscriptionPeriod)]
+        #[method(subscriptionPeriod)]
         #[unsafe(method_family = none)]
         pub unsafe fn subscriptionPeriod(&self) -> Retained<SKProductSubscriptionPeriod>;
 
         #[deprecated = "Use Product.SubscriptionOffer.periodCount"]
         #[method(numberOfPeriods)]
+        #[unsafe(method_family = none)]
         pub unsafe fn numberOfPeriods(&self) -> NSUInteger;
 
         #[deprecated = "Use Product.SubscriptionOffer.paymentMode"]
         #[method(paymentMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn paymentMode(&self) -> SKProductDiscountPaymentMode;
 
         #[deprecated = "Use Product.SubscriptionOffer.type"]
         #[method(type)]
+        #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> SKProductDiscountType;
     }
 );
@@ -109,11 +112,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKProductDiscount {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -57,20 +57,22 @@ extern_methods!(
         /// current * blendFactor + previous * (1 - blendFactor). Must be between zero
         /// and one, inclusive. Defaults to 0.1.
         #[method(blendFactor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn blendFactor(&self) -> c_float;
 
         /// Setter for [`blendFactor`][Self::blendFactor].
         #[method(setBlendFactor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBlendFactor(&self, blend_factor: c_float);
 
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -78,7 +80,7 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(copyWithZone:device:)]
+        #[method(copyWithZone:device:)]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyWithZone_device(
             &self,
@@ -87,6 +89,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[method(encodeWithCoder:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeWithCoder(&self, coder: &NSCoder);
 
         /// Encode temporal antialiasing a command buffer
@@ -118,6 +121,7 @@ extern_methods!(
         ///
         /// Parameter `depthTexture`: The depth values for the current frame
         #[method(encodeToCommandBuffer:sourceTexture:previousTexture:destinationTexture:motionVectorTexture:depthTexture:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceTexture_previousTexture_destinationTexture_motionVectorTexture_depthTexture(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -142,7 +146,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -155,11 +159,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSTemporalAA {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

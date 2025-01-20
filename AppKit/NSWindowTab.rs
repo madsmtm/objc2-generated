@@ -18,38 +18,42 @@ unsafe impl NSObjectProtocol for NSWindowTab {}
 
 extern_methods!(
     unsafe impl NSWindowTab {
-        #[method_id(title)]
+        #[method(title)]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
-        #[method_id(attributedTitle)]
+        #[method(attributedTitle)]
         #[unsafe(method_family = none)]
         pub unsafe fn attributedTitle(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Setter for [`attributedTitle`][Self::attributedTitle].
         #[method(setAttributedTitle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAttributedTitle(&self, attributed_title: Option<&NSAttributedString>);
 
-        #[method_id(toolTip)]
+        #[method(toolTip)]
         #[unsafe(method_family = none)]
         pub unsafe fn toolTip(&self) -> Retained<NSString>;
 
         /// Setter for [`toolTip`][Self::toolTip].
         #[method(setToolTip:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setToolTip(&self, tool_tip: Option<&NSString>);
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-        #[method_id(accessoryView)]
+        #[method(accessoryView)]
         #[unsafe(method_family = none)]
         pub unsafe fn accessoryView(&self, mtm: MainThreadMarker) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         /// Setter for [`accessoryView`][Self::accessoryView].
         #[method(setAccessoryView:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAccessoryView(&self, accessory_view: Option<&NSView>);
     }
 );
@@ -57,11 +61,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSWindowTab {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -91,7 +91,7 @@ extern_methods!(
         /// Parameter `style`: The formatting style to be used for the contact name.
         ///
         /// Returns: The contact key descriptor for the formatting style.
-        #[method_id(descriptorForRequiredKeysForStyle:)]
+        #[method(descriptorForRequiredKeysForStyle:)]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptorForRequiredKeysForStyle(
             style: CNContactFormatterStyle,
@@ -105,7 +105,7 @@ extern_methods!(
         ///
         ///
         /// Returns: The contact key descriptor for the name order.
-        #[method_id(descriptorForRequiredKeysForNameOrder)]
+        #[method(descriptorForRequiredKeysForNameOrder)]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptorForRequiredKeysForNameOrder(
         ) -> Retained<ProtocolObject<dyn CNKeyDescriptor>>;
@@ -118,7 +118,7 @@ extern_methods!(
         ///
         ///
         /// Returns: The contact key descriptor for the name delimiter.
-        #[method_id(descriptorForRequiredKeysForDelimiter)]
+        #[method(descriptorForRequiredKeysForDelimiter)]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptorForRequiredKeysForDelimiter(
         ) -> Retained<ProtocolObject<dyn CNKeyDescriptor>>;
@@ -132,7 +132,7 @@ extern_methods!(
         /// Parameter `style`: The formatting style to be used for the contact name.
         ///
         /// Returns: The formatted contact name.
-        #[method_id(stringFromContact:style:)]
+        #[method(stringFromContact:style:)]
         #[unsafe(method_family = none)]
         pub unsafe fn stringFromContact_style(
             contact: &CNContact,
@@ -153,7 +153,7 @@ extern_methods!(
         /// Parameter `attributes`: The default attributes to use. See NSFormatter for details.
         ///
         /// Returns: The formatted contact name as an attributed string.
-        #[method_id(attributedStringFromContact:style:defaultAttributes:)]
+        #[method(attributedStringFromContact:style:defaultAttributes:)]
         #[unsafe(method_family = none)]
         pub unsafe fn attributedStringFromContact_style_defaultAttributes(
             contact: &CNContact,
@@ -164,11 +164,12 @@ extern_methods!(
         #[cfg(feature = "CNContact")]
         /// The recommended name order for a given contact.
         #[method(nameOrderForContact:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn nameOrderForContact(contact: &CNContact) -> CNContactDisplayNameOrder;
 
         #[cfg(feature = "CNContact")]
         /// The recommended delimiter to use between name components for a given contact.
-        #[method_id(delimiterForContact:)]
+        #[method(delimiterForContact:)]
         #[unsafe(method_family = none)]
         pub unsafe fn delimiterForContact(contact: &CNContact) -> Retained<NSString>;
 
@@ -177,10 +178,12 @@ extern_methods!(
         ///
         /// The default value is CNContactFormatterStyleFullName.
         #[method(style)]
+        #[unsafe(method_family = none)]
         pub unsafe fn style(&self) -> CNContactFormatterStyle;
 
         /// Setter for [`style`][Self::style].
         #[method(setStyle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setStyle(&self, style: CNContactFormatterStyle);
 
         #[cfg(feature = "CNContact")]
@@ -190,7 +193,7 @@ extern_methods!(
         /// Parameter `contact`: The contact whose name is to be formatted.
         ///
         /// Returns: The formatted contact name.
-        #[method_id(stringFromContact:)]
+        #[method(stringFromContact:)]
         #[unsafe(method_family = none)]
         pub unsafe fn stringFromContact(&self, contact: &CNContact) -> Option<Retained<NSString>>;
 
@@ -206,7 +209,7 @@ extern_methods!(
         /// Parameter `attributes`: The default attributes to use. See NSFormatter for details.
         ///
         /// Returns: The formatted contact name as an attributed string.
-        #[method_id(attributedStringFromContact:defaultAttributes:)]
+        #[method(attributedStringFromContact:defaultAttributes:)]
         #[unsafe(method_family = none)]
         pub unsafe fn attributedStringFromContact_defaultAttributes(
             &self,
@@ -219,11 +222,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CNContactFormatter {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

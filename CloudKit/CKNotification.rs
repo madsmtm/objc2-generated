@@ -32,11 +32,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CKNotificationID {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -111,15 +111,15 @@ unsafe impl NSObjectProtocol for CKNotification {}
 
 extern_methods!(
     unsafe impl CKNotification {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(notificationFromRemoteNotificationDictionary:)]
+        #[method(notificationFromRemoteNotificationDictionary:)]
         #[unsafe(method_family = none)]
         pub unsafe fn notificationFromRemoteNotificationDictionary(
             notification_dictionary: &NSDictionary,
@@ -128,19 +128,20 @@ extern_methods!(
         /// When you instantiate a `CKNotification` from a remote notification dictionary, you will get back a concrete
         /// subclass defined below.  Use `notificationType` to avoid `as?` or `-isKindOfClass:` checks.
         #[method(notificationType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn notificationType(&self) -> CKNotificationType;
 
-        #[method_id(notificationID)]
+        #[method(notificationID)]
         #[unsafe(method_family = none)]
         pub unsafe fn notificationID(&self) -> Option<Retained<CKNotificationID>>;
 
-        #[method_id(containerIdentifier)]
+        #[method(containerIdentifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn containerIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "CKRecordID")]
         /// The user `recordID` of the owner of the subscription for which this notification was generated
-        #[method_id(subscriptionOwnerUserRecordID)]
+        #[method(subscriptionOwnerUserRecordID)]
         #[unsafe(method_family = none)]
         pub unsafe fn subscriptionOwnerUserRecordID(&self) -> Option<Retained<CKRecordID>>;
 
@@ -150,11 +151,12 @@ extern_methods!(
         /// In those cases, `isPruned` returns `true`.
         /// The order in which properties are dropped from a push notification is defined in each `CKNotification` subclass below.
         #[method(isPruned)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isPruned(&self) -> bool;
 
         #[cfg(feature = "CKSubscription")]
         /// The ID of the subscription that caused this notification to fire.
-        #[method_id(subscriptionID)]
+        #[method(subscriptionID)]
         #[unsafe(method_family = none)]
         pub unsafe fn subscriptionID(&self) -> Option<Retained<CKSubscriptionID>>;
     }
@@ -164,65 +166,65 @@ extern_methods!(
     /// DeprecatedAPSProperties
     unsafe impl CKNotification {
         #[deprecated = "Interact with UI elements of a CloudKit-server-generated push message via UserNotifications.framework"]
-        #[method_id(alertBody)]
+        #[method(alertBody)]
         #[unsafe(method_family = none)]
         pub unsafe fn alertBody(&self) -> Option<Retained<NSString>>;
 
         #[deprecated = "Interact with UI elements of a CloudKit-server-generated push message via UserNotifications.framework"]
-        #[method_id(alertLocalizationKey)]
+        #[method(alertLocalizationKey)]
         #[unsafe(method_family = none)]
         pub unsafe fn alertLocalizationKey(&self) -> Option<Retained<NSString>>;
 
         #[deprecated = "Interact with UI elements of a CloudKit-server-generated push message via UserNotifications.framework"]
-        #[method_id(alertLocalizationArgs)]
+        #[method(alertLocalizationArgs)]
         #[unsafe(method_family = none)]
         pub unsafe fn alertLocalizationArgs(&self) -> Option<Retained<NSArray<NSString>>>;
 
-        #[method_id(title)]
+        #[method(title)]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(titleLocalizationKey)]
+        #[method(titleLocalizationKey)]
         #[unsafe(method_family = none)]
         pub unsafe fn titleLocalizationKey(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(titleLocalizationArgs)]
+        #[method(titleLocalizationArgs)]
         #[unsafe(method_family = none)]
         pub unsafe fn titleLocalizationArgs(&self) -> Option<Retained<NSArray<NSString>>>;
 
-        #[method_id(subtitle)]
+        #[method(subtitle)]
         #[unsafe(method_family = none)]
         pub unsafe fn subtitle(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(subtitleLocalizationKey)]
+        #[method(subtitleLocalizationKey)]
         #[unsafe(method_family = none)]
         pub unsafe fn subtitleLocalizationKey(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(subtitleLocalizationArgs)]
+        #[method(subtitleLocalizationArgs)]
         #[unsafe(method_family = none)]
         pub unsafe fn subtitleLocalizationArgs(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[deprecated = "Interact with UI elements of a CloudKit-server-generated push message via UserNotifications.framework"]
-        #[method_id(alertActionLocalizationKey)]
+        #[method(alertActionLocalizationKey)]
         #[unsafe(method_family = none)]
         pub unsafe fn alertActionLocalizationKey(&self) -> Option<Retained<NSString>>;
 
         #[deprecated = "Interact with UI elements of a CloudKit-server-generated push message via UserNotifications.framework"]
-        #[method_id(alertLaunchImage)]
+        #[method(alertLaunchImage)]
         #[unsafe(method_family = none)]
         pub unsafe fn alertLaunchImage(&self) -> Option<Retained<NSString>>;
 
         #[deprecated = "Interact with UI elements of a CloudKit-server-generated push message via UserNotifications.framework"]
-        #[method_id(badge)]
+        #[method(badge)]
         #[unsafe(method_family = none)]
         pub unsafe fn badge(&self) -> Option<Retained<NSNumber>>;
 
         #[deprecated = "Interact with UI elements of a CloudKit-server-generated push message via UserNotifications.framework"]
-        #[method_id(soundName)]
+        #[method(soundName)]
         #[unsafe(method_family = none)]
         pub unsafe fn soundName(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(category)]
+        #[method(category)]
         #[unsafe(method_family = none)]
         pub unsafe fn category(&self) -> Option<Retained<NSString>>;
     }
@@ -292,22 +294,24 @@ unsafe impl NSObjectProtocol for CKQueryNotification {}
 extern_methods!(
     unsafe impl CKQueryNotification {
         #[method(queryNotificationReason)]
+        #[unsafe(method_family = none)]
         pub unsafe fn queryNotificationReason(&self) -> CKQueryNotificationReason;
 
         /// A set of key->value pairs for creates and updates.
         ///
         /// You request the server fill out this property via the `desiredKeys` property of `CKSubscription.NotificationInfo`
-        #[method_id(recordFields)]
+        #[method(recordFields)]
         #[unsafe(method_family = none)]
         pub unsafe fn recordFields(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(feature = "CKRecordID")]
-        #[method_id(recordID)]
+        #[method(recordID)]
         #[unsafe(method_family = none)]
         pub unsafe fn recordID(&self) -> Option<Retained<CKRecordID>>;
 
         #[cfg(feature = "CKDatabase")]
         #[method(databaseScope)]
+        #[unsafe(method_family = none)]
         pub unsafe fn databaseScope(&self) -> CKDatabaseScope;
     }
 );
@@ -315,15 +319,15 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `CKNotification`
     unsafe impl CKQueryNotification {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(notificationFromRemoteNotificationDictionary:)]
+        #[method(notificationFromRemoteNotificationDictionary:)]
         #[unsafe(method_family = none)]
         pub unsafe fn notificationFromRemoteNotificationDictionary(
             notification_dictionary: &NSDictionary,
@@ -371,12 +375,13 @@ unsafe impl NSObjectProtocol for CKRecordZoneNotification {}
 extern_methods!(
     unsafe impl CKRecordZoneNotification {
         #[cfg(feature = "CKRecordZoneID")]
-        #[method_id(recordZoneID)]
+        #[method(recordZoneID)]
         #[unsafe(method_family = none)]
         pub unsafe fn recordZoneID(&self) -> Option<Retained<CKRecordZoneID>>;
 
         #[cfg(feature = "CKDatabase")]
         #[method(databaseScope)]
+        #[unsafe(method_family = none)]
         pub unsafe fn databaseScope(&self) -> CKDatabaseScope;
     }
 );
@@ -384,15 +389,15 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `CKNotification`
     unsafe impl CKRecordZoneNotification {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(notificationFromRemoteNotificationDictionary:)]
+        #[method(notificationFromRemoteNotificationDictionary:)]
         #[unsafe(method_family = none)]
         pub unsafe fn notificationFromRemoteNotificationDictionary(
             notification_dictionary: &NSDictionary,
@@ -440,6 +445,7 @@ extern_methods!(
     unsafe impl CKDatabaseNotification {
         #[cfg(feature = "CKDatabase")]
         #[method(databaseScope)]
+        #[unsafe(method_family = none)]
         pub unsafe fn databaseScope(&self) -> CKDatabaseScope;
     }
 );
@@ -447,15 +453,15 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `CKNotification`
     unsafe impl CKDatabaseNotification {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(notificationFromRemoteNotificationDictionary:)]
+        #[method(notificationFromRemoteNotificationDictionary:)]
         #[unsafe(method_family = none)]
         pub unsafe fn notificationFromRemoteNotificationDictionary(
             notification_dictionary: &NSDictionary,

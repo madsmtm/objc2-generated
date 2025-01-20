@@ -12,7 +12,7 @@ use crate::*;
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlcustomlayer?language=objc)
     pub unsafe trait MLCustomLayer {
-        #[method_id(initWithParameterDictionary:error:_)]
+        #[method(initWithParameterDictionary:error:_)]
         #[unsafe(method_family = init)]
         unsafe fn initWithParameterDictionary_error(
             this: Allocated<Self>,
@@ -20,12 +20,13 @@ extern_protocol!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[method(setWeightData:error:_)]
+        #[unsafe(method_family = none)]
         unsafe fn setWeightData_error(
             &self,
             weights: &NSArray<NSData>,
         ) -> Result<(), Retained<NSError>>;
 
-        #[method_id(outputShapesForInputShapes:error:_)]
+        #[method(outputShapesForInputShapes:error:_)]
         #[unsafe(method_family = none)]
         unsafe fn outputShapesForInputShapes_error(
             &self,
@@ -34,6 +35,7 @@ extern_protocol!(
 
         #[cfg(feature = "MLMultiArray")]
         #[method(evaluateOnCPUWithInputs:outputs:error:_)]
+        #[unsafe(method_family = none)]
         unsafe fn evaluateOnCPUWithInputs_outputs_error(
             &self,
             inputs: &NSArray<MLMultiArray>,
@@ -44,6 +46,7 @@ extern_protocol!(
         #[cfg(not(target_os = "watchos"))]
         #[optional]
         #[method(encodeToCommandBuffer:inputs:outputs:error:_)]
+        #[unsafe(method_family = none)]
         unsafe fn encodeToCommandBuffer_inputs_outputs_error(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,

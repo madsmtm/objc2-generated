@@ -55,6 +55,7 @@ extern_protocol!(
         #[cfg(feature = "SCNPhysicsContact")]
         #[optional]
         #[method(physicsWorld:didBeginContact:)]
+        #[unsafe(method_family = none)]
         unsafe fn physicsWorld_didBeginContact(
             &self,
             world: &SCNPhysicsWorld,
@@ -64,6 +65,7 @@ extern_protocol!(
         #[cfg(feature = "SCNPhysicsContact")]
         #[optional]
         #[method(physicsWorld:didUpdateContact:)]
+        #[unsafe(method_family = none)]
         unsafe fn physicsWorld_didUpdateContact(
             &self,
             world: &SCNPhysicsWorld,
@@ -73,6 +75,7 @@ extern_protocol!(
         #[cfg(feature = "SCNPhysicsContact")]
         #[optional]
         #[method(physicsWorld:didEndContact:)]
+        #[unsafe(method_family = none)]
         unsafe fn physicsWorld_didEndContact(
             &self,
             world: &SCNPhysicsWorld,
@@ -102,30 +105,36 @@ extern_methods!(
     unsafe impl SCNPhysicsWorld {
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         #[method(gravity)]
+        #[unsafe(method_family = none)]
         pub unsafe fn gravity(&self) -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Setter for [`gravity`][Self::gravity].
         #[method(setGravity:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setGravity(&self, gravity: SCNVector3);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(speed)]
+        #[unsafe(method_family = none)]
         pub unsafe fn speed(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`speed`][Self::speed].
         #[method(setSpeed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSpeed(&self, speed: CGFloat);
 
         #[method(timeStep)]
+        #[unsafe(method_family = none)]
         pub unsafe fn timeStep(&self) -> NSTimeInterval;
 
         /// Setter for [`timeStep`][Self::timeStep].
         #[method(setTimeStep:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTimeStep(&self, time_step: NSTimeInterval);
 
-        #[method_id(contactDelegate)]
+        #[method(contactDelegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn contactDelegate(
             &self,
@@ -134,6 +143,7 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`contactDelegate`][Self::contactDelegate].
         #[method(setContactDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setContactDelegate(
             &self,
             contact_delegate: Option<&ProtocolObject<dyn SCNPhysicsContactDelegate>>,
@@ -141,17 +151,20 @@ extern_methods!(
 
         #[cfg(feature = "SCNPhysicsBehavior")]
         #[method(addBehavior:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addBehavior(&self, behavior: &SCNPhysicsBehavior);
 
         #[cfg(feature = "SCNPhysicsBehavior")]
         #[method(removeBehavior:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeBehavior(&self, behavior: &SCNPhysicsBehavior);
 
         #[method(removeAllBehaviors)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeAllBehaviors(&self);
 
         #[cfg(feature = "SCNPhysicsBehavior")]
-        #[method_id(allBehaviors)]
+        #[method(allBehaviors)]
         #[unsafe(method_family = none)]
         pub unsafe fn allBehaviors(&self) -> Retained<NSArray<SCNPhysicsBehavior>>;
 
@@ -160,7 +173,7 @@ extern_methods!(
             feature = "SceneKitTypes",
             feature = "objc2-core-foundation"
         ))]
-        #[method_id(rayTestWithSegmentFromPoint:toPoint:options:)]
+        #[method(rayTestWithSegmentFromPoint:toPoint:options:)]
         #[unsafe(method_family = none)]
         pub unsafe fn rayTestWithSegmentFromPoint_toPoint_options(
             &self,
@@ -170,7 +183,7 @@ extern_methods!(
         ) -> Retained<NSArray<SCNHitTestResult>>;
 
         #[cfg(all(feature = "SCNPhysicsBody", feature = "SCNPhysicsContact"))]
-        #[method_id(contactTestBetweenBody:andBody:options:)]
+        #[method(contactTestBetweenBody:andBody:options:)]
         #[unsafe(method_family = none)]
         pub unsafe fn contactTestBetweenBody_andBody_options(
             &self,
@@ -180,7 +193,7 @@ extern_methods!(
         ) -> Retained<NSArray<SCNPhysicsContact>>;
 
         #[cfg(all(feature = "SCNPhysicsBody", feature = "SCNPhysicsContact"))]
-        #[method_id(contactTestWithBody:options:)]
+        #[method(contactTestWithBody:options:)]
         #[unsafe(method_family = none)]
         pub unsafe fn contactTestWithBody_options(
             &self,
@@ -195,7 +208,7 @@ extern_methods!(
             feature = "objc2-quartz-core"
         ))]
         #[cfg(not(target_os = "watchos"))]
-        #[method_id(convexSweepTestWithShape:fromTransform:toTransform:options:)]
+        #[method(convexSweepTestWithShape:fromTransform:toTransform:options:)]
         #[unsafe(method_family = none)]
         pub unsafe fn convexSweepTestWithShape_fromTransform_toTransform_options(
             &self,
@@ -206,6 +219,7 @@ extern_methods!(
         ) -> Retained<NSArray<SCNPhysicsContact>>;
 
         #[method(updateCollisionPairs)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updateCollisionPairs(&self);
     }
 );
@@ -213,11 +227,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNPhysicsWorld {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

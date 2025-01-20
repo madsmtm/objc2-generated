@@ -56,80 +56,80 @@ unsafe impl NSObjectProtocol for SKTransition {}
 
 extern_methods!(
     unsafe impl SKTransition {
-        #[method_id(crossFadeWithDuration:)]
+        #[method(crossFadeWithDuration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn crossFadeWithDuration(sec: NSTimeInterval) -> Retained<SKTransition>;
 
-        #[method_id(fadeWithDuration:)]
+        #[method(fadeWithDuration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn fadeWithDuration(sec: NSTimeInterval) -> Retained<SKTransition>;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
-        #[method_id(fadeWithColor:duration:)]
+        #[method(fadeWithColor:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn fadeWithColor_duration(
             color: &NSColor,
             sec: NSTimeInterval,
         ) -> Retained<SKTransition>;
 
-        #[method_id(flipHorizontalWithDuration:)]
+        #[method(flipHorizontalWithDuration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn flipHorizontalWithDuration(sec: NSTimeInterval) -> Retained<SKTransition>;
 
-        #[method_id(flipVerticalWithDuration:)]
+        #[method(flipVerticalWithDuration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn flipVerticalWithDuration(sec: NSTimeInterval) -> Retained<SKTransition>;
 
-        #[method_id(revealWithDirection:duration:)]
+        #[method(revealWithDirection:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn revealWithDirection_duration(
             direction: SKTransitionDirection,
             sec: NSTimeInterval,
         ) -> Retained<SKTransition>;
 
-        #[method_id(moveInWithDirection:duration:)]
+        #[method(moveInWithDirection:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn moveInWithDirection_duration(
             direction: SKTransitionDirection,
             sec: NSTimeInterval,
         ) -> Retained<SKTransition>;
 
-        #[method_id(pushWithDirection:duration:)]
+        #[method(pushWithDirection:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn pushWithDirection_duration(
             direction: SKTransitionDirection,
             sec: NSTimeInterval,
         ) -> Retained<SKTransition>;
 
-        #[method_id(doorsOpenHorizontalWithDuration:)]
+        #[method(doorsOpenHorizontalWithDuration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn doorsOpenHorizontalWithDuration(
             sec: NSTimeInterval,
         ) -> Retained<SKTransition>;
 
-        #[method_id(doorsOpenVerticalWithDuration:)]
+        #[method(doorsOpenVerticalWithDuration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn doorsOpenVerticalWithDuration(sec: NSTimeInterval) -> Retained<SKTransition>;
 
-        #[method_id(doorsCloseHorizontalWithDuration:)]
+        #[method(doorsCloseHorizontalWithDuration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn doorsCloseHorizontalWithDuration(
             sec: NSTimeInterval,
         ) -> Retained<SKTransition>;
 
-        #[method_id(doorsCloseVerticalWithDuration:)]
+        #[method(doorsCloseVerticalWithDuration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn doorsCloseVerticalWithDuration(sec: NSTimeInterval)
             -> Retained<SKTransition>;
 
-        #[method_id(doorwayWithDuration:)]
+        #[method(doorwayWithDuration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn doorwayWithDuration(sec: NSTimeInterval) -> Retained<SKTransition>;
 
         #[cfg(feature = "objc2-core-image")]
         #[cfg(not(target_os = "watchos"))]
-        #[method_id(transitionWithCIFilter:duration:)]
+        #[method(transitionWithCIFilter:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn transitionWithCIFilter_duration(
             filter: &CIFilter,
@@ -138,18 +138,22 @@ extern_methods!(
 
         /// Pause the incoming Scene during the transition, defaults to YES.
         #[method(pausesIncomingScene)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pausesIncomingScene(&self) -> bool;
 
         /// Setter for [`pausesIncomingScene`][Self::pausesIncomingScene].
         #[method(setPausesIncomingScene:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPausesIncomingScene(&self, pauses_incoming_scene: bool);
 
         /// Pause the outgoing Scene during the transition, defaults to YES.
         #[method(pausesOutgoingScene)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pausesOutgoingScene(&self) -> bool;
 
         /// Setter for [`pausesOutgoingScene`][Self::pausesOutgoingScene].
         #[method(setPausesOutgoingScene:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPausesOutgoingScene(&self, pauses_outgoing_scene: bool);
     }
 );
@@ -157,11 +161,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKTransition {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

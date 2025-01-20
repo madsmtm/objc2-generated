@@ -16,6 +16,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(textPasteConfigurationSupporting:transformPasteItem:)]
+        #[unsafe(method_family = none)]
         unsafe fn textPasteConfigurationSupporting_transformPasteItem(
             &self,
             text_paste_configuration_supporting: &ProtocolObject<
@@ -30,7 +31,7 @@ extern_protocol!(
             feature = "UITextPasteConfigurationSupporting"
         ))]
         #[optional]
-        #[method_id(textPasteConfigurationSupporting:combineItemAttributedStrings:forRange:)]
+        #[method(textPasteConfigurationSupporting:combineItemAttributedStrings:forRange:)]
         #[unsafe(method_family = none)]
         unsafe fn textPasteConfigurationSupporting_combineItemAttributedStrings_forRange(
             &self,
@@ -47,7 +48,7 @@ extern_protocol!(
             feature = "UITextPasteConfigurationSupporting"
         ))]
         #[optional]
-        #[method_id(textPasteConfigurationSupporting:performPasteOfAttributedString:toRange:)]
+        #[method(textPasteConfigurationSupporting:performPasteOfAttributedString:toRange:)]
         #[unsafe(method_family = none)]
         unsafe fn textPasteConfigurationSupporting_performPasteOfAttributedString_toRange(
             &self,
@@ -65,6 +66,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(textPasteConfigurationSupporting:shouldAnimatePasteOfAttributedString:toRange:)]
+        #[unsafe(method_family = none)]
         unsafe fn textPasteConfigurationSupporting_shouldAnimatePasteOfAttributedString_toRange(
             &self,
             text_paste_configuration_supporting: &ProtocolObject<
@@ -79,34 +81,39 @@ extern_protocol!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextpasteitem?language=objc)
     pub unsafe trait UITextPasteItem: NSObjectProtocol + MainThreadOnly {
-        #[method_id(itemProvider)]
+        #[method(itemProvider)]
         #[unsafe(method_family = none)]
         unsafe fn itemProvider(&self) -> Retained<NSItemProvider>;
 
-        #[method_id(localObject)]
+        #[method(localObject)]
         #[unsafe(method_family = none)]
         unsafe fn localObject(&self) -> Option<Retained<AnyObject>>;
 
-        #[method_id(defaultAttributes)]
+        #[method(defaultAttributes)]
         #[unsafe(method_family = none)]
         unsafe fn defaultAttributes(
             &self,
         ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         #[method(setStringResult:)]
+        #[unsafe(method_family = none)]
         unsafe fn setStringResult(&self, string: &NSString);
 
         #[method(setAttributedStringResult:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAttributedStringResult(&self, string: &NSAttributedString);
 
         #[cfg(feature = "NSTextAttachment")]
         #[method(setAttachmentResult:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAttachmentResult(&self, text_attachment: &NSTextAttachment);
 
         #[method(setNoResult)]
+        #[unsafe(method_family = none)]
         unsafe fn setNoResult(&self);
 
         #[method(setDefaultResult)]
+        #[unsafe(method_family = none)]
         unsafe fn setDefaultResult(&self);
     }
 );

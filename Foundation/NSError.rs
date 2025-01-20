@@ -146,7 +146,7 @@ unsafe impl NSSecureCoding for NSError {}
 extern_methods!(
     unsafe impl NSError {
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        #[method_id(initWithDomain:code:userInfo:)]
+        #[method(initWithDomain:code:userInfo:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDomain_code_userInfo(
             this: Allocated<Self>,
@@ -156,7 +156,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        #[method_id(errorWithDomain:code:userInfo:)]
+        #[method(errorWithDomain:code:userInfo:)]
         #[unsafe(method_family = none)]
         pub unsafe fn errorWithDomain_code_userInfo(
             domain: &NSErrorDomain,
@@ -165,54 +165,56 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(domain)]
+        #[method(domain)]
         #[unsafe(method_family = none)]
         pub fn domain(&self) -> Retained<NSErrorDomain>;
 
         #[method(code)]
+        #[unsafe(method_family = none)]
         pub fn code(&self) -> NSInteger;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        #[method_id(userInfo)]
+        #[method(userInfo)]
         #[unsafe(method_family = none)]
         pub fn userInfo(&self) -> Retained<NSDictionary<NSErrorUserInfoKey, AnyObject>>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(localizedDescription)]
+        #[method(localizedDescription)]
         #[unsafe(method_family = none)]
         pub fn localizedDescription(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(localizedFailureReason)]
+        #[method(localizedFailureReason)]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedFailureReason(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(localizedRecoverySuggestion)]
+        #[method(localizedRecoverySuggestion)]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedRecoverySuggestion(&self) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[method_id(localizedRecoveryOptions)]
+        #[method(localizedRecoveryOptions)]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedRecoveryOptions(&self) -> Option<Retained<NSArray<NSString>>>;
 
-        #[method_id(recoveryAttempter)]
+        #[method(recoveryAttempter)]
         #[unsafe(method_family = none)]
         pub unsafe fn recoveryAttempter(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(helpAnchor)]
+        #[method(helpAnchor)]
         #[unsafe(method_family = none)]
         pub unsafe fn helpAnchor(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSArray")]
-        #[method_id(underlyingErrors)]
+        #[method(underlyingErrors)]
         #[unsafe(method_family = none)]
         pub unsafe fn underlyingErrors(&self) -> Retained<NSArray<NSError>>;
 
         #[cfg(all(feature = "NSString", feature = "block2"))]
         #[method(setUserInfoValueProviderForDomain:provider:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUserInfoValueProviderForDomain_provider(
             error_domain: &NSErrorDomain,
             provider: Option<
@@ -224,6 +226,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSString", feature = "block2"))]
         #[method(userInfoValueProviderForDomain:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn userInfoValueProviderForDomain(
             error_domain: &NSErrorDomain,
         ) -> *mut block2::Block<
@@ -235,7 +238,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSError {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -246,6 +249,7 @@ extern_category!(
     #[doc(alias = "NSErrorRecoveryAttempting")]
     pub unsafe trait NSObjectNSErrorRecoveryAttempting {
         #[method(attemptRecoveryFromError:optionIndex:delegate:didRecoverSelector:contextInfo:)]
+        #[unsafe(method_family = none)]
         unsafe fn attemptRecoveryFromError_optionIndex_delegate_didRecoverSelector_contextInfo(
             &self,
             error: &NSError,
@@ -256,6 +260,7 @@ extern_category!(
         );
 
         #[method(attemptRecoveryFromError:optionIndex:)]
+        #[unsafe(method_family = none)]
         unsafe fn attemptRecoveryFromError_optionIndex(
             &self,
             error: &NSError,

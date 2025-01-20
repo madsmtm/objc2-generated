@@ -17,6 +17,7 @@ extern_protocol!(
             feature = "block2"
         ))]
         #[method(restoreWindowWithIdentifier:state:completionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn restoreWindowWithIdentifier_state_completionHandler(
             identifier: &NSUserInterfaceItemIdentifier,
             state: &NSCoder,
@@ -45,6 +46,7 @@ extern_methods!(
             feature = "block2"
         ))]
         #[method(restoreWindowWithIdentifier:state:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn restoreWindowWithIdentifier_state_completionHandler(
             &self,
             identifier: &NSUserInterfaceItemIdentifier,
@@ -64,23 +66,29 @@ extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
     unsafe impl NSWindow {
         #[method(isRestorable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isRestorable(&self) -> bool;
 
         /// Setter for [`isRestorable`][Self::isRestorable].
         #[method(setRestorable:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRestorable(&self, restorable: bool);
 
         #[method(restorationClass)]
+        #[unsafe(method_family = none)]
         pub unsafe fn restorationClass(&self) -> Option<&'static AnyClass>;
 
         /// Setter for [`restorationClass`][Self::restorationClass].
         #[method(setRestorationClass:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRestorationClass(&self, restoration_class: Option<&AnyClass>);
 
         #[method(disableSnapshotRestoration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn disableSnapshotRestoration(&self);
 
         #[method(enableSnapshotRestoration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn enableSnapshotRestoration(&self);
     }
 );
@@ -90,9 +98,11 @@ extern_methods!(
     #[cfg(feature = "NSResponder")]
     unsafe impl NSResponder {
         #[method(encodeRestorableStateWithCoder:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeRestorableStateWithCoder(&self, coder: &NSCoder);
 
         #[method(encodeRestorableStateWithCoder:backgroundQueue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeRestorableStateWithCoder_backgroundQueue(
             &self,
             coder: &NSCoder,
@@ -100,18 +110,20 @@ extern_methods!(
         );
 
         #[method(restoreStateWithCoder:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn restoreStateWithCoder(&self, coder: &NSCoder);
 
         #[method(invalidateRestorableState)]
+        #[unsafe(method_family = none)]
         pub unsafe fn invalidateRestorableState(&self);
 
-        #[method_id(restorableStateKeyPaths)]
+        #[method(restorableStateKeyPaths)]
         #[unsafe(method_family = none)]
         pub unsafe fn restorableStateKeyPaths(mtm: MainThreadMarker)
             -> Retained<NSArray<NSString>>;
 
         /// When secure state restoration is used, values at restorableStateKeyPaths must support NSSecureCoding and this method will be consulted when restoring state. Any values not of an allowed class will not be set.
-        #[method_id(allowedClassesForRestorableStateKeyPath:)]
+        #[method(allowedClassesForRestorableStateKeyPath:)]
         #[unsafe(method_family = none)]
         pub unsafe fn allowedClassesForRestorableStateKeyPath(
             key_path: &NSString,
@@ -125,9 +137,11 @@ extern_methods!(
     #[cfg(all(feature = "NSApplication", feature = "NSResponder"))]
     unsafe impl NSApplication {
         #[method(extendStateRestoration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn extendStateRestoration(&self);
 
         #[method(completeStateRestoration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn completeStateRestoration(&self);
     }
 );
@@ -143,6 +157,7 @@ extern_methods!(
             feature = "block2"
         ))]
         #[method(restoreDocumentWindowWithIdentifier:state:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn restoreDocumentWindowWithIdentifier_state_completionHandler(
             &self,
             identifier: &NSUserInterfaceItemIdentifier,
@@ -151,9 +166,11 @@ extern_methods!(
         );
 
         #[method(encodeRestorableStateWithCoder:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeRestorableStateWithCoder(&self, coder: &NSCoder);
 
         #[method(encodeRestorableStateWithCoder:backgroundQueue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeRestorableStateWithCoder_backgroundQueue(
             &self,
             coder: &NSCoder,
@@ -161,17 +178,19 @@ extern_methods!(
         );
 
         #[method(restoreStateWithCoder:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn restoreStateWithCoder(&self, coder: &NSCoder);
 
         #[method(invalidateRestorableState)]
+        #[unsafe(method_family = none)]
         pub unsafe fn invalidateRestorableState(&self);
 
-        #[method_id(restorableStateKeyPaths)]
+        #[method(restorableStateKeyPaths)]
         #[unsafe(method_family = none)]
         pub unsafe fn restorableStateKeyPaths(mtm: MainThreadMarker)
             -> Retained<NSArray<NSString>>;
 
-        #[method_id(allowedClassesForRestorableStateKeyPath:)]
+        #[method(allowedClassesForRestorableStateKeyPath:)]
         #[unsafe(method_family = none)]
         pub unsafe fn allowedClassesForRestorableStateKeyPath(
             key_path: &NSString,

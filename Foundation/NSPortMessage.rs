@@ -18,7 +18,7 @@ unsafe impl NSObjectProtocol for NSPortMessage {}
 extern_methods!(
     unsafe impl NSPortMessage {
         #[cfg(all(feature = "NSArray", feature = "NSPort"))]
-        #[method_id(initWithSendPort:receivePort:components:)]
+        #[method(initWithSendPort:receivePort:components:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSendPort_receivePort_components(
             this: Allocated<Self>,
@@ -28,29 +28,32 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSArray")]
-        #[method_id(components)]
+        #[method(components)]
         #[unsafe(method_family = none)]
         pub unsafe fn components(&self) -> Option<Retained<NSArray>>;
 
         #[cfg(feature = "NSPort")]
-        #[method_id(receivePort)]
+        #[method(receivePort)]
         #[unsafe(method_family = none)]
         pub unsafe fn receivePort(&self) -> Option<Retained<NSPort>>;
 
         #[cfg(feature = "NSPort")]
-        #[method_id(sendPort)]
+        #[method(sendPort)]
         #[unsafe(method_family = none)]
         pub unsafe fn sendPort(&self) -> Option<Retained<NSPort>>;
 
         #[cfg(feature = "NSDate")]
         #[method(sendBeforeDate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sendBeforeDate(&self, date: &NSDate) -> bool;
 
         #[method(msgid)]
+        #[unsafe(method_family = none)]
         pub unsafe fn msgid(&self) -> u32;
 
         /// Setter for [`msgid`][Self::msgid].
         #[method(setMsgid:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMsgid(&self, msgid: u32);
     }
 );
@@ -58,11 +61,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPortMessage {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

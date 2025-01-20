@@ -25,82 +25,92 @@ extern_methods!(
     #[cfg(feature = "NSTouchBarItem")]
     unsafe impl NSPopoverTouchBarItem {
         #[cfg(feature = "NSTouchBar")]
-        #[method_id(popoverTouchBar)]
+        #[method(popoverTouchBar)]
         #[unsafe(method_family = none)]
         pub unsafe fn popoverTouchBar(&self) -> Retained<NSTouchBar>;
 
         #[cfg(feature = "NSTouchBar")]
         /// Setter for [`popoverTouchBar`][Self::popoverTouchBar].
         #[method(setPopoverTouchBar:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPopoverTouchBar(&self, popover_touch_bar: &NSTouchBar);
 
-        #[method_id(customizationLabel)]
+        #[method(customizationLabel)]
         #[unsafe(method_family = none)]
         pub unsafe fn customizationLabel(&self) -> Retained<NSString>;
 
         /// Setter for [`customizationLabel`][Self::customizationLabel].
         #[method(setCustomizationLabel:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCustomizationLabel(&self, customization_label: Option<&NSString>);
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-        #[method_id(collapsedRepresentation)]
+        #[method(collapsedRepresentation)]
         #[unsafe(method_family = none)]
         pub unsafe fn collapsedRepresentation(&self) -> Retained<NSView>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         /// Setter for [`collapsedRepresentation`][Self::collapsedRepresentation].
         #[method(setCollapsedRepresentation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCollapsedRepresentation(&self, collapsed_representation: &NSView);
 
         #[cfg(feature = "NSImage")]
-        #[method_id(collapsedRepresentationImage)]
+        #[method(collapsedRepresentationImage)]
         #[unsafe(method_family = none)]
         pub unsafe fn collapsedRepresentationImage(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
         /// Setter for [`collapsedRepresentationImage`][Self::collapsedRepresentationImage].
         #[method(setCollapsedRepresentationImage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCollapsedRepresentationImage(
             &self,
             collapsed_representation_image: Option<&NSImage>,
         );
 
-        #[method_id(collapsedRepresentationLabel)]
+        #[method(collapsedRepresentationLabel)]
         #[unsafe(method_family = none)]
         pub unsafe fn collapsedRepresentationLabel(&self) -> Retained<NSString>;
 
         /// Setter for [`collapsedRepresentationLabel`][Self::collapsedRepresentationLabel].
         #[method(setCollapsedRepresentationLabel:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCollapsedRepresentationLabel(
             &self,
             collapsed_representation_label: &NSString,
         );
 
         #[cfg(feature = "NSTouchBar")]
-        #[method_id(pressAndHoldTouchBar)]
+        #[method(pressAndHoldTouchBar)]
         #[unsafe(method_family = none)]
         pub unsafe fn pressAndHoldTouchBar(&self) -> Option<Retained<NSTouchBar>>;
 
         #[cfg(feature = "NSTouchBar")]
         /// Setter for [`pressAndHoldTouchBar`][Self::pressAndHoldTouchBar].
         #[method(setPressAndHoldTouchBar:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPressAndHoldTouchBar(&self, press_and_hold_touch_bar: Option<&NSTouchBar>);
 
         #[method(showsCloseButton)]
+        #[unsafe(method_family = none)]
         pub unsafe fn showsCloseButton(&self) -> bool;
 
         /// Setter for [`showsCloseButton`][Self::showsCloseButton].
         #[method(setShowsCloseButton:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShowsCloseButton(&self, shows_close_button: bool);
 
         #[method(showPopover:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn showPopover(&self, sender: Option<&AnyObject>);
 
         #[method(dismissPopover:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dismissPopover(&self, sender: Option<&AnyObject>);
 
         #[cfg(feature = "NSGestureRecognizer")]
-        #[method_id(makeStandardActivatePopoverGestureRecognizer)]
+        #[method(makeStandardActivatePopoverGestureRecognizer)]
         #[unsafe(method_family = none)]
         pub unsafe fn makeStandardActivatePopoverGestureRecognizer(
             &self,
@@ -112,21 +122,21 @@ extern_methods!(
     /// Methods declared on superclass `NSTouchBarItem`
     #[cfg(feature = "NSTouchBarItem")]
     unsafe impl NSPopoverTouchBarItem {
-        #[method_id(initWithIdentifier:)]
+        #[method(initWithIdentifier:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,
             identifier: &NSTouchBarItemIdentifier,
         ) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -136,7 +146,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSTouchBarItem")]
     unsafe impl NSPopoverTouchBarItem {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

@@ -15,7 +15,7 @@ extern_protocol!(
     {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[method_id(pickerView:accessibilityLabelForComponent:)]
+        #[method(pickerView:accessibilityLabelForComponent:)]
         #[unsafe(method_family = none)]
         unsafe fn pickerView_accessibilityLabelForComponent(
             &self,
@@ -25,7 +25,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[method_id(pickerView:accessibilityHintForComponent:)]
+        #[method(pickerView:accessibilityHintForComponent:)]
         #[unsafe(method_family = none)]
         unsafe fn pickerView_accessibilityHintForComponent(
             &self,
@@ -35,7 +35,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[method_id(pickerView:accessibilityUserInputLabelsForComponent:)]
+        #[method(pickerView:accessibilityUserInputLabelsForComponent:)]
         #[unsafe(method_family = none)]
         unsafe fn pickerView_accessibilityUserInputLabelsForComponent(
             &self,
@@ -45,7 +45,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[method_id(pickerView:accessibilityAttributedLabelForComponent:)]
+        #[method(pickerView:accessibilityAttributedLabelForComponent:)]
         #[unsafe(method_family = none)]
         unsafe fn pickerView_accessibilityAttributedLabelForComponent(
             &self,
@@ -55,7 +55,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[method_id(pickerView:accessibilityAttributedHintForComponent:)]
+        #[method(pickerView:accessibilityAttributedHintForComponent:)]
         #[unsafe(method_family = none)]
         unsafe fn pickerView_accessibilityAttributedHintForComponent(
             &self,
@@ -65,7 +65,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[method_id(pickerView:accessibilityAttributedUserInputLabelsForComponent:)]
+        #[method(pickerView:accessibilityAttributedUserInputLabelsForComponent:)]
         #[unsafe(method_family = none)]
         unsafe fn pickerView_accessibilityAttributedUserInputLabelsForComponent(
             &self,
@@ -83,7 +83,7 @@ extern_protocol!(
     {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[method_id(accessibilityScrollStatusForScrollView:)]
+        #[method(accessibilityScrollStatusForScrollView:)]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityScrollStatusForScrollView(
             &self,
@@ -92,7 +92,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[method_id(accessibilityAttributedScrollStatusForScrollView:)]
+        #[method(accessibilityAttributedScrollStatusForScrollView:)]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityAttributedScrollStatusForScrollView(
             &self,
@@ -106,10 +106,12 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIView {
         #[method(accessibilityIgnoresInvertColors)]
+        #[unsafe(method_family = none)]
         pub unsafe fn accessibilityIgnoresInvertColors(&self) -> bool;
 
         /// Setter for [`accessibilityIgnoresInvertColors`][Self::accessibilityIgnoresInvertColors].
         #[method(setAccessibilityIgnoresInvertColors:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAccessibilityIgnoresInvertColors(
             &self,
             accessibility_ignores_invert_colors: bool,
@@ -121,7 +123,7 @@ extern_methods!(
     /// UIAccessibility
     #[cfg(feature = "UIColor")]
     unsafe impl UIColor {
-        #[method_id(accessibilityName)]
+        #[method(accessibilityName)]
         #[unsafe(method_family = none)]
         pub unsafe fn accessibilityName(&self) -> Retained<NSString>;
     }

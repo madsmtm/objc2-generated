@@ -19,7 +19,7 @@ extern_methods!(
         /// - descending: If true, reverse the sort direction
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(sortWithTensor:axis:descending:name:)]
+        #[method(sortWithTensor:axis:descending:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn sortWithTensor_axis_descending_name(
             &self,
@@ -38,7 +38,7 @@ extern_methods!(
         /// - descending: If true, reverse the sort direction
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(sortWithTensor:axisTensor:descending:name:)]
+        #[method(sortWithTensor:axisTensor:descending:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn sortWithTensor_axisTensor_descending_name(
             &self,
@@ -56,7 +56,7 @@ extern_methods!(
         /// - axis: The tensor dimension over which you sort the tensor
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(sortWithTensor:axis:name:)]
+        #[method(sortWithTensor:axis:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn sortWithTensor_axis_name(
             &self,
@@ -73,7 +73,7 @@ extern_methods!(
         /// - axisTensor: The tensor dimension over which you sort the tensor
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(sortWithTensor:axisTensor:name:)]
+        #[method(sortWithTensor:axisTensor:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn sortWithTensor_axisTensor_name(
             &self,
@@ -91,7 +91,7 @@ extern_methods!(
         /// - descending: If true, reverse the sort direction
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object with 32-bit integer data type
-        #[method_id(argSortWithTensor:axis:descending:name:)]
+        #[method(argSortWithTensor:axis:descending:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn argSortWithTensor_axis_descending_name(
             &self,
@@ -110,7 +110,7 @@ extern_methods!(
         /// - descending: If true, reverse the sort direction
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object with 32-bit integer data type
-        #[method_id(argSortWithTensor:axisTensor:descending:name:)]
+        #[method(argSortWithTensor:axisTensor:descending:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn argSortWithTensor_axisTensor_descending_name(
             &self,
@@ -128,7 +128,7 @@ extern_methods!(
         /// - axis: The tensor dimension over which you sort the tensor
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object with 32-bit integer data type
-        #[method_id(argSortWithTensor:axis:name:)]
+        #[method(argSortWithTensor:axis:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn argSortWithTensor_axis_name(
             &self,
@@ -145,7 +145,7 @@ extern_methods!(
         /// - axisTensor: The tensor dimension over which you sort the tensor
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object with 32-bit integer data type
-        #[method_id(argSortWithTensor:axisTensor:name:)]
+        #[method(argSortWithTensor:axisTensor:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn argSortWithTensor_axisTensor_name(
             &self,

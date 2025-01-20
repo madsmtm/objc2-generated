@@ -53,12 +53,12 @@ unsafe impl NSObjectProtocol for HMHomeManager {}
 
 extern_methods!(
     unsafe impl HMHomeManager {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Delegate that receives updates on the collection of homes.
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -67,6 +67,7 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn HMHomeManagerDelegate>>,
@@ -76,12 +77,13 @@ extern_methods!(
         ///
         /// The authorization is managed by the system, there is no need to explicitly request authorization.
         #[method(authorizationStatus)]
+        #[unsafe(method_family = none)]
         pub unsafe fn authorizationStatus(&self) -> HMHomeManagerAuthorizationStatus;
 
         #[cfg(feature = "HMHome")]
         /// The primary home for this collection.
         #[deprecated = "No longer supported."]
-        #[method_id(primaryHome)]
+        #[method(primaryHome)]
         #[unsafe(method_family = none)]
         pub unsafe fn primaryHome(&self) -> Option<Retained<HMHome>>;
 
@@ -92,7 +94,7 @@ extern_methods!(
         /// When a new home manager is created, this array is initialized as an empty array. It is
         /// not guaranteed to be filled with the list of homes, represented as HMHome objects,
         /// until the homeManagerDidUpdateHomes: delegate method has been invoked.
-        #[method_id(homes)]
+        #[method(homes)]
         #[unsafe(method_family = none)]
         pub unsafe fn homes(&self) -> Retained<NSArray<HMHome>>;
 
@@ -108,6 +110,7 @@ extern_methods!(
         /// will be nil on success.
         #[deprecated = "No longer supported."]
         #[method(updatePrimaryHome:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updatePrimaryHome_completionHandler(
             &self,
             home: &HMHome,
@@ -125,6 +128,7 @@ extern_methods!(
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
         #[method(addHomeWithName:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addHomeWithName_completionHandler(
             &self,
             home_name: &NSString,
@@ -142,6 +146,7 @@ extern_methods!(
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
         #[method(removeHome:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeHome_completionHandler(
             &self,
             home: &HMHome,
@@ -153,7 +158,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HMHomeManager {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -172,6 +177,7 @@ extern_protocol!(
         /// Parameter `status`: The updated authorization status.
         #[optional]
         #[method(homeManager:didUpdateAuthorizationStatus:)]
+        #[unsafe(method_family = none)]
         unsafe fn homeManager_didUpdateAuthorizationStatus(
             &self,
             manager: &HMHomeManager,
@@ -189,6 +195,7 @@ extern_protocol!(
         /// Parameter `manager`: Sender of this message.
         #[optional]
         #[method(homeManagerDidUpdateHomes:)]
+        #[unsafe(method_family = none)]
         unsafe fn homeManagerDidUpdateHomes(&self, manager: &HMHomeManager);
 
         /// Informs the delegate when the primary home is modified.
@@ -197,6 +204,7 @@ extern_protocol!(
         /// Parameter `manager`: Sender of this message.
         #[optional]
         #[method(homeManagerDidUpdatePrimaryHome:)]
+        #[unsafe(method_family = none)]
         unsafe fn homeManagerDidUpdatePrimaryHome(&self, manager: &HMHomeManager);
 
         #[cfg(feature = "HMHome")]
@@ -209,6 +217,7 @@ extern_protocol!(
         /// Parameter `home`: New home that was added.
         #[optional]
         #[method(homeManager:didAddHome:)]
+        #[unsafe(method_family = none)]
         unsafe fn homeManager_didAddHome(&self, manager: &HMHomeManager, home: &HMHome);
 
         #[cfg(feature = "HMHome")]
@@ -221,6 +230,7 @@ extern_protocol!(
         /// Parameter `home`: Home that was removed.
         #[optional]
         #[method(homeManager:didRemoveHome:)]
+        #[unsafe(method_family = none)]
         unsafe fn homeManager_didRemoveHome(&self, manager: &HMHomeManager, home: &HMHome);
 
         #[cfg(feature = "HMAddAccessoryRequest")]
@@ -234,6 +244,7 @@ extern_protocol!(
         /// Parameter `request`: Information for the add accessory request.
         #[optional]
         #[method(homeManager:didReceiveAddAccessoryRequest:)]
+        #[unsafe(method_family = none)]
         unsafe fn homeManager_didReceiveAddAccessoryRequest(
             &self,
             manager: &HMHomeManager,

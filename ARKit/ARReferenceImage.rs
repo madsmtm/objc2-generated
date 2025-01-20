@@ -37,18 +37,20 @@ extern_methods!(
     unsafe impl ARReferenceImage {
         #[cfg(feature = "objc2-foundation")]
         /// An optional name used to identify the image.
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "objc2-foundation")]
         /// Setter for [`name`][Self::name].
         #[method(setName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The physical size of the image in meters.
         #[method(physicalSize)]
+        #[unsafe(method_family = none)]
         pub unsafe fn physicalSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-foundation")]
@@ -56,7 +58,7 @@ extern_methods!(
         ///
         /// If this image was loaded via an AR resource group in the Xcode asset catalogue this property will have the name of the resource group,
         /// else be set to nil.
-        #[method_id(resourceGroupName)]
+        #[method(resourceGroupName)]
         #[unsafe(method_family = none)]
         pub unsafe fn resourceGroupName(&self) -> Option<Retained<NSString>>;
 
@@ -69,6 +71,7 @@ extern_methods!(
         /// Parameter `completionHandler`: Completion handler invoked when validation is done. The completion handler takes the following parameters:
         /// error - An error that indicates why the image is not suitable for tracking, or nil if no error occurred.
         #[method(validateWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn validateWithCompletionHandler(
             &self,
             completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
@@ -83,7 +86,7 @@ extern_methods!(
         /// Parameter `bundle`: The bundle containing the image file or asset catalog. Specify nil to search the app’s main bundle.
         ///
         /// Returns: The set of reference images or nil on error.
-        #[method_id(referenceImagesInGroupNamed:bundle:)]
+        #[method(referenceImagesInGroupNamed:bundle:)]
         #[unsafe(method_family = none)]
         pub unsafe fn referenceImagesInGroupNamed_bundle(
             name: &NSString,
@@ -91,11 +94,11 @@ extern_methods!(
         ) -> Option<Retained<NSSet<ARReferenceImage>>>;
 
         /// Unavailable
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

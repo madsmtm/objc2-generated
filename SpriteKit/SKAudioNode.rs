@@ -62,14 +62,14 @@ extern_methods!(
         /// Creates a SpriteKit scene graph audio node from the given AVAudioNode.
         ///
         /// See: AVAudioNode
-        #[method_id(initWithAVAudioNode:)]
+        #[method(initWithAVAudioNode:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAVAudioNode(
             this: Allocated<Self>,
             node: Option<&AVAudioNode>,
         ) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -79,26 +79,27 @@ extern_methods!(
         /// Convenience initializer that creates an AVAudioNode from the named audio asset in the main bundle.
         ///
         /// See: initWithAVAudioNode
-        #[method_id(initWithFileNamed:)]
+        #[method(initWithFileNamed:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFileNamed(this: Allocated<Self>, name: &NSString) -> Retained<Self>;
 
         /// Convenience initializer that creates an AVAudioNode from the URL that contain a audio asset.
         ///
         /// See: initWithAVAudioNode
-        #[method_id(initWithURL:)]
+        #[method(initWithURL:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
         #[cfg(feature = "objc2-avf-audio")]
         /// Sets or gets the current AVAudioNode used by this instance.
-        #[method_id(avAudioNode)]
+        #[method(avAudioNode)]
         #[unsafe(method_family = none)]
         pub unsafe fn avAudioNode(&self) -> Option<Retained<AVAudioNode>>;
 
         #[cfg(feature = "objc2-avf-audio")]
         /// Setter for [`avAudioNode`][Self::avAudioNode].
         #[method(setAvAudioNode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAvAudioNode(&self, av_audio_node: Option<&AVAudioNode>);
 
         /// Specifies whether the node is to automatically play sound when added to a scene.
@@ -111,10 +112,12 @@ extern_methods!(
         ///
         /// See: SKView.paused
         #[method(autoplayLooped)]
+        #[unsafe(method_family = none)]
         pub unsafe fn autoplayLooped(&self) -> bool;
 
         /// Setter for [`autoplayLooped`][Self::autoplayLooped].
         #[method(setAutoplayLooped:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAutoplayLooped(&self, autoplay_looped: bool);
 
         /// Marks the audio source as positional so that the audio mix considers relative position and velocity
@@ -125,10 +128,12 @@ extern_methods!(
         ///
         /// See: SKScene.listener
         #[method(isPositional)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isPositional(&self) -> bool;
 
         /// Setter for [`isPositional`][Self::isPositional].
         #[method(setPositional:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPositional(&self, positional: bool);
     }
 );
@@ -138,22 +143,22 @@ extern_methods!(
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl SKAudioNode {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(node)]
+        #[method(node)]
         #[unsafe(method_family = none)]
         pub unsafe fn node(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(nodeWithFileNamed:)]
+        #[method(nodeWithFileNamed:)]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeWithFileNamed(
             filename: &NSString,
             mtm: MainThreadMarker,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(nodeWithFileNamed:securelyWithClasses:andError:_)]
+        #[method(nodeWithFileNamed:securelyWithClasses:andError:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeWithFileNamed_securelyWithClasses_andError(
             filename: &NSString,
@@ -168,7 +173,7 @@ extern_methods!(
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl SKAudioNode {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -179,56 +184,56 @@ extern_methods!(
     /// Actions that are to be used with audio nodes.
     #[cfg(feature = "SKAction")]
     unsafe impl SKAction {
-        #[method_id(stereoPanTo:duration:)]
+        #[method(stereoPanTo:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn stereoPanTo_duration(
             v: c_float,
             duration: NSTimeInterval,
         ) -> Retained<SKAction>;
 
-        #[method_id(stereoPanBy:duration:)]
+        #[method(stereoPanBy:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn stereoPanBy_duration(
             v: c_float,
             duration: NSTimeInterval,
         ) -> Retained<SKAction>;
 
-        #[method_id(changeReverbTo:duration:)]
+        #[method(changeReverbTo:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn changeReverbTo_duration(
             v: c_float,
             duration: NSTimeInterval,
         ) -> Retained<SKAction>;
 
-        #[method_id(changeReverbBy:duration:)]
+        #[method(changeReverbBy:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn changeReverbBy_duration(
             v: c_float,
             duration: NSTimeInterval,
         ) -> Retained<SKAction>;
 
-        #[method_id(changeObstructionTo:duration:)]
+        #[method(changeObstructionTo:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn changeObstructionTo_duration(
             v: c_float,
             duration: NSTimeInterval,
         ) -> Retained<SKAction>;
 
-        #[method_id(changeObstructionBy:duration:)]
+        #[method(changeObstructionBy:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn changeObstructionBy_duration(
             v: c_float,
             duration: NSTimeInterval,
         ) -> Retained<SKAction>;
 
-        #[method_id(changeOcclusionTo:duration:)]
+        #[method(changeOcclusionTo:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn changeOcclusionTo_duration(
             v: c_float,
             duration: NSTimeInterval,
         ) -> Retained<SKAction>;
 
-        #[method_id(changeOcclusionBy:duration:)]
+        #[method(changeOcclusionBy:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn changeOcclusionBy_duration(
             v: c_float,

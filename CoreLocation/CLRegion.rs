@@ -75,7 +75,7 @@ extern_methods!(
     unsafe impl CLRegion {
         #[cfg(feature = "CLLocation")]
         #[deprecated = "Please see CLCircularRegion"]
-        #[method_id(initCircularRegionWithCenter:radius:identifier:)]
+        #[method(initCircularRegionWithCenter:radius:identifier:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initCircularRegionWithCenter_radius_identifier(
             this: Allocated<Self>,
@@ -87,34 +87,41 @@ extern_methods!(
         #[cfg(feature = "CLLocation")]
         #[deprecated = "Please see CLCircularRegion"]
         #[method(center)]
+        #[unsafe(method_family = none)]
         pub unsafe fn center(&self) -> CLLocationCoordinate2D;
 
         #[cfg(feature = "CLLocation")]
         #[deprecated = "Please see CLCircularRegion"]
         #[method(radius)]
+        #[unsafe(method_family = none)]
         pub unsafe fn radius(&self) -> CLLocationDistance;
 
-        #[method_id(identifier)]
+        #[method(identifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         #[method(notifyOnEntry)]
+        #[unsafe(method_family = none)]
         pub unsafe fn notifyOnEntry(&self) -> bool;
 
         /// Setter for [`notifyOnEntry`][Self::notifyOnEntry].
         #[method(setNotifyOnEntry:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setNotifyOnEntry(&self, notify_on_entry: bool);
 
         #[method(notifyOnExit)]
+        #[unsafe(method_family = none)]
         pub unsafe fn notifyOnExit(&self) -> bool;
 
         /// Setter for [`notifyOnExit`][Self::notifyOnExit].
         #[method(setNotifyOnExit:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setNotifyOnExit(&self, notify_on_exit: bool);
 
         #[cfg(feature = "CLLocation")]
         #[deprecated = "Please see CLCircularRegion"]
         #[method(containsCoordinate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn containsCoordinate(&self, coordinate: CLLocationCoordinate2D) -> bool;
     }
 );
@@ -122,11 +129,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CLRegion {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

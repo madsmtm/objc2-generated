@@ -11,12 +11,12 @@ extern_methods!(
     #[cfg(all(feature = "NSApplication", feature = "NSResponder"))]
     unsafe impl NSApplication {
         #[cfg(feature = "NSDocument")]
-        #[method_id(orderedDocuments)]
+        #[method(orderedDocuments)]
         #[unsafe(method_family = none)]
         pub unsafe fn orderedDocuments(&self) -> Retained<NSArray<NSDocument>>;
 
         #[cfg(feature = "NSWindow")]
-        #[method_id(orderedWindows)]
+        #[method(orderedWindows)]
         #[unsafe(method_family = none)]
         pub unsafe fn orderedWindows(&self) -> Retained<NSArray<NSWindow>>;
     }

@@ -11,7 +11,7 @@ extern_methods!(
     #[cfg(feature = "AVAudioSession")]
     unsafe impl AVAudioSession {
         #[deprecated = "No longer supported"]
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -20,6 +20,7 @@ extern_methods!(
         /// Setter for [`delegate`][Self::delegate].
         #[deprecated = "No longer supported"]
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn AVAudioSessionDelegate>>,
@@ -27,6 +28,7 @@ extern_methods!(
 
         #[deprecated]
         #[method(setActive:withFlags:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setActive_withFlags_error(
             &self,
             active: bool,
@@ -35,22 +37,27 @@ extern_methods!(
 
         #[deprecated]
         #[method(inputIsAvailable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn inputIsAvailable(&self) -> bool;
 
         #[deprecated]
         #[method(currentHardwareSampleRate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn currentHardwareSampleRate(&self) -> c_double;
 
         #[deprecated]
         #[method(currentHardwareInputNumberOfChannels)]
+        #[unsafe(method_family = none)]
         pub unsafe fn currentHardwareInputNumberOfChannels(&self) -> NSInteger;
 
         #[deprecated]
         #[method(currentHardwareOutputNumberOfChannels)]
+        #[unsafe(method_family = none)]
         pub unsafe fn currentHardwareOutputNumberOfChannels(&self) -> NSInteger;
 
         #[deprecated]
         #[method(setPreferredHardwareSampleRate:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreferredHardwareSampleRate_error(
             &self,
             sample_rate: c_double,
@@ -58,6 +65,7 @@ extern_methods!(
 
         #[deprecated]
         #[method(preferredHardwareSampleRate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preferredHardwareSampleRate(&self) -> c_double;
     }
 );
@@ -69,20 +77,24 @@ extern_protocol!(
         #[deprecated = "No longer supported"]
         #[optional]
         #[method(beginInterruption)]
+        #[unsafe(method_family = none)]
         unsafe fn beginInterruption(&self);
 
         #[optional]
         #[method(endInterruptionWithFlags:)]
+        #[unsafe(method_family = none)]
         unsafe fn endInterruptionWithFlags(&self, flags: NSUInteger);
 
         #[deprecated = "No longer supported"]
         #[optional]
         #[method(endInterruption)]
+        #[unsafe(method_family = none)]
         unsafe fn endInterruption(&self);
 
         #[deprecated = "No longer supported"]
         #[optional]
         #[method(inputIsAvailableChanged:)]
+        #[unsafe(method_family = none)]
         unsafe fn inputIsAvailableChanged(&self, is_input_available: bool);
     }
 );

@@ -62,6 +62,7 @@ extern_methods!(
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectFaceLandmarksRequest {
         #[method(revision:supportsConstellation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn revision_supportsConstellation(
             request_revision: NSUInteger,
             constellation: VNRequestFaceLandmarksConstellation,
@@ -69,15 +70,17 @@ extern_methods!(
 
         /// Constellation type defines how many landmark points are used to map a face. Revisions 1, 2, and 3 of the request support 65 points, where Revision 3 also supports 76 points.
         #[method(constellation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn constellation(&self) -> VNRequestFaceLandmarksConstellation;
 
         /// Setter for [`constellation`][Self::constellation].
         #[method(setConstellation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setConstellation(&self, constellation: VNRequestFaceLandmarksConstellation);
 
         #[cfg(feature = "VNObservation")]
         /// VNFaceObservation with populated landmarks-related properties results.
-        #[method_id(results)]
+        #[method(results)]
         #[unsafe(method_family = none)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNFaceObservation>>>;
     }
@@ -88,7 +91,7 @@ extern_methods!(
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectFaceLandmarksRequest {
         /// Creates a new VNRequest with no completion handler.
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -97,7 +100,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
-        #[method_id(initWithCompletionHandler:)]
+        #[method(initWithCompletionHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
@@ -110,7 +113,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectFaceLandmarksRequest {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -44,7 +44,7 @@ unsafe impl NSObjectProtocol for AMAction {}
 
 extern_methods!(
     unsafe impl AMAction {
-        #[method_id(initWithDefinition:fromArchive:)]
+        #[method(initWithDefinition:fromArchive:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDefinition_fromArchive(
             this: Allocated<Self>,
@@ -52,47 +52,52 @@ extern_methods!(
             archived: bool,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(initWithContentsOfURL:error:_)]
+        #[method(initWithContentsOfURL:error:_)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL_error(
             this: Allocated<Self>,
             file_url: &NSURL,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[method(ignoresInput)]
+        #[unsafe(method_family = none)]
         pub unsafe fn ignoresInput(&self) -> bool;
 
-        #[method_id(selectedInputType)]
+        #[method(selectedInputType)]
         #[unsafe(method_family = none)]
         pub unsafe fn selectedInputType(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`selectedInputType`][Self::selectedInputType].
         #[method(setSelectedInputType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSelectedInputType(&self, selected_input_type: Option<&NSString>);
 
-        #[method_id(selectedOutputType)]
+        #[method(selectedOutputType)]
         #[unsafe(method_family = none)]
         pub unsafe fn selectedOutputType(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`selectedOutputType`][Self::selectedOutputType].
         #[method(setSelectedOutputType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSelectedOutputType(&self, selected_output_type: Option<&NSString>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(progressValue)]
+        #[unsafe(method_family = none)]
         pub unsafe fn progressValue(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`progressValue`][Self::progressValue].
         #[method(setProgressValue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setProgressValue(&self, progress_value: CGFloat);
 
         #[deprecated]
-        #[method_id(runWithInput:fromAction:error:)]
+        #[method(runWithInput:fromAction:error:)]
         #[unsafe(method_family = none)]
         pub unsafe fn runWithInput_fromAction_error(
             &self,
@@ -101,7 +106,7 @@ extern_methods!(
             error_info: Option<&mut Option<Retained<NSDictionary<NSString, AnyObject>>>>,
         ) -> Option<Retained<AnyObject>>;
 
-        #[method_id(runWithInput:error:_)]
+        #[method(runWithInput:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn runWithInput_error(
             &self,
@@ -109,57 +114,71 @@ extern_methods!(
         ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
         #[method(runAsynchronouslyWithInput:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn runAsynchronouslyWithInput(&self, input: Option<&AnyObject>);
 
         #[method(willFinishRunning)]
+        #[unsafe(method_family = none)]
         pub unsafe fn willFinishRunning(&self);
 
         #[deprecated]
         #[method(didFinishRunningWithError:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn didFinishRunningWithError(
             &self,
             error_info: Option<&NSDictionary<NSString, AnyObject>>,
         );
 
         #[method(finishRunningWithError:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn finishRunningWithError(&self, error: Option<&NSError>);
 
-        #[method_id(output)]
+        #[method(output)]
         #[unsafe(method_family = none)]
         pub unsafe fn output(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`output`][Self::output].
         #[method(setOutput:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setOutput(&self, output: Option<&AnyObject>);
 
         #[method(stop)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stop(&self);
 
         #[method(reset)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reset(&self);
 
         #[method(writeToDictionary:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn writeToDictionary(
             &self,
             dictionary: &NSMutableDictionary<NSString, AnyObject>,
         );
 
         #[method(opened)]
+        #[unsafe(method_family = none)]
         pub unsafe fn opened(&self);
 
         #[method(activated)]
+        #[unsafe(method_family = none)]
         pub unsafe fn activated(&self);
 
         #[method(closed)]
+        #[unsafe(method_family = none)]
         pub unsafe fn closed(&self);
 
         #[method(updateParameters)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updateParameters(&self);
 
         #[method(parametersUpdated)]
+        #[unsafe(method_family = none)]
         pub unsafe fn parametersUpdated(&self);
 
         #[method(isStopped)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isStopped(&self) -> bool;
     }
 );
@@ -167,11 +186,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AMAction {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

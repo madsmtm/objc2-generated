@@ -52,188 +52,210 @@ extern_methods!(
     #[cfg(feature = "CNContact")]
     unsafe impl CNMutableContact {
         #[method(contactType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contactType(&self) -> CNContactType;
 
         /// Setter for [`contactType`][Self::contactType].
         #[method(setContactType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setContactType(&self, contact_type: CNContactType);
 
-        #[method_id(namePrefix)]
+        #[method(namePrefix)]
         #[unsafe(method_family = none)]
         pub unsafe fn namePrefix(&self) -> Retained<NSString>;
 
         /// Setter for [`namePrefix`][Self::namePrefix].
         #[method(setNamePrefix:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setNamePrefix(&self, name_prefix: &NSString);
 
-        #[method_id(givenName)]
+        #[method(givenName)]
         #[unsafe(method_family = none)]
         pub unsafe fn givenName(&self) -> Retained<NSString>;
 
         /// Setter for [`givenName`][Self::givenName].
         #[method(setGivenName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setGivenName(&self, given_name: &NSString);
 
-        #[method_id(middleName)]
+        #[method(middleName)]
         #[unsafe(method_family = none)]
         pub unsafe fn middleName(&self) -> Retained<NSString>;
 
         /// Setter for [`middleName`][Self::middleName].
         #[method(setMiddleName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMiddleName(&self, middle_name: &NSString);
 
-        #[method_id(familyName)]
+        #[method(familyName)]
         #[unsafe(method_family = none)]
         pub unsafe fn familyName(&self) -> Retained<NSString>;
 
         /// Setter for [`familyName`][Self::familyName].
         #[method(setFamilyName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFamilyName(&self, family_name: &NSString);
 
-        #[method_id(previousFamilyName)]
+        #[method(previousFamilyName)]
         #[unsafe(method_family = none)]
         pub unsafe fn previousFamilyName(&self) -> Retained<NSString>;
 
         /// Setter for [`previousFamilyName`][Self::previousFamilyName].
         #[method(setPreviousFamilyName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreviousFamilyName(&self, previous_family_name: &NSString);
 
-        #[method_id(nameSuffix)]
+        #[method(nameSuffix)]
         #[unsafe(method_family = none)]
         pub unsafe fn nameSuffix(&self) -> Retained<NSString>;
 
         /// Setter for [`nameSuffix`][Self::nameSuffix].
         #[method(setNameSuffix:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setNameSuffix(&self, name_suffix: &NSString);
 
-        #[method_id(nickname)]
+        #[method(nickname)]
         #[unsafe(method_family = none)]
         pub unsafe fn nickname(&self) -> Retained<NSString>;
 
         /// Setter for [`nickname`][Self::nickname].
         #[method(setNickname:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setNickname(&self, nickname: &NSString);
 
-        #[method_id(organizationName)]
+        #[method(organizationName)]
         #[unsafe(method_family = none)]
         pub unsafe fn organizationName(&self) -> Retained<NSString>;
 
         /// Setter for [`organizationName`][Self::organizationName].
         #[method(setOrganizationName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setOrganizationName(&self, organization_name: &NSString);
 
-        #[method_id(departmentName)]
+        #[method(departmentName)]
         #[unsafe(method_family = none)]
         pub unsafe fn departmentName(&self) -> Retained<NSString>;
 
         /// Setter for [`departmentName`][Self::departmentName].
         #[method(setDepartmentName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDepartmentName(&self, department_name: &NSString);
 
-        #[method_id(jobTitle)]
+        #[method(jobTitle)]
         #[unsafe(method_family = none)]
         pub unsafe fn jobTitle(&self) -> Retained<NSString>;
 
         /// Setter for [`jobTitle`][Self::jobTitle].
         #[method(setJobTitle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setJobTitle(&self, job_title: &NSString);
 
-        #[method_id(phoneticGivenName)]
+        #[method(phoneticGivenName)]
         #[unsafe(method_family = none)]
         pub unsafe fn phoneticGivenName(&self) -> Retained<NSString>;
 
         /// Setter for [`phoneticGivenName`][Self::phoneticGivenName].
         #[method(setPhoneticGivenName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPhoneticGivenName(&self, phonetic_given_name: &NSString);
 
-        #[method_id(phoneticMiddleName)]
+        #[method(phoneticMiddleName)]
         #[unsafe(method_family = none)]
         pub unsafe fn phoneticMiddleName(&self) -> Retained<NSString>;
 
         /// Setter for [`phoneticMiddleName`][Self::phoneticMiddleName].
         #[method(setPhoneticMiddleName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPhoneticMiddleName(&self, phonetic_middle_name: &NSString);
 
-        #[method_id(phoneticFamilyName)]
+        #[method(phoneticFamilyName)]
         #[unsafe(method_family = none)]
         pub unsafe fn phoneticFamilyName(&self) -> Retained<NSString>;
 
         /// Setter for [`phoneticFamilyName`][Self::phoneticFamilyName].
         #[method(setPhoneticFamilyName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPhoneticFamilyName(&self, phonetic_family_name: &NSString);
 
-        #[method_id(phoneticOrganizationName)]
+        #[method(phoneticOrganizationName)]
         #[unsafe(method_family = none)]
         pub unsafe fn phoneticOrganizationName(&self) -> Retained<NSString>;
 
         /// Setter for [`phoneticOrganizationName`][Self::phoneticOrganizationName].
         #[method(setPhoneticOrganizationName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPhoneticOrganizationName(&self, phonetic_organization_name: &NSString);
 
-        #[method_id(note)]
+        #[method(note)]
         #[unsafe(method_family = none)]
         pub unsafe fn note(&self) -> Retained<NSString>;
 
         /// Setter for [`note`][Self::note].
         #[method(setNote:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setNote(&self, note: &NSString);
 
-        #[method_id(imageData)]
+        #[method(imageData)]
         #[unsafe(method_family = none)]
         pub unsafe fn imageData(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`imageData`][Self::imageData].
         #[method(setImageData:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setImageData(&self, image_data: Option<&NSData>);
 
         #[cfg(all(feature = "CNLabeledValue", feature = "CNPhoneNumber"))]
-        #[method_id(phoneNumbers)]
+        #[method(phoneNumbers)]
         #[unsafe(method_family = none)]
         pub unsafe fn phoneNumbers(&self) -> Retained<NSArray<CNLabeledValue<CNPhoneNumber>>>;
 
         #[cfg(all(feature = "CNLabeledValue", feature = "CNPhoneNumber"))]
         /// Setter for [`phoneNumbers`][Self::phoneNumbers].
         #[method(setPhoneNumbers:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPhoneNumbers(
             &self,
             phone_numbers: &NSArray<CNLabeledValue<CNPhoneNumber>>,
         );
 
         #[cfg(feature = "CNLabeledValue")]
-        #[method_id(emailAddresses)]
+        #[method(emailAddresses)]
         #[unsafe(method_family = none)]
         pub unsafe fn emailAddresses(&self) -> Retained<NSArray<CNLabeledValue<NSString>>>;
 
         #[cfg(feature = "CNLabeledValue")]
         /// Setter for [`emailAddresses`][Self::emailAddresses].
         #[method(setEmailAddresses:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setEmailAddresses(&self, email_addresses: &NSArray<CNLabeledValue<NSString>>);
 
         #[cfg(all(feature = "CNLabeledValue", feature = "CNPostalAddress"))]
-        #[method_id(postalAddresses)]
+        #[method(postalAddresses)]
         #[unsafe(method_family = none)]
         pub unsafe fn postalAddresses(&self) -> Retained<NSArray<CNLabeledValue<CNPostalAddress>>>;
 
         #[cfg(all(feature = "CNLabeledValue", feature = "CNPostalAddress"))]
         /// Setter for [`postalAddresses`][Self::postalAddresses].
         #[method(setPostalAddresses:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPostalAddresses(
             &self,
             postal_addresses: &NSArray<CNLabeledValue<CNPostalAddress>>,
         );
 
         #[cfg(feature = "CNLabeledValue")]
-        #[method_id(urlAddresses)]
+        #[method(urlAddresses)]
         #[unsafe(method_family = none)]
         pub unsafe fn urlAddresses(&self) -> Retained<NSArray<CNLabeledValue<NSString>>>;
 
         #[cfg(feature = "CNLabeledValue")]
         /// Setter for [`urlAddresses`][Self::urlAddresses].
         #[method(setUrlAddresses:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUrlAddresses(&self, url_addresses: &NSArray<CNLabeledValue<NSString>>);
 
         #[cfg(all(feature = "CNContactRelation", feature = "CNLabeledValue"))]
-        #[method_id(contactRelations)]
+        #[method(contactRelations)]
         #[unsafe(method_family = none)]
         pub unsafe fn contactRelations(
             &self,
@@ -242,26 +264,28 @@ extern_methods!(
         #[cfg(all(feature = "CNContactRelation", feature = "CNLabeledValue"))]
         /// Setter for [`contactRelations`][Self::contactRelations].
         #[method(setContactRelations:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setContactRelations(
             &self,
             contact_relations: &NSArray<CNLabeledValue<CNContactRelation>>,
         );
 
         #[cfg(all(feature = "CNLabeledValue", feature = "CNSocialProfile"))]
-        #[method_id(socialProfiles)]
+        #[method(socialProfiles)]
         #[unsafe(method_family = none)]
         pub unsafe fn socialProfiles(&self) -> Retained<NSArray<CNLabeledValue<CNSocialProfile>>>;
 
         #[cfg(all(feature = "CNLabeledValue", feature = "CNSocialProfile"))]
         /// Setter for [`socialProfiles`][Self::socialProfiles].
         #[method(setSocialProfiles:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSocialProfiles(
             &self,
             social_profiles: &NSArray<CNLabeledValue<CNSocialProfile>>,
         );
 
         #[cfg(all(feature = "CNInstantMessageAddress", feature = "CNLabeledValue"))]
-        #[method_id(instantMessageAddresses)]
+        #[method(instantMessageAddresses)]
         #[unsafe(method_family = none)]
         pub unsafe fn instantMessageAddresses(
             &self,
@@ -270,6 +294,7 @@ extern_methods!(
         #[cfg(all(feature = "CNInstantMessageAddress", feature = "CNLabeledValue"))]
         /// Setter for [`instantMessageAddresses`][Self::instantMessageAddresses].
         #[method(setInstantMessageAddresses:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setInstantMessageAddresses(
             &self,
             instant_message_addresses: &NSArray<CNLabeledValue<CNInstantMessageAddress>>,
@@ -278,23 +303,25 @@ extern_methods!(
         /// The Gregorian birthday.
         ///
         /// Only uses day, month and year components. Needs to have at least a day and a month.
-        #[method_id(birthday)]
+        #[method(birthday)]
         #[unsafe(method_family = none)]
         pub unsafe fn birthday(&self) -> Option<Retained<NSDateComponents>>;
 
         /// Setter for [`birthday`][Self::birthday].
         #[method(setBirthday:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBirthday(&self, birthday: Option<&NSDateComponents>);
 
         /// The alternate birthday (Lunisolar).
         ///
         /// Only uses day, month, year and calendar components. Needs to have at least a day and a month. Calendar must be Chinese, Hebrew or Islamic.
-        #[method_id(nonGregorianBirthday)]
+        #[method(nonGregorianBirthday)]
         #[unsafe(method_family = none)]
         pub unsafe fn nonGregorianBirthday(&self) -> Option<Retained<NSDateComponents>>;
 
         /// Setter for [`nonGregorianBirthday`][Self::nonGregorianBirthday].
         #[method(setNonGregorianBirthday:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setNonGregorianBirthday(
             &self,
             non_gregorian_birthday: Option<&NSDateComponents>,
@@ -304,13 +331,14 @@ extern_methods!(
         /// Other Gregorian dates (anniversaries, etc).
         ///
         /// Only uses day, month and year components. Needs to have at least a day and a month.
-        #[method_id(dates)]
+        #[method(dates)]
         #[unsafe(method_family = none)]
         pub unsafe fn dates(&self) -> Retained<NSArray<CNLabeledValue<NSDateComponents>>>;
 
         #[cfg(feature = "CNLabeledValue")]
         /// Setter for [`dates`][Self::dates].
         #[method(setDates:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDates(&self, dates: &NSArray<CNLabeledValue<NSDateComponents>>);
     }
 );
@@ -319,11 +347,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CNContact")]
     unsafe impl CNMutableContact {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

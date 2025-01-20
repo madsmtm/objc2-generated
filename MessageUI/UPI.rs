@@ -32,6 +32,7 @@ extern_methods!(
         ///
         /// Parameter `completion`: A block invoked with a BOOL of whether the message was actually sent.
         #[method(setUPIVerificationCodeSendCompletion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUPIVerificationCodeSendCompletion(
             &self,
             completion: &block2::Block<dyn Fn(Bool)>,

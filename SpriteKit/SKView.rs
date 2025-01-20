@@ -63,70 +63,88 @@ extern_methods!(
     unsafe impl SKView {
         /// Pause the entire view
         #[method(isPaused)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isPaused(&self) -> bool;
 
         /// Setter for [`isPaused`][Self::isPaused].
         #[method(setPaused:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPaused(&self, paused: bool);
 
         /// Toggles display of performance stats in the view. All default to false.
         #[method(showsFPS)]
+        #[unsafe(method_family = none)]
         pub unsafe fn showsFPS(&self) -> bool;
 
         /// Setter for [`showsFPS`][Self::showsFPS].
         #[method(setShowsFPS:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShowsFPS(&self, shows_fps: bool);
 
         #[method(showsDrawCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn showsDrawCount(&self) -> bool;
 
         /// Setter for [`showsDrawCount`][Self::showsDrawCount].
         #[method(setShowsDrawCount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShowsDrawCount(&self, shows_draw_count: bool);
 
         #[method(showsNodeCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn showsNodeCount(&self) -> bool;
 
         /// Setter for [`showsNodeCount`][Self::showsNodeCount].
         #[method(setShowsNodeCount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShowsNodeCount(&self, shows_node_count: bool);
 
         #[method(showsQuadCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn showsQuadCount(&self) -> bool;
 
         /// Setter for [`showsQuadCount`][Self::showsQuadCount].
         #[method(setShowsQuadCount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShowsQuadCount(&self, shows_quad_count: bool);
 
         #[method(showsPhysics)]
+        #[unsafe(method_family = none)]
         pub unsafe fn showsPhysics(&self) -> bool;
 
         /// Setter for [`showsPhysics`][Self::showsPhysics].
         #[method(setShowsPhysics:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShowsPhysics(&self, shows_physics: bool);
 
         #[method(showsFields)]
+        #[unsafe(method_family = none)]
         pub unsafe fn showsFields(&self) -> bool;
 
         /// Setter for [`showsFields`][Self::showsFields].
         #[method(setShowsFields:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShowsFields(&self, shows_fields: bool);
 
         /// Toggles whether the view updates is rendered asynchronously or aligned with Core Animation updates. Defaults to YES.
         #[method(isAsynchronous)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isAsynchronous(&self) -> bool;
 
         /// Setter for [`isAsynchronous`][Self::isAsynchronous].
         #[method(setAsynchronous:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAsynchronous(&self, asynchronous: bool);
 
         /// Toggles whether the view allows transparent rendering. This allows content under the view to show through if
         /// a non-opaque backgroundColor is set on the scene. Defaults to NO.
         #[method(allowsTransparency)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowsTransparency(&self) -> bool;
 
         /// Setter for [`allowsTransparency`][Self::allowsTransparency].
         #[method(setAllowsTransparency:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAllowsTransparency(&self, allows_transparency: bool);
 
         /// Ignores sibling and traversal order to sort the rendered contents of a scene into the most efficient batching possible.
@@ -137,59 +155,72 @@ extern_methods!(
         /// Setting this to YES for a complex scene may substantially increase performance, but care must be taken as only zPosition
         /// determines render order before the efficiency heuristics are used.
         #[method(ignoresSiblingOrder)]
+        #[unsafe(method_family = none)]
         pub unsafe fn ignoresSiblingOrder(&self) -> bool;
 
         /// Setter for [`ignoresSiblingOrder`][Self::ignoresSiblingOrder].
         #[method(setIgnoresSiblingOrder:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIgnoresSiblingOrder(&self, ignores_sibling_order: bool);
 
         #[method(shouldCullNonVisibleNodes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shouldCullNonVisibleNodes(&self) -> bool;
 
         /// Setter for [`shouldCullNonVisibleNodes`][Self::shouldCullNonVisibleNodes].
         #[method(setShouldCullNonVisibleNodes:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShouldCullNonVisibleNodes(&self, should_cull_non_visible_nodes: bool);
 
         #[method(preferredFramesPerSecond)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preferredFramesPerSecond(&self) -> NSInteger;
 
         /// Setter for [`preferredFramesPerSecond`][Self::preferredFramesPerSecond].
         #[method(setPreferredFramesPerSecond:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreferredFramesPerSecond(&self, preferred_frames_per_second: NSInteger);
 
         #[method(disableDepthStencilBuffer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn disableDepthStencilBuffer(&self) -> bool;
 
         /// Setter for [`disableDepthStencilBuffer`][Self::disableDepthStencilBuffer].
         #[method(setDisableDepthStencilBuffer:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDisableDepthStencilBuffer(&self, disable_depth_stencil_buffer: bool);
 
         /// Optional view delegate, see SKViewDelegate.
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<NSObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&NSObject>);
 
         #[deprecated]
         #[method(frameInterval)]
+        #[unsafe(method_family = none)]
         pub unsafe fn frameInterval(&self) -> NSInteger;
 
         /// Setter for [`frameInterval`][Self::frameInterval].
         #[deprecated]
         #[method(setFrameInterval:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFrameInterval(&self, frame_interval: NSInteger);
 
         #[deprecated]
         #[method(preferredFrameRate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preferredFrameRate(&self) -> c_float;
 
         /// Setter for [`preferredFrameRate`][Self::preferredFrameRate].
         #[deprecated]
         #[method(setPreferredFrameRate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreferredFrameRate(&self, preferred_frame_rate: c_float);
 
         #[cfg(all(feature = "SKEffectNode", feature = "SKNode", feature = "SKScene"))]
@@ -198,6 +229,7 @@ extern_methods!(
         ///
         /// Parameter `scene`: the scene to present.
         #[method(presentScene:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn presentScene(&self, scene: Option<&SKScene>);
 
         #[cfg(all(
@@ -215,11 +247,12 @@ extern_methods!(
         ///
         /// Parameter `transition`: the transition to use when presenting the scene.
         #[method(presentScene:transition:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn presentScene_transition(&self, scene: &SKScene, transition: &SKTransition);
 
         #[cfg(all(feature = "SKEffectNode", feature = "SKNode", feature = "SKScene"))]
         /// The currently presented scene, otherwise nil. If in a transition, the 'incoming' scene is returned.
-        #[method_id(scene)]
+        #[method(scene)]
         #[unsafe(method_family = none)]
         pub unsafe fn scene(&self) -> Option<Retained<SKScene>>;
 
@@ -228,7 +261,7 @@ extern_methods!(
         /// The texture is tightly cropped to the size of the node.
         ///
         /// Parameter `node`: the node subtree to render to the texture.
-        #[method_id(textureFromNode:)]
+        #[method(textureFromNode:)]
         #[unsafe(method_family = none)]
         pub unsafe fn textureFromNode(&self, node: &SKNode) -> Option<Retained<SKTexture>>;
 
@@ -243,7 +276,7 @@ extern_methods!(
         /// Parameter `node`: the node subtree to render to the texture.
         ///
         /// Parameter `crop`: the crop
-        #[method_id(textureFromNode:crop:)]
+        #[method(textureFromNode:crop:)]
         #[unsafe(method_family = none)]
         pub unsafe fn textureFromNode_crop(
             &self,
@@ -264,6 +297,7 @@ extern_methods!(
         ///
         /// Parameter `scene`: the scene to convert the point into.
         #[method(convertPoint:toScene:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn convertPoint_toScene(&self, point: CGPoint, scene: &SKScene) -> CGPoint;
 
         #[cfg(all(
@@ -279,6 +313,7 @@ extern_methods!(
         ///
         /// Parameter `scene`: the scene to convert the point into.
         #[method(convertPoint:fromScene:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn convertPoint_fromScene(&self, point: CGPoint, scene: &SKScene) -> CGPoint;
     }
 );
@@ -288,11 +323,11 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl SKView {
-        #[method_id(initWithFrame:)]
+        #[method(initWithFrame:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -306,7 +341,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl SKView {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -317,7 +352,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl SKView {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -334,6 +369,7 @@ extern_protocol!(
         /// return NO to skip update and render for this target time.
         #[optional]
         #[method(view:shouldRenderAtTime:)]
+        #[unsafe(method_family = none)]
         unsafe fn view_shouldRenderAtTime(&self, view: &SKView, time: NSTimeInterval) -> bool;
     }
 );

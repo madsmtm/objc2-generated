@@ -10,6 +10,7 @@ extern_protocol!(
     pub unsafe trait ASWebAuthenticationSessionWebBrowserSessionHandling {
         #[cfg(feature = "ASWebAuthenticationSessionRequest")]
         #[method(beginHandlingWebAuthenticationSessionRequest:)]
+        #[unsafe(method_family = none)]
         unsafe fn beginHandlingWebAuthenticationSessionRequest(
             &self,
             request: Option<&ASWebAuthenticationSessionRequest>,
@@ -17,6 +18,7 @@ extern_protocol!(
 
         #[cfg(feature = "ASWebAuthenticationSessionRequest")]
         #[method(cancelWebAuthenticationSessionRequest:)]
+        #[unsafe(method_family = none)]
         unsafe fn cancelWebAuthenticationSessionRequest(
             &self,
             request: Option<&ASWebAuthenticationSessionRequest>,

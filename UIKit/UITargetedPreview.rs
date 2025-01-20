@@ -31,7 +31,7 @@ extern_methods!(
             feature = "UIView",
             feature = "objc2-core-foundation"
         ))]
-        #[method_id(initWithContainer:center:transform:)]
+        #[method(initWithContainer:center:transform:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContainer_center_transform(
             this: Allocated<Self>,
@@ -45,7 +45,7 @@ extern_methods!(
             feature = "UIView",
             feature = "objc2-core-foundation"
         ))]
-        #[method_id(initWithContainer:center:)]
+        #[method(initWithContainer:center:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContainer_center(
             this: Allocated<Self>,
@@ -53,25 +53,27 @@ extern_methods!(
             center: CGPoint,
         ) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[method_id(container)]
+        #[method(container)]
         #[unsafe(method_family = none)]
         pub unsafe fn container(&self) -> Retained<UIView>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(center)]
+        #[unsafe(method_family = none)]
         pub unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(transform)]
+        #[unsafe(method_family = none)]
         pub unsafe fn transform(&self) -> CGAffineTransform;
     }
 );
@@ -99,7 +101,7 @@ extern_methods!(
             feature = "UIResponder",
             feature = "UIView"
         ))]
-        #[method_id(initWithView:parameters:target:)]
+        #[method(initWithView:parameters:target:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithView_parameters_target(
             this: Allocated<Self>,
@@ -113,7 +115,7 @@ extern_methods!(
             feature = "UIResponder",
             feature = "UIView"
         ))]
-        #[method_id(initWithView:parameters:)]
+        #[method(initWithView:parameters:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithView_parameters(
             this: Allocated<Self>,
@@ -122,37 +124,38 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[method_id(initWithView:)]
+        #[method(initWithView:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithView(this: Allocated<Self>, view: &UIView) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(target)]
+        #[method(target)]
         #[unsafe(method_family = none)]
         pub unsafe fn target(&self) -> Retained<UIPreviewTarget>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[method_id(view)]
+        #[method(view)]
         #[unsafe(method_family = none)]
         pub unsafe fn view(&self) -> Retained<UIView>;
 
         #[cfg(feature = "UIPreviewParameters")]
-        #[method_id(parameters)]
+        #[method(parameters)]
         #[unsafe(method_family = none)]
         pub unsafe fn parameters(&self) -> Retained<UIPreviewParameters>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(size)]
+        #[unsafe(method_family = none)]
         pub unsafe fn size(&self) -> CGSize;
 
-        #[method_id(retargetedPreviewWithTarget:)]
+        #[method(retargetedPreviewWithTarget:)]
         #[unsafe(method_family = none)]
         pub unsafe fn retargetedPreviewWithTarget(
             &self,

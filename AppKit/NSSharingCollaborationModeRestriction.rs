@@ -57,37 +57,38 @@ extern_methods!(
     unsafe impl NSSharingCollaborationModeRestriction {
         /// The type of sharing which should be disabled
         #[method(disabledMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn disabledMode(&self) -> NSSharingCollaborationMode;
 
         /// The title of the alert if a reason for disabling is provided
-        #[method_id(alertTitle)]
+        #[method(alertTitle)]
         #[unsafe(method_family = none)]
         pub unsafe fn alertTitle(&self) -> Option<Retained<NSString>>;
 
         /// The message of the alert if a reason for disabling is provided
-        #[method_id(alertMessage)]
+        #[method(alertMessage)]
         #[unsafe(method_family = none)]
         pub unsafe fn alertMessage(&self) -> Option<Retained<NSString>>;
 
         /// The label on the alert button which will simply confirm that the alert was viewed and dismiss it
         /// Defaults to "OK"
-        #[method_id(alertDismissButtonTitle)]
+        #[method(alertDismissButtonTitle)]
         #[unsafe(method_family = none)]
         pub unsafe fn alertDismissButtonTitle(&self) -> Option<Retained<NSString>>;
 
         /// The label on the recovery suggestion button if it is provided
-        #[method_id(alertRecoverySuggestionButtonTitle)]
+        #[method(alertRecoverySuggestionButtonTitle)]
         #[unsafe(method_family = none)]
         pub unsafe fn alertRecoverySuggestionButtonTitle(&self) -> Option<Retained<NSString>>;
 
         /// The URL that is opened when the user selects the recovery suggestion, if any
-        #[method_id(alertRecoverySuggestionButtonLaunchURL)]
+        #[method(alertRecoverySuggestionButtonLaunchURL)]
         #[unsafe(method_family = none)]
         pub unsafe fn alertRecoverySuggestionButtonLaunchURL(&self) -> Option<Retained<NSURL>>;
 
         /// - Parameters:
         /// - disabledMode: The disabled type of sharing
-        #[method_id(initWithDisabledMode:)]
+        #[method(initWithDisabledMode:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDisabledMode(
             this: Allocated<Self>,
@@ -98,7 +99,7 @@ extern_methods!(
         /// - disabledMode: The disabled type of sharing
         /// - alertTitle: The alert title
         /// - alertMessage: The alert message
-        #[method_id(initWithDisabledMode:alertTitle:alertMessage:)]
+        #[method(initWithDisabledMode:alertTitle:alertMessage:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDisabledMode_alertTitle_alertMessage(
             this: Allocated<Self>,
@@ -112,7 +113,7 @@ extern_methods!(
         /// - alertTitle: The alert title
         /// - alertMessage: The alert message
         /// - alertDismissButtonTitle: The label on the default alert button
-        #[method_id(initWithDisabledMode:alertTitle:alertMessage:alertDismissButtonTitle:)]
+        #[method(initWithDisabledMode:alertTitle:alertMessage:alertDismissButtonTitle:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDisabledMode_alertTitle_alertMessage_alertDismissButtonTitle(
             this: Allocated<Self>,
@@ -129,7 +130,7 @@ extern_methods!(
         /// - alertDismissButtonTitle: The label on the default alert button
         /// - alertRecoverySuggestionButtonTitle: The label on the optional recovery suggestion button on the alert
         /// - alertRecoverySuggestionButtonLaunchURL: The URL that is opened when the optional recovery suggestion button is selected
-        #[method_id(initWithDisabledMode:alertTitle:alertMessage:alertDismissButtonTitle:alertRecoverySuggestionButtonTitle:alertRecoverySuggestionButtonLaunchURL:)]
+        #[method(initWithDisabledMode:alertTitle:alertMessage:alertDismissButtonTitle:alertRecoverySuggestionButtonTitle:alertRecoverySuggestionButtonLaunchURL:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDisabledMode_alertTitle_alertMessage_alertDismissButtonTitle_alertRecoverySuggestionButtonTitle_alertRecoverySuggestionButtonLaunchURL(
             this: Allocated<Self>,
@@ -141,11 +142,11 @@ extern_methods!(
             alert_recovery_suggestion_button_launch_url: &NSURL,
         ) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

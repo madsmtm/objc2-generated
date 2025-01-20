@@ -365,7 +365,7 @@ extern_methods!(
         /// <metalLibraryName
         /// >
         /// An optional metal library name to load metal programs from. The metallib file is located from the default or specified bundle using NSBundle pathForResource:ofType:.
-        #[method_id(techniqueWithDictionary:)]
+        #[method(techniqueWithDictionary:)]
         #[unsafe(method_family = none)]
         pub unsafe fn techniqueWithDictionary(
             dictionary: &NSDictionary<NSString, AnyObject>,
@@ -376,7 +376,7 @@ extern_methods!(
         /// Parameter `techniques`: The techniques to sequence.
         ///
         /// The passes from "techniques" are executed sequentially. The symbols and targets are merged. This allows to use the same uniform ad targets across multiple techniques.
-        #[method_id(techniqueBySequencingTechniques:)]
+        #[method(techniqueBySequencingTechniques:)]
         #[unsafe(method_family = none)]
         pub unsafe fn techniqueBySequencingTechniques(
             techniques: &NSArray<SCNTechnique>,
@@ -396,6 +396,7 @@ extern_methods!(
         ///
         /// The block will be called at every frame for every pass referencing the specified symbol.
         #[method(handleBindingOfSymbol:usingBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn handleBindingOfSymbol_usingBlock(
             &self,
             symbol: &NSString,
@@ -403,13 +404,13 @@ extern_methods!(
         );
 
         /// Returns the dictionary representation of the technique.
-        #[method_id(dictionaryRepresentation)]
+        #[method(dictionaryRepresentation)]
         #[unsafe(method_family = none)]
         pub unsafe fn dictionaryRepresentation(
             &self,
         ) -> Retained<NSDictionary<NSString, AnyObject>>;
 
-        #[method_id(objectForKeyedSubscript:)]
+        #[method(objectForKeyedSubscript:)]
         #[unsafe(method_family = none)]
         pub unsafe fn objectForKeyedSubscript(
             &self,
@@ -417,6 +418,7 @@ extern_methods!(
         ) -> Option<Retained<AnyObject>>;
 
         #[method(setObject:forKeyedSubscript:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setObject_forKeyedSubscript(
             &self,
             obj: Option<&AnyObject>,
@@ -426,7 +428,7 @@ extern_methods!(
         #[cfg(feature = "objc2-metal")]
         #[cfg(not(target_os = "watchos"))]
         /// The Metal library to use to load the Metal programs specified in the technique description. Defaults to nil which corresponds to the default Metal library.
-        #[method_id(library)]
+        #[method(library)]
         #[unsafe(method_family = none)]
         pub unsafe fn library(&self) -> Option<Retained<ProtocolObject<dyn MTLLibrary>>>;
 
@@ -434,6 +436,7 @@ extern_methods!(
         #[cfg(not(target_os = "watchos"))]
         /// Setter for [`library`][Self::library].
         #[method(setLibrary:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLibrary(&self, library: Option<&ProtocolObject<dyn MTLLibrary>>);
     }
 );
@@ -441,11 +444,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNTechnique {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -457,12 +460,13 @@ extern_protocol!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scntechniquesupport?language=objc)
     pub unsafe trait SCNTechniqueSupport: NSObjectProtocol {
         /// Specifies the technique of the receiver. Defaults to nil.
-        #[method_id(technique)]
+        #[method(technique)]
         #[unsafe(method_family = none)]
         unsafe fn technique(&self) -> Option<Retained<SCNTechnique>>;
 
         /// Setter for [`technique`][Self::technique].
         #[method(setTechnique:)]
+        #[unsafe(method_family = none)]
         unsafe fn setTechnique(&self, technique: Option<&SCNTechnique>);
     }
 );

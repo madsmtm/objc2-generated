@@ -18,18 +18,23 @@ unsafe impl NSObjectProtocol for EKObject {}
 extern_methods!(
     unsafe impl EKObject {
         #[method(hasChanges)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hasChanges(&self) -> bool;
 
         #[method(isNew)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isNew(&self) -> bool;
 
         #[method(reset)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reset(&self);
 
         #[method(rollback)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rollback(&self);
 
         #[method(refresh)]
+        #[unsafe(method_family = none)]
         pub unsafe fn refresh(&self) -> bool;
     }
 );
@@ -37,11 +42,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl EKObject {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

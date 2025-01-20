@@ -38,7 +38,7 @@ extern_methods!(
         /// Creates a new `NSTrackingSeparatorToolbarItem` and configures it to attempt to visually align with the specified divider of the `splitView`.
         /// The `splitView` must be in the same window as the toolbar containing this item by the time the toolbar is shown.
         /// Only vertical `splitViews` are supported.
-        #[method_id(trackingSeparatorToolbarItemWithIdentifier:splitView:dividerIndex:)]
+        #[method(trackingSeparatorToolbarItemWithIdentifier:splitView:dividerIndex:)]
         #[unsafe(method_family = none)]
         pub unsafe fn trackingSeparatorToolbarItemWithIdentifier_splitView_dividerIndex(
             identifier: &NSToolbarItemIdentifier,
@@ -49,21 +49,24 @@ extern_methods!(
         #[cfg(all(feature = "NSResponder", feature = "NSSplitView", feature = "NSView"))]
         /// The `splitView` must be in the same window as the toolbar containing this item by the time the toolbar is shown.
         /// Only vertical `splitViews` are supported.
-        #[method_id(splitView)]
+        #[method(splitView)]
         #[unsafe(method_family = none)]
         pub unsafe fn splitView(&self) -> Retained<NSSplitView>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSSplitView", feature = "NSView"))]
         /// Setter for [`splitView`][Self::splitView].
         #[method(setSplitView:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSplitView(&self, split_view: &NSSplitView);
 
         /// The specific divider of the `splitView` which will be tracked.
         #[method(dividerIndex)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dividerIndex(&self) -> NSInteger;
 
         /// Setter for [`dividerIndex`][Self::dividerIndex].
         #[method(setDividerIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDividerIndex(&self, divider_index: NSInteger);
     }
 );
@@ -74,7 +77,7 @@ extern_methods!(
     unsafe impl NSTrackingSeparatorToolbarItem {
         #[cfg(feature = "NSToolbar")]
         /// Initialize the toolbar item with an identifier which is a development language string used by the toolbar and its delegate for identification purposes.
-        #[method_id(initWithItemIdentifier:)]
+        #[method(initWithItemIdentifier:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithItemIdentifier(
             this: Allocated<Self>,
@@ -87,11 +90,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSToolbarItem")]
     unsafe impl NSTrackingSeparatorToolbarItem {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

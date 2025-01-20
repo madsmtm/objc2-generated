@@ -16,6 +16,7 @@ extern_protocol!(
         ))]
         #[deprecated]
         #[method(handleEvent:)]
+        #[unsafe(method_family = none)]
         unsafe fn handleEvent(&self, event: Option<&DOMEvent>);
     }
 );

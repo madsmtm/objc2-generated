@@ -25,6 +25,7 @@ extern_methods!(
         ///
         /// Parameter `handler`: Completion handler invoked with a generic secret stored along with the right or an error if no secret is found or the fetch operation fails.
         #[method(loadDataWithCompletion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loadDataWithCompletion(
             &self,
             handler: &block2::Block<dyn Fn(*mut NSData, *mut NSError)>,
@@ -33,14 +34,14 @@ extern_methods!(
         /// Clients cannot create
         /// `LASecret`instances directly. They typically obtain them from a
         /// `LAPersistedRight`instance.
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Clients cannot create
         /// `LASecret`instances directly. They typically obtain them from a
         /// `LAPersistedRight`instance.
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

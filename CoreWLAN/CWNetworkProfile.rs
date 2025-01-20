@@ -40,7 +40,7 @@ extern_methods!(
         ///
         ///
         /// Returns nil if the SSID can not be encoded as a valid UTF-8 or WinLatin1 string.
-        #[method_id(ssid)]
+        #[method(ssid)]
         #[unsafe(method_family = none)]
         pub unsafe fn ssid(&self) -> Option<Retained<NSString>>;
 
@@ -48,22 +48,23 @@ extern_methods!(
         ///
         ///
         /// The SSID is 1-32 octets.
-        #[method_id(ssidData)]
+        #[method(ssidData)]
         #[unsafe(method_family = none)]
         pub unsafe fn ssidData(&self) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "CoreWLANTypes")]
         /// Returns the security type of the Wi-Fi network profile.
         #[method(security)]
+        #[unsafe(method_family = none)]
         pub unsafe fn security(&self) -> CWSecurity;
 
         /// Convenience method for getting a CWNetworkProfile object.
-        #[method_id(networkProfile)]
+        #[method(networkProfile)]
         #[unsafe(method_family = none)]
         pub unsafe fn networkProfile() -> Retained<Self>;
 
         /// Initializes a CWNetworkProfile object.
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -74,7 +75,7 @@ extern_methods!(
         ///
         ///
         /// Initializes a CWNetworkProfile object with the properties of an existing CWNetworkProfile object.
-        #[method_id(initWithNetworkProfile:)]
+        #[method(initWithNetworkProfile:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNetworkProfile(
             this: Allocated<Self>,
@@ -88,7 +89,7 @@ extern_methods!(
         ///
         ///
         /// Convenience method for getting a CWNetworkProfile object initialized with the properties of an existing CWNetworkProfile object.
-        #[method_id(networkProfileWithNetworkProfile:)]
+        #[method(networkProfileWithNetworkProfile:)]
         #[unsafe(method_family = none)]
         pub unsafe fn networkProfileWithNetworkProfile(
             network_profile: &CWNetworkProfile,
@@ -113,6 +114,7 @@ extern_methods!(
         /// </i>
         /// properties are equal.
         #[method(isEqualToNetworkProfile:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isEqualToNetworkProfile(&self, network_profile: &CWNetworkProfile) -> bool;
     }
 );
@@ -120,7 +122,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CWNetworkProfile {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -160,22 +162,25 @@ unsafe impl NSSecureCoding for CWMutableNetworkProfile {}
 extern_methods!(
     unsafe impl CWMutableNetworkProfile {
         /// Set the service set identifier (SSID).
-        #[method_id(ssidData)]
+        #[method(ssidData)]
         #[unsafe(method_family = none)]
         pub unsafe fn ssidData(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`ssidData`][Self::ssidData].
         #[method(setSsidData:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSsidData(&self, ssid_data: Option<&NSData>);
 
         #[cfg(feature = "CoreWLANTypes")]
         /// Set the security type.
         #[method(security)]
+        #[unsafe(method_family = none)]
         pub unsafe fn security(&self) -> CWSecurity;
 
         #[cfg(feature = "CoreWLANTypes")]
         /// Setter for [`security`][Self::security].
         #[method(setSecurity:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSecurity(&self, security: CWSecurity);
     }
 );
@@ -184,12 +189,12 @@ extern_methods!(
     /// Methods declared on superclass `CWNetworkProfile`
     unsafe impl CWMutableNetworkProfile {
         /// Convenience method for getting a CWNetworkProfile object.
-        #[method_id(networkProfile)]
+        #[method(networkProfile)]
         #[unsafe(method_family = none)]
         pub unsafe fn networkProfile() -> Retained<Self>;
 
         /// Initializes a CWNetworkProfile object.
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -200,7 +205,7 @@ extern_methods!(
         ///
         ///
         /// Initializes a CWNetworkProfile object with the properties of an existing CWNetworkProfile object.
-        #[method_id(initWithNetworkProfile:)]
+        #[method(initWithNetworkProfile:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNetworkProfile(
             this: Allocated<Self>,
@@ -214,7 +219,7 @@ extern_methods!(
         ///
         ///
         /// Convenience method for getting a CWNetworkProfile object initialized with the properties of an existing CWNetworkProfile object.
-        #[method_id(networkProfileWithNetworkProfile:)]
+        #[method(networkProfileWithNetworkProfile:)]
         #[unsafe(method_family = none)]
         pub unsafe fn networkProfileWithNetworkProfile(
             network_profile: &CWNetworkProfile,
@@ -225,7 +230,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CWMutableNetworkProfile {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

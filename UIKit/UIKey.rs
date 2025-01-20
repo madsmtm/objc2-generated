@@ -31,7 +31,7 @@ extern_methods!(
         /// if a modifier key is held, this property will contain the modified characters according
         /// the rules for that particular modifier key (i.e., if shift is held on a Latin keyboard, this will
         /// contain capital letters).
-        #[method_id(characters)]
+        #[method(characters)]
         #[unsafe(method_family = none)]
         pub unsafe fn characters(&self) -> Retained<NSString>;
 
@@ -40,18 +40,20 @@ extern_methods!(
         ///
         /// for Latin based languages, expect this to be always in lowercase (unmodified meaning not
         /// taking shift key into account). If only a modifier key was pressed, this property will contain an empty string.
-        #[method_id(charactersIgnoringModifiers)]
+        #[method(charactersIgnoringModifiers)]
         #[unsafe(method_family = none)]
         pub unsafe fn charactersIgnoringModifiers(&self) -> Retained<NSString>;
 
         #[cfg(feature = "UICommand")]
         /// Returns: a bitfield representing which modifier keys are currently being held in addition to this key.
         #[method(modifierFlags)]
+        #[unsafe(method_family = none)]
         pub unsafe fn modifierFlags(&self) -> UIKeyModifierFlags;
 
         #[cfg(all(feature = "UIKeyConstants", feature = "objc2-core-foundation"))]
         /// Returns: the raw HID usage code for the pressed key. See UIKeyConstants.h.
         #[method(keyCode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn keyCode(&self) -> UIKeyboardHIDUsage;
     }
 );
@@ -59,11 +61,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIKey {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

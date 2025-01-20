@@ -39,25 +39,28 @@ unsafe impl NSObjectProtocol for VZVirtioConsolePortConfiguration {}
 extern_methods!(
     #[cfg(feature = "VZConsolePortConfiguration")]
     unsafe impl VZVirtioConsolePortConfiguration {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// The console port's name. The default behavior is to not use a name unless set.
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
         #[method(setName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
         /// The console port may be marked for use as the system console. The default is false.
         #[method(isConsole)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isConsole(&self) -> bool;
 
         /// Setter for [`isConsole`][Self::isConsole].
         #[method(setIsConsole:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIsConsole(&self, is_console: bool);
     }
 );
@@ -66,7 +69,7 @@ extern_methods!(
     /// Methods declared on superclass `VZConsolePortConfiguration`
     #[cfg(feature = "VZConsolePortConfiguration")]
     unsafe impl VZVirtioConsolePortConfiguration {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

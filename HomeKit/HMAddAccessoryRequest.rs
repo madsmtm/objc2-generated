@@ -19,29 +19,31 @@ extern_methods!(
     unsafe impl HMAddAccessoryRequest {
         #[cfg(feature = "HMHome")]
         /// Home that the accessory is to be added to.
-        #[method_id(home)]
+        #[method(home)]
         #[unsafe(method_family = none)]
         pub unsafe fn home(&self) -> Retained<HMHome>;
 
         /// Name of the accessory to be added.
-        #[method_id(accessoryName)]
+        #[method(accessoryName)]
         #[unsafe(method_family = none)]
         pub unsafe fn accessoryName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "HMAccessoryCategory")]
         /// The category of the accessory to be added.
-        #[method_id(accessoryCategory)]
+        #[method(accessoryCategory)]
         #[unsafe(method_family = none)]
         pub unsafe fn accessoryCategory(&self) -> Retained<HMAccessoryCategory>;
 
         /// Indication if the setup URL needs to be updated for this request. If this is true,
         /// payloadWithURL:ownershipToken: must be used to create the HMAccessorySetupPayload.
         #[method(requiresSetupPayloadURL)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requiresSetupPayloadURL(&self) -> bool;
 
         /// Indication if the ownership token needs to be updated for this request.
         #[deprecated = "No longer supported"]
         #[method(requiresOwnershipToken)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requiresOwnershipToken(&self) -> bool;
 
         #[cfg(feature = "HMAccessorySetupPayload")]
@@ -55,7 +57,7 @@ extern_methods!(
         ///
         ///
         /// This method may fail if this request requires a setup payload URL.
-        #[method_id(payloadWithOwnershipToken:)]
+        #[method(payloadWithOwnershipToken:)]
         #[unsafe(method_family = none)]
         pub unsafe fn payloadWithOwnershipToken(
             &self,
@@ -76,7 +78,7 @@ extern_methods!(
         ///
         ///
         /// This method may fail if the setup payload URL is not a valid payload URL.
-        #[method_id(payloadWithURL:ownershipToken:)]
+        #[method(payloadWithURL:ownershipToken:)]
         #[unsafe(method_family = none)]
         pub unsafe fn payloadWithURL_ownershipToken(
             &self,
@@ -85,7 +87,7 @@ extern_methods!(
         ) -> Option<Retained<HMAccessorySetupPayload>>;
 
         #[deprecated = "HMAddAccessoryRequest objects are created by their associated objects. Directly creating them is not supported."]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -94,7 +96,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HMAddAccessoryRequest {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

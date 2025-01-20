@@ -241,6 +241,7 @@ extern_category!(
     /// ********************** Attribute fixing ***********************
     pub unsafe trait NSAttributedStringAttributeFixing {
         #[method(fixAttributesInRange:)]
+        #[unsafe(method_family = none)]
         unsafe fn fixAttributesInRange(&self, range: NSRange);
     }
 
@@ -439,7 +440,7 @@ extern "C" {
 extern_category!(
     /// Category on [`NSAttributedString`].
     pub unsafe trait NSAttributedStringDocumentFormats {
-        #[method_id(initWithURL:options:documentAttributes:error:_)]
+        #[method(initWithURL:options:documentAttributes:error:_)]
         #[unsafe(method_family = init)]
         unsafe fn initWithURL_options_documentAttributes_error(
             this: Allocated<Self>,
@@ -452,7 +453,7 @@ extern_category!(
             >,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[method_id(initWithData:options:documentAttributes:error:_)]
+        #[method(initWithData:options:documentAttributes:error:_)]
         #[unsafe(method_family = init)]
         unsafe fn initWithData_options_documentAttributes_error(
             this: Allocated<Self>,
@@ -465,7 +466,7 @@ extern_category!(
             >,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[method_id(dataFromRange:documentAttributes:error:_)]
+        #[method(dataFromRange:documentAttributes:error:_)]
         #[unsafe(method_family = none)]
         unsafe fn dataFromRange_documentAttributes_error(
             &self,
@@ -473,7 +474,7 @@ extern_category!(
             dict: &NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>,
         ) -> Result<Retained<NSData>, Retained<NSError>>;
 
-        #[method_id(fileWrapperFromRange:documentAttributes:error:_)]
+        #[method(fileWrapperFromRange:documentAttributes:error:_)]
         #[unsafe(method_family = none)]
         unsafe fn fileWrapperFromRange_documentAttributes_error(
             &self,
@@ -489,6 +490,7 @@ extern_category!(
     /// Category on [`NSMutableAttributedString`].
     pub unsafe trait NSMutableAttributedStringDocumentFormats {
         #[method(readFromURL:options:documentAttributes:error:_)]
+        #[unsafe(method_family = none)]
         unsafe fn readFromURL_options_documentAttributes_error(
             &self,
             url: &NSURL,
@@ -501,6 +503,7 @@ extern_category!(
         ) -> Result<(), Retained<NSError>>;
 
         #[method(readFromData:options:documentAttributes:error:_)]
+        #[unsafe(method_family = none)]
         unsafe fn readFromData_options_documentAttributes_error(
             &self,
             data: &NSData,
@@ -521,9 +524,11 @@ extern_category!(
     /// ********************** Misc methods ***********************
     pub unsafe trait NSAttributedStringKitAdditions {
         #[method(containsAttachmentsInRange:)]
+        #[unsafe(method_family = none)]
         unsafe fn containsAttachmentsInRange(&self, range: NSRange) -> bool;
 
         #[method(prefersRTFDInRange:)]
+        #[unsafe(method_family = none)]
         unsafe fn prefersRTFDInRange(&self, range: NSRange) -> bool;
     }
 

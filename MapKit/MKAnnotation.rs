@@ -13,21 +13,23 @@ extern_protocol!(
     pub unsafe trait MKAnnotation: NSObjectProtocol {
         #[cfg(feature = "objc2-core-location")]
         #[method(coordinate)]
+        #[unsafe(method_family = none)]
         unsafe fn coordinate(&self) -> CLLocationCoordinate2D;
 
         #[optional]
-        #[method_id(title)]
+        #[method(title)]
         #[unsafe(method_family = none)]
         unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         #[optional]
-        #[method_id(subtitle)]
+        #[method(subtitle)]
         #[unsafe(method_family = none)]
         unsafe fn subtitle(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "objc2-core-location")]
         #[optional]
         #[method(setCoordinate:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCoordinate(&self, new_coordinate: CLLocationCoordinate2D);
     }
 );

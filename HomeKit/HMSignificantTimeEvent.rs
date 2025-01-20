@@ -45,7 +45,7 @@ unsafe impl NSObjectProtocol for HMSignificantTimeEvent {}
 extern_methods!(
     #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
     unsafe impl HMSignificantTimeEvent {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -62,7 +62,7 @@ extern_methods!(
         ///
         ///
         /// Returns: Instance object representing the significant event.
-        #[method_id(initWithSignificantEvent:offset:)]
+        #[method(initWithSignificantEvent:offset:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSignificantEvent_offset(
             this: Allocated<Self>,
@@ -72,14 +72,14 @@ extern_methods!(
 
         #[cfg(feature = "HMSignificantEvents")]
         /// significantEvent The significant event for the trigger.
-        #[method_id(significantEvent)]
+        #[method(significantEvent)]
         #[unsafe(method_family = none)]
         pub unsafe fn significantEvent(&self) -> Retained<HMSignificantEvent>;
 
         /// offset An offset from the time of the signficant event. To specify an offset before the significant event, the
         /// properties of the NSDateComponents must be negative value. e.g. To specify 30 mins before sunset, the
         /// 'minute' property must be set to -30.
-        #[method_id(offset)]
+        #[method(offset)]
         #[unsafe(method_family = none)]
         pub unsafe fn offset(&self) -> Option<Retained<NSDateComponents>>;
     }
@@ -90,7 +90,7 @@ extern_methods!(
     #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
     unsafe impl HMSignificantTimeEvent {
         #[deprecated = "HMEvent is abstract"]
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -136,24 +136,26 @@ extern_methods!(
     unsafe impl HMMutableSignificantTimeEvent {
         #[cfg(feature = "HMSignificantEvents")]
         /// significantEvent The significant event for the trigger.
-        #[method_id(significantEvent)]
+        #[method(significantEvent)]
         #[unsafe(method_family = none)]
         pub unsafe fn significantEvent(&self) -> Retained<HMSignificantEvent>;
 
         #[cfg(feature = "HMSignificantEvents")]
         /// Setter for [`significantEvent`][Self::significantEvent].
         #[method(setSignificantEvent:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSignificantEvent(&self, significant_event: &HMSignificantEvent);
 
         /// offset An offset from the time of the significant event. To specify an offset before the significant event, the
         /// properties of the NSDateComponents must be negative value. e.g. To specify 30 mins before sunset, the
         /// 'minute' property must be set to -30.
-        #[method_id(offset)]
+        #[method(offset)]
         #[unsafe(method_family = none)]
         pub unsafe fn offset(&self) -> Retained<NSDateComponents>;
 
         /// Setter for [`offset`][Self::offset].
         #[method(setOffset:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setOffset(&self, offset: &NSDateComponents);
     }
 );
@@ -162,7 +164,7 @@ extern_methods!(
     /// Methods declared on superclass `HMSignificantTimeEvent`
     #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
     unsafe impl HMMutableSignificantTimeEvent {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -179,7 +181,7 @@ extern_methods!(
         ///
         ///
         /// Returns: Instance object representing the significant event.
-        #[method_id(initWithSignificantEvent:offset:)]
+        #[method(initWithSignificantEvent:offset:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSignificantEvent_offset(
             this: Allocated<Self>,
@@ -194,7 +196,7 @@ extern_methods!(
     #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
     unsafe impl HMMutableSignificantTimeEvent {
         #[deprecated = "HMEvent is abstract"]
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -24,17 +24,17 @@ unsafe impl NSObjectProtocol for VZVirtioConsolePortArray {}
 
 extern_methods!(
     unsafe impl VZVirtioConsolePortArray {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZVirtioConsolePort")]
         /// Get a port at the specified index.
-        #[method_id(objectAtIndexedSubscript:)]
+        #[method(objectAtIndexedSubscript:)]
         #[unsafe(method_family = none)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
@@ -43,6 +43,7 @@ extern_methods!(
 
         /// The maximum number of ports allocated by this device.
         #[method(maximumPortCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maximumPortCount(&self) -> u32;
     }
 );

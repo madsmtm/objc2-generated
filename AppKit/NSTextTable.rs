@@ -144,12 +144,13 @@ unsafe impl NSSecureCoding for NSTextBlock {}
 
 extern_methods!(
     unsafe impl NSTextBlock {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(setValue:type:forDimension:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setValue_type_forDimension(
             &self,
             val: CGFloat,
@@ -159,9 +160,11 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(valueForDimension:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn valueForDimension(&self, dimension: NSTextBlockDimension) -> CGFloat;
 
         #[method(valueTypeForDimension:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn valueTypeForDimension(
             &self,
             dimension: NSTextBlockDimension,
@@ -169,17 +172,21 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(setContentWidth:type:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setContentWidth_type(&self, val: CGFloat, r#type: NSTextBlockValueType);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(contentWidth)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contentWidth(&self) -> CGFloat;
 
         #[method(contentWidthValueType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contentWidthValueType(&self) -> NSTextBlockValueType;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(setWidth:type:forLayer:edge:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWidth_type_forLayer_edge(
             &self,
             val: CGFloat,
@@ -190,6 +197,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(setWidth:type:forLayer:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWidth_type_forLayer(
             &self,
             val: CGFloat,
@@ -199,6 +207,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(widthForLayer:edge:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn widthForLayer_edge(
             &self,
             layer: NSTextBlockLayer,
@@ -206,6 +215,7 @@ extern_methods!(
         ) -> CGFloat;
 
         #[method(widthValueTypeForLayer:edge:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn widthValueTypeForLayer_edge(
             &self,
             layer: NSTextBlockLayer,
@@ -213,37 +223,43 @@ extern_methods!(
         ) -> NSTextBlockValueType;
 
         #[method(verticalAlignment)]
+        #[unsafe(method_family = none)]
         pub unsafe fn verticalAlignment(&self) -> NSTextBlockVerticalAlignment;
 
         /// Setter for [`verticalAlignment`][Self::verticalAlignment].
         #[method(setVerticalAlignment:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setVerticalAlignment(&self, vertical_alignment: NSTextBlockVerticalAlignment);
 
         #[cfg(feature = "NSColor")]
-        #[method_id(backgroundColor)]
+        #[method(backgroundColor)]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`backgroundColor`][Self::backgroundColor].
         #[method(setBackgroundColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&NSColor>);
 
         #[cfg(feature = "NSColor")]
         #[method(setBorderColor:forEdge:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBorderColor_forEdge(&self, color: Option<&NSColor>, edge: NSRectEdge);
 
         #[cfg(feature = "NSColor")]
         #[method(setBorderColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBorderColor(&self, color: Option<&NSColor>);
 
         #[cfg(feature = "NSColor")]
-        #[method_id(borderColorForEdge:)]
+        #[method(borderColorForEdge:)]
         #[unsafe(method_family = none)]
         pub unsafe fn borderColorForEdge(&self, edge: NSRectEdge) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSTextContainer")]
         #[method(rectForLayoutAtPoint:inRect:textContainer:characterRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rectForLayoutAtPoint_inRect_textContainer_characterRange(
             &self,
             starting_point: NSPoint,
@@ -254,6 +270,7 @@ extern_methods!(
 
         #[cfg(feature = "NSTextContainer")]
         #[method(boundsRectForContentRect:inRect:textContainer:characterRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn boundsRectForContentRect_inRect_textContainer_characterRange(
             &self,
             content_rect: NSRect,
@@ -268,6 +285,7 @@ extern_methods!(
             feature = "NSView"
         ))]
         #[method(drawBackgroundWithFrame:inView:characterRange:layoutManager:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn drawBackgroundWithFrame_inView_characterRange_layoutManager(
             &self,
             frame_rect: NSRect,
@@ -281,7 +299,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextBlock {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -308,7 +326,7 @@ unsafe impl NSSecureCoding for NSTextTableBlock {}
 
 extern_methods!(
     unsafe impl NSTextTableBlock {
-        #[method_id(initWithTable:startingRow:rowSpan:startingColumn:columnSpan:)]
+        #[method(initWithTable:startingRow:rowSpan:startingColumn:columnSpan:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTable_startingRow_rowSpan_startingColumn_columnSpan(
             this: Allocated<Self>,
@@ -319,20 +337,24 @@ extern_methods!(
             col_span: NSInteger,
         ) -> Retained<Self>;
 
-        #[method_id(table)]
+        #[method(table)]
         #[unsafe(method_family = none)]
         pub unsafe fn table(&self) -> Retained<NSTextTable>;
 
         #[method(startingRow)]
+        #[unsafe(method_family = none)]
         pub unsafe fn startingRow(&self) -> NSInteger;
 
         #[method(rowSpan)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rowSpan(&self) -> NSInteger;
 
         #[method(startingColumn)]
+        #[unsafe(method_family = none)]
         pub unsafe fn startingColumn(&self) -> NSInteger;
 
         #[method(columnSpan)]
+        #[unsafe(method_family = none)]
         pub unsafe fn columnSpan(&self) -> NSInteger;
     }
 );
@@ -340,7 +362,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSTextBlock`
     unsafe impl NSTextTableBlock {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -349,7 +371,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextTableBlock {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -377,35 +399,44 @@ unsafe impl NSSecureCoding for NSTextTable {}
 extern_methods!(
     unsafe impl NSTextTable {
         #[method(numberOfColumns)]
+        #[unsafe(method_family = none)]
         pub unsafe fn numberOfColumns(&self) -> NSUInteger;
 
         /// Setter for [`numberOfColumns`][Self::numberOfColumns].
         #[method(setNumberOfColumns:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setNumberOfColumns(&self, number_of_columns: NSUInteger);
 
         #[method(layoutAlgorithm)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layoutAlgorithm(&self) -> NSTextTableLayoutAlgorithm;
 
         /// Setter for [`layoutAlgorithm`][Self::layoutAlgorithm].
         #[method(setLayoutAlgorithm:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLayoutAlgorithm(&self, layout_algorithm: NSTextTableLayoutAlgorithm);
 
         #[method(collapsesBorders)]
+        #[unsafe(method_family = none)]
         pub unsafe fn collapsesBorders(&self) -> bool;
 
         /// Setter for [`collapsesBorders`][Self::collapsesBorders].
         #[method(setCollapsesBorders:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCollapsesBorders(&self, collapses_borders: bool);
 
         #[method(hidesEmptyCells)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hidesEmptyCells(&self) -> bool;
 
         /// Setter for [`hidesEmptyCells`][Self::hidesEmptyCells].
         #[method(setHidesEmptyCells:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setHidesEmptyCells(&self, hides_empty_cells: bool);
 
         #[cfg(feature = "NSTextContainer")]
         #[method(rectForBlock:layoutAtPoint:inRect:textContainer:characterRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rectForBlock_layoutAtPoint_inRect_textContainer_characterRange(
             &self,
             block: &NSTextTableBlock,
@@ -417,6 +448,7 @@ extern_methods!(
 
         #[cfg(feature = "NSTextContainer")]
         #[method(boundsRectForBlock:contentRect:inRect:textContainer:characterRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn boundsRectForBlock_contentRect_inRect_textContainer_characterRange(
             &self,
             block: &NSTextTableBlock,
@@ -432,6 +464,7 @@ extern_methods!(
             feature = "NSView"
         ))]
         #[method(drawBackgroundForBlock:withFrame:inView:characterRange:layoutManager:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn drawBackgroundForBlock_withFrame_inView_characterRange_layoutManager(
             &self,
             block: &NSTextTableBlock,
@@ -446,7 +479,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSTextBlock`
     unsafe impl NSTextTable {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -455,7 +488,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextTable {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

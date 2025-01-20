@@ -11,6 +11,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsuseractivityrestoring?language=objc)
     pub unsafe trait NSUserActivityRestoring: NSObjectProtocol + MainThreadOnly {
         #[method(restoreUserActivityState:)]
+        #[unsafe(method_family = none)]
         unsafe fn restoreUserActivityState(&self, user_activity: &NSUserActivity);
     }
 );
@@ -19,15 +20,17 @@ extern_methods!(
     /// NSUserActivity
     #[cfg(feature = "NSResponder")]
     unsafe impl NSResponder {
-        #[method_id(userActivity)]
+        #[method(userActivity)]
         #[unsafe(method_family = none)]
         pub unsafe fn userActivity(&self) -> Option<Retained<NSUserActivity>>;
 
         /// Setter for [`userActivity`][Self::userActivity].
         #[method(setUserActivity:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUserActivity(&self, user_activity: Option<&NSUserActivity>);
 
         #[method(updateUserActivityState:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updateUserActivityState(&self, user_activity: &NSUserActivity);
     }
 );
@@ -39,15 +42,17 @@ extern_methods!(
     /// NSUserActivity
     #[cfg(feature = "NSDocument")]
     unsafe impl NSDocument {
-        #[method_id(userActivity)]
+        #[method(userActivity)]
         #[unsafe(method_family = none)]
         pub unsafe fn userActivity(&self) -> Option<Retained<NSUserActivity>>;
 
         /// Setter for [`userActivity`][Self::userActivity].
         #[method(setUserActivity:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUserActivity(&self, user_activity: Option<&NSUserActivity>);
 
         #[method(updateUserActivityState:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updateUserActivityState(&self, activity: &NSUserActivity);
     }
 );

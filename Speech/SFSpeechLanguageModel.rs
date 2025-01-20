@@ -28,22 +28,22 @@ unsafe impl NSObjectProtocol for SFSpeechLanguageModelConfiguration {}
 
 extern_methods!(
     unsafe impl SFSpeechLanguageModelConfiguration {
-        #[method_id(languageModel)]
+        #[method(languageModel)]
         #[unsafe(method_family = none)]
         pub unsafe fn languageModel(&self) -> Retained<NSURL>;
 
-        #[method_id(vocabulary)]
+        #[method(vocabulary)]
         #[unsafe(method_family = none)]
         pub unsafe fn vocabulary(&self) -> Option<Retained<NSURL>>;
 
-        #[method_id(initWithLanguageModel:)]
+        #[method(initWithLanguageModel:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLanguageModel(
             this: Allocated<Self>,
             language_model: &NSURL,
         ) -> Retained<Self>;
 
-        #[method_id(initWithLanguageModel:vocabulary:)]
+        #[method(initWithLanguageModel:vocabulary:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLanguageModel_vocabulary(
             this: Allocated<Self>,
@@ -56,11 +56,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SFSpeechLanguageModelConfiguration {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -79,6 +79,7 @@ extern_methods!(
     unsafe impl SFSpeechLanguageModel {
         #[cfg(feature = "block2")]
         #[method(prepareCustomLanguageModelForUrl:clientIdentifier:configuration:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn prepareCustomLanguageModelForUrl_clientIdentifier_configuration_completion(
             asset: &NSURL,
             client_identifier: &NSString,
@@ -88,6 +89,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[method(prepareCustomLanguageModelForUrl:clientIdentifier:configuration:ignoresCache:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn prepareCustomLanguageModelForUrl_clientIdentifier_configuration_ignoresCache_completion(
             asset: &NSURL,
             client_identifier: &NSString,
@@ -101,11 +103,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SFSpeechLanguageModel {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

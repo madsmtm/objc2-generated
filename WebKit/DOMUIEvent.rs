@@ -52,39 +52,48 @@ extern_methods!(
     unsafe impl DOMUIEvent {
         #[cfg(feature = "DOMAbstractView")]
         #[deprecated]
-        #[method_id(view)]
+        #[method(view)]
         #[unsafe(method_family = none)]
         pub unsafe fn view(&self) -> Option<Retained<DOMAbstractView>>;
 
         #[deprecated]
         #[method(detail)]
+        #[unsafe(method_family = none)]
         pub unsafe fn detail(&self) -> c_int;
 
         #[method(keyCode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn keyCode(&self) -> c_int;
 
         #[method(charCode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn charCode(&self) -> c_int;
 
         #[deprecated]
         #[method(layerX)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layerX(&self) -> c_int;
 
         #[deprecated]
         #[method(layerY)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layerY(&self) -> c_int;
 
         #[method(pageX)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pageX(&self) -> c_int;
 
         #[method(pageY)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pageY(&self) -> c_int;
 
         #[method(which)]
+        #[unsafe(method_family = none)]
         pub unsafe fn which(&self) -> c_int;
 
         #[cfg(feature = "DOMAbstractView")]
         #[method(initUIEvent:canBubble:cancelable:view:detail:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn initUIEvent_canBubble_cancelable_view_detail(
             &self,
             r#type: Option<&NSString>,
@@ -105,7 +114,7 @@ extern_methods!(
     ))]
     unsafe impl DOMUIEvent {
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -119,7 +128,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMUIEvent {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -136,6 +145,7 @@ extern_methods!(
         #[cfg(feature = "DOMAbstractView")]
         #[deprecated]
         #[method(initUIEvent:::::)]
+        #[unsafe(method_family = none)]
         pub unsafe fn initUIEvent(
             &self,
             r#type: Option<&NSString>,

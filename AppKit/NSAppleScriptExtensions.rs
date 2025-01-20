@@ -9,7 +9,7 @@ extern_category!(
     /// Category "NSExtensions" on [`NSAppleScript`].
     #[doc(alias = "NSExtensions")]
     pub unsafe trait NSAppleScriptNSExtensions {
-        #[method_id(richTextSource)]
+        #[method(richTextSource)]
         #[unsafe(method_family = none)]
         unsafe fn richTextSource(&self) -> Option<Retained<NSAttributedString>>;
     }

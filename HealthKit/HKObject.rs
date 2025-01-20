@@ -26,25 +26,25 @@ unsafe impl NSSecureCoding for HKObject {}
 extern_methods!(
     unsafe impl HKObject {
         /// A unique identifier of the receiver in the HealthKit database.
-        #[method_id(UUID)]
+        #[method(UUID)]
         #[unsafe(method_family = none)]
         pub unsafe fn UUID(&self) -> Retained<NSUUID>;
 
         #[cfg(feature = "HKSource")]
         #[deprecated]
-        #[method_id(source)]
+        #[method(source)]
         #[unsafe(method_family = none)]
         pub unsafe fn source(&self) -> Retained<HKSource>;
 
         #[cfg(feature = "HKSourceRevision")]
         /// Represents the revision of the source responsible for saving the receiver.
-        #[method_id(sourceRevision)]
+        #[method(sourceRevision)]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceRevision(&self) -> Retained<HKSourceRevision>;
 
         #[cfg(feature = "HKDevice")]
         /// Represents the device that generated the data of the receiver.
-        #[method_id(device)]
+        #[method(device)]
         #[unsafe(method_family = none)]
         pub unsafe fn device(&self) -> Option<Retained<HKDevice>>;
 
@@ -52,11 +52,11 @@ extern_methods!(
         ///
         /// Keys must be NSString and values must be either NSString, NSNumber, NSDate, or
         /// HKQuantity. See HKMetadata.h for potential metadata keys and values.
-        #[method_id(metadata)]
+        #[method(metadata)]
         #[unsafe(method_family = none)]
         pub unsafe fn metadata(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -65,7 +65,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKObject {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

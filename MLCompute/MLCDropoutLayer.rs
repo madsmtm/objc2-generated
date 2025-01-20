@@ -26,11 +26,13 @@ extern_methods!(
         /// The probability that each element is dropped
         #[deprecated]
         #[method(rate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rate(&self) -> c_float;
 
         /// The initial seed used to generate random numbers
         #[deprecated]
         #[method(seed)]
+        #[unsafe(method_family = none)]
         pub unsafe fn seed(&self) -> NSUInteger;
 
         /// Create a dropout layer
@@ -41,7 +43,7 @@ extern_methods!(
         ///
         /// Returns: A new dropout layer
         #[deprecated]
-        #[method_id(layerWithRate:seed:)]
+        #[method(layerWithRate:seed:)]
         #[unsafe(method_family = none)]
         pub unsafe fn layerWithRate_seed(rate: c_float, seed: NSUInteger) -> Retained<Self>;
     }
@@ -52,12 +54,12 @@ extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCDropoutLayer {
         #[deprecated]
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

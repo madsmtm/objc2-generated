@@ -344,7 +344,7 @@ extern_methods!(
         /// Parameter `url`: The URL to read scenes from.
         ///
         /// Parameter `options`: An optional dictionary for future extensions.
-        #[method_id(sceneSourceWithURL:options:)]
+        #[method(sceneSourceWithURL:options:)]
         #[unsafe(method_family = none)]
         pub unsafe fn sceneSourceWithURL_options(
             url: &NSURL,
@@ -356,7 +356,7 @@ extern_methods!(
         /// Parameter `data`: The scene data.
         ///
         /// Parameter `options`: An optional dictionary for future extensions.
-        #[method_id(sceneSourceWithData:options:)]
+        #[method(sceneSourceWithData:options:)]
         #[unsafe(method_family = none)]
         pub unsafe fn sceneSourceWithData_options(
             data: &NSData,
@@ -368,7 +368,7 @@ extern_methods!(
         /// Parameter `url`: The URL to read scenes from.
         ///
         /// Parameter `options`: An optional dictionary for future extensions.
-        #[method_id(initWithURL:options:)]
+        #[method(initWithURL:options:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL_options(
             this: Allocated<Self>,
@@ -381,7 +381,7 @@ extern_methods!(
         /// Parameter `data`: The data to read scenes from.
         ///
         /// Parameter `options`: An optional dictionary for future extensions.
-        #[method_id(initWithData:options:)]
+        #[method(initWithData:options:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithData_options(
             this: Allocated<Self>,
@@ -390,12 +390,12 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         /// The receiver's URL (if any).
-        #[method_id(url)]
+        #[method(url)]
         #[unsafe(method_family = none)]
         pub unsafe fn url(&self) -> Option<Retained<NSURL>>;
 
         /// The receiver's data (if any).
-        #[method_id(data)]
+        #[method(data)]
         #[unsafe(method_family = none)]
         pub unsafe fn data(&self) -> Option<Retained<NSData>>;
 
@@ -409,7 +409,7 @@ extern_methods!(
         /// - The second argument, status, tells you what the source is currently doing. It takes one of the values in the SCNSceneSourceStatus enum. New values might be added to this enum in the future.
         /// - If status == SCNSceneStatusError, then error will contain more information about the failure, and the method will return nil after having called the block. Otherwise error will be nil.
         /// - Set *stop to YES if you want the source to abort the loading operation.
-        #[method_id(sceneWithOptions:statusHandler:)]
+        #[method(sceneWithOptions:statusHandler:)]
         #[unsafe(method_family = none)]
         pub unsafe fn sceneWithOptions_statusHandler(
             &self,
@@ -426,7 +426,7 @@ extern_methods!(
         ///
         /// This simpler version is equivalent to providing a block to sceneWithOptions:statusHandler: and checking the "error"
         /// parameter of the block if the status is SCNSceneStatusError.
-        #[method_id(sceneWithOptions:error:_)]
+        #[method(sceneWithOptions:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn sceneWithOptions_error(
             &self,
@@ -436,7 +436,7 @@ extern_methods!(
         /// Parameter `key`: The key for which to return the corresponding property.
         ///
         /// Returns the property as defined in the 3D file for the given key. See keys above.
-        #[method_id(propertyForKey:)]
+        #[method(propertyForKey:)]
         #[unsafe(method_family = none)]
         pub unsafe fn propertyForKey(&self, key: &NSString) -> Option<Retained<AnyObject>>;
 
@@ -447,7 +447,7 @@ extern_methods!(
         /// Parameter `entryClass`: Specifies the type of the object to be returned. It can be one of the following classes: SCNMaterial, SCNGeometry, SCNScene, SCNNode, CAAnimation, SCNLight, SCNCamera, SCNSkinner, SCNMorpher, NSImage
         ///
         /// Returns NULL if the receiver's library doesn't contains such an uid for the specified type.
-        #[method_id(entryWithIdentifier:withClass:)]
+        #[method(entryWithIdentifier:withClass:)]
         #[unsafe(method_family = none)]
         pub unsafe fn entryWithIdentifier_withClass(
             &self,
@@ -458,7 +458,7 @@ extern_methods!(
         /// Returns the IDs found in the receiver's library for the class "entryClass".
         ///
         /// Parameter `entryClass`: Specifies the type of the object referenced by the returned IDs. It can be one of the following classes: SCNMaterial, SCNScene, SCNGeometry, SCNNode, CAAnimation, SCNLight, SCNCamera, SCNSkinner, SCNMorpher, NSImage
-        #[method_id(identifiersOfEntriesWithClass:)]
+        #[method(identifiersOfEntriesWithClass:)]
         #[unsafe(method_family = none)]
         pub unsafe fn identifiersOfEntriesWithClass(
             &self,
@@ -471,7 +471,7 @@ extern_methods!(
         /// Parameter `predicate`: The block to apply to entries in the library. The block takes three arguments: "entry" is an entry in the library, "identifier" is the ID of this entry and "stop" is a reference to a Boolean value. The block can set the value to YES to stop further processing of the library. The stop argument is an out-only argument. You should only ever set this Boolean to YES within the Block. The Block returns a Boolean value that indicates whether "entry" passed the test.
         ///
         /// The entry is an instance of one of following classes: SCNMaterial, SCNScene, SCNGeometry, SCNNode, CAAnimation, SCNLight, SCNCamera, SCNSkinner, SCNMorpher, NSImage.
-        #[method_id(entriesPassingTest:)]
+        #[method(entriesPassingTest:)]
         #[unsafe(method_family = none)]
         pub unsafe fn entriesPassingTest(
             &self,
@@ -485,11 +485,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNSceneSource {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

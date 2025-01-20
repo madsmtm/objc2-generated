@@ -68,26 +68,27 @@ extern_methods!(
     unsafe impl MPNowPlayingInfoCenter {
         /// Returns the default now playing info center.
         /// The default center holds now playing info about the current application.
-        #[method_id(defaultCenter)]
+        #[method(defaultCenter)]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultCenter() -> Retained<MPNowPlayingInfoCenter>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// The current now playing info for the center.
         /// Setting the info to nil will clear it.
-        #[method_id(nowPlayingInfo)]
+        #[method(nowPlayingInfo)]
         #[unsafe(method_family = none)]
         pub unsafe fn nowPlayingInfo(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         /// Setter for [`nowPlayingInfo`][Self::nowPlayingInfo].
         #[method(setNowPlayingInfo:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setNowPlayingInfo(
             &self,
             now_playing_info: Option<&NSDictionary<NSString, AnyObject>>,
@@ -99,10 +100,12 @@ extern_methods!(
         /// the app begins or halts playback, otherwise remote control functionality may
         /// not work as expected.
         #[method(playbackState)]
+        #[unsafe(method_family = none)]
         pub unsafe fn playbackState(&self) -> MPNowPlayingPlaybackState;
 
         /// Setter for [`playbackState`][Self::playbackState].
         #[method(setPlaybackState:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPlaybackState(&self, playback_state: MPNowPlayingPlaybackState);
     }
 );

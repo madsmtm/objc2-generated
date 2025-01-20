@@ -53,6 +53,7 @@ extern_methods!(
         /// <AVFoundation
         /// /AVAudioUnitEffect.h>).
         #[method(registerSubclass:asComponentDescription:name:version:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn registerSubclass_asComponentDescription_name_version(
             cls: &AnyClass,
             component_description: AudioComponentDescription,
@@ -80,15 +81,18 @@ extern_methods!(
         ///
         /// Bridged to kAudioUnitProperty_MIDIOutputBufferSizeHint.
         #[method(MIDIOutputBufferSizeHint)]
+        #[unsafe(method_family = none)]
         pub unsafe fn MIDIOutputBufferSizeHint(&self) -> NSInteger;
 
         /// Setter for [`MIDIOutputBufferSizeHint`][Self::MIDIOutputBufferSizeHint].
         #[method(setMIDIOutputBufferSizeHint:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMIDIOutputBufferSizeHint(&self, midi_output_buffer_size_hint: NSInteger);
 
         /// Parameter `flag`: In the base class implementation of allocateRenderResourcesAndReturnError:, the property renderResourcesAllocated is set to YES.
         /// If allocateRenderResourcesAndReturnError: should fail in a subclass, subclassers must use this method to set renderResourcesAllocated to NO.
         #[method(setRenderResourcesAllocated:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRenderResourcesAllocated(&self, flag: bool);
     }
 );
@@ -103,12 +107,13 @@ extern_methods!(
         /// If supportedChannelCounts is nil, then any number less than or equal to maximumChannelCount
         /// is supported. If setting supportedChannelCounts makes the current format unsupported, then
         /// format will be set to nil. The default value is nil.
-        #[method_id(supportedChannelCounts)]
+        #[method(supportedChannelCounts)]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedChannelCounts(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         /// Setter for [`supportedChannelCounts`][Self::supportedChannelCounts].
         #[method(setSupportedChannelCounts:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSupportedChannelCounts(
             &self,
             supported_channel_counts: Option<&NSArray<NSNumber>>,
@@ -120,10 +125,12 @@ extern_methods!(
         /// setting maximumChannelCount makes the current format unsupported, then format will be set to
         /// nil. The default value is UINT_MAX.
         #[method(maximumChannelCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maximumChannelCount(&self) -> AUAudioChannelCount;
 
         /// Setter for [`maximumChannelCount`][Self::maximumChannelCount].
         #[method(setMaximumChannelCount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMaximumChannelCount(&self, maximum_channel_count: AUAudioChannelCount);
     }
 );
@@ -135,6 +142,7 @@ extern_methods!(
     unsafe impl AUAudioUnitBusArray {
         /// Sets the bus array to be a copy of the supplied array. The base class issues KVO notifications.
         #[method(replaceBusses:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn replaceBusses(&self, bus_array: &NSArray<AUAudioUnitBus>);
     }
 );
@@ -151,7 +159,7 @@ extern_methods!(
         #[cfg(feature = "AudioUnitProperties")]
         /// Create an AUParameter.
         /// See AUParameter's properties for descriptions of the arguments.
-        #[method_id(createParameterWithIdentifier:name:address:min:max:unit:unitName:flags:valueStrings:dependentParameters:)]
+        #[method(createParameterWithIdentifier:name:address:min:max:unit:unitName:flags:valueStrings:dependentParameters:)]
         #[unsafe(method_family = none)]
         pub unsafe fn createParameterWithIdentifier_name_address_min_max_unit_unitName_flags_valueStrings_dependentParameters(
             identifier: &NSString,
@@ -173,7 +181,7 @@ extern_methods!(
         /// Parameter `name`: The group's human-readable name (localized).
         ///
         /// Parameter `children`: The group's child nodes.
-        #[method_id(createGroupWithIdentifier:name:children:)]
+        #[method(createGroupWithIdentifier:name:children:)]
         #[unsafe(method_family = none)]
         pub unsafe fn createGroupWithIdentifier_name_children(
             identifier: &NSString,
@@ -188,7 +196,7 @@ extern_methods!(
         /// groups, sharing certain immutable state between the instances.
         ///
         /// Template groups may not appear in trees except at the root.
-        #[method_id(createGroupTemplate:)]
+        #[method(createGroupTemplate:)]
         #[unsafe(method_family = none)]
         pub unsafe fn createGroupTemplate(
             children: &NSArray<AUParameterNode>,
@@ -204,7 +212,7 @@ extern_methods!(
         ///
         /// Parameter `addressOffset`: The new group's parameters' addresses will be offset from those in
         /// the template by this value.
-        #[method_id(createGroupFromTemplate:identifier:name:addressOffset:)]
+        #[method(createGroupFromTemplate:identifier:name:addressOffset:)]
         #[unsafe(method_family = none)]
         pub unsafe fn createGroupFromTemplate_identifier_name_addressOffset(
             template_group: &AUParameterGroup,
@@ -216,7 +224,7 @@ extern_methods!(
         /// Create an AUParameterTree.
         ///
         /// Parameter `children`: The tree's top-level child nodes.
-        #[method_id(createTreeWithChildren:)]
+        #[method(createTreeWithChildren:)]
         #[unsafe(method_family = none)]
         pub unsafe fn createTreeWithChildren(
             children: &NSArray<AUParameterNode>,
@@ -269,11 +277,13 @@ extern_methods!(
         /// changes to parameter values. It should store the new value in its audio signal processing
         /// state (assuming that that state is separate from the AUParameter object).
         #[method(implementorValueObserver)]
+        #[unsafe(method_family = none)]
         pub unsafe fn implementorValueObserver(&self) -> AUImplementorValueObserver;
 
         #[cfg(feature = "block2")]
         /// Setter for [`implementorValueObserver`][Self::implementorValueObserver].
         #[method(setImplementorValueObserver:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setImplementorValueObserver(
             &self,
             implementor_value_observer: AUImplementorValueObserver,
@@ -286,11 +296,13 @@ extern_methods!(
         /// The audio unit should return the current value for this parameter; the AUParameterNode will
         /// store the value.
         #[method(implementorValueProvider)]
+        #[unsafe(method_family = none)]
         pub unsafe fn implementorValueProvider(&self) -> AUImplementorValueProvider;
 
         #[cfg(feature = "block2")]
         /// Setter for [`implementorValueProvider`][Self::implementorValueProvider].
         #[method(setImplementorValueProvider:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setImplementorValueProvider(
             &self,
             implementor_value_provider: AUImplementorValueProvider,
@@ -300,6 +312,7 @@ extern_methods!(
         /// Called to provide string representations of parameter values.
         /// If value is nil, the callback uses the current value of the parameter.
         #[method(implementorStringFromValueCallback)]
+        #[unsafe(method_family = none)]
         pub unsafe fn implementorStringFromValueCallback(
             &self,
         ) -> AUImplementorStringFromValueCallback;
@@ -307,6 +320,7 @@ extern_methods!(
         #[cfg(feature = "block2")]
         /// Setter for [`implementorStringFromValueCallback`][Self::implementorStringFromValueCallback].
         #[method(setImplementorStringFromValueCallback:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setImplementorStringFromValueCallback(
             &self,
             implementor_string_from_value_callback: AUImplementorStringFromValueCallback,
@@ -315,6 +329,7 @@ extern_methods!(
         #[cfg(feature = "block2")]
         /// Called to convert string to numeric representations of parameter values.
         #[method(implementorValueFromStringCallback)]
+        #[unsafe(method_family = none)]
         pub unsafe fn implementorValueFromStringCallback(
             &self,
         ) -> AUImplementorValueFromStringCallback;
@@ -322,6 +337,7 @@ extern_methods!(
         #[cfg(feature = "block2")]
         /// Setter for [`implementorValueFromStringCallback`][Self::implementorValueFromStringCallback].
         #[method(setImplementorValueFromStringCallback:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setImplementorValueFromStringCallback(
             &self,
             implementor_value_from_string_callback: AUImplementorValueFromStringCallback,
@@ -330,6 +346,7 @@ extern_methods!(
         #[cfg(feature = "block2")]
         /// Called to obtain an abbreviated version of a parameter or group name.
         #[method(implementorDisplayNameWithLengthCallback)]
+        #[unsafe(method_family = none)]
         pub unsafe fn implementorDisplayNameWithLengthCallback(
             &self,
         ) -> AUImplementorDisplayNameWithLengthCallback;
@@ -337,6 +354,7 @@ extern_methods!(
         #[cfg(feature = "block2")]
         /// Setter for [`implementorDisplayNameWithLengthCallback`][Self::implementorDisplayNameWithLengthCallback].
         #[method(setImplementorDisplayNameWithLengthCallback:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setImplementorDisplayNameWithLengthCallback(
             &self,
             implementor_display_name_with_length_callback: AUImplementorDisplayNameWithLengthCallback,
@@ -381,6 +399,7 @@ extern_methods!(
         /// Implementors can sublcass AUAudioUnitV2Bridge and call the v2 API methods
         /// AudioUnitGetProperty / AudioUnitSetProperty with the v2 AudioUnit.
         #[method(audioUnit)]
+        #[unsafe(method_family = none)]
         pub unsafe fn audioUnit(&self) -> AudioUnit;
     }
 );
@@ -389,7 +408,7 @@ extern_methods!(
     /// Methods declared on superclass `AUAudioUnit`
     #[cfg(feature = "AUAudioUnit")]
     unsafe impl AUAudioUnitV2Bridge {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -403,7 +422,7 @@ extern_methods!(
         /// Parameter `options`: Options for loading the unit in-process or out-of-process.
         ///
         /// Parameter `outError`: Returned in the event of failure.
-        #[method_id(initWithComponentDescription:options:error:_)]
+        #[method(initWithComponentDescription:options:error:_)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithComponentDescription_options_error(
             this: Allocated<Self>,
@@ -413,7 +432,7 @@ extern_methods!(
 
         #[cfg(feature = "AudioComponent")]
         /// Convenience initializer (omits options).
-        #[method_id(initWithComponentDescription:error:_)]
+        #[method(initWithComponentDescription:error:_)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithComponentDescription_error(
             this: Allocated<Self>,
@@ -426,7 +445,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "AUAudioUnit")]
     unsafe impl AUAudioUnitV2Bridge {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -453,7 +472,7 @@ extern_protocol!(
         /// Note that in non-ARC code, "create" methods return unretained objects (unlike "create"
         /// C functions); the implementor should return an object with reference count 1 but
         /// autoreleased.
-        #[method_id(createAudioUnitWithComponentDescription:error:_)]
+        #[method(createAudioUnitWithComponentDescription:error:_)]
         #[unsafe(method_family = none)]
         unsafe fn createAudioUnitWithComponentDescription_error(
             &self,

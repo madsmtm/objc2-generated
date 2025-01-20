@@ -45,10 +45,12 @@ extern_methods!(
         /// Default:    1.0
         /// Unit:       Generic
         #[method(rate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rate(&self) -> c_float;
 
         /// Setter for [`rate`][Self::rate].
         #[method(setRate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRate(&self, rate: c_float);
 
         /// amount by which the input signal is pitch shifted
@@ -60,10 +62,12 @@ extern_methods!(
         /// Default:    0.0
         /// Unit:       Cents
         #[method(pitch)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pitch(&self) -> c_float;
 
         /// Setter for [`pitch`][Self::pitch].
         #[method(setPitch:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPitch(&self, pitch: c_float);
 
         /// amount of overlap between segments of the input audio signal
@@ -75,10 +79,12 @@ extern_methods!(
         /// Default:    8.0
         /// Unit:       Generic
         #[method(overlap)]
+        #[unsafe(method_family = none)]
         pub unsafe fn overlap(&self) -> c_float;
 
         /// Setter for [`overlap`][Self::overlap].
         #[method(setOverlap:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setOverlap(&self, overlap: c_float);
     }
 );
@@ -99,7 +105,7 @@ extern_methods!(
         /// Parameter `audioComponentDescription`: AudioComponentDescription of the audio unit to be initialized
         ///
         /// The componentType must be kAudioUnitType_FormatConverter
-        #[method_id(initWithAudioComponentDescription:)]
+        #[method(initWithAudioComponentDescription:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAudioComponentDescription(
             this: Allocated<Self>,
@@ -116,11 +122,11 @@ extern_methods!(
         feature = "AVAudioUnitTimeEffect"
     ))]
     unsafe impl AVAudioUnitTimePitch {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

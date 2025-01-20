@@ -29,16 +29,17 @@ unsafe impl NSObjectProtocol for UIGraphicsRendererFormat {}
 extern_methods!(
     unsafe impl UIGraphicsRendererFormat {
         #[deprecated]
-        #[method_id(defaultFormat)]
+        #[method(defaultFormat)]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultFormat() -> Retained<Self>;
 
-        #[method_id(preferredFormat)]
+        #[method(preferredFormat)]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredFormat() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(bounds)]
+        #[unsafe(method_family = none)]
         pub unsafe fn bounds(&self) -> CGRect;
     }
 );
@@ -46,11 +47,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIGraphicsRendererFormat {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -68,32 +69,37 @@ unsafe impl NSObjectProtocol for UIGraphicsRendererContext {}
 extern_methods!(
     unsafe impl UIGraphicsRendererContext {
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(CGContext)]
+        #[method(CGContext)]
         #[unsafe(method_family = none)]
         pub unsafe fn CGContext(&self) -> Retained<CGContext>;
 
-        #[method_id(format)]
+        #[method(format)]
         #[unsafe(method_family = none)]
         pub unsafe fn format(&self) -> Retained<UIGraphicsRendererFormat>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(fillRect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fillRect(&self, rect: CGRect);
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
         #[method(fillRect:blendMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fillRect_blendMode(&self, rect: CGRect, blend_mode: CGBlendMode);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(strokeRect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn strokeRect(&self, rect: CGRect);
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
         #[method(strokeRect:blendMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn strokeRect_blendMode(&self, rect: CGRect, blend_mode: CGBlendMode);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(clipToRect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn clipToRect(&self, rect: CGRect);
     }
 );
@@ -101,11 +107,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIGraphicsRendererContext {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -123,12 +129,12 @@ unsafe impl NSObjectProtocol for UIGraphicsRenderer {}
 extern_methods!(
     unsafe impl UIGraphicsRenderer {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(initWithBounds:)]
+        #[method(initWithBounds:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBounds(this: Allocated<Self>, bounds: CGRect) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(initWithBounds:format:)]
+        #[method(initWithBounds:format:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBounds_format(
             this: Allocated<Self>,
@@ -136,11 +142,12 @@ extern_methods!(
             format: &UIGraphicsRendererFormat,
         ) -> Retained<Self>;
 
-        #[method_id(format)]
+        #[method(format)]
         #[unsafe(method_family = none)]
         pub unsafe fn format(&self) -> Retained<UIGraphicsRendererFormat>;
 
         #[method(allowsImageOutput)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowsImageOutput(&self) -> bool;
     }
 );
@@ -148,11 +155,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIGraphicsRenderer {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

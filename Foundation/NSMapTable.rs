@@ -79,7 +79,7 @@ unsafe impl<KeyType: ?Sized + NSSecureCoding, ObjectType: ?Sized + NSSecureCodin
 extern_methods!(
     unsafe impl<KeyType: Message, ObjectType: Message> NSMapTable<KeyType, ObjectType> {
         #[cfg(feature = "NSPointerFunctions")]
-        #[method_id(initWithKeyOptions:valueOptions:capacity:)]
+        #[method(initWithKeyOptions:valueOptions:capacity:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithKeyOptions_valueOptions_capacity(
             this: Allocated<Self>,
@@ -89,7 +89,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSPointerFunctions")]
-        #[method_id(initWithKeyPointerFunctions:valuePointerFunctions:capacity:)]
+        #[method(initWithKeyPointerFunctions:valuePointerFunctions:capacity:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithKeyPointerFunctions_valuePointerFunctions_capacity(
             this: Allocated<Self>,
@@ -99,7 +99,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSPointerFunctions")]
-        #[method_id(mapTableWithKeyOptions:valueOptions:)]
+        #[method(mapTableWithKeyOptions:valueOptions:)]
         #[unsafe(method_family = none)]
         pub unsafe fn mapTableWithKeyOptions_valueOptions(
             key_options: NSPointerFunctionsOptions,
@@ -107,59 +107,61 @@ extern_methods!(
         ) -> Retained<NSMapTable<KeyType, ObjectType>>;
 
         #[deprecated = "GC no longer supported"]
-        #[method_id(mapTableWithStrongToStrongObjects)]
+        #[method(mapTableWithStrongToStrongObjects)]
         #[unsafe(method_family = none)]
         pub unsafe fn mapTableWithStrongToStrongObjects() -> Retained<AnyObject>;
 
         #[deprecated = "GC no longer supported"]
-        #[method_id(mapTableWithWeakToStrongObjects)]
+        #[method(mapTableWithWeakToStrongObjects)]
         #[unsafe(method_family = none)]
         pub unsafe fn mapTableWithWeakToStrongObjects() -> Retained<AnyObject>;
 
         #[deprecated = "GC no longer supported"]
-        #[method_id(mapTableWithStrongToWeakObjects)]
+        #[method(mapTableWithStrongToWeakObjects)]
         #[unsafe(method_family = none)]
         pub unsafe fn mapTableWithStrongToWeakObjects() -> Retained<AnyObject>;
 
         #[deprecated = "GC no longer supported"]
-        #[method_id(mapTableWithWeakToWeakObjects)]
+        #[method(mapTableWithWeakToWeakObjects)]
         #[unsafe(method_family = none)]
         pub unsafe fn mapTableWithWeakToWeakObjects() -> Retained<AnyObject>;
 
-        #[method_id(strongToStrongObjectsMapTable)]
+        #[method(strongToStrongObjectsMapTable)]
         #[unsafe(method_family = none)]
         pub unsafe fn strongToStrongObjectsMapTable() -> Retained<NSMapTable<KeyType, ObjectType>>;
 
-        #[method_id(weakToStrongObjectsMapTable)]
+        #[method(weakToStrongObjectsMapTable)]
         #[unsafe(method_family = none)]
         pub unsafe fn weakToStrongObjectsMapTable() -> Retained<NSMapTable<KeyType, ObjectType>>;
 
-        #[method_id(strongToWeakObjectsMapTable)]
+        #[method(strongToWeakObjectsMapTable)]
         #[unsafe(method_family = none)]
         pub unsafe fn strongToWeakObjectsMapTable() -> Retained<NSMapTable<KeyType, ObjectType>>;
 
-        #[method_id(weakToWeakObjectsMapTable)]
+        #[method(weakToWeakObjectsMapTable)]
         #[unsafe(method_family = none)]
         pub unsafe fn weakToWeakObjectsMapTable() -> Retained<NSMapTable<KeyType, ObjectType>>;
 
         #[cfg(feature = "NSPointerFunctions")]
-        #[method_id(keyPointerFunctions)]
+        #[method(keyPointerFunctions)]
         #[unsafe(method_family = none)]
         pub unsafe fn keyPointerFunctions(&self) -> Retained<NSPointerFunctions>;
 
         #[cfg(feature = "NSPointerFunctions")]
-        #[method_id(valuePointerFunctions)]
+        #[method(valuePointerFunctions)]
         #[unsafe(method_family = none)]
         pub unsafe fn valuePointerFunctions(&self) -> Retained<NSPointerFunctions>;
 
-        #[method_id(objectForKey:)]
+        #[method(objectForKey:)]
         #[unsafe(method_family = none)]
         pub unsafe fn objectForKey(&self, a_key: Option<&KeyType>) -> Option<Retained<ObjectType>>;
 
         #[method(removeObjectForKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeObjectForKey(&self, a_key: Option<&KeyType>);
 
         #[method(setObject:forKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setObject_forKey(
             &self,
             an_object: Option<&ObjectType>,
@@ -167,23 +169,25 @@ extern_methods!(
         );
 
         #[method(count)]
+        #[unsafe(method_family = none)]
         pub unsafe fn count(&self) -> NSUInteger;
 
         #[cfg(feature = "NSEnumerator")]
-        #[method_id(keyEnumerator)]
+        #[method(keyEnumerator)]
         #[unsafe(method_family = none)]
         pub unsafe fn keyEnumerator(&self) -> Retained<NSEnumerator<KeyType>>;
 
         #[cfg(feature = "NSEnumerator")]
-        #[method_id(objectEnumerator)]
+        #[method(objectEnumerator)]
         #[unsafe(method_family = none)]
         pub unsafe fn objectEnumerator(&self) -> Option<Retained<NSEnumerator<ObjectType>>>;
 
         #[method(removeAllObjects)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeAllObjects(&self);
 
         #[cfg(feature = "NSDictionary")]
-        #[method_id(dictionaryRepresentation)]
+        #[method(dictionaryRepresentation)]
         #[unsafe(method_family = none)]
         pub unsafe fn dictionaryRepresentation(
             &self,
@@ -194,11 +198,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<KeyType: Message, ObjectType: Message> NSMapTable<KeyType, ObjectType> {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

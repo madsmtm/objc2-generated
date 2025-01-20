@@ -18,21 +18,21 @@ unsafe impl NSObjectProtocol for NSStagedMigrationManager {}
 extern_methods!(
     unsafe impl NSStagedMigrationManager {
         #[cfg(feature = "NSMigrationStage")]
-        #[method_id(stages)]
+        #[method(stages)]
         #[unsafe(method_family = none)]
         pub unsafe fn stages(&self) -> Retained<NSArray<NSMigrationStage>>;
 
         #[cfg(feature = "NSPersistentContainer")]
-        #[method_id(container)]
+        #[method(container)]
         #[unsafe(method_family = none)]
         pub unsafe fn container(&self) -> Option<Retained<NSPersistentContainer>>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSMigrationStage")]
-        #[method_id(initWithMigrationStages:)]
+        #[method(initWithMigrationStages:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMigrationStages(
             this: Allocated<Self>,
@@ -44,7 +44,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSStagedMigrationManager {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

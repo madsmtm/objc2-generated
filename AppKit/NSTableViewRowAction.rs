@@ -45,7 +45,7 @@ unsafe impl NSObjectProtocol for NSTableViewRowAction {}
 extern_methods!(
     unsafe impl NSTableViewRowAction {
         #[cfg(feature = "block2")]
-        #[method_id(rowActionWithStyle:title:handler:)]
+        #[method(rowActionWithStyle:title:handler:)]
         #[unsafe(method_family = none)]
         pub unsafe fn rowActionWithStyle_title_handler(
             style: NSTableViewRowActionStyle,
@@ -54,34 +54,38 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[method(style)]
+        #[unsafe(method_family = none)]
         pub unsafe fn style(&self) -> NSTableViewRowActionStyle;
 
-        #[method_id(title)]
+        #[method(title)]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
         #[cfg(feature = "NSColor")]
-        #[method_id(backgroundColor)]
+        #[method(backgroundColor)]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundColor(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`backgroundColor`][Self::backgroundColor].
         #[method(setBackgroundColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&NSColor>);
 
         #[cfg(feature = "NSImage")]
-        #[method_id(image)]
+        #[method(image)]
         #[unsafe(method_family = none)]
         pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
         /// Setter for [`image`][Self::image].
         #[method(setImage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
     }
 );
@@ -89,11 +93,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTableViewRowAction {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

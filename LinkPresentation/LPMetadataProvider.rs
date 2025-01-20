@@ -83,6 +83,7 @@ extern_methods!(
         /// <doc
         /// ://com.apple.documentation/documentation/swift/calling-objective-c-apis-asynchronously>.
         #[method(startFetchingMetadataForURL:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn startFetchingMetadataForURL_completionHandler(
             &self,
             url: &NSURL,
@@ -113,6 +114,7 @@ extern_methods!(
         /// <doc
         /// ://com.apple.documentation/documentation/swift/calling-objective-c-apis-asynchronously>.
         #[method(startFetchingMetadataForRequest:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn startFetchingMetadataForRequest_completionHandler(
             &self,
             request: &NSURLRequest,
@@ -125,6 +127,7 @@ extern_methods!(
         /// ``LPErrorCode/LPErrorMetadataFetchCancelled`` if the request hasn’t already
         /// completed.
         #[method(cancel)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cancel(&self);
 
         /// A Boolean value indicating whether to download subresources specified by the
@@ -137,10 +140,12 @@ extern_methods!(
         ///
         /// The default value is `true`.
         #[method(shouldFetchSubresources)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shouldFetchSubresources(&self) -> bool;
 
         /// Setter for [`shouldFetchSubresources`][Self::shouldFetchSubresources].
         #[method(setShouldFetchSubresources:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShouldFetchSubresources(&self, should_fetch_subresources: bool);
 
         /// The time interval after which the request automatically fails if it hasn’t
@@ -150,10 +155,12 @@ extern_methods!(
         /// than the timeout interval, the completion handler is called with the error
         /// code ``LPErrorCode/LPErrorMetadataFetchTimedOut``.
         #[method(timeout)]
+        #[unsafe(method_family = none)]
         pub unsafe fn timeout(&self) -> NSTimeInterval;
 
         /// Setter for [`timeout`][Self::timeout].
         #[method(setTimeout:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTimeout(&self, timeout: NSTimeInterval);
     }
 );
@@ -161,11 +168,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl LPMetadataProvider {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

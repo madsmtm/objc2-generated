@@ -24,21 +24,23 @@ extern_methods!(
     unsafe impl CLMonitor {
         #[cfg(all(feature = "CLMonitorConfiguration", feature = "block2"))]
         #[method(requestMonitorWithConfiguration:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestMonitorWithConfiguration_completion(
             config: &CLMonitorConfiguration,
             completion_handler: &block2::Block<dyn Fn(NonNull<CLMonitor>)>,
         );
 
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
-        #[method_id(monitoredIdentifiers)]
+        #[method(monitoredIdentifiers)]
         #[unsafe(method_family = none)]
         pub unsafe fn monitoredIdentifiers(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "CLCondition")]
         #[method(addConditionForMonitoring:identifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addConditionForMonitoring_identifier(
             &self,
             condition: &CLCondition,
@@ -47,6 +49,7 @@ extern_methods!(
 
         #[cfg(all(feature = "CLCondition", feature = "CLMonitoringEvent"))]
         #[method(addConditionForMonitoring:identifier:assumedState:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addConditionForMonitoring_identifier_assumedState(
             &self,
             condition: &CLCondition,
@@ -55,21 +58,22 @@ extern_methods!(
         );
 
         #[method(removeConditionFromMonitoringWithIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeConditionFromMonitoringWithIdentifier(&self, identifier: &NSString);
 
         #[cfg(feature = "CLMonitoringRecord")]
-        #[method_id(monitoringRecordForIdentifier:)]
+        #[method(monitoringRecordForIdentifier:)]
         #[unsafe(method_family = none)]
         pub unsafe fn monitoringRecordForIdentifier(
             &self,
             identifier: &NSString,
         ) -> Option<Retained<CLMonitoringRecord>>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -25,16 +25,16 @@ unsafe impl UIResponderStandardEditActions for UIScene {}
 extern_methods!(
     #[cfg(feature = "UIResponder")]
     unsafe impl UIScene {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "UISceneOptions", feature = "UISceneSession"))]
-        #[method_id(initWithSession:connectionOptions:)]
+        #[method(initWithSession:connectionOptions:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSession_connectionOptions(
             this: Allocated<Self>,
@@ -43,24 +43,27 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "UISceneSession")]
-        #[method_id(session)]
+        #[method(session)]
         #[unsafe(method_family = none)]
         pub unsafe fn session(&self) -> Retained<UISceneSession>;
 
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn UISceneDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn UISceneDelegate>>);
 
         #[cfg(feature = "UISceneDefinitions")]
         #[method(activationState)]
+        #[unsafe(method_family = none)]
         pub unsafe fn activationState(&self) -> UISceneActivationState;
 
         #[cfg(all(feature = "UISceneOptions", feature = "block2"))]
         #[method(openURL:options:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn openURL_options_completionHandler(
             &self,
             url: &NSURL,
@@ -68,30 +71,33 @@ extern_methods!(
             completion: Option<&block2::Block<dyn Fn(Bool)>>,
         );
 
-        #[method_id(title)]
+        #[method(title)]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
-        #[method_id(subtitle)]
+        #[method(subtitle)]
         #[unsafe(method_family = none)]
         pub unsafe fn subtitle(&self) -> Retained<NSString>;
 
         /// Setter for [`subtitle`][Self::subtitle].
         #[method(setSubtitle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSubtitle(&self, subtitle: &NSString);
 
         #[cfg(feature = "UISceneActivationConditions")]
-        #[method_id(activationConditions)]
+        #[method(activationConditions)]
         #[unsafe(method_family = none)]
         pub unsafe fn activationConditions(&self) -> Retained<UISceneActivationConditions>;
 
         #[cfg(feature = "UISceneActivationConditions")]
         /// Setter for [`activationConditions`][Self::activationConditions].
         #[method(setActivationConditions:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setActivationConditions(
             &self,
             activation_conditions: &UISceneActivationConditions,
@@ -109,6 +115,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(scene:willConnectToSession:options:)]
+        #[unsafe(method_family = none)]
         unsafe fn scene_willConnectToSession_options(
             &self,
             scene: &UIScene,
@@ -119,31 +126,37 @@ extern_protocol!(
         #[cfg(feature = "UIResponder")]
         #[optional]
         #[method(sceneDidDisconnect:)]
+        #[unsafe(method_family = none)]
         unsafe fn sceneDidDisconnect(&self, scene: &UIScene);
 
         #[cfg(feature = "UIResponder")]
         #[optional]
         #[method(sceneDidBecomeActive:)]
+        #[unsafe(method_family = none)]
         unsafe fn sceneDidBecomeActive(&self, scene: &UIScene);
 
         #[cfg(feature = "UIResponder")]
         #[optional]
         #[method(sceneWillResignActive:)]
+        #[unsafe(method_family = none)]
         unsafe fn sceneWillResignActive(&self, scene: &UIScene);
 
         #[cfg(feature = "UIResponder")]
         #[optional]
         #[method(sceneWillEnterForeground:)]
+        #[unsafe(method_family = none)]
         unsafe fn sceneWillEnterForeground(&self, scene: &UIScene);
 
         #[cfg(feature = "UIResponder")]
         #[optional]
         #[method(sceneDidEnterBackground:)]
+        #[unsafe(method_family = none)]
         unsafe fn sceneDidEnterBackground(&self, scene: &UIScene);
 
         #[cfg(all(feature = "UIOpenURLContext", feature = "UIResponder"))]
         #[optional]
         #[method(scene:openURLContexts:)]
+        #[unsafe(method_family = none)]
         unsafe fn scene_openURLContexts(
             &self,
             scene: &UIScene,
@@ -152,7 +165,7 @@ extern_protocol!(
 
         #[cfg(feature = "UIResponder")]
         #[optional]
-        #[method_id(stateRestorationActivityForScene:)]
+        #[method(stateRestorationActivityForScene:)]
         #[unsafe(method_family = none)]
         unsafe fn stateRestorationActivityForScene(
             &self,
@@ -162,6 +175,7 @@ extern_protocol!(
         #[cfg(feature = "UIResponder")]
         #[optional]
         #[method(scene:restoreInteractionStateWithUserActivity:)]
+        #[unsafe(method_family = none)]
         unsafe fn scene_restoreInteractionStateWithUserActivity(
             &self,
             scene: &UIScene,
@@ -171,6 +185,7 @@ extern_protocol!(
         #[cfg(feature = "UIResponder")]
         #[optional]
         #[method(scene:willContinueUserActivityWithType:)]
+        #[unsafe(method_family = none)]
         unsafe fn scene_willContinueUserActivityWithType(
             &self,
             scene: &UIScene,
@@ -180,6 +195,7 @@ extern_protocol!(
         #[cfg(feature = "UIResponder")]
         #[optional]
         #[method(scene:continueUserActivity:)]
+        #[unsafe(method_family = none)]
         unsafe fn scene_continueUserActivity(
             &self,
             scene: &UIScene,
@@ -189,6 +205,7 @@ extern_protocol!(
         #[cfg(feature = "UIResponder")]
         #[optional]
         #[method(scene:didFailToContinueUserActivityWithType:error:)]
+        #[unsafe(method_family = none)]
         unsafe fn scene_didFailToContinueUserActivityWithType_error(
             &self,
             scene: &UIScene,
@@ -199,6 +216,7 @@ extern_protocol!(
         #[cfg(feature = "UIResponder")]
         #[optional]
         #[method(scene:didUpdateUserActivity:)]
+        #[unsafe(method_family = none)]
         unsafe fn scene_didUpdateUserActivity(
             &self,
             scene: &UIScene,

@@ -29,11 +29,11 @@ unsafe impl NSObjectProtocol for AVCaptureDepthDataOutput {}
 extern_methods!(
     #[cfg(feature = "AVCaptureOutputBase")]
     unsafe impl AVCaptureDepthDataOutput {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -41,7 +41,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an object conforming to the AVCaptureDepthDataOutputDelegate protocol that receives depth data as it is captured. The delegate is set using the setDelegate:callbackQueue: method.
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -52,10 +52,12 @@ extern_methods!(
         ///
         /// When the value of this property is YES, the receiver will immediately discard depth data that are captured while the delegateCallbackQueue is blocked. When the value of this property is NO, delegates will be allowed more time to process old depth data before new depth data are discarded, but application memory usage may increase as a result. The default value is YES.
         #[method(alwaysDiscardsLateDepthData)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alwaysDiscardsLateDepthData(&self) -> bool;
 
         /// Setter for [`alwaysDiscardsLateDepthData`][Self::alwaysDiscardsLateDepthData].
         #[method(setAlwaysDiscardsLateDepthData:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAlwaysDiscardsLateDepthData(&self, always_discards_late_depth_data: bool);
 
         /// Specifies whether the depth data output should filter depth data to smooth out noise and fill invalid values.
@@ -63,10 +65,12 @@ extern_methods!(
         ///
         /// When the value of this property is YES, the receiver temporally filters the stream of AVDepthData objects to reduce noise, as well as fill invalid values. Invalid values (NaN) may be present in AVDepthData pixel buffer maps due to factors such as low light or lens occlusion. When filtering is enabled, the depth data output interpolates missing depth data values. Filtering should be disabled if you desire the raw depth data values. The default value is YES.
         #[method(isFilteringEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isFilteringEnabled(&self) -> bool;
 
         /// Setter for [`isFilteringEnabled`][Self::isFilteringEnabled].
         #[method(setFilteringEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFilteringEnabled(&self, filtering_enabled: bool);
     }
 );
@@ -101,6 +105,7 @@ extern_protocol!(
         /// Note that to maintain optimal performance, AVDepthData pixel buffer maps may be backed by a finite memory pool. If AVDepthData objects are held onto for too long, capture inputs will no longer be able to copy new depth data into memory, resulting in droppage. If your application is causing depth data drops by holding on to provided depth data objects for too long, consider copying the pixel buffer map data into a new pixel buffer so that the AVDepthData backing memory can be reused more quickly.
         #[optional]
         #[method(depthDataOutput:didOutputDepthData:timestamp:connection:)]
+        #[unsafe(method_family = none)]
         unsafe fn depthDataOutput_didOutputDepthData_timestamp_connection(
             &self,
             output: &AVCaptureDepthDataOutput,
@@ -132,6 +137,7 @@ extern_protocol!(
         /// Delegates receive this message whenever a depth data object is dropped. This method is called once for each dropped depth data. The object passed to this delegate method will contain a shell of an AVDepthData that contains no actual depth data backing pixel buffer, as well as a presentation time stamp and a reason for the drop. This method will be called on the dispatch queue specified by the output's delegateCallbackQueue property. Because this method is called on the same dispatch queue that outputs depth data, it must be efficient to prevent further capture performance problems, such as additional drops.
         #[optional]
         #[method(depthDataOutput:didDropDepthData:timestamp:connection:reason:)]
+        #[unsafe(method_family = none)]
         unsafe fn depthDataOutput_didDropDepthData_timestamp_connection_reason(
             &self,
             output: &AVCaptureDepthDataOutput,

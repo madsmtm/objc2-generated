@@ -58,14 +58,14 @@ unsafe impl NSSecureCoding for CIFilterGenerator {}
 extern_methods!(
     unsafe impl CIFilterGenerator {
         /// This creates an empty CIFilterGenerator in which you connect filters and images.
-        #[method_id(filterGenerator)]
+        #[method(filterGenerator)]
         #[unsafe(method_family = none)]
         pub unsafe fn filterGenerator() -> Retained<CIFilterGenerator>;
 
         /// Create a CIFilterGenerator with the contents of the file.
         ///
         /// Returns: CIFilterGenerator object. If the file could not be read it returns nil.
-        #[method_id(filterGeneratorWithContentsOfURL:)]
+        #[method(filterGeneratorWithContentsOfURL:)]
         #[unsafe(method_family = none)]
         pub unsafe fn filterGeneratorWithContentsOfURL(
             a_url: &NSURL,
@@ -75,7 +75,7 @@ extern_methods!(
         ///
         ///
         /// Returns: CIFilterGenerator object. If the file could not be read it returns nil.
-        #[method_id(initWithContentsOfURL:)]
+        #[method(initWithContentsOfURL:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL(
             this: Allocated<Self>,
@@ -94,6 +94,7 @@ extern_methods!(
         ///
         /// Parameter `targetKey`: The key that you assign the source object to.
         #[method(connectObject:withKey:toObject:withKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn connectObject_withKey_toObject_withKey(
             &self,
             source_object: &AnyObject,
@@ -114,6 +115,7 @@ extern_methods!(
         ///
         /// Parameter `targetKey`: The key that you assigned the source object to.
         #[method(disconnectObject:withKey:toObject:withKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn disconnectObject_withKey_toObject_withKey(
             &self,
             source_object: &AnyObject,
@@ -132,6 +134,7 @@ extern_methods!(
         ///
         /// Parameter `exportedKeyName`: The name under which you want the new key to be available. This parameter can be nil in which case the original key name will be used. This name has to be unique. If a key being exported is an inputKey of the filter it will be exported as an input key and the other way around for output keys.
         #[method(exportKey:fromObject:withName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn exportKey_fromObject_withName(
             &self,
             key: &NSString,
@@ -145,6 +148,7 @@ extern_methods!(
         ///
         /// Parameter `exportedKeyName`: Name of the key that was exported.
         #[method(removeExportedKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeExportedKey(&self, exported_key_name: &NSString);
 
         /// An array of the exported keys.
@@ -152,7 +156,7 @@ extern_methods!(
         /// Use this method to get an NSArray of all the keys that you have exported using exportKey:fromObject:withName: or that were exported before written to a file from which you read the filter chain.
         ///
         /// Returns: An array of dictionaries that describe the exported key and target object. See CIExportedKey, CIExportedKeyTargetObject and CIExportedKeyName for keys used in the dictionary.
-        #[method_id(exportedKeys)]
+        #[method(exportedKeys)]
         #[unsafe(method_family = none)]
         pub unsafe fn exportedKeys(&self) -> Retained<NSDictionary>;
 
@@ -160,6 +164,7 @@ extern_methods!(
         ///
         /// By default, the exported key inherits the attributes from its original key and target object. Use this method to for instance change the default value or lower the maximum allowed value.
         #[method(setAttributes:forExportedKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAttributes_forExportedKey(
             &self,
             attributes: &NSDictionary,
@@ -169,19 +174,20 @@ extern_methods!(
         /// Retrieve or Set the class attributes that will be used to register the filter using the registerFilterName method.
         /// Make sure you set the class attributes before using the registerFilterName method.
         /// See CIFilter for a description of the classAttributes that are needed to register a filter.
-        #[method_id(classAttributes)]
+        #[method(classAttributes)]
         #[unsafe(method_family = none)]
         pub unsafe fn classAttributes(&self) -> Retained<NSDictionary>;
 
         /// Setter for [`classAttributes`][Self::classAttributes].
         #[method(setClassAttributes:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setClassAttributes(&self, class_attributes: &NSDictionary);
 
         #[cfg(feature = "CIFilter")]
         /// Create a CIFilter object based on this filter chain.
         ///
         /// This method creates a CIFilter from the filter chain where the topology of the chain is immutable, meaning that changes to the filter chain will not be reflected in the filter. The filter will have the input and output keys that were exported as described above.
-        #[method_id(filter)]
+        #[method(filter)]
         #[unsafe(method_family = none)]
         pub unsafe fn filter(&self) -> Retained<CIFilter>;
 
@@ -193,12 +199,14 @@ extern_methods!(
         ///
         /// Parameter `name`: The name under which the filter will be registered. This name has to be unique.
         #[method(registerFilterName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn registerFilterName(&self, name: &NSString);
 
         /// Write the CIFilterGenerator into a file
         ///
         /// Returns: Returns true when the chain with written our succesfully
         #[method(writeToURL:atomically:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn writeToURL_atomically(&self, a_url: &NSURL, flag: bool) -> bool;
     }
 );
@@ -206,11 +214,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIFilterGenerator {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -24,7 +24,7 @@ unsafe impl NSObjectProtocol for SCScreenshotManager {}
 
 extern_methods!(
     unsafe impl SCScreenshotManager {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -39,6 +39,7 @@ extern_methods!(
         ///
         /// this method takes a screenshot using the filter and configuration passed in and returns it as a CMSampleBuffer
         #[method(captureSampleBufferWithFilter:configuration:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn captureSampleBufferWithFilter_configuration_completionHandler(
             content_filter: &SCContentFilter,
             config: &SCStreamConfiguration,
@@ -60,6 +61,7 @@ extern_methods!(
         ///
         /// this method takes a screenshot using the filter and configuration passed in and returns it as a CGImage in BGRA format if captureDynamicRange is SCCaptureDynamicRangeSDR, in RGhA format if captureDynamicRange is SCCaptureDynamicRangeHDRLocalDisplay/SCCaptureDynamicRangeHDRCanonicalDisplay
         #[method(captureImageWithFilter:configuration:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn captureImageWithFilter_configuration_completionHandler(
             content_filter: &SCContentFilter,
             config: &SCStreamConfiguration,
@@ -79,6 +81,7 @@ extern_methods!(
         ///
         /// this method returns an image containing the contents of the rectangle in points, specified in display space
         #[method(captureImageInRect:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn captureImageInRect_completionHandler(
             rect: CGRect,
             completion_handler: Option<&block2::Block<dyn Fn(*mut CGImage, *mut NSError)>>,
@@ -89,7 +92,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCScreenshotManager {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

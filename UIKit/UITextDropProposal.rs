@@ -93,31 +93,39 @@ extern_methods!(
     #[cfg(feature = "UIDropInteraction")]
     unsafe impl UITextDropProposal {
         #[method(dropAction)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dropAction(&self) -> UITextDropAction;
 
         /// Setter for [`dropAction`][Self::dropAction].
         #[method(setDropAction:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDropAction(&self, drop_action: UITextDropAction);
 
         #[method(dropProgressMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dropProgressMode(&self) -> UITextDropProgressMode;
 
         /// Setter for [`dropProgressMode`][Self::dropProgressMode].
         #[method(setDropProgressMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDropProgressMode(&self, drop_progress_mode: UITextDropProgressMode);
 
         #[method(useFastSameViewOperations)]
+        #[unsafe(method_family = none)]
         pub unsafe fn useFastSameViewOperations(&self) -> bool;
 
         /// Setter for [`useFastSameViewOperations`][Self::useFastSameViewOperations].
         #[method(setUseFastSameViewOperations:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUseFastSameViewOperations(&self, use_fast_same_view_operations: bool);
 
         #[method(dropPerformer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dropPerformer(&self) -> UITextDropPerformer;
 
         /// Setter for [`dropPerformer`][Self::dropPerformer].
         #[method(setDropPerformer:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDropPerformer(&self, drop_performer: UITextDropPerformer);
     }
 );
@@ -126,18 +134,18 @@ extern_methods!(
     /// Methods declared on superclass `UIDropProposal`
     #[cfg(feature = "UIDropInteraction")]
     unsafe impl UITextDropProposal {
-        #[method_id(initWithDropOperation:)]
+        #[method(initWithDropOperation:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDropOperation(
             this: Allocated<Self>,
             operation: UIDropOperation,
         ) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

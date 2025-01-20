@@ -145,11 +145,11 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSSecureTextField {
-        #[method_id(initWithFrame:)]
+        #[method(initWithFrame:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -167,7 +167,7 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSSecureTextField {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -182,7 +182,7 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSSecureTextField {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -262,10 +262,12 @@ extern_methods!(
     ))]
     unsafe impl NSSecureTextFieldCell {
         #[method(echosBullets)]
+        #[unsafe(method_family = none)]
         pub unsafe fn echosBullets(&self) -> bool;
 
         /// Setter for [`echosBullets`][Self::echosBullets].
         #[method(setEchosBullets:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setEchosBullets(&self, echos_bullets: bool);
     }
 );
@@ -278,16 +280,16 @@ extern_methods!(
         feature = "NSTextFieldCell"
     ))]
     unsafe impl NSSecureTextFieldCell {
-        #[method_id(initTextCell:)]
+        #[method(initTextCell:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
-        #[method_id(initImageCell:)]
+        #[method(initImageCell:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initImageCell(
             this: Allocated<Self>,
@@ -304,7 +306,7 @@ extern_methods!(
         feature = "NSTextFieldCell"
     ))]
     unsafe impl NSSecureTextFieldCell {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -318,7 +320,7 @@ extern_methods!(
         feature = "NSTextFieldCell"
     ))]
     unsafe impl NSSecureTextFieldCell {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

@@ -20,16 +20,16 @@ unsafe impl NSObjectProtocol for MKLookAroundSceneRequest {}
 
 extern_methods!(
     unsafe impl MKLookAroundSceneRequest {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-location")]
-        #[method_id(initWithCoordinate:)]
+        #[method(initWithCoordinate:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoordinate(
             this: Allocated<Self>,
@@ -37,7 +37,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MKMapItem")]
-        #[method_id(initWithMapItem:)]
+        #[method(initWithMapItem:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMapItem(
             this: Allocated<Self>,
@@ -46,27 +46,32 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-location")]
         #[method(coordinate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn coordinate(&self) -> CLLocationCoordinate2D;
 
         #[cfg(feature = "MKMapItem")]
-        #[method_id(mapItem)]
+        #[method(mapItem)]
         #[unsafe(method_family = none)]
         pub unsafe fn mapItem(&self) -> Option<Retained<MKMapItem>>;
 
         #[method(isCancelled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isCancelled(&self) -> bool;
 
         #[method(isLoading)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isLoading(&self) -> bool;
 
         #[cfg(all(feature = "MKLookAroundScene", feature = "block2"))]
         #[method(getSceneWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getSceneWithCompletionHandler(
             &self,
             completion_handler: &block2::Block<dyn Fn(*mut MKLookAroundScene, *mut NSError)>,
         );
 
         #[method(cancel)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cancel(&self);
     }
 );

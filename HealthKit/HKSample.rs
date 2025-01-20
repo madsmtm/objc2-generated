@@ -35,15 +35,15 @@ extern_methods!(
     #[cfg(feature = "HKObject")]
     unsafe impl HKSample {
         #[cfg(feature = "HKObjectType")]
-        #[method_id(sampleType)]
+        #[method(sampleType)]
         #[unsafe(method_family = none)]
         pub unsafe fn sampleType(&self) -> Retained<HKSampleType>;
 
-        #[method_id(startDate)]
+        #[method(startDate)]
         #[unsafe(method_family = none)]
         pub unsafe fn startDate(&self) -> Retained<NSDate>;
 
-        #[method_id(endDate)]
+        #[method(endDate)]
         #[unsafe(method_family = none)]
         pub unsafe fn endDate(&self) -> Retained<NSDate>;
 
@@ -51,6 +51,7 @@ extern_methods!(
         ///
         /// Computed based on the endDate of a sample.
         #[method(hasUndeterminedDuration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hasUndeterminedDuration(&self) -> bool;
     }
 );
@@ -59,7 +60,7 @@ extern_methods!(
     /// Methods declared on superclass `HKObject`
     #[cfg(feature = "HKObject")]
     unsafe impl HKSample {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -69,7 +70,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "HKObject")]
     unsafe impl HKSample {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

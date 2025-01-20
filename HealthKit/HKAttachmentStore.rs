@@ -26,7 +26,7 @@ extern_methods!(
         /// The designated initializer to create an HKAttachmentStore.
         ///
         /// Parameter `healthStore`: Specifies the HKHealthStore object to use.
-        #[method_id(initWithHealthStore:)]
+        #[method(initWithHealthStore:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithHealthStore(
             this: Allocated<Self>,
@@ -54,6 +54,7 @@ extern_methods!(
         /// Parameter `completion`: Called with an HKAttachment instance once the file was successfully saved and attached,
         /// otherwise called with an error.
         #[method(addAttachmentToObject:name:contentType:URL:metadata:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addAttachmentToObject_name_contentType_URL_metadata_completion(
             &self,
             object: &HKObject,
@@ -73,6 +74,7 @@ extern_methods!(
         ///
         /// Parameter `completion`: Called once the remove operation finishes.
         #[method(removeAttachment:fromObject:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeAttachment_fromObject_completion(
             &self,
             attachment: &HKAttachment,
@@ -87,6 +89,7 @@ extern_methods!(
         ///
         /// Parameter `completion`: Called with a list of attachments or an error.
         #[method(getAttachmentsForObject:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getAttachmentsForObject_completion(
             &self,
             object: &HKObject,
@@ -105,7 +108,7 @@ extern_methods!(
         /// Parameter `completion`: Called with an NSData or an error.
         ///
         /// Returns: An NSProgress object to use for tracking the progress of downloading the attachment's data from iCloud.
-        #[method_id(getDataForAttachment:completion:)]
+        #[method(getDataForAttachment:completion:)]
         #[unsafe(method_family = none)]
         pub unsafe fn getDataForAttachment_completion(
             &self,
@@ -124,7 +127,7 @@ extern_methods!(
         /// Parameter `dataHandler`: Called with an NSData chunk or an error. When done is YES, the operation has completed.
         ///
         /// Returns: An NSProgress object to use for tracking the progress of downloading the attachment's data from iCloud.
-        #[method_id(streamDataForAttachment:dataHandler:)]
+        #[method(streamDataForAttachment:dataHandler:)]
         #[unsafe(method_family = none)]
         pub unsafe fn streamDataForAttachment_dataHandler(
             &self,
@@ -137,11 +140,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKAttachmentStore {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

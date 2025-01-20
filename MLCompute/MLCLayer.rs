@@ -29,17 +29,19 @@ extern_methods!(
         /// A unique number to identify each layer.  Assigned when the layer is created.
         #[deprecated]
         #[method(layerID)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layerID(&self) -> NSUInteger;
 
         /// A string to help identify this object.
         #[deprecated]
-        #[method_id(label)]
+        #[method(label)]
         #[unsafe(method_family = none)]
         pub unsafe fn label(&self) -> Retained<NSString>;
 
         /// Setter for [`label`][Self::label].
         #[deprecated]
         #[method(setLabel:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLabel(&self, label: &NSString);
 
         /// A flag to identify if we want to debug this layer when executing a graph that includes this layer
@@ -49,11 +51,13 @@ extern_methods!(
         /// compiling the graph.  Otherwise this property may be ignored.
         #[deprecated]
         #[method(isDebuggingEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isDebuggingEnabled(&self) -> bool;
 
         /// Setter for [`isDebuggingEnabled`][Self::isDebuggingEnabled].
         #[deprecated]
         #[method(setIsDebuggingEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIsDebuggingEnabled(&self, is_debugging_enabled: bool);
 
         #[cfg(all(feature = "MLCDevice", feature = "MLCTypes"))]
@@ -66,6 +70,7 @@ extern_methods!(
         /// Returns: A boolean indicating whether the data type is supported
         #[deprecated]
         #[method(supportsDataType:onDevice:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn supportsDataType_onDevice(data_type: MLCDataType, device: &MLCDevice)
             -> bool;
 
@@ -76,15 +81,16 @@ extern_methods!(
         /// If MLCDeviceTypeANE is selected, it is possible that some of the layers of the graph may not be executed on the ANE
         /// but instead on the CPU or GPU.  This property can be used to determine which device type the layer will be executed on.
         #[method(deviceType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn deviceType(&self) -> MLCDeviceType;
 
         #[deprecated]
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

@@ -19,38 +19,44 @@ extern_protocol!(
     pub unsafe trait CIGaussianGradient: CIFilterProtocol {
         #[cfg(feature = "objc2-core-foundation")]
         #[method(center)]
+        #[unsafe(method_family = none)]
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(color0)]
+        #[method(color0)]
         #[unsafe(method_family = none)]
         unsafe fn color0(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
         /// Setter for [`color0`][Self::color0].
         #[method(setColor0:)]
+        #[unsafe(method_family = none)]
         unsafe fn setColor0(&self, color0: &CIColor);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(color1)]
+        #[method(color1)]
         #[unsafe(method_family = none)]
         unsafe fn color1(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
         /// Setter for [`color1`][Self::color1].
         #[method(setColor1:)]
+        #[unsafe(method_family = none)]
         unsafe fn setColor1(&self, color1: &CIColor);
 
         #[method(radius)]
+        #[unsafe(method_family = none)]
         unsafe fn radius(&self) -> c_float;
 
         /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRadius(&self, radius: c_float);
     }
 );
@@ -60,41 +66,50 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIHueSaturationValueGradient: CIFilterProtocol {
         #[method(value)]
+        #[unsafe(method_family = none)]
         unsafe fn value(&self) -> c_float;
 
         /// Setter for [`value`][Self::value].
         #[method(setValue:)]
+        #[unsafe(method_family = none)]
         unsafe fn setValue(&self, value: c_float);
 
         #[method(radius)]
+        #[unsafe(method_family = none)]
         unsafe fn radius(&self) -> c_float;
 
         /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRadius(&self, radius: c_float);
 
         #[method(softness)]
+        #[unsafe(method_family = none)]
         unsafe fn softness(&self) -> c_float;
 
         /// Setter for [`softness`][Self::softness].
         #[method(setSoftness:)]
+        #[unsafe(method_family = none)]
         unsafe fn setSoftness(&self, softness: c_float);
 
         #[method(dither)]
+        #[unsafe(method_family = none)]
         unsafe fn dither(&self) -> c_float;
 
         /// Setter for [`dither`][Self::dither].
         #[method(setDither:)]
+        #[unsafe(method_family = none)]
         unsafe fn setDither(&self, dither: c_float);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(colorSpace)]
+        #[method(colorSpace)]
         #[unsafe(method_family = none)]
         unsafe fn colorSpace(&self) -> Option<Retained<CGColorSpace>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`colorSpace`][Self::colorSpace].
         #[method(setColorSpace:)]
+        #[unsafe(method_family = none)]
         unsafe fn setColorSpace(&self, color_space: Option<&CGColorSpace>);
     }
 );
@@ -105,40 +120,46 @@ extern_protocol!(
     pub unsafe trait CILinearGradient: CIFilterProtocol {
         #[cfg(feature = "objc2-core-foundation")]
         #[method(point0)]
+        #[unsafe(method_family = none)]
         unsafe fn point0(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`point0`][Self::point0].
         #[method(setPoint0:)]
+        #[unsafe(method_family = none)]
         unsafe fn setPoint0(&self, point0: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(point1)]
+        #[unsafe(method_family = none)]
         unsafe fn point1(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`point1`][Self::point1].
         #[method(setPoint1:)]
+        #[unsafe(method_family = none)]
         unsafe fn setPoint1(&self, point1: CGPoint);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(color0)]
+        #[method(color0)]
         #[unsafe(method_family = none)]
         unsafe fn color0(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
         /// Setter for [`color0`][Self::color0].
         #[method(setColor0:)]
+        #[unsafe(method_family = none)]
         unsafe fn setColor0(&self, color0: &CIColor);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(color1)]
+        #[method(color1)]
         #[unsafe(method_family = none)]
         unsafe fn color1(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
         /// Setter for [`color1`][Self::color1].
         #[method(setColor1:)]
+        #[unsafe(method_family = none)]
         unsafe fn setColor1(&self, color1: &CIColor);
     }
 );
@@ -149,45 +170,53 @@ extern_protocol!(
     pub unsafe trait CIRadialGradient: CIFilterProtocol {
         #[cfg(feature = "objc2-core-foundation")]
         #[method(center)]
+        #[unsafe(method_family = none)]
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(radius0)]
+        #[unsafe(method_family = none)]
         unsafe fn radius0(&self) -> c_float;
 
         /// Setter for [`radius0`][Self::radius0].
         #[method(setRadius0:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRadius0(&self, radius0: c_float);
 
         #[method(radius1)]
+        #[unsafe(method_family = none)]
         unsafe fn radius1(&self) -> c_float;
 
         /// Setter for [`radius1`][Self::radius1].
         #[method(setRadius1:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRadius1(&self, radius1: c_float);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(color0)]
+        #[method(color0)]
         #[unsafe(method_family = none)]
         unsafe fn color0(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
         /// Setter for [`color0`][Self::color0].
         #[method(setColor0:)]
+        #[unsafe(method_family = none)]
         unsafe fn setColor0(&self, color0: &CIColor);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(color1)]
+        #[method(color1)]
         #[unsafe(method_family = none)]
         unsafe fn color1(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
         /// Setter for [`color1`][Self::color1].
         #[method(setColor1:)]
+        #[unsafe(method_family = none)]
         unsafe fn setColor1(&self, color1: &CIColor);
     }
 );
@@ -198,40 +227,46 @@ extern_protocol!(
     pub unsafe trait CISmoothLinearGradient: CIFilterProtocol {
         #[cfg(feature = "objc2-core-foundation")]
         #[method(point0)]
+        #[unsafe(method_family = none)]
         unsafe fn point0(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`point0`][Self::point0].
         #[method(setPoint0:)]
+        #[unsafe(method_family = none)]
         unsafe fn setPoint0(&self, point0: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(point1)]
+        #[unsafe(method_family = none)]
         unsafe fn point1(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`point1`][Self::point1].
         #[method(setPoint1:)]
+        #[unsafe(method_family = none)]
         unsafe fn setPoint1(&self, point1: CGPoint);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(color0)]
+        #[method(color0)]
         #[unsafe(method_family = none)]
         unsafe fn color0(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
         /// Setter for [`color0`][Self::color0].
         #[method(setColor0:)]
+        #[unsafe(method_family = none)]
         unsafe fn setColor0(&self, color0: &CIColor);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(color1)]
+        #[method(color1)]
         #[unsafe(method_family = none)]
         unsafe fn color1(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
         /// Setter for [`color1`][Self::color1].
         #[method(setColor1:)]
+        #[unsafe(method_family = none)]
         unsafe fn setColor1(&self, color1: &CIColor);
     }
 );
@@ -241,27 +276,32 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CISharpenLuminance: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(sharpness)]
+        #[unsafe(method_family = none)]
         unsafe fn sharpness(&self) -> c_float;
 
         /// Setter for [`sharpness`][Self::sharpness].
         #[method(setSharpness:)]
+        #[unsafe(method_family = none)]
         unsafe fn setSharpness(&self, sharpness: c_float);
 
         #[method(radius)]
+        #[unsafe(method_family = none)]
         unsafe fn radius(&self) -> c_float;
 
         /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRadius(&self, radius: c_float);
     }
 );
@@ -271,27 +311,32 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIUnsharpMask: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(radius)]
+        #[unsafe(method_family = none)]
         unsafe fn radius(&self) -> c_float;
 
         /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRadius(&self, radius: c_float);
 
         #[method(intensity)]
+        #[unsafe(method_family = none)]
         unsafe fn intensity(&self) -> c_float;
 
         /// Setter for [`intensity`][Self::intensity].
         #[method(setIntensity:)]
+        #[unsafe(method_family = none)]
         unsafe fn setIntensity(&self, intensity: c_float);
     }
 );
@@ -301,36 +346,43 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CICircularScreen: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(center)]
+        #[unsafe(method_family = none)]
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(width)]
+        #[unsafe(method_family = none)]
         unsafe fn width(&self) -> c_float;
 
         /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
+        #[unsafe(method_family = none)]
         unsafe fn setWidth(&self, width: c_float);
 
         #[method(sharpness)]
+        #[unsafe(method_family = none)]
         unsafe fn sharpness(&self) -> c_float;
 
         /// Setter for [`sharpness`][Self::sharpness].
         #[method(setSharpness:)]
+        #[unsafe(method_family = none)]
         unsafe fn setSharpness(&self, sharpness: c_float);
     }
 );
@@ -340,57 +392,70 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CICMYKHalftone: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(center)]
+        #[unsafe(method_family = none)]
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(width)]
+        #[unsafe(method_family = none)]
         unsafe fn width(&self) -> c_float;
 
         /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
+        #[unsafe(method_family = none)]
         unsafe fn setWidth(&self, width: c_float);
 
         #[method(angle)]
+        #[unsafe(method_family = none)]
         unsafe fn angle(&self) -> c_float;
 
         /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAngle(&self, angle: c_float);
 
         #[method(sharpness)]
+        #[unsafe(method_family = none)]
         unsafe fn sharpness(&self) -> c_float;
 
         /// Setter for [`sharpness`][Self::sharpness].
         #[method(setSharpness:)]
+        #[unsafe(method_family = none)]
         unsafe fn setSharpness(&self, sharpness: c_float);
 
         #[method(grayComponentReplacement)]
+        #[unsafe(method_family = none)]
         unsafe fn grayComponentReplacement(&self) -> c_float;
 
         /// Setter for [`grayComponentReplacement`][Self::grayComponentReplacement].
         #[method(setGrayComponentReplacement:)]
+        #[unsafe(method_family = none)]
         unsafe fn setGrayComponentReplacement(&self, gray_component_replacement: c_float);
 
         #[method(underColorRemoval)]
+        #[unsafe(method_family = none)]
         unsafe fn underColorRemoval(&self) -> c_float;
 
         /// Setter for [`underColorRemoval`][Self::underColorRemoval].
         #[method(setUnderColorRemoval:)]
+        #[unsafe(method_family = none)]
         unsafe fn setUnderColorRemoval(&self, under_color_removal: c_float);
     }
 );
@@ -400,43 +465,52 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIDotScreen: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(center)]
+        #[unsafe(method_family = none)]
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(angle)]
+        #[unsafe(method_family = none)]
         unsafe fn angle(&self) -> c_float;
 
         /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAngle(&self, angle: c_float);
 
         #[method(width)]
+        #[unsafe(method_family = none)]
         unsafe fn width(&self) -> c_float;
 
         /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
+        #[unsafe(method_family = none)]
         unsafe fn setWidth(&self, width: c_float);
 
         #[method(sharpness)]
+        #[unsafe(method_family = none)]
         unsafe fn sharpness(&self) -> c_float;
 
         /// Setter for [`sharpness`][Self::sharpness].
         #[method(setSharpness:)]
+        #[unsafe(method_family = none)]
         unsafe fn setSharpness(&self, sharpness: c_float);
     }
 );
@@ -446,43 +520,52 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIHatchedScreen: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(center)]
+        #[unsafe(method_family = none)]
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(angle)]
+        #[unsafe(method_family = none)]
         unsafe fn angle(&self) -> c_float;
 
         /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAngle(&self, angle: c_float);
 
         #[method(width)]
+        #[unsafe(method_family = none)]
         unsafe fn width(&self) -> c_float;
 
         /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
+        #[unsafe(method_family = none)]
         unsafe fn setWidth(&self, width: c_float);
 
         #[method(sharpness)]
+        #[unsafe(method_family = none)]
         unsafe fn sharpness(&self) -> c_float;
 
         /// Setter for [`sharpness`][Self::sharpness].
         #[method(setSharpness:)]
+        #[unsafe(method_family = none)]
         unsafe fn setSharpness(&self, sharpness: c_float);
     }
 );
@@ -492,43 +575,52 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CILineScreen: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(center)]
+        #[unsafe(method_family = none)]
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(angle)]
+        #[unsafe(method_family = none)]
         unsafe fn angle(&self) -> c_float;
 
         /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAngle(&self, angle: c_float);
 
         #[method(width)]
+        #[unsafe(method_family = none)]
         unsafe fn width(&self) -> c_float;
 
         /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
+        #[unsafe(method_family = none)]
         unsafe fn setWidth(&self, width: c_float);
 
         #[method(sharpness)]
+        #[unsafe(method_family = none)]
         unsafe fn sharpness(&self) -> c_float;
 
         /// Setter for [`sharpness`][Self::sharpness].
         #[method(setSharpness:)]
+        #[unsafe(method_family = none)]
         unsafe fn setSharpness(&self, sharpness: c_float);
     }
 );
@@ -538,49 +630,58 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIFourCoordinateGeometryFilter: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(topLeft)]
+        #[unsafe(method_family = none)]
         unsafe fn topLeft(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`topLeft`][Self::topLeft].
         #[method(setTopLeft:)]
+        #[unsafe(method_family = none)]
         unsafe fn setTopLeft(&self, top_left: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(topRight)]
+        #[unsafe(method_family = none)]
         unsafe fn topRight(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`topRight`][Self::topRight].
         #[method(setTopRight:)]
+        #[unsafe(method_family = none)]
         unsafe fn setTopRight(&self, top_right: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(bottomRight)]
+        #[unsafe(method_family = none)]
         unsafe fn bottomRight(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`bottomRight`][Self::bottomRight].
         #[method(setBottomRight:)]
+        #[unsafe(method_family = none)]
         unsafe fn setBottomRight(&self, bottom_right: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(bottomLeft)]
+        #[unsafe(method_family = none)]
         unsafe fn bottomLeft(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`bottomLeft`][Self::bottomLeft].
         #[method(setBottomLeft:)]
+        #[unsafe(method_family = none)]
         unsafe fn setBottomLeft(&self, bottom_left: CGPoint);
     }
 );
@@ -590,41 +691,50 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIBicubicScaleTransform: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(scale)]
+        #[unsafe(method_family = none)]
         unsafe fn scale(&self) -> c_float;
 
         /// Setter for [`scale`][Self::scale].
         #[method(setScale:)]
+        #[unsafe(method_family = none)]
         unsafe fn setScale(&self, scale: c_float);
 
         #[method(aspectRatio)]
+        #[unsafe(method_family = none)]
         unsafe fn aspectRatio(&self) -> c_float;
 
         /// Setter for [`aspectRatio`][Self::aspectRatio].
         #[method(setAspectRatio:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAspectRatio(&self, aspect_ratio: c_float);
 
         #[method(parameterB)]
+        #[unsafe(method_family = none)]
         unsafe fn parameterB(&self) -> c_float;
 
         /// Setter for [`parameterB`][Self::parameterB].
         #[method(setParameterB:)]
+        #[unsafe(method_family = none)]
         unsafe fn setParameterB(&self, parameter_b: c_float);
 
         #[method(parameterC)]
+        #[unsafe(method_family = none)]
         unsafe fn parameterC(&self) -> c_float;
 
         /// Setter for [`parameterC`][Self::parameterC].
         #[method(setParameterC:)]
+        #[unsafe(method_family = none)]
         unsafe fn setParameterC(&self, parameter_c: c_float);
     }
 );
@@ -634,37 +744,43 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIEdgePreserveUpsample: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIImage")]
-        #[method_id(smallImage)]
+        #[method(smallImage)]
         #[unsafe(method_family = none)]
         unsafe fn smallImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`smallImage`][Self::smallImage].
         #[method(setSmallImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setSmallImage(&self, small_image: Option<&CIImage>);
 
         #[method(spatialSigma)]
+        #[unsafe(method_family = none)]
         unsafe fn spatialSigma(&self) -> c_float;
 
         /// Setter for [`spatialSigma`][Self::spatialSigma].
         #[method(setSpatialSigma:)]
+        #[unsafe(method_family = none)]
         unsafe fn setSpatialSigma(&self, spatial_sigma: c_float);
 
         #[method(lumaSigma)]
+        #[unsafe(method_family = none)]
         unsafe fn lumaSigma(&self) -> c_float;
 
         /// Setter for [`lumaSigma`][Self::lumaSigma].
         #[method(setLumaSigma:)]
+        #[unsafe(method_family = none)]
         unsafe fn setLumaSigma(&self, luma_sigma: c_float);
     }
 );
@@ -674,10 +790,12 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIKeystoneCorrectionCombined: CIFourCoordinateGeometryFilter {
         #[method(focalLength)]
+        #[unsafe(method_family = none)]
         unsafe fn focalLength(&self) -> c_float;
 
         /// Setter for [`focalLength`][Self::focalLength].
         #[method(setFocalLength:)]
+        #[unsafe(method_family = none)]
         unsafe fn setFocalLength(&self, focal_length: c_float);
     }
 );
@@ -687,10 +805,12 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIKeystoneCorrectionHorizontal: CIFourCoordinateGeometryFilter {
         #[method(focalLength)]
+        #[unsafe(method_family = none)]
         unsafe fn focalLength(&self) -> c_float;
 
         /// Setter for [`focalLength`][Self::focalLength].
         #[method(setFocalLength:)]
+        #[unsafe(method_family = none)]
         unsafe fn setFocalLength(&self, focal_length: c_float);
     }
 );
@@ -700,10 +820,12 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIKeystoneCorrectionVertical: CIFourCoordinateGeometryFilter {
         #[method(focalLength)]
+        #[unsafe(method_family = none)]
         unsafe fn focalLength(&self) -> c_float;
 
         /// Setter for [`focalLength`][Self::focalLength].
         #[method(setFocalLength:)]
+        #[unsafe(method_family = none)]
         unsafe fn setFocalLength(&self, focal_length: c_float);
     }
 );
@@ -713,27 +835,32 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CILanczosScaleTransform: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(scale)]
+        #[unsafe(method_family = none)]
         unsafe fn scale(&self) -> c_float;
 
         /// Setter for [`scale`][Self::scale].
         #[method(setScale:)]
+        #[unsafe(method_family = none)]
         unsafe fn setScale(&self, scale: c_float);
 
         #[method(aspectRatio)]
+        #[unsafe(method_family = none)]
         unsafe fn aspectRatio(&self) -> c_float;
 
         /// Setter for [`aspectRatio`][Self::aspectRatio].
         #[method(setAspectRatio:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAspectRatio(&self, aspect_ratio: c_float);
     }
 );
@@ -743,27 +870,32 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIMaximumScaleTransform: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(scale)]
+        #[unsafe(method_family = none)]
         unsafe fn scale(&self) -> c_float;
 
         /// Setter for [`scale`][Self::scale].
         #[method(setScale:)]
+        #[unsafe(method_family = none)]
         unsafe fn setScale(&self, scale: c_float);
 
         #[method(aspectRatio)]
+        #[unsafe(method_family = none)]
         unsafe fn aspectRatio(&self) -> c_float;
 
         /// Setter for [`aspectRatio`][Self::aspectRatio].
         #[method(setAspectRatio:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAspectRatio(&self, aspect_ratio: c_float);
     }
 );
@@ -773,10 +905,12 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIPerspectiveCorrection: CIFourCoordinateGeometryFilter {
         #[method(crop)]
+        #[unsafe(method_family = none)]
         unsafe fn crop(&self) -> bool;
 
         /// Setter for [`crop`][Self::crop].
         #[method(setCrop:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCrop(&self, crop: bool);
     }
 );
@@ -786,41 +920,50 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIPerspectiveRotate: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(focalLength)]
+        #[unsafe(method_family = none)]
         unsafe fn focalLength(&self) -> c_float;
 
         /// Setter for [`focalLength`][Self::focalLength].
         #[method(setFocalLength:)]
+        #[unsafe(method_family = none)]
         unsafe fn setFocalLength(&self, focal_length: c_float);
 
         #[method(pitch)]
+        #[unsafe(method_family = none)]
         unsafe fn pitch(&self) -> c_float;
 
         /// Setter for [`pitch`][Self::pitch].
         #[method(setPitch:)]
+        #[unsafe(method_family = none)]
         unsafe fn setPitch(&self, pitch: c_float);
 
         #[method(yaw)]
+        #[unsafe(method_family = none)]
         unsafe fn yaw(&self) -> c_float;
 
         /// Setter for [`yaw`][Self::yaw].
         #[method(setYaw:)]
+        #[unsafe(method_family = none)]
         unsafe fn setYaw(&self, yaw: c_float);
 
         #[method(roll)]
+        #[unsafe(method_family = none)]
         unsafe fn roll(&self) -> c_float;
 
         /// Setter for [`roll`][Self::roll].
         #[method(setRoll:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRoll(&self, roll: c_float);
     }
 );
@@ -839,11 +982,13 @@ extern_protocol!(
     {
         #[cfg(feature = "objc2-core-foundation")]
         #[method(extent)]
+        #[unsafe(method_family = none)]
         unsafe fn extent(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`extent`][Self::extent].
         #[method(setExtent:)]
+        #[unsafe(method_family = none)]
         unsafe fn setExtent(&self, extent: CGRect);
     }
 );
@@ -853,20 +998,23 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIStraighten: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(angle)]
+        #[unsafe(method_family = none)]
         unsafe fn angle(&self) -> c_float;
 
         /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAngle(&self, angle: c_float);
     }
 );
@@ -876,30 +1024,34 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CITransitionFilter: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIImage")]
-        #[method_id(targetImage)]
+        #[method(targetImage)]
         #[unsafe(method_family = none)]
         unsafe fn targetImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`targetImage`][Self::targetImage].
         #[method(setTargetImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setTargetImage(&self, target_image: Option<&CIImage>);
 
         #[method(time)]
+        #[unsafe(method_family = none)]
         unsafe fn time(&self) -> c_float;
 
         /// Setter for [`time`][Self::time].
         #[method(setTime:)]
+        #[unsafe(method_family = none)]
         unsafe fn setTime(&self, time: c_float);
     }
 );
@@ -909,24 +1061,30 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIAccordionFoldTransition: CITransitionFilter {
         #[method(bottomHeight)]
+        #[unsafe(method_family = none)]
         unsafe fn bottomHeight(&self) -> c_float;
 
         /// Setter for [`bottomHeight`][Self::bottomHeight].
         #[method(setBottomHeight:)]
+        #[unsafe(method_family = none)]
         unsafe fn setBottomHeight(&self, bottom_height: c_float);
 
         #[method(numberOfFolds)]
+        #[unsafe(method_family = none)]
         unsafe fn numberOfFolds(&self) -> c_float;
 
         /// Setter for [`numberOfFolds`][Self::numberOfFolds].
         #[method(setNumberOfFolds:)]
+        #[unsafe(method_family = none)]
         unsafe fn setNumberOfFolds(&self, number_of_folds: c_float);
 
         #[method(foldShadowAmount)]
+        #[unsafe(method_family = none)]
         unsafe fn foldShadowAmount(&self) -> c_float;
 
         /// Setter for [`foldShadowAmount`][Self::foldShadowAmount].
         #[method(setFoldShadowAmount:)]
+        #[unsafe(method_family = none)]
         unsafe fn setFoldShadowAmount(&self, fold_shadow_amount: c_float);
     }
 );
@@ -936,24 +1094,30 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIBarsSwipeTransition: CITransitionFilter {
         #[method(angle)]
+        #[unsafe(method_family = none)]
         unsafe fn angle(&self) -> c_float;
 
         /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAngle(&self, angle: c_float);
 
         #[method(width)]
+        #[unsafe(method_family = none)]
         unsafe fn width(&self) -> c_float;
 
         /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
+        #[unsafe(method_family = none)]
         unsafe fn setWidth(&self, width: c_float);
 
         #[method(barOffset)]
+        #[unsafe(method_family = none)]
         unsafe fn barOffset(&self) -> c_float;
 
         /// Setter for [`barOffset`][Self::barOffset].
         #[method(setBarOffset:)]
+        #[unsafe(method_family = none)]
         unsafe fn setBarOffset(&self, bar_offset: c_float);
     }
 );
@@ -964,42 +1128,51 @@ extern_protocol!(
     pub unsafe trait CICopyMachineTransition: CITransitionFilter {
         #[cfg(feature = "objc2-core-foundation")]
         #[method(extent)]
+        #[unsafe(method_family = none)]
         unsafe fn extent(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`extent`][Self::extent].
         #[method(setExtent:)]
+        #[unsafe(method_family = none)]
         unsafe fn setExtent(&self, extent: CGRect);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(color)]
+        #[method(color)]
         #[unsafe(method_family = none)]
         unsafe fn color(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
         /// Setter for [`color`][Self::color].
         #[method(setColor:)]
+        #[unsafe(method_family = none)]
         unsafe fn setColor(&self, color: &CIColor);
 
         #[method(angle)]
+        #[unsafe(method_family = none)]
         unsafe fn angle(&self) -> c_float;
 
         /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAngle(&self, angle: c_float);
 
         #[method(width)]
+        #[unsafe(method_family = none)]
         unsafe fn width(&self) -> c_float;
 
         /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
+        #[unsafe(method_family = none)]
         unsafe fn setWidth(&self, width: c_float);
 
         #[method(opacity)]
+        #[unsafe(method_family = none)]
         unsafe fn opacity(&self) -> c_float;
 
         /// Setter for [`opacity`][Self::opacity].
         #[method(setOpacity:)]
+        #[unsafe(method_family = none)]
         unsafe fn setOpacity(&self, opacity: c_float);
     }
 );
@@ -1009,36 +1182,43 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIDisintegrateWithMaskTransition: CITransitionFilter {
         #[cfg(feature = "CIImage")]
-        #[method_id(maskImage)]
+        #[method(maskImage)]
         #[unsafe(method_family = none)]
         unsafe fn maskImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`maskImage`][Self::maskImage].
         #[method(setMaskImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setMaskImage(&self, mask_image: Option<&CIImage>);
 
         #[method(shadowRadius)]
+        #[unsafe(method_family = none)]
         unsafe fn shadowRadius(&self) -> c_float;
 
         /// Setter for [`shadowRadius`][Self::shadowRadius].
         #[method(setShadowRadius:)]
+        #[unsafe(method_family = none)]
         unsafe fn setShadowRadius(&self, shadow_radius: c_float);
 
         #[method(shadowDensity)]
+        #[unsafe(method_family = none)]
         unsafe fn shadowDensity(&self) -> c_float;
 
         /// Setter for [`shadowDensity`][Self::shadowDensity].
         #[method(setShadowDensity:)]
+        #[unsafe(method_family = none)]
         unsafe fn setShadowDensity(&self, shadow_density: c_float);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(shadowOffset)]
+        #[unsafe(method_family = none)]
         unsafe fn shadowOffset(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`shadowOffset`][Self::shadowOffset].
         #[method(setShadowOffset:)]
+        #[unsafe(method_family = none)]
         unsafe fn setShadowOffset(&self, shadow_offset: CGPoint);
     }
 );
@@ -1055,58 +1235,71 @@ extern_protocol!(
     pub unsafe trait CIFlashTransition: CITransitionFilter {
         #[cfg(feature = "objc2-core-foundation")]
         #[method(center)]
+        #[unsafe(method_family = none)]
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(extent)]
+        #[unsafe(method_family = none)]
         unsafe fn extent(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`extent`][Self::extent].
         #[method(setExtent:)]
+        #[unsafe(method_family = none)]
         unsafe fn setExtent(&self, extent: CGRect);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(color)]
+        #[method(color)]
         #[unsafe(method_family = none)]
         unsafe fn color(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
         /// Setter for [`color`][Self::color].
         #[method(setColor:)]
+        #[unsafe(method_family = none)]
         unsafe fn setColor(&self, color: &CIColor);
 
         #[method(maxStriationRadius)]
+        #[unsafe(method_family = none)]
         unsafe fn maxStriationRadius(&self) -> c_float;
 
         /// Setter for [`maxStriationRadius`][Self::maxStriationRadius].
         #[method(setMaxStriationRadius:)]
+        #[unsafe(method_family = none)]
         unsafe fn setMaxStriationRadius(&self, max_striation_radius: c_float);
 
         #[method(striationStrength)]
+        #[unsafe(method_family = none)]
         unsafe fn striationStrength(&self) -> c_float;
 
         /// Setter for [`striationStrength`][Self::striationStrength].
         #[method(setStriationStrength:)]
+        #[unsafe(method_family = none)]
         unsafe fn setStriationStrength(&self, striation_strength: c_float);
 
         #[method(striationContrast)]
+        #[unsafe(method_family = none)]
         unsafe fn striationContrast(&self) -> c_float;
 
         /// Setter for [`striationContrast`][Self::striationContrast].
         #[method(setStriationContrast:)]
+        #[unsafe(method_family = none)]
         unsafe fn setStriationContrast(&self, striation_contrast: c_float);
 
         #[method(fadeThreshold)]
+        #[unsafe(method_family = none)]
         unsafe fn fadeThreshold(&self) -> c_float;
 
         /// Setter for [`fadeThreshold`][Self::fadeThreshold].
         #[method(setFadeThreshold:)]
+        #[unsafe(method_family = none)]
         unsafe fn setFadeThreshold(&self, fade_threshold: c_float);
     }
 );
@@ -1117,32 +1310,40 @@ extern_protocol!(
     pub unsafe trait CIModTransition: CITransitionFilter {
         #[cfg(feature = "objc2-core-foundation")]
         #[method(center)]
+        #[unsafe(method_family = none)]
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(angle)]
+        #[unsafe(method_family = none)]
         unsafe fn angle(&self) -> c_float;
 
         /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAngle(&self, angle: c_float);
 
         #[method(radius)]
+        #[unsafe(method_family = none)]
         unsafe fn radius(&self) -> c_float;
 
         /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRadius(&self, radius: c_float);
 
         #[method(compression)]
+        #[unsafe(method_family = none)]
         unsafe fn compression(&self) -> c_float;
 
         /// Setter for [`compression`][Self::compression].
         #[method(setCompression:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCompression(&self, compression: c_float);
     }
 );
@@ -1152,46 +1353,54 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIPageCurlTransition: CITransitionFilter {
         #[cfg(feature = "CIImage")]
-        #[method_id(backsideImage)]
+        #[method(backsideImage)]
         #[unsafe(method_family = none)]
         unsafe fn backsideImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`backsideImage`][Self::backsideImage].
         #[method(setBacksideImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setBacksideImage(&self, backside_image: Option<&CIImage>);
 
         #[cfg(feature = "CIImage")]
-        #[method_id(shadingImage)]
+        #[method(shadingImage)]
         #[unsafe(method_family = none)]
         unsafe fn shadingImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`shadingImage`][Self::shadingImage].
         #[method(setShadingImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setShadingImage(&self, shading_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(extent)]
+        #[unsafe(method_family = none)]
         unsafe fn extent(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`extent`][Self::extent].
         #[method(setExtent:)]
+        #[unsafe(method_family = none)]
         unsafe fn setExtent(&self, extent: CGRect);
 
         #[method(angle)]
+        #[unsafe(method_family = none)]
         unsafe fn angle(&self) -> c_float;
 
         /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAngle(&self, angle: c_float);
 
         #[method(radius)]
+        #[unsafe(method_family = none)]
         unsafe fn radius(&self) -> c_float;
 
         /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRadius(&self, radius: c_float);
     }
 );
@@ -1201,59 +1410,72 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIPageCurlWithShadowTransition: CITransitionFilter {
         #[cfg(feature = "CIImage")]
-        #[method_id(backsideImage)]
+        #[method(backsideImage)]
         #[unsafe(method_family = none)]
         unsafe fn backsideImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`backsideImage`][Self::backsideImage].
         #[method(setBacksideImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setBacksideImage(&self, backside_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(extent)]
+        #[unsafe(method_family = none)]
         unsafe fn extent(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`extent`][Self::extent].
         #[method(setExtent:)]
+        #[unsafe(method_family = none)]
         unsafe fn setExtent(&self, extent: CGRect);
 
         #[method(angle)]
+        #[unsafe(method_family = none)]
         unsafe fn angle(&self) -> c_float;
 
         /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAngle(&self, angle: c_float);
 
         #[method(radius)]
+        #[unsafe(method_family = none)]
         unsafe fn radius(&self) -> c_float;
 
         /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRadius(&self, radius: c_float);
 
         #[method(shadowSize)]
+        #[unsafe(method_family = none)]
         unsafe fn shadowSize(&self) -> c_float;
 
         /// Setter for [`shadowSize`][Self::shadowSize].
         #[method(setShadowSize:)]
+        #[unsafe(method_family = none)]
         unsafe fn setShadowSize(&self, shadow_size: c_float);
 
         #[method(shadowAmount)]
+        #[unsafe(method_family = none)]
         unsafe fn shadowAmount(&self) -> c_float;
 
         /// Setter for [`shadowAmount`][Self::shadowAmount].
         #[method(setShadowAmount:)]
+        #[unsafe(method_family = none)]
         unsafe fn setShadowAmount(&self, shadow_amount: c_float);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(shadowExtent)]
+        #[unsafe(method_family = none)]
         unsafe fn shadowExtent(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`shadowExtent`][Self::shadowExtent].
         #[method(setShadowExtent:)]
+        #[unsafe(method_family = none)]
         unsafe fn setShadowExtent(&self, shadow_extent: CGRect);
     }
 );
@@ -1263,45 +1485,54 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIRippleTransition: CITransitionFilter {
         #[cfg(feature = "CIImage")]
-        #[method_id(shadingImage)]
+        #[method(shadingImage)]
         #[unsafe(method_family = none)]
         unsafe fn shadingImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`shadingImage`][Self::shadingImage].
         #[method(setShadingImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setShadingImage(&self, shading_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(center)]
+        #[unsafe(method_family = none)]
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(extent)]
+        #[unsafe(method_family = none)]
         unsafe fn extent(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`extent`][Self::extent].
         #[method(setExtent:)]
+        #[unsafe(method_family = none)]
         unsafe fn setExtent(&self, extent: CGRect);
 
         #[method(width)]
+        #[unsafe(method_family = none)]
         unsafe fn width(&self) -> c_float;
 
         /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
+        #[unsafe(method_family = none)]
         unsafe fn setWidth(&self, width: c_float);
 
         #[method(scale)]
+        #[unsafe(method_family = none)]
         unsafe fn scale(&self) -> c_float;
 
         /// Setter for [`scale`][Self::scale].
         #[method(setScale:)]
+        #[unsafe(method_family = none)]
         unsafe fn setScale(&self, scale: c_float);
     }
 );
@@ -1312,42 +1543,51 @@ extern_protocol!(
     pub unsafe trait CISwipeTransition: CITransitionFilter {
         #[cfg(feature = "objc2-core-foundation")]
         #[method(extent)]
+        #[unsafe(method_family = none)]
         unsafe fn extent(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`extent`][Self::extent].
         #[method(setExtent:)]
+        #[unsafe(method_family = none)]
         unsafe fn setExtent(&self, extent: CGRect);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(color)]
+        #[method(color)]
         #[unsafe(method_family = none)]
         unsafe fn color(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
         /// Setter for [`color`][Self::color].
         #[method(setColor:)]
+        #[unsafe(method_family = none)]
         unsafe fn setColor(&self, color: &CIColor);
 
         #[method(angle)]
+        #[unsafe(method_family = none)]
         unsafe fn angle(&self) -> c_float;
 
         /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAngle(&self, angle: c_float);
 
         #[method(width)]
+        #[unsafe(method_family = none)]
         unsafe fn width(&self) -> c_float;
 
         /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
+        #[unsafe(method_family = none)]
         unsafe fn setWidth(&self, width: c_float);
 
         #[method(opacity)]
+        #[unsafe(method_family = none)]
         unsafe fn opacity(&self) -> c_float;
 
         /// Setter for [`opacity`][Self::opacity].
         #[method(setOpacity:)]
+        #[unsafe(method_family = none)]
         unsafe fn setOpacity(&self, opacity: c_float);
     }
 );
@@ -1357,23 +1597,25 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CICompositeOperation: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIImage")]
-        #[method_id(backgroundImage)]
+        #[method(backgroundImage)]
         #[unsafe(method_family = none)]
         unsafe fn backgroundImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`backgroundImage`][Self::backgroundImage].
         #[method(setBackgroundImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setBackgroundImage(&self, background_image: Option<&CIImage>);
     }
 );
@@ -1383,23 +1625,25 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorAbsoluteDifference: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage2)]
+        #[method(inputImage2)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage2(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage2`][Self::inputImage2].
         #[method(setInputImage2:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage2(&self, input_image2: Option<&CIImage>);
     }
 );
@@ -1409,33 +1653,36 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorClamp: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIVector")]
-        #[method_id(minComponents)]
+        #[method(minComponents)]
         #[unsafe(method_family = none)]
         unsafe fn minComponents(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
         /// Setter for [`minComponents`][Self::minComponents].
         #[method(setMinComponents:)]
+        #[unsafe(method_family = none)]
         unsafe fn setMinComponents(&self, min_components: &CIVector);
 
         #[cfg(feature = "CIVector")]
-        #[method_id(maxComponents)]
+        #[method(maxComponents)]
         #[unsafe(method_family = none)]
         unsafe fn maxComponents(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
         /// Setter for [`maxComponents`][Self::maxComponents].
         #[method(setMaxComponents:)]
+        #[unsafe(method_family = none)]
         unsafe fn setMaxComponents(&self, max_components: &CIVector);
     }
 );
@@ -1445,34 +1692,41 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorControls: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(saturation)]
+        #[unsafe(method_family = none)]
         unsafe fn saturation(&self) -> c_float;
 
         /// Setter for [`saturation`][Self::saturation].
         #[method(setSaturation:)]
+        #[unsafe(method_family = none)]
         unsafe fn setSaturation(&self, saturation: c_float);
 
         #[method(brightness)]
+        #[unsafe(method_family = none)]
         unsafe fn brightness(&self) -> c_float;
 
         /// Setter for [`brightness`][Self::brightness].
         #[method(setBrightness:)]
+        #[unsafe(method_family = none)]
         unsafe fn setBrightness(&self, brightness: c_float);
 
         #[method(contrast)]
+        #[unsafe(method_family = none)]
         unsafe fn contrast(&self) -> c_float;
 
         /// Setter for [`contrast`][Self::contrast].
         #[method(setContrast:)]
+        #[unsafe(method_family = none)]
         unsafe fn setContrast(&self, contrast: c_float);
     }
 );
@@ -1482,63 +1736,69 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorMatrix: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIVector")]
-        #[method_id(RVector)]
+        #[method(RVector)]
         #[unsafe(method_family = none)]
         unsafe fn RVector(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
         /// Setter for [`RVector`][Self::RVector].
         #[method(setRVector:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRVector(&self, r_vector: &CIVector);
 
         #[cfg(feature = "CIVector")]
-        #[method_id(GVector)]
+        #[method(GVector)]
         #[unsafe(method_family = none)]
         unsafe fn GVector(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
         /// Setter for [`GVector`][Self::GVector].
         #[method(setGVector:)]
+        #[unsafe(method_family = none)]
         unsafe fn setGVector(&self, g_vector: &CIVector);
 
         #[cfg(feature = "CIVector")]
-        #[method_id(BVector)]
+        #[method(BVector)]
         #[unsafe(method_family = none)]
         unsafe fn BVector(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
         /// Setter for [`BVector`][Self::BVector].
         #[method(setBVector:)]
+        #[unsafe(method_family = none)]
         unsafe fn setBVector(&self, b_vector: &CIVector);
 
         #[cfg(feature = "CIVector")]
-        #[method_id(AVector)]
+        #[method(AVector)]
         #[unsafe(method_family = none)]
         unsafe fn AVector(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
         /// Setter for [`AVector`][Self::AVector].
         #[method(setAVector:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAVector(&self, a_vector: &CIVector);
 
         #[cfg(feature = "CIVector")]
-        #[method_id(biasVector)]
+        #[method(biasVector)]
         #[unsafe(method_family = none)]
         unsafe fn biasVector(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
         /// Setter for [`biasVector`][Self::biasVector].
         #[method(setBiasVector:)]
+        #[unsafe(method_family = none)]
         unsafe fn setBiasVector(&self, bias_vector: &CIVector);
     }
 );
@@ -1548,53 +1808,58 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorPolynomial: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIVector")]
-        #[method_id(redCoefficients)]
+        #[method(redCoefficients)]
         #[unsafe(method_family = none)]
         unsafe fn redCoefficients(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
         /// Setter for [`redCoefficients`][Self::redCoefficients].
         #[method(setRedCoefficients:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRedCoefficients(&self, red_coefficients: &CIVector);
 
         #[cfg(feature = "CIVector")]
-        #[method_id(greenCoefficients)]
+        #[method(greenCoefficients)]
         #[unsafe(method_family = none)]
         unsafe fn greenCoefficients(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
         /// Setter for [`greenCoefficients`][Self::greenCoefficients].
         #[method(setGreenCoefficients:)]
+        #[unsafe(method_family = none)]
         unsafe fn setGreenCoefficients(&self, green_coefficients: &CIVector);
 
         #[cfg(feature = "CIVector")]
-        #[method_id(blueCoefficients)]
+        #[method(blueCoefficients)]
         #[unsafe(method_family = none)]
         unsafe fn blueCoefficients(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
         /// Setter for [`blueCoefficients`][Self::blueCoefficients].
         #[method(setBlueCoefficients:)]
+        #[unsafe(method_family = none)]
         unsafe fn setBlueCoefficients(&self, blue_coefficients: &CIVector);
 
         #[cfg(feature = "CIVector")]
-        #[method_id(alphaCoefficients)]
+        #[method(alphaCoefficients)]
         #[unsafe(method_family = none)]
         unsafe fn alphaCoefficients(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
         /// Setter for [`alphaCoefficients`][Self::alphaCoefficients].
         #[method(setAlphaCoefficients:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAlphaCoefficients(&self, alpha_coefficients: &CIVector);
     }
 );
@@ -1604,20 +1869,23 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorThreshold: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(threshold)]
+        #[unsafe(method_family = none)]
         unsafe fn threshold(&self) -> c_float;
 
         /// Setter for [`threshold`][Self::threshold].
         #[method(setThreshold:)]
+        #[unsafe(method_family = none)]
         unsafe fn setThreshold(&self, threshold: c_float);
     }
 );
@@ -1627,13 +1895,14 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorThresholdOtsu: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
 );
@@ -1643,13 +1912,14 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIDepthToDisparity: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
 );
@@ -1659,13 +1929,14 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIDisparityToDepth: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
 );
@@ -1675,20 +1946,23 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIExposureAdjust: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(EV)]
+        #[unsafe(method_family = none)]
         unsafe fn EV(&self) -> c_float;
 
         /// Setter for [`EV`][Self::EV].
         #[method(setEV:)]
+        #[unsafe(method_family = none)]
         unsafe fn setEV(&self, ev: c_float);
     }
 );
@@ -1698,20 +1972,23 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIGammaAdjust: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(power)]
+        #[unsafe(method_family = none)]
         unsafe fn power(&self) -> c_float;
 
         /// Setter for [`power`][Self::power].
         #[method(setPower:)]
+        #[unsafe(method_family = none)]
         unsafe fn setPower(&self, power: c_float);
     }
 );
@@ -1721,20 +1998,23 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIHueAdjust: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(angle)]
+        #[unsafe(method_family = none)]
         unsafe fn angle(&self) -> c_float;
 
         /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAngle(&self, angle: c_float);
     }
 );
@@ -1744,13 +2024,14 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CILinearToSRGBToneCurve: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
 );
@@ -1760,13 +2041,14 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CISRGBToneCurveToLinear: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
 );
@@ -1776,33 +2058,36 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CITemperatureAndTint: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIVector")]
-        #[method_id(neutral)]
+        #[method(neutral)]
         #[unsafe(method_family = none)]
         unsafe fn neutral(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
         /// Setter for [`neutral`][Self::neutral].
         #[method(setNeutral:)]
+        #[unsafe(method_family = none)]
         unsafe fn setNeutral(&self, neutral: &CIVector);
 
         #[cfg(feature = "CIVector")]
-        #[method_id(targetNeutral)]
+        #[method(targetNeutral)]
         #[unsafe(method_family = none)]
         unsafe fn targetNeutral(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
         /// Setter for [`targetNeutral`][Self::targetNeutral].
         #[method(setTargetNeutral:)]
+        #[unsafe(method_family = none)]
         unsafe fn setTargetNeutral(&self, target_neutral: &CIVector);
     }
 );
@@ -1812,58 +2097,69 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIToneCurve: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(point0)]
+        #[unsafe(method_family = none)]
         unsafe fn point0(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`point0`][Self::point0].
         #[method(setPoint0:)]
+        #[unsafe(method_family = none)]
         unsafe fn setPoint0(&self, point0: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(point1)]
+        #[unsafe(method_family = none)]
         unsafe fn point1(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`point1`][Self::point1].
         #[method(setPoint1:)]
+        #[unsafe(method_family = none)]
         unsafe fn setPoint1(&self, point1: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(point2)]
+        #[unsafe(method_family = none)]
         unsafe fn point2(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`point2`][Self::point2].
         #[method(setPoint2:)]
+        #[unsafe(method_family = none)]
         unsafe fn setPoint2(&self, point2: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(point3)]
+        #[unsafe(method_family = none)]
         unsafe fn point3(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`point3`][Self::point3].
         #[method(setPoint3:)]
+        #[unsafe(method_family = none)]
         unsafe fn setPoint3(&self, point3: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(point4)]
+        #[unsafe(method_family = none)]
         unsafe fn point4(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`point4`][Self::point4].
         #[method(setPoint4:)]
+        #[unsafe(method_family = none)]
         unsafe fn setPoint4(&self, point4: CGPoint);
     }
 );
@@ -1873,27 +2169,32 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIToneMapHeadroom: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(sourceHeadroom)]
+        #[unsafe(method_family = none)]
         unsafe fn sourceHeadroom(&self) -> c_float;
 
         /// Setter for [`sourceHeadroom`][Self::sourceHeadroom].
         #[method(setSourceHeadroom:)]
+        #[unsafe(method_family = none)]
         unsafe fn setSourceHeadroom(&self, source_headroom: c_float);
 
         #[method(targetHeadroom)]
+        #[unsafe(method_family = none)]
         unsafe fn targetHeadroom(&self) -> c_float;
 
         /// Setter for [`targetHeadroom`][Self::targetHeadroom].
         #[method(setTargetHeadroom:)]
+        #[unsafe(method_family = none)]
         unsafe fn setTargetHeadroom(&self, target_headroom: c_float);
     }
 );
@@ -1903,20 +2204,23 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIVibrance: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(amount)]
+        #[unsafe(method_family = none)]
         unsafe fn amount(&self) -> c_float;
 
         /// Setter for [`amount`][Self::amount].
         #[method(setAmount:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAmount(&self, amount: c_float);
     }
 );
@@ -1926,23 +2230,25 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIWhitePointAdjust: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(color)]
+        #[method(color)]
         #[unsafe(method_family = none)]
         unsafe fn color(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
         /// Setter for [`color`][Self::color].
         #[method(setColor:)]
+        #[unsafe(method_family = none)]
         unsafe fn setColor(&self, color: &CIColor);
     }
 );
@@ -1952,43 +2258,47 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorCrossPolynomial: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIVector")]
-        #[method_id(redCoefficients)]
+        #[method(redCoefficients)]
         #[unsafe(method_family = none)]
         unsafe fn redCoefficients(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
         /// Setter for [`redCoefficients`][Self::redCoefficients].
         #[method(setRedCoefficients:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRedCoefficients(&self, red_coefficients: &CIVector);
 
         #[cfg(feature = "CIVector")]
-        #[method_id(greenCoefficients)]
+        #[method(greenCoefficients)]
         #[unsafe(method_family = none)]
         unsafe fn greenCoefficients(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
         /// Setter for [`greenCoefficients`][Self::greenCoefficients].
         #[method(setGreenCoefficients:)]
+        #[unsafe(method_family = none)]
         unsafe fn setGreenCoefficients(&self, green_coefficients: &CIVector);
 
         #[cfg(feature = "CIVector")]
-        #[method_id(blueCoefficients)]
+        #[method(blueCoefficients)]
         #[unsafe(method_family = none)]
         unsafe fn blueCoefficients(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
         /// Setter for [`blueCoefficients`][Self::blueCoefficients].
         #[method(setBlueCoefficients:)]
+        #[unsafe(method_family = none)]
         unsafe fn setBlueCoefficients(&self, blue_coefficients: &CIVector);
     }
 );
@@ -1998,35 +2308,41 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorCube: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(cubeDimension)]
+        #[unsafe(method_family = none)]
         unsafe fn cubeDimension(&self) -> c_float;
 
         /// Setter for [`cubeDimension`][Self::cubeDimension].
         #[method(setCubeDimension:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCubeDimension(&self, cube_dimension: c_float);
 
-        #[method_id(cubeData)]
+        #[method(cubeData)]
         #[unsafe(method_family = none)]
         unsafe fn cubeData(&self) -> Retained<NSData>;
 
         /// Setter for [`cubeData`][Self::cubeData].
         #[method(setCubeData:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCubeData(&self, cube_data: &NSData);
 
         #[method(extrapolate)]
+        #[unsafe(method_family = none)]
         unsafe fn extrapolate(&self) -> bool;
 
         /// Setter for [`extrapolate`][Self::extrapolate].
         #[method(setExtrapolate:)]
+        #[unsafe(method_family = none)]
         unsafe fn setExtrapolate(&self, extrapolate: bool);
     }
 );
@@ -2036,63 +2352,72 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorCubesMixedWithMask: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIImage")]
-        #[method_id(maskImage)]
+        #[method(maskImage)]
         #[unsafe(method_family = none)]
         unsafe fn maskImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`maskImage`][Self::maskImage].
         #[method(setMaskImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setMaskImage(&self, mask_image: Option<&CIImage>);
 
         #[method(cubeDimension)]
+        #[unsafe(method_family = none)]
         unsafe fn cubeDimension(&self) -> c_float;
 
         /// Setter for [`cubeDimension`][Self::cubeDimension].
         #[method(setCubeDimension:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCubeDimension(&self, cube_dimension: c_float);
 
-        #[method_id(cube0Data)]
+        #[method(cube0Data)]
         #[unsafe(method_family = none)]
         unsafe fn cube0Data(&self) -> Retained<NSData>;
 
         /// Setter for [`cube0Data`][Self::cube0Data].
         #[method(setCube0Data:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCube0Data(&self, cube0_data: &NSData);
 
-        #[method_id(cube1Data)]
+        #[method(cube1Data)]
         #[unsafe(method_family = none)]
         unsafe fn cube1Data(&self) -> Retained<NSData>;
 
         /// Setter for [`cube1Data`][Self::cube1Data].
         #[method(setCube1Data:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCube1Data(&self, cube1_data: &NSData);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(colorSpace)]
+        #[method(colorSpace)]
         #[unsafe(method_family = none)]
         unsafe fn colorSpace(&self) -> Option<Retained<CGColorSpace>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`colorSpace`][Self::colorSpace].
         #[method(setColorSpace:)]
+        #[unsafe(method_family = none)]
         unsafe fn setColorSpace(&self, color_space: Option<&CGColorSpace>);
 
         #[method(extrapolate)]
+        #[unsafe(method_family = none)]
         unsafe fn extrapolate(&self) -> bool;
 
         /// Setter for [`extrapolate`][Self::extrapolate].
         #[method(setExtrapolate:)]
+        #[unsafe(method_family = none)]
         unsafe fn setExtrapolate(&self, extrapolate: bool);
     }
 );
@@ -2102,45 +2427,52 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorCubeWithColorSpace: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(cubeDimension)]
+        #[unsafe(method_family = none)]
         unsafe fn cubeDimension(&self) -> c_float;
 
         /// Setter for [`cubeDimension`][Self::cubeDimension].
         #[method(setCubeDimension:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCubeDimension(&self, cube_dimension: c_float);
 
-        #[method_id(cubeData)]
+        #[method(cubeData)]
         #[unsafe(method_family = none)]
         unsafe fn cubeData(&self) -> Retained<NSData>;
 
         /// Setter for [`cubeData`][Self::cubeData].
         #[method(setCubeData:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCubeData(&self, cube_data: &NSData);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(colorSpace)]
+        #[method(colorSpace)]
         #[unsafe(method_family = none)]
         unsafe fn colorSpace(&self) -> Option<Retained<CGColorSpace>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`colorSpace`][Self::colorSpace].
         #[method(setColorSpace:)]
+        #[unsafe(method_family = none)]
         unsafe fn setColorSpace(&self, color_space: Option<&CGColorSpace>);
 
         #[method(extrapolate)]
+        #[unsafe(method_family = none)]
         unsafe fn extrapolate(&self) -> bool;
 
         /// Setter for [`extrapolate`][Self::extrapolate].
         #[method(setExtrapolate:)]
+        #[unsafe(method_family = none)]
         unsafe fn setExtrapolate(&self, extrapolate: bool);
     }
 );
@@ -2150,41 +2482,45 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorCurves: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
-        #[method_id(curvesData)]
+        #[method(curvesData)]
         #[unsafe(method_family = none)]
         unsafe fn curvesData(&self) -> Retained<NSData>;
 
         /// Setter for [`curvesData`][Self::curvesData].
         #[method(setCurvesData:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCurvesData(&self, curves_data: &NSData);
 
         #[cfg(feature = "CIVector")]
-        #[method_id(curvesDomain)]
+        #[method(curvesDomain)]
         #[unsafe(method_family = none)]
         unsafe fn curvesDomain(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
         /// Setter for [`curvesDomain`][Self::curvesDomain].
         #[method(setCurvesDomain:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCurvesDomain(&self, curves_domain: &CIVector);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(colorSpace)]
+        #[method(colorSpace)]
         #[unsafe(method_family = none)]
         unsafe fn colorSpace(&self) -> Option<Retained<CGColorSpace>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`colorSpace`][Self::colorSpace].
         #[method(setColorSpace:)]
+        #[unsafe(method_family = none)]
         unsafe fn setColorSpace(&self, color_space: Option<&CGColorSpace>);
     }
 );
@@ -2194,13 +2530,14 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorInvert: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
 );
@@ -2210,23 +2547,25 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorMap: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIImage")]
-        #[method_id(gradientImage)]
+        #[method(gradientImage)]
         #[unsafe(method_family = none)]
         unsafe fn gradientImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`gradientImage`][Self::gradientImage].
         #[method(setGradientImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setGradientImage(&self, gradient_image: Option<&CIImage>);
     }
 );
@@ -2236,30 +2575,34 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorMonochrome: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(color)]
+        #[method(color)]
         #[unsafe(method_family = none)]
         unsafe fn color(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
         /// Setter for [`color`][Self::color].
         #[method(setColor:)]
+        #[unsafe(method_family = none)]
         unsafe fn setColor(&self, color: &CIColor);
 
         #[method(intensity)]
+        #[unsafe(method_family = none)]
         unsafe fn intensity(&self) -> c_float;
 
         /// Setter for [`intensity`][Self::intensity].
         #[method(setIntensity:)]
+        #[unsafe(method_family = none)]
         unsafe fn setIntensity(&self, intensity: c_float);
     }
 );
@@ -2269,20 +2612,23 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorPosterize: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(levels)]
+        #[unsafe(method_family = none)]
         unsafe fn levels(&self) -> c_float;
 
         /// Setter for [`levels`][Self::levels].
         #[method(setLevels:)]
+        #[unsafe(method_family = none)]
         unsafe fn setLevels(&self, levels: c_float);
     }
 );
@@ -2292,20 +2638,23 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIConvertLab: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(normalize)]
+        #[unsafe(method_family = none)]
         unsafe fn normalize(&self) -> bool;
 
         /// Setter for [`normalize`][Self::normalize].
         #[method(setNormalize:)]
+        #[unsafe(method_family = none)]
         unsafe fn setNormalize(&self, normalize: bool);
     }
 );
@@ -2315,20 +2664,23 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIDither: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(intensity)]
+        #[unsafe(method_family = none)]
         unsafe fn intensity(&self) -> c_float;
 
         /// Setter for [`intensity`][Self::intensity].
         #[method(setIntensity:)]
+        #[unsafe(method_family = none)]
         unsafe fn setIntensity(&self, intensity: c_float);
     }
 );
@@ -2338,20 +2690,23 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIDocumentEnhancer: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(amount)]
+        #[unsafe(method_family = none)]
         unsafe fn amount(&self) -> c_float;
 
         /// Setter for [`amount`][Self::amount].
         #[method(setAmount:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAmount(&self, amount: c_float);
     }
 );
@@ -2361,33 +2716,36 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIFalseColor: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(color0)]
+        #[method(color0)]
         #[unsafe(method_family = none)]
         unsafe fn color0(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
         /// Setter for [`color0`][Self::color0].
         #[method(setColor0:)]
+        #[unsafe(method_family = none)]
         unsafe fn setColor0(&self, color0: &CIColor);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(color1)]
+        #[method(color1)]
         #[unsafe(method_family = none)]
         unsafe fn color1(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
         /// Setter for [`color1`][Self::color1].
         #[method(setColor1:)]
+        #[unsafe(method_family = none)]
         unsafe fn setColor1(&self, color1: &CIColor);
     }
 );
@@ -2397,23 +2755,25 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CILabDeltaE: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIImage")]
-        #[method_id(image2)]
+        #[method(image2)]
         #[unsafe(method_family = none)]
         unsafe fn image2(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`image2`][Self::image2].
         #[method(setImage2:)]
+        #[unsafe(method_family = none)]
         unsafe fn setImage2(&self, image2: Option<&CIImage>);
     }
 );
@@ -2423,13 +2783,14 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIMaskToAlpha: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
 );
@@ -2439,13 +2800,14 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIMaximumComponent: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
 );
@@ -2455,13 +2817,14 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIMinimumComponent: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
 );
@@ -2471,30 +2834,34 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIPaletteCentroid: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIImage")]
-        #[method_id(paletteImage)]
+        #[method(paletteImage)]
         #[unsafe(method_family = none)]
         unsafe fn paletteImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`paletteImage`][Self::paletteImage].
         #[method(setPaletteImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setPaletteImage(&self, palette_image: Option<&CIImage>);
 
         #[method(perceptual)]
+        #[unsafe(method_family = none)]
         unsafe fn perceptual(&self) -> bool;
 
         /// Setter for [`perceptual`][Self::perceptual].
         #[method(setPerceptual:)]
+        #[unsafe(method_family = none)]
         unsafe fn setPerceptual(&self, perceptual: bool);
     }
 );
@@ -2504,30 +2871,34 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIPalettize: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIImage")]
-        #[method_id(paletteImage)]
+        #[method(paletteImage)]
         #[unsafe(method_family = none)]
         unsafe fn paletteImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`paletteImage`][Self::paletteImage].
         #[method(setPaletteImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setPaletteImage(&self, palette_image: Option<&CIImage>);
 
         #[method(perceptual)]
+        #[unsafe(method_family = none)]
         unsafe fn perceptual(&self) -> bool;
 
         /// Setter for [`perceptual`][Self::perceptual].
         #[method(setPerceptual:)]
+        #[unsafe(method_family = none)]
         unsafe fn setPerceptual(&self, perceptual: bool);
     }
 );
@@ -2537,20 +2908,23 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIPhotoEffect: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(extrapolate)]
+        #[unsafe(method_family = none)]
         unsafe fn extrapolate(&self) -> bool;
 
         /// Setter for [`extrapolate`][Self::extrapolate].
         #[method(setExtrapolate:)]
+        #[unsafe(method_family = none)]
         unsafe fn setExtrapolate(&self, extrapolate: bool);
     }
 );
@@ -2560,20 +2934,23 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CISepiaTone: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(intensity)]
+        #[unsafe(method_family = none)]
         unsafe fn intensity(&self) -> c_float;
 
         /// Setter for [`intensity`][Self::intensity].
         #[method(setIntensity:)]
+        #[unsafe(method_family = none)]
         unsafe fn setIntensity(&self, intensity: c_float);
     }
 );
@@ -2583,13 +2960,14 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIThermal: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
 );
@@ -2599,27 +2977,32 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIVignette: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(intensity)]
+        #[unsafe(method_family = none)]
         unsafe fn intensity(&self) -> c_float;
 
         /// Setter for [`intensity`][Self::intensity].
         #[method(setIntensity:)]
+        #[unsafe(method_family = none)]
         unsafe fn setIntensity(&self, intensity: c_float);
 
         #[method(radius)]
+        #[unsafe(method_family = none)]
         unsafe fn radius(&self) -> c_float;
 
         /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRadius(&self, radius: c_float);
     }
 );
@@ -2629,43 +3012,52 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIVignetteEffect: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(center)]
+        #[unsafe(method_family = none)]
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(radius)]
+        #[unsafe(method_family = none)]
         unsafe fn radius(&self) -> c_float;
 
         /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRadius(&self, radius: c_float);
 
         #[method(intensity)]
+        #[unsafe(method_family = none)]
         unsafe fn intensity(&self) -> c_float;
 
         /// Setter for [`intensity`][Self::intensity].
         #[method(setIntensity:)]
+        #[unsafe(method_family = none)]
         unsafe fn setIntensity(&self, intensity: c_float);
 
         #[method(falloff)]
+        #[unsafe(method_family = none)]
         unsafe fn falloff(&self) -> c_float;
 
         /// Setter for [`falloff`][Self::falloff].
         #[method(setFalloff:)]
+        #[unsafe(method_family = none)]
         unsafe fn setFalloff(&self, falloff: c_float);
     }
 );
@@ -2675,13 +3067,14 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIXRay: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
 );
@@ -2691,36 +3084,43 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIBumpDistortion: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(center)]
+        #[unsafe(method_family = none)]
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(radius)]
+        #[unsafe(method_family = none)]
         unsafe fn radius(&self) -> c_float;
 
         /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRadius(&self, radius: c_float);
 
         #[method(scale)]
+        #[unsafe(method_family = none)]
         unsafe fn scale(&self) -> c_float;
 
         /// Setter for [`scale`][Self::scale].
         #[method(setScale:)]
+        #[unsafe(method_family = none)]
         unsafe fn setScale(&self, scale: c_float);
     }
 );
@@ -2730,43 +3130,52 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIBumpDistortionLinear: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(center)]
+        #[unsafe(method_family = none)]
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(radius)]
+        #[unsafe(method_family = none)]
         unsafe fn radius(&self) -> c_float;
 
         /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRadius(&self, radius: c_float);
 
         #[method(angle)]
+        #[unsafe(method_family = none)]
         unsafe fn angle(&self) -> c_float;
 
         /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAngle(&self, angle: c_float);
 
         #[method(scale)]
+        #[unsafe(method_family = none)]
         unsafe fn scale(&self) -> c_float;
 
         /// Setter for [`scale`][Self::scale].
         #[method(setScale:)]
+        #[unsafe(method_family = none)]
         unsafe fn setScale(&self, scale: c_float);
     }
 );
@@ -2776,29 +3185,34 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CICircleSplashDistortion: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(center)]
+        #[unsafe(method_family = none)]
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(radius)]
+        #[unsafe(method_family = none)]
         unsafe fn radius(&self) -> c_float;
 
         /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRadius(&self, radius: c_float);
     }
 );
@@ -2808,36 +3222,43 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CICircularWrap: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(center)]
+        #[unsafe(method_family = none)]
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(radius)]
+        #[unsafe(method_family = none)]
         unsafe fn radius(&self) -> c_float;
 
         /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRadius(&self, radius: c_float);
 
         #[method(angle)]
+        #[unsafe(method_family = none)]
         unsafe fn angle(&self) -> c_float;
 
         /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAngle(&self, angle: c_float);
     }
 );
@@ -2847,30 +3268,34 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIDisplacementDistortion: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIImage")]
-        #[method_id(displacementImage)]
+        #[method(displacementImage)]
         #[unsafe(method_family = none)]
         unsafe fn displacementImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`displacementImage`][Self::displacementImage].
         #[method(setDisplacementImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setDisplacementImage(&self, displacement_image: Option<&CIImage>);
 
         #[method(scale)]
+        #[unsafe(method_family = none)]
         unsafe fn scale(&self) -> c_float;
 
         /// Setter for [`scale`][Self::scale].
         #[method(setScale:)]
+        #[unsafe(method_family = none)]
         unsafe fn setScale(&self, scale: c_float);
     }
 );
@@ -2880,59 +3305,72 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIDroste: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(insetPoint0)]
+        #[unsafe(method_family = none)]
         unsafe fn insetPoint0(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`insetPoint0`][Self::insetPoint0].
         #[method(setInsetPoint0:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInsetPoint0(&self, inset_point0: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(insetPoint1)]
+        #[unsafe(method_family = none)]
         unsafe fn insetPoint1(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`insetPoint1`][Self::insetPoint1].
         #[method(setInsetPoint1:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInsetPoint1(&self, inset_point1: CGPoint);
 
         #[method(strands)]
+        #[unsafe(method_family = none)]
         unsafe fn strands(&self) -> c_float;
 
         /// Setter for [`strands`][Self::strands].
         #[method(setStrands:)]
+        #[unsafe(method_family = none)]
         unsafe fn setStrands(&self, strands: c_float);
 
         #[method(periodicity)]
+        #[unsafe(method_family = none)]
         unsafe fn periodicity(&self) -> c_float;
 
         /// Setter for [`periodicity`][Self::periodicity].
         #[method(setPeriodicity:)]
+        #[unsafe(method_family = none)]
         unsafe fn setPeriodicity(&self, periodicity: c_float);
 
         #[method(rotation)]
+        #[unsafe(method_family = none)]
         unsafe fn rotation(&self) -> c_float;
 
         /// Setter for [`rotation`][Self::rotation].
         #[method(setRotation:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRotation(&self, rotation: c_float);
 
         #[method(zoom)]
+        #[unsafe(method_family = none)]
         unsafe fn zoom(&self) -> c_float;
 
         /// Setter for [`zoom`][Self::zoom].
         #[method(setZoom:)]
+        #[unsafe(method_family = none)]
         unsafe fn setZoom(&self, zoom: c_float);
     }
 );
@@ -2942,39 +3380,45 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIGlassDistortion: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIImage")]
-        #[method_id(textureImage)]
+        #[method(textureImage)]
         #[unsafe(method_family = none)]
         unsafe fn textureImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`textureImage`][Self::textureImage].
         #[method(setTextureImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setTextureImage(&self, texture_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(center)]
+        #[unsafe(method_family = none)]
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(scale)]
+        #[unsafe(method_family = none)]
         unsafe fn scale(&self) -> c_float;
 
         /// Setter for [`scale`][Self::scale].
         #[method(setScale:)]
+        #[unsafe(method_family = none)]
         unsafe fn setScale(&self, scale: c_float);
     }
 );
@@ -2984,45 +3428,54 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIGlassLozenge: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(point0)]
+        #[unsafe(method_family = none)]
         unsafe fn point0(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`point0`][Self::point0].
         #[method(setPoint0:)]
+        #[unsafe(method_family = none)]
         unsafe fn setPoint0(&self, point0: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(point1)]
+        #[unsafe(method_family = none)]
         unsafe fn point1(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`point1`][Self::point1].
         #[method(setPoint1:)]
+        #[unsafe(method_family = none)]
         unsafe fn setPoint1(&self, point1: CGPoint);
 
         #[method(radius)]
+        #[unsafe(method_family = none)]
         unsafe fn radius(&self) -> c_float;
 
         /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRadius(&self, radius: c_float);
 
         #[method(refraction)]
+        #[unsafe(method_family = none)]
         unsafe fn refraction(&self) -> c_float;
 
         /// Setter for [`refraction`][Self::refraction].
         #[method(setRefraction:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRefraction(&self, refraction: c_float);
     }
 );
@@ -3032,29 +3485,34 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIHoleDistortion: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(center)]
+        #[unsafe(method_family = none)]
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(radius)]
+        #[unsafe(method_family = none)]
         unsafe fn radius(&self) -> c_float;
 
         /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRadius(&self, radius: c_float);
     }
 );
@@ -3064,36 +3522,43 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CILightTunnel: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(center)]
+        #[unsafe(method_family = none)]
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(rotation)]
+        #[unsafe(method_family = none)]
         unsafe fn rotation(&self) -> c_float;
 
         /// Setter for [`rotation`][Self::rotation].
         #[method(setRotation:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRotation(&self, rotation: c_float);
 
         #[method(radius)]
+        #[unsafe(method_family = none)]
         unsafe fn radius(&self) -> c_float;
 
         /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRadius(&self, radius: c_float);
     }
 );
@@ -3103,40 +3568,47 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CINinePartStretched: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(breakpoint0)]
+        #[unsafe(method_family = none)]
         unsafe fn breakpoint0(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`breakpoint0`][Self::breakpoint0].
         #[method(setBreakpoint0:)]
+        #[unsafe(method_family = none)]
         unsafe fn setBreakpoint0(&self, breakpoint0: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(breakpoint1)]
+        #[unsafe(method_family = none)]
         unsafe fn breakpoint1(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`breakpoint1`][Self::breakpoint1].
         #[method(setBreakpoint1:)]
+        #[unsafe(method_family = none)]
         unsafe fn setBreakpoint1(&self, breakpoint1: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(growAmount)]
+        #[unsafe(method_family = none)]
         unsafe fn growAmount(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`growAmount`][Self::growAmount].
         #[method(setGrowAmount:)]
+        #[unsafe(method_family = none)]
         unsafe fn setGrowAmount(&self, grow_amount: CGPoint);
     }
 );
@@ -3146,47 +3618,56 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CINinePartTiled: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(breakpoint0)]
+        #[unsafe(method_family = none)]
         unsafe fn breakpoint0(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`breakpoint0`][Self::breakpoint0].
         #[method(setBreakpoint0:)]
+        #[unsafe(method_family = none)]
         unsafe fn setBreakpoint0(&self, breakpoint0: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(breakpoint1)]
+        #[unsafe(method_family = none)]
         unsafe fn breakpoint1(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`breakpoint1`][Self::breakpoint1].
         #[method(setBreakpoint1:)]
+        #[unsafe(method_family = none)]
         unsafe fn setBreakpoint1(&self, breakpoint1: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(growAmount)]
+        #[unsafe(method_family = none)]
         unsafe fn growAmount(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`growAmount`][Self::growAmount].
         #[method(setGrowAmount:)]
+        #[unsafe(method_family = none)]
         unsafe fn setGrowAmount(&self, grow_amount: CGPoint);
 
         #[method(flipYTiles)]
+        #[unsafe(method_family = none)]
         unsafe fn flipYTiles(&self) -> bool;
 
         /// Setter for [`flipYTiles`][Self::flipYTiles].
         #[method(setFlipYTiles:)]
+        #[unsafe(method_family = none)]
         unsafe fn setFlipYTiles(&self, flip_y_tiles: bool);
     }
 );
@@ -3196,36 +3677,43 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIPinchDistortion: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(center)]
+        #[unsafe(method_family = none)]
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(radius)]
+        #[unsafe(method_family = none)]
         unsafe fn radius(&self) -> c_float;
 
         /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRadius(&self, radius: c_float);
 
         #[method(scale)]
+        #[unsafe(method_family = none)]
         unsafe fn scale(&self) -> c_float;
 
         /// Setter for [`scale`][Self::scale].
         #[method(setScale:)]
+        #[unsafe(method_family = none)]
         unsafe fn setScale(&self, scale: c_float);
     }
 );
@@ -3235,36 +3723,43 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIStretchCrop: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(size)]
+        #[unsafe(method_family = none)]
         unsafe fn size(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`size`][Self::size].
         #[method(setSize:)]
+        #[unsafe(method_family = none)]
         unsafe fn setSize(&self, size: CGPoint);
 
         #[method(cropAmount)]
+        #[unsafe(method_family = none)]
         unsafe fn cropAmount(&self) -> c_float;
 
         /// Setter for [`cropAmount`][Self::cropAmount].
         #[method(setCropAmount:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCropAmount(&self, crop_amount: c_float);
 
         #[method(centerStretchAmount)]
+        #[unsafe(method_family = none)]
         unsafe fn centerStretchAmount(&self) -> c_float;
 
         /// Setter for [`centerStretchAmount`][Self::centerStretchAmount].
         #[method(setCenterStretchAmount:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenterStretchAmount(&self, center_stretch_amount: c_float);
     }
 );
@@ -3274,43 +3769,52 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CITorusLensDistortion: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(center)]
+        #[unsafe(method_family = none)]
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(radius)]
+        #[unsafe(method_family = none)]
         unsafe fn radius(&self) -> c_float;
 
         /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRadius(&self, radius: c_float);
 
         #[method(width)]
+        #[unsafe(method_family = none)]
         unsafe fn width(&self) -> c_float;
 
         /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
+        #[unsafe(method_family = none)]
         unsafe fn setWidth(&self, width: c_float);
 
         #[method(refraction)]
+        #[unsafe(method_family = none)]
         unsafe fn refraction(&self) -> c_float;
 
         /// Setter for [`refraction`][Self::refraction].
         #[method(setRefraction:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRefraction(&self, refraction: c_float);
     }
 );
@@ -3320,36 +3824,43 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CITwirlDistortion: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(center)]
+        #[unsafe(method_family = none)]
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(radius)]
+        #[unsafe(method_family = none)]
         unsafe fn radius(&self) -> c_float;
 
         /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRadius(&self, radius: c_float);
 
         #[method(angle)]
+        #[unsafe(method_family = none)]
         unsafe fn angle(&self) -> c_float;
 
         /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAngle(&self, angle: c_float);
     }
 );
@@ -3359,36 +3870,43 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIVortexDistortion: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(center)]
+        #[unsafe(method_family = none)]
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(radius)]
+        #[unsafe(method_family = none)]
         unsafe fn radius(&self) -> c_float;
 
         /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRadius(&self, radius: c_float);
 
         #[method(angle)]
+        #[unsafe(method_family = none)]
         unsafe fn angle(&self) -> c_float;
 
         /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAngle(&self, angle: c_float);
     }
 );
@@ -3398,22 +3916,25 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIAffineClamp: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(transform)]
+        #[unsafe(method_family = none)]
         unsafe fn transform(&self) -> CGAffineTransform;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`transform`][Self::transform].
         #[method(setTransform:)]
+        #[unsafe(method_family = none)]
         unsafe fn setTransform(&self, transform: CGAffineTransform);
     }
 );
@@ -3423,22 +3944,25 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIAffineTile: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(transform)]
+        #[unsafe(method_family = none)]
         unsafe fn transform(&self) -> CGAffineTransform;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`transform`][Self::transform].
         #[method(setTransform:)]
+        #[unsafe(method_family = none)]
         unsafe fn setTransform(&self, transform: CGAffineTransform);
     }
 );
@@ -3448,36 +3972,43 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIEightfoldReflectedTile: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(center)]
+        #[unsafe(method_family = none)]
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(angle)]
+        #[unsafe(method_family = none)]
         unsafe fn angle(&self) -> c_float;
 
         /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAngle(&self, angle: c_float);
 
         #[method(width)]
+        #[unsafe(method_family = none)]
         unsafe fn width(&self) -> c_float;
 
         /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
+        #[unsafe(method_family = none)]
         unsafe fn setWidth(&self, width: c_float);
     }
 );
@@ -3487,43 +4018,52 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIFourfoldReflectedTile: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(center)]
+        #[unsafe(method_family = none)]
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(angle)]
+        #[unsafe(method_family = none)]
         unsafe fn angle(&self) -> c_float;
 
         /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAngle(&self, angle: c_float);
 
         #[method(width)]
+        #[unsafe(method_family = none)]
         unsafe fn width(&self) -> c_float;
 
         /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
+        #[unsafe(method_family = none)]
         unsafe fn setWidth(&self, width: c_float);
 
         #[method(acuteAngle)]
+        #[unsafe(method_family = none)]
         unsafe fn acuteAngle(&self) -> c_float;
 
         /// Setter for [`acuteAngle`][Self::acuteAngle].
         #[method(setAcuteAngle:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAcuteAngle(&self, acute_angle: c_float);
     }
 );
@@ -3533,36 +4073,43 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIFourfoldRotatedTile: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(center)]
+        #[unsafe(method_family = none)]
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(angle)]
+        #[unsafe(method_family = none)]
         unsafe fn angle(&self) -> c_float;
 
         /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAngle(&self, angle: c_float);
 
         #[method(width)]
+        #[unsafe(method_family = none)]
         unsafe fn width(&self) -> c_float;
 
         /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
+        #[unsafe(method_family = none)]
         unsafe fn setWidth(&self, width: c_float);
     }
 );
@@ -3572,43 +4119,52 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIFourfoldTranslatedTile: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(center)]
+        #[unsafe(method_family = none)]
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(angle)]
+        #[unsafe(method_family = none)]
         unsafe fn angle(&self) -> c_float;
 
         /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAngle(&self, angle: c_float);
 
         #[method(width)]
+        #[unsafe(method_family = none)]
         unsafe fn width(&self) -> c_float;
 
         /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
+        #[unsafe(method_family = none)]
         unsafe fn setWidth(&self, width: c_float);
 
         #[method(acuteAngle)]
+        #[unsafe(method_family = none)]
         unsafe fn acuteAngle(&self) -> c_float;
 
         /// Setter for [`acuteAngle`][Self::acuteAngle].
         #[method(setAcuteAngle:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAcuteAngle(&self, acute_angle: c_float);
     }
 );
@@ -3618,36 +4174,43 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIGlideReflectedTile: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(center)]
+        #[unsafe(method_family = none)]
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(angle)]
+        #[unsafe(method_family = none)]
         unsafe fn angle(&self) -> c_float;
 
         /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAngle(&self, angle: c_float);
 
         #[method(width)]
+        #[unsafe(method_family = none)]
         unsafe fn width(&self) -> c_float;
 
         /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
+        #[unsafe(method_family = none)]
         unsafe fn setWidth(&self, width: c_float);
     }
 );
@@ -3657,36 +4220,43 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIKaleidoscope: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(count)]
+        #[unsafe(method_family = none)]
         unsafe fn count(&self) -> NSInteger;
 
         /// Setter for [`count`][Self::count].
         #[method(setCount:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCount(&self, count: NSInteger);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(center)]
+        #[unsafe(method_family = none)]
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(angle)]
+        #[unsafe(method_family = none)]
         unsafe fn angle(&self) -> c_float;
 
         /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAngle(&self, angle: c_float);
     }
 );
@@ -3696,43 +4266,52 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIOpTile: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(center)]
+        #[unsafe(method_family = none)]
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(scale)]
+        #[unsafe(method_family = none)]
         unsafe fn scale(&self) -> c_float;
 
         /// Setter for [`scale`][Self::scale].
         #[method(setScale:)]
+        #[unsafe(method_family = none)]
         unsafe fn setScale(&self, scale: c_float);
 
         #[method(angle)]
+        #[unsafe(method_family = none)]
         unsafe fn angle(&self) -> c_float;
 
         /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAngle(&self, angle: c_float);
 
         #[method(width)]
+        #[unsafe(method_family = none)]
         unsafe fn width(&self) -> c_float;
 
         /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
+        #[unsafe(method_family = none)]
         unsafe fn setWidth(&self, width: c_float);
     }
 );
@@ -3742,43 +4321,52 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIParallelogramTile: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(center)]
+        #[unsafe(method_family = none)]
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(angle)]
+        #[unsafe(method_family = none)]
         unsafe fn angle(&self) -> c_float;
 
         /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAngle(&self, angle: c_float);
 
         #[method(acuteAngle)]
+        #[unsafe(method_family = none)]
         unsafe fn acuteAngle(&self) -> c_float;
 
         /// Setter for [`acuteAngle`][Self::acuteAngle].
         #[method(setAcuteAngle:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAcuteAngle(&self, acute_angle: c_float);
 
         #[method(width)]
+        #[unsafe(method_family = none)]
         unsafe fn width(&self) -> c_float;
 
         /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
+        #[unsafe(method_family = none)]
         unsafe fn setWidth(&self, width: c_float);
     }
 );
@@ -3788,49 +4376,58 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIPerspectiveTile: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(topLeft)]
+        #[unsafe(method_family = none)]
         unsafe fn topLeft(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`topLeft`][Self::topLeft].
         #[method(setTopLeft:)]
+        #[unsafe(method_family = none)]
         unsafe fn setTopLeft(&self, top_left: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(topRight)]
+        #[unsafe(method_family = none)]
         unsafe fn topRight(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`topRight`][Self::topRight].
         #[method(setTopRight:)]
+        #[unsafe(method_family = none)]
         unsafe fn setTopRight(&self, top_right: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(bottomRight)]
+        #[unsafe(method_family = none)]
         unsafe fn bottomRight(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`bottomRight`][Self::bottomRight].
         #[method(setBottomRight:)]
+        #[unsafe(method_family = none)]
         unsafe fn setBottomRight(&self, bottom_right: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(bottomLeft)]
+        #[unsafe(method_family = none)]
         unsafe fn bottomLeft(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`bottomLeft`][Self::bottomLeft].
         #[method(setBottomLeft:)]
+        #[unsafe(method_family = none)]
         unsafe fn setBottomLeft(&self, bottom_left: CGPoint);
     }
 );
@@ -3840,36 +4437,43 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CISixfoldReflectedTile: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(center)]
+        #[unsafe(method_family = none)]
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(angle)]
+        #[unsafe(method_family = none)]
         unsafe fn angle(&self) -> c_float;
 
         /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAngle(&self, angle: c_float);
 
         #[method(width)]
+        #[unsafe(method_family = none)]
         unsafe fn width(&self) -> c_float;
 
         /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
+        #[unsafe(method_family = none)]
         unsafe fn setWidth(&self, width: c_float);
     }
 );
@@ -3879,36 +4483,43 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CISixfoldRotatedTile: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(center)]
+        #[unsafe(method_family = none)]
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(angle)]
+        #[unsafe(method_family = none)]
         unsafe fn angle(&self) -> c_float;
 
         /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAngle(&self, angle: c_float);
 
         #[method(width)]
+        #[unsafe(method_family = none)]
         unsafe fn width(&self) -> c_float;
 
         /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
+        #[unsafe(method_family = none)]
         unsafe fn setWidth(&self, width: c_float);
     }
 );
@@ -3918,43 +4529,52 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CITriangleKaleidoscope: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(point)]
+        #[unsafe(method_family = none)]
         unsafe fn point(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`point`][Self::point].
         #[method(setPoint:)]
+        #[unsafe(method_family = none)]
         unsafe fn setPoint(&self, point: CGPoint);
 
         #[method(size)]
+        #[unsafe(method_family = none)]
         unsafe fn size(&self) -> c_float;
 
         /// Setter for [`size`][Self::size].
         #[method(setSize:)]
+        #[unsafe(method_family = none)]
         unsafe fn setSize(&self, size: c_float);
 
         #[method(rotation)]
+        #[unsafe(method_family = none)]
         unsafe fn rotation(&self) -> c_float;
 
         /// Setter for [`rotation`][Self::rotation].
         #[method(setRotation:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRotation(&self, rotation: c_float);
 
         #[method(decay)]
+        #[unsafe(method_family = none)]
         unsafe fn decay(&self) -> c_float;
 
         /// Setter for [`decay`][Self::decay].
         #[method(setDecay:)]
+        #[unsafe(method_family = none)]
         unsafe fn setDecay(&self, decay: c_float);
     }
 );
@@ -3964,36 +4584,43 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CITriangleTile: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(center)]
+        #[unsafe(method_family = none)]
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(angle)]
+        #[unsafe(method_family = none)]
         unsafe fn angle(&self) -> c_float;
 
         /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAngle(&self, angle: c_float);
 
         #[method(width)]
+        #[unsafe(method_family = none)]
         unsafe fn width(&self) -> c_float;
 
         /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
+        #[unsafe(method_family = none)]
         unsafe fn setWidth(&self, width: c_float);
     }
 );
@@ -4003,36 +4630,43 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CITwelvefoldReflectedTile: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(center)]
+        #[unsafe(method_family = none)]
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(angle)]
+        #[unsafe(method_family = none)]
         unsafe fn angle(&self) -> c_float;
 
         /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAngle(&self, angle: c_float);
 
         #[method(width)]
+        #[unsafe(method_family = none)]
         unsafe fn width(&self) -> c_float;
 
         /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
+        #[unsafe(method_family = none)]
         unsafe fn setWidth(&self, width: c_float);
     }
 );
@@ -4041,26 +4675,31 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciattributedtextimagegenerator?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIAttributedTextImageGenerator: CIFilterProtocol {
-        #[method_id(text)]
+        #[method(text)]
         #[unsafe(method_family = none)]
         unsafe fn text(&self) -> Retained<NSAttributedString>;
 
         /// Setter for [`text`][Self::text].
         #[method(setText:)]
+        #[unsafe(method_family = none)]
         unsafe fn setText(&self, text: &NSAttributedString);
 
         #[method(scaleFactor)]
+        #[unsafe(method_family = none)]
         unsafe fn scaleFactor(&self) -> c_float;
 
         /// Setter for [`scaleFactor`][Self::scaleFactor].
         #[method(setScaleFactor:)]
+        #[unsafe(method_family = none)]
         unsafe fn setScaleFactor(&self, scale_factor: c_float);
 
         #[method(padding)]
+        #[unsafe(method_family = none)]
         unsafe fn padding(&self) -> c_float;
 
         /// Setter for [`padding`][Self::padding].
         #[method(setPadding:)]
+        #[unsafe(method_family = none)]
         unsafe fn setPadding(&self, padding: c_float);
     }
 );
@@ -4069,33 +4708,40 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciazteccodegenerator?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIAztecCodeGenerator: CIFilterProtocol {
-        #[method_id(message)]
+        #[method(message)]
         #[unsafe(method_family = none)]
         unsafe fn message(&self) -> Retained<NSData>;
 
         /// Setter for [`message`][Self::message].
         #[method(setMessage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setMessage(&self, message: &NSData);
 
         #[method(correctionLevel)]
+        #[unsafe(method_family = none)]
         unsafe fn correctionLevel(&self) -> c_float;
 
         /// Setter for [`correctionLevel`][Self::correctionLevel].
         #[method(setCorrectionLevel:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCorrectionLevel(&self, correction_level: c_float);
 
         #[method(layers)]
+        #[unsafe(method_family = none)]
         unsafe fn layers(&self) -> c_float;
 
         /// Setter for [`layers`][Self::layers].
         #[method(setLayers:)]
+        #[unsafe(method_family = none)]
         unsafe fn setLayers(&self, layers: c_float);
 
         #[method(compactStyle)]
+        #[unsafe(method_family = none)]
         unsafe fn compactStyle(&self) -> c_float;
 
         /// Setter for [`compactStyle`][Self::compactStyle].
         #[method(setCompactStyle:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCompactStyle(&self, compact_style: c_float);
     }
 );
@@ -4105,13 +4751,14 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIBarcodeGenerator: CIFilterProtocol {
         #[cfg(feature = "CIBarcodeDescriptor")]
-        #[method_id(barcodeDescriptor)]
+        #[method(barcodeDescriptor)]
         #[unsafe(method_family = none)]
         unsafe fn barcodeDescriptor(&self) -> Retained<CIBarcodeDescriptor>;
 
         #[cfg(feature = "CIBarcodeDescriptor")]
         /// Setter for [`barcodeDescriptor`][Self::barcodeDescriptor].
         #[method(setBarcodeDescriptor:)]
+        #[unsafe(method_family = none)]
         unsafe fn setBarcodeDescriptor(&self, barcode_descriptor: &CIBarcodeDescriptor);
     }
 );
@@ -4122,28 +4769,33 @@ extern_protocol!(
     pub unsafe trait CIBlurredRectangleGenerator: CIFilterProtocol {
         #[cfg(feature = "objc2-core-foundation")]
         #[method(extent)]
+        #[unsafe(method_family = none)]
         unsafe fn extent(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`extent`][Self::extent].
         #[method(setExtent:)]
+        #[unsafe(method_family = none)]
         unsafe fn setExtent(&self, extent: CGRect);
 
         #[method(sigma)]
+        #[unsafe(method_family = none)]
         unsafe fn sigma(&self) -> c_float;
 
         /// Setter for [`sigma`][Self::sigma].
         #[method(setSigma:)]
+        #[unsafe(method_family = none)]
         unsafe fn setSigma(&self, sigma: c_float);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(color)]
+        #[method(color)]
         #[unsafe(method_family = none)]
         unsafe fn color(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
         /// Setter for [`color`][Self::color].
         #[method(setColor:)]
+        #[unsafe(method_family = none)]
         unsafe fn setColor(&self, color: &CIColor);
     }
 );
@@ -4154,45 +4806,53 @@ extern_protocol!(
     pub unsafe trait CICheckerboardGenerator: CIFilterProtocol {
         #[cfg(feature = "objc2-core-foundation")]
         #[method(center)]
+        #[unsafe(method_family = none)]
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(color0)]
+        #[method(color0)]
         #[unsafe(method_family = none)]
         unsafe fn color0(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
         /// Setter for [`color0`][Self::color0].
         #[method(setColor0:)]
+        #[unsafe(method_family = none)]
         unsafe fn setColor0(&self, color0: &CIColor);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(color1)]
+        #[method(color1)]
         #[unsafe(method_family = none)]
         unsafe fn color1(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
         /// Setter for [`color1`][Self::color1].
         #[method(setColor1:)]
+        #[unsafe(method_family = none)]
         unsafe fn setColor1(&self, color1: &CIColor);
 
         #[method(width)]
+        #[unsafe(method_family = none)]
         unsafe fn width(&self) -> c_float;
 
         /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
+        #[unsafe(method_family = none)]
         unsafe fn setWidth(&self, width: c_float);
 
         #[method(sharpness)]
+        #[unsafe(method_family = none)]
         unsafe fn sharpness(&self) -> c_float;
 
         /// Setter for [`sharpness`][Self::sharpness].
         #[method(setSharpness:)]
+        #[unsafe(method_family = none)]
         unsafe fn setSharpness(&self, sharpness: c_float);
     }
 );
@@ -4201,26 +4861,31 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicode128barcodegenerator?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CICode128BarcodeGenerator: CIFilterProtocol {
-        #[method_id(message)]
+        #[method(message)]
         #[unsafe(method_family = none)]
         unsafe fn message(&self) -> Retained<NSData>;
 
         /// Setter for [`message`][Self::message].
         #[method(setMessage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setMessage(&self, message: &NSData);
 
         #[method(quietSpace)]
+        #[unsafe(method_family = none)]
         unsafe fn quietSpace(&self) -> c_float;
 
         /// Setter for [`quietSpace`][Self::quietSpace].
         #[method(setQuietSpace:)]
+        #[unsafe(method_family = none)]
         unsafe fn setQuietSpace(&self, quiet_space: c_float);
 
         #[method(barcodeHeight)]
+        #[unsafe(method_family = none)]
         unsafe fn barcodeHeight(&self) -> c_float;
 
         /// Setter for [`barcodeHeight`][Self::barcodeHeight].
         #[method(setBarcodeHeight:)]
+        #[unsafe(method_family = none)]
         unsafe fn setBarcodeHeight(&self, barcode_height: c_float);
     }
 );
@@ -4231,63 +4896,78 @@ extern_protocol!(
     pub unsafe trait CILenticularHaloGenerator: CIFilterProtocol {
         #[cfg(feature = "objc2-core-foundation")]
         #[method(center)]
+        #[unsafe(method_family = none)]
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(color)]
+        #[method(color)]
         #[unsafe(method_family = none)]
         unsafe fn color(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
         /// Setter for [`color`][Self::color].
         #[method(setColor:)]
+        #[unsafe(method_family = none)]
         unsafe fn setColor(&self, color: &CIColor);
 
         #[method(haloRadius)]
+        #[unsafe(method_family = none)]
         unsafe fn haloRadius(&self) -> c_float;
 
         /// Setter for [`haloRadius`][Self::haloRadius].
         #[method(setHaloRadius:)]
+        #[unsafe(method_family = none)]
         unsafe fn setHaloRadius(&self, halo_radius: c_float);
 
         #[method(haloWidth)]
+        #[unsafe(method_family = none)]
         unsafe fn haloWidth(&self) -> c_float;
 
         /// Setter for [`haloWidth`][Self::haloWidth].
         #[method(setHaloWidth:)]
+        #[unsafe(method_family = none)]
         unsafe fn setHaloWidth(&self, halo_width: c_float);
 
         #[method(haloOverlap)]
+        #[unsafe(method_family = none)]
         unsafe fn haloOverlap(&self) -> c_float;
 
         /// Setter for [`haloOverlap`][Self::haloOverlap].
         #[method(setHaloOverlap:)]
+        #[unsafe(method_family = none)]
         unsafe fn setHaloOverlap(&self, halo_overlap: c_float);
 
         #[method(striationStrength)]
+        #[unsafe(method_family = none)]
         unsafe fn striationStrength(&self) -> c_float;
 
         /// Setter for [`striationStrength`][Self::striationStrength].
         #[method(setStriationStrength:)]
+        #[unsafe(method_family = none)]
         unsafe fn setStriationStrength(&self, striation_strength: c_float);
 
         #[method(striationContrast)]
+        #[unsafe(method_family = none)]
         unsafe fn striationContrast(&self) -> c_float;
 
         /// Setter for [`striationContrast`][Self::striationContrast].
         #[method(setStriationContrast:)]
+        #[unsafe(method_family = none)]
         unsafe fn setStriationContrast(&self, striation_contrast: c_float);
 
         #[method(time)]
+        #[unsafe(method_family = none)]
         unsafe fn time(&self) -> c_float;
 
         /// Setter for [`time`][Self::time].
         #[method(setTime:)]
+        #[unsafe(method_family = none)]
         unsafe fn setTime(&self, time: c_float);
     }
 );
@@ -4297,28 +4977,32 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIMeshGenerator: CIFilterProtocol {
         #[method(width)]
+        #[unsafe(method_family = none)]
         unsafe fn width(&self) -> c_float;
 
         /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
+        #[unsafe(method_family = none)]
         unsafe fn setWidth(&self, width: c_float);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(color)]
+        #[method(color)]
         #[unsafe(method_family = none)]
         unsafe fn color(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
         /// Setter for [`color`][Self::color].
         #[method(setColor:)]
+        #[unsafe(method_family = none)]
         unsafe fn setColor(&self, color: &CIColor);
 
-        #[method_id(mesh)]
+        #[method(mesh)]
         #[unsafe(method_family = none)]
         unsafe fn mesh(&self) -> Retained<NSArray>;
 
         /// Setter for [`mesh`][Self::mesh].
         #[method(setMesh:)]
+        #[unsafe(method_family = none)]
         unsafe fn setMesh(&self, mesh: &NSArray);
     }
 );
@@ -4327,89 +5011,112 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cipdf417barcodegenerator?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIPDF417BarcodeGenerator: CIFilterProtocol {
-        #[method_id(message)]
+        #[method(message)]
         #[unsafe(method_family = none)]
         unsafe fn message(&self) -> Retained<NSData>;
 
         /// Setter for [`message`][Self::message].
         #[method(setMessage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setMessage(&self, message: &NSData);
 
         #[method(minWidth)]
+        #[unsafe(method_family = none)]
         unsafe fn minWidth(&self) -> c_float;
 
         /// Setter for [`minWidth`][Self::minWidth].
         #[method(setMinWidth:)]
+        #[unsafe(method_family = none)]
         unsafe fn setMinWidth(&self, min_width: c_float);
 
         #[method(maxWidth)]
+        #[unsafe(method_family = none)]
         unsafe fn maxWidth(&self) -> c_float;
 
         /// Setter for [`maxWidth`][Self::maxWidth].
         #[method(setMaxWidth:)]
+        #[unsafe(method_family = none)]
         unsafe fn setMaxWidth(&self, max_width: c_float);
 
         #[method(minHeight)]
+        #[unsafe(method_family = none)]
         unsafe fn minHeight(&self) -> c_float;
 
         /// Setter for [`minHeight`][Self::minHeight].
         #[method(setMinHeight:)]
+        #[unsafe(method_family = none)]
         unsafe fn setMinHeight(&self, min_height: c_float);
 
         #[method(maxHeight)]
+        #[unsafe(method_family = none)]
         unsafe fn maxHeight(&self) -> c_float;
 
         /// Setter for [`maxHeight`][Self::maxHeight].
         #[method(setMaxHeight:)]
+        #[unsafe(method_family = none)]
         unsafe fn setMaxHeight(&self, max_height: c_float);
 
         #[method(dataColumns)]
+        #[unsafe(method_family = none)]
         unsafe fn dataColumns(&self) -> c_float;
 
         /// Setter for [`dataColumns`][Self::dataColumns].
         #[method(setDataColumns:)]
+        #[unsafe(method_family = none)]
         unsafe fn setDataColumns(&self, data_columns: c_float);
 
         #[method(rows)]
+        #[unsafe(method_family = none)]
         unsafe fn rows(&self) -> c_float;
 
         /// Setter for [`rows`][Self::rows].
         #[method(setRows:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRows(&self, rows: c_float);
 
         #[method(preferredAspectRatio)]
+        #[unsafe(method_family = none)]
         unsafe fn preferredAspectRatio(&self) -> c_float;
 
         /// Setter for [`preferredAspectRatio`][Self::preferredAspectRatio].
         #[method(setPreferredAspectRatio:)]
+        #[unsafe(method_family = none)]
         unsafe fn setPreferredAspectRatio(&self, preferred_aspect_ratio: c_float);
 
         #[method(compactionMode)]
+        #[unsafe(method_family = none)]
         unsafe fn compactionMode(&self) -> c_float;
 
         /// Setter for [`compactionMode`][Self::compactionMode].
         #[method(setCompactionMode:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCompactionMode(&self, compaction_mode: c_float);
 
         #[method(compactStyle)]
+        #[unsafe(method_family = none)]
         unsafe fn compactStyle(&self) -> c_float;
 
         /// Setter for [`compactStyle`][Self::compactStyle].
         #[method(setCompactStyle:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCompactStyle(&self, compact_style: c_float);
 
         #[method(correctionLevel)]
+        #[unsafe(method_family = none)]
         unsafe fn correctionLevel(&self) -> c_float;
 
         /// Setter for [`correctionLevel`][Self::correctionLevel].
         #[method(setCorrectionLevel:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCorrectionLevel(&self, correction_level: c_float);
 
         #[method(alwaysSpecifyCompaction)]
+        #[unsafe(method_family = none)]
         unsafe fn alwaysSpecifyCompaction(&self) -> c_float;
 
         /// Setter for [`alwaysSpecifyCompaction`][Self::alwaysSpecifyCompaction].
         #[method(setAlwaysSpecifyCompaction:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAlwaysSpecifyCompaction(&self, always_specify_compaction: c_float);
     }
 );
@@ -4418,20 +5125,22 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciqrcodegenerator?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIQRCodeGenerator: CIFilterProtocol {
-        #[method_id(message)]
+        #[method(message)]
         #[unsafe(method_family = none)]
         unsafe fn message(&self) -> Retained<NSData>;
 
         /// Setter for [`message`][Self::message].
         #[method(setMessage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setMessage(&self, message: &NSData);
 
-        #[method_id(correctionLevel)]
+        #[method(correctionLevel)]
         #[unsafe(method_family = none)]
         unsafe fn correctionLevel(&self) -> Retained<NSString>;
 
         /// Setter for [`correctionLevel`][Self::correctionLevel].
         #[method(setCorrectionLevel:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCorrectionLevel(&self, correction_level: &NSString);
     }
 );
@@ -4448,28 +5157,33 @@ extern_protocol!(
     pub unsafe trait CIRoundedRectangleGenerator: CIFilterProtocol {
         #[cfg(feature = "objc2-core-foundation")]
         #[method(extent)]
+        #[unsafe(method_family = none)]
         unsafe fn extent(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`extent`][Self::extent].
         #[method(setExtent:)]
+        #[unsafe(method_family = none)]
         unsafe fn setExtent(&self, extent: CGRect);
 
         #[method(radius)]
+        #[unsafe(method_family = none)]
         unsafe fn radius(&self) -> c_float;
 
         /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRadius(&self, radius: c_float);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(color)]
+        #[method(color)]
         #[unsafe(method_family = none)]
         unsafe fn color(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
         /// Setter for [`color`][Self::color].
         #[method(setColor:)]
+        #[unsafe(method_family = none)]
         unsafe fn setColor(&self, color: &CIColor);
     }
 );
@@ -4480,35 +5194,42 @@ extern_protocol!(
     pub unsafe trait CIRoundedRectangleStrokeGenerator: CIFilterProtocol {
         #[cfg(feature = "objc2-core-foundation")]
         #[method(extent)]
+        #[unsafe(method_family = none)]
         unsafe fn extent(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`extent`][Self::extent].
         #[method(setExtent:)]
+        #[unsafe(method_family = none)]
         unsafe fn setExtent(&self, extent: CGRect);
 
         #[method(radius)]
+        #[unsafe(method_family = none)]
         unsafe fn radius(&self) -> c_float;
 
         /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRadius(&self, radius: c_float);
 
         #[method(width)]
+        #[unsafe(method_family = none)]
         unsafe fn width(&self) -> c_float;
 
         /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
+        #[unsafe(method_family = none)]
         unsafe fn setWidth(&self, width: c_float);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(color)]
+        #[method(color)]
         #[unsafe(method_family = none)]
         unsafe fn color(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
         /// Setter for [`color`][Self::color].
         #[method(setColor:)]
+        #[unsafe(method_family = none)]
         unsafe fn setColor(&self, color: &CIColor);
     }
 );
@@ -4519,63 +5240,78 @@ extern_protocol!(
     pub unsafe trait CIStarShineGenerator: CIFilterProtocol {
         #[cfg(feature = "objc2-core-foundation")]
         #[method(center)]
+        #[unsafe(method_family = none)]
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(color)]
+        #[method(color)]
         #[unsafe(method_family = none)]
         unsafe fn color(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
         /// Setter for [`color`][Self::color].
         #[method(setColor:)]
+        #[unsafe(method_family = none)]
         unsafe fn setColor(&self, color: &CIColor);
 
         #[method(radius)]
+        #[unsafe(method_family = none)]
         unsafe fn radius(&self) -> c_float;
 
         /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRadius(&self, radius: c_float);
 
         #[method(crossScale)]
+        #[unsafe(method_family = none)]
         unsafe fn crossScale(&self) -> c_float;
 
         /// Setter for [`crossScale`][Self::crossScale].
         #[method(setCrossScale:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCrossScale(&self, cross_scale: c_float);
 
         #[method(crossAngle)]
+        #[unsafe(method_family = none)]
         unsafe fn crossAngle(&self) -> c_float;
 
         /// Setter for [`crossAngle`][Self::crossAngle].
         #[method(setCrossAngle:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCrossAngle(&self, cross_angle: c_float);
 
         #[method(crossOpacity)]
+        #[unsafe(method_family = none)]
         unsafe fn crossOpacity(&self) -> c_float;
 
         /// Setter for [`crossOpacity`][Self::crossOpacity].
         #[method(setCrossOpacity:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCrossOpacity(&self, cross_opacity: c_float);
 
         #[method(crossWidth)]
+        #[unsafe(method_family = none)]
         unsafe fn crossWidth(&self) -> c_float;
 
         /// Setter for [`crossWidth`][Self::crossWidth].
         #[method(setCrossWidth:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCrossWidth(&self, cross_width: c_float);
 
         #[method(epsilon)]
+        #[unsafe(method_family = none)]
         unsafe fn epsilon(&self) -> c_float;
 
         /// Setter for [`epsilon`][Self::epsilon].
         #[method(setEpsilon:)]
+        #[unsafe(method_family = none)]
         unsafe fn setEpsilon(&self, epsilon: c_float);
     }
 );
@@ -4586,45 +5322,53 @@ extern_protocol!(
     pub unsafe trait CIStripesGenerator: CIFilterProtocol {
         #[cfg(feature = "objc2-core-foundation")]
         #[method(center)]
+        #[unsafe(method_family = none)]
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(color0)]
+        #[method(color0)]
         #[unsafe(method_family = none)]
         unsafe fn color0(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
         /// Setter for [`color0`][Self::color0].
         #[method(setColor0:)]
+        #[unsafe(method_family = none)]
         unsafe fn setColor0(&self, color0: &CIColor);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(color1)]
+        #[method(color1)]
         #[unsafe(method_family = none)]
         unsafe fn color1(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
         /// Setter for [`color1`][Self::color1].
         #[method(setColor1:)]
+        #[unsafe(method_family = none)]
         unsafe fn setColor1(&self, color1: &CIColor);
 
         #[method(width)]
+        #[unsafe(method_family = none)]
         unsafe fn width(&self) -> c_float;
 
         /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
+        #[unsafe(method_family = none)]
         unsafe fn setWidth(&self, width: c_float);
 
         #[method(sharpness)]
+        #[unsafe(method_family = none)]
         unsafe fn sharpness(&self) -> c_float;
 
         /// Setter for [`sharpness`][Self::sharpness].
         #[method(setSharpness:)]
+        #[unsafe(method_family = none)]
         unsafe fn setSharpness(&self, sharpness: c_float);
     }
 );
@@ -4635,56 +5379,69 @@ extern_protocol!(
     pub unsafe trait CISunbeamsGenerator: CIFilterProtocol {
         #[cfg(feature = "objc2-core-foundation")]
         #[method(center)]
+        #[unsafe(method_family = none)]
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(color)]
+        #[method(color)]
         #[unsafe(method_family = none)]
         unsafe fn color(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
         /// Setter for [`color`][Self::color].
         #[method(setColor:)]
+        #[unsafe(method_family = none)]
         unsafe fn setColor(&self, color: &CIColor);
 
         #[method(sunRadius)]
+        #[unsafe(method_family = none)]
         unsafe fn sunRadius(&self) -> c_float;
 
         /// Setter for [`sunRadius`][Self::sunRadius].
         #[method(setSunRadius:)]
+        #[unsafe(method_family = none)]
         unsafe fn setSunRadius(&self, sun_radius: c_float);
 
         #[method(maxStriationRadius)]
+        #[unsafe(method_family = none)]
         unsafe fn maxStriationRadius(&self) -> c_float;
 
         /// Setter for [`maxStriationRadius`][Self::maxStriationRadius].
         #[method(setMaxStriationRadius:)]
+        #[unsafe(method_family = none)]
         unsafe fn setMaxStriationRadius(&self, max_striation_radius: c_float);
 
         #[method(striationStrength)]
+        #[unsafe(method_family = none)]
         unsafe fn striationStrength(&self) -> c_float;
 
         /// Setter for [`striationStrength`][Self::striationStrength].
         #[method(setStriationStrength:)]
+        #[unsafe(method_family = none)]
         unsafe fn setStriationStrength(&self, striation_strength: c_float);
 
         #[method(striationContrast)]
+        #[unsafe(method_family = none)]
         unsafe fn striationContrast(&self) -> c_float;
 
         /// Setter for [`striationContrast`][Self::striationContrast].
         #[method(setStriationContrast:)]
+        #[unsafe(method_family = none)]
         unsafe fn setStriationContrast(&self, striation_contrast: c_float);
 
         #[method(time)]
+        #[unsafe(method_family = none)]
         unsafe fn time(&self) -> c_float;
 
         /// Setter for [`time`][Self::time].
         #[method(setTime:)]
+        #[unsafe(method_family = none)]
         unsafe fn setTime(&self, time: c_float);
     }
 );
@@ -4693,41 +5450,49 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/citextimagegenerator?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CITextImageGenerator: CIFilterProtocol {
-        #[method_id(text)]
+        #[method(text)]
         #[unsafe(method_family = none)]
         unsafe fn text(&self) -> Retained<NSString>;
 
         /// Setter for [`text`][Self::text].
         #[method(setText:)]
+        #[unsafe(method_family = none)]
         unsafe fn setText(&self, text: &NSString);
 
-        #[method_id(fontName)]
+        #[method(fontName)]
         #[unsafe(method_family = none)]
         unsafe fn fontName(&self) -> Retained<NSString>;
 
         /// Setter for [`fontName`][Self::fontName].
         #[method(setFontName:)]
+        #[unsafe(method_family = none)]
         unsafe fn setFontName(&self, font_name: &NSString);
 
         #[method(fontSize)]
+        #[unsafe(method_family = none)]
         unsafe fn fontSize(&self) -> c_float;
 
         /// Setter for [`fontSize`][Self::fontSize].
         #[method(setFontSize:)]
+        #[unsafe(method_family = none)]
         unsafe fn setFontSize(&self, font_size: c_float);
 
         #[method(scaleFactor)]
+        #[unsafe(method_family = none)]
         unsafe fn scaleFactor(&self) -> c_float;
 
         /// Setter for [`scaleFactor`][Self::scaleFactor].
         #[method(setScaleFactor:)]
+        #[unsafe(method_family = none)]
         unsafe fn setScaleFactor(&self, scale_factor: c_float);
 
         #[method(padding)]
+        #[unsafe(method_family = none)]
         unsafe fn padding(&self) -> c_float;
 
         /// Setter for [`padding`][Self::padding].
         #[method(setPadding:)]
+        #[unsafe(method_family = none)]
         unsafe fn setPadding(&self, padding: c_float);
     }
 );
@@ -4737,33 +5502,36 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIBlendWithMask: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIImage")]
-        #[method_id(backgroundImage)]
+        #[method(backgroundImage)]
         #[unsafe(method_family = none)]
         unsafe fn backgroundImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`backgroundImage`][Self::backgroundImage].
         #[method(setBackgroundImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setBackgroundImage(&self, background_image: Option<&CIImage>);
 
         #[cfg(feature = "CIImage")]
-        #[method_id(maskImage)]
+        #[method(maskImage)]
         #[unsafe(method_family = none)]
         unsafe fn maskImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`maskImage`][Self::maskImage].
         #[method(setMaskImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setMaskImage(&self, mask_image: Option<&CIImage>);
     }
 );
@@ -4773,27 +5541,32 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIBloom: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(radius)]
+        #[unsafe(method_family = none)]
         unsafe fn radius(&self) -> c_float;
 
         /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRadius(&self, radius: c_float);
 
         #[method(intensity)]
+        #[unsafe(method_family = none)]
         unsafe fn intensity(&self) -> c_float;
 
         /// Setter for [`intensity`][Self::intensity].
         #[method(setIntensity:)]
+        #[unsafe(method_family = none)]
         unsafe fn setIntensity(&self, intensity: c_float);
     }
 );
@@ -4803,48 +5576,59 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CICannyEdgeDetector: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(gaussianSigma)]
+        #[unsafe(method_family = none)]
         unsafe fn gaussianSigma(&self) -> c_float;
 
         /// Setter for [`gaussianSigma`][Self::gaussianSigma].
         #[method(setGaussianSigma:)]
+        #[unsafe(method_family = none)]
         unsafe fn setGaussianSigma(&self, gaussian_sigma: c_float);
 
         #[method(perceptual)]
+        #[unsafe(method_family = none)]
         unsafe fn perceptual(&self) -> bool;
 
         /// Setter for [`perceptual`][Self::perceptual].
         #[method(setPerceptual:)]
+        #[unsafe(method_family = none)]
         unsafe fn setPerceptual(&self, perceptual: bool);
 
         #[method(thresholdHigh)]
+        #[unsafe(method_family = none)]
         unsafe fn thresholdHigh(&self) -> c_float;
 
         /// Setter for [`thresholdHigh`][Self::thresholdHigh].
         #[method(setThresholdHigh:)]
+        #[unsafe(method_family = none)]
         unsafe fn setThresholdHigh(&self, threshold_high: c_float);
 
         #[method(thresholdLow)]
+        #[unsafe(method_family = none)]
         unsafe fn thresholdLow(&self) -> c_float;
 
         /// Setter for [`thresholdLow`][Self::thresholdLow].
         #[method(setThresholdLow:)]
+        #[unsafe(method_family = none)]
         unsafe fn setThresholdLow(&self, threshold_low: c_float);
 
         #[method(hysteresisPasses)]
+        #[unsafe(method_family = none)]
         unsafe fn hysteresisPasses(&self) -> NSInteger;
 
         /// Setter for [`hysteresisPasses`][Self::hysteresisPasses].
         #[method(setHysteresisPasses:)]
+        #[unsafe(method_family = none)]
         unsafe fn setHysteresisPasses(&self, hysteresis_passes: NSInteger);
     }
 );
@@ -4854,13 +5638,14 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIComicEffect: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
 );
@@ -4870,30 +5655,34 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIConvolution: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIVector")]
-        #[method_id(weights)]
+        #[method(weights)]
         #[unsafe(method_family = none)]
         unsafe fn weights(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
         /// Setter for [`weights`][Self::weights].
         #[method(setWeights:)]
+        #[unsafe(method_family = none)]
         unsafe fn setWeights(&self, weights: &CIVector);
 
         #[method(bias)]
+        #[unsafe(method_family = none)]
         unsafe fn bias(&self) -> c_float;
 
         /// Setter for [`bias`][Self::bias].
         #[method(setBias:)]
+        #[unsafe(method_family = none)]
         unsafe fn setBias(&self, bias: c_float);
     }
 );
@@ -4903,37 +5692,43 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CICoreMLModel: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-ml")]
-        #[method_id(model)]
+        #[method(model)]
         #[unsafe(method_family = none)]
         unsafe fn model(&self) -> Retained<MLModel>;
 
         #[cfg(feature = "objc2-core-ml")]
         /// Setter for [`model`][Self::model].
         #[method(setModel:)]
+        #[unsafe(method_family = none)]
         unsafe fn setModel(&self, model: &MLModel);
 
         #[method(headIndex)]
+        #[unsafe(method_family = none)]
         unsafe fn headIndex(&self) -> c_float;
 
         /// Setter for [`headIndex`][Self::headIndex].
         #[method(setHeadIndex:)]
+        #[unsafe(method_family = none)]
         unsafe fn setHeadIndex(&self, head_index: c_float);
 
         #[method(softmaxNormalization)]
+        #[unsafe(method_family = none)]
         unsafe fn softmaxNormalization(&self) -> bool;
 
         /// Setter for [`softmaxNormalization`][Self::softmaxNormalization].
         #[method(setSoftmaxNormalization:)]
+        #[unsafe(method_family = none)]
         unsafe fn setSoftmaxNormalization(&self, softmax_normalization: bool);
     }
 );
@@ -4943,29 +5738,34 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CICrystallize: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(radius)]
+        #[unsafe(method_family = none)]
         unsafe fn radius(&self) -> c_float;
 
         /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRadius(&self, radius: c_float);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(center)]
+        #[unsafe(method_family = none)]
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenter(&self, center: CGPoint);
     }
 );
@@ -4975,59 +5775,72 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIDepthOfField: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(point0)]
+        #[unsafe(method_family = none)]
         unsafe fn point0(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`point0`][Self::point0].
         #[method(setPoint0:)]
+        #[unsafe(method_family = none)]
         unsafe fn setPoint0(&self, point0: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(point1)]
+        #[unsafe(method_family = none)]
         unsafe fn point1(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`point1`][Self::point1].
         #[method(setPoint1:)]
+        #[unsafe(method_family = none)]
         unsafe fn setPoint1(&self, point1: CGPoint);
 
         #[method(saturation)]
+        #[unsafe(method_family = none)]
         unsafe fn saturation(&self) -> c_float;
 
         /// Setter for [`saturation`][Self::saturation].
         #[method(setSaturation:)]
+        #[unsafe(method_family = none)]
         unsafe fn setSaturation(&self, saturation: c_float);
 
         #[method(unsharpMaskRadius)]
+        #[unsafe(method_family = none)]
         unsafe fn unsharpMaskRadius(&self) -> c_float;
 
         /// Setter for [`unsharpMaskRadius`][Self::unsharpMaskRadius].
         #[method(setUnsharpMaskRadius:)]
+        #[unsafe(method_family = none)]
         unsafe fn setUnsharpMaskRadius(&self, unsharp_mask_radius: c_float);
 
         #[method(unsharpMaskIntensity)]
+        #[unsafe(method_family = none)]
         unsafe fn unsharpMaskIntensity(&self) -> c_float;
 
         /// Setter for [`unsharpMaskIntensity`][Self::unsharpMaskIntensity].
         #[method(setUnsharpMaskIntensity:)]
+        #[unsafe(method_family = none)]
         unsafe fn setUnsharpMaskIntensity(&self, unsharp_mask_intensity: c_float);
 
         #[method(radius)]
+        #[unsafe(method_family = none)]
         unsafe fn radius(&self) -> c_float;
 
         /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRadius(&self, radius: c_float);
     }
 );
@@ -5037,20 +5850,23 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIEdges: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(intensity)]
+        #[unsafe(method_family = none)]
         unsafe fn intensity(&self) -> c_float;
 
         /// Setter for [`intensity`][Self::intensity].
         #[method(setIntensity:)]
+        #[unsafe(method_family = none)]
         unsafe fn setIntensity(&self, intensity: c_float);
     }
 );
@@ -5060,20 +5876,23 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIEdgeWork: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(radius)]
+        #[unsafe(method_family = none)]
         unsafe fn radius(&self) -> c_float;
 
         /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRadius(&self, radius: c_float);
     }
 );
@@ -5083,13 +5902,14 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIGaborGradients: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
 );
@@ -5099,27 +5919,32 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIGloom: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(radius)]
+        #[unsafe(method_family = none)]
         unsafe fn radius(&self) -> c_float;
 
         /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRadius(&self, radius: c_float);
 
         #[method(intensity)]
+        #[unsafe(method_family = none)]
         unsafe fn intensity(&self) -> c_float;
 
         /// Setter for [`intensity`][Self::intensity].
         #[method(setIntensity:)]
+        #[unsafe(method_family = none)]
         unsafe fn setIntensity(&self, intensity: c_float);
     }
 );
@@ -5129,20 +5954,23 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIHeightFieldFromMask: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(radius)]
+        #[unsafe(method_family = none)]
         unsafe fn radius(&self) -> c_float;
 
         /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRadius(&self, radius: c_float);
     }
 );
@@ -5152,29 +5980,34 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIHexagonalPixellate: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(center)]
+        #[unsafe(method_family = none)]
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(scale)]
+        #[unsafe(method_family = none)]
         unsafe fn scale(&self) -> c_float;
 
         /// Setter for [`scale`][Self::scale].
         #[method(setScale:)]
+        #[unsafe(method_family = none)]
         unsafe fn setScale(&self, scale: c_float);
     }
 );
@@ -5184,34 +6017,41 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIHighlightShadowAdjust: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(radius)]
+        #[unsafe(method_family = none)]
         unsafe fn radius(&self) -> c_float;
 
         /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRadius(&self, radius: c_float);
 
         #[method(shadowAmount)]
+        #[unsafe(method_family = none)]
         unsafe fn shadowAmount(&self) -> c_float;
 
         /// Setter for [`shadowAmount`][Self::shadowAmount].
         #[method(setShadowAmount:)]
+        #[unsafe(method_family = none)]
         unsafe fn setShadowAmount(&self, shadow_amount: c_float);
 
         #[method(highlightAmount)]
+        #[unsafe(method_family = none)]
         unsafe fn highlightAmount(&self) -> c_float;
 
         /// Setter for [`highlightAmount`][Self::highlightAmount].
         #[method(setHighlightAmount:)]
+        #[unsafe(method_family = none)]
         unsafe fn setHighlightAmount(&self, highlight_amount: c_float);
     }
 );
@@ -5221,48 +6061,59 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CILineOverlay: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(NRNoiseLevel)]
+        #[unsafe(method_family = none)]
         unsafe fn NRNoiseLevel(&self) -> c_float;
 
         /// Setter for [`NRNoiseLevel`][Self::NRNoiseLevel].
         #[method(setNRNoiseLevel:)]
+        #[unsafe(method_family = none)]
         unsafe fn setNRNoiseLevel(&self, nr_noise_level: c_float);
 
         #[method(NRSharpness)]
+        #[unsafe(method_family = none)]
         unsafe fn NRSharpness(&self) -> c_float;
 
         /// Setter for [`NRSharpness`][Self::NRSharpness].
         #[method(setNRSharpness:)]
+        #[unsafe(method_family = none)]
         unsafe fn setNRSharpness(&self, nr_sharpness: c_float);
 
         #[method(edgeIntensity)]
+        #[unsafe(method_family = none)]
         unsafe fn edgeIntensity(&self) -> c_float;
 
         /// Setter for [`edgeIntensity`][Self::edgeIntensity].
         #[method(setEdgeIntensity:)]
+        #[unsafe(method_family = none)]
         unsafe fn setEdgeIntensity(&self, edge_intensity: c_float);
 
         #[method(threshold)]
+        #[unsafe(method_family = none)]
         unsafe fn threshold(&self) -> c_float;
 
         /// Setter for [`threshold`][Self::threshold].
         #[method(setThreshold:)]
+        #[unsafe(method_family = none)]
         unsafe fn setThreshold(&self, threshold: c_float);
 
         #[method(contrast)]
+        #[unsafe(method_family = none)]
         unsafe fn contrast(&self) -> c_float;
 
         /// Setter for [`contrast`][Self::contrast].
         #[method(setContrast:)]
+        #[unsafe(method_family = none)]
         unsafe fn setContrast(&self, contrast: c_float);
     }
 );
@@ -5272,30 +6123,34 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIMix: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIImage")]
-        #[method_id(backgroundImage)]
+        #[method(backgroundImage)]
         #[unsafe(method_family = none)]
         unsafe fn backgroundImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`backgroundImage`][Self::backgroundImage].
         #[method(setBackgroundImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setBackgroundImage(&self, background_image: Option<&CIImage>);
 
         #[method(amount)]
+        #[unsafe(method_family = none)]
         unsafe fn amount(&self) -> c_float;
 
         /// Setter for [`amount`][Self::amount].
         #[method(setAmount:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAmount(&self, amount: c_float);
     }
 );
@@ -5305,20 +6160,23 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIPersonSegmentation: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(qualityLevel)]
+        #[unsafe(method_family = none)]
         unsafe fn qualityLevel(&self) -> NSUInteger;
 
         /// Setter for [`qualityLevel`][Self::qualityLevel].
         #[method(setQualityLevel:)]
+        #[unsafe(method_family = none)]
         unsafe fn setQualityLevel(&self, quality_level: NSUInteger);
     }
 );
@@ -5328,29 +6186,34 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIPixellate: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(center)]
+        #[unsafe(method_family = none)]
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(scale)]
+        #[unsafe(method_family = none)]
         unsafe fn scale(&self) -> c_float;
 
         /// Setter for [`scale`][Self::scale].
         #[method(setScale:)]
+        #[unsafe(method_family = none)]
         unsafe fn setScale(&self, scale: c_float);
     }
 );
@@ -5360,29 +6223,34 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIPointillize: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(radius)]
+        #[unsafe(method_family = none)]
         unsafe fn radius(&self) -> c_float;
 
         /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRadius(&self, radius: c_float);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(center)]
+        #[unsafe(method_family = none)]
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenter(&self, center: CGPoint);
     }
 );
@@ -5392,13 +6260,14 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CISaliencyMap: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
 );
@@ -5408,30 +6277,34 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIShadedMaterial: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIImage")]
-        #[method_id(shadingImage)]
+        #[method(shadingImage)]
         #[unsafe(method_family = none)]
         unsafe fn shadingImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`shadingImage`][Self::shadingImage].
         #[method(setShadingImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setShadingImage(&self, shading_image: Option<&CIImage>);
 
         #[method(scale)]
+        #[unsafe(method_family = none)]
         unsafe fn scale(&self) -> c_float;
 
         /// Setter for [`scale`][Self::scale].
         #[method(setScale:)]
+        #[unsafe(method_family = none)]
         unsafe fn setScale(&self, scale: c_float);
     }
 );
@@ -5441,13 +6314,14 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CISobelGradients: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
 );
@@ -5457,115 +6331,134 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CISpotColor: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(centerColor1)]
+        #[method(centerColor1)]
         #[unsafe(method_family = none)]
         unsafe fn centerColor1(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
         /// Setter for [`centerColor1`][Self::centerColor1].
         #[method(setCenterColor1:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenterColor1(&self, center_color1: &CIColor);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(replacementColor1)]
+        #[method(replacementColor1)]
         #[unsafe(method_family = none)]
         unsafe fn replacementColor1(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
         /// Setter for [`replacementColor1`][Self::replacementColor1].
         #[method(setReplacementColor1:)]
+        #[unsafe(method_family = none)]
         unsafe fn setReplacementColor1(&self, replacement_color1: &CIColor);
 
         #[method(closeness1)]
+        #[unsafe(method_family = none)]
         unsafe fn closeness1(&self) -> c_float;
 
         /// Setter for [`closeness1`][Self::closeness1].
         #[method(setCloseness1:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCloseness1(&self, closeness1: c_float);
 
         #[method(contrast1)]
+        #[unsafe(method_family = none)]
         unsafe fn contrast1(&self) -> c_float;
 
         /// Setter for [`contrast1`][Self::contrast1].
         #[method(setContrast1:)]
+        #[unsafe(method_family = none)]
         unsafe fn setContrast1(&self, contrast1: c_float);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(centerColor2)]
+        #[method(centerColor2)]
         #[unsafe(method_family = none)]
         unsafe fn centerColor2(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
         /// Setter for [`centerColor2`][Self::centerColor2].
         #[method(setCenterColor2:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenterColor2(&self, center_color2: &CIColor);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(replacementColor2)]
+        #[method(replacementColor2)]
         #[unsafe(method_family = none)]
         unsafe fn replacementColor2(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
         /// Setter for [`replacementColor2`][Self::replacementColor2].
         #[method(setReplacementColor2:)]
+        #[unsafe(method_family = none)]
         unsafe fn setReplacementColor2(&self, replacement_color2: &CIColor);
 
         #[method(closeness2)]
+        #[unsafe(method_family = none)]
         unsafe fn closeness2(&self) -> c_float;
 
         /// Setter for [`closeness2`][Self::closeness2].
         #[method(setCloseness2:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCloseness2(&self, closeness2: c_float);
 
         #[method(contrast2)]
+        #[unsafe(method_family = none)]
         unsafe fn contrast2(&self) -> c_float;
 
         /// Setter for [`contrast2`][Self::contrast2].
         #[method(setContrast2:)]
+        #[unsafe(method_family = none)]
         unsafe fn setContrast2(&self, contrast2: c_float);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(centerColor3)]
+        #[method(centerColor3)]
         #[unsafe(method_family = none)]
         unsafe fn centerColor3(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
         /// Setter for [`centerColor3`][Self::centerColor3].
         #[method(setCenterColor3:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenterColor3(&self, center_color3: &CIColor);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(replacementColor3)]
+        #[method(replacementColor3)]
         #[unsafe(method_family = none)]
         unsafe fn replacementColor3(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
         /// Setter for [`replacementColor3`][Self::replacementColor3].
         #[method(setReplacementColor3:)]
+        #[unsafe(method_family = none)]
         unsafe fn setReplacementColor3(&self, replacement_color3: &CIColor);
 
         #[method(closeness3)]
+        #[unsafe(method_family = none)]
         unsafe fn closeness3(&self) -> c_float;
 
         /// Setter for [`closeness3`][Self::closeness3].
         #[method(setCloseness3:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCloseness3(&self, closeness3: c_float);
 
         #[method(contrast3)]
+        #[unsafe(method_family = none)]
         unsafe fn contrast3(&self) -> c_float;
 
         /// Setter for [`contrast3`][Self::contrast3].
         #[method(setContrast3:)]
+        #[unsafe(method_family = none)]
         unsafe fn setContrast3(&self, contrast3: c_float);
     }
 );
@@ -5575,57 +6468,65 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CISpotLight: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIVector")]
-        #[method_id(lightPosition)]
+        #[method(lightPosition)]
         #[unsafe(method_family = none)]
         unsafe fn lightPosition(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
         /// Setter for [`lightPosition`][Self::lightPosition].
         #[method(setLightPosition:)]
+        #[unsafe(method_family = none)]
         unsafe fn setLightPosition(&self, light_position: &CIVector);
 
         #[cfg(feature = "CIVector")]
-        #[method_id(lightPointsAt)]
+        #[method(lightPointsAt)]
         #[unsafe(method_family = none)]
         unsafe fn lightPointsAt(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
         /// Setter for [`lightPointsAt`][Self::lightPointsAt].
         #[method(setLightPointsAt:)]
+        #[unsafe(method_family = none)]
         unsafe fn setLightPointsAt(&self, light_points_at: &CIVector);
 
         #[method(brightness)]
+        #[unsafe(method_family = none)]
         unsafe fn brightness(&self) -> c_float;
 
         /// Setter for [`brightness`][Self::brightness].
         #[method(setBrightness:)]
+        #[unsafe(method_family = none)]
         unsafe fn setBrightness(&self, brightness: c_float);
 
         #[method(concentration)]
+        #[unsafe(method_family = none)]
         unsafe fn concentration(&self) -> c_float;
 
         /// Setter for [`concentration`][Self::concentration].
         #[method(setConcentration:)]
+        #[unsafe(method_family = none)]
         unsafe fn setConcentration(&self, concentration: c_float);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(color)]
+        #[method(color)]
         #[unsafe(method_family = none)]
         unsafe fn color(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
         /// Setter for [`color`][Self::color].
         #[method(setColor:)]
+        #[unsafe(method_family = none)]
         unsafe fn setColor(&self, color: &CIColor);
     }
 );
@@ -5635,41 +6536,50 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIBokehBlur: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(radius)]
+        #[unsafe(method_family = none)]
         unsafe fn radius(&self) -> c_float;
 
         /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRadius(&self, radius: c_float);
 
         #[method(ringAmount)]
+        #[unsafe(method_family = none)]
         unsafe fn ringAmount(&self) -> c_float;
 
         /// Setter for [`ringAmount`][Self::ringAmount].
         #[method(setRingAmount:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRingAmount(&self, ring_amount: c_float);
 
         #[method(ringSize)]
+        #[unsafe(method_family = none)]
         unsafe fn ringSize(&self) -> c_float;
 
         /// Setter for [`ringSize`][Self::ringSize].
         #[method(setRingSize:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRingSize(&self, ring_size: c_float);
 
         #[method(softness)]
+        #[unsafe(method_family = none)]
         unsafe fn softness(&self) -> c_float;
 
         /// Setter for [`softness`][Self::softness].
         #[method(setSoftness:)]
+        #[unsafe(method_family = none)]
         unsafe fn setSoftness(&self, softness: c_float);
     }
 );
@@ -5679,20 +6589,23 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIBoxBlur: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(radius)]
+        #[unsafe(method_family = none)]
         unsafe fn radius(&self) -> c_float;
 
         /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRadius(&self, radius: c_float);
     }
 );
@@ -5702,20 +6615,23 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIDiscBlur: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(radius)]
+        #[unsafe(method_family = none)]
         unsafe fn radius(&self) -> c_float;
 
         /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRadius(&self, radius: c_float);
     }
 );
@@ -5725,20 +6641,23 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIGaussianBlur: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(radius)]
+        #[unsafe(method_family = none)]
         unsafe fn radius(&self) -> c_float;
 
         /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRadius(&self, radius: c_float);
     }
 );
@@ -5748,30 +6667,34 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIMaskedVariableBlur: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIImage")]
-        #[method_id(mask)]
+        #[method(mask)]
         #[unsafe(method_family = none)]
         unsafe fn mask(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`mask`][Self::mask].
         #[method(setMask:)]
+        #[unsafe(method_family = none)]
         unsafe fn setMask(&self, mask: Option<&CIImage>);
 
         #[method(radius)]
+        #[unsafe(method_family = none)]
         unsafe fn radius(&self) -> c_float;
 
         /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRadius(&self, radius: c_float);
     }
 );
@@ -5781,13 +6704,14 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIMedian: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
 );
@@ -5797,20 +6721,23 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIMorphologyGradient: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(radius)]
+        #[unsafe(method_family = none)]
         unsafe fn radius(&self) -> c_float;
 
         /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRadius(&self, radius: c_float);
     }
 );
@@ -5820,20 +6747,23 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIMorphologyMaximum: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(radius)]
+        #[unsafe(method_family = none)]
         unsafe fn radius(&self) -> c_float;
 
         /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRadius(&self, radius: c_float);
     }
 );
@@ -5843,20 +6773,23 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIMorphologyMinimum: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(radius)]
+        #[unsafe(method_family = none)]
         unsafe fn radius(&self) -> c_float;
 
         /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRadius(&self, radius: c_float);
     }
 );
@@ -5866,27 +6799,32 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIMorphologyRectangleMaximum: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(width)]
+        #[unsafe(method_family = none)]
         unsafe fn width(&self) -> c_float;
 
         /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
+        #[unsafe(method_family = none)]
         unsafe fn setWidth(&self, width: c_float);
 
         #[method(height)]
+        #[unsafe(method_family = none)]
         unsafe fn height(&self) -> c_float;
 
         /// Setter for [`height`][Self::height].
         #[method(setHeight:)]
+        #[unsafe(method_family = none)]
         unsafe fn setHeight(&self, height: c_float);
     }
 );
@@ -5896,27 +6834,32 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIMorphologyRectangleMinimum: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(width)]
+        #[unsafe(method_family = none)]
         unsafe fn width(&self) -> c_float;
 
         /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
+        #[unsafe(method_family = none)]
         unsafe fn setWidth(&self, width: c_float);
 
         #[method(height)]
+        #[unsafe(method_family = none)]
         unsafe fn height(&self) -> c_float;
 
         /// Setter for [`height`][Self::height].
         #[method(setHeight:)]
+        #[unsafe(method_family = none)]
         unsafe fn setHeight(&self, height: c_float);
     }
 );
@@ -5926,27 +6869,32 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIMotionBlur: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(radius)]
+        #[unsafe(method_family = none)]
         unsafe fn radius(&self) -> c_float;
 
         /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRadius(&self, radius: c_float);
 
         #[method(angle)]
+        #[unsafe(method_family = none)]
         unsafe fn angle(&self) -> c_float;
 
         /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAngle(&self, angle: c_float);
     }
 );
@@ -5956,27 +6904,32 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CINoiseReduction: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(noiseLevel)]
+        #[unsafe(method_family = none)]
         unsafe fn noiseLevel(&self) -> c_float;
 
         /// Setter for [`noiseLevel`][Self::noiseLevel].
         #[method(setNoiseLevel:)]
+        #[unsafe(method_family = none)]
         unsafe fn setNoiseLevel(&self, noise_level: c_float);
 
         #[method(sharpness)]
+        #[unsafe(method_family = none)]
         unsafe fn sharpness(&self) -> c_float;
 
         /// Setter for [`sharpness`][Self::sharpness].
         #[method(setSharpness:)]
+        #[unsafe(method_family = none)]
         unsafe fn setSharpness(&self, sharpness: c_float);
     }
 );
@@ -5986,29 +6939,34 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIZoomBlur: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(center)]
+        #[unsafe(method_family = none)]
         unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[method(amount)]
+        #[unsafe(method_family = none)]
         unsafe fn amount(&self) -> c_float;
 
         /// Setter for [`amount`][Self::amount].
         #[method(setAmount:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAmount(&self, amount: c_float);
     }
 );
@@ -6018,22 +6976,25 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIAreaReductionFilter: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(extent)]
+        #[unsafe(method_family = none)]
         unsafe fn extent(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`extent`][Self::extent].
         #[method(setExtent:)]
+        #[unsafe(method_family = none)]
         unsafe fn setExtent(&self, extent: CGRect);
     }
 );
@@ -6055,17 +7016,21 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIAreaHistogram: CIAreaReductionFilter {
         #[method(scale)]
+        #[unsafe(method_family = none)]
         unsafe fn scale(&self) -> c_float;
 
         /// Setter for [`scale`][Self::scale].
         #[method(setScale:)]
+        #[unsafe(method_family = none)]
         unsafe fn setScale(&self, scale: c_float);
 
         #[method(count)]
+        #[unsafe(method_family = none)]
         unsafe fn count(&self) -> NSInteger;
 
         /// Setter for [`count`][Self::count].
         #[method(setCount:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCount(&self, count: NSInteger);
     }
 );
@@ -6075,31 +7040,39 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIAreaLogarithmicHistogram: CIAreaReductionFilter {
         #[method(scale)]
+        #[unsafe(method_family = none)]
         unsafe fn scale(&self) -> c_float;
 
         /// Setter for [`scale`][Self::scale].
         #[method(setScale:)]
+        #[unsafe(method_family = none)]
         unsafe fn setScale(&self, scale: c_float);
 
         #[method(count)]
+        #[unsafe(method_family = none)]
         unsafe fn count(&self) -> NSInteger;
 
         /// Setter for [`count`][Self::count].
         #[method(setCount:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCount(&self, count: NSInteger);
 
         #[method(minimumStop)]
+        #[unsafe(method_family = none)]
         unsafe fn minimumStop(&self) -> c_float;
 
         /// Setter for [`minimumStop`][Self::minimumStop].
         #[method(setMinimumStop:)]
+        #[unsafe(method_family = none)]
         unsafe fn setMinimumStop(&self, minimum_stop: c_float);
 
         #[method(maximumStop)]
+        #[unsafe(method_family = none)]
         unsafe fn maximumStop(&self) -> c_float;
 
         /// Setter for [`maximumStop`][Self::maximumStop].
         #[method(setMaximumStop:)]
+        #[unsafe(method_family = none)]
         unsafe fn setMaximumStop(&self, maximum_stop: c_float);
     }
 );
@@ -6151,34 +7124,41 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIHistogramDisplay: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputImage)]
+        #[method(inputImage)]
         #[unsafe(method_family = none)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputImage`][Self::inputImage].
         #[method(setInputImage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[method(height)]
+        #[unsafe(method_family = none)]
         unsafe fn height(&self) -> c_float;
 
         /// Setter for [`height`][Self::height].
         #[method(setHeight:)]
+        #[unsafe(method_family = none)]
         unsafe fn setHeight(&self, height: c_float);
 
         #[method(highLimit)]
+        #[unsafe(method_family = none)]
         unsafe fn highLimit(&self) -> c_float;
 
         /// Setter for [`highLimit`][Self::highLimit].
         #[method(setHighLimit:)]
+        #[unsafe(method_family = none)]
         unsafe fn setHighLimit(&self, high_limit: c_float);
 
         #[method(lowLimit)]
+        #[unsafe(method_family = none)]
         unsafe fn lowLimit(&self) -> c_float;
 
         /// Setter for [`lowLimit`][Self::lowLimit].
         #[method(setLowLimit:)]
+        #[unsafe(method_family = none)]
         unsafe fn setLowLimit(&self, low_limit: c_float);
     }
 );
@@ -6188,34 +7168,41 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIKMeans: CIAreaReductionFilter {
         #[cfg(feature = "CIImage")]
-        #[method_id(inputMeans)]
+        #[method(inputMeans)]
         #[unsafe(method_family = none)]
         unsafe fn inputMeans(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
         /// Setter for [`inputMeans`][Self::inputMeans].
         #[method(setInputMeans:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputMeans(&self, input_means: Option<&CIImage>);
 
         #[method(count)]
+        #[unsafe(method_family = none)]
         unsafe fn count(&self) -> NSInteger;
 
         /// Setter for [`count`][Self::count].
         #[method(setCount:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCount(&self, count: NSInteger);
 
         #[method(passes)]
+        #[unsafe(method_family = none)]
         unsafe fn passes(&self) -> c_float;
 
         /// Setter for [`passes`][Self::passes].
         #[method(setPasses:)]
+        #[unsafe(method_family = none)]
         unsafe fn setPasses(&self, passes: c_float);
 
         #[method(perceptual)]
+        #[unsafe(method_family = none)]
         unsafe fn perceptual(&self) -> bool;
 
         /// Setter for [`perceptual`][Self::perceptual].
         #[method(setPerceptual:)]
+        #[unsafe(method_family = none)]
         unsafe fn setPerceptual(&self, perceptual: bool);
     }
 );
@@ -6230,935 +7217,935 @@ extern_methods!(
     /// Builtins
     #[cfg(feature = "CIFilter")]
     unsafe impl CIFilter {
-        #[method_id(gaussianGradientFilter)]
+        #[method(gaussianGradientFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn gaussianGradientFilter() -> Retained<CIFilter>;
 
-        #[method_id(hueSaturationValueGradientFilter)]
+        #[method(hueSaturationValueGradientFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn hueSaturationValueGradientFilter() -> Retained<CIFilter>;
 
-        #[method_id(linearGradientFilter)]
+        #[method(linearGradientFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn linearGradientFilter() -> Retained<CIFilter>;
 
-        #[method_id(radialGradientFilter)]
+        #[method(radialGradientFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn radialGradientFilter() -> Retained<CIFilter>;
 
-        #[method_id(smoothLinearGradientFilter)]
+        #[method(smoothLinearGradientFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn smoothLinearGradientFilter() -> Retained<CIFilter>;
 
-        #[method_id(sharpenLuminanceFilter)]
+        #[method(sharpenLuminanceFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn sharpenLuminanceFilter() -> Retained<CIFilter>;
 
-        #[method_id(unsharpMaskFilter)]
+        #[method(unsharpMaskFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn unsharpMaskFilter() -> Retained<CIFilter>;
 
-        #[method_id(circularScreenFilter)]
+        #[method(circularScreenFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn circularScreenFilter() -> Retained<CIFilter>;
 
-        #[method_id(CMYKHalftone)]
+        #[method(CMYKHalftone)]
         #[unsafe(method_family = none)]
         pub unsafe fn CMYKHalftone() -> Retained<CIFilter>;
 
-        #[method_id(dotScreenFilter)]
+        #[method(dotScreenFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn dotScreenFilter() -> Retained<CIFilter>;
 
-        #[method_id(hatchedScreenFilter)]
+        #[method(hatchedScreenFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn hatchedScreenFilter() -> Retained<CIFilter>;
 
-        #[method_id(lineScreenFilter)]
+        #[method(lineScreenFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn lineScreenFilter() -> Retained<CIFilter>;
 
-        #[method_id(bicubicScaleTransformFilter)]
+        #[method(bicubicScaleTransformFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn bicubicScaleTransformFilter() -> Retained<CIFilter>;
 
-        #[method_id(edgePreserveUpsampleFilter)]
+        #[method(edgePreserveUpsampleFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn edgePreserveUpsampleFilter() -> Retained<CIFilter>;
 
-        #[method_id(keystoneCorrectionCombinedFilter)]
+        #[method(keystoneCorrectionCombinedFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn keystoneCorrectionCombinedFilter() -> Retained<CIFilter>;
 
-        #[method_id(keystoneCorrectionHorizontalFilter)]
+        #[method(keystoneCorrectionHorizontalFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn keystoneCorrectionHorizontalFilter() -> Retained<CIFilter>;
 
-        #[method_id(keystoneCorrectionVerticalFilter)]
+        #[method(keystoneCorrectionVerticalFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn keystoneCorrectionVerticalFilter() -> Retained<CIFilter>;
 
-        #[method_id(lanczosScaleTransformFilter)]
+        #[method(lanczosScaleTransformFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn lanczosScaleTransformFilter() -> Retained<CIFilter>;
 
-        #[method_id(maximumScaleTransformFilter)]
+        #[method(maximumScaleTransformFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumScaleTransformFilter() -> Retained<CIFilter>;
 
-        #[method_id(perspectiveCorrectionFilter)]
+        #[method(perspectiveCorrectionFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn perspectiveCorrectionFilter() -> Retained<CIFilter>;
 
-        #[method_id(perspectiveRotateFilter)]
+        #[method(perspectiveRotateFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn perspectiveRotateFilter() -> Retained<CIFilter>;
 
-        #[method_id(perspectiveTransformFilter)]
+        #[method(perspectiveTransformFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn perspectiveTransformFilter() -> Retained<CIFilter>;
 
-        #[method_id(perspectiveTransformWithExtentFilter)]
+        #[method(perspectiveTransformWithExtentFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn perspectiveTransformWithExtentFilter() -> Retained<CIFilter>;
 
-        #[method_id(straightenFilter)]
+        #[method(straightenFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn straightenFilter() -> Retained<CIFilter>;
 
-        #[method_id(accordionFoldTransitionFilter)]
+        #[method(accordionFoldTransitionFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn accordionFoldTransitionFilter() -> Retained<CIFilter>;
 
-        #[method_id(barsSwipeTransitionFilter)]
+        #[method(barsSwipeTransitionFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn barsSwipeTransitionFilter() -> Retained<CIFilter>;
 
-        #[method_id(copyMachineTransitionFilter)]
+        #[method(copyMachineTransitionFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn copyMachineTransitionFilter() -> Retained<CIFilter>;
 
-        #[method_id(disintegrateWithMaskTransitionFilter)]
+        #[method(disintegrateWithMaskTransitionFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn disintegrateWithMaskTransitionFilter() -> Retained<CIFilter>;
 
-        #[method_id(dissolveTransitionFilter)]
+        #[method(dissolveTransitionFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn dissolveTransitionFilter() -> Retained<CIFilter>;
 
-        #[method_id(flashTransitionFilter)]
+        #[method(flashTransitionFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn flashTransitionFilter() -> Retained<CIFilter>;
 
-        #[method_id(modTransitionFilter)]
+        #[method(modTransitionFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn modTransitionFilter() -> Retained<CIFilter>;
 
-        #[method_id(pageCurlTransitionFilter)]
+        #[method(pageCurlTransitionFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn pageCurlTransitionFilter() -> Retained<CIFilter>;
 
-        #[method_id(pageCurlWithShadowTransitionFilter)]
+        #[method(pageCurlWithShadowTransitionFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn pageCurlWithShadowTransitionFilter() -> Retained<CIFilter>;
 
-        #[method_id(rippleTransitionFilter)]
+        #[method(rippleTransitionFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn rippleTransitionFilter() -> Retained<CIFilter>;
 
-        #[method_id(swipeTransitionFilter)]
+        #[method(swipeTransitionFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn swipeTransitionFilter() -> Retained<CIFilter>;
 
-        #[method_id(additionCompositingFilter)]
+        #[method(additionCompositingFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn additionCompositingFilter() -> Retained<CIFilter>;
 
-        #[method_id(colorBlendModeFilter)]
+        #[method(colorBlendModeFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn colorBlendModeFilter() -> Retained<CIFilter>;
 
-        #[method_id(colorBurnBlendModeFilter)]
+        #[method(colorBurnBlendModeFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn colorBurnBlendModeFilter() -> Retained<CIFilter>;
 
-        #[method_id(colorDodgeBlendModeFilter)]
+        #[method(colorDodgeBlendModeFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn colorDodgeBlendModeFilter() -> Retained<CIFilter>;
 
-        #[method_id(darkenBlendModeFilter)]
+        #[method(darkenBlendModeFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn darkenBlendModeFilter() -> Retained<CIFilter>;
 
-        #[method_id(differenceBlendModeFilter)]
+        #[method(differenceBlendModeFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn differenceBlendModeFilter() -> Retained<CIFilter>;
 
-        #[method_id(divideBlendModeFilter)]
+        #[method(divideBlendModeFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn divideBlendModeFilter() -> Retained<CIFilter>;
 
-        #[method_id(exclusionBlendModeFilter)]
+        #[method(exclusionBlendModeFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn exclusionBlendModeFilter() -> Retained<CIFilter>;
 
-        #[method_id(hardLightBlendModeFilter)]
+        #[method(hardLightBlendModeFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn hardLightBlendModeFilter() -> Retained<CIFilter>;
 
-        #[method_id(hueBlendModeFilter)]
+        #[method(hueBlendModeFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn hueBlendModeFilter() -> Retained<CIFilter>;
 
-        #[method_id(lightenBlendModeFilter)]
+        #[method(lightenBlendModeFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn lightenBlendModeFilter() -> Retained<CIFilter>;
 
-        #[method_id(linearBurnBlendModeFilter)]
+        #[method(linearBurnBlendModeFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn linearBurnBlendModeFilter() -> Retained<CIFilter>;
 
-        #[method_id(linearDodgeBlendModeFilter)]
+        #[method(linearDodgeBlendModeFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn linearDodgeBlendModeFilter() -> Retained<CIFilter>;
 
-        #[method_id(linearLightBlendModeFilter)]
+        #[method(linearLightBlendModeFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn linearLightBlendModeFilter() -> Retained<CIFilter>;
 
-        #[method_id(luminosityBlendModeFilter)]
+        #[method(luminosityBlendModeFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn luminosityBlendModeFilter() -> Retained<CIFilter>;
 
-        #[method_id(maximumCompositingFilter)]
+        #[method(maximumCompositingFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumCompositingFilter() -> Retained<CIFilter>;
 
-        #[method_id(minimumCompositingFilter)]
+        #[method(minimumCompositingFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumCompositingFilter() -> Retained<CIFilter>;
 
-        #[method_id(multiplyBlendModeFilter)]
+        #[method(multiplyBlendModeFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn multiplyBlendModeFilter() -> Retained<CIFilter>;
 
-        #[method_id(multiplyCompositingFilter)]
+        #[method(multiplyCompositingFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn multiplyCompositingFilter() -> Retained<CIFilter>;
 
-        #[method_id(overlayBlendModeFilter)]
+        #[method(overlayBlendModeFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn overlayBlendModeFilter() -> Retained<CIFilter>;
 
-        #[method_id(pinLightBlendModeFilter)]
+        #[method(pinLightBlendModeFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn pinLightBlendModeFilter() -> Retained<CIFilter>;
 
-        #[method_id(saturationBlendModeFilter)]
+        #[method(saturationBlendModeFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn saturationBlendModeFilter() -> Retained<CIFilter>;
 
-        #[method_id(screenBlendModeFilter)]
+        #[method(screenBlendModeFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn screenBlendModeFilter() -> Retained<CIFilter>;
 
-        #[method_id(softLightBlendModeFilter)]
+        #[method(softLightBlendModeFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn softLightBlendModeFilter() -> Retained<CIFilter>;
 
-        #[method_id(sourceAtopCompositingFilter)]
+        #[method(sourceAtopCompositingFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceAtopCompositingFilter() -> Retained<CIFilter>;
 
-        #[method_id(sourceInCompositingFilter)]
+        #[method(sourceInCompositingFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceInCompositingFilter() -> Retained<CIFilter>;
 
-        #[method_id(sourceOutCompositingFilter)]
+        #[method(sourceOutCompositingFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceOutCompositingFilter() -> Retained<CIFilter>;
 
-        #[method_id(sourceOverCompositingFilter)]
+        #[method(sourceOverCompositingFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceOverCompositingFilter() -> Retained<CIFilter>;
 
-        #[method_id(subtractBlendModeFilter)]
+        #[method(subtractBlendModeFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn subtractBlendModeFilter() -> Retained<CIFilter>;
 
-        #[method_id(vividLightBlendModeFilter)]
+        #[method(vividLightBlendModeFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn vividLightBlendModeFilter() -> Retained<CIFilter>;
 
-        #[method_id(colorAbsoluteDifferenceFilter)]
+        #[method(colorAbsoluteDifferenceFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn colorAbsoluteDifferenceFilter() -> Retained<CIFilter>;
 
-        #[method_id(colorClampFilter)]
+        #[method(colorClampFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn colorClampFilter() -> Retained<CIFilter>;
 
-        #[method_id(colorControlsFilter)]
+        #[method(colorControlsFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn colorControlsFilter() -> Retained<CIFilter>;
 
-        #[method_id(colorMatrixFilter)]
+        #[method(colorMatrixFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn colorMatrixFilter() -> Retained<CIFilter>;
 
-        #[method_id(colorPolynomialFilter)]
+        #[method(colorPolynomialFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn colorPolynomialFilter() -> Retained<CIFilter>;
 
-        #[method_id(colorThresholdFilter)]
+        #[method(colorThresholdFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn colorThresholdFilter() -> Retained<CIFilter>;
 
-        #[method_id(colorThresholdOtsuFilter)]
+        #[method(colorThresholdOtsuFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn colorThresholdOtsuFilter() -> Retained<CIFilter>;
 
-        #[method_id(depthToDisparityFilter)]
+        #[method(depthToDisparityFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn depthToDisparityFilter() -> Retained<CIFilter>;
 
-        #[method_id(disparityToDepthFilter)]
+        #[method(disparityToDepthFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn disparityToDepthFilter() -> Retained<CIFilter>;
 
-        #[method_id(exposureAdjustFilter)]
+        #[method(exposureAdjustFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn exposureAdjustFilter() -> Retained<CIFilter>;
 
-        #[method_id(gammaAdjustFilter)]
+        #[method(gammaAdjustFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn gammaAdjustFilter() -> Retained<CIFilter>;
 
-        #[method_id(hueAdjustFilter)]
+        #[method(hueAdjustFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn hueAdjustFilter() -> Retained<CIFilter>;
 
-        #[method_id(linearToSRGBToneCurveFilter)]
+        #[method(linearToSRGBToneCurveFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn linearToSRGBToneCurveFilter() -> Retained<CIFilter>;
 
-        #[method_id(sRGBToneCurveToLinearFilter)]
+        #[method(sRGBToneCurveToLinearFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn sRGBToneCurveToLinearFilter() -> Retained<CIFilter>;
 
-        #[method_id(temperatureAndTintFilter)]
+        #[method(temperatureAndTintFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn temperatureAndTintFilter() -> Retained<CIFilter>;
 
-        #[method_id(toneCurveFilter)]
+        #[method(toneCurveFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn toneCurveFilter() -> Retained<CIFilter>;
 
-        #[method_id(toneMapHeadroomFilter)]
+        #[method(toneMapHeadroomFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn toneMapHeadroomFilter() -> Retained<CIFilter>;
 
-        #[method_id(vibranceFilter)]
+        #[method(vibranceFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn vibranceFilter() -> Retained<CIFilter>;
 
-        #[method_id(whitePointAdjustFilter)]
+        #[method(whitePointAdjustFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn whitePointAdjustFilter() -> Retained<CIFilter>;
 
-        #[method_id(colorCrossPolynomialFilter)]
+        #[method(colorCrossPolynomialFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn colorCrossPolynomialFilter() -> Retained<CIFilter>;
 
-        #[method_id(colorCubeFilter)]
+        #[method(colorCubeFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn colorCubeFilter() -> Retained<CIFilter>;
 
-        #[method_id(colorCubesMixedWithMaskFilter)]
+        #[method(colorCubesMixedWithMaskFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn colorCubesMixedWithMaskFilter() -> Retained<CIFilter>;
 
-        #[method_id(colorCubeWithColorSpaceFilter)]
+        #[method(colorCubeWithColorSpaceFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn colorCubeWithColorSpaceFilter() -> Retained<CIFilter>;
 
-        #[method_id(colorCurvesFilter)]
+        #[method(colorCurvesFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn colorCurvesFilter() -> Retained<CIFilter>;
 
-        #[method_id(colorInvertFilter)]
+        #[method(colorInvertFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn colorInvertFilter() -> Retained<CIFilter>;
 
-        #[method_id(colorMapFilter)]
+        #[method(colorMapFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn colorMapFilter() -> Retained<CIFilter>;
 
-        #[method_id(colorMonochromeFilter)]
+        #[method(colorMonochromeFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn colorMonochromeFilter() -> Retained<CIFilter>;
 
-        #[method_id(colorPosterizeFilter)]
+        #[method(colorPosterizeFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn colorPosterizeFilter() -> Retained<CIFilter>;
 
-        #[method_id(convertLabToRGBFilter)]
+        #[method(convertLabToRGBFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn convertLabToRGBFilter() -> Retained<CIFilter>;
 
-        #[method_id(convertRGBtoLabFilter)]
+        #[method(convertRGBtoLabFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn convertRGBtoLabFilter() -> Retained<CIFilter>;
 
-        #[method_id(ditherFilter)]
+        #[method(ditherFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn ditherFilter() -> Retained<CIFilter>;
 
-        #[method_id(documentEnhancerFilter)]
+        #[method(documentEnhancerFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn documentEnhancerFilter() -> Retained<CIFilter>;
 
-        #[method_id(falseColorFilter)]
+        #[method(falseColorFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn falseColorFilter() -> Retained<CIFilter>;
 
-        #[method_id(LabDeltaE)]
+        #[method(LabDeltaE)]
         #[unsafe(method_family = none)]
         pub unsafe fn LabDeltaE() -> Retained<CIFilter>;
 
-        #[method_id(maskToAlphaFilter)]
+        #[method(maskToAlphaFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn maskToAlphaFilter() -> Retained<CIFilter>;
 
-        #[method_id(maximumComponentFilter)]
+        #[method(maximumComponentFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumComponentFilter() -> Retained<CIFilter>;
 
-        #[method_id(minimumComponentFilter)]
+        #[method(minimumComponentFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumComponentFilter() -> Retained<CIFilter>;
 
-        #[method_id(paletteCentroidFilter)]
+        #[method(paletteCentroidFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn paletteCentroidFilter() -> Retained<CIFilter>;
 
-        #[method_id(palettizeFilter)]
+        #[method(palettizeFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn palettizeFilter() -> Retained<CIFilter>;
 
-        #[method_id(photoEffectChromeFilter)]
+        #[method(photoEffectChromeFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn photoEffectChromeFilter() -> Retained<CIFilter>;
 
-        #[method_id(photoEffectFadeFilter)]
+        #[method(photoEffectFadeFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn photoEffectFadeFilter() -> Retained<CIFilter>;
 
-        #[method_id(photoEffectInstantFilter)]
+        #[method(photoEffectInstantFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn photoEffectInstantFilter() -> Retained<CIFilter>;
 
-        #[method_id(photoEffectMonoFilter)]
+        #[method(photoEffectMonoFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn photoEffectMonoFilter() -> Retained<CIFilter>;
 
-        #[method_id(photoEffectNoirFilter)]
+        #[method(photoEffectNoirFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn photoEffectNoirFilter() -> Retained<CIFilter>;
 
-        #[method_id(photoEffectProcessFilter)]
+        #[method(photoEffectProcessFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn photoEffectProcessFilter() -> Retained<CIFilter>;
 
-        #[method_id(photoEffectTonalFilter)]
+        #[method(photoEffectTonalFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn photoEffectTonalFilter() -> Retained<CIFilter>;
 
-        #[method_id(photoEffectTransferFilter)]
+        #[method(photoEffectTransferFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn photoEffectTransferFilter() -> Retained<CIFilter>;
 
-        #[method_id(sepiaToneFilter)]
+        #[method(sepiaToneFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn sepiaToneFilter() -> Retained<CIFilter>;
 
-        #[method_id(thermalFilter)]
+        #[method(thermalFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn thermalFilter() -> Retained<CIFilter>;
 
-        #[method_id(vignetteFilter)]
+        #[method(vignetteFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn vignetteFilter() -> Retained<CIFilter>;
 
-        #[method_id(vignetteEffectFilter)]
+        #[method(vignetteEffectFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn vignetteEffectFilter() -> Retained<CIFilter>;
 
-        #[method_id(xRayFilter)]
+        #[method(xRayFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn xRayFilter() -> Retained<CIFilter>;
 
-        #[method_id(bumpDistortionFilter)]
+        #[method(bumpDistortionFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn bumpDistortionFilter() -> Retained<CIFilter>;
 
-        #[method_id(bumpDistortionLinearFilter)]
+        #[method(bumpDistortionLinearFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn bumpDistortionLinearFilter() -> Retained<CIFilter>;
 
-        #[method_id(circleSplashDistortionFilter)]
+        #[method(circleSplashDistortionFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn circleSplashDistortionFilter() -> Retained<CIFilter>;
 
-        #[method_id(circularWrapFilter)]
+        #[method(circularWrapFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn circularWrapFilter() -> Retained<CIFilter>;
 
-        #[method_id(displacementDistortionFilter)]
+        #[method(displacementDistortionFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn displacementDistortionFilter() -> Retained<CIFilter>;
 
-        #[method_id(drosteFilter)]
+        #[method(drosteFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn drosteFilter() -> Retained<CIFilter>;
 
-        #[method_id(glassDistortionFilter)]
+        #[method(glassDistortionFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn glassDistortionFilter() -> Retained<CIFilter>;
 
-        #[method_id(glassLozengeFilter)]
+        #[method(glassLozengeFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn glassLozengeFilter() -> Retained<CIFilter>;
 
-        #[method_id(holeDistortionFilter)]
+        #[method(holeDistortionFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn holeDistortionFilter() -> Retained<CIFilter>;
 
-        #[method_id(lightTunnelFilter)]
+        #[method(lightTunnelFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn lightTunnelFilter() -> Retained<CIFilter>;
 
-        #[method_id(ninePartStretchedFilter)]
+        #[method(ninePartStretchedFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn ninePartStretchedFilter() -> Retained<CIFilter>;
 
-        #[method_id(ninePartTiledFilter)]
+        #[method(ninePartTiledFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn ninePartTiledFilter() -> Retained<CIFilter>;
 
-        #[method_id(pinchDistortionFilter)]
+        #[method(pinchDistortionFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn pinchDistortionFilter() -> Retained<CIFilter>;
 
-        #[method_id(stretchCropFilter)]
+        #[method(stretchCropFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn stretchCropFilter() -> Retained<CIFilter>;
 
-        #[method_id(torusLensDistortionFilter)]
+        #[method(torusLensDistortionFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn torusLensDistortionFilter() -> Retained<CIFilter>;
 
-        #[method_id(twirlDistortionFilter)]
+        #[method(twirlDistortionFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn twirlDistortionFilter() -> Retained<CIFilter>;
 
-        #[method_id(vortexDistortionFilter)]
+        #[method(vortexDistortionFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn vortexDistortionFilter() -> Retained<CIFilter>;
 
-        #[method_id(affineClampFilter)]
+        #[method(affineClampFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn affineClampFilter() -> Retained<CIFilter>;
 
-        #[method_id(affineTileFilter)]
+        #[method(affineTileFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn affineTileFilter() -> Retained<CIFilter>;
 
-        #[method_id(eightfoldReflectedTileFilter)]
+        #[method(eightfoldReflectedTileFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn eightfoldReflectedTileFilter() -> Retained<CIFilter>;
 
-        #[method_id(fourfoldReflectedTileFilter)]
+        #[method(fourfoldReflectedTileFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn fourfoldReflectedTileFilter() -> Retained<CIFilter>;
 
-        #[method_id(fourfoldRotatedTileFilter)]
+        #[method(fourfoldRotatedTileFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn fourfoldRotatedTileFilter() -> Retained<CIFilter>;
 
-        #[method_id(fourfoldTranslatedTileFilter)]
+        #[method(fourfoldTranslatedTileFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn fourfoldTranslatedTileFilter() -> Retained<CIFilter>;
 
-        #[method_id(glideReflectedTileFilter)]
+        #[method(glideReflectedTileFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn glideReflectedTileFilter() -> Retained<CIFilter>;
 
-        #[method_id(kaleidoscopeFilter)]
+        #[method(kaleidoscopeFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn kaleidoscopeFilter() -> Retained<CIFilter>;
 
-        #[method_id(opTileFilter)]
+        #[method(opTileFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn opTileFilter() -> Retained<CIFilter>;
 
-        #[method_id(parallelogramTileFilter)]
+        #[method(parallelogramTileFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn parallelogramTileFilter() -> Retained<CIFilter>;
 
-        #[method_id(perspectiveTileFilter)]
+        #[method(perspectiveTileFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn perspectiveTileFilter() -> Retained<CIFilter>;
 
-        #[method_id(sixfoldReflectedTileFilter)]
+        #[method(sixfoldReflectedTileFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn sixfoldReflectedTileFilter() -> Retained<CIFilter>;
 
-        #[method_id(sixfoldRotatedTileFilter)]
+        #[method(sixfoldRotatedTileFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn sixfoldRotatedTileFilter() -> Retained<CIFilter>;
 
-        #[method_id(triangleKaleidoscopeFilter)]
+        #[method(triangleKaleidoscopeFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn triangleKaleidoscopeFilter() -> Retained<CIFilter>;
 
-        #[method_id(triangleTileFilter)]
+        #[method(triangleTileFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn triangleTileFilter() -> Retained<CIFilter>;
 
-        #[method_id(twelvefoldReflectedTileFilter)]
+        #[method(twelvefoldReflectedTileFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn twelvefoldReflectedTileFilter() -> Retained<CIFilter>;
 
-        #[method_id(attributedTextImageGeneratorFilter)]
+        #[method(attributedTextImageGeneratorFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn attributedTextImageGeneratorFilter() -> Retained<CIFilter>;
 
-        #[method_id(aztecCodeGeneratorFilter)]
+        #[method(aztecCodeGeneratorFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn aztecCodeGeneratorFilter() -> Retained<CIFilter>;
 
-        #[method_id(barcodeGeneratorFilter)]
+        #[method(barcodeGeneratorFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn barcodeGeneratorFilter() -> Retained<CIFilter>;
 
-        #[method_id(blurredRectangleGeneratorFilter)]
+        #[method(blurredRectangleGeneratorFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn blurredRectangleGeneratorFilter() -> Retained<CIFilter>;
 
-        #[method_id(checkerboardGeneratorFilter)]
+        #[method(checkerboardGeneratorFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn checkerboardGeneratorFilter() -> Retained<CIFilter>;
 
-        #[method_id(code128BarcodeGeneratorFilter)]
+        #[method(code128BarcodeGeneratorFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn code128BarcodeGeneratorFilter() -> Retained<CIFilter>;
 
-        #[method_id(lenticularHaloGeneratorFilter)]
+        #[method(lenticularHaloGeneratorFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn lenticularHaloGeneratorFilter() -> Retained<CIFilter>;
 
-        #[method_id(meshGeneratorFilter)]
+        #[method(meshGeneratorFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn meshGeneratorFilter() -> Retained<CIFilter>;
 
-        #[method_id(PDF417BarcodeGenerator)]
+        #[method(PDF417BarcodeGenerator)]
         #[unsafe(method_family = none)]
         pub unsafe fn PDF417BarcodeGenerator() -> Retained<CIFilter>;
 
-        #[method_id(QRCodeGenerator)]
+        #[method(QRCodeGenerator)]
         #[unsafe(method_family = none)]
         pub unsafe fn QRCodeGenerator() -> Retained<CIFilter>;
 
-        #[method_id(randomGeneratorFilter)]
+        #[method(randomGeneratorFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn randomGeneratorFilter() -> Retained<CIFilter>;
 
-        #[method_id(roundedRectangleGeneratorFilter)]
+        #[method(roundedRectangleGeneratorFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn roundedRectangleGeneratorFilter() -> Retained<CIFilter>;
 
-        #[method_id(roundedRectangleStrokeGeneratorFilter)]
+        #[method(roundedRectangleStrokeGeneratorFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn roundedRectangleStrokeGeneratorFilter() -> Retained<CIFilter>;
 
-        #[method_id(starShineGeneratorFilter)]
+        #[method(starShineGeneratorFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn starShineGeneratorFilter() -> Retained<CIFilter>;
 
-        #[method_id(stripesGeneratorFilter)]
+        #[method(stripesGeneratorFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn stripesGeneratorFilter() -> Retained<CIFilter>;
 
-        #[method_id(sunbeamsGeneratorFilter)]
+        #[method(sunbeamsGeneratorFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn sunbeamsGeneratorFilter() -> Retained<CIFilter>;
 
-        #[method_id(textImageGeneratorFilter)]
+        #[method(textImageGeneratorFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn textImageGeneratorFilter() -> Retained<CIFilter>;
 
-        #[method_id(blendWithAlphaMaskFilter)]
+        #[method(blendWithAlphaMaskFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn blendWithAlphaMaskFilter() -> Retained<CIFilter>;
 
-        #[method_id(blendWithBlueMaskFilter)]
+        #[method(blendWithBlueMaskFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn blendWithBlueMaskFilter() -> Retained<CIFilter>;
 
-        #[method_id(blendWithMaskFilter)]
+        #[method(blendWithMaskFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn blendWithMaskFilter() -> Retained<CIFilter>;
 
-        #[method_id(blendWithRedMaskFilter)]
+        #[method(blendWithRedMaskFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn blendWithRedMaskFilter() -> Retained<CIFilter>;
 
-        #[method_id(bloomFilter)]
+        #[method(bloomFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn bloomFilter() -> Retained<CIFilter>;
 
-        #[method_id(cannyEdgeDetectorFilter)]
+        #[method(cannyEdgeDetectorFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn cannyEdgeDetectorFilter() -> Retained<CIFilter>;
 
-        #[method_id(comicEffectFilter)]
+        #[method(comicEffectFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn comicEffectFilter() -> Retained<CIFilter>;
 
-        #[method_id(convolution3X3Filter)]
+        #[method(convolution3X3Filter)]
         #[unsafe(method_family = none)]
         pub unsafe fn convolution3X3Filter() -> Retained<CIFilter>;
 
-        #[method_id(convolution5X5Filter)]
+        #[method(convolution5X5Filter)]
         #[unsafe(method_family = none)]
         pub unsafe fn convolution5X5Filter() -> Retained<CIFilter>;
 
-        #[method_id(convolution7X7Filter)]
+        #[method(convolution7X7Filter)]
         #[unsafe(method_family = none)]
         pub unsafe fn convolution7X7Filter() -> Retained<CIFilter>;
 
-        #[method_id(convolution9HorizontalFilter)]
+        #[method(convolution9HorizontalFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn convolution9HorizontalFilter() -> Retained<CIFilter>;
 
-        #[method_id(convolution9VerticalFilter)]
+        #[method(convolution9VerticalFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn convolution9VerticalFilter() -> Retained<CIFilter>;
 
-        #[method_id(convolutionRGB3X3Filter)]
+        #[method(convolutionRGB3X3Filter)]
         #[unsafe(method_family = none)]
         pub unsafe fn convolutionRGB3X3Filter() -> Retained<CIFilter>;
 
-        #[method_id(convolutionRGB5X5Filter)]
+        #[method(convolutionRGB5X5Filter)]
         #[unsafe(method_family = none)]
         pub unsafe fn convolutionRGB5X5Filter() -> Retained<CIFilter>;
 
-        #[method_id(convolutionRGB7X7Filter)]
+        #[method(convolutionRGB7X7Filter)]
         #[unsafe(method_family = none)]
         pub unsafe fn convolutionRGB7X7Filter() -> Retained<CIFilter>;
 
-        #[method_id(convolutionRGB9HorizontalFilter)]
+        #[method(convolutionRGB9HorizontalFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn convolutionRGB9HorizontalFilter() -> Retained<CIFilter>;
 
-        #[method_id(convolutionRGB9VerticalFilter)]
+        #[method(convolutionRGB9VerticalFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn convolutionRGB9VerticalFilter() -> Retained<CIFilter>;
 
-        #[method_id(coreMLModelFilter)]
+        #[method(coreMLModelFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn coreMLModelFilter() -> Retained<CIFilter>;
 
-        #[method_id(crystallizeFilter)]
+        #[method(crystallizeFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn crystallizeFilter() -> Retained<CIFilter>;
 
-        #[method_id(depthOfFieldFilter)]
+        #[method(depthOfFieldFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn depthOfFieldFilter() -> Retained<CIFilter>;
 
-        #[method_id(edgesFilter)]
+        #[method(edgesFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn edgesFilter() -> Retained<CIFilter>;
 
-        #[method_id(edgeWorkFilter)]
+        #[method(edgeWorkFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn edgeWorkFilter() -> Retained<CIFilter>;
 
-        #[method_id(gaborGradientsFilter)]
+        #[method(gaborGradientsFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn gaborGradientsFilter() -> Retained<CIFilter>;
 
-        #[method_id(gloomFilter)]
+        #[method(gloomFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn gloomFilter() -> Retained<CIFilter>;
 
-        #[method_id(heightFieldFromMaskFilter)]
+        #[method(heightFieldFromMaskFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn heightFieldFromMaskFilter() -> Retained<CIFilter>;
 
-        #[method_id(hexagonalPixellateFilter)]
+        #[method(hexagonalPixellateFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn hexagonalPixellateFilter() -> Retained<CIFilter>;
 
-        #[method_id(highlightShadowAdjustFilter)]
+        #[method(highlightShadowAdjustFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn highlightShadowAdjustFilter() -> Retained<CIFilter>;
 
-        #[method_id(lineOverlayFilter)]
+        #[method(lineOverlayFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn lineOverlayFilter() -> Retained<CIFilter>;
 
-        #[method_id(mixFilter)]
+        #[method(mixFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn mixFilter() -> Retained<CIFilter>;
 
-        #[method_id(personSegmentationFilter)]
+        #[method(personSegmentationFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn personSegmentationFilter() -> Retained<CIFilter>;
 
-        #[method_id(pixellateFilter)]
+        #[method(pixellateFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn pixellateFilter() -> Retained<CIFilter>;
 
-        #[method_id(pointillizeFilter)]
+        #[method(pointillizeFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn pointillizeFilter() -> Retained<CIFilter>;
 
-        #[method_id(saliencyMapFilter)]
+        #[method(saliencyMapFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn saliencyMapFilter() -> Retained<CIFilter>;
 
-        #[method_id(shadedMaterialFilter)]
+        #[method(shadedMaterialFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn shadedMaterialFilter() -> Retained<CIFilter>;
 
-        #[method_id(sobelGradientsFilter)]
+        #[method(sobelGradientsFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn sobelGradientsFilter() -> Retained<CIFilter>;
 
-        #[method_id(spotColorFilter)]
+        #[method(spotColorFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn spotColorFilter() -> Retained<CIFilter>;
 
-        #[method_id(spotLightFilter)]
+        #[method(spotLightFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn spotLightFilter() -> Retained<CIFilter>;
 
-        #[method_id(bokehBlurFilter)]
+        #[method(bokehBlurFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn bokehBlurFilter() -> Retained<CIFilter>;
 
-        #[method_id(boxBlurFilter)]
+        #[method(boxBlurFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn boxBlurFilter() -> Retained<CIFilter>;
 
-        #[method_id(discBlurFilter)]
+        #[method(discBlurFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn discBlurFilter() -> Retained<CIFilter>;
 
-        #[method_id(gaussianBlurFilter)]
+        #[method(gaussianBlurFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn gaussianBlurFilter() -> Retained<CIFilter>;
 
-        #[method_id(maskedVariableBlurFilter)]
+        #[method(maskedVariableBlurFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn maskedVariableBlurFilter() -> Retained<CIFilter>;
 
-        #[method_id(medianFilter)]
+        #[method(medianFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn medianFilter() -> Retained<CIFilter>;
 
-        #[method_id(morphologyGradientFilter)]
+        #[method(morphologyGradientFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn morphologyGradientFilter() -> Retained<CIFilter>;
 
-        #[method_id(morphologyMaximumFilter)]
+        #[method(morphologyMaximumFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn morphologyMaximumFilter() -> Retained<CIFilter>;
 
-        #[method_id(morphologyMinimumFilter)]
+        #[method(morphologyMinimumFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn morphologyMinimumFilter() -> Retained<CIFilter>;
 
-        #[method_id(morphologyRectangleMaximumFilter)]
+        #[method(morphologyRectangleMaximumFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn morphologyRectangleMaximumFilter() -> Retained<CIFilter>;
 
-        #[method_id(morphologyRectangleMinimumFilter)]
+        #[method(morphologyRectangleMinimumFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn morphologyRectangleMinimumFilter() -> Retained<CIFilter>;
 
-        #[method_id(motionBlurFilter)]
+        #[method(motionBlurFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn motionBlurFilter() -> Retained<CIFilter>;
 
-        #[method_id(noiseReductionFilter)]
+        #[method(noiseReductionFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn noiseReductionFilter() -> Retained<CIFilter>;
 
-        #[method_id(zoomBlurFilter)]
+        #[method(zoomBlurFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn zoomBlurFilter() -> Retained<CIFilter>;
 
-        #[method_id(areaAlphaWeightedHistogramFilter)]
+        #[method(areaAlphaWeightedHistogramFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn areaAlphaWeightedHistogramFilter() -> Retained<CIFilter>;
 
-        #[method_id(areaAverageFilter)]
+        #[method(areaAverageFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn areaAverageFilter() -> Retained<CIFilter>;
 
-        #[method_id(areaBoundsRedFilter)]
+        #[method(areaBoundsRedFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn areaBoundsRedFilter() -> Retained<CIFilter>;
 
-        #[method_id(areaHistogramFilter)]
+        #[method(areaHistogramFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn areaHistogramFilter() -> Retained<CIFilter>;
 
-        #[method_id(areaLogarithmicHistogramFilter)]
+        #[method(areaLogarithmicHistogramFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn areaLogarithmicHistogramFilter() -> Retained<CIFilter>;
 
-        #[method_id(areaMaximumFilter)]
+        #[method(areaMaximumFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn areaMaximumFilter() -> Retained<CIFilter>;
 
-        #[method_id(areaMaximumAlphaFilter)]
+        #[method(areaMaximumAlphaFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn areaMaximumAlphaFilter() -> Retained<CIFilter>;
 
-        #[method_id(areaMinimumFilter)]
+        #[method(areaMinimumFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn areaMinimumFilter() -> Retained<CIFilter>;
 
-        #[method_id(areaMinimumAlphaFilter)]
+        #[method(areaMinimumAlphaFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn areaMinimumAlphaFilter() -> Retained<CIFilter>;
 
-        #[method_id(areaMinMaxFilter)]
+        #[method(areaMinMaxFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn areaMinMaxFilter() -> Retained<CIFilter>;
 
-        #[method_id(areaMinMaxRedFilter)]
+        #[method(areaMinMaxRedFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn areaMinMaxRedFilter() -> Retained<CIFilter>;
 
-        #[method_id(columnAverageFilter)]
+        #[method(columnAverageFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn columnAverageFilter() -> Retained<CIFilter>;
 
-        #[method_id(histogramDisplayFilter)]
+        #[method(histogramDisplayFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn histogramDisplayFilter() -> Retained<CIFilter>;
 
-        #[method_id(KMeansFilter)]
+        #[method(KMeansFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn KMeansFilter() -> Retained<CIFilter>;
 
-        #[method_id(rowAverageFilter)]
+        #[method(rowAverageFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn rowAverageFilter() -> Retained<CIFilter>;
     }

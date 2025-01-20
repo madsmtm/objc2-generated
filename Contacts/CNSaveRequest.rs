@@ -38,6 +38,7 @@ extern_methods!(
         ///
         /// Parameter `identifier`: The container identifier to add the new contact to. Set to nil for the default container.
         #[method(addContact:toContainerWithIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addContact_toContainerWithIdentifier(
             &self,
             contact: &CNMutableContact,
@@ -50,6 +51,7 @@ extern_methods!(
         ///
         /// The contact must already exist in the contact store. The contact may be modified by the executing save request.
         #[method(updateContact:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updateContact(&self, contact: &CNMutableContact);
 
         #[cfg(all(feature = "CNContact", feature = "CNMutableContact"))]
@@ -58,6 +60,7 @@ extern_methods!(
         ///
         /// If the contact was previously specified to be added in the save request that will no longer occur.
         #[method(deleteContact:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn deleteContact(&self, contact: &CNMutableContact);
 
         #[cfg(all(feature = "CNGroup", feature = "CNMutableGroup"))]
@@ -71,6 +74,7 @@ extern_methods!(
         ///
         /// Parameter `identifier`: The container identifier to add the new group to. Set to nil for the default container.
         #[method(addGroup:toContainerWithIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addGroup_toContainerWithIdentifier(
             &self,
             group: &CNMutableGroup,
@@ -83,6 +87,7 @@ extern_methods!(
         ///
         /// The group must already exist in the contact store.
         #[method(updateGroup:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updateGroup(&self, group: &CNMutableGroup);
 
         #[cfg(all(feature = "CNGroup", feature = "CNMutableGroup"))]
@@ -91,6 +96,7 @@ extern_methods!(
         ///
         /// The contacts in the group are not deleted. If the group was previously specified to be added in the save request that will no longer occur.
         #[method(deleteGroup:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn deleteGroup(&self, group: &CNMutableGroup);
 
         #[cfg(feature = "CNGroup")]
@@ -104,6 +110,7 @@ extern_methods!(
         ///
         /// Parameter `group`: The group to add the subgroup to.
         #[method(addSubgroup:toGroup:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addSubgroup_toGroup(&self, subgroup: &CNGroup, group: &CNGroup);
 
         #[cfg(feature = "CNGroup")]
@@ -117,6 +124,7 @@ extern_methods!(
         ///
         /// Parameter `group`: The group to add the subgroup to.
         #[method(removeSubgroup:fromGroup:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeSubgroup_fromGroup(&self, subgroup: &CNGroup, group: &CNGroup);
 
         #[cfg(all(feature = "CNContact", feature = "CNGroup"))]
@@ -130,6 +138,7 @@ extern_methods!(
         ///
         /// Parameter `group`: The group to add the member to.
         #[method(addMember:toGroup:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addMember_toGroup(&self, contact: &CNContact, group: &CNGroup);
 
         #[cfg(all(feature = "CNContact", feature = "CNGroup"))]
@@ -143,6 +152,7 @@ extern_methods!(
         ///
         /// Parameter `group`: The group to remove the member from.
         #[method(removeMember:fromGroup:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeMember_fromGroup(&self, contact: &CNContact, group: &CNGroup);
 
         /// The author of this transaction.
@@ -150,12 +160,13 @@ extern_methods!(
         ///
         /// Use this, in conjunction with
         /// `CNChangeHistoryFetchRequest.excludedTransactionAuthors,`to suppress fetching of changes the author already knows about.
-        #[method_id(transactionAuthor)]
+        #[method(transactionAuthor)]
         #[unsafe(method_family = none)]
         pub unsafe fn transactionAuthor(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`transactionAuthor`][Self::transactionAuthor].
         #[method(setTransactionAuthor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTransactionAuthor(&self, transaction_author: Option<&NSString>);
 
         /// Should the contacts be refetched as part of executing the save request.
@@ -167,10 +178,12 @@ extern_methods!(
         ///
         /// Note: If set to `NO` do not use the contacts after the executed save request as they may not be in a current state.
         #[method(shouldRefetchContacts)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shouldRefetchContacts(&self) -> bool;
 
         /// Setter for [`shouldRefetchContacts`][Self::shouldRefetchContacts].
         #[method(setShouldRefetchContacts:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShouldRefetchContacts(&self, should_refetch_contacts: bool);
     }
 );
@@ -178,11 +191,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CNSaveRequest {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

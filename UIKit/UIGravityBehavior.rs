@@ -24,7 +24,7 @@ unsafe impl NSObjectProtocol for UIGravityBehavior {}
 extern_methods!(
     #[cfg(feature = "UIDynamicBehavior")]
     unsafe impl UIGravityBehavior {
-        #[method_id(initWithItems:)]
+        #[method(initWithItems:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithItems(
             this: Allocated<Self>,
@@ -32,44 +32,53 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[method(addItem:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addItem(&self, item: &ProtocolObject<dyn UIDynamicItem>);
 
         #[method(removeItem:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeItem(&self, item: &ProtocolObject<dyn UIDynamicItem>);
 
-        #[method_id(items)]
+        #[method(items)]
         #[unsafe(method_family = none)]
         pub unsafe fn items(&self) -> Retained<NSArray<ProtocolObject<dyn UIDynamicItem>>>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(gravityDirection)]
+        #[unsafe(method_family = none)]
         pub unsafe fn gravityDirection(&self) -> CGVector;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`gravityDirection`][Self::gravityDirection].
         #[method(setGravityDirection:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setGravityDirection(&self, gravity_direction: CGVector);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(angle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn angle(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`angle`][Self::angle].
         #[method(setAngle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAngle(&self, angle: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(magnitude)]
+        #[unsafe(method_family = none)]
         pub unsafe fn magnitude(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`magnitude`][Self::magnitude].
         #[method(setMagnitude:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMagnitude(&self, magnitude: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(setAngle:magnitude:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAngle_magnitude(&self, angle: CGFloat, magnitude: CGFloat);
     }
 );
@@ -78,11 +87,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UIDynamicBehavior")]
     unsafe impl UIGravityBehavior {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

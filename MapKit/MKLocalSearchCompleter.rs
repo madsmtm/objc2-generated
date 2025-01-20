@@ -67,72 +67,83 @@ unsafe impl NSObjectProtocol for MKLocalSearchCompleter {}
 
 extern_methods!(
     unsafe impl MKLocalSearchCompleter {
-        #[method_id(queryFragment)]
+        #[method(queryFragment)]
         #[unsafe(method_family = none)]
         pub unsafe fn queryFragment(&self) -> Retained<NSString>;
 
         /// Setter for [`queryFragment`][Self::queryFragment].
         #[method(setQueryFragment:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setQueryFragment(&self, query_fragment: &NSString);
 
         #[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
         #[method(region)]
+        #[unsafe(method_family = none)]
         pub unsafe fn region(&self) -> MKCoordinateRegion;
 
         #[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
         /// Setter for [`region`][Self::region].
         #[method(setRegion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRegion(&self, region: MKCoordinateRegion);
 
         #[cfg(feature = "MKTypes")]
         #[method(regionPriority)]
+        #[unsafe(method_family = none)]
         pub unsafe fn regionPriority(&self) -> MKLocalSearchRegionPriority;
 
         #[cfg(feature = "MKTypes")]
         /// Setter for [`regionPriority`][Self::regionPriority].
         #[method(setRegionPriority:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRegionPriority(&self, region_priority: MKLocalSearchRegionPriority);
 
         #[deprecated = "Use resultTypes"]
         #[method(filterType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn filterType(&self) -> MKSearchCompletionFilterType;
 
         /// Setter for [`filterType`][Self::filterType].
         #[deprecated = "Use resultTypes"]
         #[method(setFilterType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFilterType(&self, filter_type: MKSearchCompletionFilterType);
 
         #[method(resultTypes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resultTypes(&self) -> MKLocalSearchCompleterResultType;
 
         /// Setter for [`resultTypes`][Self::resultTypes].
         #[method(setResultTypes:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setResultTypes(&self, result_types: MKLocalSearchCompleterResultType);
 
         #[cfg(feature = "MKPointOfInterestFilter")]
-        #[method_id(pointOfInterestFilter)]
+        #[method(pointOfInterestFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn pointOfInterestFilter(&self) -> Option<Retained<MKPointOfInterestFilter>>;
 
         #[cfg(feature = "MKPointOfInterestFilter")]
         /// Setter for [`pointOfInterestFilter`][Self::pointOfInterestFilter].
         #[method(setPointOfInterestFilter:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPointOfInterestFilter(
             &self,
             point_of_interest_filter: Option<&MKPointOfInterestFilter>,
         );
 
         #[cfg(feature = "MKAddressFilter")]
-        #[method_id(addressFilter)]
+        #[method(addressFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn addressFilter(&self) -> Option<Retained<MKAddressFilter>>;
 
         #[cfg(feature = "MKAddressFilter")]
         /// Setter for [`addressFilter`][Self::addressFilter].
         #[method(setAddressFilter:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAddressFilter(&self, address_filter: Option<&MKAddressFilter>);
 
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -141,19 +152,22 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn MKLocalSearchCompleterDelegate>>,
         );
 
-        #[method_id(results)]
+        #[method(results)]
         #[unsafe(method_family = none)]
         pub unsafe fn results(&self) -> Retained<NSArray<MKLocalSearchCompletion>>;
 
         #[method(isSearching)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isSearching(&self) -> bool;
 
         #[method(cancel)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cancel(&self);
     }
 );
@@ -161,11 +175,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKLocalSearchCompleter {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -176,10 +190,12 @@ extern_protocol!(
     pub unsafe trait MKLocalSearchCompleterDelegate: NSObjectProtocol {
         #[optional]
         #[method(completerDidUpdateResults:)]
+        #[unsafe(method_family = none)]
         unsafe fn completerDidUpdateResults(&self, completer: &MKLocalSearchCompleter);
 
         #[optional]
         #[method(completer:didFailWithError:)]
+        #[unsafe(method_family = none)]
         unsafe fn completer_didFailWithError(
             &self,
             completer: &MKLocalSearchCompleter,
@@ -199,19 +215,19 @@ unsafe impl NSObjectProtocol for MKLocalSearchCompletion {}
 
 extern_methods!(
     unsafe impl MKLocalSearchCompletion {
-        #[method_id(title)]
+        #[method(title)]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
-        #[method_id(titleHighlightRanges)]
+        #[method(titleHighlightRanges)]
         #[unsafe(method_family = none)]
         pub unsafe fn titleHighlightRanges(&self) -> Retained<NSArray<NSValue>>;
 
-        #[method_id(subtitle)]
+        #[method(subtitle)]
         #[unsafe(method_family = none)]
         pub unsafe fn subtitle(&self) -> Retained<NSString>;
 
-        #[method_id(subtitleHighlightRanges)]
+        #[method(subtitleHighlightRanges)]
         #[unsafe(method_family = none)]
         pub unsafe fn subtitleHighlightRanges(&self) -> Retained<NSArray<NSValue>>;
     }
@@ -220,11 +236,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKLocalSearchCompletion {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -233,7 +249,7 @@ extern_methods!(
 extern_methods!(
     #[cfg(feature = "MKLocalSearchRequest")]
     unsafe impl MKLocalSearchRequest {
-        #[method_id(initWithCompletion:)]
+        #[method(initWithCompletion:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCompletion(
             this: Allocated<Self>,

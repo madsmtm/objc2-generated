@@ -52,6 +52,7 @@ extern_protocol!(
         /// from the device's physical input, or a pointer to an element from any input
         /// state "snapshot" of the device's physical input.
         #[method(changeForElement:)]
+        #[unsafe(method_family = none)]
         unsafe fn changeForElement(
             &self,
             element: &ProtocolObject<dyn GCPhysicalInputElement>,
@@ -65,7 +66,7 @@ extern_protocol!(
         /// `nil`if the changed elements could not be determined -
         /// typically because the input state queue filled up and older input state
         /// snapshots were dropped.
-        #[method_id(changedElements)]
+        #[method(changedElements)]
         #[unsafe(method_family = none)]
         unsafe fn changedElements(
             &self,

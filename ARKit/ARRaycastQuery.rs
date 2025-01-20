@@ -92,17 +92,19 @@ extern_methods!(
     unsafe impl ARRaycastQuery {
         /// Type of target where the ray should terminate.
         #[method(target)]
+        #[unsafe(method_family = none)]
         pub unsafe fn target(&self) -> ARRaycastTarget;
 
         /// The alignment of the target that should be considered for raycasting.
         #[method(targetAlignment)]
+        #[unsafe(method_family = none)]
         pub unsafe fn targetAlignment(&self) -> ARRaycastTargetAlignment;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(&self) -> Retained<Self>;
     }
@@ -113,7 +115,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2")]
     unsafe impl ARRaycastQuery {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new_class() -> Retained<Self>;
     }

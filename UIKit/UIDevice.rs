@@ -73,77 +73,91 @@ unsafe impl NSObjectProtocol for UIDevice {}
 
 extern_methods!(
     unsafe impl UIDevice {
-        #[method_id(currentDevice)]
+        #[method(currentDevice)]
         #[unsafe(method_family = none)]
         pub fn currentDevice(mtm: MainThreadMarker) -> Retained<UIDevice>;
 
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
-        #[method_id(model)]
+        #[method(model)]
         #[unsafe(method_family = none)]
         pub unsafe fn model(&self) -> Retained<NSString>;
 
-        #[method_id(localizedModel)]
+        #[method(localizedModel)]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedModel(&self) -> Retained<NSString>;
 
-        #[method_id(systemName)]
+        #[method(systemName)]
         #[unsafe(method_family = none)]
         pub unsafe fn systemName(&self) -> Retained<NSString>;
 
-        #[method_id(systemVersion)]
+        #[method(systemVersion)]
         #[unsafe(method_family = none)]
         pub unsafe fn systemVersion(&self) -> Retained<NSString>;
 
         #[cfg(feature = "UIOrientation")]
         #[method(orientation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn orientation(&self) -> UIDeviceOrientation;
 
-        #[method_id(identifierForVendor)]
+        #[method(identifierForVendor)]
         #[unsafe(method_family = none)]
         pub unsafe fn identifierForVendor(&self) -> Option<Retained<NSUUID>>;
 
         #[method(isGeneratingDeviceOrientationNotifications)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isGeneratingDeviceOrientationNotifications(&self) -> bool;
 
         #[method(beginGeneratingDeviceOrientationNotifications)]
+        #[unsafe(method_family = none)]
         pub unsafe fn beginGeneratingDeviceOrientationNotifications(&self);
 
         #[method(endGeneratingDeviceOrientationNotifications)]
+        #[unsafe(method_family = none)]
         pub unsafe fn endGeneratingDeviceOrientationNotifications(&self);
 
         #[method(isBatteryMonitoringEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isBatteryMonitoringEnabled(&self) -> bool;
 
         /// Setter for [`isBatteryMonitoringEnabled`][Self::isBatteryMonitoringEnabled].
         #[method(setBatteryMonitoringEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBatteryMonitoringEnabled(&self, battery_monitoring_enabled: bool);
 
         #[method(batteryState)]
+        #[unsafe(method_family = none)]
         pub unsafe fn batteryState(&self) -> UIDeviceBatteryState;
 
         #[method(batteryLevel)]
+        #[unsafe(method_family = none)]
         pub unsafe fn batteryLevel(&self) -> c_float;
 
         #[method(isProximityMonitoringEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isProximityMonitoringEnabled(&self) -> bool;
 
         /// Setter for [`isProximityMonitoringEnabled`][Self::isProximityMonitoringEnabled].
         #[method(setProximityMonitoringEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setProximityMonitoringEnabled(&self, proximity_monitoring_enabled: bool);
 
         #[method(proximityState)]
+        #[unsafe(method_family = none)]
         pub unsafe fn proximityState(&self) -> bool;
 
         #[method(isMultitaskingSupported)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isMultitaskingSupported(&self) -> bool;
 
         #[method(userInterfaceIdiom)]
+        #[unsafe(method_family = none)]
         pub fn userInterfaceIdiom(&self) -> UIUserInterfaceIdiom;
 
         #[method(playInputClick)]
+        #[unsafe(method_family = none)]
         pub unsafe fn playInputClick(&self);
     }
 );
@@ -151,11 +165,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIDevice {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -166,6 +180,7 @@ extern_protocol!(
     pub unsafe trait UIInputViewAudioFeedback: NSObjectProtocol + MainThreadOnly {
         #[optional]
         #[method(enableInputClicksWhenVisible)]
+        #[unsafe(method_family = none)]
         unsafe fn enableInputClicksWhenVisible(&self) -> bool;
     }
 );

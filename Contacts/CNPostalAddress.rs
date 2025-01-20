@@ -41,40 +41,40 @@ extern_methods!(
     unsafe impl CNPostalAddress {
         /// multi-street address is delimited with carriage returns “
         /// \n”
-        #[method_id(street)]
+        #[method(street)]
         #[unsafe(method_family = none)]
         pub unsafe fn street(&self) -> Retained<NSString>;
 
-        #[method_id(subLocality)]
+        #[method(subLocality)]
         #[unsafe(method_family = none)]
         pub unsafe fn subLocality(&self) -> Retained<NSString>;
 
-        #[method_id(city)]
+        #[method(city)]
         #[unsafe(method_family = none)]
         pub unsafe fn city(&self) -> Retained<NSString>;
 
-        #[method_id(subAdministrativeArea)]
+        #[method(subAdministrativeArea)]
         #[unsafe(method_family = none)]
         pub unsafe fn subAdministrativeArea(&self) -> Retained<NSString>;
 
-        #[method_id(state)]
+        #[method(state)]
         #[unsafe(method_family = none)]
         pub unsafe fn state(&self) -> Retained<NSString>;
 
-        #[method_id(postalCode)]
+        #[method(postalCode)]
         #[unsafe(method_family = none)]
         pub unsafe fn postalCode(&self) -> Retained<NSString>;
 
-        #[method_id(country)]
+        #[method(country)]
         #[unsafe(method_family = none)]
         pub unsafe fn country(&self) -> Retained<NSString>;
 
-        #[method_id(ISOCountryCode)]
+        #[method(ISOCountryCode)]
         #[unsafe(method_family = none)]
         pub unsafe fn ISOCountryCode(&self) -> Retained<NSString>;
 
         /// Returns a user displayable property name.
-        #[method_id(localizedStringForKey:)]
+        #[method(localizedStringForKey:)]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedStringForKey(key: &NSString) -> Retained<NSString>;
     }
@@ -83,11 +83,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CNPostalAddress {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

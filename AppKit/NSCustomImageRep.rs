@@ -32,7 +32,7 @@ extern_methods!(
     #[cfg(feature = "NSImageRep")]
     unsafe impl NSCustomImageRep {
         #[cfg(feature = "block2")]
-        #[method_id(initWithSize:flipped:drawingHandler:)]
+        #[method(initWithSize:flipped:drawingHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSize_flipped_drawingHandler(
             this: Allocated<Self>,
@@ -43,9 +43,10 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[method(drawingHandler)]
+        #[unsafe(method_family = none)]
         pub unsafe fn drawingHandler(&self) -> *mut block2::Block<dyn Fn(NSRect) -> Bool>;
 
-        #[method_id(initWithDrawSelector:delegate:)]
+        #[method(initWithDrawSelector:delegate:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDrawSelector_delegate(
             this: Allocated<Self>,
@@ -54,9 +55,10 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[method(drawSelector)]
+        #[unsafe(method_family = none)]
         pub unsafe fn drawSelector(&self) -> Option<Sel>;
 
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<AnyObject>>;
     }
@@ -66,11 +68,11 @@ extern_methods!(
     /// Methods declared on superclass `NSImageRep`
     #[cfg(feature = "NSImageRep")]
     unsafe impl NSCustomImageRep {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -83,7 +85,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSImageRep")]
     unsafe impl NSCustomImageRep {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -14,90 +14,103 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl SKNode {
         #[method(isAccessibilityElement)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isAccessibilityElement(&self) -> bool;
 
         /// Setter for [`isAccessibilityElement`][Self::isAccessibilityElement].
         #[method(setAccessibilityElement:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAccessibilityElement(&self, accessibility_element: bool);
 
-        #[method_id(accessibilityRole)]
+        #[method(accessibilityRole)]
         #[unsafe(method_family = none)]
         pub unsafe fn accessibilityRole(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityRole`][Self::accessibilityRole].
         #[method(setAccessibilityRole:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAccessibilityRole(&self, accessibility_role: Option<&NSString>);
 
-        #[method_id(accessibilityRoleDescription)]
+        #[method(accessibilityRoleDescription)]
         #[unsafe(method_family = none)]
         pub unsafe fn accessibilityRoleDescription(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityRoleDescription`][Self::accessibilityRoleDescription].
         #[method(setAccessibilityRoleDescription:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAccessibilityRoleDescription(
             &self,
             accessibility_role_description: Option<&NSString>,
         );
 
-        #[method_id(accessibilitySubrole)]
+        #[method(accessibilitySubrole)]
         #[unsafe(method_family = none)]
         pub unsafe fn accessibilitySubrole(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilitySubrole`][Self::accessibilitySubrole].
         #[method(setAccessibilitySubrole:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAccessibilitySubrole(&self, accessibility_subrole: Option<&NSString>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(accessibilityFrame)]
+        #[unsafe(method_family = none)]
         pub unsafe fn accessibilityFrame(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`accessibilityFrame`][Self::accessibilityFrame].
         #[method(setAccessibilityFrame:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAccessibilityFrame(&self, accessibility_frame: CGRect);
 
-        #[method_id(accessibilityParent)]
+        #[method(accessibilityParent)]
         #[unsafe(method_family = none)]
         pub unsafe fn accessibilityParent(&self) -> Option<Retained<AnyObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`accessibilityParent`][Self::accessibilityParent].
         #[method(setAccessibilityParent:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAccessibilityParent(&self, accessibility_parent: Option<&AnyObject>);
 
-        #[method_id(accessibilityChildren)]
+        #[method(accessibilityChildren)]
         #[unsafe(method_family = none)]
         pub unsafe fn accessibilityChildren(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilityChildren`][Self::accessibilityChildren].
         #[method(setAccessibilityChildren:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAccessibilityChildren(&self, accessibility_children: Option<&NSArray>);
 
-        #[method_id(accessibilityHelp)]
+        #[method(accessibilityHelp)]
         #[unsafe(method_family = none)]
         pub unsafe fn accessibilityHelp(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityHelp`][Self::accessibilityHelp].
         #[method(setAccessibilityHelp:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAccessibilityHelp(&self, accessibility_help: Option<&NSString>);
 
-        #[method_id(accessibilityLabel)]
+        #[method(accessibilityLabel)]
         #[unsafe(method_family = none)]
         pub unsafe fn accessibilityLabel(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityLabel`][Self::accessibilityLabel].
         #[method(setAccessibilityLabel:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAccessibilityLabel(&self, accessibility_label: Option<&NSString>);
 
         #[method(isAccessibilityEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isAccessibilityEnabled(&self) -> bool;
 
         /// Setter for [`isAccessibilityEnabled`][Self::isAccessibilityEnabled].
         #[method(setAccessibilityEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAccessibilityEnabled(&self, accessibility_enabled: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(accessibilityHitTest:)]
+        #[method(accessibilityHitTest:)]
         #[unsafe(method_family = none)]
         pub unsafe fn accessibilityHitTest(&self, point: CGPoint) -> Option<Retained<AnyObject>>;
     }

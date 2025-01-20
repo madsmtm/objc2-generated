@@ -133,47 +133,54 @@ extern_methods!(
     unsafe impl UICollectionViewListCell {
         #[cfg(feature = "UIListContentConfiguration")]
         /// Returns a default list content configuration for the cell's style.
-        #[method_id(defaultContentConfiguration)]
+        #[method(defaultContentConfiguration)]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultContentConfiguration(&self) -> Retained<UIListContentConfiguration>;
 
         /// Defines the level of indentation for this cell. This is set automatically when using a hierarchical data source.
         #[method(indentationLevel)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indentationLevel(&self) -> NSInteger;
 
         /// Setter for [`indentationLevel`][Self::indentationLevel].
         #[method(setIndentationLevel:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIndentationLevel(&self, indentation_level: NSInteger);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The width of an indentation level. The overall indentation will be indentationWidth * indentationLevel.
         #[method(indentationWidth)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indentationWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`indentationWidth`][Self::indentationWidth].
         #[method(setIndentationWidth:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIndentationWidth(&self, indentation_width: CGFloat);
 
         /// Defines whether accessories on the leading side are indented as well. If NO, only the content view will be indented.
         /// Defaults to YES.
         #[method(indentsAccessories)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indentsAccessories(&self) -> bool;
 
         /// Setter for [`indentsAccessories`][Self::indentsAccessories].
         #[method(setIndentsAccessories:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIndentsAccessories(&self, indents_accessories: bool);
 
         #[cfg(feature = "UICellAccessory")]
         /// All the accessories that should be decorating the cell. The order and whether an accessory is
         /// rendered on the leading or trailing side of the cell is defined by the system.
-        #[method_id(accessories)]
+        #[method(accessories)]
         #[unsafe(method_family = none)]
         pub unsafe fn accessories(&self) -> Retained<NSArray<UICellAccessory>>;
 
         #[cfg(feature = "UICellAccessory")]
         /// Setter for [`accessories`][Self::accessories].
         #[method(setAccessories:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAccessories(&self, accessories: &NSArray<UICellAccessory>);
 
         #[cfg(feature = "UILayoutGuide")]
@@ -183,7 +190,7 @@ extern_methods!(
         /// to the cell, the separator will be automatically aligned to the primary text in the content view.
         ///
         /// See: UICollectionLayoutListConfiguration
-        #[method_id(separatorLayoutGuide)]
+        #[method(separatorLayoutGuide)]
         #[unsafe(method_family = none)]
         pub unsafe fn separatorLayoutGuide(&self) -> Retained<UILayoutGuide>;
     }
@@ -198,11 +205,11 @@ extern_methods!(
     ))]
     unsafe impl UICollectionViewListCell {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(initWithFrame:)]
+        #[method(initWithFrame:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -219,11 +226,11 @@ extern_methods!(
         feature = "UIView"
     ))]
     unsafe impl UICollectionViewListCell {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

@@ -32,7 +32,7 @@ unsafe impl NSObjectProtocol for HMTimerTrigger {}
 extern_methods!(
     #[cfg(feature = "HMTrigger")]
     unsafe impl HMTimerTrigger {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -61,7 +61,7 @@ extern_methods!(
         /// HMErrorCodeRecurrenceTooSmall is returned if recurrence interval is less than 5 minutes.
         /// HMErrorCodeRecurrenceTooLarge is returned if recurrence interval is greater than 5 weeks.
         /// HMErrorCodeFireDateInPast is returned if recurrence is nil and fireDate is in the past.
-        #[method_id(initWithName:fireDate:recurrence:)]
+        #[method(initWithName:fireDate:recurrence:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithName_fireDate_recurrence(
             this: Allocated<Self>,
@@ -71,7 +71,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(initWithName:fireDate:timeZone:recurrence:recurrenceCalendar:)]
+        #[method(initWithName:fireDate:timeZone:recurrence:recurrenceCalendar:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithName_fireDate_timeZone_recurrence_recurrenceCalendar(
             this: Allocated<Self>,
@@ -91,12 +91,12 @@ extern_methods!(
         ///
         ///
         /// Note: Should be at least 1 minute ahead for reliable firing.
-        #[method_id(fireDate)]
+        #[method(fireDate)]
         #[unsafe(method_family = none)]
         pub unsafe fn fireDate(&self) -> Retained<NSDate>;
 
         #[deprecated = "Use HMEventTrigger with HMCalendarEvent for triggers based on a time-zone-relative time of day"]
-        #[method_id(timeZone)]
+        #[method(timeZone)]
         #[unsafe(method_family = none)]
         pub unsafe fn timeZone(&self) -> Option<Retained<NSTimeZone>>;
 
@@ -111,12 +111,12 @@ extern_methods!(
         /// recurrence to 1. The minimum recurrence interval is 5 minutes, maximum recurrence
         /// interval is 5 weeks and the recurrence interval must be specified in multiples of
         /// whole minutes. Examples are 5 minutes, 6 minutes, 1 day, 2 weeks.
-        #[method_id(recurrence)]
+        #[method(recurrence)]
         #[unsafe(method_family = none)]
         pub unsafe fn recurrence(&self) -> Option<Retained<NSDateComponents>>;
 
         #[deprecated = "No longer supported"]
-        #[method_id(recurrenceCalendar)]
+        #[method(recurrenceCalendar)]
         #[unsafe(method_family = none)]
         pub unsafe fn recurrenceCalendar(&self) -> Option<Retained<NSCalendar>>;
 
@@ -132,6 +132,7 @@ extern_methods!(
         /// error will be nil on success. HMErrorCodeDateMustBeOnSpecifiedBoundaries will
         /// be returned if the fireDate includes a seconds value other than 0.
         #[method(updateFireDate:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updateFireDate_completionHandler(
             &self,
             fire_date: &NSDate,
@@ -141,6 +142,7 @@ extern_methods!(
         #[cfg(feature = "block2")]
         #[deprecated = "Use HMEventTrigger with HMCalendarEvent for triggers based on a time-zone-relative time of day"]
         #[method(updateTimeZone:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updateTimeZone_completionHandler(
             &self,
             time_zone: Option<&NSTimeZone>,
@@ -166,6 +168,7 @@ extern_methods!(
         /// HMErrorCodeRecurrenceTooLarge is returned if the recurrence interval is
         /// greater than 5 weeks. *                   error will be nil on success.
         #[method(updateRecurrence:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updateRecurrence_completionHandler(
             &self,
             recurrence: Option<&NSDateComponents>,
@@ -178,7 +181,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "HMTrigger")]
     unsafe impl HMTimerTrigger {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

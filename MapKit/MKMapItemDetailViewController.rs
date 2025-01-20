@@ -18,6 +18,7 @@ extern_protocol!(
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         #[method(mapItemDetailViewControllerDidFinish:)]
+        #[unsafe(method_family = none)]
         unsafe fn mapItemDetailViewControllerDidFinish(
             &self,
             detail_view_controller: &MKMapItemDetailViewController,
@@ -59,16 +60,17 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl MKMapItemDetailViewController {
         #[cfg(feature = "MKMapItem")]
-        #[method_id(mapItem)]
+        #[method(mapItem)]
         #[unsafe(method_family = none)]
         pub unsafe fn mapItem(&self) -> Option<Retained<MKMapItem>>;
 
         #[cfg(feature = "MKMapItem")]
         /// Setter for [`mapItem`][Self::mapItem].
         #[method(setMapItem:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMapItem(&self, map_item: Option<&MKMapItem>);
 
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -77,13 +79,14 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn MKMapItemDetailViewControllerDelegate>>,
         );
 
         #[cfg(feature = "MKMapItem")]
-        #[method_id(initWithMapItem:displaysMap:)]
+        #[method(initWithMapItem:displaysMap:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMapItem_displaysMap(
             this: Allocated<Self>,
@@ -92,7 +95,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MKMapItem")]
-        #[method_id(initWithMapItem:)]
+        #[method(initWithMapItem:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMapItem(
             this: Allocated<Self>,
@@ -106,7 +109,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl MKMapItemDetailViewController {
-        #[method_id(initWithNibName:bundle:)]
+        #[method(initWithNibName:bundle:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -114,7 +117,7 @@ extern_methods!(
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -128,7 +131,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl MKMapItemDetailViewController {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -139,7 +142,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl MKMapItemDetailViewController {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

@@ -46,7 +46,7 @@ extern_methods!(
     unsafe impl ASAuthorizationPlatformPublicKeyCredentialAssertionRequest {
         #[cfg(feature = "ASAuthorizationPlatformPublicKeyCredentialDescriptor")]
         /// A list of credentials to allow for this request. If this ilist is nonempty, only credentials matching the provided descriptors can be used to sign in.
-        #[method_id(allowedCredentials)]
+        #[method(allowedCredentials)]
         #[unsafe(method_family = none)]
         pub unsafe fn allowedCredentials(
             &self,
@@ -55,13 +55,14 @@ extern_methods!(
         #[cfg(feature = "ASAuthorizationPlatformPublicKeyCredentialDescriptor")]
         /// Setter for [`allowedCredentials`][Self::allowedCredentials].
         #[method(setAllowedCredentials:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAllowedCredentials(
             &self,
             allowed_credentials: &NSArray<ASAuthorizationPlatformPublicKeyCredentialDescriptor>,
         );
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput")]
-        #[method_id(largeBlob)]
+        #[method(largeBlob)]
         #[unsafe(method_family = none)]
         pub unsafe fn largeBlob(
             &self,
@@ -70,13 +71,14 @@ extern_methods!(
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput")]
         /// Setter for [`largeBlob`][Self::largeBlob].
         #[method(setLargeBlob:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLargeBlob(
             &self,
             large_blob: Option<&ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput>,
         );
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialPRFAssertionInput")]
-        #[method_id(prf)]
+        #[method(prf)]
         #[unsafe(method_family = none)]
         pub unsafe fn prf(
             &self,
@@ -85,16 +87,17 @@ extern_methods!(
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialPRFAssertionInput")]
         /// Setter for [`prf`][Self::prf].
         #[method(setPrf:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPrf(
             &self,
             prf: Option<&ASAuthorizationPublicKeyCredentialPRFAssertionInput>,
         );
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

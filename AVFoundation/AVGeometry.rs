@@ -41,7 +41,7 @@ extern_category!(
         ///
         ///
         /// This extension simplifies converting CMVideoDimensions struct values into NSValue objects.
-        #[method_id(valueWithCMVideoDimensions:)]
+        #[method(valueWithCMVideoDimensions:)]
         #[unsafe(method_family = none)]
         unsafe fn valueWithCMVideoDimensions(
             dimensions: CMVideoDimensions,
@@ -53,6 +53,7 @@ extern_category!(
         ///
         /// This property simplifies accessing the contents of AVCaptureDeviceFormat.supportedMaxPhotoDimensions which are CMVideoDimension struct values encoded in NSValue objects.
         #[method(CMVideoDimensionsValue)]
+        #[unsafe(method_family = none)]
         unsafe fn CMVideoDimensionsValue(&self) -> CMVideoDimensions;
     }
 

@@ -90,259 +90,322 @@ unsafe impl NSUserInterfaceItemIdentification for NSText {}
 extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSText {
-        #[method_id(initWithFrame:)]
+        #[method(initWithFrame:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(string)]
+        #[method(string)]
         #[unsafe(method_family = none)]
         pub unsafe fn string(&self) -> Retained<NSString>;
 
         /// Setter for [`string`][Self::string].
         #[method(setString:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setString(&self, string: &NSString);
 
         #[method(replaceCharactersInRange:withString:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn replaceCharactersInRange_withString(&self, range: NSRange, string: &NSString);
 
         #[method(replaceCharactersInRange:withRTF:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn replaceCharactersInRange_withRTF(&self, range: NSRange, rtf_data: &NSData);
 
         #[method(replaceCharactersInRange:withRTFD:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn replaceCharactersInRange_withRTFD(&self, range: NSRange, rtfd_data: &NSData);
 
-        #[method_id(RTFFromRange:)]
+        #[method(RTFFromRange:)]
         #[unsafe(method_family = none)]
         pub unsafe fn RTFFromRange(&self, range: NSRange) -> Option<Retained<NSData>>;
 
-        #[method_id(RTFDFromRange:)]
+        #[method(RTFDFromRange:)]
         #[unsafe(method_family = none)]
         pub unsafe fn RTFDFromRange(&self, range: NSRange) -> Option<Retained<NSData>>;
 
         #[method(writeRTFDToFile:atomically:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn writeRTFDToFile_atomically(&self, path: &NSString, flag: bool) -> bool;
 
         #[method(readRTFDFromFile:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn readRTFDFromFile(&self, path: &NSString) -> bool;
 
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSTextDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSTextDelegate>>);
 
         #[method(isEditable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isEditable(&self) -> bool;
 
         /// Setter for [`isEditable`][Self::isEditable].
         #[method(setEditable:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setEditable(&self, editable: bool);
 
         #[method(isSelectable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isSelectable(&self) -> bool;
 
         /// Setter for [`isSelectable`][Self::isSelectable].
         #[method(setSelectable:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSelectable(&self, selectable: bool);
 
         #[method(isRichText)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isRichText(&self) -> bool;
 
         /// Setter for [`isRichText`][Self::isRichText].
         #[method(setRichText:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRichText(&self, rich_text: bool);
 
         #[method(importsGraphics)]
+        #[unsafe(method_family = none)]
         pub unsafe fn importsGraphics(&self) -> bool;
 
         /// Setter for [`importsGraphics`][Self::importsGraphics].
         #[method(setImportsGraphics:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setImportsGraphics(&self, imports_graphics: bool);
 
         #[method(isFieldEditor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isFieldEditor(&self) -> bool;
 
         /// Setter for [`isFieldEditor`][Self::isFieldEditor].
         #[method(setFieldEditor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFieldEditor(&self, field_editor: bool);
 
         #[method(usesFontPanel)]
+        #[unsafe(method_family = none)]
         pub unsafe fn usesFontPanel(&self) -> bool;
 
         /// Setter for [`usesFontPanel`][Self::usesFontPanel].
         #[method(setUsesFontPanel:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUsesFontPanel(&self, uses_font_panel: bool);
 
         #[method(drawsBackground)]
+        #[unsafe(method_family = none)]
         pub unsafe fn drawsBackground(&self) -> bool;
 
         /// Setter for [`drawsBackground`][Self::drawsBackground].
         #[method(setDrawsBackground:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDrawsBackground(&self, draws_background: bool);
 
         #[cfg(feature = "NSColor")]
-        #[method_id(backgroundColor)]
+        #[method(backgroundColor)]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`backgroundColor`][Self::backgroundColor].
         #[method(setBackgroundColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&NSColor>);
 
         #[method(isRulerVisible)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isRulerVisible(&self) -> bool;
 
         #[method(selectedRange)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectedRange(&self) -> NSRange;
 
         /// Setter for [`selectedRange`][Self::selectedRange].
         #[method(setSelectedRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSelectedRange(&self, selected_range: NSRange);
 
         #[method(scrollRangeToVisible:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scrollRangeToVisible(&self, range: NSRange);
 
         #[cfg(feature = "NSFont")]
-        #[method_id(font)]
+        #[method(font)]
         #[unsafe(method_family = none)]
         pub unsafe fn font(&self) -> Option<Retained<NSFont>>;
 
         #[cfg(feature = "NSFont")]
         /// Setter for [`font`][Self::font].
         #[method(setFont:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFont(&self, font: Option<&NSFont>);
 
         #[cfg(feature = "NSColor")]
-        #[method_id(textColor)]
+        #[method(textColor)]
         #[unsafe(method_family = none)]
         pub unsafe fn textColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`textColor`][Self::textColor].
         #[method(setTextColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTextColor(&self, text_color: Option<&NSColor>);
 
         #[method(alignment)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alignment(&self) -> NSTextAlignment;
 
         /// Setter for [`alignment`][Self::alignment].
         #[method(setAlignment:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAlignment(&self, alignment: NSTextAlignment);
 
         #[method(baseWritingDirection)]
+        #[unsafe(method_family = none)]
         pub unsafe fn baseWritingDirection(&self) -> NSWritingDirection;
 
         /// Setter for [`baseWritingDirection`][Self::baseWritingDirection].
         #[method(setBaseWritingDirection:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBaseWritingDirection(&self, base_writing_direction: NSWritingDirection);
 
         #[cfg(feature = "NSColor")]
         #[method(setTextColor:range:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTextColor_range(&self, color: Option<&NSColor>, range: NSRange);
 
         #[cfg(feature = "NSFont")]
         #[method(setFont:range:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFont_range(&self, font: &NSFont, range: NSRange);
 
         #[method(maxSize)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maxSize(&self) -> NSSize;
 
         /// Setter for [`maxSize`][Self::maxSize].
         #[method(setMaxSize:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMaxSize(&self, max_size: NSSize);
 
         #[method(minSize)]
+        #[unsafe(method_family = none)]
         pub unsafe fn minSize(&self) -> NSSize;
 
         /// Setter for [`minSize`][Self::minSize].
         #[method(setMinSize:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMinSize(&self, min_size: NSSize);
 
         #[method(isHorizontallyResizable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isHorizontallyResizable(&self) -> bool;
 
         /// Setter for [`isHorizontallyResizable`][Self::isHorizontallyResizable].
         #[method(setHorizontallyResizable:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setHorizontallyResizable(&self, horizontally_resizable: bool);
 
         #[method(isVerticallyResizable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isVerticallyResizable(&self) -> bool;
 
         /// Setter for [`isVerticallyResizable`][Self::isVerticallyResizable].
         #[method(setVerticallyResizable:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setVerticallyResizable(&self, vertically_resizable: bool);
 
         #[method(sizeToFit)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sizeToFit(&self);
 
         #[method(copy:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn copy(&self, sender: Option<&AnyObject>);
 
         #[method(copyFont:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn copyFont(&self, sender: Option<&AnyObject>);
 
         #[method(copyRuler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn copyRuler(&self, sender: Option<&AnyObject>);
 
         #[method(cut:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cut(&self, sender: Option<&AnyObject>);
 
         #[method(delete:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delete(&self, sender: Option<&AnyObject>);
 
         #[method(paste:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn paste(&self, sender: Option<&AnyObject>);
 
         #[method(pasteFont:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pasteFont(&self, sender: Option<&AnyObject>);
 
         #[method(pasteRuler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pasteRuler(&self, sender: Option<&AnyObject>);
 
         #[method(selectAll:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectAll(&self, sender: Option<&AnyObject>);
 
         #[method(changeFont:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn changeFont(&self, sender: Option<&AnyObject>);
 
         #[method(alignLeft:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alignLeft(&self, sender: Option<&AnyObject>);
 
         #[method(alignRight:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alignRight(&self, sender: Option<&AnyObject>);
 
         #[method(alignCenter:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alignCenter(&self, sender: Option<&AnyObject>);
 
         #[method(subscript:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn subscript(&self, sender: Option<&AnyObject>);
 
         #[method(superscript:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn superscript(&self, sender: Option<&AnyObject>);
 
         #[method(underline:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn underline(&self, sender: Option<&AnyObject>);
 
         #[method(unscript:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn unscript(&self, sender: Option<&AnyObject>);
 
         #[method(showGuessPanel:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn showGuessPanel(&self, sender: Option<&AnyObject>);
 
         #[method(checkSpelling:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn checkSpelling(&self, sender: Option<&AnyObject>);
 
         #[method(toggleRuler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn toggleRuler(&self, sender: Option<&AnyObject>);
     }
 );
@@ -351,7 +414,7 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSText {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -361,7 +424,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSText {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -469,23 +532,28 @@ extern_protocol!(
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(textShouldBeginEditing:)]
+        #[unsafe(method_family = none)]
         unsafe fn textShouldBeginEditing(&self, text_object: &NSText) -> bool;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(textShouldEndEditing:)]
+        #[unsafe(method_family = none)]
         unsafe fn textShouldEndEditing(&self, text_object: &NSText) -> bool;
 
         #[optional]
         #[method(textDidBeginEditing:)]
+        #[unsafe(method_family = none)]
         unsafe fn textDidBeginEditing(&self, notification: &NSNotification);
 
         #[optional]
         #[method(textDidEndEditing:)]
+        #[unsafe(method_family = none)]
         unsafe fn textDidEndEditing(&self, notification: &NSNotification);
 
         #[optional]
         #[method(textDidChange:)]
+        #[unsafe(method_family = none)]
         unsafe fn textDidChange(&self, notification: &NSNotification);
     }
 );

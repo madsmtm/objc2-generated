@@ -30,29 +30,31 @@ unsafe impl NSObjectProtocol for AVAssetVariant {}
 
 extern_methods!(
     unsafe impl AVAssetVariant {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// If it is not declared, the value will be negative.
         #[method(peakBitRate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn peakBitRate(&self) -> c_double;
 
         /// If it is not declared, the value will be negative.
         #[method(averageBitRate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn averageBitRate(&self) -> c_double;
 
         /// Provides  variant's video rendition attributes. If no video attributes are declared, it will be nil.
-        #[method_id(videoAttributes)]
+        #[method(videoAttributes)]
         #[unsafe(method_family = none)]
         pub unsafe fn videoAttributes(&self) -> Option<Retained<AVAssetVariantVideoAttributes>>;
 
         /// Provides  variant's audio rendition attributes. If no audio attributes are declared, it will be nil.
-        #[method_id(audioAttributes)]
+        #[method(audioAttributes)]
         #[unsafe(method_family = none)]
         pub unsafe fn audioAttributes(&self) -> Option<Retained<AVAssetVariantAudioAttributes>>;
     }
@@ -73,38 +75,40 @@ unsafe impl NSObjectProtocol for AVAssetVariantVideoAttributes {}
 
 extern_methods!(
     unsafe impl AVAssetVariantVideoAttributes {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "AVMediaFormat")]
         /// Provides the video range of the variant. If it is not declared, it will be AVVideoRangeSDR.
-        #[method_id(videoRange)]
+        #[method(videoRange)]
         #[unsafe(method_family = none)]
         pub unsafe fn videoRange(&self) -> Retained<AVVideoRange>;
 
         /// Provides an array of video sample codec types present in the variant's renditions if any are declared. Each value in the array is a NSNumber representation of CMVideoCodecType.
-        #[method_id(codecTypes)]
+        #[method(codecTypes)]
         #[unsafe(method_family = none)]
         pub unsafe fn codecTypes(&self) -> Retained<NSArray<NSNumber>>;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// If it is not declared, it will be CGSizeZero.
         #[method(presentationSize)]
+        #[unsafe(method_family = none)]
         pub unsafe fn presentationSize(&self) -> CGSize;
 
         /// If it is not declared, the value will be negative.
         #[method(nominalFrameRate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn nominalFrameRate(&self) -> c_double;
 
         /// Describes the video layout attributes.
         ///
         /// videoLayoutAttributes' count may be greater than one if this variant contains a collection of differing video layout media attributes over time.
-        #[method_id(videoLayoutAttributes)]
+        #[method(videoLayoutAttributes)]
         #[unsafe(method_family = none)]
         pub unsafe fn videoLayoutAttributes(
             &self,
@@ -129,11 +133,11 @@ unsafe impl NSObjectProtocol for AVAssetVariantVideoLayoutAttributes {}
 
 extern_methods!(
     unsafe impl AVAssetVariantVideoLayoutAttributes {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -141,6 +145,7 @@ extern_methods!(
         /// Describes the stereo components. If not declared, the value will be `kCMStereoViewComponent_None`.
         /// In case of monoscopic content, the value will be `kCMStereoViewComponent_None` and incase of stereoscopic content, the value will be `(kCMStereoViewComponent_LeftEye | kCMStereoViewComponent_RightEye)`.
         #[method(stereoViewComponents)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stereoViewComponents(&self) -> CMStereoViewComponents;
     }
 );
@@ -164,16 +169,16 @@ unsafe impl NSObjectProtocol for AVAssetVariantAudioAttributes {}
 
 extern_methods!(
     unsafe impl AVAssetVariantAudioAttributes {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Provides an array of audio formats present in the variant's renditions if any are declared. Each value in the array is a NSNumber representation of AudioFormatID.
-        #[method_id(formatIDs)]
+        #[method(formatIDs)]
         #[unsafe(method_family = none)]
         pub unsafe fn formatIDs(&self) -> Retained<NSArray<NSNumber>>;
 
@@ -181,7 +186,7 @@ extern_methods!(
         /// Provides attributes for a specific audio media selection option. If no rendition specific attributes are declared, it will be nil.
         ///
         /// Parameter `mediaSelectionOption`: The option to return rendition specific information for.
-        #[method_id(renditionSpecificAttributesForMediaOption:)]
+        #[method(renditionSpecificAttributesForMediaOption:)]
         #[unsafe(method_family = none)]
         pub unsafe fn renditionSpecificAttributesForMediaOption(
             &self,
@@ -213,24 +218,28 @@ extern_methods!(
         ///
         /// A channel count greater than two indicates that the variant offers a rich multichannel authoring.
         #[method(channelCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn channelCount(&self) -> NSInteger;
 
         /// Indicates that the variant is best suited for delivery to headphones.
         ///
         /// A binaural variant may originate from a direct binaural recording or from the processing of a multichannel audio source.
         #[method(isBinaural)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isBinaural(&self) -> bool;
 
         /// Indicates that this variant contains virtualized or otherwise pre-processed audio content that is suitable for a variety of purposes.
         ///
         /// If a variant audio redition is immersive it is eligible for rendering either to headphones or speakers.
         #[method(isImmersive)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isImmersive(&self) -> bool;
 
         /// Indicates that this variant is declared as a downmix derivative of other media of greater channel count.
         ///
         /// If one or more multichannel variants are also provided, the dowmix is assumed to be compatible in its internal timing and other attributes with those variants. Typically this is because it has been derived from the same source. A downmix can be used as a suitable substitute for a multichannel variant under some conditions.
         #[method(isDownmix)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isDownmix(&self) -> bool;
     }
 );
@@ -238,11 +247,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAssetVariantAudioRenditionSpecificAttributes {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -273,18 +282,18 @@ unsafe impl NSObjectProtocol for AVAssetVariantQualifier {}
 
 extern_methods!(
     unsafe impl AVAssetVariantQualifier {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Returns a qualifer for a predicate.
         ///
         /// Parameter `predicate`: The variant predicate. Must be a valid, non-nil NSPredicate.
-        #[method_id(assetVariantQualifierWithPredicate:)]
+        #[method(assetVariantQualifierWithPredicate:)]
         #[unsafe(method_family = none)]
         pub unsafe fn assetVariantQualifierWithPredicate(predicate: &NSPredicate)
             -> Retained<Self>;
@@ -292,14 +301,14 @@ extern_methods!(
         /// Returns a qualifer for a particular asset variant.
         ///
         /// Parameter `variant`: A variant obtained from the -[AVAsset variants] or -[AVAssetDownloadConfiguration playableVariants]. Must be a valid, non-nil AVAssetVariant.
-        #[method_id(assetVariantQualifierWithVariant:)]
+        #[method(assetVariantQualifierWithVariant:)]
         #[unsafe(method_family = none)]
         pub unsafe fn assetVariantQualifierWithVariant(variant: &AVAssetVariant) -> Retained<Self>;
 
         /// Returns a qualifer for finding variant with minimum value in the input key path.
         ///
         /// Parameter `keyPath`: AVAssetVariant keyPath. Allowed keyPath values are peakBitRate, averageBitRate, videoAttributes.presentationSize. Must be a valid, non-nil NSString.
-        #[method_id(assetVariantQualifierForMinimumValueInKeyPath:)]
+        #[method(assetVariantQualifierForMinimumValueInKeyPath:)]
         #[unsafe(method_family = none)]
         pub unsafe fn assetVariantQualifierForMinimumValueInKeyPath(
             key_path: &NSString,
@@ -308,7 +317,7 @@ extern_methods!(
         /// Returns a qualifer for finding variant with maximum value in the input key path
         ///
         /// Parameter `keyPath`: AVAssetVariant keyPath. Allowed keyPath values are peakBitRate, averageBitRate, videoAttributes.presentationSize. Must be a valid, non-nil NSString.
-        #[method_id(assetVariantQualifierForMaximumValueInKeyPath:)]
+        #[method(assetVariantQualifierForMaximumValueInKeyPath:)]
         #[unsafe(method_family = none)]
         pub unsafe fn assetVariantQualifierForMaximumValueInKeyPath(
             key_path: &NSString,
@@ -322,7 +331,7 @@ extern_methods!(
         /// Parameter `mediaSelectionOption`: The audio media selection option under consideration.
         ///
         /// Parameter `operatorType`: The valid values are NSLessThanPredicateOperatorType, NSLessThanOrEqualToPredicateOperatorType, NSGreaterThanPredicateOperatorType, NSGreaterThanOrEqualToPredicateOperatorType, NSEqualToPredicateOperatorType and NSNotEqualToPredicateOperatorType.
-        #[method_id(predicateForChannelCount:mediaSelectionOption:operatorType:)]
+        #[method(predicateForChannelCount:mediaSelectionOption:operatorType:)]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateForChannelCount_mediaSelectionOption_operatorType(
             channel_count: NSInteger,
@@ -336,7 +345,7 @@ extern_methods!(
         /// Parameter `isBinaural`: The RHS value for the value of isBinauralAudio in the predicate equation.
         ///
         /// Parameter `mediaSelectionOption`: The audio media selection option under consideration.
-        #[method_id(predicateForBinauralAudio:mediaSelectionOption:)]
+        #[method(predicateForBinauralAudio:mediaSelectionOption:)]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateForBinauralAudio_mediaSelectionOption(
             is_binaural_audio: bool,
@@ -349,7 +358,7 @@ extern_methods!(
         /// Parameter `isImmersiveAudio`: The RHS value for the value of isImmersiveAudio in the predicate equation.
         ///
         /// Parameter `mediaSelectionOption`: The audio media selection option under consideration.
-        #[method_id(predicateForImmersiveAudio:mediaSelectionOption:)]
+        #[method(predicateForImmersiveAudio:mediaSelectionOption:)]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateForImmersiveAudio_mediaSelectionOption(
             is_immersive_audio: bool,
@@ -362,7 +371,7 @@ extern_methods!(
         /// Parameter `isDownmixAudio`: The RHS value for the value of isDownmixAudio in the predicate equation.
         ///
         /// Parameter `mediaSelectionOption`: The audio media selection option under consideration.
-        #[method_id(predicateForDownmixAudio:mediaSelectionOption:)]
+        #[method(predicateForDownmixAudio:mediaSelectionOption:)]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateForDownmixAudio_mediaSelectionOption(
             is_downmix_audio: bool,
@@ -375,7 +384,7 @@ extern_methods!(
         /// Parameter `width`: The RHS value for the presentation size width in the predicate equation.
         ///
         /// Parameter `operatorType`: The valid values are NSLessThanPredicateOperatorType, NSLessThanOrEqualToPredicateOperatorType, NSGreaterThanPredicateOperatorType, NSGreaterThanOrEqualToPredicateOperatorType, NSEqualToPredicateOperatorType and NSNotEqualToPredicateOperatorType.
-        #[method_id(predicateForPresentationWidth:operatorType:)]
+        #[method(predicateForPresentationWidth:operatorType:)]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateForPresentationWidth_operatorType(
             width: CGFloat,
@@ -388,7 +397,7 @@ extern_methods!(
         /// Parameter `height`: The RHS value for the presentation size height in the predicate equation.
         ///
         /// Parameter `operatorType`: The valid values are NSLessThanPredicateOperatorType, NSLessThanOrEqualToPredicateOperatorType, NSGreaterThanPredicateOperatorType, NSGreaterThanOrEqualToPredicateOperatorType, NSEqualToPredicateOperatorType and NSNotEqualToPredicateOperatorType.
-        #[method_id(predicateForPresentationHeight:operatorType:)]
+        #[method(predicateForPresentationHeight:operatorType:)]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateForPresentationHeight_operatorType(
             height: CGFloat,
@@ -403,7 +412,7 @@ extern_methods!(
         /// Parameter `mediaSelectionOption`: The audio media selection option under consideration.
         ///
         /// Parameter `operatorType`: The valid values are NSLessThanPredicateOperatorType, NSLessThanOrEqualToPredicateOperatorType, NSGreaterThanPredicateOperatorType, NSGreaterThanOrEqualToPredicateOperatorType, NSEqualToPredicateOperatorType and NSNotEqualToPredicateOperatorType.
-        #[method_id(predicateForAudioSampleRate:mediaSelectionOption:operatorType:)]
+        #[method(predicateForAudioSampleRate:mediaSelectionOption:operatorType:)]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateForAudioSampleRate_mediaSelectionOption_operatorType(
             sample_rate: c_double,

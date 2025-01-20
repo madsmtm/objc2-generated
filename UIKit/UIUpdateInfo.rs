@@ -22,11 +22,11 @@ unsafe impl NSObjectProtocol for UIUpdateInfo {}
 
 extern_methods!(
     unsafe impl UIUpdateInfo {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -35,14 +35,14 @@ extern_methods!(
             feature = "UIScene",
             feature = "UIWindowScene"
         ))]
-        #[method_id(currentUpdateInfoForWindowScene:)]
+        #[method(currentUpdateInfoForWindowScene:)]
         #[unsafe(method_family = none)]
         pub unsafe fn currentUpdateInfoForWindowScene(
             window_scene: &UIWindowScene,
         ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[method_id(currentUpdateInfoForView:)]
+        #[method(currentUpdateInfoForView:)]
         #[unsafe(method_family = none)]
         pub unsafe fn currentUpdateInfoForView(view: &UIView) -> Option<Retained<Self>>;
 
@@ -52,17 +52,20 @@ extern_methods!(
         /// update, but its exact relation to UI update start time may change depending on frame rate and other UI update
         /// parameters.
         #[method(modelTime)]
+        #[unsafe(method_family = none)]
         pub unsafe fn modelTime(&self) -> NSTimeInterval;
 
         /// Time by which application has to be done submitting changes to the render server. Missing this completion deadline
         /// will result in a presentation delay. Single miss will look like a frame drop, missing repeatedly will look like
         /// judder.
         #[method(completionDeadlineTime)]
+        #[unsafe(method_family = none)]
         pub unsafe fn completionDeadlineTime(&self) -> NSTimeInterval;
 
         /// Estimated time when UI update changes will become visible on screen. Actual time when pixels change color may
         /// differ.
         #[method(estimatedPresentationTime)]
+        #[unsafe(method_family = none)]
         pub unsafe fn estimatedPresentationTime(&self) -> NSTimeInterval;
 
         /// `YES` for UI updates that are expected to present immediately upon completion. Use it to minimize amount of work
@@ -78,6 +81,7 @@ extern_methods!(
         /// controlled. It is primarily reserved for pencil drawing and writing applications where extra low latency makes a
         /// noticeable improvement to user experience. Returned value can change during the UI update.
         #[method(isImmediatePresentationExpected)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isImmediatePresentationExpected(&self) -> bool;
 
         /// `YES` when it's guaranteed that low-latency event dispatch will happen during the UI update. When `YES` is returned,
@@ -89,6 +93,7 @@ extern_methods!(
         /// performed. Note, that checking value of this property might cause system to commit to low-latency event dispatch
         /// unnecessarily as a side effect - call it only when there's an intention to act on returned value.
         #[method(isLowLatencyEventDispatchConfirmed)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isLowLatencyEventDispatchConfirmed(&self) -> bool;
 
         /// `YES` when executing low-latency part of the UI update (specifically between `LowLatencyEventDispatch` and
@@ -97,6 +102,7 @@ extern_methods!(
         /// UI update must be deferred after `LowLatencyCATransactionCommit`. Try to avoid using `dispatch_after()` types of
         /// deferral as arbitrary delayed work will potentially interfere with following UI updates.
         #[method(isPerformingLowLatencyPhases)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isPerformingLowLatencyPhases(&self) -> bool;
     }
 );

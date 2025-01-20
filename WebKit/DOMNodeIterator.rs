@@ -32,46 +32,50 @@ extern_methods!(
     unsafe impl DOMNodeIterator {
         #[cfg(feature = "DOMNode")]
         #[deprecated]
-        #[method_id(root)]
+        #[method(root)]
         #[unsafe(method_family = none)]
         pub unsafe fn root(&self) -> Option<Retained<DOMNode>>;
 
         #[deprecated]
         #[method(whatToShow)]
+        #[unsafe(method_family = none)]
         pub unsafe fn whatToShow(&self) -> c_uint;
 
         #[cfg(feature = "DOMNodeFilter")]
         #[deprecated]
-        #[method_id(filter)]
+        #[method(filter)]
         #[unsafe(method_family = none)]
         pub unsafe fn filter(&self) -> Option<Retained<ProtocolObject<dyn DOMNodeFilter>>>;
 
         #[deprecated]
         #[method(expandEntityReferences)]
+        #[unsafe(method_family = none)]
         pub unsafe fn expandEntityReferences(&self) -> bool;
 
         #[cfg(feature = "DOMNode")]
-        #[method_id(referenceNode)]
+        #[method(referenceNode)]
         #[unsafe(method_family = none)]
         pub unsafe fn referenceNode(&self) -> Option<Retained<DOMNode>>;
 
         #[method(pointerBeforeReferenceNode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pointerBeforeReferenceNode(&self) -> bool;
 
         #[cfg(feature = "DOMNode")]
         #[deprecated]
-        #[method_id(nextNode)]
+        #[method(nextNode)]
         #[unsafe(method_family = none)]
         pub unsafe fn nextNode(&self) -> Option<Retained<DOMNode>>;
 
         #[cfg(feature = "DOMNode")]
         #[deprecated]
-        #[method_id(previousNode)]
+        #[method(previousNode)]
         #[unsafe(method_family = none)]
         pub unsafe fn previousNode(&self) -> Option<Retained<DOMNode>>;
 
         #[deprecated]
         #[method(detach)]
+        #[unsafe(method_family = none)]
         pub unsafe fn detach(&self);
     }
 );
@@ -81,7 +85,7 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMNodeIterator {
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -91,7 +95,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMNodeIterator {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

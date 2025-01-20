@@ -26,12 +26,12 @@ unsafe impl NSObjectProtocol for CISampler {}
 extern_methods!(
     unsafe impl CISampler {
         #[cfg(feature = "CIImage")]
-        #[method_id(samplerWithImage:)]
+        #[method(samplerWithImage:)]
         #[unsafe(method_family = none)]
         pub unsafe fn samplerWithImage(im: &CIImage) -> Retained<Self>;
 
         #[cfg(feature = "CIImage")]
-        #[method_id(samplerWithImage:options:)]
+        #[method(samplerWithImage:options:)]
         #[unsafe(method_family = none)]
         pub unsafe fn samplerWithImage_options(
             im: &CIImage,
@@ -39,12 +39,12 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "CIImage")]
-        #[method_id(initWithImage:)]
+        #[method(initWithImage:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithImage(this: Allocated<Self>, im: &CIImage) -> Retained<Self>;
 
         #[cfg(feature = "CIImage")]
-        #[method_id(initWithImage:options:)]
+        #[method(initWithImage:options:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithImage_options(
             this: Allocated<Self>,
@@ -53,12 +53,13 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "CIFilterShape")]
-        #[method_id(definition)]
+        #[method(definition)]
         #[unsafe(method_family = none)]
         pub unsafe fn definition(&self) -> Retained<CIFilterShape>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(extent)]
+        #[unsafe(method_family = none)]
         pub unsafe fn extent(&self) -> CGRect;
     }
 );
@@ -66,11 +67,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CISampler {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

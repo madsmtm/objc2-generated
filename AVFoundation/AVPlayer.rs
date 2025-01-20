@@ -55,7 +55,7 @@ unsafe impl NSObjectProtocol for AVPlayer {}
 extern_methods!(
     unsafe impl AVPlayer {
         /// Initializes an AVPlayer with no player items.
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -65,7 +65,7 @@ extern_methods!(
         /// Returns: An instance of AVPlayer
         ///
         /// Implicitly creates an AVPlayerItem. Clients can obtain the AVPlayerItem as it becomes the player's currentItem.
-        #[method_id(playerWithURL:)]
+        #[method(playerWithURL:)]
         #[unsafe(method_family = none)]
         pub unsafe fn playerWithURL(url: &NSURL, mtm: MainThreadMarker) -> Retained<Self>;
 
@@ -76,7 +76,7 @@ extern_methods!(
         /// Returns: An instance of AVPlayer
         ///
         /// Useful in order to play items for which an AVAsset has previously been created. See -[AVPlayerItem initWithAsset:].
-        #[method_id(playerWithPlayerItem:)]
+        #[method(playerWithPlayerItem:)]
         #[unsafe(method_family = none)]
         pub unsafe fn playerWithPlayerItem(
             item: Option<&AVPlayerItem>,
@@ -89,7 +89,7 @@ extern_methods!(
         /// Returns: An instance of AVPlayer
         ///
         /// Implicitly creates an AVPlayerItem. Clients can obtain the AVPlayerItem as it becomes the player's currentItem.
-        #[method_id(initWithURL:)]
+        #[method(initWithURL:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
@@ -102,7 +102,7 @@ extern_methods!(
         /// Useful in order to play items for which an AVAsset has previously been created. See -[AVPlayerItem initWithAsset:].
         /// This method throws an exception if the item is not an AVPlayerItem, or if the item is
         /// associated with another AVPlayer.
-        #[method_id(initWithPlayerItem:)]
+        #[method(initWithPlayerItem:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPlayerItem(
             this: Allocated<Self>,
@@ -117,6 +117,7 @@ extern_methods!(
         /// instance needs to be created in its place. When this happens, clients can check the value of the error property to
         /// determine the nature of the failure. This property is key value observable.
         #[method(status)]
+        #[unsafe(method_family = none)]
         pub unsafe fn status(&self) -> AVPlayerStatus;
 
         /// If the receiver's status is AVPlayerStatusFailed, this describes the error that caused the failure.
@@ -124,7 +125,7 @@ extern_methods!(
         ///
         /// The value of this property is an NSError that describes what caused the receiver to no longer be able to play items.
         /// If the receiver's status is not AVPlayerStatusFailed, the value of this property is nil.
-        #[method_id(error)]
+        #[method(error)]
         #[unsafe(method_family = none)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
     }
@@ -133,7 +134,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVPlayer {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -283,10 +284,12 @@ extern_methods!(
         ///
         /// Before macOS 13, iOS 16, tvOS 16, and watchOS 9, this property must be accessed on the main thread/queue.
         #[method(rate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rate(&self) -> c_float;
 
         /// Setter for [`rate`][Self::rate].
         #[method(setRate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRate(&self, rate: c_float);
 
         /// Indicates the rate at which to start playback when play is called; defaults to 1.0.
@@ -295,10 +298,12 @@ extern_methods!(
         ///
         /// The effective rate of playback may still differ from the default rate subject to restrictions imposed by the system. See documentation for the rate property for a discussion on when the desired rate does not translate to effective rate.
         #[method(defaultRate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn defaultRate(&self) -> c_float;
 
         /// Setter for [`defaultRate`][Self::defaultRate].
         #[method(setDefaultRate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDefaultRate(&self, default_rate: c_float);
 
         /// Signals the desire to begin playback at the rate set in the defaultRate.
@@ -307,6 +312,7 @@ extern_methods!(
         ///
         /// Before macOS 13, iOS 16, tvOS 16, and watchOS 9, this method must be invoked on the main thread/queue.
         #[method(play)]
+        #[unsafe(method_family = none)]
         pub unsafe fn play(&self);
 
         /// Pauses playback.
@@ -315,6 +321,7 @@ extern_methods!(
         ///
         /// Before macOS 13, iOS 16, tvOS 16, and watchOS 9, this method must be invoked on the main thread/queue.
         #[method(pause)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pause(&self);
 
         /// Indicates whether playback is currently paused indefinitely, suspended while waiting for appropriate conditions, or in progress.
@@ -323,6 +330,7 @@ extern_methods!(
         ///
         /// When automaticallyWaitsToMinimizeStalling is YES, absent intervention in the form of invocations of -setRate: or -pause or, on iOS, an interruption that requires user intervention before playback can resume, the value of the property timeControlStatus automatically changes between AVPlayerTimeControlStatusPlaying and AVPlayerTimeControlStatusWaitingToPlayAtSpecifiedRate depending on whether sufficient media data is available to continue playback. This property is key value observable.
         #[method(timeControlStatus)]
+        #[unsafe(method_family = none)]
         pub unsafe fn timeControlStatus(&self) -> AVPlayerTimeControlStatus;
 
         /// Indicates the reason for waiting when the value of timeControlStatus is AVPlayerTimeControlStatusWaitingToPlayAtSpecifiedRate
@@ -331,7 +339,7 @@ extern_methods!(
         /// You can use the value of reasonForWaitingToPlay to show UI indicating the player's waiting state conditionally.
         /// This property is key value observable.
         /// Possible values are AVPlayerWaitingWithNoItemToPlayReason, AVPlayerWaitingWhileEvaluatingBufferingRateReason, and AVPlayerWaitingToMinimizeStallsReason.
-        #[method_id(reasonForWaitingToPlay)]
+        #[method(reasonForWaitingToPlay)]
         #[unsafe(method_family = none)]
         pub unsafe fn reasonForWaitingToPlay(&self) -> Option<Retained<AVPlayerWaitingReason>>;
 
@@ -342,6 +350,7 @@ extern_methods!(
         ///
         /// Before macOS 13, iOS 16, tvOS 16, and watchOS 9, this method must be invoked on the main thread/queue.
         #[method(playImmediatelyAtRate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn playImmediatelyAtRate(&self, rate: c_float);
     }
 );
@@ -386,7 +395,7 @@ extern_methods!(
     /// AVPlayerItemControl
     unsafe impl AVPlayer {
         #[cfg(feature = "AVPlayerItem")]
-        #[method_id(currentItem)]
+        #[method(currentItem)]
         #[unsafe(method_family = none)]
         pub unsafe fn currentItem(&self) -> Option<Retained<AVPlayerItem>>;
 
@@ -398,16 +407,19 @@ extern_methods!(
         /// In all releases of iOS 4, invoking replaceCurrentItemWithPlayerItem: with an AVPlayerItem that's already the receiver's currentItem results in an exception being raised. Starting with iOS 5, it's a no-op.
         /// This method throws an exception if the item already exists in the play queue.
         #[method(replaceCurrentItemWithPlayerItem:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn replaceCurrentItemWithPlayerItem(&self, item: Option<&AVPlayerItem>);
 
         /// Indicates the action that the player should perform when playback of an item reaches its end time.
         ///
         /// This property throws an exception if set to AVPlayerActionAtItemEndAdvance on an AVPlayer which is not an AVQueuePlayer.
         #[method(actionAtItemEnd)]
+        #[unsafe(method_family = none)]
         pub unsafe fn actionAtItemEnd(&self) -> AVPlayerActionAtItemEnd;
 
         /// Setter for [`actionAtItemEnd`][Self::actionAtItemEnd].
         #[method(setActionAtItemEnd:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setActionAtItemEnd(&self, action_at_item_end: AVPlayerActionAtItemEnd);
     }
 );
@@ -422,6 +434,7 @@ extern_methods!(
         ///
         /// Returns the current time of the current item. Not key-value observable; use -addPeriodicTimeObserverForInterval:queue:usingBlock: instead.
         #[method(currentTime)]
+        #[unsafe(method_family = none)]
         pub unsafe fn currentTime(&self) -> CMTime;
 
         /// Moves the playback cursor.
@@ -430,6 +443,7 @@ extern_methods!(
         /// Use this method to seek to a specified time for the current player item.
         /// The time seeked to may differ from the specified time for efficiency. For sample accurate seeking see seekToTime:toleranceBefore:toleranceAfter:.
         #[method(seekToDate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn seekToDate(&self, date: &NSDate);
 
         #[cfg(feature = "block2")]
@@ -443,6 +457,7 @@ extern_methods!(
         /// completion handler will be invoked with the finished parameter set to YES.  If no item is attached, the completion handler will be
         /// invoked immediately with the finished parameter set to NO.
         #[method(seekToDate:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn seekToDate_completionHandler(
             &self,
             date: &NSDate,
@@ -456,6 +471,7 @@ extern_methods!(
         /// Use this method to seek to a specified time for the current player item.
         /// The time seeked to may differ from the specified time for efficiency. For sample accurate seeking see seekToTime:toleranceBefore:toleranceAfter:.
         #[method(seekToTime:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn seekToTime(&self, time: CMTime);
 
         #[cfg(feature = "objc2-core-media")]
@@ -469,6 +485,7 @@ extern_methods!(
         /// Pass kCMTimeZero for both toleranceBefore and toleranceAfter to request sample accurate seeking which may incur additional decoding delay.
         /// Messaging this method with beforeTolerance:kCMTimePositiveInfinity and afterTolerance:kCMTimePositiveInfinity is the same as messaging seekToTime: directly.
         #[method(seekToTime:toleranceBefore:toleranceAfter:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn seekToTime_toleranceBefore_toleranceAfter(
             &self,
             time: CMTime,
@@ -487,6 +504,7 @@ extern_methods!(
         /// completion handler will be invoked with the finished parameter set to YES.  If no item is attached, the completion handler will be
         /// invoked immediately with the finished parameter set to NO.
         #[method(seekToTime:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn seekToTime_completionHandler(
             &self,
             time: CMTime,
@@ -507,6 +525,7 @@ extern_methods!(
         /// request completes without being interrupted by another seek request or by any other operation the specified completion handler will be invoked with the
         /// finished parameter set to YES.  If no item is attached, the completion handler will be invoked immediately with the finished parameter set to NO.
         #[method(seekToTime:toleranceBefore:toleranceAfter:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn seekToTime_toleranceBefore_toleranceAfter_completionHandler(
             &self,
             time: CMTime,
@@ -539,10 +558,12 @@ extern_methods!(
         ///
         /// Before macOS 13, iOS 16, tvOS 16, and watchOS 9, this property must be accessed on the main thread/queue.
         #[method(automaticallyWaitsToMinimizeStalling)]
+        #[unsafe(method_family = none)]
         pub unsafe fn automaticallyWaitsToMinimizeStalling(&self) -> bool;
 
         /// Setter for [`automaticallyWaitsToMinimizeStalling`][Self::automaticallyWaitsToMinimizeStalling].
         #[method(setAutomaticallyWaitsToMinimizeStalling:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAutomaticallyWaitsToMinimizeStalling(
             &self,
             automatically_waits_to_minimize_stalling: bool,
@@ -569,6 +590,7 @@ extern_methods!(
         /// If hostClockTime is kCMTimeInvalid, the rate and time will be set together, but without external synchronization;
         /// a host time in the near future will be used, allowing some time for media data loading.
         #[method(setRate:time:atHostTime:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRate_time_atHostTime(
             &self,
             rate: c_float,
@@ -588,6 +610,7 @@ extern_methods!(
         ///
         /// Parameter `completionHandler`: The block that will be called when the preroll is either completed or is interrupted.
         #[method(prerollAtRate:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn prerollAtRate_completionHandler(
             &self,
             rate: c_float,
@@ -598,19 +621,21 @@ extern_methods!(
         ///
         /// Use this method to cancel and release the completion handlers for pending prerolls. The finished parameter of the completion handlers will be set to NO.
         #[method(cancelPendingPrerolls)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cancelPendingPrerolls(&self);
 
         #[cfg(feature = "objc2-core-media")]
         /// Set to override the automatic choice of source clock for item timebases.
         ///
         /// NULL by default. This is most useful for synchronizing video-only movies with audio played via other means. IMPORTANT NOTE: If you specify a source clock other than the appropriate audio device clock, audio may drift out of sync.
-        #[method_id(sourceClock)]
+        #[method(sourceClock)]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceClock(&self) -> Option<Retained<CMClock>>;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`sourceClock`][Self::sourceClock].
         #[method(setSourceClock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSourceClock(&self, source_clock: Option<&CMClock>);
     }
 );
@@ -634,6 +659,7 @@ extern_methods!(
         /// - observer was not returned by -addPeriodicTimeObserverForInterval:queue:usingBlock:
         /// - observer was not returned by -addBoundaryTimeObserverForTimes:queue:usingBlock:
         #[method(removeTimeObserver:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeTimeObserver(&self, observer: &AnyObject);
     }
 );
@@ -642,17 +668,21 @@ extern_methods!(
     /// AVPlayerMediaControl
     unsafe impl AVPlayer {
         #[method(volume)]
+        #[unsafe(method_family = none)]
         pub unsafe fn volume(&self) -> c_float;
 
         /// Setter for [`volume`][Self::volume].
         #[method(setVolume:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setVolume(&self, volume: c_float);
 
         #[method(isMuted)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isMuted(&self) -> bool;
 
         /// Setter for [`isMuted`][Self::isMuted].
         #[method(setMuted:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMuted(&self, muted: bool);
     }
 );
@@ -661,10 +691,12 @@ extern_methods!(
     /// AVPlayerAutomaticMediaSelection
     unsafe impl AVPlayer {
         #[method(appliesMediaSelectionCriteriaAutomatically)]
+        #[unsafe(method_family = none)]
         pub unsafe fn appliesMediaSelectionCriteriaAutomatically(&self) -> bool;
 
         /// Setter for [`appliesMediaSelectionCriteriaAutomatically`][Self::appliesMediaSelectionCriteriaAutomatically].
         #[method(setAppliesMediaSelectionCriteriaAutomatically:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAppliesMediaSelectionCriteriaAutomatically(
             &self,
             applies_media_selection_criteria_automatically: bool,
@@ -686,6 +718,7 @@ extern_methods!(
         ///
         /// Before macOS 13, iOS 16, tvOS 16, and watchOS 9, this method must be invoked on the main thread/queue.
         #[method(setMediaSelectionCriteria:forMediaCharacteristic:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMediaSelectionCriteria_forMediaCharacteristic(
             &self,
             criteria: Option<&AVPlayerMediaSelectionCriteria>,
@@ -698,7 +731,7 @@ extern_methods!(
         /// Parameter `mediaCharacteristic`: The media characteristic for which the selection criteria is to be returned. Supported values include AVMediaCharacteristicAudible, AVMediaCharacteristicLegible, and AVMediaCharacteristicVisual.
         ///
         /// Before macOS 13, iOS 16, tvOS 16, and watchOS 9, this method must be invoked on the main thread/queue.
-        #[method_id(mediaSelectionCriteriaForMediaCharacteristic:)]
+        #[method(mediaSelectionCriteriaForMediaCharacteristic:)]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaSelectionCriteriaForMediaCharacteristic(
             &self,
@@ -715,12 +748,13 @@ extern_methods!(
         /// By default, the value of this property is nil, indicating that the default audio output device is used. Otherwise the value of this property is an NSString containing the unique ID of the Core Audio output device to be used for audio output.
         ///
         /// Core Audio's kAudioDevicePropertyDeviceUID is a suitable source of audio output device unique IDs.
-        #[method_id(audioOutputDeviceUniqueID)]
+        #[method(audioOutputDeviceUniqueID)]
         #[unsafe(method_family = none)]
         pub unsafe fn audioOutputDeviceUniqueID(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`audioOutputDeviceUniqueID`][Self::audioOutputDeviceUniqueID].
         #[method(setAudioOutputDeviceUniqueID:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAudioOutputDeviceUniqueID(
             &self,
             audio_output_device_unique_id: Option<&NSString>,
@@ -732,33 +766,39 @@ extern_methods!(
     /// AVPlayerExternalPlaybackSupport
     unsafe impl AVPlayer {
         #[method(allowsExternalPlayback)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowsExternalPlayback(&self) -> bool;
 
         /// Setter for [`allowsExternalPlayback`][Self::allowsExternalPlayback].
         #[method(setAllowsExternalPlayback:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAllowsExternalPlayback(&self, allows_external_playback: bool);
 
         #[method(isExternalPlaybackActive)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isExternalPlaybackActive(&self) -> bool;
 
         #[method(usesExternalPlaybackWhileExternalScreenIsActive)]
+        #[unsafe(method_family = none)]
         pub unsafe fn usesExternalPlaybackWhileExternalScreenIsActive(&self) -> bool;
 
         /// Setter for [`usesExternalPlaybackWhileExternalScreenIsActive`][Self::usesExternalPlaybackWhileExternalScreenIsActive].
         #[method(setUsesExternalPlaybackWhileExternalScreenIsActive:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUsesExternalPlaybackWhileExternalScreenIsActive(
             &self,
             uses_external_playback_while_external_screen_is_active: bool,
         );
 
         #[cfg(feature = "AVAnimation")]
-        #[method_id(externalPlaybackVideoGravity)]
+        #[method(externalPlaybackVideoGravity)]
         #[unsafe(method_family = none)]
         pub unsafe fn externalPlaybackVideoGravity(&self) -> Retained<AVLayerVideoGravity>;
 
         #[cfg(feature = "AVAnimation")]
         /// Setter for [`externalPlaybackVideoGravity`][Self::externalPlaybackVideoGravity].
         #[method(setExternalPlaybackVideoGravity:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setExternalPlaybackVideoGravity(
             &self,
             external_playback_video_gravity: &AVLayerVideoGravity,
@@ -782,6 +822,7 @@ extern_methods!(
         /// current item. These requirements are inherent to the content itself and cannot be externally specified.
         /// If the current item does not require external protection, the value of this property will be NO.
         #[method(outputObscuredDueToInsufficientExternalProtection)]
+        #[unsafe(method_family = none)]
         pub unsafe fn outputObscuredDueToInsufficientExternalProtection(&self) -> bool;
     }
 );
@@ -855,6 +896,7 @@ extern_methods!(
         /// This property indicates all of the HDR modes that the device can play.  Each value indicates that an appropriate HDR display is available for the specified HDR mode.  Additionally, the device must be capable of playing the specified HDR type.  This property does not indicate whether video contains HDR content, whether HDR video is currently playing, or whether video is playing on an HDR display.
         #[deprecated = "Use eligibleForHDRPlayback instead"]
         #[method(availableHDRModes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn availableHDRModes(mtm: MainThreadMarker) -> AVPlayerHDRMode;
 
         /// Indicates whether HDR content can be played to an appropriate display.
@@ -862,6 +904,7 @@ extern_methods!(
         ///
         /// This property is YES if an HDR display is available and the device is capable of playing HDR content from an appropriate AVAsset, NO otherwise.  This property does not indicate whether video contains HDR content, whether HDR video is currently playing, or whether video is playing on an HDR display.  This property is not KVO observable.
         #[method(eligibleForHDRPlayback)]
+        #[unsafe(method_family = none)]
         pub unsafe fn eligibleForHDRPlayback(mtm: MainThreadMarker) -> bool;
     }
 );
@@ -876,10 +919,12 @@ extern_methods!(
         ///
         /// The GPU registryID can be obtained from the GPU MTLDevice using [MTLDevice registryID] or can be obtained from OpenGL or OpenCL.
         #[method(preferredVideoDecoderGPURegistryID)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preferredVideoDecoderGPURegistryID(&self) -> u64;
 
         /// Setter for [`preferredVideoDecoderGPURegistryID`][Self::preferredVideoDecoderGPURegistryID].
         #[method(setPreferredVideoDecoderGPURegistryID:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreferredVideoDecoderGPURegistryID(
             &self,
             preferred_video_decoder_gpu_registry_id: u64,
@@ -897,10 +942,12 @@ extern_methods!(
         ///
         /// Before macOS 13, iOS 16, tvOS 16, and watchOS 9, this property must be accessed on the main thread/queue.
         #[method(preventsDisplaySleepDuringVideoPlayback)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preventsDisplaySleepDuringVideoPlayback(&self) -> bool;
 
         /// Setter for [`preventsDisplaySleepDuringVideoPlayback`][Self::preventsDisplaySleepDuringVideoPlayback].
         #[method(setPreventsDisplaySleepDuringVideoPlayback:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreventsDisplaySleepDuringVideoPlayback(
             &self,
             prevents_display_sleep_during_video_playback: bool,
@@ -916,10 +963,12 @@ extern_methods!(
         /// Default value is YES.
         /// Setting this property to YES prevents an application that is playing video from automatically getting backgrounded.  This property does not prevent the user from backgrounding the application.
         #[method(preventsAutomaticBackgroundingDuringVideoPlayback)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preventsAutomaticBackgroundingDuringVideoPlayback(&self) -> bool;
 
         /// Setter for [`preventsAutomaticBackgroundingDuringVideoPlayback`][Self::preventsAutomaticBackgroundingDuringVideoPlayback].
         #[method(setPreventsAutomaticBackgroundingDuringVideoPlayback:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreventsAutomaticBackgroundingDuringVideoPlayback(
             &self,
             prevents_automatic_backgrounding_during_video_playback: bool,
@@ -969,12 +1018,14 @@ extern_methods!(
         /// If set to AVPlayerAudiovisualBackgroundPlaybackPolicyPauses, player will be paused on entering background.
         /// If set to AVPlayerAudiovisualBackgroundPlaybackPolicyContinuesIfPossible, the system makes the best effort to continue playback but the app also needs appropriate UIBackgroundModes for the system to let it continue running in the background. Note that this policy only applies to items with enabled video.
         #[method(audiovisualBackgroundPlaybackPolicy)]
+        #[unsafe(method_family = none)]
         pub unsafe fn audiovisualBackgroundPlaybackPolicy(
             &self,
         ) -> AVPlayerAudiovisualBackgroundPlaybackPolicy;
 
         /// Setter for [`audiovisualBackgroundPlaybackPolicy`][Self::audiovisualBackgroundPlaybackPolicy].
         #[method(setAudiovisualBackgroundPlaybackPolicy:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAudiovisualBackgroundPlaybackPolicy(
             &self,
             audiovisual_background_playback_policy: AVPlayerAudiovisualBackgroundPlaybackPolicy,
@@ -995,7 +1046,7 @@ extern_methods!(
         /// A player with a connected playbackCoordinator will change behavior in situations that require the player to pause for internal reasons, such as a route change or a stall.
         /// When resuming after these events, the player will not resume at the stop time. Instead, it will attempt to rejoin the group, potentially seeking to match the other participant's progress.
         /// It is left to the owner of the AVPlayer to ensure that all participants are playing the same item. See the discussion of AVPlaybackCoordinator for considerations about item transitions.
-        #[method_id(playbackCoordinator)]
+        #[method(playbackCoordinator)]
         #[unsafe(method_family = none)]
         pub unsafe fn playbackCoordinator(&self) -> Retained<AVPlayerPlaybackCoordinator>;
     }
@@ -1011,13 +1062,14 @@ extern_methods!(
         ///
         /// Note: If an output is set while AVPlayer has a current item it may cause different data channels to be selected for that item, which can have a performance impact.
         /// As a result, when possible, it is best to set an output before setting items on an AVPlayer.
-        #[method_id(videoOutput)]
+        #[method(videoOutput)]
         #[unsafe(method_family = none)]
         pub unsafe fn videoOutput(&self) -> Option<Retained<AVPlayerVideoOutput>>;
 
         #[cfg(feature = "AVPlayerOutput")]
         /// Setter for [`videoOutput`][Self::videoOutput].
         #[method(setVideoOutput:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setVideoOutput(&self, video_output: Option<&AVPlayerVideoOutput>);
     }
 );
@@ -1039,16 +1091,18 @@ extern_methods!(
         /// For further information about Media Accessibility preferences, see MediaAccessibility framework documentation.
         #[deprecated = "Allow AVPlayer to enable closed captions automatically according to user preferences by ensuring that the value of appliesMediaSelectionCriteriaAutomatically is YES."]
         #[method(isClosedCaptionDisplayEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isClosedCaptionDisplayEnabled(&self) -> bool;
 
         /// Setter for [`isClosedCaptionDisplayEnabled`][Self::isClosedCaptionDisplayEnabled].
         #[deprecated = "Allow AVPlayer to enable closed captions automatically according to user preferences by ensuring that the value of appliesMediaSelectionCriteriaAutomatically is YES."]
         #[method(setClosedCaptionDisplayEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setClosedCaptionDisplayEnabled(&self, closed_caption_display_enabled: bool);
 
         #[cfg(feature = "objc2-core-media")]
         #[deprecated]
-        #[method_id(masterClock)]
+        #[method(masterClock)]
         #[unsafe(method_family = none)]
         pub unsafe fn masterClock(&self) -> Option<Retained<CMClock>>;
 
@@ -1056,6 +1110,7 @@ extern_methods!(
         /// Setter for [`masterClock`][Self::masterClock].
         #[deprecated]
         #[method(setMasterClock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMasterClock(&self, master_clock: Option<&CMClock>);
     }
 );
@@ -1077,7 +1132,7 @@ extern_methods!(
         /// Parameter `items`: An NSArray of AVPlayerItems with which to populate the player's queue initially.
         ///
         /// Returns: An instance of AVQueuePlayer.
-        #[method_id(queuePlayerWithItems:)]
+        #[method(queuePlayerWithItems:)]
         #[unsafe(method_family = none)]
         pub unsafe fn queuePlayerWithItems(
             items: &NSArray<AVPlayerItem>,
@@ -1092,7 +1147,7 @@ extern_methods!(
         /// Returns: An instance of AVQueuePlayer.
         ///
         /// This method throws an exception if items contains duplicated values or values associated with another AVPlayer.
-        #[method_id(initWithItems:)]
+        #[method(initWithItems:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithItems(
             this: Allocated<Self>,
@@ -1103,7 +1158,7 @@ extern_methods!(
         /// Provides an array of the currently enqueued items.
         ///
         /// Returns: An NSArray containing the enqueued AVPlayerItems.
-        #[method_id(items)]
+        #[method(items)]
         #[unsafe(method_family = none)]
         pub unsafe fn items(&self) -> Retained<NSArray<AVPlayerItem>>;
 
@@ -1111,6 +1166,7 @@ extern_methods!(
         ///
         /// Removes the current item from the play queue.
         #[method(advanceToNextItem)]
+        #[unsafe(method_family = none)]
         pub unsafe fn advanceToNextItem(&self);
 
         #[cfg(feature = "AVPlayerItem")]
@@ -1124,6 +1180,7 @@ extern_methods!(
         ///
         /// Note that adding the same AVPlayerItem to an AVQueuePlayer at more than one position in the queue is not supported.
         #[method(canInsertItem:afterItem:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn canInsertItem_afterItem(
             &self,
             item: &AVPlayerItem,
@@ -1139,6 +1196,7 @@ extern_methods!(
         ///
         /// This method throws an exception if item already exists in the queue.
         #[method(insertItem:afterItem:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn insertItem_afterItem(
             &self,
             item: &AVPlayerItem,
@@ -1152,12 +1210,14 @@ extern_methods!(
         ///
         /// If the item to be removed is currently playing, has the same effect as -advanceToNextItem.
         #[method(removeItem:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeItem(&self, item: &AVPlayerItem);
 
         /// Removes all items from the queue.
         ///
         /// Stops playback by the target.
         #[method(removeAllItems)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeAllItems(&self);
     }
 );
@@ -1166,7 +1226,7 @@ extern_methods!(
     /// Methods declared on superclass `AVPlayer`
     unsafe impl AVQueuePlayer {
         /// Initializes an AVPlayer with no player items.
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -1176,7 +1236,7 @@ extern_methods!(
         /// Returns: An instance of AVPlayer
         ///
         /// Implicitly creates an AVPlayerItem. Clients can obtain the AVPlayerItem as it becomes the player's currentItem.
-        #[method_id(playerWithURL:)]
+        #[method(playerWithURL:)]
         #[unsafe(method_family = none)]
         pub unsafe fn playerWithURL(url: &NSURL, mtm: MainThreadMarker) -> Retained<Self>;
 
@@ -1187,7 +1247,7 @@ extern_methods!(
         /// Returns: An instance of AVPlayer
         ///
         /// Useful in order to play items for which an AVAsset has previously been created. See -[AVPlayerItem initWithAsset:].
-        #[method_id(playerWithPlayerItem:)]
+        #[method(playerWithPlayerItem:)]
         #[unsafe(method_family = none)]
         pub unsafe fn playerWithPlayerItem(
             item: Option<&AVPlayerItem>,
@@ -1200,7 +1260,7 @@ extern_methods!(
         /// Returns: An instance of AVPlayer
         ///
         /// Implicitly creates an AVPlayerItem. Clients can obtain the AVPlayerItem as it becomes the player's currentItem.
-        #[method_id(initWithURL:)]
+        #[method(initWithURL:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
@@ -1213,7 +1273,7 @@ extern_methods!(
         /// Useful in order to play items for which an AVAsset has previously been created. See -[AVPlayerItem initWithAsset:].
         /// This method throws an exception if the item is not an AVPlayerItem, or if the item is
         /// associated with another AVPlayer.
-        #[method_id(initWithPlayerItem:)]
+        #[method(initWithPlayerItem:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPlayerItem(
             this: Allocated<Self>,
@@ -1225,7 +1285,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVQueuePlayer {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

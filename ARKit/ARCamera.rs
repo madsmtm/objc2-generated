@@ -46,33 +46,38 @@ extern_methods!(
         #[cfg(feature = "ARTrackingStatusTypes")]
         /// The tracking state of the camera.
         #[method(trackingState)]
+        #[unsafe(method_family = none)]
         pub unsafe fn trackingState(&self) -> ARTrackingState;
 
         #[cfg(feature = "ARTrackingStatusTypes")]
         /// The reason for the camera’s current tracking state.
         #[method(trackingStateReason)]
+        #[unsafe(method_family = none)]
         pub unsafe fn trackingStateReason(&self) -> ARTrackingStateReason;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The camera image resolution in pixels.
         #[method(imageResolution)]
+        #[unsafe(method_family = none)]
         pub unsafe fn imageResolution(&self) -> CGSize;
 
         #[cfg(feature = "objc2-foundation")]
         /// The camera exposure duration in seconds.
         #[method(exposureDuration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn exposureDuration(&self) -> NSTimeInterval;
 
         /// The camera exposure offset in EV (exposure value) units.
         #[method(exposureOffset)]
+        #[unsafe(method_family = none)]
         pub unsafe fn exposureOffset(&self) -> c_float;
 
         /// Unavailable
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

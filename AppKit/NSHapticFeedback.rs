@@ -54,6 +54,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshapticfeedbackperformer?language=objc)
     pub unsafe trait NSHapticFeedbackPerformer: NSObjectProtocol {
         #[method(performFeedbackPattern:performanceTime:)]
+        #[unsafe(method_family = none)]
         unsafe fn performFeedbackPattern_performanceTime(
             &self,
             pattern: NSHapticFeedbackPattern,
@@ -73,7 +74,7 @@ unsafe impl NSObjectProtocol for NSHapticFeedbackManager {}
 
 extern_methods!(
     unsafe impl NSHapticFeedbackManager {
-        #[method_id(defaultPerformer)]
+        #[method(defaultPerformer)]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultPerformer() -> Retained<ProtocolObject<dyn NSHapticFeedbackPerformer>>;
     }
@@ -82,11 +83,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSHapticFeedbackManager {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

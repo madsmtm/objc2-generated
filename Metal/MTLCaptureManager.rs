@@ -87,30 +87,34 @@ extern_methods!(
         /// MTLCommandQueue captures a single command queue.
         ///
         /// MTLCaptureScope captures between the next begin and end of the scope.
-        #[method_id(captureObject)]
+        #[method(captureObject)]
         #[unsafe(method_family = none)]
         pub unsafe fn captureObject(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`captureObject`][Self::captureObject].
         #[method(setCaptureObject:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCaptureObject(&self, capture_object: Option<&AnyObject>);
 
         /// The destination you want the GPU trace to be captured to.
         #[method(destination)]
+        #[unsafe(method_family = none)]
         pub fn destination(&self) -> MTLCaptureDestination;
 
         /// Setter for [`destination`][Self::destination].
         #[method(setDestination:)]
+        #[unsafe(method_family = none)]
         pub fn setDestination(&self, destination: MTLCaptureDestination);
 
         /// URL the GPU Trace document will be captured to.
         /// Must be specified when destiation is MTLCaptureDestinationGPUTraceDocument.
-        #[method_id(outputURL)]
+        #[method(outputURL)]
         #[unsafe(method_family = none)]
         pub fn outputURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`outputURL`][Self::outputURL].
         #[method(setOutputURL:)]
+        #[unsafe(method_family = none)]
         pub fn setOutputURL(&self, output_url: Option<&NSURL>);
     }
 );
@@ -118,11 +122,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLCaptureDescriptor {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
     }
@@ -151,16 +155,16 @@ extern_methods!(
         /// When a capture has been completed, it will be displayed in Xcode and the application will be paused.
         ///
         /// : only MTLCommandBuffers created after starting a capture and committed before stopping it are captured.
-        #[method_id(sharedCaptureManager)]
+        #[method(sharedCaptureManager)]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedCaptureManager() -> Retained<MTLCaptureManager>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "MTLCaptureScope", feature = "MTLDevice"))]
-        #[method_id(newCaptureScopeWithDevice:)]
+        #[method(newCaptureScopeWithDevice:)]
         #[unsafe(method_family = new)]
         pub fn newCaptureScopeWithDevice(
             &self,
@@ -168,7 +172,7 @@ extern_methods!(
         ) -> Retained<ProtocolObject<dyn MTLCaptureScope>>;
 
         #[cfg(all(feature = "MTLCaptureScope", feature = "MTLCommandQueue"))]
-        #[method_id(newCaptureScopeWithCommandQueue:)]
+        #[method(newCaptureScopeWithCommandQueue:)]
         #[unsafe(method_family = new)]
         pub fn newCaptureScopeWithCommandQueue(
             &self,
@@ -176,6 +180,7 @@ extern_methods!(
         ) -> Retained<ProtocolObject<dyn MTLCaptureScope>>;
 
         #[method(supportsDestination:)]
+        #[unsafe(method_family = none)]
         pub fn supportsDestination(&self, destination: MTLCaptureDestination) -> bool;
 
         /// Start capturing until stopCapture is called.
@@ -188,6 +193,7 @@ extern_methods!(
         ///
         /// Only MTLCommandBuffer​s created after starting and committed before stopping it are captured.
         #[method(startCaptureWithDescriptor:error:_)]
+        #[unsafe(method_family = none)]
         pub fn startCaptureWithDescriptor_error(
             &self,
             descriptor: &MTLCaptureDescriptor,
@@ -196,11 +202,13 @@ extern_methods!(
         #[cfg(feature = "MTLDevice")]
         #[deprecated = "Use startCaptureWithDescriptor:error: instead"]
         #[method(startCaptureWithDevice:)]
+        #[unsafe(method_family = none)]
         pub fn startCaptureWithDevice(&self, device: &ProtocolObject<dyn MTLDevice>);
 
         #[cfg(feature = "MTLCommandQueue")]
         #[deprecated = "Use startCaptureWithDescriptor:error: instead"]
         #[method(startCaptureWithCommandQueue:)]
+        #[unsafe(method_family = none)]
         pub fn startCaptureWithCommandQueue(
             &self,
             command_queue: &ProtocolObject<dyn MTLCommandQueue>,
@@ -209,25 +217,29 @@ extern_methods!(
         #[cfg(feature = "MTLCaptureScope")]
         #[deprecated = "Use startCaptureWithDescriptor:error: instead"]
         #[method(startCaptureWithScope:)]
+        #[unsafe(method_family = none)]
         pub fn startCaptureWithScope(&self, capture_scope: &ProtocolObject<dyn MTLCaptureScope>);
 
         #[method(stopCapture)]
+        #[unsafe(method_family = none)]
         pub fn stopCapture(&self);
 
         #[cfg(feature = "MTLCaptureScope")]
-        #[method_id(defaultCaptureScope)]
+        #[method(defaultCaptureScope)]
         #[unsafe(method_family = none)]
         pub fn defaultCaptureScope(&self) -> Option<Retained<ProtocolObject<dyn MTLCaptureScope>>>;
 
         #[cfg(feature = "MTLCaptureScope")]
         /// Setter for [`defaultCaptureScope`][Self::defaultCaptureScope].
         #[method(setDefaultCaptureScope:)]
+        #[unsafe(method_family = none)]
         pub fn setDefaultCaptureScope(
             &self,
             default_capture_scope: Option<&ProtocolObject<dyn MTLCaptureScope>>,
         );
 
         #[method(isCapturing)]
+        #[unsafe(method_family = none)]
         pub fn isCapturing(&self) -> bool;
     }
 );
@@ -235,7 +247,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLCaptureManager {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

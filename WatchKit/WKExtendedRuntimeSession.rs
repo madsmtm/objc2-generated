@@ -151,7 +151,7 @@ unsafe impl NSObjectProtocol for WKExtendedRuntimeSession {}
 extern_methods!(
     unsafe impl WKExtendedRuntimeSession {
         /// This method will create a session, with the capabilities granted for the appropriate session type specified in the "Background Modes" capability in Xcode.
-        #[method_id(session)]
+        #[method(session)]
         #[unsafe(method_family = none)]
         pub unsafe fn session() -> Retained<WKExtendedRuntimeSession>;
 
@@ -162,6 +162,7 @@ extern_methods!(
         /// The completion handler will be called with an error if the application's session type does not support auto-launch,
         /// or if the app is not foreground and has not yet triggered a prompt.
         #[method(requestAutoLaunchAuthorizationStatusWithCompletion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestAutoLaunchAuthorizationStatusWithCompletion(
             completion: &block2::Block<
                 dyn Fn(WKExtendedRuntimeSessionAutoLaunchAuthorizationStatus, *mut NSError),
@@ -170,7 +171,7 @@ extern_methods!(
 
         /// Setting a delegate on the session provides you with updates on when the session begins,
         /// ends, or, encounters an error. Be sure to set a delegate before calling start, to receive the sessionDidStart callback.
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -179,6 +180,7 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn WKExtendedRuntimeSessionDelegate>>,
@@ -186,30 +188,34 @@ extern_methods!(
 
         /// The current state of the session.
         #[method(state)]
+        #[unsafe(method_family = none)]
         pub unsafe fn state(&self) -> WKExtendedRuntimeSessionState;
 
         /// The date at which the session will no longer receive runtime.
         /// Use this date to figure out how much time there is left to run before the end of the session.
         /// If the session has not yet started, this value will be nil. If the session successfully starts,
         /// this date will then be valid, even after the session gets invalidated.
-        #[method_id(expirationDate)]
+        #[method(expirationDate)]
         #[unsafe(method_family = none)]
         pub unsafe fn expirationDate(&self) -> Option<Retained<NSDate>>;
 
         /// Starts the session.
         #[method(start)]
+        #[unsafe(method_family = none)]
         pub unsafe fn start(&self);
 
         /// Parameter `date`: A date in the future when the session should start running.
         ///
         /// Use this method to schedule the session to run at future date. Calling this API must be done while the application is in the foreground, but the session will start at the appropriate date regardless of application state. This method can only be used for the alarm background mode.
         #[method(startAtDate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn startAtDate(&self, date: &NSDate);
 
         /// This method will end a session early before its expiration date.
         /// If this method is called on a session scheduled through startAtDate, the session will no longer be scheduled to run.
         /// Once invalidate is called on a session, it can no longer run.
         #[method(invalidate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn invalidate(&self);
 
         #[cfg(all(feature = "WKInterfaceDevice", feature = "block2"))]
@@ -225,6 +231,7 @@ extern_methods!(
         ///
         /// This method can only be called on a WKExtendedRuntimeSession that was scheduled with startAtDate: and currently has a state of WKExtendedRuntimeSessionStateRunning. If it is called outside that time, it will be ignored.
         #[method(notifyUserWithHaptic:repeatHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn notifyUserWithHaptic_repeatHandler(
             &self,
             r#type: WKHapticType,
@@ -236,11 +243,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKExtendedRuntimeSession {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -258,6 +265,7 @@ extern_protocol!(
         /// This is called if a session fails to start, or when it ends once it has started. See WKExtendedRuntimeSeesionInvalidationReason for the
         /// reasons this may be called.
         #[method(extendedRuntimeSession:didInvalidateWithReason:error:)]
+        #[unsafe(method_family = none)]
         unsafe fn extendedRuntimeSession_didInvalidateWithReason_error(
             &self,
             extended_runtime_session: &WKExtendedRuntimeSession,
@@ -269,6 +277,7 @@ extern_protocol!(
         ///
         /// Called when the session has started successfully.
         #[method(extendedRuntimeSessionDidStart:)]
+        #[unsafe(method_family = none)]
         unsafe fn extendedRuntimeSessionDidStart(
             &self,
             extended_runtime_session: &WKExtendedRuntimeSession,
@@ -279,6 +288,7 @@ extern_protocol!(
         /// Delegate method provided to application to signify the session will expire soon.
         /// All tasks must be completed before the expiration date.
         #[method(extendedRuntimeSessionWillExpire:)]
+        #[unsafe(method_family = none)]
         unsafe fn extendedRuntimeSessionWillExpire(
             &self,
             extended_runtime_session: &WKExtendedRuntimeSession,

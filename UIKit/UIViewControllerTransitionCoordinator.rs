@@ -23,10 +23,12 @@ extern_protocol!(
         NSObjectProtocol + MainThreadOnly
     {
         #[method(isAnimated)]
+        #[unsafe(method_family = none)]
         unsafe fn isAnimated(&self) -> bool;
 
         #[cfg(feature = "UIViewController")]
         #[method(presentationStyle)]
+        #[unsafe(method_family = none)]
         unsafe fn presentationStyle(&self) -> UIModalPresentationStyle;
 
         /// initiallyInteractive indicates whether the transition was initiated as an interactive transition.
@@ -34,34 +36,42 @@ extern_protocol!(
         /// It can only be YES if isAnimated is YES.
         /// If it is NO, then isInteractive can only be YES if isInterruptible is YES
         #[method(initiallyInteractive)]
+        #[unsafe(method_family = none)]
         unsafe fn initiallyInteractive(&self) -> bool;
 
         #[method(isInterruptible)]
+        #[unsafe(method_family = none)]
         unsafe fn isInterruptible(&self) -> bool;
 
         #[method(isInteractive)]
+        #[unsafe(method_family = none)]
         unsafe fn isInteractive(&self) -> bool;
 
         #[method(isCancelled)]
+        #[unsafe(method_family = none)]
         unsafe fn isCancelled(&self) -> bool;
 
         #[method(transitionDuration)]
+        #[unsafe(method_family = none)]
         unsafe fn transitionDuration(&self) -> NSTimeInterval;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(percentComplete)]
+        #[unsafe(method_family = none)]
         unsafe fn percentComplete(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(completionVelocity)]
+        #[unsafe(method_family = none)]
         unsafe fn completionVelocity(&self) -> CGFloat;
 
         #[cfg(feature = "UIView")]
         #[method(completionCurve)]
+        #[unsafe(method_family = none)]
         unsafe fn completionCurve(&self) -> UIViewAnimationCurve;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-        #[method_id(viewControllerForKey:)]
+        #[method(viewControllerForKey:)]
         #[unsafe(method_family = none)]
         unsafe fn viewControllerForKey(
             &self,
@@ -69,17 +79,18 @@ extern_protocol!(
         ) -> Option<Retained<UIViewController>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[method_id(viewForKey:)]
+        #[method(viewForKey:)]
         #[unsafe(method_family = none)]
         unsafe fn viewForKey(&self, key: &UITransitionContextViewKey) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[method_id(containerView)]
+        #[method(containerView)]
         #[unsafe(method_family = none)]
         unsafe fn containerView(&self) -> Retained<UIView>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(targetTransform)]
+        #[unsafe(method_family = none)]
         unsafe fn targetTransform(&self) -> CGAffineTransform;
     }
 );
@@ -91,6 +102,7 @@ extern_protocol!(
     {
         #[cfg(feature = "block2")]
         #[method(animateAlongsideTransition:completion:)]
+        #[unsafe(method_family = none)]
         unsafe fn animateAlongsideTransition_completion(
             &self,
             animation: Option<
@@ -111,6 +123,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView", feature = "block2"))]
         #[method(animateAlongsideTransitionInView:animation:completion:)]
+        #[unsafe(method_family = none)]
         unsafe fn animateAlongsideTransitionInView_animation_completion(
             &self,
             view: Option<&UIView>,
@@ -133,6 +146,7 @@ extern_protocol!(
         #[cfg(feature = "block2")]
         #[deprecated]
         #[method(notifyWhenInteractionEndsUsingBlock:)]
+        #[unsafe(method_family = none)]
         unsafe fn notifyWhenInteractionEndsUsingBlock(
             &self,
             handler: &block2::Block<
@@ -142,6 +156,7 @@ extern_protocol!(
 
         #[cfg(feature = "block2")]
         #[method(notifyWhenInteractionChangesUsingBlock:)]
+        #[unsafe(method_family = none)]
         unsafe fn notifyWhenInteractionChangesUsingBlock(
             &self,
             handler: &block2::Block<
@@ -155,7 +170,7 @@ extern_methods!(
     /// UIViewControllerTransitionCoordinator
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIViewController {
-        #[method_id(transitionCoordinator)]
+        #[method(transitionCoordinator)]
         #[unsafe(method_family = none)]
         pub unsafe fn transitionCoordinator(
             &self,

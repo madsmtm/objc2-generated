@@ -35,19 +35,23 @@ unsafe impl NSObjectProtocol for PHAssetResourceRequestOptions {}
 extern_methods!(
     unsafe impl PHAssetResourceRequestOptions {
         #[method(isNetworkAccessAllowed)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isNetworkAccessAllowed(&self) -> bool;
 
         /// Setter for [`isNetworkAccessAllowed`][Self::isNetworkAccessAllowed].
         #[method(setNetworkAccessAllowed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setNetworkAccessAllowed(&self, network_access_allowed: bool);
 
         #[cfg(feature = "block2")]
         #[method(progressHandler)]
+        #[unsafe(method_family = none)]
         pub unsafe fn progressHandler(&self) -> PHAssetResourceProgressHandler;
 
         #[cfg(feature = "block2")]
         /// Setter for [`progressHandler`][Self::progressHandler].
         #[method(setProgressHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setProgressHandler(&self, progress_handler: PHAssetResourceProgressHandler);
     }
 );
@@ -55,11 +59,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHAssetResourceRequestOptions {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -76,12 +80,13 @@ unsafe impl NSObjectProtocol for PHAssetResourceManager {}
 
 extern_methods!(
     unsafe impl PHAssetResourceManager {
-        #[method_id(defaultManager)]
+        #[method(defaultManager)]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultManager() -> Retained<PHAssetResourceManager>;
 
         #[cfg(all(feature = "PHAssetResource", feature = "block2"))]
         #[method(requestDataForAssetResource:options:dataReceivedHandler:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestDataForAssetResource_options_dataReceivedHandler_completionHandler(
             &self,
             resource: &PHAssetResource,
@@ -92,6 +97,7 @@ extern_methods!(
 
         #[cfg(all(feature = "PHAssetResource", feature = "block2"))]
         #[method(writeDataForAssetResource:toFile:options:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn writeDataForAssetResource_toFile_options_completionHandler(
             &self,
             resource: &PHAssetResource,
@@ -101,6 +107,7 @@ extern_methods!(
         );
 
         #[method(cancelDataRequest:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cancelDataRequest(&self, request_id: PHAssetResourceDataRequestID);
     }
 );
@@ -108,11 +115,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHAssetResourceManager {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

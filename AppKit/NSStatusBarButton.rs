@@ -130,10 +130,12 @@ extern_methods!(
     unsafe impl NSStatusBarButton {
         /// If `YES`, the status bar icon has a disabled/off appearance while still being functional, such as allowing selection and actions. Defaults to `NO`.
         #[method(appearsDisabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn appearsDisabled(&self) -> bool;
 
         /// Setter for [`appearsDisabled`][Self::appearsDisabled].
         #[method(setAppearsDisabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAppearsDisabled(&self, appears_disabled: bool);
     }
 );
@@ -159,7 +161,7 @@ extern_methods!(
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized button object.
-        #[method_id(buttonWithTitle:image:target:action:)]
+        #[method(buttonWithTitle:image:target:action:)]
         #[unsafe(method_family = none)]
         pub unsafe fn buttonWithTitle_image_target_action(
             title: &NSString,
@@ -178,7 +180,7 @@ extern_methods!(
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized button object.
-        #[method_id(buttonWithTitle:target:action:)]
+        #[method(buttonWithTitle:target:action:)]
         #[unsafe(method_family = none)]
         pub unsafe fn buttonWithTitle_target_action(
             title: &NSString,
@@ -197,7 +199,7 @@ extern_methods!(
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized button object.
-        #[method_id(buttonWithImage:target:action:)]
+        #[method(buttonWithImage:target:action:)]
         #[unsafe(method_family = none)]
         pub unsafe fn buttonWithImage_target_action(
             image: &NSImage,
@@ -215,7 +217,7 @@ extern_methods!(
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized button object.
-        #[method_id(checkboxWithTitle:target:action:)]
+        #[method(checkboxWithTitle:target:action:)]
         #[unsafe(method_family = none)]
         pub unsafe fn checkboxWithTitle_target_action(
             title: &NSString,
@@ -233,7 +235,7 @@ extern_methods!(
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized button object.
-        #[method_id(radioButtonWithTitle:target:action:)]
+        #[method(radioButtonWithTitle:target:action:)]
         #[unsafe(method_family = none)]
         pub unsafe fn radioButtonWithTitle_target_action(
             title: &NSString,
@@ -253,11 +255,11 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSStatusBarButton {
-        #[method_id(initWithFrame:)]
+        #[method(initWithFrame:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -275,7 +277,7 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSStatusBarButton {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -290,7 +292,7 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSStatusBarButton {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

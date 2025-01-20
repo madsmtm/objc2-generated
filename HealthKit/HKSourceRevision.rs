@@ -35,21 +35,21 @@ extern_methods!(
     unsafe impl HKSourceRevision {
         #[cfg(feature = "HKSource")]
         /// The HKSource of the receiver.
-        #[method_id(source)]
+        #[method(source)]
         #[unsafe(method_family = none)]
         pub unsafe fn source(&self) -> Retained<HKSource>;
 
         /// The version of the source property.
         ///
         /// This value is taken from the CFBundleVersion of the source. May be nil for older data.
-        #[method_id(version)]
+        #[method(version)]
         #[unsafe(method_family = none)]
         pub unsafe fn version(&self) -> Option<Retained<NSString>>;
 
         /// Represents the product type of the device running HealthKit when the object was created.
         ///
         /// This value may be nil for older data, which indicates an unknown product type.
-        #[method_id(productType)]
+        #[method(productType)]
         #[unsafe(method_family = none)]
         pub unsafe fn productType(&self) -> Option<Retained<NSString>>;
 
@@ -58,12 +58,13 @@ extern_methods!(
         /// iOS versions after 8.0 but prior to 8.2 are saved as 8.0, and iOS version after 8.2 but prior to 9.0
         /// are saved as 8.2.
         #[method(operatingSystemVersion)]
+        #[unsafe(method_family = none)]
         pub unsafe fn operatingSystemVersion(&self) -> NSOperatingSystemVersion;
 
         #[cfg(feature = "HKSource")]
         /// Initializes a new HKSourceRevision with the given source, version, product type, and operating system
         /// version.
-        #[method_id(initWithSource:version:productType:operatingSystemVersion:)]
+        #[method(initWithSource:version:productType:operatingSystemVersion:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSource_version_productType_operatingSystemVersion(
             this: Allocated<Self>,
@@ -75,7 +76,7 @@ extern_methods!(
 
         #[cfg(feature = "HKSource")]
         /// Initializes a new HKSourceRevision with the given source and version.
-        #[method_id(initWithSource:version:)]
+        #[method(initWithSource:version:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSource_version(
             this: Allocated<Self>,
@@ -83,7 +84,7 @@ extern_methods!(
             version: Option<&NSString>,
         ) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -92,7 +93,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKSourceRevision {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

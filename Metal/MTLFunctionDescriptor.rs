@@ -68,52 +68,57 @@ unsafe impl NSObjectProtocol for MTLFunctionDescriptor {}
 extern_methods!(
     unsafe impl MTLFunctionDescriptor {
         /// Create an autoreleased function descriptor
-        #[method_id(functionDescriptor)]
+        #[method(functionDescriptor)]
         #[unsafe(method_family = none)]
         pub fn functionDescriptor() -> Retained<MTLFunctionDescriptor>;
 
         /// The name of the `visible` function to find.
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         pub fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
         #[method(setName:)]
+        #[unsafe(method_family = none)]
         pub fn setName(&self, name: Option<&NSString>);
 
         /// An optional new name for a `visible` function to allow reuse with different specializations.
-        #[method_id(specializedName)]
+        #[method(specializedName)]
         #[unsafe(method_family = none)]
         pub fn specializedName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`specializedName`][Self::specializedName].
         #[method(setSpecializedName:)]
+        #[unsafe(method_family = none)]
         pub fn setSpecializedName(&self, specialized_name: Option<&NSString>);
 
         #[cfg(feature = "MTLFunctionConstantValues")]
         /// The set of constant values assigned to the function constants. Compilation fails if you do not provide valid constant values for all required function constants.
-        #[method_id(constantValues)]
+        #[method(constantValues)]
         #[unsafe(method_family = none)]
         pub fn constantValues(&self) -> Option<Retained<MTLFunctionConstantValues>>;
 
         #[cfg(feature = "MTLFunctionConstantValues")]
         /// Setter for [`constantValues`][Self::constantValues].
         #[method(setConstantValues:)]
+        #[unsafe(method_family = none)]
         pub fn setConstantValues(&self, constant_values: Option<&MTLFunctionConstantValues>);
 
         /// The options to use for this new `MTLFunction`.
         #[method(options)]
+        #[unsafe(method_family = none)]
         pub fn options(&self) -> MTLFunctionOptions;
 
         /// Setter for [`options`][Self::options].
         #[method(setOptions:)]
+        #[unsafe(method_family = none)]
         pub fn setOptions(&self, options: MTLFunctionOptions);
 
         #[cfg(feature = "MTLBinaryArchive")]
         /// The array of archives to be searched.
         ///
         /// Binary archives to be searched for precompiled functions during the compilation of this function.
-        #[method_id(binaryArchives)]
+        #[method(binaryArchives)]
         #[unsafe(method_family = none)]
         pub unsafe fn binaryArchives(
             &self,
@@ -122,6 +127,7 @@ extern_methods!(
         #[cfg(feature = "MTLBinaryArchive")]
         /// Setter for [`binaryArchives`][Self::binaryArchives].
         #[method(setBinaryArchives:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBinaryArchives(
             &self,
             binary_archives: Option<&NSArray<ProtocolObject<dyn MTLBinaryArchive>>>,
@@ -132,11 +138,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLFunctionDescriptor {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
     }
@@ -171,11 +177,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLIntersectionFunctionDescriptor {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

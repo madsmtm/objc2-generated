@@ -25,6 +25,7 @@ extern_protocol!(
         ///
         /// Parameter `message`: - The message for which the action will be performed. Might or might not contain the full message body data.
         #[method(decideActionForMessage:completionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn decideActionForMessage_completionHandler(
             &self,
             message: &MEMessage,
@@ -36,7 +37,7 @@ extern_protocol!(
         /// `-[MEComposeSessionHandler``additionalHeadersForSession:]`
         /// Returns: An array of header keys. Mail will normalize the headers to lower case before fetching them from the mail server.
         #[optional]
-        #[method_id(requiredHeaders)]
+        #[method(requiredHeaders)]
         #[unsafe(method_family = none)]
         unsafe fn requiredHeaders(&self) -> Retained<NSArray<NSString>>;
     }

@@ -22,32 +22,34 @@ unsafe impl UIInteraction for UIDropInteraction {}
 
 extern_methods!(
     unsafe impl UIDropInteraction {
-        #[method_id(initWithDelegate:)]
+        #[method(initWithDelegate:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDelegate(
             this: Allocated<Self>,
             delegate: &ProtocolObject<dyn UIDropInteractionDelegate>,
         ) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIDropInteractionDelegate>>>;
 
         #[method(allowsSimultaneousDropSessions)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowsSimultaneousDropSessions(&self) -> bool;
 
         /// Setter for [`allowsSimultaneousDropSessions`][Self::allowsSimultaneousDropSessions].
         #[method(setAllowsSimultaneousDropSessions:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAllowsSimultaneousDropSessions(
             &self,
             allows_simultaneous_drop_sessions: bool,
@@ -97,36 +99,41 @@ unsafe impl NSObjectProtocol for UIDropProposal {}
 
 extern_methods!(
     unsafe impl UIDropProposal {
-        #[method_id(initWithDropOperation:)]
+        #[method(initWithDropOperation:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDropOperation(
             this: Allocated<Self>,
             operation: UIDropOperation,
         ) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method(operation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn operation(&self) -> UIDropOperation;
 
         #[method(isPrecise)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isPrecise(&self) -> bool;
 
         /// Setter for [`isPrecise`][Self::isPrecise].
         #[method(setPrecise:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPrecise(&self, precise: bool);
 
         #[method(prefersFullSizePreview)]
+        #[unsafe(method_family = none)]
         pub unsafe fn prefersFullSizePreview(&self) -> bool;
 
         /// Setter for [`prefersFullSizePreview`][Self::prefersFullSizePreview].
         #[method(setPrefersFullSizePreview:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPrefersFullSizePreview(&self, prefers_full_size_preview: bool);
     }
 );
@@ -137,6 +144,7 @@ extern_protocol!(
         #[cfg(feature = "UIDragSession")]
         #[optional]
         #[method(dropInteraction:canHandleSession:)]
+        #[unsafe(method_family = none)]
         unsafe fn dropInteraction_canHandleSession(
             &self,
             interaction: &UIDropInteraction,
@@ -146,6 +154,7 @@ extern_protocol!(
         #[cfg(feature = "UIDragSession")]
         #[optional]
         #[method(dropInteraction:sessionDidEnter:)]
+        #[unsafe(method_family = none)]
         unsafe fn dropInteraction_sessionDidEnter(
             &self,
             interaction: &UIDropInteraction,
@@ -154,7 +163,7 @@ extern_protocol!(
 
         #[cfg(feature = "UIDragSession")]
         #[optional]
-        #[method_id(dropInteraction:sessionDidUpdate:)]
+        #[method(dropInteraction:sessionDidUpdate:)]
         #[unsafe(method_family = none)]
         unsafe fn dropInteraction_sessionDidUpdate(
             &self,
@@ -165,6 +174,7 @@ extern_protocol!(
         #[cfg(feature = "UIDragSession")]
         #[optional]
         #[method(dropInteraction:sessionDidExit:)]
+        #[unsafe(method_family = none)]
         unsafe fn dropInteraction_sessionDidExit(
             &self,
             interaction: &UIDropInteraction,
@@ -174,6 +184,7 @@ extern_protocol!(
         #[cfg(feature = "UIDragSession")]
         #[optional]
         #[method(dropInteraction:performDrop:)]
+        #[unsafe(method_family = none)]
         unsafe fn dropInteraction_performDrop(
             &self,
             interaction: &UIDropInteraction,
@@ -183,6 +194,7 @@ extern_protocol!(
         #[cfg(feature = "UIDragSession")]
         #[optional]
         #[method(dropInteraction:concludeDrop:)]
+        #[unsafe(method_family = none)]
         unsafe fn dropInteraction_concludeDrop(
             &self,
             interaction: &UIDropInteraction,
@@ -192,6 +204,7 @@ extern_protocol!(
         #[cfg(feature = "UIDragSession")]
         #[optional]
         #[method(dropInteraction:sessionDidEnd:)]
+        #[unsafe(method_family = none)]
         unsafe fn dropInteraction_sessionDidEnd(
             &self,
             interaction: &UIDropInteraction,
@@ -204,7 +217,7 @@ extern_protocol!(
             feature = "UITargetedPreview"
         ))]
         #[optional]
-        #[method_id(dropInteraction:previewForDroppingItem:withDefault:)]
+        #[method(dropInteraction:previewForDroppingItem:withDefault:)]
         #[unsafe(method_family = none)]
         unsafe fn dropInteraction_previewForDroppingItem_withDefault(
             &self,
@@ -216,6 +229,7 @@ extern_protocol!(
         #[cfg(all(feature = "UIDragInteraction", feature = "UIDragItem"))]
         #[optional]
         #[method(dropInteraction:item:willAnimateDropWithAnimator:)]
+        #[unsafe(method_family = none)]
         unsafe fn dropInteraction_item_willAnimateDropWithAnimator(
             &self,
             interaction: &UIDropInteraction,

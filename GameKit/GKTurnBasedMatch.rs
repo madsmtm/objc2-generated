@@ -121,25 +121,28 @@ unsafe impl NSObjectProtocol for GKTurnBasedParticipant {}
 extern_methods!(
     unsafe impl GKTurnBasedParticipant {
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
-        #[method_id(player)]
+        #[method(player)]
         #[unsafe(method_family = none)]
         pub unsafe fn player(&self) -> Option<Retained<GKPlayer>>;
 
-        #[method_id(lastTurnDate)]
+        #[method(lastTurnDate)]
         #[unsafe(method_family = none)]
         pub unsafe fn lastTurnDate(&self) -> Option<Retained<NSDate>>;
 
         #[method(status)]
+        #[unsafe(method_family = none)]
         pub unsafe fn status(&self) -> GKTurnBasedParticipantStatus;
 
         #[method(matchOutcome)]
+        #[unsafe(method_family = none)]
         pub unsafe fn matchOutcome(&self) -> GKTurnBasedMatchOutcome;
 
         /// Setter for [`matchOutcome`][Self::matchOutcome].
         #[method(setMatchOutcome:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMatchOutcome(&self, match_outcome: GKTurnBasedMatchOutcome);
 
-        #[method_id(timeoutDate)]
+        #[method(timeoutDate)]
         #[unsafe(method_family = none)]
         pub unsafe fn timeoutDate(&self) -> Option<Retained<NSDate>>;
     }
@@ -148,11 +151,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKTurnBasedParticipant {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -163,7 +166,7 @@ extern_methods!(
     unsafe impl GKTurnBasedParticipant {
         /// * This property is obsolete. **
         #[deprecated]
-        #[method_id(playerID)]
+        #[method(playerID)]
         #[unsafe(method_family = none)]
         pub unsafe fn playerID(&self) -> Option<Retained<NSString>>;
     }
@@ -176,6 +179,7 @@ extern_protocol!(
         /// If Game Center initiates a match the developer should create a GKTurnBasedMatch from playersToInvite and present a GKTurnbasedMatchmakerViewController.
         #[optional]
         #[method(player:didRequestMatchWithOtherPlayers:)]
+        #[unsafe(method_family = none)]
         unsafe fn player_didRequestMatchWithOtherPlayers(
             &self,
             player: &GKPlayer,
@@ -192,6 +196,7 @@ extern_protocol!(
         /// Because of this the app needs to be prepared to handle this even while the player is taking a turn in an existing match.  The boolean indicates whether this event launched or brought to forground the app.
         #[optional]
         #[method(player:receivedTurnEventForMatch:didBecomeActive:)]
+        #[unsafe(method_family = none)]
         unsafe fn player_receivedTurnEventForMatch_didBecomeActive(
             &self,
             player: &GKPlayer,
@@ -203,12 +208,14 @@ extern_protocol!(
         /// called when the match has ended.
         #[optional]
         #[method(player:matchEnded:)]
+        #[unsafe(method_family = none)]
         unsafe fn player_matchEnded(&self, player: &GKPlayer, r#match: &GKTurnBasedMatch);
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         /// this is called when a player receives an exchange request from another player.
         #[optional]
         #[method(player:receivedExchangeRequest:forMatch:)]
+        #[unsafe(method_family = none)]
         unsafe fn player_receivedExchangeRequest_forMatch(
             &self,
             player: &GKPlayer,
@@ -220,6 +227,7 @@ extern_protocol!(
         /// this is called when an exchange is canceled by the sender.
         #[optional]
         #[method(player:receivedExchangeCancellation:forMatch:)]
+        #[unsafe(method_family = none)]
         unsafe fn player_receivedExchangeCancellation_forMatch(
             &self,
             player: &GKPlayer,
@@ -231,6 +239,7 @@ extern_protocol!(
         /// called when all players either respond or timeout responding to this request.  This is sent to both the turn holder and the initiator of the exchange
         #[optional]
         #[method(player:receivedExchangeReplies:forCompletedExchange:forMatch:)]
+        #[unsafe(method_family = none)]
         unsafe fn player_receivedExchangeReplies_forCompletedExchange_forMatch(
             &self,
             player: &GKPlayer,
@@ -243,6 +252,7 @@ extern_protocol!(
         /// Called when a player chooses to quit a match and that player has the current turn.  The developer should call participantQuitInTurnWithOutcome:nextParticipants:turnTimeout:matchData:completionHandler: on the match passing in appropriate values.  They can also update matchOutcome for other players as appropriate.
         #[optional]
         #[method(player:wantsToQuitMatch:)]
+        #[unsafe(method_family = none)]
         unsafe fn player_wantsToQuitMatch(&self, player: &GKPlayer, r#match: &GKTurnBasedMatch);
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
@@ -250,6 +260,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(player:didRequestMatchWithPlayers:)]
+        #[unsafe(method_family = none)]
         unsafe fn player_didRequestMatchWithPlayers(
             &self,
             player: &GKPlayer,
@@ -279,67 +290,74 @@ unsafe impl NSObjectProtocol for GKTurnBasedMatch {}
 
 extern_methods!(
     unsafe impl GKTurnBasedMatch {
-        #[method_id(matchID)]
+        #[method(matchID)]
         #[unsafe(method_family = none)]
         pub unsafe fn matchID(&self) -> Retained<NSString>;
 
-        #[method_id(creationDate)]
+        #[method(creationDate)]
         #[unsafe(method_family = none)]
         pub unsafe fn creationDate(&self) -> Retained<NSDate>;
 
-        #[method_id(participants)]
+        #[method(participants)]
         #[unsafe(method_family = none)]
         pub unsafe fn participants(&self) -> Retained<NSArray<GKTurnBasedParticipant>>;
 
         #[method(status)]
+        #[unsafe(method_family = none)]
         pub unsafe fn status(&self) -> GKTurnBasedMatchStatus;
 
-        #[method_id(currentParticipant)]
+        #[method(currentParticipant)]
         #[unsafe(method_family = none)]
         pub unsafe fn currentParticipant(&self) -> Option<Retained<GKTurnBasedParticipant>>;
 
-        #[method_id(matchData)]
+        #[method(matchData)]
         #[unsafe(method_family = none)]
         pub unsafe fn matchData(&self) -> Option<Retained<NSData>>;
 
         #[method(setLocalizableMessageWithKey:arguments:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLocalizableMessageWithKey_arguments(
             &self,
             key: &NSString,
             arguments: Option<&NSArray<NSString>>,
         );
 
-        #[method_id(message)]
+        #[method(message)]
         #[unsafe(method_family = none)]
         pub unsafe fn message(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`message`][Self::message].
         #[method(setMessage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMessage(&self, message: Option<&NSString>);
 
         #[method(matchDataMaximumSize)]
+        #[unsafe(method_family = none)]
         pub unsafe fn matchDataMaximumSize(&self) -> NSUInteger;
 
-        #[method_id(exchanges)]
+        #[method(exchanges)]
         #[unsafe(method_family = none)]
         pub unsafe fn exchanges(&self) -> Option<Retained<NSArray<GKTurnBasedExchange>>>;
 
-        #[method_id(activeExchanges)]
+        #[method(activeExchanges)]
         #[unsafe(method_family = none)]
         pub unsafe fn activeExchanges(&self) -> Option<Retained<NSArray<GKTurnBasedExchange>>>;
 
-        #[method_id(completedExchanges)]
+        #[method(completedExchanges)]
         #[unsafe(method_family = none)]
         pub unsafe fn completedExchanges(&self) -> Option<Retained<NSArray<GKTurnBasedExchange>>>;
 
         #[method(exchangeDataMaximumSize)]
+        #[unsafe(method_family = none)]
         pub unsafe fn exchangeDataMaximumSize(&self) -> NSUInteger;
 
         #[method(exchangeMaxInitiatedExchangesPerPlayer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn exchangeMaxInitiatedExchangesPerPlayer(&self) -> NSUInteger;
 
         #[cfg(all(feature = "GKMatchmaker", feature = "block2"))]
         #[method(findMatchForRequest:withCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn findMatchForRequest_withCompletionHandler(
             request: &GKMatchRequest,
             completion_handler: &block2::Block<dyn Fn(*mut GKTurnBasedMatch, *mut NSError)>,
@@ -347,6 +365,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[method(loadMatchesWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loadMatchesWithCompletionHandler(
             completion_handler: Option<
                 &block2::Block<dyn Fn(*mut NSArray<GKTurnBasedMatch>, *mut NSError)>,
@@ -355,6 +374,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[method(loadMatchWithID:withCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loadMatchWithID_withCompletionHandler(
             match_id: &NSString,
             completion_handler: Option<&block2::Block<dyn Fn(*mut GKTurnBasedMatch, *mut NSError)>>,
@@ -362,6 +382,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[method(rematchWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rematchWithCompletionHandler(
             &self,
             completion_handler: Option<&block2::Block<dyn Fn(*mut GKTurnBasedMatch, *mut NSError)>>,
@@ -369,6 +390,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[method(acceptInviteWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn acceptInviteWithCompletionHandler(
             &self,
             completion_handler: Option<&block2::Block<dyn Fn(*mut GKTurnBasedMatch, *mut NSError)>>,
@@ -376,6 +398,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[method(declineInviteWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn declineInviteWithCompletionHandler(
             &self,
             completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
@@ -383,6 +406,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[method(removeWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeWithCompletionHandler(
             &self,
             completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
@@ -390,6 +414,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[method(loadMatchDataWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loadMatchDataWithCompletionHandler(
             &self,
             completion_handler: Option<&block2::Block<dyn Fn(*mut NSData, *mut NSError)>>,
@@ -397,6 +422,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[method(endTurnWithNextParticipants:turnTimeout:matchData:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn endTurnWithNextParticipants_turnTimeout_matchData_completionHandler(
             &self,
             next_participants: &NSArray<GKTurnBasedParticipant>,
@@ -407,6 +433,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[method(participantQuitInTurnWithOutcome:nextParticipants:turnTimeout:matchData:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn participantQuitInTurnWithOutcome_nextParticipants_turnTimeout_matchData_completionHandler(
             &self,
             match_outcome: GKTurnBasedMatchOutcome,
@@ -418,6 +445,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[method(participantQuitOutOfTurnWithOutcome:withCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn participantQuitOutOfTurnWithOutcome_withCompletionHandler(
             &self,
             match_outcome: GKTurnBasedMatchOutcome,
@@ -426,6 +454,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[method(endMatchInTurnWithMatchData:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn endMatchInTurnWithMatchData_completionHandler(
             &self,
             match_data: &NSData,
@@ -435,6 +464,7 @@ extern_methods!(
         #[cfg(all(feature = "GKAchievement", feature = "GKScore", feature = "block2"))]
         #[deprecated]
         #[method(endMatchInTurnWithMatchData:scores:achievements:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn endMatchInTurnWithMatchData_scores_achievements_completionHandler(
             &self,
             match_data: &NSData,
@@ -445,6 +475,7 @@ extern_methods!(
 
         #[cfg(all(feature = "GKLeaderboardScore", feature = "block2"))]
         #[method(endMatchInTurnWithMatchData:leaderboardScores:achievements:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn endMatchInTurnWithMatchData_leaderboardScores_achievements_completionHandler(
             &self,
             match_data: &NSData,
@@ -455,6 +486,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[method(saveCurrentTurnWithMatchData:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn saveCurrentTurnWithMatchData_completionHandler(
             &self,
             match_data: &NSData,
@@ -463,6 +495,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[method(saveMergedMatchData:withResolvedExchanges:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn saveMergedMatchData_withResolvedExchanges_completionHandler(
             &self,
             match_data: &NSData,
@@ -472,6 +505,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[method(sendExchangeToParticipants:data:localizableMessageKey:arguments:timeout:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sendExchangeToParticipants_data_localizableMessageKey_arguments_timeout_completionHandler(
             &self,
             participants: &NSArray<GKTurnBasedParticipant>,
@@ -486,6 +520,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[method(sendReminderToParticipants:localizableMessageKey:arguments:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sendReminderToParticipants_localizableMessageKey_arguments_completionHandler(
             &self,
             participants: &NSArray<GKTurnBasedParticipant>,
@@ -497,6 +532,7 @@ extern_methods!(
         #[cfg(feature = "block2")]
         #[deprecated]
         #[method(endTurnWithNextParticipant:matchData:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn endTurnWithNextParticipant_matchData_completionHandler(
             &self,
             next_participant: &GKTurnBasedParticipant,
@@ -507,6 +543,7 @@ extern_methods!(
         #[cfg(feature = "block2")]
         #[deprecated]
         #[method(participantQuitInTurnWithOutcome:nextParticipant:matchData:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn participantQuitInTurnWithOutcome_nextParticipant_matchData_completionHandler(
             &self,
             match_outcome: GKTurnBasedMatchOutcome,
@@ -520,11 +557,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKTurnBasedMatch {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -577,47 +614,49 @@ unsafe impl NSObjectProtocol for GKTurnBasedExchange {}
 
 extern_methods!(
     unsafe impl GKTurnBasedExchange {
-        #[method_id(exchangeID)]
+        #[method(exchangeID)]
         #[unsafe(method_family = none)]
         pub unsafe fn exchangeID(&self) -> Retained<NSString>;
 
-        #[method_id(sender)]
+        #[method(sender)]
         #[unsafe(method_family = none)]
         pub unsafe fn sender(&self) -> Retained<GKTurnBasedParticipant>;
 
-        #[method_id(recipients)]
+        #[method(recipients)]
         #[unsafe(method_family = none)]
         pub unsafe fn recipients(&self) -> Retained<NSArray<GKTurnBasedParticipant>>;
 
         #[method(status)]
+        #[unsafe(method_family = none)]
         pub unsafe fn status(&self) -> GKTurnBasedExchangeStatus;
 
-        #[method_id(message)]
+        #[method(message)]
         #[unsafe(method_family = none)]
         pub unsafe fn message(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(data)]
+        #[method(data)]
         #[unsafe(method_family = none)]
         pub unsafe fn data(&self) -> Option<Retained<NSData>>;
 
-        #[method_id(sendDate)]
+        #[method(sendDate)]
         #[unsafe(method_family = none)]
         pub unsafe fn sendDate(&self) -> Retained<NSDate>;
 
-        #[method_id(timeoutDate)]
+        #[method(timeoutDate)]
         #[unsafe(method_family = none)]
         pub unsafe fn timeoutDate(&self) -> Option<Retained<NSDate>>;
 
-        #[method_id(completionDate)]
+        #[method(completionDate)]
         #[unsafe(method_family = none)]
         pub unsafe fn completionDate(&self) -> Option<Retained<NSDate>>;
 
-        #[method_id(replies)]
+        #[method(replies)]
         #[unsafe(method_family = none)]
         pub unsafe fn replies(&self) -> Option<Retained<NSArray<GKTurnBasedExchangeReply>>>;
 
         #[cfg(feature = "block2")]
         #[method(cancelWithLocalizableMessageKey:arguments:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cancelWithLocalizableMessageKey_arguments_completionHandler(
             &self,
             key: &NSString,
@@ -627,6 +666,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[method(replyWithLocalizableMessageKey:arguments:data:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn replyWithLocalizableMessageKey_arguments_data_completionHandler(
             &self,
             key: &NSString,
@@ -640,11 +680,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKTurnBasedExchange {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -661,19 +701,19 @@ unsafe impl NSObjectProtocol for GKTurnBasedExchangeReply {}
 
 extern_methods!(
     unsafe impl GKTurnBasedExchangeReply {
-        #[method_id(recipient)]
+        #[method(recipient)]
         #[unsafe(method_family = none)]
         pub unsafe fn recipient(&self) -> Retained<GKTurnBasedParticipant>;
 
-        #[method_id(message)]
+        #[method(message)]
         #[unsafe(method_family = none)]
         pub unsafe fn message(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(data)]
+        #[method(data)]
         #[unsafe(method_family = none)]
         pub unsafe fn data(&self) -> Option<Retained<NSData>>;
 
-        #[method_id(replyDate)]
+        #[method(replyDate)]
         #[unsafe(method_family = none)]
         pub unsafe fn replyDate(&self) -> Option<Retained<NSDate>>;
     }
@@ -682,11 +722,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKTurnBasedExchangeReply {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -698,10 +738,12 @@ extern_protocol!(
     pub unsafe trait GKTurnBasedEventHandlerDelegate {
         #[deprecated]
         #[method(handleInviteFromGameCenter:)]
+        #[unsafe(method_family = none)]
         unsafe fn handleInviteFromGameCenter(&self, players_to_invite: &NSArray<NSString>);
 
         #[deprecated]
         #[method(handleTurnEventForMatch:didBecomeActive:)]
+        #[unsafe(method_family = none)]
         unsafe fn handleTurnEventForMatch_didBecomeActive(
             &self,
             r#match: &GKTurnBasedMatch,
@@ -711,11 +753,13 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(handleTurnEventForMatch:)]
+        #[unsafe(method_family = none)]
         unsafe fn handleTurnEventForMatch(&self, r#match: &GKTurnBasedMatch);
 
         #[deprecated]
         #[optional]
         #[method(handleMatchEnded:)]
+        #[unsafe(method_family = none)]
         unsafe fn handleMatchEnded(&self, r#match: &GKTurnBasedMatch);
     }
 );
@@ -733,12 +777,12 @@ unsafe impl NSObjectProtocol for GKTurnBasedEventHandler {}
 extern_methods!(
     unsafe impl GKTurnBasedEventHandler {
         #[deprecated]
-        #[method_id(sharedTurnBasedEventHandler)]
+        #[method(sharedTurnBasedEventHandler)]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedTurnBasedEventHandler() -> Retained<GKTurnBasedEventHandler>;
 
         #[deprecated]
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<NSObject>>;
 
@@ -746,6 +790,7 @@ extern_methods!(
         /// Setter for [`delegate`][Self::delegate].
         #[deprecated]
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&NSObject>);
     }
 );
@@ -753,11 +798,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKTurnBasedEventHandler {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

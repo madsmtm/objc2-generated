@@ -44,7 +44,7 @@ unsafe impl<TriggerValueType: ?Sized> NSObjectProtocol for HMCharacteristicEvent
 extern_methods!(
     #[cfg(feature = "HMEvent")]
     unsafe impl<TriggerValueType: Message> HMCharacteristicEvent<TriggerValueType> {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -62,7 +62,7 @@ extern_methods!(
         ///
         ///
         /// Returns: Instance object representing the characteristic event.
-        #[method_id(initWithCharacteristic:triggerValue:)]
+        #[method(initWithCharacteristic:triggerValue:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCharacteristic_triggerValue(
             this: Allocated<Self>,
@@ -72,13 +72,13 @@ extern_methods!(
 
         #[cfg(feature = "HMCharacteristic")]
         /// The characteristic associated with the event.
-        #[method_id(characteristic)]
+        #[method(characteristic)]
         #[unsafe(method_family = none)]
         pub unsafe fn characteristic(&self) -> Retained<HMCharacteristic>;
 
         /// The value of the characteristic that triggers the event.
         /// A value of nil corresponds to any change in the value of the characteristic.
-        #[method_id(triggerValue)]
+        #[method(triggerValue)]
         #[unsafe(method_family = none)]
         pub unsafe fn triggerValue(&self) -> Option<Retained<TriggerValueType>>;
 
@@ -96,6 +96,7 @@ extern_methods!(
         /// will be nil on success.
         #[deprecated = "No longer supported."]
         #[method(updateTriggerValue:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updateTriggerValue_completionHandler(
             &self,
             trigger_value: Option<&TriggerValueType>,
@@ -109,7 +110,7 @@ extern_methods!(
     #[cfg(feature = "HMEvent")]
     unsafe impl<TriggerValueType: Message> HMCharacteristicEvent<TriggerValueType> {
         #[deprecated = "HMEvent is abstract"]
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -158,29 +159,31 @@ unsafe impl<TriggerValueType: ?Sized> NSObjectProtocol
 extern_methods!(
     #[cfg(feature = "HMEvent")]
     unsafe impl<TriggerValueType: Message> HMMutableCharacteristicEvent<TriggerValueType> {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "HMCharacteristic")]
         /// The characteristic associated with the event.
-        #[method_id(characteristic)]
+        #[method(characteristic)]
         #[unsafe(method_family = none)]
         pub unsafe fn characteristic(&self) -> Retained<HMCharacteristic>;
 
         #[cfg(feature = "HMCharacteristic")]
         /// Setter for [`characteristic`][Self::characteristic].
         #[method(setCharacteristic:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCharacteristic(&self, characteristic: &HMCharacteristic);
 
         /// The value of the characteristic that triggers the event.
         /// A value of nil corresponds to any change in the value of the characteristic.
-        #[method_id(triggerValue)]
+        #[method(triggerValue)]
         #[unsafe(method_family = none)]
         pub unsafe fn triggerValue(&self) -> Option<Retained<TriggerValueType>>;
 
         /// Setter for [`triggerValue`][Self::triggerValue].
         #[method(setTriggerValue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTriggerValue(&self, trigger_value: Option<&TriggerValueType>);
     }
 );
@@ -203,7 +206,7 @@ extern_methods!(
         ///
         ///
         /// Returns: Instance object representing the characteristic event.
-        #[method_id(initWithCharacteristic:triggerValue:)]
+        #[method(initWithCharacteristic:triggerValue:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCharacteristic_triggerValue(
             this: Allocated<Self>,
@@ -218,7 +221,7 @@ extern_methods!(
     #[cfg(feature = "HMEvent")]
     unsafe impl<TriggerValueType: Message> HMMutableCharacteristicEvent<TriggerValueType> {
         #[deprecated = "HMEvent is abstract"]
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

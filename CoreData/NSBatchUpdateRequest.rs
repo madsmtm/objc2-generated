@@ -29,11 +29,11 @@ unsafe impl NSObjectProtocol for NSBatchUpdateRequest {}
 extern_methods!(
     #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl NSBatchUpdateRequest {
-        #[method_id(batchUpdateRequestWithEntityName:)]
+        #[method(batchUpdateRequestWithEntityName:)]
         #[unsafe(method_family = none)]
         pub unsafe fn batchUpdateRequestWithEntityName(entity_name: &NSString) -> Retained<Self>;
 
-        #[method_id(initWithEntityName:)]
+        #[method(initWithEntityName:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithEntityName(
             this: Allocated<Self>,
@@ -41,52 +41,58 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSEntityDescription")]
-        #[method_id(initWithEntity:)]
+        #[method(initWithEntity:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithEntity(
             this: Allocated<Self>,
             entity: &NSEntityDescription,
         ) -> Retained<Self>;
 
-        #[method_id(entityName)]
+        #[method(entityName)]
         #[unsafe(method_family = none)]
         pub unsafe fn entityName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSEntityDescription")]
-        #[method_id(entity)]
+        #[method(entity)]
         #[unsafe(method_family = none)]
         pub unsafe fn entity(&self) -> Retained<NSEntityDescription>;
 
-        #[method_id(predicate)]
+        #[method(predicate)]
         #[unsafe(method_family = none)]
         pub unsafe fn predicate(&self) -> Option<Retained<NSPredicate>>;
 
         /// Setter for [`predicate`][Self::predicate].
         #[method(setPredicate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPredicate(&self, predicate: Option<&NSPredicate>);
 
         #[method(includesSubentities)]
+        #[unsafe(method_family = none)]
         pub unsafe fn includesSubentities(&self) -> bool;
 
         /// Setter for [`includesSubentities`][Self::includesSubentities].
         #[method(setIncludesSubentities:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIncludesSubentities(&self, includes_subentities: bool);
 
         #[cfg(feature = "NSPersistentStoreResult")]
         #[method(resultType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resultType(&self) -> NSBatchUpdateRequestResultType;
 
         #[cfg(feature = "NSPersistentStoreResult")]
         /// Setter for [`resultType`][Self::resultType].
         #[method(setResultType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setResultType(&self, result_type: NSBatchUpdateRequestResultType);
 
-        #[method_id(propertiesToUpdate)]
+        #[method(propertiesToUpdate)]
         #[unsafe(method_family = none)]
         pub unsafe fn propertiesToUpdate(&self) -> Option<Retained<NSDictionary>>;
 
         /// Setter for [`propertiesToUpdate`][Self::propertiesToUpdate].
         #[method(setPropertiesToUpdate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPropertiesToUpdate(&self, properties_to_update: Option<&NSDictionary>);
     }
 );
@@ -95,11 +101,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl NSBatchUpdateRequest {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

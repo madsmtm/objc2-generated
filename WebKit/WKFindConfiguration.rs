@@ -26,24 +26,30 @@ unsafe impl NSObjectProtocol for WKFindConfiguration {}
 extern_methods!(
     unsafe impl WKFindConfiguration {
         #[method(backwards)]
+        #[unsafe(method_family = none)]
         pub unsafe fn backwards(&self) -> bool;
 
         /// Setter for [`backwards`][Self::backwards].
         #[method(setBackwards:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBackwards(&self, backwards: bool);
 
         #[method(caseSensitive)]
+        #[unsafe(method_family = none)]
         pub unsafe fn caseSensitive(&self) -> bool;
 
         /// Setter for [`caseSensitive`][Self::caseSensitive].
         #[method(setCaseSensitive:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCaseSensitive(&self, case_sensitive: bool);
 
         #[method(wraps)]
+        #[unsafe(method_family = none)]
         pub unsafe fn wraps(&self) -> bool;
 
         /// Setter for [`wraps`][Self::wraps].
         #[method(setWraps:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWraps(&self, wraps: bool);
     }
 );
@@ -51,11 +57,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKFindConfiguration {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

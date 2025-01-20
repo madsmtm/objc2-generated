@@ -25,18 +25,18 @@ unsafe impl NSObjectProtocol for HMCharacteristic {}
 extern_methods!(
     unsafe impl HMCharacteristic {
         /// The type of the characteristic, e.g. HMCharacteristicTypePowerState.
-        #[method_id(characteristicType)]
+        #[method(characteristicType)]
         #[unsafe(method_family = none)]
         pub unsafe fn characteristicType(&self) -> Retained<NSString>;
 
         /// The localized description of the characteristic.
-        #[method_id(localizedDescription)]
+        #[method(localizedDescription)]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedDescription(&self) -> Retained<NSString>;
 
         #[cfg(feature = "HMService")]
         /// Service that contains this characteristic.
-        #[method_id(service)]
+        #[method(service)]
         #[unsafe(method_family = none)]
         pub unsafe fn service(&self) -> Option<Retained<HMService>>;
 
@@ -45,13 +45,13 @@ extern_methods!(
         ///
         /// This value corresponds to the properties associated with this characteristic.
         /// The contents of the array are one or more HMCharacteristicProperty constants.
-        #[method_id(properties)]
+        #[method(properties)]
         #[unsafe(method_family = none)]
         pub unsafe fn properties(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "HMCharacteristicMetadata")]
         /// Meta data associated with the characteristic.
-        #[method_id(metadata)]
+        #[method(metadata)]
         #[unsafe(method_family = none)]
         pub unsafe fn metadata(&self) -> Option<Retained<HMCharacteristicMetadata>>;
 
@@ -60,7 +60,7 @@ extern_methods!(
         ///
         /// The value is a cached value that may have been updated as a result of prior
         /// interaction with the accessory.
-        #[method_id(value)]
+        #[method(value)]
         #[unsafe(method_family = none)]
         pub unsafe fn value(&self) -> Option<Retained<AnyObject>>;
 
@@ -69,10 +69,11 @@ extern_methods!(
         ///
         /// This property is reset to NO if the reachability of the accessory is NO.
         #[method(isNotificationEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isNotificationEnabled(&self) -> bool;
 
         /// A unique identifier for the characteristic.
-        #[method_id(uniqueIdentifier)]
+        #[method(uniqueIdentifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn uniqueIdentifier(&self) -> Retained<NSUUID>;
 
@@ -93,6 +94,7 @@ extern_methods!(
         /// float format. If validation fails, the error provided to the completion handler
         /// indicates the type of failure.
         #[method(writeValue:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn writeValue_completionHandler(
             &self,
             value: Option<&AnyObject>,
@@ -107,6 +109,7 @@ extern_methods!(
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
         #[method(readValueWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn readValueWithCompletionHandler(
             &self,
             completion: &block2::Block<dyn Fn(*mut NSError)>,
@@ -124,6 +127,7 @@ extern_methods!(
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
         #[method(enableNotification:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn enableNotification_completionHandler(
             &self,
             enable: bool,
@@ -141,6 +145,7 @@ extern_methods!(
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
         #[method(updateAuthorizationData:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updateAuthorizationData_completionHandler(
             &self,
             data: Option<&NSData>,
@@ -148,7 +153,7 @@ extern_methods!(
         );
 
         #[deprecated = "HMCharacteristic objects are created by their parent container objects. Directly creating them is not supported."]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -157,7 +162,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HMCharacteristic {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

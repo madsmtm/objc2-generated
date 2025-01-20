@@ -78,148 +78,159 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLAnchorElement {
         #[deprecated]
-        #[method_id(charset)]
+        #[method(charset)]
         #[unsafe(method_family = none)]
         pub unsafe fn charset(&self) -> Retained<NSString>;
 
         /// Setter for [`charset`][Self::charset].
         #[deprecated]
         #[method(setCharset:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCharset(&self, charset: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(coords)]
+        #[method(coords)]
         #[unsafe(method_family = none)]
         pub unsafe fn coords(&self) -> Retained<NSString>;
 
         /// Setter for [`coords`][Self::coords].
         #[deprecated]
         #[method(setCoords:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCoords(&self, coords: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(hreflang)]
+        #[method(hreflang)]
         #[unsafe(method_family = none)]
         pub unsafe fn hreflang(&self) -> Retained<NSString>;
 
         /// Setter for [`hreflang`][Self::hreflang].
         #[deprecated]
         #[method(setHreflang:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setHreflang(&self, hreflang: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
         #[deprecated]
         #[method(setName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(rel)]
+        #[method(rel)]
         #[unsafe(method_family = none)]
         pub unsafe fn rel(&self) -> Retained<NSString>;
 
         /// Setter for [`rel`][Self::rel].
         #[deprecated]
         #[method(setRel:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRel(&self, rel: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(rev)]
+        #[method(rev)]
         #[unsafe(method_family = none)]
         pub unsafe fn rev(&self) -> Retained<NSString>;
 
         /// Setter for [`rev`][Self::rev].
         #[deprecated]
         #[method(setRev:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRev(&self, rev: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(shape)]
+        #[method(shape)]
         #[unsafe(method_family = none)]
         pub unsafe fn shape(&self) -> Retained<NSString>;
 
         /// Setter for [`shape`][Self::shape].
         #[deprecated]
         #[method(setShape:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShape(&self, shape: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(target)]
+        #[method(target)]
         #[unsafe(method_family = none)]
         pub unsafe fn target(&self) -> Retained<NSString>;
 
         /// Setter for [`target`][Self::target].
         #[deprecated]
         #[method(setTarget:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTarget(&self, target: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(type)]
+        #[method(type)]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> Retained<NSString>;
 
         /// Setter for [`type`][Self::type].
         #[deprecated]
         #[method(setType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setType(&self, r#type: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(accessKey)]
+        #[method(accessKey)]
         #[unsafe(method_family = none)]
         pub unsafe fn accessKey(&self) -> Retained<NSString>;
 
         /// Setter for [`accessKey`][Self::accessKey].
         #[deprecated]
         #[method(setAccessKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAccessKey(&self, access_key: Option<&NSString>);
 
-        #[method_id(text)]
+        #[method(text)]
         #[unsafe(method_family = none)]
         pub unsafe fn text(&self) -> Retained<NSString>;
 
-        #[method_id(absoluteLinkURL)]
+        #[method(absoluteLinkURL)]
         #[unsafe(method_family = none)]
         pub unsafe fn absoluteLinkURL(&self) -> Retained<NSURL>;
 
         #[deprecated]
-        #[method_id(href)]
+        #[method(href)]
         #[unsafe(method_family = none)]
         pub unsafe fn href(&self) -> Retained<NSString>;
 
         /// Setter for [`href`][Self::href].
         #[deprecated]
         #[method(setHref:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setHref(&self, href: Option<&NSString>);
 
-        #[method_id(protocol)]
+        #[method(protocol)]
         #[unsafe(method_family = none)]
         pub unsafe fn protocol(&self) -> Retained<NSString>;
 
-        #[method_id(host)]
+        #[method(host)]
         #[unsafe(method_family = none)]
         pub unsafe fn host(&self) -> Retained<NSString>;
 
-        #[method_id(hostname)]
+        #[method(hostname)]
         #[unsafe(method_family = none)]
         pub unsafe fn hostname(&self) -> Retained<NSString>;
 
-        #[method_id(port)]
+        #[method(port)]
         #[unsafe(method_family = none)]
         pub unsafe fn port(&self) -> Retained<NSString>;
 
-        #[method_id(pathname)]
+        #[method(pathname)]
         #[unsafe(method_family = none)]
         pub unsafe fn pathname(&self) -> Retained<NSString>;
 
-        #[method_id(search)]
+        #[method(search)]
         #[unsafe(method_family = none)]
         pub unsafe fn search(&self) -> Retained<NSString>;
 
-        #[method_id(hashName)]
+        #[method(hashName)]
         #[unsafe(method_family = none)]
         pub unsafe fn hashName(&self) -> Retained<NSString>;
     }
@@ -236,7 +247,7 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLAnchorElement {
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -252,7 +263,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLAnchorElement {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

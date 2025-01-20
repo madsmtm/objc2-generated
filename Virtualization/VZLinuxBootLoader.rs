@@ -41,7 +41,7 @@ extern_methods!(
         /// Create a VZLinuxBootLoader with the Linux kernel passed as URL.
         ///
         /// Parameter `kernelURL`: The URL of Linux kernel on the local file system.
-        #[method_id(initWithKernelURL:)]
+        #[method(initWithKernelURL:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithKernelURL(
             this: Allocated<Self>,
@@ -49,12 +49,13 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// URL of the Linux kernel.
-        #[method_id(kernelURL)]
+        #[method(kernelURL)]
         #[unsafe(method_family = none)]
         pub unsafe fn kernelURL(&self) -> Retained<NSURL>;
 
         /// Setter for [`kernelURL`][Self::kernelURL].
         #[method(setKernelURL:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setKernelURL(&self, kernel_url: &NSURL);
 
         /// Define the command-line parameters passed to the kernel on boot.
@@ -63,21 +64,23 @@ extern_methods!(
         ///  https://www.kernel.org/doc/html/latest/admin-guide/kernel-parameters.html
         ///
         /// ```
-        #[method_id(commandLine)]
+        #[method(commandLine)]
         #[unsafe(method_family = none)]
         pub unsafe fn commandLine(&self) -> Retained<NSString>;
 
         /// Setter for [`commandLine`][Self::commandLine].
         #[method(setCommandLine:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCommandLine(&self, command_line: &NSString);
 
         /// Set the optional initial RAM disk. The RAM disk is mapped into memory before booting the kernel.
-        #[method_id(initialRamdiskURL)]
+        #[method(initialRamdiskURL)]
         #[unsafe(method_family = none)]
         pub unsafe fn initialRamdiskURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`initialRamdiskURL`][Self::initialRamdiskURL].
         #[method(setInitialRamdiskURL:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setInitialRamdiskURL(&self, initial_ramdisk_url: Option<&NSURL>);
     }
 );
@@ -86,11 +89,11 @@ extern_methods!(
     /// Methods declared on superclass `VZBootLoader`
     #[cfg(feature = "VZBootLoader")]
     unsafe impl VZLinuxBootLoader {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

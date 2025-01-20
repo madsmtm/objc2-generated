@@ -31,6 +31,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:didStartProvisionalLoadForFrame:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_didStartProvisionalLoadForFrame(
             &self,
             sender: Option<&WebView>,
@@ -47,6 +48,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:didReceiveServerRedirectForProvisionalLoadForFrame:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_didReceiveServerRedirectForProvisionalLoadForFrame(
             &self,
             sender: Option<&WebView>,
@@ -68,6 +70,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:didFailProvisionalLoadWithError:forFrame:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_didFailProvisionalLoadWithError_forFrame(
             &self,
             sender: Option<&WebView>,
@@ -93,6 +96,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:didCommitLoadForFrame:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_didCommitLoadForFrame(
             &self,
             sender: Option<&WebView>,
@@ -113,6 +117,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:didReceiveTitle:forFrame:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_didReceiveTitle_forFrame(
             &self,
             sender: Option<&WebView>,
@@ -132,6 +137,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:didReceiveIcon:forFrame:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_didReceiveIcon_forFrame(
             &self,
             sender: Option<&WebView>,
@@ -153,6 +159,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:didFinishLoadForFrame:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_didFinishLoadForFrame(
             &self,
             sender: Option<&WebView>,
@@ -173,6 +180,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:didFailLoadWithError:forFrame:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_didFailLoadWithError_forFrame(
             &self,
             sender: Option<&WebView>,
@@ -192,6 +200,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:didChangeLocationWithinPageForFrame:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_didChangeLocationWithinPageForFrame(
             &self,
             sender: Option<&WebView>,
@@ -217,6 +226,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:willPerformClientRedirectToURL:delay:fireDate:forFrame:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_willPerformClientRedirectToURL_delay_fireDate_forFrame(
             &self,
             sender: Option<&WebView>,
@@ -238,6 +248,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:didCancelClientRedirectForFrame:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_didCancelClientRedirectForFrame(
             &self,
             sender: Option<&WebView>,
@@ -257,6 +268,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:willCloseFrame:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_willCloseFrame(&self, sender: Option<&WebView>, frame: Option<&WebFrame>);
 
         #[cfg(all(
@@ -283,6 +295,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:didClearWindowObject:forFrame:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_didClearWindowObject_forFrame(
             &self,
             web_view: Option<&WebView>,
@@ -308,6 +321,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:windowScriptObjectAvailable:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_windowScriptObjectAvailable(
             &self,
             web_view: Option<&WebView>,

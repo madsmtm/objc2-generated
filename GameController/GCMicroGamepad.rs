@@ -93,17 +93,19 @@ extern_methods!(
     #[cfg(feature = "GCPhysicalInputProfile")]
     unsafe impl GCMicroGamepad {
         #[cfg(feature = "GCController")]
-        #[method_id(controller)]
+        #[method(controller)]
         #[unsafe(method_family = none)]
         pub unsafe fn controller(&self) -> Option<Retained<GCController>>;
 
         #[cfg(all(feature = "GCControllerElement", feature = "block2"))]
         #[method(valueChangedHandler)]
+        #[unsafe(method_family = none)]
         pub unsafe fn valueChangedHandler(&self) -> GCMicroGamepadValueChangedHandler;
 
         #[cfg(all(feature = "GCControllerElement", feature = "block2"))]
         /// Setter for [`valueChangedHandler`][Self::valueChangedHandler].
         #[method(setValueChangedHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setValueChangedHandler(
             &self,
             value_changed_handler: GCMicroGamepadValueChangedHandler,
@@ -120,13 +122,13 @@ extern_methods!(
         ///
         /// See: GCMicroGamepadSnapshot
         #[deprecated = "GCMicroGamepadSnapshot has been deprecated, use [GCController capture] instead"]
-        #[method_id(saveSnapshot)]
+        #[method(saveSnapshot)]
         #[unsafe(method_family = none)]
         pub unsafe fn saveSnapshot(&self) -> Retained<GCMicroGamepadSnapshot>;
 
         #[cfg(all(feature = "GCControllerDirectionPad", feature = "GCControllerElement"))]
         /// Optionally analog in the Micro profile. All the elements of this directional input are either analog or digital.
-        #[method_id(dpad)]
+        #[method(dpad)]
         #[unsafe(method_family = none)]
         pub unsafe fn dpad(&self) -> Retained<GCControllerDirectionPad>;
 
@@ -134,7 +136,7 @@ extern_methods!(
         /// The Micro profile has two buttons that are optionally analog in the Micro profile.
         /// Button A is the primary action button, it indicates affirmative action and should be used to advance in menus
         /// or perform the primary action in gameplay.
-        #[method_id(buttonA)]
+        #[method(buttonA)]
         #[unsafe(method_family = none)]
         pub unsafe fn buttonA(&self) -> Retained<GCControllerButtonInput>;
 
@@ -146,13 +148,13 @@ extern_methods!(
         /// used to present menu content or to retreat in a menu flow.
         ///
         /// See: buttonA
-        #[method_id(buttonX)]
+        #[method(buttonX)]
         #[unsafe(method_family = none)]
         pub unsafe fn buttonX(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         /// Button menu is the primary menu button, and should be used to enter the main menu and pause the game.
-        #[method_id(buttonMenu)]
+        #[method(buttonMenu)]
         #[unsafe(method_family = none)]
         pub unsafe fn buttonMenu(&self) -> Retained<GCControllerButtonInput>;
 
@@ -164,20 +166,24 @@ extern_methods!(
         ///
         /// The default value for this property is NO, meaning a sliding window is used for the dpad.
         #[method(reportsAbsoluteDpadValues)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reportsAbsoluteDpadValues(&self) -> bool;
 
         /// Setter for [`reportsAbsoluteDpadValues`][Self::reportsAbsoluteDpadValues].
         #[method(setReportsAbsoluteDpadValues:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setReportsAbsoluteDpadValues(&self, reports_absolute_dpad_values: bool);
 
         /// Allows the Micro profile to monitor the orientation of the controller, if the controller is positioned in landscape orientation, D-pad input values will be transposed 90 degrees to match the new orientation.
         ///
         /// The default value for this property is NO.
         #[method(allowsRotation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowsRotation(&self) -> bool;
 
         /// Setter for [`allowsRotation`][Self::allowsRotation].
         #[method(setAllowsRotation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAllowsRotation(&self, allows_rotation: bool);
 
         /// Sets the state vector of the micro gamepad to a copy of the input micro gamepad's state vector.
@@ -187,6 +193,7 @@ extern_methods!(
         ///
         /// See: GCController.snapshot
         #[method(setStateFromMicroGamepad:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setStateFromMicroGamepad(&self, micro_gamepad: &GCMicroGamepad);
     }
 );
@@ -195,11 +202,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "GCPhysicalInputProfile")]
     unsafe impl GCMicroGamepad {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

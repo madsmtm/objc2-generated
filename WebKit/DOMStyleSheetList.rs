@@ -32,11 +32,12 @@ extern_methods!(
     unsafe impl DOMStyleSheetList {
         #[deprecated]
         #[method(length)]
+        #[unsafe(method_family = none)]
         pub unsafe fn length(&self) -> c_uint;
 
         #[cfg(feature = "DOMStyleSheet")]
         #[deprecated]
-        #[method_id(item:)]
+        #[method(item:)]
         #[unsafe(method_family = none)]
         pub unsafe fn item(&self, index: c_uint) -> Option<Retained<DOMStyleSheet>>;
     }
@@ -47,7 +48,7 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMStyleSheetList {
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -57,7 +58,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMStyleSheetList {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

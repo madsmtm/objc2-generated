@@ -23,6 +23,7 @@ extern_methods!(
             feature = "block2"
         ))]
         #[method(didReceiveNotificationRequest:withContentHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn didReceiveNotificationRequest_withContentHandler(
             &self,
             request: &UNNotificationRequest,
@@ -30,6 +31,7 @@ extern_methods!(
         );
 
         #[method(serviceExtensionTimeWillExpire)]
+        #[unsafe(method_family = none)]
         pub unsafe fn serviceExtensionTimeWillExpire(&self);
     }
 );
@@ -37,11 +39,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UNNotificationServiceExtension {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

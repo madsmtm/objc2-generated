@@ -23,31 +23,35 @@ extern_methods!(
     #[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]
     unsafe impl MKCircleRenderer {
         #[cfg(all(feature = "MKCircle", feature = "MKShape"))]
-        #[method_id(initWithCircle:)]
+        #[method(initWithCircle:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCircle(this: Allocated<Self>, circle: &MKCircle) -> Retained<Self>;
 
         #[cfg(all(feature = "MKCircle", feature = "MKShape"))]
-        #[method_id(circle)]
+        #[method(circle)]
         #[unsafe(method_family = none)]
         pub unsafe fn circle(&self) -> Retained<MKCircle>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(strokeStart)]
+        #[unsafe(method_family = none)]
         pub unsafe fn strokeStart(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`strokeStart`][Self::strokeStart].
         #[method(setStrokeStart:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setStrokeStart(&self, stroke_start: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(strokeEnd)]
+        #[unsafe(method_family = none)]
         pub unsafe fn strokeEnd(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`strokeEnd`][Self::strokeEnd].
         #[method(setStrokeEnd:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setStrokeEnd(&self, stroke_end: CGFloat);
     }
 );
@@ -57,7 +61,7 @@ extern_methods!(
     #[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]
     unsafe impl MKCircleRenderer {
         #[cfg(all(feature = "MKAnnotation", feature = "MKOverlay"))]
-        #[method_id(initWithOverlay:)]
+        #[method(initWithOverlay:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithOverlay(
             this: Allocated<Self>,
@@ -70,11 +74,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]
     unsafe impl MKCircleRenderer {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

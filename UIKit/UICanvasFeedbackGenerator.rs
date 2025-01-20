@@ -27,6 +27,7 @@ extern_methods!(
         /// Provide user feedback that an alignment occured, such as snapping to a guide or ruler.
         /// - Parameter location: The location in the feedback's view where the alignment occured.
         #[method(alignmentOccurredAtLocation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alignmentOccurredAtLocation(&self, location: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -34,6 +35,7 @@ extern_methods!(
         /// Can be used for things like path drawing and shape recognition.
         /// - Parameter location: The location in the feedback's view where the completion occured.
         #[method(pathCompletedAtLocation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pathCompletedAtLocation(&self, location: CGPoint);
     }
 );
@@ -44,12 +46,12 @@ extern_methods!(
     unsafe impl UICanvasFeedbackGenerator {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// initalize the generator with a view to attach it to the provided view as an interaction.
-        #[method_id(feedbackGeneratorForView:)]
+        #[method(feedbackGeneratorForView:)]
         #[unsafe(method_family = none)]
         pub unsafe fn feedbackGeneratorForView(view: &UIView) -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -59,7 +61,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UIFeedbackGenerator")]
     unsafe impl UICanvasFeedbackGenerator {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

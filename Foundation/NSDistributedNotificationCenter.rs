@@ -86,18 +86,19 @@ extern_methods!(
     #[cfg(feature = "NSNotification")]
     unsafe impl NSDistributedNotificationCenter {
         #[cfg(feature = "NSString")]
-        #[method_id(notificationCenterForType:)]
+        #[method(notificationCenterForType:)]
         #[unsafe(method_family = none)]
         pub unsafe fn notificationCenterForType(
             notification_center_type: &NSDistributedNotificationCenterType,
         ) -> Retained<NSDistributedNotificationCenter>;
 
-        #[method_id(defaultCenter)]
+        #[method(defaultCenter)]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultCenter() -> Retained<NSDistributedNotificationCenter>;
 
         #[cfg(feature = "NSString")]
         #[method(addObserver:selector:name:object:suspensionBehavior:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addObserver_selector_name_object_suspensionBehavior(
             &self,
             observer: &AnyObject,
@@ -109,6 +110,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method(postNotificationName:object:userInfo:deliverImmediately:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn postNotificationName_object_userInfo_deliverImmediately(
             &self,
             name: &NSNotificationName,
@@ -119,6 +121,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method(postNotificationName:object:userInfo:options:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn postNotificationName_object_userInfo_options(
             &self,
             name: &NSNotificationName,
@@ -128,14 +131,17 @@ extern_methods!(
         );
 
         #[method(suspended)]
+        #[unsafe(method_family = none)]
         pub unsafe fn suspended(&self) -> bool;
 
         /// Setter for [`suspended`][Self::suspended].
         #[method(setSuspended:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSuspended(&self, suspended: bool);
 
         #[cfg(feature = "NSString")]
         #[method(addObserver:selector:name:object:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addObserver_selector_name_object(
             &self,
             observer: &AnyObject,
@@ -146,6 +152,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method(postNotificationName:object:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn postNotificationName_object(
             &self,
             a_name: &NSNotificationName,
@@ -154,6 +161,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method(postNotificationName:object:userInfo:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn postNotificationName_object_userInfo(
             &self,
             a_name: &NSNotificationName,
@@ -163,6 +171,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method(removeObserver:name:object:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeObserver_name_object(
             &self,
             observer: &AnyObject,
@@ -176,11 +185,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSNotification")]
     unsafe impl NSDistributedNotificationCenter {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

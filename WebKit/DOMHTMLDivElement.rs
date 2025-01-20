@@ -78,13 +78,14 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLDivElement {
         #[deprecated]
-        #[method_id(align)]
+        #[method(align)]
         #[unsafe(method_family = none)]
         pub unsafe fn align(&self) -> Retained<NSString>;
 
         /// Setter for [`align`][Self::align].
         #[deprecated]
         #[method(setAlign:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAlign(&self, align: Option<&NSString>);
     }
 );
@@ -100,7 +101,7 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLDivElement {
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -116,7 +117,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLDivElement {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

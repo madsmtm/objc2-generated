@@ -24,6 +24,7 @@ extern_category!(
         /// with the specified target.  If nil is specified, the frame that contains
         /// the applet is targeted.
         #[method(webPlugInContainerLoadRequest:inFrame:)]
+        #[unsafe(method_family = none)]
         unsafe fn webPlugInContainerLoadRequest_inFrame(
             &self,
             request: Option<&NSURLRequest>,
@@ -34,13 +35,14 @@ extern_category!(
         ///
         /// Parameter `message`: The string to be shown.
         #[method(webPlugInContainerShowStatus:)]
+        #[unsafe(method_family = none)]
         unsafe fn webPlugInContainerShowStatus(&self, message: Option<&NSString>);
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         /// The color that should be used for any special drawing when
         /// plug-in is selected.
-        #[method_id(webPlugInContainerSelectionColor)]
+        #[method(webPlugInContainerSelectionColor)]
         #[unsafe(method_family = none)]
         unsafe fn webPlugInContainerSelectionColor(&self) -> Option<Retained<NSColor>>;
 
@@ -48,7 +50,7 @@ extern_category!(
         /// Allows the plug-in to access the WebFrame that
         /// contains the plug-in.  This method will not be implemented by containers that
         /// are not WebKit based.
-        #[method_id(webFrame)]
+        #[method(webFrame)]
         #[unsafe(method_family = none)]
         unsafe fn webFrame(&self) -> Option<Retained<WebFrame>>;
     }

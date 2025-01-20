@@ -17,6 +17,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(session:peer:didChangeState:)]
+        #[unsafe(method_family = none)]
         unsafe fn session_peer_didChangeState(
             &self,
             session: &GKSession,
@@ -32,6 +33,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(session:didReceiveConnectionRequestFromPeer:)]
+        #[unsafe(method_family = none)]
         unsafe fn session_didReceiveConnectionRequestFromPeer(
             &self,
             session: &GKSession,
@@ -43,6 +45,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(session:connectionWithPeerFailed:withError:)]
+        #[unsafe(method_family = none)]
         unsafe fn session_connectionWithPeerFailed_withError(
             &self,
             session: &GKSession,
@@ -55,6 +58,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(session:didFailWithError:)]
+        #[unsafe(method_family = none)]
         unsafe fn session_didFailWithError(&self, session: &GKSession, error: &NSError);
     }
 );
@@ -67,6 +71,7 @@ extern_protocol!(
         /// this channel will only be used to setup voice chat, and not to send audio data. The only requirement is that messages are sent and received within a few (1-2) seconds time.
         #[deprecated]
         #[method(voiceChatService:sendData:toParticipantID:)]
+        #[unsafe(method_family = none)]
         unsafe fn voiceChatService_sendData_toParticipantID(
             &self,
             voice_chat_service: &GKVoiceChatService,
@@ -76,7 +81,7 @@ extern_protocol!(
 
         /// must be sent within some reasonble period of time and should accept at least 512 bytes.
         #[deprecated]
-        #[method_id(participantID)]
+        #[method(participantID)]
         #[unsafe(method_family = none)]
         unsafe fn participantID(&self) -> Retained<NSString>;
 
@@ -86,6 +91,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(voiceChatService:sendRealTimeData:toParticipantID:)]
+        #[unsafe(method_family = none)]
         unsafe fn voiceChatService_sendRealTimeData_toParticipantID(
             &self,
             voice_chat_service: &GKVoiceChatService,
@@ -97,6 +103,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(voiceChatService:didStartWithParticipantID:)]
+        #[unsafe(method_family = none)]
         unsafe fn voiceChatService_didStartWithParticipantID(
             &self,
             voice_chat_service: &GKVoiceChatService,
@@ -107,6 +114,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(voiceChatService:didNotStartWithParticipantID:error:)]
+        #[unsafe(method_family = none)]
         unsafe fn voiceChatService_didNotStartWithParticipantID_error(
             &self,
             voice_chat_service: &GKVoiceChatService,
@@ -118,6 +126,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(voiceChatService:didStopWithParticipantID:error:)]
+        #[unsafe(method_family = none)]
         unsafe fn voiceChatService_didStopWithParticipantID_error(
             &self,
             voice_chat_service: &GKVoiceChatService,
@@ -129,6 +138,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(voiceChatService:didReceiveInvitationFromParticipantID:callID:)]
+        #[unsafe(method_family = none)]
         unsafe fn voiceChatService_didReceiveInvitationFromParticipantID_callID(
             &self,
             voice_chat_service: &GKVoiceChatService,

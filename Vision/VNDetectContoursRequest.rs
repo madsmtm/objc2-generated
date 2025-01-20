@@ -39,52 +39,61 @@ extern_methods!(
         ///
         /// Contour detection works best with high contrast images. The default value of 2 doubles the image's contrast to aid in detection. If the image already has a high contrast then this value should be set to 1.
         #[method(contrastAdjustment)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contrastAdjustment(&self) -> c_float;
 
         /// Setter for [`contrastAdjustment`][Self::contrastAdjustment].
         #[method(setContrastAdjustment:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setContrastAdjustment(&self, contrast_adjustment: c_float);
 
         /// The pixel value to use as a pivot for the contrast. Valid values are from [0.0 ... +1.0], or nil to auto-detect based on image intensity.
         /// The default value is +0.5 (i.e. pixel center).
-        #[method_id(contrastPivot)]
+        #[method(contrastPivot)]
         #[unsafe(method_family = none)]
         pub unsafe fn contrastPivot(&self) -> Option<Retained<NSNumber>>;
 
         /// Setter for [`contrastPivot`][Self::contrastPivot].
         #[method(setContrastPivot:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setContrastPivot(&self, contrast_pivot: Option<&NSNumber>);
 
         /// Identifies to the request if detecting a dark object on a light background, or vice versa, to aid in detection. The default value is YES.
         #[method(detectsDarkOnLight)]
+        #[unsafe(method_family = none)]
         pub unsafe fn detectsDarkOnLight(&self) -> bool;
 
         /// Setter for [`detectsDarkOnLight`][Self::detectsDarkOnLight].
         #[method(setDetectsDarkOnLight:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDetectsDarkOnLight(&self, detects_dark_on_light: bool);
 
         #[deprecated]
         #[method(detectDarkOnLight)]
+        #[unsafe(method_family = none)]
         pub unsafe fn detectDarkOnLight(&self) -> bool;
 
         /// Setter for [`detectDarkOnLight`][Self::detectDarkOnLight].
         #[deprecated]
         #[method(setDetectDarkOnLight:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDetectDarkOnLight(&self, detect_dark_on_light: bool);
 
         /// The limit on the maximum dimension of the image to be used for contour detection. Valid range of values is [64 ... NSUIntegerMax]. The default value is 512.
         ///
         /// As the contour request is compute intensive, the input image is scaled down maintaining aspect ratio (if needed), such that its maximum dimension is the value of this property. The image never gets scaled up, so specifying the maximum value ensures that the image gets processed in its original size and not downscaled.
         #[method(maximumImageDimension)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maximumImageDimension(&self) -> NSUInteger;
 
         /// Setter for [`maximumImageDimension`][Self::maximumImageDimension].
         #[method(setMaximumImageDimension:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMaximumImageDimension(&self, maximum_image_dimension: NSUInteger);
 
         #[cfg(feature = "VNObservation")]
         /// VNContoursObservation results.
-        #[method_id(results)]
+        #[method(results)]
         #[unsafe(method_family = none)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNContoursObservation>>>;
     }
@@ -95,7 +104,7 @@ extern_methods!(
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectContoursRequest {
         /// Creates a new VNRequest with no completion handler.
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -104,7 +113,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
-        #[method_id(initWithCompletionHandler:)]
+        #[method(initWithCompletionHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
@@ -117,7 +126,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectContoursRequest {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -25,6 +25,7 @@ extern_protocol!(
         ///
         /// Parameter `urlSchemeTask`: The task that your app should start loading data for.
         #[method(webView:startURLSchemeTask:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_startURLSchemeTask(
             &self,
             web_view: &WKWebView,
@@ -48,6 +49,7 @@ extern_protocol!(
         /// An exception will be thrown if any callbacks are made on the URL scheme handler task
         /// after your app has been told to stop loading for it.
         #[method(webView:stopURLSchemeTask:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_stopURLSchemeTask(
             &self,
             web_view: &WKWebView,

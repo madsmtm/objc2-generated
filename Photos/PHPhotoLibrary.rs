@@ -58,6 +58,7 @@ extern_protocol!(
     pub unsafe trait PHPhotoLibraryChangeObserver: NSObjectProtocol {
         #[cfg(feature = "PHChange")]
         #[method(photoLibraryDidChange:)]
+        #[unsafe(method_family = none)]
         unsafe fn photoLibraryDidChange(&self, change_instance: &PHChange);
     }
 );
@@ -66,6 +67,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/photos/phphotolibraryavailabilityobserver?language=objc)
     pub unsafe trait PHPhotoLibraryAvailabilityObserver: NSObjectProtocol {
         #[method(photoLibraryDidBecomeUnavailable:)]
+        #[unsafe(method_family = none)]
         unsafe fn photoLibraryDidBecomeUnavailable(&self, photo_library: &PHPhotoLibrary);
     }
 );
@@ -85,19 +87,21 @@ unsafe impl NSObjectProtocol for PHPhotoLibrary {}
 
 extern_methods!(
     unsafe impl PHPhotoLibrary {
-        #[method_id(sharedPhotoLibrary)]
+        #[method(sharedPhotoLibrary)]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedPhotoLibrary() -> Retained<PHPhotoLibrary>;
 
         /// Replaces
         /// `+authorizationStatus`to support add-only/read-write access level status
         #[method(authorizationStatusForAccessLevel:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn authorizationStatusForAccessLevel(
             access_level: PHAccessLevel,
         ) -> PHAuthorizationStatus;
 
         #[cfg(feature = "block2")]
         #[method(requestAuthorizationForAccessLevel:handler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestAuthorizationForAccessLevel_handler(
             access_level: PHAccessLevel,
             handler: &block2::Block<dyn Fn(PHAuthorizationStatus)>,
@@ -107,36 +111,42 @@ extern_methods!(
         /// `PHAuthorizationStatusAuthorized`if the user has chosen limited photo library access
         #[deprecated]
         #[method(authorizationStatus)]
+        #[unsafe(method_family = none)]
         pub unsafe fn authorizationStatus() -> PHAuthorizationStatus;
 
         #[cfg(feature = "block2")]
         #[deprecated]
         #[method(requestAuthorization:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestAuthorization(handler: &block2::Block<dyn Fn(PHAuthorizationStatus)>);
 
-        #[method_id(unavailabilityReason)]
+        #[method(unavailabilityReason)]
         #[unsafe(method_family = none)]
         pub unsafe fn unavailabilityReason(&self) -> Option<Retained<NSError>>;
 
         #[method(registerAvailabilityObserver:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn registerAvailabilityObserver(
             &self,
             observer: &ProtocolObject<dyn PHPhotoLibraryAvailabilityObserver>,
         );
 
         #[method(unregisterAvailabilityObserver:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn unregisterAvailabilityObserver(
             &self,
             observer: &ProtocolObject<dyn PHPhotoLibraryAvailabilityObserver>,
         );
 
         #[method(registerChangeObserver:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn registerChangeObserver(
             &self,
             observer: &ProtocolObject<dyn PHPhotoLibraryChangeObserver>,
         );
 
         #[method(unregisterChangeObserver:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn unregisterChangeObserver(
             &self,
             observer: &ProtocolObject<dyn PHPhotoLibraryChangeObserver>,
@@ -146,7 +156,7 @@ extern_methods!(
             feature = "PHPersistentChangeFetchResult",
             feature = "PHPersistentChangeToken"
         ))]
-        #[method_id(fetchPersistentChangesSinceToken:error:_)]
+        #[method(fetchPersistentChangesSinceToken:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchPersistentChangesSinceToken_error(
             &self,
@@ -154,7 +164,7 @@ extern_methods!(
         ) -> Result<Retained<PHPersistentChangeFetchResult>, Retained<NSError>>;
 
         #[cfg(feature = "PHPersistentChangeToken")]
-        #[method_id(currentChangeToken)]
+        #[method(currentChangeToken)]
         #[unsafe(method_family = none)]
         pub unsafe fn currentChangeToken(&self) -> Retained<PHPersistentChangeToken>;
     }
@@ -163,11 +173,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHPhotoLibrary {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

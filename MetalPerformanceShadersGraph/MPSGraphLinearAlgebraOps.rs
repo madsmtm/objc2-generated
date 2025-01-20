@@ -37,7 +37,7 @@ extern_methods!(
         /// - numUpper: the number of diagonals in the upper triangle to keep. If -1,  the framework returns all super diagnols.
         /// - name: name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(bandPartWithTensor:numLower:numUpper:name:)]
+        #[method(bandPartWithTensor:numLower:numUpper:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn bandPartWithTensor_numLower_numUpper_name(
             &self,
@@ -58,7 +58,7 @@ extern_methods!(
         /// - numUpperTensor: Scalar Int32 tensor. The number of diagonals in the upper triangle to keep. If -1, keep all.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(bandPartWithTensor:numLowerTensor:numUpperTensor:name:)]
+        #[method(bandPartWithTensor:numLowerTensor:numUpperTensor:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn bandPartWithTensor_numLowerTensor_numUpperTensor_name(
             &self,

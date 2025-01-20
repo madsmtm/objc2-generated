@@ -37,10 +37,12 @@ extern_methods!(
     unsafe impl NSResponder {
         #[deprecated]
         #[method(interfaceStyle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn interfaceStyle(&self) -> NSInterfaceStyle;
 
         #[deprecated]
         #[method(setInterfaceStyle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setInterfaceStyle(&self, interface_style: NSInterfaceStyle);
     }
 );

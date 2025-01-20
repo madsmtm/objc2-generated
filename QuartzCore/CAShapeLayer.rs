@@ -47,110 +47,127 @@ extern_methods!(
     #[cfg(feature = "CALayer")]
     unsafe impl CAShapeLayer {
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(path)]
+        #[method(path)]
         #[unsafe(method_family = none)]
         pub unsafe fn path(&self) -> Option<Retained<CGPath>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`path`][Self::path].
         #[method(setPath:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPath(&self, path: Option<&CGPath>);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(fillColor)]
+        #[method(fillColor)]
         #[unsafe(method_family = none)]
         pub unsafe fn fillColor(&self) -> Option<Retained<CGColor>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`fillColor`][Self::fillColor].
         #[method(setFillColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFillColor(&self, fill_color: Option<&CGColor>);
 
-        #[method_id(fillRule)]
+        #[method(fillRule)]
         #[unsafe(method_family = none)]
         pub unsafe fn fillRule(&self) -> Retained<CAShapeLayerFillRule>;
 
         /// Setter for [`fillRule`][Self::fillRule].
         #[method(setFillRule:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFillRule(&self, fill_rule: &CAShapeLayerFillRule);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(strokeColor)]
+        #[method(strokeColor)]
         #[unsafe(method_family = none)]
         pub unsafe fn strokeColor(&self) -> Option<Retained<CGColor>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`strokeColor`][Self::strokeColor].
         #[method(setStrokeColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setStrokeColor(&self, stroke_color: Option<&CGColor>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(strokeStart)]
+        #[unsafe(method_family = none)]
         pub unsafe fn strokeStart(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`strokeStart`][Self::strokeStart].
         #[method(setStrokeStart:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setStrokeStart(&self, stroke_start: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(strokeEnd)]
+        #[unsafe(method_family = none)]
         pub unsafe fn strokeEnd(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`strokeEnd`][Self::strokeEnd].
         #[method(setStrokeEnd:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setStrokeEnd(&self, stroke_end: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(lineWidth)]
+        #[unsafe(method_family = none)]
         pub unsafe fn lineWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`lineWidth`][Self::lineWidth].
         #[method(setLineWidth:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLineWidth(&self, line_width: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(miterLimit)]
+        #[unsafe(method_family = none)]
         pub unsafe fn miterLimit(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`miterLimit`][Self::miterLimit].
         #[method(setMiterLimit:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMiterLimit(&self, miter_limit: CGFloat);
 
-        #[method_id(lineCap)]
+        #[method(lineCap)]
         #[unsafe(method_family = none)]
         pub unsafe fn lineCap(&self) -> Retained<CAShapeLayerLineCap>;
 
         /// Setter for [`lineCap`][Self::lineCap].
         #[method(setLineCap:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLineCap(&self, line_cap: &CAShapeLayerLineCap);
 
-        #[method_id(lineJoin)]
+        #[method(lineJoin)]
         #[unsafe(method_family = none)]
         pub unsafe fn lineJoin(&self) -> Retained<CAShapeLayerLineJoin>;
 
         /// Setter for [`lineJoin`][Self::lineJoin].
         #[method(setLineJoin:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLineJoin(&self, line_join: &CAShapeLayerLineJoin);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(lineDashPhase)]
+        #[unsafe(method_family = none)]
         pub unsafe fn lineDashPhase(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`lineDashPhase`][Self::lineDashPhase].
         #[method(setLineDashPhase:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLineDashPhase(&self, line_dash_phase: CGFloat);
 
-        #[method_id(lineDashPattern)]
+        #[method(lineDashPattern)]
         #[unsafe(method_family = none)]
         pub unsafe fn lineDashPattern(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         /// Setter for [`lineDashPattern`][Self::lineDashPattern].
         #[method(setLineDashPattern:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLineDashPattern(&self, line_dash_pattern: Option<&NSArray<NSNumber>>);
     }
 );
@@ -160,15 +177,15 @@ extern_methods!(
     #[cfg(feature = "CALayer")]
     unsafe impl CAShapeLayer {
         /// Layer creation and initialization. *
-        #[method_id(layer)]
+        #[method(layer)]
         #[unsafe(method_family = none)]
         pub unsafe fn layer() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(initWithLayer:)]
+        #[method(initWithLayer:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
     }
@@ -178,7 +195,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CALayer")]
     unsafe impl CAShapeLayer {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

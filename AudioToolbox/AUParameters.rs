@@ -185,7 +185,7 @@ extern_methods!(
         /// The identifier must be unique for all child nodes under any given parent. From release to
         /// release, an audio unit must not change its parameters' identifiers; this will invalidate any
         /// hosts' documents that refer to the parameters.
-        #[method_id(identifier)]
+        #[method(identifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
@@ -197,19 +197,19 @@ extern_methods!(
         /// The individual node identifiers in a key path are separated by periods. (".")
         ///
         /// Passing a node's keyPath to -[tree valueForKeyPath:] should return the same node.
-        #[method_id(keyPath)]
+        #[method(keyPath)]
         #[unsafe(method_family = none)]
         pub unsafe fn keyPath(&self) -> Retained<NSString>;
 
         /// A localized name to display for the parameter.
-        #[method_id(displayName)]
+        #[method(displayName)]
         #[unsafe(method_family = none)]
         pub unsafe fn displayName(&self) -> Retained<NSString>;
 
         /// A version of displayName possibly abbreviated to the given desired length, in characters.
         ///
         /// The default implementation simply returns displayName.
-        #[method_id(displayNameWithLength:)]
+        #[method(displayNameWithLength:)]
         #[unsafe(method_family = none)]
         pub unsafe fn displayNameWithLength(&self, maximum_length: NSInteger)
             -> Retained<NSString>;
@@ -239,6 +239,7 @@ extern_methods!(
         ///
         /// Returns: A token which can be passed to removeParameterObserver: or to -[AUParameter setValue:originator:]
         #[method(tokenByAddingParameterObserver:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tokenByAddingParameterObserver(
             &self,
             observer: AUParameterObserver,
@@ -253,6 +254,7 @@ extern_methods!(
         /// This will be deprecated in favor of tokenByAddingParameterAutomationObserver in a future
         /// release.
         #[method(tokenByAddingParameterRecordingObserver:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tokenByAddingParameterRecordingObserver(
             &self,
             observer: AUParameterRecordingObserver,
@@ -279,6 +281,7 @@ extern_methods!(
         /// Returns: A token which can be passed to removeParameterObserver: or to -[AUParameter
         /// setValue:originator:]
         #[method(tokenByAddingParameterAutomationObserver:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tokenByAddingParameterAutomationObserver(
             &self,
             observer: AUParameterAutomationObserver,
@@ -290,6 +293,7 @@ extern_methods!(
         /// This call will remove the callback corresponding to the supplied token. Note that this
         /// will block until any callbacks currently in flight have completed.
         #[method(removeParameterObserver:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeParameterObserver(&self, token: AUParameterObserverToken);
     }
 );
@@ -297,11 +301,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AUParameterNode {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -330,12 +334,12 @@ unsafe impl NSSecureCoding for AUParameterGroup {}
 extern_methods!(
     unsafe impl AUParameterGroup {
         /// The group's child nodes (AUParameterGroupNode).
-        #[method_id(children)]
+        #[method(children)]
         #[unsafe(method_family = none)]
         pub unsafe fn children(&self) -> Retained<NSArray<AUParameterNode>>;
 
         /// Returns a flat array of all parameters in the group, including those in child groups.
-        #[method_id(allParameters)]
+        #[method(allParameters)]
         #[unsafe(method_family = none)]
         pub unsafe fn allParameters(&self) -> Retained<NSArray<AUParameter>>;
     }
@@ -344,11 +348,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AUParameterGroup {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -386,7 +390,7 @@ extern_methods!(
         /// Search a tree for a parameter with a specific address.
         ///
         /// Returns: The parameter corresponding to the supplied address, or nil if no such parameter exists.
-        #[method_id(parameterWithAddress:)]
+        #[method(parameterWithAddress:)]
         #[unsafe(method_family = none)]
         pub unsafe fn parameterWithAddress(
             &self,
@@ -402,7 +406,7 @@ extern_methods!(
         ///
         /// Returns: The parameter corresponding to the supplied ID/scope/element, or nil if no such parameter
         /// exists, or if the audio unit is not a v2 unit.
-        #[method_id(parameterWithID:scope:element:)]
+        #[method(parameterWithID:scope:element:)]
         #[unsafe(method_family = none)]
         pub unsafe fn parameterWithID_scope_element(
             &self,
@@ -416,11 +420,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AUParameterTree {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -445,34 +449,39 @@ extern_methods!(
     unsafe impl AUParameter {
         /// The parameter's minimum value.
         #[method(minValue)]
+        #[unsafe(method_family = none)]
         pub unsafe fn minValue(&self) -> AUValue;
 
         /// The parameter's maximum value.
         #[method(maxValue)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maxValue(&self) -> AUValue;
 
         #[cfg(feature = "AudioUnitProperties")]
         /// The parameter's unit of measurement.
         #[method(unit)]
+        #[unsafe(method_family = none)]
         pub unsafe fn unit(&self) -> AudioUnitParameterUnit;
 
         /// A localized name for the parameter's unit. Supplied by the AU if kAudioUnitParameterUnit_CustomUnit; else by the framework.
-        #[method_id(unitName)]
+        #[method(unitName)]
         #[unsafe(method_family = none)]
         pub unsafe fn unitName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "AudioUnitProperties")]
         /// Various details of the parameter.
         #[method(flags)]
+        #[unsafe(method_family = none)]
         pub unsafe fn flags(&self) -> AudioUnitParameterOptions;
 
         /// The parameter's address.
         #[method(address)]
+        #[unsafe(method_family = none)]
         pub unsafe fn address(&self) -> AUParameterAddress;
 
         /// For parameters with kAudioUnitParameterUnit_Indexed, localized strings corresponding
         /// to the values.
-        #[method_id(valueStrings)]
+        #[method(valueStrings)]
         #[unsafe(method_family = none)]
         pub unsafe fn valueStrings(&self) -> Option<Retained<NSArray<NSString>>>;
 
@@ -480,22 +489,25 @@ extern_methods!(
         /// changing.
         ///
         /// Each array value is an NSNumber representing AUParameterAddress.
-        #[method_id(dependentParameters)]
+        #[method(dependentParameters)]
         #[unsafe(method_family = none)]
         pub unsafe fn dependentParameters(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         /// The parameter's current value.
         #[method(value)]
+        #[unsafe(method_family = none)]
         pub unsafe fn value(&self) -> AUValue;
 
         /// Setter for [`value`][Self::value].
         #[method(setValue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setValue(&self, value: AUValue);
 
         /// Set the parameter's value, avoiding redundant notifications to the originator.
         ///
         /// Bridged to the v2 function AudioUnitSetParameter.
         #[method(setValue:originator:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setValue_originator(
             &self,
             value: AUValue,
@@ -506,6 +518,7 @@ extern_methods!(
         ///
         /// Bridged to the v2 function AudioUnitSetParameter.
         #[method(setValue:originator:atHostTime:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setValue_originator_atHostTime(
             &self,
             value: AUValue,
@@ -526,6 +539,7 @@ extern_methods!(
         ///
         /// Bridged to the v2 function AudioUnitSetParameter.
         #[method(setValue:originator:atHostTime:eventType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setValue_originator_atHostTime_eventType(
             &self,
             value: AUValue,
@@ -539,7 +553,7 @@ extern_methods!(
         ///
         /// This is currently only supported for parameters whose flags include
         /// kAudioUnitParameterFlag_ValuesHaveStrings.
-        #[method_id(stringFromValue:)]
+        #[method(stringFromValue:)]
         #[unsafe(method_family = none)]
         pub unsafe fn stringFromValue(&self, value: *const AUValue) -> Retained<NSString>;
 
@@ -548,6 +562,7 @@ extern_methods!(
         /// This is currently only supported for parameters whose flags include
         /// kAudioUnitParameterFlag_ValuesHaveStrings.
         #[method(valueFromString:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn valueFromString(&self, string: &NSString) -> AUValue;
     }
 );
@@ -555,11 +570,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AUParameter {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

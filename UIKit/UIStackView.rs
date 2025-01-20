@@ -140,66 +140,78 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIStackView {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(initWithFrame:)]
+        #[method(initWithFrame:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
-        #[method_id(initWithArrangedSubviews:)]
+        #[method(initWithArrangedSubviews:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithArrangedSubviews(
             this: Allocated<Self>,
             views: &NSArray<UIView>,
         ) -> Retained<Self>;
 
-        #[method_id(arrangedSubviews)]
+        #[method(arrangedSubviews)]
         #[unsafe(method_family = none)]
         pub unsafe fn arrangedSubviews(&self) -> Retained<NSArray<UIView>>;
 
         #[method(addArrangedSubview:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addArrangedSubview(&self, view: &UIView);
 
         #[method(removeArrangedSubview:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeArrangedSubview(&self, view: &UIView);
 
         #[method(insertArrangedSubview:atIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn insertArrangedSubview_atIndex(&self, view: &UIView, stack_index: NSUInteger);
 
         #[method(axis)]
+        #[unsafe(method_family = none)]
         pub unsafe fn axis(&self) -> UILayoutConstraintAxis;
 
         /// Setter for [`axis`][Self::axis].
         #[method(setAxis:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAxis(&self, axis: UILayoutConstraintAxis);
 
         #[method(distribution)]
+        #[unsafe(method_family = none)]
         pub unsafe fn distribution(&self) -> UIStackViewDistribution;
 
         /// Setter for [`distribution`][Self::distribution].
         #[method(setDistribution:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDistribution(&self, distribution: UIStackViewDistribution);
 
         #[method(alignment)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alignment(&self) -> UIStackViewAlignment;
 
         /// Setter for [`alignment`][Self::alignment].
         #[method(setAlignment:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAlignment(&self, alignment: UIStackViewAlignment);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(spacing)]
+        #[unsafe(method_family = none)]
         pub unsafe fn spacing(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`spacing`][Self::spacing].
         #[method(setSpacing:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSpacing(&self, spacing: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(setCustomSpacing:afterView:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCustomSpacing_afterView(
             &self,
             spacing: CGFloat,
@@ -208,20 +220,25 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(customSpacingAfterView:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn customSpacingAfterView(&self, arranged_subview: &UIView) -> CGFloat;
 
         #[method(isBaselineRelativeArrangement)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isBaselineRelativeArrangement(&self) -> bool;
 
         /// Setter for [`isBaselineRelativeArrangement`][Self::isBaselineRelativeArrangement].
         #[method(setBaselineRelativeArrangement:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBaselineRelativeArrangement(&self, baseline_relative_arrangement: bool);
 
         #[method(isLayoutMarginsRelativeArrangement)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isLayoutMarginsRelativeArrangement(&self) -> bool;
 
         /// Setter for [`isLayoutMarginsRelativeArrangement`][Self::isLayoutMarginsRelativeArrangement].
         #[method(setLayoutMarginsRelativeArrangement:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLayoutMarginsRelativeArrangement(
             &self,
             layout_margins_relative_arrangement: bool,
@@ -233,11 +250,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIStackView {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

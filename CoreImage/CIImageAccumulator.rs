@@ -22,7 +22,7 @@ unsafe impl NSObjectProtocol for CIImageAccumulator {}
 extern_methods!(
     unsafe impl CIImageAccumulator {
         #[cfg(all(feature = "CIImage", feature = "objc2-core-foundation"))]
-        #[method_id(imageAccumulatorWithExtent:format:)]
+        #[method(imageAccumulatorWithExtent:format:)]
         #[unsafe(method_family = none)]
         pub unsafe fn imageAccumulatorWithExtent_format(
             extent: CGRect,
@@ -34,7 +34,7 @@ extern_methods!(
             feature = "objc2-core-foundation",
             feature = "objc2-core-graphics"
         ))]
-        #[method_id(imageAccumulatorWithExtent:format:colorSpace:)]
+        #[method(imageAccumulatorWithExtent:format:colorSpace:)]
         #[unsafe(method_family = none)]
         pub unsafe fn imageAccumulatorWithExtent_format_colorSpace(
             extent: CGRect,
@@ -43,7 +43,7 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "CIImage", feature = "objc2-core-foundation"))]
-        #[method_id(initWithExtent:format:)]
+        #[method(initWithExtent:format:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithExtent_format(
             this: Allocated<Self>,
@@ -56,7 +56,7 @@ extern_methods!(
             feature = "objc2-core-foundation",
             feature = "objc2-core-graphics"
         ))]
-        #[method_id(initWithExtent:format:colorSpace:)]
+        #[method(initWithExtent:format:colorSpace:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithExtent_format_colorSpace(
             this: Allocated<Self>,
@@ -67,26 +67,31 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(extent)]
+        #[unsafe(method_family = none)]
         pub unsafe fn extent(&self) -> CGRect;
 
         #[cfg(feature = "CIImage")]
         #[method(format)]
+        #[unsafe(method_family = none)]
         pub unsafe fn format(&self) -> CIFormat;
 
         #[cfg(feature = "CIImage")]
-        #[method_id(image)]
+        #[method(image)]
         #[unsafe(method_family = none)]
         pub unsafe fn image(&self) -> Retained<CIImage>;
 
         #[cfg(feature = "CIImage")]
         #[method(setImage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setImage(&self, image: &CIImage);
 
         #[cfg(all(feature = "CIImage", feature = "objc2-core-foundation"))]
         #[method(setImage:dirtyRect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setImage_dirtyRect(&self, image: &CIImage, dirty_rect: CGRect);
 
         #[method(clear)]
+        #[unsafe(method_family = none)]
         pub unsafe fn clear(&self);
     }
 );
@@ -94,11 +99,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIImageAccumulator {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

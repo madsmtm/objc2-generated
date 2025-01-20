@@ -21,12 +21,12 @@ unsafe impl NSObjectProtocol for CKModifyRecordZonesOperation {}
 extern_methods!(
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKModifyRecordZonesOperation {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "CKRecordZone", feature = "CKRecordZoneID"))]
-        #[method_id(initWithRecordZonesToSave:recordZoneIDsToDelete:)]
+        #[method(initWithRecordZonesToSave:recordZoneIDsToDelete:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRecordZonesToSave_recordZoneIDsToDelete(
             this: Allocated<Self>,
@@ -35,26 +35,28 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordZone")]
-        #[method_id(recordZonesToSave)]
+        #[method(recordZonesToSave)]
         #[unsafe(method_family = none)]
         pub unsafe fn recordZonesToSave(&self) -> Option<Retained<NSArray<CKRecordZone>>>;
 
         #[cfg(feature = "CKRecordZone")]
         /// Setter for [`recordZonesToSave`][Self::recordZonesToSave].
         #[method(setRecordZonesToSave:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRecordZonesToSave(
             &self,
             record_zones_to_save: Option<&NSArray<CKRecordZone>>,
         );
 
         #[cfg(feature = "CKRecordZoneID")]
-        #[method_id(recordZoneIDsToDelete)]
+        #[method(recordZoneIDsToDelete)]
         #[unsafe(method_family = none)]
         pub unsafe fn recordZoneIDsToDelete(&self) -> Option<Retained<NSArray<CKRecordZoneID>>>;
 
         #[cfg(feature = "CKRecordZoneID")]
         /// Setter for [`recordZoneIDsToDelete`][Self::recordZoneIDsToDelete].
         #[method(setRecordZoneIDsToDelete:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRecordZoneIDsToDelete(
             &self,
             record_zone_i_ds_to_delete: Option<&NSArray<CKRecordZoneID>>,
@@ -73,6 +75,7 @@ extern_methods!(
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(perRecordZoneSaveBlock)]
+        #[unsafe(method_family = none)]
         pub unsafe fn perRecordZoneSaveBlock(
             &self,
         ) -> *mut block2::Block<dyn Fn(NonNull<CKRecordZoneID>, *mut CKRecordZone, *mut NSError)>;
@@ -84,6 +87,7 @@ extern_methods!(
         ))]
         /// Setter for [`perRecordZoneSaveBlock`][Self::perRecordZoneSaveBlock].
         #[method(setPerRecordZoneSaveBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPerRecordZoneSaveBlock(
             &self,
             per_record_zone_save_block: Option<
@@ -100,6 +104,7 @@ extern_methods!(
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(perRecordZoneDeleteBlock)]
+        #[unsafe(method_family = none)]
         pub unsafe fn perRecordZoneDeleteBlock(
             &self,
         ) -> *mut block2::Block<dyn Fn(NonNull<CKRecordZoneID>, *mut NSError)>;
@@ -107,6 +112,7 @@ extern_methods!(
         #[cfg(all(feature = "CKRecordZoneID", feature = "block2"))]
         /// Setter for [`perRecordZoneDeleteBlock`][Self::perRecordZoneDeleteBlock].
         #[method(setPerRecordZoneDeleteBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPerRecordZoneDeleteBlock(
             &self,
             per_record_zone_delete_block: Option<
@@ -140,6 +146,7 @@ extern_methods!(
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(modifyRecordZonesCompletionBlock)]
+        #[unsafe(method_family = none)]
         pub unsafe fn modifyRecordZonesCompletionBlock(
             &self,
         ) -> *mut block2::Block<
@@ -153,6 +160,7 @@ extern_methods!(
         ))]
         /// Setter for [`modifyRecordZonesCompletionBlock`][Self::modifyRecordZonesCompletionBlock].
         #[method(setModifyRecordZonesCompletionBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setModifyRecordZonesCompletionBlock(
             &self,
             modify_record_zones_completion_block: Option<
@@ -168,7 +176,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKModifyRecordZonesOperation {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

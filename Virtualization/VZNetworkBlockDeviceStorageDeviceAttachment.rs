@@ -82,7 +82,7 @@ extern_methods!(
         /// read-only is advertised by the NBD server during the handshake phase of the protocol. Setting `forcedReadOnly`
         /// to YES will force the NBD client to show up as read-only to the guest regardless of whether or not the NBD
         /// server advertises itself as read-only.
-        #[method_id(initWithURL:timeout:forcedReadOnly:synchronizationMode:error:_)]
+        #[method(initWithURL:timeout:forcedReadOnly:synchronizationMode:error:_)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL_timeout_forcedReadOnly_synchronizationMode_error(
             this: Allocated<Self>,
@@ -102,7 +102,7 @@ extern_methods!(
         ///
         /// This initializer automatically assigns optimized default values for the `timeout`,
         /// `forcedReadOnly`, and `synchronizationMode` properties.
-        #[method_id(initWithURL:error:_)]
+        #[method(initWithURL:error:_)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL_error(
             this: Allocated<Self>,
@@ -120,15 +120,17 @@ extern_methods!(
         ///
         /// This method checks that the URL is well-formed, it does not attempt to access the URL.
         #[method(validateURL:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn validateURL_error(url: &NSURL) -> Result<(), Retained<NSError>>;
 
         /// URL referring to the NBD server to which the NBD client is to be connected.
-        #[method_id(URL)]
+        #[method(URL)]
         #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
 
         /// The timeout value in seconds for the connection between the client and server. When the timeout expires, an attempt to reconnect with the server will take place.
         #[method(timeout)]
+        #[unsafe(method_family = none)]
         pub unsafe fn timeout(&self) -> NSTimeInterval;
 
         /// Whether the underlying disk attachment is forced to be read-only.
@@ -139,15 +141,17 @@ extern_methods!(
         /// `forcedReadOnly` to YES will force the NBD client to show up as read-only to the
         /// guest regardless of whether or not the NBD server advertises itself as read-only.
         #[method(isForcedReadOnly)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isForcedReadOnly(&self) -> bool;
 
         #[cfg(feature = "VZDiskSynchronizationMode")]
         /// The mode in which the NBD client synchronizes data with the NBD server.
         #[method(synchronizationMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn synchronizationMode(&self) -> VZDiskSynchronizationMode;
 
         /// The attachment's delegate.
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -156,6 +160,7 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<
@@ -169,11 +174,11 @@ extern_methods!(
     /// Methods declared on superclass `VZStorageDeviceAttachment`
     #[cfg(feature = "VZStorageDeviceAttachment")]
     unsafe impl VZNetworkBlockDeviceStorageDeviceAttachment {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -198,6 +203,7 @@ extern_protocol!(
         /// machine's life cycle. Reconnections are transparent to the guest.
         #[optional]
         #[method(attachmentWasConnected:)]
+        #[unsafe(method_family = none)]
         unsafe fn attachmentWasConnected(
             &self,
             attachment: &VZNetworkBlockDeviceStorageDeviceAttachment,
@@ -213,6 +219,7 @@ extern_protocol!(
         /// The NBD client will be in a non-functional state after this method is invoked.
         #[optional]
         #[method(attachment:didEncounterError:)]
+        #[unsafe(method_family = none)]
         unsafe fn attachment_didEncounterError(
             &self,
             attachment: &VZNetworkBlockDeviceStorageDeviceAttachment,

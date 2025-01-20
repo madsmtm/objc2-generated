@@ -27,38 +27,42 @@ unsafe impl<ObjectType: ?Sized> NSObjectProtocol for PHFetchResult<ObjectType> {
 extern_methods!(
     unsafe impl<ObjectType: Message> PHFetchResult<ObjectType> {
         #[method(count)]
+        #[unsafe(method_family = none)]
         pub unsafe fn count(&self) -> NSUInteger;
 
-        #[method_id(objectAtIndex:)]
+        #[method(objectAtIndex:)]
         #[unsafe(method_family = none)]
         pub unsafe fn objectAtIndex(&self, index: NSUInteger) -> Retained<ObjectType>;
 
-        #[method_id(objectAtIndexedSubscript:)]
+        #[method(objectAtIndexedSubscript:)]
         #[unsafe(method_family = none)]
         pub unsafe fn objectAtIndexedSubscript(&self, idx: NSUInteger) -> Retained<ObjectType>;
 
         #[method(containsObject:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn containsObject(&self, an_object: &ObjectType) -> bool;
 
         #[method(indexOfObject:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indexOfObject(&self, an_object: &ObjectType) -> NSUInteger;
 
         #[method(indexOfObject:inRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indexOfObject_inRange(
             &self,
             an_object: &ObjectType,
             range: NSRange,
         ) -> NSUInteger;
 
-        #[method_id(firstObject)]
+        #[method(firstObject)]
         #[unsafe(method_family = none)]
         pub unsafe fn firstObject(&self) -> Option<Retained<ObjectType>>;
 
-        #[method_id(lastObject)]
+        #[method(lastObject)]
         #[unsafe(method_family = none)]
         pub unsafe fn lastObject(&self) -> Option<Retained<ObjectType>>;
 
-        #[method_id(objectsAtIndexes:)]
+        #[method(objectsAtIndexes:)]
         #[unsafe(method_family = none)]
         pub unsafe fn objectsAtIndexes(
             &self,
@@ -67,6 +71,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[method(enumerateObjectsUsingBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn enumerateObjectsUsingBlock(
             &self,
             block: &block2::Block<dyn Fn(NonNull<ObjectType>, NSUInteger, NonNull<Bool>)>,
@@ -74,6 +79,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[method(enumerateObjectsWithOptions:usingBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn enumerateObjectsWithOptions_usingBlock(
             &self,
             opts: NSEnumerationOptions,
@@ -82,6 +88,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[method(enumerateObjectsAtIndexes:options:usingBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn enumerateObjectsAtIndexes_options_usingBlock(
             &self,
             s: &NSIndexSet,
@@ -91,6 +98,7 @@ extern_methods!(
 
         #[cfg(feature = "PhotosTypes")]
         #[method(countOfAssetsWithMediaType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn countOfAssetsWithMediaType(&self, media_type: PHAssetMediaType)
             -> NSUInteger;
     }
@@ -99,11 +107,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<ObjectType: Message> PHFetchResult<ObjectType> {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

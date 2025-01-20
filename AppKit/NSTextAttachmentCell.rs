@@ -13,6 +13,7 @@ extern_protocol!(
     pub unsafe trait NSTextAttachmentCellProtocol: NSObjectProtocol {
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(drawWithFrame:inView:)]
+        #[unsafe(method_family = none)]
         unsafe fn drawWithFrame_inView(
             &self,
             cell_frame: NSRect,
@@ -21,10 +22,12 @@ extern_protocol!(
         );
 
         #[method(wantsToTrackMouse)]
+        #[unsafe(method_family = none)]
         unsafe fn wantsToTrackMouse(&self, mtm: MainThreadMarker) -> bool;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(highlight:withFrame:inView:)]
+        #[unsafe(method_family = none)]
         unsafe fn highlight_withFrame_inView(
             &self,
             flag: bool,
@@ -35,6 +38,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSEvent", feature = "NSResponder", feature = "NSView"))]
         #[method(trackMouse:inRect:ofView:untilMouseUp:)]
+        #[unsafe(method_family = none)]
         unsafe fn trackMouse_inRect_ofView_untilMouseUp(
             &self,
             the_event: &NSEvent,
@@ -45,23 +49,27 @@ extern_protocol!(
         ) -> bool;
 
         #[method(cellSize)]
+        #[unsafe(method_family = none)]
         unsafe fn cellSize(&self) -> NSSize;
 
         #[method(cellBaselineOffset)]
+        #[unsafe(method_family = none)]
         unsafe fn cellBaselineOffset(&self) -> NSPoint;
 
         #[cfg(feature = "NSTextAttachment")]
-        #[method_id(attachment)]
+        #[method(attachment)]
         #[unsafe(method_family = none)]
         unsafe fn attachment(&self) -> Option<Retained<NSTextAttachment>>;
 
         #[cfg(feature = "NSTextAttachment")]
         /// Setter for [`attachment`][Self::attachment].
         #[method(setAttachment:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAttachment(&self, attachment: Option<&NSTextAttachment>);
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(drawWithFrame:inView:characterIndex:)]
+        #[unsafe(method_family = none)]
         unsafe fn drawWithFrame_inView_characterIndex(
             &self,
             cell_frame: NSRect,
@@ -76,6 +84,7 @@ extern_protocol!(
             feature = "NSView"
         ))]
         #[method(drawWithFrame:inView:characterIndex:layoutManager:)]
+        #[unsafe(method_family = none)]
         unsafe fn drawWithFrame_inView_characterIndex_layoutManager(
             &self,
             cell_frame: NSRect,
@@ -87,6 +96,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSEvent", feature = "NSResponder", feature = "NSView"))]
         #[method(wantsToTrackMouseForEvent:inRect:ofView:atCharacterIndex:)]
+        #[unsafe(method_family = none)]
         unsafe fn wantsToTrackMouseForEvent_inRect_ofView_atCharacterIndex(
             &self,
             the_event: &NSEvent,
@@ -98,6 +108,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSEvent", feature = "NSResponder", feature = "NSView"))]
         #[method(trackMouse:inRect:ofView:atCharacterIndex:untilMouseUp:)]
+        #[unsafe(method_family = none)]
         unsafe fn trackMouse_inRect_ofView_atCharacterIndex_untilMouseUp(
             &self,
             the_event: &NSEvent,
@@ -110,6 +121,7 @@ extern_protocol!(
 
         #[cfg(feature = "NSTextContainer")]
         #[method(cellFrameForTextContainer:proposedLineFragment:glyphPosition:characterIndex:)]
+        #[unsafe(method_family = none)]
         unsafe fn cellFrameForTextContainer_proposedLineFragment_glyphPosition_characterIndex(
             &self,
             text_container: &NSTextContainer,
@@ -163,23 +175,23 @@ extern_methods!(
     /// Methods declared on superclass `NSCell`
     #[cfg(feature = "NSCell")]
     unsafe impl NSTextAttachmentCell {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(initTextCell:)]
+        #[method(initTextCell:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
-        #[method_id(initImageCell:)]
+        #[method(initImageCell:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initImageCell(
             this: Allocated<Self>,
             image: Option<&NSImage>,
         ) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
     }
@@ -189,7 +201,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSCell")]
     unsafe impl NSTextAttachmentCell {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

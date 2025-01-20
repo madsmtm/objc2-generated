@@ -32,23 +32,25 @@ extern_methods!(
         /// Represents a time range where an ad break exists in the current player item.
         /// This value must be in bounds of the duration of the current player item.
         #[method(timeRange)]
+        #[unsafe(method_family = none)]
         pub unsafe fn timeRange(&self) -> CMTimeRange;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`timeRange`][Self::timeRange].
         #[method(setTimeRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTimeRange(&self, time_range: CMTimeRange);
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-media")]
-        #[method_id(initWithTimeRange:)]
+        #[method(initWithTimeRange:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTimeRange(
             this: Allocated<Self>,
@@ -70,28 +72,28 @@ extern_methods!(
     unsafe impl MPNowPlayingSession {
         #[cfg(feature = "objc2-av-foundation")]
         /// Creates a session associated with a given AVPlayer instance. This will assert if players is nil or empty.
-        #[method_id(initWithPlayers:)]
+        #[method(initWithPlayers:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPlayers(
             this: Allocated<Self>,
             players: &NSArray<AVPlayer>,
         ) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-av-foundation")]
         /// AVPlayer instances associated with this session.
-        #[method_id(players)]
+        #[method(players)]
         #[unsafe(method_family = none)]
         pub unsafe fn players(&self, mtm: MainThreadMarker) -> Retained<NSArray<AVPlayer>>;
 
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -100,6 +102,7 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn MPNowPlayingSessionDelegate>>,
@@ -108,10 +111,12 @@ extern_methods!(
         /// When YES, now playing info will be automatically published, and nowPlayingInfoCenter must not be used.
         /// Now playing info keys to be incorporated by automatic publishing can be set on the AVPlayerItem's nowPlayingInfo property.
         #[method(automaticallyPublishesNowPlayingInfo)]
+        #[unsafe(method_family = none)]
         pub unsafe fn automaticallyPublishesNowPlayingInfo(&self) -> bool;
 
         /// Setter for [`automaticallyPublishesNowPlayingInfo`][Self::automaticallyPublishesNowPlayingInfo].
         #[method(setAutomaticallyPublishesNowPlayingInfo:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAutomaticallyPublishesNowPlayingInfo(
             &self,
             automatically_publishes_now_playing_info: bool,
@@ -119,27 +124,30 @@ extern_methods!(
 
         #[cfg(feature = "MPNowPlayingInfoCenter")]
         /// The now playing info center that is associated with this session.
-        #[method_id(nowPlayingInfoCenter)]
+        #[method(nowPlayingInfoCenter)]
         #[unsafe(method_family = none)]
         pub unsafe fn nowPlayingInfoCenter(&self) -> Retained<MPNowPlayingInfoCenter>;
 
         #[cfg(feature = "MPRemoteCommandCenter")]
         /// The remote command center that is associated with this session.
-        #[method_id(remoteCommandCenter)]
+        #[method(remoteCommandCenter)]
         #[unsafe(method_family = none)]
         pub unsafe fn remoteCommandCenter(&self) -> Retained<MPRemoteCommandCenter>;
 
         /// Returns a Boolean value indicating whether this session can become the App's active now playing session.
         #[method(canBecomeActive)]
+        #[unsafe(method_family = none)]
         pub unsafe fn canBecomeActive(&self) -> bool;
 
         /// Returns a Boolean value indicating whether this session is the App's active now playing session.
         #[method(isActive)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isActive(&self) -> bool;
 
         #[cfg(feature = "block2")]
         /// Asks the system to make this session the active now playing sessin for the App.
         #[method(becomeActiveIfPossibleWithCompletion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn becomeActiveIfPossibleWithCompletion(
             &self,
             completion: Option<&block2::Block<dyn Fn(Bool)>>,
@@ -148,11 +156,13 @@ extern_methods!(
         #[cfg(feature = "objc2-av-foundation")]
         /// Add AVPlayer instance to this session.
         #[method(addPlayer:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addPlayer(&self, player: &AVPlayer);
 
         #[cfg(feature = "objc2-av-foundation")]
         /// Remove AVPlayer instance from this session.
         #[method(removePlayer:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removePlayer(&self, player: &AVPlayer);
     }
 );
@@ -163,6 +173,7 @@ extern_protocol!(
         /// Tells the delegate that the session has changed its active status.
         #[optional]
         #[method(nowPlayingSessionDidChangeActive:)]
+        #[unsafe(method_family = none)]
         unsafe fn nowPlayingSessionDidChangeActive(
             &self,
             now_playing_session: &MPNowPlayingSession,
@@ -171,6 +182,7 @@ extern_protocol!(
         /// Tells the delegate that the session has changed its can become active status.
         #[optional]
         #[method(nowPlayingSessionDidChangeCanBecomeActive:)]
+        #[unsafe(method_family = none)]
         unsafe fn nowPlayingSessionDidChangeCanBecomeActive(
             &self,
             now_playing_session: &MPNowPlayingSession,

@@ -32,6 +32,7 @@ extern_methods!(
         #[cfg(feature = "HMCameraDefines")]
         /// Represents the audio setting for the current stream.
         #[method(audioStreamSetting)]
+        #[unsafe(method_family = none)]
         pub unsafe fn audioStreamSetting(&self) -> HMCameraAudioStreamSetting;
 
         #[cfg(feature = "HMCameraDefines")]
@@ -41,6 +42,7 @@ extern_methods!(
         /// Parameter `audioStreamSetting`: New audio stream setting.
         #[deprecated]
         #[method(setAudioStreamSetting:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAudioStreamSetting(
             &self,
             audio_stream_setting: HMCameraAudioStreamSetting,
@@ -57,6 +59,7 @@ extern_methods!(
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
         #[method(updateAudioStreamSetting:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updateAudioStreamSetting_completionHandler(
             &self,
             audio_stream_setting: HMCameraAudioStreamSetting,
@@ -64,7 +67,7 @@ extern_methods!(
         );
 
         #[deprecated = "HMCameraStream objects are created by their parent container objects. Directly creating them is not supported."]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -74,7 +77,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "HMCameraSource")]
     unsafe impl HMCameraStream {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

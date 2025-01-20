@@ -123,26 +123,29 @@ extern_methods!(
     unsafe impl HKElectrocardiogram {
         /// The number of voltage measurements in the electrocardiogram.
         #[method(numberOfVoltageMeasurements)]
+        #[unsafe(method_family = none)]
         pub unsafe fn numberOfVoltageMeasurements(&self) -> NSInteger;
 
         #[cfg(feature = "HKQuantity")]
         /// The frequency at which the data was sampled. This is reported in [HKUnit hertzUnit].
-        #[method_id(samplingFrequency)]
+        #[method(samplingFrequency)]
         #[unsafe(method_family = none)]
         pub unsafe fn samplingFrequency(&self) -> Option<Retained<HKQuantity>>;
 
         /// The classification of this electrocardiogram sample.
         #[method(classification)]
+        #[unsafe(method_family = none)]
         pub unsafe fn classification(&self) -> HKElectrocardiogramClassification;
 
         #[cfg(feature = "HKQuantity")]
         /// The average heart rate of the user while the electrocardiogram was recorded.
-        #[method_id(averageHeartRate)]
+        #[method(averageHeartRate)]
         #[unsafe(method_family = none)]
         pub unsafe fn averageHeartRate(&self) -> Option<Retained<HKQuantity>>;
 
         /// Whether the user experienced symptoms during this electrocardiogram.
         #[method(symptomsStatus)]
+        #[unsafe(method_family = none)]
         pub unsafe fn symptomsStatus(&self) -> HKElectrocardiogramSymptomsStatus;
     }
 );
@@ -151,7 +154,7 @@ extern_methods!(
     /// Methods declared on superclass `HKObject`
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKElectrocardiogram {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -161,7 +164,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKElectrocardiogram {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -151,17 +151,19 @@ unsafe impl NSSecureCoding for NSString {}
 extern_methods!(
     unsafe impl NSString {
         #[method(length)]
+        #[unsafe(method_family = none)]
         pub fn length(&self) -> NSUInteger;
 
         #[method(characterAtIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn characterAtIndex(&self, index: NSUInteger) -> unichar;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -173,7 +175,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSString {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
     }
@@ -311,29 +313,32 @@ extern "C" {
 extern_methods!(
     /// NSStringExtensionMethods
     unsafe impl NSString {
-        #[method_id(substringFromIndex:)]
+        #[method(substringFromIndex:)]
         #[unsafe(method_family = none)]
         pub unsafe fn substringFromIndex(&self, from: NSUInteger) -> Retained<NSString>;
 
-        #[method_id(substringToIndex:)]
+        #[method(substringToIndex:)]
         #[unsafe(method_family = none)]
         pub unsafe fn substringToIndex(&self, to: NSUInteger) -> Retained<NSString>;
 
         #[cfg(feature = "NSRange")]
-        #[method_id(substringWithRange:)]
+        #[method(substringWithRange:)]
         #[unsafe(method_family = none)]
         pub unsafe fn substringWithRange(&self, range: NSRange) -> Retained<NSString>;
 
         #[cfg(feature = "NSRange")]
         #[method(getCharacters:range:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getCharacters_range(&self, buffer: NonNull<unichar>, range: NSRange);
 
         #[cfg(feature = "NSObjCRuntime")]
         #[method(compare:)]
+        #[unsafe(method_family = none)]
         pub fn compare(&self, string: &NSString) -> NSComparisonResult;
 
         #[cfg(feature = "NSObjCRuntime")]
         #[method(compare:options:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn compare_options(
             &self,
             string: &NSString,
@@ -342,6 +347,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSRange"))]
         #[method(compare:options:range:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn compare_options_range(
             &self,
             string: &NSString,
@@ -351,6 +357,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSRange"))]
         #[method(compare:options:range:locale:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn compare_options_range_locale(
             &self,
             string: &NSString,
@@ -361,14 +368,17 @@ extern_methods!(
 
         #[cfg(feature = "NSObjCRuntime")]
         #[method(caseInsensitiveCompare:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn caseInsensitiveCompare(&self, string: &NSString) -> NSComparisonResult;
 
         #[cfg(feature = "NSObjCRuntime")]
         #[method(localizedCompare:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn localizedCompare(&self, string: &NSString) -> NSComparisonResult;
 
         #[cfg(feature = "NSObjCRuntime")]
         #[method(localizedCaseInsensitiveCompare:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn localizedCaseInsensitiveCompare(
             &self,
             string: &NSString,
@@ -376,18 +386,22 @@ extern_methods!(
 
         #[cfg(feature = "NSObjCRuntime")]
         #[method(localizedStandardCompare:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn localizedStandardCompare(&self, string: &NSString) -> NSComparisonResult;
 
         #[method(isEqualToString:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isEqualToString(&self, a_string: &NSString) -> bool;
 
         #[method(hasPrefix:)]
+        #[unsafe(method_family = none)]
         pub fn hasPrefix(&self, str: &NSString) -> bool;
 
         #[method(hasSuffix:)]
+        #[unsafe(method_family = none)]
         pub fn hasSuffix(&self, str: &NSString) -> bool;
 
-        #[method_id(commonPrefixWithString:options:)]
+        #[method(commonPrefixWithString:options:)]
         #[unsafe(method_family = none)]
         pub unsafe fn commonPrefixWithString_options(
             &self,
@@ -396,24 +410,30 @@ extern_methods!(
         ) -> Retained<NSString>;
 
         #[method(containsString:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn containsString(&self, str: &NSString) -> bool;
 
         #[method(localizedCaseInsensitiveContainsString:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn localizedCaseInsensitiveContainsString(&self, str: &NSString) -> bool;
 
         #[method(localizedStandardContainsString:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn localizedStandardContainsString(&self, str: &NSString) -> bool;
 
         #[cfg(feature = "NSRange")]
         #[method(localizedStandardRangeOfString:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn localizedStandardRangeOfString(&self, str: &NSString) -> NSRange;
 
         #[cfg(feature = "NSRange")]
         #[method(rangeOfString:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rangeOfString(&self, search_string: &NSString) -> NSRange;
 
         #[cfg(feature = "NSRange")]
         #[method(rangeOfString:options:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rangeOfString_options(
             &self,
             search_string: &NSString,
@@ -422,6 +442,7 @@ extern_methods!(
 
         #[cfg(feature = "NSRange")]
         #[method(rangeOfString:options:range:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rangeOfString_options_range(
             &self,
             search_string: &NSString,
@@ -431,6 +452,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSLocale", feature = "NSRange"))]
         #[method(rangeOfString:options:range:locale:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rangeOfString_options_range_locale(
             &self,
             search_string: &NSString,
@@ -441,10 +463,12 @@ extern_methods!(
 
         #[cfg(all(feature = "NSCharacterSet", feature = "NSRange"))]
         #[method(rangeOfCharacterFromSet:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rangeOfCharacterFromSet(&self, search_set: &NSCharacterSet) -> NSRange;
 
         #[cfg(all(feature = "NSCharacterSet", feature = "NSRange"))]
         #[method(rangeOfCharacterFromSet:options:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rangeOfCharacterFromSet_options(
             &self,
             search_set: &NSCharacterSet,
@@ -453,6 +477,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSCharacterSet", feature = "NSRange"))]
         #[method(rangeOfCharacterFromSet:options:range:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rangeOfCharacterFromSet_options_range(
             &self,
             search_set: &NSCharacterSet,
@@ -462,60 +487,68 @@ extern_methods!(
 
         #[cfg(feature = "NSRange")]
         #[method(rangeOfComposedCharacterSequenceAtIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rangeOfComposedCharacterSequenceAtIndex(&self, index: NSUInteger) -> NSRange;
 
         #[cfg(feature = "NSRange")]
         #[method(rangeOfComposedCharacterSequencesForRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rangeOfComposedCharacterSequencesForRange(&self, range: NSRange) -> NSRange;
 
-        #[method_id(stringByAppendingString:)]
+        #[method(stringByAppendingString:)]
         #[unsafe(method_family = none)]
         pub fn stringByAppendingString(&self, a_string: &NSString) -> Retained<NSString>;
 
         #[method(doubleValue)]
+        #[unsafe(method_family = none)]
         pub unsafe fn doubleValue(&self) -> c_double;
 
         #[method(floatValue)]
+        #[unsafe(method_family = none)]
         pub unsafe fn floatValue(&self) -> c_float;
 
         #[method(intValue)]
+        #[unsafe(method_family = none)]
         pub unsafe fn intValue(&self) -> c_int;
 
         #[method(integerValue)]
+        #[unsafe(method_family = none)]
         pub unsafe fn integerValue(&self) -> NSInteger;
 
         #[method(longLongValue)]
+        #[unsafe(method_family = none)]
         pub unsafe fn longLongValue(&self) -> c_longlong;
 
         #[method(boolValue)]
+        #[unsafe(method_family = none)]
         pub unsafe fn boolValue(&self) -> bool;
 
-        #[method_id(uppercaseString)]
+        #[method(uppercaseString)]
         #[unsafe(method_family = none)]
         pub unsafe fn uppercaseString(&self) -> Retained<NSString>;
 
-        #[method_id(lowercaseString)]
+        #[method(lowercaseString)]
         #[unsafe(method_family = none)]
         pub unsafe fn lowercaseString(&self) -> Retained<NSString>;
 
-        #[method_id(capitalizedString)]
+        #[method(capitalizedString)]
         #[unsafe(method_family = none)]
         pub unsafe fn capitalizedString(&self) -> Retained<NSString>;
 
-        #[method_id(localizedUppercaseString)]
+        #[method(localizedUppercaseString)]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedUppercaseString(&self) -> Retained<NSString>;
 
-        #[method_id(localizedLowercaseString)]
+        #[method(localizedLowercaseString)]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedLowercaseString(&self) -> Retained<NSString>;
 
-        #[method_id(localizedCapitalizedString)]
+        #[method(localizedCapitalizedString)]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedCapitalizedString(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSLocale")]
-        #[method_id(uppercaseStringWithLocale:)]
+        #[method(uppercaseStringWithLocale:)]
         #[unsafe(method_family = none)]
         pub unsafe fn uppercaseStringWithLocale(
             &self,
@@ -523,7 +556,7 @@ extern_methods!(
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSLocale")]
-        #[method_id(lowercaseStringWithLocale:)]
+        #[method(lowercaseStringWithLocale:)]
         #[unsafe(method_family = none)]
         pub unsafe fn lowercaseStringWithLocale(
             &self,
@@ -531,7 +564,7 @@ extern_methods!(
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSLocale")]
-        #[method_id(capitalizedStringWithLocale:)]
+        #[method(capitalizedStringWithLocale:)]
         #[unsafe(method_family = none)]
         pub unsafe fn capitalizedStringWithLocale(
             &self,
@@ -540,6 +573,7 @@ extern_methods!(
 
         #[cfg(feature = "NSRange")]
         #[method(getLineStart:end:contentsEnd:forRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getLineStart_end_contentsEnd_forRange(
             &self,
             start_ptr: *mut NSUInteger,
@@ -550,10 +584,12 @@ extern_methods!(
 
         #[cfg(feature = "NSRange")]
         #[method(lineRangeForRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn lineRangeForRange(&self, range: NSRange) -> NSRange;
 
         #[cfg(feature = "NSRange")]
         #[method(getParagraphStart:end:contentsEnd:forRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getParagraphStart_end_contentsEnd_forRange(
             &self,
             start_ptr: *mut NSUInteger,
@@ -564,10 +600,12 @@ extern_methods!(
 
         #[cfg(feature = "NSRange")]
         #[method(paragraphRangeForRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn paragraphRangeForRange(&self, range: NSRange) -> NSRange;
 
         #[cfg(all(feature = "NSRange", feature = "block2"))]
         #[method(enumerateSubstringsInRange:options:usingBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn enumerateSubstringsInRange_options_usingBlock(
             &self,
             range: NSRange,
@@ -577,22 +615,26 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[method(enumerateLinesUsingBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn enumerateLinesUsingBlock(
             &self,
             block: &block2::Block<dyn Fn(NonNull<NSString>, NonNull<Bool>)>,
         );
 
         #[method(UTF8String)]
+        #[unsafe(method_family = none)]
         pub fn UTF8String(&self) -> *const c_char;
 
         #[method(fastestEncoding)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fastestEncoding(&self) -> NSStringEncoding;
 
         #[method(smallestEncoding)]
+        #[unsafe(method_family = none)]
         pub unsafe fn smallestEncoding(&self) -> NSStringEncoding;
 
         #[cfg(feature = "NSData")]
-        #[method_id(dataUsingEncoding:allowLossyConversion:)]
+        #[method(dataUsingEncoding:allowLossyConversion:)]
         #[unsafe(method_family = none)]
         pub unsafe fn dataUsingEncoding_allowLossyConversion(
             &self,
@@ -601,7 +643,7 @@ extern_methods!(
         ) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "NSData")]
-        #[method_id(dataUsingEncoding:)]
+        #[method(dataUsingEncoding:)]
         #[unsafe(method_family = none)]
         pub unsafe fn dataUsingEncoding(
             &self,
@@ -609,12 +651,15 @@ extern_methods!(
         ) -> Option<Retained<NSData>>;
 
         #[method(canBeConvertedToEncoding:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn canBeConvertedToEncoding(&self, encoding: NSStringEncoding) -> bool;
 
         #[method(cStringUsingEncoding:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cStringUsingEncoding(&self, encoding: NSStringEncoding) -> *const c_char;
 
         #[method(getCString:maxLength:encoding:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getCString_maxLength_encoding(
             &self,
             buffer: NonNull<c_char>,
@@ -624,6 +669,7 @@ extern_methods!(
 
         #[cfg(feature = "NSRange")]
         #[method(getBytes:maxLength:usedLength:encoding:options:range:remainingRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getBytes_maxLength_usedLength_encoding_options_range_remainingRange(
             &self,
             buffer: *mut c_void,
@@ -636,42 +682,46 @@ extern_methods!(
         ) -> bool;
 
         #[method(maximumLengthOfBytesUsingEncoding:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maximumLengthOfBytesUsingEncoding(&self, enc: NSStringEncoding)
             -> NSUInteger;
 
         #[method(lengthOfBytesUsingEncoding:)]
+        #[unsafe(method_family = none)]
         pub fn lengthOfBytesUsingEncoding(&self, enc: NSStringEncoding) -> NSUInteger;
 
         #[method(availableStringEncodings)]
+        #[unsafe(method_family = none)]
         pub unsafe fn availableStringEncodings() -> NonNull<NSStringEncoding>;
 
-        #[method_id(localizedNameOfStringEncoding:)]
+        #[method(localizedNameOfStringEncoding:)]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedNameOfStringEncoding(
             encoding: NSStringEncoding,
         ) -> Retained<NSString>;
 
         #[method(defaultCStringEncoding)]
+        #[unsafe(method_family = none)]
         pub unsafe fn defaultCStringEncoding() -> NSStringEncoding;
 
-        #[method_id(decomposedStringWithCanonicalMapping)]
+        #[method(decomposedStringWithCanonicalMapping)]
         #[unsafe(method_family = none)]
         pub unsafe fn decomposedStringWithCanonicalMapping(&self) -> Retained<NSString>;
 
-        #[method_id(precomposedStringWithCanonicalMapping)]
+        #[method(precomposedStringWithCanonicalMapping)]
         #[unsafe(method_family = none)]
         pub unsafe fn precomposedStringWithCanonicalMapping(&self) -> Retained<NSString>;
 
-        #[method_id(decomposedStringWithCompatibilityMapping)]
+        #[method(decomposedStringWithCompatibilityMapping)]
         #[unsafe(method_family = none)]
         pub unsafe fn decomposedStringWithCompatibilityMapping(&self) -> Retained<NSString>;
 
-        #[method_id(precomposedStringWithCompatibilityMapping)]
+        #[method(precomposedStringWithCompatibilityMapping)]
         #[unsafe(method_family = none)]
         pub unsafe fn precomposedStringWithCompatibilityMapping(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSArray")]
-        #[method_id(componentsSeparatedByString:)]
+        #[method(componentsSeparatedByString:)]
         #[unsafe(method_family = none)]
         pub unsafe fn componentsSeparatedByString(
             &self,
@@ -679,7 +729,7 @@ extern_methods!(
         ) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSCharacterSet"))]
-        #[method_id(componentsSeparatedByCharactersInSet:)]
+        #[method(componentsSeparatedByCharactersInSet:)]
         #[unsafe(method_family = none)]
         pub unsafe fn componentsSeparatedByCharactersInSet(
             &self,
@@ -687,14 +737,14 @@ extern_methods!(
         ) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSCharacterSet")]
-        #[method_id(stringByTrimmingCharactersInSet:)]
+        #[method(stringByTrimmingCharactersInSet:)]
         #[unsafe(method_family = none)]
         pub unsafe fn stringByTrimmingCharactersInSet(
             &self,
             set: &NSCharacterSet,
         ) -> Retained<NSString>;
 
-        #[method_id(stringByPaddingToLength:withString:startingAtIndex:)]
+        #[method(stringByPaddingToLength:withString:startingAtIndex:)]
         #[unsafe(method_family = none)]
         pub unsafe fn stringByPaddingToLength_withString_startingAtIndex(
             &self,
@@ -704,7 +754,7 @@ extern_methods!(
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSLocale")]
-        #[method_id(stringByFoldingWithOptions:locale:)]
+        #[method(stringByFoldingWithOptions:locale:)]
         #[unsafe(method_family = none)]
         pub unsafe fn stringByFoldingWithOptions_locale(
             &self,
@@ -713,7 +763,7 @@ extern_methods!(
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSRange")]
-        #[method_id(stringByReplacingOccurrencesOfString:withString:options:range:)]
+        #[method(stringByReplacingOccurrencesOfString:withString:options:range:)]
         #[unsafe(method_family = none)]
         pub unsafe fn stringByReplacingOccurrencesOfString_withString_options_range(
             &self,
@@ -723,7 +773,7 @@ extern_methods!(
             search_range: NSRange,
         ) -> Retained<NSString>;
 
-        #[method_id(stringByReplacingOccurrencesOfString:withString:)]
+        #[method(stringByReplacingOccurrencesOfString:withString:)]
         #[unsafe(method_family = none)]
         pub unsafe fn stringByReplacingOccurrencesOfString_withString(
             &self,
@@ -732,7 +782,7 @@ extern_methods!(
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSRange")]
-        #[method_id(stringByReplacingCharactersInRange:withString:)]
+        #[method(stringByReplacingCharactersInRange:withString:)]
         #[unsafe(method_family = none)]
         pub unsafe fn stringByReplacingCharactersInRange_withString(
             &self,
@@ -740,7 +790,7 @@ extern_methods!(
             replacement: &NSString,
         ) -> Retained<NSString>;
 
-        #[method_id(stringByApplyingTransform:reverse:)]
+        #[method(stringByApplyingTransform:reverse:)]
         #[unsafe(method_family = none)]
         pub unsafe fn stringByApplyingTransform_reverse(
             &self,
@@ -750,6 +800,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
         #[method(writeToURL:atomically:encoding:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn writeToURL_atomically_encoding_error(
             &self,
             url: &NSURL,
@@ -759,6 +810,7 @@ extern_methods!(
 
         #[cfg(feature = "NSError")]
         #[method(writeToFile:atomically:encoding:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn writeToFile_atomically_encoding_error(
             &self,
             path: &NSString,
@@ -766,14 +818,15 @@ extern_methods!(
             enc: NSStringEncoding,
         ) -> Result<(), Retained<NSError>>;
 
-        #[method_id(description)]
+        #[method(description)]
         #[unsafe(method_family = none)]
         pub unsafe fn description(&self) -> Retained<NSString>;
 
         #[method(hash)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hash(&self) -> NSUInteger;
 
-        #[method_id(initWithCharactersNoCopy:length:freeWhenDone:)]
+        #[method(initWithCharactersNoCopy:length:freeWhenDone:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCharactersNoCopy_length_freeWhenDone(
             this: Allocated<Self>,
@@ -783,7 +836,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        #[method_id(initWithCharactersNoCopy:length:deallocator:)]
+        #[method(initWithCharactersNoCopy:length:deallocator:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCharactersNoCopy_length_deallocator(
             this: Allocated<Self>,
@@ -792,7 +845,7 @@ extern_methods!(
             deallocator: Option<&block2::Block<dyn Fn(NonNull<unichar>, NSUInteger)>>,
         ) -> Retained<Self>;
 
-        #[method_id(initWithCharacters:length:)]
+        #[method(initWithCharacters:length:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCharacters_length(
             this: Allocated<Self>,
@@ -800,19 +853,19 @@ extern_methods!(
             length: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(initWithUTF8String:)]
+        #[method(initWithUTF8String:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithUTF8String(
             this: Allocated<Self>,
             null_terminated_c_string: NonNull<c_char>,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(initWithString:)]
+        #[method(initWithString:)]
         #[unsafe(method_family = init)]
         pub fn initWithString(this: Allocated<Self>, a_string: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "NSData")]
-        #[method_id(initWithData:encoding:)]
+        #[method(initWithData:encoding:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithData_encoding(
             this: Allocated<Self>,
@@ -820,7 +873,7 @@ extern_methods!(
             encoding: NSStringEncoding,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(initWithBytes:length:encoding:)]
+        #[method(initWithBytes:length:encoding:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBytes_length_encoding(
             this: Allocated<Self>,
@@ -829,7 +882,7 @@ extern_methods!(
             encoding: NSStringEncoding,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(initWithBytesNoCopy:length:encoding:freeWhenDone:)]
+        #[method(initWithBytesNoCopy:length:encoding:freeWhenDone:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBytesNoCopy_length_encoding_freeWhenDone(
             this: Allocated<Self>,
@@ -840,7 +893,7 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "block2")]
-        #[method_id(initWithBytesNoCopy:length:encoding:deallocator:)]
+        #[method(initWithBytesNoCopy:length:encoding:deallocator:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBytesNoCopy_length_encoding_deallocator(
             this: Allocated<Self>,
@@ -850,28 +903,28 @@ extern_methods!(
             deallocator: Option<&block2::Block<dyn Fn(NonNull<c_void>, NSUInteger)>>,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(string)]
+        #[method(string)]
         #[unsafe(method_family = none)]
         pub unsafe fn string() -> Retained<Self>;
 
-        #[method_id(stringWithString:)]
+        #[method(stringWithString:)]
         #[unsafe(method_family = none)]
         pub fn stringWithString(string: &NSString) -> Retained<Self>;
 
-        #[method_id(stringWithCharacters:length:)]
+        #[method(stringWithCharacters:length:)]
         #[unsafe(method_family = none)]
         pub unsafe fn stringWithCharacters_length(
             characters: NonNull<unichar>,
             length: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(stringWithUTF8String:)]
+        #[method(stringWithUTF8String:)]
         #[unsafe(method_family = none)]
         pub unsafe fn stringWithUTF8String(
             null_terminated_c_string: NonNull<c_char>,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(initWithCString:encoding:)]
+        #[method(initWithCString:encoding:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCString_encoding(
             this: Allocated<Self>,
@@ -879,7 +932,7 @@ extern_methods!(
             encoding: NSStringEncoding,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(stringWithCString:encoding:)]
+        #[method(stringWithCString:encoding:)]
         #[unsafe(method_family = none)]
         pub unsafe fn stringWithCString_encoding(
             c_string: NonNull<c_char>,
@@ -887,7 +940,7 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
-        #[method_id(initWithContentsOfURL:encoding:error:_)]
+        #[method(initWithContentsOfURL:encoding:error:_)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL_encoding_error(
             this: Allocated<Self>,
@@ -896,7 +949,7 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "NSError")]
-        #[method_id(initWithContentsOfFile:encoding:error:_)]
+        #[method(initWithContentsOfFile:encoding:error:_)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfFile_encoding_error(
             this: Allocated<Self>,
@@ -905,7 +958,7 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
-        #[method_id(stringWithContentsOfURL:encoding:error:_)]
+        #[method(stringWithContentsOfURL:encoding:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn stringWithContentsOfURL_encoding_error(
             url: &NSURL,
@@ -913,7 +966,7 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "NSError")]
-        #[method_id(stringWithContentsOfFile:encoding:error:_)]
+        #[method(stringWithContentsOfFile:encoding:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn stringWithContentsOfFile_encoding_error(
             path: &NSString,
@@ -921,7 +974,7 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
-        #[method_id(initWithContentsOfURL:usedEncoding:error:_)]
+        #[method(initWithContentsOfURL:usedEncoding:error:_)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL_usedEncoding_error(
             this: Allocated<Self>,
@@ -930,7 +983,7 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "NSError")]
-        #[method_id(initWithContentsOfFile:usedEncoding:error:_)]
+        #[method(initWithContentsOfFile:usedEncoding:error:_)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfFile_usedEncoding_error(
             this: Allocated<Self>,
@@ -939,7 +992,7 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
-        #[method_id(stringWithContentsOfURL:usedEncoding:error:_)]
+        #[method(stringWithContentsOfURL:usedEncoding:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn stringWithContentsOfURL_usedEncoding_error(
             url: &NSURL,
@@ -947,7 +1000,7 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "NSError")]
-        #[method_id(stringWithContentsOfFile:usedEncoding:error:_)]
+        #[method(stringWithContentsOfFile:usedEncoding:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn stringWithContentsOfFile_usedEncoding_error(
             path: &NSString,
@@ -961,7 +1014,7 @@ extern_methods!(
     ///
     /// NSStringExtensionMethods
     unsafe impl NSMutableString {
-        #[method_id(initWithCharactersNoCopy:length:freeWhenDone:)]
+        #[method(initWithCharactersNoCopy:length:freeWhenDone:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCharactersNoCopy_length_freeWhenDone(
             this: Allocated<Self>,
@@ -971,7 +1024,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        #[method_id(initWithCharactersNoCopy:length:deallocator:)]
+        #[method(initWithCharactersNoCopy:length:deallocator:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCharactersNoCopy_length_deallocator(
             this: Allocated<Self>,
@@ -980,7 +1033,7 @@ extern_methods!(
             deallocator: Option<&block2::Block<dyn Fn(NonNull<unichar>, NSUInteger)>>,
         ) -> Retained<Self>;
 
-        #[method_id(initWithCharacters:length:)]
+        #[method(initWithCharacters:length:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCharacters_length(
             this: Allocated<Self>,
@@ -988,19 +1041,19 @@ extern_methods!(
             length: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(initWithUTF8String:)]
+        #[method(initWithUTF8String:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithUTF8String(
             this: Allocated<Self>,
             null_terminated_c_string: NonNull<c_char>,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(initWithString:)]
+        #[method(initWithString:)]
         #[unsafe(method_family = init)]
         pub fn initWithString(this: Allocated<Self>, a_string: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "NSData")]
-        #[method_id(initWithData:encoding:)]
+        #[method(initWithData:encoding:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithData_encoding(
             this: Allocated<Self>,
@@ -1008,7 +1061,7 @@ extern_methods!(
             encoding: NSStringEncoding,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(initWithBytes:length:encoding:)]
+        #[method(initWithBytes:length:encoding:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBytes_length_encoding(
             this: Allocated<Self>,
@@ -1017,7 +1070,7 @@ extern_methods!(
             encoding: NSStringEncoding,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(initWithBytesNoCopy:length:encoding:freeWhenDone:)]
+        #[method(initWithBytesNoCopy:length:encoding:freeWhenDone:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBytesNoCopy_length_encoding_freeWhenDone(
             this: Allocated<Self>,
@@ -1028,7 +1081,7 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "block2")]
-        #[method_id(initWithBytesNoCopy:length:encoding:deallocator:)]
+        #[method(initWithBytesNoCopy:length:encoding:deallocator:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBytesNoCopy_length_encoding_deallocator(
             this: Allocated<Self>,
@@ -1038,28 +1091,28 @@ extern_methods!(
             deallocator: Option<&block2::Block<dyn Fn(NonNull<c_void>, NSUInteger)>>,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(string)]
+        #[method(string)]
         #[unsafe(method_family = none)]
         pub unsafe fn string() -> Retained<Self>;
 
-        #[method_id(stringWithString:)]
+        #[method(stringWithString:)]
         #[unsafe(method_family = none)]
         pub fn stringWithString(string: &NSString) -> Retained<Self>;
 
-        #[method_id(stringWithCharacters:length:)]
+        #[method(stringWithCharacters:length:)]
         #[unsafe(method_family = none)]
         pub unsafe fn stringWithCharacters_length(
             characters: NonNull<unichar>,
             length: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(stringWithUTF8String:)]
+        #[method(stringWithUTF8String:)]
         #[unsafe(method_family = none)]
         pub unsafe fn stringWithUTF8String(
             null_terminated_c_string: NonNull<c_char>,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(initWithCString:encoding:)]
+        #[method(initWithCString:encoding:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCString_encoding(
             this: Allocated<Self>,
@@ -1067,7 +1120,7 @@ extern_methods!(
             encoding: NSStringEncoding,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(stringWithCString:encoding:)]
+        #[method(stringWithCString:encoding:)]
         #[unsafe(method_family = none)]
         pub unsafe fn stringWithCString_encoding(
             c_string: NonNull<c_char>,
@@ -1075,7 +1128,7 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
-        #[method_id(initWithContentsOfURL:encoding:error:_)]
+        #[method(initWithContentsOfURL:encoding:error:_)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL_encoding_error(
             this: Allocated<Self>,
@@ -1084,7 +1137,7 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "NSError")]
-        #[method_id(initWithContentsOfFile:encoding:error:_)]
+        #[method(initWithContentsOfFile:encoding:error:_)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfFile_encoding_error(
             this: Allocated<Self>,
@@ -1093,7 +1146,7 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
-        #[method_id(stringWithContentsOfURL:encoding:error:_)]
+        #[method(stringWithContentsOfURL:encoding:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn stringWithContentsOfURL_encoding_error(
             url: &NSURL,
@@ -1101,7 +1154,7 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "NSError")]
-        #[method_id(stringWithContentsOfFile:encoding:error:_)]
+        #[method(stringWithContentsOfFile:encoding:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn stringWithContentsOfFile_encoding_error(
             path: &NSString,
@@ -1109,7 +1162,7 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
-        #[method_id(initWithContentsOfURL:usedEncoding:error:_)]
+        #[method(initWithContentsOfURL:usedEncoding:error:_)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL_usedEncoding_error(
             this: Allocated<Self>,
@@ -1118,7 +1171,7 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "NSError")]
-        #[method_id(initWithContentsOfFile:usedEncoding:error:_)]
+        #[method(initWithContentsOfFile:usedEncoding:error:_)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfFile_usedEncoding_error(
             this: Allocated<Self>,
@@ -1127,7 +1180,7 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
-        #[method_id(stringWithContentsOfURL:usedEncoding:error:_)]
+        #[method(stringWithContentsOfURL:usedEncoding:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn stringWithContentsOfURL_usedEncoding_error(
             url: &NSURL,
@@ -1135,7 +1188,7 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "NSError")]
-        #[method_id(stringWithContentsOfFile:usedEncoding:error:_)]
+        #[method(stringWithContentsOfFile:usedEncoding:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn stringWithContentsOfFile_usedEncoding_error(
             path: &NSString,
@@ -1194,6 +1247,7 @@ extern_methods!(
     unsafe impl NSString {
         #[cfg(all(feature = "NSData", feature = "NSDictionary"))]
         #[method(stringEncodingForData:encodingOptions:convertedString:usedLossyConversion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stringEncodingForData_encodingOptions_convertedString_usedLossyConversion(
             data: &NSData,
             opts: Option<&NSDictionary<NSStringEncodingDetectionOptionsKey, AnyObject>>,
@@ -1249,6 +1303,7 @@ extern_methods!(
     unsafe impl NSMutableString {
         #[cfg(feature = "NSRange")]
         #[method(replaceCharactersInRange:withString:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn replaceCharactersInRange_withString(
             &self,
             range: NSRange,
@@ -1260,12 +1315,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSString`
     unsafe impl NSMutableString {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -1277,7 +1332,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSMutableString {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
     }
@@ -1294,20 +1349,25 @@ extern_methods!(
     /// NSMutableStringExtensionMethods
     unsafe impl NSMutableString {
         #[method(insertString:atIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn insertString_atIndex(&self, a_string: &NSString, loc: NSUInteger);
 
         #[cfg(feature = "NSRange")]
         #[method(deleteCharactersInRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn deleteCharactersInRange(&self, range: NSRange);
 
         #[method(appendString:)]
+        #[unsafe(method_family = none)]
         pub fn appendString(&self, a_string: &NSString);
 
         #[method(setString:)]
+        #[unsafe(method_family = none)]
         pub fn setString(&self, a_string: &NSString);
 
         #[cfg(feature = "NSRange")]
         #[method(replaceOccurrencesOfString:withString:options:range:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn replaceOccurrencesOfString_withString_options_range(
             &self,
             target: &NSString,
@@ -1318,6 +1378,7 @@ extern_methods!(
 
         #[cfg(feature = "NSRange")]
         #[method(applyTransform:reverse:range:updatedRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn applyTransform_reverse_range_updatedRange(
             &self,
             transform: &NSStringTransform,
@@ -1326,14 +1387,14 @@ extern_methods!(
             resulting_range: NSRangePointer,
         ) -> bool;
 
-        #[method_id(initWithCapacity:)]
+        #[method(initWithCapacity:)]
         #[unsafe(method_family = init)]
         pub fn initWithCapacity(
             this: Allocated<Self>,
             capacity: NSUInteger,
         ) -> Retained<NSMutableString>;
 
-        #[method_id(stringWithCapacity:)]
+        #[method(stringWithCapacity:)]
         #[unsafe(method_family = none)]
         pub fn stringWithCapacity(capacity: NSUInteger) -> Retained<NSMutableString>;
     }
@@ -1354,12 +1415,12 @@ extern "C" {
 extern_methods!(
     /// NSExtendedStringPropertyListParsing
     unsafe impl NSString {
-        #[method_id(propertyList)]
+        #[method(propertyList)]
         #[unsafe(method_family = none)]
         pub unsafe fn propertyList(&self) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSDictionary")]
-        #[method_id(propertyListFromStringsFileFormat)]
+        #[method(propertyListFromStringsFileFormat)]
         #[unsafe(method_family = none)]
         pub unsafe fn propertyListFromStringsFileFormat(&self) -> Option<Retained<NSDictionary>>;
     }
@@ -1370,27 +1431,33 @@ extern_methods!(
     unsafe impl NSString {
         #[deprecated = "Use -cStringUsingEncoding: instead"]
         #[method(cString)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cString(&self) -> *const c_char;
 
         #[deprecated = "Use -cStringUsingEncoding: instead"]
         #[method(lossyCString)]
+        #[unsafe(method_family = none)]
         pub unsafe fn lossyCString(&self) -> *const c_char;
 
         #[deprecated = "Use -lengthOfBytesUsingEncoding: instead"]
         #[method(cStringLength)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cStringLength(&self) -> NSUInteger;
 
         #[deprecated = "Use -getCString:maxLength:encoding: instead"]
         #[method(getCString:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getCString(&self, bytes: NonNull<c_char>);
 
         #[deprecated = "Use -getCString:maxLength:encoding: instead"]
         #[method(getCString:maxLength:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getCString_maxLength(&self, bytes: NonNull<c_char>, max_length: NSUInteger);
 
         #[cfg(feature = "NSRange")]
         #[deprecated = "Use -getCString:maxLength:encoding: instead"]
         #[method(getCString:maxLength:range:remainingRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getCString_maxLength_range_remainingRange(
             &self,
             bytes: NonNull<c_char>,
@@ -1401,6 +1468,7 @@ extern_methods!(
 
         #[deprecated = "Use -writeToFile:atomically:encoding:error: instead"]
         #[method(writeToFile:atomically:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn writeToFile_atomically(
             &self,
             path: &NSString,
@@ -1410,10 +1478,11 @@ extern_methods!(
         #[cfg(feature = "NSURL")]
         #[deprecated = "Use -writeToURL:atomically:encoding:error: instead"]
         #[method(writeToURL:atomically:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn writeToURL_atomically(&self, url: &NSURL, atomically: bool) -> bool;
 
         #[deprecated = "Use -initWithContentsOfFile:encoding:error: instead"]
-        #[method_id(initWithContentsOfFile:)]
+        #[method(initWithContentsOfFile:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfFile(
             this: Allocated<Self>,
@@ -1422,7 +1491,7 @@ extern_methods!(
 
         #[cfg(feature = "NSURL")]
         #[deprecated = "Use -initWithContentsOfURL:encoding:error: instead"]
-        #[method_id(initWithContentsOfURL:)]
+        #[method(initWithContentsOfURL:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL(
             this: Allocated<Self>,
@@ -1430,18 +1499,18 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[deprecated = "Use +stringWithContentsOfFile:encoding:error: instead"]
-        #[method_id(stringWithContentsOfFile:)]
+        #[method(stringWithContentsOfFile:)]
         #[unsafe(method_family = none)]
         pub unsafe fn stringWithContentsOfFile(path: &NSString) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSURL")]
         #[deprecated = "Use +stringWithContentsOfURL:encoding:error: instead"]
-        #[method_id(stringWithContentsOfURL:)]
+        #[method(stringWithContentsOfURL:)]
         #[unsafe(method_family = none)]
         pub unsafe fn stringWithContentsOfURL(url: &NSURL) -> Option<Retained<AnyObject>>;
 
         #[deprecated = "Use -initWithCString:encoding: instead"]
-        #[method_id(initWithCStringNoCopy:length:freeWhenDone:)]
+        #[method(initWithCStringNoCopy:length:freeWhenDone:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCStringNoCopy_length_freeWhenDone(
             this: Allocated<Self>,
@@ -1451,7 +1520,7 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[deprecated = "Use -initWithCString:encoding: instead"]
-        #[method_id(initWithCString:length:)]
+        #[method(initWithCString:length:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCString_length(
             this: Allocated<Self>,
@@ -1460,7 +1529,7 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[deprecated = "Use -initWithCString:encoding: instead"]
-        #[method_id(initWithCString:)]
+        #[method(initWithCString:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCString(
             this: Allocated<Self>,
@@ -1468,7 +1537,7 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[deprecated = "Use +stringWithCString:encoding:"]
-        #[method_id(stringWithCString:length:)]
+        #[method(stringWithCString:length:)]
         #[unsafe(method_family = none)]
         pub unsafe fn stringWithCString_length(
             bytes: NonNull<c_char>,
@@ -1476,11 +1545,12 @@ extern_methods!(
         ) -> Option<Retained<AnyObject>>;
 
         #[deprecated = "Use +stringWithCString:encoding: instead"]
-        #[method_id(stringWithCString:)]
+        #[method(stringWithCString:)]
         #[unsafe(method_family = none)]
         pub unsafe fn stringWithCString(bytes: NonNull<c_char>) -> Option<Retained<AnyObject>>;
 
         #[method(getCharacters:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getCharacters(&self, buffer: NonNull<unichar>);
     }
 );
@@ -1491,7 +1561,7 @@ extern_methods!(
     /// NSStringDeprecated
     unsafe impl NSMutableString {
         #[deprecated = "Use -initWithContentsOfFile:encoding:error: instead"]
-        #[method_id(initWithContentsOfFile:)]
+        #[method(initWithContentsOfFile:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfFile(
             this: Allocated<Self>,
@@ -1500,7 +1570,7 @@ extern_methods!(
 
         #[cfg(feature = "NSURL")]
         #[deprecated = "Use -initWithContentsOfURL:encoding:error: instead"]
-        #[method_id(initWithContentsOfURL:)]
+        #[method(initWithContentsOfURL:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL(
             this: Allocated<Self>,
@@ -1508,7 +1578,7 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[deprecated = "Use -initWithCString:encoding: instead"]
-        #[method_id(initWithCStringNoCopy:length:freeWhenDone:)]
+        #[method(initWithCStringNoCopy:length:freeWhenDone:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCStringNoCopy_length_freeWhenDone(
             this: Allocated<Self>,
@@ -1518,7 +1588,7 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[deprecated = "Use -initWithCString:encoding: instead"]
-        #[method_id(initWithCString:length:)]
+        #[method(initWithCString:length:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCString_length(
             this: Allocated<Self>,
@@ -1527,7 +1597,7 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[deprecated = "Use -initWithCString:encoding: instead"]
-        #[method_id(initWithCString:)]
+        #[method(initWithCString:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCString(
             this: Allocated<Self>,
@@ -1558,12 +1628,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSString`
     unsafe impl NSSimpleCString {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -1575,7 +1645,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSSimpleCString {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1603,12 +1673,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSString`
     unsafe impl NSConstantString {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -1620,7 +1690,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSConstantString {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

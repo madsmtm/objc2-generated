@@ -89,6 +89,7 @@ extern_protocol!(
         #[cfg(feature = "MPMusicPlayerQueueDescriptor")]
         /// Switches to Music to play the content provided by the queue descriptor.
         #[method(openToPlayQueueDescriptor:)]
+        #[unsafe(method_family = none)]
         unsafe fn openToPlayQueueDescriptor(&self, queue_descriptor: &MPMusicPlayerQueueDescriptor);
     }
 );
@@ -108,115 +109,136 @@ unsafe impl NSObjectProtocol for MPMusicPlayerController {}
 extern_methods!(
     unsafe impl MPMusicPlayerController {
         /// Playing items with applicationMusicPlayer does not affect Music's playback state.
-        #[method_id(applicationMusicPlayer)]
+        #[method(applicationMusicPlayer)]
         #[unsafe(method_family = none)]
         pub unsafe fn applicationMusicPlayer() -> Retained<MPMusicPlayerController>;
 
         #[cfg(feature = "MPMusicPlayerApplicationController")]
         /// Similar to applicationMusicPlayer, but allows direct manipulation of the queue.
-        #[method_id(applicationQueuePlayer)]
+        #[method(applicationQueuePlayer)]
         #[unsafe(method_family = none)]
         pub unsafe fn applicationQueuePlayer() -> Retained<MPMusicPlayerApplicationController>;
 
         /// Playing media items with the systemMusicPlayer will replace the user's current Music state.
-        #[method_id(systemMusicPlayer)]
+        #[method(systemMusicPlayer)]
         #[unsafe(method_family = none)]
         pub unsafe fn systemMusicPlayer() -> Retained<MPMusicPlayerController>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(playbackState)]
+        #[unsafe(method_family = none)]
         pub unsafe fn playbackState(&self) -> MPMusicPlaybackState;
 
         #[method(repeatMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn repeatMode(&self) -> MPMusicRepeatMode;
 
         /// Setter for [`repeatMode`][Self::repeatMode].
         #[method(setRepeatMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRepeatMode(&self, repeat_mode: MPMusicRepeatMode);
 
         #[method(shuffleMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shuffleMode(&self) -> MPMusicShuffleMode;
 
         /// Setter for [`shuffleMode`][Self::shuffleMode].
         #[method(setShuffleMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShuffleMode(&self, shuffle_mode: MPMusicShuffleMode);
 
         #[deprecated = "Use MPVolumeView for volume control."]
         #[method(volume)]
+        #[unsafe(method_family = none)]
         pub unsafe fn volume(&self) -> c_float;
 
         /// Setter for [`volume`][Self::volume].
         #[deprecated = "Use MPVolumeView for volume control."]
         #[method(setVolume:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setVolume(&self, volume: c_float);
 
         #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItem"))]
-        #[method_id(nowPlayingItem)]
+        #[method(nowPlayingItem)]
         #[unsafe(method_family = none)]
         pub unsafe fn nowPlayingItem(&self) -> Option<Retained<MPMediaItem>>;
 
         #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItem"))]
         /// Setter for [`nowPlayingItem`][Self::nowPlayingItem].
         #[method(setNowPlayingItem:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setNowPlayingItem(&self, now_playing_item: Option<&MPMediaItem>);
 
         #[method(indexOfNowPlayingItem)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indexOfNowPlayingItem(&self) -> NSUInteger;
 
         #[cfg(feature = "MPMediaQuery")]
         #[method(setQueueWithQuery:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setQueueWithQuery(&self, query: &MPMediaQuery);
 
         #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItemCollection"))]
         #[method(setQueueWithItemCollection:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setQueueWithItemCollection(&self, item_collection: &MPMediaItemCollection);
 
         #[method(setQueueWithStoreIDs:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setQueueWithStoreIDs(&self, store_i_ds: &NSArray<NSString>);
 
         #[cfg(feature = "MPMusicPlayerQueueDescriptor")]
         #[method(setQueueWithDescriptor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setQueueWithDescriptor(&self, descriptor: &MPMusicPlayerQueueDescriptor);
 
         #[cfg(feature = "MPMusicPlayerQueueDescriptor")]
         #[method(prependQueueDescriptor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn prependQueueDescriptor(&self, descriptor: &MPMusicPlayerQueueDescriptor);
 
         #[cfg(feature = "MPMusicPlayerQueueDescriptor")]
         #[method(appendQueueDescriptor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn appendQueueDescriptor(&self, descriptor: &MPMusicPlayerQueueDescriptor);
 
         #[cfg(feature = "block2")]
         #[method(prepareToPlayWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn prepareToPlayWithCompletionHandler(
             &self,
             completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
         );
 
         #[method(skipToNextItem)]
+        #[unsafe(method_family = none)]
         pub unsafe fn skipToNextItem(&self);
 
         #[method(skipToBeginning)]
+        #[unsafe(method_family = none)]
         pub unsafe fn skipToBeginning(&self);
 
         #[method(skipToPreviousItem)]
+        #[unsafe(method_family = none)]
         pub unsafe fn skipToPreviousItem(&self);
 
         #[method(beginGeneratingPlaybackNotifications)]
+        #[unsafe(method_family = none)]
         pub unsafe fn beginGeneratingPlaybackNotifications(&self);
 
         #[method(endGeneratingPlaybackNotifications)]
+        #[unsafe(method_family = none)]
         pub unsafe fn endGeneratingPlaybackNotifications(&self);
 
         #[deprecated]
-        #[method_id(iPodMusicPlayer)]
+        #[method(iPodMusicPlayer)]
         #[unsafe(method_family = none)]
         pub unsafe fn iPodMusicPlayer() -> Retained<MPMusicPlayerController>;
     }

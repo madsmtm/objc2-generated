@@ -100,10 +100,12 @@ extern_methods!(
     unsafe impl NSTextInsertionIndicator {
         /// Sets-returns the indicator's display mode.
         #[method(displayMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn displayMode(&self) -> NSTextInsertionIndicatorDisplayMode;
 
         /// Setter for [`displayMode`][Self::displayMode].
         #[method(setDisplayMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDisplayMode(&self, display_mode: NSTextInsertionIndicatorDisplayMode);
 
         #[cfg(feature = "NSColor")]
@@ -113,22 +115,25 @@ extern_methods!(
         ///
         /// Note: If set to
         /// `nil,`uses NSColor.textInsertionPointColor.
-        #[method_id(color)]
+        #[method(color)]
         #[unsafe(method_family = none)]
         pub unsafe fn color(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`color`][Self::color].
         #[method(setColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setColor(&self, color: Option<&NSColor>);
 
         /// Options for the NSTextInsertionIndicatorDisplayModeAutomatic display mode.
         /// Defaults to NSTextInsertionIndicatorAutomaticModeOptionsShowEffectsView.
         #[method(automaticModeOptions)]
+        #[unsafe(method_family = none)]
         pub unsafe fn automaticModeOptions(&self) -> NSTextInsertionIndicatorAutomaticModeOptions;
 
         /// Setter for [`automaticModeOptions`][Self::automaticModeOptions].
         #[method(setAutomaticModeOptions:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAutomaticModeOptions(
             &self,
             automatic_mode_options: NSTextInsertionIndicatorAutomaticModeOptions,
@@ -139,11 +144,13 @@ extern_methods!(
         ///
         /// During dictation the NSTextInsertionIndicator displays a glow effect by inserting a view below the text view. If an application needs to insert the view in a different way, the application can specify a block of code that will be called when the glow effect needs to be displayed.
         #[method(effectsViewInserter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn effectsViewInserter(&self) -> *mut block2::Block<dyn Fn(NonNull<NSView>)>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`effectsViewInserter`][Self::effectsViewInserter].
         #[method(setEffectsViewInserter:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setEffectsViewInserter(
             &self,
             effects_view_inserter: Option<&block2::Block<dyn Fn(NonNull<NSView>)>>,
@@ -155,11 +162,11 @@ extern_methods!(
     /// Methods declared on superclass `NSView`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSTextInsertionIndicator {
-        #[method_id(initWithFrame:)]
+        #[method(initWithFrame:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -172,7 +179,7 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSTextInsertionIndicator {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -182,7 +189,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSTextInsertionIndicator {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

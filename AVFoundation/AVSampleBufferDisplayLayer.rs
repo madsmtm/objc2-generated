@@ -85,13 +85,14 @@ extern_methods!(
         /// is a CMAudioDeviceClock for the appropriate audio device to prevent drift.
         ///
         /// Note that prior to OSX 10.10 and iOS 8.0, the control timebase could not be changed after enqueueSampleBuffer: was called.  As of OSX 10.10 and iOS 8.0, the control timebase may be changed at any time.
-        #[method_id(controlTimebase)]
+        #[method(controlTimebase)]
         #[unsafe(method_family = none)]
         pub unsafe fn controlTimebase(&self) -> Option<Retained<CMTimebase>>;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`controlTimebase`][Self::controlTimebase].
         #[method(setControlTimebase:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setControlTimebase(&self, control_timebase: Option<&CMTimebase>);
 
         #[cfg(feature = "AVAnimation")]
@@ -102,13 +103,14 @@ extern_methods!(
         /// See
         /// <AVFoundation
         /// /AVAnimation.h> for a description of these options.
-        #[method_id(videoGravity)]
+        #[method(videoGravity)]
         #[unsafe(method_family = none)]
         pub unsafe fn videoGravity(&self) -> Retained<AVLayerVideoGravity>;
 
         #[cfg(feature = "AVAnimation")]
         /// Setter for [`videoGravity`][Self::videoGravity].
         #[method(setVideoGravity:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setVideoGravity(&self, video_gravity: &AVLayerVideoGravity);
 
         /// Boolean indicating that the first video frame has been made ready for display.
@@ -118,6 +120,7 @@ extern_methods!(
         /// readyForDisplay will change to NO when the layer can no longer display frames. readyForDisplay will be YES when the first video frame has been made ready for display.
         /// This property is not key-value observable.  AVSampleBufferDisplayLayerReadyForDisplayDidChangeNotification is posted when this value changes.
         #[method(isReadyForDisplay)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isReadyForDisplay(&self) -> bool;
     }
 );
@@ -128,15 +131,15 @@ extern_methods!(
     #[cfg(not(target_os = "watchos"))]
     unsafe impl AVSampleBufferDisplayLayer {
         /// Layer creation and initialization. *
-        #[method_id(layer)]
+        #[method(layer)]
         #[unsafe(method_family = none)]
         pub unsafe fn layer() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(initWithLayer:)]
+        #[method(initWithLayer:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
     }
@@ -147,7 +150,7 @@ extern_methods!(
     #[cfg(feature = "objc2-quartz-core")]
     #[cfg(not(target_os = "watchos"))]
     unsafe impl AVSampleBufferDisplayLayer {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -165,7 +168,7 @@ extern_methods!(
         ///
         /// The timebase is read-only.  Use the AVSampleBufferRenderSynchronizer to set the rate or time.
         #[deprecated = "Use sampleBufferRenderer's timebase instead"]
-        #[method_id(timebase)]
+        #[method(timebase)]
         #[unsafe(method_family = none)]
         pub unsafe fn timebase(&self) -> Retained<CMTimebase>;
 
@@ -177,13 +180,14 @@ extern_methods!(
         /// This property is key value observable.
         #[deprecated = "Use sampleBufferRenderer's status instead"]
         #[method(status)]
+        #[unsafe(method_family = none)]
         pub unsafe fn status(&self) -> AVQueuedSampleBufferRenderingStatus;
 
         /// If the display layer's status is AVQueuedSampleBufferRenderingStatusFailed, this describes the error that caused the failure.
         ///
         /// The value of this property is an NSError that describes what caused the display layer to no longer be able to enqueue sample buffers. If the status is not AVQueuedSampleBufferRenderingStatusFailed, the value of this property is nil.
         #[deprecated = "Use sampleBufferRenderer's error instead"]
-        #[method_id(error)]
+        #[method(error)]
         #[unsafe(method_family = none)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
 
@@ -215,6 +219,7 @@ extern_methods!(
         /// The combination of either a non-NULL controlTimebase or an AVSampleBufferRenderSynchronizer with the use of kCMSampleAttachmentKey_DisplayImmediately as an attachment to the CMSampleBuffers that are enqueued for display is not recommended.
         #[deprecated = "Use sampleBufferRenderer's enqueueSampleBuffer: instead"]
         #[method(enqueueSampleBuffer:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn enqueueSampleBuffer(&self, sample_buffer: &CMSampleBuffer);
 
         /// Instructs the layer to discard pending enqueued sample buffers.
@@ -224,6 +229,7 @@ extern_methods!(
         /// (also known as a key frame or sync sample).
         #[deprecated = "Use sampleBufferRenderer's flush instead"]
         #[method(flush)]
+        #[unsafe(method_family = none)]
         pub unsafe fn flush(&self);
 
         /// Instructs the layer to discard pending enqueued sample buffers and remove any
@@ -234,6 +240,7 @@ extern_methods!(
         /// (also known as a key frame or sync sample).
         #[deprecated = "Use sampleBufferRenderer's flushWithRemovalOfDisplayedImage:completionHandler: instead"]
         #[method(flushAndRemoveImage)]
+        #[unsafe(method_family = none)]
         pub unsafe fn flushAndRemoveImage(&self);
 
         /// Indicates that the receiver is in a state where it requires a call to -flush to continue decoding frames.
@@ -244,6 +251,7 @@ extern_methods!(
         /// This property is not key value observable.
         #[deprecated = "Use sampleBufferRenderer's requiresFlushToResumeDecoding instead"]
         #[method(requiresFlushToResumeDecoding)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requiresFlushToResumeDecoding(&self) -> bool;
 
         /// Indicates the readiness of the layer to accept more sample buffers.
@@ -271,6 +279,7 @@ extern_methods!(
         /// This property is not key value observable.
         #[deprecated = "Use sampleBufferRenderer's readyForMoreMediaData instead"]
         #[method(isReadyForMoreMediaData)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isReadyForMoreMediaData(&self) -> bool;
 
         /// Cancels any current requestMediaDataWhenReadyOnQueue:usingBlock: call.
@@ -278,6 +287,7 @@ extern_methods!(
         /// This method may be called from outside the block or from within the block.
         #[deprecated = "Use sampleBufferRenderer's stopRequestingMediaData instead"]
         #[method(stopRequestingMediaData)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stopRequestingMediaData(&self);
 
         /// Indicates whether the enqueued media data meets the renderer's preroll level.
@@ -285,6 +295,7 @@ extern_methods!(
         /// Clients should fetch the value of this property to learn if the renderer has had enough media data enqueued to start playback reliably. Starting playback when this property is NO may prevent smooth playback following an immediate start.
         #[deprecated = "Use sampleBufferRenderer's hasSufficientMediaDataForReliablePlaybackStart instead"]
         #[method(hasSufficientMediaDataForReliablePlaybackStart)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hasSufficientMediaDataForReliablePlaybackStart(&self) -> bool;
     }
 );
@@ -303,10 +314,12 @@ extern_methods!(
     unsafe impl AVSampleBufferDisplayLayer {
         /// Indicates that image data should be protected from capture.
         #[method(preventsCapture)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preventsCapture(&self) -> bool;
 
         /// Setter for [`preventsCapture`][Self::preventsCapture].
         #[method(setPreventsCapture:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreventsCapture(&self, prevents_capture: bool);
     }
 );
@@ -322,10 +335,12 @@ extern_methods!(
         /// Setting this property to NO does not force the display to sleep, it simply stops preventing display sleep.  Other apps or frameworks within your app may still be preventing display sleep for various reasons.
         /// Note: If sample buffers are being enqueued for playback at the user's request, you should ensure that the value of this property is set to YES. If video is not being displayed as part of the user's primary focus, you should ensure that the value of this property is set to NO.
         #[method(preventsDisplaySleepDuringVideoPlayback)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preventsDisplaySleepDuringVideoPlayback(&self) -> bool;
 
         /// Setter for [`preventsDisplaySleepDuringVideoPlayback`][Self::preventsDisplaySleepDuringVideoPlayback].
         #[method(setPreventsDisplaySleepDuringVideoPlayback:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreventsDisplaySleepDuringVideoPlayback(
             &self,
             prevents_display_sleep_during_video_playback: bool,
@@ -344,10 +359,12 @@ extern_methods!(
         /// Setting this property to YES prevents an application that is playing video from automatically getting backgrounded.  This property does not prevent the user from backgrounding the application.
         /// Note: If sample buffers are being enqueued for playback at the user's request, you should ensure that the value of this property is set to YES. If video is not being displayed as part of the user's primary focus, you should ensure that the value of this property is set to NO.
         #[method(preventsAutomaticBackgroundingDuringVideoPlayback)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preventsAutomaticBackgroundingDuringVideoPlayback(&self) -> bool;
 
         /// Setter for [`preventsAutomaticBackgroundingDuringVideoPlayback`][Self::preventsAutomaticBackgroundingDuringVideoPlayback].
         #[method(setPreventsAutomaticBackgroundingDuringVideoPlayback:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreventsAutomaticBackgroundingDuringVideoPlayback(
             &self,
             prevents_automatic_backgrounding_during_video_playback: bool,
@@ -376,6 +393,7 @@ extern_methods!(
         /// be externally specified. If the content does not require external protection, the value of this
         /// property will be NO.
         #[method(outputObscuredDueToInsufficientExternalProtection)]
+        #[unsafe(method_family = none)]
         pub unsafe fn outputObscuredDueToInsufficientExternalProtection(&self) -> bool;
     }
 );
@@ -389,7 +407,7 @@ extern_methods!(
         /// An AVSampleBufferVideoRenderer instance that allows enqueuing sample buffers for rendering.
         ///
         /// Although AVSampleBufferDisplayLayer conforms to the AVQueuedSampleBufferRendering protocol, the sampleBufferRenderer should be used to enqueue sample buffers. sampleBufferRenderer allows the client to safely enqueue sample buffers from a background thread. NOTE: Do not use AVSampleBufferDisplayLayer's AVQueuedSampleBufferRendering functions when using sampleBufferRenderer.
-        #[method_id(sampleBufferRenderer)]
+        #[method(sampleBufferRenderer)]
         #[unsafe(method_family = none)]
         pub unsafe fn sampleBufferRenderer(&self) -> Retained<AVSampleBufferVideoRenderer>;
     }

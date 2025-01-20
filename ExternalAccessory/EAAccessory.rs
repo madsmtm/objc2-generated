@@ -22,50 +22,53 @@ unsafe impl NSObjectProtocol for EAAccessory {}
 extern_methods!(
     unsafe impl EAAccessory {
         #[method(isConnected)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isConnected(&self) -> bool;
 
         #[method(connectionID)]
+        #[unsafe(method_family = none)]
         pub unsafe fn connectionID(&self) -> NSUInteger;
 
-        #[method_id(manufacturer)]
+        #[method(manufacturer)]
         #[unsafe(method_family = none)]
         pub unsafe fn manufacturer(&self) -> Retained<NSString>;
 
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
-        #[method_id(modelNumber)]
+        #[method(modelNumber)]
         #[unsafe(method_family = none)]
         pub unsafe fn modelNumber(&self) -> Retained<NSString>;
 
-        #[method_id(serialNumber)]
+        #[method(serialNumber)]
         #[unsafe(method_family = none)]
         pub unsafe fn serialNumber(&self) -> Retained<NSString>;
 
-        #[method_id(firmwareRevision)]
+        #[method(firmwareRevision)]
         #[unsafe(method_family = none)]
         pub unsafe fn firmwareRevision(&self) -> Retained<NSString>;
 
-        #[method_id(hardwareRevision)]
+        #[method(hardwareRevision)]
         #[unsafe(method_family = none)]
         pub unsafe fn hardwareRevision(&self) -> Retained<NSString>;
 
         #[deprecated = "Not supported"]
-        #[method_id(dockType)]
+        #[method(dockType)]
         #[unsafe(method_family = none)]
         pub unsafe fn dockType(&self) -> Retained<NSString>;
 
-        #[method_id(protocolStrings)]
+        #[method(protocolStrings)]
         #[unsafe(method_family = none)]
         pub unsafe fn protocolStrings(&self) -> Retained<NSArray<NSString>>;
 
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn EAAccessoryDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn EAAccessoryDelegate>>,
@@ -76,11 +79,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl EAAccessory {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -91,6 +94,7 @@ extern_protocol!(
     pub unsafe trait EAAccessoryDelegate: NSObjectProtocol {
         #[optional]
         #[method(accessoryDidDisconnect:)]
+        #[unsafe(method_family = none)]
         unsafe fn accessoryDidDisconnect(&self, accessory: &EAAccessory);
     }
 );

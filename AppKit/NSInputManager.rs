@@ -12,14 +12,17 @@ extern_protocol!(
     pub unsafe trait NSTextInput {
         #[deprecated]
         #[method(insertText:)]
+        #[unsafe(method_family = none)]
         unsafe fn insertText(&self, string: Option<&AnyObject>);
 
         #[deprecated]
         #[method(doCommandBySelector:)]
+        #[unsafe(method_family = none)]
         unsafe fn doCommandBySelector(&self, selector: Option<Sel>);
 
         #[deprecated]
         #[method(setMarkedText:selectedRange:)]
+        #[unsafe(method_family = none)]
         unsafe fn setMarkedText_selectedRange(
             &self,
             string: Option<&AnyObject>,
@@ -28,18 +31,21 @@ extern_protocol!(
 
         #[deprecated]
         #[method(unmarkText)]
+        #[unsafe(method_family = none)]
         unsafe fn unmarkText(&self);
 
         #[deprecated]
         #[method(hasMarkedText)]
+        #[unsafe(method_family = none)]
         unsafe fn hasMarkedText(&self) -> bool;
 
         #[deprecated]
         #[method(conversationIdentifier)]
+        #[unsafe(method_family = none)]
         unsafe fn conversationIdentifier(&self) -> NSInteger;
 
         #[deprecated]
-        #[method_id(attributedSubstringFromRange:)]
+        #[method(attributedSubstringFromRange:)]
         #[unsafe(method_family = none)]
         unsafe fn attributedSubstringFromRange(
             &self,
@@ -48,22 +54,26 @@ extern_protocol!(
 
         #[deprecated]
         #[method(markedRange)]
+        #[unsafe(method_family = none)]
         unsafe fn markedRange(&self) -> NSRange;
 
         #[deprecated]
         #[method(selectedRange)]
+        #[unsafe(method_family = none)]
         unsafe fn selectedRange(&self) -> NSRange;
 
         #[deprecated]
         #[method(firstRectForCharacterRange:)]
+        #[unsafe(method_family = none)]
         unsafe fn firstRectForCharacterRange(&self, range: NSRange) -> NSRect;
 
         #[deprecated]
         #[method(characterIndexForPoint:)]
+        #[unsafe(method_family = none)]
         unsafe fn characterIndexForPoint(&self, point: NSPoint) -> NSUInteger;
 
         #[deprecated]
-        #[method_id(validAttributesForMarkedText)]
+        #[method(validAttributesForMarkedText)]
         #[unsafe(method_family = none)]
         unsafe fn validAttributesForMarkedText(&self) -> Option<Retained<NSArray>>;
     }
@@ -84,20 +94,22 @@ unsafe impl NSTextInput for NSInputManager {}
 extern_methods!(
     unsafe impl NSInputManager {
         #[deprecated]
-        #[method_id(currentInputManager)]
+        #[method(currentInputManager)]
         #[unsafe(method_family = none)]
         pub unsafe fn currentInputManager() -> Option<Retained<NSInputManager>>;
 
         #[deprecated]
         #[method(cycleToNextInputLanguage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cycleToNextInputLanguage(sender: Option<&AnyObject>);
 
         #[deprecated]
         #[method(cycleToNextInputServerInLanguage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cycleToNextInputServerInLanguage(sender: Option<&AnyObject>);
 
         #[deprecated]
-        #[method_id(initWithName:host:)]
+        #[method(initWithName:host:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithName_host(
             this: Allocated<Self>,
@@ -106,16 +118,18 @@ extern_methods!(
         ) -> Option<Retained<NSInputManager>>;
 
         #[deprecated]
-        #[method_id(localizedInputManagerName)]
+        #[method(localizedInputManagerName)]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedInputManagerName(&self) -> Option<Retained<NSString>>;
 
         #[deprecated]
         #[method(markedTextAbandoned:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn markedTextAbandoned(&self, cli: Option<&AnyObject>);
 
         #[deprecated]
         #[method(markedTextSelectionChanged:client:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn markedTextSelectionChanged_client(
             &self,
             new_sel: NSRange,
@@ -124,36 +138,40 @@ extern_methods!(
 
         #[deprecated]
         #[method(wantsToInterpretAllKeystrokes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn wantsToInterpretAllKeystrokes(&self) -> bool;
 
         #[deprecated]
-        #[method_id(language)]
+        #[method(language)]
         #[unsafe(method_family = none)]
         pub unsafe fn language(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSImage")]
         #[deprecated]
-        #[method_id(image)]
+        #[method(image)]
         #[unsafe(method_family = none)]
         pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSInputServer")]
         #[deprecated]
-        #[method_id(server)]
+        #[method(server)]
         #[unsafe(method_family = none)]
         pub unsafe fn server(&self) -> Option<Retained<NSInputServer>>;
 
         #[deprecated]
         #[method(wantsToHandleMouseEvents)]
+        #[unsafe(method_family = none)]
         pub unsafe fn wantsToHandleMouseEvents(&self) -> bool;
 
         #[cfg(feature = "NSEvent")]
         #[deprecated]
         #[method(handleMouseEvent:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn handleMouseEvent(&self, mouse_event: Option<&NSEvent>) -> bool;
 
         #[deprecated]
         #[method(wantsToDelayTextChangeNotifications)]
+        #[unsafe(method_family = none)]
         pub unsafe fn wantsToDelayTextChangeNotifications(&self) -> bool;
     }
 );
@@ -161,11 +179,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSInputManager {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

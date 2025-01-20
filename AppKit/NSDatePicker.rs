@@ -74,136 +74,160 @@ extern_methods!(
     unsafe impl NSDatePicker {
         #[cfg(feature = "NSDatePickerCell")]
         #[method(datePickerStyle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn datePickerStyle(&self) -> NSDatePickerStyle;
 
         #[cfg(feature = "NSDatePickerCell")]
         /// Setter for [`datePickerStyle`][Self::datePickerStyle].
         #[method(setDatePickerStyle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDatePickerStyle(&self, date_picker_style: NSDatePickerStyle);
 
         #[method(isBezeled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isBezeled(&self) -> bool;
 
         /// Setter for [`isBezeled`][Self::isBezeled].
         #[method(setBezeled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBezeled(&self, bezeled: bool);
 
         #[method(isBordered)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isBordered(&self) -> bool;
 
         /// Setter for [`isBordered`][Self::isBordered].
         #[method(setBordered:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBordered(&self, bordered: bool);
 
         #[method(drawsBackground)]
+        #[unsafe(method_family = none)]
         pub unsafe fn drawsBackground(&self) -> bool;
 
         /// Setter for [`drawsBackground`][Self::drawsBackground].
         #[method(setDrawsBackground:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDrawsBackground(&self, draws_background: bool);
 
         #[cfg(feature = "NSColor")]
-        #[method_id(backgroundColor)]
+        #[method(backgroundColor)]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundColor(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`backgroundColor`][Self::backgroundColor].
         #[method(setBackgroundColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColor(&self, background_color: &NSColor);
 
         #[cfg(feature = "NSColor")]
-        #[method_id(textColor)]
+        #[method(textColor)]
         #[unsafe(method_family = none)]
         pub unsafe fn textColor(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`textColor`][Self::textColor].
         #[method(setTextColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTextColor(&self, text_color: &NSColor);
 
         #[cfg(feature = "NSDatePickerCell")]
         #[method(datePickerMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn datePickerMode(&self) -> NSDatePickerMode;
 
         #[cfg(feature = "NSDatePickerCell")]
         /// Setter for [`datePickerMode`][Self::datePickerMode].
         #[method(setDatePickerMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDatePickerMode(&self, date_picker_mode: NSDatePickerMode);
 
         #[cfg(feature = "NSDatePickerCell")]
         #[method(datePickerElements)]
+        #[unsafe(method_family = none)]
         pub unsafe fn datePickerElements(&self) -> NSDatePickerElementFlags;
 
         #[cfg(feature = "NSDatePickerCell")]
         /// Setter for [`datePickerElements`][Self::datePickerElements].
         #[method(setDatePickerElements:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDatePickerElements(&self, date_picker_elements: NSDatePickerElementFlags);
 
-        #[method_id(calendar)]
+        #[method(calendar)]
         #[unsafe(method_family = none)]
         pub unsafe fn calendar(&self) -> Option<Retained<NSCalendar>>;
 
         /// Setter for [`calendar`][Self::calendar].
         #[method(setCalendar:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCalendar(&self, calendar: Option<&NSCalendar>);
 
-        #[method_id(locale)]
+        #[method(locale)]
         #[unsafe(method_family = none)]
         pub unsafe fn locale(&self) -> Option<Retained<NSLocale>>;
 
         /// Setter for [`locale`][Self::locale].
         #[method(setLocale:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
 
-        #[method_id(timeZone)]
+        #[method(timeZone)]
         #[unsafe(method_family = none)]
         pub unsafe fn timeZone(&self) -> Option<Retained<NSTimeZone>>;
 
         /// Setter for [`timeZone`][Self::timeZone].
         #[method(setTimeZone:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTimeZone(&self, time_zone: Option<&NSTimeZone>);
 
-        #[method_id(dateValue)]
+        #[method(dateValue)]
         #[unsafe(method_family = none)]
         pub unsafe fn dateValue(&self) -> Retained<NSDate>;
 
         /// Setter for [`dateValue`][Self::dateValue].
         #[method(setDateValue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDateValue(&self, date_value: &NSDate);
 
         #[method(timeInterval)]
+        #[unsafe(method_family = none)]
         pub unsafe fn timeInterval(&self) -> NSTimeInterval;
 
         /// Setter for [`timeInterval`][Self::timeInterval].
         #[method(setTimeInterval:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTimeInterval(&self, time_interval: NSTimeInterval);
 
-        #[method_id(minDate)]
+        #[method(minDate)]
         #[unsafe(method_family = none)]
         pub unsafe fn minDate(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`minDate`][Self::minDate].
         #[method(setMinDate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMinDate(&self, min_date: Option<&NSDate>);
 
-        #[method_id(maxDate)]
+        #[method(maxDate)]
         #[unsafe(method_family = none)]
         pub unsafe fn maxDate(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`maxDate`][Self::maxDate].
         #[method(setMaxDate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMaxDate(&self, max_date: Option<&NSDate>);
 
         #[method(presentsCalendarOverlay)]
+        #[unsafe(method_family = none)]
         pub unsafe fn presentsCalendarOverlay(&self) -> bool;
 
         /// Setter for [`presentsCalendarOverlay`][Self::presentsCalendarOverlay].
         #[method(setPresentsCalendarOverlay:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPresentsCalendarOverlay(&self, presents_calendar_overlay: bool);
 
         #[cfg(feature = "NSDatePickerCell")]
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -213,6 +237,7 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn NSDatePickerCellDelegate>>,
@@ -224,11 +249,11 @@ extern_methods!(
     /// Methods declared on superclass `NSControl`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSDatePicker {
-        #[method_id(initWithFrame:)]
+        #[method(initWithFrame:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -241,7 +266,7 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSDatePicker {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -251,7 +276,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSDatePicker {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

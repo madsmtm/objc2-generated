@@ -11,56 +11,62 @@ extern_methods!(
     /// Scripting
     #[cfg(feature = "NSTextStorage")]
     unsafe impl NSTextStorage {
-        #[method_id(attributeRuns)]
+        #[method(attributeRuns)]
         #[unsafe(method_family = none)]
         pub unsafe fn attributeRuns(&self) -> Retained<NSArray<NSTextStorage>>;
 
         /// Setter for [`attributeRuns`][Self::attributeRuns].
         #[method(setAttributeRuns:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAttributeRuns(&self, attribute_runs: &NSArray<NSTextStorage>);
 
-        #[method_id(paragraphs)]
+        #[method(paragraphs)]
         #[unsafe(method_family = none)]
         pub unsafe fn paragraphs(&self) -> Retained<NSArray<NSTextStorage>>;
 
         /// Setter for [`paragraphs`][Self::paragraphs].
         #[method(setParagraphs:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setParagraphs(&self, paragraphs: &NSArray<NSTextStorage>);
 
-        #[method_id(words)]
+        #[method(words)]
         #[unsafe(method_family = none)]
         pub unsafe fn words(&self) -> Retained<NSArray<NSTextStorage>>;
 
         /// Setter for [`words`][Self::words].
         #[method(setWords:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWords(&self, words: &NSArray<NSTextStorage>);
 
-        #[method_id(characters)]
+        #[method(characters)]
         #[unsafe(method_family = none)]
         pub unsafe fn characters(&self) -> Retained<NSArray<NSTextStorage>>;
 
         /// Setter for [`characters`][Self::characters].
         #[method(setCharacters:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCharacters(&self, characters: &NSArray<NSTextStorage>);
 
         #[cfg(feature = "NSFont")]
-        #[method_id(font)]
+        #[method(font)]
         #[unsafe(method_family = none)]
         pub unsafe fn font(&self) -> Option<Retained<NSFont>>;
 
         #[cfg(feature = "NSFont")]
         /// Setter for [`font`][Self::font].
         #[method(setFont:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFont(&self, font: Option<&NSFont>);
 
         #[cfg(feature = "NSColor")]
-        #[method_id(foregroundColor)]
+        #[method(foregroundColor)]
         #[unsafe(method_family = none)]
         pub unsafe fn foregroundColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`foregroundColor`][Self::foregroundColor].
         #[method(setForegroundColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setForegroundColor(&self, foreground_color: Option<&NSColor>);
     }
 );

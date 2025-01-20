@@ -18,6 +18,7 @@ extern_protocol!(
         ///
         /// Parameter `host`: for future use only
         #[method(load:)]
+        #[unsafe(method_family = none)]
         unsafe fn load(&self, host: *mut c_void) -> bool;
     }
 );

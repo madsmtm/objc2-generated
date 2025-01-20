@@ -24,33 +24,33 @@ extern_methods!(
     unsafe impl HKLensSpecification {
         #[cfg(feature = "HKQuantity")]
         /// The lens power to correct nearsightedness or farsightedness. (-) means nearsighted while (+) farsighted.
-        #[method_id(sphere)]
+        #[method(sphere)]
         #[unsafe(method_family = none)]
         pub unsafe fn sphere(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
         /// The lens power required to correct astigmatism. Can be positive or negative.
-        #[method_id(cylinder)]
+        #[method(cylinder)]
         #[unsafe(method_family = none)]
         pub unsafe fn cylinder(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKQuantity")]
         /// The angle along which cylindrical power should be positioned to correct astigmatism
-        #[method_id(axis)]
+        #[method(axis)]
         #[unsafe(method_family = none)]
         pub unsafe fn axis(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKQuantity")]
         /// The power adjustment applied to a multifocal lens to correct presbyopia
-        #[method_id(addPower)]
+        #[method(addPower)]
         #[unsafe(method_family = none)]
         pub unsafe fn addPower(&self) -> Option<Retained<HKQuantity>>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

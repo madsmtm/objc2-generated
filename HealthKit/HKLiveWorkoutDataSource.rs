@@ -24,13 +24,13 @@ unsafe impl NSObjectProtocol for HKLiveWorkoutDataSource {}
 
 extern_methods!(
     unsafe impl HKLiveWorkoutDataSource {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "HKObjectType")]
         /// The quantity types the receiver is collecting.
-        #[method_id(typesToCollect)]
+        #[method(typesToCollect)]
         #[unsafe(method_family = none)]
         pub unsafe fn typesToCollect(&self) -> Retained<NSSet<HKQuantityType>>;
 
@@ -43,7 +43,7 @@ extern_methods!(
         ///
         /// Parameter `configuration`: An optional workout configuration. typesToCollect will be populated with default
         /// types for the workout configuration
-        #[method_id(initWithHealthStore:workoutConfiguration:)]
+        #[method(initWithHealthStore:workoutConfiguration:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithHealthStore_workoutConfiguration(
             this: Allocated<Self>,
@@ -61,6 +61,7 @@ extern_methods!(
         ///
         /// Parameter `predicate`: If non-nil, collected samples must match this predicate.
         #[method(enableCollectionForType:predicate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn enableCollectionForType_predicate(
             &self,
             quantity_type: &HKQuantityType,
@@ -73,6 +74,7 @@ extern_methods!(
         ///
         /// Parameter `quantityType`: The type of sample to no longer collect.
         #[method(disableCollectionForType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn disableCollectionForType(&self, quantity_type: &HKQuantityType);
     }
 );
@@ -80,7 +82,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKLiveWorkoutDataSource {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

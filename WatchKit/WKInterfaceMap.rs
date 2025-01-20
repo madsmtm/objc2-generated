@@ -72,17 +72,20 @@ extern_methods!(
     #[cfg(feature = "WKInterfaceObject")]
     unsafe impl WKInterfaceMap {
         #[deprecated = "Use MapKit.MapView instead."]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(setShowsUserLocation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShowsUserLocation(&self, shows_user_location: bool);
 
         #[method(setShowsUserHeading:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShowsUserHeading(&self, shows_user_heading: bool);
 
         #[method(setUserTrackingMode:animated:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUserTrackingMode_animated(
             &self,
             mode: WKInterfaceMapUserTrackingMode,
@@ -91,10 +94,12 @@ extern_methods!(
 
         #[cfg(feature = "objc2-map-kit")]
         #[method(setVisibleMapRect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setVisibleMapRect(&self, map_rect: MKMapRect);
 
         #[cfg(feature = "objc2-map-kit")]
         #[method(setRegion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRegion(&self, coordinate_region: MKCoordinateRegion);
 
         #[cfg(all(
@@ -103,6 +108,7 @@ extern_methods!(
             feature = "objc2-ui-kit"
         ))]
         #[method(addAnnotation:withImage:centerOffset:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addAnnotation_withImage_centerOffset(
             &self,
             location: CLLocationCoordinate2D,
@@ -112,6 +118,7 @@ extern_methods!(
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-location"))]
         #[method(addAnnotation:withImageNamed:centerOffset:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addAnnotation_withImageNamed_centerOffset(
             &self,
             location: CLLocationCoordinate2D,
@@ -121,6 +128,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-location")]
         #[method(addAnnotation:withPinColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addAnnotation_withPinColor(
             &self,
             location: CLLocationCoordinate2D,
@@ -128,6 +136,7 @@ extern_methods!(
         );
 
         #[method(removeAllAnnotations)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeAllAnnotations(&self);
     }
 );
@@ -136,7 +145,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "WKInterfaceObject")]
     unsafe impl WKInterfaceMap {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -28,54 +28,62 @@ unsafe impl NSObjectProtocol for MLCLSTMDescriptor {}
 extern_methods!(
     unsafe impl MLCLSTMDescriptor {
         #[deprecated]
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// The number of expected feature channels in the input
         #[deprecated]
         #[method(inputSize)]
+        #[unsafe(method_family = none)]
         pub unsafe fn inputSize(&self) -> NSUInteger;
 
         /// The number of feature channels in the hidden state
         #[deprecated]
         #[method(hiddenSize)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hiddenSize(&self) -> NSUInteger;
 
         /// The number of recurrent layers.  Default is 1.
         #[deprecated]
         #[method(layerCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layerCount(&self) -> NSUInteger;
 
         /// If NO, the layer does not use bias terms.  Default is YES.
         #[deprecated]
         #[method(usesBiases)]
+        #[unsafe(method_family = none)]
         pub unsafe fn usesBiases(&self) -> bool;
 
         /// LSTM only supports batchFirst=YES. This means the input and output will have shape [batch size, time steps, feature]. Default is YES.
         #[deprecated]
         #[method(batchFirst)]
+        #[unsafe(method_family = none)]
         pub unsafe fn batchFirst(&self) -> bool;
 
         /// If YES, becomes a bidirectional LSTM.  Default is NO.
         #[deprecated]
         #[method(isBidirectional)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isBidirectional(&self) -> bool;
 
         /// if YES return output for all sequences else return output only for the last sequences. Default: YES
         #[deprecated]
         #[method(returnsSequences)]
+        #[unsafe(method_family = none)]
         pub unsafe fn returnsSequences(&self) -> bool;
 
         /// If non-zero, intrdouces a dropout layer on the outputs of each LSTM layer
         /// except the last layer, with dropout probablity equal to dropout.  Default is 0.0.
         #[deprecated]
         #[method(dropout)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dropout(&self) -> c_float;
 
         #[cfg(feature = "MLCTypes")]
@@ -83,6 +91,7 @@ extern_methods!(
         /// output data, last hidden state h_n, and last cell state c_n. Default MLCLSTMResultModeOutput.
         #[deprecated]
         #[method(resultMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resultMode(&self) -> MLCLSTMResultMode;
 
         /// Creates a LSTM descriptor with batchFirst = YES
@@ -95,7 +104,7 @@ extern_methods!(
         ///
         /// Returns: A valid MLCLSTMDescriptor object or nil, if failure.
         #[deprecated]
-        #[method_id(descriptorWithInputSize:hiddenSize:layerCount:)]
+        #[method(descriptorWithInputSize:hiddenSize:layerCount:)]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithInputSize_hiddenSize_layerCount(
             input_size: NSUInteger,
@@ -120,7 +129,7 @@ extern_methods!(
         ///
         /// Returns: A valid MLCLSTMDescriptor object or nil, if failure.
         #[deprecated]
-        #[method_id(descriptorWithInputSize:hiddenSize:layerCount:usesBiases:isBidirectional:dropout:)]
+        #[method(descriptorWithInputSize:hiddenSize:layerCount:usesBiases:isBidirectional:dropout:)]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithInputSize_hiddenSize_layerCount_usesBiases_isBidirectional_dropout(
             input_size: NSUInteger,
@@ -132,7 +141,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(descriptorWithInputSize:hiddenSize:layerCount:usesBiases:batchFirst:isBidirectional:dropout:)]
+        #[method(descriptorWithInputSize:hiddenSize:layerCount:usesBiases:batchFirst:isBidirectional:dropout:)]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithInputSize_hiddenSize_layerCount_usesBiases_batchFirst_isBidirectional_dropout(
             input_size: NSUInteger,
@@ -145,7 +154,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(descriptorWithInputSize:hiddenSize:layerCount:usesBiases:batchFirst:isBidirectional:returnsSequences:dropout:)]
+        #[method(descriptorWithInputSize:hiddenSize:layerCount:usesBiases:batchFirst:isBidirectional:returnsSequences:dropout:)]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithInputSize_hiddenSize_layerCount_usesBiases_batchFirst_isBidirectional_returnsSequences_dropout(
             input_size: NSUInteger,
@@ -183,7 +192,7 @@ extern_methods!(
         ///
         /// Returns: A valid MLCLSTMDescriptor object or nil, if failure.
         #[deprecated]
-        #[method_id(descriptorWithInputSize:hiddenSize:layerCount:usesBiases:batchFirst:isBidirectional:returnsSequences:dropout:resultMode:)]
+        #[method(descriptorWithInputSize:hiddenSize:layerCount:usesBiases:batchFirst:isBidirectional:returnsSequences:dropout:resultMode:)]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithInputSize_hiddenSize_layerCount_usesBiases_batchFirst_isBidirectional_returnsSequences_dropout_resultMode(
             input_size: NSUInteger,

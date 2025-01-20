@@ -11,14 +11,15 @@ extern_protocol!(
     pub unsafe trait MTLFunctionHandle: NSObjectProtocol {
         #[cfg(feature = "MTLLibrary")]
         #[method(functionType)]
+        #[unsafe(method_family = none)]
         fn functionType(&self) -> MTLFunctionType;
 
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "MTLDevice")]
-        #[method_id(device)]
+        #[method(device)]
         #[unsafe(method_family = none)]
         fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
     }

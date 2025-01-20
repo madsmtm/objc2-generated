@@ -25,7 +25,7 @@ unsafe impl NSObjectProtocol for CARenderer {}
 extern_methods!(
     unsafe impl CARenderer {
         #[deprecated = "+rendererWithMTLTexture"]
-        #[method_id(rendererWithCGLContext:options:)]
+        #[method(rendererWithCGLContext:options:)]
         #[unsafe(method_family = none)]
         pub unsafe fn rendererWithCGLContext_options(
             ctx: NonNull<c_void>,
@@ -33,7 +33,7 @@ extern_methods!(
         ) -> Retained<CARenderer>;
 
         #[cfg(feature = "objc2-metal")]
-        #[method_id(rendererWithMTLTexture:options:)]
+        #[method(rendererWithMTLTexture:options:)]
         #[unsafe(method_family = none)]
         pub unsafe fn rendererWithMTLTexture_options(
             tex: &ProtocolObject<dyn MTLTexture>,
@@ -41,48 +41,58 @@ extern_methods!(
         ) -> Retained<CARenderer>;
 
         #[cfg(feature = "CALayer")]
-        #[method_id(layer)]
+        #[method(layer)]
         #[unsafe(method_family = none)]
         pub fn layer(&self) -> Option<Retained<CALayer>>;
 
         #[cfg(feature = "CALayer")]
         /// Setter for [`layer`][Self::layer].
         #[method(setLayer:)]
+        #[unsafe(method_family = none)]
         pub fn setLayer(&self, layer: Option<&CALayer>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(bounds)]
+        #[unsafe(method_family = none)]
         pub fn bounds(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`bounds`][Self::bounds].
         #[method(setBounds:)]
+        #[unsafe(method_family = none)]
         pub fn setBounds(&self, bounds: CGRect);
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-video"))]
         #[method(beginFrameAtTime:timeStamp:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn beginFrameAtTime_timeStamp(&self, t: CFTimeInterval, ts: *mut CVTimeStamp);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(updateBounds)]
+        #[unsafe(method_family = none)]
         pub fn updateBounds(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(addUpdateRect:)]
+        #[unsafe(method_family = none)]
         pub fn addUpdateRect(&self, r: CGRect);
 
         #[method(render)]
+        #[unsafe(method_family = none)]
         pub fn render(&self);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(nextFrameTime)]
+        #[unsafe(method_family = none)]
         pub fn nextFrameTime(&self) -> CFTimeInterval;
 
         #[method(endFrame)]
+        #[unsafe(method_family = none)]
         pub fn endFrame(&self);
 
         #[cfg(feature = "objc2-metal")]
         #[method(setDestination:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDestination(&self, tex: &ProtocolObject<dyn MTLTexture>);
     }
 );
@@ -90,11 +100,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CARenderer {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

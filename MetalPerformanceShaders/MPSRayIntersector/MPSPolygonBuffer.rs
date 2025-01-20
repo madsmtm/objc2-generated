@@ -34,7 +34,7 @@ extern_methods!(
     unsafe impl MPSPolygonBuffer {
         /// Initialize the polygon buffer
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -42,7 +42,7 @@ extern_methods!(
         /// buffer, instance buffer, etc. are set to nil. Encode and decode these buffers along with the
         /// polygon buffer instead.
         #[deprecated]
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -50,7 +50,7 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[deprecated]
-        #[method_id(polygonBuffer)]
+        #[method(polygonBuffer)]
         #[unsafe(method_family = none)]
         pub unsafe fn polygonBuffer() -> Retained<Self>;
 
@@ -64,7 +64,7 @@ extern_methods!(
         ///
         /// Parameter `zone`: This parameter is ignored. Memory zones are no longer used by Objective-C.
         #[deprecated]
-        #[method_id(copyWithZone:)]
+        #[method(copyWithZone:)]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyWithZone(&self, zone: *mut NSZone) -> Retained<Self>;
 
@@ -83,36 +83,40 @@ extern_methods!(
         /// can be used to pad quadrilateral indices if needed. All four vertices of a quadrilateral must
         /// be coplanar and the quadrilateral must be convex.
         #[deprecated]
-        #[method_id(vertexBuffer)]
+        #[method(vertexBuffer)]
         #[unsafe(method_family = none)]
         pub unsafe fn vertexBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         /// Setter for [`vertexBuffer`][Self::vertexBuffer].
         #[deprecated]
         #[method(setVertexBuffer:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setVertexBuffer(&self, vertex_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
 
         /// Offset, in bytes, into the vertex buffer. Defaults to 0 bytes. Must be aligned to 4
         /// bytes.
         #[deprecated]
         #[method(vertexBufferOffset)]
+        #[unsafe(method_family = none)]
         pub unsafe fn vertexBufferOffset(&self) -> NSUInteger;
 
         /// Setter for [`vertexBufferOffset`][Self::vertexBufferOffset].
         #[deprecated]
         #[method(setVertexBufferOffset:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setVertexBufferOffset(&self, vertex_buffer_offset: NSUInteger);
 
         /// Index buffer containing index data. Each index references a vertex in the vertex buffer.
         /// May be nil.
         #[deprecated]
-        #[method_id(indexBuffer)]
+        #[method(indexBuffer)]
         #[unsafe(method_family = none)]
         pub unsafe fn indexBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         /// Setter for [`indexBuffer`][Self::indexBuffer].
         #[deprecated]
         #[method(setIndexBuffer:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIndexBuffer(&self, index_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
 
         /// Offset, in bytes, into the index buffer. Defaults to 0 bytes. Must be aligned to a
@@ -120,44 +124,51 @@ extern_methods!(
         /// structure.
         #[deprecated]
         #[method(indexBufferOffset)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indexBufferOffset(&self) -> NSUInteger;
 
         /// Setter for [`indexBufferOffset`][Self::indexBufferOffset].
         #[deprecated]
         #[method(setIndexBufferOffset:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIndexBufferOffset(&self, index_buffer_offset: NSUInteger);
 
         /// Mask buffer containing one uint32_t mask per polygon. May be nil. Otherwise, the mask
         /// type must be specified on the MPSRayIntersector with which it is used.
         #[deprecated]
-        #[method_id(maskBuffer)]
+        #[method(maskBuffer)]
         #[unsafe(method_family = none)]
         pub unsafe fn maskBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         /// Setter for [`maskBuffer`][Self::maskBuffer].
         #[deprecated]
         #[method(setMaskBuffer:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMaskBuffer(&self, mask_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
 
         /// Offset, in bytes, into the mask buffer. Defaults to 0 bytes. Must be aligned to 4 bytes.
         #[deprecated]
         #[method(maskBufferOffset)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maskBufferOffset(&self) -> NSUInteger;
 
         /// Setter for [`maskBufferOffset`][Self::maskBufferOffset].
         #[deprecated]
         #[method(setMaskBufferOffset:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMaskBufferOffset(&self, mask_buffer_offset: NSUInteger);
 
         /// Number of polygons. Changes to this property require rebuilding the acceleration
         /// structure.
         #[deprecated]
         #[method(polygonCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn polygonCount(&self) -> NSUInteger;
 
         /// Setter for [`polygonCount`][Self::polygonCount].
         #[deprecated]
         #[method(setPolygonCount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPolygonCount(&self, polygon_count: NSUInteger);
     }
 );
@@ -165,7 +176,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSPolygonBuffer {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

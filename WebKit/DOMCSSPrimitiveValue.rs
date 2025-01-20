@@ -143,16 +143,20 @@ extern_methods!(
     unsafe impl DOMCSSPrimitiveValue {
         #[deprecated]
         #[method(primitiveType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn primitiveType(&self) -> c_ushort;
 
         #[method(setFloatValue:floatValue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFloatValue_floatValue(&self, unit_type: c_ushort, float_value: c_float);
 
         #[deprecated]
         #[method(getFloatValue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getFloatValue(&self, unit_type: c_ushort) -> c_float;
 
         #[method(setStringValue:stringValue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setStringValue_stringValue(
             &self,
             string_type: c_ushort,
@@ -160,25 +164,25 @@ extern_methods!(
         );
 
         #[deprecated]
-        #[method_id(getStringValue)]
+        #[method(getStringValue)]
         #[unsafe(method_family = none)]
         pub unsafe fn getStringValue(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "DOMCounter")]
         #[deprecated]
-        #[method_id(getCounterValue)]
+        #[method(getCounterValue)]
         #[unsafe(method_family = none)]
         pub unsafe fn getCounterValue(&self) -> Option<Retained<DOMCounter>>;
 
         #[cfg(feature = "DOMRect")]
         #[deprecated]
-        #[method_id(getRectValue)]
+        #[method(getRectValue)]
         #[unsafe(method_family = none)]
         pub unsafe fn getRectValue(&self) -> Option<Retained<DOMRect>>;
 
         #[cfg(feature = "DOMRGBColor")]
         #[deprecated]
-        #[method_id(getRGBColorValue)]
+        #[method(getRGBColorValue)]
         #[unsafe(method_family = none)]
         pub unsafe fn getRGBColorValue(&self) -> Option<Retained<DOMRGBColor>>;
     }
@@ -193,7 +197,7 @@ extern_methods!(
     ))]
     unsafe impl DOMCSSPrimitiveValue {
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -207,7 +211,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMCSSPrimitiveValue {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -223,10 +227,12 @@ extern_methods!(
     unsafe impl DOMCSSPrimitiveValue {
         #[deprecated]
         #[method(setFloatValue::)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFloatValue(&self, unit_type: c_ushort, float_value: c_float);
 
         #[deprecated]
         #[method(setStringValue::)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setStringValue(&self, string_type: c_ushort, string_value: Option<&NSString>);
     }
 );

@@ -851,11 +851,13 @@ extern_methods!(
         /// Backface culling is necessary for some scenes but can reduce raytracing performance.
         #[deprecated]
         #[method(cullMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cullMode(&self) -> MTLCullMode;
 
         /// Setter for [`cullMode`][Self::cullMode].
         #[deprecated]
         #[method(setCullMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCullMode(&self, cull_mode: MTLCullMode);
 
         /// Winding order used to determine which direction a triangle or quadrilateral's normal
@@ -869,11 +871,13 @@ extern_methods!(
         /// the opposite direction.
         #[deprecated]
         #[method(frontFacingWinding)]
+        #[unsafe(method_family = none)]
         pub unsafe fn frontFacingWinding(&self) -> MTLWinding;
 
         /// Setter for [`frontFacingWinding`][Self::frontFacingWinding].
         #[deprecated]
         #[method(setFrontFacingWinding:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFrontFacingWinding(&self, front_facing_winding: MTLWinding);
 
         /// Ray/triangle intersection test type. Defaults to MPSTriangleIntersectionTestTypeDefault.
@@ -881,11 +885,13 @@ extern_methods!(
         /// quadrilateral intersections.
         #[deprecated]
         #[method(triangleIntersectionTestType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn triangleIntersectionTestType(&self) -> MPSTriangleIntersectionTestType;
 
         /// Setter for [`triangleIntersectionTestType`][Self::triangleIntersectionTestType].
         #[deprecated]
         #[method(setTriangleIntersectionTestType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTriangleIntersectionTestType(
             &self,
             triangle_intersection_test_type: MPSTriangleIntersectionTestType,
@@ -895,11 +901,13 @@ extern_methods!(
         /// MPSBoundingBoxIntersectionTestTypeDefault.
         #[deprecated]
         #[method(boundingBoxIntersectionTestType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn boundingBoxIntersectionTestType(&self) -> MPSBoundingBoxIntersectionTestType;
 
         /// Setter for [`boundingBoxIntersectionTestType`][Self::boundingBoxIntersectionTestType].
         #[deprecated]
         #[method(setBoundingBoxIntersectionTestType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBoundingBoxIntersectionTestType(
             &self,
             bounding_box_intersection_test_type: MPSBoundingBoxIntersectionTestType,
@@ -923,22 +931,26 @@ extern_methods!(
         /// Enabling this option may reduce raytracing performance.
         #[deprecated]
         #[method(rayMaskOptions)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rayMaskOptions(&self) -> MPSRayMaskOptions;
 
         /// Setter for [`rayMaskOptions`][Self::rayMaskOptions].
         #[deprecated]
         #[method(setRayMaskOptions:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRayMaskOptions(&self, ray_mask_options: MPSRayMaskOptions);
 
         /// The operator to apply to determine whether to accept an intersection between a ray and a
         /// primitive or instance. Defaults to MPSRayMaskOperatorAnd.
         #[deprecated]
         #[method(rayMaskOperator)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rayMaskOperator(&self) -> MPSRayMaskOperator;
 
         /// Setter for [`rayMaskOperator`][Self::rayMaskOperator].
         #[deprecated]
         #[method(setRayMaskOperator:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRayMaskOperator(&self, ray_mask_operator: MPSRayMaskOperator);
 
         /// Offset, in bytes, between consecutive rays in the ray buffer. Defaults to 0, indicating
@@ -950,11 +962,13 @@ extern_methods!(
         /// coordinates. Must be aligned to the alignment of the ray data type.
         #[deprecated]
         #[method(rayStride)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rayStride(&self) -> NSUInteger;
 
         /// Setter for [`rayStride`][Self::rayStride].
         #[deprecated]
         #[method(setRayStride:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRayStride(&self, ray_stride: NSUInteger);
 
         /// Offset, in bytes, between consecutive intersections in the intersection buffer. Defaults
@@ -966,32 +980,38 @@ extern_methods!(
         /// of intersection. Must be aligned to the alignment of the intersection data type.
         #[deprecated]
         #[method(intersectionStride)]
+        #[unsafe(method_family = none)]
         pub unsafe fn intersectionStride(&self) -> NSUInteger;
 
         /// Setter for [`intersectionStride`][Self::intersectionStride].
         #[deprecated]
         #[method(setIntersectionStride:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIntersectionStride(&self, intersection_stride: NSUInteger);
 
         /// Ray data type. Defaults to MPSRayDataTypeOriginDirection.
         #[deprecated]
         #[method(rayDataType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rayDataType(&self) -> MPSRayDataType;
 
         /// Setter for [`rayDataType`][Self::rayDataType].
         #[deprecated]
         #[method(setRayDataType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRayDataType(&self, ray_data_type: MPSRayDataType);
 
         /// Intersection data type. Defaults to
         /// MPSIntersectionDataTypeDistancePrimitiveIndexCoordinates.
         #[deprecated]
         #[method(intersectionDataType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn intersectionDataType(&self) -> MPSIntersectionDataType;
 
         /// Setter for [`intersectionDataType`][Self::intersectionDataType].
         #[deprecated]
         #[method(setIntersectionDataType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIntersectionDataType(
             &self,
             intersection_data_type: MPSIntersectionDataType,
@@ -1002,33 +1022,37 @@ extern_methods!(
         /// MPSDataTypeUInt32 are supported.
         #[deprecated]
         #[method(rayIndexDataType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rayIndexDataType(&self) -> MPSDataType;
 
         #[cfg(feature = "MPSCoreTypes")]
         /// Setter for [`rayIndexDataType`][Self::rayIndexDataType].
         #[deprecated]
         #[method(setRayIndexDataType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRayIndexDataType(&self, ray_index_data_type: MPSDataType);
 
         /// Global ray mask. Defaults to 0xFFFFFFFF. This value will be logically AND-ed with the
         /// per-ray mask if the ray data type contains a mask.
         #[deprecated]
         #[method(rayMask)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rayMask(&self) -> c_uint;
 
         /// Setter for [`rayMask`][Self::rayMask].
         #[deprecated]
         #[method(setRayMask:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRayMask(&self, ray_mask: c_uint);
 
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Initialize the raytracer with a Metal device
         #[deprecated]
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -1037,7 +1061,7 @@ extern_methods!(
 
         /// Initialize the raytracer with an NSCoder and a Metal device
         #[deprecated]
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -1055,7 +1079,7 @@ extern_methods!(
         ///
         /// Returns: A pointer to a copy of this MPSRayIntersector
         #[deprecated]
-        #[method_id(copyWithZone:device:)]
+        #[method(copyWithZone:device:)]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyWithZone_device(
             &self,
@@ -1081,6 +1105,7 @@ extern_methods!(
         /// Returns: The recommended minimum ray batch size
         #[deprecated]
         #[method(recommendedMinimumRayBatchSizeForRayCount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn recommendedMinimumRayBatchSizeForRayCount(
             &self,
             ray_count: NSUInteger,
@@ -1088,6 +1113,7 @@ extern_methods!(
 
         #[deprecated]
         #[method(encodeWithCoder:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeWithCoder(&self, coder: &NSCoder);
 
         #[cfg(feature = "MPSAccelerationStructure")]
@@ -1118,6 +1144,7 @@ extern_methods!(
         /// Parameter `accelerationStructure`: Acceleration structure to test against
         #[deprecated]
         #[method(encodeIntersectionToCommandBuffer:intersectionType:rayBuffer:rayBufferOffset:intersectionBuffer:intersectionBufferOffset:rayCount:accelerationStructure:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeIntersectionToCommandBuffer_intersectionType_rayBuffer_rayBufferOffset_intersectionBuffer_intersectionBufferOffset_rayCount_accelerationStructure(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1162,6 +1189,7 @@ extern_methods!(
         /// Parameter `accelerationStructure`: Acceleration structure to test against
         #[deprecated]
         #[method(encodeIntersectionToCommandBuffer:intersectionType:rayBuffer:rayBufferOffset:intersectionBuffer:intersectionBufferOffset:rayCountBuffer:rayCountBufferOffset:accelerationStructure:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeIntersectionToCommandBuffer_intersectionType_rayBuffer_rayBufferOffset_intersectionBuffer_intersectionBufferOffset_rayCountBuffer_rayCountBufferOffset_accelerationStructure(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1210,6 +1238,7 @@ extern_methods!(
         /// Parameter `accelerationStructure`: Acceleration structure to test against
         #[deprecated]
         #[method(encodeIntersectionToCommandBuffer:intersectionType:rayBuffer:rayBufferOffset:rayIndexBuffer:rayIndexBufferOffset:intersectionBuffer:intersectionBufferOffset:rayIndexCount:accelerationStructure:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeIntersectionToCommandBuffer_intersectionType_rayBuffer_rayBufferOffset_rayIndexBuffer_rayIndexBufferOffset_intersectionBuffer_intersectionBufferOffset_rayIndexCount_accelerationStructure(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1263,6 +1292,7 @@ extern_methods!(
         /// Parameter `accelerationStructure`: Acceleration structure to test against
         #[deprecated]
         #[method(encodeIntersectionToCommandBuffer:intersectionType:rayBuffer:rayBufferOffset:rayIndexBuffer:rayIndexBufferOffset:intersectionBuffer:intersectionBufferOffset:rayIndexCountBuffer:rayIndexCountBufferOffset:accelerationStructure:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeIntersectionToCommandBuffer_intersectionType_rayBuffer_rayBufferOffset_rayIndexBuffer_rayIndexBufferOffset_intersectionBuffer_intersectionBufferOffset_rayIndexCountBuffer_rayIndexCountBufferOffset_accelerationStructure(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1338,6 +1368,7 @@ extern_methods!(
         /// ```
         #[deprecated]
         #[method(encodeIntersectionToCommandBuffer:intersectionType:rayTexture:intersectionTexture:accelerationStructure:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeIntersectionToCommandBuffer_intersectionType_rayTexture_intersectionTexture_accelerationStructure(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1361,7 +1392,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -1374,7 +1405,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSRayIntersector {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -52,6 +52,7 @@ extern_methods!(
         /// This is the battery level for controller.
         /// Battery level ranges from 0.0 (fully discharged) to 1.0 (100% charged) and defaults to 0
         #[method(batteryLevel)]
+        #[unsafe(method_family = none)]
         pub unsafe fn batteryLevel(&self) -> c_float;
 
         /// A battery state for controller, defaults to GCControllerBatteryStateUnknown
@@ -59,9 +60,10 @@ extern_methods!(
         ///
         /// Note: This property might be useful if you display the information about currently connected controller for player's convenience
         #[method(batteryState)]
+        #[unsafe(method_family = none)]
         pub unsafe fn batteryState(&self) -> GCDeviceBatteryState;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -70,7 +72,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GCDeviceBattery {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

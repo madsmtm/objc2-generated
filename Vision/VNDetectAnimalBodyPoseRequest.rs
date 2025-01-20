@@ -38,7 +38,7 @@ extern_methods!(
         /// Parameter `error`: The address of a variable that will be populated with an error upon failure.  If the caller does not need this information, NULL can be passed.
         ///
         /// Returns: An array of VNAnimalBodyPoseObservationJointName symbols that are supported by the request, or nil if a failure occurs.
-        #[method_id(supportedJointNamesAndReturnError:_)]
+        #[method(supportedJointNamesAndReturnError:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedJointNamesAndReturnError(
             &self,
@@ -50,7 +50,7 @@ extern_methods!(
         /// Parameter `error`: The address of a variable that will be populated with an error upon failure.  If the caller does not need this information, NULL can be passed.
         ///
         /// Returns: An array of VNAnimalBodyPoseObservationJointsGroupName symbols that are supported by the request, or nil if a failure occurs.
-        #[method_id(supportedJointsGroupNamesAndReturnError:_)]
+        #[method(supportedJointsGroupNamesAndReturnError:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedJointsGroupNamesAndReturnError(
             &self,
@@ -58,7 +58,7 @@ extern_methods!(
 
         #[cfg(feature = "VNObservation")]
         /// VNAnimalBodyPoseObservation results.
-        #[method_id(results)]
+        #[method(results)]
         #[unsafe(method_family = none)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNAnimalBodyPoseObservation>>>;
     }
@@ -69,7 +69,7 @@ extern_methods!(
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectAnimalBodyPoseRequest {
         /// Creates a new VNRequest with no completion handler.
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -78,7 +78,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
-        #[method_id(initWithCompletionHandler:)]
+        #[method(initWithCompletionHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
@@ -91,7 +91,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectAnimalBodyPoseRequest {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -32,13 +32,14 @@ extern_methods!(
         /// A NSArray holding captions to consider for rendering.
         ///
         /// This is the array of AVCaptions to consider when drawing. The array can contain no captions.
-        #[method_id(captions)]
+        #[method(captions)]
         #[unsafe(method_family = none)]
         pub unsafe fn captions(&self) -> Retained<NSArray<AVCaption>>;
 
         #[cfg(feature = "AVCaption")]
         /// Setter for [`captions`][Self::captions].
         #[method(setCaptions:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCaptions(&self, captions: &NSArray<AVCaption>);
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -46,11 +47,13 @@ extern_methods!(
         ///
         /// This is a CGRect indicating where captions are drawn using renderInContext:atTime: Once established, this CGRect is used in each call to renderInContext:atTime: until it is changed to another value. This should be set up earlier than drawing.
         #[method(bounds)]
+        #[unsafe(method_family = none)]
         pub unsafe fn bounds(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`bounds`][Self::bounds].
         #[method(setBounds:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBounds(&self, bounds: CGRect);
 
         #[cfg(feature = "objc2-core-media")]
@@ -65,7 +68,7 @@ extern_methods!(
         /// The returned NSArray contains AVCaptionRendererScenes, each holding the CMTimeRange of that scene but potentially other information that may be useful to the client during renderering.
         ///
         /// The consideredTimeRange parameter is a CMTimeRange expressing the limits for consideration. The extent of this range does not need to correspond to the timing of captions. It might be the range from 0 to some duration. For efficiency, the range can be limited to a window of time. It is also possible to use the range anchored at a time and extending in the direction of playback.
-        #[method_id(captionSceneChangesInRange:)]
+        #[method(captionSceneChangesInRange:)]
         #[unsafe(method_family = none)]
         pub unsafe fn captionSceneChangesInRange(
             &self,
@@ -77,6 +80,7 @@ extern_methods!(
         ///
         /// Captions are drawn into the CGContextRef based upon their activation at the specified time. If there are no captions or no captions at the specified time, "emptiness" will still be drawn (e.g., flood filling with zero alpha or a color).
         #[method(renderInContext:forTime:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn renderInContext_forTime(&self, ctx: &CGContext, time: CMTime);
     }
 );
@@ -84,11 +88,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVCaptionRenderer {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -123,29 +127,32 @@ unsafe impl NSObjectProtocol for AVCaptionRendererScene {}
 
 extern_methods!(
     unsafe impl AVCaptionRendererScene {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-media")]
         /// The time range during which new captions will not be introduced into or existing captions will be retired from the caption scene
         #[method(timeRange)]
+        #[unsafe(method_family = none)]
         pub unsafe fn timeRange(&self) -> CMTimeRange;
 
         /// The scene contains one or more active captions.
         ///
         /// Clients should not use this to restrict their drawing and should call renderInContext:atTime: to draw "emptiness". However, this information may be useful for purposes such as scrubbing to times where captions are present, skipping scenes in which no captions are present.
         #[method(hasActiveCaptions)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hasActiveCaptions(&self) -> bool;
 
         /// The scene may have embedded animations or other state where periodic redrawing while playing through this scene is needed.
         ///
         /// This property indicates if refreshing should occur if the client is progressing through the content. If the client is not progressing (i.e., it is treating playback as though the rate is 0.0), a single render at the current render time suffices. This property does not prescribe a refresh rate. A client is free to choose a refresh rate corresponding to rates of associated video frames or other timing appropriate for the client.
         #[method(needsPeriodicRefresh)]
+        #[unsafe(method_family = none)]
         pub unsafe fn needsPeriodicRefresh(&self) -> bool;
     }
 );

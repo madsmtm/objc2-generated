@@ -77,7 +77,7 @@ unsafe impl NSObjectProtocol for EAWiFiUnconfiguredAccessoryBrowser {}
 extern_methods!(
     unsafe impl EAWiFiUnconfiguredAccessoryBrowser {
         /// The delegate object that will receive the browser events.
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -86,6 +86,7 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn EAWiFiUnconfiguredAccessoryBrowserDelegate>>,
@@ -94,7 +95,7 @@ extern_methods!(
         #[cfg(feature = "EAWiFiUnconfiguredAccessory")]
         /// The set of discovered unconfigured accessories described by EAWiFiUnconfiguredAccessory objects.
         /// This snapshot will only include objects matching the filter predicate defined when starting the search.
-        #[method_id(unconfiguredAccessories)]
+        #[method(unconfiguredAccessories)]
         #[unsafe(method_family = none)]
         pub unsafe fn unconfiguredAccessories(
             &self,
@@ -110,6 +111,7 @@ extern_methods!(
         ///
         /// Parameter `predicate`: The desired filter for unconfigured accessory results conforming to the EAWiFiUnconfiguredAccessory protocol.
         #[method(startSearchingForUnconfiguredAccessoriesMatchingPredicate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn startSearchingForUnconfiguredAccessoriesMatchingPredicate(
             &self,
             predicate: Option<&NSPredicate>,
@@ -117,6 +119,7 @@ extern_methods!(
 
         /// Stop the search for unconfigured MFi Wireless Accessory Configuration accessories
         #[method(stopSearchingForUnconfiguredAccessories)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stopSearchingForUnconfiguredAccessories(&self);
     }
 );
@@ -124,11 +127,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl EAWiFiUnconfiguredAccessoryBrowser {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -148,6 +151,7 @@ extern_protocol!(
         ///
         /// Parameter `state`: The current state of the EAWiFiUnconfiguredAccessoryBrowser.
         #[method(accessoryBrowser:didUpdateState:)]
+        #[unsafe(method_family = none)]
         unsafe fn accessoryBrowser_didUpdateState(
             &self,
             browser: &EAWiFiUnconfiguredAccessoryBrowser,
@@ -163,6 +167,7 @@ extern_protocol!(
         ///
         /// Parameter `accessories`: The set of EAWiFiUnconfiguredAccessory objects that have been found since the last update.
         #[method(accessoryBrowser:didFindUnconfiguredAccessories:)]
+        #[unsafe(method_family = none)]
         unsafe fn accessoryBrowser_didFindUnconfiguredAccessories(
             &self,
             browser: &EAWiFiUnconfiguredAccessoryBrowser,
@@ -178,6 +183,7 @@ extern_protocol!(
         ///
         /// Parameter `accessories`: The set of EAWiFiUnconfiguredAccessory objects that have been removed from the scan results since the last update.
         #[method(accessoryBrowser:didRemoveUnconfiguredAccessories:)]
+        #[unsafe(method_family = none)]
         unsafe fn accessoryBrowser_didRemoveUnconfiguredAccessories(
             &self,
             browser: &EAWiFiUnconfiguredAccessoryBrowser,
@@ -194,6 +200,7 @@ extern_protocol!(
         ///
         /// Parameter `status`: The status of the configuration process that has completed.
         #[method(accessoryBrowser:didFinishConfiguringAccessory:withStatus:)]
+        #[unsafe(method_family = none)]
         unsafe fn accessoryBrowser_didFinishConfiguringAccessory_withStatus(
             &self,
             browser: &EAWiFiUnconfiguredAccessoryBrowser,

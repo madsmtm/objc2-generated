@@ -101,35 +101,40 @@ unsafe impl UITraitEnvironment for UIRefreshControl {}
 extern_methods!(
     #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIRefreshControl {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(isRefreshing)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isRefreshing(&self) -> bool;
 
         #[cfg(feature = "UIColor")]
-        #[method_id(tintColor)]
+        #[method(tintColor)]
         #[unsafe(method_family = none)]
         pub unsafe fn tintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`tintColor`][Self::tintColor].
         #[method(setTintColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTintColor(&self, tint_color: Option<&UIColor>);
 
-        #[method_id(attributedTitle)]
+        #[method(attributedTitle)]
         #[unsafe(method_family = none)]
         pub unsafe fn attributedTitle(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Setter for [`attributedTitle`][Self::attributedTitle].
         #[method(setAttributedTitle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAttributedTitle(&self, attributed_title: Option<&NSAttributedString>);
 
         #[method(beginRefreshing)]
+        #[unsafe(method_family = none)]
         pub unsafe fn beginRefreshing(&self);
 
         #[method(endRefreshing)]
+        #[unsafe(method_family = none)]
         pub unsafe fn endRefreshing(&self);
     }
 );
@@ -139,11 +144,11 @@ extern_methods!(
     #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIRefreshControl {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(initWithFrame:)]
+        #[method(initWithFrame:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -156,7 +161,7 @@ extern_methods!(
             feature = "objc2-core-foundation"
         ))]
         /// Initializes the control and adds primaryAction for the UIControlEventPrimaryActionTriggered control event. Subclasses of UIControl may alter or add behaviors around the usage of primaryAction, see subclass documentation of this initializer for additional information.
-        #[method_id(initWithFrame:primaryAction:)]
+        #[method(initWithFrame:primaryAction:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame_primaryAction(
             this: Allocated<Self>,
@@ -170,7 +175,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIRefreshControl {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

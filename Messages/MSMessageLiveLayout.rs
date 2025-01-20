@@ -32,20 +32,20 @@ extern_methods!(
     unsafe impl MSMessageLiveLayout {
         #[cfg(feature = "MSMessageTemplateLayout")]
         /// Parameter `alternateLayout`: The alternate layout of the message. This layout will be used on devices that don't support live layout or don't have the iMessage app installed.
-        #[method_id(initWithAlternateLayout:)]
+        #[method(initWithAlternateLayout:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAlternateLayout(
             this: Allocated<Self>,
             alternate_layout: &MSMessageTemplateLayout,
         ) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "MSMessageTemplateLayout")]
         /// The alternate layout of the message. This layout will be used on devices that don't support live layout or don't have the iMessage app installed.
-        #[method_id(alternateLayout)]
+        #[method(alternateLayout)]
         #[unsafe(method_family = none)]
         pub unsafe fn alternateLayout(&self) -> Retained<MSMessageTemplateLayout>;
     }
@@ -55,7 +55,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MSMessageLayout")]
     unsafe impl MSMessageLiveLayout {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

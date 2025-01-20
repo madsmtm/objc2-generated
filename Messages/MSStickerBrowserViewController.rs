@@ -47,7 +47,7 @@ extern_methods!(
     unsafe impl MSStickerBrowserViewController {
         #[cfg(feature = "MSStickerBrowserView")]
         /// Initializes a MSStickerBrowserViewController and configures it's MSStickerBrowserView with the provided sticker size class.
-        #[method_id(initWithStickerSize:)]
+        #[method(initWithStickerSize:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithStickerSize(
             this: Allocated<Self>,
@@ -56,13 +56,14 @@ extern_methods!(
 
         #[cfg(feature = "MSStickerBrowserView")]
         /// Returns the sticker browser view managed by the controller object.
-        #[method_id(stickerBrowserView)]
+        #[method(stickerBrowserView)]
         #[unsafe(method_family = none)]
         pub unsafe fn stickerBrowserView(&self) -> Retained<MSStickerBrowserView>;
 
         #[cfg(feature = "MSStickerBrowserView")]
         /// Controls the size of the stickers are displayed at in the sticker browser view.
         #[method(stickerSize)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stickerSize(&self) -> MSStickerSize;
     }
 );
@@ -71,7 +72,7 @@ extern_methods!(
     /// Methods declared on superclass `UIViewController`
     #[cfg(feature = "objc2-ui-kit")]
     unsafe impl MSStickerBrowserViewController {
-        #[method_id(initWithNibName:bundle:)]
+        #[method(initWithNibName:bundle:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -79,7 +80,7 @@ extern_methods!(
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -92,11 +93,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2-ui-kit")]
     unsafe impl MSStickerBrowserViewController {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

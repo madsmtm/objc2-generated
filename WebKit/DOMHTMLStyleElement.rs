@@ -79,35 +79,39 @@ extern_methods!(
     unsafe impl DOMHTMLStyleElement {
         #[deprecated]
         #[method(disabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn disabled(&self) -> bool;
 
         /// Setter for [`disabled`][Self::disabled].
         #[deprecated]
         #[method(setDisabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDisabled(&self, disabled: bool);
 
         #[deprecated]
-        #[method_id(media)]
+        #[method(media)]
         #[unsafe(method_family = none)]
         pub unsafe fn media(&self) -> Retained<NSString>;
 
         /// Setter for [`media`][Self::media].
         #[deprecated]
         #[method(setMedia:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMedia(&self, media: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(type)]
+        #[method(type)]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> Retained<NSString>;
 
         /// Setter for [`type`][Self::type].
         #[deprecated]
         #[method(setType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setType(&self, r#type: Option<&NSString>);
 
         #[cfg(feature = "DOMStyleSheet")]
-        #[method_id(sheet)]
+        #[method(sheet)]
         #[unsafe(method_family = none)]
         pub unsafe fn sheet(&self) -> Option<Retained<DOMStyleSheet>>;
     }
@@ -124,7 +128,7 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLStyleElement {
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -140,7 +144,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLStyleElement {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

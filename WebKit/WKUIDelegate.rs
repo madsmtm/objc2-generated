@@ -107,7 +107,7 @@ extern_protocol!(
         ///
         /// If you do not implement this method, the web view will cancel the navigation.
         #[optional]
-        #[method_id(webView:createWebViewWithConfiguration:forNavigationAction:windowFeatures:)]
+        #[method(webView:createWebViewWithConfiguration:forNavigationAction:windowFeatures:)]
         #[unsafe(method_family = none)]
         unsafe fn webView_createWebViewWithConfiguration_forNavigationAction_windowFeatures(
             &self,
@@ -127,6 +127,7 @@ extern_protocol!(
         /// the UI as needed, such as by closing the containing browser tab or window.
         #[optional]
         #[method(webViewDidClose:)]
+        #[unsafe(method_family = none)]
         unsafe fn webViewDidClose(&self, web_view: &WKWebView);
 
         #[cfg(all(
@@ -156,6 +157,7 @@ extern_protocol!(
         /// If you do not implement this method, the web view will behave as if the user selected the OK button.
         #[optional]
         #[method(webView:runJavaScriptAlertPanelWithMessage:initiatedByFrame:completionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_runJavaScriptAlertPanelWithMessage_initiatedByFrame_completionHandler(
             &self,
             web_view: &WKWebView,
@@ -191,6 +193,7 @@ extern_protocol!(
         /// If you do not implement this method, the web view will behave as if the user selected the Cancel button.
         #[optional]
         #[method(webView:runJavaScriptConfirmPanelWithMessage:initiatedByFrame:completionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_runJavaScriptConfirmPanelWithMessage_initiatedByFrame_completionHandler(
             &self,
             web_view: &WKWebView,
@@ -229,6 +232,7 @@ extern_protocol!(
         /// If you do not implement this method, the web view will behave as if the user selected the Cancel button.
         #[optional]
         #[method(webView:runJavaScriptTextInputPanelWithPrompt:defaultText:initiatedByFrame:completionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_runJavaScriptTextInputPanelWithPrompt_defaultText_initiatedByFrame_completionHandler(
             &self,
             web_view: &WKWebView,
@@ -261,6 +265,7 @@ extern_protocol!(
         /// If not implemented, the result is the same as calling the decisionHandler with WKPermissionDecisionPrompt.
         #[optional]
         #[method(webView:requestMediaCapturePermissionForOrigin:initiatedByFrame:type:decisionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_requestMediaCapturePermissionForOrigin_initiatedByFrame_type_decisionHandler(
             &self,
             web_view: &WKWebView,
@@ -287,6 +292,7 @@ extern_protocol!(
         /// Parameter `decisionHandler`: The decision handler to call once the app has made its decision.
         #[optional]
         #[method(webView:requestDeviceOrientationAndMotionPermissionForOrigin:initiatedByFrame:decisionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_requestDeviceOrientationAndMotionPermissionForOrigin_initiatedByFrame_decisionHandler(
             &self,
             web_view: &WKWebView,
@@ -316,6 +322,7 @@ extern_protocol!(
         /// If you do not implement this method, the web view will behave as if the user selected the Cancel button.
         #[optional]
         #[method(webView:runOpenPanelWithParameters:initiatedByFrame:completionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_runOpenPanelWithParameters_initiatedByFrame_completionHandler(
             &self,
             web_view: &WKWebView,

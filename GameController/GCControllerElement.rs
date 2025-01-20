@@ -67,13 +67,14 @@ extern_methods!(
     unsafe impl GCControllerElement {
         /// Each element can be part of a wider collection of inputs that map to a single logical element. A directional pad (dpad)
         /// is a logical collection of two axis inputs and thus each axis belongs to the same collection element - the dpad.
-        #[method_id(collection)]
+        #[method(collection)]
         #[unsafe(method_family = none)]
         pub unsafe fn collection(&self) -> Option<Retained<GCControllerElement>>;
 
         /// Check if the element can support more than just digital values, such as decimal ranges between 0 and 1.
         /// Defaults to YES for most elements.
         #[method(isAnalog)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isAnalog(&self) -> bool;
 
         /// Check if the element is bound to a system gesture.
@@ -84,6 +85,7 @@ extern_methods!(
         ///
         /// See: GCSystemGestureState
         #[method(isBoundToSystemGesture)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isBoundToSystemGesture(&self) -> bool;
 
         /// The preferred system gesture state for this element.
@@ -97,10 +99,12 @@ extern_methods!(
         ///
         /// See: boundToSystemGesture
         #[method(preferredSystemGestureState)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preferredSystemGestureState(&self) -> GCSystemGestureState;
 
         /// Setter for [`preferredSystemGestureState`][Self::preferredSystemGestureState].
         #[method(setPreferredSystemGestureState:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreferredSystemGestureState(
             &self,
             preferred_system_gesture_state: GCSystemGestureState,
@@ -110,52 +114,56 @@ extern_methods!(
         ///
         ///
         /// Note: In almost all instances, you should use this over unmappedSfSymbolsName in your UI.
-        #[method_id(sfSymbolsName)]
+        #[method(sfSymbolsName)]
         #[unsafe(method_family = none)]
         pub unsafe fn sfSymbolsName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`sfSymbolsName`][Self::sfSymbolsName].
         #[method(setSfSymbolsName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSfSymbolsName(&self, sf_symbols_name: Option<&NSString>);
 
         /// The element's localized name, taking input remapping into account.
         ///
         ///
         /// Note: In almost all instances, you should use this over unmappedLocalizedName in your UI.
-        #[method_id(localizedName)]
+        #[method(localizedName)]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`localizedName`][Self::localizedName].
         #[method(setLocalizedName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLocalizedName(&self, localized_name: Option<&NSString>);
 
         /// The element's SF Symbols name, not taking any input remapping into account.
         ///
         ///
         /// Note: Use this in your games own remapping UI, or when you need to prompt a user that a given button has no mapping (sfSymbolsName is nil).
-        #[method_id(unmappedSfSymbolsName)]
+        #[method(unmappedSfSymbolsName)]
         #[unsafe(method_family = none)]
         pub unsafe fn unmappedSfSymbolsName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`unmappedSfSymbolsName`][Self::unmappedSfSymbolsName].
         #[method(setUnmappedSfSymbolsName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUnmappedSfSymbolsName(&self, unmapped_sf_symbols_name: Option<&NSString>);
 
         /// The element's localized name, not taking any input remapping into account.
         ///
         ///
         /// Note: Use this in your games own remapping UI, or when you need to prompt a user that a given button has no mapping (localizedName is nil).
-        #[method_id(unmappedLocalizedName)]
+        #[method(unmappedLocalizedName)]
         #[unsafe(method_family = none)]
         pub unsafe fn unmappedLocalizedName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`unmappedLocalizedName`][Self::unmappedLocalizedName].
         #[method(setUnmappedLocalizedName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUnmappedLocalizedName(&self, unmapped_localized_name: Option<&NSString>);
 
         /// A set of aliases that can be used to access this element with keyed subscript notation.
-        #[method_id(aliases)]
+        #[method(aliases)]
         #[unsafe(method_family = none)]
         pub unsafe fn aliases(&self) -> Retained<NSSet<NSString>>;
     }
@@ -164,11 +172,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GCControllerElement {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

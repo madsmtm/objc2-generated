@@ -52,14 +52,15 @@ unsafe impl NSObjectProtocol for NSScriptWhoseTest {}
 extern_methods!(
     unsafe impl NSScriptWhoseTest {
         #[method(isTrue)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isTrue(&self) -> bool;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -71,7 +72,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSScriptWhoseTest {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -92,7 +93,7 @@ unsafe impl NSObjectProtocol for NSLogicalTest {}
 extern_methods!(
     unsafe impl NSLogicalTest {
         #[cfg(feature = "NSArray")]
-        #[method_id(initAndTestWithTests:)]
+        #[method(initAndTestWithTests:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initAndTestWithTests(
             this: Allocated<Self>,
@@ -100,14 +101,14 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSArray")]
-        #[method_id(initOrTestWithTests:)]
+        #[method(initOrTestWithTests:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initOrTestWithTests(
             this: Allocated<Self>,
             sub_tests: &NSArray<NSSpecifierTest>,
         ) -> Retained<Self>;
 
-        #[method_id(initNotTestWithTest:)]
+        #[method(initNotTestWithTest:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initNotTestWithTest(
             this: Allocated<Self>,
@@ -119,12 +120,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSScriptWhoseTest`
     unsafe impl NSLogicalTest {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -136,7 +137,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSLogicalTest {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -156,12 +157,12 @@ unsafe impl NSObjectProtocol for NSSpecifierTest {}
 
 extern_methods!(
     unsafe impl NSSpecifierTest {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -169,7 +170,7 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSScriptObjectSpecifiers")]
-        #[method_id(initWithObjectSpecifier:comparisonOperator:testObject:)]
+        #[method(initWithObjectSpecifier:comparisonOperator:testObject:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithObjectSpecifier_comparisonOperator_testObject(
             this: Allocated<Self>,
@@ -183,7 +184,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSSpecifierTest {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -194,32 +195,41 @@ extern_category!(
     #[doc(alias = "NSComparisonMethods")]
     pub unsafe trait NSObjectNSComparisonMethods {
         #[method(isEqualTo:)]
+        #[unsafe(method_family = none)]
         unsafe fn isEqualTo(&self, object: Option<&AnyObject>) -> bool;
 
         #[method(isLessThanOrEqualTo:)]
+        #[unsafe(method_family = none)]
         unsafe fn isLessThanOrEqualTo(&self, object: Option<&AnyObject>) -> bool;
 
         #[method(isLessThan:)]
+        #[unsafe(method_family = none)]
         unsafe fn isLessThan(&self, object: Option<&AnyObject>) -> bool;
 
         #[method(isGreaterThanOrEqualTo:)]
+        #[unsafe(method_family = none)]
         unsafe fn isGreaterThanOrEqualTo(&self, object: Option<&AnyObject>) -> bool;
 
         #[method(isGreaterThan:)]
+        #[unsafe(method_family = none)]
         unsafe fn isGreaterThan(&self, object: Option<&AnyObject>) -> bool;
 
         #[method(isNotEqualTo:)]
+        #[unsafe(method_family = none)]
         unsafe fn isNotEqualTo(&self, object: Option<&AnyObject>) -> bool;
 
         #[method(doesContain:)]
+        #[unsafe(method_family = none)]
         unsafe fn doesContain(&self, object: &AnyObject) -> bool;
 
         #[cfg(feature = "NSString")]
         #[method(isLike:)]
+        #[unsafe(method_family = none)]
         unsafe fn isLike(&self, object: &NSString) -> bool;
 
         #[cfg(feature = "NSString")]
         #[method(isCaseInsensitiveLike:)]
+        #[unsafe(method_family = none)]
         unsafe fn isCaseInsensitiveLike(&self, object: &NSString) -> bool;
     }
 
@@ -231,27 +241,35 @@ extern_category!(
     #[doc(alias = "NSScriptingComparisonMethods")]
     pub unsafe trait NSObjectNSScriptingComparisonMethods {
         #[method(scriptingIsEqualTo:)]
+        #[unsafe(method_family = none)]
         unsafe fn scriptingIsEqualTo(&self, object: &AnyObject) -> bool;
 
         #[method(scriptingIsLessThanOrEqualTo:)]
+        #[unsafe(method_family = none)]
         unsafe fn scriptingIsLessThanOrEqualTo(&self, object: &AnyObject) -> bool;
 
         #[method(scriptingIsLessThan:)]
+        #[unsafe(method_family = none)]
         unsafe fn scriptingIsLessThan(&self, object: &AnyObject) -> bool;
 
         #[method(scriptingIsGreaterThanOrEqualTo:)]
+        #[unsafe(method_family = none)]
         unsafe fn scriptingIsGreaterThanOrEqualTo(&self, object: &AnyObject) -> bool;
 
         #[method(scriptingIsGreaterThan:)]
+        #[unsafe(method_family = none)]
         unsafe fn scriptingIsGreaterThan(&self, object: &AnyObject) -> bool;
 
         #[method(scriptingBeginsWith:)]
+        #[unsafe(method_family = none)]
         unsafe fn scriptingBeginsWith(&self, object: &AnyObject) -> bool;
 
         #[method(scriptingEndsWith:)]
+        #[unsafe(method_family = none)]
         unsafe fn scriptingEndsWith(&self, object: &AnyObject) -> bool;
 
         #[method(scriptingContains:)]
+        #[unsafe(method_family = none)]
         unsafe fn scriptingContains(&self, object: &AnyObject) -> bool;
     }
 

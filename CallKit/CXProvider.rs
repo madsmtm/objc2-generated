@@ -40,11 +40,13 @@ extern_protocol!(
     pub unsafe trait CXProviderDelegate: NSObjectProtocol {
         /// Called when the provider has been reset. Delegates must respond to this callback by cleaning up all internal call state (disconnecting communication channels, releasing network resources, etc.). This callback can be treated as a request to end all calls without the need to respond to any actions
         #[method(providerDidReset:)]
+        #[unsafe(method_family = none)]
         unsafe fn providerDidReset(&self, provider: &CXProvider);
 
         /// Called when the provider has been fully created and is ready to send actions and receive updates
         #[optional]
         #[method(providerDidBegin:)]
+        #[unsafe(method_family = none)]
         unsafe fn providerDidBegin(&self, provider: &CXProvider);
 
         #[cfg(feature = "CXTransaction")]
@@ -56,6 +58,7 @@ extern_protocol!(
         /// If the method is not implemented, NO is assumed.
         #[optional]
         #[method(provider:executeTransaction:)]
+        #[unsafe(method_family = none)]
         unsafe fn provider_executeTransaction(
             &self,
             provider: &CXProvider,
@@ -69,6 +72,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(provider:performStartCallAction:)]
+        #[unsafe(method_family = none)]
         unsafe fn provider_performStartCallAction(
             &self,
             provider: &CXProvider,
@@ -82,6 +86,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(provider:performAnswerCallAction:)]
+        #[unsafe(method_family = none)]
         unsafe fn provider_performAnswerCallAction(
             &self,
             provider: &CXProvider,
@@ -95,6 +100,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(provider:performEndCallAction:)]
+        #[unsafe(method_family = none)]
         unsafe fn provider_performEndCallAction(
             &self,
             provider: &CXProvider,
@@ -108,6 +114,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(provider:performSetHeldCallAction:)]
+        #[unsafe(method_family = none)]
         unsafe fn provider_performSetHeldCallAction(
             &self,
             provider: &CXProvider,
@@ -121,6 +128,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(provider:performSetMutedCallAction:)]
+        #[unsafe(method_family = none)]
         unsafe fn provider_performSetMutedCallAction(
             &self,
             provider: &CXProvider,
@@ -134,6 +142,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(provider:performSetGroupCallAction:)]
+        #[unsafe(method_family = none)]
         unsafe fn provider_performSetGroupCallAction(
             &self,
             provider: &CXProvider,
@@ -147,6 +156,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(provider:performPlayDTMFCallAction:)]
+        #[unsafe(method_family = none)]
         unsafe fn provider_performPlayDTMFCallAction(
             &self,
             provider: &CXProvider,
@@ -157,6 +167,7 @@ extern_protocol!(
         /// Called when an action was not performed in time and has been inherently failed. Depending on the action, this timeout may also force the call to end. An action that has already timed out should not be fulfilled or failed by the provider delegate
         #[optional]
         #[method(provider:timedOutPerformingAction:)]
+        #[unsafe(method_family = none)]
         unsafe fn provider_timedOutPerformingAction(
             &self,
             provider: &CXProvider,
@@ -167,6 +178,7 @@ extern_protocol!(
         /// Called when the provider's audio session activation state changes.
         #[optional]
         #[method(provider:didActivateAudioSession:)]
+        #[unsafe(method_family = none)]
         unsafe fn provider_didActivateAudioSession(
             &self,
             provider: &CXProvider,
@@ -176,6 +188,7 @@ extern_protocol!(
         #[cfg(feature = "objc2-avf-audio")]
         #[optional]
         #[method(provider:didDeactivateAudioSession:)]
+        #[unsafe(method_family = none)]
         unsafe fn provider_didDeactivateAudioSession(
             &self,
             provider: &CXProvider,
@@ -197,18 +210,18 @@ extern_methods!(
     unsafe impl CXProvider {
         #[cfg(feature = "CXProviderConfiguration")]
         /// Initialize a new provider instance with the supplied configuration
-        #[method_id(initWithConfiguration:)]
+        #[method(initWithConfiguration:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithConfiguration(
             this: Allocated<Self>,
             configuration: &CXProviderConfiguration,
         ) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -219,6 +232,7 @@ extern_methods!(
         ///
         /// Completion block will be called on delegate queue, if specified, otherwise on a private serial queue.
         #[method(reportNewIncomingCallWithUUID:update:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reportNewIncomingCallWithUUID_update_completion(
             &self,
             uuid: &NSUUID,
@@ -229,10 +243,12 @@ extern_methods!(
         #[cfg(feature = "CXCallUpdate")]
         /// Report an update to call information.
         #[method(reportCallWithUUID:updated:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reportCallWithUUID_updated(&self, uuid: &NSUUID, update: &CXCallUpdate);
 
         /// Report that a call ended. A nil value for `dateEnded` results in the ended date being set to now.
         #[method(reportCallWithUUID:endedAtDate:reason:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reportCallWithUUID_endedAtDate_reason(
             &self,
             uuid: &NSUUID,
@@ -242,6 +258,7 @@ extern_methods!(
 
         /// Report that an outgoing call started connecting. A nil value for `dateStartedConnecting` results in the started connecting date being set to now.
         #[method(reportOutgoingCallWithUUID:startedConnectingAtDate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reportOutgoingCallWithUUID_startedConnectingAtDate(
             &self,
             uuid: &NSUUID,
@@ -250,6 +267,7 @@ extern_methods!(
 
         /// Report that an outgoing call connected. A nil value for `dateConnected` results in the connected date being set to now.
         #[method(reportOutgoingCallWithUUID:connectedAtDate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reportOutgoingCallWithUUID_connectedAtDate(
             &self,
             uuid: &NSUUID,
@@ -259,6 +277,7 @@ extern_methods!(
         #[cfg(feature = "block2")]
         /// From within a Notification Service Extension, request the containing application be launched to handle an incoming VoIP call. The application's PKPushRegistryDelegate must handle the push upon launch.
         #[method(reportNewIncomingVoIPPushPayload:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reportNewIncomingVoIPPushPayload_completion(
             dictionary_payload: &NSDictionary,
             completion: Option<&block2::Block<dyn Fn(*mut NSError)>>,
@@ -266,28 +285,30 @@ extern_methods!(
 
         #[cfg(feature = "CXProviderConfiguration")]
         /// The receiver's current configuration.
-        #[method_id(configuration)]
+        #[method(configuration)]
         #[unsafe(method_family = none)]
         pub unsafe fn configuration(&self) -> Retained<CXProviderConfiguration>;
 
         #[cfg(feature = "CXProviderConfiguration")]
         /// Setter for [`configuration`][Self::configuration].
         #[method(setConfiguration:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setConfiguration(&self, configuration: &CXProviderConfiguration);
 
         /// Invalidate the receiver. All existing calls will be marked as ended in failure. The provider must be invalidated before it is deallocated.
         #[method(invalidate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn invalidate(&self);
 
         #[cfg(feature = "CXTransaction")]
         /// List of all transactions that are incomplete.
-        #[method_id(pendingTransactions)]
+        #[method(pendingTransactions)]
         #[unsafe(method_family = none)]
         pub unsafe fn pendingTransactions(&self) -> Retained<NSArray<CXTransaction>>;
 
         #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
         /// Returns subset of call actions contained in any transaction in -pendingTransactions of the specified class and with the specified call UUID.
-        #[method_id(pendingCallActionsOfClass:withCallUUID:)]
+        #[method(pendingCallActionsOfClass:withCallUUID:)]
         #[unsafe(method_family = none)]
         pub unsafe fn pendingCallActionsOfClass_withCallUUID(
             &self,

@@ -26,7 +26,7 @@ unsafe impl NSObjectProtocol for MKTileOverlay {}
 
 extern_methods!(
     unsafe impl MKTileOverlay {
-        #[method_id(initWithURLTemplate:)]
+        #[method(initWithURLTemplate:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURLTemplate(
             this: Allocated<Self>,
@@ -35,43 +35,53 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(tileSize)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tileSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`tileSize`][Self::tileSize].
         #[method(setTileSize:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTileSize(&self, tile_size: CGSize);
 
         #[method(isGeometryFlipped)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isGeometryFlipped(&self) -> bool;
 
         /// Setter for [`isGeometryFlipped`][Self::isGeometryFlipped].
         #[method(setGeometryFlipped:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setGeometryFlipped(&self, geometry_flipped: bool);
 
         #[method(minimumZ)]
+        #[unsafe(method_family = none)]
         pub unsafe fn minimumZ(&self) -> NSInteger;
 
         /// Setter for [`minimumZ`][Self::minimumZ].
         #[method(setMinimumZ:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMinimumZ(&self, minimum_z: NSInteger);
 
         #[method(maximumZ)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maximumZ(&self) -> NSInteger;
 
         /// Setter for [`maximumZ`][Self::maximumZ].
         #[method(setMaximumZ:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMaximumZ(&self, maximum_z: NSInteger);
 
-        #[method_id(URLTemplate)]
+        #[method(URLTemplate)]
         #[unsafe(method_family = none)]
         pub unsafe fn URLTemplate(&self) -> Option<Retained<NSString>>;
 
         #[method(canReplaceMapContent)]
+        #[unsafe(method_family = none)]
         pub unsafe fn canReplaceMapContent(&self) -> bool;
 
         /// Setter for [`canReplaceMapContent`][Self::canReplaceMapContent].
         #[method(setCanReplaceMapContent:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCanReplaceMapContent(&self, can_replace_map_content: bool);
     }
 );
@@ -79,11 +89,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKTileOverlay {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -122,12 +132,13 @@ extern_methods!(
     /// CustomLoading
     unsafe impl MKTileOverlay {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(URLForTilePath:)]
+        #[method(URLForTilePath:)]
         #[unsafe(method_family = none)]
         pub unsafe fn URLForTilePath(&self, path: MKTileOverlayPath) -> Retained<NSURL>;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
         #[method(loadTileAtPath:result:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loadTileAtPath_result(
             &self,
             path: MKTileOverlayPath,

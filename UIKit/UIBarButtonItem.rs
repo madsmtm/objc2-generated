@@ -124,11 +124,11 @@ unsafe impl UIAppearance for UIBarButtonItem {}
 extern_methods!(
     #[cfg(feature = "UIBarItem")]
     unsafe impl UIBarButtonItem {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -136,7 +136,7 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "UIImage")]
-        #[method_id(initWithImage:style:target:action:)]
+        #[method(initWithImage:style:target:action:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithImage_style_target_action(
             this: Allocated<Self>,
@@ -147,7 +147,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "UIImage")]
-        #[method_id(initWithImage:landscapeImagePhone:style:target:action:)]
+        #[method(initWithImage:landscapeImagePhone:style:target:action:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithImage_landscapeImagePhone_style_target_action(
             this: Allocated<Self>,
@@ -158,7 +158,7 @@ extern_methods!(
             action: Option<Sel>,
         ) -> Retained<Self>;
 
-        #[method_id(initWithTitle:style:target:action:)]
+        #[method(initWithTitle:style:target:action:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTitle_style_target_action(
             this: Allocated<Self>,
@@ -168,7 +168,7 @@ extern_methods!(
             action: Option<Sel>,
         ) -> Retained<Self>;
 
-        #[method_id(initWithBarButtonSystemItem:target:action:)]
+        #[method(initWithBarButtonSystemItem:target:action:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBarButtonSystemItem_target_action(
             this: Allocated<Self>,
@@ -178,7 +178,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[method_id(initWithCustomView:)]
+        #[method(initWithCustomView:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCustomView(
             this: Allocated<Self>,
@@ -189,7 +189,7 @@ extern_methods!(
         /// Creates a bar button item for the given systemItem. The primaryAction is copied, and its title
         /// &
         /// image are ignored.
-        #[method_id(initWithBarButtonSystemItem:primaryAction:)]
+        #[method(initWithBarButtonSystemItem:primaryAction:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBarButtonSystemItem_primaryAction(
             this: Allocated<Self>,
@@ -199,7 +199,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         /// Creates a plain-style bar button item from the properties of primaryAction. primaryAction is copied.
-        #[method_id(initWithPrimaryAction:)]
+        #[method(initWithPrimaryAction:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPrimaryAction(
             this: Allocated<Self>,
@@ -208,7 +208,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
         /// Creates a bar button item for the given systemItem. The constructed item will present the menu immediately when touched.
-        #[method_id(initWithBarButtonSystemItem:menu:)]
+        #[method(initWithBarButtonSystemItem:menu:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBarButtonSystemItem_menu(
             this: Allocated<Self>,
@@ -218,7 +218,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
         /// Creates a plain-style bar button item with the given title. The constructed item will present the menu immediately when touched.
-        #[method_id(initWithTitle:menu:)]
+        #[method(initWithTitle:menu:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTitle_menu(
             this: Allocated<Self>,
@@ -228,7 +228,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIImage", feature = "UIMenu", feature = "UIMenuElement"))]
         /// Creates a plain-style bar button item with the given image. The constructed item will present the menu immediately when touched.
-        #[method_id(initWithImage:menu:)]
+        #[method(initWithImage:menu:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithImage_menu(
             this: Allocated<Self>,
@@ -238,7 +238,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIAction", feature = "UIMenu", feature = "UIMenuElement"))]
         /// Creates a plain-style bar button item from the properties of primaryAction. primaryAction is copied.
-        #[method_id(initWithPrimaryAction:menu:)]
+        #[method(initWithPrimaryAction:menu:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPrimaryAction_menu(
             this: Allocated<Self>,
@@ -250,7 +250,7 @@ extern_methods!(
         /// Creates a bar button item for the given systemItem. The primaryAction is copied, and its title
         /// &
         /// image are ignored.
-        #[method_id(initWithBarButtonSystemItem:primaryAction:menu:)]
+        #[method(initWithBarButtonSystemItem:primaryAction:menu:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBarButtonSystemItem_primaryAction_menu(
             this: Allocated<Self>,
@@ -261,7 +261,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIImage", feature = "UIMenu", feature = "UIMenuElement"))]
         /// Creates a plain-style bar button item with the given title and image.
-        #[method_id(initWithTitle:image:target:action:menu:)]
+        #[method(initWithTitle:image:target:action:menu:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTitle_image_target_action_menu(
             this: Allocated<Self>,
@@ -274,7 +274,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Construct a new fixed space item with the given width.
-        #[method_id(fixedSpaceItemOfWidth:)]
+        #[method(fixedSpaceItemOfWidth:)]
         #[unsafe(method_family = none)]
         pub unsafe fn fixedSpaceItemOfWidth(
             width: CGFloat,
@@ -282,58 +282,67 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Construct a new flexible space item.
-        #[method_id(flexibleSpaceItem)]
+        #[method(flexibleSpaceItem)]
         #[unsafe(method_family = none)]
         pub unsafe fn flexibleSpaceItem(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method(style)]
+        #[unsafe(method_family = none)]
         pub unsafe fn style(&self) -> UIBarButtonItemStyle;
 
         /// Setter for [`style`][Self::style].
         #[method(setStyle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setStyle(&self, style: UIBarButtonItemStyle);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(width)]
+        #[unsafe(method_family = none)]
         pub unsafe fn width(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWidth(&self, width: CGFloat);
 
-        #[method_id(possibleTitles)]
+        #[method(possibleTitles)]
         #[unsafe(method_family = none)]
         pub unsafe fn possibleTitles(&self) -> Option<Retained<NSSet<NSString>>>;
 
         /// Setter for [`possibleTitles`][Self::possibleTitles].
         #[method(setPossibleTitles:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPossibleTitles(&self, possible_titles: Option<&NSSet<NSString>>);
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[method_id(customView)]
+        #[method(customView)]
         #[unsafe(method_family = none)]
         pub unsafe fn customView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// Setter for [`customView`][Self::customView].
         #[method(setCustomView:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCustomView(&self, custom_view: Option<&UIView>);
 
         #[method(action)]
+        #[unsafe(method_family = none)]
         pub unsafe fn action(&self) -> Option<Sel>;
 
         /// Setter for [`action`][Self::action].
         #[method(setAction:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAction(&self, action: Option<Sel>);
 
-        #[method_id(target)]
+        #[method(target)]
         #[unsafe(method_family = none)]
         pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`target`][Self::target].
         #[method(setTarget:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
@@ -344,34 +353,38 @@ extern_methods!(
         /// action properties are ignored. If primaryAction is set to nil, the title
         /// &
         /// image properties are left unchanged.
-        #[method_id(primaryAction)]
+        #[method(primaryAction)]
         #[unsafe(method_family = none)]
         pub unsafe fn primaryAction(&self) -> Option<Retained<UIAction>>;
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         /// Setter for [`primaryAction`][Self::primaryAction].
         #[method(setPrimaryAction:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPrimaryAction(&self, primary_action: Option<&UIAction>);
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
         /// When non-nil the menu is presented, the gesture used to trigger the menu is based on if the bar button item would normally trigger an action when tapped.
-        #[method_id(menu)]
+        #[method(menu)]
         #[unsafe(method_family = none)]
         pub unsafe fn menu(&self) -> Option<Retained<UIMenu>>;
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
         /// Setter for [`menu`][Self::menu].
         #[method(setMenu:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMenu(&self, menu: Option<&UIMenu>);
 
         #[cfg(feature = "UIContextMenuConfiguration")]
         /// Preferred menu element ordering strategy for menus displayed by this button.
         #[method(preferredMenuElementOrder)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preferredMenuElementOrder(&self) -> UIContextMenuConfigurationElementOrder;
 
         #[cfg(feature = "UIContextMenuConfiguration")]
         /// Setter for [`preferredMenuElementOrder`][Self::preferredMenuElementOrder].
         #[method(setPreferredMenuElementOrder:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreferredMenuElementOrder(
             &self,
             preferred_menu_element_order: UIContextMenuConfigurationElementOrder,
@@ -381,58 +394,67 @@ extern_methods!(
         /// This shows the menu as options for selection if a menu is populated and no action when tapped is enabled.
         /// If no menu is provided and no action is enabled when tapped, the item is toggled on and off for the primary action.
         #[method(changesSelectionAsPrimaryAction)]
+        #[unsafe(method_family = none)]
         pub unsafe fn changesSelectionAsPrimaryAction(&self) -> bool;
 
         /// Setter for [`changesSelectionAsPrimaryAction`][Self::changesSelectionAsPrimaryAction].
         #[method(setChangesSelectionAsPrimaryAction:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setChangesSelectionAsPrimaryAction(
             &self,
             changes_selection_as_primary_action: bool,
         );
 
         #[method(isSelected)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isSelected(&self) -> bool;
 
         /// Setter for [`isSelected`][Self::isSelected].
         #[method(setSelected:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSelected(&self, selected: bool);
 
         /// If the item should be hidden from display.
         #[method(isHidden)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isHidden(&self) -> bool;
 
         /// Setter for [`isHidden`][Self::isHidden].
         #[method(setHidden:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setHidden(&self, hidden: bool);
 
         /// Whether or not symbol animations are enabled for this bar button item.
         #[method(isSymbolAnimationEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isSymbolAnimationEnabled(&self) -> bool;
 
         /// Setter for [`isSymbolAnimationEnabled`][Self::isSymbolAnimationEnabled].
         #[method(setSymbolAnimationEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSymbolAnimationEnabled(&self, symbol_animation_enabled: bool);
 
         #[cfg(feature = "UIMenuElement")]
         /// A UIMenuElement that should substitute for the UIBarButtonItem when displayed in a menu.
-        #[method_id(menuRepresentation)]
+        #[method(menuRepresentation)]
         #[unsafe(method_family = none)]
         pub unsafe fn menuRepresentation(&self) -> Option<Retained<UIMenuElement>>;
 
         #[cfg(feature = "UIMenuElement")]
         /// Setter for [`menuRepresentation`][Self::menuRepresentation].
         #[method(setMenuRepresentation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMenuRepresentation(&self, menu_representation: Option<&UIMenuElement>);
 
         #[cfg(feature = "UIBarButtonItemGroup")]
         /// Create a fixed group containing this bar button item. UIBarButtonItems may only be in a single UIBarButtonItemGroup at a time, adding a bar button item to a group removes it from any previous group.
-        #[method_id(creatingFixedGroup)]
+        #[method(creatingFixedGroup)]
         #[unsafe(method_family = none)]
         pub unsafe fn creatingFixedGroup(&self) -> Retained<UIBarButtonItemGroup>;
 
         #[cfg(feature = "UIBarButtonItemGroup")]
         /// Create a movable group containing this bar button item. UIBarButtonItems may only be in a single UIBarButtonItemGroup at a time, adding a bar button item to a group removes it from any previous group.
-        #[method_id(creatingMovableGroupWithCustomizationIdentifier:)]
+        #[method(creatingMovableGroupWithCustomizationIdentifier:)]
         #[unsafe(method_family = none)]
         pub unsafe fn creatingMovableGroupWithCustomizationIdentifier(
             &self,
@@ -441,7 +463,7 @@ extern_methods!(
 
         #[cfg(feature = "UIBarButtonItemGroup")]
         /// Create an optional group containing this bar button item. UIBarButtonItems may only be in a single UIBarButtonItemGroup at a time, adding a bar button item to a group removes it from any previous group.
-        #[method_id(creatingOptionalGroupWithCustomizationIdentifier:inDefaultCustomization:)]
+        #[method(creatingOptionalGroupWithCustomizationIdentifier:inDefaultCustomization:)]
         #[unsafe(method_family = none)]
         pub unsafe fn creatingOptionalGroupWithCustomizationIdentifier_inDefaultCustomization(
             &self,
@@ -451,6 +473,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarCommon", feature = "UIControl", feature = "UIImage"))]
         #[method(setBackgroundImage:forState:barMetrics:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundImage_forState_barMetrics(
             &self,
             background_image: Option<&UIImage>,
@@ -459,7 +482,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIBarCommon", feature = "UIControl", feature = "UIImage"))]
-        #[method_id(backgroundImageForState:barMetrics:)]
+        #[method(backgroundImageForState:barMetrics:)]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundImageForState_barMetrics(
             &self,
@@ -469,6 +492,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarCommon", feature = "UIControl", feature = "UIImage"))]
         #[method(setBackgroundImage:forState:style:barMetrics:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundImage_forState_style_barMetrics(
             &self,
             background_image: Option<&UIImage>,
@@ -478,7 +502,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIBarCommon", feature = "UIControl", feature = "UIImage"))]
-        #[method_id(backgroundImageForState:style:barMetrics:)]
+        #[method(backgroundImageForState:style:barMetrics:)]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundImageForState_style_barMetrics(
             &self,
@@ -488,17 +512,19 @@ extern_methods!(
         ) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIColor")]
-        #[method_id(tintColor)]
+        #[method(tintColor)]
         #[unsafe(method_family = none)]
         pub unsafe fn tintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`tintColor`][Self::tintColor].
         #[method(setTintColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTintColor(&self, tint_color: Option<&UIColor>);
 
         #[cfg(all(feature = "UIBarCommon", feature = "objc2-core-foundation"))]
         #[method(setBackgroundVerticalPositionAdjustment:forBarMetrics:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundVerticalPositionAdjustment_forBarMetrics(
             &self,
             adjustment: CGFloat,
@@ -507,6 +533,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarCommon", feature = "objc2-core-foundation"))]
         #[method(backgroundVerticalPositionAdjustmentForBarMetrics:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn backgroundVerticalPositionAdjustmentForBarMetrics(
             &self,
             bar_metrics: UIBarMetrics,
@@ -518,6 +545,7 @@ extern_methods!(
             feature = "objc2-core-foundation"
         ))]
         #[method(setTitlePositionAdjustment:forBarMetrics:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTitlePositionAdjustment_forBarMetrics(
             &self,
             adjustment: UIOffset,
@@ -530,6 +558,7 @@ extern_methods!(
             feature = "objc2-core-foundation"
         ))]
         #[method(titlePositionAdjustmentForBarMetrics:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn titlePositionAdjustmentForBarMetrics(
             &self,
             bar_metrics: UIBarMetrics,
@@ -537,6 +566,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarCommon", feature = "UIControl", feature = "UIImage"))]
         #[method(setBackButtonBackgroundImage:forState:barMetrics:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBackButtonBackgroundImage_forState_barMetrics(
             &self,
             background_image: Option<&UIImage>,
@@ -545,7 +575,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIBarCommon", feature = "UIControl", feature = "UIImage"))]
-        #[method_id(backButtonBackgroundImageForState:barMetrics:)]
+        #[method(backButtonBackgroundImageForState:barMetrics:)]
         #[unsafe(method_family = none)]
         pub unsafe fn backButtonBackgroundImageForState_barMetrics(
             &self,
@@ -559,6 +589,7 @@ extern_methods!(
             feature = "objc2-core-foundation"
         ))]
         #[method(setBackButtonTitlePositionAdjustment:forBarMetrics:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBackButtonTitlePositionAdjustment_forBarMetrics(
             &self,
             adjustment: UIOffset,
@@ -571,6 +602,7 @@ extern_methods!(
             feature = "objc2-core-foundation"
         ))]
         #[method(backButtonTitlePositionAdjustmentForBarMetrics:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn backButtonTitlePositionAdjustmentForBarMetrics(
             &self,
             bar_metrics: UIBarMetrics,
@@ -578,6 +610,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarCommon", feature = "objc2-core-foundation"))]
         #[method(setBackButtonBackgroundVerticalPositionAdjustment:forBarMetrics:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBackButtonBackgroundVerticalPositionAdjustment_forBarMetrics(
             &self,
             adjustment: CGFloat,
@@ -586,6 +619,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarCommon", feature = "objc2-core-foundation"))]
         #[method(backButtonBackgroundVerticalPositionAdjustmentForBarMetrics:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn backButtonBackgroundVerticalPositionAdjustmentForBarMetrics(
             &self,
             bar_metrics: UIBarMetrics,
@@ -597,7 +631,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UIBarItem")]
     unsafe impl UIBarButtonItem {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -619,12 +653,14 @@ extern_methods!(
         /// Adds a symbol effect to the bar button item with default options and animation.
         /// Only a subset of symbol effects are supported; Appear and Disappear effects, for example, are unsupported, and will assert.
         #[method(addSymbolEffect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addSymbolEffect(&self, symbol_effect: &NSSymbolEffect);
 
         #[cfg(feature = "objc2-symbols")]
         /// Adds a symbol effect to the bar button item with specified options and default animation.
         /// Only a subset of symbol effects are supported; Appear and Disappear effects, for example, are unsupported, and will assert.
         #[method(addSymbolEffect:options:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addSymbolEffect_options(
             &self,
             symbol_effect: &NSSymbolEffect,
@@ -635,6 +671,7 @@ extern_methods!(
         /// Adds a symbol effect to the bar button item with specified options and animation.
         /// Only a subset of symbol effects are supported; Appear and Disappear effects, for example, are unsupported, and will assert.
         #[method(addSymbolEffect:options:animated:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addSymbolEffect_options_animated(
             &self,
             symbol_effect: &NSSymbolEffect,
@@ -645,11 +682,13 @@ extern_methods!(
         #[cfg(feature = "objc2-symbols")]
         /// Removes from the bar button item the symbol effect matching the type of effect passed in, with default options and animation.
         #[method(removeSymbolEffectOfType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeSymbolEffectOfType(&self, symbol_effect: &NSSymbolEffect);
 
         #[cfg(feature = "objc2-symbols")]
         /// Removes from the bar button item the symbol effect matching the type of effect passed in, with specified options and default animation.
         #[method(removeSymbolEffectOfType:options:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeSymbolEffectOfType_options(
             &self,
             symbol_effect: &NSSymbolEffect,
@@ -659,6 +698,7 @@ extern_methods!(
         #[cfg(feature = "objc2-symbols")]
         /// Removes from the bar button item the symbol effect matching the type of effect passed in, with specified options and animation.
         #[method(removeSymbolEffectOfType:options:animated:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeSymbolEffectOfType_options_animated(
             &self,
             symbol_effect: &NSSymbolEffect,
@@ -668,16 +708,19 @@ extern_methods!(
 
         /// Removes all symbol effects from the bar button item with default options and animation.
         #[method(removeAllSymbolEffects)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeAllSymbolEffects(&self);
 
         #[cfg(feature = "objc2-symbols")]
         /// Removes all symbol effects from the bar button item with specified options and default animation.
         #[method(removeAllSymbolEffectsWithOptions:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeAllSymbolEffectsWithOptions(&self, options: &NSSymbolEffectOptions);
 
         #[cfg(feature = "objc2-symbols")]
         /// Removes all symbol effects from the bar button item with specified options and animation.
         #[method(removeAllSymbolEffectsWithOptions:animated:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeAllSymbolEffectsWithOptions_animated(
             &self,
             options: &NSSymbolEffectOptions,
@@ -688,6 +731,7 @@ extern_methods!(
         /// Sets the symbol image on the bar button item with a symbol content transition and default options.
         /// Passing in a non-symbol image will result in undefined behavior.
         #[method(setSymbolImage:withContentTransition:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSymbolImage_withContentTransition(
             &self,
             symbol_image: &UIImage,
@@ -698,6 +742,7 @@ extern_methods!(
         /// Sets the symbol image on the bar button item with a symbol content transition and specified options.
         /// Passing in a non-symbol image will result in undefined behavior.
         #[method(setSymbolImage:withContentTransition:options:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSymbolImage_withContentTransition_options(
             &self,
             symbol_image: &UIImage,

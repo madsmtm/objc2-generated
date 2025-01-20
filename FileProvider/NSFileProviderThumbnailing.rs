@@ -46,7 +46,7 @@ extern_methods!(
         ///
         /// The system will cache the thumbnail for the item, and the cache will be
         /// invalidated when itemVersion.contentVersion changes.
-        #[method_id(fetchThumbnailsForItemIdentifiers:requestedSize:perThumbnailCompletionHandler:completionHandler:)]
+        #[method(fetchThumbnailsForItemIdentifiers:requestedSize:perThumbnailCompletionHandler:completionHandler:)]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchThumbnailsForItemIdentifiers_requestedSize_perThumbnailCompletionHandler_completionHandler(
             &self,

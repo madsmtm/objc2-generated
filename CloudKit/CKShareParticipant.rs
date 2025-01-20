@@ -141,53 +141,60 @@ extern_methods!(
         /// Use
         /// `CKFetchShareParticipantsOperation`to create a
         /// `CKShareParticipant`object
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "CKUserIdentity")]
-        #[method_id(userIdentity)]
+        #[method(userIdentity)]
         #[unsafe(method_family = none)]
         pub unsafe fn userIdentity(&self) -> Retained<CKUserIdentity>;
 
         /// The default participant role is
         /// `CKShareParticipantRolePrivateUser.`
         #[method(role)]
+        #[unsafe(method_family = none)]
         pub unsafe fn role(&self) -> CKShareParticipantRole;
 
         /// Setter for [`role`][Self::role].
         #[method(setRole:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRole(&self, role: CKShareParticipantRole);
 
         /// The default participant type is
         /// `CKShareParticipantTypePrivateUser.`
         #[deprecated]
         #[method(type)]
+        #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> CKShareParticipantType;
 
         /// Setter for [`type`][Self::type].
         #[deprecated]
         #[method(setType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setType(&self, r#type: CKShareParticipantType);
 
         #[method(acceptanceStatus)]
+        #[unsafe(method_family = none)]
         pub unsafe fn acceptanceStatus(&self) -> CKShareParticipantAcceptanceStatus;
 
         /// The default permission for a new participant is
         /// `CKShareParticipantPermissionReadOnly.`
         #[method(permission)]
+        #[unsafe(method_family = none)]
         pub unsafe fn permission(&self) -> CKShareParticipantPermission;
 
         /// Setter for [`permission`][Self::permission].
         #[method(setPermission:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPermission(&self, permission: CKShareParticipantPermission);
 
         /// A unique identifier for this participant.
-        #[method_id(participantID)]
+        #[method(participantID)]
         #[unsafe(method_family = none)]
         pub unsafe fn participantID(&self) -> Retained<NSString>;
     }

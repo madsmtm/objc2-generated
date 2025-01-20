@@ -26,7 +26,7 @@ extern_methods!(
     unsafe impl MLModelDescription {
         #[cfg(feature = "MLFeatureDescription")]
         /// Description of the inputs to the model
-        #[method_id(inputDescriptionsByName)]
+        #[method(inputDescriptionsByName)]
         #[unsafe(method_family = none)]
         pub unsafe fn inputDescriptionsByName(
             &self,
@@ -34,7 +34,7 @@ extern_methods!(
 
         #[cfg(feature = "MLFeatureDescription")]
         /// Description of the outputs from the model
-        #[method_id(outputDescriptionsByName)]
+        #[method(outputDescriptionsByName)]
         #[unsafe(method_family = none)]
         pub unsafe fn outputDescriptionsByName(
             &self,
@@ -42,25 +42,25 @@ extern_methods!(
 
         #[cfg(feature = "MLFeatureDescription")]
         /// Description of the state features.
-        #[method_id(stateDescriptionsByName)]
+        #[method(stateDescriptionsByName)]
         #[unsafe(method_family = none)]
         pub unsafe fn stateDescriptionsByName(
             &self,
         ) -> Retained<NSDictionary<NSString, MLFeatureDescription>>;
 
         /// Name of the primary target / predicted output feature in the output descriptions
-        #[method_id(predictedFeatureName)]
+        #[method(predictedFeatureName)]
         #[unsafe(method_family = none)]
         pub unsafe fn predictedFeatureName(&self) -> Option<Retained<NSString>>;
 
         /// Key for all predicted probabilities stored as a MLFeatureTypeDictionary in the output descriptions
-        #[method_id(predictedProbabilitiesName)]
+        #[method(predictedProbabilitiesName)]
         #[unsafe(method_family = none)]
         pub unsafe fn predictedProbabilitiesName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "MLModelMetadataKeys")]
         /// Optional metadata describing the model
-        #[method_id(metadata)]
+        #[method(metadata)]
         #[unsafe(method_family = none)]
         pub unsafe fn metadata(&self) -> Retained<NSDictionary<MLModelMetadataKey, AnyObject>>;
 
@@ -73,7 +73,7 @@ extern_methods!(
         /// 2. Otherwise, if the pipeline model has only one sub model with non-nil classLabels property, use the property value.
         ///
         /// 3. Otherwise, the property is nil.
-        #[method_id(classLabels)]
+        #[method(classLabels)]
         #[unsafe(method_family = none)]
         pub unsafe fn classLabels(&self) -> Option<Retained<NSArray<AnyObject>>>;
     }
@@ -82,11 +82,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MLModelDescription {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -97,10 +97,11 @@ extern_methods!(
     /// Additions to model descriptions related to model update API.
     unsafe impl MLModelDescription {
         #[method(isUpdatable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isUpdatable(&self) -> bool;
 
         #[cfg(feature = "MLFeatureDescription")]
-        #[method_id(trainingInputDescriptionsByName)]
+        #[method(trainingInputDescriptionsByName)]
         #[unsafe(method_family = none)]
         pub unsafe fn trainingInputDescriptionsByName(
             &self,
@@ -117,7 +118,7 @@ extern_methods!(
             feature = "MLParameterDescription",
             feature = "MLParameterKey"
         ))]
-        #[method_id(parameterDescriptionsByKey)]
+        #[method(parameterDescriptionsByKey)]
         #[unsafe(method_family = none)]
         pub unsafe fn parameterDescriptionsByKey(
             &self,

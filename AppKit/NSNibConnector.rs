@@ -20,33 +20,37 @@ unsafe impl NSObjectProtocol for NSNibConnector {}
 
 extern_methods!(
     unsafe impl NSNibConnector {
-        #[method_id(source)]
+        #[method(source)]
         #[unsafe(method_family = none)]
         pub unsafe fn source(&self) -> Option<Retained<AnyObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`source`][Self::source].
         #[method(setSource:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSource(&self, source: Option<&AnyObject>);
 
-        #[method_id(destination)]
+        #[method(destination)]
         #[unsafe(method_family = none)]
         pub unsafe fn destination(&self) -> Option<Retained<AnyObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`destination`][Self::destination].
         #[method(setDestination:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDestination(&self, destination: Option<&AnyObject>);
 
-        #[method_id(label)]
+        #[method(label)]
         #[unsafe(method_family = none)]
         pub unsafe fn label(&self) -> Retained<NSString>;
 
         /// Setter for [`label`][Self::label].
         #[method(setLabel:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLabel(&self, label: &NSString);
 
         #[method(replaceObject:withObject:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn replaceObject_withObject(
             &self,
             old_object: &AnyObject,
@@ -54,6 +58,7 @@ extern_methods!(
         );
 
         #[method(establishConnection)]
+        #[unsafe(method_family = none)]
         pub unsafe fn establishConnection(&self);
     }
 );
@@ -61,11 +66,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSNibConnector {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

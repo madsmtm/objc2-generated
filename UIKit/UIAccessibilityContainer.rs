@@ -12,9 +12,10 @@ extern_category!(
     #[doc(alias = "UIAccessibilityContainer")]
     pub unsafe trait NSObjectUIAccessibilityContainer {
         #[method(accessibilityElementCount)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityElementCount(&self, mtm: MainThreadMarker) -> NSInteger;
 
-        #[method_id(accessibilityElementAtIndex:)]
+        #[method(accessibilityElementAtIndex:)]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityElementAtIndex(
             &self,
@@ -23,18 +24,20 @@ extern_category!(
         ) -> Option<Retained<AnyObject>>;
 
         #[method(indexOfAccessibilityElement:)]
+        #[unsafe(method_family = none)]
         unsafe fn indexOfAccessibilityElement(
             &self,
             element: &AnyObject,
             mtm: MainThreadMarker,
         ) -> NSInteger;
 
-        #[method_id(accessibilityElements)]
+        #[method(accessibilityElements)]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityElements(&self, mtm: MainThreadMarker) -> Option<Retained<NSArray>>;
 
         /// Setter for [`accessibilityElements`][Self::accessibilityElements].
         #[method(setAccessibilityElements:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityElements(
             &self,
             accessibility_elements: Option<&NSArray>,
@@ -43,6 +46,7 @@ extern_category!(
 
         #[cfg(feature = "UIAccessibilityConstants")]
         #[method(accessibilityContainerType)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityContainerType(
             &self,
             mtm: MainThreadMarker,
@@ -51,18 +55,20 @@ extern_category!(
         #[cfg(feature = "UIAccessibilityConstants")]
         /// Setter for [`accessibilityContainerType`][Self::accessibilityContainerType].
         #[method(setAccessibilityContainerType:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityContainerType(
             &self,
             accessibility_container_type: UIAccessibilityContainerType,
             mtm: MainThreadMarker,
         );
 
-        #[method_id(automationElements)]
+        #[method(automationElements)]
         #[unsafe(method_family = none)]
         unsafe fn automationElements(&self, mtm: MainThreadMarker) -> Option<Retained<NSArray>>;
 
         /// Setter for [`automationElements`][Self::automationElements].
         #[method(setAutomationElements:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAutomationElements(
             &self,
             automation_elements: Option<&NSArray>,
@@ -79,9 +85,11 @@ extern_protocol!(
         NSObjectProtocol + MainThreadOnly
     {
         #[method(accessibilityRowRange)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityRowRange(&self) -> NSRange;
 
         #[method(accessibilityColumnRange)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityColumnRange(&self) -> NSRange;
     }
 );
@@ -91,7 +99,7 @@ extern_protocol!(
     pub unsafe trait UIAccessibilityContainerDataTable:
         NSObjectProtocol + MainThreadOnly
     {
-        #[method_id(accessibilityDataTableCellElementForRow:column:)]
+        #[method(accessibilityDataTableCellElementForRow:column:)]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityDataTableCellElementForRow_column(
             &self,
@@ -100,13 +108,15 @@ extern_protocol!(
         ) -> Option<Retained<ProtocolObject<dyn UIAccessibilityContainerDataTableCell>>>;
 
         #[method(accessibilityRowCount)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityRowCount(&self) -> NSUInteger;
 
         #[method(accessibilityColumnCount)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityColumnCount(&self) -> NSUInteger;
 
         #[optional]
-        #[method_id(accessibilityHeaderElementsForRow:)]
+        #[method(accessibilityHeaderElementsForRow:)]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityHeaderElementsForRow(
             &self,
@@ -114,7 +124,7 @@ extern_protocol!(
         ) -> Option<Retained<NSArray<ProtocolObject<dyn UIAccessibilityContainerDataTableCell>>>>;
 
         #[optional]
-        #[method_id(accessibilityHeaderElementsForColumn:)]
+        #[method(accessibilityHeaderElementsForColumn:)]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityHeaderElementsForColumn(
             &self,

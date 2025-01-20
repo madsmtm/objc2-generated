@@ -244,7 +244,7 @@ extern_methods!(
     unsafe impl CIFilter {
         /// Returns a CIFilter that will in turn return a properly processed CIImage as "outputImage".
         #[deprecated = "Use new CIRAWFilter class instead."]
-        #[method_id(filterWithImageURL:options:)]
+        #[method(filterWithImageURL:options:)]
         #[unsafe(method_family = none)]
         pub unsafe fn filterWithImageURL_options(
             url: Option<&NSURL>,
@@ -255,7 +255,7 @@ extern_methods!(
         ///
         /// Note that when using this initializer, you should pass in a source type identifier hint (kCGImageSourceTypeIdentifierHint) key/value pair in order to help the decoder determine the file type, as otherwise confusion and incorrect results are possible.
         #[deprecated = "Use new CIRAWFilter class instead."]
-        #[method_id(filterWithImageData:options:)]
+        #[method(filterWithImageData:options:)]
         #[unsafe(method_family = none)]
         pub unsafe fn filterWithImageData_options(
             data: Option<&NSData>,
@@ -269,7 +269,7 @@ extern_methods!(
         /// kCVPixelFormatType_14Bayer_GRBG, kCVPixelFormatType_14Bayer_RGGB, kCVPixelFormatType_14Bayer_BGGR, kCVPixelFormatType_14Bayer_GBRG
         /// as well as the root properties attachment from the CMSampleBufferRef.
         #[deprecated = "Use new CIRAWFilter class instead."]
-        #[method_id(filterWithCVPixelBuffer:properties:options:)]
+        #[method(filterWithCVPixelBuffer:properties:options:)]
         #[unsafe(method_family = none)]
         pub unsafe fn filterWithCVPixelBuffer_properties_options(
             pixel_buffer: Option<&CVPixelBuffer>,
@@ -279,7 +279,7 @@ extern_methods!(
 
         /// Returns a NSArray containing the names of all supported RAW cameras.
         #[deprecated = "Use new CIRAWFilter class instead."]
-        #[method_id(supportedRawCameraModels)]
+        #[method(supportedRawCameraModels)]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedRawCameraModels() -> Option<Retained<NSArray<NSString>>>;
     }

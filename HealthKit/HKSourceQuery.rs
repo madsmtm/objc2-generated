@@ -37,7 +37,7 @@ extern_methods!(
         /// Parameter `objectPredicate`: The predicate which samples must match.
         ///
         /// Parameter `completionHandler`: The block to be called when the query has finished executing.
-        #[method_id(initWithSampleType:samplePredicate:completionHandler:)]
+        #[method(initWithSampleType:samplePredicate:completionHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSampleType_samplePredicate_completionHandler(
             this: Allocated<Self>,
@@ -54,7 +54,7 @@ extern_methods!(
     /// Methods declared on superclass `HKQuery`
     #[cfg(feature = "HKQuery")]
     unsafe impl HKSourceQuery {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -64,7 +64,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "HKQuery")]
     unsafe impl HKSourceQuery {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

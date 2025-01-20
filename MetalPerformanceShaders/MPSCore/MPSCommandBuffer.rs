@@ -36,7 +36,7 @@ unsafe impl NSObjectProtocol for MPSPredicate {}
 extern_methods!(
     unsafe impl MPSPredicate {
         /// The buffer that is used as the predicate
-        #[method_id(predicateBuffer)]
+        #[method(predicateBuffer)]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateBuffer(&self) -> Retained<ProtocolObject<dyn MTLBuffer>>;
 
@@ -49,6 +49,7 @@ extern_methods!(
         /// operations.
         /// Default = 0;
         #[method(predicateOffset)]
+        #[unsafe(method_family = none)]
         pub unsafe fn predicateOffset(&self) -> NSUInteger;
 
         /// Initializes a MPSPredicate object with a buffer and given offset.
@@ -58,7 +59,7 @@ extern_methods!(
         /// Parameter `offset`: Byteoffset to the predicate buffer where the predicate is stored.
         ///
         /// Returns: A pointer to the newly initialized MPSPredicate object.
-        #[method_id(predicateWithBuffer:offset:)]
+        #[method(predicateWithBuffer:offset:)]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateWithBuffer_offset(
             buffer: &ProtocolObject<dyn MTLBuffer>,
@@ -72,7 +73,7 @@ extern_methods!(
         /// Parameter `offset`: Byteoffset to the predicate buffer where the predicate is stored.
         ///
         /// Returns: A pointer to the newly initialized MPSPredicate object.
-        #[method_id(initWithBuffer:offset:)]
+        #[method(initWithBuffer:offset:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBuffer_offset(
             this: Allocated<Self>,
@@ -92,7 +93,7 @@ extern_methods!(
         /// Parameter `device`: The device the predicate is used with
         ///
         /// Returns: A pointer to the newly initialized MPSPredicate object.
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -104,11 +105,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSPredicate {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -128,7 +129,7 @@ extern_protocol!(
         ///
         /// Returns: A new heap of size at least descriptor.size.  If nil is returned, MPS
         /// will use the MPS internal heap cache instead to satisfy the allocation.
-        #[method_id(newHeapWithDescriptor:)]
+        #[method(newHeapWithDescriptor:)]
         #[unsafe(method_family = new)]
         unsafe fn newHeapWithDescriptor(
             &self,
@@ -145,6 +146,7 @@ extern_protocol!(
         /// Parameter `seconds`: A hint for how long to cache the heap before retiring it.  See MPSSetHeapCacheDuration().
         #[optional]
         #[method(retireHeap:cacheDelay:)]
+        #[unsafe(method_family = none)]
         unsafe fn retireHeap_cacheDelay(
             &self,
             heap: &ProtocolObject<dyn MTLHeap>,
@@ -180,7 +182,7 @@ unsafe impl NSObjectProtocol for MPSCommandBuffer {}
 extern_methods!(
     unsafe impl MPSCommandBuffer {
         /// The Metal Command Buffer that was used to initialize this object.
-        #[method_id(commandBuffer)]
+        #[method(commandBuffer)]
         #[unsafe(method_family = none)]
         pub unsafe fn commandBuffer(&self) -> Retained<ProtocolObject<dyn MTLCommandBuffer>>;
 
@@ -192,17 +194,18 @@ extern_methods!(
         /// In some circumstances, it is preferable to use the root command buffer,
         /// particularly when trying to identify the command buffer that will be commited
         /// by -commitAndContinue.
-        #[method_id(rootCommandBuffer)]
+        #[method(rootCommandBuffer)]
         #[unsafe(method_family = none)]
         pub unsafe fn rootCommandBuffer(&self) -> Retained<ProtocolObject<dyn MTLCommandBuffer>>;
 
         /// A GPU predicate object. Default: nil.
-        #[method_id(predicate)]
+        #[method(predicate)]
         #[unsafe(method_family = none)]
         pub unsafe fn predicate(&self) -> Option<Retained<MPSPredicate>>;
 
         /// Setter for [`predicate`][Self::predicate].
         #[method(setPredicate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPredicate(&self, predicate: Option<&MPSPredicate>);
 
         /// A application supplied object to allocate MTLHeaps for MPS
@@ -218,12 +221,13 @@ extern_methods!(
         ///
         /// If multiple MPSCommandBuffers reference the same MTLCommandBuffer, changing
         /// the heapProvider on one will change the heap provider for all of them.
-        #[method_id(heapProvider)]
+        #[method(heapProvider)]
         #[unsafe(method_family = none)]
         pub unsafe fn heapProvider(&self) -> Option<Retained<ProtocolObject<dyn MPSHeapProvider>>>;
 
         /// Setter for [`heapProvider`][Self::heapProvider].
         #[method(setHeapProvider:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setHeapProvider(
             &self,
             heap_provider: Option<&ProtocolObject<dyn MPSHeapProvider>>,
@@ -234,7 +238,7 @@ extern_methods!(
         /// Please use the rootCommandBuffer method to get the current alive underlying MTLCommandBuffer.
         ///
         /// Returns: A pointer to the newly initialized MPSCommandBuffer object.
-        #[method_id(commandBufferWithCommandBuffer:)]
+        #[method(commandBufferWithCommandBuffer:)]
         #[unsafe(method_family = none)]
         pub unsafe fn commandBufferWithCommandBuffer(
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -243,7 +247,7 @@ extern_methods!(
         /// Initializes a MPSCommandBuffer object from a given command queue.
         ///
         /// Returns: A pointer to the newly initialized MPSCommandBuffer object.
-        #[method_id(commandBufferFromCommandQueue:)]
+        #[method(commandBufferFromCommandQueue:)]
         #[unsafe(method_family = none)]
         pub unsafe fn commandBufferFromCommandQueue(
             command_queue: &ProtocolObject<dyn MTLCommandQueue>,
@@ -254,14 +258,14 @@ extern_methods!(
         /// Please use the rootCommandBuffer method to get the current alive underlying MTLCommandBuffer.
         ///
         /// Returns: A pointer to the newly initialized MPSCommandBuffer object.
-        #[method_id(initWithCommandBuffer:)]
+        #[method(initWithCommandBuffer:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCommandBuffer(
             this: Allocated<Self>,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
         ) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -304,6 +308,7 @@ extern_methods!(
         /// will be forwarded to that object instead. In this way, underlying predicate objects and
         /// other state will be preserved.
         #[method(commitAndContinue)]
+        #[unsafe(method_family = none)]
         pub unsafe fn commitAndContinue(&self);
 
         /// Prefetch heap into the MPS command buffer heap cache.
@@ -315,6 +320,7 @@ extern_methods!(
         ///
         /// Parameter `size`: The minimum size of the free store needed
         #[method(prefetchHeapForWorkloadSize:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn prefetchHeapForWorkloadSize(&self, size: usize);
     }
 );
@@ -322,7 +328,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCommandBuffer {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

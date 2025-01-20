@@ -72,67 +72,84 @@ extern_methods!(
     unsafe impl NSTableRowView {
         #[cfg(feature = "NSTableView")]
         #[method(selectionHighlightStyle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectionHighlightStyle(&self) -> NSTableViewSelectionHighlightStyle;
 
         #[cfg(feature = "NSTableView")]
         /// Setter for [`selectionHighlightStyle`][Self::selectionHighlightStyle].
         #[method(setSelectionHighlightStyle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSelectionHighlightStyle(
             &self,
             selection_highlight_style: NSTableViewSelectionHighlightStyle,
         );
 
         #[method(isEmphasized)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isEmphasized(&self) -> bool;
 
         /// Setter for [`isEmphasized`][Self::isEmphasized].
         #[method(setEmphasized:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setEmphasized(&self, emphasized: bool);
 
         #[method(isGroupRowStyle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isGroupRowStyle(&self) -> bool;
 
         /// Setter for [`isGroupRowStyle`][Self::isGroupRowStyle].
         #[method(setGroupRowStyle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setGroupRowStyle(&self, group_row_style: bool);
 
         #[method(isSelected)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isSelected(&self) -> bool;
 
         /// Setter for [`isSelected`][Self::isSelected].
         #[method(setSelected:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSelected(&self, selected: bool);
 
         #[method(isPreviousRowSelected)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isPreviousRowSelected(&self) -> bool;
 
         /// Setter for [`isPreviousRowSelected`][Self::isPreviousRowSelected].
         #[method(setPreviousRowSelected:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreviousRowSelected(&self, previous_row_selected: bool);
 
         #[method(isNextRowSelected)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isNextRowSelected(&self) -> bool;
 
         /// Setter for [`isNextRowSelected`][Self::isNextRowSelected].
         #[method(setNextRowSelected:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setNextRowSelected(&self, next_row_selected: bool);
 
         #[method(isFloating)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isFloating(&self) -> bool;
 
         /// Setter for [`isFloating`][Self::isFloating].
         #[method(setFloating:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFloating(&self, floating: bool);
 
         #[method(isTargetForDropOperation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isTargetForDropOperation(&self) -> bool;
 
         /// Setter for [`isTargetForDropOperation`][Self::isTargetForDropOperation].
         #[method(setTargetForDropOperation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTargetForDropOperation(&self, target_for_drop_operation: bool);
 
         #[cfg(feature = "NSTableView")]
         #[method(draggingDestinationFeedbackStyle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn draggingDestinationFeedbackStyle(
             &self,
         ) -> NSTableViewDraggingDestinationFeedbackStyle;
@@ -140,6 +157,7 @@ extern_methods!(
         #[cfg(feature = "NSTableView")]
         /// Setter for [`draggingDestinationFeedbackStyle`][Self::draggingDestinationFeedbackStyle].
         #[method(setDraggingDestinationFeedbackStyle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDraggingDestinationFeedbackStyle(
             &self,
             dragging_destination_feedback_style: NSTableViewDraggingDestinationFeedbackStyle,
@@ -147,11 +165,13 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(indentationForDropOperation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indentationForDropOperation(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`indentationForDropOperation`][Self::indentationForDropOperation].
         #[method(setIndentationForDropOperation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIndentationForDropOperation(
             &self,
             indentation_for_drop_operation: CGFloat,
@@ -159,35 +179,42 @@ extern_methods!(
 
         #[cfg(feature = "NSCell")]
         #[method(interiorBackgroundStyle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn interiorBackgroundStyle(&self) -> NSBackgroundStyle;
 
         #[cfg(feature = "NSColor")]
-        #[method_id(backgroundColor)]
+        #[method(backgroundColor)]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundColor(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`backgroundColor`][Self::backgroundColor].
         #[method(setBackgroundColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColor(&self, background_color: &NSColor);
 
         #[method(drawBackgroundInRect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn drawBackgroundInRect(&self, dirty_rect: NSRect);
 
         #[method(drawSelectionInRect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn drawSelectionInRect(&self, dirty_rect: NSRect);
 
         #[method(drawSeparatorInRect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn drawSeparatorInRect(&self, dirty_rect: NSRect);
 
         #[method(drawDraggingDestinationFeedbackInRect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn drawDraggingDestinationFeedbackInRect(&self, dirty_rect: NSRect);
 
-        #[method_id(viewAtColumn:)]
+        #[method(viewAtColumn:)]
         #[unsafe(method_family = none)]
         pub unsafe fn viewAtColumn(&self, column: NSInteger) -> Option<Retained<AnyObject>>;
 
         #[method(numberOfColumns)]
+        #[unsafe(method_family = none)]
         pub unsafe fn numberOfColumns(&self) -> NSInteger;
     }
 );
@@ -196,11 +223,11 @@ extern_methods!(
     /// Methods declared on superclass `NSView`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSTableRowView {
-        #[method_id(initWithFrame:)]
+        #[method(initWithFrame:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -213,7 +240,7 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSTableRowView {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -223,7 +250,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSTableRowView {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

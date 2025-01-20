@@ -47,18 +47,18 @@ unsafe impl NSObjectProtocol for VZMacHardwareModel {}
 
 extern_methods!(
     unsafe impl VZMacHardwareModel {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Get the hardware model described by the specified data representation.
         ///
         /// Parameter `dataRepresentation`: The opaque data representation of the hardware model to be obtained.
-        #[method_id(initWithDataRepresentation:)]
+        #[method(initWithDataRepresentation:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDataRepresentation(
             this: Allocated<Self>,
@@ -68,7 +68,7 @@ extern_methods!(
         /// Opaque data representation of the hardware model.
         ///
         /// This can be used to recreate the same hardware model with -[VZMacHardwareModel initWithDataRepresentation:].
-        #[method_id(dataRepresentation)]
+        #[method(dataRepresentation)]
         #[unsafe(method_family = none)]
         pub unsafe fn dataRepresentation(&self) -> Retained<NSData>;
 
@@ -77,6 +77,7 @@ extern_methods!(
         /// If this hardware model is not supported by the host, no VZVirtualMachineConfiguration using it will validate.
         /// The validation error of the VZVirtualMachineConfiguration provides more information about why the hardware model is unsupported.
         #[method(isSupported)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isSupported(&self) -> bool;
     }
 );

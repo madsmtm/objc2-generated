@@ -29,6 +29,7 @@ extern_methods!(
         /// to appear. If extension UI is showing when this method is called, the extension UI will be
         /// dismissed before the sheet is presented.
         #[method(getSignInWithAppleUpgradeAuthorizationWithState:nonce:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getSignInWithAppleUpgradeAuthorizationWithState_nonce_completionHandler(
             &self,
             state: Option<&NSString>,
@@ -46,6 +47,7 @@ extern_methods!(
         /// Once a Sign in with Apple upgrade is completed, the system will delete
         /// the password-based credential from the Keychain, if it is saved there.
         #[method(completeUpgradeToSignInWithAppleWithUserInfo:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn completeUpgradeToSignInWithAppleWithUserInfo(
             &self,
             user_info: Option<&NSDictionary>,
@@ -59,6 +61,7 @@ extern_methods!(
         /// Parameter `userInfo`: For upgrades invoked within the extension's containing app, any
         /// information the extension wants to pass back to the app.
         #[method(completeChangePasswordRequestWithUpdatedCredential:userInfo:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn completeChangePasswordRequestWithUpdatedCredential_userInfo(
             &self,
             updated_credential: &ASPasswordCredential,
@@ -67,6 +70,7 @@ extern_methods!(
 
         /// Used to either ask for user interaction in a request or to fail a request.
         #[method(cancelRequestWithError:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cancelRequestWithError(&self, error: &NSError);
     }
 );
@@ -74,11 +78,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASAccountAuthenticationModificationExtensionContext {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

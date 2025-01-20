@@ -31,7 +31,7 @@ extern_methods!(
         /// 'bankURL' should contain the path to a SoundFont2 or DLS bank to be used
         /// by the MIDI synthesizer.  For OSX it can be set to nil for the default,
         /// but for iOS it must always refer to a valid bank file.
-        #[method_id(initWithContentsOfURL:soundBankURL:error:_)]
+        #[method(initWithContentsOfURL:soundBankURL:error:_)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL_soundBankURL_error(
             this: Allocated<Self>,
@@ -44,7 +44,7 @@ extern_methods!(
         /// 'bankURL' should contain the path to a SoundFont2 or DLS bank to be used
         /// by the MIDI synthesizer.  For OSX it can be set to nil for the default,
         /// but for iOS it must always refer to a valid bank file.
-        #[method_id(initWithData:soundBankURL:error:_)]
+        #[method(initWithData:soundBankURL:error:_)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithData_soundBankURL_error(
             this: Allocated<Self>,
@@ -56,33 +56,40 @@ extern_methods!(
         ///
         /// Happens automatically on play if it has not already been called, but may produce a delay in startup.
         #[method(prepareToPlay)]
+        #[unsafe(method_family = none)]
         pub unsafe fn prepareToPlay(&self);
 
         #[cfg(feature = "block2")]
         /// Play the sequence.
         #[method(play:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn play(&self, completion_handler: AVMIDIPlayerCompletionHandler);
 
         /// Stop playing the sequence.
         #[method(stop)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stop(&self);
 
         /// The length of the currently loaded file in seconds.
         #[method(duration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
         /// Indicates whether or not the player is playing
         #[method(isPlaying)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isPlaying(&self) -> bool;
 
         /// The playback rate of the player
         ///
         /// 1.0 is normal playback rate.  Rate must be > 0.0.
         #[method(rate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rate(&self) -> c_float;
 
         /// Setter for [`rate`][Self::rate].
         #[method(setRate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRate(&self, rate: c_float);
 
         /// The current playback position in seconds
@@ -90,10 +97,12 @@ extern_methods!(
         /// Setting this positions the player to the specified time.  No range checking on the time value is done.
         /// This can be set while the player is playing, in which case playback will resume at the new time.
         #[method(currentPosition)]
+        #[unsafe(method_family = none)]
         pub unsafe fn currentPosition(&self) -> NSTimeInterval;
 
         /// Setter for [`currentPosition`][Self::currentPosition].
         #[method(setCurrentPosition:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCurrentPosition(&self, current_position: NSTimeInterval);
     }
 );
@@ -101,11 +110,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVMIDIPlayer {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

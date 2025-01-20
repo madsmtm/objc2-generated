@@ -36,31 +36,37 @@ extern_methods!(
         /// The padding type i.e. constant, zero, reflect or symmetric
         #[deprecated]
         #[method(paddingType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn paddingType(&self) -> MLCPaddingType;
 
         /// The left padding size
         #[deprecated]
         #[method(paddingLeft)]
+        #[unsafe(method_family = none)]
         pub unsafe fn paddingLeft(&self) -> NSUInteger;
 
         /// The right padding size
         #[deprecated]
         #[method(paddingRight)]
+        #[unsafe(method_family = none)]
         pub unsafe fn paddingRight(&self) -> NSUInteger;
 
         /// The top padding size
         #[deprecated]
         #[method(paddingTop)]
+        #[unsafe(method_family = none)]
         pub unsafe fn paddingTop(&self) -> NSUInteger;
 
         /// The bottom padding size
         #[deprecated]
         #[method(paddingBottom)]
+        #[unsafe(method_family = none)]
         pub unsafe fn paddingBottom(&self) -> NSUInteger;
 
         /// The constant value to use if padding type is constant.
         #[deprecated]
         #[method(constantValue)]
+        #[unsafe(method_family = none)]
         pub unsafe fn constantValue(&self) -> c_float;
 
         /// Create a padding layer with reflection padding
@@ -69,7 +75,7 @@ extern_methods!(
         ///
         /// Returns: A new padding layer
         #[deprecated]
-        #[method_id(layerWithReflectionPadding:)]
+        #[method(layerWithReflectionPadding:)]
         #[unsafe(method_family = none)]
         pub unsafe fn layerWithReflectionPadding(padding: &NSArray<NSNumber>) -> Retained<Self>;
 
@@ -79,7 +85,7 @@ extern_methods!(
         ///
         /// Returns: A new padding layer
         #[deprecated]
-        #[method_id(layerWithSymmetricPadding:)]
+        #[method(layerWithSymmetricPadding:)]
         #[unsafe(method_family = none)]
         pub unsafe fn layerWithSymmetricPadding(padding: &NSArray<NSNumber>) -> Retained<Self>;
 
@@ -89,7 +95,7 @@ extern_methods!(
         ///
         /// Returns: A new padding layer
         #[deprecated]
-        #[method_id(layerWithZeroPadding:)]
+        #[method(layerWithZeroPadding:)]
         #[unsafe(method_family = none)]
         pub unsafe fn layerWithZeroPadding(padding: &NSArray<NSNumber>) -> Retained<Self>;
 
@@ -101,7 +107,7 @@ extern_methods!(
         ///
         /// Returns: A new padding layer
         #[deprecated]
-        #[method_id(layerWithConstantPadding:constantValue:)]
+        #[method(layerWithConstantPadding:constantValue:)]
         #[unsafe(method_family = none)]
         pub unsafe fn layerWithConstantPadding_constantValue(
             padding: &NSArray<NSNumber>,
@@ -115,12 +121,12 @@ extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCPaddingLayer {
         #[deprecated]
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

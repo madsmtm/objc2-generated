@@ -25,6 +25,7 @@ extern_protocol!(
         #[deprecated = "Use CarPlay framework"]
         #[optional]
         #[method(playableContentManager:initiatePlaybackOfContentItemAtIndexPath:completionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn playableContentManager_initiatePlaybackOfContentItemAtIndexPath_completionHandler(
             &self,
             content_manager: &MPPlayableContentManager,
@@ -42,6 +43,7 @@ extern_protocol!(
         #[deprecated = "Use Intents framework for initiating playback queues."]
         #[optional]
         #[method(playableContentManager:initializePlaybackQueueWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn playableContentManager_initializePlaybackQueueWithCompletionHandler(
             &self,
             content_manager: &MPPlayableContentManager,
@@ -61,6 +63,7 @@ extern_protocol!(
         #[deprecated = "Use Intents framework for initiating playback queues."]
         #[optional]
         #[method(playableContentManager:initializePlaybackQueueWithContentItems:completionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn playableContentManager_initializePlaybackQueueWithContentItems_completionHandler(
             &self,
             content_manager: &MPPlayableContentManager,
@@ -76,6 +79,7 @@ extern_protocol!(
         #[deprecated = "Use CarPlay framework"]
         #[optional]
         #[method(playableContentManager:didUpdateContext:)]
+        #[unsafe(method_family = none)]
         unsafe fn playableContentManager_didUpdateContext(
             &self,
             content_manager: &MPPlayableContentManager,

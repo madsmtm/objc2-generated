@@ -37,6 +37,7 @@ extern_methods!(
     unsafe impl CXAnswerCallAction {
         /// Normally, providers can just call -[CXAction fulfill] to indicate action fulfillment. Use this method to note a specific date that the call connected. A call is considered connected when both caller and callee can start communicating.
         #[method(fulfillWithDateConnected:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fulfillWithDateConnected(&self, date_connected: &NSDate);
     }
 );
@@ -45,19 +46,19 @@ extern_methods!(
     /// Methods declared on superclass `CXCallAction`
     #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
     unsafe impl CXAnswerCallAction {
-        #[method_id(initWithCallUUID:)]
+        #[method(initWithCallUUID:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCallUUID(this: Allocated<Self>, call_uuid: &NSUUID)
             -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -67,7 +68,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
     unsafe impl CXAnswerCallAction {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

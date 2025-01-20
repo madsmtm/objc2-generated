@@ -13,7 +13,7 @@ extern_protocol!(
     pub unsafe trait MEContentBlocker: NSObjectProtocol {
         /// This is invoked when Mail configures its
         /// `WKWebViewConfiguration`or if the extension is enabled. The returned data should contain UTF8 encoded String data with the filter list.
-        #[method_id(contentRulesJSON)]
+        #[method(contentRulesJSON)]
         #[unsafe(method_family = none)]
         unsafe fn contentRulesJSON(&self) -> Retained<NSData>;
     }

@@ -30,7 +30,7 @@ extern_methods!(
         ///
         /// Autoreleased instance of an ODNode with a provided ODSession and ODNodeType.  outError is
         /// optional parameter, nil can be passed if error details are not needed.
-        #[method_id(nodeWithSession:type:error:)]
+        #[method(nodeWithSession:type:error:)]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeWithSession_type_error(
             in_session: Option<&ODSession>,
@@ -43,7 +43,7 @@ extern_methods!(
         ///
         /// autoreleased instance of an ODNode with a provided ODSession and node name.  outError is
         /// optional parameter, nil can be passed if error details are not needed.
-        #[method_id(nodeWithSession:name:error:)]
+        #[method(nodeWithSession:name:error:)]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeWithSession_name_error(
             in_session: Option<&ODSession>,
@@ -60,7 +60,7 @@ extern_methods!(
         ///
         /// initialize instance of an ODNode with a provided ODSession and ODNodeType.  outError is
         /// optional parameter, nil can be passed if error details are not needed.
-        #[method_id(initWithSession:type:error:)]
+        #[method(initWithSession:type:error:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSession_type_error(
             this: Allocated<Self>,
@@ -74,7 +74,7 @@ extern_methods!(
         ///
         /// initialize instance of an ODNode with a provided ODSession and node name.  outError is optional
         /// parameter, nil can be passed if error details are not needed.
-        #[method_id(initWithSession:name:error:)]
+        #[method(initWithSession:name:error:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSession_name_error(
             this: Allocated<Self>,
@@ -88,7 +88,7 @@ extern_methods!(
         /// Returns NSArray of node names for this node, which may contain sub-nodes or search policy nodes.
         /// Commonly used with Search policy nodes.  outError is optional parameter, nil can be passed if error
         /// details are not needed.
-        #[method_id(subnodeNamesAndReturnError:)]
+        #[method(subnodeNamesAndReturnError:)]
         #[unsafe(method_family = none)]
         pub unsafe fn subnodeNamesAndReturnError(
             &self,
@@ -100,7 +100,7 @@ extern_methods!(
         /// Will return NSArray of names of subnodes that are not currently reachable.  Commonly used with Search policy
         /// nodes to determine if any nodes are currently unreachable, but may also return other subnodes if the
         /// OpenDirectory plugin supports.  outError is optional parameter, nil can be passed if error details are not needed.
-        #[method_id(unreachableSubnodeNamesAndReturnError:)]
+        #[method(unreachableSubnodeNamesAndReturnError:)]
         #[unsafe(method_family = none)]
         pub unsafe fn unreachableSubnodeNamesAndReturnError(
             &self,
@@ -110,7 +110,7 @@ extern_methods!(
         /// The node name.
         ///
         /// The node name, corresponding to its path in OpenDirectory.
-        #[method_id(nodeName)]
+        #[method(nodeName)]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeName(&self) -> Retained<NSString>;
 
@@ -119,7 +119,7 @@ extern_methods!(
         /// Returns a dictionary of information about the instance of ODNode.  Details such as Trust information
         /// (kODAttributeTypeTrustInformation) or other Node details can be retrieved.  outError is optional parameter,
         /// nil can be passed if error details are not needed.
-        #[method_id(nodeDetailsForKeys:error:)]
+        #[method(nodeDetailsForKeys:error:)]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeDetailsForKeys_error(
             &self,
@@ -132,7 +132,7 @@ extern_methods!(
         /// Returns a NSArray of the record types supported by this node.  If node does not support the check
         /// then all possible types will be returned.  outError is optional parameter, nil can be passed if error details
         /// are not needed.
-        #[method_id(supportedRecordTypesAndReturnError:)]
+        #[method(supportedRecordTypesAndReturnError:)]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedRecordTypesAndReturnError(
             &self,
@@ -145,7 +145,7 @@ extern_methods!(
         /// Will return a list of attribute types supported for that attribute if possible.  If no specific
         /// types are available, then all possible values will be returned instead.  outError is optional parameter,
         /// nil can be passed if error details are not needed.
-        #[method_id(supportedAttributesForRecordType:error:)]
+        #[method(supportedAttributesForRecordType:error:)]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedAttributesForRecordType_error(
             &self,
@@ -161,6 +161,7 @@ extern_methods!(
         /// change the credentials for all for all references.  outError is optional parameter, nil can be passed if error
         /// details are not needed.
         #[method(setCredentialsWithRecordType:recordName:password:error:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCredentialsWithRecordType_recordName_password_error(
             &self,
             in_record_type: Option<&ODRecordType>,
@@ -177,6 +178,7 @@ extern_methods!(
         /// kODErrorCredentialsMethodNotSupported in outError.  outError is optional parameter, nil can be passed if
         /// error details is not needed.
         #[method(setCredentialsWithRecordType:authenticationType:authenticationItems:continueItems:context:error:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCredentialsWithRecordType_authenticationType_authenticationItems_continueItems_context_error(
             &self,
             in_record_type: Option<&ODRecordType>,
@@ -191,6 +193,7 @@ extern_methods!(
         ///
         /// Unsupported method.
         #[method(setCredentialsUsingKerberosCache:error:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCredentialsUsingKerberosCache_error(
             &self,
             in_cache_name: Option<&NSString>,
@@ -207,7 +210,7 @@ extern_methods!(
         /// Takes all the provided attributes and type to create an entire record.  The function will assign a
         /// UUID to the record automatically.  This UUID can be overwritten by the client by passing with the
         /// other attributes.  inAttributes is optional, nil can be passed if no other attributes are to be set.
-        #[method_id(createRecordWithRecordType:name:attributes:error:)]
+        #[method(createRecordWithRecordType:name:attributes:error:)]
         #[unsafe(method_family = none)]
         pub unsafe fn createRecordWithRecordType_name_attributes_error(
             &self,
@@ -227,7 +230,7 @@ extern_methods!(
         /// Returns an ODRecord object that references the requested type and name.  The record will have cached the
         /// attributes requested.  Further attributes can be requested via ODRecord APIs.  For performance it is best
         /// to ask for as many attributes that are needed as possible up front.
-        #[method_id(recordWithRecordType:name:attributes:error:)]
+        #[method(recordWithRecordType:name:attributes:error:)]
         #[unsafe(method_family = none)]
         pub unsafe fn recordWithRecordType_name_attributes_error(
             &self,
@@ -241,7 +244,7 @@ extern_methods!(
         ///
         /// Sends a custom code to the node; input and output data formats are specific to the call.  outError is
         /// optional parameter, nil can be passed if error details are not needed.
-        #[method_id(customCall:sendData:error:)]
+        #[method(customCall:sendData:error:)]
         #[unsafe(method_family = none)]
         pub unsafe fn customCall_sendData_error(
             &self,
@@ -255,7 +258,7 @@ extern_methods!(
         /// Sends a custom function call to the node; data is a type specific to the call.  'error' is an
         /// optional parameter therefore nil can be passed if error details are not needed.  Return type is
         /// defined by the custom function requested.
-        #[method_id(customFunction:payload:error:)]
+        #[method(customFunction:payload:error:)]
         #[unsafe(method_family = none)]
         pub unsafe fn customFunction_payload_error(
             &self,
@@ -269,7 +272,7 @@ extern_methods!(
         ///
         ///
         /// Returns an ODConfiguration object for the node.
-        #[method_id(configuration)]
+        #[method(configuration)]
         #[unsafe(method_family = none)]
         pub unsafe fn configuration(&self) -> Option<Retained<ODConfiguration>>;
 
@@ -277,7 +280,7 @@ extern_methods!(
         ///
         /// This will copy any policies configured for the node.
         #[deprecated = "use accountPoliciesAndReturnError:"]
-        #[method_id(policiesAndReturnError:)]
+        #[method(policiesAndReturnError:)]
         #[unsafe(method_family = none)]
         pub unsafe fn policiesAndReturnError(
             &self,
@@ -290,7 +293,7 @@ extern_methods!(
         /// for the policy in question.  For example, if password history is available, it will state how much history is
         /// supported.
         #[deprecated]
-        #[method_id(supportedPoliciesAndReturnError:)]
+        #[method(supportedPoliciesAndReturnError:)]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedPoliciesAndReturnError(
             &self,
@@ -302,6 +305,7 @@ extern_methods!(
         /// This will set the policy for the node.  Policies are evaluated in combination with record-level policies.
         #[deprecated = "use setAccountPolicies:error:"]
         #[method(setPolicies:error:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPolicies_error(
             &self,
             policies: Option<&NSDictionary>,
@@ -314,6 +318,7 @@ extern_methods!(
         /// This will set a specific policy setting for the node.
         #[deprecated = "use addAccountPolicy:toCategory:error:"]
         #[method(setPolicy:value:error:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPolicy_value_error(
             &self,
             policy: Option<&ODPolicyType>,
@@ -327,6 +332,7 @@ extern_methods!(
         /// This will remove a specific policy setting from the node.
         #[deprecated = "use removeAccountPolicy:fromCategory:error:"]
         #[method(removePolicy:error:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removePolicy_error(
             &self,
             policy: Option<&ODPolicyType>,
@@ -356,6 +362,7 @@ extern_methods!(
         ///
         /// Returns: a BOOL which signifies if the policy addition succeeded, otherwise error is set.
         #[method(addAccountPolicy:toCategory:error:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addAccountPolicy_toCategory_error(
             &self,
             policy: Option<&NSDictionary>,
@@ -377,6 +384,7 @@ extern_methods!(
         ///
         /// Returns: a BOOL which signifies if the policy removal succeeded, otherwise error is set.
         #[method(removeAccountPolicy:fromCategory:error:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeAccountPolicy_fromCategory_error(
             &self,
             policy: Option<&NSDictionary>,
@@ -406,6 +414,7 @@ extern_methods!(
         ///
         /// Returns: a BOOL which signifies if the policy set succeeded, otherwise error is set.
         #[method(setAccountPolicies:error:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAccountPolicies_error(
             &self,
             policies: Option<&NSDictionary>,
@@ -421,7 +430,7 @@ extern_methods!(
         /// Returns: an NSDictionary containing all currently set policies.  The
         /// format of the dictionary is the same as described in
         /// setAccountPolicies.
-        #[method_id(accountPoliciesAndReturnError:)]
+        #[method(accountPoliciesAndReturnError:)]
         #[unsafe(method_family = none)]
         pub unsafe fn accountPoliciesAndReturnError(
             &self,
@@ -449,6 +458,7 @@ extern_methods!(
         ///
         /// Returns: a bool which signifies if the password passes all content policies, otherwise error is set.
         #[method(passwordContentCheck:forRecordName:error:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn passwordContentCheck_forRecordName_error(
             &self,
             password: Option<&NSString>,
@@ -461,11 +471,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ODNode {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -50,7 +50,7 @@ extern_methods!(
     ))]
     unsafe impl DOMCSSCharsetRule {
         #[deprecated]
-        #[method_id(encoding)]
+        #[method(encoding)]
         #[unsafe(method_family = none)]
         pub unsafe fn encoding(&self) -> Retained<NSString>;
     }
@@ -65,7 +65,7 @@ extern_methods!(
     ))]
     unsafe impl DOMCSSCharsetRule {
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -79,7 +79,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMCSSCharsetRule {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

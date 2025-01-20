@@ -62,79 +62,90 @@ extern_methods!(
         /// A CIFilter to be used as an effect
         ///
         /// Any CIFilter that requires only a single "inputImage" and produces an "outputImage" is allowed. The filter is applied to all children of the SKEffectNode. If the filter is nil, the children of this node is flattened before being drawn as long as the SKEffectNode is enabled.
-        #[method_id(filter)]
+        #[method(filter)]
         #[unsafe(method_family = none)]
         pub unsafe fn filter(&self) -> Option<Retained<CIFilter>>;
 
         #[cfg(feature = "objc2-core-image")]
         /// Setter for [`filter`][Self::filter].
         #[method(setFilter:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFilter(&self, filter: Option<&CIFilter>);
 
         #[method(shouldCenterFilter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shouldCenterFilter(&self) -> bool;
 
         /// Setter for [`shouldCenterFilter`][Self::shouldCenterFilter].
         #[method(setShouldCenterFilter:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShouldCenterFilter(&self, should_center_filter: bool);
 
         /// Enable the SKEffectNode.
         ///
         /// The SKEffectNode has no effect when appliesEffects is not enabled, this is useful for setting up an effect to use later on. Defaults to YES.
         #[method(shouldEnableEffects)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shouldEnableEffects(&self) -> bool;
 
         /// Setter for [`shouldEnableEffects`][Self::shouldEnableEffects].
         #[method(setShouldEnableEffects:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShouldEnableEffects(&self, should_enable_effects: bool);
 
         /// Enable the rasterization on the SKEffectNode.
         ///
         /// The SKEffectNode's output is rasterized and cached internally. This cache is reused when rendering. When the SKEffectNode's children change, the cache is updated, but changing properties on the CIFilter does *not* cause an update (you must disable rasterization and then re-enable it for the changes to apply). This is more expensive than not rasterizing if the node's children change frequently, only enable this option if you know the children is largely static.
         #[method(shouldRasterize)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shouldRasterize(&self) -> bool;
 
         /// Setter for [`shouldRasterize`][Self::shouldRasterize].
         #[method(setShouldRasterize:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShouldRasterize(&self, should_rasterize: bool);
 
         /// Sets the blend mode to use when composing the effect with the final framebuffer.
         ///
         /// See: SKNode.SKBlendMode
         #[method(blendMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn blendMode(&self) -> SKBlendMode;
 
         /// Setter for [`blendMode`][Self::blendMode].
         #[method(setBlendMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBlendMode(&self, blend_mode: SKBlendMode);
 
         #[cfg(feature = "SKShader")]
-        #[method_id(shader)]
+        #[method(shader)]
         #[unsafe(method_family = none)]
         pub unsafe fn shader(&self) -> Option<Retained<SKShader>>;
 
         #[cfg(feature = "SKShader")]
         /// Setter for [`shader`][Self::shader].
         #[method(setShader:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShader(&self, shader: Option<&SKShader>);
 
         #[cfg(feature = "SKAttribute")]
         /// Optional dictionary of SKAttributeValues
         /// Attributes can be used with custom SKShaders.
-        #[method_id(attributeValues)]
+        #[method(attributeValues)]
         #[unsafe(method_family = none)]
         pub unsafe fn attributeValues(&self) -> Retained<NSDictionary<NSString, SKAttributeValue>>;
 
         #[cfg(feature = "SKAttribute")]
         /// Setter for [`attributeValues`][Self::attributeValues].
         #[method(setAttributeValues:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAttributeValues(
             &self,
             attribute_values: &NSDictionary<NSString, SKAttributeValue>,
         );
 
         #[cfg(feature = "SKAttribute")]
-        #[method_id(valueForAttributeNamed:)]
+        #[method(valueForAttributeNamed:)]
         #[unsafe(method_family = none)]
         pub unsafe fn valueForAttributeNamed(
             &self,
@@ -143,6 +154,7 @@ extern_methods!(
 
         #[cfg(feature = "SKAttribute")]
         #[method(setValue:forAttributeNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setValue_forAttributeNamed(&self, value: &SKAttributeValue, key: &NSString);
     }
 );
@@ -152,30 +164,30 @@ extern_methods!(
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl SKEffectNode {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Support coding and decoding via NSKeyedArchiver.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(node)]
+        #[method(node)]
         #[unsafe(method_family = none)]
         pub unsafe fn node(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(nodeWithFileNamed:)]
+        #[method(nodeWithFileNamed:)]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeWithFileNamed(
             filename: &NSString,
             mtm: MainThreadMarker,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(nodeWithFileNamed:securelyWithClasses:andError:_)]
+        #[method(nodeWithFileNamed:securelyWithClasses:andError:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeWithFileNamed_securelyWithClasses_andError(
             filename: &NSString,
@@ -190,7 +202,7 @@ extern_methods!(
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl SKEffectNode {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

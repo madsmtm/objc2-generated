@@ -59,11 +59,13 @@ extern_methods!(
         /// See Also:
         /// MetalPerformanceShaders.hsubsubsection_mpsoffset
         #[method(offset)]
+        #[unsafe(method_family = none)]
         pub unsafe fn offset(&self) -> MPSOffset;
 
         #[cfg(feature = "MPSCoreTypes")]
         /// Setter for [`offset`][Self::offset].
         #[method(setOffset:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setOffset(&self, offset: MPSOffset);
 
         /// An optional clip rectangle to use when writing data. Only the pixels in the rectangle will be overwritten.
@@ -75,10 +77,12 @@ extern_methods!(
         /// See Also:
         /// MetalPerformanceShaders.hsubsubsection_clipRect
         #[method(clipRect)]
+        #[unsafe(method_family = none)]
         pub unsafe fn clipRect(&self) -> MTLRegion;
 
         /// Setter for [`clipRect`][Self::clipRect].
         #[method(setClipRect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setClipRect(&self, clip_rect: MTLRegion);
 
         #[cfg(feature = "MPSCoreTypes")]
@@ -94,11 +98,13 @@ extern_methods!(
         /// See Also:
         /// MetalPerformanceShaders.hsubsubsection_edgemode
         #[method(edgeMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn edgeMode(&self) -> MPSImageEdgeMode;
 
         #[cfg(feature = "MPSCoreTypes")]
         /// Setter for [`edgeMode`][Self::edgeMode].
         #[method(setEdgeMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setEdgeMode(&self, edge_mode: MPSImageEdgeMode);
 
         /// Standard init with default properties per filter type
@@ -108,7 +114,7 @@ extern_methods!(
         /// Returns: a pointer to the newly initialized object. This will fail, returning
         /// nil if the device is not supported. Devices must be
         /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -128,7 +134,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -230,6 +236,7 @@ extern_methods!(
         /// texture if a copyAllocator was provided.  On failure, NO is returned. The
         /// texture is unmodified.
         #[method(encodeToCommandBuffer:inPlaceTexture:fallbackCopyAllocator:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_inPlaceTexture_fallbackCopyAllocator(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -245,6 +252,7 @@ extern_methods!(
         ///
         /// Parameter `destinationTexture`: A valid MTLTexture to be overwritten by result image. DestinationTexture may not alias sourceTexture.
         #[method(encodeToCommandBuffer:sourceTexture:destinationTexture:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceTexture_destinationTexture(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -260,6 +268,7 @@ extern_methods!(
         ///
         /// Parameter `destinationImage`: A valid MPSImage to be overwritten by result image. DestinationImage may not alias sourceImage.
         #[method(encodeToCommandBuffer:sourceImage:destinationImage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceImage_destinationImage(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -296,6 +305,7 @@ extern_methods!(
         ///
         /// Returns: The area in the virtual source image that will be read.
         #[method(sourceRegionForDestinationSize:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sourceRegionForDestinationSize(&self, destination_size: MTLSize)
             -> MPSRegion;
     }
@@ -313,7 +323,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -326,11 +336,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSUnaryImageKernel {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -377,11 +387,13 @@ extern_methods!(
         /// See Also:
         /// MetalPerformanceShaders.hsubsubsection_mpsoffset
         #[method(primaryOffset)]
+        #[unsafe(method_family = none)]
         pub unsafe fn primaryOffset(&self) -> MPSOffset;
 
         #[cfg(feature = "MPSCoreTypes")]
         /// Setter for [`primaryOffset`][Self::primaryOffset].
         #[method(setPrimaryOffset:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPrimaryOffset(&self, primary_offset: MPSOffset);
 
         #[cfg(feature = "MPSCoreTypes")]
@@ -393,11 +405,13 @@ extern_methods!(
         /// See Also:
         /// MetalPerformanceShaders.hsubsubsection_mpsoffset
         #[method(secondaryOffset)]
+        #[unsafe(method_family = none)]
         pub unsafe fn secondaryOffset(&self) -> MPSOffset;
 
         #[cfg(feature = "MPSCoreTypes")]
         /// Setter for [`secondaryOffset`][Self::secondaryOffset].
         #[method(setSecondaryOffset:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSecondaryOffset(&self, secondary_offset: MPSOffset);
 
         #[cfg(feature = "MPSCoreTypes")]
@@ -413,11 +427,13 @@ extern_methods!(
         /// See Also:
         /// MetalPerformanceShaders.hsubsubsection_edgemode
         #[method(primaryEdgeMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn primaryEdgeMode(&self) -> MPSImageEdgeMode;
 
         #[cfg(feature = "MPSCoreTypes")]
         /// Setter for [`primaryEdgeMode`][Self::primaryEdgeMode].
         #[method(setPrimaryEdgeMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPrimaryEdgeMode(&self, primary_edge_mode: MPSImageEdgeMode);
 
         #[cfg(feature = "MPSCoreTypes")]
@@ -433,11 +449,13 @@ extern_methods!(
         /// See Also:
         /// MetalPerformanceShaders.hsubsubsection_edgemode
         #[method(secondaryEdgeMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn secondaryEdgeMode(&self) -> MPSImageEdgeMode;
 
         #[cfg(feature = "MPSCoreTypes")]
         /// Setter for [`secondaryEdgeMode`][Self::secondaryEdgeMode].
         #[method(setSecondaryEdgeMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSecondaryEdgeMode(&self, secondary_edge_mode: MPSImageEdgeMode);
 
         /// An optional clip rectangle to use when writing data. Only the pixels in the rectangle will be overwritten.
@@ -449,10 +467,12 @@ extern_methods!(
         /// See Also:
         /// MetalPerformanceShaders.hsubsubsection_clipRect
         #[method(clipRect)]
+        #[unsafe(method_family = none)]
         pub unsafe fn clipRect(&self) -> MTLRegion;
 
         /// Setter for [`clipRect`][Self::clipRect].
         #[method(setClipRect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setClipRect(&self, clip_rect: MTLRegion);
 
         /// Standard init with default properties per filter type
@@ -462,7 +482,7 @@ extern_methods!(
         /// Returns: a pointer to the newly initialized object. This will fail, returning
         /// nil if the device is not supported. Devices must be
         /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -482,7 +502,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -545,6 +565,7 @@ extern_methods!(
         /// texture if a copyAllocator was provided.  On failure, NO is returned. The
         /// texture is unmodified.
         #[method(encodeToCommandBuffer:primaryTexture:inPlaceSecondaryTexture:fallbackCopyAllocator:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_primaryTexture_inPlaceSecondaryTexture_fallbackCopyAllocator(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -610,6 +631,7 @@ extern_methods!(
         /// texture if a copyAllocator was provided.  On failure, NO is returned. The
         /// texture is unmodified.
         #[method(encodeToCommandBuffer:inPlacePrimaryTexture:secondaryTexture:fallbackCopyAllocator:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_inPlacePrimaryTexture_secondaryTexture_fallbackCopyAllocator(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -628,6 +650,7 @@ extern_methods!(
         ///
         /// Parameter `destinationTexture`: A valid MTLTexture to be overwritten by result image. destinationTexture may not alias the source textures.
         #[method(encodeToCommandBuffer:primaryTexture:secondaryTexture:destinationTexture:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_primaryTexture_secondaryTexture_destinationTexture(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -646,6 +669,7 @@ extern_methods!(
         ///
         /// Parameter `destinationImage`: A valid MPSImage to be overwritten by result image. destinationImage may not alias the source images.
         #[method(encodeToCommandBuffer:primaryImage:secondaryImage:destinationImage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_primaryImage_secondaryImage_destinationImage(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -682,6 +706,7 @@ extern_methods!(
         ///
         /// Returns: The area in the virtual source image that will be read.
         #[method(primarySourceRegionForDestinationSize:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn primarySourceRegionForDestinationSize(
             &self,
             destination_size: MTLSize,
@@ -715,6 +740,7 @@ extern_methods!(
         ///
         /// Returns: The area in the virtual source image that will be read.
         #[method(secondarySourceRegionForDestinationSize:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn secondarySourceRegionForDestinationSize(
             &self,
             destination_size: MTLSize,
@@ -734,7 +760,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -747,11 +773,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSBinaryImageKernel {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

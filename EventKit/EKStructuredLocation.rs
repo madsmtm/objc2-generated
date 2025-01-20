@@ -33,38 +33,42 @@ unsafe impl NSObjectProtocol for EKStructuredLocation {}
 extern_methods!(
     #[cfg(feature = "EKObject")]
     unsafe impl EKStructuredLocation {
-        #[method_id(locationWithTitle:)]
+        #[method(locationWithTitle:)]
         #[unsafe(method_family = none)]
         pub unsafe fn locationWithTitle(title: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "objc2-map-kit")]
-        #[method_id(locationWithMapItem:)]
+        #[method(locationWithMapItem:)]
         #[unsafe(method_family = none)]
         pub unsafe fn locationWithMapItem(map_item: &MKMapItem) -> Retained<Self>;
 
-        #[method_id(title)]
+        #[method(title)]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
         #[cfg(feature = "objc2-core-location")]
-        #[method_id(geoLocation)]
+        #[method(geoLocation)]
         #[unsafe(method_family = none)]
         pub unsafe fn geoLocation(&self) -> Option<Retained<CLLocation>>;
 
         #[cfg(feature = "objc2-core-location")]
         /// Setter for [`geoLocation`][Self::geoLocation].
         #[method(setGeoLocation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setGeoLocation(&self, geo_location: Option<&CLLocation>);
 
         #[method(radius)]
+        #[unsafe(method_family = none)]
         pub unsafe fn radius(&self) -> c_double;
 
         /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRadius(&self, radius: c_double);
     }
 );
@@ -73,11 +77,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "EKObject")]
     unsafe impl EKStructuredLocation {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

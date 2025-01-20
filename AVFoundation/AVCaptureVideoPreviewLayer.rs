@@ -55,7 +55,7 @@ extern_methods!(
         /// Parameter `session`: The AVCaptureSession instance to be previewed.
         ///
         /// Returns: A newly initialized AVCaptureVideoPreviewLayer instance.
-        #[method_id(layerWithSession:)]
+        #[method(layerWithSession:)]
         #[unsafe(method_family = none)]
         pub unsafe fn layerWithSession(session: &AVCaptureSession) -> Retained<Self>;
 
@@ -66,7 +66,7 @@ extern_methods!(
         /// Parameter `session`: The AVCaptureSession instance to be previewed.
         ///
         /// Returns: A newly initialized AVCaptureVideoPreviewLayer instance.
-        #[method_id(initWithSession:)]
+        #[method(initWithSession:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSession(
             this: Allocated<Self>,
@@ -80,7 +80,7 @@ extern_methods!(
         /// Parameter `session`: The AVCaptureSession instance to be previewed.
         ///
         /// Returns: A newly initialized AVCaptureVideoPreviewLayer instance.
-        #[method_id(layerWithSessionWithNoConnection:)]
+        #[method(layerWithSessionWithNoConnection:)]
         #[unsafe(method_family = none)]
         pub unsafe fn layerWithSessionWithNoConnection(
             session: &AVCaptureSession,
@@ -93,7 +93,7 @@ extern_methods!(
         /// Parameter `session`: The AVCaptureSession instance to be previewed.
         ///
         /// Returns: A newly initialized AVCaptureVideoPreviewLayer instance.
-        #[method_id(initWithSessionWithNoConnection:)]
+        #[method(initWithSessionWithNoConnection:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSessionWithNoConnection(
             this: Allocated<Self>,
@@ -105,13 +105,14 @@ extern_methods!(
         ///
         ///
         /// The session is retained by the preview layer.
-        #[method_id(session)]
+        #[method(session)]
         #[unsafe(method_family = none)]
         pub unsafe fn session(&self) -> Option<Retained<AVCaptureSession>>;
 
         #[cfg(feature = "AVCaptureSession")]
         /// Setter for [`session`][Self::session].
         #[method(setSession:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSession(&self, session: Option<&AVCaptureSession>);
 
         #[cfg(feature = "AVCaptureSession")]
@@ -122,6 +123,7 @@ extern_methods!(
         ///
         /// The session is retained by the preview layer.
         #[method(setSessionWithNoConnection:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSessionWithNoConnection(&self, session: &AVCaptureSession);
 
         #[cfg(feature = "AVCaptureSession")]
@@ -129,7 +131,7 @@ extern_methods!(
         ///
         ///
         /// When calling initWithSession: or setSession: with a valid AVCaptureSession instance, a connection is formed to the first eligible video AVCaptureInput. If the receiver is detached from a session, the connection property becomes nil.
-        #[method_id(connection)]
+        #[method(connection)]
         #[unsafe(method_family = none)]
         pub unsafe fn connection(&self) -> Option<Retained<AVCaptureConnection>>;
 
@@ -140,13 +142,14 @@ extern_methods!(
         /// Options are AVLayerVideoGravityResize, AVLayerVideoGravityResizeAspect and AVLayerVideoGravityResizeAspectFill. AVLayerVideoGravityResizeAspect is default. See
         /// <AVFoundation
         /// /AVAnimation.h> for a description of these options.
-        #[method_id(videoGravity)]
+        #[method(videoGravity)]
         #[unsafe(method_family = none)]
         pub unsafe fn videoGravity(&self) -> Retained<AVLayerVideoGravity>;
 
         #[cfg(feature = "AVAnimation")]
         /// Setter for [`videoGravity`][Self::videoGravity].
         #[method(setVideoGravity:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setVideoGravity(&self, video_gravity: &AVLayerVideoGravity);
 
         /// A BOOL value indicating whether the receiver is currently rendering video frames from its source.
@@ -154,6 +157,7 @@ extern_methods!(
         ///
         /// An AVCaptureVideoPreviewLayer begins previewing when -[AVCaptureSession startRunning] is called. When associated with an AVCaptureMultiCamSession, all video preview layers are guaranteed to be previewing by the time the blocking call to -startRunning or -commitConfiguration returns. While a session is running, you may enable or disable a video preview layer's connection to re-start or stop the flow of video to the layer. Once you've set enabled to YES, you can observe this property changing from NO to YES and synchronize any UI to take place precisely when the video resumes rendering to the video preview layer.
         #[method(isPreviewing)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isPreviewing(&self) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -167,6 +171,7 @@ extern_methods!(
         ///
         /// AVCaptureDevice pointOfInterest is expressed as a CGPoint where {0,0} represents the top left of the picture area, and {1,1} represents the bottom right on an unrotated picture. This convenience method converts a point in the coordinate space of the receiver to a point of interest in the coordinate space of the AVCaptureDevice providing input to the receiver. The conversion takes frameSize and videoGravity into consideration.
         #[method(captureDevicePointOfInterestForPoint:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn captureDevicePointOfInterestForPoint(
             &self,
             point_in_layer: CGPoint,
@@ -183,6 +188,7 @@ extern_methods!(
         ///
         /// AVCaptureDevice pointOfInterest is expressed as a CGPoint where {0,0} represents the top left of the picture area, and {1,1} represents the bottom right on an unrotated picture. This convenience method converts a point in the coordinate space of the AVCaptureDevice providing input to the coordinate space of the receiver. The conversion takes frame size and videoGravity into consideration.
         #[method(pointForCaptureDevicePointOfInterest:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pointForCaptureDevicePointOfInterest(
             &self,
             capture_device_point_of_interest: CGPoint,
@@ -199,6 +205,7 @@ extern_methods!(
         ///
         /// AVCaptureMetadataOutput rectOfInterest is expressed as a CGRect where {0,0} represents the top left of the picture area, and {1,1} represents the bottom right on an unrotated picture. This convenience method converts a rectangle in the coordinate space of the receiver to a rectangle of interest in the coordinate space of an AVCaptureMetadataOutput whose AVCaptureDevice is providing input to the receiver. The conversion takes frame size and videoGravity into consideration.
         #[method(metadataOutputRectOfInterestForRect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn metadataOutputRectOfInterestForRect(
             &self,
             rect_in_layer_coordinates: CGRect,
@@ -215,6 +222,7 @@ extern_methods!(
         ///
         /// AVCaptureMetadataOutput rectOfInterest is expressed as a CGRect where {0,0} represents the top left of the picture area, and {1,1} represents the bottom right on an unrotated picture. This convenience method converts a rectangle in the coordinate space of an AVCaptureMetadataOutput whose AVCaptureDevice is providing input to the coordinate space of the receiver. The conversion takes frame size and videoGravity into consideration.
         #[method(rectForMetadataOutputRectOfInterest:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rectForMetadataOutputRectOfInterest(
             &self,
             rect_in_metadata_output_coordinates: CGRect,
@@ -230,7 +238,7 @@ extern_methods!(
         ///
         ///
         /// AVMetadataObject bounds may be expressed as a rect where {0,0} represents the top left of the picture area, and {1,1} represents the bottom right on an unrotated picture. Face metadata objects likewise express yaw and roll angles with respect to an unrotated picture. -transformedMetadataObjectForMetadataObject: converts the visual properties in the coordinate space of the supplied AVMetadataObject to the coordinate space of the receiver. The conversion takes orientation, mirroring, layer bounds and videoGravity into consideration. If the provided metadata object originates from an input source other than the preview layer's, nil will be returned.
-        #[method_id(transformedMetadataObjectForMetadataObject:)]
+        #[method(transformedMetadataObjectForMetadataObject:)]
         #[unsafe(method_family = none)]
         pub unsafe fn transformedMetadataObjectForMetadataObject(
             &self,
@@ -245,6 +253,7 @@ extern_methods!(
         /// orientationSupported" before attempting to manipulate the orientation of the receiver. This property is deprecated. Use AVCaptureConnection's -isVideoOrientationSupported instead.
         #[deprecated = "Use AVCaptureConnection's isVideoOrientationSupported instead."]
         #[method(isOrientationSupported)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isOrientationSupported(&self) -> bool;
 
         #[cfg(feature = "AVCaptureSession")]
@@ -256,12 +265,14 @@ extern_methods!(
         /// orientationSupported" must be YES in order to set @"orientation". An exception will be raised if this requirement is ignored. This property is deprecated. Use AVCaptureConnection's -videoOrientation instead.
         #[deprecated = "Use AVCaptureConnection's videoOrientation instead."]
         #[method(orientation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn orientation(&self) -> AVCaptureVideoOrientation;
 
         #[cfg(feature = "AVCaptureSession")]
         /// Setter for [`orientation`][Self::orientation].
         #[deprecated = "Use AVCaptureConnection's videoOrientation instead."]
         #[method(setOrientation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setOrientation(&self, orientation: AVCaptureVideoOrientation);
 
         /// Specifies whether or not the preview layer supports mirroring.
@@ -272,6 +283,7 @@ extern_methods!(
         /// mirroringSupported" before attempting to manipulate mirroring on the receiver. This property is deprecated. Use AVCaptureConnection's -isVideoMirroringSupported instead.
         #[deprecated = "Use AVCaptureConnection's isVideoMirroringSupported instead."]
         #[method(isMirroringSupported)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isMirroringSupported(&self) -> bool;
 
         /// Specifies whether or not the value of
@@ -284,11 +296,13 @@ extern_methods!(
         /// mirrored" may change depending on the configuration of the session, for example after switching to a different AVCaptureDeviceInput. The default value is YES. This property is deprecated. Use AVCaptureConnection's -automaticallyAdjustsVideoMirroring instead.
         #[deprecated = "Use AVCaptureConnection's automaticallyAdjustsVideoMirroring instead."]
         #[method(automaticallyAdjustsMirroring)]
+        #[unsafe(method_family = none)]
         pub unsafe fn automaticallyAdjustsMirroring(&self) -> bool;
 
         /// Setter for [`automaticallyAdjustsMirroring`][Self::automaticallyAdjustsMirroring].
         #[deprecated = "Use AVCaptureConnection's automaticallyAdjustsVideoMirroring instead."]
         #[method(setAutomaticallyAdjustsMirroring:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAutomaticallyAdjustsMirroring(
             &self,
             automatically_adjusts_mirroring: bool,
@@ -302,11 +316,13 @@ extern_methods!(
         /// automaticallyAdjustsMirroring" is set to YES. The value of @"automaticallyAdjustsMirroring" must be NO in order to set @"mirrored". The value of @"mirroringSupported" must be YES in order to set @"mirrored". An exception will be raised if the value of @"mirrored" is mutated without respecting these requirements. This property is deprecated. Use AVCaptureConnection's -videoMirrored instead.
         #[deprecated = "Use AVCaptureConnection's videoMirrored instead."]
         #[method(isMirrored)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isMirrored(&self) -> bool;
 
         /// Setter for [`isMirrored`][Self::isMirrored].
         #[deprecated = "Use AVCaptureConnection's videoMirrored instead."]
         #[method(setMirrored:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMirrored(&self, mirrored: bool);
     }
 );
@@ -317,15 +333,15 @@ extern_methods!(
     #[cfg(not(target_os = "watchos"))]
     unsafe impl AVCaptureVideoPreviewLayer {
         /// Layer creation and initialization. *
-        #[method_id(layer)]
+        #[method(layer)]
         #[unsafe(method_family = none)]
         pub unsafe fn layer() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(initWithLayer:)]
+        #[method(initWithLayer:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
     }
@@ -336,7 +352,7 @@ extern_methods!(
     #[cfg(feature = "objc2-quartz-core")]
     #[cfg(not(target_os = "watchos"))]
     unsafe impl AVCaptureVideoPreviewLayer {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

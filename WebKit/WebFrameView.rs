@@ -59,7 +59,7 @@ extern_methods!(
         #[cfg(feature = "WebFrame")]
         /// The WebFrame associated with this WebFrameView
         #[deprecated]
-        #[method_id(webFrame)]
+        #[method(webFrame)]
         #[unsafe(method_family = none)]
         pub unsafe fn webFrame(&self) -> Option<Retained<WebFrame>>;
 
@@ -68,30 +68,33 @@ extern_methods!(
         ///
         /// The subview that renders the WebFrameView's contents
         #[deprecated]
-        #[method_id(documentView)]
+        #[method(documentView)]
         #[unsafe(method_family = none)]
         pub unsafe fn documentView(&self) -> Option<Retained<NSView>>;
 
         /// Whether the WebFrameView allows its document to be scrolled
         #[deprecated]
         #[method(allowsScrolling)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowsScrolling(&self) -> bool;
 
         /// Setter for [`allowsScrolling`][Self::allowsScrolling].
         #[deprecated]
         #[method(setAllowsScrolling:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAllowsScrolling(&self, allows_scrolling: bool);
 
         /// Whether this frame can print headers and footers
         #[deprecated]
         #[method(canPrintHeadersAndFooters)]
+        #[unsafe(method_family = none)]
         pub unsafe fn canPrintHeadersAndFooters(&self) -> bool;
 
         /// Creates a print operation set up to print this frame
         ///
         /// Returns: A newly created print operation object
         #[deprecated]
-        #[method_id(printOperationWithPrintInfo:)]
+        #[method(printOperationWithPrintInfo:)]
         #[unsafe(method_family = none)]
         pub unsafe fn printOperationWithPrintInfo(
             &self,
@@ -105,11 +108,13 @@ extern_methods!(
         /// application's print operation will continue as normal.
         #[deprecated]
         #[method(documentViewShouldHandlePrint)]
+        #[unsafe(method_family = none)]
         pub unsafe fn documentViewShouldHandlePrint(&self) -> bool;
 
         /// Called by the host application when the WebFrameView returns YES from -documentViewShouldHandlePrint.
         #[deprecated]
         #[method(printDocumentView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn printDocumentView(&self);
     }
 );
@@ -119,11 +124,11 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl WebFrameView {
-        #[method_id(initWithFrame:)]
+        #[method(initWithFrame:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -137,7 +142,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl WebFrameView {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -148,7 +153,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl WebFrameView {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

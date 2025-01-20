@@ -46,7 +46,7 @@ unsafe impl NSSecureCoding for AVSpeechSynthesisProviderVoice {}
 extern_methods!(
     unsafe impl AVSpeechSynthesisProviderVoice {
         /// The localized name of the voice
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
@@ -54,14 +54,14 @@ extern_methods!(
         ///
         /// The recommended format is reverse domain notation.
         /// Behavior is undefined if identifiers are not unique for all voices within a given extension.
-        #[method_id(identifier)]
+        #[method(identifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         /// A set of BCP 47 codes identifying the languages this synthesizer is primarily used for.
         ///
         /// These languages are what a user would expect a synthesizer to fully support and be primarily used for.
-        #[method_id(primaryLanguages)]
+        #[method(primaryLanguages)]
         #[unsafe(method_family = none)]
         pub unsafe fn primaryLanguages(&self) -> Retained<NSArray<NSString>>;
 
@@ -72,7 +72,7 @@ extern_methods!(
         /// `primaryLanguages,`but in
         /// `supportedLanguages`have
         /// `["zh-CN","en-US"]`indicating if it received "你好 means Hello", it would be able to speak the entire phrase.
-        #[method_id(supportedLanguages)]
+        #[method(supportedLanguages)]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedLanguages(&self) -> Retained<NSArray<NSString>>;
 
@@ -80,44 +80,51 @@ extern_methods!(
         ///
         /// This reported size of the voice package on disk, in bytes. Defaults to 0.
         #[method(voiceSize)]
+        #[unsafe(method_family = none)]
         pub unsafe fn voiceSize(&self) -> i64;
 
         /// Setter for [`voiceSize`][Self::voiceSize].
         #[method(setVoiceSize:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setVoiceSize(&self, voice_size: i64);
 
         /// The voice version (optional)
         ///
         /// This is an optional property for bookkeeping. This value does not affect system behavior.
-        #[method_id(version)]
+        #[method(version)]
         #[unsafe(method_family = none)]
         pub unsafe fn version(&self) -> Retained<NSString>;
 
         /// Setter for [`version`][Self::version].
         #[method(setVersion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setVersion(&self, version: &NSString);
 
         #[cfg(feature = "AVSpeechSynthesis")]
         /// The gender of the voice (optional)
         #[method(gender)]
+        #[unsafe(method_family = none)]
         pub unsafe fn gender(&self) -> AVSpeechSynthesisVoiceGender;
 
         #[cfg(feature = "AVSpeechSynthesis")]
         /// Setter for [`gender`][Self::gender].
         #[method(setGender:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setGender(&self, gender: AVSpeechSynthesisVoiceGender);
 
         /// The age of the voice in years (optional)
         ///
         /// This is an optional property that indicates the age of this voice, to be treated as a personality trait. Defaults to 0.
         #[method(age)]
+        #[unsafe(method_family = none)]
         pub unsafe fn age(&self) -> NSInteger;
 
         /// Setter for [`age`][Self::age].
         #[method(setAge:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAge(&self, age: NSInteger);
 
-        #[method_id(initWithName:identifier:primaryLanguages:supportedLanguages:)]
+        #[method(initWithName:identifier:primaryLanguages:supportedLanguages:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithName_identifier_primaryLanguages_supportedLanguages(
             this: Allocated<Self>,
@@ -127,11 +134,11 @@ extern_methods!(
             supported_languages: &NSArray<NSString>,
         ) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -139,6 +146,7 @@ extern_methods!(
         ///
         /// Call this method to indicate to the system that there has been change in the availability of the voices your application is providing to the system.
         #[method(updateSpeechVoices)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updateSpeechVoices();
     }
 );
@@ -177,16 +185,16 @@ extern_methods!(
         /// The SSML representation of the text to be synthesized with the corresponding speech synthesis attributes for customization of pitch, rate, intonation, and more.
         ///
         /// See: https://www.w3.org/TR/speech-synthesis11/
-        #[method_id(ssmlRepresentation)]
+        #[method(ssmlRepresentation)]
         #[unsafe(method_family = none)]
         pub unsafe fn ssmlRepresentation(&self) -> Retained<NSString>;
 
         /// The voice to be used in this speech request
-        #[method_id(voice)]
+        #[method(voice)]
         #[unsafe(method_family = none)]
         pub unsafe fn voice(&self) -> Retained<AVSpeechSynthesisProviderVoice>;
 
-        #[method_id(initWithSSMLRepresentation:voice:)]
+        #[method(initWithSSMLRepresentation:voice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSSMLRepresentation_voice(
             this: Allocated<Self>,
@@ -194,11 +202,11 @@ extern_methods!(
             voice: &AVSpeechSynthesisProviderVoice,
         ) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -237,12 +245,13 @@ extern_methods!(
         ///
         /// This method should fetch and return the voices ready to synthesize that a user can select from (usually through Settings).
         /// Required for speech synthesizer audio unit extensions. An audio unit with a dynamic list of voices can override this property's getter to perform a more complex fetch.
-        #[method_id(speechVoices)]
+        #[method(speechVoices)]
         #[unsafe(method_family = none)]
         pub unsafe fn speechVoices(&self) -> Retained<NSArray<AVSpeechSynthesisProviderVoice>>;
 
         /// Setter for [`speechVoices`][Self::speechVoices].
         #[method(setSpeechVoices:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSpeechVoices(
             &self,
             speech_voices: &NSArray<AVSpeechSynthesisProviderVoice>,
@@ -255,6 +264,7 @@ extern_methods!(
         ///
         /// There may be cases in which marker data is not fully known until further audio processing is done. In these cases, and other casers where marker data has changed, calling this block with marker data that contains perviously delivered audio buffer ranges will replace that audio buffer range's marker data, as it will be considered stale.
         #[method(speechSynthesisOutputMetadataBlock)]
+        #[unsafe(method_family = none)]
         pub unsafe fn speechSynthesisOutputMetadataBlock(
             &self,
         ) -> AVSpeechSynthesisProviderOutputBlock;
@@ -262,6 +272,7 @@ extern_methods!(
         #[cfg(all(feature = "AVSpeechSynthesis", feature = "block2"))]
         /// Setter for [`speechSynthesisOutputMetadataBlock`][Self::speechSynthesisOutputMetadataBlock].
         #[method(setSpeechSynthesisOutputMetadataBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSpeechSynthesisOutputMetadataBlock(
             &self,
             speech_synthesis_output_metadata_block: AVSpeechSynthesisProviderOutputBlock,
@@ -274,6 +285,7 @@ extern_methods!(
         /// `AudioUnitRenderActionFlags`flag
         /// `kAudioOfflineUnitRenderAction_Complete.`
         #[method(synthesizeSpeechRequest:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn synthesizeSpeechRequest(
             &self,
             speech_request: &AVSpeechSynthesisProviderRequest,
@@ -281,6 +293,7 @@ extern_methods!(
 
         /// Informs the audio unit that the speech request job should be discarded.
         #[method(cancelSpeechRequest)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cancelSpeechRequest(&self);
     }
 );
@@ -290,7 +303,7 @@ extern_methods!(
     #[cfg(feature = "objc2-audio-toolbox")]
     #[cfg(not(target_os = "watchos"))]
     unsafe impl AVSpeechSynthesisProviderAudioUnit {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -303,7 +316,7 @@ extern_methods!(
         /// Parameter `options`: Options for loading the unit in-process or out-of-process.
         ///
         /// Parameter `outError`: Returned in the event of failure.
-        #[method_id(initWithComponentDescription:options:error:_)]
+        #[method(initWithComponentDescription:options:error:_)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithComponentDescription_options_error(
             this: Allocated<Self>,
@@ -312,7 +325,7 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         /// Convenience initializer (omits options).
-        #[method_id(initWithComponentDescription:error:_)]
+        #[method(initWithComponentDescription:error:_)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithComponentDescription_error(
             this: Allocated<Self>,
@@ -326,7 +339,7 @@ extern_methods!(
     #[cfg(feature = "objc2-audio-toolbox")]
     #[cfg(not(target_os = "watchos"))]
     unsafe impl AVSpeechSynthesisProviderAudioUnit {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

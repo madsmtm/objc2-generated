@@ -24,7 +24,7 @@ extern_methods!(
         #[cfg(feature = "MLCActivationDescriptor")]
         /// The activation descriptor
         #[deprecated]
-        #[method_id(descriptor)]
+        #[method(descriptor)]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptor(&self) -> Retained<MLCActivationDescriptor>;
 
@@ -35,7 +35,7 @@ extern_methods!(
         ///
         /// Returns: A new activation layer
         #[deprecated]
-        #[method_id(layerWithDescriptor:)]
+        #[method(layerWithDescriptor:)]
         #[unsafe(method_family = none)]
         pub unsafe fn layerWithDescriptor(descriptor: &MLCActivationDescriptor) -> Retained<Self>;
 
@@ -43,7 +43,7 @@ extern_methods!(
         ///
         /// Returns: A new activation layer
         #[deprecated]
-        #[method_id(reluLayer)]
+        #[method(reluLayer)]
         #[unsafe(method_family = none)]
         pub unsafe fn reluLayer() -> Retained<MLCActivationLayer>;
 
@@ -51,7 +51,7 @@ extern_methods!(
         ///
         /// Returns: A new activation layer
         #[deprecated]
-        #[method_id(relu6Layer)]
+        #[method(relu6Layer)]
         #[unsafe(method_family = none)]
         pub unsafe fn relu6Layer() -> Retained<MLCActivationLayer>;
 
@@ -59,7 +59,7 @@ extern_methods!(
         ///
         /// Returns: A new activation layer
         #[deprecated]
-        #[method_id(leakyReLULayer)]
+        #[method(leakyReLULayer)]
         #[unsafe(method_family = none)]
         pub unsafe fn leakyReLULayer() -> Retained<MLCActivationLayer>;
 
@@ -69,7 +69,7 @@ extern_methods!(
         ///
         /// Returns: A new activation layer
         #[deprecated]
-        #[method_id(leakyReLULayerWithNegativeSlope:)]
+        #[method(leakyReLULayerWithNegativeSlope:)]
         #[unsafe(method_family = none)]
         pub unsafe fn leakyReLULayerWithNegativeSlope(negative_slope: c_float) -> Retained<Self>;
 
@@ -81,7 +81,7 @@ extern_methods!(
         ///
         /// Returns: A new activation layer
         #[deprecated]
-        #[method_id(linearLayerWithScale:bias:)]
+        #[method(linearLayerWithScale:bias:)]
         #[unsafe(method_family = none)]
         pub unsafe fn linearLayerWithScale_bias(scale: c_float, bias: c_float) -> Retained<Self>;
 
@@ -89,7 +89,7 @@ extern_methods!(
         ///
         /// Returns: A new activation layer
         #[deprecated]
-        #[method_id(sigmoidLayer)]
+        #[method(sigmoidLayer)]
         #[unsafe(method_family = none)]
         pub unsafe fn sigmoidLayer() -> Retained<MLCActivationLayer>;
 
@@ -97,7 +97,7 @@ extern_methods!(
         ///
         /// Returns: A new activation layer
         #[deprecated]
-        #[method_id(hardSigmoidLayer)]
+        #[method(hardSigmoidLayer)]
         #[unsafe(method_family = none)]
         pub unsafe fn hardSigmoidLayer() -> Retained<MLCActivationLayer>;
 
@@ -105,7 +105,7 @@ extern_methods!(
         ///
         /// Returns: A new activation layer
         #[deprecated]
-        #[method_id(tanhLayer)]
+        #[method(tanhLayer)]
         #[unsafe(method_family = none)]
         pub unsafe fn tanhLayer() -> Retained<MLCActivationLayer>;
 
@@ -113,7 +113,7 @@ extern_methods!(
         ///
         /// Returns: A new activation layer
         #[deprecated]
-        #[method_id(absoluteLayer)]
+        #[method(absoluteLayer)]
         #[unsafe(method_family = none)]
         pub unsafe fn absoluteLayer() -> Retained<MLCActivationLayer>;
 
@@ -121,7 +121,7 @@ extern_methods!(
         ///
         /// Returns: A new activation layer
         #[deprecated]
-        #[method_id(softPlusLayer)]
+        #[method(softPlusLayer)]
         #[unsafe(method_family = none)]
         pub unsafe fn softPlusLayer() -> Retained<MLCActivationLayer>;
 
@@ -131,7 +131,7 @@ extern_methods!(
         ///
         /// Returns: A new activation layer
         #[deprecated]
-        #[method_id(softPlusLayerWithBeta:)]
+        #[method(softPlusLayerWithBeta:)]
         #[unsafe(method_family = none)]
         pub unsafe fn softPlusLayerWithBeta(beta: c_float) -> Retained<Self>;
 
@@ -139,7 +139,7 @@ extern_methods!(
         ///
         /// Returns: A new activation layer
         #[deprecated]
-        #[method_id(softSignLayer)]
+        #[method(softSignLayer)]
         #[unsafe(method_family = none)]
         pub unsafe fn softSignLayer() -> Retained<MLCActivationLayer>;
 
@@ -147,7 +147,7 @@ extern_methods!(
         ///
         /// Returns: A new activation layer
         #[deprecated]
-        #[method_id(eluLayer)]
+        #[method(eluLayer)]
         #[unsafe(method_family = none)]
         pub unsafe fn eluLayer() -> Retained<MLCActivationLayer>;
 
@@ -158,7 +158,7 @@ extern_methods!(
         ///
         /// Returns: A new activation layer
         #[deprecated]
-        #[method_id(eluLayerWithA:)]
+        #[method(eluLayerWithA:)]
         #[unsafe(method_family = none)]
         pub unsafe fn eluLayerWithA(a: c_float) -> Retained<Self>;
 
@@ -174,7 +174,7 @@ extern_methods!(
         ///
         /// Returns: A new activation layer
         #[deprecated]
-        #[method_id(relunLayerWithA:b:)]
+        #[method(relunLayerWithA:b:)]
         #[unsafe(method_family = none)]
         pub unsafe fn relunLayerWithA_b(a: c_float, b: c_float) -> Retained<Self>;
 
@@ -182,7 +182,7 @@ extern_methods!(
         ///
         /// Returns: A new activation layer
         #[deprecated]
-        #[method_id(logSigmoidLayer)]
+        #[method(logSigmoidLayer)]
         #[unsafe(method_family = none)]
         pub unsafe fn logSigmoidLayer() -> Retained<MLCActivationLayer>;
 
@@ -190,7 +190,7 @@ extern_methods!(
         ///
         /// Returns: A new activation layer
         #[deprecated]
-        #[method_id(seluLayer)]
+        #[method(seluLayer)]
         #[unsafe(method_family = none)]
         pub unsafe fn seluLayer() -> Retained<MLCActivationLayer>;
 
@@ -198,7 +198,7 @@ extern_methods!(
         ///
         /// Returns: A new activation layer
         #[deprecated]
-        #[method_id(celuLayer)]
+        #[method(celuLayer)]
         #[unsafe(method_family = none)]
         pub unsafe fn celuLayer() -> Retained<MLCActivationLayer>;
 
@@ -209,7 +209,7 @@ extern_methods!(
         ///
         /// Returns: A new activation layer
         #[deprecated]
-        #[method_id(celuLayerWithA:)]
+        #[method(celuLayerWithA:)]
         #[unsafe(method_family = none)]
         pub unsafe fn celuLayerWithA(a: c_float) -> Retained<Self>;
 
@@ -217,7 +217,7 @@ extern_methods!(
         ///
         /// Returns: A new activation layer
         #[deprecated]
-        #[method_id(hardShrinkLayer)]
+        #[method(hardShrinkLayer)]
         #[unsafe(method_family = none)]
         pub unsafe fn hardShrinkLayer() -> Retained<MLCActivationLayer>;
 
@@ -228,7 +228,7 @@ extern_methods!(
         ///
         /// Returns: A new activation layer
         #[deprecated]
-        #[method_id(hardShrinkLayerWithA:)]
+        #[method(hardShrinkLayerWithA:)]
         #[unsafe(method_family = none)]
         pub unsafe fn hardShrinkLayerWithA(a: c_float) -> Retained<Self>;
 
@@ -236,7 +236,7 @@ extern_methods!(
         ///
         /// Returns: A new activation layer
         #[deprecated]
-        #[method_id(softShrinkLayer)]
+        #[method(softShrinkLayer)]
         #[unsafe(method_family = none)]
         pub unsafe fn softShrinkLayer() -> Retained<MLCActivationLayer>;
 
@@ -247,7 +247,7 @@ extern_methods!(
         ///
         /// Returns: A new activation layer
         #[deprecated]
-        #[method_id(softShrinkLayerWithA:)]
+        #[method(softShrinkLayerWithA:)]
         #[unsafe(method_family = none)]
         pub unsafe fn softShrinkLayerWithA(a: c_float) -> Retained<Self>;
 
@@ -255,7 +255,7 @@ extern_methods!(
         ///
         /// Returns: A new activation layer
         #[deprecated]
-        #[method_id(tanhShrinkLayer)]
+        #[method(tanhShrinkLayer)]
         #[unsafe(method_family = none)]
         pub unsafe fn tanhShrinkLayer() -> Retained<MLCActivationLayer>;
 
@@ -267,7 +267,7 @@ extern_methods!(
         ///
         /// Returns: A new activation layer
         #[deprecated]
-        #[method_id(thresholdLayerWithThreshold:replacement:)]
+        #[method(thresholdLayerWithThreshold:replacement:)]
         #[unsafe(method_family = none)]
         pub unsafe fn thresholdLayerWithThreshold_replacement(
             threshold: c_float,
@@ -278,7 +278,7 @@ extern_methods!(
         ///
         /// Returns: A new activation layer
         #[deprecated]
-        #[method_id(geluLayer)]
+        #[method(geluLayer)]
         #[unsafe(method_family = none)]
         pub unsafe fn geluLayer() -> Retained<MLCActivationLayer>;
 
@@ -286,7 +286,7 @@ extern_methods!(
         ///
         /// Returns: A new activation layer
         #[deprecated]
-        #[method_id(hardSwishLayer)]
+        #[method(hardSwishLayer)]
         #[unsafe(method_family = none)]
         pub unsafe fn hardSwishLayer() -> Retained<MLCActivationLayer>;
 
@@ -298,7 +298,7 @@ extern_methods!(
         ///
         /// Returns: A new activation layer
         #[deprecated]
-        #[method_id(clampLayerWithMinValue:maxValue:)]
+        #[method(clampLayerWithMinValue:maxValue:)]
         #[unsafe(method_family = none)]
         pub unsafe fn clampLayerWithMinValue_maxValue(
             min_value: c_float,
@@ -312,12 +312,12 @@ extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCActivationLayer {
         #[deprecated]
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

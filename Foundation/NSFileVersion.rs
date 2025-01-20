@@ -58,19 +58,19 @@ unsafe impl NSObjectProtocol for NSFileVersion {}
 extern_methods!(
     unsafe impl NSFileVersion {
         #[cfg(feature = "NSURL")]
-        #[method_id(currentVersionOfItemAtURL:)]
+        #[method(currentVersionOfItemAtURL:)]
         #[unsafe(method_family = none)]
         pub unsafe fn currentVersionOfItemAtURL(url: &NSURL) -> Option<Retained<NSFileVersion>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSURL"))]
-        #[method_id(otherVersionsOfItemAtURL:)]
+        #[method(otherVersionsOfItemAtURL:)]
         #[unsafe(method_family = none)]
         pub unsafe fn otherVersionsOfItemAtURL(
             url: &NSURL,
         ) -> Option<Retained<NSArray<NSFileVersion>>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSURL"))]
-        #[method_id(unresolvedConflictVersionsOfItemAtURL:)]
+        #[method(unresolvedConflictVersionsOfItemAtURL:)]
         #[unsafe(method_family = none)]
         pub unsafe fn unresolvedConflictVersionsOfItemAtURL(
             url: &NSURL,
@@ -83,13 +83,14 @@ extern_methods!(
             feature = "block2"
         ))]
         #[method(getNonlocalVersionsOfItemAtURL:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getNonlocalVersionsOfItemAtURL_completionHandler(
             url: &NSURL,
             completion_handler: &block2::Block<dyn Fn(*mut NSArray<NSFileVersion>, *mut NSError)>,
         );
 
         #[cfg(feature = "NSURL")]
-        #[method_id(versionOfItemAtURL:forPersistentIdentifier:)]
+        #[method(versionOfItemAtURL:forPersistentIdentifier:)]
         #[unsafe(method_family = none)]
         pub unsafe fn versionOfItemAtURL_forPersistentIdentifier(
             url: &NSURL,
@@ -97,7 +98,7 @@ extern_methods!(
         ) -> Option<Retained<NSFileVersion>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
-        #[method_id(addVersionOfItemAtURL:withContentsOfURL:options:error:_)]
+        #[method(addVersionOfItemAtURL:withContentsOfURL:options:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn addVersionOfItemAtURL_withContentsOfURL_options_error(
             url: &NSURL,
@@ -106,66 +107,73 @@ extern_methods!(
         ) -> Result<Retained<NSFileVersion>, Retained<NSError>>;
 
         #[cfg(feature = "NSURL")]
-        #[method_id(temporaryDirectoryURLForNewVersionOfItemAtURL:)]
+        #[method(temporaryDirectoryURLForNewVersionOfItemAtURL:)]
         #[unsafe(method_family = none)]
         pub unsafe fn temporaryDirectoryURLForNewVersionOfItemAtURL(url: &NSURL)
             -> Retained<NSURL>;
 
         #[cfg(feature = "NSURL")]
-        #[method_id(URL)]
+        #[method(URL)]
         #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(localizedName)]
+        #[method(localizedName)]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(localizedNameOfSavingComputer)]
+        #[method(localizedNameOfSavingComputer)]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedNameOfSavingComputer(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSPersonNameComponents")]
-        #[method_id(originatorNameComponents)]
+        #[method(originatorNameComponents)]
         #[unsafe(method_family = none)]
         pub unsafe fn originatorNameComponents(&self) -> Option<Retained<NSPersonNameComponents>>;
 
         #[cfg(feature = "NSDate")]
-        #[method_id(modificationDate)]
+        #[method(modificationDate)]
         #[unsafe(method_family = none)]
         pub unsafe fn modificationDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSObject")]
-        #[method_id(persistentIdentifier)]
+        #[method(persistentIdentifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn persistentIdentifier(&self) -> Retained<ProtocolObject<dyn NSCoding>>;
 
         #[method(isConflict)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isConflict(&self) -> bool;
 
         #[method(isResolved)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isResolved(&self) -> bool;
 
         /// Setter for [`isResolved`][Self::isResolved].
         #[method(setResolved:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setResolved(&self, resolved: bool);
 
         #[method(isDiscardable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isDiscardable(&self) -> bool;
 
         /// Setter for [`isDiscardable`][Self::isDiscardable].
         #[method(setDiscardable:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDiscardable(&self, discardable: bool);
 
         #[method(hasLocalContents)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hasLocalContents(&self) -> bool;
 
         #[method(hasThumbnail)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hasThumbnail(&self) -> bool;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
-        #[method_id(replaceItemAtURL:options:error:_)]
+        #[method(replaceItemAtURL:options:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn replaceItemAtURL_options_error(
             &self,
@@ -175,10 +183,12 @@ extern_methods!(
 
         #[cfg(feature = "NSError")]
         #[method(removeAndReturnError:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeAndReturnError(&self) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
         #[method(removeOtherVersionsOfItemAtURL:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeOtherVersionsOfItemAtURL_error(
             url: &NSURL,
         ) -> Result<(), Retained<NSError>>;
@@ -188,11 +198,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSFileVersion {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

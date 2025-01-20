@@ -55,7 +55,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl GKAchievementViewController {
         #[deprecated]
-        #[method_id(achievementDelegate)]
+        #[method(achievementDelegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn achievementDelegate(
             &self,
@@ -65,6 +65,7 @@ extern_methods!(
         /// Setter for [`achievementDelegate`][Self::achievementDelegate].
         #[deprecated]
         #[method(setAchievementDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAchievementDelegate(
             &self,
             achievement_delegate: Option<&ProtocolObject<dyn GKAchievementViewControllerDelegate>>,
@@ -77,7 +78,7 @@ extern_methods!(
     #[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl GKAchievementViewController {
-        #[method_id(initWithNibName:bundle:)]
+        #[method(initWithNibName:bundle:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -85,7 +86,7 @@ extern_methods!(
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -99,7 +100,7 @@ extern_methods!(
     #[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl GKAchievementViewController {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -110,7 +111,7 @@ extern_methods!(
     #[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl GKAchievementViewController {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -127,6 +128,7 @@ extern_protocol!(
         /// The achievement view has finished
         #[deprecated]
         #[method(achievementViewControllerDidFinish:)]
+        #[unsafe(method_family = none)]
         unsafe fn achievementViewControllerDidFinish(
             &self,
             view_controller: Option<&GKAchievementViewController>,

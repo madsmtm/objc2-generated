@@ -103,7 +103,7 @@ extern_methods!(
     unsafe impl NSURLConnection {
         #[cfg(feature = "NSURLRequest")]
         #[deprecated = "Use NSURLSession (see NSURLSession.h)"]
-        #[method_id(initWithRequest:delegate:startImmediately:)]
+        #[method(initWithRequest:delegate:startImmediately:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRequest_delegate_startImmediately(
             this: Allocated<Self>,
@@ -114,7 +114,7 @@ extern_methods!(
 
         #[cfg(feature = "NSURLRequest")]
         #[deprecated = "Use NSURLSession (see NSURLSession.h)"]
-        #[method_id(initWithRequest:delegate:)]
+        #[method(initWithRequest:delegate:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRequest_delegate(
             this: Allocated<Self>,
@@ -124,7 +124,7 @@ extern_methods!(
 
         #[cfg(feature = "NSURLRequest")]
         #[deprecated = "Use NSURLSession (see NSURLSession.h)"]
-        #[method_id(connectionWithRequest:delegate:)]
+        #[method(connectionWithRequest:delegate:)]
         #[unsafe(method_family = none)]
         pub unsafe fn connectionWithRequest_delegate(
             request: &NSURLRequest,
@@ -132,23 +132,26 @@ extern_methods!(
         ) -> Option<Retained<NSURLConnection>>;
 
         #[cfg(feature = "NSURLRequest")]
-        #[method_id(originalRequest)]
+        #[method(originalRequest)]
         #[unsafe(method_family = none)]
         pub unsafe fn originalRequest(&self) -> Retained<NSURLRequest>;
 
         #[cfg(feature = "NSURLRequest")]
-        #[method_id(currentRequest)]
+        #[method(currentRequest)]
         #[unsafe(method_family = none)]
         pub unsafe fn currentRequest(&self) -> Retained<NSURLRequest>;
 
         #[method(start)]
+        #[unsafe(method_family = none)]
         pub unsafe fn start(&self);
 
         #[method(cancel)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cancel(&self);
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSRunLoop", feature = "NSString"))]
         #[method(scheduleInRunLoop:forMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scheduleInRunLoop_forMode(
             &self,
             a_run_loop: &NSRunLoop,
@@ -157,6 +160,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSRunLoop", feature = "NSString"))]
         #[method(unscheduleFromRunLoop:forMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn unscheduleFromRunLoop_forMode(
             &self,
             a_run_loop: &NSRunLoop,
@@ -165,6 +169,7 @@ extern_methods!(
 
         #[cfg(feature = "NSOperation")]
         #[method(setDelegateQueue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegateQueue(&self, queue: Option<&NSOperationQueue>);
 
         #[cfg(feature = "NSURLRequest")]
@@ -190,6 +195,7 @@ extern_methods!(
         /// initialize a connection and the associated I/O can be
         /// started, NO otherwise.
         #[method(canHandleRequest:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn canHandleRequest(request: &NSURLRequest) -> bool;
     }
 );
@@ -197,11 +203,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSURLConnection {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -253,16 +259,19 @@ extern_protocol!(
         #[cfg(feature = "NSError")]
         #[optional]
         #[method(connection:didFailWithError:)]
+        #[unsafe(method_family = none)]
         unsafe fn connection_didFailWithError(&self, connection: &NSURLConnection, error: &NSError);
 
         #[optional]
         #[method(connectionShouldUseCredentialStorage:)]
+        #[unsafe(method_family = none)]
         unsafe fn connectionShouldUseCredentialStorage(&self, connection: &NSURLConnection)
             -> bool;
 
         #[cfg(feature = "NSURLAuthenticationChallenge")]
         #[optional]
         #[method(connection:willSendRequestForAuthenticationChallenge:)]
+        #[unsafe(method_family = none)]
         unsafe fn connection_willSendRequestForAuthenticationChallenge(
             &self,
             connection: &NSURLConnection,
@@ -273,6 +282,7 @@ extern_protocol!(
         #[deprecated = "Use -connection:willSendRequestForAuthenticationChallenge: instead."]
         #[optional]
         #[method(connection:canAuthenticateAgainstProtectionSpace:)]
+        #[unsafe(method_family = none)]
         unsafe fn connection_canAuthenticateAgainstProtectionSpace(
             &self,
             connection: &NSURLConnection,
@@ -283,6 +293,7 @@ extern_protocol!(
         #[deprecated = "Use -connection:willSendRequestForAuthenticationChallenge: instead."]
         #[optional]
         #[method(connection:didReceiveAuthenticationChallenge:)]
+        #[unsafe(method_family = none)]
         unsafe fn connection_didReceiveAuthenticationChallenge(
             &self,
             connection: &NSURLConnection,
@@ -293,6 +304,7 @@ extern_protocol!(
         #[deprecated = "Use -connection:willSendRequestForAuthenticationChallenge: instead."]
         #[optional]
         #[method(connection:didCancelAuthenticationChallenge:)]
+        #[unsafe(method_family = none)]
         unsafe fn connection_didCancelAuthenticationChallenge(
             &self,
             connection: &NSURLConnection,
@@ -386,7 +398,7 @@ extern_protocol!(
     pub unsafe trait NSURLConnectionDataDelegate: NSURLConnectionDelegate {
         #[cfg(all(feature = "NSURLRequest", feature = "NSURLResponse"))]
         #[optional]
-        #[method_id(connection:willSendRequest:redirectResponse:)]
+        #[method(connection:willSendRequest:redirectResponse:)]
         #[unsafe(method_family = none)]
         unsafe fn connection_willSendRequest_redirectResponse(
             &self,
@@ -398,6 +410,7 @@ extern_protocol!(
         #[cfg(feature = "NSURLResponse")]
         #[optional]
         #[method(connection:didReceiveResponse:)]
+        #[unsafe(method_family = none)]
         unsafe fn connection_didReceiveResponse(
             &self,
             connection: &NSURLConnection,
@@ -407,11 +420,12 @@ extern_protocol!(
         #[cfg(feature = "NSData")]
         #[optional]
         #[method(connection:didReceiveData:)]
+        #[unsafe(method_family = none)]
         unsafe fn connection_didReceiveData(&self, connection: &NSURLConnection, data: &NSData);
 
         #[cfg(all(feature = "NSStream", feature = "NSURLRequest"))]
         #[optional]
-        #[method_id(connection:needNewBodyStream:)]
+        #[method(connection:needNewBodyStream:)]
         #[unsafe(method_family = none)]
         unsafe fn connection_needNewBodyStream(
             &self,
@@ -421,6 +435,7 @@ extern_protocol!(
 
         #[optional]
         #[method(connection:didSendBodyData:totalBytesWritten:totalBytesExpectedToWrite:)]
+        #[unsafe(method_family = none)]
         unsafe fn connection_didSendBodyData_totalBytesWritten_totalBytesExpectedToWrite(
             &self,
             connection: &NSURLConnection,
@@ -431,7 +446,7 @@ extern_protocol!(
 
         #[cfg(feature = "NSURLCache")]
         #[optional]
-        #[method_id(connection:willCacheResponse:)]
+        #[method(connection:willCacheResponse:)]
         #[unsafe(method_family = none)]
         unsafe fn connection_willCacheResponse(
             &self,
@@ -441,6 +456,7 @@ extern_protocol!(
 
         #[optional]
         #[method(connectionDidFinishLoading:)]
+        #[unsafe(method_family = none)]
         unsafe fn connectionDidFinishLoading(&self, connection: &NSURLConnection);
     }
 );
@@ -482,6 +498,7 @@ extern_protocol!(
     pub unsafe trait NSURLConnectionDownloadDelegate: NSURLConnectionDelegate {
         #[optional]
         #[method(connection:didWriteData:totalBytesWritten:expectedTotalBytes:)]
+        #[unsafe(method_family = none)]
         unsafe fn connection_didWriteData_totalBytesWritten_expectedTotalBytes(
             &self,
             connection: &NSURLConnection,
@@ -492,6 +509,7 @@ extern_protocol!(
 
         #[optional]
         #[method(connectionDidResumeDownloading:totalBytesWritten:expectedTotalBytes:)]
+        #[unsafe(method_family = none)]
         unsafe fn connectionDidResumeDownloading_totalBytesWritten_expectedTotalBytes(
             &self,
             connection: &NSURLConnection,
@@ -501,6 +519,7 @@ extern_protocol!(
 
         #[cfg(feature = "NSURL")]
         #[method(connectionDidFinishDownloading:destinationURL:)]
+        #[unsafe(method_family = none)]
         unsafe fn connectionDidFinishDownloading_destinationURL(
             &self,
             connection: &NSURLConnection,
@@ -556,7 +575,7 @@ extern_methods!(
         /// Returns: The content of the URL resulting from performing the load,
         /// or nil if the load failed.
         #[deprecated = "Use [NSURLSession dataTaskWithRequest:completionHandler:] (see NSURLSession.h"]
-        #[method_id(sendSynchronousRequest:returningResponse:error:_)]
+        #[method(sendSynchronousRequest:returningResponse:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn sendSynchronousRequest_returningResponse_error(
             request: &NSURLRequest,
@@ -612,6 +631,7 @@ extern_methods!(
         /// Parameter `handler`: A block which receives the results of the resource load.
         #[deprecated = "Use [NSURLSession dataTaskWithRequest:completionHandler:] (see NSURLSession.h"]
         #[method(sendAsynchronousRequest:queue:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sendAsynchronousRequest_queue_completionHandler(
             request: &NSURLRequest,
             queue: &NSOperationQueue,

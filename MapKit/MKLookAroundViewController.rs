@@ -70,14 +70,14 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl MKLookAroundViewController {
         #[cfg(feature = "MKLookAroundScene")]
-        #[method_id(initWithScene:)]
+        #[method(initWithScene:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithScene(
             this: Allocated<Self>,
             scene: &MKLookAroundScene,
         ) -> Retained<Self>;
 
-        #[method_id(initWithNibName:bundle:)]
+        #[method(initWithNibName:bundle:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -85,14 +85,14 @@ extern_methods!(
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -101,53 +101,62 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn MKLookAroundViewControllerDelegate>>,
         );
 
         #[cfg(feature = "MKLookAroundScene")]
-        #[method_id(scene)]
+        #[method(scene)]
         #[unsafe(method_family = none)]
         pub unsafe fn scene(&self) -> Option<Retained<MKLookAroundScene>>;
 
         #[cfg(feature = "MKLookAroundScene")]
         /// Setter for [`scene`][Self::scene].
         #[method(setScene:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setScene(&self, scene: Option<&MKLookAroundScene>);
 
         #[method(isNavigationEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isNavigationEnabled(&self) -> bool;
 
         /// Setter for [`isNavigationEnabled`][Self::isNavigationEnabled].
         #[method(setNavigationEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setNavigationEnabled(&self, navigation_enabled: bool);
 
         #[method(showsRoadLabels)]
+        #[unsafe(method_family = none)]
         pub unsafe fn showsRoadLabels(&self) -> bool;
 
         /// Setter for [`showsRoadLabels`][Self::showsRoadLabels].
         #[method(setShowsRoadLabels:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShowsRoadLabels(&self, shows_road_labels: bool);
 
         #[cfg(feature = "MKPointOfInterestFilter")]
-        #[method_id(pointOfInterestFilter)]
+        #[method(pointOfInterestFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn pointOfInterestFilter(&self) -> Option<Retained<MKPointOfInterestFilter>>;
 
         #[cfg(feature = "MKPointOfInterestFilter")]
         /// Setter for [`pointOfInterestFilter`][Self::pointOfInterestFilter].
         #[method(setPointOfInterestFilter:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPointOfInterestFilter(
             &self,
             point_of_interest_filter: Option<&MKPointOfInterestFilter>,
         );
 
         #[method(badgePosition)]
+        #[unsafe(method_family = none)]
         pub unsafe fn badgePosition(&self) -> MKLookAroundBadgePosition;
 
         /// Setter for [`badgePosition`][Self::badgePosition].
         #[method(setBadgePosition:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBadgePosition(&self, badge_position: MKLookAroundBadgePosition);
     }
 );
@@ -157,7 +166,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl MKLookAroundViewController {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -168,7 +177,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl MKLookAroundViewController {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -181,6 +190,7 @@ extern_protocol!(
         #[cfg(target_os = "macos")]
         #[optional]
         #[method(lookAroundViewControllerWillUpdateScene:)]
+        #[unsafe(method_family = none)]
         unsafe fn lookAroundViewControllerWillUpdateScene(
             &self,
             view_controller: &MKLookAroundViewController,
@@ -190,6 +200,7 @@ extern_protocol!(
         #[cfg(target_os = "macos")]
         #[optional]
         #[method(lookAroundViewControllerDidUpdateScene:)]
+        #[unsafe(method_family = none)]
         unsafe fn lookAroundViewControllerDidUpdateScene(
             &self,
             view_controller: &MKLookAroundViewController,
@@ -199,6 +210,7 @@ extern_protocol!(
         #[cfg(target_os = "macos")]
         #[optional]
         #[method(lookAroundViewControllerWillPresentFullScreen:)]
+        #[unsafe(method_family = none)]
         unsafe fn lookAroundViewControllerWillPresentFullScreen(
             &self,
             view_controller: &MKLookAroundViewController,
@@ -208,6 +220,7 @@ extern_protocol!(
         #[cfg(target_os = "macos")]
         #[optional]
         #[method(lookAroundViewControllerDidPresentFullScreen:)]
+        #[unsafe(method_family = none)]
         unsafe fn lookAroundViewControllerDidPresentFullScreen(
             &self,
             view_controller: &MKLookAroundViewController,
@@ -217,6 +230,7 @@ extern_protocol!(
         #[cfg(target_os = "macos")]
         #[optional]
         #[method(lookAroundViewControllerWillDismissFullScreen:)]
+        #[unsafe(method_family = none)]
         unsafe fn lookAroundViewControllerWillDismissFullScreen(
             &self,
             view_controller: &MKLookAroundViewController,
@@ -226,6 +240,7 @@ extern_protocol!(
         #[cfg(target_os = "macos")]
         #[optional]
         #[method(lookAroundViewControllerDidDismissFullScreen:)]
+        #[unsafe(method_family = none)]
         unsafe fn lookAroundViewControllerDidDismissFullScreen(
             &self,
             view_controller: &MKLookAroundViewController,

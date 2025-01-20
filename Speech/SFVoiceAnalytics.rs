@@ -27,11 +27,12 @@ unsafe impl NSSecureCoding for SFAcousticFeature {}
 
 extern_methods!(
     unsafe impl SFAcousticFeature {
-        #[method_id(acousticFeatureValuePerFrame)]
+        #[method(acousticFeatureValuePerFrame)]
         #[unsafe(method_family = none)]
         pub unsafe fn acousticFeatureValuePerFrame(&self) -> Retained<NSArray<NSNumber>>;
 
         #[method(frameDuration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn frameDuration(&self) -> NSTimeInterval;
     }
 );
@@ -39,11 +40,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SFAcousticFeature {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -70,19 +71,19 @@ unsafe impl NSSecureCoding for SFVoiceAnalytics {}
 
 extern_methods!(
     unsafe impl SFVoiceAnalytics {
-        #[method_id(jitter)]
+        #[method(jitter)]
         #[unsafe(method_family = none)]
         pub unsafe fn jitter(&self) -> Retained<SFAcousticFeature>;
 
-        #[method_id(shimmer)]
+        #[method(shimmer)]
         #[unsafe(method_family = none)]
         pub unsafe fn shimmer(&self) -> Retained<SFAcousticFeature>;
 
-        #[method_id(pitch)]
+        #[method(pitch)]
         #[unsafe(method_family = none)]
         pub unsafe fn pitch(&self) -> Retained<SFAcousticFeature>;
 
-        #[method_id(voicing)]
+        #[method(voicing)]
         #[unsafe(method_family = none)]
         pub unsafe fn voicing(&self) -> Retained<SFAcousticFeature>;
     }
@@ -91,11 +92,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SFVoiceAnalytics {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -13,30 +13,33 @@ extern_category!(
     /// Category on [`NSValue`].
     pub unsafe trait NSValueAVFoundationExtensions {
         #[cfg(feature = "objc2-core-media")]
-        #[method_id(valueWithCMTime:)]
+        #[method(valueWithCMTime:)]
         #[unsafe(method_family = none)]
         unsafe fn valueWithCMTime(time: CMTime) -> Retained<NSValue>;
 
         #[cfg(feature = "objc2-core-media")]
         #[method(CMTimeValue)]
+        #[unsafe(method_family = none)]
         unsafe fn CMTimeValue(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
-        #[method_id(valueWithCMTimeRange:)]
+        #[method(valueWithCMTimeRange:)]
         #[unsafe(method_family = none)]
         unsafe fn valueWithCMTimeRange(time_range: CMTimeRange) -> Retained<NSValue>;
 
         #[cfg(feature = "objc2-core-media")]
         #[method(CMTimeRangeValue)]
+        #[unsafe(method_family = none)]
         unsafe fn CMTimeRangeValue(&self) -> CMTimeRange;
 
         #[cfg(feature = "objc2-core-media")]
-        #[method_id(valueWithCMTimeMapping:)]
+        #[method(valueWithCMTimeMapping:)]
         #[unsafe(method_family = none)]
         unsafe fn valueWithCMTimeMapping(time_mapping: CMTimeMapping) -> Retained<NSValue>;
 
         #[cfg(feature = "objc2-core-media")]
         #[method(CMTimeMappingValue)]
+        #[unsafe(method_family = none)]
         unsafe fn CMTimeMappingValue(&self) -> CMTimeMapping;
     }
 
@@ -49,26 +52,32 @@ extern_category!(
     pub unsafe trait NSCoderAVTimeCoding {
         #[cfg(feature = "objc2-core-media")]
         #[method(encodeCMTime:forKey:)]
+        #[unsafe(method_family = none)]
         unsafe fn encodeCMTime_forKey(&self, time: CMTime, key: &NSString);
 
         #[cfg(feature = "objc2-core-media")]
         #[method(decodeCMTimeForKey:)]
+        #[unsafe(method_family = none)]
         unsafe fn decodeCMTimeForKey(&self, key: &NSString) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
         #[method(encodeCMTimeRange:forKey:)]
+        #[unsafe(method_family = none)]
         unsafe fn encodeCMTimeRange_forKey(&self, time_range: CMTimeRange, key: &NSString);
 
         #[cfg(feature = "objc2-core-media")]
         #[method(decodeCMTimeRangeForKey:)]
+        #[unsafe(method_family = none)]
         unsafe fn decodeCMTimeRangeForKey(&self, key: &NSString) -> CMTimeRange;
 
         #[cfg(feature = "objc2-core-media")]
         #[method(encodeCMTimeMapping:forKey:)]
+        #[unsafe(method_family = none)]
         unsafe fn encodeCMTimeMapping_forKey(&self, time_mapping: CMTimeMapping, key: &NSString);
 
         #[cfg(feature = "objc2-core-media")]
         #[method(decodeCMTimeMappingForKey:)]
+        #[unsafe(method_family = none)]
         unsafe fn decodeCMTimeMappingForKey(&self, key: &NSString) -> CMTimeMapping;
     }
 

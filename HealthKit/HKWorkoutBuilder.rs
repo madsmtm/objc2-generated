@@ -27,34 +27,34 @@ unsafe impl NSObjectProtocol for HKWorkoutBuilder {}
 
 extern_methods!(
     unsafe impl HKWorkoutBuilder {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "HKDevice")]
         /// The HKDevice to be associated with the workout.
-        #[method_id(device)]
+        #[method(device)]
         #[unsafe(method_family = none)]
         pub unsafe fn device(&self) -> Option<Retained<HKDevice>>;
 
         /// The start date for the workout, as provided by beginCollectionWithStartDate:completion:
-        #[method_id(startDate)]
+        #[method(startDate)]
         #[unsafe(method_family = none)]
         pub unsafe fn startDate(&self) -> Option<Retained<NSDate>>;
 
         /// The end date for the workout, as provided by endCollectionWithEndDate:completion:
-        #[method_id(endDate)]
+        #[method(endDate)]
         #[unsafe(method_family = none)]
         pub unsafe fn endDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "HKWorkoutConfiguration")]
         /// The configuration for the workout being built.
-        #[method_id(workoutConfiguration)]
+        #[method(workoutConfiguration)]
         #[unsafe(method_family = none)]
         pub unsafe fn workoutConfiguration(&self) -> Retained<HKWorkoutConfiguration>;
 
         /// The metadata that will be used when the workout is finished.
-        #[method_id(metadata)]
+        #[method(metadata)]
         #[unsafe(method_family = none)]
         pub unsafe fn metadata(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
@@ -63,7 +63,7 @@ extern_methods!(
         ///
         /// New events that are added using addWorkoutEvents:completion: will be appended to this array once the
         /// completion is called.
-        #[method_id(workoutEvents)]
+        #[method(workoutEvents)]
         #[unsafe(method_family = none)]
         pub unsafe fn workoutEvents(&self) -> Retained<NSArray<HKWorkoutEvent>>;
 
@@ -72,7 +72,7 @@ extern_methods!(
         ///
         /// New activities that are added using addWorkoutActivity:completion: will be appended to this array once the
         /// completion is called.
-        #[method_id(workoutActivities)]
+        #[method(workoutActivities)]
         #[unsafe(method_family = none)]
         pub unsafe fn workoutActivities(&self) -> Retained<NSArray<HKWorkoutActivity>>;
 
@@ -81,7 +81,7 @@ extern_methods!(
         ///
         /// This dictionary will contain HKStatistics objects containing the statistics by quantity
         /// sample type for all of the samples that have been added to the builder.
-        #[method_id(allStatistics)]
+        #[method(allStatistics)]
         #[unsafe(method_family = none)]
         pub unsafe fn allStatistics(&self) -> Retained<NSDictionary<HKQuantityType, HKStatistics>>;
 
@@ -101,7 +101,7 @@ extern_methods!(
         /// Parameter `configuration`: The workout configuration to be used.
         ///
         /// Parameter `device`: The HKDevice to attach to the resulting HKWorkout.
-        #[method_id(initWithHealthStore:configuration:device:)]
+        #[method(initWithHealthStore:configuration:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithHealthStore_configuration_device(
             this: Allocated<Self>,
@@ -120,6 +120,7 @@ extern_methods!(
         ///
         /// Parameter `completion`: Called once data collection has started or has failed to start.
         #[method(beginCollectionWithStartDate:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn beginCollectionWithStartDate_completion(
             &self,
             start_date: &NSDate,
@@ -141,6 +142,7 @@ extern_methods!(
         /// to the builder successfully. If success is NO, error will be non-nil and contain the error
         /// encountered while adding the new samples.
         #[method(addSamples:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addSamples_completion(
             &self,
             samples: &NSArray<HKSample>,
@@ -160,6 +162,7 @@ extern_methods!(
         /// YES, the events were added to the builder successfully. If success is NO, error will be
         /// non-null and will contain the error encountered during the insertion operation.
         #[method(addWorkoutEvents:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addWorkoutEvents_completion(
             &self,
             workout_events: &NSArray<HKWorkoutEvent>,
@@ -180,6 +183,7 @@ extern_methods!(
         /// be non-null and will contain the error encountered during the insertion operation. When an
         /// error occurs, the builder's metadata property will remain unchanged.
         #[method(addMetadata:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addMetadata_completion(
             &self,
             metadata: &NSDictionary<NSString, AnyObject>,
@@ -199,6 +203,7 @@ extern_methods!(
         /// YES, the activity was added to the builder successfully. If success is NO, error will be
         /// non-null and will contain the error encountered during the insertion operation.
         #[method(addWorkoutActivity:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addWorkoutActivity_completion(
             &self,
             workout_activity: &HKWorkoutActivity,
@@ -219,6 +224,7 @@ extern_methods!(
         /// YES, the end date was set to the actvity successfully. If success is NO, error will be
         /// non-null and will contain the error encountered during the update operation.
         #[method(updateActivityWithUUID:endDate:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updateActivityWithUUID_endDate_completion(
             &self,
             uuid: &NSUUID,
@@ -243,6 +249,7 @@ extern_methods!(
         /// be non-null and will contain the error encountered during the insertion operation. When an
         /// error occurs, the activity's metadata property will remain unchanged.
         #[method(updateActivityWithUUID:addMedatata:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updateActivityWithUUID_addMedatata_completion(
             &self,
             uuid: &NSUUID,
@@ -260,6 +267,7 @@ extern_methods!(
         ///
         /// Parameter `completion`: Called once data collection has stopped or has failed to stop.
         #[method(endCollectionWithEndDate:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn endCollectionWithEndDate_completion(
             &self,
             end_date: &NSDate,
@@ -280,6 +288,7 @@ extern_methods!(
         /// workout and error are nil then finishing the workout succeeded but the workout sample
         /// is not available because the device is locked.
         #[method(finishWorkoutWithCompletion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn finishWorkoutWithCompletion(
             &self,
             completion: &block2::Block<dyn Fn(*mut HKWorkout, *mut NSError)>,
@@ -289,11 +298,13 @@ extern_methods!(
         /// the workout will not be deleted. Adding samples, events, and metadata to the receiver after
         /// discardWorkout has been called is an error.
         #[method(discardWorkout)]
+        #[unsafe(method_family = none)]
         pub unsafe fn discardWorkout(&self);
 
         /// The elapsed duration of the workout evaluated at the specified date. The duration does not include
         /// periods when the workout was paused, which are the intervals between pause and resume events.
         #[method(elapsedTimeAtDate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn elapsedTimeAtDate(&self, date: &NSDate) -> NSTimeInterval;
 
         #[cfg(all(feature = "HKObjectType", feature = "HKStatistics"))]
@@ -302,7 +313,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `quantityType`: The quantity type to gather statistics about.
-        #[method_id(statisticsForType:)]
+        #[method(statisticsForType:)]
         #[unsafe(method_family = none)]
         pub unsafe fn statisticsForType(
             &self,
@@ -317,7 +328,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `seriesType`: The series type for which the builder should be retrieved.
-        #[method_id(seriesBuilderForType:)]
+        #[method(seriesBuilderForType:)]
         #[unsafe(method_family = none)]
         pub unsafe fn seriesBuilderForType(
             &self,
@@ -329,7 +340,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKWorkoutBuilder {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

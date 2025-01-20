@@ -63,16 +63,16 @@ unsafe impl NSObjectProtocol for VNGeneratePersonSegmentationRequest {}
 extern_methods!(
     #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
     unsafe impl VNGeneratePersonSegmentationRequest {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        #[method_id(initWithCompletionHandler:)]
+        #[method(initWithCompletionHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
@@ -80,7 +80,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
-        #[method_id(initWithFrameAnalysisSpacing:completionHandler:)]
+        #[method(initWithFrameAnalysisSpacing:completionHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrameAnalysisSpacing_completionHandler(
             this: Allocated<Self>,
@@ -90,17 +90,19 @@ extern_methods!(
 
         /// The quality level selects which techniques will be used during the person segmentation. There are trade-offs between performance and accuracy.
         #[method(qualityLevel)]
+        #[unsafe(method_family = none)]
         pub unsafe fn qualityLevel(&self) -> VNGeneratePersonSegmentationRequestQualityLevel;
 
         /// Setter for [`qualityLevel`][Self::qualityLevel].
         #[method(setQualityLevel:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setQualityLevel(
             &self,
             quality_level: VNGeneratePersonSegmentationRequestQualityLevel,
         );
 
         /// Obtain the collection of supported output pixel formats for the configured request.
-        #[method_id(supportedOutputPixelFormatsAndReturnError:_)]
+        #[method(supportedOutputPixelFormatsAndReturnError:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedOutputPixelFormatsAndReturnError(
             &self,
@@ -108,14 +110,16 @@ extern_methods!(
 
         /// Pixel format type of the output buffer. Valid values are kCVPixelFormatType_OneComponent32Float, kCVPixelFormatType_OneComponent16Half, and kCVPixelFormatType_OneComponent8. Default is kCVPixelFormatType_OneComponent8.
         #[method(outputPixelFormat)]
+        #[unsafe(method_family = none)]
         pub unsafe fn outputPixelFormat(&self) -> OSType;
 
         /// Setter for [`outputPixelFormat`][Self::outputPixelFormat].
         #[method(setOutputPixelFormat:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setOutputPixelFormat(&self, output_pixel_format: OSType);
 
         #[cfg(feature = "VNObservation")]
-        #[method_id(results)]
+        #[method(results)]
         #[unsafe(method_family = none)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNPixelBufferObservation>>>;
     }

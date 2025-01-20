@@ -163,15 +163,19 @@ extern_methods!(
     #[cfg(feature = "WKInterfaceObject")]
     unsafe impl WKInterfaceTextField {
         #[method(setText:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setText(&self, text: Option<&NSString>);
 
         #[method(setAttributedText:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAttributedText(&self, attributed_text: Option<&NSAttributedString>);
 
         #[method(setPlaceholder:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPlaceholder(&self, placeholder: Option<&NSString>);
 
         #[method(setAttributedPlaceholder:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAttributedPlaceholder(
             &self,
             attributed_placeholder: Option<&NSAttributedString>,
@@ -179,15 +183,19 @@ extern_methods!(
 
         #[cfg(feature = "objc2-ui-kit")]
         #[method(setTextColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTextColor(&self, color: Option<&UIColor>);
 
         #[method(setEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
         #[method(setTextContentType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTextContentType(&self, text_content_type: Option<&WKTextContentType>);
 
         #[method(setSecureTextEntry:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSecureTextEntry(&self, secure_text_entry: bool);
     }
 );
@@ -196,7 +204,7 @@ extern_methods!(
     /// Methods declared on superclass `WKInterfaceObject`
     #[cfg(feature = "WKInterfaceObject")]
     unsafe impl WKInterfaceTextField {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -206,7 +214,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "WKInterfaceObject")]
     unsafe impl WKInterfaceTextField {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

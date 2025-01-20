@@ -58,12 +58,13 @@ unsafe impl NSObjectProtocol for MTLBinaryArchiveDescriptor {}
 extern_methods!(
     unsafe impl MTLBinaryArchiveDescriptor {
         /// The file URL from which to open a MTLBinaryArchive, or nil to create an empty MTLBinaryArchive.
-        #[method_id(url)]
+        #[method(url)]
         #[unsafe(method_family = none)]
         pub fn url(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`url`][Self::url].
         #[method(setUrl:)]
+        #[unsafe(method_family = none)]
         pub fn setUrl(&self, url: Option<&NSURL>);
     }
 );
@@ -71,11 +72,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLBinaryArchiveDescriptor {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
     }
@@ -108,17 +109,18 @@ extern_protocol!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbinaryarchive?language=objc)
     pub unsafe trait MTLBinaryArchive: NSObjectProtocol {
         /// A string to help identify this object.
-        #[method_id(label)]
+        #[method(label)]
         #[unsafe(method_family = none)]
         fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
         #[method(setLabel:)]
+        #[unsafe(method_family = none)]
         fn setLabel(&self, label: Option<&NSString>);
 
         #[cfg(feature = "MTLDevice")]
         /// The device this resource was created against.  This resource can only be used with this device.
-        #[method_id(device)]
+        #[method(device)]
         #[unsafe(method_family = none)]
         fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
@@ -131,6 +133,7 @@ extern_protocol!(
         ///
         /// Returns: Whether or not the addition succeeded. Functions referenced multiple times are silently accepted.
         #[method(addComputePipelineFunctionsWithDescriptor:error:_)]
+        #[unsafe(method_family = none)]
         fn addComputePipelineFunctionsWithDescriptor_error(
             &self,
             descriptor: &MTLComputePipelineDescriptor,
@@ -145,6 +148,7 @@ extern_protocol!(
         ///
         /// Returns: Whether or not the addition succeeded. Functions referenced multiple times are silently accepted.
         #[method(addRenderPipelineFunctionsWithDescriptor:error:_)]
+        #[unsafe(method_family = none)]
         fn addRenderPipelineFunctionsWithDescriptor_error(
             &self,
             descriptor: &MTLRenderPipelineDescriptor,
@@ -159,6 +163,7 @@ extern_protocol!(
         ///
         /// Returns: Whether or not the addition succeeded. Functions referenced multiple times are silently accepted.
         #[method(addTileRenderPipelineFunctionsWithDescriptor:error:_)]
+        #[unsafe(method_family = none)]
         unsafe fn addTileRenderPipelineFunctionsWithDescriptor_error(
             &self,
             descriptor: &MTLTileRenderPipelineDescriptor,
@@ -173,6 +178,7 @@ extern_protocol!(
         ///
         /// Returns: Whether or not the addition succeeded. Functions referenced multiple times are silently accepted.
         #[method(addMeshRenderPipelineFunctionsWithDescriptor:error:_)]
+        #[unsafe(method_family = none)]
         unsafe fn addMeshRenderPipelineFunctionsWithDescriptor_error(
             &self,
             descriptor: &MTLMeshRenderPipelineDescriptor,
@@ -187,6 +193,7 @@ extern_protocol!(
         ///
         /// Returns: Whether or not the addition succeeded. Functions referenced multiple times are silently accepted.
         #[method(addLibraryWithDescriptor:error:_)]
+        #[unsafe(method_family = none)]
         unsafe fn addLibraryWithDescriptor_error(
             &self,
             descriptor: &MTLStitchedLibraryDescriptor,
@@ -202,6 +209,7 @@ extern_protocol!(
         ///
         /// Returns: Whether or not the writing the file succeeded.
         #[method(serializeToURL:error:_)]
+        #[unsafe(method_family = none)]
         fn serializeToURL_error(&self, url: &NSURL) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "MTLFunctionDescriptor", feature = "MTLLibrary"))]
@@ -215,6 +223,7 @@ extern_protocol!(
         ///
         /// Returns: Whether or not the addition succeeded. Functions referenced multiple times are silently accepted.
         #[method(addFunctionWithDescriptor:library:error:_)]
+        #[unsafe(method_family = none)]
         unsafe fn addFunctionWithDescriptor_library_error(
             &self,
             descriptor: &MTLFunctionDescriptor,

@@ -26,6 +26,7 @@ extern_methods!(
         /// For sync up methods (createItem/modifyItem/deleteItem), the system does not know which actor made the
         /// modifications to the file, so it cannot supply this information.
         #[method(isSystemRequest)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isSystemRequest(&self) -> bool;
 
         /// The request was made by Finder or one of its helpers.
@@ -37,11 +38,12 @@ extern_methods!(
         /// For sync up methods (createItem/modifyItem/deleteItem), the system does not know which actor made the
         /// modifications to the file, so it cannot supply this information.
         #[method(isFileViewerRequest)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isFileViewerRequest(&self) -> bool;
 
         /// The URL of the requesting executable. This will always be nil unless both an MDM profile key is set, and the
         /// provider's application is installed by an MDM profile.
-        #[method_id(requestingExecutable)]
+        #[method(requestingExecutable)]
         #[unsafe(method_family = none)]
         pub unsafe fn requestingExecutable(&self) -> Option<Retained<NSURL>>;
 
@@ -49,7 +51,7 @@ extern_methods!(
         /// The version of the domain when the event that triggered the request was observed.
         ///
         /// If the extension doesn't implement the NSFileProviderDomainState protocol, this will be nil.
-        #[method_id(domainVersion)]
+        #[method(domainVersion)]
         #[unsafe(method_family = none)]
         pub unsafe fn domainVersion(&self) -> Option<Retained<NSFileProviderDomainVersion>>;
     }
@@ -58,11 +60,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSFileProviderRequest {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

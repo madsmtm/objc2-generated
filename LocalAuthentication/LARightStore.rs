@@ -23,7 +23,7 @@ extern_methods!(
     unsafe impl LARightStore {
         /// Shared instance of
         /// `LARightStore.`
-        #[method_id(sharedStore)]
+        #[method(sharedStore)]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedStore() -> Retained<LARightStore>;
 
@@ -34,6 +34,7 @@ extern_methods!(
         ///
         /// Parameter `handler`: Completion handler with the fetched right or an error on failure.
         #[method(rightForIdentifier:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rightForIdentifier_completion(
             &self,
             identifier: &NSString,
@@ -49,6 +50,7 @@ extern_methods!(
         ///
         /// Parameter `handler`: Completion handler with the persisted right or an error on failure.
         #[method(saveRight:identifier:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn saveRight_identifier_completion(
             &self,
             right: &LARight,
@@ -67,6 +69,7 @@ extern_methods!(
         ///
         /// Parameter `handler`: Completion handler with the persisted right or an error on failure.
         #[method(saveRight:identifier:secret:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn saveRight_identifier_secret_completion(
             &self,
             right: &LARight,
@@ -82,6 +85,7 @@ extern_methods!(
         ///
         /// Parameter `handler`: Completion handler with an error on failure.
         #[method(removeRight:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeRight_completion(
             &self,
             right: &LAPersistedRight,
@@ -96,6 +100,7 @@ extern_methods!(
         ///
         /// Parameter `handler`: Completion handler with an error on failure.
         #[method(removeRightForIdentifier:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeRightForIdentifier_completion(
             &self,
             identifier: &NSString,
@@ -107,6 +112,7 @@ extern_methods!(
         ///
         /// Parameter `handler`: Completion handler with an error on failure.
         #[method(removeAllRightsWithCompletion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeAllRightsWithCompletion(
             &self,
             handler: &block2::Block<dyn Fn(*mut NSError)>,
@@ -114,13 +120,13 @@ extern_methods!(
 
         /// Clients should rely on the
         /// `shared`instance instead
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Clients should rely on the
         /// `shared`instance instead
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

@@ -24,24 +24,24 @@ unsafe impl NSObjectProtocol for HMRoom {}
 
 extern_methods!(
     unsafe impl HMRoom {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Name of the room.
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "HMAccessory")]
         /// Array of HMAccessory objects that correspond to the accessories
         /// associated with this room.
-        #[method_id(accessories)]
+        #[method(accessories)]
         #[unsafe(method_family = none)]
         pub unsafe fn accessories(&self) -> Retained<NSArray<HMAccessory>>;
 
         /// A unique identifier for the room.
-        #[method_id(uniqueIdentifier)]
+        #[method(uniqueIdentifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn uniqueIdentifier(&self) -> Retained<NSUUID>;
 
@@ -56,6 +56,7 @@ extern_methods!(
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
         #[method(updateName:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updateName_completionHandler(
             &self,
             name: &NSString,
@@ -67,7 +68,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HMRoom {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

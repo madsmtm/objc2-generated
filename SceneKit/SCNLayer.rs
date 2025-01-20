@@ -53,7 +53,7 @@ extern_methods!(
         #[cfg(feature = "SCNScene")]
         /// Specifies the scene of the receiver
         #[deprecated = "OpenGL API deprecated, please use Metal instead. (Define SCN_SILENCE_GL_DEPRECATION to silence these warnings)"]
-        #[method_id(scene)]
+        #[method(scene)]
         #[unsafe(method_family = none)]
         pub unsafe fn scene(&self) -> Option<Retained<SCNScene>>;
 
@@ -61,6 +61,7 @@ extern_methods!(
         /// Setter for [`scene`][Self::scene].
         #[deprecated = "OpenGL API deprecated, please use Metal instead. (Define SCN_SILENCE_GL_DEPRECATION to silence these warnings)"]
         #[method(setScene:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setScene(&self, scene: Option<&SCNScene>);
     }
 );
@@ -71,15 +72,15 @@ extern_methods!(
     #[cfg(not(target_os = "watchos"))]
     unsafe impl SCNLayer {
         /// Layer creation and initialization. *
-        #[method_id(layer)]
+        #[method(layer)]
         #[unsafe(method_family = none)]
         pub unsafe fn layer() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(initWithLayer:)]
+        #[method(initWithLayer:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
     }
@@ -90,7 +91,7 @@ extern_methods!(
     #[cfg(feature = "objc2-quartz-core")]
     #[cfg(not(target_os = "watchos"))]
     unsafe impl SCNLayer {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

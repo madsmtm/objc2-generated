@@ -21,7 +21,7 @@ extern_methods!(
         /// - secondaryTensor: The right-hand side tensor.
         /// - name: The name for the operation.
         /// - Returns: A valid tensor containing the product of the input matrices.
-        #[method_id(matrixMultiplicationWithPrimaryTensor:secondaryTensor:name:)]
+        #[method(matrixMultiplicationWithPrimaryTensor:secondaryTensor:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn matrixMultiplicationWithPrimaryTensor_secondaryTensor_name(
             &self,
@@ -45,7 +45,7 @@ extern_methods!(
         /// - resultDataType: The datatype of the return MPSGraphTensor. Must be either ``MPSDataTypeUInt32`` or ``MPSDataTypeUInt16``.
         /// - name: The name for the operation.
         /// - Returns: A valid tensor containing the hamming distance between the input tensors.
-        #[method_id(HammingDistanceWithPrimaryTensor:secondaryTensor:resultDataType:name:)]
+        #[method(HammingDistanceWithPrimaryTensor:secondaryTensor:resultDataType:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn HammingDistanceWithPrimaryTensor_secondaryTensor_resultDataType_name(
             &self,
@@ -73,7 +73,7 @@ extern_methods!(
         /// - scale: A scale that is applied to the result of query and value matrix multiply.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(scaledDotProductAttentionWithQueryTensor:keyTensor:valueTensor:maskTensor:scale:name:)]
+        #[method(scaledDotProductAttentionWithQueryTensor:keyTensor:valueTensor:maskTensor:scale:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn scaledDotProductAttentionWithQueryTensor_keyTensor_valueTensor_maskTensor_scale_name(
             &self,
@@ -95,7 +95,7 @@ extern_methods!(
         /// - scale: A scale that is applied on the result of query and value matrix multiply.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(scaledDotProductAttentionWithQueryTensor:keyTensor:valueTensor:scale:name:)]
+        #[method(scaledDotProductAttentionWithQueryTensor:keyTensor:valueTensor:scale:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn scaledDotProductAttentionWithQueryTensor_keyTensor_valueTensor_scale_name(
             &self,

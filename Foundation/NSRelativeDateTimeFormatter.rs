@@ -76,48 +76,56 @@ extern_methods!(
     #[cfg(feature = "NSFormatter")]
     unsafe impl NSRelativeDateTimeFormatter {
         #[method(dateTimeStyle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dateTimeStyle(&self) -> NSRelativeDateTimeFormatterStyle;
 
         /// Setter for [`dateTimeStyle`][Self::dateTimeStyle].
         #[method(setDateTimeStyle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDateTimeStyle(&self, date_time_style: NSRelativeDateTimeFormatterStyle);
 
         #[method(unitsStyle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn unitsStyle(&self) -> NSRelativeDateTimeFormatterUnitsStyle;
 
         /// Setter for [`unitsStyle`][Self::unitsStyle].
         #[method(setUnitsStyle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUnitsStyle(&self, units_style: NSRelativeDateTimeFormatterUnitsStyle);
 
         #[method(formattingContext)]
+        #[unsafe(method_family = none)]
         pub unsafe fn formattingContext(&self) -> NSFormattingContext;
 
         /// Setter for [`formattingContext`][Self::formattingContext].
         #[method(setFormattingContext:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFormattingContext(&self, formatting_context: NSFormattingContext);
 
         #[cfg(feature = "NSCalendar")]
-        #[method_id(calendar)]
+        #[method(calendar)]
         #[unsafe(method_family = none)]
         pub unsafe fn calendar(&self) -> Retained<NSCalendar>;
 
         #[cfg(feature = "NSCalendar")]
         /// Setter for [`calendar`][Self::calendar].
         #[method(setCalendar:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCalendar(&self, calendar: Option<&NSCalendar>);
 
         #[cfg(feature = "NSLocale")]
-        #[method_id(locale)]
+        #[method(locale)]
         #[unsafe(method_family = none)]
         pub unsafe fn locale(&self) -> Retained<NSLocale>;
 
         #[cfg(feature = "NSLocale")]
         /// Setter for [`locale`][Self::locale].
         #[method(setLocale:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
 
         #[cfg(all(feature = "NSCalendar", feature = "NSString"))]
-        #[method_id(localizedStringFromDateComponents:)]
+        #[method(localizedStringFromDateComponents:)]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedStringFromDateComponents(
             &self,
@@ -125,7 +133,7 @@ extern_methods!(
         ) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSDate", feature = "NSString"))]
-        #[method_id(localizedStringFromTimeInterval:)]
+        #[method(localizedStringFromTimeInterval:)]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedStringFromTimeInterval(
             &self,
@@ -133,7 +141,7 @@ extern_methods!(
         ) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSDate", feature = "NSString"))]
-        #[method_id(localizedStringForDate:relativeToDate:)]
+        #[method(localizedStringForDate:relativeToDate:)]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedStringForDate_relativeToDate(
             &self,
@@ -142,7 +150,7 @@ extern_methods!(
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(stringForObjectValue:)]
+        #[method(stringForObjectValue:)]
         #[unsafe(method_family = none)]
         pub unsafe fn stringForObjectValue(
             &self,
@@ -155,11 +163,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSFormatter")]
     unsafe impl NSRelativeDateTimeFormatter {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

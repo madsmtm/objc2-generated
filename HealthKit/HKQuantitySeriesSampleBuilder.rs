@@ -51,7 +51,7 @@ extern_methods!(
         ///
         /// Parameter `device`: The optional device represents the HKDevice from which the data is
         /// provided.
-        #[method_id(initWithHealthStore:quantityType:startDate:device:)]
+        #[method(initWithHealthStore:quantityType:startDate:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithHealthStore_quantityType_startDate_device(
             this: Allocated<Self>,
@@ -61,21 +61,21 @@ extern_methods!(
             device: Option<&HKDevice>,
         ) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "HKObjectType")]
-        #[method_id(quantityType)]
+        #[method(quantityType)]
         #[unsafe(method_family = none)]
         pub unsafe fn quantityType(&self) -> Retained<HKQuantityType>;
 
-        #[method_id(startDate)]
+        #[method(startDate)]
         #[unsafe(method_family = none)]
         pub unsafe fn startDate(&self) -> Retained<NSDate>;
 
         #[cfg(feature = "HKDevice")]
-        #[method_id(device)]
+        #[method(device)]
         #[unsafe(method_family = none)]
         pub unsafe fn device(&self) -> Option<Retained<HKDevice>>;
 
@@ -97,6 +97,7 @@ extern_methods!(
         /// An HKErrorInvalidArgument will be returned if
         /// dateInterval.startDate is earlier than the receiver's startDate.
         #[method(insertQuantity:dateInterval:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn insertQuantity_dateInterval_error(
             &self,
             quantity: &HKQuantity,
@@ -118,6 +119,7 @@ extern_methods!(
         /// replace the old value. An HKErrorInvalidArgument will be returned
         /// if date is earlier than the receiver's startDate.
         #[method(insertQuantity:date:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn insertQuantity_date_error(
             &self,
             quantity: &HKQuantity,
@@ -163,6 +165,7 @@ extern_methods!(
         /// After calling this method, the receiver will be considered invalid
         /// and calling any other method will result in an error.
         #[method(finishSeriesWithMetadata:endDate:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn finishSeriesWithMetadata_endDate_completion(
             &self,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
@@ -206,6 +209,7 @@ extern_methods!(
         /// After calling this method, the receiver will be considered invalid
         /// and calling any other method will result in an error.
         #[method(finishSeriesWithMetadata:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn finishSeriesWithMetadata_completion(
             &self,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
@@ -218,6 +222,7 @@ extern_methods!(
         /// the series and invalidate the receiver. Calling other methods on the receiver
         /// after calling -discard will result in an exception.
         #[method(discard)]
+        #[unsafe(method_family = none)]
         pub unsafe fn discard(&self);
     }
 );
@@ -225,7 +230,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKQuantitySeriesSampleBuilder {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

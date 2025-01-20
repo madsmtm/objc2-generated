@@ -39,6 +39,7 @@ extern_methods!(
         /// Any calls to addHeartbeatWithTimeIntervalSinceSeriesStartDate:precededByGap:completion: once
         /// maximumCount has been reached will fail and an error will be returned in the completion handler.
         #[method(maximumCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maximumCount() -> NSUInteger;
 
         #[cfg(all(feature = "HKDevice", feature = "HKHealthStore"))]
@@ -53,7 +54,7 @@ extern_methods!(
         /// Parameter `device`: The optional device represents the HKDevice from which the data is provided.
         ///
         /// Parameter `startDate`: The start date of the HKHeartbeatSeriesSample that will be generated.
-        #[method_id(initWithHealthStore:device:startDate:)]
+        #[method(initWithHealthStore:device:startDate:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithHealthStore_device_startDate(
             this: Allocated<Self>,
@@ -77,6 +78,7 @@ extern_methods!(
         /// handler success is NO, then error is non-nil. An error here is considered fatal and
         /// the series builder will be complete.
         #[method(addHeartbeatWithTimeIntervalSinceSeriesStartDate:precededByGap:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addHeartbeatWithTimeIntervalSinceSeriesStartDate_precededByGap_completion(
             &self,
             time_interval_since_start: NSTimeInterval,
@@ -99,6 +101,7 @@ extern_methods!(
         /// is NO, error will be non-null and will contain the error encountered during the
         /// insertion operation. When an error occurs, the builder's metadata will remain unchanged.
         #[method(addMetadata:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addMetadata_completion(
             &self,
             metadata: &NSDictionary<NSString, AnyObject>,
@@ -126,6 +129,7 @@ extern_methods!(
         /// HKHeartbeatSeriesSample can be made through HKSampleQuery or similar queries. To
         /// retrieve the data stored with an HKHeartbeatSeriesSample use HKHeartbeatSeriesQuery.
         #[method(finishSeriesWithCompletion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn finishSeriesWithCompletion(
             &self,
             completion: &block2::Block<dyn Fn(*mut HKHeartbeatSeriesSample, *mut NSError)>,
@@ -138,7 +142,7 @@ extern_methods!(
     #[cfg(feature = "HKSeriesBuilder")]
     unsafe impl HKHeartbeatSeriesBuilder {
         /// Use only subclass initializer methods.
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -148,7 +152,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "HKSeriesBuilder")]
     unsafe impl HKHeartbeatSeriesBuilder {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

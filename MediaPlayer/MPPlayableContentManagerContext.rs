@@ -25,25 +25,30 @@ extern_methods!(
         /// Returns NSIntegerMax if the content server will never limit the number of items.
         #[deprecated = "Use CarPlay framework"]
         #[method(enforcedContentItemsCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn enforcedContentItemsCount(&self) -> NSInteger;
 
         /// The depth of the navigation hierarchy the content server will allow. Exceeding this limit will result in a crash.
         #[deprecated = "Use CarPlay framework"]
         #[method(enforcedContentTreeDepth)]
+        #[unsafe(method_family = none)]
         pub unsafe fn enforcedContentTreeDepth(&self) -> NSInteger;
 
         /// Represents whether content limits are being enforced by the content server or not.
         #[deprecated = "Use CarPlay framework"]
         #[method(contentLimitsEnforced)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contentLimitsEnforced(&self) -> bool;
 
         #[deprecated]
         #[method(contentLimitsEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contentLimitsEnabled(&self) -> bool;
 
         /// Represents whether the content server is available or not.
         #[deprecated = "Use CarPlay framework"]
         #[method(endpointAvailable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn endpointAvailable(&self) -> bool;
     }
 );
@@ -51,11 +56,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPPlayableContentManagerContext {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

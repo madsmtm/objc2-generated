@@ -31,7 +31,7 @@ unsafe impl NSSecureCoding for ASPasskeyCredentialRequest {}
 
 extern_methods!(
     unsafe impl ASPasskeyCredentialRequest {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -46,7 +46,7 @@ extern_methods!(
         /// Parameter `clientDataHash`: the client data to be signed for this assertion request.
         ///
         /// Parameter `userVerificationPreference`: user verification preference setting of this assertion request.
-        #[method_id(initWithCredentialIdentity:clientDataHash:userVerificationPreference:supportedAlgorithms:)]
+        #[method(initWithCredentialIdentity:clientDataHash:userVerificationPreference:supportedAlgorithms:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCredentialIdentity_clientDataHash_userVerificationPreference_supportedAlgorithms(
             this: Allocated<Self>,
@@ -72,7 +72,7 @@ extern_methods!(
         /// Parameter `supportedAlgorithms`: the set of support algorithms for the credential's key.
         ///
         /// Parameter `assertionExtensionInput`: input for any requested passkey extensions.
-        #[method_id(initWithCredentialIdentity:clientDataHash:userVerificationPreference:supportedAlgorithms:assertionExtensionInput:)]
+        #[method(initWithCredentialIdentity:clientDataHash:userVerificationPreference:supportedAlgorithms:assertionExtensionInput:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCredentialIdentity_clientDataHash_userVerificationPreference_supportedAlgorithms_assertionExtensionInput(
             this: Allocated<Self>,
@@ -99,7 +99,7 @@ extern_methods!(
         /// Parameter `supportedAlgorithms`: the set of support algorithms for the credential's key.
         ///
         /// Parameter `registrationExtensionInput`: input for any requested passkey extensions.
-        #[method_id(initWithCredentialIdentity:clientDataHash:userVerificationPreference:supportedAlgorithms:registrationExtensionInput:)]
+        #[method(initWithCredentialIdentity:clientDataHash:userVerificationPreference:supportedAlgorithms:registrationExtensionInput:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCredentialIdentity_clientDataHash_userVerificationPreference_supportedAlgorithms_registrationExtensionInput(
             this: Allocated<Self>,
@@ -121,7 +121,7 @@ extern_methods!(
         /// Parameter `clientDataHash`: the client data to be signed for this assertion request.
         ///
         /// Parameter `userVerificationPreference`: user verification preference setting of this assertion request.
-        #[method_id(requestWithCredentialIdentity:clientDataHash:userVerificationPreference:supportedAlgorithms:)]
+        #[method(requestWithCredentialIdentity:clientDataHash:userVerificationPreference:supportedAlgorithms:)]
         #[unsafe(method_family = none)]
         pub unsafe fn requestWithCredentialIdentity_clientDataHash_userVerificationPreference_supportedAlgorithms(
             credential_identity: &ASPasskeyCredentialIdentity,
@@ -131,14 +131,14 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Hash of client data for credential provider to sign as part of the assertion/registration operation.
-        #[method_id(clientDataHash)]
+        #[method(clientDataHash)]
         #[unsafe(method_family = none)]
         pub unsafe fn clientDataHash(&self) -> Retained<NSData>;
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialConstants")]
         /// A preference for whether the authenticator should attempt to verify that
         /// it is being used by its owner, such as through a PIN or biometrics.
-        #[method_id(userVerificationPreference)]
+        #[method(userVerificationPreference)]
         #[unsafe(method_family = none)]
         pub unsafe fn userVerificationPreference(
             &self,
@@ -147,18 +147,19 @@ extern_methods!(
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialConstants")]
         /// Setter for [`userVerificationPreference`][Self::userVerificationPreference].
         #[method(setUserVerificationPreference:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUserVerificationPreference(
             &self,
             user_verification_preference: &ASAuthorizationPublicKeyCredentialUserVerificationPreference,
         );
 
         /// A list of signing algorithms supported by the relying party. Will be empty for assertion requests.
-        #[method_id(supportedAlgorithms)]
+        #[method(supportedAlgorithms)]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedAlgorithms(&self) -> Retained<NSArray<NSNumber>>;
 
         #[cfg(feature = "ASAuthorizationPlatformPublicKeyCredentialDescriptor")]
-        #[method_id(excludedCredentials)]
+        #[method(excludedCredentials)]
         #[unsafe(method_family = none)]
         pub unsafe fn excludedCredentials(
             &self,
@@ -166,7 +167,7 @@ extern_methods!(
 
         #[cfg(feature = "ASPasskeyAssertionCredentialExtensionInput")]
         /// Inputs for WebAuthn extensions used for passkey assertion. Will be nil for registration requests.
-        #[method_id(assertionExtensionInput)]
+        #[method(assertionExtensionInput)]
         #[unsafe(method_family = none)]
         pub unsafe fn assertionExtensionInput(
             &self,
@@ -174,7 +175,7 @@ extern_methods!(
 
         #[cfg(feature = "ASPasskeyRegistrationCredentialExtensionInput")]
         /// Inputs for WebAuthn extensions used for passkey registration. Will be nil for assertion requests.
-        #[method_id(registrationExtensionInput)]
+        #[method(registrationExtensionInput)]
         #[unsafe(method_family = none)]
         pub unsafe fn registrationExtensionInput(
             &self,
@@ -185,7 +186,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASPasskeyCredentialRequest {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

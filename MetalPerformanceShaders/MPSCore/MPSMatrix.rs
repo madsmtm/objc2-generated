@@ -28,46 +28,56 @@ extern_methods!(
     unsafe impl MPSMatrixDescriptor {
         /// The number of rows in a matrix.
         #[method(rows)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rows(&self) -> NSUInteger;
 
         /// Setter for [`rows`][Self::rows].
         #[method(setRows:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRows(&self, rows: NSUInteger);
 
         /// The number of columns in a matrix.
         #[method(columns)]
+        #[unsafe(method_family = none)]
         pub unsafe fn columns(&self) -> NSUInteger;
 
         /// Setter for [`columns`][Self::columns].
         #[method(setColumns:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setColumns(&self, columns: NSUInteger);
 
         /// The number of matrices.
         #[method(matrices)]
+        #[unsafe(method_family = none)]
         pub unsafe fn matrices(&self) -> NSUInteger;
 
         #[cfg(feature = "MPSCoreTypes")]
         /// The type of the data which makes up the values of the matrix.
         #[method(dataType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dataType(&self) -> MPSDataType;
 
         #[cfg(feature = "MPSCoreTypes")]
         /// Setter for [`dataType`][Self::dataType].
         #[method(setDataType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDataType(&self, data_type: MPSDataType);
 
         /// The stride, in bytes, between corresponding elements of
         /// consecutive rows.  Must be a multiple of the element size.
         #[method(rowBytes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rowBytes(&self) -> NSUInteger;
 
         /// Setter for [`rowBytes`][Self::rowBytes].
         #[method(setRowBytes:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRowBytes(&self, row_bytes: NSUInteger);
 
         /// The stride, in bytes, between corresponding elements of
         /// consecutive matrices.  Must be a multiple of rowBytes.
         #[method(matrixBytes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn matrixBytes(&self) -> NSUInteger;
 
         #[cfg(feature = "MPSCoreTypes")]
@@ -93,7 +103,7 @@ extern_methods!(
         /// class.
         /// The number of matrices described is initialized to 1.
         #[deprecated]
-        #[method_id(matrixDescriptorWithDimensions:columns:rowBytes:dataType:)]
+        #[method(matrixDescriptorWithDimensions:columns:rowBytes:dataType:)]
         #[unsafe(method_family = none)]
         pub unsafe fn matrixDescriptorWithDimensions_columns_rowBytes_dataType(
             rows: NSUInteger,
@@ -103,7 +113,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSCoreTypes")]
-        #[method_id(matrixDescriptorWithRows:columns:rowBytes:dataType:)]
+        #[method(matrixDescriptorWithRows:columns:rowBytes:dataType:)]
         #[unsafe(method_family = none)]
         pub unsafe fn matrixDescriptorWithRows_columns_rowBytes_dataType(
             rows: NSUInteger,
@@ -140,7 +150,7 @@ extern_methods!(
         /// to the number of columns in the matrix.  The MPSMatrix class provides a method which
         /// may be used to determine this value, see the rowBytesForColumns API in the MPSMatrix
         /// class.
-        #[method_id(matrixDescriptorWithRows:columns:matrices:rowBytes:matrixBytes:dataType:)]
+        #[method(matrixDescriptorWithRows:columns:matrices:rowBytes:matrixBytes:dataType:)]
         #[unsafe(method_family = none)]
         pub unsafe fn matrixDescriptorWithRows_columns_matrices_rowBytes_matrixBytes_dataType(
             rows: NSUInteger,
@@ -170,6 +180,7 @@ extern_methods!(
         /// used is still large enough to allocate a full row of data).
         #[deprecated]
         #[method(rowBytesFromColumns:dataType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rowBytesFromColumns_dataType(
             columns: NSUInteger,
             data_type: MPSDataType,
@@ -177,6 +188,7 @@ extern_methods!(
 
         #[cfg(feature = "MPSCoreTypes")]
         #[method(rowBytesForColumns:dataType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rowBytesForColumns_dataType(
             columns: NSUInteger,
             data_type: MPSDataType,
@@ -187,11 +199,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSMatrixDescriptor {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -217,29 +229,35 @@ extern_methods!(
     unsafe impl MPSVectorDescriptor {
         /// The number of elements in the vector.
         #[method(length)]
+        #[unsafe(method_family = none)]
         pub unsafe fn length(&self) -> NSUInteger;
 
         /// Setter for [`length`][Self::length].
         #[method(setLength:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLength(&self, length: NSUInteger);
 
         /// The number of vectors.
         #[method(vectors)]
+        #[unsafe(method_family = none)]
         pub unsafe fn vectors(&self) -> NSUInteger;
 
         #[cfg(feature = "MPSCoreTypes")]
         /// The type of the data which makes up the values of the vector.
         #[method(dataType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dataType(&self) -> MPSDataType;
 
         #[cfg(feature = "MPSCoreTypes")]
         /// Setter for [`dataType`][Self::dataType].
         #[method(setDataType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDataType(&self, data_type: MPSDataType);
 
         /// The stride, in bytes, between corresponding elements of
         /// consecutive vectors.  Must be a multiple of the element size
         #[method(vectorBytes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn vectorBytes(&self) -> NSUInteger;
 
         #[cfg(feature = "MPSCoreTypes")]
@@ -254,7 +272,7 @@ extern_methods!(
         ///
         /// Use this function for creating a descriptor of a MPSVector object
         /// containing a single vector.
-        #[method_id(vectorDescriptorWithLength:dataType:)]
+        #[method(vectorDescriptorWithLength:dataType:)]
         #[unsafe(method_family = none)]
         pub unsafe fn vectorDescriptorWithLength_dataType(
             length: NSUInteger,
@@ -281,7 +299,7 @@ extern_methods!(
         /// For performance considerations the optimal stride between vectors may not necessarily be equal
         /// to the vector length.  The MPSVectorDescriptor class provides a method which
         /// may be used to determine this value, see the vectorBytesForLength API.
-        #[method_id(vectorDescriptorWithLength:vectors:vectorBytes:dataType:)]
+        #[method(vectorDescriptorWithLength:vectors:vectorBytes:dataType:)]
         #[unsafe(method_family = none)]
         pub unsafe fn vectorDescriptorWithLength_vectors_vectorBytes_dataType(
             length: NSUInteger,
@@ -307,6 +325,7 @@ extern_methods!(
         /// Using this stride to construct your array is recommended, but not required (provided that
         /// the stride used is still large enough to allocate a full vector of data).
         #[method(vectorBytesForLength:dataType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn vectorBytesForLength_dataType(
             length: NSUInteger,
             data_type: MPSDataType,
@@ -317,11 +336,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSVectorDescriptor {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -357,44 +376,51 @@ unsafe impl NSObjectProtocol for MPSMatrix {}
 extern_methods!(
     unsafe impl MPSMatrix {
         /// The device on which the MPSMatrix will be used.
-        #[method_id(device)]
+        #[method(device)]
         #[unsafe(method_family = none)]
         pub unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         /// The number of rows in a matrix in the MPSMatrix.
         #[method(rows)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rows(&self) -> NSUInteger;
 
         /// The number of columns in a matrix in the MPSMatrix.
         #[method(columns)]
+        #[unsafe(method_family = none)]
         pub unsafe fn columns(&self) -> NSUInteger;
 
         /// The number of matrices in the MPSMatrix.
         #[method(matrices)]
+        #[unsafe(method_family = none)]
         pub unsafe fn matrices(&self) -> NSUInteger;
 
         #[cfg(feature = "MPSCoreTypes")]
         /// The type of the MPSMatrix data.
         #[method(dataType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dataType(&self) -> MPSDataType;
 
         /// The stride, in bytes, between corresponding elements of
         /// consecutive rows.
         #[method(rowBytes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rowBytes(&self) -> NSUInteger;
 
         /// The stride, in bytes, between corresponding elements of
         /// consecutive matrices.
         #[method(matrixBytes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn matrixBytes(&self) -> NSUInteger;
 
         /// Byte-offset to the buffer where the matrix data begins - see
         /// initWithBuffer:offset: descriptor: .
         #[method(offset)]
+        #[unsafe(method_family = none)]
         pub unsafe fn offset(&self) -> NSUInteger;
 
         /// An MTLBuffer to store the data.
-        #[method_id(data)]
+        #[method(data)]
         #[unsafe(method_family = none)]
         pub unsafe fn data(&self) -> Retained<ProtocolObject<dyn MTLBuffer>>;
 
@@ -419,7 +445,7 @@ extern_methods!(
         /// (descriptor.matrices-1) * descriptor.matrixBytes +
         /// (descriptor.rows-1) * descriptor.rowBytes +
         /// descriptor.columns * (element size) bytes.
-        #[method_id(initWithBuffer:descriptor:)]
+        #[method(initWithBuffer:descriptor:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBuffer_descriptor(
             this: Allocated<Self>,
@@ -438,7 +464,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `descriptor`: The MPSMatrixDescriptor describing the shape of the matrix.
-        #[method_id(initWithBuffer:offset:descriptor:)]
+        #[method(initWithBuffer:offset:descriptor:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBuffer_offset_descriptor(
             this: Allocated<Self>,
@@ -460,7 +486,7 @@ extern_methods!(
         /// when the data property is invoked.  In conjunction
         /// with -resourceSize, this will allow you to estimate storage needs
         /// without actually creating the backing store for the matrix.
-        #[method_id(initWithDevice:descriptor:)]
+        #[method(initWithDevice:descriptor:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_descriptor(
             this: Allocated<Self>,
@@ -468,7 +494,7 @@ extern_methods!(
             descriptor: &MPSMatrixDescriptor,
         ) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -483,6 +509,7 @@ extern_methods!(
         ///
         /// Parameter `commandBuffer`: The commandbuffer on which to synchronize
         #[method(synchronizeOnCommandBuffer:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn synchronizeOnCommandBuffer(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -508,6 +535,7 @@ extern_methods!(
         /// MPSImage is created with -initWithTexture:featureChannels:. In
         /// such cases, 0 will be returned.
         #[method(resourceSize)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resourceSize(&self) -> NSUInteger;
     }
 );
@@ -515,7 +543,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSMatrix {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -540,35 +568,40 @@ unsafe impl NSObjectProtocol for MPSVector {}
 extern_methods!(
     unsafe impl MPSVector {
         /// The device on which the MPSVector will be used.
-        #[method_id(device)]
+        #[method(device)]
         #[unsafe(method_family = none)]
         pub unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         /// The number of elements in the vector.
         #[method(length)]
+        #[unsafe(method_family = none)]
         pub unsafe fn length(&self) -> NSUInteger;
 
         /// The number of vectors in the MPSVector.
         #[method(vectors)]
+        #[unsafe(method_family = none)]
         pub unsafe fn vectors(&self) -> NSUInteger;
 
         #[cfg(feature = "MPSCoreTypes")]
         /// The type of the MPSVector data.
         #[method(dataType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dataType(&self) -> MPSDataType;
 
         /// The stride, in bytes, between corresponding elements of
         /// consecutive vectors.
         #[method(vectorBytes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn vectorBytes(&self) -> NSUInteger;
 
         /// Byte-offset to the buffer where the vector data begins - see
         /// initWithBuffer:offset: descriptor: .
         #[method(offset)]
+        #[unsafe(method_family = none)]
         pub unsafe fn offset(&self) -> NSUInteger;
 
         /// An MTLBuffer to store the data.
-        #[method_id(data)]
+        #[method(data)]
         #[unsafe(method_family = none)]
         pub unsafe fn data(&self) -> Retained<ProtocolObject<dyn MTLBuffer>>;
 
@@ -593,7 +626,7 @@ extern_methods!(
         ///
         /// (descriptor.vectors-1) * descriptor.vectorBytes +
         /// descriptor.length * (element size) bytes.
-        #[method_id(initWithBuffer:descriptor:)]
+        #[method(initWithBuffer:descriptor:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBuffer_descriptor(
             this: Allocated<Self>,
@@ -611,7 +644,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `descriptor`: The MPSVectorDescriptor.
-        #[method_id(initWithBuffer:offset:descriptor:)]
+        #[method(initWithBuffer:offset:descriptor:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBuffer_offset_descriptor(
             this: Allocated<Self>,
@@ -633,7 +666,7 @@ extern_methods!(
         /// when the data property is invoked.  In conjunction
         /// with -resourceSize, this will allow you to estimate storage needs
         /// without actually creating the backing store for the vector.
-        #[method_id(initWithDevice:descriptor:)]
+        #[method(initWithDevice:descriptor:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_descriptor(
             this: Allocated<Self>,
@@ -641,7 +674,7 @@ extern_methods!(
             descriptor: &MPSVectorDescriptor,
         ) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -656,6 +689,7 @@ extern_methods!(
         ///
         /// Parameter `commandBuffer`: The commandbuffer on which to synchronize
         #[method(synchronizeOnCommandBuffer:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn synchronizeOnCommandBuffer(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -681,6 +715,7 @@ extern_methods!(
         /// MPSMatrix is created with -initWithBuffer:descriptor:. In
         /// such cases, 0 will be returned.
         #[method(resourceSize)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resourceSize(&self) -> NSUInteger;
     }
 );
@@ -688,7 +723,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSVector {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -720,7 +755,7 @@ extern_methods!(
         /// released when the command buffer is committed. The underlying buffer will become invalid before
         /// this time due to the action of the readCount property.  Please read and understand the use of
         /// the readCount property before using this object.
-        #[method_id(temporaryMatrixWithCommandBuffer:matrixDescriptor:)]
+        #[method(temporaryMatrixWithCommandBuffer:matrixDescriptor:)]
         #[unsafe(method_family = none)]
         pub unsafe fn temporaryMatrixWithCommandBuffer_matrixDescriptor(
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -741,13 +776,14 @@ extern_methods!(
         ///
         /// Parameter `descriptorList`: A NSArray of MPSMatrixDescriptor, indicating matrices that will be created
         #[method(prefetchStorageWithCommandBuffer:matrixDescriptorList:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn prefetchStorageWithCommandBuffer_matrixDescriptorList(
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
             descriptor_list: &NSArray<MPSMatrixDescriptor>,
         );
 
         /// *** unavailable
-        #[method_id(initWithBuffer:descriptor:)]
+        #[method(initWithBuffer:descriptor:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBuffer_descriptor(
             this: Allocated<Self>,
@@ -782,10 +818,12 @@ extern_methods!(
         /// deallocated with non-zero readCount to help identify cases when resources
         /// are not returned promptly.
         #[method(readCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn readCount(&self) -> NSUInteger;
 
         /// Setter for [`readCount`][Self::readCount].
         #[method(setReadCount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setReadCount(&self, read_count: NSUInteger);
     }
 );
@@ -804,7 +842,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `descriptor`: The MPSMatrixDescriptor describing the shape of the matrix.
-        #[method_id(initWithBuffer:offset:descriptor:)]
+        #[method(initWithBuffer:offset:descriptor:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBuffer_offset_descriptor(
             this: Allocated<Self>,
@@ -826,7 +864,7 @@ extern_methods!(
         /// when the data property is invoked.  In conjunction
         /// with -resourceSize, this will allow you to estimate storage needs
         /// without actually creating the backing store for the matrix.
-        #[method_id(initWithDevice:descriptor:)]
+        #[method(initWithDevice:descriptor:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_descriptor(
             this: Allocated<Self>,
@@ -834,7 +872,7 @@ extern_methods!(
             descriptor: &MPSMatrixDescriptor,
         ) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -843,7 +881,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSTemporaryMatrix {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -875,7 +913,7 @@ extern_methods!(
         /// released when the command buffer is committed. The underlying buffer will become invalid before
         /// this time due to the action of the readCount property.  Please read and understand the use of
         /// the readCount property before using this object.
-        #[method_id(temporaryVectorWithCommandBuffer:descriptor:)]
+        #[method(temporaryVectorWithCommandBuffer:descriptor:)]
         #[unsafe(method_family = none)]
         pub unsafe fn temporaryVectorWithCommandBuffer_descriptor(
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -896,13 +934,14 @@ extern_methods!(
         ///
         /// Parameter `descriptorList`: A NSArray of MPSVectorDescriptor objects, indicating vectors that will be created
         #[method(prefetchStorageWithCommandBuffer:descriptorList:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn prefetchStorageWithCommandBuffer_descriptorList(
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
             descriptor_list: &NSArray<MPSVectorDescriptor>,
         );
 
         /// *** unavailable
-        #[method_id(initWithBuffer:descriptor:)]
+        #[method(initWithBuffer:descriptor:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBuffer_descriptor(
             this: Allocated<Self>,
@@ -937,10 +976,12 @@ extern_methods!(
         /// deallocated with non-zero readCount to help identify cases when resources
         /// are not returned promptly.
         #[method(readCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn readCount(&self) -> NSUInteger;
 
         /// Setter for [`readCount`][Self::readCount].
         #[method(setReadCount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setReadCount(&self, read_count: NSUInteger);
     }
 );
@@ -958,7 +999,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `descriptor`: The MPSVectorDescriptor.
-        #[method_id(initWithBuffer:offset:descriptor:)]
+        #[method(initWithBuffer:offset:descriptor:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBuffer_offset_descriptor(
             this: Allocated<Self>,
@@ -980,7 +1021,7 @@ extern_methods!(
         /// when the data property is invoked.  In conjunction
         /// with -resourceSize, this will allow you to estimate storage needs
         /// without actually creating the backing store for the vector.
-        #[method_id(initWithDevice:descriptor:)]
+        #[method(initWithDevice:descriptor:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_descriptor(
             this: Allocated<Self>,
@@ -988,7 +1029,7 @@ extern_methods!(
             descriptor: &MPSVectorDescriptor,
         ) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -997,7 +1038,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSTemporaryVector {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

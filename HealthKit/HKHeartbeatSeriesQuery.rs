@@ -45,7 +45,7 @@ extern_methods!(
         /// there was a gap in data collection before the current heartbeat, meaning that one or more
         /// heartbeats may have occured since the previous heartbeat in the series. Once done is YES,
         /// or stopQuery called, the query is complete and no more calls to the handler will be made.
-        #[method_id(initWithHeartbeatSeries:dataHandler:)]
+        #[method(initWithHeartbeatSeries:dataHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithHeartbeatSeries_dataHandler(
             this: Allocated<Self>,
@@ -61,7 +61,7 @@ extern_methods!(
     /// Methods declared on superclass `HKQuery`
     #[cfg(feature = "HKQuery")]
     unsafe impl HKHeartbeatSeriesQuery {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -71,7 +71,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "HKQuery")]
     unsafe impl HKHeartbeatSeriesQuery {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

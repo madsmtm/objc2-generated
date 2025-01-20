@@ -39,6 +39,7 @@ extern_protocol!(
         #[cfg(all(feature = "UIDynamicBehavior", feature = "objc2-core-foundation"))]
         #[optional]
         #[method(collisionBehavior:beganContactForItem:withItem:atPoint:)]
+        #[unsafe(method_family = none)]
         unsafe fn collisionBehavior_beganContactForItem_withItem_atPoint(
             &self,
             behavior: &UICollisionBehavior,
@@ -50,6 +51,7 @@ extern_protocol!(
         #[cfg(feature = "UIDynamicBehavior")]
         #[optional]
         #[method(collisionBehavior:endedContactForItem:withItem:)]
+        #[unsafe(method_family = none)]
         unsafe fn collisionBehavior_endedContactForItem_withItem(
             &self,
             behavior: &UICollisionBehavior,
@@ -60,6 +62,7 @@ extern_protocol!(
         #[cfg(all(feature = "UIDynamicBehavior", feature = "objc2-core-foundation"))]
         #[optional]
         #[method(collisionBehavior:beganContactForItem:withBoundaryIdentifier:atPoint:)]
+        #[unsafe(method_family = none)]
         unsafe fn collisionBehavior_beganContactForItem_withBoundaryIdentifier_atPoint(
             &self,
             behavior: &UICollisionBehavior,
@@ -71,6 +74,7 @@ extern_protocol!(
         #[cfg(feature = "UIDynamicBehavior")]
         #[optional]
         #[method(collisionBehavior:endedContactForItem:withBoundaryIdentifier:)]
+        #[unsafe(method_family = none)]
         unsafe fn collisionBehavior_endedContactForItem_withBoundaryIdentifier(
             &self,
             behavior: &UICollisionBehavior,
@@ -95,7 +99,7 @@ unsafe impl NSObjectProtocol for UICollisionBehavior {}
 extern_methods!(
     #[cfg(feature = "UIDynamicBehavior")]
     unsafe impl UICollisionBehavior {
-        #[method_id(initWithItems:)]
+        #[method(initWithItems:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithItems(
             this: Allocated<Self>,
@@ -103,27 +107,33 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[method(addItem:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addItem(&self, item: &ProtocolObject<dyn UIDynamicItem>);
 
         #[method(removeItem:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeItem(&self, item: &ProtocolObject<dyn UIDynamicItem>);
 
-        #[method_id(items)]
+        #[method(items)]
         #[unsafe(method_family = none)]
         pub unsafe fn items(&self) -> Retained<NSArray<ProtocolObject<dyn UIDynamicItem>>>;
 
         #[method(collisionMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn collisionMode(&self) -> UICollisionBehaviorMode;
 
         /// Setter for [`collisionMode`][Self::collisionMode].
         #[method(setCollisionMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCollisionMode(&self, collision_mode: UICollisionBehaviorMode);
 
         #[method(translatesReferenceBoundsIntoBoundary)]
+        #[unsafe(method_family = none)]
         pub unsafe fn translatesReferenceBoundsIntoBoundary(&self) -> bool;
 
         /// Setter for [`translatesReferenceBoundsIntoBoundary`][Self::translatesReferenceBoundsIntoBoundary].
         #[method(setTranslatesReferenceBoundsIntoBoundary:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTranslatesReferenceBoundsIntoBoundary(
             &self,
             translates_reference_bounds_into_boundary: bool,
@@ -131,6 +141,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         #[method(setTranslatesReferenceBoundsIntoBoundaryWithInsets:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTranslatesReferenceBoundsIntoBoundaryWithInsets(
             &self,
             insets: UIEdgeInsets,
@@ -138,6 +149,7 @@ extern_methods!(
 
         #[cfg(feature = "UIBezierPath")]
         #[method(addBoundaryWithIdentifier:forPath:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addBoundaryWithIdentifier_forPath(
             &self,
             identifier: &ProtocolObject<dyn NSCopying>,
@@ -146,6 +158,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(addBoundaryWithIdentifier:fromPoint:toPoint:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addBoundaryWithIdentifier_fromPoint_toPoint(
             &self,
             identifier: &ProtocolObject<dyn NSCopying>,
@@ -154,7 +167,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIBezierPath")]
-        #[method_id(boundaryWithIdentifier:)]
+        #[method(boundaryWithIdentifier:)]
         #[unsafe(method_family = none)]
         pub unsafe fn boundaryWithIdentifier(
             &self,
@@ -162,21 +175,23 @@ extern_methods!(
         ) -> Option<Retained<UIBezierPath>>;
 
         #[method(removeBoundaryWithIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeBoundaryWithIdentifier(
             &self,
             identifier: &ProtocolObject<dyn NSCopying>,
         );
 
-        #[method_id(boundaryIdentifiers)]
+        #[method(boundaryIdentifiers)]
         #[unsafe(method_family = none)]
         pub unsafe fn boundaryIdentifiers(
             &self,
         ) -> Option<Retained<NSArray<ProtocolObject<dyn NSCopying>>>>;
 
         #[method(removeAllBoundaries)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeAllBoundaries(&self);
 
-        #[method_id(collisionDelegate)]
+        #[method(collisionDelegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn collisionDelegate(
             &self,
@@ -185,6 +200,7 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`collisionDelegate`][Self::collisionDelegate].
         #[method(setCollisionDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCollisionDelegate(
             &self,
             collision_delegate: Option<&ProtocolObject<dyn UICollisionBehaviorDelegate>>,
@@ -196,11 +212,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UIDynamicBehavior")]
     unsafe impl UICollisionBehavior {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

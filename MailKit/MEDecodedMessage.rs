@@ -27,37 +27,37 @@ extern_methods!(
         /// The decoded data should not be encrypted or contain any signatures that were decoded. The
         /// `rawData`here should only contain MIME parts that a standard email parser can decode without needing to decrypt. All information on the encryption and signature status should be defined in
         /// `securityInformation.`If the message is unable to be decrypted this should be left nil and an error message will be displayed to the user.
-        #[method_id(rawData)]
+        #[method(rawData)]
         #[unsafe(method_family = none)]
         pub unsafe fn rawData(&self) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "MEMessageSecurityInformation")]
         /// The security information for whether or not the message was signed, encrypted, or had an errors in decoding.
-        #[method_id(securityInformation)]
+        #[method(securityInformation)]
         #[unsafe(method_family = none)]
         pub unsafe fn securityInformation(&self) -> Retained<MEMessageSecurityInformation>;
 
         /// The context for the decoded message. This will be passed back to the extension when Mail loads the extension's custom view controller for the message.
-        #[method_id(context)]
+        #[method(context)]
         #[unsafe(method_family = none)]
         pub unsafe fn context(&self) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "MEDecodedMessageBanner")]
         /// Suggestion information used to populate a suggestion banner at the top of the message view. Clicking on the action associated with the suggestion banner will present the extension's view controller for the provided message context.
-        #[method_id(banner)]
+        #[method(banner)]
         #[unsafe(method_family = none)]
         pub unsafe fn banner(&self) -> Option<Retained<MEDecodedMessageBanner>>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "MEMessageSecurityInformation")]
-        #[method_id(initWithData:securityInformation:context:)]
+        #[method(initWithData:securityInformation:context:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithData_securityInformation_context(
             this: Allocated<Self>,
@@ -70,7 +70,7 @@ extern_methods!(
             feature = "MEDecodedMessageBanner",
             feature = "MEMessageSecurityInformation"
         ))]
-        #[method_id(initWithData:securityInformation:context:banner:)]
+        #[method(initWithData:securityInformation:context:banner:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithData_securityInformation_context_banner(
             this: Allocated<Self>,

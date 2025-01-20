@@ -85,7 +85,7 @@ extern_methods!(
     #[cfg(feature = "CKRecord")]
     unsafe impl CKShare {
         /// When saving a newly created CKShare, you must save the share and its rootRecord in the same CKModifyRecordsOperation batch.
-        #[method_id(initWithRootRecord:)]
+        #[method(initWithRootRecord:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRootRecord(
             this: Allocated<Self>,
@@ -93,7 +93,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordID")]
-        #[method_id(initWithRootRecord:shareID:)]
+        #[method(initWithRootRecord:shareID:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRootRecord_shareID(
             this: Allocated<Self>,
@@ -119,14 +119,14 @@ extern_methods!(
         /// `rootRecordID`on the resulting
         /// `CKShareMetadata`is
         /// always absent.
-        #[method_id(initWithRecordZoneID:)]
+        #[method(initWithRecordZoneID:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRecordZoneID(
             this: Allocated<Self>,
             record_zone_id: &CKRecordZoneID,
         ) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Retained<Self>;
 
@@ -145,18 +145,20 @@ extern_methods!(
         /// `CKShareParticipantPermissionNone`will result in all participants being removed from the share.  You may subsequently choose to call
         /// `addParticipant:`before saving the share, those participants will be added to the share.
         #[method(publicPermission)]
+        #[unsafe(method_family = none)]
         pub unsafe fn publicPermission(&self) -> CKShareParticipantPermission;
 
         #[cfg(feature = "CKShareParticipant")]
         /// Setter for [`publicPermission`][Self::publicPermission].
         #[method(setPublicPermission:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPublicPermission(&self, public_permission: CKShareParticipantPermission);
 
         /// A URL that can be used to invite participants to this share.
         ///
         ///
         /// Only available after share record has been saved to the server.  This url is stable, and is tied to the rootRecord.  That is, if you share a rootRecord, delete the share, and re-share the same rootRecord via a newly created share, that newly created share's url will be identical to the prior share's url
-        #[method_id(URL)]
+        #[method(URL)]
         #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
@@ -165,18 +167,18 @@ extern_methods!(
         ///
         ///
         /// At the minimum that will include the owner and the current user.
-        #[method_id(participants)]
+        #[method(participants)]
         #[unsafe(method_family = none)]
         pub unsafe fn participants(&self) -> Retained<NSArray<CKShareParticipant>>;
 
         #[cfg(feature = "CKShareParticipant")]
         /// Convenience methods for fetching special users from the participant array
-        #[method_id(owner)]
+        #[method(owner)]
         #[unsafe(method_family = none)]
         pub unsafe fn owner(&self) -> Retained<CKShareParticipant>;
 
         #[cfg(feature = "CKShareParticipant")]
-        #[method_id(currentUserParticipant)]
+        #[method(currentUserParticipant)]
         #[unsafe(method_family = none)]
         pub unsafe fn currentUserParticipant(&self) -> Option<Retained<CKShareParticipant>>;
 
@@ -188,23 +190,25 @@ extern_methods!(
         ///
         /// See: CKShareParticipantRole
         #[method(addParticipant:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addParticipant(&self, participant: &CKShareParticipant);
 
         #[cfg(feature = "CKShareParticipant")]
         /// It's not allowed to call `removeParticipant` on a `CKShare` with a `CKShareParticipant` that has never been added to that share through `addParticipant`.
         #[method(removeParticipant:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeParticipant(&self, participant: &CKShareParticipant);
 
         /// These superclass-provided initializers are not allowed for CKShare
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(initWithRecordType:)]
+        #[method(initWithRecordType:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRecordType(
             this: Allocated<Self>,
@@ -212,7 +216,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordID")]
-        #[method_id(initWithRecordType:recordID:)]
+        #[method(initWithRecordType:recordID:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRecordType_recordID(
             this: Allocated<Self>,
@@ -221,7 +225,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordZoneID")]
-        #[method_id(initWithRecordType:zoneID:)]
+        #[method(initWithRecordType:zoneID:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRecordType_zoneID(
             this: Allocated<Self>,

@@ -14,7 +14,7 @@ extern_protocol!(
     pub unsafe trait UIMenuBuilder: MainThreadOnly {
         #[cfg(feature = "UIMenuSystem")]
         /// Which system we are building for.
-        #[method_id(system)]
+        #[method(system)]
         #[unsafe(method_family = none)]
         unsafe fn system(&self) -> Retained<UIMenuSystem>;
 
@@ -25,7 +25,7 @@ extern_protocol!(
         /// Parameter `identifier`: The identifier of the menu to fetch.
         ///
         /// Returns: The menu with the given identifier, or `nil` if no such menu.
-        #[method_id(menuForIdentifier:)]
+        #[method(menuForIdentifier:)]
         #[unsafe(method_family = none)]
         unsafe fn menuForIdentifier(
             &self,
@@ -39,7 +39,7 @@ extern_protocol!(
         /// Parameter `identifier`: The identifier of the action to fetch.
         ///
         /// Returns: The action with the given identifier, or `nil` if no such action.
-        #[method_id(actionForIdentifier:)]
+        #[method(actionForIdentifier:)]
         #[unsafe(method_family = none)]
         unsafe fn actionForIdentifier(
             &self,
@@ -55,7 +55,7 @@ extern_protocol!(
         /// Parameter `propertyList`: Property list object to distinguish commands, if needed.
         ///
         /// Returns: The command with the given action and property list, or `nil` if no such command.
-        #[method_id(commandForAction:propertyList:)]
+        #[method(commandForAction:propertyList:)]
         #[unsafe(method_family = none)]
         unsafe fn commandForAction_propertyList(
             &self,
@@ -71,6 +71,7 @@ extern_protocol!(
         ///
         /// Parameter `replacementGroup`: The replacement menu.
         #[method(replaceMenuForIdentifier:withMenu:)]
+        #[unsafe(method_family = none)]
         unsafe fn replaceMenuForIdentifier_withMenu(
             &self,
             replaced_identifier: &UIMenuIdentifier,
@@ -85,6 +86,7 @@ extern_protocol!(
         ///
         /// Parameter `childrenBlock`: A block that returns the new children, given the old children.
         #[method(replaceChildrenOfMenuForIdentifier:fromChildrenBlock:)]
+        #[unsafe(method_family = none)]
         unsafe fn replaceChildrenOfMenuForIdentifier_fromChildrenBlock(
             &self,
             parent_identifier: &UIMenuIdentifier,
@@ -101,6 +103,7 @@ extern_protocol!(
         ///
         /// Parameter `siblingIdentifier`: The identifier of the sibling menu to insert before.
         #[method(insertSiblingMenu:beforeMenuForIdentifier:)]
+        #[unsafe(method_family = none)]
         unsafe fn insertSiblingMenu_beforeMenuForIdentifier(
             &self,
             sibling_menu: &UIMenu,
@@ -115,6 +118,7 @@ extern_protocol!(
         ///
         /// Parameter `siblingIdentifier`: The identifier of the sibling menu to insert after.
         #[method(insertSiblingMenu:afterMenuForIdentifier:)]
+        #[unsafe(method_family = none)]
         unsafe fn insertSiblingMenu_afterMenuForIdentifier(
             &self,
             sibling_menu: &UIMenu,
@@ -129,6 +133,7 @@ extern_protocol!(
         ///
         /// Parameter `parentIdentifier`: The identifier of the parent menu to insert at the start of.
         #[method(insertChildMenu:atStartOfMenuForIdentifier:)]
+        #[unsafe(method_family = none)]
         unsafe fn insertChildMenu_atStartOfMenuForIdentifier(
             &self,
             child_menu: &UIMenu,
@@ -143,6 +148,7 @@ extern_protocol!(
         ///
         /// Parameter `parentIdentifier`: The identifier of the parent menu to insert at the end of.
         #[method(insertChildMenu:atEndOfMenuForIdentifier:)]
+        #[unsafe(method_family = none)]
         unsafe fn insertChildMenu_atEndOfMenuForIdentifier(
             &self,
             child_menu: &UIMenu,
@@ -155,6 +161,7 @@ extern_protocol!(
         ///
         /// Parameter `removedIdentifier`: The menu to remove.
         #[method(removeMenuForIdentifier:)]
+        #[unsafe(method_family = none)]
         unsafe fn removeMenuForIdentifier(&self, removed_identifier: &UIMenuIdentifier);
     }
 );

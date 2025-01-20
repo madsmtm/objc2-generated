@@ -91,45 +91,57 @@ extern_methods!(
     #[cfg(feature = "UIViewConfigurationState")]
     unsafe impl UICellConfigurationState {
         #[method(isEditing)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isEditing(&self) -> bool;
 
         /// Setter for [`isEditing`][Self::isEditing].
         #[method(setEditing:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setEditing(&self, editing: bool);
 
         #[method(isExpanded)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isExpanded(&self) -> bool;
 
         /// Setter for [`isExpanded`][Self::isExpanded].
         #[method(setExpanded:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setExpanded(&self, expanded: bool);
 
         #[method(isSwiped)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isSwiped(&self) -> bool;
 
         /// Setter for [`isSwiped`][Self::isSwiped].
         #[method(setSwiped:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSwiped(&self, swiped: bool);
 
         #[method(isReordering)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isReordering(&self) -> bool;
 
         /// Setter for [`isReordering`][Self::isReordering].
         #[method(setReordering:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setReordering(&self, reordering: bool);
 
         #[method(cellDragState)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cellDragState(&self) -> UICellConfigurationDragState;
 
         /// Setter for [`cellDragState`][Self::cellDragState].
         #[method(setCellDragState:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCellDragState(&self, cell_drag_state: UICellConfigurationDragState);
 
         #[method(cellDropState)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cellDropState(&self) -> UICellConfigurationDropState;
 
         /// Setter for [`cellDropState`][Self::cellDropState].
         #[method(setCellDropState:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCellDropState(&self, cell_drop_state: UICellConfigurationDropState);
     }
 );
@@ -140,25 +152,25 @@ extern_methods!(
     unsafe impl UICellConfigurationState {
         #[cfg(feature = "UITraitCollection")]
         /// Returns a new instance with the specified trait collection.
-        #[method_id(initWithTraitCollection:)]
+        #[method(initWithTraitCollection:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTraitCollection(
             this: Allocated<Self>,
             trait_collection: &UITraitCollection,
         ) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

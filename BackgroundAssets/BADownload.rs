@@ -85,20 +85,22 @@ extern_methods!(
     unsafe impl BADownload {
         /// The current state of the respresented download.
         #[method(state)]
+        #[unsafe(method_family = none)]
         pub unsafe fn state(&self) -> BADownloadState;
 
         /// A client defined identifier that uniquely identifies this asset.
-        #[method_id(identifier)]
+        #[method(identifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         /// A UUID that uniquely identifies the download object.
-        #[method_id(uniqueIdentifier)]
+        #[method(uniqueIdentifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn uniqueIdentifier(&self) -> Retained<NSString>;
 
         /// A client set priority to try to order downloads in order of importance
         #[method(priority)]
+        #[unsafe(method_family = none)]
         pub unsafe fn priority(&self) -> BADownloaderPriority;
 
         /// Whether this download is essential.
@@ -107,6 +109,7 @@ extern_methods!(
         /// a `BAContentRequest` type of `Update` or `Install`.
         /// Essential downloads must have an accurate `fileSize` or they will fail.
         #[method(isEssential)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isEssential(&self) -> bool;
 
         /// Copies an existing download ensuring that it has `isEssential == false`.
@@ -115,15 +118,15 @@ extern_methods!(
         /// download. It is important to note that essential downloads can only be enqueued by
         /// the app extension during a content request. If an essential download fails, `copyAsNonEssential`
         /// can be used to create a copy with `isEssential == false` that can be re-queued with `BADownloadManager`.
-        #[method_id(copyAsNonEssential)]
+        #[method(copyAsNonEssential)]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyAsNonEssential(&self) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

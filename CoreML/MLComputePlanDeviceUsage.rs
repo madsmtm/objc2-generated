@@ -23,17 +23,17 @@ unsafe impl NSObjectProtocol for MLComputePlanDeviceUsage {}
 
 extern_methods!(
     unsafe impl MLComputePlanDeviceUsage {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "MLComputeDeviceProtocol")]
         /// The compute devices that can execute the layer/operation.
-        #[method_id(supportedComputeDevices)]
+        #[method(supportedComputeDevices)]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedComputeDevices(
             &self,
@@ -41,7 +41,7 @@ extern_methods!(
 
         #[cfg(feature = "MLComputeDeviceProtocol")]
         /// The compute device that the framework prefers to execute the layer/operation.
-        #[method_id(preferredComputeDevice)]
+        #[method(preferredComputeDevice)]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredComputeDevice(
             &self,

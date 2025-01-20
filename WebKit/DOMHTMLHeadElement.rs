@@ -78,13 +78,14 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLHeadElement {
         #[deprecated]
-        #[method_id(profile)]
+        #[method(profile)]
         #[unsafe(method_family = none)]
         pub unsafe fn profile(&self) -> Retained<NSString>;
 
         /// Setter for [`profile`][Self::profile].
         #[deprecated]
         #[method(setProfile:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setProfile(&self, profile: Option<&NSString>);
     }
 );
@@ -100,7 +101,7 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLHeadElement {
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -116,7 +117,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLHeadElement {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

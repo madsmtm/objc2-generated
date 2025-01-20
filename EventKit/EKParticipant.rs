@@ -31,12 +31,12 @@ extern_methods!(
     #[cfg(feature = "EKObject")]
     unsafe impl EKParticipant {
         /// URL representing this participant.
-        #[method_id(URL)]
+        #[method(URL)]
         #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
 
         /// Name of this participant.
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
@@ -45,6 +45,7 @@ extern_methods!(
         ///
         /// Returns the status of the attendee as a EKParticipantStatus value.
         #[method(participantStatus)]
+        #[unsafe(method_family = none)]
         pub unsafe fn participantStatus(&self) -> EKParticipantStatus;
 
         #[cfg(feature = "EKTypes")]
@@ -52,6 +53,7 @@ extern_methods!(
         ///
         /// Returns the role of the attendee as a EKParticipantRole value.
         #[method(participantRole)]
+        #[unsafe(method_family = none)]
         pub unsafe fn participantRole(&self) -> EKParticipantRole;
 
         #[cfg(feature = "EKTypes")]
@@ -59,11 +61,13 @@ extern_methods!(
         ///
         /// Returns the type of the attendee as a EKParticipantType value.
         #[method(participantType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn participantType(&self) -> EKParticipantType;
 
         /// A boolean indicating whether this participant represents the
         /// owner of this account.
         #[method(isCurrentUser)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isCurrentUser(&self) -> bool;
 
         /// Returns a predicate to use with Contacts.framework to retrieve the corresponding
@@ -71,7 +75,7 @@ extern_methods!(
         ///
         /// This method returns a predicate that can be used with a CNContactStore to fetch
         /// a CNContact instance for this participant, if one exists.
-        #[method_id(contactPredicate)]
+        #[method(contactPredicate)]
         #[unsafe(method_family = none)]
         pub unsafe fn contactPredicate(&self) -> Retained<NSPredicate>;
     }
@@ -81,11 +85,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "EKObject")]
     unsafe impl EKParticipant {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -8,6 +8,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlallocation?language=objc)
     pub unsafe trait MTLAllocation: NSObjectProtocol {
         #[method(allocatedSize)]
+        #[unsafe(method_family = none)]
         unsafe fn allocatedSize(&self) -> NSUInteger;
     }
 );

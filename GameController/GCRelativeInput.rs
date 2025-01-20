@@ -23,6 +23,7 @@ extern_protocol!(
         /// Parameter `delta`: The amount that the input has changed since the last time
         /// `deltaDidChangeHandler`fired.
         #[method(deltaDidChangeHandler)]
+        #[unsafe(method_family = none)]
         unsafe fn deltaDidChangeHandler(
             &self,
         ) -> *mut block2::Block<
@@ -36,6 +37,7 @@ extern_protocol!(
         #[cfg(all(feature = "GCPhysicalInputElement", feature = "block2"))]
         /// Setter for [`deltaDidChangeHandler`][Self::deltaDidChangeHandler].
         #[method(setDeltaDidChangeHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn setDeltaDidChangeHandler(
             &self,
             delta_did_change_handler: Option<
@@ -51,6 +53,7 @@ extern_protocol!(
 
         /// The last reported delta for the input.
         #[method(delta)]
+        #[unsafe(method_family = none)]
         unsafe fn delta(&self) -> c_float;
 
         /// Check if the input can support more than just digital values.
@@ -58,6 +61,7 @@ extern_protocol!(
         /// Defaults to
         /// `YES`for most relative inputs.
         #[method(isAnalog)]
+        #[unsafe(method_family = none)]
         unsafe fn isAnalog(&self) -> bool;
 
         /// The timestamp of the last change.
@@ -66,6 +70,7 @@ extern_protocol!(
         /// subtract a previous timestamp from the current timestamp to determine the time
         /// (in seconds) between changes to the value.
         #[method(lastDeltaTimestamp)]
+        #[unsafe(method_family = none)]
         unsafe fn lastDeltaTimestamp(&self) -> NSTimeInterval;
 
         /// The interval (in seconds) between the timestamp of the last change and the
@@ -75,12 +80,13 @@ extern_protocol!(
         /// include (wired or wireless) transmission latency, or latency accrued on
         /// the device before the event was transmitted to the host.
         #[method(lastDeltaLatency)]
+        #[unsafe(method_family = none)]
         unsafe fn lastDeltaLatency(&self) -> NSTimeInterval;
 
         #[cfg(feature = "GCPhysicalInputSource")]
         /// An object describing the physical action(s) the user performs to manipulate
         /// this input.
-        #[method_id(sources)]
+        #[method(sources)]
         #[unsafe(method_family = none)]
         unsafe fn sources(&self) -> Retained<NSSet<ProtocolObject<dyn GCPhysicalInputSource>>>;
     }

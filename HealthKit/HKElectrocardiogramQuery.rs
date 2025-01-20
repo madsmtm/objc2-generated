@@ -34,13 +34,14 @@ extern_methods!(
     unsafe impl HKElectrocardiogramVoltageMeasurement {
         /// The time interval between this voltage measurement and the start of the sample.
         #[method(timeSinceSampleStart)]
+        #[unsafe(method_family = none)]
         pub unsafe fn timeSinceSampleStart(&self) -> NSTimeInterval;
 
         #[cfg(all(feature = "HKElectrocardiogram", feature = "HKQuantity"))]
         /// Returns an HKQuantity for the specified lead with a unit compatible with [HKUnit voltUnit].
         ///
         /// Parameter `lead`: The HKElectrocardiogramLead for which voltage quantity will be returned.
-        #[method_id(quantityForLead:)]
+        #[method(quantityForLead:)]
         #[unsafe(method_family = none)]
         pub unsafe fn quantityForLead(
             &self,
@@ -52,11 +53,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKElectrocardiogramVoltageMeasurement {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -95,7 +96,7 @@ extern_methods!(
         /// Parameter `electrocardiogram`: The sample for which the lead data will be returned.
         ///
         /// Parameter `dataHandler`: The block to invoke with results from the query. It will be called once for each voltage measurement. Call [query stop] to stop enumeration, if desired.
-        #[method_id(initWithElectrocardiogram:dataHandler:)]
+        #[method(initWithElectrocardiogram:dataHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithElectrocardiogram_dataHandler(
             this: Allocated<Self>,
@@ -116,7 +117,7 @@ extern_methods!(
     /// Methods declared on superclass `HKQuery`
     #[cfg(feature = "HKQuery")]
     unsafe impl HKElectrocardiogramQuery {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -126,7 +127,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "HKQuery")]
     unsafe impl HKElectrocardiogramQuery {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

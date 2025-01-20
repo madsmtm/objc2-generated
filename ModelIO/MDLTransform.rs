@@ -20,22 +20,26 @@ extern_protocol!(
     pub unsafe trait MDLTransformComponent: MDLComponent {
         /// if YES, this transform is intended to be in global space, not parent space
         #[method(resetsTransform)]
+        #[unsafe(method_family = none)]
         unsafe fn resetsTransform(&self) -> bool;
 
         /// Setter for [`resetsTransform`][Self::resetsTransform].
         #[method(setResetsTransform:)]
+        #[unsafe(method_family = none)]
         unsafe fn setResetsTransform(&self, resets_transform: bool);
 
         /// If no animation data is present, minimumTime and maximumTime will be zero
         #[method(minimumTime)]
+        #[unsafe(method_family = none)]
         unsafe fn minimumTime(&self) -> NSTimeInterval;
 
         #[method(maximumTime)]
+        #[unsafe(method_family = none)]
         unsafe fn maximumTime(&self) -> NSTimeInterval;
 
         /// An array of sample times for which a key has been stored
         /// If no animation data is present, the array will contain a single value of zero
-        #[method_id(keyTimes)]
+        #[method(keyTimes)]
         #[unsafe(method_family = none)]
         unsafe fn keyTimes(&self) -> Retained<NSArray<NSNumber>>;
     }
@@ -76,17 +80,17 @@ unsafe impl NSObjectProtocol for MDLTransform {}
 extern_methods!(
     unsafe impl MDLTransform {
         /// Initialize an MDLTransform's matrices with identity
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(initWithIdentity)]
+        #[method(initWithIdentity)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentity(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "MDLTypes")]
-        #[method_id(initWithTransformComponent:)]
+        #[method(initWithTransformComponent:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTransformComponent(
             this: Allocated<Self>,
@@ -94,7 +98,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MDLTypes")]
-        #[method_id(initWithTransformComponent:resetsTransform:)]
+        #[method(initWithTransformComponent:resetsTransform:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTransformComponent_resetsTransform(
             this: Allocated<Self>,
@@ -104,6 +108,7 @@ extern_methods!(
 
         /// Set all transform components to identity
         #[method(setIdentity)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIdentity(&self);
     }
 );
@@ -111,7 +116,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLTransform {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

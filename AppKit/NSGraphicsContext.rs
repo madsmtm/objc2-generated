@@ -79,14 +79,14 @@ unsafe impl NSObjectProtocol for NSGraphicsContext {}
 
 extern_methods!(
     unsafe impl NSGraphicsContext {
-        #[method_id(graphicsContextWithAttributes:)]
+        #[method(graphicsContextWithAttributes:)]
         #[unsafe(method_family = none)]
         pub unsafe fn graphicsContextWithAttributes(
             attributes: &NSDictionary<NSGraphicsContextAttributeKey, AnyObject>,
         ) -> Option<Retained<NSGraphicsContext>>;
 
         #[cfg(all(feature = "NSBitmapImageRep", feature = "NSImageRep"))]
-        #[method_id(graphicsContextWithBitmapImageRep:)]
+        #[method(graphicsContextWithBitmapImageRep:)]
         #[unsafe(method_family = none)]
         pub unsafe fn graphicsContextWithBitmapImageRep(
             bitmap_rep: &NSBitmapImageRep,
@@ -94,55 +94,64 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-graphics")]
         #[cfg(target_vendor = "apple")]
-        #[method_id(graphicsContextWithCGContext:flipped:)]
+        #[method(graphicsContextWithCGContext:flipped:)]
         #[unsafe(method_family = none)]
         pub unsafe fn graphicsContextWithCGContext_flipped(
             graphics_port: &CGContext,
             initial_flipped_state: bool,
         ) -> Retained<NSGraphicsContext>;
 
-        #[method_id(currentContext)]
+        #[method(currentContext)]
         #[unsafe(method_family = none)]
         pub unsafe fn currentContext() -> Option<Retained<NSGraphicsContext>>;
 
         /// Setter for [`currentContext`][Self::currentContext].
         #[method(setCurrentContext:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCurrentContext(current_context: Option<&NSGraphicsContext>);
 
         #[method(currentContextDrawingToScreen)]
+        #[unsafe(method_family = none)]
         pub unsafe fn currentContextDrawingToScreen() -> bool;
 
         #[method(saveGraphicsState)]
+        #[unsafe(method_family = none)]
         pub unsafe fn saveGraphicsState_class();
 
         #[method(restoreGraphicsState)]
+        #[unsafe(method_family = none)]
         pub unsafe fn restoreGraphicsState_class();
 
-        #[method_id(attributes)]
+        #[method(attributes)]
         #[unsafe(method_family = none)]
         pub unsafe fn attributes(
             &self,
         ) -> Option<Retained<NSDictionary<NSGraphicsContextAttributeKey, AnyObject>>>;
 
         #[method(isDrawingToScreen)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isDrawingToScreen(&self) -> bool;
 
         #[method(saveGraphicsState)]
+        #[unsafe(method_family = none)]
         pub unsafe fn saveGraphicsState(&self);
 
         #[method(restoreGraphicsState)]
+        #[unsafe(method_family = none)]
         pub unsafe fn restoreGraphicsState(&self);
 
         #[method(flushGraphics)]
+        #[unsafe(method_family = none)]
         pub unsafe fn flushGraphics(&self);
 
         #[cfg(feature = "objc2-core-graphics")]
         #[cfg(target_vendor = "apple")]
-        #[method_id(CGContext)]
+        #[method(CGContext)]
         #[unsafe(method_family = none)]
         pub unsafe fn CGContext(&self) -> Retained<CGContext>;
 
         #[method(isFlipped)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isFlipped(&self) -> bool;
     }
 );
@@ -150,11 +159,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSGraphicsContext {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -164,42 +173,52 @@ extern_methods!(
     /// NSGraphicsContext_RenderingOptions
     unsafe impl NSGraphicsContext {
         #[method(shouldAntialias)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shouldAntialias(&self) -> bool;
 
         /// Setter for [`shouldAntialias`][Self::shouldAntialias].
         #[method(setShouldAntialias:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShouldAntialias(&self, should_antialias: bool);
 
         #[method(imageInterpolation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn imageInterpolation(&self) -> NSImageInterpolation;
 
         /// Setter for [`imageInterpolation`][Self::imageInterpolation].
         #[method(setImageInterpolation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setImageInterpolation(&self, image_interpolation: NSImageInterpolation);
 
         #[method(patternPhase)]
+        #[unsafe(method_family = none)]
         pub unsafe fn patternPhase(&self) -> NSPoint;
 
         /// Setter for [`patternPhase`][Self::patternPhase].
         #[method(setPatternPhase:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPatternPhase(&self, pattern_phase: NSPoint);
 
         #[cfg(feature = "NSGraphics")]
         #[method(compositingOperation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn compositingOperation(&self) -> NSCompositingOperation;
 
         #[cfg(feature = "NSGraphics")]
         /// Setter for [`compositingOperation`][Self::compositingOperation].
         #[method(setCompositingOperation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCompositingOperation(&self, compositing_operation: NSCompositingOperation);
 
         #[cfg(feature = "NSGraphics")]
         #[method(colorRenderingIntent)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colorRenderingIntent(&self) -> NSColorRenderingIntent;
 
         #[cfg(feature = "NSGraphics")]
         /// Setter for [`colorRenderingIntent`][Self::colorRenderingIntent].
         #[method(setColorRenderingIntent:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setColorRenderingIntent(
             &self,
             color_rendering_intent: NSColorRenderingIntent,
@@ -212,7 +231,7 @@ extern_methods!(
     unsafe impl NSGraphicsContext {
         #[cfg(feature = "objc2-core-image")]
         #[cfg(target_vendor = "apple")]
-        #[method_id(CIContext)]
+        #[method(CIContext)]
         #[unsafe(method_family = none)]
         pub unsafe fn CIContext(&self) -> Option<Retained<CIContext>>;
     }
@@ -223,19 +242,21 @@ extern_methods!(
     unsafe impl NSGraphicsContext {
         #[deprecated = "This method has no effect"]
         #[method(setGraphicsState:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setGraphicsState(g_state: NSInteger);
 
         #[deprecated]
-        #[method_id(focusStack)]
+        #[method(focusStack)]
         #[unsafe(method_family = none)]
         pub unsafe fn focusStack(&self) -> Option<Retained<AnyObject>>;
 
         #[deprecated]
         #[method(setFocusStack:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFocusStack(&self, stack: Option<&AnyObject>);
 
         #[deprecated]
-        #[method_id(graphicsContextWithGraphicsPort:flipped:)]
+        #[method(graphicsContextWithGraphicsPort:flipped:)]
         #[unsafe(method_family = none)]
         pub unsafe fn graphicsContextWithGraphicsPort_flipped(
             graphics_port: NonNull<c_void>,
@@ -244,11 +265,12 @@ extern_methods!(
 
         #[deprecated]
         #[method(graphicsPort)]
+        #[unsafe(method_family = none)]
         pub unsafe fn graphicsPort(&self) -> NonNull<c_void>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         #[deprecated = "Add instances of NSView to display content in a window"]
-        #[method_id(graphicsContextWithWindow:)]
+        #[method(graphicsContextWithWindow:)]
         #[unsafe(method_family = none)]
         pub unsafe fn graphicsContextWithWindow(window: &NSWindow) -> Retained<NSGraphicsContext>;
     }

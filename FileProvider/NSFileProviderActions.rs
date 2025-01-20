@@ -84,6 +84,7 @@ extern_methods!(
         /// prevent imports in a given directory, then the directory item's capacities
         /// should exclude NSFileProviderItemCapabilitiesAllowsAddingSubItems.
         #[method(importDocumentAtURL:toParentItemIdentifier:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn importDocumentAtURL_toParentItemIdentifier_completionHandler(
             &self,
             file_url: &NSURL,
@@ -109,6 +110,7 @@ extern_methods!(
         /// method above.  Directory creation is gated by the capabilities of the
         /// destination directory, with NSFileProviderItemCapabilitiesAllowsAddingSubItems.
         #[method(createDirectoryWithName:inParentItemIdentifier:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn createDirectoryWithName_inParentItemIdentifier_completionHandler(
             &self,
             directory_name: &NSString,
@@ -130,6 +132,7 @@ extern_methods!(
         /// method above.  Renames are gated by the capabilities of the renamed item, with
         /// NSFileProviderItemCapabilitiesAllowsRenaming.
         #[method(renameItemWithIdentifier:toName:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn renameItemWithIdentifier_toName_completionHandler(
             &self,
             item_identifier: &NSFileProviderItemIdentifier,
@@ -149,6 +152,7 @@ extern_methods!(
         /// NSFileProviderItemCapabilitiesAllowsReparenting, and the destination directory
         /// with NSFileProviderItemCapabilitiesAllowsAddingSubItems.
         #[method(reparentItemWithIdentifier:toParentItemWithIdentifier:newName:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reparentItemWithIdentifier_toParentItemWithIdentifier_newName_completionHandler(
             &self,
             item_identifier: &NSFileProviderItemIdentifier,
@@ -177,6 +181,7 @@ extern_methods!(
         /// Trash is gated by the capabilities of the trashed item with
         /// NSFileProviderItemCapabilitiesAllowsTrashing.
         #[method(trashItemWithIdentifier:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn trashItemWithIdentifier_completionHandler(
             &self,
             item_identifier: &NSFileProviderItemIdentifier,
@@ -197,6 +202,7 @@ extern_methods!(
         /// Untrash is gated by the capabilities of the destination directory, with
         /// NSFileProviderItemCapabilitiesAllowsAddingSubItems.
         #[method(untrashItemWithIdentifier:toParentItemIdentifier:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn untrashItemWithIdentifier_toParentItemIdentifier_completionHandler(
             &self,
             item_identifier: &NSFileProviderItemIdentifier,
@@ -214,6 +220,7 @@ extern_methods!(
         /// Delete is gated by the capabilities of the removed item with
         /// NSFileProviderItemCapabilitiesAllowsDeleting.
         #[method(deleteItemWithIdentifier:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn deleteItemWithIdentifier_completionHandler(
             &self,
             item_identifier: &NSFileProviderItemIdentifier,
@@ -234,6 +241,7 @@ extern_methods!(
         /// The error parameter is here for debugging purposes alone; it won't be presented
         /// to the user or otherwise handled, but it will be logged.
         #[method(setLastUsedDate:forItemIdentifier:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLastUsedDate_forItemIdentifier_completionHandler(
             &self,
             last_used_date: Option<&NSDate>,
@@ -257,6 +265,7 @@ extern_methods!(
         /// On shared items, tags should sync across the devices of any one participant but
         /// shouldn't sync across users.
         #[method(setTagData:forItemIdentifier:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTagData_forItemIdentifier_completionHandler(
             &self,
             tag_data: Option<&NSData>,
@@ -279,6 +288,7 @@ extern_methods!(
         /// the completion callback with the updated favorite rank.  At a later point, the
         /// file provider should sync the new favorite rank to their server.
         #[method(setFavoriteRank:forItemIdentifier:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFavoriteRank_forItemIdentifier_completionHandler(
             &self,
             favorite_rank: Option<&NSNumber>,

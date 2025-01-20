@@ -98,10 +98,12 @@ extern_methods!(
         /// used.  The value of NSUIntegerMax thus indicates that all available input
         /// rows (beginning at primarySourceMatrixOrigin.x) should be considered.
         #[method(sourceNumberOfFeatureVectors)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sourceNumberOfFeatureVectors(&self) -> NSUInteger;
 
         /// Setter for [`sourceNumberOfFeatureVectors`][Self::sourceNumberOfFeatureVectors].
         #[method(setSourceNumberOfFeatureVectors:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSourceNumberOfFeatureVectors(
             &self,
             source_number_of_feature_vectors: NSUInteger,
@@ -121,10 +123,12 @@ extern_methods!(
         /// weightMatrix.rows - secondarySourceMatrixOrigin.x),
         /// sourceInputFeatureChannels)
         #[method(sourceInputFeatureChannels)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sourceInputFeatureChannels(&self) -> NSUInteger;
 
         /// Setter for [`sourceInputFeatureChannels`][Self::sourceInputFeatureChannels].
         #[method(setSourceInputFeatureChannels:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSourceInputFeatureChannels(
             &self,
             source_input_feature_channels: NSUInteger,
@@ -138,10 +142,12 @@ extern_methods!(
         /// columns in the weight array (beginning at secondarySourceMatrixOrigin.y)
         /// should be considered.
         #[method(sourceOutputFeatureChannels)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sourceOutputFeatureChannels(&self) -> NSUInteger;
 
         /// Setter for [`sourceOutputFeatureChannels`][Self::sourceOutputFeatureChannels].
         #[method(setSourceOutputFeatureChannels:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSourceOutputFeatureChannels(
             &self,
             source_output_feature_channels: NSUInteger,
@@ -152,10 +158,12 @@ extern_methods!(
         /// implementation subject to rounding and/or clamping as necessary.
         /// Defaults to 1.0 at initialization time.
         #[method(alpha)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alpha(&self) -> c_double;
 
         /// Setter for [`alpha`][Self::alpha].
         #[method(setAlpha:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAlpha(&self, alpha: c_double);
 
         #[cfg(feature = "MPSCNNNeuronType")]
@@ -180,6 +188,7 @@ extern_methods!(
         ///
         /// Parameter `parameterC`: parameterC of neuron activation that is shared across all output values.
         #[method(setNeuronType:parameterA:parameterB:parameterC:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setNeuronType_parameterA_parameterB_parameterC(
             &self,
             neuron_type: MPSCNNNeuronType,
@@ -191,21 +200,25 @@ extern_methods!(
         #[cfg(feature = "MPSCNNNeuronType")]
         /// Getter funtion for neuronType set using setNeuronType:parameterA:parameterB:parameterC method
         #[method(neuronType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn neuronType(&self) -> MPSCNNNeuronType;
 
         /// Getter funtion for neuronType set using setNeuronType:parameterA:parameterB:parameterC method
         #[method(neuronParameterA)]
+        #[unsafe(method_family = none)]
         pub unsafe fn neuronParameterA(&self) -> c_float;
 
         /// Getter funtion for neuronType set using setNeuronType:parameterA:parameterB:parameterC method
         #[method(neuronParameterB)]
+        #[unsafe(method_family = none)]
         pub unsafe fn neuronParameterB(&self) -> c_float;
 
         /// Getter funtion for neuronType set using setNeuronType:parameterA:parameterB:parameterC method
         #[method(neuronParameterC)]
+        #[unsafe(method_family = none)]
         pub unsafe fn neuronParameterC(&self) -> c_float;
 
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -242,6 +255,7 @@ extern_methods!(
         /// The bias vector must contain at least
         /// MIN(sourceOutputFeatureChannels, weightMatrix.columns - secondarySourceMatrixOrigin.y) elements.
         #[method(encodeToCommandBuffer:inputMatrix:weightMatrix:biasVector:resultMatrix:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_inputMatrix_weightMatrix_biasVector_resultMatrix(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -260,7 +274,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSMatrixFullyConnected object.
         ///
         /// Returns: A new MPSMatrixFullyConnected object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -280,7 +294,7 @@ extern_methods!(
         /// Returns: A pointer to a copy of this MPSKernel. This will fail, returning
         /// nil if the device is not supported. Devices must be
         /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
-        #[method_id(copyWithZone:device:)]
+        #[method(copyWithZone:device:)]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyWithZone_device(
             &self,
@@ -307,7 +321,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -325,11 +339,11 @@ extern_methods!(
         feature = "MPSMatrixTypes"
     ))]
     unsafe impl MPSMatrixFullyConnected {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -421,10 +435,12 @@ extern_methods!(
         /// This value should be equal to the corresponding value in the
         /// forward fully connected kernel.
         #[method(sourceNumberOfFeatureVectors)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sourceNumberOfFeatureVectors(&self) -> NSUInteger;
 
         /// Setter for [`sourceNumberOfFeatureVectors`][Self::sourceNumberOfFeatureVectors].
         #[method(setSourceNumberOfFeatureVectors:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSourceNumberOfFeatureVectors(
             &self,
             source_number_of_feature_vectors: NSUInteger,
@@ -438,10 +454,12 @@ extern_methods!(
         /// This value should be equal to the corresponding value in the
         /// forward fully connected kernel.
         #[method(sourceOutputFeatureChannels)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sourceOutputFeatureChannels(&self) -> NSUInteger;
 
         /// Setter for [`sourceOutputFeatureChannels`][Self::sourceOutputFeatureChannels].
         #[method(setSourceOutputFeatureChannels:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSourceOutputFeatureChannels(
             &self,
             source_output_feature_channels: NSUInteger,
@@ -454,10 +472,12 @@ extern_methods!(
         /// This value should be equal to the corresponding value in the
         /// forward fully connected kernel.
         #[method(sourceInputFeatureChannels)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sourceInputFeatureChannels(&self) -> NSUInteger;
 
         /// Setter for [`sourceInputFeatureChannels`][Self::sourceInputFeatureChannels].
         #[method(setSourceInputFeatureChannels:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSourceInputFeatureChannels(
             &self,
             source_input_feature_channels: NSUInteger,
@@ -466,13 +486,15 @@ extern_methods!(
         /// Scale factor to apply to the product.  This value should be equal
         /// to the corresponding value in the forward fully connected kernel.
         #[method(alpha)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alpha(&self) -> c_double;
 
         /// Setter for [`alpha`][Self::alpha].
         #[method(setAlpha:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAlpha(&self, alpha: c_double);
 
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -499,6 +521,7 @@ extern_methods!(
         /// to the forward kernel's input data.  weightMatrix should contain the same values
         /// used to compute the result of the forward kernel.
         #[method(encodeGradientForDataToCommandBuffer:gradientMatrix:weightMatrix:resultGradientForDataMatrix:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeGradientForDataToCommandBuffer_gradientMatrix_weightMatrix_resultGradientForDataMatrix(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -534,6 +557,7 @@ extern_methods!(
         /// to the forward kernel's weight data.  inputMatrix should contain the same values
         /// used to compute the result of the forward kernel.
         #[method(encodeGradientForWeightsAndBiasToCommandBuffer:gradientMatrix:inputMatrix:resultGradientForWeightMatrix:resultGradientForBiasVector:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeGradientForWeightsAndBiasToCommandBuffer_gradientMatrix_inputMatrix_resultGradientForWeightMatrix_resultGradientForBiasVector(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -552,7 +576,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSMatrixFullyConnectedGradient object.
         ///
         /// Returns: A new MPSMatrixFullyConnected object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -572,7 +596,7 @@ extern_methods!(
         /// Returns: A pointer to a copy of this MPSKernel. This will fail, returning
         /// nil if the device is not supported. Devices must be
         /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
-        #[method_id(copyWithZone:device:)]
+        #[method(copyWithZone:device:)]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyWithZone_device(
             &self,
@@ -599,7 +623,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -617,11 +641,11 @@ extern_methods!(
         feature = "MPSMatrixTypes"
     ))]
     unsafe impl MPSMatrixFullyConnectedGradient {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

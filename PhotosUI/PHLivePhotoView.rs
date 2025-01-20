@@ -110,7 +110,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl PHLivePhotoView {
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -119,6 +119,7 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn PHLivePhotoViewDelegate>>,
@@ -126,62 +127,74 @@ extern_methods!(
 
         #[cfg(feature = "objc2-photos")]
         /// Live photo displayed in the receiver.
-        #[method_id(livePhoto)]
+        #[method(livePhoto)]
         #[unsafe(method_family = none)]
         pub unsafe fn livePhoto(&self) -> Option<Retained<PHLivePhoto>>;
 
         #[cfg(feature = "objc2-photos")]
         /// Setter for [`livePhoto`][Self::livePhoto].
         #[method(setLivePhoto:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLivePhoto(&self, live_photo: Option<&PHLivePhoto>);
 
         /// The mode in which the receiver will display its content. Defaults to PHLivePhotoViewContentModeAspectFit.
         #[method(contentMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contentMode(&self) -> PHLivePhotoViewContentMode;
 
         /// Setter for [`contentMode`][Self::contentMode].
         #[method(setContentMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setContentMode(&self, content_mode: PHLivePhotoViewContentMode);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The rectangle, in the unit coordinate space, that defines the portion of the Live Photo contents that should be displayed. In this coordinate system, the point `{0.0,0.0}` refers to the upper left corner of the Live Photo, and `{1.0,1.0}` refers to the bottom right corner.
         #[method(contentsRect)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contentsRect(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`contentsRect`][Self::contentsRect].
         #[method(setContentsRect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setContentsRect(&self, contents_rect: CGRect);
 
         /// The audio volume during playback
         #[method(audioVolume)]
+        #[unsafe(method_family = none)]
         pub unsafe fn audioVolume(&self) -> c_float;
 
         /// Setter for [`audioVolume`][Self::audioVolume].
         #[method(setAudioVolume:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAudioVolume(&self, audio_volume: c_float);
 
         /// Indicates whether the audio of the Live Photo is muted.
         #[method(isMuted)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isMuted(&self) -> bool;
 
         /// Setter for [`isMuted`][Self::isMuted].
         #[method(setMuted:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMuted(&self, muted: bool);
 
         /// The following methods allow the client to manually trigger playback. If the live photo is changed during playback, it will be immediately interrupted.
         #[method(startPlaybackWithStyle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn startPlaybackWithStyle(&self, playback_style: PHLivePhotoViewPlaybackStyle);
 
         #[method(stopPlayback)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stopPlayback(&self);
 
         /// Stops live photo playback. If animated is NO, the photo is immediately displayed.
         #[method(stopPlaybackAnimated:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stopPlaybackAnimated(&self, animated: bool);
 
         /// Directly access the livePhotoBadge in cases where it should be added to a different place in the view hierarchy and not the live photo view. This can be useful when the live photo view is added to a scroll view.
-        #[method_id(livePhotoBadgeView)]
+        #[method(livePhotoBadgeView)]
         #[unsafe(method_family = none)]
         pub unsafe fn livePhotoBadgeView(&self) -> Option<Retained<NSView>>;
     }
@@ -192,11 +205,11 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl PHLivePhotoView {
-        #[method_id(initWithFrame:)]
+        #[method(initWithFrame:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -210,7 +223,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl PHLivePhotoView {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -221,7 +234,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl PHLivePhotoView {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -234,6 +247,7 @@ extern_protocol!(
         #[cfg(target_os = "macos")]
         #[optional]
         #[method(livePhotoView:canBeginPlaybackWithStyle:)]
+        #[unsafe(method_family = none)]
         unsafe fn livePhotoView_canBeginPlaybackWithStyle(
             &self,
             live_photo_view: &PHLivePhotoView,
@@ -244,6 +258,7 @@ extern_protocol!(
         #[cfg(target_os = "macos")]
         #[optional]
         #[method(livePhotoView:willBeginPlaybackWithStyle:)]
+        #[unsafe(method_family = none)]
         unsafe fn livePhotoView_willBeginPlaybackWithStyle(
             &self,
             live_photo_view: &PHLivePhotoView,
@@ -254,6 +269,7 @@ extern_protocol!(
         #[cfg(target_os = "macos")]
         #[optional]
         #[method(livePhotoView:didEndPlaybackWithStyle:)]
+        #[unsafe(method_family = none)]
         unsafe fn livePhotoView_didEndPlaybackWithStyle(
             &self,
             live_photo_view: &PHLivePhotoView,

@@ -23,10 +23,12 @@ extern_protocol!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldrawable?language=objc)
     pub unsafe trait MTLDrawable: NSObjectProtocol {
         #[method(present)]
+        #[unsafe(method_family = none)]
         fn present(&self);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(presentAtTime:)]
+        #[unsafe(method_family = none)]
         unsafe fn presentAtTime(&self, presentation_time: CFTimeInterval);
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -34,11 +36,13 @@ extern_protocol!(
         ///
         /// Parameter `duration`: Duration in seconds before this drawable is allowed to appear on the display
         #[method(presentAfterMinimumDuration:)]
+        #[unsafe(method_family = none)]
         unsafe fn presentAfterMinimumDuration(&self, duration: CFTimeInterval);
 
         #[cfg(feature = "block2")]
         /// Add a block to be called when this drawable is presented on screen.
         #[method(addPresentedHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn addPresentedHandler(&self, block: MTLDrawablePresentedHandler);
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -46,12 +50,14 @@ extern_protocol!(
         ///
         /// Returns 0 if a frame has not been presented or has been skipped.
         #[method(presentedTime)]
+        #[unsafe(method_family = none)]
         unsafe fn presentedTime(&self) -> CFTimeInterval;
 
         /// The monotonically incremented ID for all MTLDrawable objects created from the same CAMetalLayer object.
         ///
         /// The value starts from 0.
         #[method(drawableID)]
+        #[unsafe(method_family = none)]
         fn drawableID(&self) -> NSUInteger;
     }
 );

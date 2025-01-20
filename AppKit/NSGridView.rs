@@ -118,18 +118,18 @@ unsafe impl NSUserInterfaceItemIdentification for NSGridView {}
 extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSGridView {
-        #[method_id(initWithFrame:)]
+        #[method(initWithFrame:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(gridViewWithNumberOfColumns:rows:)]
+        #[method(gridViewWithNumberOfColumns:rows:)]
         #[unsafe(method_family = none)]
         pub unsafe fn gridViewWithNumberOfColumns_rows(
             column_count: NSInteger,
@@ -137,7 +137,7 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[method_id(gridViewWithViews:)]
+        #[method(gridViewWithViews:)]
         #[unsafe(method_family = none)]
         pub unsafe fn gridViewWithViews(
             rows: &NSArray<NSArray<NSView>>,
@@ -145,26 +145,30 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[method(numberOfRows)]
+        #[unsafe(method_family = none)]
         pub unsafe fn numberOfRows(&self) -> NSInteger;
 
         #[method(numberOfColumns)]
+        #[unsafe(method_family = none)]
         pub unsafe fn numberOfColumns(&self) -> NSInteger;
 
-        #[method_id(rowAtIndex:)]
+        #[method(rowAtIndex:)]
         #[unsafe(method_family = none)]
         pub unsafe fn rowAtIndex(&self, index: NSInteger) -> Retained<NSGridRow>;
 
         #[method(indexOfRow:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indexOfRow(&self, row: &NSGridRow) -> NSInteger;
 
-        #[method_id(columnAtIndex:)]
+        #[method(columnAtIndex:)]
         #[unsafe(method_family = none)]
         pub unsafe fn columnAtIndex(&self, index: NSInteger) -> Retained<NSGridColumn>;
 
         #[method(indexOfColumn:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indexOfColumn(&self, column: &NSGridColumn) -> NSInteger;
 
-        #[method_id(cellAtColumnIndex:rowIndex:)]
+        #[method(cellAtColumnIndex:rowIndex:)]
         #[unsafe(method_family = none)]
         pub unsafe fn cellAtColumnIndex_rowIndex(
             &self,
@@ -172,15 +176,15 @@ extern_methods!(
             row_index: NSInteger,
         ) -> Retained<NSGridCell>;
 
-        #[method_id(cellForView:)]
+        #[method(cellForView:)]
         #[unsafe(method_family = none)]
         pub unsafe fn cellForView(&self, view: &NSView) -> Option<Retained<NSGridCell>>;
 
-        #[method_id(addRowWithViews:)]
+        #[method(addRowWithViews:)]
         #[unsafe(method_family = none)]
         pub unsafe fn addRowWithViews(&self, views: &NSArray<NSView>) -> Retained<NSGridRow>;
 
-        #[method_id(insertRowAtIndex:withViews:)]
+        #[method(insertRowAtIndex:withViews:)]
         #[unsafe(method_family = none)]
         pub unsafe fn insertRowAtIndex_withViews(
             &self,
@@ -189,16 +193,18 @@ extern_methods!(
         ) -> Retained<NSGridRow>;
 
         #[method(moveRowAtIndex:toIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn moveRowAtIndex_toIndex(&self, from_index: NSInteger, to_index: NSInteger);
 
         #[method(removeRowAtIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeRowAtIndex(&self, index: NSInteger);
 
-        #[method_id(addColumnWithViews:)]
+        #[method(addColumnWithViews:)]
         #[unsafe(method_family = none)]
         pub unsafe fn addColumnWithViews(&self, views: &NSArray<NSView>) -> Retained<NSGridColumn>;
 
-        #[method_id(insertColumnAtIndex:withViews:)]
+        #[method(insertColumnAtIndex:withViews:)]
         #[unsafe(method_family = none)]
         pub unsafe fn insertColumnAtIndex_withViews(
             &self,
@@ -207,51 +213,64 @@ extern_methods!(
         ) -> Retained<NSGridColumn>;
 
         #[method(moveColumnAtIndex:toIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn moveColumnAtIndex_toIndex(&self, from_index: NSInteger, to_index: NSInteger);
 
         #[method(removeColumnAtIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeColumnAtIndex(&self, index: NSInteger);
 
         #[method(xPlacement)]
+        #[unsafe(method_family = none)]
         pub unsafe fn xPlacement(&self) -> NSGridCellPlacement;
 
         /// Setter for [`xPlacement`][Self::xPlacement].
         #[method(setXPlacement:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setXPlacement(&self, x_placement: NSGridCellPlacement);
 
         #[method(yPlacement)]
+        #[unsafe(method_family = none)]
         pub unsafe fn yPlacement(&self) -> NSGridCellPlacement;
 
         /// Setter for [`yPlacement`][Self::yPlacement].
         #[method(setYPlacement:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setYPlacement(&self, y_placement: NSGridCellPlacement);
 
         #[method(rowAlignment)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rowAlignment(&self) -> NSGridRowAlignment;
 
         /// Setter for [`rowAlignment`][Self::rowAlignment].
         #[method(setRowAlignment:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRowAlignment(&self, row_alignment: NSGridRowAlignment);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(rowSpacing)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rowSpacing(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`rowSpacing`][Self::rowSpacing].
         #[method(setRowSpacing:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRowSpacing(&self, row_spacing: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(columnSpacing)]
+        #[unsafe(method_family = none)]
         pub unsafe fn columnSpacing(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`columnSpacing`][Self::columnSpacing].
         #[method(setColumnSpacing:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setColumnSpacing(&self, column_spacing: CGFloat);
 
         #[method(mergeCellsInHorizontalRange:verticalRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mergeCellsInHorizontalRange_verticalRange(
             &self,
             h_range: NSRange,
@@ -264,7 +283,7 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSGridView {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -274,7 +293,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSGridView {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -295,66 +314,80 @@ unsafe impl NSObjectProtocol for NSGridRow {}
 extern_methods!(
     unsafe impl NSGridRow {
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-        #[method_id(gridView)]
+        #[method(gridView)]
         #[unsafe(method_family = none)]
         pub unsafe fn gridView(&self) -> Option<Retained<NSGridView>>;
 
         #[method(numberOfCells)]
+        #[unsafe(method_family = none)]
         pub unsafe fn numberOfCells(&self) -> NSInteger;
 
-        #[method_id(cellAtIndex:)]
+        #[method(cellAtIndex:)]
         #[unsafe(method_family = none)]
         pub unsafe fn cellAtIndex(&self, index: NSInteger) -> Retained<NSGridCell>;
 
         #[method(yPlacement)]
+        #[unsafe(method_family = none)]
         pub unsafe fn yPlacement(&self) -> NSGridCellPlacement;
 
         /// Setter for [`yPlacement`][Self::yPlacement].
         #[method(setYPlacement:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setYPlacement(&self, y_placement: NSGridCellPlacement);
 
         #[method(rowAlignment)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rowAlignment(&self) -> NSGridRowAlignment;
 
         /// Setter for [`rowAlignment`][Self::rowAlignment].
         #[method(setRowAlignment:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRowAlignment(&self, row_alignment: NSGridRowAlignment);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(height)]
+        #[unsafe(method_family = none)]
         pub unsafe fn height(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`height`][Self::height].
         #[method(setHeight:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setHeight(&self, height: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(topPadding)]
+        #[unsafe(method_family = none)]
         pub unsafe fn topPadding(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`topPadding`][Self::topPadding].
         #[method(setTopPadding:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTopPadding(&self, top_padding: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(bottomPadding)]
+        #[unsafe(method_family = none)]
         pub unsafe fn bottomPadding(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`bottomPadding`][Self::bottomPadding].
         #[method(setBottomPadding:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBottomPadding(&self, bottom_padding: CGFloat);
 
         #[method(isHidden)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isHidden(&self) -> bool;
 
         /// Setter for [`isHidden`][Self::isHidden].
         #[method(setHidden:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setHidden(&self, hidden: bool);
 
         #[method(mergeCellsInRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mergeCellsInRange(&self, range: NSRange);
     }
 );
@@ -362,11 +395,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSGridRow {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -387,59 +420,71 @@ unsafe impl NSObjectProtocol for NSGridColumn {}
 extern_methods!(
     unsafe impl NSGridColumn {
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-        #[method_id(gridView)]
+        #[method(gridView)]
         #[unsafe(method_family = none)]
         pub unsafe fn gridView(&self) -> Option<Retained<NSGridView>>;
 
         #[method(numberOfCells)]
+        #[unsafe(method_family = none)]
         pub unsafe fn numberOfCells(&self) -> NSInteger;
 
-        #[method_id(cellAtIndex:)]
+        #[method(cellAtIndex:)]
         #[unsafe(method_family = none)]
         pub unsafe fn cellAtIndex(&self, index: NSInteger) -> Retained<NSGridCell>;
 
         #[method(xPlacement)]
+        #[unsafe(method_family = none)]
         pub unsafe fn xPlacement(&self) -> NSGridCellPlacement;
 
         /// Setter for [`xPlacement`][Self::xPlacement].
         #[method(setXPlacement:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setXPlacement(&self, x_placement: NSGridCellPlacement);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(width)]
+        #[unsafe(method_family = none)]
         pub unsafe fn width(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWidth(&self, width: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(leadingPadding)]
+        #[unsafe(method_family = none)]
         pub unsafe fn leadingPadding(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`leadingPadding`][Self::leadingPadding].
         #[method(setLeadingPadding:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLeadingPadding(&self, leading_padding: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(trailingPadding)]
+        #[unsafe(method_family = none)]
         pub unsafe fn trailingPadding(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`trailingPadding`][Self::trailingPadding].
         #[method(setTrailingPadding:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTrailingPadding(&self, trailing_padding: CGFloat);
 
         #[method(isHidden)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isHidden(&self) -> bool;
 
         /// Setter for [`isHidden`][Self::isHidden].
         #[method(setHidden:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setHidden(&self, hidden: bool);
 
         #[method(mergeCellsInRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mergeCellsInRange(&self, range: NSRange);
     }
 );
@@ -447,11 +492,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSGridColumn {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -472,57 +517,65 @@ unsafe impl NSObjectProtocol for NSGridCell {}
 extern_methods!(
     unsafe impl NSGridCell {
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-        #[method_id(contentView)]
+        #[method(contentView)]
         #[unsafe(method_family = none)]
         pub unsafe fn contentView(&self) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         /// Setter for [`contentView`][Self::contentView].
         #[method(setContentView:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setContentView(&self, content_view: Option<&NSView>);
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-        #[method_id(emptyContentView)]
+        #[method(emptyContentView)]
         #[unsafe(method_family = none)]
         pub unsafe fn emptyContentView(mtm: MainThreadMarker) -> Retained<NSView>;
 
-        #[method_id(row)]
+        #[method(row)]
         #[unsafe(method_family = none)]
         pub unsafe fn row(&self) -> Option<Retained<NSGridRow>>;
 
-        #[method_id(column)]
+        #[method(column)]
         #[unsafe(method_family = none)]
         pub unsafe fn column(&self) -> Option<Retained<NSGridColumn>>;
 
         #[method(xPlacement)]
+        #[unsafe(method_family = none)]
         pub unsafe fn xPlacement(&self) -> NSGridCellPlacement;
 
         /// Setter for [`xPlacement`][Self::xPlacement].
         #[method(setXPlacement:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setXPlacement(&self, x_placement: NSGridCellPlacement);
 
         #[method(yPlacement)]
+        #[unsafe(method_family = none)]
         pub unsafe fn yPlacement(&self) -> NSGridCellPlacement;
 
         /// Setter for [`yPlacement`][Self::yPlacement].
         #[method(setYPlacement:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setYPlacement(&self, y_placement: NSGridCellPlacement);
 
         #[method(rowAlignment)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rowAlignment(&self) -> NSGridRowAlignment;
 
         /// Setter for [`rowAlignment`][Self::rowAlignment].
         #[method(setRowAlignment:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRowAlignment(&self, row_alignment: NSGridRowAlignment);
 
         #[cfg(feature = "NSLayoutConstraint")]
-        #[method_id(customPlacementConstraints)]
+        #[method(customPlacementConstraints)]
         #[unsafe(method_family = none)]
         pub unsafe fn customPlacementConstraints(&self) -> Retained<NSArray<NSLayoutConstraint>>;
 
         #[cfg(feature = "NSLayoutConstraint")]
         /// Setter for [`customPlacementConstraints`][Self::customPlacementConstraints].
         #[method(setCustomPlacementConstraints:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCustomPlacementConstraints(
             &self,
             custom_placement_constraints: &NSArray<NSLayoutConstraint>,
@@ -533,11 +586,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSGridCell {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

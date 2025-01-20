@@ -28,7 +28,7 @@ extern_methods!(
     #[cfg(feature = "MKShape")]
     unsafe impl MKCircle {
         #[cfg(feature = "objc2-core-location")]
-        #[method_id(circleWithCenterCoordinate:radius:)]
+        #[method(circleWithCenterCoordinate:radius:)]
         #[unsafe(method_family = none)]
         pub unsafe fn circleWithCenterCoordinate_radius(
             coord: CLLocationCoordinate2D,
@@ -36,20 +36,23 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MKGeometry")]
-        #[method_id(circleWithMapRect:)]
+        #[method(circleWithMapRect:)]
         #[unsafe(method_family = none)]
         pub unsafe fn circleWithMapRect(map_rect: MKMapRect) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-location")]
         #[method(coordinate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn coordinate(&self) -> CLLocationCoordinate2D;
 
         #[cfg(feature = "objc2-core-location")]
         #[method(radius)]
+        #[unsafe(method_family = none)]
         pub unsafe fn radius(&self) -> CLLocationDistance;
 
         #[cfg(feature = "MKGeometry")]
         #[method(boundingMapRect)]
+        #[unsafe(method_family = none)]
         pub unsafe fn boundingMapRect(&self) -> MKMapRect;
     }
 );
@@ -58,11 +61,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MKShape")]
     unsafe impl MKCircle {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

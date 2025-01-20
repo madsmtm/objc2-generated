@@ -44,32 +44,34 @@ unsafe impl NSObjectProtocol for NSMergeConflict {}
 extern_methods!(
     unsafe impl NSMergeConflict {
         #[cfg(feature = "NSManagedObject")]
-        #[method_id(sourceObject)]
+        #[method(sourceObject)]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceObject(&self) -> Retained<NSManagedObject>;
 
-        #[method_id(objectSnapshot)]
+        #[method(objectSnapshot)]
         #[unsafe(method_family = none)]
         pub unsafe fn objectSnapshot(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
-        #[method_id(cachedSnapshot)]
+        #[method(cachedSnapshot)]
         #[unsafe(method_family = none)]
         pub unsafe fn cachedSnapshot(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
-        #[method_id(persistedSnapshot)]
+        #[method(persistedSnapshot)]
         #[unsafe(method_family = none)]
         pub unsafe fn persistedSnapshot(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         #[method(newVersionNumber)]
+        #[unsafe(method_family = none)]
         pub unsafe fn newVersionNumber(&self) -> NSUInteger;
 
         #[method(oldVersionNumber)]
+        #[unsafe(method_family = none)]
         pub unsafe fn oldVersionNumber(&self) -> NSUInteger;
 
         #[cfg(feature = "NSManagedObject")]
-        #[method_id(initWithSource:newVersion:oldVersion:cachedSnapshot:persistedSnapshot:)]
+        #[method(initWithSource:newVersion:oldVersion:cachedSnapshot:persistedSnapshot:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSource_newVersion_oldVersion_cachedSnapshot_persistedSnapshot(
             this: Allocated<Self>,
@@ -80,7 +82,7 @@ extern_methods!(
             persnap: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -89,7 +91,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSMergeConflict {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -106,36 +108,36 @@ unsafe impl NSObjectProtocol for NSConstraintConflict {}
 
 extern_methods!(
     unsafe impl NSConstraintConflict {
-        #[method_id(constraint)]
+        #[method(constraint)]
         #[unsafe(method_family = none)]
         pub unsafe fn constraint(&self) -> Retained<NSArray<NSString>>;
 
-        #[method_id(constraintValues)]
+        #[method(constraintValues)]
         #[unsafe(method_family = none)]
         pub unsafe fn constraintValues(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[cfg(feature = "NSManagedObject")]
-        #[method_id(databaseObject)]
+        #[method(databaseObject)]
         #[unsafe(method_family = none)]
         pub unsafe fn databaseObject(&self) -> Option<Retained<NSManagedObject>>;
 
-        #[method_id(databaseSnapshot)]
+        #[method(databaseSnapshot)]
         #[unsafe(method_family = none)]
         pub unsafe fn databaseSnapshot(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(feature = "NSManagedObject")]
-        #[method_id(conflictingObjects)]
+        #[method(conflictingObjects)]
         #[unsafe(method_family = none)]
         pub unsafe fn conflictingObjects(&self) -> Retained<NSArray<NSManagedObject>>;
 
-        #[method_id(conflictingSnapshots)]
+        #[method(conflictingSnapshots)]
         #[unsafe(method_family = none)]
         pub unsafe fn conflictingSnapshots(&self) -> Retained<NSArray<NSDictionary>>;
 
         #[cfg(feature = "NSManagedObject")]
-        #[method_id(initWithConstraint:databaseObject:databaseSnapshot:conflictingObjects:conflictingSnapshots:)]
+        #[method(initWithConstraint:databaseObject:databaseSnapshot:conflictingObjects:conflictingSnapshots:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithConstraint_databaseObject_databaseSnapshot_conflictingObjects_conflictingSnapshots(
             this: Allocated<Self>,
@@ -151,11 +153,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSConstraintConflict {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -172,53 +174,57 @@ unsafe impl NSObjectProtocol for NSMergePolicy {}
 
 extern_methods!(
     unsafe impl NSMergePolicy {
-        #[method_id(errorMergePolicy)]
+        #[method(errorMergePolicy)]
         #[unsafe(method_family = none)]
         pub unsafe fn errorMergePolicy() -> Retained<NSMergePolicy>;
 
-        #[method_id(rollbackMergePolicy)]
+        #[method(rollbackMergePolicy)]
         #[unsafe(method_family = none)]
         pub unsafe fn rollbackMergePolicy() -> Retained<NSMergePolicy>;
 
-        #[method_id(overwriteMergePolicy)]
+        #[method(overwriteMergePolicy)]
         #[unsafe(method_family = none)]
         pub unsafe fn overwriteMergePolicy() -> Retained<NSMergePolicy>;
 
-        #[method_id(mergeByPropertyObjectTrumpMergePolicy)]
+        #[method(mergeByPropertyObjectTrumpMergePolicy)]
         #[unsafe(method_family = none)]
         pub unsafe fn mergeByPropertyObjectTrumpMergePolicy() -> Retained<NSMergePolicy>;
 
-        #[method_id(mergeByPropertyStoreTrumpMergePolicy)]
+        #[method(mergeByPropertyStoreTrumpMergePolicy)]
         #[unsafe(method_family = none)]
         pub unsafe fn mergeByPropertyStoreTrumpMergePolicy() -> Retained<NSMergePolicy>;
 
         #[method(mergeType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mergeType(&self) -> NSMergePolicyType;
 
-        #[method_id(initWithMergeType:)]
+        #[method(initWithMergeType:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMergeType(
             this: Allocated<Self>,
             ty: NSMergePolicyType,
         ) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(resolveConflicts:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resolveConflicts_error(
             &self,
             list: &NSArray,
         ) -> Result<(), Retained<NSError>>;
 
         #[method(resolveOptimisticLockingVersionConflicts:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resolveOptimisticLockingVersionConflicts_error(
             &self,
             list: &NSArray<NSMergeConflict>,
         ) -> Result<(), Retained<NSError>>;
 
         #[method(resolveConstraintConflicts:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resolveConstraintConflicts_error(
             &self,
             list: &NSArray<NSConstraintConflict>,
@@ -229,7 +235,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSMergePolicy {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

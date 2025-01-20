@@ -25,31 +25,31 @@ extern_methods!(
     unsafe impl MEMessageSigner {
         #[cfg(feature = "MEEmailAddress")]
         /// Email addresses associated with the signature.
-        #[method_id(emailAddresses)]
+        #[method(emailAddresses)]
         #[unsafe(method_family = none)]
         pub unsafe fn emailAddresses(&self) -> Retained<NSArray<MEEmailAddress>>;
 
         /// The message signers label. Shown in the message header view. For instance, "John Smith".
-        #[method_id(label)]
+        #[method(label)]
         #[unsafe(method_family = none)]
         pub unsafe fn label(&self) -> Retained<NSString>;
 
         /// The context for the message signature. This might include the signing certificate. This will be passed back to the extension for
         /// either verifying the signature or if the user wishes to view signature information.
-        #[method_id(context)]
+        #[method(context)]
         #[unsafe(method_family = none)]
         pub unsafe fn context(&self) -> Retained<NSData>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "MEEmailAddress")]
-        #[method_id(initWithEmailAddresses:signatureLabel:context:)]
+        #[method(initWithEmailAddresses:signatureLabel:context:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithEmailAddresses_signatureLabel_context(
             this: Allocated<Self>,

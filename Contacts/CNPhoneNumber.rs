@@ -33,12 +33,12 @@ unsafe impl NSSecureCoding for CNPhoneNumber {}
 extern_methods!(
     unsafe impl CNPhoneNumber {
         /// These will return nil if the stringValue is nil.
-        #[method_id(phoneNumberWithStringValue:)]
+        #[method(phoneNumberWithStringValue:)]
         #[unsafe(method_family = none)]
         pub unsafe fn phoneNumberWithStringValue(string_value: &NSString)
             -> Option<Retained<Self>>;
 
-        #[method_id(initWithStringValue:)]
+        #[method(initWithStringValue:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithStringValue(
             this: Allocated<Self>,
@@ -46,16 +46,16 @@ extern_methods!(
         ) -> Retained<CNPhoneNumber>;
 
         #[deprecated = "Use initWithStringValue:"]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[deprecated = "Use phoneNumberWithStringValue:"]
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(stringValue)]
+        #[method(stringValue)]
         #[unsafe(method_family = none)]
         pub unsafe fn stringValue(&self) -> Retained<NSString>;
     }

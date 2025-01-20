@@ -21,7 +21,7 @@ unsafe impl NSObjectProtocol for CKOperation {}
 
 extern_methods!(
     unsafe impl CKOperation {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -29,30 +29,32 @@ extern_methods!(
         ///
         ///
         /// See the CKOperationConfiguration class description for info on how this configuration composes with CKOperationGroup.defaultConfiguration
-        #[method_id(configuration)]
+        #[method(configuration)]
         #[unsafe(method_family = none)]
         pub unsafe fn configuration(&self) -> Retained<CKOperationConfiguration>;
 
         /// Setter for [`configuration`][Self::configuration].
         #[method(setConfiguration:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setConfiguration(&self, configuration: Option<&CKOperationConfiguration>);
 
         #[cfg(feature = "CKOperationGroup")]
         /// The group this operation is associated with
-        #[method_id(group)]
+        #[method(group)]
         #[unsafe(method_family = none)]
         pub unsafe fn group(&self) -> Option<Retained<CKOperationGroup>>;
 
         #[cfg(feature = "CKOperationGroup")]
         /// Setter for [`group`][Self::group].
         #[method(setGroup:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setGroup(&self, group: Option<&CKOperationGroup>);
 
         /// This is an identifier unique to this CKOperation.
         ///
         ///
         /// This value is chosen by the system, and will be unique to this instance of a CKOperation.  This identifier will be sent to Apple's servers, and can be used to identify any server-side logging associated with this operation.
-        #[method_id(operationID)]
+        #[method(operationID)]
         #[unsafe(method_family = none)]
         pub unsafe fn operationID(&self) -> Retained<CKOperationID>;
 
@@ -66,11 +68,13 @@ extern_methods!(
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(longLivedOperationWasPersistedBlock)]
+        #[unsafe(method_family = none)]
         pub unsafe fn longLivedOperationWasPersistedBlock(&self) -> *mut block2::Block<dyn Fn()>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`longLivedOperationWasPersistedBlock`][Self::longLivedOperationWasPersistedBlock].
         #[method(setLongLivedOperationWasPersistedBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLongLivedOperationWasPersistedBlock(
             &self,
             long_lived_operation_was_persisted_block: Option<&block2::Block<dyn Fn()>>,
@@ -81,7 +85,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CKOperation {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -120,13 +124,14 @@ extern_methods!(
     unsafe impl CKOperationConfiguration {
         #[cfg(feature = "CKContainer")]
         /// If no container is set, [CKContainer defaultContainer] is used
-        #[method_id(container)]
+        #[method(container)]
         #[unsafe(method_family = none)]
         pub unsafe fn container(&self) -> Option<Retained<CKContainer>>;
 
         #[cfg(feature = "CKContainer")]
         /// Setter for [`container`][Self::container].
         #[method(setContainer:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setContainer(&self, container: Option<&CKContainer>);
 
         /// CKOperations behave differently depending on how you set qualityOfService.
@@ -155,19 +160,23 @@ extern_methods!(
         ///
         /// CKOperations have a default qualityOfService of Default.
         #[method(qualityOfService)]
+        #[unsafe(method_family = none)]
         pub unsafe fn qualityOfService(&self) -> NSQualityOfService;
 
         /// Setter for [`qualityOfService`][Self::qualityOfService].
         #[method(setQualityOfService:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setQualityOfService(&self, quality_of_service: NSQualityOfService);
 
         /// Defaults to
         /// `YES`
         #[method(allowsCellularAccess)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowsCellularAccess(&self) -> bool;
 
         /// Setter for [`allowsCellularAccess`][Self::allowsCellularAccess].
         #[method(setAllowsCellularAccess:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAllowsCellularAccess(&self, allows_cellular_access: bool);
 
         /// Long lived operations will continue running even if your process exits. If your process remains alive for the lifetime of the long lived operation its behavior is the same as a regular operation.
@@ -181,10 +190,12 @@ extern_methods!(
         ///
         /// The default value for longLived is NO. Changing the value of longLived on an already started operation or on an outstanding long lived operation fetched from CKContainer has no effect.
         #[method(isLongLived)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isLongLived(&self) -> bool;
 
         /// Setter for [`isLongLived`][Self::isLongLived].
         #[method(setLongLived:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLongLived(&self, long_lived: bool);
 
         /// If non-zero, overrides the timeout interval for any network requests issued by this operation.
@@ -193,10 +204,12 @@ extern_methods!(
         ///
         /// See: NSURLSessionConfiguration.timeoutIntervalForRequest
         #[method(timeoutIntervalForRequest)]
+        #[unsafe(method_family = none)]
         pub unsafe fn timeoutIntervalForRequest(&self) -> NSTimeInterval;
 
         /// Setter for [`timeoutIntervalForRequest`][Self::timeoutIntervalForRequest].
         #[method(setTimeoutIntervalForRequest:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTimeoutIntervalForRequest(
             &self,
             timeout_interval_for_request: NSTimeInterval,
@@ -208,10 +221,12 @@ extern_methods!(
         ///
         /// See: NSURLSessionConfiguration.timeoutIntervalForResource
         #[method(timeoutIntervalForResource)]
+        #[unsafe(method_family = none)]
         pub unsafe fn timeoutIntervalForResource(&self) -> NSTimeInterval;
 
         /// Setter for [`timeoutIntervalForResource`][Self::timeoutIntervalForResource].
         #[method(setTimeoutIntervalForResource:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTimeoutIntervalForResource(
             &self,
             timeout_interval_for_resource: NSTimeInterval,
@@ -222,11 +237,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CKOperationConfiguration {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -238,7 +253,7 @@ extern_methods!(
     unsafe impl CKOperation {
         #[cfg(feature = "CKContainer")]
         #[deprecated = "Use CKOperationConfiguration"]
-        #[method_id(container)]
+        #[method(container)]
         #[unsafe(method_family = none)]
         pub unsafe fn container(&self) -> Option<Retained<CKContainer>>;
 
@@ -246,33 +261,40 @@ extern_methods!(
         /// Setter for [`container`][Self::container].
         #[deprecated = "Use CKOperationConfiguration"]
         #[method(setContainer:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setContainer(&self, container: Option<&CKContainer>);
 
         #[deprecated = "Use CKOperationConfiguration"]
         #[method(allowsCellularAccess)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowsCellularAccess(&self) -> bool;
 
         /// Setter for [`allowsCellularAccess`][Self::allowsCellularAccess].
         #[deprecated = "Use CKOperationConfiguration"]
         #[method(setAllowsCellularAccess:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAllowsCellularAccess(&self, allows_cellular_access: bool);
 
         #[deprecated = "Use CKOperationConfiguration"]
         #[method(isLongLived)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isLongLived(&self) -> bool;
 
         /// Setter for [`isLongLived`][Self::isLongLived].
         #[deprecated = "Use CKOperationConfiguration"]
         #[method(setLongLived:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLongLived(&self, long_lived: bool);
 
         #[deprecated = "Use CKOperationConfiguration"]
         #[method(timeoutIntervalForRequest)]
+        #[unsafe(method_family = none)]
         pub unsafe fn timeoutIntervalForRequest(&self) -> NSTimeInterval;
 
         /// Setter for [`timeoutIntervalForRequest`][Self::timeoutIntervalForRequest].
         #[deprecated = "Use CKOperationConfiguration"]
         #[method(setTimeoutIntervalForRequest:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTimeoutIntervalForRequest(
             &self,
             timeout_interval_for_request: NSTimeInterval,
@@ -280,11 +302,13 @@ extern_methods!(
 
         #[deprecated = "Use CKOperationConfiguration"]
         #[method(timeoutIntervalForResource)]
+        #[unsafe(method_family = none)]
         pub unsafe fn timeoutIntervalForResource(&self) -> NSTimeInterval;
 
         /// Setter for [`timeoutIntervalForResource`][Self::timeoutIntervalForResource].
         #[deprecated = "Use CKOperationConfiguration"]
         #[method(setTimeoutIntervalForResource:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTimeoutIntervalForResource(
             &self,
             timeout_interval_for_resource: NSTimeInterval,

@@ -23,16 +23,16 @@ unsafe impl NSObjectProtocol for UIScreenshotService {}
 
 extern_methods!(
     unsafe impl UIScreenshotService {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// Assign a delegate in order to send PDF data to accompany the screenshot taken by the user
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -41,6 +41,7 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn UIScreenshotServiceDelegate>>,
@@ -52,7 +53,7 @@ extern_methods!(
             feature = "UIWindowScene"
         ))]
         /// The window scene associated with the screenshot service
-        #[method_id(windowScene)]
+        #[method(windowScene)]
         #[unsafe(method_family = none)]
         pub unsafe fn windowScene(&self) -> Option<Retained<UIWindowScene>>;
     }
@@ -69,7 +70,7 @@ extern_methods!(
         /// The screenshot object associated with the scene
         ///
         /// This is non-null if the screenshot service is available for this window scene
-        #[method_id(screenshotService)]
+        #[method(screenshotService)]
         #[unsafe(method_family = none)]
         pub unsafe fn screenshotService(&self) -> Option<Retained<UIScreenshotService>>;
     }
@@ -89,6 +90,7 @@ extern_protocol!(
         /// If no PDF data is available, data can be nil. The indexOfCurrentPage is zero-based, and is the index of the current page of the snapshotted PDF. The rectInCurrentPage is the rect in PDF coordinates with respect to the current page. If the receiver cannot provide the visible area, pass CGRectZero for rectInCurrentPage.
         #[optional]
         #[method(screenshotService:generatePDFRepresentationWithCompletion:)]
+        #[unsafe(method_family = none)]
         unsafe fn screenshotService_generatePDFRepresentationWithCompletion(
             &self,
             screenshot_service: &UIScreenshotService,

@@ -18,6 +18,7 @@ extern_protocol!(
         /// Called when a player’s saved game data has been modified.
         #[optional]
         #[method(player:didModifySavedGame:)]
+        #[unsafe(method_family = none)]
         unsafe fn player_didModifySavedGame(&self, player: &GKPlayer, saved_game: &GKSavedGame);
 
         #[cfg(all(
@@ -28,6 +29,7 @@ extern_protocol!(
         /// Called when a conflict has arisen between different versions of the same saved game. This can happen when multiple devices write to the same saved game while one or more is offline. The application should determine the correct data to use, then call resolveConflictingSavedGames:withData:completionHandler:. This may require data merging or asking the user.
         #[optional]
         #[method(player:hasConflictingSavedGames:)]
+        #[unsafe(method_family = none)]
         unsafe fn player_hasConflictingSavedGames(
             &self,
             player: &GKPlayer,

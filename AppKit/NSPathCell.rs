@@ -83,51 +83,59 @@ extern_methods!(
     #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     unsafe impl NSPathCell {
         #[method(pathStyle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pathStyle(&self) -> NSPathStyle;
 
         /// Setter for [`pathStyle`][Self::pathStyle].
         #[method(setPathStyle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPathStyle(&self, path_style: NSPathStyle);
 
-        #[method_id(URL)]
+        #[method(URL)]
         #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`URL`][Self::URL].
         #[method(setURL:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setURL(&self, url: Option<&NSURL>);
 
         #[method(setObjectValue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setObjectValue(&self, obj: Option<&ProtocolObject<dyn NSCopying>>);
 
-        #[method_id(allowedTypes)]
+        #[method(allowedTypes)]
         #[unsafe(method_family = none)]
         pub unsafe fn allowedTypes(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`allowedTypes`][Self::allowedTypes].
         #[method(setAllowedTypes:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAllowedTypes(&self, allowed_types: Option<&NSArray<NSString>>);
 
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSPathCellDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSPathCellDelegate>>);
 
         #[method(pathComponentCellClass)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pathComponentCellClass(mtm: MainThreadMarker) -> &'static AnyClass;
 
         #[cfg(all(feature = "NSPathComponentCell", feature = "NSTextFieldCell"))]
-        #[method_id(pathComponentCells)]
+        #[method(pathComponentCells)]
         #[unsafe(method_family = none)]
         pub unsafe fn pathComponentCells(&self) -> Retained<NSArray<NSPathComponentCell>>;
 
         #[cfg(all(feature = "NSPathComponentCell", feature = "NSTextFieldCell"))]
         /// Setter for [`pathComponentCells`][Self::pathComponentCells].
         #[method(setPathComponentCells:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPathComponentCells(
             &self,
             path_component_cells: &NSArray<NSPathComponentCell>,
@@ -140,6 +148,7 @@ extern_methods!(
             feature = "NSView"
         ))]
         #[method(rectOfPathComponentCell:withFrame:inView:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rectOfPathComponentCell_withFrame_inView(
             &self,
             cell: &NSPathComponentCell,
@@ -153,7 +162,7 @@ extern_methods!(
             feature = "NSTextFieldCell",
             feature = "NSView"
         ))]
-        #[method_id(pathComponentCellAtPoint:withFrame:inView:)]
+        #[method(pathComponentCellAtPoint:withFrame:inView:)]
         #[unsafe(method_family = none)]
         pub unsafe fn pathComponentCellAtPoint_withFrame_inView(
             &self,
@@ -163,12 +172,13 @@ extern_methods!(
         ) -> Option<Retained<NSPathComponentCell>>;
 
         #[cfg(all(feature = "NSPathComponentCell", feature = "NSTextFieldCell"))]
-        #[method_id(clickedPathComponentCell)]
+        #[method(clickedPathComponentCell)]
         #[unsafe(method_family = none)]
         pub unsafe fn clickedPathComponentCell(&self) -> Option<Retained<NSPathComponentCell>>;
 
         #[cfg(all(feature = "NSEvent", feature = "NSResponder", feature = "NSView"))]
         #[method(mouseEntered:withFrame:inView:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mouseEntered_withFrame_inView(
             &self,
             event: &NSEvent,
@@ -178,6 +188,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSEvent", feature = "NSResponder", feature = "NSView"))]
         #[method(mouseExited:withFrame:inView:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mouseExited_withFrame_inView(
             &self,
             event: &NSEvent,
@@ -186,36 +197,41 @@ extern_methods!(
         );
 
         #[method(doubleAction)]
+        #[unsafe(method_family = none)]
         pub unsafe fn doubleAction(&self) -> Option<Sel>;
 
         /// Setter for [`doubleAction`][Self::doubleAction].
         #[method(setDoubleAction:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDoubleAction(&self, double_action: Option<Sel>);
 
         #[cfg(feature = "NSColor")]
-        #[method_id(backgroundColor)]
+        #[method(backgroundColor)]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`backgroundColor`][Self::backgroundColor].
         #[method(setBackgroundColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&NSColor>);
 
-        #[method_id(placeholderString)]
+        #[method(placeholderString)]
         #[unsafe(method_family = none)]
         pub unsafe fn placeholderString(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`placeholderString`][Self::placeholderString].
         #[method(setPlaceholderString:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPlaceholderString(&self, placeholder_string: Option<&NSString>);
 
-        #[method_id(placeholderAttributedString)]
+        #[method(placeholderAttributedString)]
         #[unsafe(method_family = none)]
         pub unsafe fn placeholderAttributedString(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Setter for [`placeholderAttributedString`][Self::placeholderAttributedString].
         #[method(setPlaceholderAttributedString:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPlaceholderAttributedString(
             &self,
             placeholder_attributed_string: Option<&NSAttributedString>,
@@ -227,23 +243,23 @@ extern_methods!(
     /// Methods declared on superclass `NSCell`
     #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     unsafe impl NSPathCell {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(initTextCell:)]
+        #[method(initTextCell:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
-        #[method_id(initImageCell:)]
+        #[method(initImageCell:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initImageCell(
             this: Allocated<Self>,
             image: Option<&NSImage>,
         ) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
     }
@@ -253,7 +269,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     unsafe impl NSPathCell {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -273,6 +289,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(pathCell:willDisplayOpenPanel:)]
+        #[unsafe(method_family = none)]
         unsafe fn pathCell_willDisplayOpenPanel(
             &self,
             path_cell: &NSPathCell,
@@ -282,6 +299,7 @@ extern_protocol!(
         #[cfg(all(feature = "NSActionCell", feature = "NSCell", feature = "NSMenu"))]
         #[optional]
         #[method(pathCell:willPopUpMenu:)]
+        #[unsafe(method_family = none)]
         unsafe fn pathCell_willPopUpMenu(&self, path_cell: &NSPathCell, menu: &NSMenu);
     }
 );

@@ -37,7 +37,7 @@ extern_methods!(
         /// If you have subscribed to background updates you must call the passed completion block
         /// once you have processed data from this notification. Otherwise the system will continue
         /// to notify you of this data.
-        #[method_id(initWithSampleType:predicate:updateHandler:)]
+        #[method(initWithSampleType:predicate:updateHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSampleType_predicate_updateHandler(
             this: Allocated<Self>,
@@ -62,7 +62,7 @@ extern_methods!(
         ///
         /// Parameter `queryDescriptors`: An array of query descriptors that describes the sample types and predicates for
         /// which you are interested in getting notified.
-        #[method_id(initWithQueryDescriptors:updateHandler:)]
+        #[method(initWithQueryDescriptors:updateHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithQueryDescriptors_updateHandler(
             this: Allocated<Self>,
@@ -83,7 +83,7 @@ extern_methods!(
     /// Methods declared on superclass `HKQuery`
     #[cfg(feature = "HKQuery")]
     unsafe impl HKObserverQuery {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -93,7 +93,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "HKQuery")]
     unsafe impl HKObserverQuery {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

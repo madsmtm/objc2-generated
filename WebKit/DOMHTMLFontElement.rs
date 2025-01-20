@@ -78,33 +78,36 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLFontElement {
         #[deprecated]
-        #[method_id(color)]
+        #[method(color)]
         #[unsafe(method_family = none)]
         pub unsafe fn color(&self) -> Retained<NSString>;
 
         /// Setter for [`color`][Self::color].
         #[deprecated]
         #[method(setColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setColor(&self, color: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(face)]
+        #[method(face)]
         #[unsafe(method_family = none)]
         pub unsafe fn face(&self) -> Retained<NSString>;
 
         /// Setter for [`face`][Self::face].
         #[deprecated]
         #[method(setFace:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFace(&self, face: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(size)]
+        #[method(size)]
         #[unsafe(method_family = none)]
         pub unsafe fn size(&self) -> Retained<NSString>;
 
         /// Setter for [`size`][Self::size].
         #[deprecated]
         #[method(setSize:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSize(&self, size: Option<&NSString>);
     }
 );
@@ -120,7 +123,7 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLFontElement {
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -136,7 +139,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLFontElement {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

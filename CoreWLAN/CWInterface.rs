@@ -26,7 +26,7 @@ unsafe impl NSObjectProtocol for CWInterface {}
 extern_methods!(
     unsafe impl CWInterface {
         /// Returns the BSD name of the Wi-Fi interface (e.g. "en0").
-        #[method_id(interfaceName)]
+        #[method(interfaceName)]
         #[unsafe(method_family = none)]
         pub unsafe fn interfaceName(&self) -> Option<Retained<NSString>>;
 
@@ -38,6 +38,7 @@ extern_methods!(
         ///
         /// Returns NO if an error occurs.
         #[method(powerOn)]
+        #[unsafe(method_family = none)]
         pub unsafe fn powerOn(&self) -> bool;
 
         #[cfg(feature = "CWChannel")]
@@ -48,7 +49,7 @@ extern_methods!(
         ///
         ///
         /// Returns nil if an error occurs.
-        #[method_id(supportedWLANChannels)]
+        #[method(supportedWLANChannels)]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedWLANChannels(&self) -> Option<Retained<NSSet<CWChannel>>>;
 
@@ -57,7 +58,7 @@ extern_methods!(
         ///
         ///
         /// Returns nil if an error occurs.
-        #[method_id(wlanChannel)]
+        #[method(wlanChannel)]
         #[unsafe(method_family = none)]
         pub unsafe fn wlanChannel(&self) -> Option<Retained<CWChannel>>;
 
@@ -67,6 +68,7 @@ extern_methods!(
         ///
         /// Returns kCWPHYModeNone if an error occurs.
         #[method(activePHYMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn activePHYMode(&self) -> CWPHYMode;
 
         /// Returns the current service set identifier (SSID) of the Wi-Fi interface, encoded as a string.
@@ -80,7 +82,7 @@ extern_methods!(
         ///
         ///
         /// See also: CLLocationManager
-        #[method_id(ssid)]
+        #[method(ssid)]
         #[unsafe(method_family = none)]
         pub unsafe fn ssid(&self) -> Option<Retained<NSString>>;
 
@@ -94,7 +96,7 @@ extern_methods!(
         ///
         ///
         /// See also: CLLocationManager
-        #[method_id(ssidData)]
+        #[method(ssidData)]
         #[unsafe(method_family = none)]
         pub unsafe fn ssidData(&self) -> Option<Retained<NSData>>;
 
@@ -109,7 +111,7 @@ extern_methods!(
         ///
         ///
         /// See also: CLLocationManager
-        #[method_id(bssid)]
+        #[method(bssid)]
         #[unsafe(method_family = none)]
         pub unsafe fn bssid(&self) -> Option<Retained<NSString>>;
 
@@ -118,6 +120,7 @@ extern_methods!(
         ///
         /// Returns 0 if an error occurs, or if the interface is not participating in a Wi-Fi network.
         #[method(rssiValue)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rssiValue(&self) -> NSInteger;
 
         /// Returns the current noise measurement (dBm) for the Wi-Fi interface.
@@ -125,6 +128,7 @@ extern_methods!(
         ///
         /// Returns 0 if an error occurs, or if the interface is not participating in a Wi-Fi network.
         #[method(noiseMeasurement)]
+        #[unsafe(method_family = none)]
         pub unsafe fn noiseMeasurement(&self) -> NSInteger;
 
         #[cfg(feature = "CoreWLANTypes")]
@@ -133,6 +137,7 @@ extern_methods!(
         ///
         /// Returns kCWSecurityUnknown if an error occurs, or if the interface is not participating in a Wi-Fi network.
         #[method(security)]
+        #[unsafe(method_family = none)]
         pub unsafe fn security(&self) -> CWSecurity;
 
         /// Returns the current transmit rate (Mbps) for the Wi-Fi interface.
@@ -140,6 +145,7 @@ extern_methods!(
         ///
         /// Returns 0 if an error occurs, or if the interface is not participating in a Wi-Fi network.
         #[method(transmitRate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn transmitRate(&self) -> c_double;
 
         /// Returns the currently adopted country code (ISO/IEC 3166-1:1997) for the Wi-Fi interface.
@@ -152,7 +158,7 @@ extern_methods!(
         ///
         ///
         /// See also: CLLocationManager
-        #[method_id(countryCode)]
+        #[method(countryCode)]
         #[unsafe(method_family = none)]
         pub unsafe fn countryCode(&self) -> Option<Retained<NSString>>;
 
@@ -162,6 +168,7 @@ extern_methods!(
         ///
         /// Returns kCWInterfaceModeNone if an error occurs, or if the interface is not participating in a Wi-Fi network.
         #[method(interfaceMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn interfaceMode(&self) -> CWInterfaceMode;
 
         /// Returns the current transmit power (mW) for the Wi-Fi interface.
@@ -169,6 +176,7 @@ extern_methods!(
         ///
         /// Returns 0 if an error occurs.
         #[method(transmitPower)]
+        #[unsafe(method_family = none)]
         pub unsafe fn transmitPower(&self) -> NSInteger;
 
         /// Returns the hardware media access control (MAC) address for the Wi-Fi interface, returned as an UTF-8 string.
@@ -177,7 +185,7 @@ extern_methods!(
         /// The standard format for printing a MAC-48 address XX:XX:XX:XX:XX:XX is used to represent
         /// the MAC address as a string.
         /// Returns nil if an error occurs.
-        #[method_id(hardwareAddress)]
+        #[method(hardwareAddress)]
         #[unsafe(method_family = none)]
         pub unsafe fn hardwareAddress(&self) -> Option<Retained<NSString>>;
 
@@ -189,6 +197,7 @@ extern_methods!(
         ///
         /// Returns NO if an error occurs.
         #[method(serviceActive)]
+        #[unsafe(method_family = none)]
         pub unsafe fn serviceActive(&self) -> bool;
 
         #[cfg(feature = "CWNetwork")]
@@ -199,7 +208,7 @@ extern_methods!(
         ///
         ///
         /// Returns nil if an error occurs.
-        #[method_id(cachedScanResults)]
+        #[method(cachedScanResults)]
         #[unsafe(method_family = none)]
         pub unsafe fn cachedScanResults(&self) -> Option<Retained<NSSet<CWNetwork>>>;
 
@@ -208,7 +217,7 @@ extern_methods!(
         ///
         ///
         /// Returns nil if an error occurs.
-        #[method_id(configuration)]
+        #[method(configuration)]
         #[unsafe(method_family = none)]
         pub unsafe fn configuration(&self) -> Option<Retained<CWConfiguration>>;
 
@@ -221,13 +230,13 @@ extern_methods!(
         /// Returns an empty NSArray object if no Wi-Fi interfaces exist.
         /// Returns nil if an error occurs.
         #[deprecated = "Use -[CWWiFiClient interfaceNames] instead"]
-        #[method_id(interfaceNames)]
+        #[method(interfaceNames)]
         #[unsafe(method_family = none)]
         pub unsafe fn interfaceNames() -> Option<Retained<NSSet<NSString>>>;
 
         /// Convenience method for getting a CWInterface object for the default Wi-Fi interface.
         #[deprecated = "Use -[CWWiFiClient interface] instead"]
-        #[method_id(interface)]
+        #[method(interface)]
         #[unsafe(method_family = none)]
         pub unsafe fn interface() -> Retained<Self>;
 
@@ -240,7 +249,7 @@ extern_methods!(
         /// Use +[CWInterface interfaceNames] to get a list of available Wi-Fi interface names.
         /// Returns a CWInterface object for the default Wi-Fi interface if no interface name is specified.
         #[deprecated = "Use -[CWWiFiClient interfaceWithName:] instead"]
-        #[method_id(interfaceWithName:)]
+        #[method(interfaceWithName:)]
         #[unsafe(method_family = none)]
         pub unsafe fn interfaceWithName(name: Option<&NSString>) -> Retained<Self>;
 
@@ -253,7 +262,7 @@ extern_methods!(
         /// Use +[CWInterface interfaceNames] to get a list of available Wi-Fi interface names.
         /// Returns a CWInterface object for the default Wi-Fi interface if no interface name is specified.
         #[deprecated = "Use -[CWWiFiClient interfaceWithName:] instead"]
-        #[method_id(initWithInterfaceName:)]
+        #[method(initWithInterfaceName:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithInterfaceName(
             this: Allocated<Self>,
@@ -272,6 +281,7 @@ extern_methods!(
         ///
         /// Sets the Wi-Fi interface power state.
         #[method(setPower:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPower_error(&self, power: bool) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "CWChannel")]
@@ -290,6 +300,7 @@ extern_methods!(
         ///
         /// Setting the channel while the interface is associated to a Wi-Fi network is not permitted.
         #[method(setWLANChannel:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWLANChannel_error(
             &self,
             channel: &CWChannel,
@@ -311,6 +322,7 @@ extern_methods!(
         ///
         /// The specified key must be exactly 32 octets.
         #[method(setPairwiseMasterKey:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPairwiseMasterKey_error(
             &self,
             key: Option<&NSData>,
@@ -336,6 +348,7 @@ extern_methods!(
         ///
         /// Sets the Wi-Fi interface WEP key.
         #[method(setWEPKey:flags:index:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWEPKey_flags_index_error(
             &self,
             key: Option<&NSData>,
@@ -366,7 +379,7 @@ extern_methods!(
         ///
         ///
         /// See also: CLLocationManager
-        #[method_id(scanForNetworksWithSSID:error:_)]
+        #[method(scanForNetworksWithSSID:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn scanForNetworksWithSSID_error(
             &self,
@@ -399,7 +412,7 @@ extern_methods!(
         ///
         ///
         /// See also: CLLocationManager
-        #[method_id(scanForNetworksWithSSID:includeHidden:error:_)]
+        #[method(scanForNetworksWithSSID:includeHidden:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn scanForNetworksWithSSID_includeHidden_error(
             &self,
@@ -430,7 +443,7 @@ extern_methods!(
         ///
         ///
         /// See also: CLLocationManager
-        #[method_id(scanForNetworksWithName:error:_)]
+        #[method(scanForNetworksWithName:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn scanForNetworksWithName_error(
             &self,
@@ -463,7 +476,7 @@ extern_methods!(
         ///
         ///
         /// See also: CLLocationManager
-        #[method_id(scanForNetworksWithName:includeHidden:error:_)]
+        #[method(scanForNetworksWithName:includeHidden:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn scanForNetworksWithName_includeHidden_error(
             &self,
@@ -490,6 +503,7 @@ extern_methods!(
         ///
         /// This method will block for the duration of the association.
         #[method(associateToNetwork:password:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn associateToNetwork_password_error(
             &self,
             network: &CWNetwork,
@@ -498,6 +512,7 @@ extern_methods!(
 
         /// Disassociates from the current Wi-Fi network.
         #[method(disassociate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn disassociate(&self);
 
         #[cfg(all(feature = "CWNetwork", feature = "objc2-security"))]
@@ -525,6 +540,7 @@ extern_methods!(
         ///
         /// This method will block for the duration of the association.
         #[method(associateToEnterpriseNetwork:identity:username:password:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn associateToEnterpriseNetwork_identity_username_password_error(
             &self,
             network: &CWNetwork,
@@ -557,6 +573,7 @@ extern_methods!(
         /// Creates a computer-to-computer (IBSS) network.
         #[deprecated]
         #[method(startIBSSModeWithSSID:security:channel:password:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn startIBSSModeWithSSID_security_channel_password_error(
             &self,
             ssid_data: &NSData,
@@ -570,11 +587,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CWInterface {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

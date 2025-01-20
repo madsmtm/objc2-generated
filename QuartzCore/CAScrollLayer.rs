@@ -38,18 +38,21 @@ extern_methods!(
     unsafe impl CAScrollLayer {
         #[cfg(feature = "objc2-core-foundation")]
         #[method(scrollToPoint:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scrollToPoint(&self, p: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(scrollToRect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scrollToRect(&self, r: CGRect);
 
-        #[method_id(scrollMode)]
+        #[method(scrollMode)]
         #[unsafe(method_family = none)]
         pub unsafe fn scrollMode(&self) -> Retained<CAScrollLayerScrollMode>;
 
         /// Setter for [`scrollMode`][Self::scrollMode].
         #[method(setScrollMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setScrollMode(&self, scroll_mode: &CAScrollLayerScrollMode);
     }
 );
@@ -59,15 +62,15 @@ extern_methods!(
     #[cfg(feature = "CALayer")]
     unsafe impl CAScrollLayer {
         /// Layer creation and initialization. *
-        #[method_id(layer)]
+        #[method(layer)]
         #[unsafe(method_family = none)]
         pub unsafe fn layer() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(initWithLayer:)]
+        #[method(initWithLayer:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
     }
@@ -77,7 +80,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CALayer")]
     unsafe impl CAScrollLayer {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -89,14 +92,17 @@ extern_methods!(
     unsafe impl CALayer {
         #[cfg(feature = "objc2-core-foundation")]
         #[method(scrollPoint:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scrollPoint(&self, p: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(scrollRectToVisible:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scrollRectToVisible(&self, r: CGRect);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(visibleRect)]
+        #[unsafe(method_family = none)]
         pub unsafe fn visibleRect(&self) -> CGRect;
     }
 );

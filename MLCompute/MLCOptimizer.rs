@@ -30,69 +30,81 @@ extern_methods!(
         /// The learning rate.  This property is 'readwrite' so that callers can implement a 'decay' during training
         #[deprecated]
         #[method(learningRate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn learningRate(&self) -> c_float;
 
         /// Setter for [`learningRate`][Self::learningRate].
         #[deprecated]
         #[method(setLearningRate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLearningRate(&self, learning_rate: c_float);
 
         /// The rescale value applied to gradients during optimizer update
         #[deprecated]
         #[method(gradientRescale)]
+        #[unsafe(method_family = none)]
         pub unsafe fn gradientRescale(&self) -> c_float;
 
         /// Whether gradient clipping should be applied or not.
         #[deprecated]
         #[method(appliesGradientClipping)]
+        #[unsafe(method_family = none)]
         pub unsafe fn appliesGradientClipping(&self) -> bool;
 
         /// Setter for [`appliesGradientClipping`][Self::appliesGradientClipping].
         #[deprecated]
         #[method(setAppliesGradientClipping:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAppliesGradientClipping(&self, applies_gradient_clipping: bool);
 
         /// The maximum gradient value if gradient clipping is enabled before gradient is rescaled.
         #[deprecated]
         #[method(gradientClipMax)]
+        #[unsafe(method_family = none)]
         pub unsafe fn gradientClipMax(&self) -> c_float;
 
         /// The minimum gradient value if gradient clipping is enabled before gradient is rescaled.
         #[deprecated]
         #[method(gradientClipMin)]
+        #[unsafe(method_family = none)]
         pub unsafe fn gradientClipMin(&self) -> c_float;
 
         /// The regularization scale.
         #[deprecated]
         #[method(regularizationScale)]
+        #[unsafe(method_family = none)]
         pub unsafe fn regularizationScale(&self) -> c_float;
 
         #[cfg(feature = "MLCTypes")]
         /// The regularization type.
         #[deprecated]
         #[method(regularizationType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn regularizationType(&self) -> MLCRegularizationType;
 
         #[cfg(feature = "MLCTypes")]
         /// The type of clipping applied to gradient
         #[method(gradientClippingType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn gradientClippingType(&self) -> MLCGradientClippingType;
 
         /// The maximum clipping value
         #[method(maximumClippingNorm)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maximumClippingNorm(&self) -> c_float;
 
         /// Used only with MLCGradientClippingTypeByGlobalNorm. If non zero, this norm will be used in place of global norm.
         #[method(customGlobalNorm)]
+        #[unsafe(method_family = none)]
         pub unsafe fn customGlobalNorm(&self) -> c_float;
 
         #[deprecated]
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

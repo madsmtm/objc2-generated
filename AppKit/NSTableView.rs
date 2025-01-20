@@ -351,18 +351,18 @@ unsafe impl NSUserInterfaceValidations for NSTableView {}
 extern_methods!(
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSTableView {
-        #[method_id(initWithFrame:)]
+        #[method(initWithFrame:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(dataSource)]
+        #[method(dataSource)]
         #[unsafe(method_family = none)]
         pub unsafe fn dataSource(
             &self,
@@ -371,155 +371,185 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`dataSource`][Self::dataSource].
         #[method(setDataSource:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDataSource(
             &self,
             data_source: Option<&ProtocolObject<dyn NSTableViewDataSource>>,
         );
 
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSTableViewDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn NSTableViewDelegate>>,
         );
 
         #[cfg(feature = "NSTableHeaderView")]
-        #[method_id(headerView)]
+        #[method(headerView)]
         #[unsafe(method_family = none)]
         pub unsafe fn headerView(&self) -> Option<Retained<NSTableHeaderView>>;
 
         #[cfg(feature = "NSTableHeaderView")]
         /// Setter for [`headerView`][Self::headerView].
         #[method(setHeaderView:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setHeaderView(&self, header_view: Option<&NSTableHeaderView>);
 
-        #[method_id(cornerView)]
+        #[method(cornerView)]
         #[unsafe(method_family = none)]
         pub unsafe fn cornerView(&self) -> Option<Retained<NSView>>;
 
         /// Setter for [`cornerView`][Self::cornerView].
         #[method(setCornerView:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCornerView(&self, corner_view: Option<&NSView>);
 
         #[method(allowsColumnReordering)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowsColumnReordering(&self) -> bool;
 
         /// Setter for [`allowsColumnReordering`][Self::allowsColumnReordering].
         #[method(setAllowsColumnReordering:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAllowsColumnReordering(&self, allows_column_reordering: bool);
 
         #[method(allowsColumnResizing)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowsColumnResizing(&self) -> bool;
 
         /// Setter for [`allowsColumnResizing`][Self::allowsColumnResizing].
         #[method(setAllowsColumnResizing:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAllowsColumnResizing(&self, allows_column_resizing: bool);
 
         #[method(columnAutoresizingStyle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn columnAutoresizingStyle(&self) -> NSTableViewColumnAutoresizingStyle;
 
         /// Setter for [`columnAutoresizingStyle`][Self::columnAutoresizingStyle].
         #[method(setColumnAutoresizingStyle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setColumnAutoresizingStyle(
             &self,
             column_autoresizing_style: NSTableViewColumnAutoresizingStyle,
         );
 
         #[method(gridStyleMask)]
+        #[unsafe(method_family = none)]
         pub unsafe fn gridStyleMask(&self) -> NSTableViewGridLineStyle;
 
         /// Setter for [`gridStyleMask`][Self::gridStyleMask].
         #[method(setGridStyleMask:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setGridStyleMask(&self, grid_style_mask: NSTableViewGridLineStyle);
 
         #[method(intercellSpacing)]
+        #[unsafe(method_family = none)]
         pub unsafe fn intercellSpacing(&self) -> NSSize;
 
         /// Setter for [`intercellSpacing`][Self::intercellSpacing].
         #[method(setIntercellSpacing:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIntercellSpacing(&self, intercell_spacing: NSSize);
 
         #[method(usesAlternatingRowBackgroundColors)]
+        #[unsafe(method_family = none)]
         pub unsafe fn usesAlternatingRowBackgroundColors(&self) -> bool;
 
         /// Setter for [`usesAlternatingRowBackgroundColors`][Self::usesAlternatingRowBackgroundColors].
         #[method(setUsesAlternatingRowBackgroundColors:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUsesAlternatingRowBackgroundColors(
             &self,
             uses_alternating_row_background_colors: bool,
         );
 
         #[cfg(feature = "NSColor")]
-        #[method_id(backgroundColor)]
+        #[method(backgroundColor)]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundColor(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`backgroundColor`][Self::backgroundColor].
         #[method(setBackgroundColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColor(&self, background_color: &NSColor);
 
         #[cfg(feature = "NSColor")]
-        #[method_id(gridColor)]
+        #[method(gridColor)]
         #[unsafe(method_family = none)]
         pub unsafe fn gridColor(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`gridColor`][Self::gridColor].
         #[method(setGridColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setGridColor(&self, grid_color: &NSColor);
 
         #[method(rowSizeStyle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rowSizeStyle(&self) -> NSTableViewRowSizeStyle;
 
         /// Setter for [`rowSizeStyle`][Self::rowSizeStyle].
         #[method(setRowSizeStyle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRowSizeStyle(&self, row_size_style: NSTableViewRowSizeStyle);
 
         #[method(effectiveRowSizeStyle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn effectiveRowSizeStyle(&self) -> NSTableViewRowSizeStyle;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(rowHeight)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rowHeight(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`rowHeight`][Self::rowHeight].
         #[method(setRowHeight:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRowHeight(&self, row_height: CGFloat);
 
         #[method(noteHeightOfRowsWithIndexesChanged:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn noteHeightOfRowsWithIndexesChanged(&self, index_set: &NSIndexSet);
 
         #[cfg(feature = "NSTableColumn")]
-        #[method_id(tableColumns)]
+        #[method(tableColumns)]
         #[unsafe(method_family = none)]
         pub unsafe fn tableColumns(&self) -> Retained<NSArray<NSTableColumn>>;
 
         #[method(numberOfColumns)]
+        #[unsafe(method_family = none)]
         pub unsafe fn numberOfColumns(&self) -> NSInteger;
 
         #[method(numberOfRows)]
+        #[unsafe(method_family = none)]
         pub unsafe fn numberOfRows(&self) -> NSInteger;
 
         #[cfg(feature = "NSTableColumn")]
         #[method(addTableColumn:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addTableColumn(&self, table_column: &NSTableColumn);
 
         #[cfg(feature = "NSTableColumn")]
         #[method(removeTableColumn:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeTableColumn(&self, table_column: &NSTableColumn);
 
         #[method(moveColumn:toColumn:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn moveColumn_toColumn(&self, old_index: NSInteger, new_index: NSInteger);
 
         #[cfg(feature = "NSUserInterfaceItemIdentification")]
         #[method(columnWithIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn columnWithIdentifier(
             &self,
             identifier: &NSUserInterfaceItemIdentifier,
@@ -529,7 +559,7 @@ extern_methods!(
             feature = "NSTableColumn",
             feature = "NSUserInterfaceItemIdentification"
         ))]
-        #[method_id(tableColumnWithIdentifier:)]
+        #[method(tableColumnWithIdentifier:)]
         #[unsafe(method_family = none)]
         pub unsafe fn tableColumnWithIdentifier(
             &self,
@@ -537,27 +567,35 @@ extern_methods!(
         ) -> Option<Retained<NSTableColumn>>;
 
         #[method(tile)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tile(&self);
 
         #[method(sizeToFit)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sizeToFit(&self);
 
         #[method(sizeLastColumnToFit)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sizeLastColumnToFit(&self);
 
         #[method(scrollRowToVisible:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scrollRowToVisible(&self, row: NSInteger);
 
         #[method(scrollColumnToVisible:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scrollColumnToVisible(&self, column: NSInteger);
 
         #[method(reloadData)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reloadData(&self);
 
         #[method(noteNumberOfRowsChanged)]
+        #[unsafe(method_family = none)]
         pub unsafe fn noteNumberOfRowsChanged(&self);
 
         #[method(reloadDataForRowIndexes:columnIndexes:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reloadDataForRowIndexes_columnIndexes(
             &self,
             row_indexes: &NSIndexSet,
@@ -565,34 +603,42 @@ extern_methods!(
         );
 
         #[method(editedColumn)]
+        #[unsafe(method_family = none)]
         pub unsafe fn editedColumn(&self) -> NSInteger;
 
         #[method(editedRow)]
+        #[unsafe(method_family = none)]
         pub unsafe fn editedRow(&self) -> NSInteger;
 
         #[method(clickedColumn)]
+        #[unsafe(method_family = none)]
         pub unsafe fn clickedColumn(&self) -> NSInteger;
 
         #[method(clickedRow)]
+        #[unsafe(method_family = none)]
         pub unsafe fn clickedRow(&self) -> NSInteger;
 
         #[method(doubleAction)]
+        #[unsafe(method_family = none)]
         pub unsafe fn doubleAction(&self) -> Option<Sel>;
 
         /// Setter for [`doubleAction`][Self::doubleAction].
         #[method(setDoubleAction:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDoubleAction(&self, double_action: Option<Sel>);
 
-        #[method_id(sortDescriptors)]
+        #[method(sortDescriptors)]
         #[unsafe(method_family = none)]
         pub unsafe fn sortDescriptors(&self) -> Retained<NSArray<NSSortDescriptor>>;
 
         /// Setter for [`sortDescriptors`][Self::sortDescriptors].
         #[method(setSortDescriptors:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSortDescriptors(&self, sort_descriptors: &NSArray<NSSortDescriptor>);
 
         #[cfg(all(feature = "NSImage", feature = "NSTableColumn"))]
         #[method(setIndicatorImage:inTableColumn:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIndicatorImage_inTableColumn(
             &self,
             image: Option<&NSImage>,
@@ -600,7 +646,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSImage", feature = "NSTableColumn"))]
-        #[method_id(indicatorImageInTableColumn:)]
+        #[method(indicatorImageInTableColumn:)]
         #[unsafe(method_family = none)]
         pub unsafe fn indicatorImageInTableColumn(
             &self,
@@ -608,7 +654,7 @@ extern_methods!(
         ) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSTableColumn")]
-        #[method_id(highlightedTableColumn)]
+        #[method(highlightedTableColumn)]
         #[unsafe(method_family = none)]
         pub unsafe fn highlightedTableColumn(&self) -> Option<Retained<NSTableColumn>>;
 
@@ -616,19 +662,23 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`highlightedTableColumn`][Self::highlightedTableColumn].
         #[method(setHighlightedTableColumn:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setHighlightedTableColumn(
             &self,
             highlighted_table_column: Option<&NSTableColumn>,
         );
 
         #[method(verticalMotionCanBeginDrag)]
+        #[unsafe(method_family = none)]
         pub unsafe fn verticalMotionCanBeginDrag(&self) -> bool;
 
         /// Setter for [`verticalMotionCanBeginDrag`][Self::verticalMotionCanBeginDrag].
         #[method(setVerticalMotionCanBeginDrag:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setVerticalMotionCanBeginDrag(&self, vertical_motion_can_begin_drag: bool);
 
         #[method(canDragRowsWithIndexes:atPoint:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn canDragRowsWithIndexes_atPoint(
             &self,
             row_indexes: &NSIndexSet,
@@ -636,7 +686,7 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(all(feature = "NSEvent", feature = "NSImage", feature = "NSTableColumn"))]
-        #[method_id(dragImageForRowsWithIndexes:tableColumns:event:offset:)]
+        #[method(dragImageForRowsWithIndexes:tableColumns:event:offset:)]
         #[unsafe(method_family = none)]
         pub unsafe fn dragImageForRowsWithIndexes_tableColumns_event_offset(
             &self,
@@ -648,6 +698,7 @@ extern_methods!(
 
         #[cfg(feature = "NSDragging")]
         #[method(setDraggingSourceOperationMask:forLocal:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDraggingSourceOperationMask_forLocal(
             &self,
             mask: NSDragOperation,
@@ -655,6 +706,7 @@ extern_methods!(
         );
 
         #[method(setDropRow:dropOperation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDropRow_dropOperation(
             &self,
             row: NSInteger,
@@ -662,33 +714,42 @@ extern_methods!(
         );
 
         #[method(allowsMultipleSelection)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowsMultipleSelection(&self) -> bool;
 
         /// Setter for [`allowsMultipleSelection`][Self::allowsMultipleSelection].
         #[method(setAllowsMultipleSelection:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAllowsMultipleSelection(&self, allows_multiple_selection: bool);
 
         #[method(allowsEmptySelection)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowsEmptySelection(&self) -> bool;
 
         /// Setter for [`allowsEmptySelection`][Self::allowsEmptySelection].
         #[method(setAllowsEmptySelection:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAllowsEmptySelection(&self, allows_empty_selection: bool);
 
         #[method(allowsColumnSelection)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowsColumnSelection(&self) -> bool;
 
         /// Setter for [`allowsColumnSelection`][Self::allowsColumnSelection].
         #[method(setAllowsColumnSelection:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAllowsColumnSelection(&self, allows_column_selection: bool);
 
         #[method(selectAll:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectAll(&self, sender: Option<&AnyObject>);
 
         #[method(deselectAll:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn deselectAll(&self, sender: Option<&AnyObject>);
 
         #[method(selectColumnIndexes:byExtendingSelection:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectColumnIndexes_byExtendingSelection(
             &self,
             indexes: &NSIndexSet,
@@ -696,122 +757,150 @@ extern_methods!(
         );
 
         #[method(selectRowIndexes:byExtendingSelection:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectRowIndexes_byExtendingSelection(
             &self,
             indexes: &NSIndexSet,
             extend: bool,
         );
 
-        #[method_id(selectedColumnIndexes)]
+        #[method(selectedColumnIndexes)]
         #[unsafe(method_family = none)]
         pub unsafe fn selectedColumnIndexes(&self) -> Retained<NSIndexSet>;
 
-        #[method_id(selectedRowIndexes)]
+        #[method(selectedRowIndexes)]
         #[unsafe(method_family = none)]
         pub unsafe fn selectedRowIndexes(&self) -> Retained<NSIndexSet>;
 
         #[method(deselectColumn:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn deselectColumn(&self, column: NSInteger);
 
         #[method(deselectRow:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn deselectRow(&self, row: NSInteger);
 
         #[method(selectedColumn)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectedColumn(&self) -> NSInteger;
 
         #[method(selectedRow)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectedRow(&self) -> NSInteger;
 
         #[method(isColumnSelected:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isColumnSelected(&self, column: NSInteger) -> bool;
 
         #[method(isRowSelected:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isRowSelected(&self, row: NSInteger) -> bool;
 
         #[method(numberOfSelectedColumns)]
+        #[unsafe(method_family = none)]
         pub unsafe fn numberOfSelectedColumns(&self) -> NSInteger;
 
         #[method(numberOfSelectedRows)]
+        #[unsafe(method_family = none)]
         pub unsafe fn numberOfSelectedRows(&self) -> NSInteger;
 
         #[method(allowsTypeSelect)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowsTypeSelect(&self) -> bool;
 
         /// Setter for [`allowsTypeSelect`][Self::allowsTypeSelect].
         #[method(setAllowsTypeSelect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAllowsTypeSelect(&self, allows_type_select: bool);
 
         #[method(style)]
+        #[unsafe(method_family = none)]
         pub unsafe fn style(&self) -> NSTableViewStyle;
 
         /// Setter for [`style`][Self::style].
         #[method(setStyle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setStyle(&self, style: NSTableViewStyle);
 
         #[method(effectiveStyle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn effectiveStyle(&self) -> NSTableViewStyle;
 
         #[method(selectionHighlightStyle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectionHighlightStyle(&self) -> NSTableViewSelectionHighlightStyle;
 
         /// Setter for [`selectionHighlightStyle`][Self::selectionHighlightStyle].
         #[method(setSelectionHighlightStyle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSelectionHighlightStyle(
             &self,
             selection_highlight_style: NSTableViewSelectionHighlightStyle,
         );
 
         #[method(draggingDestinationFeedbackStyle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn draggingDestinationFeedbackStyle(
             &self,
         ) -> NSTableViewDraggingDestinationFeedbackStyle;
 
         /// Setter for [`draggingDestinationFeedbackStyle`][Self::draggingDestinationFeedbackStyle].
         #[method(setDraggingDestinationFeedbackStyle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDraggingDestinationFeedbackStyle(
             &self,
             dragging_destination_feedback_style: NSTableViewDraggingDestinationFeedbackStyle,
         );
 
         #[method(rectOfColumn:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rectOfColumn(&self, column: NSInteger) -> NSRect;
 
         #[method(rectOfRow:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rectOfRow(&self, row: NSInteger) -> NSRect;
 
-        #[method_id(columnIndexesInRect:)]
+        #[method(columnIndexesInRect:)]
         #[unsafe(method_family = none)]
         pub unsafe fn columnIndexesInRect(&self, rect: NSRect) -> Retained<NSIndexSet>;
 
         #[method(rowsInRect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rowsInRect(&self, rect: NSRect) -> NSRange;
 
         #[method(columnAtPoint:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn columnAtPoint(&self, point: NSPoint) -> NSInteger;
 
         #[method(rowAtPoint:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rowAtPoint(&self, point: NSPoint) -> NSInteger;
 
         #[method(frameOfCellAtColumn:row:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn frameOfCellAtColumn_row(&self, column: NSInteger, row: NSInteger) -> NSRect;
 
-        #[method_id(autosaveName)]
+        #[method(autosaveName)]
         #[unsafe(method_family = none)]
         pub unsafe fn autosaveName(&self) -> Option<Retained<NSTableViewAutosaveName>>;
 
         /// Setter for [`autosaveName`][Self::autosaveName].
         #[method(setAutosaveName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAutosaveName(&self, autosave_name: Option<&NSTableViewAutosaveName>);
 
         #[method(autosaveTableColumns)]
+        #[unsafe(method_family = none)]
         pub unsafe fn autosaveTableColumns(&self) -> bool;
 
         /// Setter for [`autosaveTableColumns`][Self::autosaveTableColumns].
         #[method(setAutosaveTableColumns:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAutosaveTableColumns(&self, autosave_table_columns: bool);
 
         #[cfg(feature = "NSEvent")]
         #[method(editColumn:row:withEvent:select:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn editColumn_row_withEvent_select(
             &self,
             column: NSInteger,
@@ -821,18 +910,22 @@ extern_methods!(
         );
 
         #[method(drawRow:clipRect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn drawRow_clipRect(&self, row: NSInteger, clip_rect: NSRect);
 
         #[method(highlightSelectionInClipRect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn highlightSelectionInClipRect(&self, clip_rect: NSRect);
 
         #[method(drawGridInClipRect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn drawGridInClipRect(&self, clip_rect: NSRect);
 
         #[method(drawBackgroundInClipRect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn drawBackgroundInClipRect(&self, clip_rect: NSRect);
 
-        #[method_id(viewAtColumn:row:makeIfNecessary:)]
+        #[method(viewAtColumn:row:makeIfNecessary:)]
         #[unsafe(method_family = none)]
         pub unsafe fn viewAtColumn_row_makeIfNecessary(
             &self,
@@ -842,7 +935,7 @@ extern_methods!(
         ) -> Option<Retained<NSView>>;
 
         #[cfg(feature = "NSTableRowView")]
-        #[method_id(rowViewAtRow:makeIfNecessary:)]
+        #[method(rowViewAtRow:makeIfNecessary:)]
         #[unsafe(method_family = none)]
         pub unsafe fn rowViewAtRow_makeIfNecessary(
             &self,
@@ -851,13 +944,15 @@ extern_methods!(
         ) -> Option<Retained<NSTableRowView>>;
 
         #[method(rowForView:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rowForView(&self, view: &NSView) -> NSInteger;
 
         #[method(columnForView:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn columnForView(&self, view: &NSView) -> NSInteger;
 
         #[cfg(feature = "NSUserInterfaceItemIdentification")]
-        #[method_id(makeViewWithIdentifier:owner:)]
+        #[method(makeViewWithIdentifier:owner:)]
         #[unsafe(method_family = none)]
         pub unsafe fn makeViewWithIdentifier_owner(
             &self,
@@ -867,32 +962,40 @@ extern_methods!(
 
         #[cfg(all(feature = "NSTableRowView", feature = "block2"))]
         #[method(enumerateAvailableRowViewsUsingBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn enumerateAvailableRowViewsUsingBlock(
             &self,
             handler: &block2::Block<dyn Fn(NonNull<NSTableRowView>, NSInteger) + '_>,
         );
 
         #[method(floatsGroupRows)]
+        #[unsafe(method_family = none)]
         pub unsafe fn floatsGroupRows(&self) -> bool;
 
         /// Setter for [`floatsGroupRows`][Self::floatsGroupRows].
         #[method(setFloatsGroupRows:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFloatsGroupRows(&self, floats_group_rows: bool);
 
         #[method(rowActionsVisible)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rowActionsVisible(&self) -> bool;
 
         /// Setter for [`rowActionsVisible`][Self::rowActionsVisible].
         #[method(setRowActionsVisible:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRowActionsVisible(&self, row_actions_visible: bool);
 
         #[method(beginUpdates)]
+        #[unsafe(method_family = none)]
         pub unsafe fn beginUpdates(&self);
 
         #[method(endUpdates)]
+        #[unsafe(method_family = none)]
         pub unsafe fn endUpdates(&self);
 
         #[method(insertRowsAtIndexes:withAnimation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn insertRowsAtIndexes_withAnimation(
             &self,
             indexes: &NSIndexSet,
@@ -900,6 +1003,7 @@ extern_methods!(
         );
 
         #[method(removeRowsAtIndexes:withAnimation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeRowsAtIndexes_withAnimation(
             &self,
             indexes: &NSIndexSet,
@@ -907,9 +1011,11 @@ extern_methods!(
         );
 
         #[method(moveRowAtIndex:toIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn moveRowAtIndex_toIndex(&self, old_index: NSInteger, new_index: NSInteger);
 
         #[method(hideRowsAtIndexes:withAnimation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hideRowsAtIndexes_withAnimation(
             &self,
             indexes: &NSIndexSet,
@@ -917,18 +1023,20 @@ extern_methods!(
         );
 
         #[method(unhideRowsAtIndexes:withAnimation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn unhideRowsAtIndexes_withAnimation(
             &self,
             indexes: &NSIndexSet,
             row_animation: NSTableViewAnimationOptions,
         );
 
-        #[method_id(hiddenRowIndexes)]
+        #[method(hiddenRowIndexes)]
         #[unsafe(method_family = none)]
         pub unsafe fn hiddenRowIndexes(&self) -> Retained<NSIndexSet>;
 
         #[cfg(all(feature = "NSNib", feature = "NSUserInterfaceItemIdentification"))]
         #[method(registerNib:forIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn registerNib_forIdentifier(
             &self,
             nib: Option<&NSNib>,
@@ -936,7 +1044,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSNib", feature = "NSUserInterfaceItemIdentification"))]
-        #[method_id(registeredNibsByIdentifier)]
+        #[method(registeredNibsByIdentifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn registeredNibsByIdentifier(
             &self,
@@ -944,36 +1052,44 @@ extern_methods!(
 
         #[cfg(feature = "NSTableRowView")]
         #[method(didAddRowView:forRow:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn didAddRowView_forRow(&self, row_view: &NSTableRowView, row: NSInteger);
 
         #[cfg(feature = "NSTableRowView")]
         #[method(didRemoveRowView:forRow:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn didRemoveRowView_forRow(&self, row_view: &NSTableRowView, row: NSInteger);
 
         #[method(usesStaticContents)]
+        #[unsafe(method_family = none)]
         pub unsafe fn usesStaticContents(&self) -> bool;
 
         /// Setter for [`usesStaticContents`][Self::usesStaticContents].
         #[method(setUsesStaticContents:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUsesStaticContents(&self, uses_static_contents: bool);
 
         #[cfg(feature = "NSUserInterfaceLayout")]
         #[method(userInterfaceLayoutDirection)]
+        #[unsafe(method_family = none)]
         pub unsafe fn userInterfaceLayoutDirection(&self) -> NSUserInterfaceLayoutDirection;
 
         #[cfg(feature = "NSUserInterfaceLayout")]
         /// Setter for [`userInterfaceLayoutDirection`][Self::userInterfaceLayoutDirection].
         #[method(setUserInterfaceLayoutDirection:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUserInterfaceLayoutDirection(
             &self,
             user_interface_layout_direction: NSUserInterfaceLayoutDirection,
         );
 
         #[method(usesAutomaticRowHeights)]
+        #[unsafe(method_family = none)]
         pub unsafe fn usesAutomaticRowHeights(&self) -> bool;
 
         /// Setter for [`usesAutomaticRowHeights`][Self::usesAutomaticRowHeights].
         #[method(setUsesAutomaticRowHeights:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUsesAutomaticRowHeights(&self, uses_automatic_row_heights: bool);
     }
 );
@@ -982,7 +1098,7 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSTableView {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -992,7 +1108,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSTableView {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -1004,7 +1120,7 @@ extern_protocol!(
     pub unsafe trait NSTableViewDelegate: NSControlTextEditingDelegate {
         #[cfg(all(feature = "NSResponder", feature = "NSTableColumn", feature = "NSView"))]
         #[optional]
-        #[method_id(tableView:viewForTableColumn:row:)]
+        #[method(tableView:viewForTableColumn:row:)]
         #[unsafe(method_family = none)]
         unsafe fn tableView_viewForTableColumn_row(
             &self,
@@ -1019,7 +1135,7 @@ extern_protocol!(
             feature = "NSView"
         ))]
         #[optional]
-        #[method_id(tableView:rowViewForRow:)]
+        #[method(tableView:rowViewForRow:)]
         #[unsafe(method_family = none)]
         unsafe fn tableView_rowViewForRow(
             &self,
@@ -1034,6 +1150,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(tableView:didAddRowView:forRow:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableView_didAddRowView_forRow(
             &self,
             table_view: &NSTableView,
@@ -1048,6 +1165,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(tableView:didRemoveRowView:forRow:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableView_didRemoveRowView_forRow(
             &self,
             table_view: &NSTableView,
@@ -1058,6 +1176,7 @@ extern_protocol!(
         #[cfg(all(feature = "NSResponder", feature = "NSTableColumn", feature = "NSView"))]
         #[optional]
         #[method(tableView:willDisplayCell:forTableColumn:row:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableView_willDisplayCell_forTableColumn_row(
             &self,
             table_view: &NSTableView,
@@ -1069,6 +1188,7 @@ extern_protocol!(
         #[cfg(all(feature = "NSResponder", feature = "NSTableColumn", feature = "NSView"))]
         #[optional]
         #[method(tableView:shouldEditTableColumn:row:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableView_shouldEditTableColumn_row(
             &self,
             table_view: &NSTableView,
@@ -1083,7 +1203,7 @@ extern_protocol!(
             feature = "NSView"
         ))]
         #[optional]
-        #[method_id(tableView:toolTipForCell:rect:tableColumn:row:mouseLocation:)]
+        #[method(tableView:toolTipForCell:rect:tableColumn:row:mouseLocation:)]
         #[unsafe(method_family = none)]
         unsafe fn tableView_toolTipForCell_rect_tableColumn_row_mouseLocation(
             &self,
@@ -1098,6 +1218,7 @@ extern_protocol!(
         #[cfg(all(feature = "NSResponder", feature = "NSTableColumn", feature = "NSView"))]
         #[optional]
         #[method(tableView:shouldShowCellExpansionForTableColumn:row:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableView_shouldShowCellExpansionForTableColumn_row(
             &self,
             table_view: &NSTableView,
@@ -1113,6 +1234,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(tableView:shouldTrackCell:forTableColumn:row:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableView_shouldTrackCell_forTableColumn_row(
             &self,
             table_view: &NSTableView,
@@ -1128,7 +1250,7 @@ extern_protocol!(
             feature = "NSView"
         ))]
         #[optional]
-        #[method_id(tableView:dataCellForTableColumn:row:)]
+        #[method(tableView:dataCellForTableColumn:row:)]
         #[unsafe(method_family = none)]
         unsafe fn tableView_dataCellForTableColumn_row(
             &self,
@@ -1140,11 +1262,13 @@ extern_protocol!(
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(selectionShouldChangeInTableView:)]
+        #[unsafe(method_family = none)]
         unsafe fn selectionShouldChangeInTableView(&self, table_view: &NSTableView) -> bool;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(tableView:shouldSelectRow:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableView_shouldSelectRow(
             &self,
             table_view: &NSTableView,
@@ -1153,7 +1277,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
-        #[method_id(tableView:selectionIndexesForProposedSelection:)]
+        #[method(tableView:selectionIndexesForProposedSelection:)]
         #[unsafe(method_family = none)]
         unsafe fn tableView_selectionIndexesForProposedSelection(
             &self,
@@ -1164,6 +1288,7 @@ extern_protocol!(
         #[cfg(all(feature = "NSResponder", feature = "NSTableColumn", feature = "NSView"))]
         #[optional]
         #[method(tableView:shouldSelectTableColumn:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableView_shouldSelectTableColumn(
             &self,
             table_view: &NSTableView,
@@ -1173,6 +1298,7 @@ extern_protocol!(
         #[cfg(all(feature = "NSResponder", feature = "NSTableColumn", feature = "NSView"))]
         #[optional]
         #[method(tableView:mouseDownInHeaderOfTableColumn:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableView_mouseDownInHeaderOfTableColumn(
             &self,
             table_view: &NSTableView,
@@ -1182,6 +1308,7 @@ extern_protocol!(
         #[cfg(all(feature = "NSResponder", feature = "NSTableColumn", feature = "NSView"))]
         #[optional]
         #[method(tableView:didClickTableColumn:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableView_didClickTableColumn(
             &self,
             table_view: &NSTableView,
@@ -1191,6 +1318,7 @@ extern_protocol!(
         #[cfg(all(feature = "NSResponder", feature = "NSTableColumn", feature = "NSView"))]
         #[optional]
         #[method(tableView:didDragTableColumn:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableView_didDragTableColumn(
             &self,
             table_view: &NSTableView,
@@ -1204,12 +1332,13 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(tableView:heightOfRow:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableView_heightOfRow(&self, table_view: &NSTableView, row: NSInteger)
             -> CGFloat;
 
         #[cfg(all(feature = "NSResponder", feature = "NSTableColumn", feature = "NSView"))]
         #[optional]
-        #[method_id(tableView:typeSelectStringForTableColumn:row:)]
+        #[method(tableView:typeSelectStringForTableColumn:row:)]
         #[unsafe(method_family = none)]
         unsafe fn tableView_typeSelectStringForTableColumn_row(
             &self,
@@ -1221,6 +1350,7 @@ extern_protocol!(
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(tableView:nextTypeSelectMatchFromRow:toRow:forString:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableView_nextTypeSelectMatchFromRow_toRow_forString(
             &self,
             table_view: &NSTableView,
@@ -1232,6 +1362,7 @@ extern_protocol!(
         #[cfg(all(feature = "NSEvent", feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(tableView:shouldTypeSelectForEvent:withCurrentSearchString:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableView_shouldTypeSelectForEvent_withCurrentSearchString(
             &self,
             table_view: &NSTableView,
@@ -1242,6 +1373,7 @@ extern_protocol!(
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(tableView:isGroupRow:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableView_isGroupRow(&self, table_view: &NSTableView, row: NSInteger) -> bool;
 
         #[cfg(all(
@@ -1251,6 +1383,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(tableView:sizeToFitWidthOfColumn:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableView_sizeToFitWidthOfColumn(
             &self,
             table_view: &NSTableView,
@@ -1260,6 +1393,7 @@ extern_protocol!(
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(tableView:shouldReorderColumn:toColumn:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableView_shouldReorderColumn_toColumn(
             &self,
             table_view: &NSTableView,
@@ -1273,7 +1407,7 @@ extern_protocol!(
             feature = "NSView"
         ))]
         #[optional]
-        #[method_id(tableView:rowActionsForRow:edge:)]
+        #[method(tableView:rowActionsForRow:edge:)]
         #[unsafe(method_family = none)]
         unsafe fn tableView_rowActionsForRow_edge(
             &self,
@@ -1285,6 +1419,7 @@ extern_protocol!(
         #[cfg(all(feature = "NSResponder", feature = "NSTableColumn", feature = "NSView"))]
         #[optional]
         #[method(tableView:userCanChangeVisibilityOfTableColumn:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableView_userCanChangeVisibilityOfTableColumn(
             &self,
             table_view: &NSTableView,
@@ -1294,6 +1429,7 @@ extern_protocol!(
         #[cfg(all(feature = "NSResponder", feature = "NSTableColumn", feature = "NSView"))]
         #[optional]
         #[method(tableView:userDidChangeVisibilityOfTableColumns:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableView_userDidChangeVisibilityOfTableColumns(
             &self,
             table_view: &NSTableView,
@@ -1302,18 +1438,22 @@ extern_protocol!(
 
         #[optional]
         #[method(tableViewSelectionDidChange:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableViewSelectionDidChange(&self, notification: &NSNotification);
 
         #[optional]
         #[method(tableViewColumnDidMove:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableViewColumnDidMove(&self, notification: &NSNotification);
 
         #[optional]
         #[method(tableViewColumnDidResize:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableViewColumnDidResize(&self, notification: &NSNotification);
 
         #[optional]
         #[method(tableViewSelectionIsChanging:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableViewSelectionIsChanging(&self, notification: &NSNotification);
     }
 );
@@ -1350,6 +1490,7 @@ extern_protocol!(
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(numberOfRowsInTableView:)]
+        #[unsafe(method_family = none)]
         unsafe fn numberOfRowsInTableView(&self, table_view: &NSTableView) -> NSInteger;
 
         #[cfg(all(
@@ -1359,7 +1500,7 @@ extern_protocol!(
             feature = "NSView"
         ))]
         #[optional]
-        #[method_id(tableView:objectValueForTableColumn:row:)]
+        #[method(tableView:objectValueForTableColumn:row:)]
         #[unsafe(method_family = none)]
         unsafe fn tableView_objectValueForTableColumn_row(
             &self,
@@ -1376,6 +1517,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(tableView:setObjectValue:forTableColumn:row:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableView_setObjectValue_forTableColumn_row(
             &self,
             table_view: &NSTableView,
@@ -1387,6 +1529,7 @@ extern_protocol!(
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(tableView:sortDescriptorsDidChange:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableView_sortDescriptorsDidChange(
             &self,
             table_view: &NSTableView,
@@ -1400,7 +1543,7 @@ extern_protocol!(
             feature = "NSView"
         ))]
         #[optional]
-        #[method_id(tableView:pasteboardWriterForRow:)]
+        #[method(tableView:pasteboardWriterForRow:)]
         #[unsafe(method_family = none)]
         unsafe fn tableView_pasteboardWriterForRow(
             &self,
@@ -1416,6 +1559,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(tableView:draggingSession:willBeginAtPoint:forRowIndexes:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableView_draggingSession_willBeginAtPoint_forRowIndexes(
             &self,
             table_view: &NSTableView,
@@ -1433,6 +1577,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(tableView:draggingSession:endedAtPoint:operation:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableView_draggingSession_endedAtPoint_operation(
             &self,
             table_view: &NSTableView,
@@ -1449,6 +1594,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(tableView:updateDraggingItemsForDrag:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableView_updateDraggingItemsForDrag(
             &self,
             table_view: &NSTableView,
@@ -1464,6 +1610,7 @@ extern_protocol!(
         #[deprecated = "Use -tableView:pasteboardWriterForRow: instead"]
         #[optional]
         #[method(tableView:writeRowsWithIndexes:toPasteboard:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableView_writeRowsWithIndexes_toPasteboard(
             &self,
             table_view: &NSTableView,
@@ -1479,6 +1626,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(tableView:validateDrop:proposedRow:proposedDropOperation:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableView_validateDrop_proposedRow_proposedDropOperation(
             &self,
             table_view: &NSTableView,
@@ -1495,6 +1643,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(tableView:acceptDrop:row:dropOperation:)]
+        #[unsafe(method_family = none)]
         unsafe fn tableView_acceptDrop_row_dropOperation(
             &self,
             table_view: &NSTableView,
@@ -1506,7 +1655,7 @@ extern_protocol!(
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[deprecated = "Use NSFilePromiseReceiver objects instead"]
         #[optional]
-        #[method_id(tableView:namesOfPromisedFilesDroppedAtDestination:forDraggedRowsWithIndexes:)]
+        #[method(tableView:namesOfPromisedFilesDroppedAtDestination:forDraggedRowsWithIndexes:)]
         #[unsafe(method_family = none)]
         unsafe fn tableView_namesOfPromisedFilesDroppedAtDestination_forDraggedRowsWithIndexes(
             &self,
@@ -1523,33 +1672,37 @@ extern_methods!(
     unsafe impl NSTableView {
         #[deprecated]
         #[method(setDrawsGrid:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDrawsGrid(&self, flag: bool);
 
         #[deprecated]
         #[method(drawsGrid)]
+        #[unsafe(method_family = none)]
         pub unsafe fn drawsGrid(&self) -> bool;
 
         #[deprecated]
         #[method(selectColumn:byExtendingSelection:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectColumn_byExtendingSelection(&self, column: NSInteger, extend: bool);
 
         #[deprecated]
         #[method(selectRow:byExtendingSelection:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectRow_byExtendingSelection(&self, row: NSInteger, extend: bool);
 
         #[deprecated]
-        #[method_id(selectedColumnEnumerator)]
+        #[method(selectedColumnEnumerator)]
         #[unsafe(method_family = none)]
         pub unsafe fn selectedColumnEnumerator(&self) -> Retained<NSEnumerator>;
 
         #[deprecated]
-        #[method_id(selectedRowEnumerator)]
+        #[method(selectedRowEnumerator)]
         #[unsafe(method_family = none)]
         pub unsafe fn selectedRowEnumerator(&self) -> Retained<NSEnumerator>;
 
         #[cfg(all(feature = "NSEvent", feature = "NSImage"))]
         #[deprecated]
-        #[method_id(dragImageForRows:event:dragImageOffset:)]
+        #[method(dragImageForRows:event:dragImageOffset:)]
         #[unsafe(method_family = none)]
         pub unsafe fn dragImageForRows_event_dragImageOffset(
             &self,
@@ -1560,19 +1713,22 @@ extern_methods!(
 
         #[deprecated]
         #[method(setAutoresizesAllColumnsToFit:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAutoresizesAllColumnsToFit(&self, flag: bool);
 
         #[deprecated]
         #[method(autoresizesAllColumnsToFit)]
+        #[unsafe(method_family = none)]
         pub unsafe fn autoresizesAllColumnsToFit(&self) -> bool;
 
         #[deprecated]
         #[method(columnsInRect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn columnsInRect(&self, rect: NSRect) -> NSRange;
 
         #[cfg(feature = "NSCell")]
         #[deprecated = "Use View Based TableView and -viewAtColumn:row:"]
-        #[method_id(preparedCellAtColumn:row:)]
+        #[method(preparedCellAtColumn:row:)]
         #[unsafe(method_family = none)]
         pub unsafe fn preparedCellAtColumn_row(
             &self,
@@ -1583,28 +1739,34 @@ extern_methods!(
         #[cfg(feature = "NSText")]
         #[deprecated = "Use a View Based TableView with an NSTextField"]
         #[method(textShouldBeginEditing:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textShouldBeginEditing(&self, text_object: &NSText) -> bool;
 
         #[cfg(feature = "NSText")]
         #[deprecated = "Use a View Based TableView with an NSTextField"]
         #[method(textShouldEndEditing:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textShouldEndEditing(&self, text_object: &NSText) -> bool;
 
         #[deprecated = "Use a View Based TableView with an NSTextField"]
         #[method(textDidBeginEditing:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textDidBeginEditing(&self, notification: &NSNotification);
 
         #[deprecated = "Use a View Based TableView with an NSTextField"]
         #[method(textDidEndEditing:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textDidEndEditing(&self, notification: &NSNotification);
 
         #[deprecated = "Use a View Based TableView with an NSTextField"]
         #[method(textDidChange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textDidChange(&self, notification: &NSNotification);
 
         #[cfg(feature = "NSCell")]
         #[deprecated = "Use a View Based TableView; observe the window’s firstResponder for focus change notifications"]
         #[method(shouldFocusCell:atColumn:row:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shouldFocusCell_atColumn_row(
             &self,
             cell: &NSCell,
@@ -1614,14 +1776,17 @@ extern_methods!(
 
         #[deprecated = "Use a View Based TableView and observe the window.firstResponder"]
         #[method(focusedColumn)]
+        #[unsafe(method_family = none)]
         pub unsafe fn focusedColumn(&self) -> NSInteger;
 
         #[deprecated = "Use a View Based TableView; make a particular view the first responder with [window makeFirstResponder:view] to focus it."]
         #[method(setFocusedColumn:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFocusedColumn(&self, focused_column: NSInteger);
 
         #[deprecated = "Use a View Based TableView; directly interact with a particular view as required and call -performClick: on it, if necessary"]
         #[method(performClickOnCellAtColumn:row:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn performClickOnCellAtColumn_row(&self, column: NSInteger, row: NSInteger);
     }
 );

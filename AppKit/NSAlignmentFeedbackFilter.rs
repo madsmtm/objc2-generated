@@ -27,18 +27,21 @@ extern_methods!(
     unsafe impl NSAlignmentFeedbackFilter {
         #[cfg(feature = "NSEvent")]
         #[method(inputEventMask)]
+        #[unsafe(method_family = none)]
         pub unsafe fn inputEventMask() -> NSEventMask;
 
         #[cfg(feature = "NSEvent")]
         #[method(updateWithEvent:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updateWithEvent(&self, event: &NSEvent);
 
         #[cfg(all(feature = "NSGestureRecognizer", feature = "NSPanGestureRecognizer"))]
         #[method(updateWithPanRecognizer:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updateWithPanRecognizer(&self, pan_recognizer: &NSPanGestureRecognizer);
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-        #[method_id(alignmentFeedbackTokenForMovementInView:previousPoint:alignedPoint:defaultPoint:)]
+        #[method(alignmentFeedbackTokenForMovementInView:previousPoint:alignedPoint:defaultPoint:)]
         #[unsafe(method_family = none)]
         pub unsafe fn alignmentFeedbackTokenForMovementInView_previousPoint_alignedPoint_defaultPoint(
             &self,
@@ -53,7 +56,7 @@ extern_methods!(
             feature = "NSView",
             feature = "objc2-core-foundation"
         ))]
-        #[method_id(alignmentFeedbackTokenForHorizontalMovementInView:previousX:alignedX:defaultX:)]
+        #[method(alignmentFeedbackTokenForHorizontalMovementInView:previousX:alignedX:defaultX:)]
         #[unsafe(method_family = none)]
         pub unsafe fn alignmentFeedbackTokenForHorizontalMovementInView_previousX_alignedX_defaultX(
             &self,
@@ -68,7 +71,7 @@ extern_methods!(
             feature = "NSView",
             feature = "objc2-core-foundation"
         ))]
-        #[method_id(alignmentFeedbackTokenForVerticalMovementInView:previousY:alignedY:defaultY:)]
+        #[method(alignmentFeedbackTokenForVerticalMovementInView:previousY:alignedY:defaultY:)]
         #[unsafe(method_family = none)]
         pub unsafe fn alignmentFeedbackTokenForVerticalMovementInView_previousY_alignedY_defaultY(
             &self,
@@ -80,6 +83,7 @@ extern_methods!(
 
         #[cfg(feature = "NSHapticFeedback")]
         #[method(performFeedback:performanceTime:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn performFeedback_performanceTime(
             &self,
             alignment_feedback_tokens: &NSArray<ProtocolObject<dyn NSAlignmentFeedbackToken>>,
@@ -91,11 +95,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSAlignmentFeedbackFilter {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

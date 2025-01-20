@@ -49,6 +49,7 @@ extern_protocol!(
         #[cfg(target_os = "macos")]
         #[optional]
         #[method(update:forScene:)]
+        #[unsafe(method_family = none)]
         unsafe fn update_forScene(&self, current_time: NSTimeInterval, scene: &SKScene);
 
         #[cfg(all(
@@ -59,6 +60,7 @@ extern_protocol!(
         #[cfg(target_os = "macos")]
         #[optional]
         #[method(didEvaluateActionsForScene:)]
+        #[unsafe(method_family = none)]
         unsafe fn didEvaluateActionsForScene(&self, scene: &SKScene);
 
         #[cfg(all(
@@ -69,6 +71,7 @@ extern_protocol!(
         #[cfg(target_os = "macos")]
         #[optional]
         #[method(didSimulatePhysicsForScene:)]
+        #[unsafe(method_family = none)]
         unsafe fn didSimulatePhysicsForScene(&self, scene: &SKScene);
 
         #[cfg(all(
@@ -79,6 +82,7 @@ extern_protocol!(
         #[cfg(target_os = "macos")]
         #[optional]
         #[method(didApplyConstraintsForScene:)]
+        #[unsafe(method_family = none)]
         unsafe fn didApplyConstraintsForScene(&self, scene: &SKScene);
 
         #[cfg(all(
@@ -89,6 +93,7 @@ extern_protocol!(
         #[cfg(target_os = "macos")]
         #[optional]
         #[method(didFinishUpdateForScene:)]
+        #[unsafe(method_family = none)]
         unsafe fn didFinishUpdateForScene(&self, scene: &SKScene);
     }
 );
@@ -176,38 +181,43 @@ extern_methods!(
         ///
         ///
         /// Parameter `size`: a size in points that signifies the viewport into the scene that defines your framing of the scene.
-        #[method_id(initWithSize:)]
+        #[method(initWithSize:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSize(this: Allocated<Self>, size: CGSize) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(sceneWithSize:)]
+        #[method(sceneWithSize:)]
         #[unsafe(method_family = none)]
         pub unsafe fn sceneWithSize(size: CGSize, mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method(sceneDidLoad)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sceneDidLoad(&self);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(size)]
+        #[unsafe(method_family = none)]
         pub unsafe fn size(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`size`][Self::size].
         #[method(setSize:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSize(&self, size: CGSize);
 
         /// Used to determine how to scale the scene to match the SKView it is being displayed in.
         #[method(scaleMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scaleMode(&self) -> SKSceneScaleMode;
 
         /// Setter for [`scaleMode`][Self::scaleMode].
         #[method(setScaleMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setScaleMode(&self, scale_mode: SKSceneScaleMode);
 
         #[cfg(feature = "SKCameraNode")]
         /// The camera that is used to obtain the view scale and translation based on where the camera is in relation to the scene.
-        #[method_id(camera)]
+        #[method(camera)]
         #[unsafe(method_family = none)]
         pub unsafe fn camera(&self) -> Option<Retained<SKCameraNode>>;
 
@@ -215,71 +225,79 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`camera`][Self::camera].
         #[method(setCamera:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCamera(&self, camera: Option<&SKCameraNode>);
 
         /// The node that is currently the listener for positional audio coming from SKAudioNodes
         ///
         /// See: SKAudioNode
-        #[method_id(listener)]
+        #[method(listener)]
         #[unsafe(method_family = none)]
         pub unsafe fn listener(&self) -> Option<Retained<SKNode>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`listener`][Self::listener].
         #[method(setListener:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setListener(&self, listener: Option<&SKNode>);
 
         #[cfg(feature = "objc2-avf-audio")]
-        #[method_id(audioEngine)]
+        #[method(audioEngine)]
         #[unsafe(method_family = none)]
         pub unsafe fn audioEngine(&self) -> Retained<AVAudioEngine>;
 
         /// Background color, defaults to gray
-        #[method_id(backgroundColor)]
+        #[method(backgroundColor)]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundColor(&self) -> Retained<NSColor>;
 
         /// Setter for [`backgroundColor`][Self::backgroundColor].
         #[method(setBackgroundColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColor(&self, background_color: &NSColor);
 
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn SKSceneDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn SKSceneDelegate>>);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Used to choose the origin of the scene's coordinate system
         #[method(anchorPoint)]
+        #[unsafe(method_family = none)]
         pub unsafe fn anchorPoint(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`anchorPoint`][Self::anchorPoint].
         #[method(setAnchorPoint:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAnchorPoint(&self, anchor_point: CGPoint);
 
         #[cfg(feature = "SKPhysicsWorld")]
         /// Physics simulation functionality
-        #[method_id(physicsWorld)]
+        #[method(physicsWorld)]
         #[unsafe(method_family = none)]
         pub unsafe fn physicsWorld(&self) -> Retained<SKPhysicsWorld>;
 
         #[cfg(feature = "SKView")]
         /// The SKView this scene is currently presented in, or nil if it is not being presented.
-        #[method_id(view)]
+        #[method(view)]
         #[unsafe(method_family = none)]
         pub unsafe fn view(&self) -> Option<Retained<SKView>>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(convertPointFromView:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn convertPointFromView(&self, point: CGPoint) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(convertPointToView:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn convertPointToView(&self, point: CGPoint) -> CGPoint;
 
         /// Override this to perform per-frame game logic. Called exactly once per frame before any actions are evaluated and any physics are simulated.
@@ -287,36 +305,44 @@ extern_methods!(
         ///
         /// Parameter `currentTime`: the current time in the app. This must be monotonically increasing.
         #[method(update:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn update(&self, current_time: NSTimeInterval);
 
         /// Override this to perform game logic. Called exactly once per frame after any actions have been evaluated but before any physics are simulated. Any additional actions applied is not evaluated until the next update.
         #[method(didEvaluateActions)]
+        #[unsafe(method_family = none)]
         pub unsafe fn didEvaluateActions(&self);
 
         /// Override this to perform game logic. Called exactly once per frame after any actions have been evaluated and any physics have been simulated. Any additional actions applied is not evaluated until the next update. Any changes to physics bodies is not simulated until the next update.
         #[method(didSimulatePhysics)]
+        #[unsafe(method_family = none)]
         pub unsafe fn didSimulatePhysics(&self);
 
         /// Override this to perform game logic. Called exactly once per frame after any enabled constraints have been applied. Any additional actions applied is not evaluated until the next update. Any changes to physics bodies is not simulated until the next update. Any changes to constraints will not be applied until the next update.
         #[method(didApplyConstraints)]
+        #[unsafe(method_family = none)]
         pub unsafe fn didApplyConstraints(&self);
 
         /// Override this to perform game logic. Called after all update logic has been completed. Any additional actions applied are not evaluated until the next update. Any changes to physics bodies are not simulated until the next update. Any changes to constraints will not be applied until the next update.
         ///
         /// No futher update logic will be applied to the scene after this call. Any values set on nodes here will be used when the scene is rendered for the current frame.
         #[method(didFinishUpdate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn didFinishUpdate(&self);
 
         #[cfg(feature = "SKView")]
         #[method(didMoveToView:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn didMoveToView(&self, view: &SKView);
 
         #[cfg(feature = "SKView")]
         #[method(willMoveFromView:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn willMoveFromView(&self, view: &SKView);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(didChangeSize:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn didChangeSize(&self, old_size: CGSize);
     }
 );
@@ -330,30 +356,30 @@ extern_methods!(
     ))]
     #[cfg(target_os = "macos")]
     unsafe impl SKScene {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Support coding and decoding via NSKeyedArchiver.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(node)]
+        #[method(node)]
         #[unsafe(method_family = none)]
         pub unsafe fn node(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(nodeWithFileNamed:)]
+        #[method(nodeWithFileNamed:)]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeWithFileNamed(
             filename: &NSString,
             mtm: MainThreadMarker,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(nodeWithFileNamed:securelyWithClasses:andError:_)]
+        #[method(nodeWithFileNamed:securelyWithClasses:andError:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeWithFileNamed_securelyWithClasses_andError(
             filename: &NSString,
@@ -372,7 +398,7 @@ extern_methods!(
     ))]
     #[cfg(target_os = "macos")]
     unsafe impl SKScene {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

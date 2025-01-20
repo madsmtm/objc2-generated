@@ -25,65 +25,74 @@ unsafe impl NSObjectProtocol for WKApplication {}
 
 extern_methods!(
     unsafe impl WKApplication {
-        #[method_id(sharedApplication)]
+        #[method(sharedApplication)]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedApplication(mtm: MainThreadMarker) -> Retained<WKApplication>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(&self) -> Retained<Self>;
 
         #[method(openSystemURL:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn openSystemURL(&self, url: &NSURL);
 
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn WKApplicationDelegate>>>;
 
         #[cfg(feature = "WKInterfaceController")]
-        #[method_id(rootInterfaceController)]
+        #[method(rootInterfaceController)]
         #[unsafe(method_family = none)]
         pub unsafe fn rootInterfaceController(&self) -> Option<Retained<WKInterfaceController>>;
 
         #[cfg(feature = "WKInterfaceController")]
-        #[method_id(visibleInterfaceController)]
+        #[method(visibleInterfaceController)]
         #[unsafe(method_family = none)]
         pub unsafe fn visibleInterfaceController(&self) -> Option<Retained<WKInterfaceController>>;
 
         #[cfg(feature = "WKExtension")]
         #[method(applicationState)]
+        #[unsafe(method_family = none)]
         pub unsafe fn applicationState(&self) -> WKApplicationState;
 
         #[method(isApplicationRunningInDock)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isApplicationRunningInDock(&self) -> bool;
 
         #[method(isAutorotating)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isAutorotating(&self) -> bool;
 
         /// Setter for [`isAutorotating`][Self::isAutorotating].
         #[method(setAutorotating:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAutorotating(&self, autorotating: bool);
 
         #[method(isAutorotated)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isAutorotated(&self) -> bool;
 
         #[method(registerForRemoteNotifications)]
+        #[unsafe(method_family = none)]
         pub unsafe fn registerForRemoteNotifications(&self);
 
         #[method(unregisterForRemoteNotifications)]
+        #[unsafe(method_family = none)]
         pub unsafe fn unregisterForRemoteNotifications(&self);
 
         #[method(isRegisteredForRemoteNotifications)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isRegisteredForRemoteNotifications(&self) -> bool;
 
         #[cfg(feature = "objc2-ui-kit")]
-        #[method_id(globalTintColor)]
+        #[method(globalTintColor)]
         #[unsafe(method_family = none)]
         pub unsafe fn globalTintColor(&self) -> Retained<UIColor>;
     }
@@ -92,7 +101,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKApplication {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new_class(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -103,36 +112,44 @@ extern_protocol!(
     pub unsafe trait WKApplicationDelegate: NSObjectProtocol + MainThreadOnly {
         #[optional]
         #[method(applicationDidFinishLaunching)]
+        #[unsafe(method_family = none)]
         unsafe fn applicationDidFinishLaunching(&self);
 
         #[optional]
         #[method(applicationDidBecomeActive)]
+        #[unsafe(method_family = none)]
         unsafe fn applicationDidBecomeActive(&self);
 
         #[optional]
         #[method(applicationWillResignActive)]
+        #[unsafe(method_family = none)]
         unsafe fn applicationWillResignActive(&self);
 
         #[optional]
         #[method(applicationWillEnterForeground)]
+        #[unsafe(method_family = none)]
         unsafe fn applicationWillEnterForeground(&self);
 
         #[optional]
         #[method(applicationDidEnterBackground)]
+        #[unsafe(method_family = none)]
         unsafe fn applicationDidEnterBackground(&self);
 
         #[cfg(feature = "objc2-health-kit")]
         #[optional]
         #[method(handleWorkoutConfiguration:)]
+        #[unsafe(method_family = none)]
         unsafe fn handleWorkoutConfiguration(&self, workout_configuration: &HKWorkoutConfiguration);
 
         #[optional]
         #[method(handleActiveWorkoutRecovery)]
+        #[unsafe(method_family = none)]
         unsafe fn handleActiveWorkoutRecovery(&self);
 
         #[cfg(feature = "WKExtendedRuntimeSession")]
         #[optional]
         #[method(handleExtendedRuntimeSession:)]
+        #[unsafe(method_family = none)]
         unsafe fn handleExtendedRuntimeSession(
             &self,
             extended_runtime_session: &WKExtendedRuntimeSession,
@@ -140,31 +157,38 @@ extern_protocol!(
 
         #[optional]
         #[method(handleRemoteNowPlayingActivity)]
+        #[unsafe(method_family = none)]
         unsafe fn handleRemoteNowPlayingActivity(&self);
 
         #[optional]
         #[method(handleUserActivity:)]
+        #[unsafe(method_family = none)]
         unsafe fn handleUserActivity(&self, user_info: Option<&NSDictionary>);
 
         #[optional]
         #[method(handleActivity:)]
+        #[unsafe(method_family = none)]
         unsafe fn handleActivity(&self, user_activity: &NSUserActivity);
 
         #[cfg(feature = "WKBackgroundTask")]
         #[optional]
         #[method(handleBackgroundTasks:)]
+        #[unsafe(method_family = none)]
         unsafe fn handleBackgroundTasks(&self, background_tasks: &NSSet<WKRefreshBackgroundTask>);
 
         #[optional]
         #[method(deviceOrientationDidChange)]
+        #[unsafe(method_family = none)]
         unsafe fn deviceOrientationDidChange(&self);
 
         #[optional]
         #[method(didRegisterForRemoteNotificationsWithDeviceToken:)]
+        #[unsafe(method_family = none)]
         unsafe fn didRegisterForRemoteNotificationsWithDeviceToken(&self, device_token: &NSData);
 
         #[optional]
         #[method(didFailToRegisterForRemoteNotificationsWithError:)]
+        #[unsafe(method_family = none)]
         unsafe fn didFailToRegisterForRemoteNotificationsWithError(&self, error: &NSError);
 
         #[cfg(all(feature = "WKExtension", feature = "block2"))]
@@ -173,6 +197,7 @@ extern_protocol!(
         /// This method will be invoked even if the application was launched or resumed because of the remote background notification.!
         #[optional]
         #[method(didReceiveRemoteNotification:fetchCompletionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn didReceiveRemoteNotification_fetchCompletionHandler(
             &self,
             user_info: &NSDictionary,
@@ -182,6 +207,7 @@ extern_protocol!(
         #[cfg(feature = "objc2-cloud-kit")]
         #[optional]
         #[method(userDidAcceptCloudKitShareWithMetadata:)]
+        #[unsafe(method_family = none)]
         unsafe fn userDidAcceptCloudKitShareWithMetadata(
             &self,
             cloud_kit_share_metadata: &CKShareMetadata,

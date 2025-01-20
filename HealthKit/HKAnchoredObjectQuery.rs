@@ -39,6 +39,7 @@ extern_methods!(
         /// This property may not be modified once the query has been executed.  It may only be set if the query has
         /// no limit.
         #[method(updateHandler)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updateHandler(
             &self,
         ) -> *mut block2::Block<
@@ -60,6 +61,7 @@ extern_methods!(
         ))]
         /// Setter for [`updateHandler`][Self::updateHandler].
         #[method(setUpdateHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUpdateHandler(
             &self,
             update_handler: Option<
@@ -102,7 +104,7 @@ extern_methods!(
         /// for no limit.
         ///
         /// Parameter `handler`: The block to invoke with results when the query has finished finding.
-        #[method_id(initWithType:predicate:anchor:limit:resultsHandler:)]
+        #[method(initWithType:predicate:anchor:limit:resultsHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithType_predicate_anchor_limit_resultsHandler(
             this: Allocated<Self>,
@@ -128,7 +130,7 @@ extern_methods!(
             feature = "block2"
         ))]
         #[deprecated]
-        #[method_id(initWithType:predicate:anchor:limit:completionHandler:)]
+        #[method(initWithType:predicate:anchor:limit:completionHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithType_predicate_anchor_limit_completionHandler(
             this: Allocated<Self>,
@@ -172,7 +174,7 @@ extern_methods!(
         /// HKObjectQueryNoLimit for no limit.
         ///
         /// Parameter `handler`: The block to invoke with results when the query has finished finding.
-        #[method_id(initWithQueryDescriptors:anchor:limit:resultsHandler:)]
+        #[method(initWithQueryDescriptors:anchor:limit:resultsHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithQueryDescriptors_anchor_limit_resultsHandler(
             this: Allocated<Self>,
@@ -196,7 +198,7 @@ extern_methods!(
     /// Methods declared on superclass `HKQuery`
     #[cfg(feature = "HKQuery")]
     unsafe impl HKAnchoredObjectQuery {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -206,7 +208,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "HKQuery")]
     unsafe impl HKAnchoredObjectQuery {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

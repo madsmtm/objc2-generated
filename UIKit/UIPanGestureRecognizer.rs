@@ -69,17 +69,21 @@ extern_methods!(
     #[cfg(feature = "UIGestureRecognizer")]
     unsafe impl UIPanGestureRecognizer {
         #[method(minimumNumberOfTouches)]
+        #[unsafe(method_family = none)]
         pub fn minimumNumberOfTouches(&self) -> NSUInteger;
 
         /// Setter for [`minimumNumberOfTouches`][Self::minimumNumberOfTouches].
         #[method(setMinimumNumberOfTouches:)]
+        #[unsafe(method_family = none)]
         pub fn setMinimumNumberOfTouches(&self, minimum_number_of_touches: NSUInteger);
 
         #[method(maximumNumberOfTouches)]
+        #[unsafe(method_family = none)]
         pub fn maximumNumberOfTouches(&self) -> NSUInteger;
 
         /// Setter for [`maximumNumberOfTouches`][Self::maximumNumberOfTouches].
         #[method(setMaximumNumberOfTouches:)]
+        #[unsafe(method_family = none)]
         pub fn setMaximumNumberOfTouches(&self, maximum_number_of_touches: NSUInteger);
 
         #[cfg(all(
@@ -88,6 +92,7 @@ extern_methods!(
             feature = "objc2-core-foundation"
         ))]
         #[method(translationInView:)]
+        #[unsafe(method_family = none)]
         pub fn translationInView(&self, view: Option<&UIView>) -> CGPoint;
 
         #[cfg(all(
@@ -96,6 +101,7 @@ extern_methods!(
             feature = "objc2-core-foundation"
         ))]
         #[method(setTranslation:inView:)]
+        #[unsafe(method_family = none)]
         pub fn setTranslation_inView(&self, translation: CGPoint, view: Option<&UIView>);
 
         #[cfg(all(
@@ -104,13 +110,16 @@ extern_methods!(
             feature = "objc2-core-foundation"
         ))]
         #[method(velocityInView:)]
+        #[unsafe(method_family = none)]
         pub fn velocityInView(&self, view: Option<&UIView>) -> CGPoint;
 
         #[method(allowedScrollTypesMask)]
+        #[unsafe(method_family = none)]
         pub fn allowedScrollTypesMask(&self) -> UIScrollTypeMask;
 
         /// Setter for [`allowedScrollTypesMask`][Self::allowedScrollTypesMask].
         #[method(setAllowedScrollTypesMask:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAllowedScrollTypesMask(&self, allowed_scroll_types_mask: UIScrollTypeMask);
     }
 );
@@ -119,7 +128,7 @@ extern_methods!(
     /// Methods declared on superclass `UIGestureRecognizer`
     #[cfg(feature = "UIGestureRecognizer")]
     unsafe impl UIPanGestureRecognizer {
-        #[method_id(initWithTarget:action:)]
+        #[method(initWithTarget:action:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTarget_action(
             this: Allocated<Self>,
@@ -127,11 +136,11 @@ extern_methods!(
             action: Option<Sel>,
         ) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -144,7 +153,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UIGestureRecognizer")]
     unsafe impl UIPanGestureRecognizer {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

@@ -21,6 +21,7 @@ extern_protocol!(
         #[cfg(all(feature = "GCPhysicalInputElement", feature = "block2"))]
         /// Set this block if you want to be notified when the touched state changes.
         #[method(touchedDidChangeHandler)]
+        #[unsafe(method_family = none)]
         unsafe fn touchedDidChangeHandler(
             &self,
         ) -> *mut block2::Block<
@@ -34,6 +35,7 @@ extern_protocol!(
         #[cfg(all(feature = "GCPhysicalInputElement", feature = "block2"))]
         /// Setter for [`touchedDidChangeHandler`][Self::touchedDidChangeHandler].
         #[method(setTouchedDidChangeHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn setTouchedDidChangeHandler(
             &self,
             touched_did_change_handler: Option<
@@ -56,6 +58,7 @@ extern_protocol!(
         ///
         /// See: GCPressedStateInput
         #[method(isTouched)]
+        #[unsafe(method_family = none)]
         unsafe fn isTouched(&self) -> bool;
 
         /// The timestamp of the last touched state change.
@@ -64,6 +67,7 @@ extern_protocol!(
         /// subtract a previous timestamp from the returned timestamp to determine the time
         /// (in seconds) between changes to the value.
         #[method(lastTouchedStateTimestamp)]
+        #[unsafe(method_family = none)]
         unsafe fn lastTouchedStateTimestamp(&self) -> NSTimeInterval;
 
         /// The interval (in seconds) between the timestamp of the last touched state
@@ -73,12 +77,13 @@ extern_protocol!(
         /// include (wired or wireless) transmission latency, or latency accrued on
         /// the device before the event was transmitted to the host.
         #[method(lastTouchedStateLatency)]
+        #[unsafe(method_family = none)]
         unsafe fn lastTouchedStateLatency(&self) -> NSTimeInterval;
 
         #[cfg(feature = "GCPhysicalInputSource")]
         /// An object describing the physical action(s) the user performs to manipulate
         /// this input.
-        #[method_id(sources)]
+        #[method(sources)]
         #[unsafe(method_family = none)]
         unsafe fn sources(&self) -> Retained<NSSet<ProtocolObject<dyn GCPhysicalInputSource>>>;
     }

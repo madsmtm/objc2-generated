@@ -18,16 +18,16 @@ unsafe impl NSObjectProtocol for MKMapItemRequest {}
 
 extern_methods!(
     unsafe impl MKMapItemRequest {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "MKMapItemIdentifier")]
-        #[method_id(initWithMapItemIdentifier:)]
+        #[method(initWithMapItemIdentifier:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMapItemIdentifier(
             this: Allocated<Self>,
@@ -36,23 +36,27 @@ extern_methods!(
 
         #[cfg(all(feature = "MKMapItem", feature = "block2"))]
         #[method(getMapItemWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getMapItemWithCompletionHandler(
             &self,
             completion_handler: &block2::Block<dyn Fn(*mut MKMapItem, *mut NSError)>,
         );
 
         #[method(cancel)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cancel(&self);
 
         #[cfg(feature = "MKMapItemIdentifier")]
-        #[method_id(mapItemIdentifier)]
+        #[method(mapItemIdentifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn mapItemIdentifier(&self) -> Option<Retained<MKMapItemIdentifier>>;
 
         #[method(isCancelled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isCancelled(&self) -> bool;
 
         #[method(isLoading)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isLoading(&self) -> bool;
     }
 );

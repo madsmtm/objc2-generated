@@ -73,121 +73,144 @@ extern_methods!(
     unsafe impl SKEmitterNode {
         /// The particle simulation is stepped automatically each frame when present in the scene. This allows the user to manually advance the simulation by a fixed amount of time. Useful for pre-populating particles before adding them to the scene.
         #[method(advanceSimulationTime:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn advanceSimulationTime(&self, sec: NSTimeInterval);
 
         #[method(resetSimulation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resetSimulation(&self);
 
         #[cfg(feature = "SKTexture")]
         /// The texture to be used for the particles.
-        #[method_id(particleTexture)]
+        #[method(particleTexture)]
         #[unsafe(method_family = none)]
         pub unsafe fn particleTexture(&self) -> Option<Retained<SKTexture>>;
 
         #[cfg(feature = "SKTexture")]
         /// Setter for [`particleTexture`][Self::particleTexture].
         #[method(setParticleTexture:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setParticleTexture(&self, particle_texture: Option<&SKTexture>);
 
         /// The blend mode for each particle. Defaults to SKBlendModeAlpha.
         #[method(particleBlendMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn particleBlendMode(&self) -> SKBlendMode;
 
         /// Setter for [`particleBlendMode`][Self::particleBlendMode].
         #[method(setParticleBlendMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setParticleBlendMode(&self, particle_blend_mode: SKBlendMode);
 
         /// The starting color for each particle. Defaults to clear.
-        #[method_id(particleColor)]
+        #[method(particleColor)]
         #[unsafe(method_family = none)]
         pub unsafe fn particleColor(&self) -> Retained<NSColor>;
 
         /// Setter for [`particleColor`][Self::particleColor].
         #[method(setParticleColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setParticleColor(&self, particle_color: &NSColor);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The random variance about each color component for each particle. Defaults to 0.0.
         #[method(particleColorRedRange)]
+        #[unsafe(method_family = none)]
         pub unsafe fn particleColorRedRange(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleColorRedRange`][Self::particleColorRedRange].
         #[method(setParticleColorRedRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setParticleColorRedRange(&self, particle_color_red_range: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(particleColorGreenRange)]
+        #[unsafe(method_family = none)]
         pub unsafe fn particleColorGreenRange(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleColorGreenRange`][Self::particleColorGreenRange].
         #[method(setParticleColorGreenRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setParticleColorGreenRange(&self, particle_color_green_range: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(particleColorBlueRange)]
+        #[unsafe(method_family = none)]
         pub unsafe fn particleColorBlueRange(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleColorBlueRange`][Self::particleColorBlueRange].
         #[method(setParticleColorBlueRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setParticleColorBlueRange(&self, particle_color_blue_range: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(particleColorAlphaRange)]
+        #[unsafe(method_family = none)]
         pub unsafe fn particleColorAlphaRange(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleColorAlphaRange`][Self::particleColorAlphaRange].
         #[method(setParticleColorAlphaRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setParticleColorAlphaRange(&self, particle_color_alpha_range: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The rate at which to modify each color component for each particle (per second).
         #[method(particleColorRedSpeed)]
+        #[unsafe(method_family = none)]
         pub unsafe fn particleColorRedSpeed(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleColorRedSpeed`][Self::particleColorRedSpeed].
         #[method(setParticleColorRedSpeed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setParticleColorRedSpeed(&self, particle_color_red_speed: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(particleColorGreenSpeed)]
+        #[unsafe(method_family = none)]
         pub unsafe fn particleColorGreenSpeed(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleColorGreenSpeed`][Self::particleColorGreenSpeed].
         #[method(setParticleColorGreenSpeed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setParticleColorGreenSpeed(&self, particle_color_green_speed: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(particleColorBlueSpeed)]
+        #[unsafe(method_family = none)]
         pub unsafe fn particleColorBlueSpeed(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleColorBlueSpeed`][Self::particleColorBlueSpeed].
         #[method(setParticleColorBlueSpeed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setParticleColorBlueSpeed(&self, particle_color_blue_speed: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(particleColorAlphaSpeed)]
+        #[unsafe(method_family = none)]
         pub unsafe fn particleColorAlphaSpeed(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleColorAlphaSpeed`][Self::particleColorAlphaSpeed].
         #[method(setParticleColorAlphaSpeed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setParticleColorAlphaSpeed(&self, particle_color_alpha_speed: CGFloat);
 
         #[cfg(feature = "SKKeyframeSequence")]
-        #[method_id(particleColorSequence)]
+        #[method(particleColorSequence)]
         #[unsafe(method_family = none)]
         pub unsafe fn particleColorSequence(&self) -> Option<Retained<SKKeyframeSequence>>;
 
         #[cfg(feature = "SKKeyframeSequence")]
         /// Setter for [`particleColorSequence`][Self::particleColorSequence].
         #[method(setParticleColorSequence:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setParticleColorSequence(
             &self,
             particle_color_sequence: Option<&SKKeyframeSequence>,
@@ -196,21 +219,25 @@ extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// The starting color blend for each particle. Behaves the same as SKSpriteNode. Defaults to 0.0.
         #[method(particleColorBlendFactor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn particleColorBlendFactor(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleColorBlendFactor`][Self::particleColorBlendFactor].
         #[method(setParticleColorBlendFactor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setParticleColorBlendFactor(&self, particle_color_blend_factor: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The random variance about the starting color blend for each particle. Defaults to 0.0.
         #[method(particleColorBlendFactorRange)]
+        #[unsafe(method_family = none)]
         pub unsafe fn particleColorBlendFactorRange(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleColorBlendFactorRange`][Self::particleColorBlendFactorRange].
         #[method(setParticleColorBlendFactorRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setParticleColorBlendFactorRange(
             &self,
             particle_color_blend_factor_range: CGFloat,
@@ -219,18 +246,20 @@ extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// The rate at which to modify the color blend for each particle. Defaults to 0.0.
         #[method(particleColorBlendFactorSpeed)]
+        #[unsafe(method_family = none)]
         pub unsafe fn particleColorBlendFactorSpeed(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleColorBlendFactorSpeed`][Self::particleColorBlendFactorSpeed].
         #[method(setParticleColorBlendFactorSpeed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setParticleColorBlendFactorSpeed(
             &self,
             particle_color_blend_factor_speed: CGFloat,
         );
 
         #[cfg(feature = "SKKeyframeSequence")]
-        #[method_id(particleColorBlendFactorSequence)]
+        #[method(particleColorBlendFactorSequence)]
         #[unsafe(method_family = none)]
         pub unsafe fn particleColorBlendFactorSequence(
             &self,
@@ -239,6 +268,7 @@ extern_methods!(
         #[cfg(feature = "SKKeyframeSequence")]
         /// Setter for [`particleColorBlendFactorSequence`][Self::particleColorBlendFactorSequence].
         #[method(setParticleColorBlendFactorSequence:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setParticleColorBlendFactorSequence(
             &self,
             particle_color_blend_factor_sequence: Option<&SKKeyframeSequence>,
@@ -247,198 +277,237 @@ extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// The starting position for each particle in the emitter's coordinate space. Defaults to (0.0, 0,0).
         #[method(particlePosition)]
+        #[unsafe(method_family = none)]
         pub unsafe fn particlePosition(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particlePosition`][Self::particlePosition].
         #[method(setParticlePosition:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setParticlePosition(&self, particle_position: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The random variance about the starting position for each particle in the emitter's coordinate space. Defaults to (0.0, 0,0).
         #[method(particlePositionRange)]
+        #[unsafe(method_family = none)]
         pub unsafe fn particlePositionRange(&self) -> CGVector;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particlePositionRange`][Self::particlePositionRange].
         #[method(setParticlePositionRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setParticlePositionRange(&self, particle_position_range: CGVector);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The starting speed for each particle along its emission vector. Defaults to 0.0.
         #[method(particleSpeed)]
+        #[unsafe(method_family = none)]
         pub unsafe fn particleSpeed(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleSpeed`][Self::particleSpeed].
         #[method(setParticleSpeed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setParticleSpeed(&self, particle_speed: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The random variance about the starting speed for each particle along its emission vector. Defaults to 0.0.
         #[method(particleSpeedRange)]
+        #[unsafe(method_family = none)]
         pub unsafe fn particleSpeedRange(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleSpeedRange`][Self::particleSpeedRange].
         #[method(setParticleSpeedRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setParticleSpeedRange(&self, particle_speed_range: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The angle at which to emit each new particle, in radians. Defaults to 0.0.
         #[method(emissionAngle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn emissionAngle(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`emissionAngle`][Self::emissionAngle].
         #[method(setEmissionAngle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setEmissionAngle(&self, emission_angle: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The random variance about the angle at which to emit each new particle, in radians. Defaults to 0.0.
         #[method(emissionAngleRange)]
+        #[unsafe(method_family = none)]
         pub unsafe fn emissionAngleRange(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`emissionAngleRange`][Self::emissionAngleRange].
         #[method(setEmissionAngleRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setEmissionAngleRange(&self, emission_angle_range: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The acceleration to apply to each particles velocity. Useful for simulating effects such as wind or gravity. Defaults to 0.0.
         #[method(xAcceleration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn xAcceleration(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`xAcceleration`][Self::xAcceleration].
         #[method(setXAcceleration:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setXAcceleration(&self, x_acceleration: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(yAcceleration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn yAcceleration(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`yAcceleration`][Self::yAcceleration].
         #[method(setYAcceleration:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setYAcceleration(&self, y_acceleration: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The rate at which new particles are generated, in particles per second. Defaults to 0.0.
         #[method(particleBirthRate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn particleBirthRate(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleBirthRate`][Self::particleBirthRate].
         #[method(setParticleBirthRate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setParticleBirthRate(&self, particle_birth_rate: CGFloat);
 
         /// The number of particles that will be emitted. If set to 0, there is no limit. Defaults to 0.
         #[method(numParticlesToEmit)]
+        #[unsafe(method_family = none)]
         pub unsafe fn numParticlesToEmit(&self) -> NSUInteger;
 
         /// Setter for [`numParticlesToEmit`][Self::numParticlesToEmit].
         #[method(setNumParticlesToEmit:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setNumParticlesToEmit(&self, num_particles_to_emit: NSUInteger);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The lifetime of each particle, in seconds. Defaults to 0.0.
         #[method(particleLifetime)]
+        #[unsafe(method_family = none)]
         pub unsafe fn particleLifetime(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleLifetime`][Self::particleLifetime].
         #[method(setParticleLifetime:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setParticleLifetime(&self, particle_lifetime: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The random variance about the lifetime of each particle, in seconds. Defaults to 0.0.
         #[method(particleLifetimeRange)]
+        #[unsafe(method_family = none)]
         pub unsafe fn particleLifetimeRange(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleLifetimeRange`][Self::particleLifetimeRange].
         #[method(setParticleLifetimeRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setParticleLifetimeRange(&self, particle_lifetime_range: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The starting z-rotation for each particle. Defaults to 0.0.
         #[method(particleRotation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn particleRotation(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleRotation`][Self::particleRotation].
         #[method(setParticleRotation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setParticleRotation(&self, particle_rotation: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The random variance about the starting z-rotation for each particle. Defaults to 0.0.
         #[method(particleRotationRange)]
+        #[unsafe(method_family = none)]
         pub unsafe fn particleRotationRange(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleRotationRange`][Self::particleRotationRange].
         #[method(setParticleRotationRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setParticleRotationRange(&self, particle_rotation_range: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The rate at which to modify the z-rotation for each particle. Defaults to 0.0.
         #[method(particleRotationSpeed)]
+        #[unsafe(method_family = none)]
         pub unsafe fn particleRotationSpeed(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleRotationSpeed`][Self::particleRotationSpeed].
         #[method(setParticleRotationSpeed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setParticleRotationSpeed(&self, particle_rotation_speed: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The starting size for each particle. If set to CGSizeZero (the default) the particles will start at the size of the texture assigned to particleTexture. Note that particleScale and particleScaleRange will also have an effect on the effective size of each new particle.
         #[method(particleSize)]
+        #[unsafe(method_family = none)]
         pub unsafe fn particleSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleSize`][Self::particleSize].
         #[method(setParticleSize:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setParticleSize(&self, particle_size: CGSize);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The starting scale for each particle. Defaults to 1.0.
         #[method(particleScale)]
+        #[unsafe(method_family = none)]
         pub unsafe fn particleScale(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleScale`][Self::particleScale].
         #[method(setParticleScale:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setParticleScale(&self, particle_scale: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The random variance about the starting scale for each particle. Defaults to 0.0.
         #[method(particleScaleRange)]
+        #[unsafe(method_family = none)]
         pub unsafe fn particleScaleRange(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleScaleRange`][Self::particleScaleRange].
         #[method(setParticleScaleRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setParticleScaleRange(&self, particle_scale_range: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The rate at which to modify the scale for each particle. Defaults to 0.0.
         #[method(particleScaleSpeed)]
+        #[unsafe(method_family = none)]
         pub unsafe fn particleScaleSpeed(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleScaleSpeed`][Self::particleScaleSpeed].
         #[method(setParticleScaleSpeed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setParticleScaleSpeed(&self, particle_scale_speed: CGFloat);
 
         #[cfg(feature = "SKKeyframeSequence")]
-        #[method_id(particleScaleSequence)]
+        #[method(particleScaleSequence)]
         #[unsafe(method_family = none)]
         pub unsafe fn particleScaleSequence(&self) -> Option<Retained<SKKeyframeSequence>>;
 
         #[cfg(feature = "SKKeyframeSequence")]
         /// Setter for [`particleScaleSequence`][Self::particleScaleSequence].
         #[method(setParticleScaleSequence:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setParticleScaleSequence(
             &self,
             particle_scale_sequence: Option<&SKKeyframeSequence>,
@@ -447,41 +516,48 @@ extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// The starting alpha for each particle. Defaults to 1.0.
         #[method(particleAlpha)]
+        #[unsafe(method_family = none)]
         pub unsafe fn particleAlpha(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleAlpha`][Self::particleAlpha].
         #[method(setParticleAlpha:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setParticleAlpha(&self, particle_alpha: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The random variance about the starting alpha for each particle. Defaults to 1.0.
         #[method(particleAlphaRange)]
+        #[unsafe(method_family = none)]
         pub unsafe fn particleAlphaRange(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleAlphaRange`][Self::particleAlphaRange].
         #[method(setParticleAlphaRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setParticleAlphaRange(&self, particle_alpha_range: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The rate at which to modify the alpha for each particle. Defaults to 1.0.
         #[method(particleAlphaSpeed)]
+        #[unsafe(method_family = none)]
         pub unsafe fn particleAlphaSpeed(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleAlphaSpeed`][Self::particleAlphaSpeed].
         #[method(setParticleAlphaSpeed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setParticleAlphaSpeed(&self, particle_alpha_speed: CGFloat);
 
         #[cfg(feature = "SKKeyframeSequence")]
-        #[method_id(particleAlphaSequence)]
+        #[method(particleAlphaSequence)]
         #[unsafe(method_family = none)]
         pub unsafe fn particleAlphaSequence(&self) -> Option<Retained<SKKeyframeSequence>>;
 
         #[cfg(feature = "SKKeyframeSequence")]
         /// Setter for [`particleAlphaSequence`][Self::particleAlphaSequence].
         #[method(setParticleAlphaSequence:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setParticleAlphaSequence(
             &self,
             particle_alpha_sequence: Option<&SKKeyframeSequence>,
@@ -489,61 +565,67 @@ extern_methods!(
 
         #[cfg(feature = "SKAction")]
         /// Specifies an action executed by new particles.
-        #[method_id(particleAction)]
+        #[method(particleAction)]
         #[unsafe(method_family = none)]
         pub unsafe fn particleAction(&self) -> Option<Retained<SKAction>>;
 
         #[cfg(feature = "SKAction")]
         /// Setter for [`particleAction`][Self::particleAction].
         #[method(setParticleAction:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setParticleAction(&self, particle_action: Option<&SKAction>);
 
         /// Defines what logical 'categories' of fields this particles emitted respond to. Defaults to all bits set (all categories).
         /// Can be forced off via affectedByGravity.
         #[method(fieldBitMask)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fieldBitMask(&self) -> u32;
 
         /// Setter for [`fieldBitMask`][Self::fieldBitMask].
         #[method(setFieldBitMask:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFieldBitMask(&self, field_bit_mask: u32);
 
         /// Normally the particles are rendered as if they were a child of the SKEmitterNode, they can also be rendered as if they were a child of any other node in the scene by setting the targetNode property. Defaults to nil (standard behavior).
-        #[method_id(targetNode)]
+        #[method(targetNode)]
         #[unsafe(method_family = none)]
         pub unsafe fn targetNode(&self) -> Option<Retained<SKNode>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`targetNode`][Self::targetNode].
         #[method(setTargetNode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTargetNode(&self, target_node: Option<&SKNode>);
 
         #[cfg(feature = "SKShader")]
-        #[method_id(shader)]
+        #[method(shader)]
         #[unsafe(method_family = none)]
         pub unsafe fn shader(&self) -> Option<Retained<SKShader>>;
 
         #[cfg(feature = "SKShader")]
         /// Setter for [`shader`][Self::shader].
         #[method(setShader:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShader(&self, shader: Option<&SKShader>);
 
         #[cfg(feature = "SKAttribute")]
         /// Optional dictionary of SKAttributeValues
         /// Attributes can be used with custom SKShaders.
-        #[method_id(attributeValues)]
+        #[method(attributeValues)]
         #[unsafe(method_family = none)]
         pub unsafe fn attributeValues(&self) -> Retained<NSDictionary<NSString, SKAttributeValue>>;
 
         #[cfg(feature = "SKAttribute")]
         /// Setter for [`attributeValues`][Self::attributeValues].
         #[method(setAttributeValues:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAttributeValues(
             &self,
             attribute_values: &NSDictionary<NSString, SKAttributeValue>,
         );
 
         #[cfg(feature = "SKAttribute")]
-        #[method_id(valueForAttributeNamed:)]
+        #[method(valueForAttributeNamed:)]
         #[unsafe(method_family = none)]
         pub unsafe fn valueForAttributeNamed(
             &self,
@@ -552,48 +634,57 @@ extern_methods!(
 
         #[cfg(feature = "SKAttribute")]
         #[method(setValue:forAttributeNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setValue_forAttributeNamed(&self, value: &SKAttributeValue, key: &NSString);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The starting z-position for each particle. Defaults to 0.0.
         #[method(particleZPosition)]
+        #[unsafe(method_family = none)]
         pub unsafe fn particleZPosition(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleZPosition`][Self::particleZPosition].
         #[method(setParticleZPosition:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setParticleZPosition(&self, particle_z_position: CGFloat);
 
         /// The order in which particles will be rendered. Defaults to SKParticleRenderOrderOldestLast.
         #[method(particleRenderOrder)]
+        #[unsafe(method_family = none)]
         pub unsafe fn particleRenderOrder(&self) -> SKParticleRenderOrder;
 
         /// Setter for [`particleRenderOrder`][Self::particleRenderOrder].
         #[method(setParticleRenderOrder:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setParticleRenderOrder(&self, particle_render_order: SKParticleRenderOrder);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The random variance about the starting z-position for each particle. Defaults to 0.0.
         #[deprecated]
         #[method(particleZPositionRange)]
+        #[unsafe(method_family = none)]
         pub unsafe fn particleZPositionRange(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleZPositionRange`][Self::particleZPositionRange].
         #[deprecated]
         #[method(setParticleZPositionRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setParticleZPositionRange(&self, particle_z_position_range: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The rate at which to modify the z-position for each particle. Defaults to 0.0.
         #[deprecated]
         #[method(particleZPositionSpeed)]
+        #[unsafe(method_family = none)]
         pub unsafe fn particleZPositionSpeed(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`particleZPositionSpeed`][Self::particleZPositionSpeed].
         #[deprecated]
         #[method(setParticleZPositionSpeed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setParticleZPositionSpeed(&self, particle_z_position_speed: CGFloat);
     }
 );
@@ -603,30 +694,30 @@ extern_methods!(
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl SKEmitterNode {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Support coding and decoding via NSKeyedArchiver.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(node)]
+        #[method(node)]
         #[unsafe(method_family = none)]
         pub unsafe fn node(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(nodeWithFileNamed:)]
+        #[method(nodeWithFileNamed:)]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeWithFileNamed(
             filename: &NSString,
             mtm: MainThreadMarker,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(nodeWithFileNamed:securelyWithClasses:andError:_)]
+        #[method(nodeWithFileNamed:securelyWithClasses:andError:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeWithFileNamed_securelyWithClasses_andError(
             filename: &NSString,
@@ -641,7 +732,7 @@ extern_methods!(
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl SKEmitterNode {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

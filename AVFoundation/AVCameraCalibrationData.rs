@@ -25,11 +25,11 @@ unsafe impl NSObjectProtocol for AVCameraCalibrationData {}
 
 extern_methods!(
     unsafe impl AVCameraCalibrationData {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -39,10 +39,12 @@ extern_methods!(
         ///
         /// A camera's intrinsic matrix expresses values in pixels with respect to a frame of this width and height.
         #[method(intrinsicMatrixReferenceDimensions)]
+        #[unsafe(method_family = none)]
         pub unsafe fn intrinsicMatrixReferenceDimensions(&self) -> CGSize;
 
         /// The size of one pixel at intrinsicMatrixReferenceDimensions in millimeters.
         #[method(pixelSize)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pixelSize(&self) -> c_float;
 
         /// An NSData of floats describing the camera lens' radial distortions.
@@ -51,7 +53,7 @@ extern_methods!(
         /// Images captured by a camera are geometrically warped by radial distortions in the lens. In order to project from the 2D image plane back into the 3D world, the images must be distortion corrected, or made rectilinear. Lens distortion is modeled using a one-dimensional lookup table of 32-bit float values evenly distributed along a radius from the center of the distortion to the farthest corner, with each value representing an elongation or compression of the radius (0.0 for any given point indicates no elongation). This model assumes radially symmetric lens distortion. When dealing with AVDepthData, the disparity / depth map representations are geometrically distorted to align with images produced by the camera. For more information, see the reference implementation below.
         ///
         /// If the camera lacks the calibration data needed to accurately characterize lens distortions, this property's value is nil.
-        #[method_id(lensDistortionLookupTable)]
+        #[method(lensDistortionLookupTable)]
         #[unsafe(method_family = none)]
         pub unsafe fn lensDistortionLookupTable(&self) -> Option<Retained<NSData>>;
 
@@ -61,7 +63,7 @@ extern_methods!(
         /// See lensDistortionLookupTable. If you've rectified an image by removing the distortions characterized by the lensDistortionLookupTable, and now wish to go back to geometrically distorted, you may use the inverseLensDistortionLookupTable. For more information, see the reference implementation below.
         ///
         /// If the camera lacks the calibration data needed to accurately characterize lens distortions, this property's value is nil.
-        #[method_id(inverseLensDistortionLookupTable)]
+        #[method(inverseLensDistortionLookupTable)]
         #[unsafe(method_family = none)]
         pub unsafe fn inverseLensDistortionLookupTable(&self) -> Option<Retained<NSData>>;
 
@@ -73,6 +75,7 @@ extern_methods!(
         ///
         /// If the camera lacks the calibration data needed to accurately characterize lens distortions, this property's value is set to CGPointZero and should not be used.
         #[method(lensDistortionCenter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn lensDistortionCenter(&self) -> CGPoint;
     }
 );

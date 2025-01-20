@@ -130,6 +130,7 @@ extern_methods!(
         /// `requestTrackingAuthorizationWithCompletionHandler:` for the ability to
         /// track users.
         #[method(trackingAuthorizationStatus)]
+        #[unsafe(method_family = none)]
         pub unsafe fn trackingAuthorizationStatus() -> ATTrackingManagerAuthorizationStatus;
 
         #[cfg(feature = "block2")]
@@ -164,15 +165,16 @@ extern_methods!(
         /// <doc
         /// ://com.apple.documentation/documentation/bundleresources/information_property_list>.
         #[method(requestTrackingAuthorizationWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestTrackingAuthorizationWithCompletionHandler(
             completion: &block2::Block<dyn Fn(ATTrackingManagerAuthorizationStatus)>,
         );
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

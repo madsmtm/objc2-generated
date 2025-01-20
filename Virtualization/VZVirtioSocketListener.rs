@@ -28,7 +28,7 @@ unsafe impl NSObjectProtocol for VZVirtioSocketListener {}
 extern_methods!(
     unsafe impl VZVirtioSocketListener {
         /// Pointer to a delegate object for the listener.
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -37,6 +37,7 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn VZVirtioSocketListenerDelegate>>,
@@ -47,11 +48,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VZVirtioSocketListener {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -89,6 +90,7 @@ extern_protocol!(
         /// If the connection is accepted, the implementation should keep a reference to the connection object to send and receive data.
         #[optional]
         #[method(listener:shouldAcceptNewConnection:fromSocketDevice:)]
+        #[unsafe(method_family = none)]
         unsafe fn listener_shouldAcceptNewConnection_fromSocketDevice(
             &self,
             listener: &VZVirtioSocketListener,

@@ -24,18 +24,18 @@ unsafe impl NSObjectProtocol for NSTouchBar {}
 
 extern_methods!(
     unsafe impl NSTouchBar {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(customizationIdentifier)]
+        #[method(customizationIdentifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn customizationIdentifier(
             &self,
@@ -43,13 +43,14 @@ extern_methods!(
 
         /// Setter for [`customizationIdentifier`][Self::customizationIdentifier].
         #[method(setCustomizationIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCustomizationIdentifier(
             &self,
             customization_identifier: Option<&NSTouchBarCustomizationIdentifier>,
         );
 
         #[cfg(feature = "NSTouchBarItem")]
-        #[method_id(customizationAllowedItemIdentifiers)]
+        #[method(customizationAllowedItemIdentifiers)]
         #[unsafe(method_family = none)]
         pub unsafe fn customizationAllowedItemIdentifiers(
             &self,
@@ -58,13 +59,14 @@ extern_methods!(
         #[cfg(feature = "NSTouchBarItem")]
         /// Setter for [`customizationAllowedItemIdentifiers`][Self::customizationAllowedItemIdentifiers].
         #[method(setCustomizationAllowedItemIdentifiers:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCustomizationAllowedItemIdentifiers(
             &self,
             customization_allowed_item_identifiers: &NSArray<NSTouchBarItemIdentifier>,
         );
 
         #[cfg(feature = "NSTouchBarItem")]
-        #[method_id(customizationRequiredItemIdentifiers)]
+        #[method(customizationRequiredItemIdentifiers)]
         #[unsafe(method_family = none)]
         pub unsafe fn customizationRequiredItemIdentifiers(
             &self,
@@ -73,44 +75,47 @@ extern_methods!(
         #[cfg(feature = "NSTouchBarItem")]
         /// Setter for [`customizationRequiredItemIdentifiers`][Self::customizationRequiredItemIdentifiers].
         #[method(setCustomizationRequiredItemIdentifiers:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCustomizationRequiredItemIdentifiers(
             &self,
             customization_required_item_identifiers: &NSArray<NSTouchBarItemIdentifier>,
         );
 
         #[cfg(feature = "NSTouchBarItem")]
-        #[method_id(defaultItemIdentifiers)]
+        #[method(defaultItemIdentifiers)]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultItemIdentifiers(&self) -> Retained<NSArray<NSTouchBarItemIdentifier>>;
 
         #[cfg(feature = "NSTouchBarItem")]
         /// Setter for [`defaultItemIdentifiers`][Self::defaultItemIdentifiers].
         #[method(setDefaultItemIdentifiers:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDefaultItemIdentifiers(
             &self,
             default_item_identifiers: &NSArray<NSTouchBarItemIdentifier>,
         );
 
         #[cfg(feature = "NSTouchBarItem")]
-        #[method_id(itemIdentifiers)]
+        #[method(itemIdentifiers)]
         #[unsafe(method_family = none)]
         pub unsafe fn itemIdentifiers(&self) -> Retained<NSArray<NSTouchBarItemIdentifier>>;
 
         #[cfg(feature = "NSTouchBarItem")]
-        #[method_id(principalItemIdentifier)]
+        #[method(principalItemIdentifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn principalItemIdentifier(&self) -> Option<Retained<NSTouchBarItemIdentifier>>;
 
         #[cfg(feature = "NSTouchBarItem")]
         /// Setter for [`principalItemIdentifier`][Self::principalItemIdentifier].
         #[method(setPrincipalItemIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPrincipalItemIdentifier(
             &self,
             principal_item_identifier: Option<&NSTouchBarItemIdentifier>,
         );
 
         #[cfg(feature = "NSTouchBarItem")]
-        #[method_id(escapeKeyReplacementItemIdentifier)]
+        #[method(escapeKeyReplacementItemIdentifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn escapeKeyReplacementItemIdentifier(
             &self,
@@ -119,32 +124,35 @@ extern_methods!(
         #[cfg(feature = "NSTouchBarItem")]
         /// Setter for [`escapeKeyReplacementItemIdentifier`][Self::escapeKeyReplacementItemIdentifier].
         #[method(setEscapeKeyReplacementItemIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setEscapeKeyReplacementItemIdentifier(
             &self,
             escape_key_replacement_item_identifier: Option<&NSTouchBarItemIdentifier>,
         );
 
         #[cfg(feature = "NSTouchBarItem")]
-        #[method_id(templateItems)]
+        #[method(templateItems)]
         #[unsafe(method_family = none)]
         pub unsafe fn templateItems(&self) -> Retained<NSSet<NSTouchBarItem>>;
 
         #[cfg(feature = "NSTouchBarItem")]
         /// Setter for [`templateItems`][Self::templateItems].
         #[method(setTemplateItems:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTemplateItems(&self, template_items: &NSSet<NSTouchBarItem>);
 
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSTouchBarDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSTouchBarDelegate>>);
 
         #[cfg(feature = "NSTouchBarItem")]
-        #[method_id(itemForIdentifier:)]
+        #[method(itemForIdentifier:)]
         #[unsafe(method_family = none)]
         pub unsafe fn itemForIdentifier(
             &self,
@@ -152,13 +160,16 @@ extern_methods!(
         ) -> Option<Retained<NSTouchBarItem>>;
 
         #[method(isVisible)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isVisible(&self) -> bool;
 
         #[method(isAutomaticCustomizeTouchBarMenuItemEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isAutomaticCustomizeTouchBarMenuItemEnabled(mtm: MainThreadMarker) -> bool;
 
         /// Setter for [`isAutomaticCustomizeTouchBarMenuItemEnabled`][Self::isAutomaticCustomizeTouchBarMenuItemEnabled].
         #[method(setAutomaticCustomizeTouchBarMenuItemEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAutomaticCustomizeTouchBarMenuItemEnabled(
             automatic_customize_touch_bar_menu_item_enabled: bool,
             mtm: MainThreadMarker,
@@ -169,7 +180,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTouchBar {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -180,7 +191,7 @@ extern_protocol!(
     pub unsafe trait NSTouchBarDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "NSTouchBarItem")]
         #[optional]
-        #[method_id(touchBar:makeItemForIdentifier:)]
+        #[method(touchBar:makeItemForIdentifier:)]
         #[unsafe(method_family = none)]
         unsafe fn touchBar_makeItemForIdentifier(
             &self,
@@ -193,7 +204,7 @@ extern_protocol!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbarprovider?language=objc)
     pub unsafe trait NSTouchBarProvider: NSObjectProtocol + MainThreadOnly {
-        #[method_id(touchBar)]
+        #[method(touchBar)]
         #[unsafe(method_family = none)]
         unsafe fn touchBar(&self) -> Option<Retained<NSTouchBar>>;
     }
@@ -203,15 +214,16 @@ extern_methods!(
     /// NSTouchBarProvider
     #[cfg(feature = "NSResponder")]
     unsafe impl NSResponder {
-        #[method_id(touchBar)]
+        #[method(touchBar)]
         #[unsafe(method_family = none)]
         pub unsafe fn touchBar(&self) -> Option<Retained<NSTouchBar>>;
 
         /// Setter for [`touchBar`][Self::touchBar].
         #[method(setTouchBar:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTouchBar(&self, touch_bar: Option<&NSTouchBar>);
 
-        #[method_id(makeTouchBar)]
+        #[method(makeTouchBar)]
         #[unsafe(method_family = none)]
         pub unsafe fn makeTouchBar(&self) -> Option<Retained<NSTouchBar>>;
     }
@@ -226,10 +238,12 @@ extern_methods!(
     unsafe impl NSApplication {
         /// Whether or not a menu item to customize the NSTouchBar can be automatically added to the main menu. It will only actually be added when Touch Bar hardware or simulator is present. Defaults to NO. Setting this property to YES is the recommended way to add the customization menu item. But if non-standard placement of the menu item is needed, creating a menu item with an action of `toggleTouchBarCustomizationPalette:` can be used instead.
         #[method(isAutomaticCustomizeTouchBarMenuItemEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isAutomaticCustomizeTouchBarMenuItemEnabled(&self) -> bool;
 
         /// Setter for [`isAutomaticCustomizeTouchBarMenuItemEnabled`][Self::isAutomaticCustomizeTouchBarMenuItemEnabled].
         #[method(setAutomaticCustomizeTouchBarMenuItemEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAutomaticCustomizeTouchBarMenuItemEnabled(
             &self,
             automatic_customize_touch_bar_menu_item_enabled: bool,
@@ -237,6 +251,7 @@ extern_methods!(
 
         /// Show or dismiss the customization palette for the currently displayed NSTouchBars. NSApplication validates this selector against whether the current NSTouchBars are customizable and, if configured on a menu item, will standardize and localize the title. If the current system does not have Touch Bar support, the menu item will be automatically hidden.
         #[method(toggleTouchBarCustomizationPalette:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn toggleTouchBarCustomizationPalette(&self, sender: Option<&AnyObject>);
     }
 );

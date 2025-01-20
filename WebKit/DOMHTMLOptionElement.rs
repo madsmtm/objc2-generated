@@ -79,64 +79,73 @@ extern_methods!(
     unsafe impl DOMHTMLOptionElement {
         #[deprecated]
         #[method(disabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn disabled(&self) -> bool;
 
         /// Setter for [`disabled`][Self::disabled].
         #[deprecated]
         #[method(setDisabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDisabled(&self, disabled: bool);
 
         #[cfg(feature = "DOMHTMLFormElement")]
         #[deprecated]
-        #[method_id(form)]
+        #[method(form)]
         #[unsafe(method_family = none)]
         pub unsafe fn form(&self) -> Option<Retained<DOMHTMLFormElement>>;
 
         #[deprecated]
-        #[method_id(label)]
+        #[method(label)]
         #[unsafe(method_family = none)]
         pub unsafe fn label(&self) -> Retained<NSString>;
 
         /// Setter for [`label`][Self::label].
         #[deprecated]
         #[method(setLabel:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLabel(&self, label: Option<&NSString>);
 
         #[deprecated]
         #[method(defaultSelected)]
+        #[unsafe(method_family = none)]
         pub unsafe fn defaultSelected(&self) -> bool;
 
         /// Setter for [`defaultSelected`][Self::defaultSelected].
         #[deprecated]
         #[method(setDefaultSelected:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDefaultSelected(&self, default_selected: bool);
 
         #[deprecated]
         #[method(selected)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selected(&self) -> bool;
 
         /// Setter for [`selected`][Self::selected].
         #[deprecated]
         #[method(setSelected:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSelected(&self, selected: bool);
 
         #[deprecated]
-        #[method_id(value)]
+        #[method(value)]
         #[unsafe(method_family = none)]
         pub unsafe fn value(&self) -> Retained<NSString>;
 
         /// Setter for [`value`][Self::value].
         #[deprecated]
         #[method(setValue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setValue(&self, value: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(text)]
+        #[method(text)]
         #[unsafe(method_family = none)]
         pub unsafe fn text(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(index)]
+        #[unsafe(method_family = none)]
         pub unsafe fn index(&self) -> c_int;
     }
 );
@@ -152,7 +161,7 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLOptionElement {
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -168,7 +177,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLOptionElement {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

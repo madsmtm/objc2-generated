@@ -26,7 +26,7 @@ unsafe impl NSObjectProtocol for HMAccessorySetupManager {}
 
 extern_methods!(
     unsafe impl HMAccessorySetupManager {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -45,6 +45,7 @@ extern_methods!(
         /// Parameter `completion`: A block that is invoked once the setup process finishes. On failure, the result will be
         /// nil and the error will provide additional information
         #[method(performAccessorySetupUsingRequest:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn performAccessorySetupUsingRequest_completionHandler(
             &self,
             request: &HMAccessorySetupRequest,
@@ -56,7 +57,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HMAccessorySetupManager {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

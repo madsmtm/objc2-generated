@@ -19,7 +19,7 @@ unsafe impl NSObjectProtocol for MCNearbyServiceBrowser {}
 extern_methods!(
     unsafe impl MCNearbyServiceBrowser {
         #[cfg(feature = "MCPeerID")]
-        #[method_id(initWithPeer:serviceType:)]
+        #[method(initWithPeer:serviceType:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPeer_serviceType(
             this: Allocated<Self>,
@@ -28,13 +28,16 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[method(startBrowsingForPeers)]
+        #[unsafe(method_family = none)]
         pub unsafe fn startBrowsingForPeers(&self);
 
         #[method(stopBrowsingForPeers)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stopBrowsingForPeers(&self);
 
         #[cfg(all(feature = "MCPeerID", feature = "MCSession"))]
         #[method(invitePeer:toSession:withContext:timeout:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn invitePeer_toSession_withContext_timeout(
             &self,
             peer_id: &MCPeerID,
@@ -43,7 +46,7 @@ extern_methods!(
             timeout: NSTimeInterval,
         );
 
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -52,17 +55,18 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn MCNearbyServiceBrowserDelegate>>,
         );
 
         #[cfg(feature = "MCPeerID")]
-        #[method_id(myPeerID)]
+        #[method(myPeerID)]
         #[unsafe(method_family = none)]
         pub unsafe fn myPeerID(&self) -> Retained<MCPeerID>;
 
-        #[method_id(serviceType)]
+        #[method(serviceType)]
         #[unsafe(method_family = none)]
         pub unsafe fn serviceType(&self) -> Retained<NSString>;
     }
@@ -71,11 +75,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MCNearbyServiceBrowser {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -86,6 +90,7 @@ extern_protocol!(
     pub unsafe trait MCNearbyServiceBrowserDelegate: NSObjectProtocol {
         #[cfg(feature = "MCPeerID")]
         #[method(browser:foundPeer:withDiscoveryInfo:)]
+        #[unsafe(method_family = none)]
         unsafe fn browser_foundPeer_withDiscoveryInfo(
             &self,
             browser: &MCNearbyServiceBrowser,
@@ -95,10 +100,12 @@ extern_protocol!(
 
         #[cfg(feature = "MCPeerID")]
         #[method(browser:lostPeer:)]
+        #[unsafe(method_family = none)]
         unsafe fn browser_lostPeer(&self, browser: &MCNearbyServiceBrowser, peer_id: &MCPeerID);
 
         #[optional]
         #[method(browser:didNotStartBrowsingForPeers:)]
+        #[unsafe(method_family = none)]
         unsafe fn browser_didNotStartBrowsingForPeers(
             &self,
             browser: &MCNearbyServiceBrowser,

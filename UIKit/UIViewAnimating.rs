@@ -57,40 +57,51 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewanimating?language=objc)
     pub unsafe trait UIViewAnimating: NSObjectProtocol + MainThreadOnly {
         #[method(state)]
+        #[unsafe(method_family = none)]
         unsafe fn state(&self) -> UIViewAnimatingState;
 
         #[method(isRunning)]
+        #[unsafe(method_family = none)]
         unsafe fn isRunning(&self) -> bool;
 
         #[method(isReversed)]
+        #[unsafe(method_family = none)]
         unsafe fn isReversed(&self) -> bool;
 
         /// Setter for [`isReversed`][Self::isReversed].
         #[method(setReversed:)]
+        #[unsafe(method_family = none)]
         unsafe fn setReversed(&self, reversed: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(fractionComplete)]
+        #[unsafe(method_family = none)]
         unsafe fn fractionComplete(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`fractionComplete`][Self::fractionComplete].
         #[method(setFractionComplete:)]
+        #[unsafe(method_family = none)]
         unsafe fn setFractionComplete(&self, fraction_complete: CGFloat);
 
         #[method(startAnimation)]
+        #[unsafe(method_family = none)]
         unsafe fn startAnimation(&self);
 
         #[method(startAnimationAfterDelay:)]
+        #[unsafe(method_family = none)]
         unsafe fn startAnimationAfterDelay(&self, delay: NSTimeInterval);
 
         #[method(pauseAnimation)]
+        #[unsafe(method_family = none)]
         unsafe fn pauseAnimation(&self);
 
         #[method(stopAnimation:)]
+        #[unsafe(method_family = none)]
         unsafe fn stopAnimation(&self, without_finishing: bool);
 
         #[method(finishAnimationAtPosition:)]
+        #[unsafe(method_family = none)]
         unsafe fn finishAnimationAtPosition(&self, final_position: UIViewAnimatingPosition);
     }
 );
@@ -101,6 +112,7 @@ extern_protocol!(
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
         #[optional]
         #[method(addAnimations:delayFactor:)]
+        #[unsafe(method_family = none)]
         unsafe fn addAnimations_delayFactor(
             &self,
             animation: &block2::Block<dyn Fn()>,
@@ -110,16 +122,19 @@ extern_protocol!(
         #[cfg(feature = "block2")]
         #[optional]
         #[method(addAnimations:)]
+        #[unsafe(method_family = none)]
         unsafe fn addAnimations(&self, animation: &block2::Block<dyn Fn()>);
 
         #[cfg(feature = "block2")]
         #[optional]
         #[method(addCompletion:)]
+        #[unsafe(method_family = none)]
         unsafe fn addCompletion(&self, completion: &block2::Block<dyn Fn(UIViewAnimatingPosition)>);
 
         #[cfg(all(feature = "UITimingCurveProvider", feature = "objc2-core-foundation"))]
         #[optional]
         #[method(continueAnimationWithTimingParameters:durationFactor:)]
+        #[unsafe(method_family = none)]
         unsafe fn continueAnimationWithTimingParameters_durationFactor(
             &self,
             parameters: Option<&ProtocolObject<dyn UITimingCurveProvider>>,

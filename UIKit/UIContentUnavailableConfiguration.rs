@@ -55,85 +55,90 @@ unsafe impl UIContentConfiguration for UIContentUnavailableConfiguration {}
 extern_methods!(
     unsafe impl UIContentUnavailableConfiguration {
         /// Returns the default configuration for unavailable content.
-        #[method_id(emptyConfiguration)]
+        #[method(emptyConfiguration)]
         #[unsafe(method_family = none)]
         pub unsafe fn emptyConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// Returns the default configuration for content which is loading.
-        #[method_id(loadingConfiguration)]
+        #[method(loadingConfiguration)]
         #[unsafe(method_family = none)]
         pub unsafe fn loadingConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// Returns the default configuration for searches which return no results.
-        #[method_id(searchConfiguration)]
+        #[method(searchConfiguration)]
         #[unsafe(method_family = none)]
         pub unsafe fn searchConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "UIImage")]
         /// The image to display.
-        #[method_id(image)]
+        #[method(image)]
         #[unsafe(method_family = none)]
         pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         /// Setter for [`image`][Self::image].
         #[method(setImage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setImage(&self, image: Option<&UIImage>);
 
         #[cfg(feature = "UIContentUnavailableImageProperties")]
         /// Additional properties to configure the image. When adopting the loading configuration, relevant properties are applied to the activity indicator.
-        #[method_id(imageProperties)]
+        #[method(imageProperties)]
         #[unsafe(method_family = none)]
         pub unsafe fn imageProperties(&self) -> Retained<UIContentUnavailableImageProperties>;
 
         /// The primary text.
-        #[method_id(text)]
+        #[method(text)]
         #[unsafe(method_family = none)]
         pub unsafe fn text(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`text`][Self::text].
         #[method(setText:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setText(&self, text: Option<&NSString>);
 
         /// An attributed variant of the primary text, which supersedes the `text` and some properties of the `textProperties` if set.
-        #[method_id(attributedText)]
+        #[method(attributedText)]
         #[unsafe(method_family = none)]
         pub unsafe fn attributedText(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Setter for [`attributedText`][Self::attributedText].
         #[method(setAttributedText:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAttributedText(&self, attributed_text: Option<&NSAttributedString>);
 
         #[cfg(feature = "UIContentUnavailableTextProperties")]
         /// Additional properties to configure the primary text.
-        #[method_id(textProperties)]
+        #[method(textProperties)]
         #[unsafe(method_family = none)]
         pub unsafe fn textProperties(&self) -> Retained<UIContentUnavailableTextProperties>;
 
         /// The secondary text.
-        #[method_id(secondaryText)]
+        #[method(secondaryText)]
         #[unsafe(method_family = none)]
         pub unsafe fn secondaryText(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`secondaryText`][Self::secondaryText].
         #[method(setSecondaryText:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSecondaryText(&self, secondary_text: Option<&NSString>);
 
         /// An attributed variant of the secondary text, which supersedes the `secondaryText` and some properties of the `secondaryTextProperties` if set.
-        #[method_id(secondaryAttributedText)]
+        #[method(secondaryAttributedText)]
         #[unsafe(method_family = none)]
         pub unsafe fn secondaryAttributedText(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Setter for [`secondaryAttributedText`][Self::secondaryAttributedText].
         #[method(setSecondaryAttributedText:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSecondaryAttributedText(
             &self,
             secondary_attributed_text: Option<&NSAttributedString>,
@@ -141,7 +146,7 @@ extern_methods!(
 
         #[cfg(feature = "UIContentUnavailableTextProperties")]
         /// Additional properties to configure the secondary text.
-        #[method_id(secondaryTextProperties)]
+        #[method(secondaryTextProperties)]
         #[unsafe(method_family = none)]
         pub unsafe fn secondaryTextProperties(
             &self,
@@ -149,35 +154,37 @@ extern_methods!(
 
         #[cfg(feature = "UIButtonConfiguration")]
         /// The primary button.
-        #[method_id(button)]
+        #[method(button)]
         #[unsafe(method_family = none)]
         pub unsafe fn button(&self) -> Retained<UIButtonConfiguration>;
 
         #[cfg(feature = "UIButtonConfiguration")]
         /// Setter for [`button`][Self::button].
         #[method(setButton:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setButton(&self, button: &UIButtonConfiguration);
 
         #[cfg(feature = "UIContentUnavailableButtonProperties")]
         /// Additional properties to configure the primary button.
-        #[method_id(buttonProperties)]
+        #[method(buttonProperties)]
         #[unsafe(method_family = none)]
         pub unsafe fn buttonProperties(&self) -> Retained<UIContentUnavailableButtonProperties>;
 
         #[cfg(feature = "UIButtonConfiguration")]
         /// The secondary button.
-        #[method_id(secondaryButton)]
+        #[method(secondaryButton)]
         #[unsafe(method_family = none)]
         pub unsafe fn secondaryButton(&self) -> Retained<UIButtonConfiguration>;
 
         #[cfg(feature = "UIButtonConfiguration")]
         /// Setter for [`secondaryButton`][Self::secondaryButton].
         #[method(setSecondaryButton:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSecondaryButton(&self, secondary_button: &UIButtonConfiguration);
 
         #[cfg(feature = "UIContentUnavailableButtonProperties")]
         /// Additional properties to configure the secondary button.
-        #[method_id(secondaryButtonProperties)]
+        #[method(secondaryButtonProperties)]
         #[unsafe(method_family = none)]
         pub unsafe fn secondaryButtonProperties(
             &self,
@@ -185,20 +192,24 @@ extern_methods!(
 
         /// The alignment of the image, text and buttons.
         #[method(alignment)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alignment(&self) -> UIContentUnavailableAlignment;
 
         /// Setter for [`alignment`][Self::alignment].
         #[method(setAlignment:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAlignment(&self, alignment: UIContentUnavailableAlignment);
 
         #[cfg(feature = "UIGeometry")]
         /// Whether the content view will preserve inherited layout margins from its superview on the horizontal and/or vertical axes.
         #[method(axesPreservingSuperviewLayoutMargins)]
+        #[unsafe(method_family = none)]
         pub unsafe fn axesPreservingSuperviewLayoutMargins(&self) -> UIAxis;
 
         #[cfg(feature = "UIGeometry")]
         /// Setter for [`axesPreservingSuperviewLayoutMargins`][Self::axesPreservingSuperviewLayoutMargins].
         #[method(setAxesPreservingSuperviewLayoutMargins:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAxesPreservingSuperviewLayoutMargins(
             &self,
             axes_preserving_superview_layout_margins: UIAxis,
@@ -207,11 +218,13 @@ extern_methods!(
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         /// The margins for the content to the edges of the content view. (When preserving superview layout margins on one or both axes, these are just minimum margins, as inherited margins may be larger.)
         #[method(directionalLayoutMargins)]
+        #[unsafe(method_family = none)]
         pub unsafe fn directionalLayoutMargins(&self) -> NSDirectionalEdgeInsets;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         /// Setter for [`directionalLayoutMargins`][Self::directionalLayoutMargins].
         #[method(setDirectionalLayoutMargins:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDirectionalLayoutMargins(
             &self,
             directional_layout_margins: NSDirectionalEdgeInsets,
@@ -220,41 +233,49 @@ extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// Padding between the image and text. Only applies when there is both an image and text.
         #[method(imageToTextPadding)]
+        #[unsafe(method_family = none)]
         pub unsafe fn imageToTextPadding(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`imageToTextPadding`][Self::imageToTextPadding].
         #[method(setImageToTextPadding:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setImageToTextPadding(&self, image_to_text_padding: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Padding between the text and secondary text. Only applies when there is both text and secondary text.
         #[method(textToSecondaryTextPadding)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textToSecondaryTextPadding(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`textToSecondaryTextPadding`][Self::textToSecondaryTextPadding].
         #[method(setTextToSecondaryTextPadding:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTextToSecondaryTextPadding(&self, text_to_secondary_text_padding: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Padding between the button and text. Only applies when there is both a button and text.
         #[method(textToButtonPadding)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textToButtonPadding(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`textToButtonPadding`][Self::textToButtonPadding].
         #[method(setTextToButtonPadding:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTextToButtonPadding(&self, text_to_button_padding: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Padding between the button and secondary button. Only applies when there is both a button and a secondary button.
         #[method(buttonToSecondaryButtonPadding)]
+        #[unsafe(method_family = none)]
         pub unsafe fn buttonToSecondaryButtonPadding(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`buttonToSecondaryButtonPadding`][Self::buttonToSecondaryButtonPadding].
         #[method(setButtonToSecondaryButtonPadding:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setButtonToSecondaryButtonPadding(
             &self,
             button_to_secondary_button_padding: CGFloat,
@@ -262,13 +283,14 @@ extern_methods!(
 
         #[cfg(feature = "UIBackgroundConfiguration")]
         /// The background configuration.
-        #[method_id(background)]
+        #[method(background)]
         #[unsafe(method_family = none)]
         pub unsafe fn background(&self) -> Retained<UIBackgroundConfiguration>;
 
         #[cfg(feature = "UIBackgroundConfiguration")]
         /// Setter for [`background`][Self::background].
         #[method(setBackground:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBackground(&self, background: &UIBackgroundConfiguration);
     }
 );

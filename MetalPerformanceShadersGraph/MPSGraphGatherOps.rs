@@ -41,7 +41,7 @@ extern_methods!(
         /// - batchDimensions: The number of batch dimensions
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(gatherNDWithUpdatesTensor:indicesTensor:batchDimensions:name:)]
+        #[method(gatherNDWithUpdatesTensor:indicesTensor:batchDimensions:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn gatherNDWithUpdatesTensor_indicesTensor_batchDimensions_name(
             &self,
@@ -86,7 +86,7 @@ extern_methods!(
         /// - batchDimensions: The number of batch dimensions
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(gatherWithUpdatesTensor:indicesTensor:axis:batchDimensions:name:)]
+        #[method(gatherWithUpdatesTensor:indicesTensor:axis:batchDimensions:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn gatherWithUpdatesTensor_indicesTensor_axis_batchDimensions_name(
             &self,
@@ -117,7 +117,7 @@ extern_methods!(
         /// - indicesTensor: Int32 or Int64 tensor used to index `updatesTensor`
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(gatherAlongAxis:withUpdatesTensor:indicesTensor:name:)]
+        #[method(gatherAlongAxis:withUpdatesTensor:indicesTensor:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn gatherAlongAxis_withUpdatesTensor_indicesTensor_name(
             &self,
@@ -141,7 +141,7 @@ extern_methods!(
         /// - indicesTensor: Int32 or Int64 tensor used to index `updatesTensor`
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(gatherAlongAxisTensor:withUpdatesTensor:indicesTensor:name:)]
+        #[method(gatherAlongAxisTensor:withUpdatesTensor:indicesTensor:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn gatherAlongAxisTensor_withUpdatesTensor_indicesTensor_name(
             &self,

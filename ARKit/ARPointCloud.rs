@@ -38,18 +38,20 @@ extern_methods!(
     unsafe impl ARPointCloud {
         /// The number of points in the point cloud.
         #[method(count)]
+        #[unsafe(method_family = none)]
         pub unsafe fn count(&self) -> NSUInteger;
 
         /// The 3D point identifiers comprising the point cloud.
         #[method(identifiers)]
+        #[unsafe(method_family = none)]
         pub unsafe fn identifiers(&self) -> NonNull<u64>;
 
         /// Unavailable
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

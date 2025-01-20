@@ -193,17 +193,20 @@ extern_protocol!(
         /// Parameter `fileName`: the path of the selected file
         #[deprecated]
         #[method(chooseFilename:)]
+        #[unsafe(method_family = none)]
         unsafe fn chooseFilename(&self, file_name: Option<&NSString>);
 
         /// Call this method to return an array of filenames from the file open panel.
         ///
         /// Parameter `fileNames`: an array of paths of selected files
         #[method(chooseFilenames:)]
+        #[unsafe(method_family = none)]
         unsafe fn chooseFilenames(&self, file_names: Option<&NSArray>);
 
         /// Call this method to indicate that the file open panel was cancelled.
         #[deprecated]
         #[method(cancel)]
+        #[unsafe(method_family = none)]
         unsafe fn cancel(&self);
     }
 );
@@ -231,7 +234,7 @@ extern_protocol!(
         /// Returns: The WebView for the new window.
         #[deprecated]
         #[optional]
-        #[method_id(webView:createWebViewWithRequest:)]
+        #[method(webView:createWebViewWithRequest:)]
         #[unsafe(method_family = none)]
         unsafe fn webView_createWebViewWithRequest(
             &self,
@@ -252,6 +255,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webViewShow:)]
+        #[unsafe(method_family = none)]
         unsafe fn webViewShow(&self, sender: Option<&WebView>);
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
@@ -268,7 +272,7 @@ extern_protocol!(
         /// Returns: The WebView for the new window.
         #[deprecated]
         #[optional]
-        #[method_id(webView:createWebViewModalDialogWithRequest:)]
+        #[method(webView:createWebViewModalDialogWithRequest:)]
         #[unsafe(method_family = none)]
         unsafe fn webView_createWebViewModalDialogWithRequest(
             &self,
@@ -289,6 +293,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webViewRunModal:)]
+        #[unsafe(method_family = none)]
         unsafe fn webViewRunModal(&self, sender: Option<&WebView>);
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
@@ -304,6 +309,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webViewClose:)]
+        #[unsafe(method_family = none)]
         unsafe fn webViewClose(&self, sender: Option<&WebView>);
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
@@ -317,6 +323,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webViewFocus:)]
+        #[unsafe(method_family = none)]
         unsafe fn webViewFocus(&self, sender: Option<&WebView>);
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
@@ -330,6 +337,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webViewUnfocus:)]
+        #[unsafe(method_family = none)]
         unsafe fn webViewUnfocus(&self, sender: Option<&WebView>);
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
@@ -345,7 +353,7 @@ extern_protocol!(
         /// real first responder if some control not in the window has focus.
         #[deprecated]
         #[optional]
-        #[method_id(webViewFirstResponder:)]
+        #[method(webViewFirstResponder:)]
         #[unsafe(method_family = none)]
         unsafe fn webViewFirstResponder(
             &self,
@@ -369,6 +377,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:makeFirstResponder:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_makeFirstResponder(
             &self,
             sender: Option<&WebView>,
@@ -385,6 +394,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:setStatusText:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_setStatusText(&self, sender: Option<&WebView>, text: Option<&NSString>);
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
@@ -396,7 +406,7 @@ extern_protocol!(
         /// Returns: The status text
         #[deprecated]
         #[optional]
-        #[method_id(webViewStatusText:)]
+        #[method(webViewStatusText:)]
         #[unsafe(method_family = none)]
         unsafe fn webViewStatusText(&self, sender: Option<&WebView>) -> Option<Retained<NSString>>;
 
@@ -416,6 +426,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webViewAreToolbarsVisible:)]
+        #[unsafe(method_family = none)]
         unsafe fn webViewAreToolbarsVisible(&self, sender: Option<&WebView>) -> bool;
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
@@ -432,6 +443,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:setToolbarsVisible:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_setToolbarsVisible(&self, sender: Option<&WebView>, visible: bool);
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
@@ -444,6 +456,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webViewIsStatusBarVisible:)]
+        #[unsafe(method_family = none)]
         unsafe fn webViewIsStatusBarVisible(&self, sender: Option<&WebView>) -> bool;
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
@@ -457,6 +470,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:setStatusBarVisible:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_setStatusBarVisible(&self, sender: Option<&WebView>, visible: bool);
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
@@ -473,6 +487,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webViewIsResizable:)]
+        #[unsafe(method_family = none)]
         unsafe fn webViewIsResizable(&self, sender: Option<&WebView>) -> bool;
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
@@ -489,6 +504,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:setResizable:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_setResizable(&self, sender: Option<&WebView>, resizable: bool);
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
@@ -505,6 +521,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:setFrame:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_setFrame(&self, sender: Option<&WebView>, frame: NSRect);
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
@@ -515,6 +532,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webViewFrame:)]
+        #[unsafe(method_family = none)]
         unsafe fn webViewFrame(&self, sender: Option<&WebView>) -> NSRect;
 
         #[cfg(all(feature = "WebFrame", feature = "WebView", feature = "objc2-app-kit"))]
@@ -533,6 +551,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:runJavaScriptAlertPanelWithMessage:initiatedByFrame:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_runJavaScriptAlertPanelWithMessage_initiatedByFrame(
             &self,
             sender: Option<&WebView>,
@@ -558,6 +577,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:runJavaScriptConfirmPanelWithMessage:initiatedByFrame:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_runJavaScriptConfirmPanelWithMessage_initiatedByFrame(
             &self,
             sender: Option<&WebView>,
@@ -584,7 +604,7 @@ extern_protocol!(
         /// two buttons, e.g. "OK" and "Cancel", and an area to type text.
         #[deprecated]
         #[optional]
-        #[method_id(webView:runJavaScriptTextInputPanelWithPrompt:defaultText:initiatedByFrame:)]
+        #[method(webView:runJavaScriptTextInputPanelWithPrompt:defaultText:initiatedByFrame:)]
         #[unsafe(method_family = none)]
         unsafe fn webView_runJavaScriptTextInputPanelWithPrompt_defaultText_initiatedByFrame(
             &self,
@@ -612,6 +632,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:runBeforeUnloadConfirmPanelWithMessage:initiatedByFrame:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_runBeforeUnloadConfirmPanelWithMessage_initiatedByFrame(
             &self,
             sender: Option<&WebView>,
@@ -632,6 +653,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:runOpenPanelForFileButtonWithResultListener:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_runOpenPanelForFileButtonWithResultListener(
             &self,
             sender: Option<&WebView>,
@@ -652,6 +674,7 @@ extern_protocol!(
         /// value so that it can be handled with a sheet.
         #[optional]
         #[method(webView:runOpenPanelForFileButtonWithResultListener:allowMultipleFiles:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_runOpenPanelForFileButtonWithResultListener_allowMultipleFiles(
             &self,
             sender: Option<&WebView>,
@@ -672,6 +695,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:mouseDidMoveOverElement:modifierFlags:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_mouseDidMoveOverElement_modifierFlags(
             &self,
             sender: Option<&WebView>,
@@ -692,7 +716,7 @@ extern_protocol!(
         /// Returns: An array of NSMenuItems to include in the contextual menu.
         #[deprecated]
         #[optional]
-        #[method_id(webView:contextMenuItemsForElement:defaultMenuItems:)]
+        #[method(webView:contextMenuItemsForElement:defaultMenuItems:)]
         #[unsafe(method_family = none)]
         unsafe fn webView_contextMenuItemsForElement_defaultMenuItems(
             &self,
@@ -717,6 +741,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:validateUserInterfaceItem:defaultValidation:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_validateUserInterfaceItem_defaultValidation(
             &self,
             web_view: Option<&WebView>,
@@ -741,6 +766,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:shouldPerformAction:fromSender:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_shouldPerformAction_fromSender(
             &self,
             web_view: Option<&WebView>,
@@ -762,6 +788,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:dragDestinationActionMaskForDraggingInfo:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_dragDestinationActionMaskForDraggingInfo(
             &self,
             web_view: Option<&WebView>,
@@ -783,6 +810,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:willPerformDragDestinationAction:forDraggingInfo:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_willPerformDragDestinationAction_forDraggingInfo(
             &self,
             web_view: Option<&WebView>,
@@ -803,6 +831,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:dragSourceActionMaskForPoint:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_dragSourceActionMaskForPoint(
             &self,
             web_view: Option<&WebView>,
@@ -827,6 +856,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:willPerformDragSourceAction:fromPoint:withPasteboard:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_willPerformDragSourceAction_fromPoint_withPasteboard(
             &self,
             web_view: Option<&WebView>,
@@ -857,6 +887,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:printFrameView:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_printFrameView(
             &self,
             sender: Option<&WebView>,
@@ -875,6 +906,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webViewHeaderHeight:)]
+        #[unsafe(method_family = none)]
         unsafe fn webViewHeaderHeight(&self, sender: Option<&WebView>) -> c_float;
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
@@ -889,6 +921,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webViewFooterHeight:)]
+        #[unsafe(method_family = none)]
         unsafe fn webViewFooterHeight(&self, sender: Option<&WebView>) -> c_float;
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
@@ -901,6 +934,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:drawHeaderInRect:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_drawHeaderInRect(&self, sender: Option<&WebView>, rect: NSRect);
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
@@ -913,6 +947,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:drawFooterInRect:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_drawFooterInRect(&self, sender: Option<&WebView>, rect: NSRect);
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
@@ -920,6 +955,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:runJavaScriptAlertPanelWithMessage:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_runJavaScriptAlertPanelWithMessage(
             &self,
             sender: Option<&WebView>,
@@ -931,6 +967,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:runJavaScriptConfirmPanelWithMessage:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_runJavaScriptConfirmPanelWithMessage(
             &self,
             sender: Option<&WebView>,
@@ -941,7 +978,7 @@ extern_protocol!(
         #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
-        #[method_id(webView:runJavaScriptTextInputPanelWithPrompt:defaultText:)]
+        #[method(webView:runJavaScriptTextInputPanelWithPrompt:defaultText:)]
         #[unsafe(method_family = none)]
         unsafe fn webView_runJavaScriptTextInputPanelWithPrompt_defaultText(
             &self,
@@ -955,6 +992,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:setContentRect:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_setContentRect(&self, sender: Option<&WebView>, frame: NSRect);
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
@@ -962,6 +1000,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webViewContentRect:)]
+        #[unsafe(method_family = none)]
         unsafe fn webViewContentRect(&self, sender: Option<&WebView>) -> NSRect;
     }
 );

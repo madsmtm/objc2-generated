@@ -9,6 +9,7 @@ extern_protocol!(
     pub unsafe trait VNRequestRevisionProviding {
         /// The revision of the VNRequest subclass that was used to generate the object that implements this protocol.
         #[method(requestRevision)]
+        #[unsafe(method_family = none)]
         unsafe fn requestRevision(&self) -> NSUInteger;
     }
 );

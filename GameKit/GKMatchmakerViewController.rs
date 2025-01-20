@@ -71,7 +71,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl GKMatchmakerViewController {
-        #[method_id(matchmakerDelegate)]
+        #[method(matchmakerDelegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn matchmakerDelegate(
             &self,
@@ -80,45 +80,52 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`matchmakerDelegate`][Self::matchmakerDelegate].
         #[method(setMatchmakerDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMatchmakerDelegate(
             &self,
             matchmaker_delegate: Option<&ProtocolObject<dyn GKMatchmakerViewControllerDelegate>>,
         );
 
         #[cfg(feature = "GKMatchmaker")]
-        #[method_id(matchRequest)]
+        #[method(matchRequest)]
         #[unsafe(method_family = none)]
         pub unsafe fn matchRequest(&self) -> Retained<GKMatchRequest>;
 
         /// set to YES to receive hosted (eg. not peer-to-peer) match results. Will cause the controller to return an array of players instead of a match.
         #[method(isHosted)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isHosted(&self) -> bool;
 
         /// Setter for [`isHosted`][Self::isHosted].
         #[method(setHosted:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setHosted(&self, hosted: bool);
 
         /// this controls which mode of matchmaking to support in the UI (all, nearby only, automatch only, invite only).  Throws an exeption if you can not set to the desired mode (due to restrictions)
         #[method(matchmakingMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn matchmakingMode(&self) -> GKMatchmakingMode;
 
         /// Setter for [`matchmakingMode`][Self::matchmakingMode].
         #[method(setMatchmakingMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMatchmakingMode(&self, matchmaking_mode: GKMatchmakingMode);
 
         /// A BOOL value to allow the GKMatchMakerViewController to return control to the game once the minimum number of players are connected.
         /// By default the value is NO, and the multiplayer match can only proceed after all players are connected.
         /// If the value is set to YES, then once the number of connected players is greater than or equal to minPlayers of the match request, matchmakerViewController:didFindMatch: will be called and the game can get the match instance, and update the game scene accordingly. The remaining players wil continue to connect.
         #[method(canStartWithMinimumPlayers)]
+        #[unsafe(method_family = none)]
         pub unsafe fn canStartWithMinimumPlayers(&self) -> bool;
 
         /// Setter for [`canStartWithMinimumPlayers`][Self::canStartWithMinimumPlayers].
         #[method(setCanStartWithMinimumPlayers:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCanStartWithMinimumPlayers(&self, can_start_with_minimum_players: bool);
 
         #[cfg(feature = "GKMatchmaker")]
         /// Initialize with a matchmaking request, allowing the user to send invites and/or start matchmaking
-        #[method_id(initWithMatchRequest:)]
+        #[method(initWithMatchRequest:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMatchRequest(
             this: Allocated<Self>,
@@ -127,7 +134,7 @@ extern_methods!(
 
         #[cfg(feature = "GKMatchmaker")]
         /// Initialize with an accepted invite, allowing the user to see the status of other invited players and get notified when the game starts
-        #[method_id(initWithInvite:)]
+        #[method(initWithInvite:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithInvite(
             this: Allocated<Self>,
@@ -138,21 +145,24 @@ extern_methods!(
         /// Add additional players (not currently connected) to an existing peer-to-peer match.
         /// Apps should elect a single device to do this, otherwise conflicts could arise resulting in unexpected connection errors.
         #[method(addPlayersToMatch:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addPlayersToMatch(&self, r#match: &GKMatch);
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         #[method(setHostedPlayer:didConnect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setHostedPlayer_didConnect(&self, player: &GKPlayer, connected: bool);
 
         /// deprecated, set the message on the match request instead
         #[deprecated]
-        #[method_id(defaultInvitationMessage)]
+        #[method(defaultInvitationMessage)]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultInvitationMessage(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`defaultInvitationMessage`][Self::defaultInvitationMessage].
         #[deprecated]
         #[method(setDefaultInvitationMessage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDefaultInvitationMessage(
             &self,
             default_invitation_message: Option<&NSString>,
@@ -165,7 +175,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl GKMatchmakerViewController {
-        #[method_id(initWithNibName:bundle:)]
+        #[method(initWithNibName:bundle:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -173,7 +183,7 @@ extern_methods!(
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -187,7 +197,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl GKMatchmakerViewController {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -198,7 +208,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl GKMatchmakerViewController {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -212,6 +222,7 @@ extern_methods!(
         /// * This method is obsolete. It will never be invoked and its implementation does nothing**
         #[deprecated]
         #[method(setHostedPlayer:connected:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setHostedPlayer_connected(&self, player_id: &NSString, connected: bool);
     }
 );
@@ -223,6 +234,7 @@ extern_protocol!(
         #[cfg(target_os = "macos")]
         /// The user has cancelled matchmaking
         #[method(matchmakerViewControllerWasCancelled:)]
+        #[unsafe(method_family = none)]
         unsafe fn matchmakerViewControllerWasCancelled(
             &self,
             view_controller: &GKMatchmakerViewController,
@@ -232,6 +244,7 @@ extern_protocol!(
         #[cfg(target_os = "macos")]
         /// Matchmaking has failed with an error
         #[method(matchmakerViewController:didFailWithError:)]
+        #[unsafe(method_family = none)]
         unsafe fn matchmakerViewController_didFailWithError(
             &self,
             view_controller: &GKMatchmakerViewController,
@@ -243,6 +256,7 @@ extern_protocol!(
         /// A peer-to-peer match has been found, the game should start
         #[optional]
         #[method(matchmakerViewController:didFindMatch:)]
+        #[unsafe(method_family = none)]
         unsafe fn matchmakerViewController_didFindMatch(
             &self,
             view_controller: &GKMatchmakerViewController,
@@ -258,6 +272,7 @@ extern_protocol!(
         /// Players have been found for a server-hosted game, the game should start
         #[optional]
         #[method(matchmakerViewController:didFindHostedPlayers:)]
+        #[unsafe(method_family = none)]
         unsafe fn matchmakerViewController_didFindHostedPlayers(
             &self,
             view_controller: &GKMatchmakerViewController,
@@ -273,6 +288,7 @@ extern_protocol!(
         /// An invited player has accepted a hosted invite.  Apps should connect through the hosting server and then update the player's connected state (using setConnected:forHostedPlayer:)
         #[optional]
         #[method(matchmakerViewController:hostedPlayerDidAccept:)]
+        #[unsafe(method_family = none)]
         unsafe fn matchmakerViewController_hostedPlayerDidAccept(
             &self,
             view_controller: &GKMatchmakerViewController,
@@ -291,6 +307,7 @@ extern_protocol!(
         /// If implemented, this function must call `completionHandler`: failing to do so will hang matchmaking.
         #[optional]
         #[method(matchmakerViewController:getMatchPropertiesForRecipient:withCompletionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn matchmakerViewController_getMatchPropertiesForRecipient_withCompletionHandler(
             &self,
             view_controller: &GKMatchmakerViewController,
@@ -304,6 +321,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(matchmakerViewController:didFindPlayers:)]
+        #[unsafe(method_family = none)]
         unsafe fn matchmakerViewController_didFindPlayers(
             &self,
             view_controller: &GKMatchmakerViewController,
@@ -315,6 +333,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(matchmakerViewController:didReceiveAcceptFromHostedPlayer:)]
+        #[unsafe(method_family = none)]
         unsafe fn matchmakerViewController_didReceiveAcceptFromHostedPlayer(
             &self,
             view_controller: &GKMatchmakerViewController,

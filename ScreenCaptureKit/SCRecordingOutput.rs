@@ -27,46 +27,49 @@ unsafe impl NSObjectProtocol for SCRecordingOutputConfiguration {}
 extern_methods!(
     unsafe impl SCRecordingOutputConfiguration {
         /// Specifies output URL to save the recording.
-        #[method_id(outputURL)]
+        #[method(outputURL)]
         #[unsafe(method_family = none)]
         pub unsafe fn outputURL(&self) -> Retained<NSURL>;
 
         /// Setter for [`outputURL`][Self::outputURL].
         #[method(setOutputURL:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setOutputURL(&self, output_url: &NSURL);
 
         #[cfg(feature = "objc2-av-foundation")]
         /// Specifies video codec for the recording output, default is AVVideoCodecTypeH264, supported values can be obtained using availableVideoCodecTypes
-        #[method_id(videoCodecType)]
+        #[method(videoCodecType)]
         #[unsafe(method_family = none)]
         pub unsafe fn videoCodecType(&self) -> Retained<AVVideoCodecType>;
 
         #[cfg(feature = "objc2-av-foundation")]
         /// Setter for [`videoCodecType`][Self::videoCodecType].
         #[method(setVideoCodecType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setVideoCodecType(&self, video_codec_type: &AVVideoCodecType);
 
         #[cfg(feature = "objc2-av-foundation")]
         /// Specifies file type for the recording output, default is AVFileTypeMPEG4, supported values can be obtained using availableOutputFileTypes
-        #[method_id(outputFileType)]
+        #[method(outputFileType)]
         #[unsafe(method_family = none)]
         pub unsafe fn outputFileType(&self) -> Retained<AVFileType>;
 
         #[cfg(feature = "objc2-av-foundation")]
         /// Setter for [`outputFileType`][Self::outputFileType].
         #[method(setOutputFileType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setOutputFileType(&self, output_file_type: &AVFileType);
 
         #[cfg(feature = "objc2-av-foundation")]
         /// Returns an array of supported video codec formats that can be specified in SCRecordingOutputConfiguration for videoCodecType
-        #[method_id(availableVideoCodecTypes)]
+        #[method(availableVideoCodecTypes)]
         #[unsafe(method_family = none)]
         pub unsafe fn availableVideoCodecTypes(&self) -> Retained<NSArray<AVVideoCodecType>>;
 
         #[cfg(feature = "objc2-av-foundation")]
         /// Returns an array of supported file types that can be specified in SCRecordingOutputConfiguration for outputFileType
         /// Provides the file types AVCaptureAudioFileOutput can write.
-        #[method_id(availableOutputFileTypes)]
+        #[method(availableOutputFileTypes)]
         #[unsafe(method_family = none)]
         pub unsafe fn availableOutputFileTypes(&self) -> Retained<NSArray<AVFileType>>;
     }
@@ -75,11 +78,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCRecordingOutputConfiguration {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -97,6 +100,7 @@ extern_protocol!(
         /// notifies the delegate that recording has succesfully started.
         #[optional]
         #[method(recordingOutputDidStartRecording:)]
+        #[unsafe(method_family = none)]
         unsafe fn recordingOutputDidStartRecording(&self, recording_output: &SCRecordingOutput);
 
         /// recordingOutput:didFailWithError:
@@ -108,6 +112,7 @@ extern_protocol!(
         /// notifies the delegate that recording has failed with error associated.
         #[optional]
         #[method(recordingOutput:didFailWithError:)]
+        #[unsafe(method_family = none)]
         unsafe fn recordingOutput_didFailWithError(
             &self,
             recording_output: &SCRecordingOutput,
@@ -119,6 +124,7 @@ extern_protocol!(
         /// notifies the delegate that recording has finished successfully.
         #[optional]
         #[method(recordingOutputDidFinishRecording:)]
+        #[unsafe(method_family = none)]
         unsafe fn recordingOutputDidFinishRecording(&self, recording_output: &SCRecordingOutput);
     }
 );
@@ -137,10 +143,12 @@ extern_methods!(
         #[cfg(feature = "objc2-core-media")]
         /// Indicates current duration of recording to the output file.
         #[method(recordedDuration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn recordedDuration(&self) -> CMTime;
 
         /// Indicates current size, in bytes, of the data recorded to the output file.
         #[method(recordedFileSize)]
+        #[unsafe(method_family = none)]
         pub unsafe fn recordedFileSize(&self) -> NSInteger;
 
         /// initialize SCRecordingOutput object with SCRecordingOutputConfiguration and SCRecordingOutputDelegate
@@ -150,7 +158,7 @@ extern_methods!(
         /// Parameter `delegate`: object conforming SCRecordingOutputDelegate protocol. Clients must specify a delegate so that they can be notified about recording event.
         ///
         /// Client can create a SCRecordingOutput with this initializer and add to SCStream to record all captured media into one recording file given output url specified in recordingOutputConfig. The recording will be using H264 and file format is MPEG-4.
-        #[method_id(initWithConfiguration:delegate:)]
+        #[method(initWithConfiguration:delegate:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithConfiguration_delegate(
             this: Allocated<Self>,
@@ -163,11 +171,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCRecordingOutput {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

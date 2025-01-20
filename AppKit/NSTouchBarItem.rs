@@ -38,50 +38,53 @@ unsafe impl NSObjectProtocol for NSTouchBarItem {}
 
 extern_methods!(
     unsafe impl NSTouchBarItem {
-        #[method_id(initWithIdentifier:)]
+        #[method(initWithIdentifier:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,
             identifier: &NSTouchBarItemIdentifier,
         ) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(identifier)]
+        #[method(identifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSTouchBarItemIdentifier>;
 
         #[method(visibilityPriority)]
+        #[unsafe(method_family = none)]
         pub unsafe fn visibilityPriority(&self) -> NSTouchBarItemPriority;
 
         /// Setter for [`visibilityPriority`][Self::visibilityPriority].
         #[method(setVisibilityPriority:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setVisibilityPriority(&self, visibility_priority: NSTouchBarItemPriority);
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-        #[method_id(view)]
+        #[method(view)]
         #[unsafe(method_family = none)]
         pub unsafe fn view(&self) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
-        #[method_id(viewController)]
+        #[method(viewController)]
         #[unsafe(method_family = none)]
         pub unsafe fn viewController(&self) -> Option<Retained<NSViewController>>;
 
-        #[method_id(customizationLabel)]
+        #[method(customizationLabel)]
         #[unsafe(method_family = none)]
         pub unsafe fn customizationLabel(&self) -> Retained<NSString>;
 
         #[method(isVisible)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isVisible(&self) -> bool;
     }
 );
@@ -89,7 +92,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTouchBarItem {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

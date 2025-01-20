@@ -28,17 +28,17 @@ extern_methods!(
     unsafe impl GCDualSenseGamepad {
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         /// DualSense controllers have a touchpad with a button and two-finger tracking.
-        #[method_id(touchpadButton)]
+        #[method(touchpadButton)]
         #[unsafe(method_family = none)]
         pub unsafe fn touchpadButton(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(all(feature = "GCControllerDirectionPad", feature = "GCControllerElement"))]
-        #[method_id(touchpadPrimary)]
+        #[method(touchpadPrimary)]
         #[unsafe(method_family = none)]
         pub unsafe fn touchpadPrimary(&self) -> Retained<GCControllerDirectionPad>;
 
         #[cfg(all(feature = "GCControllerDirectionPad", feature = "GCControllerElement"))]
-        #[method_id(touchpadSecondary)]
+        #[method(touchpadSecondary)]
         #[unsafe(method_family = none)]
         pub unsafe fn touchpadSecondary(&self) -> Retained<GCControllerDirectionPad>;
 
@@ -51,7 +51,7 @@ extern_methods!(
         ///
         /// The DualSense has adaptive triggers, allowing you to specify a dynamic resistance force that is applied when pulling the trigger. This can,
         /// for example, be used to emulate the feeling of pulling back a bow string, firing a weapon, or pulling a lever.
-        #[method_id(leftTrigger)]
+        #[method(leftTrigger)]
         #[unsafe(method_family = none)]
         pub unsafe fn leftTrigger(&self) -> Retained<GCDualSenseAdaptiveTrigger>;
 
@@ -60,7 +60,7 @@ extern_methods!(
             feature = "GCControllerElement",
             feature = "GCDualSenseAdaptiveTrigger"
         ))]
-        #[method_id(rightTrigger)]
+        #[method(rightTrigger)]
         #[unsafe(method_family = none)]
         pub unsafe fn rightTrigger(&self) -> Retained<GCDualSenseAdaptiveTrigger>;
     }
@@ -70,11 +70,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "GCExtendedGamepad", feature = "GCPhysicalInputProfile"))]
     unsafe impl GCDualSenseGamepad {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

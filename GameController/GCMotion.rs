@@ -180,17 +180,19 @@ unsafe impl NSObjectProtocol for GCMotion {}
 extern_methods!(
     unsafe impl GCMotion {
         #[cfg(feature = "GCController")]
-        #[method_id(controller)]
+        #[method(controller)]
         #[unsafe(method_family = none)]
         pub unsafe fn controller(&self) -> Option<Retained<GCController>>;
 
         #[cfg(feature = "block2")]
         #[method(valueChangedHandler)]
+        #[unsafe(method_family = none)]
         pub unsafe fn valueChangedHandler(&self) -> GCMotionValueChangedHandler;
 
         #[cfg(feature = "block2")]
         /// Setter for [`valueChangedHandler`][Self::valueChangedHandler].
         #[method(setValueChangedHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setValueChangedHandler(
             &self,
             value_changed_handler: GCMotionValueChangedHandler,
@@ -204,6 +206,7 @@ extern_methods!(
         ///
         /// See: sensorsActive
         #[method(sensorsRequireManualActivation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sensorsRequireManualActivation(&self) -> bool;
 
         /// Set this property to YES when you wish to receive motion data from the controller. When you set this property to NO, the motion sensors
@@ -216,10 +219,12 @@ extern_methods!(
         ///
         /// See: sensorsRequireManualActivation
         #[method(sensorsActive)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sensorsActive(&self) -> bool;
 
         /// Setter for [`sensorsActive`][Self::sensorsActive].
         #[method(setSensorsActive:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSensorsActive(&self, sensors_active: bool);
 
         /// Returns YES if the controller is capable of reporting gravity and user acceleration separately.
@@ -231,6 +236,7 @@ extern_methods!(
         ///
         /// See: acceleration
         #[method(hasGravityAndUserAcceleration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hasGravityAndUserAcceleration(&self) -> bool;
 
         /// The gravity vector expressed in the controller's reference frame.
@@ -242,6 +248,7 @@ extern_methods!(
         ///
         /// See: acceleration
         #[method(gravity)]
+        #[unsafe(method_family = none)]
         pub unsafe fn gravity(&self) -> GCAcceleration;
 
         /// The acceleration that the user is giving to the controller.
@@ -253,6 +260,7 @@ extern_methods!(
         ///
         /// See: acceleration
         #[method(userAcceleration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn userAcceleration(&self) -> GCAcceleration;
 
         /// The total acceleration of the controller.
@@ -262,19 +270,23 @@ extern_methods!(
         ///
         /// See: userAcceleration
         #[method(acceleration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn acceleration(&self) -> GCAcceleration;
 
         /// The controller generating the motion data has sensors that can accurately determine the current attitude and rotation rate. If this is enabled the motion data for attitude and rotation rate are usable for inputs.
         #[deprecated = "hasAttitudeAndRotationRate has been deprecated, use -hasAttitude and -hasRotationRate instead"]
         #[method(hasAttitudeAndRotationRate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hasAttitudeAndRotationRate(&self) -> bool;
 
         /// The controller generating the motion data has sensors that can accurately determine the current attitude. If this is enabled the motion data for attitude is usable for inputs.
         #[method(hasAttitude)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hasAttitude(&self) -> bool;
 
         /// The controller generating the motion data has sensors that can accurately determine the current rotation rate. If this is enabled the motion data for rotation rate is usable for inputs.
         #[method(hasRotationRate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hasRotationRate(&self) -> bool;
 
         /// The current attitude of the controller.
@@ -286,6 +298,7 @@ extern_methods!(
         ///
         /// See: GCMicroGamepad
         #[method(attitude)]
+        #[unsafe(method_family = none)]
         pub unsafe fn attitude(&self) -> GCQuaternion;
 
         /// The current rotation rate of the controller.
@@ -297,6 +310,7 @@ extern_methods!(
         ///
         /// See: GCMicroGamepad
         #[method(rotationRate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rotationRate(&self) -> GCRotationRate;
 
         /// Sets the gravity vector expressed in the controller's reference frame.
@@ -306,6 +320,7 @@ extern_methods!(
         ///
         /// See: gravity
         #[method(setGravity:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setGravity(&self, gravity: GCAcceleration);
 
         /// Sets the acceleration that the user is giving to the controller.
@@ -315,6 +330,7 @@ extern_methods!(
         ///
         /// See: userAcceleration
         #[method(setUserAcceleration:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUserAcceleration(&self, user_acceleration: GCAcceleration);
 
         /// Sets the acceleration that the user is giving to the controller.
@@ -324,6 +340,7 @@ extern_methods!(
         ///
         /// See: userAcceleration
         #[method(setAcceleration:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAcceleration(&self, acceleration: GCAcceleration);
 
         /// Sets the current rotation rate of the controller.
@@ -333,6 +350,7 @@ extern_methods!(
         ///
         /// See: attitude
         #[method(setAttitude:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAttitude(&self, attitude: GCQuaternion);
 
         /// Sets the current rotation rate of the controller.
@@ -342,6 +360,7 @@ extern_methods!(
         ///
         /// See: rotationRate
         #[method(setRotationRate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRotationRate(&self, rotation_rate: GCRotationRate);
 
         /// Sets the state vector of the motion profile to a copy of the input motion profile's state vector.
@@ -351,6 +370,7 @@ extern_methods!(
         ///
         /// See: GCController.snapshot
         #[method(setStateFromMotion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setStateFromMotion(&self, motion: &GCMotion);
     }
 );
@@ -358,11 +378,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GCMotion {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

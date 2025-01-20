@@ -85,7 +85,7 @@ unsafe impl SCNAnimatable for SCNMaterialProperty {}
 extern_methods!(
     unsafe impl SCNMaterialProperty {
         /// Creates and initialize a property instance with the specified contents.
-        #[method_id(materialPropertyWithContents:)]
+        #[method(materialPropertyWithContents:)]
         #[unsafe(method_family = none)]
         pub unsafe fn materialPropertyWithContents(contents: &AnyObject) -> Retained<Self>;
 
@@ -99,12 +99,13 @@ extern_methods!(
         /// 2. A vertical strip image                            where `    image.height == 6 * image.width`
         /// 3. A spherical projection image (latitude/longitude) where `2 * image.height ==     image.width`
         /// 4. A NSArray of 6 images. This array must contain images of the exact same dimensions, in the following order, in a left-handed coordinate system: +X, -X, +Y, -Y, +Z, -Z (or Right, Left, Top, Bottom, Front, Back).
-        #[method_id(contents)]
+        #[method(contents)]
         #[unsafe(method_family = none)]
         pub unsafe fn contents(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`contents`][Self::contents].
         #[method(setContents:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setContents(&self, contents: Option<&AnyObject>);
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -112,79 +113,95 @@ extern_methods!(
         /// It dims the diffuse, specular and emission properties, it varies the bumpiness of the normal property and the
         /// filter property is blended with white. Default value is 1.0. Animatable.
         #[method(intensity)]
+        #[unsafe(method_family = none)]
         pub unsafe fn intensity(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`intensity`][Self::intensity].
         #[method(setIntensity:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIntensity(&self, intensity: CGFloat);
 
         /// Specifies the filter type to use when rendering the contents (specified in the `contents' property).
         ///
         /// The minification filter is used when to reduce the size of image data. See above the list of available modes. Defaults to SCNFilterModeLinear.
         #[method(minificationFilter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn minificationFilter(&self) -> SCNFilterMode;
 
         /// Setter for [`minificationFilter`][Self::minificationFilter].
         #[method(setMinificationFilter:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMinificationFilter(&self, minification_filter: SCNFilterMode);
 
         /// Specifies the filter type to use when rendering the the contents (specified in the `contents' property).
         ///
         /// The magnification filter is used when to increase the size of image data. See above the list of available modes. Defaults to SCNFilterModeLinear.
         #[method(magnificationFilter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn magnificationFilter(&self) -> SCNFilterMode;
 
         /// Setter for [`magnificationFilter`][Self::magnificationFilter].
         #[method(setMagnificationFilter:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMagnificationFilter(&self, magnification_filter: SCNFilterMode);
 
         /// Specifies the mipmap filter to use during minification.
         ///
         /// Defaults to SCNFilterModeNearest starting macOS 10.12, iOS 10, tvOS 10 and watchOS 3. Defaults to SCNFilterModeNone in previous versions.
         #[method(mipFilter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mipFilter(&self) -> SCNFilterMode;
 
         /// Setter for [`mipFilter`][Self::mipFilter].
         #[method(setMipFilter:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMipFilter(&self, mip_filter: SCNFilterMode);
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-quartz-core"))]
         #[cfg(not(target_os = "watchos"))]
         /// Determines the receiver's contents transform. Animatable.
         #[method(contentsTransform)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contentsTransform(&self) -> SCNMatrix4;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-quartz-core"))]
         #[cfg(not(target_os = "watchos"))]
         /// Setter for [`contentsTransform`][Self::contentsTransform].
         #[method(setContentsTransform:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setContentsTransform(&self, contents_transform: SCNMatrix4);
 
         /// Determines the receiver's wrap mode for the s texture coordinate. Defaults to SCNWrapModeClamp.
         #[method(wrapS)]
+        #[unsafe(method_family = none)]
         pub unsafe fn wrapS(&self) -> SCNWrapMode;
 
         /// Setter for [`wrapS`][Self::wrapS].
         #[method(setWrapS:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWrapS(&self, wrap_s: SCNWrapMode);
 
         /// Determines the receiver's wrap mode for the t texture coordinate. Defaults to SCNWrapModeClamp.
         #[method(wrapT)]
+        #[unsafe(method_family = none)]
         pub unsafe fn wrapT(&self) -> SCNWrapMode;
 
         /// Setter for [`wrapT`][Self::wrapT].
         #[method(setWrapT:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWrapT(&self, wrap_t: SCNWrapMode);
 
         /// Determines the receiver's mapping channel. Defaults to 0.
         ///
         /// Geometries potentially have multiple sources of texture coordinates. Every source has a unique mapping channel index. The mapping channel allows to select which source of texture coordinates is used to map the content of the receiver.
         #[method(mappingChannel)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mappingChannel(&self) -> NSInteger;
 
         /// Setter for [`mappingChannel`][Self::mappingChannel].
         #[method(setMappingChannel:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMappingChannel(&self, mapping_channel: NSInteger);
 
         #[cfg(feature = "SceneKitTypes")]
@@ -192,11 +209,13 @@ extern_methods!(
         ///
         /// Use this property to when using a texture that combine multiple informations in the different texture components. For example if you pack the roughness in red and metalness in blue etc... You can specify what component to use from the texture for this given material property. This property is only supported by Metal renderers.
         #[method(textureComponents)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureComponents(&self) -> SCNColorMask;
 
         #[cfg(feature = "SceneKitTypes")]
         /// Setter for [`textureComponents`][Self::textureComponents].
         #[method(setTextureComponents:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTextureComponents(&self, texture_components: SCNColorMask);
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -204,22 +223,24 @@ extern_methods!(
         ///
         /// Anisotropic filtering reduces blur and preserves detail at extreme viewing angles.
         #[method(maxAnisotropy)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maxAnisotropy(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`maxAnisotropy`][Self::maxAnisotropy].
         #[method(setMaxAnisotropy:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMaxAnisotropy(&self, max_anisotropy: CGFloat);
 
         /// Returns an object suitable for a scene's `lightingEnvironment.contents` and initialized with data that was previously created by `+precomputedLightingEnvironmentDataForContents:device:error:`.
-        #[method_id(precomputedLightingEnvironmentContentsWithURL:error:_)]
+        #[method(precomputedLightingEnvironmentContentsWithURL:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn precomputedLightingEnvironmentContentsWithURL_error(
             url: &NSURL,
         ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
         /// Returns an object suitable for a scene's `lightingEnvironment.contents` and initialized with data that was previously created by `+precomputedLightingEnvironmentDataForContents:device:error:`.
-        #[method_id(precomputedLightingEnvironmentContentsWithData:error:_)]
+        #[method(precomputedLightingEnvironmentContentsWithData:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn precomputedLightingEnvironmentContentsWithData_error(
             data: &NSData,
@@ -230,7 +251,7 @@ extern_methods!(
         /// Returns an `NSData` instance containing the result of CPU and GPU-intensive operations that is suitable for caching.
         ///
         /// This method can be leveraged in a custom offline asset pipeline, or at run time at a convenient time before the scene is presented to the user.
-        #[method_id(precomputedLightingEnvironmentDataForContents:device:error:_)]
+        #[method(precomputedLightingEnvironmentDataForContents:device:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn precomputedLightingEnvironmentDataForContents_device_error(
             contents: &AnyObject,
@@ -242,11 +263,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNMaterialProperty {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

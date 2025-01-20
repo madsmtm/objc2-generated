@@ -17,7 +17,7 @@ unsafe impl NSObjectProtocol for MSSticker {}
 
 extern_methods!(
     unsafe impl MSSticker {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -36,7 +36,7 @@ extern_methods!(
         /// Parameter `error`: If this method could not initialize a sticker, this will contain an NSError object describing the failure.
         ///
         /// Returns: A new sticker object or nil if the method could not initialize a sticker from the specified file and localizedDescription.
-        #[method_id(initWithContentsOfFileURL:localizedDescription:error:_)]
+        #[method(initWithContentsOfFileURL:localizedDescription:error:_)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfFileURL_localizedDescription_error(
             this: Allocated<Self>,
@@ -45,12 +45,12 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         /// The file URL to the Sticker was initialized with.
-        #[method_id(imageFileURL)]
+        #[method(imageFileURL)]
         #[unsafe(method_family = none)]
         pub unsafe fn imageFileURL(&self) -> Retained<NSURL>;
 
         /// A succinct localized string describing the sticker.
-        #[method_id(localizedDescription)]
+        #[method(localizedDescription)]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedDescription(&self) -> Retained<NSString>;
     }
@@ -59,7 +59,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MSSticker {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

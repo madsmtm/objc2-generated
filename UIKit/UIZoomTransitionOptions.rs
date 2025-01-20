@@ -30,6 +30,7 @@ extern_methods!(
         /// Called when an interactive dismissal of this transition begins.
         /// Return value indicates whether the interaction should begin for the given context.
         #[method(interactiveDismissShouldBegin)]
+        #[unsafe(method_family = none)]
         pub unsafe fn interactiveDismissShouldBegin(
             &self,
         ) -> *mut block2::Block<dyn Fn(NonNull<UIZoomTransitionInteractionContext>) -> Bool>;
@@ -37,6 +38,7 @@ extern_methods!(
         #[cfg(feature = "block2")]
         /// Setter for [`interactiveDismissShouldBegin`][Self::interactiveDismissShouldBegin].
         #[method(setInteractiveDismissShouldBegin:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setInteractiveDismissShouldBegin(
             &self,
             interactive_dismiss_should_begin: Option<
@@ -48,6 +50,7 @@ extern_methods!(
         /// Return a frame in the zoomed view controller's view to which to align the source view.
         /// Return `CGRectNull` to indicate no preference.
         #[method(alignmentRectProvider)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alignmentRectProvider(
             &self,
         ) -> *mut block2::Block<dyn Fn(NonNull<UIZoomTransitionAlignmentRectContext>) -> CGRect>;
@@ -55,6 +58,7 @@ extern_methods!(
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
         /// Setter for [`alignmentRectProvider`][Self::alignmentRectProvider].
         #[method(setAlignmentRectProvider:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAlignmentRectProvider(
             &self,
             alignment_rect_provider: Option<
@@ -64,18 +68,19 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         /// Dimming color to apply to the content behind the zoomed in view. Set to nil to use the default.
-        #[method_id(dimmingColor)]
+        #[method(dimmingColor)]
         #[unsafe(method_family = none)]
         pub unsafe fn dimmingColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`dimmingColor`][Self::dimmingColor].
         #[method(setDimmingColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDimmingColor(&self, dimming_color: Option<&UIColor>);
 
         #[cfg(all(feature = "UIBlurEffect", feature = "UIVisualEffect"))]
         /// Visual effect to apply to the content behind the zoomed in view. Defaults to nil.
-        #[method_id(dimmingVisualEffect)]
+        #[method(dimmingVisualEffect)]
         #[unsafe(method_family = none)]
         pub unsafe fn dimmingVisualEffect(
             &self,
@@ -85,6 +90,7 @@ extern_methods!(
         #[cfg(all(feature = "UIBlurEffect", feature = "UIVisualEffect"))]
         /// Setter for [`dimmingVisualEffect`][Self::dimmingVisualEffect].
         #[method(setDimmingVisualEffect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDimmingVisualEffect(&self, dimming_visual_effect: Option<&UIBlurEffect>);
     }
 );
@@ -92,11 +98,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIZoomTransitionOptions {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -116,15 +122,18 @@ extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// Location of the interaction in the displayed view controller's view's coordinate space.
         #[method(location)]
+        #[unsafe(method_family = none)]
         pub unsafe fn location(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The interaction's velocity.
         #[method(velocity)]
+        #[unsafe(method_family = none)]
         pub unsafe fn velocity(&self) -> CGVector;
 
         /// Whether the interaction would begin under the current conditions by default.
         #[method(willBegin)]
+        #[unsafe(method_family = none)]
         pub unsafe fn willBegin(&self) -> bool;
     }
 );
@@ -132,11 +141,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIZoomTransitionInteractionContext {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -155,13 +164,13 @@ extern_methods!(
     unsafe impl UIZoomTransitionAlignmentRectContext {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// The transition's source view.
-        #[method_id(sourceView)]
+        #[method(sourceView)]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceView(&self, mtm: MainThreadMarker) -> Retained<UIView>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         /// The zoomed view controller.
-        #[method_id(zoomedViewController)]
+        #[method(zoomedViewController)]
         #[unsafe(method_family = none)]
         pub unsafe fn zoomedViewController(
             &self,
@@ -173,11 +182,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIZoomTransitionAlignmentRectContext {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

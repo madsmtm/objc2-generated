@@ -30,7 +30,7 @@ extern_methods!(
     #[cfg(feature = "NSToolbarItem")]
     unsafe impl NSSharingServicePickerToolbarItem {
         #[cfg(feature = "NSSharingService")]
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -40,6 +40,7 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn NSSharingServicePickerToolbarItemDelegate>>,
@@ -53,7 +54,7 @@ extern_methods!(
     unsafe impl NSSharingServicePickerToolbarItem {
         #[cfg(feature = "NSToolbar")]
         /// Initialize the toolbar item with an identifier which is a development language string used by the toolbar and its delegate for identification purposes.
-        #[method_id(initWithItemIdentifier:)]
+        #[method(initWithItemIdentifier:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithItemIdentifier(
             this: Allocated<Self>,
@@ -66,11 +67,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSToolbarItem")]
     unsafe impl NSSharingServicePickerToolbarItem {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -87,7 +88,7 @@ extern_protocol!(
         /// They must conform to the
         /// <NSPasteboardWriting
         /// > protocol or be an NSItemProvider. (e.g. NSString, NSImage, NSURL, etc.).
-        #[method_id(itemsForSharingServicePickerToolbarItem:)]
+        #[method(itemsForSharingServicePickerToolbarItem:)]
         #[unsafe(method_family = none)]
         unsafe fn itemsForSharingServicePickerToolbarItem(
             &self,

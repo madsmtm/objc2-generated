@@ -68,38 +68,44 @@ extern_methods!(
     unsafe impl GCControllerTouchpad {
         #[cfg(feature = "GCControllerButtonInput")]
         /// Button is the button built into the touch surface.
-        #[method_id(button)]
+        #[method(button)]
         #[unsafe(method_family = none)]
         pub unsafe fn button(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(feature = "block2")]
         /// Called when a touch event begins on the touchpad.
         #[method(touchDown)]
+        #[unsafe(method_family = none)]
         pub unsafe fn touchDown(&self) -> GCControllerTouchpadHandler;
 
         #[cfg(feature = "block2")]
         /// Setter for [`touchDown`][Self::touchDown].
         #[method(setTouchDown:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTouchDown(&self, touch_down: GCControllerTouchpadHandler);
 
         #[cfg(feature = "block2")]
         /// Called when a touch event continues on the touchpad, but not when it begins or ends.
         #[method(touchMoved)]
+        #[unsafe(method_family = none)]
         pub unsafe fn touchMoved(&self) -> GCControllerTouchpadHandler;
 
         #[cfg(feature = "block2")]
         /// Setter for [`touchMoved`][Self::touchMoved].
         #[method(setTouchMoved:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTouchMoved(&self, touch_moved: GCControllerTouchpadHandler);
 
         #[cfg(feature = "block2")]
         /// Called when a touch event ends on the touchpad.
         #[method(touchUp)]
+        #[unsafe(method_family = none)]
         pub unsafe fn touchUp(&self) -> GCControllerTouchpadHandler;
 
         #[cfg(feature = "block2")]
         /// Setter for [`touchUp`][Self::touchUp].
         #[method(setTouchUp:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTouchUp(&self, touch_up: GCControllerTouchpadHandler);
 
         #[cfg(feature = "GCControllerDirectionPad")]
@@ -110,12 +116,13 @@ extern_methods!(
         ///
         ///
         /// See: touchState - Should be polled in conjunction with touchSurface to determine if values are valid
-        #[method_id(touchSurface)]
+        #[method(touchSurface)]
         #[unsafe(method_family = none)]
         pub unsafe fn touchSurface(&self) -> Retained<GCControllerDirectionPad>;
 
         /// Indicates the current state of the touch event on the touchpad.
         #[method(touchState)]
+        #[unsafe(method_family = none)]
         pub unsafe fn touchState(&self) -> GCTouchState;
 
         /// The touchpad can use the raw position values of its surface as D-pad values, or it can create a virtual dpad centered around the first contact point with the surface.
@@ -126,10 +133,12 @@ extern_methods!(
         ///
         /// The default value for this property is YES, meaning the touch surface's raw positional values are reported.
         #[method(reportsAbsoluteTouchSurfaceValues)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reportsAbsoluteTouchSurfaceValues(&self) -> bool;
 
         /// Setter for [`reportsAbsoluteTouchSurfaceValues`][Self::reportsAbsoluteTouchSurfaceValues].
         #[method(setReportsAbsoluteTouchSurfaceValues:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setReportsAbsoluteTouchSurfaceValues(
             &self,
             reports_absolute_touch_surface_values: bool,
@@ -144,6 +153,7 @@ extern_methods!(
         ///
         /// See: touchState
         #[method(setValueForXAxis:yAxis:touchDown:buttonValue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setValueForXAxis_yAxis_touchDown_buttonValue(
             &self,
             x_axis: c_float,
@@ -158,11 +168,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "GCControllerElement")]
     unsafe impl GCControllerTouchpad {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

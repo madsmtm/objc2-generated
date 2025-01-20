@@ -61,17 +61,18 @@ unsafe impl SCNTechniqueSupport for SCNCamera {}
 extern_methods!(
     unsafe impl SCNCamera {
         /// Creates and returns a camera instance.
-        #[method_id(camera)]
+        #[method(camera)]
         #[unsafe(method_family = none)]
         pub unsafe fn camera() -> Retained<Self>;
 
         /// Determines the name of the receiver.
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
         #[method(setName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -79,19 +80,23 @@ extern_methods!(
         ///
         /// The fieldOfView is automatically updated when the sensorHeight or focalLength are set. Setting the fieldOfView will update the focalLength according to the new fieldOfView and the current sensorHeight.
         #[method(fieldOfView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fieldOfView(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`fieldOfView`][Self::fieldOfView].
         #[method(setFieldOfView:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFieldOfView(&self, field_of_view: CGFloat);
 
         /// Determines whether the fieldOfView (or orthographicScale) is vertical or horizontal. Defaults to vertical.
         #[method(projectionDirection)]
+        #[unsafe(method_family = none)]
         pub unsafe fn projectionDirection(&self) -> SCNCameraProjectionDirection;
 
         /// Setter for [`projectionDirection`][Self::projectionDirection].
         #[method(setProjectionDirection:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setProjectionDirection(
             &self,
             projection_direction: SCNCameraProjectionDirection,
@@ -102,11 +107,13 @@ extern_methods!(
         ///
         /// The focalLength is automatically updated when the sensorHeight or fieldOfView are set. Setting the focalLength will update the fieldOfView according to the new focalLength and the current sensorHeight.
         #[method(focalLength)]
+        #[unsafe(method_family = none)]
         pub unsafe fn focalLength(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`focalLength`][Self::focalLength].
         #[method(setFocalLength:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFocalLength(&self, focal_length: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -114,71 +121,85 @@ extern_methods!(
         ///
         /// Setting the sensorHeight will automatically update the fieldOfView according to the new sensorHeight and the current focalLength.
         #[method(sensorHeight)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sensorHeight(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`sensorHeight`][Self::sensorHeight].
         #[method(setSensorHeight:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSensorHeight(&self, sensor_height: CGFloat);
 
         /// Determines the receiver's near value. Animatable.
         ///
         /// The near value determines the minimal distance between the camera and a visible surface. If a surface is closer to the camera than this minimal distance, then the surface is clipped. The near value must be different than zero. Defaults to 1.
         #[method(zNear)]
+        #[unsafe(method_family = none)]
         pub unsafe fn zNear(&self) -> c_double;
 
         /// Setter for [`zNear`][Self::zNear].
         #[method(setZNear:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setZNear(&self, z_near: c_double);
 
         /// Determines the receiver's far value. Animatable.
         ///
         /// The far value determines the maximal distance between the camera and a visible surface. If a surface is further from the camera than this maximal distance, then the surface is clipped. Defaults to 100.
         #[method(zFar)]
+        #[unsafe(method_family = none)]
         pub unsafe fn zFar(&self) -> c_double;
 
         /// Setter for [`zFar`][Self::zFar].
         #[method(setZFar:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setZFar(&self, z_far: c_double);
 
         /// Determines whether the receiver automatically adjusts the zFar value. Defaults to NO.
         ///
         /// When set to YES, the near and far planes are automatically set to fit the bounding box of the entire scene at render time.
         #[method(automaticallyAdjustsZRange)]
+        #[unsafe(method_family = none)]
         pub unsafe fn automaticallyAdjustsZRange(&self) -> bool;
 
         /// Setter for [`automaticallyAdjustsZRange`][Self::automaticallyAdjustsZRange].
         #[method(setAutomaticallyAdjustsZRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAutomaticallyAdjustsZRange(&self, automatically_adjusts_z_range: bool);
 
         /// Determines whether the receiver uses an orthographic projection or not. Defaults to NO.
         #[method(usesOrthographicProjection)]
+        #[unsafe(method_family = none)]
         pub unsafe fn usesOrthographicProjection(&self) -> bool;
 
         /// Setter for [`usesOrthographicProjection`][Self::usesOrthographicProjection].
         #[method(setUsesOrthographicProjection:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUsesOrthographicProjection(&self, uses_orthographic_projection: bool);
 
         /// Determines the receiver's orthographic scale value. Animatable. Defaults to 1.
         ///
         /// This setting determines the size of the camera's visible area. This is only enabled when usesOrthographicProjection is set to YES.
         #[method(orthographicScale)]
+        #[unsafe(method_family = none)]
         pub unsafe fn orthographicScale(&self) -> c_double;
 
         /// Setter for [`orthographicScale`][Self::orthographicScale].
         #[method(setOrthographicScale:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setOrthographicScale(&self, orthographic_scale: c_double);
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-quartz-core"))]
         #[cfg(not(target_os = "watchos"))]
         /// Determines the projection transform used by the camera to project the world onscreen.
         #[method(projectionTransform)]
+        #[unsafe(method_family = none)]
         pub unsafe fn projectionTransform(&self) -> SCNMatrix4;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-quartz-core"))]
         #[cfg(not(target_os = "watchos"))]
         /// Setter for [`projectionTransform`][Self::projectionTransform].
         #[method(setProjectionTransform:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setProjectionTransform(&self, projection_transform: SCNMatrix4);
 
         #[cfg(all(
@@ -188,6 +209,7 @@ extern_methods!(
         ))]
         #[cfg(not(target_os = "watchos"))]
         #[method(projectionTransformWithViewportSize:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn projectionTransformWithViewportSize(
             &self,
             viewport_size: CGSize,
@@ -195,10 +217,12 @@ extern_methods!(
 
         /// Determines if the receiver has depth of field. Defaults to NO.
         #[method(wantsDepthOfField)]
+        #[unsafe(method_family = none)]
         pub unsafe fn wantsDepthOfField(&self) -> bool;
 
         /// Setter for [`wantsDepthOfField`][Self::wantsDepthOfField].
         #[method(setWantsDepthOfField:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWantsDepthOfField(&self, wants_depth_of_field: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -206,21 +230,25 @@ extern_methods!(
         ///
         /// Defaults to 2.5
         #[method(focusDistance)]
+        #[unsafe(method_family = none)]
         pub unsafe fn focusDistance(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`focusDistance`][Self::focusDistance].
         #[method(setFocusDistance:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFocusDistance(&self, focus_distance: CGFloat);
 
         /// Determines the receiver's sample count for depth of field effect.
         ///
         /// Defaults to 25.
         #[method(focalBlurSampleCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn focalBlurSampleCount(&self) -> NSInteger;
 
         /// Setter for [`focalBlurSampleCount`][Self::focalBlurSampleCount].
         #[method(setFocalBlurSampleCount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFocalBlurSampleCount(&self, focal_blur_sample_count: NSInteger);
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -228,21 +256,25 @@ extern_methods!(
         ///
         /// Defaults to 5.6.
         #[method(fStop)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fStop(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`fStop`][Self::fStop].
         #[method(setFStop:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFStop(&self, f_stop: CGFloat);
 
         /// Determines the receiver's blade count of the aperture.
         ///
         /// Defaults to 6.
         #[method(apertureBladeCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn apertureBladeCount(&self) -> NSInteger;
 
         /// Setter for [`apertureBladeCount`][Self::apertureBladeCount].
         #[method(setApertureBladeCount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setApertureBladeCount(&self, aperture_blade_count: NSInteger);
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -250,11 +282,13 @@ extern_methods!(
         ///
         /// An intensity of zero means no motion blur. The intensity should not exceeed 1.
         #[method(motionBlurIntensity)]
+        #[unsafe(method_family = none)]
         pub unsafe fn motionBlurIntensity(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`motionBlurIntensity`][Self::motionBlurIntensity].
         #[method(setMotionBlurIntensity:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMotionBlurIntensity(&self, motion_blur_intensity: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -262,11 +296,13 @@ extern_methods!(
         ///
         /// defaults to 0.
         #[method(screenSpaceAmbientOcclusionIntensity)]
+        #[unsafe(method_family = none)]
         pub unsafe fn screenSpaceAmbientOcclusionIntensity(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`screenSpaceAmbientOcclusionIntensity`][Self::screenSpaceAmbientOcclusionIntensity].
         #[method(setScreenSpaceAmbientOcclusionIntensity:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setScreenSpaceAmbientOcclusionIntensity(
             &self,
             screen_space_ambient_occlusion_intensity: CGFloat,
@@ -277,11 +313,13 @@ extern_methods!(
         ///
         /// defaults to 5.
         #[method(screenSpaceAmbientOcclusionRadius)]
+        #[unsafe(method_family = none)]
         pub unsafe fn screenSpaceAmbientOcclusionRadius(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`screenSpaceAmbientOcclusionRadius`][Self::screenSpaceAmbientOcclusionRadius].
         #[method(setScreenSpaceAmbientOcclusionRadius:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setScreenSpaceAmbientOcclusionRadius(
             &self,
             screen_space_ambient_occlusion_radius: CGFloat,
@@ -292,11 +330,13 @@ extern_methods!(
         ///
         /// defaults to 0.03.
         #[method(screenSpaceAmbientOcclusionBias)]
+        #[unsafe(method_family = none)]
         pub unsafe fn screenSpaceAmbientOcclusionBias(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`screenSpaceAmbientOcclusionBias`][Self::screenSpaceAmbientOcclusionBias].
         #[method(setScreenSpaceAmbientOcclusionBias:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setScreenSpaceAmbientOcclusionBias(
             &self,
             screen_space_ambient_occlusion_bias: CGFloat,
@@ -307,11 +347,13 @@ extern_methods!(
         ///
         /// defaults to 0.2.
         #[method(screenSpaceAmbientOcclusionDepthThreshold)]
+        #[unsafe(method_family = none)]
         pub unsafe fn screenSpaceAmbientOcclusionDepthThreshold(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`screenSpaceAmbientOcclusionDepthThreshold`][Self::screenSpaceAmbientOcclusionDepthThreshold].
         #[method(setScreenSpaceAmbientOcclusionDepthThreshold:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setScreenSpaceAmbientOcclusionDepthThreshold(
             &self,
             screen_space_ambient_occlusion_depth_threshold: CGFloat,
@@ -322,11 +364,13 @@ extern_methods!(
         ///
         /// defaults to 0.3.
         #[method(screenSpaceAmbientOcclusionNormalThreshold)]
+        #[unsafe(method_family = none)]
         pub unsafe fn screenSpaceAmbientOcclusionNormalThreshold(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`screenSpaceAmbientOcclusionNormalThreshold`][Self::screenSpaceAmbientOcclusionNormalThreshold].
         #[method(setScreenSpaceAmbientOcclusionNormalThreshold:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setScreenSpaceAmbientOcclusionNormalThreshold(
             &self,
             screen_space_ambient_occlusion_normal_threshold: CGFloat,
@@ -334,58 +378,70 @@ extern_methods!(
 
         /// Determines if the receiver has a high dynamic range. Defaults to NO.
         #[method(wantsHDR)]
+        #[unsafe(method_family = none)]
         pub unsafe fn wantsHDR(&self) -> bool;
 
         /// Setter for [`wantsHDR`][Self::wantsHDR].
         #[method(setWantsHDR:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWantsHDR(&self, wants_hdr: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Determines the logarithmic exposure biasing, in EV. Defaults to 0.
         #[method(exposureOffset)]
+        #[unsafe(method_family = none)]
         pub unsafe fn exposureOffset(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`exposureOffset`][Self::exposureOffset].
         #[method(setExposureOffset:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setExposureOffset(&self, exposure_offset: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Determines the average gray level desired in the final image. Defaults to 0.18.
         #[method(averageGray)]
+        #[unsafe(method_family = none)]
         pub unsafe fn averageGray(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`averageGray`][Self::averageGray].
         #[method(setAverageGray:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAverageGray(&self, average_gray: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Determines the smallest luminance level that will be mapped to white in the final image. Defaults to 1.
         #[method(whitePoint)]
+        #[unsafe(method_family = none)]
         pub unsafe fn whitePoint(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`whitePoint`][Self::whitePoint].
         #[method(setWhitePoint:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWhitePoint(&self, white_point: CGFloat);
 
         /// Determines if the receiver should simulate an eye and continuously adjust to luminance. Defaults to YES.
         #[method(wantsExposureAdaptation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn wantsExposureAdaptation(&self) -> bool;
 
         /// Setter for [`wantsExposureAdaptation`][Self::wantsExposureAdaptation].
         #[method(setWantsExposureAdaptation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWantsExposureAdaptation(&self, wants_exposure_adaptation: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Determines the exposure adaptation speed when going from bright areas to dark areas. Defaults to 0.4.
         #[method(exposureAdaptationBrighteningSpeedFactor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn exposureAdaptationBrighteningSpeedFactor(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`exposureAdaptationBrighteningSpeedFactor`][Self::exposureAdaptationBrighteningSpeedFactor].
         #[method(setExposureAdaptationBrighteningSpeedFactor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setExposureAdaptationBrighteningSpeedFactor(
             &self,
             exposure_adaptation_brightening_speed_factor: CGFloat,
@@ -394,11 +450,13 @@ extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// Determines the exposure adaptation speed when going from dark areas to bright areas. Defaults to 0.6.
         #[method(exposureAdaptationDarkeningSpeedFactor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn exposureAdaptationDarkeningSpeedFactor(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`exposureAdaptationDarkeningSpeedFactor`][Self::exposureAdaptationDarkeningSpeedFactor].
         #[method(setExposureAdaptationDarkeningSpeedFactor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setExposureAdaptationDarkeningSpeedFactor(
             &self,
             exposure_adaptation_darkening_speed_factor: CGFloat,
@@ -407,191 +465,229 @@ extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// Determines the minimum exposure offset of the adaptation, in EV. Defaults to -15.
         #[method(minimumExposure)]
+        #[unsafe(method_family = none)]
         pub unsafe fn minimumExposure(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`minimumExposure`][Self::minimumExposure].
         #[method(setMinimumExposure:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMinimumExposure(&self, minimum_exposure: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Determines the maximum exposure offset of the adaptation, in EV. Defaults to -15.
         #[method(maximumExposure)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maximumExposure(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`maximumExposure`][Self::maximumExposure].
         #[method(setMaximumExposure:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMaximumExposure(&self, maximum_exposure: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Determines the luminance threshold for the bloom effect. Animatable. Defaults to 1.
         #[method(bloomThreshold)]
+        #[unsafe(method_family = none)]
         pub unsafe fn bloomThreshold(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`bloomThreshold`][Self::bloomThreshold].
         #[method(setBloomThreshold:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBloomThreshold(&self, bloom_threshold: CGFloat);
 
         /// Determines the number of blur iterations. Defaults to 1.
         #[method(bloomIterationCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn bloomIterationCount(&self) -> NSInteger;
 
         /// Setter for [`bloomIterationCount`][Self::bloomIterationCount].
         #[method(setBloomIterationCount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBloomIterationCount(&self, bloom_iteration_count: NSInteger);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Determines how the bloom iterations are spread. Defaults to 0.
         #[method(bloomIterationSpread)]
+        #[unsafe(method_family = none)]
         pub unsafe fn bloomIterationSpread(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`bloomIterationSpread`][Self::bloomIterationSpread].
         #[method(setBloomIterationSpread:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBloomIterationSpread(&self, bloom_iteration_spread: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Determines the intensity of the bloom effect. Animatable. Defaults to 0 (no effect).
         #[method(bloomIntensity)]
+        #[unsafe(method_family = none)]
         pub unsafe fn bloomIntensity(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`bloomIntensity`][Self::bloomIntensity].
         #[method(setBloomIntensity:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBloomIntensity(&self, bloom_intensity: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Determines the radius of the bloom effect in points. Animatable. Defaults to 4.
         #[method(bloomBlurRadius)]
+        #[unsafe(method_family = none)]
         pub unsafe fn bloomBlurRadius(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`bloomBlurRadius`][Self::bloomBlurRadius].
         #[method(setBloomBlurRadius:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBloomBlurRadius(&self, bloom_blur_radius: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Controls the shape of the vignetting effect. Defaults to 0 (no effect).
         #[method(vignettingPower)]
+        #[unsafe(method_family = none)]
         pub unsafe fn vignettingPower(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`vignettingPower`][Self::vignettingPower].
         #[method(setVignettingPower:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setVignettingPower(&self, vignetting_power: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Controls the intensity of the vignetting effect. Defaults to 0 (no effect).
         #[method(vignettingIntensity)]
+        #[unsafe(method_family = none)]
         pub unsafe fn vignettingIntensity(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`vignettingIntensity`][Self::vignettingIntensity].
         #[method(setVignettingIntensity:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setVignettingIntensity(&self, vignetting_intensity: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Controls the strength of the color shift effect. Defaults to 0 (no effect).
         #[method(colorFringeStrength)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colorFringeStrength(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`colorFringeStrength`][Self::colorFringeStrength].
         #[method(setColorFringeStrength:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setColorFringeStrength(&self, color_fringe_strength: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Controls the intensity of the color shift effect. Defaults to 1.
         #[method(colorFringeIntensity)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colorFringeIntensity(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`colorFringeIntensity`][Self::colorFringeIntensity].
         #[method(setColorFringeIntensity:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setColorFringeIntensity(&self, color_fringe_intensity: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Controls the overall saturation of the scene. Defaults to 1 (no effect).
         #[method(saturation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn saturation(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`saturation`][Self::saturation].
         #[method(setSaturation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSaturation(&self, saturation: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Controls the overall contrast of the scene. Defaults to 0 (no effect).
         #[method(contrast)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contrast(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`contrast`][Self::contrast].
         #[method(setContrast:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setContrast(&self, contrast: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Controls the intensity of the grain. Defaults to 0 (no effect).
         #[method(grainIntensity)]
+        #[unsafe(method_family = none)]
         pub unsafe fn grainIntensity(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`grainIntensity`][Self::grainIntensity].
         #[method(setGrainIntensity:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setGrainIntensity(&self, grain_intensity: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Controls the scale of the grain. Defaults to 1.
         #[method(grainScale)]
+        #[unsafe(method_family = none)]
         pub unsafe fn grainScale(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`grainScale`][Self::grainScale].
         #[method(setGrainScale:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setGrainScale(&self, grain_scale: CGFloat);
 
         /// Determines if the grain is colored or not. Defaults to NO.
         #[method(grainIsColored)]
+        #[unsafe(method_family = none)]
         pub unsafe fn grainIsColored(&self) -> bool;
 
         /// Setter for [`grainIsColored`][Self::grainIsColored].
         #[method(setGrainIsColored:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setGrainIsColored(&self, grain_is_colored: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Controls the overall white balance temperature of the scene. Defaults to 0 (no effect).
         #[method(whiteBalanceTemperature)]
+        #[unsafe(method_family = none)]
         pub unsafe fn whiteBalanceTemperature(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`whiteBalanceTemperature`][Self::whiteBalanceTemperature].
         #[method(setWhiteBalanceTemperature:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWhiteBalanceTemperature(&self, white_balance_temperature: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Controls the overall white balance tint of the scene. Defaults to 0 (no effect).
         #[method(whiteBalanceTint)]
+        #[unsafe(method_family = none)]
         pub unsafe fn whiteBalanceTint(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`whiteBalanceTint`][Self::whiteBalanceTint].
         #[method(setWhiteBalanceTint:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWhiteBalanceTint(&self, white_balance_tint: CGFloat);
 
         #[cfg(feature = "SCNMaterialProperty")]
         /// Specifies a lookup texture to apply color grading. The contents must a 2D image representing `n` slices of a unit color cube texture, arranged in an horizontal row of `n` images. For instance, a color cube of dimension 16x16x16 should be provided as an image of size 256x16.
-        #[method_id(colorGrading)]
+        #[method(colorGrading)]
         #[unsafe(method_family = none)]
         pub unsafe fn colorGrading(&self) -> Retained<SCNMaterialProperty>;
 
         /// Determines the node categories that are visible from the receiver. Defaults to all bits set.
         #[method(categoryBitMask)]
+        #[unsafe(method_family = none)]
         pub unsafe fn categoryBitMask(&self) -> NSUInteger;
 
         /// Setter for [`categoryBitMask`][Self::categoryBitMask].
         #[method(setCategoryBitMask:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCategoryBitMask(&self, category_bit_mask: NSUInteger);
     }
 );
@@ -599,11 +695,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNCamera {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

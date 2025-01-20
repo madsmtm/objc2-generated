@@ -24,27 +24,29 @@ extern_methods!(
         #[cfg(feature = "MLCTensor")]
         /// The underlying tensor
         #[deprecated]
-        #[method_id(tensor)]
+        #[method(tensor)]
         #[unsafe(method_family = none)]
         pub unsafe fn tensor(&self) -> Retained<MLCTensor>;
 
         /// Specifies whether this tensor parameter is updatable
         #[deprecated]
         #[method(isUpdatable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isUpdatable(&self) -> bool;
 
         /// Setter for [`isUpdatable`][Self::isUpdatable].
         #[deprecated]
         #[method(setIsUpdatable:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIsUpdatable(&self, is_updatable: bool);
 
         #[deprecated]
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -55,7 +57,7 @@ extern_methods!(
         ///
         /// Returns: A new tensor parameter object
         #[deprecated]
-        #[method_id(parameterWithTensor:)]
+        #[method(parameterWithTensor:)]
         #[unsafe(method_family = none)]
         pub unsafe fn parameterWithTensor(tensor: &MLCTensor) -> Retained<Self>;
 
@@ -68,7 +70,7 @@ extern_methods!(
         ///
         /// Returns: A new tensor parameter object
         #[deprecated]
-        #[method_id(parameterWithTensor:optimizerData:)]
+        #[method(parameterWithTensor:optimizerData:)]
         #[unsafe(method_family = none)]
         pub unsafe fn parameterWithTensor_optimizerData(
             tensor: &MLCTensor,

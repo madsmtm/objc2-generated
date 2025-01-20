@@ -24,63 +24,75 @@ unsafe impl NSObjectProtocol for PHFetchOptions {}
 
 extern_methods!(
     unsafe impl PHFetchOptions {
-        #[method_id(predicate)]
+        #[method(predicate)]
         #[unsafe(method_family = none)]
         pub unsafe fn predicate(&self) -> Option<Retained<NSPredicate>>;
 
         /// Setter for [`predicate`][Self::predicate].
         #[method(setPredicate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPredicate(&self, predicate: Option<&NSPredicate>);
 
-        #[method_id(sortDescriptors)]
+        #[method(sortDescriptors)]
         #[unsafe(method_family = none)]
         pub unsafe fn sortDescriptors(&self) -> Option<Retained<NSArray<NSSortDescriptor>>>;
 
         /// Setter for [`sortDescriptors`][Self::sortDescriptors].
         #[method(setSortDescriptors:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSortDescriptors(
             &self,
             sort_descriptors: Option<&NSArray<NSSortDescriptor>>,
         );
 
         #[method(includeHiddenAssets)]
+        #[unsafe(method_family = none)]
         pub unsafe fn includeHiddenAssets(&self) -> bool;
 
         /// Setter for [`includeHiddenAssets`][Self::includeHiddenAssets].
         #[method(setIncludeHiddenAssets:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIncludeHiddenAssets(&self, include_hidden_assets: bool);
 
         #[method(includeAllBurstAssets)]
+        #[unsafe(method_family = none)]
         pub unsafe fn includeAllBurstAssets(&self) -> bool;
 
         /// Setter for [`includeAllBurstAssets`][Self::includeAllBurstAssets].
         #[method(setIncludeAllBurstAssets:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIncludeAllBurstAssets(&self, include_all_burst_assets: bool);
 
         #[cfg(feature = "PhotosTypes")]
         #[method(includeAssetSourceTypes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn includeAssetSourceTypes(&self) -> PHAssetSourceType;
 
         #[cfg(feature = "PhotosTypes")]
         /// Setter for [`includeAssetSourceTypes`][Self::includeAssetSourceTypes].
         #[method(setIncludeAssetSourceTypes:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIncludeAssetSourceTypes(
             &self,
             include_asset_source_types: PHAssetSourceType,
         );
 
         #[method(fetchLimit)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fetchLimit(&self) -> NSUInteger;
 
         /// Setter for [`fetchLimit`][Self::fetchLimit].
         #[method(setFetchLimit:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFetchLimit(&self, fetch_limit: NSUInteger);
 
         #[method(wantsIncrementalChangeDetails)]
+        #[unsafe(method_family = none)]
         pub unsafe fn wantsIncrementalChangeDetails(&self) -> bool;
 
         /// Setter for [`wantsIncrementalChangeDetails`][Self::wantsIncrementalChangeDetails].
         #[method(setWantsIncrementalChangeDetails:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWantsIncrementalChangeDetails(
             &self,
             wants_incremental_change_details: bool,
@@ -91,11 +103,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHFetchOptions {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

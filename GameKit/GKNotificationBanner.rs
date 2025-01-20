@@ -25,6 +25,7 @@ extern_methods!(
         #[cfg(feature = "block2")]
         #[deprecated = "Use UNNotificationRequest or provide custom UI instead. This method will become a no-op in a future version of GameKit."]
         #[method(showBannerWithTitle:message:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn showBannerWithTitle_message_completionHandler(
             title: Option<&NSString>,
             message: Option<&NSString>,
@@ -34,6 +35,7 @@ extern_methods!(
         #[cfg(feature = "block2")]
         #[deprecated = "Use UNNotificationRequest or provide custom UI instead. This method will become a no-op in a future version of GameKit."]
         #[method(showBannerWithTitle:message:duration:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn showBannerWithTitle_message_duration_completionHandler(
             title: Option<&NSString>,
             message: Option<&NSString>,
@@ -46,11 +48,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKNotificationBanner {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

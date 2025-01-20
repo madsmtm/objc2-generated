@@ -25,31 +25,34 @@ extern_methods!(
     #[cfg(feature = "NSTouchBarItem")]
     unsafe impl NSCustomTouchBarItem {
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-        #[method_id(view)]
+        #[method(view)]
         #[unsafe(method_family = none)]
         pub unsafe fn view(&self) -> Retained<NSView>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         /// Setter for [`view`][Self::view].
         #[method(setView:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setView(&self, view: &NSView);
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
-        #[method_id(viewController)]
+        #[method(viewController)]
         #[unsafe(method_family = none)]
         pub unsafe fn viewController(&self) -> Option<Retained<NSViewController>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         /// Setter for [`viewController`][Self::viewController].
         #[method(setViewController:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setViewController(&self, view_controller: Option<&NSViewController>);
 
-        #[method_id(customizationLabel)]
+        #[method(customizationLabel)]
         #[unsafe(method_family = none)]
         pub unsafe fn customizationLabel(&self) -> Retained<NSString>;
 
         /// Setter for [`customizationLabel`][Self::customizationLabel].
         #[method(setCustomizationLabel:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCustomizationLabel(&self, customization_label: Option<&NSString>);
     }
 );
@@ -58,21 +61,21 @@ extern_methods!(
     /// Methods declared on superclass `NSTouchBarItem`
     #[cfg(feature = "NSTouchBarItem")]
     unsafe impl NSCustomTouchBarItem {
-        #[method_id(initWithIdentifier:)]
+        #[method(initWithIdentifier:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,
             identifier: &NSTouchBarItemIdentifier,
         ) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -82,7 +85,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSTouchBarItem")]
     unsafe impl NSCustomTouchBarItem {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

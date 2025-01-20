@@ -30,66 +30,77 @@ extern_methods!(
         /// The pooling operation
         #[deprecated]
         #[method(poolingType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn poolingType(&self) -> MLCPoolingType;
 
         /// The pooling kernel size in x.
         #[deprecated]
         #[method(kernelWidth)]
+        #[unsafe(method_family = none)]
         pub unsafe fn kernelWidth(&self) -> NSUInteger;
 
         /// The pooling kernel size in y.
         #[deprecated]
         #[method(kernelHeight)]
+        #[unsafe(method_family = none)]
         pub unsafe fn kernelHeight(&self) -> NSUInteger;
 
         /// The stride of the kernel in x.
         #[deprecated]
         #[method(strideInX)]
+        #[unsafe(method_family = none)]
         pub unsafe fn strideInX(&self) -> NSUInteger;
 
         /// The stride of the kernel in y.
         #[deprecated]
         #[method(strideInY)]
+        #[unsafe(method_family = none)]
         pub unsafe fn strideInY(&self) -> NSUInteger;
 
         /// The dilation rate i.e. stride of elements in the kernel in x.
         #[deprecated]
         #[method(dilationRateInX)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dilationRateInX(&self) -> NSUInteger;
 
         /// The dilation rate i.e. stride of elements in the kernel in y.
         #[deprecated]
         #[method(dilationRateInY)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dilationRateInY(&self) -> NSUInteger;
 
         #[cfg(feature = "MLCTypes")]
         /// The padding policy to use.
         #[deprecated]
         #[method(paddingPolicy)]
+        #[unsafe(method_family = none)]
         pub unsafe fn paddingPolicy(&self) -> MLCPaddingPolicy;
 
         /// The padding size in x (left and right) to use if paddingPolicy is MLCPaddingPolicyUsePaddingSize
         #[deprecated]
         #[method(paddingSizeInX)]
+        #[unsafe(method_family = none)]
         pub unsafe fn paddingSizeInX(&self) -> NSUInteger;
 
         /// The padding size in y (top and bottom) to use if paddingPolicy is MLCPaddingPolicyUsePaddingSize
         #[deprecated]
         #[method(paddingSizeInY)]
+        #[unsafe(method_family = none)]
         pub unsafe fn paddingSizeInY(&self) -> NSUInteger;
 
         /// Include the zero-padding in the averaging calculation if true.  Used only with average pooling.
         #[deprecated]
         #[method(countIncludesPadding)]
+        #[unsafe(method_family = none)]
         pub unsafe fn countIncludesPadding(&self) -> bool;
 
         #[deprecated]
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -104,7 +115,7 @@ extern_methods!(
         ///
         /// Returns: A new MLCPoolingDescriptor object.
         #[deprecated]
-        #[method_id(poolingDescriptorWithType:kernelSize:stride:)]
+        #[method(poolingDescriptorWithType:kernelSize:stride:)]
         #[unsafe(method_family = none)]
         pub unsafe fn poolingDescriptorWithType_kernelSize_stride(
             pooling_type: MLCPoolingType,
@@ -125,7 +136,7 @@ extern_methods!(
         ///
         /// Returns: A new MLCPoolingDescriptor object.
         #[deprecated]
-        #[method_id(maxPoolingDescriptorWithKernelSizes:strides:paddingPolicy:paddingSizes:)]
+        #[method(maxPoolingDescriptorWithKernelSizes:strides:paddingPolicy:paddingSizes:)]
         #[unsafe(method_family = none)]
         pub unsafe fn maxPoolingDescriptorWithKernelSizes_strides_paddingPolicy_paddingSizes(
             kernel_sizes: &NSArray<NSNumber>,
@@ -149,7 +160,7 @@ extern_methods!(
         ///
         /// Returns: A new MLCPoolingDescriptor object.
         #[deprecated]
-        #[method_id(maxPoolingDescriptorWithKernelSizes:strides:dilationRates:paddingPolicy:paddingSizes:)]
+        #[method(maxPoolingDescriptorWithKernelSizes:strides:dilationRates:paddingPolicy:paddingSizes:)]
         #[unsafe(method_family = none)]
         pub unsafe fn maxPoolingDescriptorWithKernelSizes_strides_dilationRates_paddingPolicy_paddingSizes(
             kernel_sizes: &NSArray<NSNumber>,
@@ -174,7 +185,7 @@ extern_methods!(
         ///
         /// Returns: A new MLCPoolingDescriptor object.
         #[deprecated]
-        #[method_id(averagePoolingDescriptorWithKernelSizes:strides:paddingPolicy:paddingSizes:countIncludesPadding:)]
+        #[method(averagePoolingDescriptorWithKernelSizes:strides:paddingPolicy:paddingSizes:countIncludesPadding:)]
         #[unsafe(method_family = none)]
         pub unsafe fn averagePoolingDescriptorWithKernelSizes_strides_paddingPolicy_paddingSizes_countIncludesPadding(
             kernel_sizes: &NSArray<NSNumber>,
@@ -201,7 +212,7 @@ extern_methods!(
         ///
         /// Returns: A new MLCPoolingDescriptor object.
         #[deprecated]
-        #[method_id(averagePoolingDescriptorWithKernelSizes:strides:dilationRates:paddingPolicy:paddingSizes:countIncludesPadding:)]
+        #[method(averagePoolingDescriptorWithKernelSizes:strides:dilationRates:paddingPolicy:paddingSizes:countIncludesPadding:)]
         #[unsafe(method_family = none)]
         pub unsafe fn averagePoolingDescriptorWithKernelSizes_strides_dilationRates_paddingPolicy_paddingSizes_countIncludesPadding(
             kernel_sizes: &NSArray<NSNumber>,
@@ -225,7 +236,7 @@ extern_methods!(
         ///
         /// Returns: A new MLCPoolingDescriptor object.
         #[deprecated]
-        #[method_id(l2NormPoolingDescriptorWithKernelSizes:strides:paddingPolicy:paddingSizes:)]
+        #[method(l2NormPoolingDescriptorWithKernelSizes:strides:paddingPolicy:paddingSizes:)]
         #[unsafe(method_family = none)]
         pub unsafe fn l2NormPoolingDescriptorWithKernelSizes_strides_paddingPolicy_paddingSizes(
             kernel_sizes: &NSArray<NSNumber>,
@@ -249,7 +260,7 @@ extern_methods!(
         ///
         /// Returns: A new MLCPoolingDescriptor object.
         #[deprecated]
-        #[method_id(l2NormPoolingDescriptorWithKernelSizes:strides:dilationRates:paddingPolicy:paddingSizes:)]
+        #[method(l2NormPoolingDescriptorWithKernelSizes:strides:dilationRates:paddingPolicy:paddingSizes:)]
         #[unsafe(method_family = none)]
         pub unsafe fn l2NormPoolingDescriptorWithKernelSizes_strides_dilationRates_paddingPolicy_paddingSizes(
             kernel_sizes: &NSArray<NSNumber>,

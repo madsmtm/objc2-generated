@@ -40,14 +40,14 @@ extern_methods!(
         ///
         ///
         /// Returns: the VNCircle object describing the bounding circle or nil, if the algorithm failed. The latter case is accompanied by populating an 'error' output parameter
-        #[method_id(boundingCircleForContour:error:_)]
+        #[method(boundingCircleForContour:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn boundingCircleForContour_error(
             contour: &VNContour,
         ) -> Result<Retained<VNCircle>, Retained<NSError>>;
 
         #[cfg(feature = "VNGeometry")]
-        #[method_id(boundingCircleForPoints:error:_)]
+        #[method(boundingCircleForPoints:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn boundingCircleForPoints_error(
             points: &NSArray<VNPoint>,
@@ -75,6 +75,7 @@ extern_methods!(
         ///
         /// Returns: Area calculation status, YES indicates success, NO - failure. The failure case is accompanied by populating an 'error' output parameter
         #[method(calculateArea:forContour:orientedArea:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn calculateArea_forContour_orientedArea_error(
             area: NonNull<c_double>,
             contour: &VNContour,
@@ -98,6 +99,7 @@ extern_methods!(
         ///
         /// Returns: Perimeter calculation status, YES indicates success, NO - failure. The failure case is accompanied by populating an 'error' output parameter
         #[method(calculatePerimeter:forContour:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn calculatePerimeter_forContour_error(
             perimeter: NonNull<c_double>,
             contour: &VNContour,
@@ -108,11 +110,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNGeometryUtils {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -29,18 +29,19 @@ extern_methods!(
     unsafe impl MPSGraphTensorData {
         #[cfg(feature = "objc2-metal-performance-shaders")]
         /// The shape of the tensor data.
-        #[method_id(shape)]
+        #[method(shape)]
         #[unsafe(method_family = none)]
         pub unsafe fn shape(&self) -> Retained<MPSShape>;
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
         /// The data type of the tensor data.
         #[method(dataType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dataType(&self) -> MPSDataType;
 
         #[cfg(feature = "MPSGraphDevice")]
         /// The device of the tensor data.
-        #[method_id(device)]
+        #[method(device)]
         #[unsafe(method_family = none)]
         pub unsafe fn device(&self) -> Retained<MPSGraphDevice>;
 
@@ -56,7 +57,7 @@ extern_methods!(
         /// - shape: shape of the output tensor
         /// - dataType: dataType of the placeholder tensor
         /// - Returns: A valid MPSGraphTensorData, or nil if allocation failure.
-        #[method_id(initWithDevice:data:shape:dataType:)]
+        #[method(initWithDevice:data:shape:dataType:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_data_shape_dataType(
             this: Allocated<Self>,
@@ -76,7 +77,7 @@ extern_methods!(
         /// - shape: shape of the output tensor
         /// - dataType: dataType of the placeholder tensor
         /// - Returns: A valid MPSGraphTensorData, or nil if allocation failure.
-        #[method_id(initWithMTLBuffer:shape:dataType:)]
+        #[method(initWithMTLBuffer:shape:dataType:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMTLBuffer_shape_dataType(
             this: Allocated<Self>,
@@ -96,7 +97,7 @@ extern_methods!(
         /// - dataType: dataType of the placeholder tensor
         /// - rowBytes: rowBytes for the fastest moving dimension, must be larger than or equal to sizeOf(dataType)shape[rank - 1] and must be a multiple of sizeOf(dataType)
         /// - Returns: A valid MPSGraphTensorData, or nil if allocation failure.
-        #[method_id(initWithMTLBuffer:shape:dataType:rowBytes:)]
+        #[method(initWithMTLBuffer:shape:dataType:rowBytes:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMTLBuffer_shape_dataType_rowBytes(
             this: Allocated<Self>,
@@ -114,7 +115,7 @@ extern_methods!(
         /// - Parameters:
         /// - matrix: MPSMatrix to be used within the MPSGraphTensorData
         /// - Returns: A valid MPSGraphTensorData, or nil if allocation failure.
-        #[method_id(initWithMPSMatrix:)]
+        #[method(initWithMPSMatrix:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMPSMatrix(
             this: Allocated<Self>,
@@ -130,7 +131,7 @@ extern_methods!(
         /// - matrix: MPSMatrix to be used within the MPSGraphTensorData
         /// - rank: The rank of the resulting TensorData tensor. NOTE: must be within { 1, ... ,16 }.
         /// - Returns: A valid MPSGraphTensorData of given rank, or nil if allocation failure.
-        #[method_id(initWithMPSMatrix:rank:)]
+        #[method(initWithMPSMatrix:rank:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMPSMatrix_rank(
             this: Allocated<Self>,
@@ -146,7 +147,7 @@ extern_methods!(
         /// - Parameters:
         /// - vector: MPSVector to be used within the MPSGraphTensorData
         /// - Returns: A valid MPSGraphTensorData, or nil if allocation failure.
-        #[method_id(initWithMPSVector:)]
+        #[method(initWithMPSVector:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMPSVector(
             this: Allocated<Self>,
@@ -162,7 +163,7 @@ extern_methods!(
         /// - vector: MPSVector to be used within the MPSGraphTensorData
         /// - rank: The rank of the resulting TensorData tensor. NOTE: must be within { 1, ... ,16 }.
         /// - Returns: A valid MPSGraphTensorData, or nil if allocation failure.
-        #[method_id(initWithMPSVector:rank:)]
+        #[method(initWithMPSVector:rank:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMPSVector_rank(
             this: Allocated<Self>,
@@ -178,7 +179,7 @@ extern_methods!(
         /// - Parameters:
         /// - ndarray: MPSNDArray to be used within the MPSGraphTensorData.
         /// - Returns: A valid MPSGraphTensorData, or nil if allocation failure.
-        #[method_id(initWithMPSNDArray:)]
+        #[method(initWithMPSNDArray:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMPSNDArray(
             this: Allocated<Self>,
@@ -193,7 +194,7 @@ extern_methods!(
         /// - Parameters:
         /// - imageBatch: The device on which the kernel will run, unorm8 and unorm16 images will create a float32 tensorData
         /// - Returns: A valid MPSGraphTensorData, or nil if allocation failure.
-        #[method_id(initWithMPSImageBatch:)]
+        #[method(initWithMPSImageBatch:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMPSImageBatch(
             this: Allocated<Self>,
@@ -204,7 +205,7 @@ extern_methods!(
         /// Return an mpsndarray object will copy contents if the contents are not stored in an MPS ndarray.
         ///
         /// - Returns: A valid MPSNDArray, or nil if allocation fails.
-        #[method_id(mpsndarray)]
+        #[method(mpsndarray)]
         #[unsafe(method_family = none)]
         pub unsafe fn mpsndarray(&self) -> Retained<MPSNDArray>;
     }
@@ -214,11 +215,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MPSGraphCore")]
     unsafe impl MPSGraphTensorData {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

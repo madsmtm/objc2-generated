@@ -27,98 +27,113 @@ unsafe impl NSObjectProtocol for NSPropertyDescription {}
 extern_methods!(
     unsafe impl NSPropertyDescription {
         #[cfg(feature = "NSEntityDescription")]
-        #[method_id(entity)]
+        #[method(entity)]
         #[unsafe(method_family = none)]
         pub unsafe fn entity(&self) -> Retained<NSEntityDescription>;
 
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
         #[method(setName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: &NSString);
 
         #[method(isOptional)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isOptional(&self) -> bool;
 
         /// Setter for [`isOptional`][Self::isOptional].
         #[method(setOptional:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setOptional(&self, optional: bool);
 
         #[method(isTransient)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isTransient(&self) -> bool;
 
         /// Setter for [`isTransient`][Self::isTransient].
         #[method(setTransient:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTransient(&self, transient: bool);
 
-        #[method_id(validationPredicates)]
+        #[method(validationPredicates)]
         #[unsafe(method_family = none)]
         pub unsafe fn validationPredicates(&self) -> Retained<NSArray<NSPredicate>>;
 
-        #[method_id(validationWarnings)]
+        #[method(validationWarnings)]
         #[unsafe(method_family = none)]
         pub unsafe fn validationWarnings(&self) -> Retained<NSArray>;
 
         #[method(setValidationPredicates:withValidationWarnings:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setValidationPredicates_withValidationWarnings(
             &self,
             validation_predicates: Option<&NSArray<NSPredicate>>,
             validation_warnings: Option<&NSArray<NSString>>,
         );
 
-        #[method_id(userInfo)]
+        #[method(userInfo)]
         #[unsafe(method_family = none)]
         pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary>>;
 
         /// Setter for [`userInfo`][Self::userInfo].
         #[method(setUserInfo:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary>);
 
         #[deprecated = "Use NSEntityDescription.indexes instead"]
         #[method(isIndexed)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isIndexed(&self) -> bool;
 
         /// Setter for [`isIndexed`][Self::isIndexed].
         #[deprecated = "Use NSEntityDescription.indexes instead"]
         #[method(setIndexed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIndexed(&self, indexed: bool);
 
-        #[method_id(versionHash)]
+        #[method(versionHash)]
         #[unsafe(method_family = none)]
         pub unsafe fn versionHash(&self) -> Retained<NSData>;
 
-        #[method_id(versionHashModifier)]
+        #[method(versionHashModifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn versionHashModifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`versionHashModifier`][Self::versionHashModifier].
         #[method(setVersionHashModifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setVersionHashModifier(&self, version_hash_modifier: Option<&NSString>);
 
         #[method(isIndexedBySpotlight)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isIndexedBySpotlight(&self) -> bool;
 
         /// Setter for [`isIndexedBySpotlight`][Self::isIndexedBySpotlight].
         #[method(setIndexedBySpotlight:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIndexedBySpotlight(&self, indexed_by_spotlight: bool);
 
         #[deprecated = "Spotlight integration is deprecated. Use CoreSpotlight integration instead."]
         #[method(isStoredInExternalRecord)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isStoredInExternalRecord(&self) -> bool;
 
         /// Setter for [`isStoredInExternalRecord`][Self::isStoredInExternalRecord].
         #[deprecated = "Spotlight integration is deprecated. Use CoreSpotlight integration instead."]
         #[method(setStoredInExternalRecord:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setStoredInExternalRecord(&self, stored_in_external_record: bool);
 
-        #[method_id(renamingIdentifier)]
+        #[method(renamingIdentifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn renamingIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`renamingIdentifier`][Self::renamingIdentifier].
         #[method(setRenamingIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRenamingIdentifier(&self, renaming_identifier: Option<&NSString>);
     }
 );
@@ -126,11 +141,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPropertyDescription {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

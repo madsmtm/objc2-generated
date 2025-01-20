@@ -56,38 +56,40 @@ unsafe impl NSObjectProtocol for NSPrinter {}
 
 extern_methods!(
     unsafe impl NSPrinter {
-        #[method_id(printerNames)]
+        #[method(printerNames)]
         #[unsafe(method_family = none)]
         pub unsafe fn printerNames() -> Retained<NSArray<NSString>>;
 
-        #[method_id(printerTypes)]
+        #[method(printerTypes)]
         #[unsafe(method_family = none)]
         pub unsafe fn printerTypes() -> Retained<NSArray<NSPrinterTypeName>>;
 
-        #[method_id(printerWithName:)]
+        #[method(printerWithName:)]
         #[unsafe(method_family = none)]
         pub unsafe fn printerWithName(name: &NSString) -> Option<Retained<NSPrinter>>;
 
-        #[method_id(printerWithType:)]
+        #[method(printerWithType:)]
         #[unsafe(method_family = none)]
         pub unsafe fn printerWithType(r#type: &NSPrinterTypeName) -> Option<Retained<NSPrinter>>;
 
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
-        #[method_id(type)]
+        #[method(type)]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> Retained<NSPrinterTypeName>;
 
         #[method(languageLevel)]
+        #[unsafe(method_family = none)]
         pub unsafe fn languageLevel(&self) -> NSInteger;
 
         #[method(pageSizeForPaper:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pageSizeForPaper(&self, paper_name: &NSPrinterPaperName) -> NSSize;
 
         #[cfg(feature = "NSGraphics")]
-        #[method_id(deviceDescription)]
+        #[method(deviceDescription)]
         #[unsafe(method_family = none)]
         pub unsafe fn deviceDescription(
             &self,
@@ -98,11 +100,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPrinter {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -113,14 +115,17 @@ extern_methods!(
     unsafe impl NSPrinter {
         #[deprecated]
         #[method(statusForTable:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn statusForTable(&self, table_name: &NSString) -> NSPrinterTableStatus;
 
         #[deprecated]
         #[method(isKey:inTable:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isKey_inTable(&self, key: Option<&NSString>, table: &NSString) -> bool;
 
         #[deprecated]
         #[method(booleanForKey:inTable:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn booleanForKey_inTable(
             &self,
             key: Option<&NSString>,
@@ -129,6 +134,7 @@ extern_methods!(
 
         #[deprecated]
         #[method(floatForKey:inTable:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn floatForKey_inTable(
             &self,
             key: Option<&NSString>,
@@ -137,20 +143,23 @@ extern_methods!(
 
         #[deprecated]
         #[method(intForKey:inTable:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn intForKey_inTable(&self, key: Option<&NSString>, table: &NSString) -> c_int;
 
         #[deprecated]
         #[method(rectForKey:inTable:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rectForKey_inTable(&self, key: Option<&NSString>, table: &NSString)
             -> NSRect;
 
         #[deprecated]
         #[method(sizeForKey:inTable:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sizeForKey_inTable(&self, key: Option<&NSString>, table: &NSString)
             -> NSSize;
 
         #[deprecated]
-        #[method_id(stringForKey:inTable:)]
+        #[method(stringForKey:inTable:)]
         #[unsafe(method_family = none)]
         pub unsafe fn stringForKey_inTable(
             &self,
@@ -159,7 +168,7 @@ extern_methods!(
         ) -> Option<Retained<NSString>>;
 
         #[deprecated]
-        #[method_id(stringListForKey:inTable:)]
+        #[method(stringListForKey:inTable:)]
         #[unsafe(method_family = none)]
         pub unsafe fn stringListForKey_inTable(
             &self,
@@ -169,26 +178,31 @@ extern_methods!(
 
         #[deprecated]
         #[method(imageRectForPaper:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn imageRectForPaper(&self, paper_name: Option<&NSString>) -> NSRect;
 
         #[deprecated]
         #[method(acceptsBinary)]
+        #[unsafe(method_family = none)]
         pub unsafe fn acceptsBinary(&self) -> bool;
 
         #[deprecated]
         #[method(isColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isColor(&self) -> bool;
 
         #[deprecated]
         #[method(isFontAvailable:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isFontAvailable(&self, face_name: Option<&NSString>) -> bool;
 
         #[deprecated]
         #[method(isOutputStackInReverseOrder)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isOutputStackInReverseOrder(&self) -> bool;
 
         #[deprecated]
-        #[method_id(printerWithName:domain:includeUnavailable:)]
+        #[method(printerWithName:domain:includeUnavailable:)]
         #[unsafe(method_family = none)]
         pub unsafe fn printerWithName_domain_includeUnavailable(
             name: &NSString,
@@ -197,17 +211,17 @@ extern_methods!(
         ) -> Option<Retained<NSPrinter>>;
 
         #[deprecated]
-        #[method_id(domain)]
+        #[method(domain)]
         #[unsafe(method_family = none)]
         pub unsafe fn domain(&self) -> Retained<NSString>;
 
         #[deprecated]
-        #[method_id(host)]
+        #[method(host)]
         #[unsafe(method_family = none)]
         pub unsafe fn host(&self) -> Retained<NSString>;
 
         #[deprecated]
-        #[method_id(note)]
+        #[method(note)]
         #[unsafe(method_family = none)]
         pub unsafe fn note(&self) -> Retained<NSString>;
     }

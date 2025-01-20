@@ -78,43 +78,47 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLParamElement {
         #[deprecated]
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
         #[deprecated]
         #[method(setName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(type)]
+        #[method(type)]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> Retained<NSString>;
 
         /// Setter for [`type`][Self::type].
         #[deprecated]
         #[method(setType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setType(&self, r#type: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(value)]
+        #[method(value)]
         #[unsafe(method_family = none)]
         pub unsafe fn value(&self) -> Retained<NSString>;
 
         /// Setter for [`value`][Self::value].
         #[deprecated]
         #[method(setValue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setValue(&self, value: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(valueType)]
+        #[method(valueType)]
         #[unsafe(method_family = none)]
         pub unsafe fn valueType(&self) -> Retained<NSString>;
 
         /// Setter for [`valueType`][Self::valueType].
         #[deprecated]
         #[method(setValueType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setValueType(&self, value_type: Option<&NSString>);
     }
 );
@@ -130,7 +134,7 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLParamElement {
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -146,7 +150,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLParamElement {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

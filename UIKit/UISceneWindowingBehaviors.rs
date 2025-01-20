@@ -18,26 +18,30 @@ unsafe impl NSObjectProtocol for UISceneWindowingBehaviors {}
 
 extern_methods!(
     unsafe impl UISceneWindowingBehaviors {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method(isClosable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isClosable(&self) -> bool;
 
         /// Setter for [`isClosable`][Self::isClosable].
         #[method(setClosable:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setClosable(&self, closable: bool);
 
         #[method(isMiniaturizable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isMiniaturizable(&self) -> bool;
 
         /// Setter for [`isMiniaturizable`][Self::isMiniaturizable].
         #[method(setMiniaturizable:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMiniaturizable(&self, miniaturizable: bool);
     }
 );

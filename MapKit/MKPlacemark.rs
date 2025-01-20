@@ -42,14 +42,14 @@ unsafe impl NSSecureCoding for MKPlacemark {}
 extern_methods!(
     #[cfg(feature = "objc2-core-location")]
     unsafe impl MKPlacemark {
-        #[method_id(initWithCoordinate:)]
+        #[method(initWithCoordinate:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoordinate(
             this: Allocated<Self>,
             coordinate: CLLocationCoordinate2D,
         ) -> Retained<Self>;
 
-        #[method_id(initWithCoordinate:addressDictionary:)]
+        #[method(initWithCoordinate:addressDictionary:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoordinate_addressDictionary(
             this: Allocated<Self>,
@@ -59,7 +59,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-contacts")]
         #[cfg(not(target_os = "tvos"))]
-        #[method_id(initWithCoordinate:postalAddress:)]
+        #[method(initWithCoordinate:postalAddress:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoordinate_postalAddress(
             this: Allocated<Self>,
@@ -67,7 +67,7 @@ extern_methods!(
             postal_address: &CNPostalAddress,
         ) -> Retained<Self>;
 
-        #[method_id(countryCode)]
+        #[method(countryCode)]
         #[unsafe(method_family = none)]
         pub unsafe fn countryCode(&self) -> Option<Retained<NSString>>;
     }
@@ -77,15 +77,15 @@ extern_methods!(
     /// Methods declared on superclass `CLPlacemark`
     #[cfg(feature = "objc2-core-location")]
     unsafe impl MKPlacemark {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(initWithPlacemark:)]
+        #[method(initWithPlacemark:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPlacemark(
             this: Allocated<Self>,

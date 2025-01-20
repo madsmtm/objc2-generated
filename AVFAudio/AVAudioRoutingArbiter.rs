@@ -57,16 +57,16 @@ unsafe impl NSObjectProtocol for AVAudioRoutingArbiter {}
 
 extern_methods!(
     unsafe impl AVAudioRoutingArbiter {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Returns the singleton AVAudioRoutingArbiter instance.
-        #[method_id(sharedRoutingArbiter)]
+        #[method(sharedRoutingArbiter)]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedRoutingArbiter() -> Retained<AVAudioRoutingArbiter>;
 
@@ -90,6 +90,7 @@ extern_methods!(
         /// error
         /// An error object that indicates why the request failed, or nil if the request was successful.
         #[method(beginArbitrationWithCategory:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn beginArbitrationWithCategory_completionHandler(
             &self,
             category: AVAudioRoutingArbitrationCategory,
@@ -103,6 +104,7 @@ extern_methods!(
         /// This allows the system to make a better decision when other participating Apple devices would like to take ownership
         /// of a nearby Bluetooth device. Applications should not call this API in cases where audio is only momentarily paused.
         #[method(leaveArbitration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn leaveArbitration(&self);
     }
 );

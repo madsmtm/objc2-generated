@@ -21,18 +21,18 @@ unsafe impl NSProgressReporting for WKDownload {}
 
 extern_methods!(
     unsafe impl WKDownload {
-        #[method_id(originalRequest)]
+        #[method(originalRequest)]
         #[unsafe(method_family = none)]
         pub unsafe fn originalRequest(&self) -> Option<Retained<NSURLRequest>>;
 
         #[cfg(all(feature = "WKWebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
-        #[method_id(webView)]
+        #[method(webView)]
         #[unsafe(method_family = none)]
         pub unsafe fn webView(&self) -> Option<Retained<WKWebView>>;
 
         #[cfg(feature = "WKDownloadDelegate")]
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn WKDownloadDelegate>>>;
 
@@ -40,18 +40,21 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn WKDownloadDelegate>>);
 
         #[method(isUserInitiated)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isUserInitiated(&self) -> bool;
 
         #[cfg(feature = "WKFrameInfo")]
-        #[method_id(originatingFrame)]
+        #[method(originatingFrame)]
         #[unsafe(method_family = none)]
         pub unsafe fn originatingFrame(&self) -> Retained<WKFrameInfo>;
 
         #[cfg(feature = "block2")]
         #[method(cancel:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cancel(
             &self,
             completion_handler: Option<&block2::Block<dyn Fn(*mut NSData)>>,
@@ -62,11 +65,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKDownload {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

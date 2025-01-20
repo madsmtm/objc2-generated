@@ -80,75 +80,81 @@ unsafe impl NSObjectProtocol for AVAudioUnitComponent {}
 extern_methods!(
     unsafe impl AVAudioUnitComponent {
         /// the name of an audio component
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// standard audio component types returned as strings
-        #[method_id(typeName)]
+        #[method(typeName)]
         #[unsafe(method_family = none)]
         pub unsafe fn typeName(&self) -> Retained<NSString>;
 
         /// localized string of typeName for display
-        #[method_id(localizedTypeName)]
+        #[method(localizedTypeName)]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedTypeName(&self) -> Retained<NSString>;
 
         /// the manufacturer name, extracted from the manufacturer key defined in Info.plist dictionary
-        #[method_id(manufacturerName)]
+        #[method(manufacturerName)]
         #[unsafe(method_family = none)]
         pub unsafe fn manufacturerName(&self) -> Retained<NSString>;
 
         /// version number comprised of a hexadecimal number with major, minor, dot-release format: 0xMMMMmmDD
         #[method(version)]
+        #[unsafe(method_family = none)]
         pub unsafe fn version(&self) -> NSUInteger;
 
         /// version number as string
-        #[method_id(versionString)]
+        #[method(versionString)]
         #[unsafe(method_family = none)]
         pub unsafe fn versionString(&self) -> Retained<NSString>;
 
         /// URL representing location of component
         #[deprecated]
-        #[method_id(componentURL)]
+        #[method(componentURL)]
         #[unsafe(method_family = none)]
         pub unsafe fn componentURL(&self) -> Option<Retained<NSURL>>;
 
         /// NSArray of NSNumbers each of which corresponds to one of the constants in Mach-O Architecture in NSBundle Class Reference
-        #[method_id(availableArchitectures)]
+        #[method(availableArchitectures)]
         #[unsafe(method_family = none)]
         pub unsafe fn availableArchitectures(&self) -> Retained<NSArray<NSNumber>>;
 
         /// On OSX, YES if the AudioComponent can be loaded into a sandboxed process otherwise NO.
         /// On iOS, this is always YES.
         #[method(isSandboxSafe)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isSandboxSafe(&self) -> bool;
 
         /// YES if AudioComponent has midi input, otherwise NO
         #[method(hasMIDIInput)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hasMIDIInput(&self) -> bool;
 
         /// YES if AudioComponent has midi output, otherwise NO
         #[method(hasMIDIOutput)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hasMIDIOutput(&self) -> bool;
 
         #[cfg(feature = "objc2-audio-toolbox")]
         #[cfg(not(target_os = "watchos"))]
         /// the audioComponent that can be used in AudioComponent APIs.
         #[method(audioComponent)]
+        #[unsafe(method_family = none)]
         pub unsafe fn audioComponent(&self) -> AudioComponent;
 
         /// User tags represent the tags from the current user.
-        #[method_id(userTagNames)]
+        #[method(userTagNames)]
         #[unsafe(method_family = none)]
         pub unsafe fn userTagNames(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`userTagNames`][Self::userTagNames].
         #[method(setUserTagNames:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUserTagNames(&self, user_tag_names: &NSArray<NSString>);
 
         /// represent the tags from the current user and the system tags defined by AudioComponent.
-        #[method_id(allTagNames)]
+        #[method(allTagNames)]
         #[unsafe(method_family = none)]
         pub unsafe fn allTagNames(&self) -> Retained<NSArray<NSString>>;
 
@@ -156,31 +162,35 @@ extern_methods!(
         #[cfg(not(target_os = "watchos"))]
         /// description of the audio component that can be used in AudioComponent APIs.
         #[method(audioComponentDescription)]
+        #[unsafe(method_family = none)]
         pub unsafe fn audioComponentDescription(&self) -> AudioComponentDescription;
 
         /// A URL that will specify the location of an icon file that can be used when presenting UI
         /// for this audio component.
-        #[method_id(iconURL)]
+        #[method(iconURL)]
         #[unsafe(method_family = none)]
         pub unsafe fn iconURL(&self) -> Option<Retained<NSURL>>;
 
         /// YES if the AudioComponent has passed the AU validation tests, otherwise NO
         #[method(passesAUVal)]
+        #[unsafe(method_family = none)]
         pub unsafe fn passesAUVal(&self) -> bool;
 
         /// YES if the AudioComponent provides custom view, otherwise NO
         #[method(hasCustomView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hasCustomView(&self) -> bool;
 
         /// A NSDictionary that contains information describing the capabilities of the AudioComponent.
         /// The specific information depends on the type and the keys are defined in AudioUnitProperties.h
-        #[method_id(configurationDictionary)]
+        #[method(configurationDictionary)]
         #[unsafe(method_family = none)]
         pub unsafe fn configurationDictionary(&self)
             -> Retained<NSDictionary<NSString, AnyObject>>;
 
         /// returns YES if the AudioComponent supports the input/output channel configuration
         #[method(supportsNumberInputChannels:outputChannels:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn supportsNumberInputChannels_outputChannels(
             &self,
             num_input_channels: NSInteger,
@@ -192,11 +202,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAudioUnitComponent {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -237,16 +247,16 @@ extern_methods!(
     unsafe impl AVAudioUnitComponentManager {
         /// returns all tags associated with the current user as well as all system tags defined by
         /// the audio unit(s).
-        #[method_id(tagNames)]
+        #[method(tagNames)]
         #[unsafe(method_family = none)]
         pub unsafe fn tagNames(&self) -> Retained<NSArray<NSString>>;
 
         /// returns the localized standard system tags defined by the audio unit(s).
-        #[method_id(standardLocalizedTagNames)]
+        #[method(standardLocalizedTagNames)]
         #[unsafe(method_family = none)]
         pub unsafe fn standardLocalizedTagNames(&self) -> Retained<NSArray<NSString>>;
 
-        #[method_id(sharedAudioUnitComponentManager)]
+        #[method(sharedAudioUnitComponentManager)]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedAudioUnitComponentManager() -> Retained<Self>;
 
@@ -254,7 +264,7 @@ extern_methods!(
         ///
         /// AudioComponent's information or tags can be used to build a search criteria.
         /// For example, "typeName CONTAINS 'Effect'" or tags IN {'Sampler', 'MIDI'}"
-        #[method_id(componentsMatchingPredicate:)]
+        #[method(componentsMatchingPredicate:)]
         #[unsafe(method_family = none)]
         pub unsafe fn componentsMatchingPredicate(
             &self,
@@ -267,7 +277,7 @@ extern_methods!(
         /// For each AudioComponent found by the manager, the block method will be called. If the return
         /// value is YES then the AudioComponent is added to the resulting array else it will excluded.
         /// This gives more control to the block provider to filter out the components returned.
-        #[method_id(componentsPassingTest:)]
+        #[method(componentsPassingTest:)]
         #[unsafe(method_family = none)]
         pub unsafe fn componentsPassingTest(
             &self,
@@ -283,7 +293,7 @@ extern_methods!(
         /// This method provides a mechanism to search for AudioComponents using AudioComponentDescription
         /// structure. The type, subtype and manufacturer fields are used to search for audio units. A
         /// value of 0 for any of these fields is a wildcard and returns the first match found.
-        #[method_id(componentsMatchingDescription:)]
+        #[method(componentsMatchingDescription:)]
         #[unsafe(method_family = none)]
         pub unsafe fn componentsMatchingDescription(
             &self,
@@ -295,11 +305,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAudioUnitComponentManager {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

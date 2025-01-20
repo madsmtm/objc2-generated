@@ -19,12 +19,12 @@ unsafe impl NSObjectProtocol for OSALanguageInstance {}
 extern_methods!(
     unsafe impl OSALanguageInstance {
         #[cfg(feature = "OSALanguage")]
-        #[method_id(languageInstanceWithLanguage:)]
+        #[method(languageInstanceWithLanguage:)]
         #[unsafe(method_family = none)]
         pub unsafe fn languageInstanceWithLanguage(language: &OSALanguage) -> Retained<Self>;
 
         #[cfg(feature = "OSALanguage")]
-        #[method_id(initWithLanguage:)]
+        #[method(initWithLanguage:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLanguage(
             this: Allocated<Self>,
@@ -32,19 +32,20 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "OSALanguage")]
-        #[method_id(language)]
+        #[method(language)]
         #[unsafe(method_family = none)]
         pub unsafe fn language(&self) -> Retained<OSALanguage>;
 
-        #[method_id(defaultTarget)]
+        #[method(defaultTarget)]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultTarget(&self) -> Option<Retained<NSAppleEventDescriptor>>;
 
         /// Setter for [`defaultTarget`][Self::defaultTarget].
         #[method(setDefaultTarget:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDefaultTarget(&self, default_target: Option<&NSAppleEventDescriptor>);
 
-        #[method_id(richTextFromDescriptor:)]
+        #[method(richTextFromDescriptor:)]
         #[unsafe(method_family = none)]
         pub unsafe fn richTextFromDescriptor(
             &self,
@@ -56,11 +57,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl OSALanguageInstance {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

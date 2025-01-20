@@ -27,6 +27,7 @@ extern_protocol!(
         #[deprecated = "Use CarPlay framework"]
         #[optional]
         #[method(beginLoadingChildItemsAtIndexPath:completionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn beginLoadingChildItemsAtIndexPath_completionHandler(
             &self,
             index_path: &NSIndexPath,
@@ -40,6 +41,7 @@ extern_protocol!(
         #[deprecated = "Use CarPlay framework"]
         #[optional]
         #[method(childItemsDisplayPlaybackProgressAtIndexPath:)]
+        #[unsafe(method_family = none)]
         unsafe fn childItemsDisplayPlaybackProgressAtIndexPath(
             &self,
             index_path: &NSIndexPath,
@@ -55,6 +57,7 @@ extern_protocol!(
         #[deprecated = "Use CarPlay framework"]
         #[optional]
         #[method(contentItemForIdentifier:completionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn contentItemForIdentifier_completionHandler(
             &self,
             identifier: &NSString,
@@ -66,13 +69,14 @@ extern_protocol!(
         /// index path represents the root node.
         #[deprecated = "Use CarPlay framework"]
         #[method(numberOfChildItemsAtIndexPath:)]
+        #[unsafe(method_family = none)]
         unsafe fn numberOfChildItemsAtIndexPath(&self, index_path: &NSIndexPath) -> NSInteger;
 
         #[cfg(feature = "MPContentItem")]
         /// Returns the content item at the specified index path. If the content item is
         /// mutated after returning, its updated contents will be sent to MediaPlayer.
         #[deprecated = "Use CarPlay framework"]
-        #[method_id(contentItemAtIndexPath:)]
+        #[method(contentItemAtIndexPath:)]
         #[unsafe(method_family = none)]
         unsafe fn contentItemAtIndexPath(
             &self,

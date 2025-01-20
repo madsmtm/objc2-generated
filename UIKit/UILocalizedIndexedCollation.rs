@@ -18,32 +18,34 @@ unsafe impl NSObjectProtocol for UILocalizedIndexedCollation {}
 
 extern_methods!(
     unsafe impl UILocalizedIndexedCollation {
-        #[method_id(currentCollation)]
+        #[method(currentCollation)]
         #[unsafe(method_family = none)]
         pub unsafe fn currentCollation(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(sectionTitles)]
+        #[method(sectionTitles)]
         #[unsafe(method_family = none)]
         pub unsafe fn sectionTitles(&self) -> Retained<NSArray<NSString>>;
 
-        #[method_id(sectionIndexTitles)]
+        #[method(sectionIndexTitles)]
         #[unsafe(method_family = none)]
         pub unsafe fn sectionIndexTitles(&self) -> Retained<NSArray<NSString>>;
 
         #[method(sectionForSectionIndexTitleAtIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sectionForSectionIndexTitleAtIndex(
             &self,
             index_title_index: NSInteger,
         ) -> NSInteger;
 
         #[method(sectionForObject:collationStringSelector:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sectionForObject_collationStringSelector(
             &self,
             object: &AnyObject,
             selector: Sel,
         ) -> NSInteger;
 
-        #[method_id(sortedArrayFromArray:collationStringSelector:)]
+        #[method(sortedArrayFromArray:collationStringSelector:)]
         #[unsafe(method_family = none)]
         pub unsafe fn sortedArrayFromArray_collationStringSelector(
             &self,
@@ -56,11 +58,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UILocalizedIndexedCollation {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

@@ -22,19 +22,21 @@ unsafe impl NSObjectProtocol for AVAssetTrackSegment {}
 
 extern_methods!(
     unsafe impl AVAssetTrackSegment {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-media")]
         #[method(timeMapping)]
+        #[unsafe(method_family = none)]
         pub unsafe fn timeMapping(&self) -> CMTimeMapping;
 
         #[method(isEmpty)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isEmpty(&self) -> bool;
     }
 );

@@ -18,28 +18,31 @@ unsafe impl NSObjectProtocol for NSPropertyMapping {}
 
 extern_methods!(
     unsafe impl NSPropertyMapping {
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
         #[method(setName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
-        #[method_id(valueExpression)]
+        #[method(valueExpression)]
         #[unsafe(method_family = none)]
         pub unsafe fn valueExpression(&self) -> Option<Retained<NSExpression>>;
 
         /// Setter for [`valueExpression`][Self::valueExpression].
         #[method(setValueExpression:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setValueExpression(&self, value_expression: Option<&NSExpression>);
 
-        #[method_id(userInfo)]
+        #[method(userInfo)]
         #[unsafe(method_family = none)]
         pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary>>;
 
         /// Setter for [`userInfo`][Self::userInfo].
         #[method(setUserInfo:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary>);
     }
 );
@@ -47,11 +50,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPropertyMapping {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

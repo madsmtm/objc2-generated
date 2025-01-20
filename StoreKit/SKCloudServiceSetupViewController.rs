@@ -58,7 +58,7 @@ extern_methods!(
     unsafe impl SKCloudServiceSetupViewController {
         /// Optional delegate.
         #[deprecated = "Use the musicSubscriptionOffer(isPresented:options:onLoadCompletion:) SwiftUI View Modifier from MusicKit"]
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -68,6 +68,7 @@ extern_methods!(
         /// Setter for [`delegate`][Self::delegate].
         #[deprecated = "Use the musicSubscriptionOffer(isPresented:options:onLoadCompletion:) SwiftUI View Modifier from MusicKit"]
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn SKCloudServiceSetupViewControllerDelegate>>,
@@ -78,6 +79,7 @@ extern_methods!(
         /// Block is invoked on the main thread when the load finishes.
         #[deprecated = "Use the musicSubscriptionOffer(isPresented:options:onLoadCompletion:) SwiftUI View Modifier from MusicKit"]
         #[method(loadWithOptions:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loadWithOptions_completionHandler(
             &self,
             options: &NSDictionary<SKCloudServiceSetupOptionsKey, AnyObject>,
@@ -91,7 +93,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl SKCloudServiceSetupViewController {
-        #[method_id(initWithNibName:bundle:)]
+        #[method(initWithNibName:bundle:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -99,7 +101,7 @@ extern_methods!(
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -113,7 +115,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl SKCloudServiceSetupViewController {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -124,7 +126,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl SKCloudServiceSetupViewController {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -140,6 +142,7 @@ extern_protocol!(
         #[deprecated = "Use the musicSubscriptionOffer(isPresented:options:onLoadCompletion:) SwiftUI View Modifier from MusicKit"]
         #[optional]
         #[method(cloudServiceSetupViewControllerDidDismiss:)]
+        #[unsafe(method_family = none)]
         unsafe fn cloudServiceSetupViewControllerDidDismiss(
             &self,
             cloud_service_setup_view_controller: &SKCloudServiceSetupViewController,

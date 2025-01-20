@@ -43,7 +43,7 @@ unsafe impl NSObjectProtocol for AVAudioTime {}
 extern_methods!(
     unsafe impl AVAudioTime {
         #[cfg(feature = "objc2-core-audio-types")]
-        #[method_id(initWithAudioTimeStamp:sampleRate:)]
+        #[method(initWithAudioTimeStamp:sampleRate:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAudioTimeStamp_sampleRate(
             this: Allocated<Self>,
@@ -51,12 +51,12 @@ extern_methods!(
             sample_rate: c_double,
         ) -> Retained<Self>;
 
-        #[method_id(initWithHostTime:)]
+        #[method(initWithHostTime:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithHostTime(this: Allocated<Self>, host_time: u64) -> Retained<Self>;
 
         #[cfg(feature = "AVAudioTypes")]
-        #[method_id(initWithSampleTime:atRate:)]
+        #[method(initWithSampleTime:atRate:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSampleTime_atRate(
             this: Allocated<Self>,
@@ -65,7 +65,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "AVAudioTypes")]
-        #[method_id(initWithHostTime:sampleTime:atRate:)]
+        #[method(initWithHostTime:sampleTime:atRate:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithHostTime_sampleTime_atRate(
             this: Allocated<Self>,
@@ -75,19 +75,19 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-audio-types")]
-        #[method_id(timeWithAudioTimeStamp:sampleRate:)]
+        #[method(timeWithAudioTimeStamp:sampleRate:)]
         #[unsafe(method_family = none)]
         pub unsafe fn timeWithAudioTimeStamp_sampleRate(
             ts: NonNull<AudioTimeStamp>,
             sample_rate: c_double,
         ) -> Retained<Self>;
 
-        #[method_id(timeWithHostTime:)]
+        #[method(timeWithHostTime:)]
         #[unsafe(method_family = none)]
         pub unsafe fn timeWithHostTime(host_time: u64) -> Retained<Self>;
 
         #[cfg(feature = "AVAudioTypes")]
-        #[method_id(timeWithSampleTime:atRate:)]
+        #[method(timeWithSampleTime:atRate:)]
         #[unsafe(method_family = none)]
         pub unsafe fn timeWithSampleTime_atRate(
             sample_time: AVAudioFramePosition,
@@ -95,7 +95,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "AVAudioTypes")]
-        #[method_id(timeWithHostTime:sampleTime:atRate:)]
+        #[method(timeWithHostTime:sampleTime:atRate:)]
         #[unsafe(method_family = none)]
         pub unsafe fn timeWithHostTime_sampleTime_atRate(
             host_time: u64,
@@ -105,10 +105,12 @@ extern_methods!(
 
         /// Convert seconds to host time.
         #[method(hostTimeForSeconds:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hostTimeForSeconds(seconds: NSTimeInterval) -> u64;
 
         /// Convert host time to seconds.
         #[method(secondsForHostTime:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn secondsForHostTime(host_time: u64) -> NSTimeInterval;
 
         /// Converts between host and sample time.
@@ -133,7 +135,7 @@ extern_methods!(
         /// // fill in valid host time representation
         /// AVAudioTime *fullTime0 = [time0 extrapolateTimeFromAnchor: anchor];
         /// </pre>
-        #[method_id(extrapolateTimeFromAnchor:)]
+        #[method(extrapolateTimeFromAnchor:)]
         #[unsafe(method_family = none)]
         pub unsafe fn extrapolateTimeFromAnchor(
             &self,
@@ -142,23 +144,28 @@ extern_methods!(
 
         /// Whether the hostTime property is valid.
         #[method(isHostTimeValid)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isHostTimeValid(&self) -> bool;
 
         /// The host time.
         #[method(hostTime)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hostTime(&self) -> u64;
 
         /// Whether the sampleTime and sampleRate properties are valid.
         #[method(isSampleTimeValid)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isSampleTimeValid(&self) -> bool;
 
         #[cfg(feature = "AVAudioTypes")]
         /// The time as a number of audio samples, as tracked by the current audio device.
         #[method(sampleTime)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sampleTime(&self) -> AVAudioFramePosition;
 
         /// The sample rate at which sampleTime is being expressed.
         #[method(sampleRate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sampleRate(&self) -> c_double;
 
         #[cfg(feature = "objc2-core-audio-types")]
@@ -166,6 +173,7 @@ extern_methods!(
         ///
         /// This may be useful for compatibility with lower-level CoreAudio and AudioToolbox API's.
         #[method(audioTimeStamp)]
+        #[unsafe(method_family = none)]
         pub unsafe fn audioTimeStamp(&self) -> AudioTimeStamp;
     }
 );
@@ -173,11 +181,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAudioTime {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

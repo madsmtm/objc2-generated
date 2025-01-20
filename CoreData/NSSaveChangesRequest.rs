@@ -29,7 +29,7 @@ extern_methods!(
     #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl NSSaveChangesRequest {
         #[cfg(feature = "NSManagedObject")]
-        #[method_id(initWithInsertedObjects:updatedObjects:deletedObjects:lockedObjects:)]
+        #[method(initWithInsertedObjects:updatedObjects:deletedObjects:lockedObjects:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithInsertedObjects_updatedObjects_deletedObjects_lockedObjects(
             this: Allocated<Self>,
@@ -40,22 +40,22 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSManagedObject")]
-        #[method_id(insertedObjects)]
+        #[method(insertedObjects)]
         #[unsafe(method_family = none)]
         pub unsafe fn insertedObjects(&self) -> Option<Retained<NSSet<NSManagedObject>>>;
 
         #[cfg(feature = "NSManagedObject")]
-        #[method_id(updatedObjects)]
+        #[method(updatedObjects)]
         #[unsafe(method_family = none)]
         pub unsafe fn updatedObjects(&self) -> Option<Retained<NSSet<NSManagedObject>>>;
 
         #[cfg(feature = "NSManagedObject")]
-        #[method_id(deletedObjects)]
+        #[method(deletedObjects)]
         #[unsafe(method_family = none)]
         pub unsafe fn deletedObjects(&self) -> Option<Retained<NSSet<NSManagedObject>>>;
 
         #[cfg(feature = "NSManagedObject")]
-        #[method_id(lockedObjects)]
+        #[method(lockedObjects)]
         #[unsafe(method_family = none)]
         pub unsafe fn lockedObjects(&self) -> Option<Retained<NSSet<NSManagedObject>>>;
     }
@@ -65,11 +65,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl NSSaveChangesRequest {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

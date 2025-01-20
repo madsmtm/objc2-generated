@@ -24,22 +24,23 @@ unsafe impl NSObjectProtocol for WKSecurityOrigin {}
 
 extern_methods!(
     unsafe impl WKSecurityOrigin {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// The security origin's protocol.
-        #[method_id(protocol)]
+        #[method(protocol)]
         #[unsafe(method_family = none)]
         pub unsafe fn protocol(&self) -> Retained<NSString>;
 
         /// The security origin's host.
-        #[method_id(host)]
+        #[method(host)]
         #[unsafe(method_family = none)]
         pub unsafe fn host(&self) -> Retained<NSString>;
 
         /// The security origin's port.
         #[method(port)]
+        #[unsafe(method_family = none)]
         pub unsafe fn port(&self) -> NSInteger;
     }
 );
@@ -47,7 +48,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKSecurityOrigin {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

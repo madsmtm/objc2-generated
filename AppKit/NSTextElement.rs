@@ -19,7 +19,7 @@ unsafe impl NSObjectProtocol for NSTextElement {}
 extern_methods!(
     unsafe impl NSTextElement {
         #[cfg(feature = "NSTextContentManager")]
-        #[method_id(initWithTextContentManager:)]
+        #[method(initWithTextContentManager:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTextContentManager(
             this: Allocated<Self>,
@@ -27,7 +27,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSTextContentManager")]
-        #[method_id(textContentManager)]
+        #[method(textContentManager)]
         #[unsafe(method_family = none)]
         pub unsafe fn textContentManager(&self) -> Option<Retained<NSTextContentManager>>;
 
@@ -35,30 +35,33 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`textContentManager`][Self::textContentManager].
         #[method(setTextContentManager:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTextContentManager(
             &self,
             text_content_manager: Option<&NSTextContentManager>,
         );
 
         #[cfg(feature = "NSTextRange")]
-        #[method_id(elementRange)]
+        #[method(elementRange)]
         #[unsafe(method_family = none)]
         pub unsafe fn elementRange(&self) -> Option<Retained<NSTextRange>>;
 
         #[cfg(feature = "NSTextRange")]
         /// Setter for [`elementRange`][Self::elementRange].
         #[method(setElementRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setElementRange(&self, element_range: Option<&NSTextRange>);
 
-        #[method_id(childElements)]
+        #[method(childElements)]
         #[unsafe(method_family = none)]
         pub unsafe fn childElements(&self) -> Retained<NSArray<NSTextElement>>;
 
-        #[method_id(parentElement)]
+        #[method(parentElement)]
         #[unsafe(method_family = none)]
         pub unsafe fn parentElement(&self) -> Option<Retained<NSTextElement>>;
 
         #[method(isRepresentedElement)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isRepresentedElement(&self) -> bool;
     }
 );
@@ -66,11 +69,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextElement {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -87,24 +90,24 @@ unsafe impl NSObjectProtocol for NSTextParagraph {}
 
 extern_methods!(
     unsafe impl NSTextParagraph {
-        #[method_id(initWithAttributedString:)]
+        #[method(initWithAttributedString:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAttributedString(
             this: Allocated<Self>,
             attributed_string: Option<&NSAttributedString>,
         ) -> Retained<Self>;
 
-        #[method_id(attributedString)]
+        #[method(attributedString)]
         #[unsafe(method_family = none)]
         pub unsafe fn attributedString(&self) -> Retained<NSAttributedString>;
 
         #[cfg(feature = "NSTextRange")]
-        #[method_id(paragraphContentRange)]
+        #[method(paragraphContentRange)]
         #[unsafe(method_family = none)]
         pub unsafe fn paragraphContentRange(&self) -> Option<Retained<NSTextRange>>;
 
         #[cfg(feature = "NSTextRange")]
-        #[method_id(paragraphSeparatorRange)]
+        #[method(paragraphSeparatorRange)]
         #[unsafe(method_family = none)]
         pub unsafe fn paragraphSeparatorRange(&self) -> Option<Retained<NSTextRange>>;
     }
@@ -114,7 +117,7 @@ extern_methods!(
     /// Methods declared on superclass `NSTextElement`
     unsafe impl NSTextParagraph {
         #[cfg(feature = "NSTextContentManager")]
-        #[method_id(initWithTextContentManager:)]
+        #[method(initWithTextContentManager:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTextContentManager(
             this: Allocated<Self>,
@@ -126,11 +129,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextParagraph {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -12,6 +12,7 @@ extern_protocol!(
     pub unsafe trait ASWebAuthenticationSessionRequestDelegate: NSObjectProtocol {
         #[optional]
         #[method(authenticationSessionRequest:didCompleteWithCallbackURL:)]
+        #[unsafe(method_family = none)]
         unsafe fn authenticationSessionRequest_didCompleteWithCallbackURL(
             &self,
             authentication_session_request: &ASWebAuthenticationSessionRequest,
@@ -20,6 +21,7 @@ extern_protocol!(
 
         #[optional]
         #[method(authenticationSessionRequest:didCancelWithError:)]
+        #[unsafe(method_family = none)]
         unsafe fn authenticationSessionRequest_didCancelWithError(
             &self,
             authentication_session_request: &ASWebAuthenticationSessionRequest,
@@ -49,23 +51,24 @@ unsafe impl NSSecureCoding for ASWebAuthenticationSessionRequest {}
 
 extern_methods!(
     unsafe impl ASWebAuthenticationSessionRequest {
-        #[method_id(UUID)]
+        #[method(UUID)]
         #[unsafe(method_family = none)]
         pub unsafe fn UUID(&self) -> Retained<NSUUID>;
 
-        #[method_id(URL)]
+        #[method(URL)]
         #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
 
         #[deprecated = "Use `callback` to match all callback types."]
-        #[method_id(callbackURLScheme)]
+        #[method(callbackURLScheme)]
         #[unsafe(method_family = none)]
         pub unsafe fn callbackURLScheme(&self) -> Option<Retained<NSString>>;
 
         #[method(shouldUseEphemeralSession)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shouldUseEphemeralSession(&self) -> bool;
 
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -74,6 +77,7 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn ASWebAuthenticationSessionRequestDelegate>>,
@@ -82,7 +86,7 @@ extern_methods!(
         /// Additional headers to be sent when loading the initial URL.
         /// These should _only_ apply to the initial page, and should not overwrite any headers normally sent by the browser.
         /// Add `AdditionalHeaderFieldsAreSupported: true` to `ASWebAuthenticationSessionWebBrowserSupportCapabilities` in your browser's Info.plist file to indicate support for this.
-        #[method_id(additionalHeaderFields)]
+        #[method(additionalHeaderFields)]
         #[unsafe(method_family = none)]
         pub unsafe fn additionalHeaderFields(
             &self,
@@ -93,22 +97,24 @@ extern_methods!(
         /// Check all main-frame navigations loaded during the request with this callback. It is used to handle all callback types, including custom schemes and HTTPS navigations.
         /// When a match is found, invoke `-completeWithCallbackURL:` with that URL.
         /// Add `CallbackURLMatchingIsSupported: true` to `ASWebAuthenticationSessionWebBrowserSupportCapabilities` in your browser's Info.plist file to indicate support for this.
-        #[method_id(callback)]
+        #[method(callback)]
         #[unsafe(method_family = none)]
         pub unsafe fn callback(&self) -> Option<Retained<ASWebAuthenticationSessionCallback>>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(cancelWithError:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cancelWithError(&self, error: &NSError);
 
         #[method(completeWithCallbackURL:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn completeWithCallbackURL(&self, url: &NSURL);
     }
 );

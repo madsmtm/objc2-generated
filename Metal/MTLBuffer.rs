@@ -23,10 +23,12 @@ extern_protocol!(
     pub unsafe trait MTLBuffer: MTLResource {
         /// The length of the buffer in bytes.
         #[method(length)]
+        #[unsafe(method_family = none)]
         fn length(&self) -> NSUInteger;
 
         /// Returns the data pointer of this buffer's shared copy.
         #[method(contents)]
+        #[unsafe(method_family = none)]
         fn contents(&self) -> NonNull<c_void>;
 
         /// Inform the device of the range of a buffer that the CPU has modified, allowing the implementation to invalidate
@@ -42,11 +44,12 @@ extern_protocol!(
         ///
         /// Parameter `range`: The range of bytes that have been modified.
         #[method(didModifyRange:)]
+        #[unsafe(method_family = none)]
         fn didModifyRange(&self, range: NSRange);
 
         #[cfg(feature = "MTLTexture")]
         /// Create a 2D texture or texture buffer that shares storage with this buffer.
-        #[method_id(newTextureWithDescriptor:offset:bytesPerRow:)]
+        #[method(newTextureWithDescriptor:offset:bytesPerRow:)]
         #[unsafe(method_family = new)]
         fn newTextureWithDescriptor_offset_bytesPerRow(
             &self,
@@ -62,21 +65,23 @@ extern_protocol!(
         ///
         /// Parameter `range`: The range of bytes the marker is using.
         #[method(addDebugMarker:range:)]
+        #[unsafe(method_family = none)]
         fn addDebugMarker_range(&self, marker: &NSString, range: NSRange);
 
         /// Removes all debug markers from a buffer.
         #[method(removeAllDebugMarkers)]
+        #[unsafe(method_family = none)]
         fn removeAllDebugMarkers(&self);
 
         /// For Metal buffer objects that are remote views, this returns the buffer associated with the storage on the originating device.
-        #[method_id(remoteStorageBuffer)]
+        #[method(remoteStorageBuffer)]
         #[unsafe(method_family = none)]
         fn remoteStorageBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         #[cfg(feature = "MTLDevice")]
         /// On Metal devices that support peer to peer transfers, this method is used to create a remote buffer view on another device
         /// within the peer group.  The receiver must use MTLStorageModePrivate or be backed by an IOSurface.
-        #[method_id(newRemoteBufferViewForDevice:)]
+        #[method(newRemoteBufferViewForDevice:)]
         #[unsafe(method_family = new)]
         fn newRemoteBufferViewForDevice(
             &self,
@@ -85,6 +90,7 @@ extern_protocol!(
 
         /// Represents the GPU virtual address of a buffer resource
         #[method(gpuAddress)]
+        #[unsafe(method_family = none)]
         fn gpuAddress(&self) -> u64;
     }
 );

@@ -24,10 +24,11 @@ unsafe impl NSUserInterfaceItemIdentification for NSLayoutGuide {}
 extern_methods!(
     unsafe impl NSLayoutGuide {
         #[method(frame)]
+        #[unsafe(method_family = none)]
         pub unsafe fn frame(&self) -> NSRect;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-        #[method_id(owningView)]
+        #[method(owningView)]
         #[unsafe(method_family = none)]
         pub unsafe fn owningView(&self, mtm: MainThreadMarker) -> Option<Retained<NSView>>;
 
@@ -35,73 +36,76 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`owningView`][Self::owningView].
         #[method(setOwningView:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setOwningView(&self, owning_view: Option<&NSView>);
 
         #[cfg(feature = "NSUserInterfaceItemIdentification")]
-        #[method_id(identifier)]
+        #[method(identifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSUserInterfaceItemIdentifier>;
 
         #[cfg(feature = "NSUserInterfaceItemIdentification")]
         /// Setter for [`identifier`][Self::identifier].
         #[method(setIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIdentifier(&self, identifier: &NSUserInterfaceItemIdentifier);
 
         #[cfg(feature = "NSLayoutAnchor")]
-        #[method_id(leadingAnchor)]
+        #[method(leadingAnchor)]
         #[unsafe(method_family = none)]
         pub unsafe fn leadingAnchor(&self) -> Retained<NSLayoutXAxisAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
-        #[method_id(trailingAnchor)]
+        #[method(trailingAnchor)]
         #[unsafe(method_family = none)]
         pub unsafe fn trailingAnchor(&self) -> Retained<NSLayoutXAxisAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
-        #[method_id(leftAnchor)]
+        #[method(leftAnchor)]
         #[unsafe(method_family = none)]
         pub unsafe fn leftAnchor(&self) -> Retained<NSLayoutXAxisAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
-        #[method_id(rightAnchor)]
+        #[method(rightAnchor)]
         #[unsafe(method_family = none)]
         pub unsafe fn rightAnchor(&self) -> Retained<NSLayoutXAxisAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
-        #[method_id(topAnchor)]
+        #[method(topAnchor)]
         #[unsafe(method_family = none)]
         pub unsafe fn topAnchor(&self) -> Retained<NSLayoutYAxisAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
-        #[method_id(bottomAnchor)]
+        #[method(bottomAnchor)]
         #[unsafe(method_family = none)]
         pub unsafe fn bottomAnchor(&self) -> Retained<NSLayoutYAxisAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
-        #[method_id(widthAnchor)]
+        #[method(widthAnchor)]
         #[unsafe(method_family = none)]
         pub unsafe fn widthAnchor(&self) -> Retained<NSLayoutDimension>;
 
         #[cfg(feature = "NSLayoutAnchor")]
-        #[method_id(heightAnchor)]
+        #[method(heightAnchor)]
         #[unsafe(method_family = none)]
         pub unsafe fn heightAnchor(&self) -> Retained<NSLayoutDimension>;
 
         #[cfg(feature = "NSLayoutAnchor")]
-        #[method_id(centerXAnchor)]
+        #[method(centerXAnchor)]
         #[unsafe(method_family = none)]
         pub unsafe fn centerXAnchor(&self) -> Retained<NSLayoutXAxisAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
-        #[method_id(centerYAnchor)]
+        #[method(centerYAnchor)]
         #[unsafe(method_family = none)]
         pub unsafe fn centerYAnchor(&self) -> Retained<NSLayoutYAxisAnchor>;
 
         #[method(hasAmbiguousLayout)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hasAmbiguousLayout(&self) -> bool;
 
         #[cfg(feature = "NSLayoutConstraint")]
-        #[method_id(constraintsAffectingLayoutForOrientation:)]
+        #[method(constraintsAffectingLayoutForOrientation:)]
         #[unsafe(method_family = none)]
         pub unsafe fn constraintsAffectingLayoutForOrientation(
             &self,
@@ -113,11 +117,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSLayoutGuide {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -128,12 +132,14 @@ extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSView {
         #[method(addLayoutGuide:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addLayoutGuide(&self, guide: &NSLayoutGuide);
 
         #[method(removeLayoutGuide:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeLayoutGuide(&self, guide: &NSLayoutGuide);
 
-        #[method_id(layoutGuides)]
+        #[method(layoutGuides)]
         #[unsafe(method_family = none)]
         pub unsafe fn layoutGuides(&self) -> Retained<NSArray<NSLayoutGuide>>;
     }

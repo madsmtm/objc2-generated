@@ -73,16 +73,16 @@ unsafe impl NSSecureCoding for ASAuthorizationPlatformPublicKeyCredentialRegistr
 extern_methods!(
     #[cfg(feature = "ASAuthorizationRequest")]
     unsafe impl ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput")]
-        #[method_id(largeBlob)]
+        #[method(largeBlob)]
         #[unsafe(method_family = none)]
         pub unsafe fn largeBlob(
             &self,
@@ -91,13 +91,14 @@ extern_methods!(
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput")]
         /// Setter for [`largeBlob`][Self::largeBlob].
         #[method(setLargeBlob:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLargeBlob(
             &self,
             large_blob: Option<&ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput>,
         );
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialPRFRegistrationInput")]
-        #[method_id(prf)]
+        #[method(prf)]
         #[unsafe(method_family = none)]
         pub unsafe fn prf(
             &self,
@@ -106,18 +107,21 @@ extern_methods!(
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialPRFRegistrationInput")]
         /// Setter for [`prf`][Self::prf].
         #[method(setPrf:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPrf(
             &self,
             prf: Option<&ASAuthorizationPublicKeyCredentialPRFRegistrationInput>,
         );
 
         #[method(requestStyle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestStyle(
             &self,
         ) -> ASAuthorizationPlatformPublicKeyCredentialRegistrationRequestStyle;
 
         /// Setter for [`requestStyle`][Self::requestStyle].
         #[method(setRequestStyle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRequestStyle(
             &self,
             request_style: ASAuthorizationPlatformPublicKeyCredentialRegistrationRequestStyle,

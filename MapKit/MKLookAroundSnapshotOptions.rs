@@ -20,13 +20,14 @@ unsafe impl NSObjectProtocol for MKLookAroundSnapshotOptions {}
 extern_methods!(
     unsafe impl MKLookAroundSnapshotOptions {
         #[cfg(feature = "MKPointOfInterestFilter")]
-        #[method_id(pointOfInterestFilter)]
+        #[method(pointOfInterestFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn pointOfInterestFilter(&self) -> Option<Retained<MKPointOfInterestFilter>>;
 
         #[cfg(feature = "MKPointOfInterestFilter")]
         /// Setter for [`pointOfInterestFilter`][Self::pointOfInterestFilter].
         #[method(setPointOfInterestFilter:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPointOfInterestFilter(
             &self,
             point_of_interest_filter: Option<&MKPointOfInterestFilter>,
@@ -34,11 +35,13 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(size)]
+        #[unsafe(method_family = none)]
         pub unsafe fn size(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`size`][Self::size].
         #[method(setSize:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSize(&self, size: CGSize);
     }
 );
@@ -46,11 +49,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKLookAroundSnapshotOptions {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

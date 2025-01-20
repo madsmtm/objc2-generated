@@ -17,6 +17,7 @@ extern_category!(
         /// This method must be only called once per instance of the plug-in
         /// object and must be called before any other methods in this protocol.
         #[method(webPlugInInitialize)]
+        #[unsafe(method_family = none)]
         unsafe fn webPlugInInitialize(&self);
 
         /// Tell the plug-in to start normal operation.
@@ -27,6 +28,7 @@ extern_category!(
         /// already called webPlugInInitialize and that each call to webPlugInStart is followed
         /// by a call to webPlugInStop.
         #[method(webPlugInStart)]
+        #[unsafe(method_family = none)]
         unsafe fn webPlugInStart(&self);
 
         /// Tell the plug-in to stop normal operation.
@@ -36,6 +38,7 @@ extern_category!(
         /// webPlugInInitialize and that each call to webPlugInStop is preceded by a call to
         /// webPlugInStart.
         #[method(webPlugInStop)]
+        #[unsafe(method_family = none)]
         unsafe fn webPlugInStop(&self);
 
         /// Tell the plug-in perform cleanup and prepare to be deallocated.
@@ -46,11 +49,13 @@ extern_category!(
         /// plug-in object.  No other methods in this interface may be called after the
         /// application has called webPlugInDestroy.
         #[method(webPlugInDestroy)]
+        #[unsafe(method_family = none)]
         unsafe fn webPlugInDestroy(&self);
 
         /// Informs the plug-in whether or not it is selected.  This is typically
         /// used to allow the plug-in to alter it's appearance when selected.
         #[method(webPlugInSetIsSelected:)]
+        #[unsafe(method_family = none)]
         unsafe fn webPlugInSetIsSelected(&self, is_selected: bool);
 
         /// objectForWebScript is used to expose a plug-in's scripting interface.  The
@@ -59,7 +64,7 @@ extern_category!(
         ///
         /// Returns: Returns the object that exposes the plug-in's interface.  The class of this
         /// object can implement methods from the WebScripting informal protocol.
-        #[method_id(objectForWebScript)]
+        #[method(objectForWebScript)]
         #[unsafe(method_family = none)]
         unsafe fn objectForWebScript(&self) -> Option<Retained<AnyObject>>;
 
@@ -69,6 +74,7 @@ extern_category!(
         /// This method is only sent to the plug-in if the
         /// WebPlugInShouldLoadMainResourceKey argument passed to the plug-in was NO.
         #[method(webPlugInMainResourceDidReceiveResponse:)]
+        #[unsafe(method_family = none)]
         unsafe fn webPlugInMainResourceDidReceiveResponse(&self, response: Option<&NSURLResponse>);
 
         /// Called on the plug-in when WebKit recieves -connection:didReceiveData:
@@ -77,6 +83,7 @@ extern_category!(
         /// This method is only sent to the plug-in if the
         /// WebPlugInShouldLoadMainResourceKey argument passed to the plug-in was NO.
         #[method(webPlugInMainResourceDidReceiveData:)]
+        #[unsafe(method_family = none)]
         unsafe fn webPlugInMainResourceDidReceiveData(&self, data: Option<&NSData>);
 
         /// Called on the plug-in when WebKit receives -connection:didFailWithError:
@@ -85,6 +92,7 @@ extern_category!(
         /// This method is only sent to the plug-in if the
         /// WebPlugInShouldLoadMainResourceKey argument passed to the plug-in was NO.
         #[method(webPlugInMainResourceDidFailWithError:)]
+        #[unsafe(method_family = none)]
         unsafe fn webPlugInMainResourceDidFailWithError(&self, error: Option<&NSError>);
 
         /// Called on the plug-in when WebKit receives -connectionDidFinishLoading:
@@ -93,6 +101,7 @@ extern_category!(
         /// This method is only sent to the plug-in if the
         /// WebPlugInShouldLoadMainResourceKey argument passed to the plug-in was NO.
         #[method(webPlugInMainResourceDidFinishLoading)]
+        #[unsafe(method_family = none)]
         unsafe fn webPlugInMainResourceDidFinishLoading(&self);
     }
 

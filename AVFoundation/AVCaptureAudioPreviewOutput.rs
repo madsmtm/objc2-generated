@@ -26,11 +26,11 @@ unsafe impl NSObjectProtocol for AVCaptureAudioPreviewOutput {}
 extern_methods!(
     #[cfg(feature = "AVCaptureOutputBase")]
     unsafe impl AVCaptureAudioPreviewOutput {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -38,12 +38,13 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an NSString containing the unique ID of the Core Audio device to be used for output, or nil if the default system output should be used.
-        #[method_id(outputDeviceUniqueID)]
+        #[method(outputDeviceUniqueID)]
         #[unsafe(method_family = none)]
         pub unsafe fn outputDeviceUniqueID(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`outputDeviceUniqueID`][Self::outputDeviceUniqueID].
         #[method(setOutputDeviceUniqueID:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setOutputDeviceUniqueID(&self, output_device_unique_id: Option<&NSString>);
 
         /// Specifies the preview volume of the output.
@@ -51,10 +52,12 @@ extern_methods!(
         ///
         /// The value of this property is the preview volume of the receiver, where 1.0 is the maximum volume and 0.0 is muted.
         #[method(volume)]
+        #[unsafe(method_family = none)]
         pub unsafe fn volume(&self) -> c_float;
 
         /// Setter for [`volume`][Self::volume].
         #[method(setVolume:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setVolume(&self, volume: c_float);
     }
 );

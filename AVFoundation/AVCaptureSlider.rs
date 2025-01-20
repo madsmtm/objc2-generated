@@ -41,7 +41,7 @@ extern_methods!(
         ///
         ///
         /// Continuous sliders are used when any value in the range `minValue...maxValue` is supported.
-        #[method_id(initWithLocalizedTitle:symbolName:minValue:maxValue:)]
+        #[method(initWithLocalizedTitle:symbolName:minValue:maxValue:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLocalizedTitle_symbolName_minValue_maxValue(
             this: Allocated<Self>,
@@ -68,7 +68,7 @@ extern_methods!(
         ///
         ///
         /// Discrete sliders are used when only specific values are valid.
-        #[method_id(initWithLocalizedTitle:symbolName:minValue:maxValue:step:)]
+        #[method(initWithLocalizedTitle:symbolName:minValue:maxValue:step:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLocalizedTitle_symbolName_minValue_maxValue_step(
             this: Allocated<Self>,
@@ -92,7 +92,7 @@ extern_methods!(
         ///
         ///
         /// Discrete sliders are used when only specific values are valid.
-        #[method_id(initWithLocalizedTitle:symbolName:values:)]
+        #[method(initWithLocalizedTitle:symbolName:values:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLocalizedTitle_symbolName_values(
             this: Allocated<Self>,
@@ -107,10 +107,12 @@ extern_methods!(
         /// Because the camera system may be independent from the main thread or `
         /// MainThreadOnly`, `value` must be changed on `actionQueue` – the queue provided to `setActionQueue:action:`. The default value is the slider's minimum value. A value may only be set if it is within the slider's minimum and maximum values, otherwise an `NSInvalidArgumentException` is thrown.
         #[method(value)]
+        #[unsafe(method_family = none)]
         pub unsafe fn value(&self) -> c_float;
 
         /// Setter for [`value`][Self::value].
         #[method(setValue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setValue(&self, value: c_float);
 
         /// A localized string defining the presentation of the slider's value.
@@ -132,40 +134,43 @@ extern_methods!(
         /// - `+ %
         /// @
         /// ` for "+ 20"
-        #[method_id(localizedValueFormat)]
+        #[method(localizedValueFormat)]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedValueFormat(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`localizedValueFormat`][Self::localizedValueFormat].
         #[method(setLocalizedValueFormat:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLocalizedValueFormat(&self, localized_value_format: Option<&NSString>);
 
         /// Values in this array may receive unique visual representations or behaviors.
-        #[method_id(prominentValues)]
+        #[method(prominentValues)]
         #[unsafe(method_family = none)]
         pub unsafe fn prominentValues(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Setter for [`prominentValues`][Self::prominentValues].
         #[method(setProminentValues:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setProminentValues(&self, prominent_values: &NSArray<NSNumber>);
 
         /// A localized string that describes the slider's `action`.
-        #[method_id(localizedTitle)]
+        #[method(localizedTitle)]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedTitle(&self) -> Retained<NSString>;
 
         /// The name of a symbol to represent the slider.
-        #[method_id(symbolName)]
+        #[method(symbolName)]
         #[unsafe(method_family = none)]
         pub unsafe fn symbolName(&self) -> Retained<NSString>;
 
         /// A string that identifies the slider.
-        #[method_id(accessibilityIdentifier)]
+        #[method(accessibilityIdentifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn accessibilityIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityIdentifier`][Self::accessibilityIdentifier].
         #[method(setAccessibilityIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAccessibilityIdentifier(
             &self,
             accessibility_identifier: Option<&NSString>,
@@ -177,11 +182,11 @@ extern_methods!(
     /// Methods declared on superclass `AVCaptureControl`
     #[cfg(feature = "AVCaptureControl")]
     unsafe impl AVCaptureSlider {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

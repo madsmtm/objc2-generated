@@ -15,7 +15,7 @@ extern_protocol!(
     pub unsafe trait GCPhysicalInputElement: NSObjectProtocol {
         /// The set of aliases that can be used to access this element with keyed subscript
         /// notation.
-        #[method_id(aliases)]
+        #[method(aliases)]
         #[unsafe(method_family = none)]
         unsafe fn aliases(&self) -> Retained<NSSet<NSString>>;
 
@@ -27,12 +27,12 @@ extern_protocol!(
         /// "Press \(buttonA.localizedName) to jump!"
         ///
         /// Do not cache this value - it can change when the user remaps controls.
-        #[method_id(localizedName)]
+        #[method(localizedName)]
         #[unsafe(method_family = none)]
         unsafe fn localizedName(&self) -> Option<Retained<NSString>>;
 
         /// The SF Symbols name for the element.
-        #[method_id(sfSymbolsName)]
+        #[method(sfSymbolsName)]
         #[unsafe(method_family = none)]
         unsafe fn sfSymbolsName(&self) -> Option<Retained<NSString>>;
     }
@@ -64,16 +64,17 @@ unsafe impl<Key: ?Sized, Element: ?Sized> NSObjectProtocol
 
 extern_methods!(
     unsafe impl<Key: Message, Element: Message> GCPhysicalInputElementCollection<Key, Element> {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// The number of elements in the collection.
         #[method(count)]
+        #[unsafe(method_family = none)]
         pub unsafe fn count(&self) -> NSUInteger;
 
         /// Returns the element associated with a given alias.
@@ -86,15 +87,15 @@ extern_methods!(
         /// _alias,_or nil if no element is associated
         /// with
         /// _alias._
-        #[method_id(elementForAlias:)]
+        #[method(elementForAlias:)]
         #[unsafe(method_family = none)]
         pub unsafe fn elementForAlias(&self, alias: &Key) -> Option<Retained<Element>>;
 
-        #[method_id(objectForKeyedSubscript:)]
+        #[method(objectForKeyedSubscript:)]
         #[unsafe(method_family = none)]
         pub unsafe fn objectForKeyedSubscript(&self, key: &Key) -> Option<Retained<Element>>;
 
-        #[method_id(elementEnumerator)]
+        #[method(elementEnumerator)]
         #[unsafe(method_family = none)]
         pub unsafe fn elementEnumerator(&self) -> Retained<NSEnumerator<Element>>;
     }

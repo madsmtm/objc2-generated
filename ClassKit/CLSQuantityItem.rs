@@ -31,10 +31,12 @@ extern_methods!(
     unsafe impl CLSQuantityItem {
         /// Quantity awarded.
         #[method(quantity)]
+        #[unsafe(method_family = none)]
         pub unsafe fn quantity(&self) -> c_double;
 
         /// Setter for [`quantity`][Self::quantity].
         #[method(setQuantity:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setQuantity(&self, quantity: c_double);
 
         /// Create a quantity item with an identifier and title.
@@ -43,7 +45,7 @@ extern_methods!(
         ///
         /// Parameter `title`: Title of the quantity. Ex
         /// _Hints_
-        #[method_id(initWithIdentifier:title:)]
+        #[method(initWithIdentifier:title:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifier_title(
             this: Allocated<Self>,
@@ -57,11 +59,11 @@ extern_methods!(
     /// Methods declared on superclass `CLSActivityItem`
     #[cfg(all(feature = "CLSActivityItem", feature = "CLSObject"))]
     unsafe impl CLSQuantityItem {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

@@ -60,12 +60,13 @@ extern_methods!(
         ///
         ///
         /// See: ASAuthorizationAppleIDCredential doc for the description of this property in context of response.
-        #[method_id(user)]
+        #[method(user)]
         #[unsafe(method_family = none)]
         pub unsafe fn user(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`user`][Self::user].
         #[method(setUser:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUser(&self, user: Option<&NSString>);
     }
 );
@@ -77,11 +78,11 @@ extern_methods!(
         feature = "ASAuthorizationRequest"
     ))]
     unsafe impl ASAuthorizationAppleIDRequest {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

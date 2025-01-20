@@ -44,66 +44,77 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMEvent {
         #[deprecated]
-        #[method_id(type)]
+        #[method(type)]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> Retained<NSString>;
 
         #[cfg(feature = "DOMEventTarget")]
         #[deprecated]
-        #[method_id(target)]
+        #[method(target)]
         #[unsafe(method_family = none)]
         pub unsafe fn target(&self) -> Option<Retained<ProtocolObject<dyn DOMEventTarget>>>;
 
         #[cfg(feature = "DOMEventTarget")]
         #[deprecated]
-        #[method_id(currentTarget)]
+        #[method(currentTarget)]
         #[unsafe(method_family = none)]
         pub unsafe fn currentTarget(&self) -> Option<Retained<ProtocolObject<dyn DOMEventTarget>>>;
 
         #[deprecated]
         #[method(eventPhase)]
+        #[unsafe(method_family = none)]
         pub unsafe fn eventPhase(&self) -> c_ushort;
 
         #[deprecated]
         #[method(bubbles)]
+        #[unsafe(method_family = none)]
         pub unsafe fn bubbles(&self) -> bool;
 
         #[deprecated]
         #[method(cancelable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cancelable(&self) -> bool;
 
         #[deprecated]
         #[method(timeStamp)]
+        #[unsafe(method_family = none)]
         pub unsafe fn timeStamp(&self) -> DOMTimeStamp;
 
         #[cfg(feature = "DOMEventTarget")]
-        #[method_id(srcElement)]
+        #[method(srcElement)]
         #[unsafe(method_family = none)]
         pub unsafe fn srcElement(&self) -> Option<Retained<ProtocolObject<dyn DOMEventTarget>>>;
 
         #[method(returnValue)]
+        #[unsafe(method_family = none)]
         pub unsafe fn returnValue(&self) -> bool;
 
         /// Setter for [`returnValue`][Self::returnValue].
         #[method(setReturnValue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setReturnValue(&self, return_value: bool);
 
         #[method(cancelBubble)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cancelBubble(&self) -> bool;
 
         /// Setter for [`cancelBubble`][Self::cancelBubble].
         #[method(setCancelBubble:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCancelBubble(&self, cancel_bubble: bool);
 
         #[deprecated]
         #[method(stopPropagation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stopPropagation(&self);
 
         #[deprecated]
         #[method(preventDefault)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preventDefault(&self);
 
         #[method(initEvent:canBubbleArg:cancelableArg:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn initEvent_canBubbleArg_cancelableArg(
             &self,
             event_type_arg: Option<&NSString>,
@@ -118,7 +129,7 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMEvent {
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -128,7 +139,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMEvent {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -140,6 +151,7 @@ extern_methods!(
     unsafe impl DOMEvent {
         #[deprecated]
         #[method(initEvent:::)]
+        #[unsafe(method_family = none)]
         pub unsafe fn initEvent(
             &self,
             event_type_arg: Option<&NSString>,

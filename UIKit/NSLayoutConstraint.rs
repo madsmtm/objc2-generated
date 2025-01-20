@@ -184,7 +184,7 @@ unsafe impl NSObjectProtocol for NSLayoutConstraint {}
 
 extern_methods!(
     unsafe impl NSLayoutConstraint {
-        #[method_id(constraintsWithVisualFormat:options:metrics:views:)]
+        #[method(constraintsWithVisualFormat:options:metrics:views:)]
         #[unsafe(method_family = none)]
         pub unsafe fn constraintsWithVisualFormat_options_metrics_views(
             format: &NSString,
@@ -195,7 +195,7 @@ extern_methods!(
         ) -> Retained<NSArray<NSLayoutConstraint>>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant:)]
+        #[method(constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant:)]
         #[unsafe(method_family = none)]
         pub unsafe fn constraintWithItem_attribute_relatedBy_toItem_attribute_multiplier_constant(
             view1: &AnyObject,
@@ -209,73 +209,87 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[method(priority)]
+        #[unsafe(method_family = none)]
         pub unsafe fn priority(&self) -> UILayoutPriority;
 
         /// Setter for [`priority`][Self::priority].
         #[method(setPriority:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPriority(&self, priority: UILayoutPriority);
 
         #[method(shouldBeArchived)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shouldBeArchived(&self) -> bool;
 
         /// Setter for [`shouldBeArchived`][Self::shouldBeArchived].
         #[method(setShouldBeArchived:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShouldBeArchived(&self, should_be_archived: bool);
 
-        #[method_id(firstItem)]
+        #[method(firstItem)]
         #[unsafe(method_family = none)]
         pub unsafe fn firstItem(&self) -> Option<Retained<AnyObject>>;
 
-        #[method_id(secondItem)]
+        #[method(secondItem)]
         #[unsafe(method_family = none)]
         pub unsafe fn secondItem(&self) -> Option<Retained<AnyObject>>;
 
         #[method(firstAttribute)]
+        #[unsafe(method_family = none)]
         pub unsafe fn firstAttribute(&self) -> NSLayoutAttribute;
 
         #[method(secondAttribute)]
+        #[unsafe(method_family = none)]
         pub unsafe fn secondAttribute(&self) -> NSLayoutAttribute;
 
         #[cfg(feature = "NSLayoutAnchor")]
-        #[method_id(firstAnchor)]
+        #[method(firstAnchor)]
         #[unsafe(method_family = none)]
         pub unsafe fn firstAnchor(&self) -> Retained<NSLayoutAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
-        #[method_id(secondAnchor)]
+        #[method(secondAnchor)]
         #[unsafe(method_family = none)]
         pub unsafe fn secondAnchor(&self) -> Option<Retained<NSLayoutAnchor>>;
 
         #[method(relation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn relation(&self) -> NSLayoutRelation;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(multiplier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn multiplier(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(constant)]
+        #[unsafe(method_family = none)]
         pub unsafe fn constant(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`constant`][Self::constant].
         #[method(setConstant:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setConstant(&self, constant: CGFloat);
 
         #[method(isActive)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isActive(&self) -> bool;
 
         /// Setter for [`isActive`][Self::isActive].
         #[method(setActive:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setActive(&self, active: bool);
 
         #[method(activateConstraints:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn activateConstraints(
             constraints: &NSArray<NSLayoutConstraint>,
             mtm: MainThreadMarker,
         );
 
         #[method(deactivateConstraints:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn deactivateConstraints(
             constraints: &NSArray<NSLayoutConstraint>,
             mtm: MainThreadMarker,
@@ -286,11 +300,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSLayoutConstraint {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -299,12 +313,13 @@ extern_methods!(
 extern_methods!(
     /// NSIdentifier
     unsafe impl NSLayoutConstraint {
-        #[method_id(identifier)]
+        #[method(identifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`identifier`][Self::identifier].
         #[method(setIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIdentifier(&self, identifier: Option<&NSString>);
     }
 );
@@ -314,20 +329,21 @@ extern_protocol!(
     pub unsafe trait UILayoutSupport: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "objc2-core-foundation")]
         #[method(length)]
+        #[unsafe(method_family = none)]
         unsafe fn length(&self) -> CGFloat;
 
         #[cfg(feature = "NSLayoutAnchor")]
-        #[method_id(topAnchor)]
+        #[method(topAnchor)]
         #[unsafe(method_family = none)]
         unsafe fn topAnchor(&self) -> Retained<NSLayoutYAxisAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
-        #[method_id(bottomAnchor)]
+        #[method(bottomAnchor)]
         #[unsafe(method_family = none)]
         unsafe fn bottomAnchor(&self) -> Retained<NSLayoutYAxisAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
-        #[method_id(heightAnchor)]
+        #[method(heightAnchor)]
         #[unsafe(method_family = none)]
         unsafe fn heightAnchor(&self) -> Retained<NSLayoutDimension>;
     }

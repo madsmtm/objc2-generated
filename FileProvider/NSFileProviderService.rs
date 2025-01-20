@@ -12,7 +12,7 @@ extern_protocol!(
     pub unsafe trait NSFileProviderServiceSource {
         /// The service name that uniquely identifies the service (using reverse domain
         /// name notation for you service name is recommended).
-        #[method_id(serviceName)]
+        #[method(serviceName)]
         #[unsafe(method_family = none)]
         unsafe fn serviceName(&self) -> Retained<NSFileProviderServiceName>;
 
@@ -26,7 +26,7 @@ extern_protocol!(
         /// and setting up properties on the new connection, like its exported object and
         /// interfaces (that both the file provider and the client application have agreed
         /// on).
-        #[method_id(makeListenerEndpointAndReturnError:_)]
+        #[method(makeListenerEndpointAndReturnError:_)]
         #[unsafe(method_family = none)]
         unsafe fn makeListenerEndpointAndReturnError(
             &self,
@@ -38,6 +38,7 @@ extern_protocol!(
         /// through `-[NSFileProviderManager getServiceWithName:itemIdentifier:completionHandler:]`
         #[optional]
         #[method(isRestricted)]
+        #[unsafe(method_family = none)]
         unsafe fn isRestricted(&self) -> bool;
     }
 );
@@ -52,7 +53,7 @@ extern_methods!(
     #[cfg(feature = "Extension")]
     unsafe impl NSFileProviderExtension {
         #[cfg(feature = "NSFileProviderItem")]
-        #[method_id(supportedServiceSourcesForItemIdentifier:error:_)]
+        #[method(supportedServiceSourcesForItemIdentifier:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedServiceSourcesForItemIdentifier_error(
             &self,
@@ -71,6 +72,7 @@ extern_methods!(
         #[cfg(all(feature = "NSFileProviderItem", feature = "block2"))]
         /// Retrieve the service with the specified named for the specified item.
         #[method(getServiceWithName:itemIdentifier:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getServiceWithName_itemIdentifier_completionHandler(
             &self,
             service_name: &NSFileProviderServiceName,

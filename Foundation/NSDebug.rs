@@ -48,6 +48,7 @@ extern_methods!(
     #[cfg(feature = "NSAutoreleasePool")]
     unsafe impl NSAutoreleasePool {
         #[method(showPools)]
+        #[unsafe(method_family = none)]
         pub unsafe fn showPools();
     }
 );

@@ -55,6 +55,7 @@ extern_methods!(
             feature = "objc2-core-foundation"
         ))]
         #[method(keyChangedHandler)]
+        #[unsafe(method_family = none)]
         pub unsafe fn keyChangedHandler(&self) -> GCKeyboardValueChangedHandler;
 
         #[cfg(all(
@@ -66,6 +67,7 @@ extern_methods!(
         ))]
         /// Setter for [`keyChangedHandler`][Self::keyChangedHandler].
         #[method(setKeyChangedHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setKeyChangedHandler(
             &self,
             key_changed_handler: GCKeyboardValueChangedHandler,
@@ -73,6 +75,7 @@ extern_methods!(
 
         /// Before querying any key for a value it might be useful to check if any key is actually pressed
         #[method(isAnyKeyPressed)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isAnyKeyPressed(&self) -> bool;
 
         #[cfg(all(
@@ -88,7 +91,7 @@ extern_methods!(
         /// Parameter `code`: is a low level key code that can be used for accessing a keyboard button.
         ///
         /// Note: Full list of supported key constants can be found in GCKeyCodes.h and GCKeyNames.h
-        #[method_id(buttonForKeyCode:)]
+        #[method(buttonForKeyCode:)]
         #[unsafe(method_family = none)]
         pub unsafe fn buttonForKeyCode(
             &self,
@@ -101,11 +104,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "GCPhysicalInputProfile")]
     unsafe impl GCKeyboardInput {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

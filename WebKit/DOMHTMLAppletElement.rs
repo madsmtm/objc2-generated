@@ -78,111 +78,124 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLAppletElement {
         #[deprecated]
-        #[method_id(align)]
+        #[method(align)]
         #[unsafe(method_family = none)]
         pub unsafe fn align(&self) -> Retained<NSString>;
 
         /// Setter for [`align`][Self::align].
         #[deprecated]
         #[method(setAlign:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAlign(&self, align: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(alt)]
+        #[method(alt)]
         #[unsafe(method_family = none)]
         pub unsafe fn alt(&self) -> Retained<NSString>;
 
         /// Setter for [`alt`][Self::alt].
         #[deprecated]
         #[method(setAlt:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAlt(&self, alt: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(archive)]
+        #[method(archive)]
         #[unsafe(method_family = none)]
         pub unsafe fn archive(&self) -> Retained<NSString>;
 
         /// Setter for [`archive`][Self::archive].
         #[deprecated]
         #[method(setArchive:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setArchive(&self, archive: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(code)]
+        #[method(code)]
         #[unsafe(method_family = none)]
         pub unsafe fn code(&self) -> Retained<NSString>;
 
         /// Setter for [`code`][Self::code].
         #[deprecated]
         #[method(setCode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCode(&self, code: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(codeBase)]
+        #[method(codeBase)]
         #[unsafe(method_family = none)]
         pub unsafe fn codeBase(&self) -> Retained<NSString>;
 
         /// Setter for [`codeBase`][Self::codeBase].
         #[deprecated]
         #[method(setCodeBase:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCodeBase(&self, code_base: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(height)]
+        #[method(height)]
         #[unsafe(method_family = none)]
         pub unsafe fn height(&self) -> Retained<NSString>;
 
         /// Setter for [`height`][Self::height].
         #[deprecated]
         #[method(setHeight:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setHeight(&self, height: Option<&NSString>);
 
         #[deprecated]
         #[method(hspace)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hspace(&self) -> c_int;
 
         /// Setter for [`hspace`][Self::hspace].
         #[deprecated]
         #[method(setHspace:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setHspace(&self, hspace: c_int);
 
         #[deprecated]
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
         #[deprecated]
         #[method(setName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(object)]
+        #[method(object)]
         #[unsafe(method_family = none)]
         pub unsafe fn object(&self) -> Retained<NSString>;
 
         /// Setter for [`object`][Self::object].
         #[deprecated]
         #[method(setObject:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setObject(&self, object: Option<&NSString>);
 
         #[deprecated]
         #[method(vspace)]
+        #[unsafe(method_family = none)]
         pub unsafe fn vspace(&self) -> c_int;
 
         /// Setter for [`vspace`][Self::vspace].
         #[deprecated]
         #[method(setVspace:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setVspace(&self, vspace: c_int);
 
         #[deprecated]
-        #[method_id(width)]
+        #[method(width)]
         #[unsafe(method_family = none)]
         pub unsafe fn width(&self) -> Retained<NSString>;
 
         /// Setter for [`width`][Self::width].
         #[deprecated]
         #[method(setWidth:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWidth(&self, width: Option<&NSString>);
     }
 );
@@ -198,7 +211,7 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLAppletElement {
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -214,7 +227,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLAppletElement {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -75,6 +75,7 @@ extern_methods!(
         /// return a new value. If you override the method, you don’t need to call the inherited
         /// version.
         #[method(backingStoreType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn backingStoreType(mtm: MainThreadMarker) -> NSBackingStoreType;
 
         /// Indicates whether to perform a gradual screen fade when the system starts and stops
@@ -95,6 +96,7 @@ extern_methods!(
         /// <doc
         /// ://com.apple.documentation/documentation/objectivec/yes>.
         #[method(performGammaFade)]
+        #[unsafe(method_family = none)]
         pub unsafe fn performGammaFade(mtm: MainThreadMarker) -> bool;
 
         /// Creates a newly allocated screen saver view with the specified frame rectangle and
@@ -119,7 +121,7 @@ extern_methods!(
         /// <doc
         /// ://com.apple.documentation/documentation/objectivec/no>
         /// if the system fills the screen with your view’s contents.
-        #[method_id(initWithFrame:isPreview:)]
+        #[method(initWithFrame:isPreview:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame_isPreview(
             this: Allocated<Self>,
@@ -132,10 +134,12 @@ extern_methods!(
         /// If your screen saver has particular requirements for time between animation
         /// frames, call this method to set the animation rate to a reasonable value.
         #[method(animationTimeInterval)]
+        #[unsafe(method_family = none)]
         pub unsafe fn animationTimeInterval(&self) -> NSTimeInterval;
 
         /// Setter for [`animationTimeInterval`][Self::animationTimeInterval].
         #[method(setAnimationTimeInterval:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAnimationTimeInterval(&self, animation_time_interval: NSTimeInterval);
 
         /// Activates the periodic timer that animates the screen saver.
@@ -152,6 +156,7 @@ extern_methods!(
         ///
         /// - ``ScreenSaver/ScreenSaverView/stopAnimation``
         #[method(startAnimation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn startAnimation(&self);
 
         /// Deactivates the timer that advances the animation.
@@ -168,6 +173,7 @@ extern_methods!(
         ///
         /// - ``ScreenSaver/ScreenSaverView/startAnimation``
         #[method(stopAnimation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stopAnimation(&self);
 
         /// A Boolean value that indicates whether the screen saver is animating.
@@ -187,6 +193,7 @@ extern_methods!(
         /// - ``ScreenSaver/ScreenSaverView/stopAnimation``
         /// - ``ScreenSaver/ScreenSaverView/startAnimation``
         #[method(isAnimating)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isAnimating(&self) -> bool;
 
         /// Draws the screen saver view.
@@ -202,6 +209,7 @@ extern_methods!(
         /// - ``ScreenSaver/ScreenSaverView/animateOneFrame``
         /// - ``ScreenSaver/ScreenSaverView/startAnimation``
         #[method(drawRect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn drawRect(&self, rect: NSRect);
 
         /// Advances the screen saver’s animation by a single frame.
@@ -221,6 +229,7 @@ extern_methods!(
         ///
         /// - ``ScreenSaver/ScreenSaverView/drawRect:``
         #[method(animateOneFrame)]
+        #[unsafe(method_family = none)]
         pub unsafe fn animateOneFrame(&self);
 
         /// A Boolean value that indicates whether the screen saver has an associated configuration sheet.
@@ -233,6 +242,7 @@ extern_methods!(
         ///
         /// - ``ScreenSaver/ScreenSaverView/configureSheet``
         #[method(hasConfigureSheet)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hasConfigureSheet(&self) -> bool;
 
         /// The window that contains the controls to configure the screen saver.
@@ -250,7 +260,7 @@ extern_methods!(
         /// ## See also
         ///
         /// - ``ScreenSaver/ScreenSaverView/hasConfigureSheet``
-        #[method_id(configureSheet)]
+        #[method(configureSheet)]
         #[unsafe(method_family = none)]
         pub unsafe fn configureSheet(&self) -> Option<Retained<NSWindow>>;
 
@@ -269,6 +279,7 @@ extern_methods!(
         /// you present. For example, you might change the drawing parameters or data you display
         /// in your view.
         #[method(isPreview)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isPreview(&self) -> bool;
     }
 );
@@ -277,11 +288,11 @@ extern_methods!(
     /// Methods declared on superclass `NSView`
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl ScreenSaverView {
-        #[method_id(initWithFrame:)]
+        #[method(initWithFrame:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -294,7 +305,7 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl ScreenSaverView {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -304,7 +315,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl ScreenSaverView {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

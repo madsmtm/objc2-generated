@@ -17,6 +17,7 @@ extern_protocol!(
         #[deprecated = "You should instead implement the GKChallengeListener protocol and register a listener with GKLocalPlayer."]
         #[optional]
         #[method(localPlayerDidSelectChallenge:)]
+        #[unsafe(method_family = none)]
         unsafe fn localPlayerDidSelectChallenge(&self, challenge: Option<&GKChallenge>);
 
         #[cfg(feature = "GKChallenge")]
@@ -24,6 +25,7 @@ extern_protocol!(
         #[deprecated = "You should instead implement the GKChallengeListener protocol and register a listener with GKLocalPlayer."]
         #[optional]
         #[method(shouldShowBannerForLocallyReceivedChallenge:)]
+        #[unsafe(method_family = none)]
         unsafe fn shouldShowBannerForLocallyReceivedChallenge(
             &self,
             challenge: Option<&GKChallenge>,
@@ -34,6 +36,7 @@ extern_protocol!(
         #[deprecated = "You should instead implement the GKChallengeListener protocol and register a listener with GKLocalPlayer."]
         #[optional]
         #[method(localPlayerDidReceiveChallenge:)]
+        #[unsafe(method_family = none)]
         unsafe fn localPlayerDidReceiveChallenge(&self, challenge: Option<&GKChallenge>);
 
         #[cfg(feature = "GKChallenge")]
@@ -41,6 +44,7 @@ extern_protocol!(
         #[deprecated = "You should instead implement the GKChallengeListener protocol and register a listener with GKLocalPlayer."]
         #[optional]
         #[method(shouldShowBannerForLocallyCompletedChallenge:)]
+        #[unsafe(method_family = none)]
         unsafe fn shouldShowBannerForLocallyCompletedChallenge(
             &self,
             challenge: Option<&GKChallenge>,
@@ -51,6 +55,7 @@ extern_protocol!(
         #[deprecated = "You should instead implement the GKChallengeListener protocol and register a listener with GKLocalPlayer."]
         #[optional]
         #[method(localPlayerDidCompleteChallenge:)]
+        #[unsafe(method_family = none)]
         unsafe fn localPlayerDidCompleteChallenge(&self, challenge: Option<&GKChallenge>);
 
         #[cfg(feature = "GKChallenge")]
@@ -58,6 +63,7 @@ extern_protocol!(
         #[deprecated = "You should instead implement the GKChallengeListener protocol and register a listener with GKLocalPlayer."]
         #[optional]
         #[method(shouldShowBannerForRemotelyCompletedChallenge:)]
+        #[unsafe(method_family = none)]
         unsafe fn shouldShowBannerForRemotelyCompletedChallenge(
             &self,
             challenge: Option<&GKChallenge>,
@@ -68,6 +74,7 @@ extern_protocol!(
         #[deprecated = "You should instead implement the GKChallengeListener protocol and register a listener with GKLocalPlayer."]
         #[optional]
         #[method(remotePlayerDidCompleteChallenge:)]
+        #[unsafe(method_family = none)]
         unsafe fn remotePlayerDidCompleteChallenge(&self, challenge: Option<&GKChallenge>);
     }
 );
@@ -87,12 +94,12 @@ unsafe impl NSObjectProtocol for GKChallengeEventHandler {}
 extern_methods!(
     unsafe impl GKChallengeEventHandler {
         #[deprecated]
-        #[method_id(challengeEventHandler)]
+        #[method(challengeEventHandler)]
         #[unsafe(method_family = none)]
         pub unsafe fn challengeEventHandler() -> Option<Retained<GKChallengeEventHandler>>;
 
         #[deprecated]
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -102,6 +109,7 @@ extern_methods!(
         /// Setter for [`delegate`][Self::delegate].
         #[deprecated]
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn GKChallengeEventHandlerDelegate>>,
@@ -112,11 +120,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKChallengeEventHandler {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -40,11 +40,13 @@ extern_methods!(
         ///
         /// The default value for this property is `VNImageCropAndScaleOptionScaleFill`.
         #[method(imageCropAndScaleOption)]
+        #[unsafe(method_family = none)]
         pub unsafe fn imageCropAndScaleOption(&self) -> VNImageCropAndScaleOption;
 
         #[cfg(feature = "VNTypes")]
         /// Setter for [`imageCropAndScaleOption`][Self::imageCropAndScaleOption].
         #[method(setImageCropAndScaleOption:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setImageCropAndScaleOption(
             &self,
             image_crop_and_scale_option: VNImageCropAndScaleOption,
@@ -52,7 +54,7 @@ extern_methods!(
 
         #[cfg(feature = "VNObservation")]
         /// `VNFeaturePrintObservation` results.
-        #[method_id(results)]
+        #[method(results)]
         #[unsafe(method_family = none)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNFeaturePrintObservation>>>;
     }
@@ -63,7 +65,7 @@ extern_methods!(
     #[cfg(feature = "VNRequest")]
     unsafe impl VNGenerateImageFeaturePrintRequest {
         /// Creates a new VNRequest with no completion handler.
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -72,7 +74,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
-        #[method_id(initWithCompletionHandler:)]
+        #[method(initWithCompletionHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
@@ -85,7 +87,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "VNRequest")]
     unsafe impl VNGenerateImageFeaturePrintRequest {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

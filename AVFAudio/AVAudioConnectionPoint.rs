@@ -31,7 +31,7 @@ extern_methods!(
         /// Parameter `bus`: the output or input bus on the node
         ///
         /// If the node is nil, this method fails (returns nil).
-        #[method_id(initWithNode:bus:)]
+        #[method(initWithNode:bus:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNode_bus(
             this: Allocated<Self>,
@@ -39,19 +39,20 @@ extern_methods!(
             bus: AVAudioNodeBus,
         ) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "AVAudioNode")]
         /// Returns the node in the connection point.
-        #[method_id(node)]
+        #[method(node)]
         #[unsafe(method_family = none)]
         pub unsafe fn node(&self) -> Option<Retained<AVAudioNode>>;
 
         #[cfg(feature = "AVAudioTypes")]
         /// Returns the bus on the node in the connection point.
         #[method(bus)]
+        #[unsafe(method_family = none)]
         pub unsafe fn bus(&self) -> AVAudioNodeBus;
     }
 );
@@ -59,7 +60,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAudioConnectionPoint {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -18,16 +18,16 @@ unsafe impl NSObjectProtocol for MKLookAroundSnapshotter {}
 
 extern_methods!(
     unsafe impl MKLookAroundSnapshotter {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "MKLookAroundScene", feature = "MKLookAroundSnapshotOptions"))]
-        #[method_id(initWithScene:options:)]
+        #[method(initWithScene:options:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithScene_options(
             this: Allocated<Self>,
@@ -37,15 +37,18 @@ extern_methods!(
 
         #[cfg(all(feature = "MKLookAroundSnapshot", feature = "block2"))]
         #[method(getSnapshotWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getSnapshotWithCompletionHandler(
             &self,
             completion_handler: &block2::Block<dyn Fn(*mut MKLookAroundSnapshot, *mut NSError)>,
         );
 
         #[method(cancel)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cancel(&self);
 
         #[method(isLoading)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isLoading(&self) -> bool;
     }
 );

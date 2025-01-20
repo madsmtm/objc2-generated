@@ -11,17 +11,18 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfence?language=objc)
     pub unsafe trait MTLFence: NSObjectProtocol {
         #[cfg(feature = "MTLDevice")]
-        #[method_id(device)]
+        #[method(device)]
         #[unsafe(method_family = none)]
         fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         /// A string to help identify this object.
-        #[method_id(label)]
+        #[method(label)]
         #[unsafe(method_family = none)]
         fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
         #[method(setLabel:)]
+        #[unsafe(method_family = none)]
         fn setLabel(&self, label: Option<&NSString>);
     }
 );

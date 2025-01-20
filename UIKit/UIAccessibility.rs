@@ -117,29 +117,32 @@ extern_category!(
     #[doc(alias = "UIAccessibility")]
     pub unsafe trait NSObjectUIAccessibility {
         #[method(isAccessibilityElement)]
+        #[unsafe(method_family = none)]
         unsafe fn isAccessibilityElement(&self, mtm: MainThreadMarker) -> bool;
 
         /// Setter for [`isAccessibilityElement`][Self::isAccessibilityElement].
         #[method(setIsAccessibilityElement:)]
+        #[unsafe(method_family = none)]
         unsafe fn setIsAccessibilityElement(
             &self,
             is_accessibility_element: bool,
             mtm: MainThreadMarker,
         );
 
-        #[method_id(accessibilityLabel)]
+        #[method(accessibilityLabel)]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityLabel(&self, mtm: MainThreadMarker) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityLabel`][Self::accessibilityLabel].
         #[method(setAccessibilityLabel:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityLabel(
             &self,
             accessibility_label: Option<&NSString>,
             mtm: MainThreadMarker,
         );
 
-        #[method_id(accessibilityAttributedLabel)]
+        #[method(accessibilityAttributedLabel)]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityAttributedLabel(
             &self,
@@ -148,25 +151,27 @@ extern_category!(
 
         /// Setter for [`accessibilityAttributedLabel`][Self::accessibilityAttributedLabel].
         #[method(setAccessibilityAttributedLabel:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityAttributedLabel(
             &self,
             accessibility_attributed_label: Option<&NSAttributedString>,
             mtm: MainThreadMarker,
         );
 
-        #[method_id(accessibilityHint)]
+        #[method(accessibilityHint)]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityHint(&self, mtm: MainThreadMarker) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityHint`][Self::accessibilityHint].
         #[method(setAccessibilityHint:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityHint(
             &self,
             accessibility_hint: Option<&NSString>,
             mtm: MainThreadMarker,
         );
 
-        #[method_id(accessibilityAttributedHint)]
+        #[method(accessibilityAttributedHint)]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityAttributedHint(
             &self,
@@ -175,25 +180,27 @@ extern_category!(
 
         /// Setter for [`accessibilityAttributedHint`][Self::accessibilityAttributedHint].
         #[method(setAccessibilityAttributedHint:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityAttributedHint(
             &self,
             accessibility_attributed_hint: Option<&NSAttributedString>,
             mtm: MainThreadMarker,
         );
 
-        #[method_id(accessibilityValue)]
+        #[method(accessibilityValue)]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityValue(&self, mtm: MainThreadMarker) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityValue`][Self::accessibilityValue].
         #[method(setAccessibilityValue:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityValue(
             &self,
             accessibility_value: Option<&NSString>,
             mtm: MainThreadMarker,
         );
 
-        #[method_id(accessibilityAttributedValue)]
+        #[method(accessibilityAttributedValue)]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityAttributedValue(
             &self,
@@ -202,6 +209,7 @@ extern_category!(
 
         /// Setter for [`accessibilityAttributedValue`][Self::accessibilityAttributedValue].
         #[method(setAccessibilityAttributedValue:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityAttributedValue(
             &self,
             accessibility_attributed_value: Option<&NSAttributedString>,
@@ -210,11 +218,13 @@ extern_category!(
 
         #[cfg(feature = "UIAccessibilityConstants")]
         #[method(accessibilityTraits)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityTraits(&self, mtm: MainThreadMarker) -> UIAccessibilityTraits;
 
         #[cfg(feature = "UIAccessibilityConstants")]
         /// Setter for [`accessibilityTraits`][Self::accessibilityTraits].
         #[method(setAccessibilityTraits:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityTraits(
             &self,
             accessibility_traits: UIAccessibilityTraits,
@@ -223,15 +233,17 @@ extern_category!(
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(accessibilityFrame)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityFrame(&self, mtm: MainThreadMarker) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`accessibilityFrame`][Self::accessibilityFrame].
         #[method(setAccessibilityFrame:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityFrame(&self, accessibility_frame: CGRect, mtm: MainThreadMarker);
 
         #[cfg(feature = "UIBezierPath")]
-        #[method_id(accessibilityPath)]
+        #[method(accessibilityPath)]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityPath(&self, mtm: MainThreadMarker)
             -> Option<Retained<UIBezierPath>>;
@@ -239,6 +251,7 @@ extern_category!(
         #[cfg(feature = "UIBezierPath")]
         /// Setter for [`accessibilityPath`][Self::accessibilityPath].
         #[method(setAccessibilityPath:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityPath(
             &self,
             accessibility_path: Option<&UIBezierPath>,
@@ -247,24 +260,27 @@ extern_category!(
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(accessibilityActivationPoint)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityActivationPoint(&self, mtm: MainThreadMarker) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`accessibilityActivationPoint`][Self::accessibilityActivationPoint].
         #[method(setAccessibilityActivationPoint:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityActivationPoint(
             &self,
             accessibility_activation_point: CGPoint,
             mtm: MainThreadMarker,
         );
 
-        #[method_id(accessibilityLanguage)]
+        #[method(accessibilityLanguage)]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityLanguage(&self, mtm: MainThreadMarker)
             -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityLanguage`][Self::accessibilityLanguage].
         #[method(setAccessibilityLanguage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityLanguage(
             &self,
             accessibility_language: Option<&NSString>,
@@ -272,10 +288,12 @@ extern_category!(
         );
 
         #[method(accessibilityElementsHidden)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityElementsHidden(&self, mtm: MainThreadMarker) -> bool;
 
         /// Setter for [`accessibilityElementsHidden`][Self::accessibilityElementsHidden].
         #[method(setAccessibilityElementsHidden:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityElementsHidden(
             &self,
             accessibility_elements_hidden: bool,
@@ -283,10 +301,12 @@ extern_category!(
         );
 
         #[method(accessibilityViewIsModal)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityViewIsModal(&self, mtm: MainThreadMarker) -> bool;
 
         /// Setter for [`accessibilityViewIsModal`][Self::accessibilityViewIsModal].
         #[method(setAccessibilityViewIsModal:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityViewIsModal(
             &self,
             accessibility_view_is_modal: bool,
@@ -294,10 +314,12 @@ extern_category!(
         );
 
         #[method(shouldGroupAccessibilityChildren)]
+        #[unsafe(method_family = none)]
         unsafe fn shouldGroupAccessibilityChildren(&self, mtm: MainThreadMarker) -> bool;
 
         /// Setter for [`shouldGroupAccessibilityChildren`][Self::shouldGroupAccessibilityChildren].
         #[method(setShouldGroupAccessibilityChildren:)]
+        #[unsafe(method_family = none)]
         unsafe fn setShouldGroupAccessibilityChildren(
             &self,
             should_group_accessibility_children: bool,
@@ -306,6 +328,7 @@ extern_category!(
 
         #[cfg(feature = "UIAccessibilityConstants")]
         #[method(accessibilityNavigationStyle)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityNavigationStyle(
             &self,
             mtm: MainThreadMarker,
@@ -314,6 +337,7 @@ extern_category!(
         #[cfg(feature = "UIAccessibilityConstants")]
         /// Setter for [`accessibilityNavigationStyle`][Self::accessibilityNavigationStyle].
         #[method(setAccessibilityNavigationStyle:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityNavigationStyle(
             &self,
             accessibility_navigation_style: UIAccessibilityNavigationStyle,
@@ -321,17 +345,19 @@ extern_category!(
         );
 
         #[method(accessibilityRespondsToUserInteraction)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityRespondsToUserInteraction(&self, mtm: MainThreadMarker) -> bool;
 
         /// Setter for [`accessibilityRespondsToUserInteraction`][Self::accessibilityRespondsToUserInteraction].
         #[method(setAccessibilityRespondsToUserInteraction:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityRespondsToUserInteraction(
             &self,
             accessibility_responds_to_user_interaction: bool,
             mtm: MainThreadMarker,
         );
 
-        #[method_id(accessibilityUserInputLabels)]
+        #[method(accessibilityUserInputLabels)]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityUserInputLabels(
             &self,
@@ -340,13 +366,14 @@ extern_category!(
 
         /// Setter for [`accessibilityUserInputLabels`][Self::accessibilityUserInputLabels].
         #[method(setAccessibilityUserInputLabels:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityUserInputLabels(
             &self,
             accessibility_user_input_labels: Option<&NSArray<NSString>>,
             mtm: MainThreadMarker,
         );
 
-        #[method_id(accessibilityAttributedUserInputLabels)]
+        #[method(accessibilityAttributedUserInputLabels)]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityAttributedUserInputLabels(
             &self,
@@ -355,13 +382,14 @@ extern_category!(
 
         /// Setter for [`accessibilityAttributedUserInputLabels`][Self::accessibilityAttributedUserInputLabels].
         #[method(setAccessibilityAttributedUserInputLabels:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityAttributedUserInputLabels(
             &self,
             accessibility_attributed_user_input_labels: Option<&NSArray<NSAttributedString>>,
             mtm: MainThreadMarker,
         );
 
-        #[method_id(accessibilityHeaderElements)]
+        #[method(accessibilityHeaderElements)]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityHeaderElements(
             &self,
@@ -370,6 +398,7 @@ extern_category!(
 
         /// Setter for [`accessibilityHeaderElements`][Self::accessibilityHeaderElements].
         #[method(setAccessibilityHeaderElements:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityHeaderElements(
             &self,
             accessibility_header_elements: Option<&NSArray>,
@@ -377,7 +406,7 @@ extern_category!(
         );
 
         #[cfg(feature = "UIAccessibilityConstants")]
-        #[method_id(accessibilityTextualContext)]
+        #[method(accessibilityTextualContext)]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityTextualContext(
             &self,
@@ -387,6 +416,7 @@ extern_category!(
         #[cfg(feature = "UIAccessibilityConstants")]
         /// Setter for [`accessibilityTextualContext`][Self::accessibilityTextualContext].
         #[method(setAccessibilityTextualContext:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityTextualContext(
             &self,
             accessibility_textual_context: Option<&UIAccessibilityTextualContext>,
@@ -395,6 +425,7 @@ extern_category!(
 
         #[cfg(feature = "UIAccessibilityConstants")]
         #[method(accessibilityDirectTouchOptions)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityDirectTouchOptions(
             &self,
             mtm: MainThreadMarker,
@@ -403,6 +434,7 @@ extern_category!(
         #[cfg(feature = "UIAccessibilityConstants")]
         /// Setter for [`accessibilityDirectTouchOptions`][Self::accessibilityDirectTouchOptions].
         #[method(setAccessibilityDirectTouchOptions:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityDirectTouchOptions(
             &self,
             accessibility_direct_touch_options: UIAccessibilityDirectTouchOptions,
@@ -411,6 +443,7 @@ extern_category!(
 
         #[cfg(feature = "UIAccessibilityConstants")]
         #[method(accessibilityExpandedStatus)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityExpandedStatus(
             &self,
             mtm: MainThreadMarker,
@@ -419,6 +452,7 @@ extern_category!(
         #[cfg(feature = "UIAccessibilityConstants")]
         /// Setter for [`accessibilityExpandedStatus`][Self::accessibilityExpandedStatus].
         #[method(setAccessibilityExpandedStatus:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityExpandedStatus(
             &self,
             accessibility_expanded_status: UIAccessibilityExpandedStatus,
@@ -427,11 +461,13 @@ extern_category!(
 
         #[cfg(feature = "block2")]
         #[method(isAccessibilityElementBlock)]
+        #[unsafe(method_family = none)]
         unsafe fn isAccessibilityElementBlock(&self, mtm: MainThreadMarker) -> AXBoolReturnBlock;
 
         #[cfg(feature = "block2")]
         /// Setter for [`isAccessibilityElementBlock`][Self::isAccessibilityElementBlock].
         #[method(setIsAccessibilityElementBlock:)]
+        #[unsafe(method_family = none)]
         unsafe fn setIsAccessibilityElementBlock(
             &self,
             is_accessibility_element_block: AXBoolReturnBlock,
@@ -440,11 +476,13 @@ extern_category!(
 
         #[cfg(feature = "block2")]
         #[method(accessibilityLabelBlock)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityLabelBlock(&self, mtm: MainThreadMarker) -> AXStringReturnBlock;
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityLabelBlock`][Self::accessibilityLabelBlock].
         #[method(setAccessibilityLabelBlock:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityLabelBlock(
             &self,
             accessibility_label_block: AXStringReturnBlock,
@@ -453,11 +491,13 @@ extern_category!(
 
         #[cfg(feature = "block2")]
         #[method(accessibilityValueBlock)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityValueBlock(&self, mtm: MainThreadMarker) -> AXStringReturnBlock;
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityValueBlock`][Self::accessibilityValueBlock].
         #[method(setAccessibilityValueBlock:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityValueBlock(
             &self,
             accessibility_value_block: AXStringReturnBlock,
@@ -466,11 +506,13 @@ extern_category!(
 
         #[cfg(feature = "block2")]
         #[method(accessibilityHintBlock)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityHintBlock(&self, mtm: MainThreadMarker) -> AXStringReturnBlock;
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityHintBlock`][Self::accessibilityHintBlock].
         #[method(setAccessibilityHintBlock:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityHintBlock(
             &self,
             accessibility_hint_block: AXStringReturnBlock,
@@ -479,11 +521,13 @@ extern_category!(
 
         #[cfg(all(feature = "UIAccessibilityConstants", feature = "block2"))]
         #[method(accessibilityTraitsBlock)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityTraitsBlock(&self, mtm: MainThreadMarker) -> AXTraitsReturnBlock;
 
         #[cfg(all(feature = "UIAccessibilityConstants", feature = "block2"))]
         /// Setter for [`accessibilityTraitsBlock`][Self::accessibilityTraitsBlock].
         #[method(setAccessibilityTraitsBlock:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityTraitsBlock(
             &self,
             accessibility_traits_block: AXTraitsReturnBlock,
@@ -492,12 +536,14 @@ extern_category!(
 
         #[cfg(feature = "block2")]
         #[method(accessibilityIdentifierBlock)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityIdentifierBlock(&self, mtm: MainThreadMarker)
             -> AXStringReturnBlock;
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityIdentifierBlock`][Self::accessibilityIdentifierBlock].
         #[method(setAccessibilityIdentifierBlock:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityIdentifierBlock(
             &self,
             accessibility_identifier_block: AXStringReturnBlock,
@@ -506,6 +552,7 @@ extern_category!(
 
         #[cfg(feature = "block2")]
         #[method(accessibilityHeaderElementsBlock)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityHeaderElementsBlock(
             &self,
             mtm: MainThreadMarker,
@@ -514,6 +561,7 @@ extern_category!(
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityHeaderElementsBlock`][Self::accessibilityHeaderElementsBlock].
         #[method(setAccessibilityHeaderElementsBlock:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityHeaderElementsBlock(
             &self,
             accessibility_header_elements_block: AXArrayReturnBlock,
@@ -522,6 +570,7 @@ extern_category!(
 
         #[cfg(feature = "block2")]
         #[method(accessibilityAttributedLabelBlock)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityAttributedLabelBlock(
             &self,
             mtm: MainThreadMarker,
@@ -530,6 +579,7 @@ extern_category!(
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityAttributedLabelBlock`][Self::accessibilityAttributedLabelBlock].
         #[method(setAccessibilityAttributedLabelBlock:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityAttributedLabelBlock(
             &self,
             accessibility_attributed_label_block: AXAttributedStringReturnBlock,
@@ -538,6 +588,7 @@ extern_category!(
 
         #[cfg(feature = "block2")]
         #[method(accessibilityAttributedHintBlock)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityAttributedHintBlock(
             &self,
             mtm: MainThreadMarker,
@@ -546,6 +597,7 @@ extern_category!(
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityAttributedHintBlock`][Self::accessibilityAttributedHintBlock].
         #[method(setAccessibilityAttributedHintBlock:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityAttributedHintBlock(
             &self,
             accessibility_attributed_hint_block: AXAttributedStringReturnBlock,
@@ -554,11 +606,13 @@ extern_category!(
 
         #[cfg(feature = "block2")]
         #[method(accessibilityLanguageBlock)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityLanguageBlock(&self, mtm: MainThreadMarker) -> AXStringReturnBlock;
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityLanguageBlock`][Self::accessibilityLanguageBlock].
         #[method(setAccessibilityLanguageBlock:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityLanguageBlock(
             &self,
             accessibility_language_block: AXStringReturnBlock,
@@ -567,6 +621,7 @@ extern_category!(
 
         #[cfg(all(feature = "UIAccessibilityConstants", feature = "block2"))]
         #[method(accessibilityTextualContextBlock)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityTextualContextBlock(
             &self,
             mtm: MainThreadMarker,
@@ -575,6 +630,7 @@ extern_category!(
         #[cfg(all(feature = "UIAccessibilityConstants", feature = "block2"))]
         /// Setter for [`accessibilityTextualContextBlock`][Self::accessibilityTextualContextBlock].
         #[method(setAccessibilityTextualContextBlock:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityTextualContextBlock(
             &self,
             accessibility_textual_context_block: AXTextualContextReturnBlock,
@@ -583,6 +639,7 @@ extern_category!(
 
         #[cfg(feature = "block2")]
         #[method(accessibilityUserInputLabelsBlock)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityUserInputLabelsBlock(
             &self,
             mtm: MainThreadMarker,
@@ -591,6 +648,7 @@ extern_category!(
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityUserInputLabelsBlock`][Self::accessibilityUserInputLabelsBlock].
         #[method(setAccessibilityUserInputLabelsBlock:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityUserInputLabelsBlock(
             &self,
             accessibility_user_input_labels_block: AXStringArrayReturnBlock,
@@ -599,6 +657,7 @@ extern_category!(
 
         #[cfg(feature = "block2")]
         #[method(accessibilityAttributedUserInputLabelsBlock)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityAttributedUserInputLabelsBlock(
             &self,
             mtm: MainThreadMarker,
@@ -607,6 +666,7 @@ extern_category!(
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityAttributedUserInputLabelsBlock`][Self::accessibilityAttributedUserInputLabelsBlock].
         #[method(setAccessibilityAttributedUserInputLabelsBlock:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityAttributedUserInputLabelsBlock(
             &self,
             accessibility_attributed_user_input_labels_block: AXAttributedStringArrayReturnBlock,
@@ -615,6 +675,7 @@ extern_category!(
 
         #[cfg(feature = "block2")]
         #[method(accessibilityAttributedValueBlock)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityAttributedValueBlock(
             &self,
             mtm: MainThreadMarker,
@@ -623,6 +684,7 @@ extern_category!(
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityAttributedValueBlock`][Self::accessibilityAttributedValueBlock].
         #[method(setAccessibilityAttributedValueBlock:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityAttributedValueBlock(
             &self,
             accessibility_attributed_value_block: AXAttributedStringReturnBlock,
@@ -631,6 +693,7 @@ extern_category!(
 
         #[cfg(feature = "block2")]
         #[method(accessibilityElementsHiddenBlock)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityElementsHiddenBlock(
             &self,
             mtm: MainThreadMarker,
@@ -639,6 +702,7 @@ extern_category!(
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityElementsHiddenBlock`][Self::accessibilityElementsHiddenBlock].
         #[method(setAccessibilityElementsHiddenBlock:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityElementsHiddenBlock(
             &self,
             accessibility_elements_hidden_block: AXBoolReturnBlock,
@@ -647,6 +711,7 @@ extern_category!(
 
         #[cfg(feature = "block2")]
         #[method(accessibilityRespondsToUserInteractionBlock)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityRespondsToUserInteractionBlock(
             &self,
             mtm: MainThreadMarker,
@@ -655,6 +720,7 @@ extern_category!(
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityRespondsToUserInteractionBlock`][Self::accessibilityRespondsToUserInteractionBlock].
         #[method(setAccessibilityRespondsToUserInteractionBlock:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityRespondsToUserInteractionBlock(
             &self,
             accessibility_responds_to_user_interaction_block: AXBoolReturnBlock,
@@ -663,11 +729,13 @@ extern_category!(
 
         #[cfg(feature = "block2")]
         #[method(accessibilityViewIsModalBlock)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityViewIsModalBlock(&self, mtm: MainThreadMarker) -> AXBoolReturnBlock;
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityViewIsModalBlock`][Self::accessibilityViewIsModalBlock].
         #[method(setAccessibilityViewIsModalBlock:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityViewIsModalBlock(
             &self,
             accessibility_view_is_modal_block: AXBoolReturnBlock,
@@ -676,6 +744,7 @@ extern_category!(
 
         #[cfg(feature = "block2")]
         #[method(accessibilityShouldGroupAccessibilityChildrenBlock)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityShouldGroupAccessibilityChildrenBlock(
             &self,
             mtm: MainThreadMarker,
@@ -684,6 +753,7 @@ extern_category!(
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityShouldGroupAccessibilityChildrenBlock`][Self::accessibilityShouldGroupAccessibilityChildrenBlock].
         #[method(setAccessibilityShouldGroupAccessibilityChildrenBlock:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityShouldGroupAccessibilityChildrenBlock(
             &self,
             accessibility_should_group_accessibility_children_block: AXBoolReturnBlock,
@@ -692,6 +762,7 @@ extern_category!(
 
         #[cfg(all(feature = "UIAccessibilityConstants", feature = "block2"))]
         #[method(accessibilityExpandedStatusBlock)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityExpandedStatusBlock(
             &self,
             mtm: MainThreadMarker,
@@ -700,6 +771,7 @@ extern_category!(
         #[cfg(all(feature = "UIAccessibilityConstants", feature = "block2"))]
         /// Setter for [`accessibilityExpandedStatusBlock`][Self::accessibilityExpandedStatusBlock].
         #[method(setAccessibilityExpandedStatusBlock:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityExpandedStatusBlock(
             &self,
             accessibility_expanded_status_block: Option<
@@ -710,11 +782,13 @@ extern_category!(
 
         #[cfg(feature = "block2")]
         #[method(accessibilityElementsBlock)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityElementsBlock(&self, mtm: MainThreadMarker) -> AXArrayReturnBlock;
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityElementsBlock`][Self::accessibilityElementsBlock].
         #[method(setAccessibilityElementsBlock:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityElementsBlock(
             &self,
             accessibility_elements_block: AXArrayReturnBlock,
@@ -723,11 +797,13 @@ extern_category!(
 
         #[cfg(feature = "block2")]
         #[method(automationElementsBlock)]
+        #[unsafe(method_family = none)]
         unsafe fn automationElementsBlock(&self, mtm: MainThreadMarker) -> AXArrayReturnBlock;
 
         #[cfg(feature = "block2")]
         /// Setter for [`automationElementsBlock`][Self::automationElementsBlock].
         #[method(setAutomationElementsBlock:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAutomationElementsBlock(
             &self,
             automation_elements_block: AXArrayReturnBlock,
@@ -736,6 +812,7 @@ extern_category!(
 
         #[cfg(all(feature = "UIAccessibilityConstants", feature = "block2"))]
         #[method(accessibilityContainerTypeBlock)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityContainerTypeBlock(
             &self,
             mtm: MainThreadMarker,
@@ -744,6 +821,7 @@ extern_category!(
         #[cfg(all(feature = "UIAccessibilityConstants", feature = "block2"))]
         /// Setter for [`accessibilityContainerTypeBlock`][Self::accessibilityContainerTypeBlock].
         #[method(setAccessibilityContainerTypeBlock:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityContainerTypeBlock(
             &self,
             accessibility_container_type_block: AXContainerTypeReturnBlock,
@@ -752,6 +830,7 @@ extern_category!(
 
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
         #[method(accessibilityActivationPointBlock)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityActivationPointBlock(
             &self,
             mtm: MainThreadMarker,
@@ -760,6 +839,7 @@ extern_category!(
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
         /// Setter for [`accessibilityActivationPointBlock`][Self::accessibilityActivationPointBlock].
         #[method(setAccessibilityActivationPointBlock:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityActivationPointBlock(
             &self,
             accessibility_activation_point_block: AXPointReturnBlock,
@@ -768,11 +848,13 @@ extern_category!(
 
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
         #[method(accessibilityFrameBlock)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityFrameBlock(&self, mtm: MainThreadMarker) -> AXRectReturnBlock;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
         /// Setter for [`accessibilityFrameBlock`][Self::accessibilityFrameBlock].
         #[method(setAccessibilityFrameBlock:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityFrameBlock(
             &self,
             accessibility_frame_block: AXRectReturnBlock,
@@ -781,6 +863,7 @@ extern_category!(
 
         #[cfg(all(feature = "UIAccessibilityConstants", feature = "block2"))]
         #[method(accessibilityNavigationStyleBlock)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityNavigationStyleBlock(
             &self,
             mtm: MainThreadMarker,
@@ -789,6 +872,7 @@ extern_category!(
         #[cfg(all(feature = "UIAccessibilityConstants", feature = "block2"))]
         /// Setter for [`accessibilityNavigationStyleBlock`][Self::accessibilityNavigationStyleBlock].
         #[method(setAccessibilityNavigationStyleBlock:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityNavigationStyleBlock(
             &self,
             accessibility_navigation_style_block: AXNavigationStyleReturnBlock,
@@ -797,11 +881,13 @@ extern_category!(
 
         #[cfg(all(feature = "UIBezierPath", feature = "block2"))]
         #[method(accessibilityPathBlock)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityPathBlock(&self, mtm: MainThreadMarker) -> AXPathReturnBlock;
 
         #[cfg(all(feature = "UIBezierPath", feature = "block2"))]
         /// Setter for [`accessibilityPathBlock`][Self::accessibilityPathBlock].
         #[method(setAccessibilityPathBlock:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityPathBlock(
             &self,
             accessibility_path_block: AXPathReturnBlock,
@@ -810,11 +896,13 @@ extern_category!(
 
         #[cfg(feature = "block2")]
         #[method(accessibilityActivateBlock)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityActivateBlock(&self, mtm: MainThreadMarker) -> AXBoolReturnBlock;
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityActivateBlock`][Self::accessibilityActivateBlock].
         #[method(setAccessibilityActivateBlock:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityActivateBlock(
             &self,
             accessibility_activate_block: AXBoolReturnBlock,
@@ -823,11 +911,13 @@ extern_category!(
 
         #[cfg(feature = "block2")]
         #[method(accessibilityIncrementBlock)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityIncrementBlock(&self, mtm: MainThreadMarker) -> AXVoidReturnBlock;
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityIncrementBlock`][Self::accessibilityIncrementBlock].
         #[method(setAccessibilityIncrementBlock:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityIncrementBlock(
             &self,
             accessibility_increment_block: AXVoidReturnBlock,
@@ -836,11 +926,13 @@ extern_category!(
 
         #[cfg(feature = "block2")]
         #[method(accessibilityDecrementBlock)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityDecrementBlock(&self, mtm: MainThreadMarker) -> AXVoidReturnBlock;
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityDecrementBlock`][Self::accessibilityDecrementBlock].
         #[method(setAccessibilityDecrementBlock:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityDecrementBlock(
             &self,
             accessibility_decrement_block: AXVoidReturnBlock,
@@ -849,6 +941,7 @@ extern_category!(
 
         #[cfg(feature = "block2")]
         #[method(accessibilityPerformEscapeBlock)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityPerformEscapeBlock(
             &self,
             mtm: MainThreadMarker,
@@ -857,6 +950,7 @@ extern_category!(
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityPerformEscapeBlock`][Self::accessibilityPerformEscapeBlock].
         #[method(setAccessibilityPerformEscapeBlock:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityPerformEscapeBlock(
             &self,
             accessibility_perform_escape_block: AXBoolReturnBlock,
@@ -865,11 +959,13 @@ extern_category!(
 
         #[cfg(feature = "block2")]
         #[method(accessibilityMagicTapBlock)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityMagicTapBlock(&self, mtm: MainThreadMarker) -> AXBoolReturnBlock;
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityMagicTapBlock`][Self::accessibilityMagicTapBlock].
         #[method(setAccessibilityMagicTapBlock:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityMagicTapBlock(
             &self,
             accessibility_magic_tap_block: AXBoolReturnBlock,
@@ -878,6 +974,7 @@ extern_category!(
 
         #[cfg(all(feature = "UIAccessibilityCustomAction", feature = "block2"))]
         #[method(accessibilityCustomActionsBlock)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityCustomActionsBlock(
             &self,
             mtm: MainThreadMarker,
@@ -886,6 +983,7 @@ extern_category!(
         #[cfg(all(feature = "UIAccessibilityCustomAction", feature = "block2"))]
         /// Setter for [`accessibilityCustomActionsBlock`][Self::accessibilityCustomActionsBlock].
         #[method(setAccessibilityCustomActionsBlock:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityCustomActionsBlock(
             &self,
             accessibility_custom_actions_block: AXCustomActionsReturnBlock,
@@ -915,16 +1013,19 @@ extern_category!(
     #[doc(alias = "UIAccessibilityFocus")]
     pub unsafe trait NSObjectUIAccessibilityFocus {
         #[method(accessibilityElementDidBecomeFocused)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityElementDidBecomeFocused(&self, mtm: MainThreadMarker);
 
         #[method(accessibilityElementDidLoseFocus)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityElementDidLoseFocus(&self, mtm: MainThreadMarker);
 
         #[method(accessibilityElementIsFocused)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityElementIsFocused(&self, mtm: MainThreadMarker) -> bool;
 
         #[cfg(feature = "UIAccessibilityConstants")]
-        #[method_id(accessibilityAssistiveTechnologyFocusedIdentifiers)]
+        #[method(accessibilityAssistiveTechnologyFocusedIdentifiers)]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityAssistiveTechnologyFocusedIdentifiers(
             &self,
@@ -968,24 +1069,30 @@ extern_category!(
     #[doc(alias = "UIAccessibilityAction")]
     pub unsafe trait NSObjectUIAccessibilityAction {
         #[method(accessibilityActivate)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityActivate(&self, mtm: MainThreadMarker) -> bool;
 
         #[method(accessibilityIncrement)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityIncrement(&self, mtm: MainThreadMarker);
 
         #[method(accessibilityDecrement)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityDecrement(&self, mtm: MainThreadMarker);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(accessibilityZoomInAtPoint:)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityZoomInAtPoint(&self, point: CGPoint, mtm: MainThreadMarker) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(accessibilityZoomOutAtPoint:)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityZoomOutAtPoint(&self, point: CGPoint, mtm: MainThreadMarker)
             -> bool;
 
         #[method(accessibilityScroll:)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityScroll(
             &self,
             direction: UIAccessibilityScrollDirection,
@@ -993,13 +1100,15 @@ extern_category!(
         ) -> bool;
 
         #[method(accessibilityPerformEscape)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityPerformEscape(&self, mtm: MainThreadMarker) -> bool;
 
         #[method(accessibilityPerformMagicTap)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityPerformMagicTap(&self, mtm: MainThreadMarker) -> bool;
 
         #[cfg(feature = "UIAccessibilityCustomAction")]
-        #[method_id(accessibilityCustomActions)]
+        #[method(accessibilityCustomActions)]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityCustomActions(
             &self,
@@ -1009,6 +1118,7 @@ extern_category!(
         #[cfg(feature = "UIAccessibilityCustomAction")]
         /// Setter for [`accessibilityCustomActions`][Self::accessibilityCustomActions].
         #[method(setAccessibilityCustomActions:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityCustomActions(
             &self,
             accessibility_custom_actions: Option<&NSArray<UIAccessibilityCustomAction>>,
@@ -1024,9 +1134,10 @@ extern_protocol!(
     pub unsafe trait UIAccessibilityReadingContent: MainThreadOnly {
         #[cfg(feature = "objc2-core-foundation")]
         #[method(accessibilityLineNumberForPoint:)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityLineNumberForPoint(&self, point: CGPoint) -> NSInteger;
 
-        #[method_id(accessibilityContentForLineNumber:)]
+        #[method(accessibilityContentForLineNumber:)]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityContentForLineNumber(
             &self,
@@ -1035,14 +1146,15 @@ extern_protocol!(
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(accessibilityFrameForLineNumber:)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityFrameForLineNumber(&self, line_number: NSInteger) -> CGRect;
 
-        #[method_id(accessibilityPageContent)]
+        #[method(accessibilityPageContent)]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityPageContent(&self) -> Option<Retained<NSString>>;
 
         #[optional]
-        #[method_id(accessibilityAttributedContentForLineNumber:)]
+        #[method(accessibilityAttributedContentForLineNumber:)]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityAttributedContentForLineNumber(
             &self,
@@ -1050,7 +1162,7 @@ extern_protocol!(
         ) -> Option<Retained<NSAttributedString>>;
 
         #[optional]
-        #[method_id(accessibilityAttributedPageContent)]
+        #[method(accessibilityAttributedPageContent)]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityAttributedPageContent(&self)
             -> Option<Retained<NSAttributedString>>;
@@ -1062,7 +1174,7 @@ extern_category!(
     #[doc(alias = "UIAccessibilityDragging")]
     pub unsafe trait NSObjectUIAccessibilityDragging {
         #[cfg(feature = "UIAccessibilityLocationDescriptor")]
-        #[method_id(accessibilityDragSourceDescriptors)]
+        #[method(accessibilityDragSourceDescriptors)]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityDragSourceDescriptors(
             &self,
@@ -1072,6 +1184,7 @@ extern_category!(
         #[cfg(feature = "UIAccessibilityLocationDescriptor")]
         /// Setter for [`accessibilityDragSourceDescriptors`][Self::accessibilityDragSourceDescriptors].
         #[method(setAccessibilityDragSourceDescriptors:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityDragSourceDescriptors(
             &self,
             accessibility_drag_source_descriptors: Option<
@@ -1081,7 +1194,7 @@ extern_category!(
         );
 
         #[cfg(feature = "UIAccessibilityLocationDescriptor")]
-        #[method_id(accessibilityDropPointDescriptors)]
+        #[method(accessibilityDropPointDescriptors)]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityDropPointDescriptors(
             &self,
@@ -1091,6 +1204,7 @@ extern_category!(
         #[cfg(feature = "UIAccessibilityLocationDescriptor")]
         /// Setter for [`accessibilityDropPointDescriptors`][Self::accessibilityDropPointDescriptors].
         #[method(setAccessibilityDropPointDescriptors:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityDropPointDescriptors(
             &self,
             accessibility_drop_point_descriptors: Option<
@@ -1108,7 +1222,7 @@ extern_category!(
     #[doc(alias = "UIAccessibilityHitTest")]
     pub unsafe trait NSObjectUIAccessibilityHitTest {
         #[cfg(all(feature = "UIEvent", feature = "objc2-core-foundation"))]
-        #[method_id(accessibilityHitTest:withEvent:)]
+        #[method(accessibilityHitTest:withEvent:)]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityHitTest_withEvent(
             &self,
@@ -1125,7 +1239,7 @@ extern_category!(
     /// Category "UIAccessibilityTextNavigation" on [`NSObject`].
     #[doc(alias = "UIAccessibilityTextNavigation")]
     pub unsafe trait NSObjectUIAccessibilityTextNavigation {
-        #[method_id(accessibilityPreviousTextNavigationElement)]
+        #[method(accessibilityPreviousTextNavigationElement)]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityPreviousTextNavigationElement(
             &self,
@@ -1134,13 +1248,14 @@ extern_category!(
 
         /// Setter for [`accessibilityPreviousTextNavigationElement`][Self::accessibilityPreviousTextNavigationElement].
         #[method(setAccessibilityPreviousTextNavigationElement:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityPreviousTextNavigationElement(
             &self,
             accessibility_previous_text_navigation_element: Option<&AnyObject>,
             mtm: MainThreadMarker,
         );
 
-        #[method_id(accessibilityNextTextNavigationElement)]
+        #[method(accessibilityNextTextNavigationElement)]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityNextTextNavigationElement(
             &self,
@@ -1149,6 +1264,7 @@ extern_category!(
 
         /// Setter for [`accessibilityNextTextNavigationElement`][Self::accessibilityNextTextNavigationElement].
         #[method(setAccessibilityNextTextNavigationElement:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityNextTextNavigationElement(
             &self,
             accessibility_next_text_navigation_element: Option<&AnyObject>,
@@ -1157,6 +1273,7 @@ extern_category!(
 
         #[cfg(feature = "block2")]
         #[method(accessibilityPreviousTextNavigationElementBlock)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityPreviousTextNavigationElementBlock(
             &self,
             mtm: MainThreadMarker,
@@ -1165,6 +1282,7 @@ extern_category!(
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityPreviousTextNavigationElementBlock`][Self::accessibilityPreviousTextNavigationElementBlock].
         #[method(setAccessibilityPreviousTextNavigationElementBlock:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityPreviousTextNavigationElementBlock(
             &self,
             accessibility_previous_text_navigation_element_block: AXObjectReturnBlock,
@@ -1173,6 +1291,7 @@ extern_category!(
 
         #[cfg(feature = "block2")]
         #[method(accessibilityNextTextNavigationElementBlock)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityNextTextNavigationElementBlock(
             &self,
             mtm: MainThreadMarker,
@@ -1181,6 +1300,7 @@ extern_category!(
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityNextTextNavigationElementBlock`][Self::accessibilityNextTextNavigationElementBlock].
         #[method(setAccessibilityNextTextNavigationElementBlock:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityNextTextNavigationElementBlock(
             &self,
             accessibility_next_text_navigation_element_block: AXObjectReturnBlock,
@@ -1196,7 +1316,7 @@ extern_category!(
     #[doc(alias = "UIAccessibilityTextOperations")]
     pub unsafe trait NSObjectUIAccessibilityTextOperations {
         #[cfg(all(feature = "UITextInput", feature = "UITextInputTraits"))]
-        #[method_id(accessibilityTextInputResponder)]
+        #[method(accessibilityTextInputResponder)]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityTextInputResponder(
             &self,
@@ -1207,6 +1327,7 @@ extern_category!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`accessibilityTextInputResponder`][Self::accessibilityTextInputResponder].
         #[method(setAccessibilityTextInputResponder:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityTextInputResponder(
             &self,
             accessibility_text_input_responder: Option<&ProtocolObject<dyn UITextInput>>,
@@ -1219,6 +1340,7 @@ extern_category!(
             feature = "block2"
         ))]
         #[method(accessibilityTextInputResponderBlock)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityTextInputResponderBlock(
             &self,
             mtm: MainThreadMarker,
@@ -1231,6 +1353,7 @@ extern_category!(
         ))]
         /// Setter for [`accessibilityTextInputResponderBlock`][Self::accessibilityTextInputResponderBlock].
         #[method(setAccessibilityTextInputResponderBlock:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityTextInputResponderBlock(
             &self,
             accessibility_text_input_responder_block: AXUITextInputReturnBlock,

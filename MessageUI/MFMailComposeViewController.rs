@@ -171,10 +171,11 @@ extern_methods!(
         /// </tt>
         /// .
         #[method(canSendMail)]
+        #[unsafe(method_family = none)]
         pub unsafe fn canSendMail(mtm: MainThreadMarker) -> bool;
 
         /// This property is the delegate for the MFMailComposeViewControllerDelegate method callbacks.
-        #[method_id(mailComposeDelegate)]
+        #[method(mailComposeDelegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn mailComposeDelegate(
             &self,
@@ -183,6 +184,7 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`mailComposeDelegate`][Self::mailComposeDelegate].
         #[method(setMailComposeDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMailComposeDelegate(
             &self,
             mail_compose_delegate: Option<&ProtocolObject<dyn MFMailComposeViewControllerDelegate>>,
@@ -198,6 +200,7 @@ extern_methods!(
         ///
         /// Parameter `subject`: A NSString specifying the message's Subject header.
         #[method(setSubject:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSubject(&self, subject: &NSString);
 
         /// This method sets the To header for the email message to the specified email addresses.
@@ -212,6 +215,7 @@ extern_methods!(
         ///
         /// Parameter `toRecipients`: A NSArray of NSString instances specifying the email addresses of recipients.
         #[method(setToRecipients:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setToRecipients(&self, to_recipients: Option<&NSArray<NSString>>);
 
         /// This method sets the CC header for the email message to the specified email addresses.
@@ -226,6 +230,7 @@ extern_methods!(
         ///
         /// Parameter `ccRecipients`: A NSArray of NSString instances specifying the email addresses of recipients.
         #[method(setCcRecipients:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCcRecipients(&self, cc_recipients: Option<&NSArray<NSString>>);
 
         /// This method sets the BCC header for the email message to the specified email addresses.
@@ -240,6 +245,7 @@ extern_methods!(
         ///
         /// Parameter `bccRecipients`: A NSArray of NSString instances specifying the email addresses of recipients.
         #[method(setBccRecipients:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBccRecipients(&self, bcc_recipients: Option<&NSArray<NSString>>);
 
         /// This method sets the body of the email message to the specified content.
@@ -251,6 +257,7 @@ extern_methods!(
         ///
         /// Parameter `isHTML`: A boolean value indicating if the body argument is to be interpreted as HTML content.
         #[method(setMessageBody:isHTML:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMessageBody_isHTML(&self, body: &NSString, is_html: bool);
 
         /// This method adds the specified attachment to the email message.
@@ -278,6 +285,7 @@ extern_methods!(
         /// </tt>
         /// .
         #[method(addAttachmentData:mimeType:fileName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addAttachmentData_mimeType_fileName(
             &self,
             attachment: &NSData,
@@ -293,6 +301,7 @@ extern_methods!(
         ///
         /// Parameter `emailAddress`: A NSString specifying the preferred email address used to send this message.
         #[method(setPreferredSendingEmailAddress:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreferredSendingEmailAddress(&self, email_address: &NSString);
     }
 );
@@ -301,7 +310,7 @@ extern_methods!(
     /// Methods declared on superclass `UINavigationController`
     #[cfg(feature = "objc2-ui-kit")]
     unsafe impl MFMailComposeViewController {
-        #[method_id(initWithNavigationBarClass:toolbarClass:)]
+        #[method(initWithNavigationBarClass:toolbarClass:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNavigationBarClass_toolbarClass(
             this: Allocated<Self>,
@@ -309,14 +318,14 @@ extern_methods!(
             toolbar_class: Option<&AnyClass>,
         ) -> Retained<Self>;
 
-        #[method_id(initWithRootViewController:)]
+        #[method(initWithRootViewController:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRootViewController(
             this: Allocated<Self>,
             root_view_controller: &UIViewController,
         ) -> Retained<Self>;
 
-        #[method_id(initWithNibName:bundle:)]
+        #[method(initWithNibName:bundle:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -324,7 +333,7 @@ extern_methods!(
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -337,11 +346,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2-ui-kit")]
     unsafe impl MFMailComposeViewController {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -374,6 +383,7 @@ extern_protocol!(
         /// result did not indicate failure.
         #[optional]
         #[method(mailComposeController:didFinishWithResult:error:)]
+        #[unsafe(method_family = none)]
         unsafe fn mailComposeController_didFinishWithResult_error(
             &self,
             controller: &MFMailComposeViewController,

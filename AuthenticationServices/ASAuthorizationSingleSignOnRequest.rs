@@ -57,12 +57,13 @@ extern_methods!(
     ))]
     unsafe impl ASAuthorizationSingleSignOnRequest {
         /// Parameters required by the specific Authorization Server which should be used by the selected Authorization Services extension for authorization.
-        #[method_id(authorizationOptions)]
+        #[method(authorizationOptions)]
         #[unsafe(method_family = none)]
         pub unsafe fn authorizationOptions(&self) -> Retained<NSArray<NSURLQueryItem>>;
 
         /// Setter for [`authorizationOptions`][Self::authorizationOptions].
         #[method(setAuthorizationOptions:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAuthorizationOptions(
             &self,
             authorization_options: &NSArray<NSURLQueryItem>,
@@ -74,10 +75,12 @@ extern_methods!(
         ///
         /// See: ASAuthorizationErrorNotInteractive if it attempts to display the authorization user interface.
         #[method(isUserInterfaceEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isUserInterfaceEnabled(&self) -> bool;
 
         /// Setter for [`isUserInterfaceEnabled`][Self::isUserInterfaceEnabled].
         #[method(setUserInterfaceEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUserInterfaceEnabled(&self, user_interface_enabled: bool);
     }
 );
@@ -89,11 +92,11 @@ extern_methods!(
         feature = "ASAuthorizationRequest"
     ))]
     unsafe impl ASAuthorizationSingleSignOnRequest {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

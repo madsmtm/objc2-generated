@@ -65,107 +65,119 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLElement {
         #[deprecated]
-        #[method_id(title)]
+        #[method(title)]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
         #[deprecated]
         #[method(setTitle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(lang)]
+        #[method(lang)]
         #[unsafe(method_family = none)]
         pub unsafe fn lang(&self) -> Retained<NSString>;
 
         /// Setter for [`lang`][Self::lang].
         #[deprecated]
         #[method(setLang:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLang(&self, lang: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(dir)]
+        #[method(dir)]
         #[unsafe(method_family = none)]
         pub unsafe fn dir(&self) -> Retained<NSString>;
 
         /// Setter for [`dir`][Self::dir].
         #[deprecated]
         #[method(setDir:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDir(&self, dir: Option<&NSString>);
 
         #[deprecated]
         #[method(tabIndex)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tabIndex(&self) -> c_int;
 
         /// Setter for [`tabIndex`][Self::tabIndex].
         #[deprecated]
         #[method(setTabIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTabIndex(&self, tab_index: c_int);
 
-        #[method_id(accessKey)]
+        #[method(accessKey)]
         #[unsafe(method_family = none)]
         pub unsafe fn accessKey(&self) -> Retained<NSString>;
 
         /// Setter for [`accessKey`][Self::accessKey].
         #[method(setAccessKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAccessKey(&self, access_key: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(innerText)]
+        #[method(innerText)]
         #[unsafe(method_family = none)]
         pub unsafe fn innerText(&self) -> Retained<NSString>;
 
         /// Setter for [`innerText`][Self::innerText].
         #[deprecated]
         #[method(setInnerText:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setInnerText(&self, inner_text: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(outerText)]
+        #[method(outerText)]
         #[unsafe(method_family = none)]
         pub unsafe fn outerText(&self) -> Retained<NSString>;
 
         /// Setter for [`outerText`][Self::outerText].
         #[deprecated]
         #[method(setOuterText:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setOuterText(&self, outer_text: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(contentEditable)]
+        #[method(contentEditable)]
         #[unsafe(method_family = none)]
         pub unsafe fn contentEditable(&self) -> Retained<NSString>;
 
         /// Setter for [`contentEditable`][Self::contentEditable].
         #[deprecated]
         #[method(setContentEditable:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setContentEditable(&self, content_editable: Option<&NSString>);
 
         #[deprecated]
         #[method(isContentEditable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isContentEditable(&self) -> bool;
 
         #[deprecated]
-        #[method_id(idName)]
+        #[method(idName)]
         #[unsafe(method_family = none)]
         pub unsafe fn idName(&self) -> Retained<NSString>;
 
         /// Setter for [`idName`][Self::idName].
         #[deprecated]
         #[method(setIdName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIdName(&self, id_name: Option<&NSString>);
 
         #[cfg(feature = "DOMHTMLCollection")]
         #[deprecated]
-        #[method_id(children)]
+        #[method(children)]
         #[unsafe(method_family = none)]
         pub unsafe fn children(&self) -> Option<Retained<DOMHTMLCollection>>;
 
-        #[method_id(titleDisplayString)]
+        #[method(titleDisplayString)]
         #[unsafe(method_family = none)]
         pub unsafe fn titleDisplayString(&self) -> Retained<NSString>;
 
         #[method(click)]
+        #[unsafe(method_family = none)]
         pub unsafe fn click(&self);
     }
 );
@@ -180,7 +192,7 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLElement {
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -195,7 +207,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLElement {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

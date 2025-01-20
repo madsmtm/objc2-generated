@@ -29,6 +29,7 @@ extern_methods!(
         ///
         /// Calling this method will eventually dismiss the associated view controller.
         #[method(completeRequestWithSelectedCredential:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn completeRequestWithSelectedCredential_completionHandler(
             &self,
             credential: &ASPasswordCredential,
@@ -46,6 +47,7 @@ extern_methods!(
         ///
         /// Calling this method will eventually dismiss the associated view controller.
         #[method(completeAssertionRequestWithSelectedPasskeyCredential:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn completeAssertionRequestWithSelectedPasskeyCredential_completionHandler(
             &self,
             credential: &ASPasskeyAssertionCredential,
@@ -63,6 +65,7 @@ extern_methods!(
         ///
         /// Calling this method will eventually dismiss the associated view controller.
         #[method(completeRegistrationRequestWithSelectedPasskeyCredential:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn completeRegistrationRequestWithSelectedPasskeyCredential_completionHandler(
             &self,
             credential: &ASPasskeyRegistrationCredential,
@@ -80,6 +83,7 @@ extern_methods!(
         ///
         /// Calling this method will eventually dismiss the associated view controller.
         #[method(completeOneTimeCodeRequestWithSelectedCredential:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn completeOneTimeCodeRequestWithSelectedCredential_completionHandler(
             &self,
             credential: &ASOneTimeCodeCredential,
@@ -90,10 +94,12 @@ extern_methods!(
         ///
         /// Calling this method will eventually dismiss the associated view controller.
         #[method(completeExtensionConfigurationRequest)]
+        #[unsafe(method_family = none)]
         pub unsafe fn completeExtensionConfigurationRequest(&self);
 
         #[cfg(feature = "block2")]
         #[method(completeRequestReturningItems:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn completeRequestReturningItems_completionHandler(
             &self,
             items: Option<&NSArray>,
@@ -106,6 +112,7 @@ extern_methods!(
         ///
         /// The extension should call this method when the user cancels the action or a failure occurs.
         #[method(cancelRequestWithError:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cancelRequestWithError(&self, error: &NSError);
     }
 );
@@ -113,11 +120,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASCredentialProviderExtensionContext {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -27,6 +27,7 @@ extern_methods!(
         /// from the screen and will approach 0 as the device gets closer to the screen. Will always return 0 for devices that
         /// don't support z offset.
         #[method(zOffset)]
+        #[unsafe(method_family = none)]
         pub unsafe fn zOffset(&self) -> CGFloat;
 
         #[cfg(all(
@@ -37,6 +38,7 @@ extern_methods!(
         /// The azimuth angle of the current device in the specified view, or the gesture recognizer's window if nil. 0 is
         /// returned for devices that don't support azimuth.
         #[method(azimuthAngleInView:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn azimuthAngleInView(&self, view: Option<&UIView>) -> CGFloat;
 
         #[cfg(all(
@@ -47,15 +49,18 @@ extern_methods!(
         /// The azimuth unit vector of the current device in the specified view, or the gesture recognizer's window if nil.
         /// An empty vector is returned for devices that don't support azimuth.
         #[method(azimuthUnitVectorInView:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn azimuthUnitVectorInView(&self, view: Option<&UIView>) -> CGVector;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The altitude angle of the current device. 0 is returned for devices that don't support altitude.
         #[method(altitudeAngle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn altitudeAngle(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(rollAngle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rollAngle(&self) -> CGFloat;
     }
 );
@@ -64,7 +69,7 @@ extern_methods!(
     /// Methods declared on superclass `UIGestureRecognizer`
     #[cfg(feature = "UIGestureRecognizer")]
     unsafe impl UIHoverGestureRecognizer {
-        #[method_id(initWithTarget:action:)]
+        #[method(initWithTarget:action:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTarget_action(
             this: Allocated<Self>,
@@ -72,11 +77,11 @@ extern_methods!(
             action: Option<Sel>,
         ) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -89,7 +94,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UIGestureRecognizer")]
     unsafe impl UIHoverGestureRecognizer {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

@@ -21,24 +21,25 @@ unsafe impl NSObjectProtocol for PHAssetCollectionChangeRequest {}
 extern_methods!(
     #[cfg(feature = "PHChangeRequest")]
     unsafe impl PHAssetCollectionChangeRequest {
-        #[method_id(creationRequestForAssetCollectionWithTitle:)]
+        #[method(creationRequestForAssetCollectionWithTitle:)]
         #[unsafe(method_family = none)]
         pub unsafe fn creationRequestForAssetCollectionWithTitle(
             title: &NSString,
         ) -> Retained<Self>;
 
         #[cfg(feature = "PHObject")]
-        #[method_id(placeholderForCreatedAssetCollection)]
+        #[method(placeholderForCreatedAssetCollection)]
         #[unsafe(method_family = none)]
         pub unsafe fn placeholderForCreatedAssetCollection(&self) -> Retained<PHObjectPlaceholder>;
 
         #[method(deleteAssetCollections:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn deleteAssetCollections(
             asset_collections: &ProtocolObject<dyn NSFastEnumeration>,
         );
 
         #[cfg(all(feature = "PHCollection", feature = "PHObject"))]
-        #[method_id(changeRequestForAssetCollection:)]
+        #[method(changeRequestForAssetCollection:)]
         #[unsafe(method_family = none)]
         pub unsafe fn changeRequestForAssetCollection(
             asset_collection: &PHAssetCollection,
@@ -50,25 +51,28 @@ extern_methods!(
             feature = "PHFetchResult",
             feature = "PHObject"
         ))]
-        #[method_id(changeRequestForAssetCollection:assets:)]
+        #[method(changeRequestForAssetCollection:assets:)]
         #[unsafe(method_family = none)]
         pub unsafe fn changeRequestForAssetCollection_assets(
             asset_collection: &PHAssetCollection,
             assets: Option<&PHFetchResult<PHAsset>>,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(title)]
+        #[method(title)]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
         #[method(addAssets:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addAssets(&self, assets: &ProtocolObject<dyn NSFastEnumeration>);
 
         #[method(insertAssets:atIndexes:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn insertAssets_atIndexes(
             &self,
             assets: &ProtocolObject<dyn NSFastEnumeration>,
@@ -76,12 +80,15 @@ extern_methods!(
         );
 
         #[method(removeAssets:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeAssets(&self, assets: &ProtocolObject<dyn NSFastEnumeration>);
 
         #[method(removeAssetsAtIndexes:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeAssetsAtIndexes(&self, indexes: &NSIndexSet);
 
         #[method(replaceAssetsAtIndexes:withAssets:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn replaceAssetsAtIndexes_withAssets(
             &self,
             indexes: &NSIndexSet,
@@ -89,6 +96,7 @@ extern_methods!(
         );
 
         #[method(moveAssetsAtIndexes:toIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn moveAssetsAtIndexes_toIndex(
             &self,
             from_indexes: &NSIndexSet,
@@ -101,11 +109,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "PHChangeRequest")]
     unsafe impl PHAssetCollectionChangeRequest {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

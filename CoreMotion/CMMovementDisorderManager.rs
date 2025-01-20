@@ -29,21 +29,23 @@ unsafe impl NSSecureCoding for CMDyskineticSymptomResult {}
 extern_methods!(
     unsafe impl CMDyskineticSymptomResult {
         /// The date and time representing the start of the result.
-        #[method_id(startDate)]
+        #[method(startDate)]
         #[unsafe(method_family = none)]
         pub unsafe fn startDate(&self) -> Retained<NSDate>;
 
         /// The date and time representing the end of the result.
-        #[method_id(endDate)]
+        #[method(endDate)]
         #[unsafe(method_family = none)]
         pub unsafe fn endDate(&self) -> Retained<NSDate>;
 
         /// The percentage of time dyskinetic symptoms were unlikely for the result.
         #[method(percentUnlikely)]
+        #[unsafe(method_family = none)]
         pub unsafe fn percentUnlikely(&self) -> c_float;
 
         /// The percentage of time dyskinetic symptoms were likely for the result.
         #[method(percentLikely)]
+        #[unsafe(method_family = none)]
         pub unsafe fn percentLikely(&self) -> c_float;
     }
 );
@@ -51,11 +53,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CMDyskineticSymptomResult {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -86,12 +88,12 @@ unsafe impl NSSecureCoding for CMTremorResult {}
 extern_methods!(
     unsafe impl CMTremorResult {
         /// The date and time representing the start of the result.
-        #[method_id(startDate)]
+        #[method(startDate)]
         #[unsafe(method_family = none)]
         pub unsafe fn startDate(&self) -> Retained<NSDate>;
 
         /// The date and time representing the end of the result.
-        #[method_id(endDate)]
+        #[method(endDate)]
         #[unsafe(method_family = none)]
         pub unsafe fn endDate(&self) -> Retained<NSDate>;
 
@@ -100,26 +102,32 @@ extern_methods!(
         /// 1. the subject is moving and therefore a resting tremor cannot be assessed, and
         /// 2. the signal strength is too low to measure tremor confidently.
         #[method(percentUnknown)]
+        #[unsafe(method_family = none)]
         pub unsafe fn percentUnknown(&self) -> c_float;
 
         /// The percentage of time no tremor was detected for the result.
         #[method(percentNone)]
+        #[unsafe(method_family = none)]
         pub unsafe fn percentNone(&self) -> c_float;
 
         /// The percentage of time tremor was likely and displacement amplitude was slight for the result.
         #[method(percentSlight)]
+        #[unsafe(method_family = none)]
         pub unsafe fn percentSlight(&self) -> c_float;
 
         /// The percentage of time tremor was likely and displacement amplitude was mild for the result.
         #[method(percentMild)]
+        #[unsafe(method_family = none)]
         pub unsafe fn percentMild(&self) -> c_float;
 
         /// The percentage of time tremor was likely and displacement amplitude was moderate for the result.
         #[method(percentModerate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn percentModerate(&self) -> c_float;
 
         /// The percentage of time tremor was likely and displacement amplitude was strong for the result.
         #[method(percentStrong)]
+        #[unsafe(method_family = none)]
         pub unsafe fn percentStrong(&self) -> c_float;
     }
 );
@@ -127,11 +135,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CMTremorResult {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -168,13 +176,14 @@ extern_methods!(
         ///
         /// Returns: Returns the availability of movement disorder results on this platform.
         #[method(isAvailable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isAvailable() -> bool;
 
         /// What version of movement disorder software is available on this platform.
         ///
         /// Returns: Returns the version number of the movement disorder software available on this platform, nil if not.
         /// Format follows Major.Minor.Fix format (e.g. 1.0.0)
-        #[method_id(version)]
+        #[method(version)]
         #[unsafe(method_family = none)]
         pub unsafe fn version() -> Option<Retained<NSString>>;
 
@@ -183,6 +192,7 @@ extern_methods!(
         ///
         /// Returns: Returns the authorization status of movement disorder results for this user.
         #[method(authorizationStatus)]
+        #[unsafe(method_family = none)]
         pub unsafe fn authorizationStatus() -> CMAuthorizationStatus;
 
         /// Enables the calculation and persistence of result values for the specified duration in seconds.
@@ -191,6 +201,7 @@ extern_methods!(
         ///
         /// Warning: Please note that the maximum duration allowed is seven (7) days.
         #[method(monitorKinesiasForDuration:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn monitorKinesiasForDuration(&self, duration: NSTimeInterval);
 
         #[cfg(feature = "block2")]
@@ -204,6 +215,7 @@ extern_methods!(
         ///
         /// Warning: Please note that movement disorder results are available for a maximum of seven (7) days.
         #[method(queryDyskineticSymptomFromDate:toDate:withHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn queryDyskineticSymptomFromDate_toDate_withHandler(
             &self,
             from_date: &NSDate,
@@ -222,6 +234,7 @@ extern_methods!(
         ///
         /// Warning: Please note that movement disorder results are available for a maximum of seven (7) days.
         #[method(queryTremorFromDate:toDate:withHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn queryTremorFromDate_toDate_withHandler(
             &self,
             from_date: &NSDate,
@@ -232,14 +245,14 @@ extern_methods!(
         /// The last time that data has been processed; queries for periods before this point will return their final results. Data after this point may become available later if monitoring is continuing.
         ///
         /// Warning: Returns nil if no data has been processed or monitoring was not enabled.
-        #[method_id(lastProcessedDate)]
+        #[method(lastProcessedDate)]
         #[unsafe(method_family = none)]
         pub unsafe fn lastProcessedDate(&self) -> Option<Retained<NSDate>>;
 
         /// The expiration date for the most recent monitoring period.
         ///
         /// Warning: Returns nil if no previous monitoring period is available.
-        #[method_id(monitorKinesiasExpirationDate)]
+        #[method(monitorKinesiasExpirationDate)]
         #[unsafe(method_family = none)]
         pub unsafe fn monitorKinesiasExpirationDate(&self) -> Option<Retained<NSDate>>;
     }
@@ -248,11 +261,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CMMovementDisorderManager {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

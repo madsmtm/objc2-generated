@@ -76,29 +76,30 @@ unsafe impl UITraitEnvironment for UIVisualEffectView {}
 extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIVisualEffectView {
-        #[method_id(contentView)]
+        #[method(contentView)]
         #[unsafe(method_family = none)]
         pub unsafe fn contentView(&self) -> Retained<UIView>;
 
         #[cfg(feature = "UIVisualEffect")]
-        #[method_id(effect)]
+        #[method(effect)]
         #[unsafe(method_family = none)]
         pub unsafe fn effect(&self) -> Option<Retained<UIVisualEffect>>;
 
         #[cfg(feature = "UIVisualEffect")]
         /// Setter for [`effect`][Self::effect].
         #[method(setEffect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setEffect(&self, effect: Option<&UIVisualEffect>);
 
         #[cfg(feature = "UIVisualEffect")]
-        #[method_id(initWithEffect:)]
+        #[method(initWithEffect:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithEffect(
             this: Allocated<Self>,
             effect: Option<&UIVisualEffect>,
         ) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -112,7 +113,7 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIVisualEffectView {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(initWithFrame:)]
+        #[method(initWithFrame:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
     }
@@ -122,11 +123,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIVisualEffectView {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

@@ -15,7 +15,7 @@ extern_category!(
         #[cfg(feature = "MPNowPlayingInfoLanguageOption")]
         /// Will create a language option from the AVMediaSelectionOption
         /// Returns nil if the AVMediaSelectionOption does not represent an Audible or Legible selection option.
-        #[method_id(makeNowPlayingInfoLanguageOption)]
+        #[method(makeNowPlayingInfoLanguageOption)]
         #[unsafe(method_family = none)]
         unsafe fn makeNowPlayingInfoLanguageOption(
             &self,
@@ -37,7 +37,7 @@ extern_category!(
         /// Will create a language option group from the AVMediaSelectionGroup
         /// Any AVMediaSelectionOptions in the AVMediaSelectionGroup not representing
         /// Audible or Legible selection options will be ignored.
-        #[method_id(makeNowPlayingInfoLanguageOptionGroup)]
+        #[method(makeNowPlayingInfoLanguageOptionGroup)]
         #[unsafe(method_family = none)]
         unsafe fn makeNowPlayingInfoLanguageOptionGroup(
             &self,

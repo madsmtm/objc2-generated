@@ -57,28 +57,35 @@ extern_methods!(
     #[cfg(feature = "CMLogItem")]
     unsafe impl CMMotionActivity {
         #[method(confidence)]
+        #[unsafe(method_family = none)]
         pub unsafe fn confidence(&self) -> CMMotionActivityConfidence;
 
-        #[method_id(startDate)]
+        #[method(startDate)]
         #[unsafe(method_family = none)]
         pub unsafe fn startDate(&self) -> Retained<NSDate>;
 
         #[method(unknown)]
+        #[unsafe(method_family = none)]
         pub unsafe fn unknown(&self) -> bool;
 
         #[method(stationary)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stationary(&self) -> bool;
 
         #[method(walking)]
+        #[unsafe(method_family = none)]
         pub unsafe fn walking(&self) -> bool;
 
         #[method(running)]
+        #[unsafe(method_family = none)]
         pub unsafe fn running(&self) -> bool;
 
         #[method(automotive)]
+        #[unsafe(method_family = none)]
         pub unsafe fn automotive(&self) -> bool;
 
         #[method(cycling)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cycling(&self) -> bool;
     }
 );
@@ -87,11 +94,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CMLogItem")]
     unsafe impl CMMotionActivity {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -47,19 +47,20 @@ extern_methods!(
         /// Returns an instance of AVPlayerLayer to display the visual output of the specified AVPlayer.
         ///
         /// Returns: An instance of AVPlayerLayer.
-        #[method_id(playerLayerWithPlayer:)]
+        #[method(playerLayerWithPlayer:)]
         #[unsafe(method_family = none)]
         pub unsafe fn playerLayerWithPlayer(player: Option<&AVPlayer>) -> Retained<AVPlayerLayer>;
 
         #[cfg(feature = "AVPlayer")]
         /// Indicates the instance of AVPlayer for which the AVPlayerLayer displays visual output
-        #[method_id(player)]
+        #[method(player)]
         #[unsafe(method_family = none)]
         pub unsafe fn player(&self, mtm: MainThreadMarker) -> Option<Retained<AVPlayer>>;
 
         #[cfg(feature = "AVPlayer")]
         /// Setter for [`player`][Self::player].
         #[method(setPlayer:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPlayer(&self, player: Option<&AVPlayer>);
 
         #[cfg(feature = "AVAnimation")]
@@ -70,13 +71,14 @@ extern_methods!(
         /// See
         /// <AVFoundation
         /// /AVAnimation.h> for a description of these options.
-        #[method_id(videoGravity)]
+        #[method(videoGravity)]
         #[unsafe(method_family = none)]
         pub unsafe fn videoGravity(&self) -> Retained<AVLayerVideoGravity>;
 
         #[cfg(feature = "AVAnimation")]
         /// Setter for [`videoGravity`][Self::videoGravity].
         #[method(setVideoGravity:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setVideoGravity(&self, video_gravity: &AVLayerVideoGravity);
 
         /// Boolean indicating that the first video frame has been made ready for display for the current item of the associated AVPlayer.
@@ -86,11 +88,13 @@ extern_methods!(
         /// This property remains NO for an AVPlayer currentItem whose AVAsset contains no enabled video tracks.
         /// This property is key-value observable.
         #[method(isReadyForDisplay)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isReadyForDisplay(&self) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The current size and position of the video image as displayed within the receiver's bounds.
         #[method(videoRect)]
+        #[unsafe(method_family = none)]
         pub unsafe fn videoRect(&self) -> CGRect;
 
         /// The client requirements for the visual output displayed in AVPlayerLayer during playback.
@@ -99,7 +103,7 @@ extern_methods!(
         /// <CoreVideo
         /// /CVPixelBuffer.h>
         /// This property is key-value observable.
-        #[method_id(pixelBufferAttributes)]
+        #[method(pixelBufferAttributes)]
         #[unsafe(method_family = none)]
         pub unsafe fn pixelBufferAttributes(
             &self,
@@ -107,6 +111,7 @@ extern_methods!(
 
         /// Setter for [`pixelBufferAttributes`][Self::pixelBufferAttributes].
         #[method(setPixelBufferAttributes:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPixelBufferAttributes(
             &self,
             pixel_buffer_attributes: Option<&NSDictionary<NSString, AnyObject>>,
@@ -118,7 +123,7 @@ extern_methods!(
         /// This will only return the current image while the media is paused, otherwise this will return nil. Clients must release the pixel buffer after use.
         ///
         /// Do not write to the returned CVPixelBuffer's attachments or pixel data.
-        #[method_id(copyDisplayedPixelBuffer)]
+        #[method(copyDisplayedPixelBuffer)]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyDisplayedPixelBuffer(&self) -> Option<Retained<CVPixelBuffer>>;
     }
@@ -130,15 +135,15 @@ extern_methods!(
     #[cfg(not(target_os = "watchos"))]
     unsafe impl AVPlayerLayer {
         /// Layer creation and initialization. *
-        #[method_id(layer)]
+        #[method(layer)]
         #[unsafe(method_family = none)]
         pub unsafe fn layer() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(initWithLayer:)]
+        #[method(initWithLayer:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
     }
@@ -149,7 +154,7 @@ extern_methods!(
     #[cfg(feature = "objc2-quartz-core")]
     #[cfg(not(target_os = "watchos"))]
     unsafe impl AVPlayerLayer {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -10,9 +10,11 @@ extern_category!(
     #[doc(alias = "NSNibAwaking")]
     pub unsafe trait NSObjectNSNibAwaking {
         #[method(awakeFromNib)]
+        #[unsafe(method_family = none)]
         unsafe fn awakeFromNib(&self);
 
         #[method(prepareForInterfaceBuilder)]
+        #[unsafe(method_family = none)]
         unsafe fn prepareForInterfaceBuilder(&self);
     }
 

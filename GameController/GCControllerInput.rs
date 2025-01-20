@@ -24,11 +24,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GCControllerInputState {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -63,16 +63,16 @@ extern_methods!(
         /// control remapping functionality, or if your app streams controller input
         /// to a remote device that implements control remapping functionality, you
         /// should access controller physical input through this interface.
-        #[method_id(unmappedInput)]
+        #[method(unmappedInput)]
         #[unsafe(method_family = none)]
         pub unsafe fn unmappedInput(&self) -> Option<Retained<GCControllerLiveInput>>;
 
-        #[method_id(capture)]
+        #[method(capture)]
         #[unsafe(method_family = none)]
         pub unsafe fn capture(&self) -> Retained<GCControllerInputState>;
 
         #[cfg(feature = "GCDevicePhysicalInputStateDiff")]
-        #[method_id(nextInputState)]
+        #[method(nextInputState)]
         #[unsafe(method_family = none)]
         pub unsafe fn nextInputState(&self) -> Option<Retained<GCControllerInputState>>;
     }
@@ -81,11 +81,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GCControllerLiveInput {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

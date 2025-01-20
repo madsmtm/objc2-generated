@@ -61,10 +61,12 @@ extern_methods!(
         /// can be used to control the starting points in the source and destination
         /// at kernel encode time (see encodeToCommandBuffer).
         #[method(sourceRows)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sourceRows(&self) -> NSUInteger;
 
         /// Setter for [`sourceRows`][Self::sourceRows].
         #[method(setSourceRows:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSourceRows(&self, source_rows: NSUInteger);
 
         /// The number of columns to consider from the source in the operation.
@@ -81,10 +83,12 @@ extern_methods!(
         /// can be used to control the starting points in the source and destination
         /// at kernel encode time (see encodeToCommandBuffer).
         #[method(sourceColumns)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sourceColumns(&self) -> NSUInteger;
 
         /// Setter for [`sourceColumns`][Self::sourceColumns].
         #[method(setSourceColumns:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSourceColumns(&self, source_columns: NSUInteger);
 
         /// Specifies a number that will be added to all the indices written to
@@ -115,10 +119,12 @@ extern_methods!(
         /// This property is modifiable and defaults to 0. If a different behavior
         /// is desired then this should be modified prior to encoding the kernel.
         #[method(indexOffset)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indexOffset(&self) -> NSUInteger;
 
         /// Setter for [`indexOffset`][Self::indexOffset].
         #[method(setIndexOffset:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIndexOffset(&self, index_offset: NSUInteger);
 
         /// The number of highest values (and their indices) to be found in each row
@@ -129,10 +135,12 @@ extern_methods!(
         /// parameters in encodeToCommandBuffer are large enough to accommodate the results of this
         /// operation, otherwise the results of the encode call are undefined.
         #[method(numberOfTopKValues)]
+        #[unsafe(method_family = none)]
         pub unsafe fn numberOfTopKValues(&self) -> NSUInteger;
 
         /// Setter for [`numberOfTopKValues`][Self::numberOfTopKValues].
         #[method(setNumberOfTopKValues:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setNumberOfTopKValues(&self, number_of_top_k_values: NSUInteger);
 
         /// Initialize an MPSMatrixFindTopK object on a device for a given size.
@@ -145,7 +153,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A valid MPSMatrixFindTopK object or nil, if failure.
-        #[method_id(initWithDevice:numberOfTopKValues:)]
+        #[method(initWithDevice:numberOfTopKValues:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_numberOfTopKValues(
             this: Allocated<Self>,
@@ -154,7 +162,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Use the above initialization method instead.
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -193,6 +201,7 @@ extern_methods!(
         /// The datatypes of the matrices inputMatrix and resultValueMatrix must match and be either
         /// MPSDataTypeFloat32 or MPSDataTypeFloat16.
         #[method(encodeToCommandBuffer:inputMatrix:resultIndexMatrix:resultValueMatrix:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_inputMatrix_resultIndexMatrix_resultValueMatrix(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -210,7 +219,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSMatrixFindTopK
         ///
         /// Returns: A new MPSMatrixFindTopK object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -230,7 +239,7 @@ extern_methods!(
         /// Returns: a pointer to a copy of this MPSKernel. This will fail, returning
         /// nil if the device is not supported. Devices must be
         /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
-        #[method_id(copyWithZone:device:)]
+        #[method(copyWithZone:device:)]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyWithZone_device(
             &self,
@@ -252,7 +261,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -265,11 +274,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixFindTopK {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

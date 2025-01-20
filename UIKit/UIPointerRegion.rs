@@ -29,9 +29,10 @@ extern_methods!(
     unsafe impl UIPointerRegion {
         #[cfg(feature = "objc2-core-foundation")]
         #[method(rect)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rect(&self) -> CGRect;
 
-        #[method_id(identifier)]
+        #[method(identifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Option<Retained<ProtocolObject<dyn NSObjectProtocol>>>;
 
@@ -39,11 +40,13 @@ extern_methods!(
         /// Axes along which this region latches when the primary mouse button is pressed.
         /// When set, the UIPointerStyle associated with this region will "lock in" and allow free-form movement along the specified axes.
         #[method(latchingAxes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn latchingAxes(&self) -> UIAxis;
 
         #[cfg(feature = "UIGeometry")]
         /// Setter for [`latchingAxes`][Self::latchingAxes].
         #[method(setLatchingAxes:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLatchingAxes(&self, latching_axes: UIAxis);
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -53,7 +56,7 @@ extern_methods!(
         /// Parameter `rect`: This region's rect. Must be in the pointer interaction's view's coordinate space.
         ///
         /// Parameter `identifier`: Optional identifier that may be used to identify this region in subsequent pointer interaction delegate calls.
-        #[method_id(regionWithRect:identifier:)]
+        #[method(regionWithRect:identifier:)]
         #[unsafe(method_family = none)]
         pub unsafe fn regionWithRect_identifier(
             rect: CGRect,
@@ -61,11 +64,11 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

@@ -21,12 +21,12 @@ unsafe impl NSObjectProtocol for CKFetchShareParticipantsOperation {}
 extern_methods!(
     #[cfg(feature = "CKOperation")]
     unsafe impl CKFetchShareParticipantsOperation {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "CKUserIdentityLookupInfo")]
-        #[method_id(initWithUserIdentityLookupInfos:)]
+        #[method(initWithUserIdentityLookupInfos:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithUserIdentityLookupInfos(
             this: Allocated<Self>,
@@ -34,7 +34,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKUserIdentityLookupInfo")]
-        #[method_id(userIdentityLookupInfos)]
+        #[method(userIdentityLookupInfos)]
         #[unsafe(method_family = none)]
         pub unsafe fn userIdentityLookupInfos(
             &self,
@@ -43,6 +43,7 @@ extern_methods!(
         #[cfg(feature = "CKUserIdentityLookupInfo")]
         /// Setter for [`userIdentityLookupInfos`][Self::userIdentityLookupInfos].
         #[method(setUserIdentityLookupInfos:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUserIdentityLookupInfos(
             &self,
             user_identity_lookup_infos: Option<&NSArray<CKUserIdentityLookupInfo>>,
@@ -60,6 +61,7 @@ extern_methods!(
         /// should not be concurrently used outside of blocks assigned to this operation.
         #[deprecated = "Use perShareParticipantCompletionBlock instead, which surfaces per-share-participant errors"]
         #[method(shareParticipantFetchedBlock)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shareParticipantFetchedBlock(
             &self,
         ) -> *mut block2::Block<dyn Fn(NonNull<CKShareParticipant>)>;
@@ -68,6 +70,7 @@ extern_methods!(
         /// Setter for [`shareParticipantFetchedBlock`][Self::shareParticipantFetchedBlock].
         #[deprecated = "Use perShareParticipantCompletionBlock instead, which surfaces per-share-participant errors"]
         #[method(setShareParticipantFetchedBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShareParticipantFetchedBlock(
             &self,
             share_participant_fetched_block: Option<
@@ -88,6 +91,7 @@ extern_methods!(
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(perShareParticipantCompletionBlock)]
+        #[unsafe(method_family = none)]
         pub unsafe fn perShareParticipantCompletionBlock(
             &self,
         ) -> *mut block2::Block<
@@ -101,6 +105,7 @@ extern_methods!(
         ))]
         /// Setter for [`perShareParticipantCompletionBlock`][Self::perShareParticipantCompletionBlock].
         #[method(setPerShareParticipantCompletionBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPerShareParticipantCompletionBlock(
             &self,
             per_share_participant_completion_block: Option<
@@ -134,6 +139,7 @@ extern_methods!(
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(fetchShareParticipantsCompletionBlock)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fetchShareParticipantsCompletionBlock(
             &self,
         ) -> *mut block2::Block<dyn Fn(*mut NSError)>;
@@ -141,6 +147,7 @@ extern_methods!(
         #[cfg(feature = "block2")]
         /// Setter for [`fetchShareParticipantsCompletionBlock`][Self::fetchShareParticipantsCompletionBlock].
         #[method(setFetchShareParticipantsCompletionBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFetchShareParticipantsCompletionBlock(
             &self,
             fetch_share_participants_completion_block: Option<&block2::Block<dyn Fn(*mut NSError)>>,
@@ -152,7 +159,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CKOperation")]
     unsafe impl CKFetchShareParticipantsOperation {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -95,28 +95,28 @@ extern_methods!(
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl SKLabelNode {
-        #[method_id(labelNodeWithText:)]
+        #[method(labelNodeWithText:)]
         #[unsafe(method_family = none)]
         pub unsafe fn labelNodeWithText(
             text: Option<&NSString>,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[method_id(labelNodeWithAttributedText:)]
+        #[method(labelNodeWithAttributedText:)]
         #[unsafe(method_family = none)]
         pub unsafe fn labelNodeWithAttributedText(
             attributed_text: Option<&NSAttributedString>,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[method_id(labelNodeWithFontNamed:)]
+        #[method(labelNodeWithFontNamed:)]
         #[unsafe(method_family = none)]
         pub unsafe fn labelNodeWithFontNamed(
             font_name: Option<&NSString>,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[method_id(initWithFontNamed:)]
+        #[method(initWithFontNamed:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFontNamed(
             this: Allocated<Self>,
@@ -124,20 +124,24 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[method(verticalAlignmentMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn verticalAlignmentMode(&self) -> SKLabelVerticalAlignmentMode;
 
         /// Setter for [`verticalAlignmentMode`][Self::verticalAlignmentMode].
         #[method(setVerticalAlignmentMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setVerticalAlignmentMode(
             &self,
             vertical_alignment_mode: SKLabelVerticalAlignmentMode,
         );
 
         #[method(horizontalAlignmentMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn horizontalAlignmentMode(&self) -> SKLabelHorizontalAlignmentMode;
 
         /// Setter for [`horizontalAlignmentMode`][Self::horizontalAlignmentMode].
         #[method(setHorizontalAlignmentMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setHorizontalAlignmentMode(
             &self,
             horizontal_alignment_mode: SKLabelHorizontalAlignmentMode,
@@ -146,101 +150,118 @@ extern_methods!(
         /// Determines the number of lines to draw. The default value is 1 (single line). A value of 0 means no limit.
         /// If the height of the text reaches the # of lines the text will be truncated using the line break mode.
         #[method(numberOfLines)]
+        #[unsafe(method_family = none)]
         pub unsafe fn numberOfLines(&self) -> NSInteger;
 
         /// Setter for [`numberOfLines`][Self::numberOfLines].
         #[method(setNumberOfLines:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setNumberOfLines(&self, number_of_lines: NSInteger);
 
         /// Determines the line break mode for multiple lines.
         /// Default is NSLineBreakByTruncatingTail
         #[method(lineBreakMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn lineBreakMode(&self) -> NSLineBreakMode;
 
         /// Setter for [`lineBreakMode`][Self::lineBreakMode].
         #[method(setLineBreakMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLineBreakMode(&self, line_break_mode: NSLineBreakMode);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// If nonzero, this is used when determining layout width for multiline labels.
         /// Default is zero.
         #[method(preferredMaxLayoutWidth)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preferredMaxLayoutWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`preferredMaxLayoutWidth`][Self::preferredMaxLayoutWidth].
         #[method(setPreferredMaxLayoutWidth:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreferredMaxLayoutWidth(&self, preferred_max_layout_width: CGFloat);
 
-        #[method_id(fontName)]
+        #[method(fontName)]
         #[unsafe(method_family = none)]
         pub unsafe fn fontName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`fontName`][Self::fontName].
         #[method(setFontName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFontName(&self, font_name: Option<&NSString>);
 
-        #[method_id(text)]
+        #[method(text)]
         #[unsafe(method_family = none)]
         pub unsafe fn text(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`text`][Self::text].
         #[method(setText:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setText(&self, text: Option<&NSString>);
 
-        #[method_id(attributedText)]
+        #[method(attributedText)]
         #[unsafe(method_family = none)]
         pub unsafe fn attributedText(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Setter for [`attributedText`][Self::attributedText].
         #[method(setAttributedText:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAttributedText(&self, attributed_text: Option<&NSAttributedString>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(fontSize)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fontSize(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`fontSize`][Self::fontSize].
         #[method(setFontSize:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFontSize(&self, font_size: CGFloat);
 
         /// Base color that the text is rendered with (if supported by the font)
-        #[method_id(fontColor)]
+        #[method(fontColor)]
         #[unsafe(method_family = none)]
         pub unsafe fn fontColor(&self) -> Option<Retained<NSColor>>;
 
         /// Setter for [`fontColor`][Self::fontColor].
         #[method(setFontColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFontColor(&self, font_color: Option<&NSColor>);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Controls the blending between the rendered text and a color. The valid interval of values is from 0.0 up to and including 1.0. A value above or below that interval is clamped to the minimum (0.0) if below or the maximum (1.0) if above.
         #[method(colorBlendFactor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colorBlendFactor(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`colorBlendFactor`][Self::colorBlendFactor].
         #[method(setColorBlendFactor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setColorBlendFactor(&self, color_blend_factor: CGFloat);
 
         /// Color to be blended with the text based on the colorBlendFactor
-        #[method_id(color)]
+        #[method(color)]
         #[unsafe(method_family = none)]
         pub unsafe fn color(&self) -> Option<Retained<NSColor>>;
 
         /// Setter for [`color`][Self::color].
         #[method(setColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setColor(&self, color: Option<&NSColor>);
 
         /// Sets the blend mode to use when composing the sprite with the final framebuffer.
         ///
         /// See: SKNode.SKBlendMode
         #[method(blendMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn blendMode(&self) -> SKBlendMode;
 
         /// Setter for [`blendMode`][Self::blendMode].
         #[method(setBlendMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBlendMode(&self, blend_mode: SKBlendMode);
     }
 );
@@ -250,30 +271,30 @@ extern_methods!(
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl SKLabelNode {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Support coding and decoding via NSKeyedArchiver.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(node)]
+        #[method(node)]
         #[unsafe(method_family = none)]
         pub unsafe fn node(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(nodeWithFileNamed:)]
+        #[method(nodeWithFileNamed:)]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeWithFileNamed(
             filename: &NSString,
             mtm: MainThreadMarker,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(nodeWithFileNamed:securelyWithClasses:andError:_)]
+        #[method(nodeWithFileNamed:securelyWithClasses:andError:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeWithFileNamed_securelyWithClasses_andError(
             filename: &NSString,
@@ -288,7 +309,7 @@ extern_methods!(
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl SKLabelNode {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

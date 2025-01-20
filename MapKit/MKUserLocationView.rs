@@ -62,7 +62,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl MKUserLocationView {
         #[cfg(feature = "MKAnnotation")]
-        #[method_id(initWithAnnotation:reuseIdentifier:)]
+        #[method(initWithAnnotation:reuseIdentifier:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAnnotation_reuseIdentifier(
             this: Allocated<Self>,
@@ -70,7 +70,7 @@ extern_methods!(
             reuse_identifier: Option<&NSString>,
         ) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -84,7 +84,7 @@ extern_methods!(
     #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl MKUserLocationView {
-        #[method_id(initWithFrame:)]
+        #[method(initWithFrame:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
     }
@@ -95,7 +95,7 @@ extern_methods!(
     #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl MKUserLocationView {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -106,7 +106,7 @@ extern_methods!(
     #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl MKUserLocationView {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

@@ -52,19 +52,22 @@ extern_methods!(
     unsafe impl MPSCNNUpsampling {
         /// The upsampling scale factor for the x dimension. The default value is 1.
         #[method(scaleFactorX)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scaleFactorX(&self) -> c_double;
 
         /// The upsampling scale factor for the y dimension. The default value is 1.
         #[method(scaleFactorY)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scaleFactorY(&self) -> c_double;
 
         /// If YES, the centers of the 4 corner pixels of the input and output regions are aligned,
         /// preserving the values at the corner pixels.
         /// The default is NO.
         #[method(alignCorners)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alignCorners(&self) -> bool;
 
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -90,7 +93,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -112,7 +115,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -125,11 +128,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsampling {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -176,7 +179,7 @@ extern_methods!(
         /// Parameter `integerScaleFactorY`: The upsampling factor for the y dimension.
         ///
         /// Returns: A valid MPSCNNUpsamplingNearest object or nil, if failure.
-        #[method_id(initWithDevice:integerScaleFactorX:integerScaleFactorY:)]
+        #[method(initWithDevice:integerScaleFactorX:integerScaleFactorY:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_integerScaleFactorX_integerScaleFactorY(
             this: Allocated<Self>,
@@ -191,7 +194,7 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNUpsampling`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingNearest {
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -217,7 +220,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -239,7 +242,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -252,11 +255,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingNearest {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -303,7 +306,7 @@ extern_methods!(
         /// Parameter `integerScaleFactorY`: The upsampling factor for the y dimension.
         ///
         /// Returns: A valid MPSCNNUpsamplingBilinear object or nil, if failure.
-        #[method_id(initWithDevice:integerScaleFactorX:integerScaleFactorY:)]
+        #[method(initWithDevice:integerScaleFactorX:integerScaleFactorY:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_integerScaleFactorX_integerScaleFactorY(
             this: Allocated<Self>,
@@ -324,7 +327,7 @@ extern_methods!(
         /// preserving the values at the corner pixels.
         ///
         /// Returns: A valid MPSCNNUpsamplingBilinear object or nil, if failure.
-        #[method_id(initWithDevice:integerScaleFactorX:integerScaleFactorY:alignCorners:)]
+        #[method(initWithDevice:integerScaleFactorX:integerScaleFactorY:alignCorners:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_integerScaleFactorX_integerScaleFactorY_alignCorners(
             this: Allocated<Self>,
@@ -340,7 +343,7 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNUpsampling`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingBilinear {
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -366,7 +369,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -388,7 +391,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -401,11 +404,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingBilinear {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -480,13 +483,15 @@ extern_methods!(
     unsafe impl MPSCNNUpsamplingGradient {
         /// The downsampling scale factor for the x dimension. The default value is 1.
         #[method(scaleFactorX)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scaleFactorX(&self) -> c_double;
 
         /// The downsampling scale factor for the y dimension. The default value is 1.
         #[method(scaleFactorY)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scaleFactorY(&self) -> c_double;
 
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -512,7 +517,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -534,7 +539,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -547,11 +552,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingGradient {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -604,7 +609,7 @@ extern_methods!(
         /// Parameter `integerScaleFactorY`: The downsampling factor for the y dimension.
         ///
         /// Returns: A valid MPSCNNUpsamplingNearestGradient object or nil, if failure.
-        #[method_id(initWithDevice:integerScaleFactorX:integerScaleFactorY:)]
+        #[method(initWithDevice:integerScaleFactorX:integerScaleFactorY:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_integerScaleFactorX_integerScaleFactorY(
             this: Allocated<Self>,
@@ -619,7 +624,7 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNUpsamplingGradient`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingNearestGradient {
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -645,7 +650,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -667,7 +672,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -680,11 +685,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingNearestGradient {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -737,7 +742,7 @@ extern_methods!(
         /// Parameter `integerScaleFactorY`: The downsampling factor for the y dimension.
         ///
         /// Returns: A valid MPSCNNUpsamplingBilinearGradient object or nil, if failure.
-        #[method_id(initWithDevice:integerScaleFactorX:integerScaleFactorY:)]
+        #[method(initWithDevice:integerScaleFactorX:integerScaleFactorY:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_integerScaleFactorX_integerScaleFactorY(
             this: Allocated<Self>,
@@ -752,7 +757,7 @@ extern_methods!(
     /// Methods declared on superclass `MPSCNNUpsamplingGradient`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingBilinearGradient {
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -778,7 +783,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -800,7 +805,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -813,11 +818,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingBilinearGradient {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

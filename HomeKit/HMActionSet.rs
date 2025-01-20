@@ -25,39 +25,40 @@ unsafe impl NSObjectProtocol for HMActionSet {}
 
 extern_methods!(
     unsafe impl HMActionSet {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// The name of the action set.
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "HMAction")]
         /// Set of HMAction objects that represent the individual items of the action set.
-        #[method_id(actions)]
+        #[method(actions)]
         #[unsafe(method_family = none)]
         pub unsafe fn actions(&self) -> Retained<NSSet<HMAction>>;
 
         /// Specifies whether the action set is currently executing or not.
         #[method(isExecuting)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isExecuting(&self) -> bool;
 
         /// Specifies the action set type - user-defined, trigger-owned or one of the builtin types.
         /// Builtin action sets cannot be removed from the home. trigger-owned action sets cannot
         /// be executed, renamed or associated with another trigger.
-        #[method_id(actionSetType)]
+        #[method(actionSetType)]
         #[unsafe(method_family = none)]
         pub unsafe fn actionSetType(&self) -> Retained<NSString>;
 
         /// A unique identifier for the action set.
-        #[method_id(uniqueIdentifier)]
+        #[method(uniqueIdentifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn uniqueIdentifier(&self) -> Retained<NSUUID>;
 
         /// Specifies the last execution date for the action set.
-        #[method_id(lastExecutionDate)]
+        #[method(lastExecutionDate)]
         #[unsafe(method_family = none)]
         pub unsafe fn lastExecutionDate(&self) -> Option<Retained<NSDate>>;
 
@@ -72,6 +73,7 @@ extern_methods!(
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
         #[method(updateName:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updateName_completionHandler(
             &self,
             name: &NSString,
@@ -89,6 +91,7 @@ extern_methods!(
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
         #[method(addAction:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addAction_completionHandler(
             &self,
             action: &HMAction,
@@ -106,6 +109,7 @@ extern_methods!(
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
         #[method(removeAction:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeAction_completionHandler(
             &self,
             action: &HMAction,
@@ -117,7 +121,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HMActionSet {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

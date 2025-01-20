@@ -24,11 +24,11 @@ unsafe impl NSObjectProtocol for UILexiconEntry {}
 
 extern_methods!(
     unsafe impl UILexiconEntry {
-        #[method_id(documentText)]
+        #[method(documentText)]
         #[unsafe(method_family = none)]
         pub unsafe fn documentText(&self) -> Retained<NSString>;
 
-        #[method_id(userInput)]
+        #[method(userInput)]
         #[unsafe(method_family = none)]
         pub unsafe fn userInput(&self) -> Retained<NSString>;
     }
@@ -37,11 +37,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UILexiconEntry {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -65,7 +65,7 @@ unsafe impl NSObjectProtocol for UILexicon {}
 
 extern_methods!(
     unsafe impl UILexicon {
-        #[method_id(entries)]
+        #[method(entries)]
         #[unsafe(method_family = none)]
         pub unsafe fn entries(&self) -> Retained<NSArray<UILexiconEntry>>;
     }
@@ -74,11 +74,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UILexicon {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

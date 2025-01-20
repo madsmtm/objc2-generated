@@ -31,7 +31,7 @@ extern_methods!(
         /// Cumulative amount of data uploaded over WiFi.
         ///
         /// Dimensioned as NSUnitInformationStorage.
-        #[method_id(cumulativeWifiUpload)]
+        #[method(cumulativeWifiUpload)]
         #[unsafe(method_family = none)]
         pub unsafe fn cumulativeWifiUpload(
             &self,
@@ -40,7 +40,7 @@ extern_methods!(
         /// Cumulative amount of data downloaded over WiFi.
         ///
         /// Dimensioned as NSUnitInformationStorage.
-        #[method_id(cumulativeWifiDownload)]
+        #[method(cumulativeWifiDownload)]
         #[unsafe(method_family = none)]
         pub unsafe fn cumulativeWifiDownload(
             &self,
@@ -51,7 +51,7 @@ extern_methods!(
         /// This data is radio access technology agnostic.
         ///
         /// Dimensioned as NSUnitInformationStorage.
-        #[method_id(cumulativeCellularUpload)]
+        #[method(cumulativeCellularUpload)]
         #[unsafe(method_family = none)]
         pub unsafe fn cumulativeCellularUpload(
             &self,
@@ -62,7 +62,7 @@ extern_methods!(
         /// This data is radio access technology agnostic.
         ///
         /// Dimensioned as NSUnitInformationStorage.
-        #[method_id(cumulativeCellularDownload)]
+        #[method(cumulativeCellularDownload)]
         #[unsafe(method_family = none)]
         pub unsafe fn cumulativeCellularDownload(
             &self,
@@ -74,11 +74,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MXMetric")]
     unsafe impl MXNetworkTransferMetric {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

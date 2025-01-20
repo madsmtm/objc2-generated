@@ -39,6 +39,7 @@ extern_methods!(
         /// The scale factor
         #[deprecated]
         #[method(scale)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scale(&self) -> c_float;
 
         /// Create a GramMatrix layer
@@ -47,7 +48,7 @@ extern_methods!(
         ///
         /// Returns: A new GramMatrix layer
         #[deprecated]
-        #[method_id(layerWithScale:)]
+        #[method(layerWithScale:)]
         #[unsafe(method_family = none)]
         pub unsafe fn layerWithScale(scale: c_float) -> Retained<Self>;
     }
@@ -58,12 +59,12 @@ extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCGramMatrixLayer {
         #[deprecated]
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

@@ -94,24 +94,25 @@ extern_methods!(
         /// Note: The default height of this skeleton, measured from lowest to highest joint in standing position, is defined to be 1.71 meters.
         ///
         /// See: ARSkeleton3D
-        #[method_id(defaultBody3DSkeletonDefinition)]
+        #[method(defaultBody3DSkeletonDefinition)]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultBody3DSkeletonDefinition() -> Retained<ARSkeletonDefinition>;
 
         /// Default skeleton definition for bodies defined in 2D.
         ///
         /// See: ARBody2D
-        #[method_id(defaultBody2DSkeletonDefinition)]
+        #[method(defaultBody2DSkeletonDefinition)]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultBody2DSkeletonDefinition() -> Retained<ARSkeletonDefinition>;
 
         /// The number of joints.
         #[method(jointCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn jointCount(&self) -> NSUInteger;
 
         #[cfg(feature = "objc2-foundation")]
         /// The joint names.
-        #[method_id(jointNames)]
+        #[method(jointNames)]
         #[unsafe(method_family = none)]
         pub unsafe fn jointNames(&self) -> Retained<NSArray<NSString>>;
 
@@ -121,7 +122,7 @@ extern_methods!(
         /// This property may be used to identify the hierarchical dependency between joints. If a line is drawn for every joint and its parent joint
         /// the result is a visualization of the underlying skeleton. The joint with no parent is denoted as the root joint. The root joint's parent index has
         /// a value of -1.
-        #[method_id(parentIndices)]
+        #[method(parentIndices)]
         #[unsafe(method_family = none)]
         pub unsafe fn parentIndices(&self) -> Retained<NSArray<NSNumber>>;
 
@@ -129,7 +130,7 @@ extern_methods!(
         /// The 3D skeleton in neutral pose.
         ///
         /// The neutral skeleton pose assumes a standardized size of the skeleton in meters. The neutral pose is defined as the skeleton's T-pose.
-        #[method_id(neutralBodySkeleton3D)]
+        #[method(neutralBodySkeleton3D)]
         #[unsafe(method_family = none)]
         pub unsafe fn neutralBodySkeleton3D(&self) -> Option<Retained<ARSkeleton3D>>;
 
@@ -143,14 +144,15 @@ extern_methods!(
         ///
         /// Returns: Joint index.
         #[method(indexForJointName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indexForJointName(&self, joint_name: &ARSkeletonJointName) -> NSUInteger;
 
         /// Unavailable
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

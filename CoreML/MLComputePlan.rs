@@ -57,11 +57,11 @@ unsafe impl NSObjectProtocol for MLComputePlan {}
 
 extern_methods!(
     unsafe impl MLComputePlan {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -75,6 +75,7 @@ extern_methods!(
         ///
         /// Parameter `handler`: When the compute plan is constructed successfully or unsuccessfully, the completion handler is invoked with a valid MLComputePlan instance or NSError object.
         #[method(loadContentsOfURL:configuration:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loadContentsOfURL_configuration_completionHandler(
             url: &NSURL,
             configuration: &MLModelConfiguration,
@@ -95,6 +96,7 @@ extern_methods!(
         ///
         /// Parameter `handler`: When the compute plan is constructed successfully or unsuccessfully, the completion handler is invoked with a valid MLComputePlan instance or NSError object.
         #[method(loadModelAsset:configuration:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loadModelAsset_configuration_completionHandler(
             asset: &MLModelAsset,
             configuration: &MLModelConfiguration,
@@ -111,7 +113,7 @@ extern_methods!(
         /// Parameter `operation`: An ML Program operation.
         ///
         /// Returns: The estimated cost of executing the operation or nil if the cost couldn't be estimated.
-        #[method_id(estimatedCostOfMLProgramOperation:)]
+        #[method(estimatedCostOfMLProgramOperation:)]
         #[unsafe(method_family = none)]
         pub unsafe fn estimatedCostOfMLProgramOperation(
             &self,
@@ -128,7 +130,7 @@ extern_methods!(
         /// Parameter `layer`: A NeuralNetwork layer.
         ///
         /// Returns: The anticipated compute devices that would be used for executing the layer or `nil` if the usage couldn't be determined.
-        #[method_id(computeDeviceUsageForNeuralNetworkLayer:)]
+        #[method(computeDeviceUsageForNeuralNetworkLayer:)]
         #[unsafe(method_family = none)]
         pub unsafe fn computeDeviceUsageForNeuralNetworkLayer(
             &self,
@@ -145,7 +147,7 @@ extern_methods!(
         /// Parameter `operation`: An ML Program operation.
         ///
         /// Returns: The anticipated compute devices that would be used for executing the operation or `nil`if the usage couldn't be determined.
-        #[method_id(computeDeviceUsageForMLProgramOperation:)]
+        #[method(computeDeviceUsageForMLProgramOperation:)]
         #[unsafe(method_family = none)]
         pub unsafe fn computeDeviceUsageForMLProgramOperation(
             &self,
@@ -154,7 +156,7 @@ extern_methods!(
 
         #[cfg(feature = "MLModelStructure")]
         /// The model structure.
-        #[method_id(modelStructure)]
+        #[method(modelStructure)]
         #[unsafe(method_family = none)]
         pub unsafe fn modelStructure(&self) -> Retained<MLModelStructure>;
     }

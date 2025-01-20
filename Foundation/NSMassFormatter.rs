@@ -58,31 +58,36 @@ extern_methods!(
     #[cfg(feature = "NSFormatter")]
     unsafe impl NSMassFormatter {
         #[cfg(feature = "NSNumberFormatter")]
-        #[method_id(numberFormatter)]
+        #[method(numberFormatter)]
         #[unsafe(method_family = none)]
         pub unsafe fn numberFormatter(&self) -> Retained<NSNumberFormatter>;
 
         #[cfg(feature = "NSNumberFormatter")]
         /// Setter for [`numberFormatter`][Self::numberFormatter].
         #[method(setNumberFormatter:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setNumberFormatter(&self, number_formatter: Option<&NSNumberFormatter>);
 
         #[method(unitStyle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn unitStyle(&self) -> NSFormattingUnitStyle;
 
         /// Setter for [`unitStyle`][Self::unitStyle].
         #[method(setUnitStyle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUnitStyle(&self, unit_style: NSFormattingUnitStyle);
 
         #[method(isForPersonMassUse)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isForPersonMassUse(&self) -> bool;
 
         /// Setter for [`isForPersonMassUse`][Self::isForPersonMassUse].
         #[method(setForPersonMassUse:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setForPersonMassUse(&self, for_person_mass_use: bool);
 
         #[cfg(feature = "NSString")]
-        #[method_id(stringFromValue:unit:)]
+        #[method(stringFromValue:unit:)]
         #[unsafe(method_family = none)]
         pub unsafe fn stringFromValue_unit(
             &self,
@@ -91,7 +96,7 @@ extern_methods!(
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(stringFromKilograms:)]
+        #[method(stringFromKilograms:)]
         #[unsafe(method_family = none)]
         pub unsafe fn stringFromKilograms(
             &self,
@@ -99,7 +104,7 @@ extern_methods!(
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(unitStringFromValue:unit:)]
+        #[method(unitStringFromValue:unit:)]
         #[unsafe(method_family = none)]
         pub unsafe fn unitStringFromValue_unit(
             &self,
@@ -108,7 +113,7 @@ extern_methods!(
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(unitStringFromKilograms:usedUnit:)]
+        #[method(unitStringFromKilograms:usedUnit:)]
         #[unsafe(method_family = none)]
         pub unsafe fn unitStringFromKilograms_usedUnit(
             &self,
@@ -118,6 +123,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method(getObjectValue:forString:errorDescription:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getObjectValue_forString_errorDescription(
             &self,
             obj: Option<&mut Option<Retained<AnyObject>>>,
@@ -131,11 +137,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSFormatter")]
     unsafe impl NSMassFormatter {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -33,15 +33,16 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitimingcurveprovider?language=objc)
     pub unsafe trait UITimingCurveProvider: NSCoding + NSCopying + MainThreadOnly {
         #[method(timingCurveType)]
+        #[unsafe(method_family = none)]
         unsafe fn timingCurveType(&self) -> UITimingCurveType;
 
         #[cfg(feature = "UITimingParameters")]
-        #[method_id(cubicTimingParameters)]
+        #[method(cubicTimingParameters)]
         #[unsafe(method_family = none)]
         unsafe fn cubicTimingParameters(&self) -> Option<Retained<UICubicTimingParameters>>;
 
         #[cfg(feature = "UITimingParameters")]
-        #[method_id(springTimingParameters)]
+        #[method(springTimingParameters)]
         #[unsafe(method_family = none)]
         unsafe fn springTimingParameters(&self) -> Option<Retained<UISpringTimingParameters>>;
     }

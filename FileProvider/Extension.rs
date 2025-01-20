@@ -19,7 +19,7 @@ unsafe impl NSObjectProtocol for NSFileProviderExtension {}
 extern_methods!(
     unsafe impl NSFileProviderExtension {
         #[cfg(feature = "NSFileProviderItem")]
-        #[method_id(itemForIdentifier:error:_)]
+        #[method(itemForIdentifier:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn itemForIdentifier_error(
             &self,
@@ -33,7 +33,7 @@ extern_methods!(
         /// This is a static mapping; each identifier must always return a path
         /// corresponding to the same file. By default, this returns the path relative to
         /// the path returned by documentStorageURL.
-        #[method_id(URLForItemWithPersistentIdentifier:)]
+        #[method(URLForItemWithPersistentIdentifier:)]
         #[unsafe(method_family = none)]
         pub unsafe fn URLForItemWithPersistentIdentifier(
             &self,
@@ -41,7 +41,7 @@ extern_methods!(
         ) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSFileProviderItem")]
-        #[method_id(persistentIdentifierForItemAtURL:)]
+        #[method(persistentIdentifierForItemAtURL:)]
         #[unsafe(method_family = none)]
         pub unsafe fn persistentIdentifierForItemAtURL(
             &self,
@@ -57,6 +57,7 @@ extern_methods!(
         /// +[NSFileProviderManager placeholderURLForURL:], then call the completion
         /// handler.
         #[method(providePlaceholderAtURL:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn providePlaceholderAtURL_completionHandler(
             &self,
             url: &NSURL,
@@ -67,6 +68,7 @@ extern_methods!(
         /// Should ensure that the actual file is in the position returned by
         /// URLForItemWithPersistentIdentifier:, then call the completion handler.
         #[method(startProvidingItemAtURL:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn startProvidingItemAtURL_completionHandler(
             &self,
             url: &NSURL,
@@ -79,11 +81,13 @@ extern_methods!(
         /// Care should be taken that the corresponding placeholder file stays behind after
         /// the content file has been deleted.
         #[method(stopProvidingItemAtURL:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stopProvidingItemAtURL(&self, url: &NSURL);
 
         /// Called at some point after the file has changed; the provider may then trigger
         /// an upload.
         #[method(itemChangedAtURL:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn itemChangedAtURL(&self, url: &NSURL);
     }
 );
@@ -91,11 +95,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSFileProviderExtension {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -111,6 +115,7 @@ extern_methods!(
         /// Metadata contains NSURLNameKey, NSURLFileSizeKey, NSURLIsPackageKey.
         #[deprecated = "Use the corresponding method on NSFileProviderManager instead"]
         #[method(writePlaceholderAtURL:withMetadata:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn writePlaceholderAtURL_withMetadata_error(
             placeholder_url: &NSURL,
             metadata: &NSDictionary<NSURLResourceKey, AnyObject>,
@@ -121,7 +126,7 @@ extern_methods!(
         /// performance. To write out a placeholder, use the writePlaceHolderAtURL: method
         /// above.
         #[deprecated]
-        #[method_id(placeholderURLForURL:)]
+        #[method(placeholderURLForURL:)]
         #[unsafe(method_family = none)]
         pub unsafe fn placeholderURLForURL(url: &NSURL) -> Retained<NSURL>;
 
@@ -131,7 +136,7 @@ extern_methods!(
         /// documentStorageURL, you should pass this identifier to your file coordinator's
         /// setPurposeIdentifier: method.
         #[deprecated]
-        #[method_id(providerIdentifier)]
+        #[method(providerIdentifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn providerIdentifier(&self) -> Retained<NSString>;
 
@@ -140,7 +145,7 @@ extern_methods!(
         /// storage URL is the folder "File Provider Storage" in the corresponding
         /// container.
         #[deprecated]
-        #[method_id(documentStorageURL)]
+        #[method(documentStorageURL)]
         #[unsafe(method_family = none)]
         pub unsafe fn documentStorageURL(&self) -> Retained<NSURL>;
     }
@@ -204,18 +209,18 @@ unsafe impl NSObjectProtocol for NSFileProviderManager {}
 
 extern_methods!(
     unsafe impl NSFileProviderManager {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Return the manager responsible for the default domain.
-        #[method_id(defaultManager)]
+        #[method(defaultManager)]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultManager() -> Retained<NSFileProviderManager>;
 
         #[cfg(feature = "NSFileProviderDomain")]
         /// Return the manager for the specified domain.
-        #[method_id(managerForDomain:)]
+        #[method(managerForDomain:)]
         #[unsafe(method_family = none)]
         pub unsafe fn managerForDomain(domain: &NSFileProviderDomain) -> Option<Retained<Self>>;
 
@@ -250,6 +255,7 @@ extern_methods!(
         /// with a topic of "<your application identifier>.pushkit.fileprovider" will be
         /// translated into a call to signalEnumeratorForContainerItemIdentifier:completionHandler:.
         #[method(signalEnumeratorForContainerItemIdentifier:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn signalEnumeratorForContainerItemIdentifier_completionHandler(
             &self,
             container_item_identifier: &NSFileProviderItemIdentifier,
@@ -282,6 +288,7 @@ extern_methods!(
         /// On iOS, for replicated domains, the extension process will never be granted access to the user
         /// visible location, this function will always fail with `NSFileReadNoPermissionError`.
         #[method(getUserVisibleURLForItemIdentifier:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getUserVisibleURLForItemIdentifier_completionHandler(
             &self,
             item_identifier: &NSFileProviderItemIdentifier,
@@ -300,6 +307,7 @@ extern_methods!(
         /// provider/domain, or which hasn't yet been assigned an identifier by
         /// the provider will return the Cocoa error NSFileNoSuchFileError.
         #[method(getIdentifierForUserVisibleFileAtURL:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getIdentifierForUserVisibleFileAtURL_completionHandler(
             url: &NSURL,
             completion_handler: &block2::Block<
@@ -317,6 +325,7 @@ extern_methods!(
         /// suspended at the time of calling.
         /// The task's progress is displayed on the item when the task is executed.
         #[method(registerURLSessionTask:forItemWithIdentifier:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn registerURLSessionTask_forItemWithIdentifier_completionHandler(
             &self,
             task: &NSURLSessionTask,
@@ -328,7 +337,7 @@ extern_methods!(
         /// file coordinator with this purpose identifier set will not trigger your file
         /// provider extension. You can use this to e.g. perform speculative work on behalf
         /// of the file provider from the main app.
-        #[method_id(providerIdentifier)]
+        #[method(providerIdentifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn providerIdentifier(&self) -> Retained<NSString>;
 
@@ -339,7 +348,7 @@ extern_methods!(
         ///
         /// If the NSExtensionFileProviderDocumentGroup property is not set, calling this
         /// method will result in an error.
-        #[method_id(documentStorageURL)]
+        #[method(documentStorageURL)]
         #[unsafe(method_family = none)]
         pub unsafe fn documentStorageURL(&self) -> Retained<NSURL>;
 
@@ -358,7 +367,7 @@ extern_methods!(
         /// `-[NSFileProviderExternalVolumeHandling shouldConnectExternalDomainWithCompletionHandler:]`.
         /// It can also fail in the extension process if the domain (external) is being setup for the very first time
         /// (meaning it never existed).
-        #[method_id(temporaryDirectoryURLWithError:_)]
+        #[method(temporaryDirectoryURLWithError:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn temporaryDirectoryURLWithError(
             &self,
@@ -384,6 +393,7 @@ extern_methods!(
         /// The path of the placeholder is fixed and must be determined in advance by
         /// calling the placeholderURLForURL: method.
         #[method(writePlaceholderAtURL:withMetadata:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn writePlaceholderAtURL_withMetadata_error(
             placeholder_url: &NSURL,
             metadata: &NSFileProviderItem,
@@ -391,7 +401,7 @@ extern_methods!(
 
         /// Returns the designated placeholder URL for a given file URL. Used in
         /// conjunction with writePlaceholderAtURL.
-        #[method_id(placeholderURLForURL:)]
+        #[method(placeholderURLForURL:)]
         #[unsafe(method_family = none)]
         pub unsafe fn placeholderURLForURL(url: &NSURL) -> Retained<NSURL>;
 
@@ -405,6 +415,7 @@ extern_methods!(
         /// a disk location where the domain will be replicated. If that location already exists on disk
         /// this call will fail with the code NSFileWriteFileExistsError.
         #[method(addDomain:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addDomain_completionHandler(
             domain: &NSFileProviderDomain,
             completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
@@ -413,6 +424,7 @@ extern_methods!(
         #[cfg(all(feature = "NSFileProviderDomain", feature = "block2"))]
         /// Remove a domain.
         #[method(removeDomain:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeDomain_completionHandler(
             domain: &NSFileProviderDomain,
             completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
@@ -421,6 +433,7 @@ extern_methods!(
         #[cfg(all(feature = "NSFileProviderDomain", feature = "block2"))]
         /// Remove a domain with options
         #[method(removeDomain:mode:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeDomain_mode_completionHandler(
             domain: &NSFileProviderDomain,
             mode: NSFileProviderDomainRemovalMode,
@@ -430,6 +443,7 @@ extern_methods!(
         #[cfg(all(feature = "NSFileProviderDomain", feature = "block2"))]
         /// Get all registered domains.
         #[method(getDomainsWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getDomainsWithCompletionHandler(
             completion_handler: &block2::Block<
                 dyn Fn(NonNull<NSArray<NSFileProviderDomain>>, *mut NSError),
@@ -439,6 +453,7 @@ extern_methods!(
         #[cfg(feature = "block2")]
         /// Remove all registered domains.
         #[method(removeAllDomainsWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeAllDomainsWithCompletionHandler(
             completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
         );
@@ -453,6 +468,7 @@ extern_methods!(
         /// - NSFileProviderErrorCannotSynchronize
         /// - NSFileProviderErrorExcludedFromSync
         #[method(signalErrorResolved:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn signalErrorResolved_completionHandler(
             &self,
             error: &NSError,
@@ -484,7 +500,7 @@ extern_methods!(
         /// - NSProgressFileOperationKindDownloading
         ///
         /// The returned progress will have its fileOperationKind property set.
-        #[method_id(globalProgressForKind:)]
+        #[method(globalProgressForKind:)]
         #[unsafe(method_family = none)]
         pub unsafe fn globalProgressForKind(
             &self,
@@ -496,7 +512,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSFileProviderManager {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -530,7 +546,7 @@ extern_methods!(
         /// 'signalEnumeratorForContainerItemIdentifier';
         /// - The app/extension enumerates the materialized set after the system calls
         /// 'materializedItemsDidChangeWithCompletionHandler'.
-        #[method_id(enumeratorForMaterializedItems)]
+        #[method(enumeratorForMaterializedItems)]
         #[unsafe(method_family = none)]
         pub unsafe fn enumeratorForMaterializedItems(
             &self,
@@ -558,18 +574,20 @@ extern_protocol!(
         ///
         /// This property is updated when the enumeration methods are called on the pending set enumerator. The value
         /// is initially nil.
-        #[method_id(domainVersion)]
+        #[method(domainVersion)]
         #[unsafe(method_family = none)]
         unsafe fn domainVersion(&self) -> Option<Retained<NSFileProviderDomainVersion>>;
 
         /// The amount of time in seconds at which the pending set is refreshed on modifications.
         #[method(refreshInterval)]
+        #[unsafe(method_family = none)]
         unsafe fn refreshInterval(&self) -> NSTimeInterval;
 
         /// This property is set to YES when the enumeration of the pending set was capped at or below its maximum size.
         /// Under normal conditions, the count of items pending sync will get lower as sync progresses, and this variable
         /// will eventually be set to NO when the pending set again includes all items pending sync.
         #[method(isMaximumSizeReached)]
+        #[unsafe(method_family = none)]
         unsafe fn isMaximumSizeReached(&self) -> bool;
     }
 );
@@ -583,7 +601,7 @@ extern_methods!(
         /// This enumerator behaves like the materialized set enumerator.
         /// On later modifications in the set, the system will call
         /// 'pendingItemsDidChangeWithCompletionHandler'.
-        #[method_id(enumeratorForPendingItems)]
+        #[method(enumeratorForPendingItems)]
         #[unsafe(method_family = none)]
         pub unsafe fn enumeratorForPendingItems(
             &self,
@@ -622,6 +640,7 @@ extern_methods!(
         /// is called before the end of the import, a single call to importDidFinishWithCompletionHandler
         /// will be received for both the import and the scan.
         #[method(importDomain:fromDirectoryAtURL:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn importDomain_fromDirectoryAtURL_completionHandler(
             domain: &NSFileProviderDomain,
             url: &NSURL,
@@ -665,6 +684,7 @@ extern_methods!(
         /// happens quickly after a previous import / reimport and the corresponding item hasn't been
         /// reimported yet.
         #[method(reimportItemsBelowItemWithIdentifier:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reimportItemsBelowItemWithIdentifier_completionHandler(
             &self,
             item_identifier: &NSFileProviderItemIdentifier,
@@ -683,6 +703,7 @@ extern_methods!(
         /// The completion handler may be called with an error. If the provider passes the `.content` field when the item
         /// is not downloaded, or when the item is a folder, then the system will return CocoaError(.ubiquitousFileUnavailable).
         #[method(requestModificationOfFields:forItemWithIdentifier:options:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestModificationOfFields_forItemWithIdentifier_options_completionHandler(
             &self,
             fields: NSFileProviderItemFields,
@@ -718,6 +739,7 @@ extern_methods!(
         /// - NSPOSIXErrorDomain.EMLINK : if the item has several hardlinks.
         /// - other NSPOSIXErrorDomain error codes if the system was unable to access or manipulate the corresponding file.
         #[method(evictItemWithIdentifier:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn evictItemWithIdentifier_completionHandler(
             &self,
             item_identifier: &NSFileProviderItemIdentifier,
@@ -747,6 +769,7 @@ extern_methods!(
         /// including the NSFileProviderErrorItemKey with the identifier of the item that could not be synced if that item
         /// is known by the provider.
         #[method(waitForChangesOnItemsBelowItemWithIdentifier:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn waitForChangesOnItemsBelowItemWithIdentifier_completionHandler(
             &self,
             item_identifier: &NSFileProviderItemIdentifier,
@@ -768,6 +791,7 @@ extern_methods!(
         /// The completion handler is called when both sets of changes are caught up to at least the time
         /// of the call. This is useful to enforce a consistent state for testing.
         #[method(waitForStabilizationWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn waitForStabilizationWithCompletionHandler(
             &self,
             completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
@@ -800,6 +824,7 @@ extern_methods!(
     unsafe impl NSFileProviderManager {
         #[cfg(feature = "block2")]
         #[method(disconnectWithReason:options:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn disconnectWithReason_options_completionHandler(
             &self,
             localized_reason: &NSString,
@@ -809,6 +834,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[method(reconnectWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reconnectWithCompletionHandler(
             &self,
             completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
@@ -839,6 +865,7 @@ extern_methods!(
         /// materialization of the directory one level down only. All the children of the
         /// directory will remain dataless after the enumeration.
         #[method(requestDownloadForItemWithIdentifier:requestedRange:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestDownloadForItemWithIdentifier_requestedRange_completionHandler(
             &self,
             item_identifier: &NSFileProviderItemIdentifier,
@@ -867,7 +894,7 @@ extern_methods!(
         /// for that domain unless the domain is being setup for the very first time (meaning it never existed).
         ///
         /// Removing the domain will remove the corresponding directory along with it.
-        #[method_id(stateDirectoryURLWithError:_)]
+        #[method(stateDirectoryURLWithError:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn stateDirectoryURLWithError(
             &self,
@@ -926,6 +953,7 @@ extern_methods!(
         /// If a drive is eligible, unsupportedReason will be empty (0). Otherwise it will contain the list of identified
         /// conditions that currently prevent this drive from being used to store FP domains.
         #[method(checkDomainsCanBeStored:onVolumeAtURL:unsupportedReason:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn checkDomainsCanBeStored_onVolumeAtURL_unsupportedReason_error(
             eligible: NonNull<Bool>,
             url: &NSURL,

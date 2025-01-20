@@ -68,7 +68,7 @@ extern_methods!(
     ))]
     unsafe impl DOMDocumentFragment {
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -82,7 +82,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMDocumentFragment {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -32,12 +32,12 @@ unsafe impl NSObjectProtocol for MKLocalPointsOfInterestRequest {}
 
 extern_methods!(
     unsafe impl MKLocalPointsOfInterestRequest {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-location")]
-        #[method_id(initWithCenterCoordinate:radius:)]
+        #[method(initWithCenterCoordinate:radius:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCenterCoordinate_radius(
             this: Allocated<Self>,
@@ -46,7 +46,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
-        #[method_id(initWithCoordinateRegion:)]
+        #[method(initWithCoordinateRegion:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoordinateRegion(
             this: Allocated<Self>,
@@ -55,24 +55,28 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-location")]
         #[method(coordinate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn coordinate(&self) -> CLLocationCoordinate2D;
 
         #[cfg(feature = "objc2-core-location")]
         #[method(radius)]
+        #[unsafe(method_family = none)]
         pub unsafe fn radius(&self) -> CLLocationDistance;
 
         #[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
         #[method(region)]
+        #[unsafe(method_family = none)]
         pub unsafe fn region(&self) -> MKCoordinateRegion;
 
         #[cfg(feature = "MKPointOfInterestFilter")]
-        #[method_id(pointOfInterestFilter)]
+        #[method(pointOfInterestFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn pointOfInterestFilter(&self) -> Option<Retained<MKPointOfInterestFilter>>;
 
         #[cfg(feature = "MKPointOfInterestFilter")]
         /// Setter for [`pointOfInterestFilter`][Self::pointOfInterestFilter].
         #[method(setPointOfInterestFilter:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPointOfInterestFilter(
             &self,
             point_of_interest_filter: Option<&MKPointOfInterestFilter>,
@@ -83,7 +87,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKLocalPointsOfInterestRequest {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

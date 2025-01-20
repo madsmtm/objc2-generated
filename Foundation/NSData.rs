@@ -183,6 +183,7 @@ unsafe impl NSSecureCoding for NSData {}
 extern_methods!(
     unsafe impl NSData {
         #[method(length)]
+        #[unsafe(method_family = none)]
         pub fn length(&self) -> NSUInteger;
     }
 );
@@ -190,11 +191,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSData {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
     }
@@ -211,27 +212,31 @@ extern_methods!(
     /// NSExtendedData
     unsafe impl NSData {
         #[cfg(feature = "NSString")]
-        #[method_id(description)]
+        #[method(description)]
         #[unsafe(method_family = none)]
         pub unsafe fn description(&self) -> Retained<NSString>;
 
         #[method(getBytes:length:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getBytes_length(&self, buffer: NonNull<c_void>, length: NSUInteger);
 
         #[cfg(feature = "NSRange")]
         #[method(getBytes:range:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getBytes_range(&self, buffer: NonNull<c_void>, range: NSRange);
 
         #[method(isEqualToData:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isEqualToData(&self, other: &NSData) -> bool;
 
         #[cfg(feature = "NSRange")]
-        #[method_id(subdataWithRange:)]
+        #[method(subdataWithRange:)]
         #[unsafe(method_family = none)]
         pub unsafe fn subdataWithRange(&self, range: NSRange) -> Retained<NSData>;
 
         #[cfg(feature = "NSString")]
         #[method(writeToFile:atomically:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn writeToFile_atomically(
             &self,
             path: &NSString,
@@ -240,10 +245,12 @@ extern_methods!(
 
         #[cfg(feature = "NSURL")]
         #[method(writeToURL:atomically:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn writeToURL_atomically(&self, url: &NSURL, atomically: bool) -> bool;
 
         #[cfg(all(feature = "NSError", feature = "NSString"))]
         #[method(writeToFile:options:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn writeToFile_options_error(
             &self,
             path: &NSString,
@@ -252,6 +259,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
         #[method(writeToURL:options:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn writeToURL_options_error(
             &self,
             url: &NSURL,
@@ -260,6 +268,7 @@ extern_methods!(
 
         #[cfg(feature = "NSRange")]
         #[method(rangeOfData:options:range:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rangeOfData_options_range(
             &self,
             data_to_find: &NSData,
@@ -269,6 +278,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSRange", feature = "block2"))]
         #[method(enumerateByteRangesUsingBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn enumerateByteRangesUsingBlock(
             &self,
             block: &block2::Block<dyn Fn(NonNull<c_void>, NSRange, NonNull<Bool>) + '_>,
@@ -279,25 +289,25 @@ extern_methods!(
 extern_methods!(
     /// NSDataCreation
     unsafe impl NSData {
-        #[method_id(data)]
+        #[method(data)]
         #[unsafe(method_family = none)]
         pub unsafe fn data() -> Retained<Self>;
 
-        #[method_id(dataWithBytes:length:)]
+        #[method(dataWithBytes:length:)]
         #[unsafe(method_family = none)]
         pub unsafe fn dataWithBytes_length(
             bytes: *const c_void,
             length: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(dataWithBytesNoCopy:length:)]
+        #[method(dataWithBytesNoCopy:length:)]
         #[unsafe(method_family = none)]
         pub unsafe fn dataWithBytesNoCopy_length(
             bytes: NonNull<c_void>,
             length: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(dataWithBytesNoCopy:length:freeWhenDone:)]
+        #[method(dataWithBytesNoCopy:length:freeWhenDone:)]
         #[unsafe(method_family = none)]
         pub unsafe fn dataWithBytesNoCopy_length_freeWhenDone(
             bytes: NonNull<c_void>,
@@ -306,7 +316,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSError", feature = "NSString"))]
-        #[method_id(dataWithContentsOfFile:options:error:_)]
+        #[method(dataWithContentsOfFile:options:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn dataWithContentsOfFile_options_error(
             path: &NSString,
@@ -314,7 +324,7 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
-        #[method_id(dataWithContentsOfURL:options:error:_)]
+        #[method(dataWithContentsOfURL:options:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn dataWithContentsOfURL_options_error(
             url: &NSURL,
@@ -322,16 +332,16 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(dataWithContentsOfFile:)]
+        #[method(dataWithContentsOfFile:)]
         #[unsafe(method_family = none)]
         pub unsafe fn dataWithContentsOfFile(path: &NSString) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSURL")]
-        #[method_id(dataWithContentsOfURL:)]
+        #[method(dataWithContentsOfURL:)]
         #[unsafe(method_family = none)]
         pub unsafe fn dataWithContentsOfURL(url: &NSURL) -> Option<Retained<Self>>;
 
-        #[method_id(initWithBytes:length:)]
+        #[method(initWithBytes:length:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBytes_length(
             this: Allocated<Self>,
@@ -339,7 +349,7 @@ extern_methods!(
             length: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(initWithBytesNoCopy:length:)]
+        #[method(initWithBytesNoCopy:length:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBytesNoCopy_length(
             this: Allocated<Self>,
@@ -347,7 +357,7 @@ extern_methods!(
             length: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(initWithBytesNoCopy:length:freeWhenDone:)]
+        #[method(initWithBytesNoCopy:length:freeWhenDone:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBytesNoCopy_length_freeWhenDone(
             this: Allocated<Self>,
@@ -357,7 +367,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        #[method_id(initWithBytesNoCopy:length:deallocator:)]
+        #[method(initWithBytesNoCopy:length:deallocator:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBytesNoCopy_length_deallocator(
             this: Allocated<Self>,
@@ -367,7 +377,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSError", feature = "NSString"))]
-        #[method_id(initWithContentsOfFile:options:error:_)]
+        #[method(initWithContentsOfFile:options:error:_)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfFile_options_error(
             this: Allocated<Self>,
@@ -376,7 +386,7 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
-        #[method_id(initWithContentsOfURL:options:error:_)]
+        #[method(initWithContentsOfURL:options:error:_)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL_options_error(
             this: Allocated<Self>,
@@ -385,7 +395,7 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(initWithContentsOfFile:)]
+        #[method(initWithContentsOfFile:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfFile(
             this: Allocated<Self>,
@@ -393,18 +403,18 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSURL")]
-        #[method_id(initWithContentsOfURL:)]
+        #[method(initWithContentsOfURL:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL(
             this: Allocated<Self>,
             url: &NSURL,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(initWithData:)]
+        #[method(initWithData:)]
         #[unsafe(method_family = init)]
         pub fn initWithData(this: Allocated<Self>, data: &NSData) -> Retained<Self>;
 
-        #[method_id(dataWithData:)]
+        #[method(dataWithData:)]
         #[unsafe(method_family = none)]
         pub fn dataWithData(data: &NSData) -> Retained<Self>;
     }
@@ -415,25 +425,25 @@ extern_methods!(
     ///
     /// NSDataCreation
     unsafe impl NSMutableData {
-        #[method_id(data)]
+        #[method(data)]
         #[unsafe(method_family = none)]
         pub unsafe fn data() -> Retained<Self>;
 
-        #[method_id(dataWithBytes:length:)]
+        #[method(dataWithBytes:length:)]
         #[unsafe(method_family = none)]
         pub unsafe fn dataWithBytes_length(
             bytes: *const c_void,
             length: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(dataWithBytesNoCopy:length:)]
+        #[method(dataWithBytesNoCopy:length:)]
         #[unsafe(method_family = none)]
         pub unsafe fn dataWithBytesNoCopy_length(
             bytes: NonNull<c_void>,
             length: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(dataWithBytesNoCopy:length:freeWhenDone:)]
+        #[method(dataWithBytesNoCopy:length:freeWhenDone:)]
         #[unsafe(method_family = none)]
         pub unsafe fn dataWithBytesNoCopy_length_freeWhenDone(
             bytes: NonNull<c_void>,
@@ -442,7 +452,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSError", feature = "NSString"))]
-        #[method_id(dataWithContentsOfFile:options:error:_)]
+        #[method(dataWithContentsOfFile:options:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn dataWithContentsOfFile_options_error(
             path: &NSString,
@@ -450,7 +460,7 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
-        #[method_id(dataWithContentsOfURL:options:error:_)]
+        #[method(dataWithContentsOfURL:options:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn dataWithContentsOfURL_options_error(
             url: &NSURL,
@@ -458,16 +468,16 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(dataWithContentsOfFile:)]
+        #[method(dataWithContentsOfFile:)]
         #[unsafe(method_family = none)]
         pub unsafe fn dataWithContentsOfFile(path: &NSString) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSURL")]
-        #[method_id(dataWithContentsOfURL:)]
+        #[method(dataWithContentsOfURL:)]
         #[unsafe(method_family = none)]
         pub unsafe fn dataWithContentsOfURL(url: &NSURL) -> Option<Retained<Self>>;
 
-        #[method_id(initWithBytes:length:)]
+        #[method(initWithBytes:length:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBytes_length(
             this: Allocated<Self>,
@@ -475,7 +485,7 @@ extern_methods!(
             length: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(initWithBytesNoCopy:length:)]
+        #[method(initWithBytesNoCopy:length:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBytesNoCopy_length(
             this: Allocated<Self>,
@@ -483,7 +493,7 @@ extern_methods!(
             length: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(initWithBytesNoCopy:length:freeWhenDone:)]
+        #[method(initWithBytesNoCopy:length:freeWhenDone:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBytesNoCopy_length_freeWhenDone(
             this: Allocated<Self>,
@@ -493,7 +503,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        #[method_id(initWithBytesNoCopy:length:deallocator:)]
+        #[method(initWithBytesNoCopy:length:deallocator:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBytesNoCopy_length_deallocator(
             this: Allocated<Self>,
@@ -503,7 +513,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSError", feature = "NSString"))]
-        #[method_id(initWithContentsOfFile:options:error:_)]
+        #[method(initWithContentsOfFile:options:error:_)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfFile_options_error(
             this: Allocated<Self>,
@@ -512,7 +522,7 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
-        #[method_id(initWithContentsOfURL:options:error:_)]
+        #[method(initWithContentsOfURL:options:error:_)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL_options_error(
             this: Allocated<Self>,
@@ -521,7 +531,7 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(initWithContentsOfFile:)]
+        #[method(initWithContentsOfFile:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfFile(
             this: Allocated<Self>,
@@ -529,18 +539,18 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSURL")]
-        #[method_id(initWithContentsOfURL:)]
+        #[method(initWithContentsOfURL:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL(
             this: Allocated<Self>,
             url: &NSURL,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(initWithData:)]
+        #[method(initWithData:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithData(this: Allocated<Self>, data: &NSData) -> Retained<Self>;
 
-        #[method_id(dataWithData:)]
+        #[method(dataWithData:)]
         #[unsafe(method_family = none)]
         pub fn dataWithData(data: &NSData) -> Retained<Self>;
     }
@@ -550,7 +560,7 @@ extern_methods!(
     /// NSDataBase64Encoding
     unsafe impl NSData {
         #[cfg(feature = "NSString")]
-        #[method_id(initWithBase64EncodedString:options:)]
+        #[method(initWithBase64EncodedString:options:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBase64EncodedString_options(
             this: Allocated<Self>,
@@ -559,14 +569,14 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(base64EncodedStringWithOptions:)]
+        #[method(base64EncodedStringWithOptions:)]
         #[unsafe(method_family = none)]
         pub unsafe fn base64EncodedStringWithOptions(
             &self,
             options: NSDataBase64EncodingOptions,
         ) -> Retained<NSString>;
 
-        #[method_id(initWithBase64EncodedData:options:)]
+        #[method(initWithBase64EncodedData:options:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBase64EncodedData_options(
             this: Allocated<Self>,
@@ -574,7 +584,7 @@ extern_methods!(
             options: NSDataBase64DecodingOptions,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(base64EncodedDataWithOptions:)]
+        #[method(base64EncodedDataWithOptions:)]
         #[unsafe(method_family = none)]
         pub unsafe fn base64EncodedDataWithOptions(
             &self,
@@ -589,7 +599,7 @@ extern_methods!(
     /// NSDataBase64Encoding
     unsafe impl NSMutableData {
         #[cfg(feature = "NSString")]
-        #[method_id(initWithBase64EncodedString:options:)]
+        #[method(initWithBase64EncodedString:options:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBase64EncodedString_options(
             this: Allocated<Self>,
@@ -597,7 +607,7 @@ extern_methods!(
             options: NSDataBase64DecodingOptions,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(initWithBase64EncodedData:options:)]
+        #[method(initWithBase64EncodedData:options:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBase64EncodedData_options(
             this: Allocated<Self>,
@@ -635,7 +645,7 @@ extern_methods!(
     /// NSDataCompression
     unsafe impl NSData {
         #[cfg(feature = "NSError")]
-        #[method_id(decompressedDataUsingAlgorithm:error:_)]
+        #[method(decompressedDataUsingAlgorithm:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn decompressedDataUsingAlgorithm_error(
             &self,
@@ -643,7 +653,7 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "NSError")]
-        #[method_id(compressedDataUsingAlgorithm:error:_)]
+        #[method(compressedDataUsingAlgorithm:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn compressedDataUsingAlgorithm_error(
             &self,
@@ -657,17 +667,18 @@ extern_methods!(
     unsafe impl NSData {
         #[deprecated = "This method is unsafe because it could potentially cause buffer overruns. Use -getBytes:length: instead."]
         #[method(getBytes:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getBytes(&self, buffer: NonNull<c_void>);
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use +dataWithContentsOfURL:options:error: and NSDataReadingMappedIfSafe or NSDataReadingMappedAlways instead."]
-        #[method_id(dataWithContentsOfMappedFile:)]
+        #[method(dataWithContentsOfMappedFile:)]
         #[unsafe(method_family = none)]
         pub unsafe fn dataWithContentsOfMappedFile(path: &NSString) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use -initWithContentsOfURL:options:error: and NSDataReadingMappedIfSafe or NSDataReadingMappedAlways instead."]
-        #[method_id(initWithContentsOfMappedFile:)]
+        #[method(initWithContentsOfMappedFile:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfMappedFile(
             this: Allocated<Self>,
@@ -676,7 +687,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use initWithBase64EncodedString:options: instead"]
-        #[method_id(initWithBase64Encoding:)]
+        #[method(initWithBase64Encoding:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBase64Encoding(
             this: Allocated<Self>,
@@ -685,7 +696,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use base64EncodedStringWithOptions: instead"]
-        #[method_id(base64Encoding)]
+        #[method(base64Encoding)]
         #[unsafe(method_family = none)]
         pub unsafe fn base64Encoding(&self) -> Retained<NSString>;
     }
@@ -698,7 +709,7 @@ extern_methods!(
     unsafe impl NSMutableData {
         #[cfg(feature = "NSString")]
         #[deprecated = "Use -initWithContentsOfURL:options:error: and NSDataReadingMappedIfSafe or NSDataReadingMappedAlways instead."]
-        #[method_id(initWithContentsOfMappedFile:)]
+        #[method(initWithContentsOfMappedFile:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfMappedFile(
             this: Allocated<Self>,
@@ -707,7 +718,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use initWithBase64EncodedString:options: instead"]
-        #[method_id(initWithBase64Encoding:)]
+        #[method(initWithBase64Encoding:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBase64Encoding(
             this: Allocated<Self>,
@@ -753,6 +764,7 @@ extern_methods!(
     unsafe impl NSMutableData {
         /// Setter for [`length`][Self::length].
         #[method(setLength:)]
+        #[unsafe(method_family = none)]
         pub fn setLength(&self, length: NSUInteger);
     }
 );
@@ -760,11 +772,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSMutableData {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
     }
@@ -781,27 +793,34 @@ extern_methods!(
     /// NSExtendedMutableData
     unsafe impl NSMutableData {
         #[method(appendBytes:length:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn appendBytes_length(&self, bytes: NonNull<c_void>, length: NSUInteger);
 
         #[method(appendData:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn appendData(&self, other: &NSData);
 
         #[method(increaseLengthBy:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn increaseLengthBy(&self, extra_length: NSUInteger);
 
         #[cfg(feature = "NSRange")]
         #[method(replaceBytesInRange:withBytes:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn replaceBytesInRange_withBytes(&self, range: NSRange, bytes: NonNull<c_void>);
 
         #[cfg(feature = "NSRange")]
         #[method(resetBytesInRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resetBytesInRange(&self, range: NSRange);
 
         #[method(setData:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setData(&self, data: &NSData);
 
         #[cfg(feature = "NSRange")]
         #[method(replaceBytesInRange:withBytes:length:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn replaceBytesInRange_withBytes_length(
             &self,
             range: NSRange,
@@ -814,22 +833,22 @@ extern_methods!(
 extern_methods!(
     /// NSMutableDataCreation
     unsafe impl NSMutableData {
-        #[method_id(dataWithCapacity:)]
+        #[method(dataWithCapacity:)]
         #[unsafe(method_family = none)]
         pub fn dataWithCapacity(a_num_items: NSUInteger) -> Option<Retained<Self>>;
 
-        #[method_id(dataWithLength:)]
+        #[method(dataWithLength:)]
         #[unsafe(method_family = none)]
         pub unsafe fn dataWithLength(length: NSUInteger) -> Option<Retained<Self>>;
 
-        #[method_id(initWithCapacity:)]
+        #[method(initWithCapacity:)]
         #[unsafe(method_family = init)]
         pub fn initWithCapacity(
             this: Allocated<Self>,
             capacity: NSUInteger,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(initWithLength:)]
+        #[method(initWithLength:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLength(
             this: Allocated<Self>,
@@ -843,6 +862,7 @@ extern_methods!(
     unsafe impl NSMutableData {
         #[cfg(feature = "NSError")]
         #[method(decompressUsingAlgorithm:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn decompressUsingAlgorithm_error(
             &self,
             algorithm: NSDataCompressionAlgorithm,
@@ -850,6 +870,7 @@ extern_methods!(
 
         #[cfg(feature = "NSError")]
         #[method(compressUsingAlgorithm:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn compressUsingAlgorithm_error(
             &self,
             algorithm: NSDataCompressionAlgorithm,
@@ -884,11 +905,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPurgeableData {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

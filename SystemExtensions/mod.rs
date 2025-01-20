@@ -172,7 +172,7 @@ unsafe impl NSObjectProtocol for OSSystemExtensionRequest {}
 extern_methods!(
     unsafe impl OSSystemExtensionRequest {
         /// A delegate to receive updates about the progress of a request
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -181,13 +181,14 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn OSSystemExtensionRequestDelegate>>,
         );
 
         /// The bundle identifier of the target extension
-        #[method_id(identifier)]
+        #[method(identifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
     }
@@ -196,11 +197,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl OSSystemExtensionRequest {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -219,35 +220,38 @@ extern_methods!(
     unsafe impl OSSystemExtensionProperties {
         /// The file URL locating an indicating the extension bundle these properties
         /// were retreived from.
-        #[method_id(URL)]
+        #[method(URL)]
         #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
 
         /// The bundle identifier of the extension (CFBundleIdentifier)
-        #[method_id(bundleIdentifier)]
+        #[method(bundleIdentifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn bundleIdentifier(&self) -> Retained<NSString>;
 
         /// The bundle version of the extension (CFBundleVersion)
-        #[method_id(bundleVersion)]
+        #[method(bundleVersion)]
         #[unsafe(method_family = none)]
         pub unsafe fn bundleVersion(&self) -> Retained<NSString>;
 
         /// The bundle short version string of the extension (CFBundleShortVersionString)
-        #[method_id(bundleShortVersion)]
+        #[method(bundleShortVersion)]
         #[unsafe(method_family = none)]
         pub unsafe fn bundleShortVersion(&self) -> Retained<NSString>;
 
         /// Returns the enabled state of the extension
         #[method(isEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isEnabled(&self) -> bool;
 
         /// Returns whether an extension is waiting for user approval
         #[method(isAwaitingUserApproval)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isAwaitingUserApproval(&self) -> bool;
 
         /// Returns if an extension is being uninstalled
         #[method(isUninstalling)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isUninstalling(&self) -> bool;
     }
 );
@@ -255,11 +259,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl OSSystemExtensionProperties {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -300,6 +304,7 @@ extern_protocol!(
         /// to `request:didFailWithError:` with the OSSystemExtensionErrorRequestCanceled
         /// error code.
         #[method(request:actionForReplacingExtension:withExtension:)]
+        #[unsafe(method_family = none)]
         unsafe fn request_actionForReplacingExtension_withExtension(
             &self,
             request: &OSSystemExtensionRequest,
@@ -316,6 +321,7 @@ extern_protocol!(
         /// triggered and the activation request will remain pending until user approves,
         /// or until the application exits.
         #[method(requestNeedsUserApproval:)]
+        #[unsafe(method_family = none)]
         unsafe fn requestNeedsUserApproval(&self, request: &OSSystemExtensionRequest);
 
         /// Called when the target extension request has completed.
@@ -334,6 +340,7 @@ extern_protocol!(
         /// reboot, a given extension will be in the state dictated by the most recently
         /// processed request.
         #[method(request:didFinishWithResult:)]
+        #[unsafe(method_family = none)]
         unsafe fn request_didFinishWithResult(
             &self,
             request: &OSSystemExtensionRequest,
@@ -342,6 +349,7 @@ extern_protocol!(
 
         /// Called when the target extension request failed.
         #[method(request:didFailWithError:)]
+        #[unsafe(method_family = none)]
         unsafe fn request_didFailWithError(
             &self,
             request: &OSSystemExtensionRequest,
@@ -355,6 +363,7 @@ extern_protocol!(
         /// requested bundle identifier.
         #[optional]
         #[method(request:foundProperties:)]
+        #[unsafe(method_family = none)]
         unsafe fn request_foundProperties(
             &self,
             request: &OSSystemExtensionRequest,
@@ -374,15 +383,15 @@ unsafe impl NSObjectProtocol for OSSystemExtensionManager {}
 
 extern_methods!(
     unsafe impl OSSystemExtensionManager {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(&self) -> Retained<Self>;
 
-        #[method_id(sharedManager)]
+        #[method(sharedManager)]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedManager() -> Retained<OSSystemExtensionManager>;
 
@@ -391,6 +400,7 @@ extern_methods!(
         ///
         /// Parameter `request`: The request to process.
         #[method(submitRequest:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn submitRequest(&self, request: &OSSystemExtensionRequest);
     }
 );
@@ -398,7 +408,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl OSSystemExtensionManager {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new_class() -> Retained<Self>;
     }
@@ -420,17 +430,17 @@ unsafe impl NSObjectProtocol for OSSystemExtensionInfo {}
 extern_methods!(
     unsafe impl OSSystemExtensionInfo {
         /// The bundle identifier of the extension (CFBundleIdentifier)
-        #[method_id(bundleIdentifier)]
+        #[method(bundleIdentifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn bundleIdentifier(&self) -> Retained<NSString>;
 
         /// The bundle version of the extension (CFBundleVersion)
-        #[method_id(bundleVersion)]
+        #[method(bundleVersion)]
         #[unsafe(method_family = none)]
         pub unsafe fn bundleVersion(&self) -> Retained<NSString>;
 
         /// The bundle short version string of the extension (CFBundleShortVersionString)
-        #[method_id(bundleShortVersion)]
+        #[method(bundleShortVersion)]
         #[unsafe(method_family = none)]
         pub unsafe fn bundleShortVersion(&self) -> Retained<NSString>;
     }
@@ -439,11 +449,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl OSSystemExtensionInfo {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -455,6 +465,7 @@ extern_protocol!(
         /// This delegate method will be called when a system extension has been validated and allowed by the user to run.
         #[optional]
         #[method(systemExtensionWillBecomeEnabled:)]
+        #[unsafe(method_family = none)]
         unsafe fn systemExtensionWillBecomeEnabled(
             &self,
             system_extension_info: &OSSystemExtensionInfo,
@@ -463,6 +474,7 @@ extern_protocol!(
         /// This delegate method will be called when the user disables an already enabled system extension, or when the system extension is first installed and is in the disabled state.
         #[optional]
         #[method(systemExtensionWillBecomeDisabled:)]
+        #[unsafe(method_family = none)]
         unsafe fn systemExtensionWillBecomeDisabled(
             &self,
             system_extension_info: &OSSystemExtensionInfo,
@@ -471,6 +483,7 @@ extern_protocol!(
         /// This delegate method will be called when a system extension is deactivated and is about to get uninstalled. The extension may still be running until the system is rebooted.
         #[optional]
         #[method(systemExtensionWillBecomeInactive:)]
+        #[unsafe(method_family = none)]
         unsafe fn systemExtensionWillBecomeInactive(
             &self,
             system_extension_info: &OSSystemExtensionInfo,
@@ -495,12 +508,13 @@ unsafe impl NSObjectProtocol for OSSystemExtensionsWorkspace {}
 
 extern_methods!(
     unsafe impl OSSystemExtensionsWorkspace {
-        #[method_id(sharedWorkspace)]
+        #[method(sharedWorkspace)]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedWorkspace() -> Retained<OSSystemExtensionsWorkspace>;
 
         /// Start observing changes to System Extension(s) which are enabled or ready to be enabled.
         #[method(addObserver:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addObserver_error(
             &self,
             observer: &ProtocolObject<dyn OSSystemExtensionsWorkspaceObserver>,
@@ -508,6 +522,7 @@ extern_methods!(
 
         /// Stop observing changes to System Extension(s).
         #[method(removeObserver:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeObserver(
             &self,
             observer: &ProtocolObject<dyn OSSystemExtensionsWorkspaceObserver>,
@@ -518,11 +533,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl OSSystemExtensionsWorkspace {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

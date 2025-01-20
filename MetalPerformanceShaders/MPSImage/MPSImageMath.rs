@@ -76,65 +76,79 @@ extern_methods!(
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageArithmetic {
         #[method(primaryScale)]
+        #[unsafe(method_family = none)]
         pub unsafe fn primaryScale(&self) -> c_float;
 
         /// Setter for [`primaryScale`][Self::primaryScale].
         #[method(setPrimaryScale:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPrimaryScale(&self, primary_scale: c_float);
 
         #[method(secondaryScale)]
+        #[unsafe(method_family = none)]
         pub unsafe fn secondaryScale(&self) -> c_float;
 
         /// Setter for [`secondaryScale`][Self::secondaryScale].
         #[method(setSecondaryScale:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSecondaryScale(&self, secondary_scale: c_float);
 
         #[method(bias)]
+        #[unsafe(method_family = none)]
         pub unsafe fn bias(&self) -> c_float;
 
         /// Setter for [`bias`][Self::bias].
         #[method(setBias:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBias(&self, bias: c_float);
 
         /// The secondarySource stride in the x, y, and z dimensions. The only supported values are 0 or 1.
         /// The default value for each dimension is 1.
         #[method(primaryStrideInPixels)]
+        #[unsafe(method_family = none)]
         pub unsafe fn primaryStrideInPixels(&self) -> MTLSize;
 
         /// Setter for [`primaryStrideInPixels`][Self::primaryStrideInPixels].
         #[method(setPrimaryStrideInPixels:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPrimaryStrideInPixels(&self, primary_stride_in_pixels: MTLSize);
 
         /// The secondarySource stride in the x, y, and z dimensions. The only supported values are 0 or 1.
         /// The default value for each dimension is 1.
         #[method(secondaryStrideInPixels)]
+        #[unsafe(method_family = none)]
         pub unsafe fn secondaryStrideInPixels(&self) -> MTLSize;
 
         /// Setter for [`secondaryStrideInPixels`][Self::secondaryStrideInPixels].
         #[method(setSecondaryStrideInPixels:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSecondaryStrideInPixels(&self, secondary_stride_in_pixels: MTLSize);
 
         /// minimumValue is to clamp the result of an arithmetic operation:
         /// result = clamp(result, minimumValue, maximumValue).
         /// The default value of minimumValue is -FLT_MAX.
         #[method(minimumValue)]
+        #[unsafe(method_family = none)]
         pub unsafe fn minimumValue(&self) -> c_float;
 
         /// Setter for [`minimumValue`][Self::minimumValue].
         #[method(setMinimumValue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMinimumValue(&self, minimum_value: c_float);
 
         /// maximumValue is used to clamp the result of an arithmetic operation:
         /// result = clamp(result, minimumValue, maximumValue).
         /// The default value of maximumValue is FLT_MAX.
         #[method(maximumValue)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maximumValue(&self) -> c_float;
 
         /// Setter for [`maximumValue`][Self::maximumValue].
         #[method(setMaximumValue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMaximumValue(&self, maximum_value: c_float);
 
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -160,7 +174,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -182,7 +196,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -195,11 +209,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageArithmetic {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -244,7 +258,7 @@ extern_methods!(
         /// Parameter `device`: The device the filter will run on.
         ///
         /// Returns: A valid MPSImageAdd object or nil, if failure.
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -270,7 +284,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -292,7 +306,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -305,11 +319,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageAdd {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -354,7 +368,7 @@ extern_methods!(
         /// Parameter `device`: The device the filter will run on.
         ///
         /// Returns: A valid MPSImageSubtract object or nil, if failure.
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -380,7 +394,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -402,7 +416,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -415,11 +429,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageSubtract {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -464,7 +478,7 @@ extern_methods!(
         /// Parameter `device`: The device the filter will run on.
         ///
         /// Returns: A valid MPSImageMultiply object or nil, if failure.
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -490,7 +504,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -512,7 +526,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -525,11 +539,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageMultiply {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -574,7 +588,7 @@ extern_methods!(
         /// Parameter `device`: The device the filter will run on.
         ///
         /// Returns: A valid MPSImageDivide object or nil, if failure.
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -600,7 +614,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -622,7 +636,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -635,11 +649,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageDivide {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

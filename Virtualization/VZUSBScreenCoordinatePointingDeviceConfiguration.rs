@@ -32,7 +32,7 @@ unsafe impl NSObjectProtocol for VZUSBScreenCoordinatePointingDeviceConfiguratio
 extern_methods!(
     #[cfg(feature = "VZPointingDeviceConfiguration")]
     unsafe impl VZUSBScreenCoordinatePointingDeviceConfiguration {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -42,7 +42,7 @@ extern_methods!(
     /// Methods declared on superclass `VZPointingDeviceConfiguration`
     #[cfg(feature = "VZPointingDeviceConfiguration")]
     unsafe impl VZUSBScreenCoordinatePointingDeviceConfiguration {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

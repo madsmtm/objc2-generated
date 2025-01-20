@@ -27,6 +27,7 @@ extern_category!(
         ///
         /// Parameter `handler`: Completion handler called after the authorization finishses. Returns an error when the authorization fails.
         #[method(authorizeWithLocalizedReason:inPresentationContext:completion:)]
+        #[unsafe(method_family = none)]
         unsafe fn authorizeWithLocalizedReason_inPresentationContext_completion(
             &self,
             localized_reason: &NSString,

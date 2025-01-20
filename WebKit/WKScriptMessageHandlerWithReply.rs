@@ -84,6 +84,7 @@ extern_protocol!(
         /// - The JavaScript promise is fulfilled with the value 42.
         /// - JavaScript execution continues and the value 42 is returned.
         #[method(userContentController:didReceiveScriptMessage:replyHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn userContentController_didReceiveScriptMessage_replyHandler(
             &self,
             user_content_controller: &WKUserContentController,

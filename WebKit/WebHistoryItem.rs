@@ -53,7 +53,7 @@ extern_methods!(
         /// 'artificial' items to add to a WebBackForwardList.  When first initialized
         /// the URLString and originalURLString will be the same.
         #[deprecated]
-        #[method_id(initWithURLString:title:lastVisitedTimeInterval:)]
+        #[method(initWithURLString:title:lastVisitedTimeInterval:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURLString_title_lastVisitedTimeInterval(
             this: Allocated<Self>,
@@ -65,7 +65,7 @@ extern_methods!(
         /// The string representation of the initial URL of this item.
         /// This value is normally set by the WebKit.
         #[deprecated]
-        #[method_id(originalURLString)]
+        #[method(originalURLString)]
         #[unsafe(method_family = none)]
         pub unsafe fn originalURLString(&self) -> Retained<NSString>;
 
@@ -74,7 +74,7 @@ extern_methods!(
         /// The URLString may be different than the originalURLString if the page
         /// redirected to a new location.  This value is normally set by the WebKit.
         #[deprecated]
-        #[method_id(URLString)]
+        #[method(URLString)]
         #[unsafe(method_family = none)]
         pub unsafe fn URLString(&self) -> Retained<NSString>;
 
@@ -83,7 +83,7 @@ extern_methods!(
         /// This title cannot be changed by the client.  This value
         /// is normally set by the WebKit when a page title for the item is received.
         #[deprecated]
-        #[method_id(title)]
+        #[method(title)]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
@@ -92,16 +92,18 @@ extern_methods!(
         /// the WebKit.
         #[deprecated]
         #[method(lastVisitedTimeInterval)]
+        #[unsafe(method_family = none)]
         pub unsafe fn lastVisitedTimeInterval(&self) -> NSTimeInterval;
 
         #[deprecated]
-        #[method_id(alternateTitle)]
+        #[method(alternateTitle)]
         #[unsafe(method_family = none)]
         pub unsafe fn alternateTitle(&self) -> Retained<NSString>;
 
         /// Setter for [`alternateTitle`][Self::alternateTitle].
         #[deprecated]
         #[method(setAlternateTitle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAlternateTitle(&self, alternate_title: Option<&NSString>);
 
         #[cfg(feature = "objc2-app-kit")]
@@ -110,7 +112,7 @@ extern_methods!(
         ///
         /// This icon returned will be determined by the WebKit.
         #[deprecated]
-        #[method_id(icon)]
+        #[method(icon)]
         #[unsafe(method_family = none)]
         pub unsafe fn icon(&self) -> Option<Retained<NSImage>>;
     }
@@ -119,11 +121,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WebHistoryItem {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

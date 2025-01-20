@@ -36,7 +36,7 @@ extern_methods!(
             feature = "UIImageSymbolConfiguration"
         ))]
         /// The symbol configuration to use.
-        #[method_id(preferredSymbolConfiguration)]
+        #[method(preferredSymbolConfiguration)]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredSymbolConfiguration(
             &self,
@@ -48,6 +48,7 @@ extern_methods!(
         ))]
         /// Setter for [`preferredSymbolConfiguration`][Self::preferredSymbolConfiguration].
         #[method(setPreferredSymbolConfiguration:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreferredSymbolConfiguration(
             &self,
             preferred_symbol_configuration: Option<&UIImageSymbolConfiguration>,
@@ -55,13 +56,14 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         /// The tint color to apply to the image view. Nil will use the image view's normal inherited tint color.
-        #[method_id(tintColor)]
+        #[method(tintColor)]
         #[unsafe(method_family = none)]
         pub unsafe fn tintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`tintColor`][Self::tintColor].
         #[method(setTintColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTintColor(&self, tint_color: Option<&UIColor>);
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -69,11 +71,13 @@ extern_methods!(
         /// Default is 0. If the image is too small to fit the requested radius, the corner curve
         /// and radius will be adjusted to fit.
         #[method(cornerRadius)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cornerRadius(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`cornerRadius`][Self::cornerRadius].
         #[method(setCornerRadius:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCornerRadius(&self, corner_radius: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -81,19 +85,23 @@ extern_methods!(
         /// height means the size is unconstrained on that dimension. If the image exceeds this size
         /// on either dimension, its size will be reduced proportionately (maintaining aspect ratio).
         #[method(maximumSize)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maximumSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`maximumSize`][Self::maximumSize].
         #[method(setMaximumSize:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMaximumSize(&self, maximum_size: CGSize);
 
         /// Prevents the image from inverting its colors when the accessibility setting is enabled.
         #[method(accessibilityIgnoresInvertColors)]
+        #[unsafe(method_family = none)]
         pub unsafe fn accessibilityIgnoresInvertColors(&self) -> bool;
 
         /// Setter for [`accessibilityIgnoresInvertColors`][Self::accessibilityIgnoresInvertColors].
         #[method(setAccessibilityIgnoresInvertColors:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAccessibilityIgnoresInvertColors(
             &self,
             accessibility_ignores_invert_colors: bool,
@@ -104,11 +112,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIContentUnavailableImageProperties {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

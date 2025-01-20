@@ -18,58 +18,70 @@ unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSObjectProtocol for NSCache<Ke
 extern_methods!(
     unsafe impl<KeyType: Message, ObjectType: Message> NSCache<KeyType, ObjectType> {
         #[cfg(feature = "NSString")]
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`name`][Self::name].
         #[method(setName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: &NSString);
 
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSCacheDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSCacheDelegate>>);
 
-        #[method_id(objectForKey:)]
+        #[method(objectForKey:)]
         #[unsafe(method_family = none)]
         pub unsafe fn objectForKey(&self, key: &KeyType) -> Option<Retained<ObjectType>>;
 
         #[method(setObject:forKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setObject_forKey(&self, obj: &ObjectType, key: &KeyType);
 
         #[method(setObject:forKey:cost:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setObject_forKey_cost(&self, obj: &ObjectType, key: &KeyType, g: NSUInteger);
 
         #[method(removeObjectForKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeObjectForKey(&self, key: &KeyType);
 
         #[method(removeAllObjects)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeAllObjects(&self);
 
         #[method(totalCostLimit)]
+        #[unsafe(method_family = none)]
         pub unsafe fn totalCostLimit(&self) -> NSUInteger;
 
         /// Setter for [`totalCostLimit`][Self::totalCostLimit].
         #[method(setTotalCostLimit:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTotalCostLimit(&self, total_cost_limit: NSUInteger);
 
         #[method(countLimit)]
+        #[unsafe(method_family = none)]
         pub unsafe fn countLimit(&self) -> NSUInteger;
 
         /// Setter for [`countLimit`][Self::countLimit].
         #[method(setCountLimit:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCountLimit(&self, count_limit: NSUInteger);
 
         #[method(evictsObjectsWithDiscardedContent)]
+        #[unsafe(method_family = none)]
         pub unsafe fn evictsObjectsWithDiscardedContent(&self) -> bool;
 
         /// Setter for [`evictsObjectsWithDiscardedContent`][Self::evictsObjectsWithDiscardedContent].
         #[method(setEvictsObjectsWithDiscardedContent:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setEvictsObjectsWithDiscardedContent(
             &self,
             evicts_objects_with_discarded_content: bool,
@@ -80,11 +92,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<KeyType: Message, ObjectType: Message> NSCache<KeyType, ObjectType> {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -95,6 +107,7 @@ extern_protocol!(
     pub unsafe trait NSCacheDelegate: NSObjectProtocol {
         #[optional]
         #[method(cache:willEvictObject:)]
+        #[unsafe(method_family = none)]
         unsafe fn cache_willEvictObject(&self, cache: &NSCache, obj: &AnyObject);
     }
 );

@@ -62,7 +62,7 @@ extern_methods!(
         ///
         /// Returns a shared instance of a local ODSession.  This can be used for most situations unless
         /// more control is needed over the session.
-        #[method_id(defaultSession)]
+        #[method(defaultSession)]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultSession() -> Option<Retained<ODSession>>;
 
@@ -78,7 +78,7 @@ extern_methods!(
         /// ODSessionProxyPort           NSNumber(IP port, should not be set as it will default)
         /// ODSessionProxyUsername       NSString(username)
         /// ODSessionProxyPassword       NSString(password)
-        #[method_id(sessionWithOptions:error:)]
+        #[method(sessionWithOptions:error:)]
         #[unsafe(method_family = none)]
         pub unsafe fn sessionWithOptions_error(
             in_options: Option<&NSDictionary>,
@@ -97,7 +97,7 @@ extern_methods!(
         /// ODSessionProxyPort           NSNumber(IP port, should not be set as it will default)
         /// ODSessionProxyUsername       NSString(username)
         /// ODSessionProxyPassword       NSString(password)
-        #[method_id(initWithOptions:error:)]
+        #[method(initWithOptions:error:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithOptions_error(
             this: Allocated<Self>,
@@ -109,7 +109,7 @@ extern_methods!(
         ///
         /// Returns the node names that are registered on this ODSession.  outError can be nil if
         /// error details are not needed.
-        #[method_id(nodeNamesAndReturnError:)]
+        #[method(nodeNamesAndReturnError:)]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeNamesAndReturnError(
             &self,
@@ -122,7 +122,7 @@ extern_methods!(
         /// Returns a list of names as NSStrings for all available configuration templates.  Configuration templates
         /// have pre-configured modules and/or mappings.  Useful for re-using existing configurations
         /// that may change with operating system without changing the actual configuration.
-        #[method_id(configurationTemplateNames)]
+        #[method(configurationTemplateNames)]
         #[unsafe(method_family = none)]
         pub unsafe fn configurationTemplateNames(&self) -> Retained<NSArray>;
 
@@ -131,7 +131,7 @@ extern_methods!(
         ///
         /// Returns a list names as NSStrings for all available mapping templates.  Mapping templates have pre-configured
         /// record/attribute mappings.  Useful if a configuration uses a common layout of mappings for a type of server.
-        #[method_id(mappingTemplateNames)]
+        #[method(mappingTemplateNames)]
         #[unsafe(method_family = none)]
         pub unsafe fn mappingTemplateNames(&self) -> Retained<NSArray>;
 
@@ -140,7 +140,7 @@ extern_methods!(
         ///
         ///
         /// Reads the configuration for a given nodename.
-        #[method_id(configurationForNodename:)]
+        #[method(configurationForNodename:)]
         #[unsafe(method_family = none)]
         pub unsafe fn configurationForNodename(
             &self,
@@ -152,11 +152,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ODSession {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

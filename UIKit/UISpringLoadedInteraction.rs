@@ -55,11 +55,11 @@ unsafe impl UIInteraction for UISpringLoadedInteraction {}
 
 extern_methods!(
     unsafe impl UISpringLoadedInteraction {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -74,7 +74,7 @@ extern_methods!(
         /// Parameter `handler`: The handler to be performed when springloading is activated.
         ///
         /// Returns: An initialized springloaded interaction object or `nil` if the springloaded interaction could not be initialized.
-        #[method_id(initWithInteractionBehavior:interactionEffect:activationHandler:)]
+        #[method(initWithInteractionBehavior:interactionEffect:activationHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithInteractionBehavior_interactionEffect_activationHandler(
             this: Allocated<Self>,
@@ -95,7 +95,7 @@ extern_methods!(
         /// Parameter `handler`: The handler to be performed when springloading is activated.
         ///
         /// Returns: An initialized springloaded interaction object or `nil` if the springloaded interaction could not be initialized.
-        #[method_id(initWithActivationHandler:)]
+        #[method(initWithActivationHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithActivationHandler(
             this: Allocated<Self>,
@@ -107,13 +107,13 @@ extern_methods!(
             >,
         ) -> Retained<Self>;
 
-        #[method_id(interactionBehavior)]
+        #[method(interactionBehavior)]
         #[unsafe(method_family = none)]
         pub unsafe fn interactionBehavior(
             &self,
         ) -> Retained<ProtocolObject<dyn UISpringLoadedInteractionBehavior>>;
 
-        #[method_id(interactionEffect)]
+        #[method(interactionEffect)]
         #[unsafe(method_family = none)]
         pub unsafe fn interactionEffect(
             &self,
@@ -137,6 +137,7 @@ extern_protocol!(
         ///
         /// Returns: true if the interaction should begin or continue springloading.
         #[method(shouldAllowInteraction:withContext:)]
+        #[unsafe(method_family = none)]
         unsafe fn shouldAllowInteraction_withContext(
             &self,
             interaction: &UISpringLoadedInteraction,
@@ -149,6 +150,7 @@ extern_protocol!(
         /// Parameter `interaction`: The springloaded interaction object providing this information.
         #[optional]
         #[method(interactionDidFinish:)]
+        #[unsafe(method_family = none)]
         unsafe fn interactionDidFinish(&self, interaction: &UISpringLoadedInteraction);
     }
 );
@@ -168,6 +170,7 @@ extern_protocol!(
         ///
         /// Parameter `context`: An object that provides information about the current springloading state.
         #[method(interaction:didChangeWithContext:)]
+        #[unsafe(method_family = none)]
         unsafe fn interaction_didChangeWithContext(
             &self,
             interaction: &UISpringLoadedInteraction,
@@ -185,27 +188,30 @@ extern_protocol!(
     {
         /// The state that describes the current springloading style.
         #[method(state)]
+        #[unsafe(method_family = none)]
         unsafe fn state(&self) -> UISpringLoadedInteractionEffectState;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// The view to which the interaction effect is applied. Defaults to the interaction's view.
-        #[method_id(targetView)]
+        #[method(targetView)]
         #[unsafe(method_family = none)]
         unsafe fn targetView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// Setter for [`targetView`][Self::targetView].
         #[method(setTargetView:)]
+        #[unsafe(method_family = none)]
         unsafe fn setTargetView(&self, target_view: Option<&UIView>);
 
         /// The `targetItem` allows to distinguish a region of the view on which the interaction is installed.
         /// It is convenient to set this property to a model object associated to `targetView`.
-        #[method_id(targetItem)]
+        #[method(targetItem)]
         #[unsafe(method_family = none)]
         unsafe fn targetItem(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`targetItem`][Self::targetItem].
         #[method(setTargetItem:)]
+        #[unsafe(method_family = none)]
         unsafe fn setTargetItem(&self, target_item: Option<&AnyObject>);
 
         #[cfg(all(
@@ -220,6 +226,7 @@ extern_protocol!(
         ///
         /// Returns: A point in the local coordinate system of `view`.
         #[method(locationInView:)]
+        #[unsafe(method_family = none)]
         unsafe fn locationInView(&self, view: Option<&UIView>) -> CGPoint;
     }
 );

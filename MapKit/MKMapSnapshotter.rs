@@ -24,7 +24,7 @@ unsafe impl NSObjectProtocol for MKMapSnapshotter {}
 extern_methods!(
     unsafe impl MKMapSnapshotter {
         #[cfg(feature = "MKMapSnapshotOptions")]
-        #[method_id(initWithOptions:)]
+        #[method(initWithOptions:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithOptions(
             this: Allocated<Self>,
@@ -33,15 +33,18 @@ extern_methods!(
 
         #[cfg(all(feature = "MKMapSnapshot", feature = "block2"))]
         #[method(startWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn startWithCompletionHandler(
             &self,
             completion_handler: MKMapSnapshotCompletionHandler,
         );
 
         #[method(cancel)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cancel(&self);
 
         #[method(isLoading)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isLoading(&self) -> bool;
     }
 );
@@ -49,11 +52,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKMapSnapshotter {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

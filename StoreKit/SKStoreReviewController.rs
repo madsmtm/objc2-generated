@@ -33,6 +33,7 @@ extern_methods!(
         /// available to the App Store by appending the query params "action=write-review" to a product URL.
         #[deprecated = "Use AppStore.requestReview(in:)"]
         #[method(requestReview)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestReview();
     }
 );
@@ -40,11 +41,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKStoreReviewController {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

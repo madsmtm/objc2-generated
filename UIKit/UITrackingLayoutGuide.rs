@@ -30,6 +30,7 @@ extern_methods!(
         ///
         /// Parameter `edge`: When the tracking layout guide is close to this edge, specified constraints will change
         #[method(setConstraints:activeWhenNearEdge:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setConstraints_activeWhenNearEdge(
             &self,
             tracking_constraints: &NSArray<NSLayoutConstraint>,
@@ -37,7 +38,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSLayoutConstraint", feature = "UIGeometry"))]
-        #[method_id(constraintsActiveWhenNearEdge:)]
+        #[method(constraintsActiveWhenNearEdge:)]
         #[unsafe(method_family = none)]
         pub unsafe fn constraintsActiveWhenNearEdge(
             &self,
@@ -49,6 +50,7 @@ extern_methods!(
         ///
         /// Parameter `edge`: When the tracking layout guide is close to this edge, specified constraints will change
         #[method(setConstraints:activeWhenAwayFromEdge:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setConstraints_activeWhenAwayFromEdge(
             &self,
             tracking_constraints: &NSArray<NSLayoutConstraint>,
@@ -56,7 +58,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSLayoutConstraint", feature = "UIGeometry"))]
-        #[method_id(constraintsActiveWhenAwayFromEdge:)]
+        #[method(constraintsActiveWhenAwayFromEdge:)]
         #[unsafe(method_family = none)]
         pub unsafe fn constraintsActiveWhenAwayFromEdge(
             &self,
@@ -65,6 +67,7 @@ extern_methods!(
 
         /// Manually remove all constraints from this guide's tracking.
         #[method(removeAllTrackedConstraints)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeAllTrackedConstraints(&self);
     }
 );
@@ -73,11 +76,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UILayoutGuide")]
     unsafe impl UITrackingLayoutGuide {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

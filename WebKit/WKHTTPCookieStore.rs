@@ -32,6 +32,7 @@ extern_protocol!(
     pub unsafe trait WKHTTPCookieStoreObserver: NSObjectProtocol + MainThreadOnly {
         #[optional]
         #[method(cookiesDidChangeInCookieStore:)]
+        #[unsafe(method_family = none)]
         unsafe fn cookiesDidChangeInCookieStore(&self, cookie_store: &WKHTTPCookieStore);
     }
 );
@@ -50,7 +51,7 @@ unsafe impl NSObjectProtocol for WKHTTPCookieStore {}
 
 extern_methods!(
     unsafe impl WKHTTPCookieStore {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -59,6 +60,7 @@ extern_methods!(
         ///
         /// Parameter `completionHandler`: A block to invoke with the fetched cookies.
         #[method(getAllCookies:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getAllCookies(
             &self,
             completion_handler: &block2::Block<dyn Fn(NonNull<NSArray<NSHTTPCookie>>)>,
@@ -71,6 +73,7 @@ extern_methods!(
         ///
         /// Parameter `completionHandler`: A block to invoke once the cookie has been stored.
         #[method(setCookie:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCookie_completionHandler(
             &self,
             cookie: &NSHTTPCookie,
@@ -82,6 +85,7 @@ extern_methods!(
         ///
         /// Parameter `completionHandler`: A block to invoke once the cookie has been deleted.
         #[method(deleteCookie:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn deleteCookie_completionHandler(
             &self,
             cookie: &NSHTTPCookie,
@@ -95,12 +99,14 @@ extern_methods!(
         /// The observer is not retained by the receiver. It is your responsibility
         /// to unregister the observer before it becomes invalid.
         #[method(addObserver:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addObserver(&self, observer: &ProtocolObject<dyn WKHTTPCookieStoreObserver>);
 
         /// Removes a WKHTTPCookieStoreObserver object from the cookie store.
         ///
         /// Parameter `observer`: The observer to remove.
         #[method(removeObserver:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeObserver(
             &self,
             observer: &ProtocolObject<dyn WKHTTPCookieStoreObserver>,
@@ -113,6 +119,7 @@ extern_methods!(
         ///
         /// Parameter `completionHandler`: A block to invoke once the cookie policy has been set.
         #[method(setCookiePolicy:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCookiePolicy_completionHandler(
             &self,
             policy: WKCookiePolicy,
@@ -124,6 +131,7 @@ extern_methods!(
         ///
         /// Parameter `completionHandler`: A block to invoke with the value of whether cookies are allowed.
         #[method(getCookiePolicy:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getCookiePolicy(
             &self,
             completion_handler: &block2::Block<dyn Fn(WKCookiePolicy)>,
@@ -134,7 +142,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKHTTPCookieStore {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

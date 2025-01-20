@@ -23,6 +23,7 @@ extern_protocol!(
         ///
         /// The extension may choose to modify, delete, or create some or all descendants of the given context. The host app may call this method as the user selects a context.
         #[method(updateDescendantsOfContext:completion:)]
+        #[unsafe(method_family = none)]
         unsafe fn updateDescendantsOfContext_completion(
             &self,
             context: &CLSContext,

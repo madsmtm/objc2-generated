@@ -43,11 +43,11 @@ unsafe impl NSObjectProtocol for MLModelStructure {}
 
 extern_methods!(
     unsafe impl MLModelStructure {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -59,6 +59,7 @@ extern_methods!(
         ///
         /// Parameter `handler`: When the model structure is constructed successfully or unsuccessfully, the completion handler is invoked with a valid MLModelStructure instance or NSError object.
         #[method(loadContentsOfURL:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loadContentsOfURL_completionHandler(
             url: &NSURL,
             handler: &block2::Block<dyn Fn(*mut MLModelStructure, *mut NSError)>,
@@ -72,6 +73,7 @@ extern_methods!(
         ///
         /// Parameter `handler`: When the model structure is constructed successfully or unsuccessfully, the completion handler is invoked with a valid MLModelStructure instance or NSError object.
         #[method(loadModelAsset:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loadModelAsset_completionHandler(
             asset: &MLModelAsset,
             handler: &block2::Block<dyn Fn(*mut MLModelStructure, *mut NSError)>,
@@ -79,19 +81,19 @@ extern_methods!(
 
         #[cfg(feature = "MLModelStructureNeuralNetwork")]
         /// If the model is of NeuralNetwork type then it is the structure of the NeuralNetwork otherwise `nil`.
-        #[method_id(neuralNetwork)]
+        #[method(neuralNetwork)]
         #[unsafe(method_family = none)]
         pub unsafe fn neuralNetwork(&self) -> Option<Retained<MLModelStructureNeuralNetwork>>;
 
         #[cfg(feature = "MLModelStructureProgram")]
         /// If the model is of ML Program type then it is the structure of the ML Program otherwise `nil`.
-        #[method_id(program)]
+        #[method(program)]
         #[unsafe(method_family = none)]
         pub unsafe fn program(&self) -> Option<Retained<MLModelStructureProgram>>;
 
         #[cfg(feature = "MLModelStructurePipeline")]
         /// If the model is of Pipeline type then it is the structure of the Pipeline otherwise `nil`.
-        #[method_id(pipeline)]
+        #[method(pipeline)]
         #[unsafe(method_family = none)]
         pub unsafe fn pipeline(&self) -> Option<Retained<MLModelStructurePipeline>>;
     }

@@ -24,11 +24,11 @@ unsafe impl NSObjectProtocol for VZMacOSConfigurationRequirements {}
 
 extern_methods!(
     unsafe impl VZMacOSConfigurationRequirements {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -41,7 +41,7 @@ extern_methods!(
         /// See also: VZMacPlatformConfiguration
         ///
         /// See also: VZMacAuxiliaryStorage
-        #[method_id(hardwareModel)]
+        #[method(hardwareModel)]
         #[unsafe(method_family = none)]
         pub unsafe fn hardwareModel(&self) -> Retained<VZMacHardwareModel>;
 
@@ -51,6 +51,7 @@ extern_methods!(
         /// This property specifies the minimum number of CPUs required by the associated macOS configuration.
         /// Installing or running the associated configuration of macOS on a virtual machine with fewer than this number of CPUs will result in undefined behavior.
         #[method(minimumSupportedCPUCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn minimumSupportedCPUCount(&self) -> NSUInteger;
 
         /// The minimum supported memory size for this configuration.
@@ -59,6 +60,7 @@ extern_methods!(
         /// This property specifies the minimum amount of memory required by the associated macOS configuration.
         /// Installing or running the associated configuration of macOS on a virtual machine with less than this amount of memory will result in undefined behavior.
         #[method(minimumSupportedMemorySize)]
+        #[unsafe(method_family = none)]
         pub unsafe fn minimumSupportedMemorySize(&self) -> u64;
     }
 );

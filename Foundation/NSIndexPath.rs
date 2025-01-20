@@ -31,18 +31,18 @@ unsafe impl NSSecureCoding for NSIndexPath {}
 
 extern_methods!(
     unsafe impl NSIndexPath {
-        #[method_id(indexPathWithIndex:)]
+        #[method(indexPathWithIndex:)]
         #[unsafe(method_family = none)]
         pub unsafe fn indexPathWithIndex(index: NSUInteger) -> Retained<Self>;
 
-        #[method_id(indexPathWithIndexes:length:)]
+        #[method(indexPathWithIndexes:length:)]
         #[unsafe(method_family = none)]
         pub unsafe fn indexPathWithIndexes_length(
             indexes: *mut NSUInteger,
             length: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(initWithIndexes:length:)]
+        #[method(initWithIndexes:length:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIndexes_length(
             this: Allocated<Self>,
@@ -50,22 +50,24 @@ extern_methods!(
             length: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(initWithIndex:)]
+        #[method(initWithIndex:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIndex(this: Allocated<Self>, index: NSUInteger) -> Retained<Self>;
 
-        #[method_id(indexPathByAddingIndex:)]
+        #[method(indexPathByAddingIndex:)]
         #[unsafe(method_family = none)]
         pub unsafe fn indexPathByAddingIndex(&self, index: NSUInteger) -> Retained<NSIndexPath>;
 
-        #[method_id(indexPathByRemovingLastIndex)]
+        #[method(indexPathByRemovingLastIndex)]
         #[unsafe(method_family = none)]
         pub unsafe fn indexPathByRemovingLastIndex(&self) -> Retained<NSIndexPath>;
 
         #[method(indexAtPosition:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indexAtPosition(&self, position: NSUInteger) -> NSUInteger;
 
         #[method(length)]
+        #[unsafe(method_family = none)]
         pub unsafe fn length(&self) -> NSUInteger;
 
         #[cfg(feature = "NSRange")]
@@ -77,6 +79,7 @@ extern_methods!(
         ///
         /// It is the developer’s responsibility to allocate the memory for the C array.
         #[method(getIndexes:range:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getIndexes_range(
             &self,
             indexes: NonNull<NSUInteger>,
@@ -85,6 +88,7 @@ extern_methods!(
 
         #[cfg(feature = "NSObjCRuntime")]
         #[method(compare:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn compare(&self, other_object: &NSIndexPath) -> NSComparisonResult;
     }
 );
@@ -92,11 +96,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSIndexPath {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -108,6 +112,7 @@ extern_methods!(
         /// This method is unsafe because it could potentially cause buffer overruns. You should use -getIndexes:range: instead.
         #[deprecated]
         #[method(getIndexes:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getIndexes(&self, indexes: NonNull<NSUInteger>);
     }
 );

@@ -133,13 +133,13 @@ extern_methods!(
         #[cfg(feature = "WKWebViewConfiguration")]
         /// A copy of the configuration with which the web view was
         /// initialized.
-        #[method_id(configuration)]
+        #[method(configuration)]
         #[unsafe(method_family = none)]
         pub unsafe fn configuration(&self) -> Retained<WKWebViewConfiguration>;
 
         #[cfg(feature = "WKNavigationDelegate")]
         /// The web view's navigation delegate.
-        #[method_id(navigationDelegate)]
+        #[method(navigationDelegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn navigationDelegate(
             &self,
@@ -149,6 +149,7 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`navigationDelegate`][Self::navigationDelegate].
         #[method(setNavigationDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setNavigationDelegate(
             &self,
             navigation_delegate: Option<&ProtocolObject<dyn WKNavigationDelegate>>,
@@ -156,7 +157,7 @@ extern_methods!(
 
         #[cfg(feature = "WKUIDelegate")]
         /// The web view's user interface delegate.
-        #[method_id(UIDelegate)]
+        #[method(UIDelegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn UIDelegate(&self) -> Option<Retained<ProtocolObject<dyn WKUIDelegate>>>;
 
@@ -164,11 +165,12 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`UIDelegate`][Self::UIDelegate].
         #[method(setUIDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUIDelegate(&self, ui_delegate: Option<&ProtocolObject<dyn WKUIDelegate>>);
 
         #[cfg(feature = "WKBackForwardList")]
         /// The web view's back-forward list.
-        #[method_id(backForwardList)]
+        #[method(backForwardList)]
         #[unsafe(method_family = none)]
         pub unsafe fn backForwardList(&self) -> Retained<WKBackForwardList>;
 
@@ -193,7 +195,7 @@ extern_methods!(
         /// configuration. The initializer copies the specified configuration, so
         /// mutating the configuration after invoking the initializer has no effect
         /// on the web view.
-        #[method_id(initWithFrame:configuration:)]
+        #[method(initWithFrame:configuration:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame_configuration(
             this: Allocated<Self>,
@@ -201,7 +203,7 @@ extern_methods!(
             configuration: &WKWebViewConfiguration,
         ) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -214,7 +216,7 @@ extern_methods!(
         /// Parameter `request`: The request specifying the URL to which to navigate.
         ///
         /// Returns: A new navigation for the given request.
-        #[method_id(loadRequest:)]
+        #[method(loadRequest:)]
         #[unsafe(method_family = none)]
         pub unsafe fn loadRequest(&self, request: &NSURLRequest) -> Option<Retained<WKNavigation>>;
 
@@ -229,7 +231,7 @@ extern_methods!(
         /// If readAccessURL references a directory, files inside that file may be loaded by WebKit.
         ///
         /// Returns: A new navigation for the given file URL.
-        #[method_id(loadFileURL:allowingReadAccessToURL:)]
+        #[method(loadFileURL:allowingReadAccessToURL:)]
         #[unsafe(method_family = none)]
         pub unsafe fn loadFileURL_allowingReadAccessToURL(
             &self,
@@ -245,7 +247,7 @@ extern_methods!(
         /// Parameter `baseURL`: A URL that is used to resolve relative URLs within the document.
         ///
         /// Returns: A new navigation.
-        #[method_id(loadHTMLString:baseURL:)]
+        #[method(loadHTMLString:baseURL:)]
         #[unsafe(method_family = none)]
         pub unsafe fn loadHTMLString_baseURL(
             &self,
@@ -265,7 +267,7 @@ extern_methods!(
         /// Parameter `baseURL`: A URL that is used to resolve relative URLs within the document.
         ///
         /// Returns: A new navigation.
-        #[method_id(loadData:MIMEType:characterEncodingName:baseURL:)]
+        #[method(loadData:MIMEType:characterEncodingName:baseURL:)]
         #[unsafe(method_family = none)]
         pub unsafe fn loadData_MIMEType_characterEncodingName_baseURL(
             &self,
@@ -286,7 +288,7 @@ extern_methods!(
         /// the current item or is not part of the web view's back-forward list.
         ///
         /// See also: backForwardList
-        #[method_id(goToBackForwardListItem:)]
+        #[method(goToBackForwardListItem:)]
         #[unsafe(method_family = none)]
         pub unsafe fn goToBackForwardListItem(
             &self,
@@ -302,7 +304,7 @@ extern_methods!(
         ///
         /// is key-value observing (KVO) compliant
         /// for this property.
-        #[method_id(title)]
+        #[method(title)]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
@@ -317,7 +319,7 @@ extern_methods!(
         ///
         /// is key-value observing (KVO) compliant for this
         /// property.
-        #[method_id(URL)]
+        #[method(URL)]
         #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
@@ -332,6 +334,7 @@ extern_methods!(
         /// is key-value observing (KVO) compliant
         /// for this property.
         #[method(isLoading)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isLoading(&self) -> bool;
 
         /// An estimate of what fraction of the current navigation has been completed.
@@ -348,6 +351,7 @@ extern_methods!(
         /// is key-value observing (KVO) compliant for this
         /// property.
         #[method(estimatedProgress)]
+        #[unsafe(method_family = none)]
         pub unsafe fn estimatedProgress(&self) -> c_double;
 
         /// A Boolean value indicating whether all resources on the page
@@ -361,6 +365,7 @@ extern_methods!(
         /// is key-value observing (KVO) compliant
         /// for this property.
         #[method(hasOnlySecureContent)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hasOnlySecureContent(&self) -> bool;
 
         #[cfg(feature = "objc2-security")]
@@ -373,7 +378,7 @@ extern_methods!(
         ///
         /// is key-value observing (KVO) compliant
         /// for this property.
-        #[method_id(serverTrust)]
+        #[method(serverTrust)]
         #[unsafe(method_family = none)]
         pub unsafe fn serverTrust(&self) -> Option<Retained<SecTrust>>;
 
@@ -390,6 +395,7 @@ extern_methods!(
         ///
         /// See also: backForwardList.
         #[method(canGoBack)]
+        #[unsafe(method_family = none)]
         pub unsafe fn canGoBack(&self) -> bool;
 
         /// A Boolean value indicating whether there is a forward item in
@@ -405,6 +411,7 @@ extern_methods!(
         ///
         /// See also: backForwardList.
         #[method(canGoForward)]
+        #[unsafe(method_family = none)]
         pub unsafe fn canGoForward(&self) -> bool;
 
         #[cfg(feature = "WKNavigation")]
@@ -412,7 +419,7 @@ extern_methods!(
         ///
         /// Returns: A new navigation to the requested item, or nil if there is no back
         /// item in the back-forward list.
-        #[method_id(goBack)]
+        #[method(goBack)]
         #[unsafe(method_family = none)]
         pub unsafe fn goBack(&self) -> Option<Retained<WKNavigation>>;
 
@@ -421,7 +428,7 @@ extern_methods!(
         ///
         /// Returns: A new navigation to the requested item, or nil if there is no
         /// forward item in the back-forward list.
-        #[method_id(goForward)]
+        #[method(goForward)]
         #[unsafe(method_family = none)]
         pub unsafe fn goForward(&self) -> Option<Retained<WKNavigation>>;
 
@@ -429,7 +436,7 @@ extern_methods!(
         /// Reloads the current page.
         ///
         /// Returns: A new navigation representing the reload.
-        #[method_id(reload)]
+        #[method(reload)]
         #[unsafe(method_family = none)]
         pub unsafe fn reload(&self) -> Option<Retained<WKNavigation>>;
 
@@ -438,16 +445,18 @@ extern_methods!(
         /// using cache-validating conditionals if possible.
         ///
         /// Returns: A new navigation representing the reload.
-        #[method_id(reloadFromOrigin)]
+        #[method(reloadFromOrigin)]
         #[unsafe(method_family = none)]
         pub unsafe fn reloadFromOrigin(&self) -> Option<Retained<WKNavigation>>;
 
         /// Stops loading all resources on the current page.
         #[method(stopLoading)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stopLoading(&self);
 
         #[cfg(feature = "block2")]
         #[method(evaluateJavaScript:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn evaluateJavaScript_completionHandler(
             &self,
             java_script_string: &NSString,
@@ -460,6 +469,7 @@ extern_methods!(
             feature = "block2"
         ))]
         #[method(evaluateJavaScript:inFrame:inContentWorld:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn evaluateJavaScript_inFrame_inContentWorld_completionHandler(
             &self,
             java_script_string: &NSString,
@@ -474,6 +484,7 @@ extern_methods!(
             feature = "block2"
         ))]
         #[method(callAsyncJavaScript:arguments:inFrame:inContentWorld:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn callAsyncJavaScript_arguments_inFrame_inContentWorld_completionHandler(
             &self,
             function_body: &NSString,
@@ -488,6 +499,7 @@ extern_methods!(
         ///
         /// Includes picture-in-picture and fullscreen.
         #[method(closeAllMediaPresentationsWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn closeAllMediaPresentationsWithCompletionHandler(
             &self,
             completion_handler: Option<&block2::Block<dyn Fn()>>,
@@ -495,6 +507,7 @@ extern_methods!(
 
         #[deprecated]
         #[method(closeAllMediaPresentations)]
+        #[unsafe(method_family = none)]
         pub unsafe fn closeAllMediaPresentations(&self);
 
         #[cfg(feature = "block2")]
@@ -502,6 +515,7 @@ extern_methods!(
         ///
         /// Pauses media playback. Media in the page can be restarted by calling play() on a media element or resume() on an AudioContext in JavaScript. A user can also use media controls to play media content after it has been paused.
         #[method(pauseAllMediaPlaybackWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pauseAllMediaPlaybackWithCompletionHandler(
             &self,
             completion_handler: Option<&block2::Block<dyn Fn()>>,
@@ -510,6 +524,7 @@ extern_methods!(
         #[cfg(feature = "block2")]
         #[deprecated]
         #[method(pauseAllMediaPlayback:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pauseAllMediaPlayback(
             &self,
             completion_handler: Option<&block2::Block<dyn Fn()>>,
@@ -522,6 +537,7 @@ extern_methods!(
         ///
         /// If suspended is true, this pauses media playback and blocks all attempts by the page or the user to resume until setAllMediaPlaybackSuspended is called again with suspended set to false. Media playback should always be suspended and resumed in pairs.
         #[method(setAllMediaPlaybackSuspended:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAllMediaPlaybackSuspended_completionHandler(
             &self,
             suspended: bool,
@@ -531,6 +547,7 @@ extern_methods!(
         #[cfg(feature = "block2")]
         #[deprecated]
         #[method(resumeAllMediaPlayback:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resumeAllMediaPlayback(
             &self,
             completion_handler: Option<&block2::Block<dyn Fn()>>,
@@ -539,6 +556,7 @@ extern_methods!(
         #[cfg(feature = "block2")]
         #[deprecated]
         #[method(suspendAllMediaPlayback:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn suspendAllMediaPlayback(
             &self,
             completion_handler: Option<&block2::Block<dyn Fn()>>,
@@ -554,6 +572,7 @@ extern_methods!(
         /// If no media playback exists in the current WKWebView, WKMediaPlaybackState will equal
         /// WKMediaPlaybackStateNone.
         #[method(requestMediaPlaybackStateWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestMediaPlaybackStateWithCompletionHandler(
             &self,
             completion_handler: &block2::Block<dyn Fn(WKMediaPlaybackState)>,
@@ -562,6 +581,7 @@ extern_methods!(
         #[cfg(feature = "block2")]
         #[deprecated]
         #[method(requestMediaPlaybackState:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestMediaPlaybackState(
             &self,
             completion_handler: &block2::Block<dyn Fn(WKMediaPlaybackState)>,
@@ -577,6 +597,7 @@ extern_methods!(
         /// is key-value observing (KVO) compliant
         /// for this property.
         #[method(cameraCaptureState)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cameraCaptureState(&self) -> WKMediaCaptureState;
 
         /// The state of microphone capture on a web page.
@@ -589,6 +610,7 @@ extern_methods!(
         /// is key-value observing (KVO) compliant
         /// for this property.
         #[method(microphoneCaptureState)]
+        #[unsafe(method_family = none)]
         pub unsafe fn microphoneCaptureState(&self) -> WKMediaCaptureState;
 
         #[cfg(feature = "block2")]
@@ -602,6 +624,7 @@ extern_methods!(
         /// If value is WKMediaCaptureStateMuted, any active camera capture will become muted.
         /// If value is WKMediaCaptureStateActive, any muted camera capture will become active.
         #[method(setCameraCaptureState:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCameraCaptureState_completionHandler(
             &self,
             state: WKMediaCaptureState,
@@ -619,6 +642,7 @@ extern_methods!(
         /// If value is WKMediaCaptureStateMuted, any active microphone capture will become muted.
         /// If value is WKMediaCaptureStateActive, any muted microphone capture will become active.
         #[method(setMicrophoneCaptureState:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMicrophoneCaptureState_completionHandler(
             &self,
             state: WKMediaCaptureState,
@@ -627,6 +651,7 @@ extern_methods!(
 
         #[cfg(all(feature = "WKSnapshotConfiguration", feature = "block2"))]
         #[method(takeSnapshotWithConfiguration:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn takeSnapshotWithConfiguration_completionHandler(
             &self,
             snapshot_configuration: Option<&WKSnapshotConfiguration>,
@@ -645,6 +670,7 @@ extern_methods!(
         /// The data can be used to create a PDFDocument object.
         /// If the data is written to a file the resulting file is a valid PDF document.
         #[method(createPDFWithConfiguration:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn createPDFWithConfiguration_completionHandler(
             &self,
             pdf_configuration: Option<&WKPDFConfiguration>,
@@ -653,6 +679,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[method(createWebArchiveDataWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn createWebArchiveDataWithCompletionHandler(
             &self,
             completion_handler: &block2::Block<dyn Fn(NonNull<NSData>, NonNull<NSError>)>,
@@ -663,22 +690,25 @@ extern_methods!(
         ///
         /// The default value is NO.
         #[method(allowsBackForwardNavigationGestures)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowsBackForwardNavigationGestures(&self) -> bool;
 
         /// Setter for [`allowsBackForwardNavigationGestures`][Self::allowsBackForwardNavigationGestures].
         #[method(setAllowsBackForwardNavigationGestures:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAllowsBackForwardNavigationGestures(
             &self,
             allows_back_forward_navigation_gestures: bool,
         );
 
         /// The custom user agent string or nil if no custom user agent string has been set.
-        #[method_id(customUserAgent)]
+        #[method(customUserAgent)]
         #[unsafe(method_family = none)]
         pub unsafe fn customUserAgent(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`customUserAgent`][Self::customUserAgent].
         #[method(setCustomUserAgent:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCustomUserAgent(&self, custom_user_agent: Option<&NSString>);
 
         /// A Boolean value indicating whether link preview is allowed for any
@@ -686,30 +716,37 @@ extern_methods!(
         ///
         /// The default value is YES on Mac and iOS.
         #[method(allowsLinkPreview)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowsLinkPreview(&self) -> bool;
 
         /// Setter for [`allowsLinkPreview`][Self::allowsLinkPreview].
         #[method(setAllowsLinkPreview:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAllowsLinkPreview(&self, allows_link_preview: bool);
 
         #[method(allowsMagnification)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowsMagnification(&self) -> bool;
 
         /// Setter for [`allowsMagnification`][Self::allowsMagnification].
         #[method(setAllowsMagnification:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAllowsMagnification(&self, allows_magnification: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(magnification)]
+        #[unsafe(method_family = none)]
         pub unsafe fn magnification(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`magnification`][Self::magnification].
         #[method(setMagnification:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMagnification(&self, magnification: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(setMagnification:centeredAtPoint:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMagnification_centeredAtPoint(
             &self,
             magnification: CGFloat,
@@ -718,11 +755,13 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(pageZoom)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pageZoom(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`pageZoom`][Self::pageZoom].
         #[method(setPageZoom:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPageZoom(&self, page_zoom: CGFloat);
 
         #[cfg(all(
@@ -731,6 +770,7 @@ extern_methods!(
             feature = "block2"
         ))]
         #[method(findString:withConfiguration:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn findString_withConfiguration_completionHandler(
             &self,
             string: &NSString,
@@ -739,10 +779,12 @@ extern_methods!(
         );
 
         #[method(handlesURLScheme:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn handlesURLScheme(url_scheme: &NSString, mtm: MainThreadMarker) -> bool;
 
         #[cfg(all(feature = "WKDownload", feature = "block2"))]
         #[method(startDownloadUsingRequest:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn startDownloadUsingRequest_completionHandler(
             &self,
             request: &NSURLRequest,
@@ -751,26 +793,29 @@ extern_methods!(
 
         #[cfg(all(feature = "WKDownload", feature = "block2"))]
         #[method(resumeDownloadFromResumeData:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resumeDownloadFromResumeData_completionHandler(
             &self,
             resume_data: &NSData,
             completion_handler: &block2::Block<dyn Fn(NonNull<WKDownload>)>,
         );
 
-        #[method_id(mediaType)]
+        #[method(mediaType)]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaType(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`mediaType`][Self::mediaType].
         #[method(setMediaType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMediaType(&self, media_type: Option<&NSString>);
 
-        #[method_id(interactionState)]
+        #[method(interactionState)]
         #[unsafe(method_family = none)]
         pub unsafe fn interactionState(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`interactionState`][Self::interactionState].
         #[method(setInteractionState:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setInteractionState(&self, interaction_state: Option<&AnyObject>);
 
         #[cfg(feature = "WKNavigation")]
@@ -787,7 +832,7 @@ extern_methods!(
         /// Parameter `data`: The data to use as the contents of the webpage.
         ///
         /// Returns: A new navigation.
-        #[method_id(loadSimulatedRequest:response:responseData:)]
+        #[method(loadSimulatedRequest:response:responseData:)]
         #[unsafe(method_family = none)]
         pub unsafe fn loadSimulatedRequest_response_responseData(
             &self,
@@ -798,7 +843,7 @@ extern_methods!(
 
         #[cfg(feature = "WKNavigation")]
         #[deprecated]
-        #[method_id(loadSimulatedRequest:withResponse:responseData:)]
+        #[method(loadSimulatedRequest:withResponse:responseData:)]
         #[unsafe(method_family = none)]
         pub unsafe fn loadSimulatedRequest_withResponse_responseData(
             &self,
@@ -819,7 +864,7 @@ extern_methods!(
         /// If readAccessURL references a directory, files inside that file may be loaded by WebKit.
         ///
         /// Returns: A new navigation for the given file URL.
-        #[method_id(loadFileRequest:allowingReadAccessToURL:)]
+        #[method(loadFileRequest:allowingReadAccessToURL:)]
         #[unsafe(method_family = none)]
         pub unsafe fn loadFileRequest_allowingReadAccessToURL(
             &self,
@@ -839,7 +884,7 @@ extern_methods!(
         /// Parameter `string`: The data to use as the contents of the webpage.
         ///
         /// Returns: A new navigation.
-        #[method_id(loadSimulatedRequest:responseHTMLString:)]
+        #[method(loadSimulatedRequest:responseHTMLString:)]
         #[unsafe(method_family = none)]
         pub unsafe fn loadSimulatedRequest_responseHTMLString(
             &self,
@@ -849,7 +894,7 @@ extern_methods!(
 
         #[cfg(feature = "WKNavigation")]
         #[deprecated]
-        #[method_id(loadSimulatedRequest:withResponseHTMLString:)]
+        #[method(loadSimulatedRequest:withResponseHTMLString:)]
         #[unsafe(method_family = none)]
         pub unsafe fn loadSimulatedRequest_withResponseHTMLString(
             &self,
@@ -857,23 +902,24 @@ extern_methods!(
             string: &NSString,
         ) -> Retained<WKNavigation>;
 
-        #[method_id(printOperationWithPrintInfo:)]
+        #[method(printOperationWithPrintInfo:)]
         #[unsafe(method_family = none)]
         pub unsafe fn printOperationWithPrintInfo(
             &self,
             print_info: &NSPrintInfo,
         ) -> Retained<NSPrintOperation>;
 
-        #[method_id(themeColor)]
+        #[method(themeColor)]
         #[unsafe(method_family = none)]
         pub unsafe fn themeColor(&self) -> Option<Retained<NSColor>>;
 
-        #[method_id(underPageBackgroundColor)]
+        #[method(underPageBackgroundColor)]
         #[unsafe(method_family = none)]
         pub unsafe fn underPageBackgroundColor(&self) -> Retained<NSColor>;
 
         /// Setter for [`underPageBackgroundColor`][Self::underPageBackgroundColor].
         #[method(setUnderPageBackgroundColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUnderPageBackgroundColor(
             &self,
             under_page_background_color: Option<&NSColor>,
@@ -893,15 +939,19 @@ extern_methods!(
         ///
         /// ```
         #[method(fullscreenState)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fullscreenState(&self) -> WKFullscreenState;
 
         #[method(minimumViewportInset)]
+        #[unsafe(method_family = none)]
         pub unsafe fn minimumViewportInset(&self) -> NSEdgeInsets;
 
         #[method(maximumViewportInset)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maximumViewportInset(&self) -> NSEdgeInsets;
 
         #[method(setMinimumViewportInset:maximumViewportInset:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMinimumViewportInset_maximumViewportInset(
             &self,
             minimum_viewport_inset: NSEdgeInsets,
@@ -918,10 +968,12 @@ extern_methods!(
         ///
         /// The default value is NO.
         #[method(isInspectable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isInspectable(&self) -> bool;
 
         /// Setter for [`isInspectable`][Self::isInspectable].
         #[method(setInspectable:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setInspectable(&self, inspectable: bool);
 
         /// A Boolean value indicating whether Writing Tools is active for the view.
@@ -933,6 +985,7 @@ extern_methods!(
         ///
         /// is key-value observing (KVO) compliant for this property.
         #[method(isWritingToolsActive)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isWritingToolsActive(&self) -> bool;
     }
 );
@@ -942,7 +995,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl WKWebView {
-        #[method_id(initWithFrame:)]
+        #[method(initWithFrame:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
     }
@@ -953,7 +1006,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl WKWebView {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -964,7 +1017,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl WKWebView {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -980,6 +1033,7 @@ extern_methods!(
         ///
         /// Parameter `sender`: The object that sent this message.
         #[method(goBack:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn goBack_(&self, sender: Option<&AnyObject>);
 
         /// Action method that navigates to the forward item in the
@@ -987,12 +1041,14 @@ extern_methods!(
         ///
         /// Parameter `sender`: The object that sent this message.
         #[method(goForward:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn goForward_(&self, sender: Option<&AnyObject>);
 
         /// Action method that reloads the current page.
         ///
         /// Parameter `sender`: The object that sent this message.
         #[method(reload:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reload_(&self, sender: Option<&AnyObject>);
 
         /// Action method that reloads the current page, performing
@@ -1000,6 +1056,7 @@ extern_methods!(
         ///
         /// Parameter `sender`: The object that sent this message.
         #[method(reloadFromOrigin:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reloadFromOrigin_(&self, sender: Option<&AnyObject>);
 
         /// Action method that stops loading all resources on the current
@@ -1007,6 +1064,7 @@ extern_methods!(
         ///
         /// Parameter `sender`: The object that sent this message.
         #[method(stopLoading:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stopLoading_(&self, sender: Option<&AnyObject>);
     }
 );
@@ -1032,7 +1090,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl WKWebView {
         #[deprecated]
-        #[method_id(certificateChain)]
+        #[method(certificateChain)]
         #[unsafe(method_family = none)]
         pub unsafe fn certificateChain(&self) -> Retained<NSArray>;
     }

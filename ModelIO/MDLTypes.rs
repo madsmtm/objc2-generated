@@ -140,12 +140,13 @@ unsafe impl RefEncode for MDLDataPrecision {
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlnamed?language=objc)
     pub unsafe trait MDLNamed {
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
         #[method(setName:)]
+        #[unsafe(method_family = none)]
         unsafe fn setName(&self, name: &NSString);
     }
 );
@@ -160,22 +161,25 @@ extern_protocol!(
     pub unsafe trait MDLObjectContainerComponent: MDLComponent + NSFastEnumeration {
         #[cfg(feature = "MDLObject")]
         #[method(addObject:)]
+        #[unsafe(method_family = none)]
         unsafe fn addObject(&self, object: &MDLObject);
 
         #[cfg(feature = "MDLObject")]
         #[method(removeObject:)]
+        #[unsafe(method_family = none)]
         unsafe fn removeObject(&self, object: &MDLObject);
 
         #[cfg(feature = "MDLObject")]
-        #[method_id(objectAtIndexedSubscript:)]
+        #[method(objectAtIndexedSubscript:)]
         #[unsafe(method_family = none)]
         unsafe fn objectAtIndexedSubscript(&self, index: NSUInteger) -> Retained<MDLObject>;
 
         #[method(count)]
+        #[unsafe(method_family = none)]
         unsafe fn count(&self) -> NSUInteger;
 
         #[cfg(feature = "MDLObject")]
-        #[method_id(objects)]
+        #[method(objects)]
         #[unsafe(method_family = none)]
         unsafe fn objects(&self) -> Retained<NSArray<MDLObject>>;
     }

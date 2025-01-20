@@ -39,23 +39,25 @@ unsafe impl NSObjectProtocol for MKDirectionsRequest {}
 extern_methods!(
     unsafe impl MKDirectionsRequest {
         #[cfg(feature = "MKMapItem")]
-        #[method_id(source)]
+        #[method(source)]
         #[unsafe(method_family = none)]
         pub unsafe fn source(&self) -> Option<Retained<MKMapItem>>;
 
         #[cfg(feature = "MKMapItem")]
         /// Setter for [`source`][Self::source].
         #[method(setSource:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSource(&self, source: Option<&MKMapItem>);
 
         #[cfg(feature = "MKMapItem")]
-        #[method_id(destination)]
+        #[method(destination)]
         #[unsafe(method_family = none)]
         pub unsafe fn destination(&self) -> Option<Retained<MKMapItem>>;
 
         #[cfg(feature = "MKMapItem")]
         /// Setter for [`destination`][Self::destination].
         #[method(setDestination:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDestination(&self, destination: Option<&MKMapItem>);
     }
 );
@@ -63,11 +65,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKDirectionsRequest {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -78,48 +80,58 @@ extern_methods!(
     unsafe impl MKDirectionsRequest {
         #[cfg(feature = "MKDirectionsTypes")]
         #[method(transportType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn transportType(&self) -> MKDirectionsTransportType;
 
         #[cfg(feature = "MKDirectionsTypes")]
         /// Setter for [`transportType`][Self::transportType].
         #[method(setTransportType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTransportType(&self, transport_type: MKDirectionsTransportType);
 
         #[method(requestsAlternateRoutes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestsAlternateRoutes(&self) -> bool;
 
         /// Setter for [`requestsAlternateRoutes`][Self::requestsAlternateRoutes].
         #[method(setRequestsAlternateRoutes:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRequestsAlternateRoutes(&self, requests_alternate_routes: bool);
 
-        #[method_id(departureDate)]
+        #[method(departureDate)]
         #[unsafe(method_family = none)]
         pub unsafe fn departureDate(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`departureDate`][Self::departureDate].
         #[method(setDepartureDate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDepartureDate(&self, departure_date: Option<&NSDate>);
 
-        #[method_id(arrivalDate)]
+        #[method(arrivalDate)]
         #[unsafe(method_family = none)]
         pub unsafe fn arrivalDate(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`arrivalDate`][Self::arrivalDate].
         #[method(setArrivalDate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setArrivalDate(&self, arrival_date: Option<&NSDate>);
 
         #[method(tollPreference)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tollPreference(&self) -> MKDirectionsRoutePreference;
 
         /// Setter for [`tollPreference`][Self::tollPreference].
         #[method(setTollPreference:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTollPreference(&self, toll_preference: MKDirectionsRoutePreference);
 
         #[method(highwayPreference)]
+        #[unsafe(method_family = none)]
         pub unsafe fn highwayPreference(&self) -> MKDirectionsRoutePreference;
 
         /// Setter for [`highwayPreference`][Self::highwayPreference].
         #[method(setHighwayPreference:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setHighwayPreference(&self, highway_preference: MKDirectionsRoutePreference);
     }
 );
@@ -127,11 +139,12 @@ extern_methods!(
 extern_methods!(
     /// MKDirectionsURL
     unsafe impl MKDirectionsRequest {
-        #[method_id(initWithContentsOfURL:)]
+        #[method(initWithContentsOfURL:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
         #[method(isDirectionsRequestURL:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isDirectionsRequestURL(url: &NSURL) -> bool;
     }
 );

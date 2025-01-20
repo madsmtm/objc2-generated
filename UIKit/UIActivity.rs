@@ -143,29 +143,32 @@ unsafe impl NSObjectProtocol for UIActivity {}
 extern_methods!(
     unsafe impl UIActivity {
         #[method(activityCategory)]
+        #[unsafe(method_family = none)]
         pub unsafe fn activityCategory() -> UIActivityCategory;
 
-        #[method_id(activityType)]
+        #[method(activityType)]
         #[unsafe(method_family = none)]
         pub unsafe fn activityType(&self) -> Option<Retained<UIActivityType>>;
 
-        #[method_id(activityTitle)]
+        #[method(activityTitle)]
         #[unsafe(method_family = none)]
         pub unsafe fn activityTitle(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "UIImage")]
-        #[method_id(activityImage)]
+        #[method(activityImage)]
         #[unsafe(method_family = none)]
         pub unsafe fn activityImage(&self) -> Option<Retained<UIImage>>;
 
         #[method(canPerformWithActivityItems:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn canPerformWithActivityItems(&self, activity_items: &NSArray) -> bool;
 
         #[method(prepareWithActivityItems:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn prepareWithActivityItems(&self, activity_items: &NSArray);
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-        #[method_id(activityViewController)]
+        #[method(activityViewController)]
         #[unsafe(method_family = none)]
         pub unsafe fn activityViewController(
             &self,
@@ -173,9 +176,11 @@ extern_methods!(
         ) -> Option<Retained<UIViewController>>;
 
         #[method(performActivity)]
+        #[unsafe(method_family = none)]
         pub unsafe fn performActivity(&self);
 
         #[method(activityDidFinish:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn activityDidFinish(&self, completed: bool);
     }
 );
@@ -183,11 +188,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIActivity {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

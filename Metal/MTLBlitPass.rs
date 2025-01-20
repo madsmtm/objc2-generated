@@ -30,7 +30,7 @@ extern_methods!(
         /// the sample buffer.  If no sample buffer is provided, no samples will be taken.
         /// If any of the sample indices are specified as MTLCounterDontSample, no sample
         /// will be taken for that action.
-        #[method_id(sampleBuffer)]
+        #[method(sampleBuffer)]
         #[unsafe(method_family = none)]
         pub unsafe fn sampleBuffer(
             &self,
@@ -39,6 +39,7 @@ extern_methods!(
         #[cfg(feature = "MTLCounters")]
         /// Setter for [`sampleBuffer`][Self::sampleBuffer].
         #[method(setSampleBuffer:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSampleBuffer(
             &self,
             sample_buffer: Option<&ProtocolObject<dyn MTLCounterSampleBuffer>>,
@@ -51,10 +52,12 @@ extern_methods!(
         /// On devices where MTLCounterSamplingPointAtStageBoundary is unsupported,
         /// this sample index is invalid and must be set to MTLCounterDontSample or creation of a blit pass will fail.
         #[method(startOfEncoderSampleIndex)]
+        #[unsafe(method_family = none)]
         pub unsafe fn startOfEncoderSampleIndex(&self) -> NSUInteger;
 
         /// Setter for [`startOfEncoderSampleIndex`][Self::startOfEncoderSampleIndex].
         #[method(setStartOfEncoderSampleIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setStartOfEncoderSampleIndex(
             &self,
             start_of_encoder_sample_index: NSUInteger,
@@ -67,10 +70,12 @@ extern_methods!(
         /// On devices where MTLCounterSamplingPointAtStageBoundary is unsupported,
         /// this sample index is invalid and must be set to MTLCounterDontSample or creation of a blit pass will fail.
         #[method(endOfEncoderSampleIndex)]
+        #[unsafe(method_family = none)]
         pub unsafe fn endOfEncoderSampleIndex(&self) -> NSUInteger;
 
         /// Setter for [`endOfEncoderSampleIndex`][Self::endOfEncoderSampleIndex].
         #[method(setEndOfEncoderSampleIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setEndOfEncoderSampleIndex(&self, end_of_encoder_sample_index: NSUInteger);
     }
 );
@@ -78,11 +83,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLBlitPassSampleBufferAttachmentDescriptor {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -99,7 +104,7 @@ unsafe impl NSObjectProtocol for MTLBlitPassSampleBufferAttachmentDescriptorArra
 
 extern_methods!(
     unsafe impl MTLBlitPassSampleBufferAttachmentDescriptorArray {
-        #[method_id(objectAtIndexedSubscript:)]
+        #[method(objectAtIndexedSubscript:)]
         #[unsafe(method_family = none)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
@@ -107,6 +112,7 @@ extern_methods!(
         ) -> Retained<MTLBlitPassSampleBufferAttachmentDescriptor>;
 
         #[method(setObject:atIndexedSubscript:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setObject_atIndexedSubscript(
             &self,
             attachment: Option<&MTLBlitPassSampleBufferAttachmentDescriptor>,
@@ -118,11 +124,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLBlitPassSampleBufferAttachmentDescriptorArray {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -148,12 +154,12 @@ unsafe impl NSObjectProtocol for MTLBlitPassDescriptor {}
 extern_methods!(
     unsafe impl MTLBlitPassDescriptor {
         /// Create an autoreleased default frame buffer descriptor
-        #[method_id(blitPassDescriptor)]
+        #[method(blitPassDescriptor)]
         #[unsafe(method_family = none)]
         pub unsafe fn blitPassDescriptor() -> Retained<MTLBlitPassDescriptor>;
 
         /// An array of sample buffers and associated sample indices.
-        #[method_id(sampleBufferAttachments)]
+        #[method(sampleBufferAttachments)]
         #[unsafe(method_family = none)]
         pub unsafe fn sampleBufferAttachments(
             &self,
@@ -164,11 +170,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLBlitPassDescriptor {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

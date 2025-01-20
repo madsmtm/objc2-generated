@@ -23,11 +23,11 @@ unsafe impl NSObjectProtocol for UIUpdateLink {}
 
 extern_methods!(
     unsafe impl UIUpdateLink {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -36,14 +36,14 @@ extern_methods!(
             feature = "UIScene",
             feature = "UIWindowScene"
         ))]
-        #[method_id(updateLinkForWindowScene:)]
+        #[method(updateLinkForWindowScene:)]
         #[unsafe(method_family = none)]
         pub unsafe fn updateLinkForWindowScene(
             window_scene: &UIWindowScene,
         ) -> Retained<UIUpdateLink>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[method_id(updateLinkForView:)]
+        #[method(updateLinkForView:)]
         #[unsafe(method_family = none)]
         pub unsafe fn updateLinkForView(view: &UIView) -> Retained<UIUpdateLink>;
 
@@ -53,6 +53,7 @@ extern_methods!(
             feature = "block2"
         ))]
         #[method(addActionToPhase:handler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addActionToPhase_handler(
             &self,
             phase: &UIUpdateActionPhase,
@@ -61,6 +62,7 @@ extern_methods!(
 
         #[cfg(feature = "UIUpdateActionPhase")]
         #[method(addActionToPhase:target:selector:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addActionToPhase_target_selector(
             &self,
             phase: &UIUpdateActionPhase,
@@ -70,29 +72,35 @@ extern_methods!(
 
         /// It's required to enable the Update Link for it to have effect and for its actions to be invoked.
         #[method(isEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isEnabled(&self) -> bool;
 
         /// Setter for [`isEnabled`][Self::isEnabled].
         #[method(setEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
         /// By default, `UIUpdateLink` is a passive UI update observer. Its actions will only be called when UI update is being
         /// produced. When this property is set to `YES`, `UIUpdateLink` will request continuous UI updates by itself.
         #[method(requiresContinuousUpdates)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requiresContinuousUpdates(&self) -> bool;
 
         /// Setter for [`requiresContinuousUpdates`][Self::requiresContinuousUpdates].
         #[method(setRequiresContinuousUpdates:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRequiresContinuousUpdates(&self, requires_continuous_updates: bool);
 
         /// Request dispatch of low-latency eligible events in `LowLatencyEventDispatch` phase. Low latency eligible events are
         /// dispatch in the middle of the UI update, meaning that to handle them application has half the time, compared to
         /// events dispatched normally. Consult `-[UIUpdateInfo completionDeadlineTime]` for exact completion deadline time.
         #[method(wantsLowLatencyEventDispatch)]
+        #[unsafe(method_family = none)]
         pub unsafe fn wantsLowLatencyEventDispatch(&self) -> bool;
 
         /// Setter for [`wantsLowLatencyEventDispatch`][Self::wantsLowLatencyEventDispatch].
         #[method(setWantsLowLatencyEventDispatch:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWantsLowLatencyEventDispatch(
             &self,
             wants_low_latency_event_dispatch: bool,
@@ -108,10 +116,12 @@ extern_methods!(
         /// presentation, but fails to keep work complexity at minimum, user will experience on screen judder, as frames will
         /// not be presented at their intended time.
         #[method(wantsImmediatePresentation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn wantsImmediatePresentation(&self) -> bool;
 
         /// Setter for [`wantsImmediatePresentation`][Self::wantsImmediatePresentation].
         #[method(setWantsImmediatePresentation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWantsImmediatePresentation(&self, wants_immediate_presentation: bool);
 
         #[cfg(feature = "objc2-quartz-core")]
@@ -119,12 +129,14 @@ extern_methods!(
         /// Preferred frame rate range. Even when not forcing periodic updates, this will still express intention to the system.
         /// Use `CAFrameRateRangeDefault` (default value) to not request any specific frame rate range.
         #[method(preferredFrameRateRange)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preferredFrameRateRange(&self) -> CAFrameRateRange;
 
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(not(target_os = "watchos"))]
         /// Setter for [`preferredFrameRateRange`][Self::preferredFrameRateRange].
         #[method(setPreferredFrameRateRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreferredFrameRateRange(
             &self,
             preferred_frame_rate_range: CAFrameRateRange,
@@ -133,7 +145,7 @@ extern_methods!(
         #[cfg(feature = "UIUpdateInfo")]
         /// During UI update, returns `UIUpdateInfo` instance describing current UI update state. Returns `nil` outside of UI
         /// update.
-        #[method_id(currentUpdateInfo)]
+        #[method(currentUpdateInfo)]
         #[unsafe(method_family = none)]
         pub unsafe fn currentUpdateInfo(&self) -> Option<Retained<UIUpdateInfo>>;
     }
@@ -145,6 +157,7 @@ extern_methods!(
         #[cfg(all(feature = "UIUpdateInfo", feature = "block2"))]
         /// Adds action to `UIUpdateActionPhase.beforeCADisplayLinkDispatch` phase.
         #[method(addActionWithHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addActionWithHandler(
             &self,
             handler: &block2::Block<dyn Fn(NonNull<UIUpdateLink>, NonNull<UIUpdateInfo>)>,
@@ -152,6 +165,7 @@ extern_methods!(
 
         /// Adds action to `UIUpdateActionPhase.beforeCADisplayLinkDispatch` phase.
         #[method(addActionWithTarget:selector:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addActionWithTarget_selector(&self, target: &AnyObject, selector: Sel);
 
         #[cfg(all(
@@ -162,7 +176,7 @@ extern_methods!(
             feature = "block2"
         ))]
         /// Adds action to `UIUpdateActionPhase.beforeCADisplayLinkDispatch` phase.
-        #[method_id(updateLinkForWindowScene:actionHandler:)]
+        #[method(updateLinkForWindowScene:actionHandler:)]
         #[unsafe(method_family = none)]
         pub unsafe fn updateLinkForWindowScene_actionHandler(
             window_scene: &UIWindowScene,
@@ -175,7 +189,7 @@ extern_methods!(
             feature = "UIWindowScene"
         ))]
         /// Adds action to `UIUpdateActionPhase.beforeCADisplayLinkDispatch` phase.
-        #[method_id(updateLinkForWindowScene:actionTarget:selector:)]
+        #[method(updateLinkForWindowScene:actionTarget:selector:)]
         #[unsafe(method_family = none)]
         pub unsafe fn updateLinkForWindowScene_actionTarget_selector(
             window_scene: &UIWindowScene,
@@ -190,7 +204,7 @@ extern_methods!(
             feature = "block2"
         ))]
         /// Adds action to `UIUpdateActionPhase.beforeCADisplayLinkDispatch` phase.
-        #[method_id(updateLinkForView:actionHandler:)]
+        #[method(updateLinkForView:actionHandler:)]
         #[unsafe(method_family = none)]
         pub unsafe fn updateLinkForView_actionHandler(
             view: &UIView,
@@ -199,7 +213,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// Adds action to `UIUpdateActionPhase.beforeCADisplayLinkDispatch` phase.
-        #[method_id(updateLinkForView:actionTarget:selector:)]
+        #[method(updateLinkForView:actionTarget:selector:)]
         #[unsafe(method_family = none)]
         pub unsafe fn updateLinkForView_actionTarget_selector(
             view: &UIView,

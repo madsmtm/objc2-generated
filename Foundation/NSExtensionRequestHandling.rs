@@ -11,6 +11,7 @@ extern_protocol!(
     pub unsafe trait NSExtensionRequestHandling: NSObjectProtocol {
         #[cfg(feature = "NSExtensionContext")]
         #[method(beginRequestWithExtensionContext:)]
+        #[unsafe(method_family = none)]
         unsafe fn beginRequestWithExtensionContext(&self, context: &NSExtensionContext);
     }
 );

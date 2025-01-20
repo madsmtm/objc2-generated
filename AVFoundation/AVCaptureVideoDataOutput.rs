@@ -28,11 +28,11 @@ unsafe impl NSObjectProtocol for AVCaptureVideoDataOutput {}
 extern_methods!(
     #[cfg(feature = "AVCaptureOutputBase")]
     unsafe impl AVCaptureVideoDataOutput {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -40,7 +40,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an object conforming to the AVCaptureVideoDataOutputSampleBufferDelegate protocol that will receive sample buffers after they are captured. The delegate is set using the setSampleBufferDelegate:queue: method.
-        #[method_id(sampleBufferDelegate)]
+        #[method(sampleBufferDelegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn sampleBufferDelegate(
             &self,
@@ -52,12 +52,13 @@ extern_methods!(
         /// See AVVideoSettings.h for more information on how to construct a video settings dictionary. To receive samples in their device native format, set this property to an empty dictionary (i.e. [NSDictionary dictionary]). To receive samples in a default uncompressed format, set this property to nil. Note that after this property is set to nil, subsequent querying of this property will yield a non-nil dictionary reflecting the settings used by the AVCaptureSession's current sessionPreset.
         ///
         /// On iOS versions prior to iOS 16.0, the only supported key is kCVPixelBufferPixelFormatTypeKey. Use -availableVideoCVPixelFormatTypes for the list of supported pixel formats. For apps linked on or after iOS 16.0, kCVPixelBufferPixelFormatTypeKey, kCVPixelBufferWidthKey, and kCVPixelBufferHeightKey are supported. The width and height must match the videoOrientation specified on the output's AVCaptureConnection or an NSInvalidArgumentException is thrown. The aspect ratio of width and height must match the aspect ratio of the source's activeFormat (corrected for the connection's videoOrientation) or an NSInvalidArgumentException is thrown. If width or height exceeds the source's activeFormat's width or height, an NSInvalidArgumentException is thrown. Changing width and height when deliversPreviewSizedOutputBuffers is set to YES is not supported and throws an NSInvalidArgumentException.
-        #[method_id(videoSettings)]
+        #[method(videoSettings)]
         #[unsafe(method_family = none)]
         pub unsafe fn videoSettings(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         /// Setter for [`videoSettings`][Self::videoSettings].
         #[method(setVideoSettings:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setVideoSettings(
             &self,
             video_settings: Option<&NSDictionary<NSString, AnyObject>>,
@@ -79,7 +80,7 @@ extern_methods!(
         /// The dictionary returned contains all necessary keys and values needed by AVAssetWriter (see AVAssetWriterInput.h, -initWithMediaType:outputSettings: for a more in depth discussion). For QuickTime movie and ISO file types, the recommended video settings will produce output comparable to that of AVCaptureMovieFileOutput.
         ///
         /// Note that the dictionary of settings is dependent on the current configuration of the receiver's AVCaptureSession and its inputs. The settings dictionary may change if the session's configuration changes. As such, you should configure your session first, then query the recommended video settings. As of iOS 8.3, movies produced with these settings successfully import into the iOS camera roll and sync to and from like devices via iTunes.
-        #[method_id(recommendedVideoSettingsForAssetWriterWithOutputFileType:)]
+        #[method(recommendedVideoSettingsForAssetWriterWithOutputFileType:)]
         #[unsafe(method_family = none)]
         pub unsafe fn recommendedVideoSettingsForAssetWriterWithOutputFileType(
             &self,
@@ -96,7 +97,7 @@ extern_methods!(
         ///
         ///
         /// This method allows you to query the available video codecs that may be used when specifying an AVVideoCodecKey in -recommendedVideoSettingsForVideoCodecType:assetWriterOutputFileType:. When specifying an outputFileType of AVFileTypeQuickTimeMovie, video codecs are ordered identically to -[AVCaptureMovieFileOutput availableVideoCodecTypes].
-        #[method_id(availableVideoCodecTypesForAssetWriterWithOutputFileType:)]
+        #[method(availableVideoCodecTypesForAssetWriterWithOutputFileType:)]
         #[unsafe(method_family = none)]
         pub unsafe fn availableVideoCodecTypesForAssetWriterWithOutputFileType(
             &self,
@@ -123,7 +124,7 @@ extern_methods!(
         /// The videoCodecType string provided must be present in the availableVideoCodecTypesForAssetWriterWithOutputFileType: array, or an NSInvalidArgumentException is thrown.
         ///
         /// Note that the dictionary of settings is dependent on the current configuration of the receiver's AVCaptureSession and its inputs. The settings dictionary may change if the session's configuration changes. As such, you should configure your session first, then query the recommended video settings. As of iOS 8.3, movies produced with these settings successfully import into the iOS camera roll and sync to and from like devices via iTunes.
-        #[method_id(recommendedVideoSettingsForVideoCodecType:assetWriterOutputFileType:)]
+        #[method(recommendedVideoSettingsForVideoCodecType:assetWriterOutputFileType:)]
         #[unsafe(method_family = none)]
         pub unsafe fn recommendedVideoSettingsForVideoCodecType_assetWriterOutputFileType(
             &self,
@@ -161,7 +162,7 @@ extern_methods!(
         /// The videoCodecType string provided must be present in the availableVideoCodecTypesForAssetWriterWithOutputFileType: array, or an NSInvalidArgumentException is thrown.
         ///
         /// Note that the dictionary of settings is dependent on the current configuration of the receiver's AVCaptureSession and its inputs. The settings dictionary may change if the session's configuration changes. As such, you should configure your session first, then query the recommended video settings. As of iOS 8.3, movies produced with these settings successfully import into the iOS camera roll and sync to and from like devices via iTunes.
-        #[method_id(recommendedVideoSettingsForVideoCodecType:assetWriterOutputFileType:outputFileURL:)]
+        #[method(recommendedVideoSettingsForVideoCodecType:assetWriterOutputFileType:outputFileURL:)]
         #[unsafe(method_family = none)]
         pub unsafe fn recommendedVideoSettingsForVideoCodecType_assetWriterOutputFileType_outputFileURL(
             &self,
@@ -174,7 +175,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an NSArray of NSNumbers that can be used as values for the kCVPixelBufferPixelFormatTypeKey in the receiver's videoSettings property. The formats are listed in an unspecified order. This list can may change if the activeFormat of the AVCaptureDevice connected to the receiver changes.
-        #[method_id(availableVideoCVPixelFormatTypes)]
+        #[method(availableVideoCVPixelFormatTypes)]
         #[unsafe(method_family = none)]
         pub unsafe fn availableVideoCVPixelFormatTypes(&self) -> Retained<NSArray<NSNumber>>;
 
@@ -183,7 +184,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an NSArray of AVVideoCodecTypes that can be used as values for the AVVideoCodecKey in the receiver's videoSettings property.
-        #[method_id(availableVideoCodecTypes)]
+        #[method(availableVideoCodecTypes)]
         #[unsafe(method_family = none)]
         pub unsafe fn availableVideoCodecTypes(&self) -> Retained<NSArray<AVVideoCodecType>>;
 
@@ -194,12 +195,14 @@ extern_methods!(
         /// The value of this property is a CMTime specifying the minimum duration of each video frame output by the receiver, placing a lower bound on the amount of time that should separate consecutive frames. This is equivalent to the inverse of the maximum frame rate. A value of kCMTimeZero or kCMTimeInvalid indicates an unlimited maximum frame rate. The default value is kCMTimeInvalid. As of iOS 5.0, minFrameDuration is deprecated. Use AVCaptureConnection's videoMinFrameDuration property instead.
         #[deprecated = "Use AVCaptureConnection's videoMinFrameDuration property instead."]
         #[method(minFrameDuration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn minFrameDuration(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`minFrameDuration`][Self::minFrameDuration].
         #[deprecated = "Use AVCaptureConnection's videoMinFrameDuration property instead."]
         #[method(setMinFrameDuration:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMinFrameDuration(&self, min_frame_duration: CMTime);
 
         /// Specifies whether the receiver should always discard any video frame that is not processed before the next frame is captured.
@@ -207,10 +210,12 @@ extern_methods!(
         ///
         /// When the value of this property is YES, the receiver will immediately discard frames that are captured while the dispatch queue handling existing frames is blocked in the captureOutput:didOutputSampleBuffer:fromConnection: delegate method. When the value of this property is NO, delegates will be allowed more time to process old frames before new frames are discarded, but application memory usage may increase significantly as a result. The default value is YES.
         #[method(alwaysDiscardsLateVideoFrames)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alwaysDiscardsLateVideoFrames(&self) -> bool;
 
         /// Setter for [`alwaysDiscardsLateVideoFrames`][Self::alwaysDiscardsLateVideoFrames].
         #[method(setAlwaysDiscardsLateVideoFrames:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAlwaysDiscardsLateVideoFrames(
             &self,
             always_discards_late_video_frames: bool,
@@ -221,10 +226,12 @@ extern_methods!(
         ///
         /// Default value is YES. In most configurations, AVCaptureVideoDataOutput delivers full-resolution buffers, that is, buffers with the same dimensions as the source AVCaptureDevice's activeFormat's videoDimensions. When this property is set to YES, the receiver is free to configure the dimensions of the buffers delivered to -captureOutput:didOutputSampleBuffer:fromConnection:, such that they are a smaller preview size (roughly the size of the screen). For instance, when the AVCaptureSession's sessionPreset is set to AVCaptureSessionPresetPhoto, it is assumed that video data output buffers are being delivered as a preview proxy. Likewise, if an AVCapturePhotoOutput is present in the session with livePhotoCaptureEnabled, it is assumed that video data output is being used for photo preview, and thus preview-sized buffers are a better choice than full-res buffers. You can query deliversPreviewSizedOutputBuffers to find out whether automatic configuration of output buffer dimensions is currently downscaling buffers to a preview size. You can also query the videoSettings property to find out the exact width and height being delivered. If you wish to manually set deliversPreviewSizedOutputBuffers, you must first set automaticallyConfiguresOutputBufferDimensions to NO.
         #[method(automaticallyConfiguresOutputBufferDimensions)]
+        #[unsafe(method_family = none)]
         pub unsafe fn automaticallyConfiguresOutputBufferDimensions(&self) -> bool;
 
         /// Setter for [`automaticallyConfiguresOutputBufferDimensions`][Self::automaticallyConfiguresOutputBufferDimensions].
         #[method(setAutomaticallyConfiguresOutputBufferDimensions:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAutomaticallyConfiguresOutputBufferDimensions(
             &self,
             automatically_configures_output_buffer_dimensions: bool,
@@ -235,10 +242,12 @@ extern_methods!(
         ///
         /// If you wish to manually set deliversPreviewSizedOutputBuffers, you must first set automaticallyConfiguresOutputBufferDimensions to NO. When deliversPreviewSizedOutputBuffers is set to YES, auto focus, exposure, and white balance changes are quicker. AVCaptureVideoDataOutput assumes that the buffers are being used for on-screen preview rather than recording.
         #[method(deliversPreviewSizedOutputBuffers)]
+        #[unsafe(method_family = none)]
         pub unsafe fn deliversPreviewSizedOutputBuffers(&self) -> bool;
 
         /// Setter for [`deliversPreviewSizedOutputBuffers`][Self::deliversPreviewSizedOutputBuffers].
         #[method(setDeliversPreviewSizedOutputBuffers:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDeliversPreviewSizedOutputBuffers(
             &self,
             delivers_preview_sized_output_buffers: bool,
@@ -273,6 +282,7 @@ extern_protocol!(
         /// Note that to maintain optimal performance, some sample buffers directly reference pools of memory that may need to be reused by the device system and other capture inputs. This is frequently the case for uncompressed device native capture where memory blocks are copied as little as possible. If multiple sample buffers reference such pools of memory for too long, inputs will no longer be able to copy new samples into memory and those samples will be dropped. If your application is causing samples to be dropped by retaining the provided CMSampleBuffer objects for too long, but it needs access to the sample data for a long period of time, consider copying the data into a new buffer and then calling CFRelease on the sample buffer if it was previously retained so that the memory it references can be reused.
         #[optional]
         #[method(captureOutput:didOutputSampleBuffer:fromConnection:)]
+        #[unsafe(method_family = none)]
         unsafe fn captureOutput_didOutputSampleBuffer_fromConnection(
             &self,
             output: &AVCaptureOutput,
@@ -298,6 +308,7 @@ extern_protocol!(
         /// Delegates receive this message whenever a video frame is dropped. This method is called once for each dropped frame. The CMSampleBuffer object passed to this delegate method will contain metadata about the dropped video frame, such as its duration and presentation time stamp, but will contain no actual video data. On iOS, Included in the sample buffer attachments is the kCMSampleBufferAttachmentKey_DroppedFrameReason, which indicates why the frame was dropped. This method will be called on the dispatch queue specified by the output's sampleBufferCallbackQueue property. Because this method will be called on the same dispatch queue that is responsible for outputting video frames, it must be efficient to prevent further capture performance problems, such as additional dropped video frames.
         #[optional]
         #[method(captureOutput:didDropSampleBuffer:fromConnection:)]
+        #[unsafe(method_family = none)]
         unsafe fn captureOutput_didDropSampleBuffer_fromConnection(
             &self,
             output: &AVCaptureOutput,

@@ -64,10 +64,12 @@ extern_methods!(
         /// different origin is desired then this should be modified prior to
         /// encoding the kernel.  The z value must be 0.
         #[method(resultMatrixOrigin)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resultMatrixOrigin(&self) -> MTLOrigin;
 
         /// Setter for [`resultMatrixOrigin`][Self::resultMatrixOrigin].
         #[method(setResultMatrixOrigin:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setResultMatrixOrigin(&self, result_matrix_origin: MTLOrigin);
 
         /// The origin, relative to [0, 0] in the left input matrix, at which to
@@ -76,10 +78,12 @@ extern_methods!(
         /// this should be modified prior to encoding the kernel.  The z value
         /// must be 0.
         #[method(leftMatrixOrigin)]
+        #[unsafe(method_family = none)]
         pub unsafe fn leftMatrixOrigin(&self) -> MTLOrigin;
 
         /// Setter for [`leftMatrixOrigin`][Self::leftMatrixOrigin].
         #[method(setLeftMatrixOrigin:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLeftMatrixOrigin(&self, left_matrix_origin: MTLOrigin);
 
         /// The origin, relative to [0, 0] in the right input matrix, at which to
@@ -88,10 +92,12 @@ extern_methods!(
         /// this should be modified prior to encoding the kernel.  The z value
         /// must be 0.
         #[method(rightMatrixOrigin)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rightMatrixOrigin(&self) -> MTLOrigin;
 
         /// Setter for [`rightMatrixOrigin`][Self::rightMatrixOrigin].
         #[method(setRightMatrixOrigin:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRightMatrixOrigin(&self, right_matrix_origin: MTLOrigin);
 
         /// The index of the first matrix in the batch.  This property is
@@ -99,20 +105,24 @@ extern_methods!(
         /// batch processing should begin at a different matrix this value
         /// should be modified prior to encoding the kernel.
         #[method(batchStart)]
+        #[unsafe(method_family = none)]
         pub unsafe fn batchStart(&self) -> NSUInteger;
 
         /// Setter for [`batchStart`][Self::batchStart].
         #[method(setBatchStart:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBatchStart(&self, batch_start: NSUInteger);
 
         /// The number of matrices in the batch to process.  This property
         /// is modifiable and by default allows all matrices available at
         /// encoding time to be processed.
         #[method(batchSize)]
+        #[unsafe(method_family = none)]
         pub unsafe fn batchSize(&self) -> NSUInteger;
 
         /// Setter for [`batchSize`][Self::batchSize].
         #[method(setBatchSize:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBatchSize(&self, batch_size: NSUInteger);
 
         /// Initialize an MPSMatrixMultiplication object on a device for a given size
@@ -154,7 +164,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A valid MPSMatrixMultiplication object or nil, if failure.
-        #[method_id(initWithDevice:transposeLeft:transposeRight:resultRows:resultColumns:interiorColumns:alpha:beta:)]
+        #[method(initWithDevice:transposeLeft:transposeRight:resultRows:resultColumns:interiorColumns:alpha:beta:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_transposeLeft_transposeRight_resultRows_resultColumns_interiorColumns_alpha_beta(
             this: Allocated<Self>,
@@ -188,7 +198,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A valid MPSMatrixMultiplication object or nil, if failure.
-        #[method_id(initWithDevice:resultRows:resultColumns:interiorColumns:)]
+        #[method(initWithDevice:resultRows:resultColumns:interiorColumns:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_resultRows_resultColumns_interiorColumns(
             this: Allocated<Self>,
@@ -199,7 +209,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Use the above initialization method instead.
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -239,6 +249,7 @@ extern_methods!(
         /// a valid set of matrices within leftMatrix, rightMatrix, and resultMatrix, will
         /// be processed.
         #[method(encodeToCommandBuffer:leftMatrix:rightMatrix:resultMatrix:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_leftMatrix_rightMatrix_resultMatrix(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -261,7 +272,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -281,7 +292,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -295,11 +306,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSMatrixMultiplication {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -383,7 +394,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A valid MPSMatrixVectorMultiplication object or nil, if failure.
-        #[method_id(initWithDevice:transpose:rows:columns:alpha:beta:)]
+        #[method(initWithDevice:transpose:rows:columns:alpha:beta:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_transpose_rows_columns_alpha_beta(
             this: Allocated<Self>,
@@ -413,7 +424,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A valid MPSMatrixVectorMultiplication object or nil, if failure.
-        #[method_id(initWithDevice:rows:columns:)]
+        #[method(initWithDevice:rows:columns:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_rows_columns(
             this: Allocated<Self>,
@@ -423,7 +434,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Use the above initialization method instead.
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -457,6 +468,7 @@ extern_methods!(
         /// elements beginning at resultMatrixOrigin.x.  resultMatrixOrigin.y and
         /// resultMatrixOrigin.z must be zero.
         #[method(encodeToCommandBuffer:inputMatrix:inputVector:resultVector:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_inputMatrix_inputVector_resultVector(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -479,7 +491,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -499,7 +511,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -513,11 +525,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixVectorMultiplication {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

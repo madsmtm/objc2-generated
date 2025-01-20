@@ -11,10 +11,12 @@ extern_protocol!(
         NSObjectProtocol + MainThreadOnly
     {
         #[method(isSpringLoaded)]
+        #[unsafe(method_family = none)]
         unsafe fn isSpringLoaded(&self) -> bool;
 
         /// Setter for [`isSpringLoaded`][Self::isSpringLoaded].
         #[method(setSpringLoaded:)]
+        #[unsafe(method_family = none)]
         unsafe fn setSpringLoaded(&self, spring_loaded: bool);
     }
 );

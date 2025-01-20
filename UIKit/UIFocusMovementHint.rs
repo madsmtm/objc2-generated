@@ -33,35 +33,40 @@ extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// Value between {-1.0, -1.0} and {1.0, 1.0} representing how close focus is to moving in a particular direction.
         #[method(movementDirection)]
+        #[unsafe(method_family = none)]
         pub unsafe fn movementDirection(&self) -> CGVector;
 
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(not(target_os = "watchos"))]
         /// A 3D transform representing the perspective matrix that should be applied to match the system interaction hinting. Assumes a 0..1 near/far plane.
         #[method(perspectiveTransform)]
+        #[unsafe(method_family = none)]
         pub unsafe fn perspectiveTransform(&self) -> CATransform3D;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// A vector representing the X and Y axis rotation expressed in radians that should be applied to match the system interaction hinting.
         #[method(rotation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rotation(&self) -> CGVector;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// A vector representing the X and Y axis translation expressed in points that should be applied to match the system interaction hinting.
         #[method(translation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn translation(&self) -> CGVector;
 
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(not(target_os = "watchos"))]
         /// A 3D transform that contains the combined transformations of perspective, rotation and translation.
         #[method(interactionTransform)]
+        #[unsafe(method_family = none)]
         pub unsafe fn interactionTransform(&self) -> CATransform3D;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

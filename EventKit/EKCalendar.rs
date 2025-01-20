@@ -29,7 +29,7 @@ extern_methods!(
     #[cfg(feature = "EKObject")]
     unsafe impl EKCalendar {
         #[cfg(feature = "EKEventStore")]
-        #[method_id(calendarWithEventStore:)]
+        #[method(calendarWithEventStore:)]
         #[unsafe(method_family = none)]
         pub unsafe fn calendarWithEventStore(event_store: &EKEventStore) -> Retained<EKCalendar>;
 
@@ -43,7 +43,7 @@ extern_methods!(
         /// Parameter `entityType`: The entity type that this calendar may support.
         ///
         /// Parameter `eventStore`: The event store in which to create this calendar.
-        #[method_id(calendarForEntityType:eventStore:)]
+        #[method(calendarForEntityType:eventStore:)]
         #[unsafe(method_family = none)]
         pub unsafe fn calendarForEntityType_eventStore(
             entity_type: EKEntityType,
@@ -57,30 +57,32 @@ extern_methods!(
         /// but you cannot move it to another source.
         ///
         /// This will be nil for new calendars until you set it.
-        #[method_id(source)]
+        #[method(source)]
         #[unsafe(method_family = none)]
         pub unsafe fn source(&self) -> Option<Retained<EKSource>>;
 
         #[cfg(feature = "EKSource")]
         /// Setter for [`source`][Self::source].
         #[method(setSource:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSource(&self, source: Option<&EKSource>);
 
         /// A unique identifier for the calendar. It is not sync-proof in that a full
         /// sync will lose this identifier, so you should always have a back up plan for dealing
         /// with a calendar that is no longer fetchable by this property, e.g. by title, type, color, etc.
         /// Use [EKEventStore calendarWithIdentifier:] to look up the calendar by this value.
-        #[method_id(calendarIdentifier)]
+        #[method(calendarIdentifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn calendarIdentifier(&self) -> Retained<NSString>;
 
         /// The title of the calendar.
-        #[method_id(title)]
+        #[method(title)]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
         #[cfg(feature = "EKTypes")]
@@ -89,33 +91,38 @@ extern_methods!(
         ///
         /// CalDAV subscribed calendars have type EKCalendarTypeCalDAV with isSubscribed = YES.
         #[method(type)]
+        #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> EKCalendarType;
 
         /// Represents whether you can this add, remove, or modify items in this calendar.
         #[method(allowsContentModifications)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowsContentModifications(&self) -> bool;
 
         /// YES if this calendar is a subscribed calendar.
         #[method(isSubscribed)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isSubscribed(&self) -> bool;
 
         /// If this is set to YES, it means you cannot modify any attributes of
         /// the calendar or delete it. It does NOT imply that you cannot add events
         /// or reminders to the calendar.
         #[method(isImmutable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isImmutable(&self) -> bool;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Returns the calendar color as a CGColorRef.
         ///
         /// This will be nil for new calendars until you set it.
-        #[method_id(CGColor)]
+        #[method(CGColor)]
         #[unsafe(method_family = none)]
         pub unsafe fn CGColor(&self) -> Option<Retained<CGColor>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`CGColor`][Self::CGColor].
         #[method(setCGColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCGColor(&self, cg_color: Option<&CGColor>);
 
         #[cfg(feature = "objc2-app-kit")]
@@ -123,7 +130,7 @@ extern_methods!(
         /// Returns the calendar color as a NSColor.
         ///
         /// This will be nil for new calendars until you set it.
-        #[method_id(color)]
+        #[method(color)]
         #[unsafe(method_family = none)]
         pub unsafe fn color(&self) -> Retained<NSColor>;
 
@@ -131,16 +138,19 @@ extern_methods!(
         #[cfg(target_os = "macos")]
         /// Setter for [`color`][Self::color].
         #[method(setColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setColor(&self, color: Option<&NSColor>);
 
         #[cfg(feature = "EKTypes")]
         /// Returns a bitfield of supported event availabilities, or EKCalendarEventAvailabilityNone
         /// if this calendar does not support setting availability on an event.
         #[method(supportedEventAvailabilities)]
+        #[unsafe(method_family = none)]
         pub unsafe fn supportedEventAvailabilities(&self) -> EKCalendarEventAvailabilityMask;
 
         #[cfg(feature = "EKTypes")]
         #[method(allowedEntityTypes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowedEntityTypes(&self) -> EKEntityMask;
     }
 );
@@ -149,11 +159,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "EKObject")]
     unsafe impl EKCalendar {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

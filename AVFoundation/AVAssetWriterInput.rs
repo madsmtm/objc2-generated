@@ -33,11 +33,11 @@ unsafe impl NSObjectProtocol for AVAssetWriterInput {}
 
 extern_methods!(
     unsafe impl AVAssetWriterInput {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -59,7 +59,7 @@ extern_methods!(
         /// For AVMediaTypeAudio the following keys are not currently supported in the outputSettings dictionary: AVSampleRateConverterAudioQualityKey.  When using this method to construct a new instance, an audio settings dictionary must be fully specified, meaning that it must contain AVFormatIDKey, AVSampleRateKey, and AVNumberOfChannelsKey.  If no other channel layout information is available, a value of 1 for AVNumberOfChannelsKey will result in mono output and a value of 2 will result in stereo output.  If AVNumberOfChannelsKey specifies a channel count greater than 2, the dictionary must also specify a value for AVChannelLayoutKey.  For kAudioFormatLinearPCM, all relevant AVLinearPCM*Key keys must be included, and for kAudioFormatAppleLossless, AVEncoderBitDepthHintKey keys must be included.  See +assetWriterInputWithMediaType:outputSettings:sourceFormatHint: for a way to avoid having to specify a value for each of those keys.
         ///
         /// For AVMediaTypeVideo, any output settings dictionary must request a compressed video format.  This means that the value passed in for outputSettings must follow the rules for compressed video output, as laid out in AVVideoSettings.h.  When using this method to construct a new instance, a video settings dictionary must be fully specified, meaning that it must contain AVVideoCodecKey, AVVideoWidthKey, and AVVideoHeightKey.  See +assetWriterInputWithMediaType:outputSettings:sourceFormatHint: for a way to avoid having to specify a value for each of those keys.  On iOS, the only values currently supported for AVVideoCodecKey are AVVideoCodecTypeH264 and AVVideoCodecTypeJPEG.  AVVideoCodecTypeH264 is not supported on iPhone 3G.  For AVVideoScalingModeKey, the value AVVideoScalingModeFit is not supported.
-        #[method_id(assetWriterInputWithMediaType:outputSettings:)]
+        #[method(assetWriterInputWithMediaType:outputSettings:)]
         #[unsafe(method_family = none)]
         pub unsafe fn assetWriterInputWithMediaType_outputSettings(
             media_type: &AVMediaType,
@@ -88,7 +88,7 @@ extern_methods!(
         /// - for video inputs, the output settings do not contain a required key (AVVideoCodecKey, AVVideoWidthKey, AVVideoHeightKey)
         /// - the output scaling mode is AVVideoScalingModeFit
         /// - the output settings contain AVSampleRateConverterAudioQualityKey or AVVideoDecompressionPropertiesKey
-        #[method_id(assetWriterInputWithMediaType:outputSettings:sourceFormatHint:)]
+        #[method(assetWriterInputWithMediaType:outputSettings:sourceFormatHint:)]
         #[unsafe(method_family = none)]
         pub unsafe fn assetWriterInputWithMediaType_outputSettings_sourceFormatHint(
             media_type: &AVMediaType,
@@ -121,7 +121,7 @@ extern_methods!(
         /// - for video inputs, the output settings do not contain a required key (AVVideoCodecKey, AVVideoWidthKey, AVVideoHeightKey)
         /// - the output scaling mode is AVVideoScalingModeFit
         /// - the output settings contain AVSampleRateConverterAudioQualityKey or AVVideoDecompressionPropertiesKey
-        #[method_id(initWithMediaType:outputSettings:)]
+        #[method(initWithMediaType:outputSettings:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMediaType_outputSettings(
             this: Allocated<Self>,
@@ -151,7 +151,7 @@ extern_methods!(
         /// - for video inputs, the output settings do not contain a required key (AVVideoCodecKey, AVVideoWidthKey, AVVideoHeightKey)
         /// - the output scaling mode is AVVideoScalingModeFit
         /// - the output settings contain AVSampleRateConverterAudioQualityKey or AVVideoDecompressionPropertiesKey
-        #[method_id(initWithMediaType:outputSettings:sourceFormatHint:)]
+        #[method(initWithMediaType:outputSettings:sourceFormatHint:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMediaType_outputSettings_sourceFormatHint(
             this: Allocated<Self>,
@@ -165,7 +165,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is one of the media types defined in AVMediaFormat.h.
-        #[method_id(mediaType)]
+        #[method(mediaType)]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaType(&self) -> Retained<AVMediaType>;
 
@@ -173,7 +173,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an NSDictionary that contains values for keys as specified by either AVAudioSettings.h for AVMediaTypeAudio or AVVideoSettings.h for AVMediaTypeVideo.  A value of nil indicates that the receiver will pass through appended samples, doing no processing before they are written to the output file.
-        #[method_id(outputSettings)]
+        #[method(outputSettings)]
         #[unsafe(method_family = none)]
         pub unsafe fn outputSettings(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
@@ -182,7 +182,7 @@ extern_methods!(
         ///
         ///
         /// AVAssetWriterInput may be able to use this hint to fill in missing output settings or perform more upfront validation.  To guarantee successful file writing, clients who specify a format hint should ensure that subsequently-appended media data are of the specified format.
-        #[method_id(sourceFormatHint)]
+        #[method(sourceFormatHint)]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceFormatHint(&self) -> Option<Retained<CMFormatDescription>>;
 
@@ -193,13 +193,14 @@ extern_methods!(
         /// The value of this property is an array of AVMetadataItem objects representing the collection of track-level metadata to be written in the output file.
         ///
         /// This property cannot be set after writing on the receiver's AVAssetWriter has started.
-        #[method_id(metadata)]
+        #[method(metadata)]
         #[unsafe(method_family = none)]
         pub unsafe fn metadata(&self) -> Retained<NSArray<AVMetadataItem>>;
 
         #[cfg(feature = "AVMetadataItem")]
         /// Setter for [`metadata`][Self::metadata].
         #[method(setMetadata:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMetadata(&self, metadata: &NSArray<AVMetadataItem>);
 
         /// Indicates the readiness of the input to accept more media data.
@@ -217,6 +218,7 @@ extern_methods!(
         ///
         /// This property is key value observable. Observers should not assume that they will be notified of changes on a specific thread.
         #[method(isReadyForMoreMediaData)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isReadyForMoreMediaData(&self) -> bool;
 
         /// Indicates whether the input should tailor its processing of media data for real-time sources.
@@ -228,10 +230,12 @@ extern_methods!(
         ///
         /// This property cannot be set after writing on the receiver's AVAssetWriter has started.
         #[method(expectsMediaDataInRealTime)]
+        #[unsafe(method_family = none)]
         pub unsafe fn expectsMediaDataInRealTime(&self) -> bool;
 
         /// Setter for [`expectsMediaDataInRealTime`][Self::expectsMediaDataInRealTime].
         #[method(setExpectsMediaDataInRealTime:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setExpectsMediaDataInRealTime(&self, expects_media_data_in_real_time: bool);
 
         #[cfg(feature = "objc2-core-media")]
@@ -272,6 +276,7 @@ extern_methods!(
         ///
         /// This method throws an exception if the sample buffer's media type does not match the asset writer input's media type.
         #[method(appendSampleBuffer:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn appendSampleBuffer(&self, sample_buffer: &CMSampleBuffer) -> bool;
 
         /// Indicates to the AVAssetWriter that no more buffers will be appended to this input.
@@ -283,6 +288,7 @@ extern_methods!(
         ///
         /// Before calling this method, you must ensure that the receiver is attached to an AVAssetWriter via a prior call to -addInput: and that -startWriting has been called on the asset writer.
         #[method(markAsFinished)]
+        #[unsafe(method_family = none)]
         pub unsafe fn markAsFinished(&self);
     }
 );
@@ -298,12 +304,13 @@ extern_methods!(
         /// This property cannot be set after writing on the receiver's AVAssetWriter has started.
         ///
         /// This property throws an exception if a language code is set which does not conform to the ISO 639-2/T language codes.
-        #[method_id(languageCode)]
+        #[method(languageCode)]
         #[unsafe(method_family = none)]
         pub unsafe fn languageCode(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`languageCode`][Self::languageCode].
         #[method(setLanguageCode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLanguageCode(&self, language_code: Option<&NSString>);
 
         /// Indicates the language tag to associate with the track corresponding to the receiver, as an IETF BCP 47 (RFC 4646) language identifier; can be nil.
@@ -314,12 +321,13 @@ extern_methods!(
         /// This property cannot be set after writing on the receiver's AVAssetWriter has started.
         ///
         /// This property throws an exception if an extended language tag is set which does not conform to the IETF BCP 47 (RFC 4646) language identifiers.
-        #[method_id(extendedLanguageTag)]
+        #[method(extendedLanguageTag)]
         #[unsafe(method_family = none)]
         pub unsafe fn extendedLanguageTag(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`extendedLanguageTag`][Self::extendedLanguageTag].
         #[method(setExtendedLanguageTag:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setExtendedLanguageTag(&self, extended_language_tag: Option<&NSString>);
     }
 );
@@ -335,11 +343,13 @@ extern_methods!(
         ///
         /// This property cannot be set after writing on the receiver's AVAssetWriter has started.
         #[method(naturalSize)]
+        #[unsafe(method_family = none)]
         pub unsafe fn naturalSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`naturalSize`][Self::naturalSize].
         #[method(setNaturalSize:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setNaturalSize(&self, natural_size: CGSize);
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -350,11 +360,13 @@ extern_methods!(
         ///
         /// This property cannot be set after writing on the receiver's AVAssetWriter has started.
         #[method(transform)]
+        #[unsafe(method_family = none)]
         pub unsafe fn transform(&self) -> CGAffineTransform;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`transform`][Self::transform].
         #[method(setTransform:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTransform(&self, transform: CGAffineTransform);
     }
 );
@@ -369,10 +381,12 @@ extern_methods!(
         ///
         /// This property cannot be set after writing on the receiver's AVAssetWriter has started.
         #[method(preferredVolume)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preferredVolume(&self) -> c_float;
 
         /// Setter for [`preferredVolume`][Self::preferredVolume].
         #[method(setPreferredVolume:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreferredVolume(&self, preferred_volume: c_float);
     }
 );
@@ -409,10 +423,12 @@ extern_methods!(
         ///
         /// This property throws an exception if a value is set on an asset writer input that is contained in an input group.
         #[method(marksOutputTrackAsEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn marksOutputTrackAsEnabled(&self) -> bool;
 
         /// Setter for [`marksOutputTrackAsEnabled`][Self::marksOutputTrackAsEnabled].
         #[method(setMarksOutputTrackAsEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMarksOutputTrackAsEnabled(&self, marks_output_track_as_enabled: bool);
 
         #[cfg(feature = "objc2-core-media")]
@@ -425,11 +441,13 @@ extern_methods!(
         ///
         /// This property throws an exception if a value is set on an asset writer input with media type AVMediaTypeAudio.
         #[method(mediaTimeScale)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mediaTimeScale(&self) -> CMTimeScale;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`mediaTimeScale`][Self::mediaTimeScale].
         #[method(setMediaTimeScale:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMediaTimeScale(&self, media_time_scale: CMTimeScale);
 
         #[cfg(feature = "objc2-core-media")]
@@ -446,11 +464,13 @@ extern_methods!(
         ///
         /// This property throws an exception if a duration is set which is non-numeric or non-positive (see CMTIME_IS_NUMERIC).
         #[method(preferredMediaChunkDuration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preferredMediaChunkDuration(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`preferredMediaChunkDuration`][Self::preferredMediaChunkDuration].
         #[method(setPreferredMediaChunkDuration:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreferredMediaChunkDuration(&self, preferred_media_chunk_duration: CMTime);
 
         /// For file types that support media chunk alignment, such as QuickTime Movie files, specifies the boundary for media chunk alignment in bytes (e.g. 512).
@@ -460,10 +480,12 @@ extern_methods!(
         ///
         /// This property cannot be set after -startWriting has been called on the receiver.
         #[method(preferredMediaChunkAlignment)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preferredMediaChunkAlignment(&self) -> NSInteger;
 
         /// Setter for [`preferredMediaChunkAlignment`][Self::preferredMediaChunkAlignment].
         #[method(setPreferredMediaChunkAlignment:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreferredMediaChunkAlignment(
             &self,
             preferred_media_chunk_alignment: NSInteger,
@@ -483,12 +505,13 @@ extern_methods!(
         /// The default value is nil, which means that the location referenced in the sample buffer will be written unmodified.
         ///
         /// This property cannot be set after -startWriting has been called on the receiver.
-        #[method_id(sampleReferenceBaseURL)]
+        #[method(sampleReferenceBaseURL)]
         #[unsafe(method_family = none)]
         pub unsafe fn sampleReferenceBaseURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`sampleReferenceBaseURL`][Self::sampleReferenceBaseURL].
         #[method(setSampleReferenceBaseURL:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSampleReferenceBaseURL(&self, sample_reference_base_url: Option<&NSURL>);
 
         /// Specifies where the media data will be laid out and whether the media data will be interleaved as the main media data.
@@ -504,12 +527,13 @@ extern_methods!(
         /// The default value is AVAssetWriterInputMediaDataLocationInterleavedWithMainMediaData, which means that the receiver will not write the indication and that the media data will be interleaved.
         ///
         /// This property cannot be set after -startWriting has been called on the receiver.
-        #[method_id(mediaDataLocation)]
+        #[method(mediaDataLocation)]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaDataLocation(&self) -> Retained<AVAssetWriterInputMediaDataLocation>;
 
         /// Setter for [`mediaDataLocation`][Self::mediaDataLocation].
         #[method(setMediaDataLocation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMediaDataLocation(
             &self,
             media_data_location: &AVAssetWriterInputMediaDataLocation,
@@ -530,6 +554,7 @@ extern_methods!(
         ///
         /// If the type of association requires tracks of specific media types that don't match the media types of the inputs, or if the output file type does not support track associations, -canAddTrackAssociationWithTrackOfInput:type: will return NO.
         #[method(canAddTrackAssociationWithTrackOfInput:type:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn canAddTrackAssociationWithTrackOfInput_type(
             &self,
             input: &AVAssetWriterInput,
@@ -550,6 +575,7 @@ extern_methods!(
         ///
         /// This method throws an exception if the input and track association type cannot be added (see -canAddTrackAssociationWithTrackOfInput:type:).
         #[method(addTrackAssociationWithTrackOfInput:type:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addTrackAssociationWithTrackOfInput_type(
             &self,
             input: &AVAssetWriterInput,
@@ -576,10 +602,12 @@ extern_methods!(
         ///
         /// This property cannot be set after writing on the receiver's AVAssetWriter has started.
         #[method(performsMultiPassEncodingIfSupported)]
+        #[unsafe(method_family = none)]
         pub unsafe fn performsMultiPassEncodingIfSupported(&self) -> bool;
 
         /// Setter for [`performsMultiPassEncodingIfSupported`][Self::performsMultiPassEncodingIfSupported].
         #[method(setPerformsMultiPassEncodingIfSupported:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPerformsMultiPassEncodingIfSupported(
             &self,
             performs_multi_pass_encoding_if_supported: bool,
@@ -596,6 +624,7 @@ extern_methods!(
         ///
         /// This property is key-value observable.
         #[method(canPerformMultiplePasses)]
+        #[unsafe(method_family = none)]
         pub unsafe fn canPerformMultiplePasses(&self) -> bool;
 
         /// Provides an object that describes the requirements, such as source time ranges to append or re-append, for the current pass.
@@ -608,7 +637,7 @@ extern_methods!(
         /// The value of this property will be nil before -startWriting is called on the attached asset writer.  It will transition to an initial non-nil value during the call to -startWriting.  After that, the value of this property will change only after a call to -markCurrentPassAsFinished.  For an easy way to be notified at the beginning of each pass, see -respondToEachPassDescriptionOnQueue:usingBlock:.
         ///
         /// This property is key-value observable.  Observers should not assume that they will be notified of changes on a specific thread.
-        #[method_id(currentPassDescription)]
+        #[method(currentPassDescription)]
         #[unsafe(method_family = none)]
         pub unsafe fn currentPassDescription(
             &self,
@@ -629,6 +658,7 @@ extern_methods!(
         ///
         /// Before calling this method, you must ensure that the receiver is attached to an AVAssetWriter via a prior call to -addInput: and that -startWriting has been called on the asset writer.
         #[method(markCurrentPassAsFinished)]
+        #[unsafe(method_family = none)]
         pub unsafe fn markCurrentPassAsFinished(&self);
     }
 );
@@ -652,11 +682,11 @@ unsafe impl NSObjectProtocol for AVAssetWriterInputPassDescription {}
 
 extern_methods!(
     unsafe impl AVAssetWriterInputPassDescription {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -664,7 +694,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is suitable for using as a parameter for -[AVAssetReaderOutput resetForReadingTimeRanges:].
-        #[method_id(sourceTimeRanges)]
+        #[method(sourceTimeRanges)]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceTimeRanges(&self) -> Retained<NSArray<NSValue>>;
     }
@@ -686,11 +716,11 @@ unsafe impl NSObjectProtocol for AVAssetWriterInputPixelBufferAdaptor {}
 
 extern_methods!(
     unsafe impl AVAssetWriterInputPixelBufferAdaptor {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -713,7 +743,7 @@ extern_methods!(
         /// Clients that do not need a pixel buffer pool for allocating buffers should set sourcePixelBufferAttributes to nil.
         ///
         /// This method throws an exception if the input is already attached to another asset writer input pixel buffer adaptor or if the input has already started writing (the asset writer has progressed beyond AVAssetWriterStatusUnknown).
-        #[method_id(assetWriterInputPixelBufferAdaptorWithAssetWriterInput:sourcePixelBufferAttributes:)]
+        #[method(assetWriterInputPixelBufferAdaptorWithAssetWriterInput:sourcePixelBufferAttributes:)]
         #[unsafe(method_family = none)]
         pub unsafe fn assetWriterInputPixelBufferAdaptorWithAssetWriterInput_sourcePixelBufferAttributes(
             input: &AVAssetWriterInput,
@@ -739,7 +769,7 @@ extern_methods!(
         /// Clients that do not need a pixel buffer pool for allocating buffers should set sourcePixelBufferAttributes to nil.
         ///
         /// This method throws an exception if the input is already attached to another asset writer input pixel buffer adaptor or if the input has already started writing (the asset writer has progressed beyond AVAssetWriterStatusUnknown).
-        #[method_id(initWithAssetWriterInput:sourcePixelBufferAttributes:)]
+        #[method(initWithAssetWriterInput:sourcePixelBufferAttributes:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAssetWriterInput_sourcePixelBufferAttributes(
             this: Allocated<Self>,
@@ -748,7 +778,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The asset writer input to which the receiver should append pixel buffers.
-        #[method_id(assetWriterInput)]
+        #[method(assetWriterInput)]
         #[unsafe(method_family = none)]
         pub unsafe fn assetWriterInput(&self) -> Retained<AVAssetWriterInput>;
 
@@ -758,7 +788,7 @@ extern_methods!(
         /// The value of this property is a dictionary containing pixel buffer attributes keys defined in
         /// <CoreVideo
         /// /CVPixelBuffer.h>.
-        #[method_id(sourcePixelBufferAttributes)]
+        #[method(sourcePixelBufferAttributes)]
         #[unsafe(method_family = none)]
         pub unsafe fn sourcePixelBufferAttributes(
             &self,
@@ -775,7 +805,7 @@ extern_methods!(
         /// This property is key value observable.
         ///
         /// This property throws an exception if a pixel buffer pool cannot be created with this asset writer input pixel buffer adaptor's source pixel buffer attributes (must specify width, height, and either pixel format or pixel format description).
-        #[method_id(pixelBufferPool)]
+        #[method(pixelBufferPool)]
         #[unsafe(method_family = none)]
         pub unsafe fn pixelBufferPool(&self) -> Option<Retained<CVPixelBufferPool>>;
 
@@ -806,6 +836,7 @@ extern_methods!(
         ///
         /// This method throws an exception if the presentation time is is non-numeric (see CMTIME_IS_NUMERIC) or if "readyForMoreMediaData" is NO.
         #[method(appendPixelBuffer:withPresentationTime:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn appendPixelBuffer_withPresentationTime(
             &self,
             pixel_buffer: &CVPixelBuffer,
@@ -830,11 +861,11 @@ unsafe impl NSObjectProtocol for AVAssetWriterInputTaggedPixelBufferGroupAdaptor
 
 extern_methods!(
     unsafe impl AVAssetWriterInputTaggedPixelBufferGroupAdaptor {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -857,7 +888,7 @@ extern_methods!(
         /// Clients that do not need a pixel buffer pool for allocating buffers should set sourcePixelBufferAttributes to nil.
         ///
         /// This method throws an exception if the input is already attached to another asset writer input tagged buffer group adaptor or if the input has already started writing (the asset writer has progressed beyond AVAssetWriterStatusUnknown).
-        #[method_id(assetWriterInputTaggedPixelBufferGroupAdaptorWithAssetWriterInput:sourcePixelBufferAttributes:)]
+        #[method(assetWriterInputTaggedPixelBufferGroupAdaptorWithAssetWriterInput:sourcePixelBufferAttributes:)]
         #[unsafe(method_family = none)]
         pub unsafe fn assetWriterInputTaggedPixelBufferGroupAdaptorWithAssetWriterInput_sourcePixelBufferAttributes(
             input: &AVAssetWriterInput,
@@ -883,7 +914,7 @@ extern_methods!(
         /// Clients that do not need a pixel buffer pool for allocating buffers should set sourcePixelBufferAttributes to nil.
         ///
         /// It is an error to initialize an instance of AVAssetWriterInputTaggedPixelBufferGroupAdaptor with an asset writer input that is already attached to another instance of AVAssetWriterInputTaggedPixelBufferGroupAdaptor. It is also an error to initialize an instance of AVAssetWriterInputTaggedPixelBufferGroupAdaptor with an asset writer input whose asset writer has progressed beyond AVAssetWriterStatusUnknown.
-        #[method_id(initWithAssetWriterInput:sourcePixelBufferAttributes:)]
+        #[method(initWithAssetWriterInput:sourcePixelBufferAttributes:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAssetWriterInput_sourcePixelBufferAttributes(
             this: Allocated<Self>,
@@ -892,7 +923,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The asset writer input to which the receiver should append tagged buffer groups.
-        #[method_id(assetWriterInput)]
+        #[method(assetWriterInput)]
         #[unsafe(method_family = none)]
         pub unsafe fn assetWriterInput(&self) -> Retained<AVAssetWriterInput>;
 
@@ -902,7 +933,7 @@ extern_methods!(
         /// The value of this property is a dictionary containing pixel buffer attributes keys defined in
         /// <CoreVideo
         /// /CVPixelBuffer.h>.
-        #[method_id(sourcePixelBufferAttributes)]
+        #[method(sourcePixelBufferAttributes)]
         #[unsafe(method_family = none)]
         pub unsafe fn sourcePixelBufferAttributes(
             &self,
@@ -917,7 +948,7 @@ extern_methods!(
         /// The value of this property will be NULL before -[AVAssetWriter startWriting] is called on the associated AVAssetWriter object. Clients should read this property after -[AVAssetWriter startWriting] calling to get a non-NULL value.
         ///
         /// This property is not key value observable.
-        #[method_id(pixelBufferPool)]
+        #[method(pixelBufferPool)]
         #[unsafe(method_family = none)]
         pub unsafe fn pixelBufferPool(&self) -> Option<Retained<CVPixelBufferPool>>;
 
@@ -970,6 +1001,7 @@ extern_methods!(
         /// );
         /// [assetWriterInputAdaptor appendTaggedPixelBufferGroup:taggedBufferGroup ..];
         #[method(appendTaggedPixelBufferGroup:withPresentationTime:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn appendTaggedPixelBufferGroup_withPresentationTime(
             &self,
             tagged_pixel_buffer_group: &CMTaggedBufferGroup,
@@ -991,11 +1023,11 @@ unsafe impl NSObjectProtocol for AVAssetWriterInputMetadataAdaptor {}
 
 extern_methods!(
     unsafe impl AVAssetWriterInputMetadataAdaptor {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -1014,7 +1046,7 @@ extern_methods!(
         /// - input's asset writer has already started writing (progressed beyond AVAssetWriterStatusUnknown)
         /// - input's asset writer does not carry a source format hint
         /// - input's source format hint media subtype is not kCMMetadataFormatType_Boxed
-        #[method_id(assetWriterInputMetadataAdaptorWithAssetWriterInput:)]
+        #[method(assetWriterInputMetadataAdaptorWithAssetWriterInput:)]
         #[unsafe(method_family = none)]
         pub unsafe fn assetWriterInputMetadataAdaptorWithAssetWriterInput(
             input: &AVAssetWriterInput,
@@ -1035,7 +1067,7 @@ extern_methods!(
         /// - input's asset writer has already started writing (progressed beyond AVAssetWriterStatusUnknown)
         /// - input's asset writer does not carry a source format hint
         /// - input's source format hint media subtype is not kCMMetadataFormatType_Boxed
-        #[method_id(initWithAssetWriterInput:)]
+        #[method(initWithAssetWriterInput:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAssetWriterInput(
             this: Allocated<Self>,
@@ -1043,7 +1075,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The asset writer input to which the receiver should append timed metadata groups.
-        #[method_id(assetWriterInput)]
+        #[method(assetWriterInput)]
         #[unsafe(method_family = none)]
         pub unsafe fn assetWriterInput(&self) -> Retained<AVAssetWriterInput>;
 
@@ -1064,6 +1096,7 @@ extern_methods!(
         ///
         /// This method throws an exception if the attached asset writer input has not been added to an asset writer or -startWriting has not been called on that asset writer.
         #[method(appendTimedMetadataGroup:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn appendTimedMetadataGroup(
             &self,
             timed_metadata_group: &AVTimedMetadataGroup,
@@ -1084,16 +1117,16 @@ unsafe impl NSObjectProtocol for AVAssetWriterInputCaptionAdaptor {}
 
 extern_methods!(
     unsafe impl AVAssetWriterInputCaptionAdaptor {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Creates a new caption adaptor for writing to the specified asset writer input.
-        #[method_id(assetWriterInputCaptionAdaptorWithAssetWriterInput:)]
+        #[method(assetWriterInputCaptionAdaptorWithAssetWriterInput:)]
         #[unsafe(method_family = none)]
         pub unsafe fn assetWriterInputCaptionAdaptorWithAssetWriterInput(
             input: &AVAssetWriterInput,
@@ -1107,7 +1140,7 @@ extern_methods!(
         /// - the input's media type is not supported (should use text or closed caption)
         /// - the input is already attached to an asset writer caption adaptor
         /// - the input has already started writing
-        #[method_id(initWithAssetWriterInput:)]
+        #[method(initWithAssetWriterInput:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAssetWriterInput(
             this: Allocated<Self>,
@@ -1115,7 +1148,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The asset writer input that was used to initialize the receiver.
-        #[method_id(assetWriterInput)]
+        #[method(assetWriterInput)]
         #[unsafe(method_family = none)]
         pub unsafe fn assetWriterInput(&self) -> Retained<AVAssetWriterInput>;
 
@@ -1132,6 +1165,7 @@ extern_methods!(
         ///
         /// The duration of each caption's timeRange property must be numeric.
         #[method(appendCaption:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn appendCaption(&self, caption: &AVCaption) -> bool;
 
         #[cfg(feature = "AVCaptionGroup")]
@@ -1145,6 +1179,7 @@ extern_methods!(
         /// When mixing calls to -appendCaptionGroup: and -appendCaption:, the start time of each group must be equal to or greater than the end time of any previous captions.
         /// To mark a time range containing no captions, append a group containing an empty caption array.
         #[method(appendCaptionGroup:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn appendCaptionGroup(&self, caption_group: &AVCaptionGroup) -> bool;
     }
 );

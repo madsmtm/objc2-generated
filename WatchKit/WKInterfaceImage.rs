@@ -13,9 +13,11 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkimageanimatable?language=objc)
     pub unsafe trait WKImageAnimatable: NSObjectProtocol {
         #[method(startAnimating)]
+        #[unsafe(method_family = none)]
         unsafe fn startAnimating(&self);
 
         #[method(startAnimatingWithImagesInRange:duration:repeatCount:)]
+        #[unsafe(method_family = none)]
         unsafe fn startAnimatingWithImagesInRange_duration_repeatCount(
             &self,
             image_range: NSRange,
@@ -24,6 +26,7 @@ extern_protocol!(
         );
 
         #[method(stopAnimating)]
+        #[unsafe(method_family = none)]
         unsafe fn stopAnimating(&self);
     }
 );
@@ -47,16 +50,20 @@ extern_methods!(
     unsafe impl WKInterfaceImage {
         #[cfg(feature = "objc2-ui-kit")]
         #[method(setImage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setImage(&self, image: Option<&UIImage>);
 
         #[method(setImageData:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setImageData(&self, image_data: Option<&NSData>);
 
         #[method(setImageNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setImageNamed(&self, image_name: Option<&NSString>);
 
         #[cfg(feature = "objc2-ui-kit")]
         #[method(setTintColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTintColor(&self, tint_color: Option<&UIColor>);
     }
 );
@@ -65,7 +72,7 @@ extern_methods!(
     /// Methods declared on superclass `WKInterfaceObject`
     #[cfg(feature = "WKInterfaceObject")]
     unsafe impl WKInterfaceImage {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -75,7 +82,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "WKInterfaceObject")]
     unsafe impl WKInterfaceImage {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

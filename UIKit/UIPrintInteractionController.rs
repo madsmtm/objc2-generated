@@ -53,35 +53,39 @@ unsafe impl NSObjectProtocol for UIPrintInteractionController {}
 extern_methods!(
     unsafe impl UIPrintInteractionController {
         #[method(isPrintingAvailable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isPrintingAvailable(mtm: MainThreadMarker) -> bool;
 
-        #[method_id(printableUTIs)]
+        #[method(printableUTIs)]
         #[unsafe(method_family = none)]
         pub unsafe fn printableUTIs(mtm: MainThreadMarker) -> Retained<NSSet<NSString>>;
 
         #[method(canPrintURL:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn canPrintURL(url: &NSURL, mtm: MainThreadMarker) -> bool;
 
         #[method(canPrintData:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn canPrintData(data: &NSData, mtm: MainThreadMarker) -> bool;
 
-        #[method_id(sharedPrintController)]
+        #[method(sharedPrintController)]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedPrintController(
             mtm: MainThreadMarker,
         ) -> Retained<UIPrintInteractionController>;
 
         #[cfg(feature = "UIPrintInfo")]
-        #[method_id(printInfo)]
+        #[method(printInfo)]
         #[unsafe(method_family = none)]
         pub unsafe fn printInfo(&self) -> Option<Retained<UIPrintInfo>>;
 
         #[cfg(feature = "UIPrintInfo")]
         /// Setter for [`printInfo`][Self::printInfo].
         #[method(setPrintInfo:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPrintInfo(&self, print_info: Option<&UIPrintInfo>);
 
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -90,6 +94,7 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn UIPrintInteractionControllerDelegate>>,
@@ -97,83 +102,96 @@ extern_methods!(
 
         #[deprecated = "Pages can be removed from the print preview, so page range is always shown."]
         #[method(showsPageRange)]
+        #[unsafe(method_family = none)]
         pub unsafe fn showsPageRange(&self) -> bool;
 
         /// Setter for [`showsPageRange`][Self::showsPageRange].
         #[deprecated = "Pages can be removed from the print preview, so page range is always shown."]
         #[method(setShowsPageRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShowsPageRange(&self, shows_page_range: bool);
 
         #[method(showsNumberOfCopies)]
+        #[unsafe(method_family = none)]
         pub unsafe fn showsNumberOfCopies(&self) -> bool;
 
         /// Setter for [`showsNumberOfCopies`][Self::showsNumberOfCopies].
         #[method(setShowsNumberOfCopies:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShowsNumberOfCopies(&self, shows_number_of_copies: bool);
 
         #[method(showsPaperSelectionForLoadedPapers)]
+        #[unsafe(method_family = none)]
         pub unsafe fn showsPaperSelectionForLoadedPapers(&self) -> bool;
 
         /// Setter for [`showsPaperSelectionForLoadedPapers`][Self::showsPaperSelectionForLoadedPapers].
         #[method(setShowsPaperSelectionForLoadedPapers:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShowsPaperSelectionForLoadedPapers(
             &self,
             shows_paper_selection_for_loaded_papers: bool,
         );
 
         #[method(showsPaperOrientation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn showsPaperOrientation(&self) -> bool;
 
         /// Setter for [`showsPaperOrientation`][Self::showsPaperOrientation].
         #[method(setShowsPaperOrientation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShowsPaperOrientation(&self, shows_paper_orientation: bool);
 
         #[cfg(feature = "UIPrintPaper")]
-        #[method_id(printPaper)]
+        #[method(printPaper)]
         #[unsafe(method_family = none)]
         pub unsafe fn printPaper(&self) -> Option<Retained<UIPrintPaper>>;
 
         #[cfg(feature = "UIPrintPageRenderer")]
-        #[method_id(printPageRenderer)]
+        #[method(printPageRenderer)]
         #[unsafe(method_family = none)]
         pub unsafe fn printPageRenderer(&self) -> Option<Retained<UIPrintPageRenderer>>;
 
         #[cfg(feature = "UIPrintPageRenderer")]
         /// Setter for [`printPageRenderer`][Self::printPageRenderer].
         #[method(setPrintPageRenderer:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPrintPageRenderer(
             &self,
             print_page_renderer: Option<&UIPrintPageRenderer>,
         );
 
         #[cfg(feature = "UIPrintFormatter")]
-        #[method_id(printFormatter)]
+        #[method(printFormatter)]
         #[unsafe(method_family = none)]
         pub unsafe fn printFormatter(&self) -> Option<Retained<UIPrintFormatter>>;
 
         #[cfg(feature = "UIPrintFormatter")]
         /// Setter for [`printFormatter`][Self::printFormatter].
         #[method(setPrintFormatter:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPrintFormatter(&self, print_formatter: Option<&UIPrintFormatter>);
 
-        #[method_id(printingItem)]
+        #[method(printingItem)]
         #[unsafe(method_family = none)]
         pub unsafe fn printingItem(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`printingItem`][Self::printingItem].
         #[method(setPrintingItem:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPrintingItem(&self, printing_item: Option<&AnyObject>);
 
-        #[method_id(printingItems)]
+        #[method(printingItems)]
         #[unsafe(method_family = none)]
         pub unsafe fn printingItems(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`printingItems`][Self::printingItems].
         #[method(setPrintingItems:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPrintingItems(&self, printing_items: Option<&NSArray>);
 
         #[cfg(feature = "block2")]
         #[method(presentAnimated:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn presentAnimated_completionHandler(
             &self,
             animated: bool,
@@ -187,6 +205,7 @@ extern_methods!(
             feature = "objc2-core-foundation"
         ))]
         #[method(presentFromRect:inView:animated:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn presentFromRect_inView_animated_completionHandler(
             &self,
             rect: CGRect,
@@ -197,6 +216,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem", feature = "block2"))]
         #[method(presentFromBarButtonItem:animated:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn presentFromBarButtonItem_animated_completionHandler(
             &self,
             item: &UIBarButtonItem,
@@ -209,6 +229,7 @@ extern_methods!(
         /// UIPrinter found using the UIPrinterPickerController.
         /// The value for the duplex property on printInfo will be ignored.
         #[method(printToPrinter:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn printToPrinter_completionHandler(
             &self,
             printer: &UIPrinter,
@@ -216,6 +237,7 @@ extern_methods!(
         ) -> bool;
 
         #[method(dismissAnimated:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dismissAnimated(&self, animated: bool);
     }
 );
@@ -223,11 +245,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIPrintInteractionController {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -240,7 +262,7 @@ extern_protocol!(
     {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
-        #[method_id(printInteractionControllerParentViewController:)]
+        #[method(printInteractionControllerParentViewController:)]
         #[unsafe(method_family = none)]
         unsafe fn printInteractionControllerParentViewController(
             &self,
@@ -249,7 +271,7 @@ extern_protocol!(
 
         #[cfg(feature = "UIPrintPaper")]
         #[optional]
-        #[method_id(printInteractionController:choosePaper:)]
+        #[method(printInteractionController:choosePaper:)]
         #[unsafe(method_family = none)]
         unsafe fn printInteractionController_choosePaper(
             &self,
@@ -259,6 +281,7 @@ extern_protocol!(
 
         #[optional]
         #[method(printInteractionControllerWillPresentPrinterOptions:)]
+        #[unsafe(method_family = none)]
         unsafe fn printInteractionControllerWillPresentPrinterOptions(
             &self,
             print_interaction_controller: &UIPrintInteractionController,
@@ -266,6 +289,7 @@ extern_protocol!(
 
         #[optional]
         #[method(printInteractionControllerDidPresentPrinterOptions:)]
+        #[unsafe(method_family = none)]
         unsafe fn printInteractionControllerDidPresentPrinterOptions(
             &self,
             print_interaction_controller: &UIPrintInteractionController,
@@ -273,6 +297,7 @@ extern_protocol!(
 
         #[optional]
         #[method(printInteractionControllerWillDismissPrinterOptions:)]
+        #[unsafe(method_family = none)]
         unsafe fn printInteractionControllerWillDismissPrinterOptions(
             &self,
             print_interaction_controller: &UIPrintInteractionController,
@@ -280,6 +305,7 @@ extern_protocol!(
 
         #[optional]
         #[method(printInteractionControllerDidDismissPrinterOptions:)]
+        #[unsafe(method_family = none)]
         unsafe fn printInteractionControllerDidDismissPrinterOptions(
             &self,
             print_interaction_controller: &UIPrintInteractionController,
@@ -287,6 +313,7 @@ extern_protocol!(
 
         #[optional]
         #[method(printInteractionControllerWillStartJob:)]
+        #[unsafe(method_family = none)]
         unsafe fn printInteractionControllerWillStartJob(
             &self,
             print_interaction_controller: &UIPrintInteractionController,
@@ -294,6 +321,7 @@ extern_protocol!(
 
         #[optional]
         #[method(printInteractionControllerDidFinishJob:)]
+        #[unsafe(method_family = none)]
         unsafe fn printInteractionControllerDidFinishJob(
             &self,
             print_interaction_controller: &UIPrintInteractionController,
@@ -302,6 +330,7 @@ extern_protocol!(
         #[cfg(all(feature = "UIPrintPaper", feature = "objc2-core-foundation"))]
         #[optional]
         #[method(printInteractionController:cutLengthForPaper:)]
+        #[unsafe(method_family = none)]
         unsafe fn printInteractionController_cutLengthForPaper(
             &self,
             print_interaction_controller: &UIPrintInteractionController,
@@ -310,6 +339,7 @@ extern_protocol!(
 
         #[optional]
         #[method(printInteractionController:chooseCutterBehavior:)]
+        #[unsafe(method_family = none)]
         unsafe fn printInteractionController_chooseCutterBehavior(
             &self,
             print_interaction_controller: &UIPrintInteractionController,

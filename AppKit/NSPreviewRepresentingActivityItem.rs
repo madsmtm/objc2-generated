@@ -10,13 +10,13 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspreviewrepresentableactivityitem?language=objc)
     pub unsafe trait NSPreviewRepresentableActivityItem: NSObjectProtocol {
         /// The item to be shared
-        #[method_id(item)]
+        #[method(item)]
         #[unsafe(method_family = none)]
         unsafe fn item(&self) -> Retained<AnyObject>;
 
         /// A string representing the name or title of the item to be shared
         #[optional]
-        #[method_id(title)]
+        #[method(title)]
         #[unsafe(method_family = none)]
         unsafe fn title(&self) -> Option<Retained<NSString>>;
 
@@ -25,7 +25,7 @@ extern_protocol!(
         /// This image typically is a full-size representation of the content being shared.
         /// For instance, if sharing a link to a webpage, this might be the hero image on that webpage.
         #[optional]
-        #[method_id(imageProvider)]
+        #[method(imageProvider)]
         #[unsafe(method_family = none)]
         unsafe fn imageProvider(&self) -> Option<Retained<NSItemProvider>>;
 
@@ -34,7 +34,7 @@ extern_protocol!(
         /// This icon typically is a thumbnail-sized representation of the source of the content.
         /// For instance, if sharing a link to a webpage, this might be an icon representing the website overall.
         #[optional]
-        #[method_id(iconProvider)]
+        #[method(iconProvider)]
         #[unsafe(method_family = none)]
         unsafe fn iconProvider(&self) -> Option<Retained<NSItemProvider>>;
     }
@@ -61,7 +61,7 @@ extern_methods!(
         /// - icon: An icon to show in a preview
         ///
         /// For more information about the parameters, see NSPreviewRepresentableActivityItem documentation
-        #[method_id(initWithItem:title:image:icon:)]
+        #[method(initWithItem:title:image:icon:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithItem_title_image_icon(
             this: Allocated<Self>,
@@ -78,7 +78,7 @@ extern_methods!(
         /// - iconProvider: An NSItemProvider which provides an icon to show in a preview
         ///
         /// For more information about the parameters, see NSPreviewRepresentableActivityItem documentation
-        #[method_id(initWithItem:title:imageProvider:iconProvider:)]
+        #[method(initWithItem:title:imageProvider:iconProvider:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithItem_title_imageProvider_iconProvider(
             this: Allocated<Self>,
@@ -88,11 +88,11 @@ extern_methods!(
             icon_provider: Option<&NSItemProvider>,
         ) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

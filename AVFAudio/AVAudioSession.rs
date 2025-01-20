@@ -23,7 +23,7 @@ unsafe impl NSObjectProtocol for AVAudioSession {}
 extern_methods!(
     unsafe impl AVAudioSession {
         /// Return singleton instance.
-        #[method_id(sharedInstance)]
+        #[method(sharedInstance)]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedInstance() -> Retained<AVAudioSession>;
 
@@ -31,13 +31,14 @@ extern_methods!(
         /// Get the list of categories available on the device.  Certain categories may be unavailable on
         /// particular devices.  For example, AVAudioSessionCategoryRecord will not be available on devices
         /// that have no support for audio input.
-        #[method_id(availableCategories)]
+        #[method(availableCategories)]
         #[unsafe(method_family = none)]
         pub unsafe fn availableCategories(&self) -> Retained<NSArray<AVAudioSessionCategory>>;
 
         #[cfg(feature = "AVAudioSessionTypes")]
         /// Set session category.
         #[method(setCategory:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCategory_error(
             &self,
             category: &AVAudioSessionCategory,
@@ -46,6 +47,7 @@ extern_methods!(
         #[cfg(feature = "AVAudioSessionTypes")]
         /// Set session category with options.
         #[method(setCategory:withOptions:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCategory_withOptions_error(
             &self,
             category: &AVAudioSessionCategory,
@@ -55,6 +57,7 @@ extern_methods!(
         #[cfg(feature = "AVAudioSessionTypes")]
         /// Set session category and mode with options.
         #[method(setCategory:mode:options:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCategory_mode_options_error(
             &self,
             category: &AVAudioSessionCategory,
@@ -76,6 +79,7 @@ extern_methods!(
         /// Allowed options: None. Options are allowed when changing the routing policy back to Default,
         /// however.
         #[method(setCategory:mode:routeSharingPolicy:options:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCategory_mode_routeSharingPolicy_options_error(
             &self,
             category: &AVAudioSessionCategory,
@@ -87,13 +91,14 @@ extern_methods!(
         #[cfg(feature = "AVAudioSessionTypes")]
         /// Get session category.
         /// Examples: AVAudioSessionCategoryRecord, AVAudioSessionCategoryPlayAndRecord, etc.
-        #[method_id(category)]
+        #[method(category)]
         #[unsafe(method_family = none)]
         pub unsafe fn category(&self) -> Retained<AVAudioSessionCategory>;
 
         #[cfg(feature = "AVAudioSessionTypes")]
         /// Get the current set of AVAudioSessionCategoryOptions.
         #[method(categoryOptions)]
+        #[unsafe(method_family = none)]
         pub unsafe fn categoryOptions(&self) -> AVAudioSessionCategoryOptions;
 
         #[cfg(feature = "AVAudioSessionTypes")]
@@ -102,13 +107,14 @@ extern_methods!(
         /// See AVAudioSessionRouteSharingPolicy for a description of the available policies.
         /// See setCategory:mode:routeSharingPolicy:options:error: for additional discussion.
         #[method(routeSharingPolicy)]
+        #[unsafe(method_family = none)]
         pub unsafe fn routeSharingPolicy(&self) -> AVAudioSessionRouteSharingPolicy;
 
         #[cfg(feature = "AVAudioSessionTypes")]
         /// Get the list of modes available on the device.  Certain modes may be unavailable on particular
         /// devices.  For example, AVAudioSessionModeVideoRecording will not be available on devices that
         /// have no support for recording video.
-        #[method_id(availableModes)]
+        #[method(availableModes)]
         #[unsafe(method_family = none)]
         pub unsafe fn availableModes(&self) -> Retained<NSArray<AVAudioSessionMode>>;
 
@@ -119,6 +125,7 @@ extern_methods!(
         /// use of audio within an application. Examples:  AVAudioSessionModeVideoRecording,
         /// AVAudioSessionModeVoiceChat, AVAudioSessionModeMeasurement, etc.
         #[method(setMode:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMode_error(
             &self,
             mode: &AVAudioSessionMode,
@@ -126,13 +133,14 @@ extern_methods!(
 
         #[cfg(feature = "AVAudioSessionTypes")]
         /// Get the session's mode.
-        #[method_id(mode)]
+        #[method(mode)]
         #[unsafe(method_family = none)]
         pub unsafe fn mode(&self) -> Retained<AVAudioSessionMode>;
 
         /// Set allowHapticsAndSystemSoundsDuringRecording to YES in order to allow system sounds and haptics to play while the session is actively using audio input.
         /// Default value is NO.
         #[method(setAllowHapticsAndSystemSoundsDuringRecording:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAllowHapticsAndSystemSoundsDuringRecording_error(
             &self,
             in_value: bool,
@@ -140,6 +148,7 @@ extern_methods!(
 
         /// Whether system sounds and haptics can play while the session is actively using audio input.
         #[method(allowHapticsAndSystemSoundsDuringRecording)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowHapticsAndSystemSoundsDuringRecording(&self) -> bool;
 
         #[cfg(feature = "AVAudioSessionTypes")]
@@ -147,6 +156,7 @@ extern_methods!(
         /// not been asked
         #[deprecated = "Please use AVAudioApplication recordPermission"]
         #[method(recordPermission)]
+        #[unsafe(method_family = none)]
         pub unsafe fn recordPermission(&self) -> AVAudioSessionRecordPermission;
 
         #[cfg(feature = "block2")]
@@ -158,6 +168,7 @@ extern_methods!(
         /// granted. Note that the block may be called in a different thread context.
         #[deprecated = "Please use AVAudioApplication requestRecordPermissionWithCompletionHandler"]
         #[method(requestRecordPermission:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestRecordPermission(&self, response: &block2::Block<dyn Fn(Bool)>);
 
         #[cfg(feature = "AVAudioSessionTypes")]
@@ -169,6 +180,7 @@ extern_methods!(
         /// prefer the built-in speaker output over the receiver, should use
         /// AVAudioSessionCategoryOptionDefaultToSpeaker instead.
         #[method(overrideOutputAudioPort:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn overrideOutputAudioPort_error(
             &self,
             port_override: AVAudioSessionPortOverride,
@@ -181,6 +193,7 @@ extern_methods!(
         /// Otherwise, selecting an input port for routing will initiate a route change to use the preferred
         /// input port. Setting a nil value will clear the preference.
         #[method(setPreferredInput:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreferredInput_error(
             &self,
             in_port: Option<&AVAudioSessionPortDescription>,
@@ -188,7 +201,7 @@ extern_methods!(
 
         #[cfg(feature = "AVAudioSessionRoute")]
         /// Get the preferred input port.  Will be nil if no preference has been set.
-        #[method_id(preferredInput)]
+        #[method(preferredInput)]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredInput(&self) -> Option<Retained<AVAudioSessionPortDescription>>;
 
@@ -205,18 +218,21 @@ extern_methods!(
         /// interrupted by incoming calls. Apps that record audio and/or video and apps that are used for
         /// music performance are candidates for using this feature.
         #[method(setPrefersNoInterruptionsFromSystemAlerts:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPrefersNoInterruptionsFromSystemAlerts_error(
             &self,
             in_value: bool,
         ) -> Result<(), Retained<NSError>>;
 
         #[method(prefersNoInterruptionsFromSystemAlerts)]
+        #[unsafe(method_family = none)]
         pub unsafe fn prefersNoInterruptionsFromSystemAlerts(&self) -> bool;
 
         #[cfg(feature = "AVAudioSessionTypes")]
         /// Get the currently resolved rendering mode to badge content appropriately.
         /// Clients should use this property to determine what to badge content as.
         #[method(renderingMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn renderingMode(&self) -> AVAudioSessionRenderingMode;
 
         /// Set a preference to enable echo cancelled input on supported hardware
@@ -236,22 +252,26 @@ extern_methods!(
         /// After an audio session goes active, `isEchoCancelledInputEnabled` property can be queried to check if the option was honored.
         /// Note that the enabled state may change after route changes, e.g. if user plugs in a headset, that route might not support echo cancellation.
         #[method(setPrefersEchoCancelledInput:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPrefersEchoCancelledInput_error(
             &self,
             value: bool,
         ) -> Result<(), Retained<NSError>>;
 
         #[method(prefersEchoCancelledInput)]
+        #[unsafe(method_family = none)]
         pub unsafe fn prefersEchoCancelledInput(&self) -> bool;
 
         /// Returns YES if echo cancelled input is successfully enabled on an active session.
         /// Please see `prefersEchoCancelledInput` above for more details.
         #[method(isEchoCancelledInputEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isEchoCancelledInputEnabled(&self) -> bool;
 
         /// Query whether built-in mic / built-in speaker route supports echo cancellation for the session's given category and mode.
         /// Returns YES if device model supports echo cancellation and the audio category is PlayAndRecord and the mode is Default.
         #[method(isEchoCancelledInputAvailable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isEchoCancelledInputAvailable(&self) -> bool;
     }
 );
@@ -277,10 +297,12 @@ extern_methods!(
         /// misuse of the API. Prior to iOS 8, the session would have remained active if it had running I/Os
         /// at the time of the deactivation request.
         #[method(setActive:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setActive_error(&self, active: bool) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "AVAudioSessionTypes")]
         #[method(setActive:withOptions:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setActive_withOptions_error(
             &self,
             active: bool,
@@ -298,6 +320,7 @@ extern_methods!(
         /// AVAudioSessionRouteSharingPolicyLongFormAudio should be prepared for this method to fail if no
         /// eligible audio route can be activated or if the user cancels the route picker view.
         #[method(activateWithOptions:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn activateWithOptions_completionHandler(
             &self,
             options: AVAudioSessionActivationOptions,
@@ -314,43 +337,51 @@ extern_methods!(
     unsafe impl AVAudioSession {
         /// The preferred hardware sample rate for the session. The actual sample rate may be different.
         #[method(setPreferredSampleRate:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreferredSampleRate_error(
             &self,
             sample_rate: c_double,
         ) -> Result<(), Retained<NSError>>;
 
         #[method(preferredSampleRate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preferredSampleRate(&self) -> c_double;
 
         /// The preferred hardware IO buffer duration in seconds. The actual IO buffer duration may be
         /// different.
         #[method(setPreferredIOBufferDuration:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreferredIOBufferDuration_error(
             &self,
             duration: NSTimeInterval,
         ) -> Result<(), Retained<NSError>>;
 
         #[method(preferredIOBufferDuration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preferredIOBufferDuration(&self) -> NSTimeInterval;
 
         /// Sets the number of input channels that the app would prefer for the current route
         #[method(setPreferredInputNumberOfChannels:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreferredInputNumberOfChannels_error(
             &self,
             count: NSInteger,
         ) -> Result<(), Retained<NSError>>;
 
         #[method(preferredInputNumberOfChannels)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preferredInputNumberOfChannels(&self) -> NSInteger;
 
         /// Sets the number of output channels that the app would prefer for the current route
         #[method(setPreferredOutputNumberOfChannels:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreferredOutputNumberOfChannels_error(
             &self,
             count: NSInteger,
         ) -> Result<(), Retained<NSError>>;
 
         #[method(preferredOutputNumberOfChannels)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preferredOutputNumberOfChannels(&self) -> NSInteger;
 
         #[cfg(feature = "AVAudioSessionTypes")]
@@ -362,6 +393,7 @@ extern_methods!(
         /// The actual input orientation may be different, for example, if another app's session is in control of routing.
         /// The input orientation is independent of the orientation property of an AVAudioSessionDataSourceDescription.
         #[method(setPreferredInputOrientation:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreferredInputOrientation_error(
             &self,
             orientation: AVAudioStereoOrientation,
@@ -369,19 +401,23 @@ extern_methods!(
 
         #[cfg(feature = "AVAudioSessionTypes")]
         #[method(preferredInputOrientation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preferredInputOrientation(&self) -> AVAudioStereoOrientation;
 
         #[cfg(feature = "AVAudioSessionTypes")]
         /// Describes the orientation of the input data source (valid for the built-in mic input data source when a stereo polar pattern is selected).
         #[method(inputOrientation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn inputOrientation(&self) -> AVAudioStereoOrientation;
 
         /// Returns the largest number of audio input channels available for the current route
         #[method(maximumInputNumberOfChannels)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maximumInputNumberOfChannels(&self) -> NSInteger;
 
         /// Returns the largest number of audio output channels available for the current route
         #[method(maximumOutputNumberOfChannels)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maximumOutputNumberOfChannels(&self) -> NSInteger;
 
         /// A value defined over the range [0.0, 1.0], with 0.0 corresponding to the lowest analog
@@ -394,19 +430,23 @@ extern_methods!(
         /// such as USB devices, may not have a default value.  This property is only valid if
         /// inputGainSettable is true.  Note: inputGain is key-value observable.
         #[method(setInputGain:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setInputGain_error(&self, gain: c_float) -> Result<(), Retained<NSError>>;
 
         /// value in range [0.0, 1.0]
         #[method(inputGain)]
+        #[unsafe(method_family = none)]
         pub unsafe fn inputGain(&self) -> c_float;
 
         /// True when audio input gain is available.  Some input ports may not provide the ability to set the
         /// input gain, so check this value before attempting to set input gain.
         #[method(isInputGainSettable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isInputGainSettable(&self) -> bool;
 
         /// True if input hardware is available. Key-value observable.
         #[method(isInputAvailable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isInputAvailable(&self) -> bool;
 
         #[cfg(feature = "AVAudioSessionRoute")]
@@ -420,7 +460,7 @@ extern_methods!(
         /// ports.
         ///
         /// Key-value observable.
-        #[method_id(inputDataSources)]
+        #[method(inputDataSources)]
         #[unsafe(method_family = none)]
         pub unsafe fn inputDataSources(
             &self,
@@ -428,7 +468,7 @@ extern_methods!(
 
         #[cfg(feature = "AVAudioSessionRoute")]
         /// Obtain the currently selected input data source.  Will be nil if no data sources are available.
-        #[method_id(inputDataSource)]
+        #[method(inputDataSource)]
         #[unsafe(method_family = none)]
         pub unsafe fn inputDataSource(
             &self,
@@ -437,6 +477,7 @@ extern_methods!(
         #[cfg(feature = "AVAudioSessionRoute")]
         /// Select a new input data source. Setting a nil value will clear the data source preference.
         #[method(setInputDataSource:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setInputDataSource_error(
             &self,
             data_source: Option<&AVAudioSessionDataSourceDescription>,
@@ -444,7 +485,7 @@ extern_methods!(
 
         #[cfg(feature = "AVAudioSessionRoute")]
         /// See inputDataSources for background. Key-value observable.
-        #[method_id(outputDataSources)]
+        #[method(outputDataSources)]
         #[unsafe(method_family = none)]
         pub unsafe fn outputDataSources(
             &self,
@@ -452,7 +493,7 @@ extern_methods!(
 
         #[cfg(feature = "AVAudioSessionRoute")]
         /// Obtain the currently selected output data source.  Will be nil if no data sources are available.
-        #[method_id(outputDataSource)]
+        #[method(outputDataSource)]
         #[unsafe(method_family = none)]
         pub unsafe fn outputDataSource(
             &self,
@@ -461,6 +502,7 @@ extern_methods!(
         #[cfg(feature = "AVAudioSessionRoute")]
         /// Select a new output data source. Setting a nil value will clear the data source preference.
         #[method(setOutputDataSource:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setOutputDataSource_error(
             &self,
             data_source: Option<&AVAudioSessionDataSourceDescription>,
@@ -468,26 +510,32 @@ extern_methods!(
 
         /// The current hardware sample rate. Is key-value observable (starting iOS 18.0).
         #[method(sampleRate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sampleRate(&self) -> c_double;
 
         /// The current number of hardware input channels. Is key-value observable.
         #[method(inputNumberOfChannels)]
+        #[unsafe(method_family = none)]
         pub unsafe fn inputNumberOfChannels(&self) -> NSInteger;
 
         /// The current number of hardware output channels. Is key-value observable.
         #[method(outputNumberOfChannels)]
+        #[unsafe(method_family = none)]
         pub unsafe fn outputNumberOfChannels(&self) -> NSInteger;
 
         /// The current hardware input latency in seconds.
         #[method(inputLatency)]
+        #[unsafe(method_family = none)]
         pub unsafe fn inputLatency(&self) -> NSTimeInterval;
 
         /// The current hardware output latency in seconds.
         #[method(outputLatency)]
+        #[unsafe(method_family = none)]
         pub unsafe fn outputLatency(&self) -> NSTimeInterval;
 
         /// The current hardware IO buffer duration in seconds.
         #[method(IOBufferDuration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn IOBufferDuration(&self) -> NSTimeInterval;
 
         #[cfg(feature = "AVAudioChannelLayout")]
@@ -495,7 +543,7 @@ extern_methods!(
         /// This property is only supported when the output is routed to ports of type AVAudioSessionPortCarAudio or AVAudioSessionPortAirPlay
         /// Otherwise, an empty array will be returned. Note that this will return an empty array if session is inactive.
         /// Clients should listen to AVAudioSessionRenderingCapabilitiesChangeNotification to be notified when this changes.
-        #[method_id(supportedOutputChannelLayouts)]
+        #[method(supportedOutputChannelLayouts)]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedOutputChannelLayouts(
             &self,
@@ -515,6 +563,7 @@ extern_methods!(
         /// property is more restrictive in its consideration of whether primary audio from another
         /// application is playing.
         #[method(isOtherAudioPlaying)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isOtherAudioPlaying(&self) -> bool;
 
         /// True when another application with a non-mixable audio session is playing audio.
@@ -524,10 +573,12 @@ extern_methods!(
         /// may use this property to decide to mute its soundtrack while leaving its sound effects unmuted.
         /// Note: This property is closely related to AVAudioSessionSilenceSecondaryAudioHintNotification.
         #[method(secondaryAudioShouldBeSilencedHint)]
+        #[unsafe(method_family = none)]
         pub unsafe fn secondaryAudioShouldBeSilencedHint(&self) -> bool;
 
         /// The current output volume. Value in range [0.0, 1.0]. Is key-value observable.
         #[method(outputVolume)]
+        #[unsafe(method_family = none)]
         pub unsafe fn outputVolume(&self) -> c_float;
 
         #[cfg(feature = "AVAudioSessionTypes")]
@@ -535,6 +586,7 @@ extern_methods!(
         /// prompts they issue in response to other audio activity on the system, such as Siri and phone
         /// calls. This property is key-value observable.
         #[method(promptStyle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn promptStyle(&self) -> AVAudioSessionPromptStyle;
     }
 );
@@ -548,7 +600,7 @@ extern_methods!(
         /// Note that this property only applies to the session's current category and mode. For
         /// example, if the session's current category is AVAudioSessionCategoryPlayback, there will be
         /// no available inputs.
-        #[method_id(availableInputs)]
+        #[method(availableInputs)]
         #[unsafe(method_family = none)]
         pub unsafe fn availableInputs(
             &self,
@@ -557,7 +609,7 @@ extern_methods!(
         #[cfg(feature = "AVAudioSessionRoute")]
         /// A description of the current route, consisting of zero or more input ports and zero or more
         /// output ports
-        #[method_id(currentRoute)]
+        #[method(currentRoute)]
         #[unsafe(method_family = none)]
         pub unsafe fn currentRoute(&self) -> Retained<AVAudioSessionRouteDescription>;
 
@@ -568,6 +620,7 @@ extern_methods!(
         /// See the AVAudioSessionIOType documentation for a more detailed explanation of why a client may
         /// want to change the IO type.
         #[method(setAggregatedIOPreference:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAggregatedIOPreference_error(
             &self,
             in_io_type: AVAudioSessionIOType,
@@ -579,12 +632,14 @@ extern_methods!(
         /// about what it means to be a 'Now Playing' application. Typically 'Now Playing' applications will also use
         /// AVAudioSessionRouteSharingPolicyLongFormAudio or AVAudioSessionRouteSharingPolicyLongFormVideo.
         #[method(setSupportsMultichannelContent:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSupportsMultichannelContent_error(
             &self,
             in_value: bool,
         ) -> Result<(), Retained<NSError>>;
 
         #[method(supportsMultichannelContent)]
+        #[unsafe(method_family = none)]
         pub unsafe fn supportsMultichannelContent(&self) -> bool;
 
         /// Use this method to opt in or opt out of interruption on route disconnect policy.
@@ -596,6 +651,7 @@ extern_methods!(
         /// when a route change occurs because of a disconnect event. All other sessions will not be
         /// interrupted due to a disconnect event.
         #[method(setPrefersInterruptionOnRouteDisconnect:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPrefersInterruptionOnRouteDisconnect_error(
             &self,
             in_value: bool,
@@ -603,6 +659,7 @@ extern_methods!(
 
         /// Indicates if session will be interrupted on route disconnect.
         #[method(prefersInterruptionOnRouteDisconnect)]
+        #[unsafe(method_family = none)]
         pub unsafe fn prefersInterruptionOnRouteDisconnect(&self) -> bool;
     }
 );
@@ -614,6 +671,7 @@ extern_methods!(
         /// Set the preferred form of audio injection into another app's input stream
         /// See AVAudioSessionMicrophoneInjectionMode for available modes
         #[method(setPreferredMicrophoneInjectionMode:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreferredMicrophoneInjectionMode_error(
             &self,
             in_value: AVAudioSessionMicrophoneInjectionMode,
@@ -621,6 +679,7 @@ extern_methods!(
 
         #[cfg(feature = "AVAudioSessionTypes")]
         #[method(preferredMicrophoneInjectionMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preferredMicrophoneInjectionMode(
             &self,
         ) -> AVAudioSessionMicrophoneInjectionMode;
@@ -628,6 +687,7 @@ extern_methods!(
         /// Indicates if microphone injection is available.
         /// Observe AVAudioSessionMicrophoneInjectionCapabilitiesChangeNotification for changes to this property
         #[method(isMicrophoneInjectionAvailable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isMicrophoneInjectionAvailable(&self) -> bool;
     }
 );

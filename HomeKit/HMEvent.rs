@@ -24,23 +24,24 @@ unsafe impl NSObjectProtocol for HMEvent {}
 extern_methods!(
     unsafe impl HMEvent {
         #[deprecated = "HMEvent is abstract"]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[deprecated = "HMEvent is abstract"]
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// A unique identifier for the event.
-        #[method_id(uniqueIdentifier)]
+        #[method(uniqueIdentifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn uniqueIdentifier(&self) -> Retained<NSUUID>;
 
         #[cfg(feature = "HMHome")]
         /// Specifies whether the HMEvent can be added to HMEventTrigger on the given home.
         #[method(isSupportedForHome:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isSupportedForHome(home: &HMHome) -> bool;
     }
 );

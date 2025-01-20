@@ -35,7 +35,7 @@ extern_methods!(
         /// Time spent on screen and visible to the user.
         ///
         /// Dimensioned as NSUnitDuration.
-        #[method_id(cumulativeForegroundTime)]
+        #[method(cumulativeForegroundTime)]
         #[unsafe(method_family = none)]
         pub unsafe fn cumulativeForegroundTime(&self) -> Retained<NSMeasurement<NSUnitDuration>>;
 
@@ -44,14 +44,14 @@ extern_methods!(
         /// Time spent off screen and in the background, invisible to the user.
         ///
         /// Dimensioned as NSUnitDuration.
-        #[method_id(cumulativeBackgroundTime)]
+        #[method(cumulativeBackgroundTime)]
         #[unsafe(method_family = none)]
         pub unsafe fn cumulativeBackgroundTime(&self) -> Retained<NSMeasurement<NSUnitDuration>>;
 
         /// Cumulative time the application spent running in the background to play audio
         ///
         /// Dimensioned as NSUnitDuration.
-        #[method_id(cumulativeBackgroundAudioTime)]
+        #[method(cumulativeBackgroundAudioTime)]
         #[unsafe(method_family = none)]
         pub unsafe fn cumulativeBackgroundAudioTime(
             &self,
@@ -60,7 +60,7 @@ extern_methods!(
         /// Cumulative time the application spent running in the background to acquire or process location.
         ///
         /// Dimensioned as NSUnitDuration.
-        #[method_id(cumulativeBackgroundLocationTime)]
+        #[method(cumulativeBackgroundLocationTime)]
         #[unsafe(method_family = none)]
         pub unsafe fn cumulativeBackgroundLocationTime(
             &self,
@@ -72,11 +72,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MXMetric")]
     unsafe impl MXAppRunTimeMetric {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -66,7 +66,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `name`: the name of the shader uniform.
-        #[method_id(uniformWithName:)]
+        #[method(uniformWithName:)]
         #[unsafe(method_family = none)]
         pub unsafe fn uniformWithName(name: &NSString) -> Retained<Self>;
 
@@ -77,7 +77,7 @@ extern_methods!(
         /// Parameter `name`: the name of the shader uniform.
         ///
         /// Parameter `texture`: the texture data associated with this uniform.
-        #[method_id(uniformWithName:texture:)]
+        #[method(uniformWithName:texture:)]
         #[unsafe(method_family = none)]
         pub unsafe fn uniformWithName_texture(
             name: &NSString,
@@ -90,40 +90,44 @@ extern_methods!(
         /// Parameter `name`: the name of the shader uniform.
         ///
         /// Parameter `value`: the floating point value associated with this uniform.
-        #[method_id(uniformWithName:float:)]
+        #[method(uniformWithName:float:)]
         #[unsafe(method_family = none)]
         pub unsafe fn uniformWithName_float(name: &NSString, value: c_float) -> Retained<Self>;
 
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[method(uniformType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn uniformType(&self) -> SKUniformType;
 
         #[cfg(feature = "SKTexture")]
-        #[method_id(textureValue)]
+        #[method(textureValue)]
         #[unsafe(method_family = none)]
         pub unsafe fn textureValue(&self) -> Option<Retained<SKTexture>>;
 
         #[cfg(feature = "SKTexture")]
         /// Setter for [`textureValue`][Self::textureValue].
         #[method(setTextureValue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTextureValue(&self, texture_value: Option<&SKTexture>);
 
         #[method(floatValue)]
+        #[unsafe(method_family = none)]
         pub unsafe fn floatValue(&self) -> c_float;
 
         /// Setter for [`floatValue`][Self::floatValue].
         #[method(setFloatValue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFloatValue(&self, float_value: c_float);
 
-        #[method_id(initWithName:)]
+        #[method(initWithName:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithName(this: Allocated<Self>, name: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "SKTexture")]
-        #[method_id(initWithName:texture:)]
+        #[method(initWithName:texture:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithName_texture(
             this: Allocated<Self>,
@@ -131,7 +135,7 @@ extern_methods!(
             texture: Option<&SKTexture>,
         ) -> Retained<Self>;
 
-        #[method_id(initWithName:float:)]
+        #[method(initWithName:float:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithName_float(
             this: Allocated<Self>,
@@ -144,11 +148,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKUniform {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

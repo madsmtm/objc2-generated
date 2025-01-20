@@ -52,10 +52,11 @@ extern_methods!(
     unsafe impl DOMCSSValueList {
         #[deprecated]
         #[method(length)]
+        #[unsafe(method_family = none)]
         pub unsafe fn length(&self) -> c_uint;
 
         #[deprecated]
-        #[method_id(item:)]
+        #[method(item:)]
         #[unsafe(method_family = none)]
         pub unsafe fn item(&self, index: c_uint) -> Option<Retained<DOMCSSValue>>;
     }
@@ -70,7 +71,7 @@ extern_methods!(
     ))]
     unsafe impl DOMCSSValueList {
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -84,7 +85,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMCSSValueList {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

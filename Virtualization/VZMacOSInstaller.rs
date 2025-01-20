@@ -91,11 +91,11 @@ unsafe impl NSObjectProtocol for VZMacOSInstaller {}
 
 extern_methods!(
     unsafe impl VZMacOSInstaller {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -108,7 +108,7 @@ extern_methods!(
         ///
         /// The virtual machine platform must be macOS and the restore image URL must be a file URL referring to a file on disk or an exception will be raised.
         /// This method must be called on the virtual machine's queue.
-        #[method_id(initWithVirtualMachine:restoreImageURL:)]
+        #[method(initWithVirtualMachine:restoreImageURL:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithVirtualMachine_restoreImageURL(
             this: Allocated<Self>,
@@ -127,6 +127,7 @@ extern_methods!(
         /// If installation is started on the same VZMacOSInstaller object more than once, an exception will be raised.
         /// This method must be called on the virtual machine's queue.
         #[method(installWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn installWithCompletionHandler(
             &self,
             completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
@@ -135,18 +136,18 @@ extern_methods!(
         /// An NSProgress object that can be used to observe or cancel installation.
         ///
         /// If the progress object is cancelled before installation is started, an exception will be raised.
-        #[method_id(progress)]
+        #[method(progress)]
         #[unsafe(method_family = none)]
         pub unsafe fn progress(&self) -> Retained<NSProgress>;
 
         #[cfg(feature = "VZVirtualMachine")]
         /// The virtual machine that this installer was initialized with.
-        #[method_id(virtualMachine)]
+        #[method(virtualMachine)]
         #[unsafe(method_family = none)]
         pub unsafe fn virtualMachine(&self) -> Retained<VZVirtualMachine>;
 
         /// The restore image URL that this installer was initialized with.
-        #[method_id(restoreImageURL)]
+        #[method(restoreImageURL)]
         #[unsafe(method_family = none)]
         pub unsafe fn restoreImageURL(&self) -> Retained<NSURL>;
     }

@@ -56,7 +56,7 @@ extern_methods!(
     unsafe impl ARImageAnchor {
         #[cfg(feature = "ARReferenceImage")]
         /// Reference to the detected image.
-        #[method_id(referenceImage)]
+        #[method(referenceImage)]
         #[unsafe(method_family = none)]
         pub unsafe fn referenceImage(&self) -> Retained<ARReferenceImage>;
 
@@ -67,6 +67,7 @@ extern_methods!(
         /// This value will be estimated if automaticImageScaleEstimationEnabled is set to true on the ARWorldTrackingConfiguration. It is used to
         /// correct the transform's translation. Default value is 1.0.
         #[method(estimatedScaleFactor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn estimatedScaleFactor(&self) -> CGFloat;
     }
 );
@@ -77,11 +78,11 @@ extern_methods!(
     #[cfg(all(feature = "ARAnchor", feature = "objc2"))]
     unsafe impl ARImageAnchor {
         /// Unavailable
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -26,14 +26,14 @@ extern_methods!(
         /// A collection of mutually exclusive media selection options.
         ///
         /// An NSArray of AVMediaSelectionOption*.
-        #[method_id(options)]
+        #[method(options)]
         #[unsafe(method_family = none)]
         pub unsafe fn options(&self) -> Retained<NSArray<AVMediaSelectionOption>>;
 
         /// Indicates the default option in the group, i.e. the option that's intended for use in the absence of a specific end-user selection or preference.
         ///
         /// Can be nil, indicating that without a specific end-user selection or preference, no option in the group is intended to be selected.
-        #[method_id(defaultOption)]
+        #[method(defaultOption)]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultOption(&self) -> Option<Retained<AVMediaSelectionOption>>;
 
@@ -42,6 +42,7 @@ extern_methods!(
         /// If allowsEmptySelection is YES, all of the available media options in the group can be deselected by passing nil
         /// as the specified AVMediaSelectionOption to -[AVPlayerItem selectMediaOption:inMediaSelectionGroup:].
         #[method(allowsEmptySelection)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowsEmptySelection(&self) -> bool;
 
         /// Returns the instance of AVMediaSelectionOption with properties that match the specified property list.
@@ -49,7 +50,7 @@ extern_methods!(
         /// Parameter `plist`: A property list previously obtained from an option in the group via -[AVMediaSelectionOption propertyList].
         ///
         /// Returns: If the specified properties match those of an option in the group, an instance of AVMediaSelectionOption. Otherwise nil.
-        #[method_id(mediaSelectionOptionWithPropertyList:)]
+        #[method(mediaSelectionOptionWithPropertyList:)]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaSelectionOptionWithPropertyList(
             &self,
@@ -61,11 +62,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVMediaSelectionGroup {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -84,7 +85,7 @@ extern_methods!(
         /// Parameter `mediaSelectionOptions`: An array of AVMediaSelectionOption to be filtered according to whether they are playable.
         ///
         /// Returns: An instance of NSArray containing the media selection options of the specified NSArray that are playable.
-        #[method_id(playableMediaSelectionOptionsFromArray:)]
+        #[method(playableMediaSelectionOptionsFromArray:)]
         #[unsafe(method_family = none)]
         pub unsafe fn playableMediaSelectionOptionsFromArray(
             media_selection_options: &NSArray<AVMediaSelectionOption>,
@@ -97,7 +98,7 @@ extern_methods!(
         /// Parameter `preferredLanguages`: An array of language identifiers in order of preference, each of which is an IETF BCP 47 (RFC 4646) language identifier. Use +[NSLocale preferredLanguages] to obtain the user's list of preferred languages.
         ///
         /// Returns: An instance of NSArray containing media selection options of the specified NSArray that match a preferred language, sorted according to the order of preference of the language each matches.
-        #[method_id(mediaSelectionOptionsFromArray:filteredAndSortedAccordingToPreferredLanguages:)]
+        #[method(mediaSelectionOptionsFromArray:filteredAndSortedAccordingToPreferredLanguages:)]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaSelectionOptionsFromArray_filteredAndSortedAccordingToPreferredLanguages(
             media_selection_options: &NSArray<AVMediaSelectionOption>,
@@ -111,7 +112,7 @@ extern_methods!(
         /// Parameter `locale`: The NSLocale that must be matched for a media selection option to be copied to the output array.
         ///
         /// Returns: An instance of NSArray containing the media selection options of the specified NSArray that match the specified locale.
-        #[method_id(mediaSelectionOptionsFromArray:withLocale:)]
+        #[method(mediaSelectionOptionsFromArray:withLocale:)]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaSelectionOptionsFromArray_withLocale(
             media_selection_options: &NSArray<AVMediaSelectionOption>,
@@ -127,7 +128,7 @@ extern_methods!(
         ///
         /// Returns: An instance of NSArray containing the media selection options of the specified NSArray that match the specified
         /// media characteristics.
-        #[method_id(mediaSelectionOptionsFromArray:withMediaCharacteristics:)]
+        #[method(mediaSelectionOptionsFromArray:withMediaCharacteristics:)]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaSelectionOptionsFromArray_withMediaCharacteristics(
             media_selection_options: &NSArray<AVMediaSelectionOption>,
@@ -143,7 +144,7 @@ extern_methods!(
         ///
         /// Returns: An instance of NSArray containing the media selection options of the specified NSArray that lack the specified
         /// media characteristics.
-        #[method_id(mediaSelectionOptionsFromArray:withoutMediaCharacteristics:)]
+        #[method(mediaSelectionOptionsFromArray:withoutMediaCharacteristics:)]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaSelectionOptionsFromArray_withoutMediaCharacteristics(
             media_selection_options: &NSArray<AVMediaSelectionOption>,
@@ -171,7 +172,7 @@ extern_methods!(
     unsafe impl AVMediaSelectionOption {
         #[cfg(feature = "AVMediaFormat")]
         /// The media type of the media data, e.g. AVMediaTypeAudio, AVMediaTypeSubtitle, etc.
-        #[method_id(mediaType)]
+        #[method(mediaType)]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaType(&self) -> Retained<AVMediaType>;
 
@@ -181,7 +182,7 @@ extern_methods!(
         /// Also see CMFormatDescriptionGetMediaSubType in CMFormatDescription.h for more information about media subtypes.
         ///
         /// Note that if no information is available about the encoding of the media presented when a media option is selected, the value of mediaSubTypes will be an empty array. This can occur, for example, with streaming media. In these cases the value of mediaSubTypes should simply not be used as a criteria for selection.
-        #[method_id(mediaSubTypes)]
+        #[method(mediaSubTypes)]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaSubTypes(&self) -> Retained<NSArray<NSNumber>>;
 
@@ -192,6 +193,7 @@ extern_methods!(
         ///
         /// Returns: YES if the media selection option includes media with the specified characteristic, otherwise NO.
         #[method(hasMediaCharacteristic:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hasMediaCharacteristic(
             &self,
             media_characteristic: &AVMediaCharacteristic,
@@ -201,17 +203,18 @@ extern_methods!(
         ///
         /// If the media data associated with the option cannot be decoded or otherwise rendered, playable is NO.
         #[method(isPlayable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isPlayable(&self) -> bool;
 
         /// Indicates the RFC 4646 language tag associated with the option. May be nil.
-        #[method_id(extendedLanguageTag)]
+        #[method(extendedLanguageTag)]
         #[unsafe(method_family = none)]
         pub unsafe fn extendedLanguageTag(&self) -> Option<Retained<NSString>>;
 
         /// Indicates the locale for which the media option was authored.
         ///
         /// Use -[NSLocale objectForKey:NSLocaleLanguageCode] to obtain the language code of the locale. See NSLocale.h for additional information.
-        #[method_id(locale)]
+        #[method(locale)]
         #[unsafe(method_family = none)]
         pub unsafe fn locale(&self) -> Option<Retained<NSLocale>>;
 
@@ -239,14 +242,14 @@ extern_methods!(
         /// title = [[titles objectAtIndex:0] stringValue];
         /// }
         /// }
-        #[method_id(commonMetadata)]
+        #[method(commonMetadata)]
         #[unsafe(method_family = none)]
         pub unsafe fn commonMetadata(&self) -> Retained<NSArray<AVMetadataItem>>;
 
         /// Provides an NSArray of NSStrings, each representing a metadata format that contains metadata associated with the option (e.g. ID3, iTunes metadata, etc.).
         ///
         /// Metadata formats are defined in AVMetadataFormat.h.
-        #[method_id(availableMetadataFormats)]
+        #[method(availableMetadataFormats)]
         #[unsafe(method_family = none)]
         pub unsafe fn availableMetadataFormats(&self) -> Retained<NSArray<NSString>>;
 
@@ -256,7 +259,7 @@ extern_methods!(
         /// Parameter `format`: The metadata format for which items are requested.
         ///
         /// Returns: An NSArray containing AVMetadataItems.
-        #[method_id(metadataForFormat:)]
+        #[method(metadataForFormat:)]
         #[unsafe(method_family = none)]
         pub unsafe fn metadataForFormat(
             &self,
@@ -270,7 +273,7 @@ extern_methods!(
         /// Returns: An instance of AVMediaSelectionOption.
         ///
         /// Audible media selection options often have associated legible media selection options; in particular, audible options are typically associated with forced-only subtitle options with the same locale. See AVMediaCharacteristicContainsOnlyForcedSubtitles in AVMediaFormat.h for a discussion of forced-only subtitles.
-        #[method_id(associatedMediaSelectionOptionInMediaSelectionGroup:)]
+        #[method(associatedMediaSelectionOptionInMediaSelectionGroup:)]
         #[unsafe(method_family = none)]
         pub unsafe fn associatedMediaSelectionOptionInMediaSelectionGroup(
             &self,
@@ -280,7 +283,7 @@ extern_methods!(
         /// Returns a serializable property list that can be used to obtain an instance of AVMediaSelectionOption representing the same option as the receiver via -[AVMediaSelectionGroup mediaSelectionOptionWithPropertyList:].
         ///
         /// Returns: A serializable property list that's sufficient to identify the option within its group. For serialization utilities, see NSPropertyList.h.
-        #[method_id(propertyList)]
+        #[method(propertyList)]
         #[unsafe(method_family = none)]
         pub unsafe fn propertyList(&self) -> Retained<AnyObject>;
 
@@ -289,7 +292,7 @@ extern_methods!(
         /// Parameter `locale`: Localize manufactured portions of the string using the specificed locale.
         ///
         /// May use this option's common metadata, media characteristics and locale properties in addition to the provided locale to formulate an NSString intended for display. Will only consider common metadata with the specified locale.
-        #[method_id(displayNameWithLocale:)]
+        #[method(displayNameWithLocale:)]
         #[unsafe(method_family = none)]
         pub unsafe fn displayNameWithLocale(&self, locale: &NSLocale) -> Retained<NSString>;
 
@@ -298,7 +301,7 @@ extern_methods!(
         /// May use this option's common metadata, media characteristics and locale properties in addition to the current system locale to formulate an NSString intended for display.
         /// In the event that common metadata is not available in the specified locale, displayName will fall back to considering locales with the multilingual ("mul") then undetermined ("und") locale identifiers.
         /// For a display name strictly with the specified locale use displayNameWithLocale: instead.
-        #[method_id(displayName)]
+        #[method(displayName)]
         #[unsafe(method_family = none)]
         pub unsafe fn displayName(&self) -> Retained<NSString>;
     }
@@ -307,11 +310,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVMediaSelectionOption {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

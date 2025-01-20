@@ -56,7 +56,7 @@ extern_methods!(
         /// Parameter `cmdBuf`: The command buffer against which the temporary resource is allocated
         ///
         /// Parameter `bufferSize`: The size of the buffer in bytes
-        #[method_id(temporaryStateWithCommandBuffer:bufferSize:)]
+        #[method(temporaryStateWithCommandBuffer:bufferSize:)]
         #[unsafe(method_family = none)]
         pub unsafe fn temporaryStateWithCommandBuffer_bufferSize(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -68,7 +68,7 @@ extern_methods!(
         /// Parameter `cmdBuf`: The command buffer against which the temporary resource is allocated
         ///
         /// Parameter `descriptor`: A descriptor for the new temporary texture
-        #[method_id(temporaryStateWithCommandBuffer:textureDescriptor:)]
+        #[method(temporaryStateWithCommandBuffer:textureDescriptor:)]
         #[unsafe(method_family = none)]
         pub unsafe fn temporaryStateWithCommandBuffer_textureDescriptor(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -78,13 +78,13 @@ extern_methods!(
         /// Create a new autoreleased temporary state object without underlying resource
         ///
         /// Parameter `cmdBuf`: The command buffer with which the temporary resource is associated
-        #[method_id(temporaryStateWithCommandBuffer:)]
+        #[method(temporaryStateWithCommandBuffer:)]
         #[unsafe(method_family = none)]
         pub unsafe fn temporaryStateWithCommandBuffer(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
         ) -> Retained<Self>;
 
-        #[method_id(initWithDevice:bufferSize:)]
+        #[method(initWithDevice:bufferSize:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_bufferSize(
             this: Allocated<Self>,
@@ -92,7 +92,7 @@ extern_methods!(
             buffer_size: usize,
         ) -> Retained<Self>;
 
-        #[method_id(initWithDevice:textureDescriptor:)]
+        #[method(initWithDevice:textureDescriptor:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_textureDescriptor(
             this: Allocated<Self>,
@@ -103,14 +103,14 @@ extern_methods!(
         /// Create a MPSState with a non-temporary MTLResource
         ///
         /// Parameter `resource`: A MTLBuffer or MTLTexture. May be nil.
-        #[method_id(initWithResource:)]
+        #[method(initWithResource:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResource(
             this: Allocated<Self>,
             resource: Option<&ProtocolObject<dyn MTLResource>>,
         ) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Option<Retained<Self>>;
 
@@ -120,7 +120,7 @@ extern_methods!(
         /// This occurs when -resource or -resourceAtIndex: is called.
         ///
         /// Parameter `resourceList`: The list of resources to create.
-        #[method_id(initWithDevice:resourceList:)]
+        #[method(initWithDevice:resourceList:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_resourceList(
             this: Allocated<Self>,
@@ -131,7 +131,7 @@ extern_methods!(
         /// Initialize a temporary state to hold a number of textures and buffers
         ///
         /// The textures occur first in sequence
-        #[method_id(temporaryStateWithCommandBuffer:resourceList:)]
+        #[method(temporaryStateWithCommandBuffer:resourceList:)]
         #[unsafe(method_family = none)]
         pub unsafe fn temporaryStateWithCommandBuffer_resourceList(
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -144,7 +144,7 @@ extern_methods!(
         /// your application should use -initWithTextures:bufferSizes:bufferCount:
         /// whenever possible. This method is useful for cases when the
         /// MTLResources must be initialized by the CPU.
-        #[method_id(initWithResources:)]
+        #[method(initWithResources:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResources(
             this: Allocated<Self>,
@@ -161,7 +161,7 @@ extern_methods!(
         feature = "MPSState"
     ))]
     unsafe impl MPSNDArrayGatherGradientState {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -252,10 +252,12 @@ extern_methods!(
         /// The axis along which to apply the gather operation.
         /// Defaults to zero.
         #[method(axis)]
+        #[unsafe(method_family = none)]
         pub unsafe fn axis(&self) -> NSUInteger;
 
         /// Setter for [`axis`][Self::axis].
         #[method(setAxis:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAxis(&self, axis: NSUInteger);
     }
 );
@@ -268,14 +270,14 @@ extern_methods!(
         feature = "MPSNDArrayKernel"
     ))]
     unsafe impl MPSNDArrayGather {
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
-        #[method_id(initWithDevice:sourceCount:)]
+        #[method(initWithDevice:sourceCount:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_sourceCount(
             this: Allocated<Self>,
@@ -283,7 +285,7 @@ extern_methods!(
             count: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -309,7 +311,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -326,11 +328,11 @@ extern_methods!(
         feature = "MPSNDArrayKernel"
     ))]
     unsafe impl MPSNDArrayGather {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -413,7 +415,7 @@ extern_methods!(
         feature = "MPSNDArrayKernel"
     ))]
     unsafe impl MPSNDArrayGatherGradient {
-        #[method_id(initWithDevice:sourceCount:sourceGradientIndex:)]
+        #[method(initWithDevice:sourceCount:sourceGradientIndex:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_sourceCount_sourceGradientIndex(
             this: Allocated<Self>,
@@ -422,14 +424,14 @@ extern_methods!(
             source_gradient_index: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -447,7 +449,7 @@ extern_methods!(
         feature = "MPSNDArrayKernel"
     ))]
     unsafe impl MPSNDArrayGatherGradient {
-        #[method_id(initWithDevice:sourceCount:)]
+        #[method(initWithDevice:sourceCount:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_sourceCount(
             this: Allocated<Self>,
@@ -473,7 +475,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -490,11 +492,11 @@ extern_methods!(
         feature = "MPSNDArrayKernel"
     ))]
     unsafe impl MPSNDArrayGatherGradient {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

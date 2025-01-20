@@ -26,18 +26,18 @@ extern_methods!(
     unsafe impl MLModel {
         #[cfg(feature = "MLModelDescription")]
         /// A model holds a description of its required inputs and expected outputs.
-        #[method_id(modelDescription)]
+        #[method(modelDescription)]
         #[unsafe(method_family = none)]
         pub unsafe fn modelDescription(&self) -> Retained<MLModelDescription>;
 
         #[cfg(feature = "MLModelConfiguration")]
         /// The load-time parameters used to instantiate this MLModel object.
-        #[method_id(configuration)]
+        #[method(configuration)]
         #[unsafe(method_family = none)]
         pub unsafe fn configuration(&self) -> Retained<MLModelConfiguration>;
 
         /// Construct a model with a default MLModelConfiguration object
-        #[method_id(modelWithContentsOfURL:error:_)]
+        #[method(modelWithContentsOfURL:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn modelWithContentsOfURL_error(
             url: &NSURL,
@@ -45,7 +45,7 @@ extern_methods!(
 
         #[cfg(feature = "MLModelConfiguration")]
         /// Construct a model given the location of its on-disk representation. Returns nil on error.
-        #[method_id(modelWithContentsOfURL:configuration:error:_)]
+        #[method(modelWithContentsOfURL:configuration:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn modelWithContentsOfURL_configuration_error(
             url: &NSURL,
@@ -64,6 +64,7 @@ extern_methods!(
         ///
         /// Parameter `handler`: When the model load completes successfully or unsuccessfully, the completion handler is invoked with a valid MLModel instance or NSError object.
         #[method(loadContentsOfURL:configuration:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loadContentsOfURL_configuration_completionHandler(
             url: &NSURL,
             configuration: &MLModelConfiguration,
@@ -79,7 +80,7 @@ extern_methods!(
         /// - input: The input features to make a prediction from.
         /// - error: The output parameter to be filled with error information on failure.
         /// - Returns: The output features from the prediction.
-        #[method_id(predictionFromFeatures:error:_)]
+        #[method(predictionFromFeatures:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn predictionFromFeatures_error(
             &self,
@@ -94,7 +95,7 @@ extern_methods!(
         /// - options: Prediction options to modify how the prediction is run.
         /// - error: The output parameter to be filled with error information on failure.
         /// - Returns: The output features from the prediction.
-        #[method_id(predictionFromFeatures:options:error:_)]
+        #[method(predictionFromFeatures:options:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn predictionFromFeatures_options_error(
             &self,
@@ -111,6 +112,7 @@ extern_methods!(
         /// - input: The input features to make a prediction from.
         /// - completionHandler: A block that will be invoked once the prediction has completed successfully or unsuccessfully. On success, it is invoked with a valid model output. On failure, it is invoked with a nil output and NSError
         #[method(predictionFromFeatures:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn predictionFromFeatures_completionHandler(
             &self,
             input: &ProtocolObject<dyn MLFeatureProvider>,
@@ -131,6 +133,7 @@ extern_methods!(
         /// - options: Prediction options to modify how the prediction is run.
         /// - completionHandler: A block that will be invoked once the prediction has completed successfully or unsuccessfully. On success, it is invoked with a valid model output. On failure, it is invoked with a nil output and NSError
         #[method(predictionFromFeatures:options:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn predictionFromFeatures_options_completionHandler(
             &self,
             input: &ProtocolObject<dyn MLFeatureProvider>,
@@ -142,7 +145,7 @@ extern_methods!(
 
         #[cfg(feature = "MLBatchProvider")]
         /// Batch prediction without explicit options
-        #[method_id(predictionsFromBatch:error:_)]
+        #[method(predictionsFromBatch:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn predictionsFromBatch_error(
             &self,
@@ -151,7 +154,7 @@ extern_methods!(
 
         #[cfg(all(feature = "MLBatchProvider", feature = "MLPredictionOptions"))]
         /// Batch prediction with explicit options
-        #[method_id(predictionsFromBatch:options:error:_)]
+        #[method(predictionsFromBatch:options:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn predictionsFromBatch_options_error(
             &self,
@@ -161,7 +164,7 @@ extern_methods!(
 
         #[cfg(all(feature = "MLKey", feature = "MLParameterKey"))]
         /// Provides value for the given parameter. Returns nil on error.
-        #[method_id(parameterValueForKey:error:_)]
+        #[method(parameterValueForKey:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn parameterValueForKey_error(
             &self,
@@ -182,6 +185,7 @@ extern_methods!(
         ///
         /// Parameter `handler`: When the model load completes successfully or unsuccessfully, the completion handler is invoked with a valid MLModel instance or NSError object.
         #[method(loadModelAsset:configuration:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loadModelAsset_configuration_completionHandler(
             asset: &MLModelAsset,
             configuration: &MLModelConfiguration,
@@ -193,11 +197,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MLModel {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

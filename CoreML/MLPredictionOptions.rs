@@ -26,11 +26,13 @@ extern_methods!(
         /// Set to YES to force computation to be on the CPU only
         #[deprecated]
         #[method(usesCPUOnly)]
+        #[unsafe(method_family = none)]
         pub unsafe fn usesCPUOnly(&self) -> bool;
 
         /// Setter for [`usesCPUOnly`][Self::usesCPUOnly].
         #[deprecated]
         #[method(setUsesCPUOnly:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUsesCPUOnly(&self, uses_cpu_only: bool);
 
         /// Propose the model to use the specified backing objects for the
@@ -97,12 +99,13 @@ extern_methods!(
         /// time. The exception is FP16 MLMultiArray backed by CVPixelBuffer, which may be
         /// accepted in Double or Float32 multi array output feature depending on the
         /// underlying inference engine.
-        #[method_id(outputBackings)]
+        #[method(outputBackings)]
         #[unsafe(method_family = none)]
         pub unsafe fn outputBackings(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         /// Setter for [`outputBackings`][Self::outputBackings].
         #[method(setOutputBackings:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setOutputBackings(&self, output_backings: &NSDictionary<NSString, AnyObject>);
     }
 );
@@ -110,11 +113,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MLPredictionOptions {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

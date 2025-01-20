@@ -51,29 +51,30 @@ extern_methods!(
     unsafe impl AVAudioNode {
         /// Clear a unit's previous processing state.
         #[method(reset)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reset(&self);
 
         #[cfg(all(feature = "AVAudioFormat", feature = "AVAudioTypes"))]
         /// Obtain an input bus's format.
-        #[method_id(inputFormatForBus:)]
+        #[method(inputFormatForBus:)]
         #[unsafe(method_family = none)]
         pub unsafe fn inputFormatForBus(&self, bus: AVAudioNodeBus) -> Retained<AVAudioFormat>;
 
         #[cfg(all(feature = "AVAudioFormat", feature = "AVAudioTypes"))]
         /// Obtain an output bus's format.
-        #[method_id(outputFormatForBus:)]
+        #[method(outputFormatForBus:)]
         #[unsafe(method_family = none)]
         pub unsafe fn outputFormatForBus(&self, bus: AVAudioNodeBus) -> Retained<AVAudioFormat>;
 
         #[cfg(feature = "AVAudioTypes")]
         /// Return the name of an input bus.
-        #[method_id(nameForInputBus:)]
+        #[method(nameForInputBus:)]
         #[unsafe(method_family = none)]
         pub unsafe fn nameForInputBus(&self, bus: AVAudioNodeBus) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "AVAudioTypes")]
         /// Return the name of an output bus.
-        #[method_id(nameForOutputBus:)]
+        #[method(nameForOutputBus:)]
         #[unsafe(method_family = none)]
         pub unsafe fn nameForOutputBus(&self, bus: AVAudioNodeBus) -> Option<Retained<NSString>>;
 
@@ -119,6 +120,7 @@ extern_methods!(
         /// // start engine
         /// </pre>
         #[method(installTapOnBus:bufferSize:format:block:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn installTapOnBus_bufferSize_format_block(
             &self,
             bus: AVAudioNodeBus,
@@ -132,20 +134,23 @@ extern_methods!(
         ///
         /// Parameter `bus`: the node output bus whose tap is to be destroyed
         #[method(removeTapOnBus:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeTapOnBus(&self, bus: AVAudioNodeBus);
 
         #[cfg(feature = "AVAudioEngine")]
         /// The engine to which the node is attached (or nil).
-        #[method_id(engine)]
+        #[method(engine)]
         #[unsafe(method_family = none)]
         pub unsafe fn engine(&self) -> Option<Retained<AVAudioEngine>>;
 
         /// The node's number of input busses.
         #[method(numberOfInputs)]
+        #[unsafe(method_family = none)]
         pub unsafe fn numberOfInputs(&self) -> NSUInteger;
 
         /// The node's number of output busses.
         #[method(numberOfOutputs)]
+        #[unsafe(method_family = none)]
         pub unsafe fn numberOfOutputs(&self) -> NSUInteger;
 
         #[cfg(feature = "AVAudioTime")]
@@ -153,7 +158,7 @@ extern_methods!(
         ///
         /// Will return nil if the engine is not running or if the node is not connected to an input or
         /// output node.
-        #[method_id(lastRenderTime)]
+        #[method(lastRenderTime)]
         #[unsafe(method_family = none)]
         pub unsafe fn lastRenderTime(&self) -> Option<Retained<AVAudioTime>>;
 
@@ -168,7 +173,7 @@ extern_methods!(
         /// No operations that may conflict with state maintained by the engine should be performed
         /// directly on the audio unit. These include changing initialization state, stream formats,
         /// channel layouts or connections to other audio units.
-        #[method_id(AUAudioUnit)]
+        #[method(AUAudioUnit)]
         #[unsafe(method_family = none)]
         pub unsafe fn AUAudioUnit(&self) -> Retained<AUAudioUnit>;
 
@@ -179,6 +184,7 @@ extern_methods!(
         /// (e.g. filters, FFT's, etc.), not delay or reverberation which is being applied as an effect.
         /// A value of zero indicates either no latency or an unknown latency.
         #[method(latency)]
+        #[unsafe(method_family = none)]
         pub unsafe fn latency(&self) -> NSTimeInterval;
 
         /// The maximum render pipeline latency downstream of the node, in seconds.
@@ -202,6 +208,7 @@ extern_methods!(
         /// connections made/altered downstream of this node etc.). So it is recommended not to cache
         /// this value and fetch it whenever it's needed.
         #[method(outputPresentationLatency)]
+        #[unsafe(method_family = none)]
         pub unsafe fn outputPresentationLatency(&self) -> NSTimeInterval;
     }
 );
@@ -209,11 +216,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAudioNode {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

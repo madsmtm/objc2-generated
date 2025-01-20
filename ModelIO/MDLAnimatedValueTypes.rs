@@ -45,36 +45,45 @@ unsafe impl NSObjectProtocol for MDLAnimatedValue {}
 extern_methods!(
     unsafe impl MDLAnimatedValue {
         #[method(isAnimated)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isAnimated(&self) -> bool;
 
         #[cfg(feature = "MDLTypes")]
         #[method(precision)]
+        #[unsafe(method_family = none)]
         pub unsafe fn precision(&self) -> MDLDataPrecision;
 
         #[method(timeSampleCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn timeSampleCount(&self) -> NSUInteger;
 
         #[method(minimumTime)]
+        #[unsafe(method_family = none)]
         pub unsafe fn minimumTime(&self) -> NSTimeInterval;
 
         #[method(maximumTime)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maximumTime(&self) -> NSTimeInterval;
 
         #[method(interpolation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn interpolation(&self) -> MDLAnimatedValueInterpolation;
 
         /// Setter for [`interpolation`][Self::interpolation].
         #[method(setInterpolation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setInterpolation(&self, interpolation: MDLAnimatedValueInterpolation);
 
-        #[method_id(keyTimes)]
+        #[method(keyTimes)]
         #[unsafe(method_family = none)]
         pub unsafe fn keyTimes(&self) -> Retained<NSArray<NSNumber>>;
 
         #[method(clear)]
+        #[unsafe(method_family = none)]
         pub unsafe fn clear(&self);
 
         #[method(getTimes:maxCount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getTimes_maxCount(
             &self,
             times_array: NonNull<NSTimeInterval>,
@@ -86,11 +95,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLAnimatedValue {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -116,9 +125,10 @@ unsafe impl NSObjectProtocol for MDLAnimatedScalarArray {}
 extern_methods!(
     unsafe impl MDLAnimatedScalarArray {
         #[method(elementCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn elementCount(&self) -> NSUInteger;
 
-        #[method_id(initWithElementCount:)]
+        #[method(initWithElementCount:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithElementCount(
             this: Allocated<Self>,
@@ -126,6 +136,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[method(setFloatArray:count:atTime:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFloatArray_count_atTime(
             &self,
             array: NonNull<c_float>,
@@ -134,6 +145,7 @@ extern_methods!(
         );
 
         #[method(setDoubleArray:count:atTime:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDoubleArray_count_atTime(
             &self,
             array: NonNull<c_double>,
@@ -142,6 +154,7 @@ extern_methods!(
         );
 
         #[method(getFloatArray:maxCount:atTime:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getFloatArray_maxCount_atTime(
             &self,
             array: NonNull<c_float>,
@@ -150,6 +163,7 @@ extern_methods!(
         ) -> NSUInteger;
 
         #[method(getDoubleArray:maxCount:atTime:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getDoubleArray_maxCount_atTime(
             &self,
             array: NonNull<c_double>,
@@ -158,6 +172,7 @@ extern_methods!(
         ) -> NSUInteger;
 
         #[method(resetWithFloatArray:count:atTimes:count:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resetWithFloatArray_count_atTimes_count(
             &self,
             values_array: NonNull<c_float>,
@@ -167,6 +182,7 @@ extern_methods!(
         );
 
         #[method(resetWithDoubleArray:count:atTimes:count:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resetWithDoubleArray_count_atTimes_count(
             &self,
             values_array: NonNull<c_double>,
@@ -176,6 +192,7 @@ extern_methods!(
         );
 
         #[method(getFloatArray:maxCount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getFloatArray_maxCount(
             &self,
             values_array: NonNull<c_float>,
@@ -183,6 +200,7 @@ extern_methods!(
         ) -> NSUInteger;
 
         #[method(getDoubleArray:maxCount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getDoubleArray_maxCount(
             &self,
             values_array: NonNull<c_double>,
@@ -194,11 +212,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLAnimatedScalarArray {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -222,9 +240,10 @@ unsafe impl NSObjectProtocol for MDLAnimatedVector3Array {}
 extern_methods!(
     unsafe impl MDLAnimatedVector3Array {
         #[method(elementCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn elementCount(&self) -> NSUInteger;
 
-        #[method_id(initWithElementCount:)]
+        #[method(initWithElementCount:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithElementCount(
             this: Allocated<Self>,
@@ -236,11 +255,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLAnimatedVector3Array {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -264,9 +283,10 @@ unsafe impl NSObjectProtocol for MDLAnimatedQuaternionArray {}
 extern_methods!(
     unsafe impl MDLAnimatedQuaternionArray {
         #[method(elementCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn elementCount(&self) -> NSUInteger;
 
-        #[method_id(initWithElementCount:)]
+        #[method(initWithElementCount:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithElementCount(
             this: Allocated<Self>,
@@ -278,11 +298,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLAnimatedQuaternionArray {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -308,18 +328,23 @@ unsafe impl NSObjectProtocol for MDLAnimatedScalar {}
 extern_methods!(
     unsafe impl MDLAnimatedScalar {
         #[method(setFloat:atTime:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFloat_atTime(&self, value: c_float, time: NSTimeInterval);
 
         #[method(setDouble:atTime:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDouble_atTime(&self, value: c_double, time: NSTimeInterval);
 
         #[method(floatAtTime:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn floatAtTime(&self, time: NSTimeInterval) -> c_float;
 
         #[method(doubleAtTime:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn doubleAtTime(&self, time: NSTimeInterval) -> c_double;
 
         #[method(resetWithFloatArray:atTimes:count:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resetWithFloatArray_atTimes_count(
             &self,
             values_array: NonNull<c_float>,
@@ -328,6 +353,7 @@ extern_methods!(
         );
 
         #[method(resetWithDoubleArray:atTimes:count:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resetWithDoubleArray_atTimes_count(
             &self,
             values_array: NonNull<c_double>,
@@ -336,6 +362,7 @@ extern_methods!(
         );
 
         #[method(getFloatArray:maxCount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getFloatArray_maxCount(
             &self,
             values_array: NonNull<c_float>,
@@ -343,6 +370,7 @@ extern_methods!(
         ) -> NSUInteger;
 
         #[method(getDoubleArray:maxCount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getDoubleArray_maxCount(
             &self,
             values_array: NonNull<c_double>,
@@ -354,11 +382,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLAnimatedScalar {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -386,11 +414,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLAnimatedVector2 {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -418,11 +446,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLAnimatedVector3 {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -450,11 +478,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLAnimatedVector4 {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -482,11 +510,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLAnimatedQuaternion {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -514,11 +542,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLAnimatedMatrix4x4 {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

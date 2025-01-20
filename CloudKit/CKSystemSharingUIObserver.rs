@@ -18,16 +18,16 @@ unsafe impl NSObjectProtocol for CKSystemSharingUIObserver {}
 
 extern_methods!(
     unsafe impl CKSystemSharingUIObserver {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "CKContainer")]
-        #[method_id(initWithContainer:)]
+        #[method(initWithContainer:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContainer(
             this: Allocated<Self>,
@@ -55,6 +55,7 @@ extern_methods!(
         /// `error`Each
         /// `CKSystemSharingUIObserver`instance has a private serial queue. This queue is used for all callback block invocations.
         #[method(systemSharingUIDidSaveShareBlock)]
+        #[unsafe(method_family = none)]
         pub unsafe fn systemSharingUIDidSaveShareBlock(
             &self,
         ) -> *mut block2::Block<dyn Fn(NonNull<CKRecordID>, *mut CKShare, *mut NSError)>;
@@ -67,6 +68,7 @@ extern_methods!(
         ))]
         /// Setter for [`systemSharingUIDidSaveShareBlock`][Self::systemSharingUIDidSaveShareBlock].
         #[method(setSystemSharingUIDidSaveShareBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSystemSharingUIDidSaveShareBlock(
             &self,
             system_sharing_ui_did_save_share_block: Option<
@@ -82,6 +84,7 @@ extern_methods!(
         /// Each
         /// `CKSystemSharingUIObserver`instance has a private serial queue. This queue is used for all callback block invocations.
         #[method(systemSharingUIDidStopSharingBlock)]
+        #[unsafe(method_family = none)]
         pub unsafe fn systemSharingUIDidStopSharingBlock(
             &self,
         ) -> *mut block2::Block<dyn Fn(NonNull<CKRecordID>, *mut NSError)>;
@@ -89,6 +92,7 @@ extern_methods!(
         #[cfg(all(feature = "CKRecordID", feature = "block2"))]
         /// Setter for [`systemSharingUIDidStopSharingBlock`][Self::systemSharingUIDidStopSharingBlock].
         #[method(setSystemSharingUIDidStopSharingBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSystemSharingUIDidStopSharingBlock(
             &self,
             system_sharing_ui_did_stop_sharing_block: Option<

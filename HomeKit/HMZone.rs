@@ -30,23 +30,23 @@ unsafe impl NSObjectProtocol for HMZone {}
 
 extern_methods!(
     unsafe impl HMZone {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Name of the zone.
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "HMRoom")]
         /// Array of HMRoom objects that correspond to the rooms contained in this zone.
-        #[method_id(rooms)]
+        #[method(rooms)]
         #[unsafe(method_family = none)]
         pub unsafe fn rooms(&self) -> Retained<NSArray<HMRoom>>;
 
         /// A unique identifier for the zone.
-        #[method_id(uniqueIdentifier)]
+        #[method(uniqueIdentifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn uniqueIdentifier(&self) -> Retained<NSUUID>;
 
@@ -61,6 +61,7 @@ extern_methods!(
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
         #[method(updateName:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updateName_completionHandler(
             &self,
             name: &NSString,
@@ -82,6 +83,7 @@ extern_methods!(
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
         #[method(addRoom:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addRoom_completionHandler(
             &self,
             room: &HMRoom,
@@ -99,6 +101,7 @@ extern_methods!(
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
         #[method(removeRoom:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeRoom_completionHandler(
             &self,
             room: &HMRoom,
@@ -110,7 +113,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HMZone {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

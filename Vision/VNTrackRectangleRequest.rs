@@ -39,7 +39,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `observation`: Rectangle observation with bounding box and rectangle corners location info.
-        #[method_id(initWithRectangleObservation:)]
+        #[method(initWithRectangleObservation:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRectangleObservation(
             this: Allocated<Self>,
@@ -53,7 +53,7 @@ extern_methods!(
         /// Parameter `observation`: Rectangle observation with bounding box and rectangle corners location info.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
-        #[method_id(initWithRectangleObservation:completionHandler:)]
+        #[method(initWithRectangleObservation:completionHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRectangleObservation_completionHandler(
             this: Allocated<Self>,
@@ -61,12 +61,12 @@ extern_methods!(
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        #[method_id(initWithCompletionHandler:)]
+        #[method(initWithCompletionHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
@@ -79,7 +79,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "VNRequest", feature = "VNTrackingRequest"))]
     unsafe impl VNTrackRectangleRequest {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

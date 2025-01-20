@@ -25,17 +25,18 @@ unsafe impl NSObjectProtocol for NSCoreDataCoreSpotlightDelegate {}
 extern_methods!(
     unsafe impl NSCoreDataCoreSpotlightDelegate {
         #[method(isIndexingEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isIndexingEnabled(&self) -> bool;
 
-        #[method_id(domainIdentifier)]
+        #[method(domainIdentifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn domainIdentifier(&self) -> Retained<NSString>;
 
-        #[method_id(indexName)]
+        #[method(indexName)]
         #[unsafe(method_family = none)]
         pub unsafe fn indexName(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -43,7 +44,7 @@ extern_methods!(
             feature = "NSPersistentStoreCoordinator",
             feature = "NSPersistentStoreDescription"
         ))]
-        #[method_id(initForStoreWithDescription:coordinator:)]
+        #[method(initForStoreWithDescription:coordinator:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initForStoreWithDescription_coordinator(
             this: Allocated<Self>,
@@ -56,7 +57,7 @@ extern_methods!(
             feature = "NSPersistentStoreDescription"
         ))]
         #[deprecated]
-        #[method_id(initForStoreWithDescription:model:)]
+        #[method(initForStoreWithDescription:model:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initForStoreWithDescription_model(
             this: Allocated<Self>,
@@ -65,13 +66,16 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[method(startSpotlightIndexing)]
+        #[unsafe(method_family = none)]
         pub unsafe fn startSpotlightIndexing(&self);
 
         #[method(stopSpotlightIndexing)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stopSpotlightIndexing(&self);
 
         #[cfg(feature = "block2")]
         #[method(deleteSpotlightIndexWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn deleteSpotlightIndexWithCompletionHandler(
             &self,
             completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
@@ -82,7 +86,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSCoreDataCoreSpotlightDelegate {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

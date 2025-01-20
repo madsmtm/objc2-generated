@@ -63,43 +63,54 @@ extern_methods!(
     unsafe impl NSTitlebarAccessoryViewController {
         #[cfg(feature = "NSLayoutConstraint")]
         #[method(layoutAttribute)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layoutAttribute(&self) -> NSLayoutAttribute;
 
         #[cfg(feature = "NSLayoutConstraint")]
         /// Setter for [`layoutAttribute`][Self::layoutAttribute].
         #[method(setLayoutAttribute:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLayoutAttribute(&self, layout_attribute: NSLayoutAttribute);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(fullScreenMinHeight)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fullScreenMinHeight(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`fullScreenMinHeight`][Self::fullScreenMinHeight].
         #[method(setFullScreenMinHeight:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFullScreenMinHeight(&self, full_screen_min_height: CGFloat);
 
         #[method(isHidden)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isHidden(&self) -> bool;
 
         /// Setter for [`isHidden`][Self::isHidden].
         #[method(setHidden:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setHidden(&self, hidden: bool);
 
         #[method(automaticallyAdjustsSize)]
+        #[unsafe(method_family = none)]
         pub unsafe fn automaticallyAdjustsSize(&self) -> bool;
 
         /// Setter for [`automaticallyAdjustsSize`][Self::automaticallyAdjustsSize].
         #[method(setAutomaticallyAdjustsSize:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAutomaticallyAdjustsSize(&self, automatically_adjusts_size: bool);
 
         #[method(viewWillAppear)]
+        #[unsafe(method_family = none)]
         pub unsafe fn viewWillAppear(&self);
 
         #[method(viewDidAppear)]
+        #[unsafe(method_family = none)]
         pub unsafe fn viewDidAppear(&self);
 
         #[method(viewDidDisappear)]
+        #[unsafe(method_family = none)]
         pub unsafe fn viewDidDisappear(&self);
     }
 );
@@ -109,7 +120,7 @@ extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
     unsafe impl NSTitlebarAccessoryViewController {
         #[cfg(feature = "NSNib")]
-        #[method_id(initWithNibName:bundle:)]
+        #[method(initWithNibName:bundle:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -117,7 +128,7 @@ extern_methods!(
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -130,7 +141,7 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
     unsafe impl NSTitlebarAccessoryViewController {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -140,7 +151,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
     unsafe impl NSTitlebarAccessoryViewController {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

@@ -38,11 +38,11 @@ unsafe impl NSObjectProtocol for SKOverlayConfiguration {}
 
 extern_methods!(
     unsafe impl SKOverlayConfiguration {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -61,11 +61,11 @@ unsafe impl NSObjectProtocol for SKOverlayAppConfiguration {}
 
 extern_methods!(
     unsafe impl SKOverlayAppConfiguration {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -74,7 +74,7 @@ extern_methods!(
         /// Parameter `appIdentifier`: the app identifier of the app to show.
         ///
         /// Parameter `position`: the desired position of the overlay.
-        #[method_id(initWithAppIdentifier:position:)]
+        #[method(initWithAppIdentifier:position:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAppIdentifier_position(
             this: Allocated<Self>,
@@ -83,79 +83,90 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The identifier of the app that will be shown.
-        #[method_id(appIdentifier)]
+        #[method(appIdentifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn appIdentifier(&self) -> Retained<NSString>;
 
         /// Setter for [`appIdentifier`][Self::appIdentifier].
         #[method(setAppIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAppIdentifier(&self, app_identifier: &NSString);
 
         /// A token representing an App Analytics campaign.
-        #[method_id(campaignToken)]
+        #[method(campaignToken)]
         #[unsafe(method_family = none)]
         pub unsafe fn campaignToken(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`campaignToken`][Self::campaignToken].
         #[method(setCampaignToken:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCampaignToken(&self, campaign_token: Option<&NSString>);
 
         /// The provider token for the developer that created the app being presented.
-        #[method_id(providerToken)]
+        #[method(providerToken)]
         #[unsafe(method_family = none)]
         pub unsafe fn providerToken(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`providerToken`][Self::providerToken].
         #[method(setProviderToken:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setProviderToken(&self, provider_token: Option<&NSString>);
 
         /// An optional identifier for an app's custom product page.
-        #[method_id(customProductPageIdentifier)]
+        #[method(customProductPageIdentifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn customProductPageIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`customProductPageIdentifier`][Self::customProductPageIdentifier].
         #[method(setCustomProductPageIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCustomProductPageIdentifier(
             &self,
             custom_product_page_identifier: Option<&NSString>,
         );
 
         /// An optional extra parameter for specifying the version of your app that will be shown to the user.
-        #[method_id(latestReleaseID)]
+        #[method(latestReleaseID)]
         #[unsafe(method_family = none)]
         pub unsafe fn latestReleaseID(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`latestReleaseID`][Self::latestReleaseID].
         #[method(setLatestReleaseID:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLatestReleaseID(&self, latest_release_id: Option<&NSString>);
 
         /// The position an overlay will show at on screen.
         #[method(position)]
+        #[unsafe(method_family = none)]
         pub unsafe fn position(&self) -> SKOverlayPosition;
 
         /// Setter for [`position`][Self::position].
         #[method(setPosition:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPosition(&self, position: SKOverlayPosition);
 
         /// Allows the user to interactively dismiss an overlay.
         #[method(userDismissible)]
+        #[unsafe(method_family = none)]
         pub unsafe fn userDismissible(&self) -> bool;
 
         /// Setter for [`userDismissible`][Self::userDismissible].
         #[method(setUserDismissible:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUserDismissible(&self, user_dismissible: bool);
 
         #[method(setAdditionalValue:forKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAdditionalValue_forKey(&self, value: Option<&AnyObject>, key: &NSString);
 
         #[must_use]
-        #[method_id(additionalValueForKey:)]
+        #[method(additionalValueForKey:)]
         #[unsafe(method_family = none)]
         pub unsafe fn additionalValueForKey(&self, key: &NSString) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "SKAdImpression")]
         #[method(setAdImpression:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAdImpression(&self, impression: &SKAdImpression);
     }
 );
@@ -173,18 +184,18 @@ unsafe impl NSObjectProtocol for SKOverlayAppClipConfiguration {}
 
 extern_methods!(
     unsafe impl SKOverlayAppClipConfiguration {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Creates a new app overlay configuration that will show an app clip's full app.
         ///
         /// Parameter `position`: the desired position of the overlay.
-        #[method_id(initWithPosition:)]
+        #[method(initWithPosition:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPosition(
             this: Allocated<Self>,
@@ -192,57 +203,64 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// A token representing an App Analytics campaign.
-        #[method_id(campaignToken)]
+        #[method(campaignToken)]
         #[unsafe(method_family = none)]
         pub unsafe fn campaignToken(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`campaignToken`][Self::campaignToken].
         #[method(setCampaignToken:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCampaignToken(&self, campaign_token: Option<&NSString>);
 
         /// The provider token for the developer that created the app being presented.
-        #[method_id(providerToken)]
+        #[method(providerToken)]
         #[unsafe(method_family = none)]
         pub unsafe fn providerToken(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`providerToken`][Self::providerToken].
         #[method(setProviderToken:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setProviderToken(&self, provider_token: Option<&NSString>);
 
         /// An optional identifier for a parent app's custom product page.
-        #[method_id(customProductPageIdentifier)]
+        #[method(customProductPageIdentifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn customProductPageIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`customProductPageIdentifier`][Self::customProductPageIdentifier].
         #[method(setCustomProductPageIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCustomProductPageIdentifier(
             &self,
             custom_product_page_identifier: Option<&NSString>,
         );
 
         /// An optional extra parameter for specifying the version of your app that will be shown to the user.
-        #[method_id(latestReleaseID)]
+        #[method(latestReleaseID)]
         #[unsafe(method_family = none)]
         pub unsafe fn latestReleaseID(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`latestReleaseID`][Self::latestReleaseID].
         #[method(setLatestReleaseID:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLatestReleaseID(&self, latest_release_id: Option<&NSString>);
 
         /// The position an overlay will show at on screen.
         #[method(position)]
+        #[unsafe(method_family = none)]
         pub unsafe fn position(&self) -> SKOverlayPosition;
 
         /// Setter for [`position`][Self::position].
         #[method(setPosition:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPosition(&self, position: SKOverlayPosition);
 
         #[method(setAdditionalValue:forKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAdditionalValue_forKey(&self, value: Option<&AnyObject>, key: &NSString);
 
         #[must_use]
-        #[method_id(additionalValueForKey:)]
+        #[method(additionalValueForKey:)]
         #[unsafe(method_family = none)]
         pub unsafe fn additionalValueForKey(&self, key: &NSString) -> Option<Retained<AnyObject>>;
     }

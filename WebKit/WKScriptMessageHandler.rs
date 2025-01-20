@@ -20,6 +20,7 @@ extern_protocol!(
         ///
         /// Parameter `message`: The script message received.
         #[method(userContentController:didReceiveScriptMessage:)]
+        #[unsafe(method_family = none)]
         unsafe fn userContentController_didReceiveScriptMessage(
             &self,
             user_content_controller: &WKUserContentController,

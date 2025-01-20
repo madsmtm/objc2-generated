@@ -27,28 +27,32 @@ extern_methods!(
         /// Obtain the primary GKLocalPlayer object.
         /// The player is only available for offline play until logged in.
         /// A temporary player is created if no account is set up.
-        #[method_id(local)]
+        #[method(local)]
         #[unsafe(method_family = none)]
         pub unsafe fn local() -> Retained<GKLocalPlayer>;
 
-        #[method_id(localPlayer)]
+        #[method(localPlayer)]
         #[unsafe(method_family = none)]
         pub unsafe fn localPlayer() -> Retained<GKLocalPlayer>;
 
         /// Authentication state
         #[method(isAuthenticated)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isAuthenticated(&self) -> bool;
 
         /// Indicates if a player is under age
         #[method(isUnderage)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isUnderage(&self) -> bool;
 
         /// A Boolean value that declares whether or not multiplayer gaming is restricted on this device.
         #[method(isMultiplayerGamingRestricted)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isMultiplayerGamingRestricted(&self) -> bool;
 
         /// A Boolean value that declares whether personalized communication is restricted on this device. If it is restricted, the player will not be able to read or write personalized messages on game invites, challenges, or enable voice communication in multiplayer games.  Note: this value will always be true when isUnderage is true.
         #[method(isPersonalizedCommunicationRestricted)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isPersonalizedCommunicationRestricted(&self) -> bool;
 
         #[cfg(feature = "block2")]
@@ -57,6 +61,7 @@ extern_methods!(
         /// 1. Communications problem
         /// 2. Unauthenticated player
         #[method(loadRecentPlayersWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loadRecentPlayersWithCompletionHandler(
             &self,
             completion_handler: Option<
@@ -70,6 +75,7 @@ extern_methods!(
         /// 1. Communications problem
         /// 2. Unauthenticated player
         #[method(loadChallengableFriendsWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loadChallengableFriendsWithCompletionHandler(
             &self,
             completion_handler: Option<
@@ -84,6 +90,7 @@ extern_methods!(
         /// 2. Unauthenticated player
         /// 3. Leaderboard not present
         #[method(setDefaultLeaderboardIdentifier:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDefaultLeaderboardIdentifier_completionHandler(
             &self,
             leaderboard_identifier: &NSString,
@@ -97,6 +104,7 @@ extern_methods!(
         /// 2. Unauthenticated player
         /// 3. Leaderboard not present
         #[method(loadDefaultLeaderboardIdentifierWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loadDefaultLeaderboardIdentifierWithCompletionHandler(
             &self,
             completion_handler: Option<&block2::Block<dyn Fn(*mut NSString, *mut NSError)>>,
@@ -108,6 +116,7 @@ extern_methods!(
         /// 1. Communications problem
         /// 2. Unauthenticated player
         #[method(fetchItemsForIdentityVerificationSignature:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fetchItemsForIdentityVerificationSignature(
             &self,
             completion_handler: Option<
@@ -121,7 +130,7 @@ extern_methods!(
     /// Methods declared on superclass `GKPlayer`
     #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
     unsafe impl GKLocalPlayer {
-        #[method_id(anonymousGuestPlayerWithIdentifier:)]
+        #[method(anonymousGuestPlayerWithIdentifier:)]
         #[unsafe(method_family = none)]
         pub unsafe fn anonymousGuestPlayerWithIdentifier(
             guest_identifier: &NSString,
@@ -133,11 +142,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
     unsafe impl GKLocalPlayer {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -169,6 +178,7 @@ extern_methods!(
         ))]
         /// A single listener may be registered once. Registering multiple times results in undefined behavior. The registered listener will receive callbacks for any selector it responds to.
         #[method(registerListener:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn registerListener(&self, listener: &ProtocolObject<dyn GKLocalPlayerListener>);
 
         #[cfg(all(
@@ -178,12 +188,14 @@ extern_methods!(
             feature = "GKTurnBasedMatch"
         ))]
         #[method(unregisterListener:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn unregisterListener(
             &self,
             listener: &ProtocolObject<dyn GKLocalPlayerListener>,
         );
 
         #[method(unregisterAllListeners)]
+        #[unsafe(method_family = none)]
         pub unsafe fn unregisterAllListeners(&self);
     }
 );
@@ -202,6 +214,7 @@ extern_methods!(
         #[cfg(feature = "block2")]
         #[deprecated]
         #[method(setDefaultLeaderboardCategoryID:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDefaultLeaderboardCategoryID_completionHandler(
             &self,
             category_id: Option<&NSString>,
@@ -211,6 +224,7 @@ extern_methods!(
         #[cfg(feature = "block2")]
         #[deprecated]
         #[method(loadDefaultLeaderboardCategoryIDWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loadDefaultLeaderboardCategoryIDWithCompletionHandler(
             &self,
             completion_handler: Option<&block2::Block<dyn Fn(*mut NSString, *mut NSError)>>,
@@ -219,6 +233,7 @@ extern_methods!(
         #[cfg(feature = "block2")]
         #[deprecated]
         #[method(authenticateWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn authenticateWithCompletionHandler(
             &self,
             completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
@@ -227,6 +242,7 @@ extern_methods!(
         #[cfg(feature = "block2")]
         #[deprecated]
         #[method(loadFriendPlayersWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loadFriendPlayersWithCompletionHandler(
             &self,
             completion_handler: Option<
@@ -241,6 +257,7 @@ extern_methods!(
         /// 2. Unauthenticated player
         #[deprecated]
         #[method(generateIdentityVerificationSignatureWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn generateIdentityVerificationSignatureWithCompletionHandler(
             &self,
             completion_handler: Option<
@@ -258,6 +275,7 @@ extern_methods!(
         /// This method is obsolete. It will never be invoked and its implementation does nothing**
         #[deprecated]
         #[method(loadFriendsWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loadFriendsWithCompletionHandler(
             &self,
             completion_handler: Option<
@@ -267,7 +285,7 @@ extern_methods!(
 
         /// This property is obsolete. **
         #[deprecated]
-        #[method_id(friends)]
+        #[method(friends)]
         #[unsafe(method_family = none)]
         pub unsafe fn friends(&self) -> Option<Retained<NSArray<NSString>>>;
     }
@@ -303,6 +321,7 @@ extern_methods!(
     unsafe impl GKLocalPlayer {
         #[cfg(feature = "block2")]
         #[method(loadFriendsAuthorizationStatus:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loadFriendsAuthorizationStatus(
             &self,
             completion_handler: &block2::Block<dyn Fn(GKFriendsAuthorizationStatus, *mut NSError)>,
@@ -310,6 +329,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[method(loadFriends:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loadFriends(
             &self,
             completion_handler: &block2::Block<dyn Fn(*mut NSArray<GKPlayer>, *mut NSError)>,
@@ -317,6 +337,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[method(loadFriendsWithIdentifiers:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loadFriendsWithIdentifiers_completionHandler(
             &self,
             identifiers: &NSArray<NSString>,
@@ -332,6 +353,7 @@ extern_methods!(
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         #[method(authenticateHandler)]
+        #[unsafe(method_family = none)]
         pub unsafe fn authenticateHandler(
             &self,
             mtm: MainThreadMarker,
@@ -341,6 +363,7 @@ extern_methods!(
         #[cfg(target_os = "macos")]
         /// Setter for [`authenticateHandler`][Self::authenticateHandler].
         #[method(setAuthenticateHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAuthenticateHandler(
             &self,
             authenticate_handler: Option<
@@ -350,6 +373,7 @@ extern_methods!(
 
         /// observable property that becomes true when the friend request view controller is displayed.  It becomes false when it is dismissed
         #[method(isPresentingFriendRequestViewController)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isPresentingFriendRequestViewController(&self) -> bool;
 
         #[cfg(feature = "objc2-app-kit")]
@@ -364,6 +388,7 @@ extern_methods!(
         /// - The local player user account is not allowed to add friends
         /// - The device is not allowing outgoing traffic at the time of the operation
         #[method(presentFriendRequestCreatorFromWindow:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn presentFriendRequestCreatorFromWindow_error(
             &self,
             window: Option<&NSWindow>,

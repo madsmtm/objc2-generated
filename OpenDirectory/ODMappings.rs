@@ -18,55 +18,60 @@ unsafe impl NSObjectProtocol for ODMappings {}
 
 extern_methods!(
     unsafe impl ODMappings {
-        #[method_id(comment)]
+        #[method(comment)]
         #[unsafe(method_family = none)]
         pub unsafe fn comment(&self) -> Retained<NSString>;
 
         /// Setter for [`comment`][Self::comment].
         #[method(setComment:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setComment(&self, comment: Option<&NSString>);
 
-        #[method_id(templateName)]
+        #[method(templateName)]
         #[unsafe(method_family = none)]
         pub unsafe fn templateName(&self) -> Retained<NSString>;
 
         /// Setter for [`templateName`][Self::templateName].
         #[method(setTemplateName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTemplateName(&self, template_name: Option<&NSString>);
 
-        #[method_id(identifier)]
+        #[method(identifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         /// Setter for [`identifier`][Self::identifier].
         #[method(setIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIdentifier(&self, identifier: Option<&NSString>);
 
-        #[method_id(recordTypes)]
+        #[method(recordTypes)]
         #[unsafe(method_family = none)]
         pub unsafe fn recordTypes(&self) -> Retained<NSArray>;
 
-        #[method_id(function)]
+        #[method(function)]
         #[unsafe(method_family = none)]
         pub unsafe fn function(&self) -> Retained<NSString>;
 
         /// Setter for [`function`][Self::function].
         #[method(setFunction:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFunction(&self, function: Option<&NSString>);
 
-        #[method_id(functionAttributes)]
+        #[method(functionAttributes)]
         #[unsafe(method_family = none)]
         pub unsafe fn functionAttributes(&self) -> Retained<NSArray>;
 
         /// Setter for [`functionAttributes`][Self::functionAttributes].
         #[method(setFunctionAttributes:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFunctionAttributes(&self, function_attributes: Option<&NSArray>);
 
         /// Returns an initialized and autoreleased ODMappings object.
         ///
         ///
         /// Returns an initialized and autoreleased ODMappings object.
-        #[method_id(mappings)]
+        #[method(mappings)]
         #[unsafe(method_family = none)]
         pub unsafe fn mappings() -> Option<Retained<Self>>;
 
@@ -75,7 +80,7 @@ extern_methods!(
         ///
         ///
         /// Returns an ODRecordMap associated with the provided recordtype.
-        #[method_id(recordMapForStandardRecordType:)]
+        #[method(recordMapForStandardRecordType:)]
         #[unsafe(method_family = none)]
         pub unsafe fn recordMapForStandardRecordType(
             &self,
@@ -88,6 +93,7 @@ extern_methods!(
         ///
         /// Sets a particular ODRecordMap for a given standard record type.
         #[method(setRecordMap:forStandardRecordType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRecordMap_forStandardRecordType(
             &self,
             map: Option<&ODRecordMap>,
@@ -99,11 +105,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ODMappings {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

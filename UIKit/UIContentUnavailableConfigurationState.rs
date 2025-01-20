@@ -33,46 +33,48 @@ unsafe impl UIConfigurationState for UIContentUnavailableConfigurationState {}
 extern_methods!(
     unsafe impl UIContentUnavailableConfigurationState {
         #[cfg(feature = "UITraitCollection")]
-        #[method_id(initWithTraitCollection:)]
+        #[method(initWithTraitCollection:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTraitCollection(
             this: Allocated<Self>,
             trait_collection: &UITraitCollection,
         ) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(feature = "UITraitCollection")]
         /// The trait collection.
-        #[method_id(traitCollection)]
+        #[method(traitCollection)]
         #[unsafe(method_family = none)]
         pub unsafe fn traitCollection(&self) -> Retained<UITraitCollection>;
 
         #[cfg(feature = "UITraitCollection")]
         /// Setter for [`traitCollection`][Self::traitCollection].
         #[method(setTraitCollection:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTraitCollection(&self, trait_collection: &UITraitCollection);
 
         /// The search text. Default is the search bar text of the view controller's search controller.
-        #[method_id(searchText)]
+        #[method(searchText)]
         #[unsafe(method_family = none)]
         pub unsafe fn searchText(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`searchText`][Self::searchText].
         #[method(setSearchText:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSearchText(&self, search_text: Option<&NSString>);
     }
 );

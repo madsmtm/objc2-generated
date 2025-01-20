@@ -24,7 +24,7 @@ extern_methods!(
         /// this value will be stable while the extension is enabled. If the extension is
         /// disabled and re-enabled or the containing App is removed and re-installed this
         /// value will change.
-        #[method_id(localParticipantIdentifier)]
+        #[method(localParticipantIdentifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn localParticipantIdentifier(&self) -> Retained<NSUUID>;
 
@@ -34,7 +34,7 @@ extern_methods!(
         /// this device. These values will be stable while the extension is enabled. If the extension
         /// is disabled and re-enabled or the containing App is removed and re-installed these
         /// values will change.
-        #[method_id(remoteParticipantIdentifiers)]
+        #[method(remoteParticipantIdentifiers)]
         #[unsafe(method_family = none)]
         pub unsafe fn remoteParticipantIdentifiers(&self) -> Retained<NSArray<NSUUID>>;
 
@@ -45,7 +45,7 @@ extern_methods!(
         /// a message in the conversation transcript this property will contain the message.
         /// Otherwise this property will be nil. The message object provided may be saved to the
         /// file system. Later, this saved object may be loaded, modified and staged for sending.
-        #[method_id(selectedMessage)]
+        #[method(selectedMessage)]
         #[unsafe(method_family = none)]
         pub unsafe fn selectedMessage(&self) -> Option<Retained<MSMessage>>;
 
@@ -63,6 +63,7 @@ extern_methods!(
         ///
         /// Parameter `completionHandler`: A completion handler called when the message has been staged or if there was an error.
         #[method(insertMessage:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn insertMessage_completionHandler(
             &self,
             message: &MSMessage,
@@ -76,6 +77,7 @@ extern_methods!(
         ///
         /// Parameter `completionHandler`: A completion handler called when the insert is complete.
         #[method(insertSticker:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn insertSticker_completionHandler(
             &self,
             sticker: &MSSticker,
@@ -91,6 +93,7 @@ extern_methods!(
         ///
         /// Parameter `completionHandler`: A completion handler called when the insert is complete.
         #[method(insertText:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn insertText_completionHandler(
             &self,
             text: &NSString,
@@ -109,6 +112,7 @@ extern_methods!(
         ///
         /// Parameter `completionHandler`: A completion handler called when the insert is complete.
         #[method(insertAttachment:withAlternateFilename:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn insertAttachment_withAlternateFilename_completionHandler(
             &self,
             url: &NSURL,
@@ -126,6 +130,7 @@ extern_methods!(
         ///
         /// Parameter `completionHandler`: A completion handler called when the message has been staged or if there was an error.
         #[method(sendMessage:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sendMessage_completionHandler(
             &self,
             message: &MSMessage,
@@ -141,6 +146,7 @@ extern_methods!(
         ///
         /// Parameter `completionHandler`: A completion handler called when the insert is complete.
         #[method(sendSticker:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sendSticker_completionHandler(
             &self,
             sticker: &MSSticker,
@@ -157,6 +163,7 @@ extern_methods!(
         ///
         /// Parameter `completionHandler`: A completion handler called when the insert is complete.
         #[method(sendText:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sendText_completionHandler(
             &self,
             text: &NSString,
@@ -175,6 +182,7 @@ extern_methods!(
         ///
         /// Parameter `completionHandler`: A completion handler called when the insert is complete.
         #[method(sendAttachment:withAlternateFilename:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sendAttachment_withAlternateFilename_completionHandler(
             &self,
             url: &NSURL,
@@ -187,11 +195,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MSConversation {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

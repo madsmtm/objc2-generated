@@ -265,28 +265,31 @@ extern_methods!(
         /// For example, a `momentary emotion` log might be in response to 'how are you feeling right now?' while a `daily mood` log
         /// might be in response to 'how have you been feeling today?'.
         #[method(kind)]
+        #[unsafe(method_family = none)]
         pub unsafe fn kind(&self) -> HKStateOfMindKind;
 
         /// A signed, self-reported measure of how positive or negative one is feeling, on a continuous scale from -1 to +1.
         #[method(valence)]
+        #[unsafe(method_family = none)]
         pub unsafe fn valence(&self) -> c_double;
 
         /// A general region of pleasantness based on this sample's valence value.
         #[method(valenceClassification)]
+        #[unsafe(method_family = none)]
         pub unsafe fn valenceClassification(&self) -> HKStateOfMindValenceClassification;
 
         /// Zero or more specific sentiments selected to represent a felt experience.
-        #[method_id(labels)]
+        #[method(labels)]
         #[unsafe(method_family = none)]
         pub unsafe fn labels(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Zero or more facets of life with which this felt experience is associated.
-        #[method_id(associations)]
+        #[method(associations)]
         #[unsafe(method_family = none)]
         pub unsafe fn associations(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Creates a new log describing an experienced emotion at a moment in time.
-        #[method_id(stateOfMindWithDate:kind:valence:labels:associations:)]
+        #[method(stateOfMindWithDate:kind:valence:labels:associations:)]
         #[unsafe(method_family = none)]
         pub unsafe fn stateOfMindWithDate_kind_valence_labels_associations(
             date: &NSDate,
@@ -297,7 +300,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Creates a new log describing an experienced emotion at a moment in time.
-        #[method_id(stateOfMindWithDate:kind:valence:labels:associations:metadata:)]
+        #[method(stateOfMindWithDate:kind:valence:labels:associations:metadata:)]
         #[unsafe(method_family = none)]
         pub unsafe fn stateOfMindWithDate_kind_valence_labels_associations_metadata(
             date: &NSDate,
@@ -308,11 +311,11 @@ extern_methods!(
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

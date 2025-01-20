@@ -23,13 +23,13 @@ extern_methods!(
     #[cfg(feature = "CKOperation")]
     unsafe impl CKDiscoverUserIdentitiesOperation {
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "CKUserIdentityLookupInfo")]
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
-        #[method_id(initWithUserIdentityLookupInfos:)]
+        #[method(initWithUserIdentityLookupInfos:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithUserIdentityLookupInfos(
             this: Allocated<Self>,
@@ -38,7 +38,7 @@ extern_methods!(
 
         #[cfg(feature = "CKUserIdentityLookupInfo")]
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
-        #[method_id(userIdentityLookupInfos)]
+        #[method(userIdentityLookupInfos)]
         #[unsafe(method_family = none)]
         pub unsafe fn userIdentityLookupInfos(&self)
             -> Retained<NSArray<CKUserIdentityLookupInfo>>;
@@ -47,6 +47,7 @@ extern_methods!(
         /// Setter for [`userIdentityLookupInfos`][Self::userIdentityLookupInfos].
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method(setUserIdentityLookupInfos:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUserIdentityLookupInfos(
             &self,
             user_identity_lookup_infos: &NSArray<CKUserIdentityLookupInfo>,
@@ -66,6 +67,7 @@ extern_methods!(
         /// should not be concurrently used outside of blocks assigned to this operation.
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method(userIdentityDiscoveredBlock)]
+        #[unsafe(method_family = none)]
         pub unsafe fn userIdentityDiscoveredBlock(
             &self,
         ) -> *mut block2::Block<dyn Fn(NonNull<CKUserIdentity>, NonNull<CKUserIdentityLookupInfo>)>;
@@ -78,6 +80,7 @@ extern_methods!(
         /// Setter for [`userIdentityDiscoveredBlock`][Self::userIdentityDiscoveredBlock].
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method(setUserIdentityDiscoveredBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUserIdentityDiscoveredBlock(
             &self,
             user_identity_discovered_block: Option<
@@ -102,6 +105,7 @@ extern_methods!(
         /// should not be concurrently used outside of blocks assigned to this operation.
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method(discoverUserIdentitiesCompletionBlock)]
+        #[unsafe(method_family = none)]
         pub unsafe fn discoverUserIdentitiesCompletionBlock(
             &self,
         ) -> *mut block2::Block<dyn Fn(*mut NSError)>;
@@ -110,6 +114,7 @@ extern_methods!(
         /// Setter for [`discoverUserIdentitiesCompletionBlock`][Self::discoverUserIdentitiesCompletionBlock].
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[method(setDiscoverUserIdentitiesCompletionBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDiscoverUserIdentitiesCompletionBlock(
             &self,
             discover_user_identities_completion_block: Option<&block2::Block<dyn Fn(*mut NSError)>>,
@@ -121,7 +126,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CKOperation")]
     unsafe impl CKDiscoverUserIdentitiesOperation {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

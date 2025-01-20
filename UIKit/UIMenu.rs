@@ -96,42 +96,46 @@ extern_methods!(
     #[cfg(feature = "UIMenuElement")]
     unsafe impl UIMenu {
         /// Unique identifier.
-        #[method_id(identifier)]
+        #[method(identifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<UIMenuIdentifier>;
 
         /// Options.
         #[method(options)]
+        #[unsafe(method_family = none)]
         pub unsafe fn options(&self) -> UIMenuOptions;
 
         /// Size of this menu's child elements. This property has no effect on Mac Catalyst.
         #[method(preferredElementSize)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preferredElementSize(&self) -> UIMenuElementSize;
 
         /// Setter for [`preferredElementSize`][Self::preferredElementSize].
         #[method(setPreferredElementSize:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreferredElementSize(&self, preferred_element_size: UIMenuElementSize);
 
         /// The menu's sub-elements and sub-menus. On iOS 14.0, elements of your own menus are mutable, -copying a menu will produce mutable elements, and UIKit will take immutable copies of menus it receives. Prior to iOS 14.0, menus are always fully immutable.
-        #[method_id(children)]
+        #[method(children)]
         #[unsafe(method_family = none)]
         pub unsafe fn children(&self) -> Retained<NSArray<UIMenuElement>>;
 
         /// The element(s) in the menu and sub-menus that have an "on" menu item state.
-        #[method_id(selectedElements)]
+        #[method(selectedElements)]
         #[unsafe(method_family = none)]
         pub unsafe fn selectedElements(&self) -> Retained<NSArray<UIMenuElement>>;
 
         #[cfg(feature = "UIMenuDisplayPreferences")]
         /// Display preferences for this menu's immediate children. Preferences are not inherited by sub menus,
         /// and may be ignored or overridden by the system in certain element sizes or menu layouts.
-        #[method_id(displayPreferences)]
+        #[method(displayPreferences)]
         #[unsafe(method_family = none)]
         pub unsafe fn displayPreferences(&self) -> Option<Retained<UIMenuDisplayPreferences>>;
 
         #[cfg(feature = "UIMenuDisplayPreferences")]
         /// Setter for [`displayPreferences`][Self::displayPreferences].
         #[method(setDisplayPreferences:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDisplayPreferences(
             &self,
             display_preferences: Option<&UIMenuDisplayPreferences>,
@@ -144,7 +148,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A new UIMenu.
-        #[method_id(menuWithChildren:)]
+        #[method(menuWithChildren:)]
         #[unsafe(method_family = none)]
         pub unsafe fn menuWithChildren(
             children: &NSArray<UIMenuElement>,
@@ -160,7 +164,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A new UIMenu.
-        #[method_id(menuWithTitle:children:)]
+        #[method(menuWithTitle:children:)]
         #[unsafe(method_family = none)]
         pub unsafe fn menuWithTitle_children(
             title: &NSString,
@@ -184,7 +188,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A new UIMenu.
-        #[method_id(menuWithTitle:image:identifier:options:children:)]
+        #[method(menuWithTitle:image:identifier:options:children:)]
         #[unsafe(method_family = none)]
         pub unsafe fn menuWithTitle_image_identifier_options_children(
             title: &NSString,
@@ -195,18 +199,18 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Retained<UIMenu>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
@@ -217,7 +221,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A copy of this menu with updated children.
-        #[method_id(menuByReplacingChildren:)]
+        #[method(menuByReplacingChildren:)]
         #[unsafe(method_family = none)]
         pub unsafe fn menuByReplacingChildren(
             &self,

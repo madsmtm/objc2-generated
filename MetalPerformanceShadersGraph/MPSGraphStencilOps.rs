@@ -40,10 +40,12 @@ extern_methods!(
         ///
         /// Default value: `MPSGraphReductionModeSum`.
         #[method(reductionMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reductionMode(&self) -> MPSGraphReductionMode;
 
         /// Setter for [`reductionMode`][Self::reductionMode].
         #[method(setReductionMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setReductionMode(&self, reduction_mode: MPSGraphReductionMode);
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
@@ -62,13 +64,14 @@ extern_methods!(
         /// 0,
         /// @
         /// 0 ]`
-        #[method_id(offsets)]
+        #[method(offsets)]
         #[unsafe(method_family = none)]
         pub unsafe fn offsets(&self) -> Retained<MPSShape>;
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
         /// Setter for [`offsets`][Self::offsets].
         #[method(setOffsets:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setOffsets(&self, offsets: &MPSShape);
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
@@ -86,13 +89,14 @@ extern_methods!(
         /// 1,
         /// @
         /// 1 ]`
-        #[method_id(strides)]
+        #[method(strides)]
         #[unsafe(method_family = none)]
         pub unsafe fn strides(&self) -> Retained<MPSShape>;
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
         /// Setter for [`strides`][Self::strides].
         #[method(setStrides:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setStrides(&self, strides: &MPSShape);
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
@@ -110,13 +114,14 @@ extern_methods!(
         /// 1,
         /// @
         /// 1 ]`
-        #[method_id(dilationRates)]
+        #[method(dilationRates)]
         #[unsafe(method_family = none)]
         pub unsafe fn dilationRates(&self) -> Retained<MPSShape>;
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
         /// Setter for [`dilationRates`][Self::dilationRates].
         #[method(setDilationRates:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDilationRates(&self, dilation_rates: &MPSShape);
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
@@ -146,43 +151,50 @@ extern_methods!(
         /// 0,
         /// @
         /// 0 ]`
-        #[method_id(explicitPadding)]
+        #[method(explicitPadding)]
         #[unsafe(method_family = none)]
         pub unsafe fn explicitPadding(&self) -> Retained<MPSShape>;
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
         /// Setter for [`explicitPadding`][Self::explicitPadding].
         #[method(setExplicitPadding:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setExplicitPadding(&self, explicit_padding: &MPSShape);
 
         /// The property that determines which values to use for padding the input tensor.
         ///
         /// Default value: `MPSGraphPaddingModeZero`.
         #[method(boundaryMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn boundaryMode(&self) -> MPSGraphPaddingMode;
 
         /// Setter for [`boundaryMode`][Self::boundaryMode].
         #[method(setBoundaryMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBoundaryMode(&self, boundary_mode: MPSGraphPaddingMode);
 
         /// The property that defines what kind of padding to apply to the stencil operation.
         ///
         /// Default value: `MPSGraphPaddingStyleExplicit`.
         #[method(paddingStyle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn paddingStyle(&self) -> MPSGraphPaddingStyle;
 
         /// Setter for [`paddingStyle`][Self::paddingStyle].
         #[method(setPaddingStyle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPaddingStyle(&self, padding_style: MPSGraphPaddingStyle);
 
         /// The padding value for `boundaryMode = MPSGraphPaddingModeConstant`.
         ///
         /// Default value: 0.
         #[method(paddingConstant)]
+        #[unsafe(method_family = none)]
         pub unsafe fn paddingConstant(&self) -> c_float;
 
         /// Setter for [`paddingConstant`][Self::paddingConstant].
         #[method(setPaddingConstant:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPaddingConstant(&self, padding_constant: c_float);
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
@@ -198,7 +210,7 @@ extern_methods!(
         /// - paddingStyle: See `paddingStyle` property.
         /// - paddingConstant: See `paddingConstant` property.
         /// - Returns: A valid MPSGraphStencilOpDescriptor object
-        #[method_id(descriptorWithReductionMode:offsets:strides:dilationRates:explicitPadding:boundaryMode:paddingStyle:paddingConstant:)]
+        #[method(descriptorWithReductionMode:offsets:strides:dilationRates:explicitPadding:boundaryMode:paddingStyle:paddingConstant:)]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithReductionMode_offsets_strides_dilationRates_explicitPadding_boundaryMode_paddingStyle_paddingConstant(
             reduction_mode: MPSGraphReductionMode,
@@ -218,7 +230,7 @@ extern_methods!(
         /// - offsets: See `offsets` property.
         /// - explicitPadding: See `explicitPadding` property.
         /// - Returns: A valid MPSGraphStencilOpDescriptor object
-        #[method_id(descriptorWithOffsets:explicitPadding:)]
+        #[method(descriptorWithOffsets:explicitPadding:)]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithOffsets_explicitPadding(
             offsets: &MPSShape,
@@ -231,7 +243,7 @@ extern_methods!(
         /// - Parameters:
         /// - explicitPadding: See `explicitPadding` property.
         /// - Returns: A valid MPSGraphStencilOpDescriptor object
-        #[method_id(descriptorWithExplicitPadding:)]
+        #[method(descriptorWithExplicitPadding:)]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithExplicitPadding(
             explicit_padding: &MPSShape,
@@ -242,7 +254,7 @@ extern_methods!(
         /// - Parameters:
         /// - paddingStyle: See `paddingStyle` property.
         /// - Returns: A valid MPSGraphStencilOpDescriptor object
-        #[method_id(descriptorWithPaddingStyle:)]
+        #[method(descriptorWithPaddingStyle:)]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithPaddingStyle(
             padding_style: MPSGraphPaddingStyle,
@@ -254,11 +266,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MPSGraphCore")]
     unsafe impl MPSGraphStencilOpDescriptor {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -284,7 +296,7 @@ extern_methods!(
         /// - descriptor: The descriptor object that specifies the parameters for the stencil operation.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(stencilWithSourceTensor:weightsTensor:descriptor:name:)]
+        #[method(stencilWithSourceTensor:weightsTensor:descriptor:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn stencilWithSourceTensor_weightsTensor_descriptor_name(
             &self,

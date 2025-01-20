@@ -18,20 +18,20 @@ unsafe impl NSObjectProtocol for UIOpenURLContext {}
 
 extern_methods!(
     unsafe impl UIOpenURLContext {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(URL)]
+        #[method(URL)]
         #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
 
         #[cfg(feature = "UISceneOptions")]
-        #[method_id(options)]
+        #[method(options)]
         #[unsafe(method_family = none)]
         pub unsafe fn options(&self) -> Retained<UISceneOpenURLOptions>;
     }

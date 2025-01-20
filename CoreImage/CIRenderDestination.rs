@@ -51,7 +51,7 @@ unsafe impl NSObjectProtocol for CIRenderDestination {}
 extern_methods!(
     unsafe impl CIRenderDestination {
         #[cfg(feature = "objc2-core-video")]
-        #[method_id(initWithPixelBuffer:)]
+        #[method(initWithPixelBuffer:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPixelBuffer(
             this: Allocated<Self>,
@@ -59,7 +59,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-io-surface")]
-        #[method_id(initWithIOSurface:)]
+        #[method(initWithIOSurface:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIOSurface(
             this: Allocated<Self>,
@@ -67,7 +67,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-metal")]
-        #[method_id(initWithMTLTexture:commandBuffer:)]
+        #[method(initWithMTLTexture:commandBuffer:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMTLTexture_commandBuffer(
             this: Allocated<Self>,
@@ -76,7 +76,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "block2", feature = "objc2-metal"))]
-        #[method_id(initWithWidth:height:pixelFormat:commandBuffer:mtlTextureProvider:)]
+        #[method(initWithWidth:height:pixelFormat:commandBuffer:mtlTextureProvider:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithWidth_height_pixelFormat_commandBuffer_mtlTextureProvider(
             this: Allocated<Self>,
@@ -87,7 +87,7 @@ extern_methods!(
             block: Option<&block2::Block<dyn Fn() -> NonNull<ProtocolObject<dyn MTLTexture>>>>,
         ) -> Retained<Self>;
 
-        #[method_id(initWithGLTexture:target:width:height:)]
+        #[method(initWithGLTexture:target:width:height:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithGLTexture_target_width_height(
             this: Allocated<Self>,
@@ -98,7 +98,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "CIImage")]
-        #[method_id(initWithBitmapData:width:height:bytesPerRow:format:)]
+        #[method(initWithBitmapData:width:height:bytesPerRow:format:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBitmapData_width_height_bytesPerRow_format(
             this: Allocated<Self>,
@@ -110,64 +110,78 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[method(width)]
+        #[unsafe(method_family = none)]
         pub unsafe fn width(&self) -> NSUInteger;
 
         #[method(height)]
+        #[unsafe(method_family = none)]
         pub unsafe fn height(&self) -> NSUInteger;
 
         #[method(alphaMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alphaMode(&self) -> CIRenderDestinationAlphaMode;
 
         /// Setter for [`alphaMode`][Self::alphaMode].
         #[method(setAlphaMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAlphaMode(&self, alpha_mode: CIRenderDestinationAlphaMode);
 
         #[method(isFlipped)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isFlipped(&self) -> bool;
 
         /// Setter for [`isFlipped`][Self::isFlipped].
         #[method(setFlipped:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFlipped(&self, flipped: bool);
 
         #[method(isDithered)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isDithered(&self) -> bool;
 
         /// Setter for [`isDithered`][Self::isDithered].
         #[method(setDithered:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDithered(&self, dithered: bool);
 
         #[method(isClamped)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isClamped(&self) -> bool;
 
         /// Setter for [`isClamped`][Self::isClamped].
         #[method(setClamped:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setClamped(&self, clamped: bool);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(colorSpace)]
+        #[method(colorSpace)]
         #[unsafe(method_family = none)]
         pub unsafe fn colorSpace(&self) -> Option<Retained<CGColorSpace>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`colorSpace`][Self::colorSpace].
         #[method(setColorSpace:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setColorSpace(&self, color_space: Option<&CGColorSpace>);
 
         #[cfg(feature = "CIKernel")]
-        #[method_id(blendKernel)]
+        #[method(blendKernel)]
         #[unsafe(method_family = none)]
         pub unsafe fn blendKernel(&self) -> Option<Retained<CIBlendKernel>>;
 
         #[cfg(feature = "CIKernel")]
         /// Setter for [`blendKernel`][Self::blendKernel].
         #[method(setBlendKernel:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBlendKernel(&self, blend_kernel: Option<&CIBlendKernel>);
 
         #[method(blendsInDestinationColorSpace)]
+        #[unsafe(method_family = none)]
         pub unsafe fn blendsInDestinationColorSpace(&self) -> bool;
 
         /// Setter for [`blendsInDestinationColorSpace`][Self::blendsInDestinationColorSpace].
         #[method(setBlendsInDestinationColorSpace:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBlendsInDestinationColorSpace(
             &self,
             blends_in_destination_color_space: bool,
@@ -178,11 +192,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIRenderDestination {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -200,15 +214,19 @@ unsafe impl NSObjectProtocol for CIRenderInfo {}
 extern_methods!(
     unsafe impl CIRenderInfo {
         #[method(kernelExecutionTime)]
+        #[unsafe(method_family = none)]
         pub unsafe fn kernelExecutionTime(&self) -> NSTimeInterval;
 
         #[method(kernelCompileTime)]
+        #[unsafe(method_family = none)]
         pub unsafe fn kernelCompileTime(&self) -> NSTimeInterval;
 
         #[method(passCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn passCount(&self) -> NSInteger;
 
         #[method(pixelsProcessed)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pixelsProcessed(&self) -> NSInteger;
     }
 );
@@ -216,11 +234,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIRenderInfo {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -237,7 +255,7 @@ unsafe impl NSObjectProtocol for CIRenderTask {}
 
 extern_methods!(
     unsafe impl CIRenderTask {
-        #[method_id(waitUntilCompletedAndReturnError:_)]
+        #[method(waitUntilCompletedAndReturnError:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn waitUntilCompletedAndReturnError(
             &self,
@@ -248,11 +266,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIRenderTask {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -263,7 +281,7 @@ extern_methods!(
     #[cfg(feature = "CIContext")]
     unsafe impl CIContext {
         #[cfg(all(feature = "CIImage", feature = "objc2-core-foundation"))]
-        #[method_id(startTaskToRender:fromRect:toDestination:atPoint:error:_)]
+        #[method(startTaskToRender:fromRect:toDestination:atPoint:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn startTaskToRender_fromRect_toDestination_atPoint_error(
             &self,
@@ -274,7 +292,7 @@ extern_methods!(
         ) -> Result<Retained<CIRenderTask>, Retained<NSError>>;
 
         #[cfg(feature = "CIImage")]
-        #[method_id(startTaskToRender:toDestination:error:_)]
+        #[method(startTaskToRender:toDestination:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn startTaskToRender_toDestination_error(
             &self,
@@ -284,6 +302,7 @@ extern_methods!(
 
         #[cfg(all(feature = "CIImage", feature = "objc2-core-foundation"))]
         #[method(prepareRender:fromRect:toDestination:atPoint:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn prepareRender_fromRect_toDestination_atPoint_error(
             &self,
             image: &CIImage,
@@ -292,7 +311,7 @@ extern_methods!(
             at_point: CGPoint,
         ) -> Result<(), Retained<NSError>>;
 
-        #[method_id(startTaskToClear:error:_)]
+        #[method(startTaskToClear:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn startTaskToClear_error(
             &self,

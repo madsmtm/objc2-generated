@@ -34,7 +34,7 @@ extern_methods!(
         ///
         /// Returns the accessory's name that is associated with HomeKit. The initial value is the name
         /// provided by the accessory information service of the accessory.
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
@@ -43,23 +43,24 @@ extern_methods!(
         ///
         /// Use uniqueIdentifier to obtain the identifier for this object.
         #[deprecated = "No longer supported."]
-        #[method_id(identifier)]
+        #[method(identifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSUUID>;
 
         /// A unique identifier for the accessory.
-        #[method_id(uniqueIdentifier)]
+        #[method(uniqueIdentifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn uniqueIdentifier(&self) -> Retained<NSUUID>;
 
         /// Delegate object that receives updates on the state of the accessory.
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn HMAccessoryDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn HMAccessoryDelegate>>,
@@ -67,6 +68,7 @@ extern_methods!(
 
         /// TRUE if the accessory is currently reachable, FALSE otherwise.
         #[method(isReachable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isReachable(&self) -> bool;
 
         /// This property indicates whether this accessory is behind a bridge. If it is TRUE,
@@ -74,6 +76,7 @@ extern_methods!(
         /// this accessory can be removed and removing the bridge will remove this accessory
         /// from the home.
         #[method(isBridged)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isBridged(&self) -> bool;
 
         /// If this accessory is a bridge, this property is an array of NSUUID objects that,
@@ -83,7 +86,7 @@ extern_methods!(
         /// Use uniqueIdentifiersForBridgedAccessories to obtain the identifiers for the
         /// bridged accessories.
         #[deprecated = "No longer supported."]
-        #[method_id(identifiersForBridgedAccessories)]
+        #[method(identifiersForBridgedAccessories)]
         #[unsafe(method_family = none)]
         pub unsafe fn identifiersForBridgedAccessories(&self) -> Option<Retained<NSArray<NSUUID>>>;
 
@@ -98,7 +101,7 @@ extern_methods!(
         /// but have a non-empty 'uniqueIdentifiersForBridgedAccessories' property.
         /// - An accessory behind a bridge would have its 'bridged' property set to TRUE and
         /// its 'uniqueIdentifiersForBridgedAccessories' property set to nil.
-        #[method_id(uniqueIdentifiersForBridgedAccessories)]
+        #[method(uniqueIdentifiersForBridgedAccessories)]
         #[unsafe(method_family = none)]
         pub unsafe fn uniqueIdentifiersForBridgedAccessories(
             &self,
@@ -106,53 +109,55 @@ extern_methods!(
 
         #[cfg(feature = "HMAccessoryCategory")]
         /// Category information for the accessory.
-        #[method_id(category)]
+        #[method(category)]
         #[unsafe(method_family = none)]
         pub unsafe fn category(&self) -> Retained<HMAccessoryCategory>;
 
         #[cfg(feature = "HMRoom")]
         /// Room containing the accessory.
-        #[method_id(room)]
+        #[method(room)]
         #[unsafe(method_family = none)]
         pub unsafe fn room(&self) -> Option<Retained<HMRoom>>;
 
         #[cfg(feature = "HMService")]
         /// Array of HMService objects that represent all the services provided by the accessory.
-        #[method_id(services)]
+        #[method(services)]
         #[unsafe(method_family = none)]
         pub unsafe fn services(&self) -> Retained<NSArray<HMService>>;
 
         #[cfg(feature = "HMAccessoryProfile")]
         /// Accessory profiles of the receiver.
-        #[method_id(profiles)]
+        #[method(profiles)]
         #[unsafe(method_family = none)]
         pub unsafe fn profiles(&self) -> Retained<NSArray<HMAccessoryProfile>>;
 
         /// TRUE if the accessory is blocked, FALSE otherwise.
         #[method(isBlocked)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isBlocked(&self) -> bool;
 
         /// Model of the accessory.
-        #[method_id(model)]
+        #[method(model)]
         #[unsafe(method_family = none)]
         pub unsafe fn model(&self) -> Option<Retained<NSString>>;
 
         /// Manufacturer of the accessory.
-        #[method_id(manufacturer)]
+        #[method(manufacturer)]
         #[unsafe(method_family = none)]
         pub unsafe fn manufacturer(&self) -> Option<Retained<NSString>>;
 
         /// Accessory's firmware version.
-        #[method_id(firmwareVersion)]
+        #[method(firmwareVersion)]
         #[unsafe(method_family = none)]
         pub unsafe fn firmwareVersion(&self) -> Option<Retained<NSString>>;
 
         /// Indicates if the accessory supports the identify action.
         #[method(supportsIdentify)]
+        #[unsafe(method_family = none)]
         pub unsafe fn supportsIdentify(&self) -> bool;
 
         /// The node identifier used to identify the device on Apple’s Matter fabric.
-        #[method_id(matterNodeID)]
+        #[method(matterNodeID)]
         #[unsafe(method_family = none)]
         pub unsafe fn matterNodeID(&self) -> Option<Retained<NSNumber>>;
 
@@ -170,6 +175,7 @@ extern_methods!(
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
         #[method(updateName:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updateName_completionHandler(
             &self,
             name: &NSString,
@@ -184,13 +190,14 @@ extern_methods!(
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
         #[method(identifyWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn identifyWithCompletionHandler(
             &self,
             completion: &block2::Block<dyn Fn(*mut NSError)>,
         );
 
         #[deprecated = "HMAccessory objects are created by their parent container objects. Directly creating them is not supported."]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -199,7 +206,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HMAccessory {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -217,6 +224,7 @@ extern_protocol!(
         /// Parameter `accessory`: Sender of the message.
         #[optional]
         #[method(accessoryDidUpdateName:)]
+        #[unsafe(method_family = none)]
         unsafe fn accessoryDidUpdateName(&self, accessory: &HMAccessory);
 
         #[cfg(feature = "HMService")]
@@ -229,6 +237,7 @@ extern_protocol!(
         /// Parameter `service`: Service whose name was modified.
         #[optional]
         #[method(accessory:didUpdateNameForService:)]
+        #[unsafe(method_family = none)]
         unsafe fn accessory_didUpdateNameForService(
             &self,
             accessory: &HMAccessory,
@@ -245,6 +254,7 @@ extern_protocol!(
         /// Parameter `service`: Service whose associated service type was modified.
         #[optional]
         #[method(accessory:didUpdateAssociatedServiceTypeForService:)]
+        #[unsafe(method_family = none)]
         unsafe fn accessory_didUpdateAssociatedServiceTypeForService(
             &self,
             accessory: &HMAccessory,
@@ -258,6 +268,7 @@ extern_protocol!(
         /// Parameter `accessory`: Sender of the message.
         #[optional]
         #[method(accessoryDidUpdateServices:)]
+        #[unsafe(method_family = none)]
         unsafe fn accessoryDidUpdateServices(&self, accessory: &HMAccessory);
 
         #[cfg(feature = "HMAccessoryProfile")]
@@ -269,6 +280,7 @@ extern_protocol!(
         /// Parameter `profile`: The added profile.
         #[optional]
         #[method(accessory:didAddProfile:)]
+        #[unsafe(method_family = none)]
         unsafe fn accessory_didAddProfile(
             &self,
             accessory: &HMAccessory,
@@ -284,6 +296,7 @@ extern_protocol!(
         /// Parameter `profile`: The removed profile.
         #[optional]
         #[method(accessory:didRemoveProfile:)]
+        #[unsafe(method_family = none)]
         unsafe fn accessory_didRemoveProfile(
             &self,
             accessory: &HMAccessory,
@@ -296,6 +309,7 @@ extern_protocol!(
         /// Parameter `accessory`: Sender of the message.
         #[optional]
         #[method(accessoryDidUpdateReachability:)]
+        #[unsafe(method_family = none)]
         unsafe fn accessoryDidUpdateReachability(&self, accessory: &HMAccessory);
 
         #[cfg(all(feature = "HMCharacteristic", feature = "HMService"))]
@@ -311,6 +325,7 @@ extern_protocol!(
         /// Parameter `characteristic`: The characteristic whose value was changed.
         #[optional]
         #[method(accessory:service:didUpdateValueForCharacteristic:)]
+        #[unsafe(method_family = none)]
         unsafe fn accessory_service_didUpdateValueForCharacteristic(
             &self,
             accessory: &HMAccessory,
@@ -327,6 +342,7 @@ extern_protocol!(
         /// Parameter `firmwareVersion`: The newly updated firmwareVersion.
         #[optional]
         #[method(accessory:didUpdateFirmwareVersion:)]
+        #[unsafe(method_family = none)]
         unsafe fn accessory_didUpdateFirmwareVersion(
             &self,
             accessory: &HMAccessory,

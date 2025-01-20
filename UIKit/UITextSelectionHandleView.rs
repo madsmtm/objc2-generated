@@ -20,34 +20,39 @@ extern_protocol!(
         /// Controls which direction the handle is oriented. For example, NSDirectionalRectEdgeLeading indicates the handle is on the leading
         /// edge, so the dot will be rendered on top.
         #[method(direction)]
+        #[unsafe(method_family = none)]
         unsafe fn direction(&self) -> NSDirectionalRectEdge;
 
         #[cfg(feature = "UIGeometry")]
         /// Setter for [`direction`][Self::direction].
         #[method(setDirection:)]
+        #[unsafe(method_family = none)]
         unsafe fn setDirection(&self, direction: NSDirectionalRectEdge);
 
         /// Convenience accessor for
         /// `direction`calculations.
         #[method(isVertical)]
+        #[unsafe(method_family = none)]
         unsafe fn isVertical(&self) -> bool;
 
         #[cfg(feature = "UIBezierPath")]
         /// If applicable, a custom shape for the lollipop stem. Default is
         /// `nil,`which results in a rounded rect style based on bounds.
-        #[method_id(customShape)]
+        #[method(customShape)]
         #[unsafe(method_family = none)]
         unsafe fn customShape(&self) -> Option<Retained<UIBezierPath>>;
 
         #[cfg(feature = "UIBezierPath")]
         /// Setter for [`customShape`][Self::customShape].
         #[method(setCustomShape:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCustomShape(&self, custom_shape: Option<&UIBezierPath>);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Provides a preferred frame given
         /// `rect`based on the current appearance configuration.
         #[method(preferredFrameForRect:)]
+        #[unsafe(method_family = none)]
         unsafe fn preferredFrameForRect(&self, rect: CGRect) -> CGRect;
     }
 );

@@ -48,7 +48,7 @@ unsafe impl NSObjectProtocol for UIEditMenuConfiguration {}
 extern_methods!(
     unsafe impl UIEditMenuConfiguration {
         /// The unique identifier of the configuration.
-        #[method_id(identifier)]
+        #[method(identifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<ProtocolObject<dyn NSCopying>>;
 
@@ -58,15 +58,18 @@ extern_methods!(
         /// method
         /// `editMenuInteraction:targetRectForConfiguration:`
         #[method(sourcePoint)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sourcePoint(&self) -> CGPoint;
 
         /// The preferred arrow direction of the edit menu. Default is
         /// `UIEditMenuArrowDirectionAutomatic`
         #[method(preferredArrowDirection)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preferredArrowDirection(&self) -> UIEditMenuArrowDirection;
 
         /// Setter for [`preferredArrowDirection`][Self::preferredArrowDirection].
         #[method(setPreferredArrowDirection:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreferredArrowDirection(
             &self,
             preferred_arrow_direction: UIEditMenuArrowDirection,
@@ -74,7 +77,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Creates a new configuration with the specified source location.
-        #[method_id(configurationWithIdentifier:sourcePoint:)]
+        #[method(configurationWithIdentifier:sourcePoint:)]
         #[unsafe(method_family = none)]
         pub unsafe fn configurationWithIdentifier_sourcePoint(
             identifier: Option<&ProtocolObject<dyn NSCopying>>,
@@ -82,11 +85,11 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -108,14 +111,14 @@ unsafe impl UIInteraction for UIEditMenuInteraction {}
 extern_methods!(
     unsafe impl UIEditMenuInteraction {
         /// The object that defines the delegate of the interaction.
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIEditMenuInteractionDelegate>>>;
 
         /// Creates a new edit menu interaction with the specified delegate.
-        #[method_id(initWithDelegate:)]
+        #[method(initWithDelegate:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDelegate(
             this: Allocated<Self>,
@@ -129,6 +132,7 @@ extern_methods!(
         /// :
         /// `presentEditMenuWithConfiguration:`is not supported on Mac Catalyst.
         #[method(presentEditMenuWithConfiguration:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn presentEditMenuWithConfiguration(
             &self,
             configuration: &UIEditMenuConfiguration,
@@ -136,18 +140,21 @@ extern_methods!(
 
         /// Dismiss the currently active menu if one is currently presented.
         #[method(dismissMenu)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dismissMenu(&self);
 
         /// Reloads the visible menu. This menu has no effect if there is no menu presented. This method will query
         /// the menu again from the delegate method
         /// `editMenuInteraction:menuForConfiguration:suggestedActions:`and refresh the UI with the updated menu.
         #[method(reloadVisibleMenu)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reloadVisibleMenu(&self);
 
         /// Updates the position of the currently visible menu, with an option to animate the action. This method
         /// has no effect if no menu is presented. This method will query the position from the delegate method
         /// `editMenuInteraction:targetRectForConfiguration:`if it is implemented.
         #[method(updateVisibleMenuPositionAnimated:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updateVisibleMenuPositionAnimated(&self, animated: bool);
 
         #[cfg(all(
@@ -157,13 +164,14 @@ extern_methods!(
         ))]
         /// Returns the interaction's location within the given view.
         #[method(locationInView:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn locationInView(&self, view: Option<&UIView>) -> CGPoint;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -176,10 +184,12 @@ extern_protocol!(
     {
         #[cfg(feature = "block2")]
         #[method(addAnimations:)]
+        #[unsafe(method_family = none)]
         unsafe fn addAnimations(&self, animations: &block2::Block<dyn Fn()>);
 
         #[cfg(feature = "block2")]
         #[method(addCompletion:)]
+        #[unsafe(method_family = none)]
         unsafe fn addCompletion(&self, completion: &block2::Block<dyn Fn()>);
     }
 );
@@ -202,7 +212,7 @@ extern_protocol!(
         /// Returns: Return a UIMenu describing the desired menu hierarchy. Return
         /// `nil`to present the default system menu.
         #[optional]
-        #[method_id(editMenuInteraction:menuForConfiguration:suggestedActions:)]
+        #[method(editMenuInteraction:menuForConfiguration:suggestedActions:)]
         #[unsafe(method_family = none)]
         unsafe fn editMenuInteraction_menuForConfiguration_suggestedActions(
             &self,
@@ -229,6 +239,7 @@ extern_protocol!(
         /// `CGRectNull`to use the default rect.
         #[optional]
         #[method(editMenuInteraction:targetRectForConfiguration:)]
+        #[unsafe(method_family = none)]
         unsafe fn editMenuInteraction_targetRectForConfiguration(
             &self,
             interaction: &UIEditMenuInteraction,
@@ -245,6 +256,7 @@ extern_protocol!(
         /// Parameter `animator`: Appearance animator. Add animations to this object to run them alongside the appearance transition.
         #[optional]
         #[method(editMenuInteraction:willPresentMenuForConfiguration:animator:)]
+        #[unsafe(method_family = none)]
         unsafe fn editMenuInteraction_willPresentMenuForConfiguration_animator(
             &self,
             interaction: &UIEditMenuInteraction,
@@ -262,6 +274,7 @@ extern_protocol!(
         /// Parameter `animator`: Dismiss animator. Add animations to this object to run them alongside the dismiss transition.
         #[optional]
         #[method(editMenuInteraction:willDismissMenuForConfiguration:animator:)]
+        #[unsafe(method_family = none)]
         unsafe fn editMenuInteraction_willDismissMenuForConfiguration_animator(
             &self,
             interaction: &UIEditMenuInteraction,

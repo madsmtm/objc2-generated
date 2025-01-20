@@ -89,17 +89,21 @@ extern_methods!(
         /// The default value is WKContentModeRecommended. The stated
         /// preference is ignored on subframe navigation
         #[method(preferredContentMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preferredContentMode(&self) -> WKContentMode;
 
         /// Setter for [`preferredContentMode`][Self::preferredContentMode].
         #[method(setPreferredContentMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreferredContentMode(&self, preferred_content_mode: WKContentMode);
 
         #[method(allowsContentJavaScript)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowsContentJavaScript(&self) -> bool;
 
         /// Setter for [`allowsContentJavaScript`][Self::allowsContentJavaScript].
         #[method(setAllowsContentJavaScript:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAllowsContentJavaScript(&self, allows_content_java_script: bool);
 
         /// A boolean indicating whether lockdown mode is enabled.
@@ -107,10 +111,12 @@ extern_methods!(
         /// This mode trades off performance and compatibility in favor of security.
         /// The default value depends on the system setting.
         #[method(isLockdownModeEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isLockdownModeEnabled(&self) -> bool;
 
         /// Setter for [`isLockdownModeEnabled`][Self::isLockdownModeEnabled].
         #[method(setLockdownModeEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLockdownModeEnabled(&self, lockdown_mode_enabled: bool);
 
         /// A WKWebpagePreferencesUpgradeToHTTPSPolicy indicating the desired mode
@@ -121,12 +127,14 @@ extern_methods!(
         /// system configuration. The upgradeKnownHostsToHTTPS property on WKWebViewConfiguration
         /// supercedes this policy for known hosts.
         #[method(preferredHTTPSNavigationPolicy)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preferredHTTPSNavigationPolicy(
             &self,
         ) -> WKWebpagePreferencesUpgradeToHTTPSPolicy;
 
         /// Setter for [`preferredHTTPSNavigationPolicy`][Self::preferredHTTPSNavigationPolicy].
         #[method(setPreferredHTTPSNavigationPolicy:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreferredHTTPSNavigationPolicy(
             &self,
             preferred_https_navigation_policy: WKWebpagePreferencesUpgradeToHTTPSPolicy,
@@ -137,11 +145,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKWebpagePreferences {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

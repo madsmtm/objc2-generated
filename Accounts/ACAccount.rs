@@ -21,7 +21,7 @@ extern_methods!(
     unsafe impl ACAccount {
         #[cfg(feature = "ACAccountType")]
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
-        #[method_id(initWithAccountType:)]
+        #[method(initWithAccountType:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAccountType(
             this: Allocated<Self>,
@@ -29,13 +29,13 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
-        #[method_id(identifier)]
+        #[method(identifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "ACAccountType")]
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
-        #[method_id(accountType)]
+        #[method(accountType)]
         #[unsafe(method_family = none)]
         pub unsafe fn accountType(&self) -> Option<Retained<ACAccountType>>;
 
@@ -43,35 +43,38 @@ extern_methods!(
         /// Setter for [`accountType`][Self::accountType].
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
         #[method(setAccountType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAccountType(&self, account_type: Option<&ACAccountType>);
 
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
-        #[method_id(accountDescription)]
+        #[method(accountDescription)]
         #[unsafe(method_family = none)]
         pub unsafe fn accountDescription(&self) -> Retained<NSString>;
 
         /// Setter for [`accountDescription`][Self::accountDescription].
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
         #[method(setAccountDescription:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAccountDescription(&self, account_description: Option<&NSString>);
 
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
-        #[method_id(username)]
+        #[method(username)]
         #[unsafe(method_family = none)]
         pub unsafe fn username(&self) -> Retained<NSString>;
 
         /// Setter for [`username`][Self::username].
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
         #[method(setUsername:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUsername(&self, username: Option<&NSString>);
 
-        #[method_id(userFullName)]
+        #[method(userFullName)]
         #[unsafe(method_family = none)]
         pub unsafe fn userFullName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "ACAccountCredential")]
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
-        #[method_id(credential)]
+        #[method(credential)]
         #[unsafe(method_family = none)]
         pub unsafe fn credential(&self) -> Option<Retained<ACAccountCredential>>;
 
@@ -79,6 +82,7 @@ extern_methods!(
         /// Setter for [`credential`][Self::credential].
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
         #[method(setCredential:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCredential(&self, credential: Option<&ACAccountCredential>);
     }
 );
@@ -86,11 +90,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ACAccount {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

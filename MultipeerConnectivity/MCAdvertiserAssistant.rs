@@ -19,7 +19,7 @@ unsafe impl NSObjectProtocol for MCAdvertiserAssistant {}
 extern_methods!(
     unsafe impl MCAdvertiserAssistant {
         #[cfg(feature = "MCSession")]
-        #[method_id(initWithServiceType:discoveryInfo:session:)]
+        #[method(initWithServiceType:discoveryInfo:session:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithServiceType_discoveryInfo_session(
             this: Allocated<Self>,
@@ -29,12 +29,14 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[method(start)]
+        #[unsafe(method_family = none)]
         pub unsafe fn start(&self);
 
         #[method(stop)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stop(&self);
 
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -43,21 +45,22 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn MCAdvertiserAssistantDelegate>>,
         );
 
         #[cfg(feature = "MCSession")]
-        #[method_id(session)]
+        #[method(session)]
         #[unsafe(method_family = none)]
         pub unsafe fn session(&self) -> Retained<MCSession>;
 
-        #[method_id(discoveryInfo)]
+        #[method(discoveryInfo)]
         #[unsafe(method_family = none)]
         pub unsafe fn discoveryInfo(&self) -> Option<Retained<NSDictionary<NSString, NSString>>>;
 
-        #[method_id(serviceType)]
+        #[method(serviceType)]
         #[unsafe(method_family = none)]
         pub unsafe fn serviceType(&self) -> Retained<NSString>;
     }
@@ -66,11 +69,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MCAdvertiserAssistant {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -81,6 +84,7 @@ extern_protocol!(
     pub unsafe trait MCAdvertiserAssistantDelegate: NSObjectProtocol {
         #[optional]
         #[method(advertiserAssistantWillPresentInvitation:)]
+        #[unsafe(method_family = none)]
         unsafe fn advertiserAssistantWillPresentInvitation(
             &self,
             advertiser_assistant: &MCAdvertiserAssistant,
@@ -88,6 +92,7 @@ extern_protocol!(
 
         #[optional]
         #[method(advertiserAssistantDidDismissInvitation:)]
+        #[unsafe(method_family = none)]
         unsafe fn advertiserAssistantDidDismissInvitation(
             &self,
             advertiser_assistant: &MCAdvertiserAssistant,

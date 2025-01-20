@@ -33,27 +33,27 @@ unsafe impl NSSecureCoding for CNContactProperty {}
 extern_methods!(
     unsafe impl CNContactProperty {
         #[cfg(feature = "CNContact")]
-        #[method_id(contact)]
+        #[method(contact)]
         #[unsafe(method_family = none)]
         pub unsafe fn contact(&self) -> Retained<CNContact>;
 
         /// The key of the contact property, as defined in CNContact.h.
-        #[method_id(key)]
+        #[method(key)]
         #[unsafe(method_family = none)]
         pub unsafe fn key(&self) -> Retained<NSString>;
 
         /// The value of the property.
-        #[method_id(value)]
+        #[method(value)]
         #[unsafe(method_family = none)]
         pub unsafe fn value(&self) -> Option<Retained<AnyObject>>;
 
         /// The identifier of the labeled value if the property is an array of labeled values, otherwise is nil.
-        #[method_id(identifier)]
+        #[method(identifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
 
         /// The label of the labeled value if the property is an array of labeled values, otherwise is nil.
-        #[method_id(label)]
+        #[method(label)]
         #[unsafe(method_family = none)]
         pub unsafe fn label(&self) -> Option<Retained<NSString>>;
     }
@@ -62,11 +62,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CNContactProperty {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

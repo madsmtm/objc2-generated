@@ -51,10 +51,12 @@ extern_methods!(
         /// The clipRect specified in MPSUnaryImageKernel is used to control the origin in the destination texture
         /// where the min, max values are written.  The clipRect.width must be >=2.  The clipRect.height must be >= 1.
         #[method(clipRectSource)]
+        #[unsafe(method_family = none)]
         pub unsafe fn clipRectSource(&self) -> MTLRegion;
 
         /// Setter for [`clipRectSource`][Self::clipRectSource].
         #[method(setClipRectSource:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setClipRectSource(&self, clip_rect_source: MTLRegion);
 
         /// Specifies information to apply the statistics min-max operation on an image.
@@ -62,7 +64,7 @@ extern_methods!(
         /// Parameter `device`: The device the filter will run on
         ///
         /// Returns: A valid MPSImageStatisticsMinAndMax object or nil, if failure.
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -82,7 +84,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -104,7 +106,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -117,11 +119,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageStatisticsMinAndMax {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -170,10 +172,12 @@ extern_methods!(
         /// The clipRect specified in MPSUnaryImageKernel is used to control the origin in the destination texture
         /// where the mean value is written.
         #[method(clipRectSource)]
+        #[unsafe(method_family = none)]
         pub unsafe fn clipRectSource(&self) -> MTLRegion;
 
         /// Setter for [`clipRectSource`][Self::clipRectSource].
         #[method(setClipRectSource:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setClipRectSource(&self, clip_rect_source: MTLRegion);
 
         /// Specifies information to apply the statistics mean operation on an image.
@@ -181,7 +185,7 @@ extern_methods!(
         /// Parameter `device`: The device the filter will run on
         ///
         /// Returns: A valid MPSImageStatisticsMeanAndVariance object or nil, if failure.
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -201,7 +205,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -223,7 +227,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -236,11 +240,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageStatisticsMeanAndVariance {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -286,10 +290,12 @@ extern_methods!(
         /// The clipRect specified in MPSUnaryImageKernel is used to control the origin in the destination texture
         /// where the mean value is written.
         #[method(clipRectSource)]
+        #[unsafe(method_family = none)]
         pub unsafe fn clipRectSource(&self) -> MTLRegion;
 
         /// Setter for [`clipRectSource`][Self::clipRectSource].
         #[method(setClipRectSource:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setClipRectSource(&self, clip_rect_source: MTLRegion);
 
         /// Specifies information to apply the statistics mean operation on an image.
@@ -297,7 +303,7 @@ extern_methods!(
         /// Parameter `device`: The device the filter will run on
         ///
         /// Returns: A valid MPSImageStatisticsMean object or nil, if failure.
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -317,7 +323,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -339,7 +345,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -352,11 +358,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageStatisticsMean {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

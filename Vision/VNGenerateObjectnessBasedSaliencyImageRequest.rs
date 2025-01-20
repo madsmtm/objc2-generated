@@ -33,7 +33,7 @@ extern_methods!(
     unsafe impl VNGenerateObjectnessBasedSaliencyImageRequest {
         #[cfg(feature = "VNObservation")]
         /// VNSaliencyImageObservation results.
-        #[method_id(results)]
+        #[method(results)]
         #[unsafe(method_family = none)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNSaliencyImageObservation>>>;
     }
@@ -44,7 +44,7 @@ extern_methods!(
     #[cfg(feature = "VNRequest")]
     unsafe impl VNGenerateObjectnessBasedSaliencyImageRequest {
         /// Creates a new VNRequest with no completion handler.
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -53,7 +53,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
-        #[method_id(initWithCompletionHandler:)]
+        #[method(initWithCompletionHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
@@ -66,7 +66,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "VNRequest")]
     unsafe impl VNGenerateObjectnessBasedSaliencyImageRequest {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

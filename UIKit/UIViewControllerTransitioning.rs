@@ -41,37 +41,46 @@ extern_protocol!(
         NSObjectProtocol + MainThreadOnly
     {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[method_id(containerView)]
+        #[method(containerView)]
         #[unsafe(method_family = none)]
         unsafe fn containerView(&self) -> Retained<UIView>;
 
         #[method(isAnimated)]
+        #[unsafe(method_family = none)]
         unsafe fn isAnimated(&self) -> bool;
 
         #[method(isInteractive)]
+        #[unsafe(method_family = none)]
         unsafe fn isInteractive(&self) -> bool;
 
         #[method(transitionWasCancelled)]
+        #[unsafe(method_family = none)]
         unsafe fn transitionWasCancelled(&self) -> bool;
 
         #[cfg(feature = "UIViewController")]
         #[method(presentationStyle)]
+        #[unsafe(method_family = none)]
         unsafe fn presentationStyle(&self) -> UIModalPresentationStyle;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(updateInteractiveTransition:)]
+        #[unsafe(method_family = none)]
         unsafe fn updateInteractiveTransition(&self, percent_complete: CGFloat);
 
         #[method(finishInteractiveTransition)]
+        #[unsafe(method_family = none)]
         unsafe fn finishInteractiveTransition(&self);
 
         #[method(cancelInteractiveTransition)]
+        #[unsafe(method_family = none)]
         unsafe fn cancelInteractiveTransition(&self);
 
         #[method(pauseInteractiveTransition)]
+        #[unsafe(method_family = none)]
         unsafe fn pauseInteractiveTransition(&self);
 
         #[method(completeTransition:)]
+        #[unsafe(method_family = none)]
         unsafe fn completeTransition(&self, did_complete: bool);
 
         #[cfg(all(
@@ -79,7 +88,7 @@ extern_protocol!(
             feature = "UIViewController",
             feature = "UIViewControllerTransitionCoordinator"
         ))]
-        #[method_id(viewControllerForKey:)]
+        #[method(viewControllerForKey:)]
         #[unsafe(method_family = none)]
         unsafe fn viewControllerForKey(
             &self,
@@ -91,12 +100,13 @@ extern_protocol!(
             feature = "UIView",
             feature = "UIViewControllerTransitionCoordinator"
         ))]
-        #[method_id(viewForKey:)]
+        #[method(viewForKey:)]
         #[unsafe(method_family = none)]
         unsafe fn viewForKey(&self, key: &UITransitionContextViewKey) -> Option<Retained<UIView>>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(targetTransform)]
+        #[unsafe(method_family = none)]
         unsafe fn targetTransform(&self) -> CGAffineTransform;
 
         #[cfg(all(
@@ -105,6 +115,7 @@ extern_protocol!(
             feature = "objc2-core-foundation"
         ))]
         #[method(initialFrameForViewController:)]
+        #[unsafe(method_family = none)]
         unsafe fn initialFrameForViewController(&self, vc: &UIViewController) -> CGRect;
 
         #[cfg(all(
@@ -113,6 +124,7 @@ extern_protocol!(
             feature = "objc2-core-foundation"
         ))]
         #[method(finalFrameForViewController:)]
+        #[unsafe(method_family = none)]
         unsafe fn finalFrameForViewController(&self, vc: &UIViewController) -> CGRect;
     }
 );
@@ -123,12 +135,14 @@ extern_protocol!(
         NSObjectProtocol + MainThreadOnly
     {
         #[method(transitionDuration:)]
+        #[unsafe(method_family = none)]
         unsafe fn transitionDuration(
             &self,
             transition_context: Option<&ProtocolObject<dyn UIViewControllerContextTransitioning>>,
         ) -> NSTimeInterval;
 
         #[method(animateTransition:)]
+        #[unsafe(method_family = none)]
         unsafe fn animateTransition(
             &self,
             transition_context: &ProtocolObject<dyn UIViewControllerContextTransitioning>,
@@ -140,7 +154,7 @@ extern_protocol!(
         /// UIViewPropertyAnimator. It is expected that this method will return the same
         /// instance for the life of a transition.
         #[optional]
-        #[method_id(interruptibleAnimatorForTransition:)]
+        #[method(interruptibleAnimatorForTransition:)]
         #[unsafe(method_family = none)]
         unsafe fn interruptibleAnimatorForTransition(
             &self,
@@ -149,6 +163,7 @@ extern_protocol!(
 
         #[optional]
         #[method(animationEnded:)]
+        #[unsafe(method_family = none)]
         unsafe fn animationEnded(&self, transition_completed: bool);
     }
 );
@@ -159,6 +174,7 @@ extern_protocol!(
         NSObjectProtocol + MainThreadOnly
     {
         #[method(startInteractiveTransition:)]
+        #[unsafe(method_family = none)]
         unsafe fn startInteractiveTransition(
             &self,
             transition_context: &ProtocolObject<dyn UIViewControllerContextTransitioning>,
@@ -167,11 +183,13 @@ extern_protocol!(
         #[cfg(feature = "objc2-core-foundation")]
         #[optional]
         #[method(completionSpeed)]
+        #[unsafe(method_family = none)]
         unsafe fn completionSpeed(&self) -> CGFloat;
 
         #[cfg(feature = "UIView")]
         #[optional]
         #[method(completionCurve)]
+        #[unsafe(method_family = none)]
         unsafe fn completionCurve(&self) -> UIViewAnimationCurve;
 
         /// In 10.0, if an object conforming to UIViewControllerAnimatedTransitioning is
@@ -181,6 +199,7 @@ extern_protocol!(
         /// implement this method, YES is assumed.
         #[optional]
         #[method(wantsInteractiveStart)]
+        #[unsafe(method_family = none)]
         unsafe fn wantsInteractiveStart(&self) -> bool;
     }
 );
@@ -192,7 +211,7 @@ extern_protocol!(
     {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
-        #[method_id(animationControllerForPresentedController:presentingController:sourceController:)]
+        #[method(animationControllerForPresentedController:presentingController:sourceController:)]
         #[unsafe(method_family = none)]
         unsafe fn animationControllerForPresentedController_presentingController_sourceController(
             &self,
@@ -203,7 +222,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
-        #[method_id(animationControllerForDismissedController:)]
+        #[method(animationControllerForDismissedController:)]
         #[unsafe(method_family = none)]
         unsafe fn animationControllerForDismissedController(
             &self,
@@ -211,7 +230,7 @@ extern_protocol!(
         ) -> Option<Retained<ProtocolObject<dyn UIViewControllerAnimatedTransitioning>>>;
 
         #[optional]
-        #[method_id(interactionControllerForPresentation:)]
+        #[method(interactionControllerForPresentation:)]
         #[unsafe(method_family = none)]
         unsafe fn interactionControllerForPresentation(
             &self,
@@ -219,7 +238,7 @@ extern_protocol!(
         ) -> Option<Retained<ProtocolObject<dyn UIViewControllerInteractiveTransitioning>>>;
 
         #[optional]
-        #[method_id(interactionControllerForDismissal:)]
+        #[method(interactionControllerForDismissal:)]
         #[unsafe(method_family = none)]
         unsafe fn interactionControllerForDismissal(
             &self,
@@ -232,7 +251,7 @@ extern_protocol!(
             feature = "UIViewController"
         ))]
         #[optional]
-        #[method_id(presentationControllerForPresentedViewController:presentingViewController:sourceViewController:)]
+        #[method(presentationControllerForPresentedViewController:presentingViewController:sourceViewController:)]
         #[unsafe(method_family = none)]
         unsafe fn presentationControllerForPresentedViewController_presentingViewController_sourceViewController(
             &self,
@@ -261,11 +280,13 @@ extern_methods!(
         /// This is the non-interactive duration that was returned when the
         /// animators transitionDuration: method was called when the transition started.
         #[method(duration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn duration(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The last percentComplete value specified by updateInteractiveTransition:
         #[method(percentComplete)]
+        #[unsafe(method_family = none)]
         pub unsafe fn percentComplete(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -276,11 +297,13 @@ extern_methods!(
         /// in order to speed up or slow down the non interactive part of the
         /// transition.
         #[method(completionSpeed)]
+        #[unsafe(method_family = none)]
         pub unsafe fn completionSpeed(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`completionSpeed`][Self::completionSpeed].
         #[method(setCompletionSpeed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCompletionSpeed(&self, completion_speed: CGFloat);
 
         #[cfg(feature = "UIView")]
@@ -288,18 +311,20 @@ extern_methods!(
         /// be set to indicate a different animation curve. It defaults to UIViewAnimationCurveEaseInOut.
         /// Note that during the interactive portion of the animation the timing curve is linear.
         #[method(completionCurve)]
+        #[unsafe(method_family = none)]
         pub unsafe fn completionCurve(&self) -> UIViewAnimationCurve;
 
         #[cfg(feature = "UIView")]
         /// Setter for [`completionCurve`][Self::completionCurve].
         #[method(setCompletionCurve:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCompletionCurve(&self, completion_curve: UIViewAnimationCurve);
 
         #[cfg(feature = "UITimingCurveProvider")]
         /// For an interruptible animator, one can specify a different timing curve provider to use when the
         /// transition is continued. This property is ignored if the animated transitioning object does not
         /// vend an interruptible animator.
-        #[method_id(timingCurve)]
+        #[method(timingCurve)]
         #[unsafe(method_family = none)]
         pub unsafe fn timingCurve(
             &self,
@@ -308,6 +333,7 @@ extern_methods!(
         #[cfg(feature = "UITimingCurveProvider")]
         /// Setter for [`timingCurve`][Self::timingCurve].
         #[method(setTimingCurve:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTimingCurve(
             &self,
             timing_curve: Option<&ProtocolObject<dyn UITimingCurveProvider>>,
@@ -317,26 +343,32 @@ extern_methods!(
         /// interactively. By default this is YES, which is consistent with the behavior
         /// before 10.0.
         #[method(wantsInteractiveStart)]
+        #[unsafe(method_family = none)]
         pub unsafe fn wantsInteractiveStart(&self) -> bool;
 
         /// Setter for [`wantsInteractiveStart`][Self::wantsInteractiveStart].
         #[method(setWantsInteractiveStart:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWantsInteractiveStart(&self, wants_interactive_start: bool);
 
         /// Use this method to pause a running interruptible animator. This will ensure that all blocks
         /// provided by a transition coordinator's notifyWhenInteractionChangesUsingBlock: method
         /// are executed when a transition moves in and out of an interactive mode.
         #[method(pauseInteractiveTransition)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pauseInteractiveTransition(&self);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(updateInteractiveTransition:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updateInteractiveTransition(&self, percent_complete: CGFloat);
 
         #[method(cancelInteractiveTransition)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cancelInteractiveTransition(&self);
 
         #[method(finishInteractiveTransition)]
+        #[unsafe(method_family = none)]
         pub unsafe fn finishInteractiveTransition(&self);
     }
 );
@@ -344,11 +376,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIPercentDrivenInteractiveTransition {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

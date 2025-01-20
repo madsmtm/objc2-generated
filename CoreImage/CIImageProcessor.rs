@@ -27,6 +27,7 @@ unsafe impl NSObjectProtocol for CIImageProcessorKernel {}
 extern_methods!(
     unsafe impl CIImageProcessorKernel {
         #[method(processWithInputs:arguments:output:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn processWithInputs_arguments_output_error(
             inputs: Option<&NSArray<ProtocolObject<dyn CIImageProcessorInput>>>,
             arguments: Option<&NSDictionary<NSString, AnyObject>>,
@@ -35,6 +36,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(roiForInput:arguments:outputRect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn roiForInput_arguments_outputRect(
             input: c_int,
             arguments: Option<&NSDictionary<NSString, AnyObject>>,
@@ -42,7 +44,7 @@ extern_methods!(
         ) -> CGRect;
 
         #[cfg(all(feature = "CIVector", feature = "objc2-core-foundation"))]
-        #[method_id(roiTileArrayForInput:arguments:outputRect:)]
+        #[method(roiTileArrayForInput:arguments:outputRect:)]
         #[unsafe(method_family = none)]
         pub unsafe fn roiTileArrayForInput_arguments_outputRect(
             input: c_int,
@@ -52,20 +54,24 @@ extern_methods!(
 
         #[cfg(feature = "CIImage")]
         #[method(formatForInputAtIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn formatForInputAtIndex(input: c_int) -> CIFormat;
 
         #[cfg(feature = "CIImage")]
         #[method(outputFormat)]
+        #[unsafe(method_family = none)]
         pub unsafe fn outputFormat() -> CIFormat;
 
         #[method(outputIsOpaque)]
+        #[unsafe(method_family = none)]
         pub unsafe fn outputIsOpaque() -> bool;
 
         #[method(synchronizeInputs)]
+        #[unsafe(method_family = none)]
         pub unsafe fn synchronizeInputs() -> bool;
 
         #[cfg(all(feature = "CIImage", feature = "objc2-core-foundation"))]
-        #[method_id(applyWithExtent:inputs:arguments:error:_)]
+        #[method(applyWithExtent:inputs:arguments:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn applyWithExtent_inputs_arguments_error(
             extent: CGRect,
@@ -78,11 +84,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIImageProcessorKernel {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -93,40 +99,47 @@ extern_protocol!(
     pub unsafe trait CIImageProcessorInput {
         #[cfg(feature = "objc2-core-foundation")]
         #[method(region)]
+        #[unsafe(method_family = none)]
         unsafe fn region(&self) -> CGRect;
 
         #[method(bytesPerRow)]
+        #[unsafe(method_family = none)]
         unsafe fn bytesPerRow(&self) -> usize;
 
         #[cfg(feature = "CIImage")]
         #[method(format)]
+        #[unsafe(method_family = none)]
         unsafe fn format(&self) -> CIFormat;
 
         #[method(baseAddress)]
+        #[unsafe(method_family = none)]
         unsafe fn baseAddress(&self) -> NonNull<c_void>;
 
         #[cfg(feature = "objc2-io-surface")]
-        #[method_id(surface)]
+        #[method(surface)]
         #[unsafe(method_family = none)]
         unsafe fn surface(&self) -> Retained<IOSurfaceRef>;
 
         #[cfg(feature = "objc2-core-video")]
-        #[method_id(pixelBuffer)]
+        #[method(pixelBuffer)]
         #[unsafe(method_family = none)]
         unsafe fn pixelBuffer(&self) -> Option<Retained<CVPixelBuffer>>;
 
         #[cfg(feature = "objc2-metal")]
-        #[method_id(metalTexture)]
+        #[method(metalTexture)]
         #[unsafe(method_family = none)]
         unsafe fn metalTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         #[method(digest)]
+        #[unsafe(method_family = none)]
         unsafe fn digest(&self) -> u64;
 
         #[method(roiTileIndex)]
+        #[unsafe(method_family = none)]
         unsafe fn roiTileIndex(&self) -> NSUInteger;
 
         #[method(roiTileCount)]
+        #[unsafe(method_family = none)]
         unsafe fn roiTileCount(&self) -> NSUInteger;
     }
 );
@@ -136,41 +149,46 @@ extern_protocol!(
     pub unsafe trait CIImageProcessorOutput {
         #[cfg(feature = "objc2-core-foundation")]
         #[method(region)]
+        #[unsafe(method_family = none)]
         unsafe fn region(&self) -> CGRect;
 
         #[method(bytesPerRow)]
+        #[unsafe(method_family = none)]
         unsafe fn bytesPerRow(&self) -> usize;
 
         #[cfg(feature = "CIImage")]
         #[method(format)]
+        #[unsafe(method_family = none)]
         unsafe fn format(&self) -> CIFormat;
 
         #[method(baseAddress)]
+        #[unsafe(method_family = none)]
         unsafe fn baseAddress(&self) -> NonNull<c_void>;
 
         #[cfg(feature = "objc2-io-surface")]
-        #[method_id(surface)]
+        #[method(surface)]
         #[unsafe(method_family = none)]
         unsafe fn surface(&self) -> Retained<IOSurfaceRef>;
 
         #[cfg(feature = "objc2-core-video")]
-        #[method_id(pixelBuffer)]
+        #[method(pixelBuffer)]
         #[unsafe(method_family = none)]
         unsafe fn pixelBuffer(&self) -> Option<Retained<CVPixelBuffer>>;
 
         #[cfg(feature = "objc2-metal")]
-        #[method_id(metalTexture)]
+        #[method(metalTexture)]
         #[unsafe(method_family = none)]
         unsafe fn metalTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         #[cfg(feature = "objc2-metal")]
-        #[method_id(metalCommandBuffer)]
+        #[method(metalCommandBuffer)]
         #[unsafe(method_family = none)]
         unsafe fn metalCommandBuffer(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MTLCommandBuffer>>>;
 
         #[method(digest)]
+        #[unsafe(method_family = none)]
         unsafe fn digest(&self) -> u64;
     }
 );

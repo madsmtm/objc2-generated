@@ -17,12 +17,12 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cametaldrawable?language=objc)
     #[cfg(feature = "objc2-metal")]
     pub unsafe trait CAMetalDrawable: MTLDrawable {
-        #[method_id(texture)]
+        #[method(texture)]
         #[unsafe(method_family = none)]
         unsafe fn texture(&self) -> Retained<ProtocolObject<dyn MTLTexture>>;
 
         #[cfg(feature = "CALayer")]
-        #[method_id(layer)]
+        #[method(layer)]
         #[unsafe(method_family = none)]
         unsafe fn layer(&self) -> Retained<CAMetalLayer>;
     }
@@ -52,114 +52,134 @@ extern_methods!(
     #[cfg(feature = "CALayer")]
     unsafe impl CAMetalLayer {
         #[cfg(feature = "objc2-metal")]
-        #[method_id(device)]
+        #[method(device)]
         #[unsafe(method_family = none)]
         pub unsafe fn device(&self) -> Option<Retained<ProtocolObject<dyn MTLDevice>>>;
 
         #[cfg(feature = "objc2-metal")]
         /// Setter for [`device`][Self::device].
         #[method(setDevice:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDevice(&self, device: Option<&ProtocolObject<dyn MTLDevice>>);
 
         #[cfg(feature = "objc2-metal")]
-        #[method_id(preferredDevice)]
+        #[method(preferredDevice)]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredDevice(&self) -> Option<Retained<ProtocolObject<dyn MTLDevice>>>;
 
         #[cfg(feature = "objc2-metal")]
         #[method(pixelFormat)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pixelFormat(&self) -> MTLPixelFormat;
 
         #[cfg(feature = "objc2-metal")]
         /// Setter for [`pixelFormat`][Self::pixelFormat].
         #[method(setPixelFormat:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPixelFormat(&self, pixel_format: MTLPixelFormat);
 
         #[method(framebufferOnly)]
+        #[unsafe(method_family = none)]
         pub unsafe fn framebufferOnly(&self) -> bool;
 
         /// Setter for [`framebufferOnly`][Self::framebufferOnly].
         #[method(setFramebufferOnly:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFramebufferOnly(&self, framebuffer_only: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(drawableSize)]
+        #[unsafe(method_family = none)]
         pub unsafe fn drawableSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`drawableSize`][Self::drawableSize].
         #[method(setDrawableSize:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDrawableSize(&self, drawable_size: CGSize);
 
         #[cfg(feature = "objc2-metal")]
-        #[method_id(nextDrawable)]
+        #[method(nextDrawable)]
         #[unsafe(method_family = none)]
         pub unsafe fn nextDrawable(&self) -> Option<Retained<ProtocolObject<dyn CAMetalDrawable>>>;
 
         #[method(maximumDrawableCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maximumDrawableCount(&self) -> NSUInteger;
 
         /// Setter for [`maximumDrawableCount`][Self::maximumDrawableCount].
         #[method(setMaximumDrawableCount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMaximumDrawableCount(&self, maximum_drawable_count: NSUInteger);
 
         #[method(presentsWithTransaction)]
+        #[unsafe(method_family = none)]
         pub unsafe fn presentsWithTransaction(&self) -> bool;
 
         /// Setter for [`presentsWithTransaction`][Self::presentsWithTransaction].
         #[method(setPresentsWithTransaction:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPresentsWithTransaction(&self, presents_with_transaction: bool);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(colorspace)]
+        #[method(colorspace)]
         #[unsafe(method_family = none)]
         pub unsafe fn colorspace(&self) -> Option<Retained<CGColorSpace>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`colorspace`][Self::colorspace].
         #[method(setColorspace:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setColorspace(&self, colorspace: Option<&CGColorSpace>);
 
         #[method(wantsExtendedDynamicRangeContent)]
+        #[unsafe(method_family = none)]
         pub unsafe fn wantsExtendedDynamicRangeContent(&self) -> bool;
 
         /// Setter for [`wantsExtendedDynamicRangeContent`][Self::wantsExtendedDynamicRangeContent].
         #[method(setWantsExtendedDynamicRangeContent:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWantsExtendedDynamicRangeContent(
             &self,
             wants_extended_dynamic_range_content: bool,
         );
 
         #[cfg(feature = "CAEDRMetadata")]
-        #[method_id(EDRMetadata)]
+        #[method(EDRMetadata)]
         #[unsafe(method_family = none)]
         pub unsafe fn EDRMetadata(&self) -> Option<Retained<CAEDRMetadata>>;
 
         #[cfg(feature = "CAEDRMetadata")]
         /// Setter for [`EDRMetadata`][Self::EDRMetadata].
         #[method(setEDRMetadata:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setEDRMetadata(&self, edr_metadata: Option<&CAEDRMetadata>);
 
         #[method(displaySyncEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn displaySyncEnabled(&self) -> bool;
 
         /// Setter for [`displaySyncEnabled`][Self::displaySyncEnabled].
         #[method(setDisplaySyncEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDisplaySyncEnabled(&self, display_sync_enabled: bool);
 
         #[method(allowsNextDrawableTimeout)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowsNextDrawableTimeout(&self) -> bool;
 
         /// Setter for [`allowsNextDrawableTimeout`][Self::allowsNextDrawableTimeout].
         #[method(setAllowsNextDrawableTimeout:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAllowsNextDrawableTimeout(&self, allows_next_drawable_timeout: bool);
 
-        #[method_id(developerHUDProperties)]
+        #[method(developerHUDProperties)]
         #[unsafe(method_family = none)]
         pub unsafe fn developerHUDProperties(&self) -> Option<Retained<NSDictionary>>;
 
         /// Setter for [`developerHUDProperties`][Self::developerHUDProperties].
         #[method(setDeveloperHUDProperties:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDeveloperHUDProperties(
             &self,
             developer_hud_properties: Option<&NSDictionary>,
@@ -172,15 +192,15 @@ extern_methods!(
     #[cfg(feature = "CALayer")]
     unsafe impl CAMetalLayer {
         /// Layer creation and initialization. *
-        #[method_id(layer)]
+        #[method(layer)]
         #[unsafe(method_family = none)]
         pub unsafe fn layer() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(initWithLayer:)]
+        #[method(initWithLayer:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
     }
@@ -190,7 +210,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CALayer")]
     unsafe impl CAMetalLayer {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

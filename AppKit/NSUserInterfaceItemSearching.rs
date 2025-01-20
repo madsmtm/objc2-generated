@@ -12,6 +12,7 @@ extern_protocol!(
     pub unsafe trait NSUserInterfaceItemSearching: NSObjectProtocol {
         #[cfg(feature = "block2")]
         #[method(searchForItemsWithSearchString:resultLimit:matchedItemHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn searchForItemsWithSearchString_resultLimit_matchedItemHandler(
             &self,
             search_string: &NSString,
@@ -19,16 +20,18 @@ extern_protocol!(
             handle_matched_items: &block2::Block<dyn Fn(NonNull<NSArray>)>,
         );
 
-        #[method_id(localizedTitlesForItem:)]
+        #[method(localizedTitlesForItem:)]
         #[unsafe(method_family = none)]
         unsafe fn localizedTitlesForItem(&self, item: &AnyObject) -> Retained<NSArray<NSString>>;
 
         #[optional]
         #[method(performActionForItem:)]
+        #[unsafe(method_family = none)]
         unsafe fn performActionForItem(&self, item: &AnyObject);
 
         #[optional]
         #[method(showAllHelpTopicsForSearchString:)]
+        #[unsafe(method_family = none)]
         unsafe fn showAllHelpTopicsForSearchString(&self, search_string: &NSString);
     }
 );
@@ -38,18 +41,21 @@ extern_methods!(
     #[cfg(all(feature = "NSApplication", feature = "NSResponder"))]
     unsafe impl NSApplication {
         #[method(registerUserInterfaceItemSearchHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn registerUserInterfaceItemSearchHandler(
             &self,
             handler: &ProtocolObject<dyn NSUserInterfaceItemSearching>,
         );
 
         #[method(unregisterUserInterfaceItemSearchHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn unregisterUserInterfaceItemSearchHandler(
             &self,
             handler: &ProtocolObject<dyn NSUserInterfaceItemSearching>,
         );
 
         #[method(searchString:inUserInterfaceItemString:searchRange:foundRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn searchString_inUserInterfaceItemString_searchRange_foundRange(
             &self,
             search_string: &NSString,

@@ -27,7 +27,7 @@ extern_methods!(
         /// Creates a callback object that matches against URLs with the given custom scheme.
         ///
         /// Parameter `customScheme`: The custom scheme that the app expects in the callback URL.
-        #[method_id(callbackWithCustomScheme:)]
+        #[method(callbackWithCustomScheme:)]
         #[unsafe(method_family = none)]
         pub unsafe fn callbackWithCustomScheme(custom_scheme: &NSString) -> Retained<Self>;
 
@@ -37,18 +37,18 @@ extern_methods!(
         /// app using associated web credentials domains.
         ///
         /// Parameter `path`: The path that the app expects in the callback URL.
-        #[method_id(callbackWithHTTPSHost:path:)]
+        #[method(callbackWithHTTPSHost:path:)]
         #[unsafe(method_family = none)]
         pub unsafe fn callbackWithHTTPSHost_path(
             host: &NSString,
             path: &NSString,
         ) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -57,6 +57,7 @@ extern_methods!(
         ///
         /// Parameter `url`: The URL to check.
         #[method(matchesURL:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn matchesURL(&self, url: &NSURL) -> bool;
     }
 );

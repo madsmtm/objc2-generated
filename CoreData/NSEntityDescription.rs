@@ -29,7 +29,7 @@ unsafe impl NSObjectProtocol for NSEntityDescription {}
 extern_methods!(
     unsafe impl NSEntityDescription {
         #[cfg(feature = "NSManagedObjectContext")]
-        #[method_id(entityForName:inManagedObjectContext:)]
+        #[method(entityForName:inManagedObjectContext:)]
         #[unsafe(method_family = none)]
         pub unsafe fn entityForName_inManagedObjectContext(
             entity_name: &NSString,
@@ -37,7 +37,7 @@ extern_methods!(
         ) -> Option<Retained<NSEntityDescription>>;
 
         #[cfg(all(feature = "NSManagedObject", feature = "NSManagedObjectContext"))]
-        #[method_id(insertNewObjectForEntityForName:inManagedObjectContext:)]
+        #[method(insertNewObjectForEntityForName:inManagedObjectContext:)]
         #[unsafe(method_family = none)]
         pub unsafe fn insertNewObjectForEntityForName_inManagedObjectContext(
             entity_name: &NSString,
@@ -45,81 +45,88 @@ extern_methods!(
         ) -> Retained<NSManagedObject>;
 
         #[cfg(feature = "NSManagedObjectModel")]
-        #[method_id(managedObjectModel)]
+        #[method(managedObjectModel)]
         #[unsafe(method_family = none)]
         pub unsafe fn managedObjectModel(&self) -> Retained<NSManagedObjectModel>;
 
-        #[method_id(managedObjectClassName)]
+        #[method(managedObjectClassName)]
         #[unsafe(method_family = none)]
         pub unsafe fn managedObjectClassName(&self) -> Retained<NSString>;
 
         /// Setter for [`managedObjectClassName`][Self::managedObjectClassName].
         #[method(setManagedObjectClassName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setManagedObjectClassName(
             &self,
             managed_object_class_name: Option<&NSString>,
         );
 
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
         #[method(setName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
         #[method(isAbstract)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isAbstract(&self) -> bool;
 
         /// Setter for [`isAbstract`][Self::isAbstract].
         #[method(setAbstract:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAbstract(&self, r#abstract: bool);
 
-        #[method_id(subentitiesByName)]
+        #[method(subentitiesByName)]
         #[unsafe(method_family = none)]
         pub unsafe fn subentitiesByName(
             &self,
         ) -> Retained<NSDictionary<NSString, NSEntityDescription>>;
 
-        #[method_id(subentities)]
+        #[method(subentities)]
         #[unsafe(method_family = none)]
         pub unsafe fn subentities(&self) -> Retained<NSArray<NSEntityDescription>>;
 
         /// Setter for [`subentities`][Self::subentities].
         #[method(setSubentities:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSubentities(&self, subentities: &NSArray<NSEntityDescription>);
 
-        #[method_id(superentity)]
+        #[method(superentity)]
         #[unsafe(method_family = none)]
         pub unsafe fn superentity(&self) -> Option<Retained<NSEntityDescription>>;
 
         #[cfg(feature = "NSPropertyDescription")]
-        #[method_id(propertiesByName)]
+        #[method(propertiesByName)]
         #[unsafe(method_family = none)]
         pub unsafe fn propertiesByName(
             &self,
         ) -> Retained<NSDictionary<NSString, NSPropertyDescription>>;
 
         #[cfg(feature = "NSPropertyDescription")]
-        #[method_id(properties)]
+        #[method(properties)]
         #[unsafe(method_family = none)]
         pub unsafe fn properties(&self) -> Retained<NSArray<NSPropertyDescription>>;
 
         #[cfg(feature = "NSPropertyDescription")]
         /// Setter for [`properties`][Self::properties].
         #[method(setProperties:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setProperties(&self, properties: &NSArray<NSPropertyDescription>);
 
-        #[method_id(userInfo)]
+        #[method(userInfo)]
         #[unsafe(method_family = none)]
         pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary>>;
 
         /// Setter for [`userInfo`][Self::userInfo].
         #[method(setUserInfo:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary>);
 
         #[cfg(all(feature = "NSAttributeDescription", feature = "NSPropertyDescription"))]
-        #[method_id(attributesByName)]
+        #[method(attributesByName)]
         #[unsafe(method_family = none)]
         pub unsafe fn attributesByName(
             &self,
@@ -129,7 +136,7 @@ extern_methods!(
             feature = "NSPropertyDescription",
             feature = "NSRelationshipDescription"
         ))]
-        #[method_id(relationshipsByName)]
+        #[method(relationshipsByName)]
         #[unsafe(method_family = none)]
         pub unsafe fn relationshipsByName(
             &self,
@@ -139,7 +146,7 @@ extern_methods!(
             feature = "NSPropertyDescription",
             feature = "NSRelationshipDescription"
         ))]
-        #[method_id(relationshipsWithDestinationEntity:)]
+        #[method(relationshipsWithDestinationEntity:)]
         #[unsafe(method_family = none)]
         pub unsafe fn relationshipsWithDestinationEntity(
             &self,
@@ -147,65 +154,72 @@ extern_methods!(
         ) -> Retained<NSArray<NSRelationshipDescription>>;
 
         #[method(isKindOfEntity:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isKindOfEntity(&self, entity: &NSEntityDescription) -> bool;
 
-        #[method_id(versionHash)]
+        #[method(versionHash)]
         #[unsafe(method_family = none)]
         pub unsafe fn versionHash(&self) -> Retained<NSData>;
 
-        #[method_id(versionHashModifier)]
+        #[method(versionHashModifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn versionHashModifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`versionHashModifier`][Self::versionHashModifier].
         #[method(setVersionHashModifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setVersionHashModifier(&self, version_hash_modifier: Option<&NSString>);
 
-        #[method_id(renamingIdentifier)]
+        #[method(renamingIdentifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn renamingIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`renamingIdentifier`][Self::renamingIdentifier].
         #[method(setRenamingIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRenamingIdentifier(&self, renaming_identifier: Option<&NSString>);
 
         #[cfg(feature = "NSFetchIndexDescription")]
-        #[method_id(indexes)]
+        #[method(indexes)]
         #[unsafe(method_family = none)]
         pub unsafe fn indexes(&self) -> Retained<NSArray<NSFetchIndexDescription>>;
 
         #[cfg(feature = "NSFetchIndexDescription")]
         /// Setter for [`indexes`][Self::indexes].
         #[method(setIndexes:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIndexes(&self, indexes: &NSArray<NSFetchIndexDescription>);
 
-        #[method_id(uniquenessConstraints)]
+        #[method(uniquenessConstraints)]
         #[unsafe(method_family = none)]
         pub unsafe fn uniquenessConstraints(&self) -> Retained<NSArray<NSArray<AnyObject>>>;
 
         /// Setter for [`uniquenessConstraints`][Self::uniquenessConstraints].
         #[method(setUniquenessConstraints:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUniquenessConstraints(
             &self,
             uniqueness_constraints: &NSArray<NSArray<AnyObject>>,
         );
 
         #[deprecated = "Use NSEntityDescription.indexes instead"]
-        #[method_id(compoundIndexes)]
+        #[method(compoundIndexes)]
         #[unsafe(method_family = none)]
         pub unsafe fn compoundIndexes(&self) -> Retained<NSArray<NSArray<AnyObject>>>;
 
         /// Setter for [`compoundIndexes`][Self::compoundIndexes].
         #[deprecated = "Use NSEntityDescription.indexes instead"]
         #[method(setCompoundIndexes:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCompoundIndexes(&self, compound_indexes: &NSArray<NSArray<AnyObject>>);
 
-        #[method_id(coreSpotlightDisplayNameExpression)]
+        #[method(coreSpotlightDisplayNameExpression)]
         #[unsafe(method_family = none)]
         pub unsafe fn coreSpotlightDisplayNameExpression(&self) -> Retained<NSExpression>;
 
         /// Setter for [`coreSpotlightDisplayNameExpression`][Self::coreSpotlightDisplayNameExpression].
         #[method(setCoreSpotlightDisplayNameExpression:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCoreSpotlightDisplayNameExpression(
             &self,
             core_spotlight_display_name_expression: &NSExpression,
@@ -216,11 +230,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSEntityDescription {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

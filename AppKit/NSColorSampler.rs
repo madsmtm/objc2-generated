@@ -26,6 +26,7 @@ extern_methods!(
         ///
         /// The calling NSColorSampler instance is retained until the sampling session is completed.
         #[method(showSamplerWithSelectionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn showSamplerWithSelectionHandler(
             &self,
             selection_handler: &block2::Block<dyn Fn(*mut NSColor)>,
@@ -36,11 +37,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSColorSampler {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -28,28 +28,31 @@ unsafe impl NSObjectProtocol for MLCMatMulDescriptor {}
 extern_methods!(
     unsafe impl MLCMatMulDescriptor {
         #[deprecated]
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// a scalar to scale the result in C=alpha x X x Y. Default = 1.0
         #[deprecated]
         #[method(alpha)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alpha(&self) -> c_float;
 
         /// if true, transposes the last two dimensions of X. Default = False
         #[deprecated]
         #[method(transposesX)]
+        #[unsafe(method_family = none)]
         pub unsafe fn transposesX(&self) -> bool;
 
         /// if true, transposes the last two dimensions of Y. Default = False
         #[deprecated]
         #[method(transposesY)]
+        #[unsafe(method_family = none)]
         pub unsafe fn transposesY(&self) -> bool;
 
         /// A matrix multiplication layer descriptor
@@ -62,7 +65,7 @@ extern_methods!(
         ///
         /// Returns: A new matrix multiplication layer descriptor
         #[deprecated]
-        #[method_id(descriptorWithAlpha:transposesX:transposesY:)]
+        #[method(descriptorWithAlpha:transposesX:transposesY:)]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithAlpha_transposesX_transposesY(
             alpha: c_float,
@@ -72,7 +75,7 @@ extern_methods!(
 
         /// A matrix multiplication layer descriptor
         #[deprecated]
-        #[method_id(descriptor)]
+        #[method(descriptor)]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptor() -> Retained<Self>;
     }

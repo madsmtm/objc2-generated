@@ -59,20 +59,22 @@ extern_methods!(
     ))]
     unsafe impl DOMCharacterData {
         #[deprecated]
-        #[method_id(data)]
+        #[method(data)]
         #[unsafe(method_family = none)]
         pub unsafe fn data(&self) -> Retained<NSString>;
 
         /// Setter for [`data`][Self::data].
         #[deprecated]
         #[method(setData:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setData(&self, data: Option<&NSString>);
 
         #[deprecated]
         #[method(length)]
+        #[unsafe(method_family = none)]
         pub unsafe fn length(&self) -> c_uint;
 
-        #[method_id(substringData:length:)]
+        #[method(substringData:length:)]
         #[unsafe(method_family = none)]
         pub unsafe fn substringData_length(
             &self,
@@ -82,15 +84,19 @@ extern_methods!(
 
         #[deprecated]
         #[method(appendData:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn appendData(&self, data: Option<&NSString>);
 
         #[method(insertData:data:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn insertData_data(&self, offset: c_uint, data: Option<&NSString>);
 
         #[method(deleteData:length:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn deleteData_length(&self, offset: c_uint, length: c_uint);
 
         #[method(replaceData:length:data:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn replaceData_length_data(
             &self,
             offset: c_uint,
@@ -109,7 +115,7 @@ extern_methods!(
     ))]
     unsafe impl DOMCharacterData {
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -123,7 +129,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMCharacterData {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -138,7 +144,7 @@ extern_methods!(
     ))]
     unsafe impl DOMCharacterData {
         #[deprecated]
-        #[method_id(substringData::)]
+        #[method(substringData::)]
         #[unsafe(method_family = none)]
         pub unsafe fn substringData(
             &self,
@@ -148,14 +154,17 @@ extern_methods!(
 
         #[deprecated]
         #[method(insertData::)]
+        #[unsafe(method_family = none)]
         pub unsafe fn insertData(&self, offset: c_uint, data: Option<&NSString>);
 
         #[deprecated]
         #[method(deleteData::)]
+        #[unsafe(method_family = none)]
         pub unsafe fn deleteData(&self, offset: c_uint, length: c_uint);
 
         #[deprecated]
         #[method(replaceData:::)]
+        #[unsafe(method_family = none)]
         pub unsafe fn replaceData(&self, offset: c_uint, length: c_uint, data: Option<&NSString>);
     }
 );

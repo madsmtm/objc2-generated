@@ -55,7 +55,7 @@ unsafe impl NSObjectProtocol for NSAppleScript {}
 extern_methods!(
     unsafe impl NSAppleScript {
         #[cfg(all(feature = "NSDictionary", feature = "NSString", feature = "NSURL"))]
-        #[method_id(initWithContentsOfURL:error:)]
+        #[method(initWithContentsOfURL:error:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL_error(
             this: Allocated<Self>,
@@ -64,7 +64,7 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(initWithSource:)]
+        #[method(initWithSource:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
@@ -72,15 +72,17 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(source)]
+        #[method(source)]
         #[unsafe(method_family = none)]
         pub unsafe fn source(&self) -> Option<Retained<NSString>>;
 
         #[method(isCompiled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isCompiled(&self) -> bool;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[method(compileAndReturnError:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn compileAndReturnError(
             &self,
             error_info: Option<&mut Option<Retained<NSDictionary<NSString, AnyObject>>>>,
@@ -91,7 +93,7 @@ extern_methods!(
             feature = "NSDictionary",
             feature = "NSString"
         ))]
-        #[method_id(executeAndReturnError:)]
+        #[method(executeAndReturnError:)]
         #[unsafe(method_family = none)]
         pub unsafe fn executeAndReturnError(
             &self,
@@ -103,7 +105,7 @@ extern_methods!(
             feature = "NSDictionary",
             feature = "NSString"
         ))]
-        #[method_id(executeAppleEvent:error:)]
+        #[method(executeAppleEvent:error:)]
         #[unsafe(method_family = none)]
         pub unsafe fn executeAppleEvent_error(
             &self,
@@ -116,11 +118,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSAppleScript {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

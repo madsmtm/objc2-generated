@@ -27,61 +27,61 @@ unsafe impl NSObjectProtocol for HMCameraSettingsControl {}
 extern_methods!(
     #[cfg(feature = "HMCameraControl")]
     unsafe impl HMCameraSettingsControl {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "HMCharacteristic")]
         /// Characteristic corresponding to night vision setting on the camera.
-        #[method_id(nightVision)]
+        #[method(nightVision)]
         #[unsafe(method_family = none)]
         pub unsafe fn nightVision(&self) -> Option<Retained<HMCharacteristic>>;
 
         #[cfg(feature = "HMCharacteristic")]
         /// Characteristic corresponding to current horizontal tilt setting on the camera.
-        #[method_id(currentHorizontalTilt)]
+        #[method(currentHorizontalTilt)]
         #[unsafe(method_family = none)]
         pub unsafe fn currentHorizontalTilt(&self) -> Option<Retained<HMCharacteristic>>;
 
         #[cfg(feature = "HMCharacteristic")]
         /// Characteristic corresponding to target horizontal tilt setting on the camera.
-        #[method_id(targetHorizontalTilt)]
+        #[method(targetHorizontalTilt)]
         #[unsafe(method_family = none)]
         pub unsafe fn targetHorizontalTilt(&self) -> Option<Retained<HMCharacteristic>>;
 
         #[cfg(feature = "HMCharacteristic")]
         /// Characteristic corresponding to current vertical tilt setting on the camera.
-        #[method_id(currentVerticalTilt)]
+        #[method(currentVerticalTilt)]
         #[unsafe(method_family = none)]
         pub unsafe fn currentVerticalTilt(&self) -> Option<Retained<HMCharacteristic>>;
 
         #[cfg(feature = "HMCharacteristic")]
         /// Characteristic corresponding to target vertical tilt setting on the camera.
-        #[method_id(targetVerticalTilt)]
+        #[method(targetVerticalTilt)]
         #[unsafe(method_family = none)]
         pub unsafe fn targetVerticalTilt(&self) -> Option<Retained<HMCharacteristic>>;
 
         #[cfg(feature = "HMCharacteristic")]
         /// Characteristic corresponding to optical zoom setting on the camera.
-        #[method_id(opticalZoom)]
+        #[method(opticalZoom)]
         #[unsafe(method_family = none)]
         pub unsafe fn opticalZoom(&self) -> Option<Retained<HMCharacteristic>>;
 
         #[cfg(feature = "HMCharacteristic")]
         /// Characteristic corresponding to digital zoom setting on the camera.
-        #[method_id(digitalZoom)]
+        #[method(digitalZoom)]
         #[unsafe(method_family = none)]
         pub unsafe fn digitalZoom(&self) -> Option<Retained<HMCharacteristic>>;
 
         #[cfg(feature = "HMCharacteristic")]
         /// Characteristic corresponding to image rotation setting on the camera.
-        #[method_id(imageRotation)]
+        #[method(imageRotation)]
         #[unsafe(method_family = none)]
         pub unsafe fn imageRotation(&self) -> Option<Retained<HMCharacteristic>>;
 
         #[cfg(feature = "HMCharacteristic")]
         /// Characteristic corresponding to image mirroring setting on the camera.
-        #[method_id(imageMirroring)]
+        #[method(imageMirroring)]
         #[unsafe(method_family = none)]
         pub unsafe fn imageMirroring(&self) -> Option<Retained<HMCharacteristic>>;
     }
@@ -91,7 +91,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "HMCameraControl")]
     unsafe impl HMCameraSettingsControl {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

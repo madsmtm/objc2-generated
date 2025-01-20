@@ -89,34 +89,37 @@ extern_methods!(
     #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItemCollection"))]
     unsafe impl MPMediaPlaylist {
         #[method(persistentID)]
+        #[unsafe(method_family = none)]
         pub unsafe fn persistentID(&self) -> MPMediaEntityPersistentID;
 
-        #[method_id(cloudGlobalID)]
+        #[method(cloudGlobalID)]
         #[unsafe(method_family = none)]
         pub unsafe fn cloudGlobalID(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         #[method(playlistAttributes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn playlistAttributes(&self) -> MPMediaPlaylistAttribute;
 
         #[cfg(feature = "MPMediaItem")]
-        #[method_id(seedItems)]
+        #[method(seedItems)]
         #[unsafe(method_family = none)]
         pub unsafe fn seedItems(&self) -> Option<Retained<NSArray<MPMediaItem>>>;
 
-        #[method_id(descriptionText)]
+        #[method(descriptionText)]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptionText(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(authorDisplayName)]
+        #[method(authorDisplayName)]
         #[unsafe(method_family = none)]
         pub unsafe fn authorDisplayName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "block2")]
         #[method(addItemWithProductID:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addItemWithProductID_completionHandler(
             &self,
             product_id: &NSString,
@@ -125,6 +128,7 @@ extern_methods!(
 
         #[cfg(all(feature = "MPMediaItem", feature = "block2"))]
         #[method(addMediaItems:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addMediaItems_completionHandler(
             &self,
             media_items: &NSArray<MPMediaItem>,
@@ -138,7 +142,7 @@ extern_methods!(
     #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItemCollection"))]
     unsafe impl MPMediaPlaylist {
         #[cfg(feature = "MPMediaItem")]
-        #[method_id(initWithItems:)]
+        #[method(initWithItems:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithItems(
             this: Allocated<Self>,
@@ -151,11 +155,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItemCollection"))]
     unsafe impl MPMediaPlaylist {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -172,38 +176,40 @@ unsafe impl NSObjectProtocol for MPMediaPlaylistCreationMetadata {}
 
 extern_methods!(
     unsafe impl MPMediaPlaylistCreationMetadata {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(initWithName:)]
+        #[method(initWithName:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithName(this: Allocated<Self>, name: &NSString) -> Retained<Self>;
 
         /// The display name of the playlist.
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Defaults to the requesting app's display name.
-        #[method_id(authorDisplayName)]
+        #[method(authorDisplayName)]
         #[unsafe(method_family = none)]
         pub unsafe fn authorDisplayName(&self) -> Retained<NSString>;
 
         /// Setter for [`authorDisplayName`][Self::authorDisplayName].
         #[method(setAuthorDisplayName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAuthorDisplayName(&self, author_display_name: Option<&NSString>);
 
-        #[method_id(descriptionText)]
+        #[method(descriptionText)]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptionText(&self) -> Retained<NSString>;
 
         /// Setter for [`descriptionText`][Self::descriptionText].
         #[method(setDescriptionText:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDescriptionText(&self, description_text: &NSString);
     }
 );

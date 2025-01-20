@@ -83,6 +83,7 @@ extern_protocol!(
         /// If you do not implement this method, the web view will load the request or, if appropriate, forward it to another application.
         #[optional]
         #[method(webView:decidePolicyForNavigationAction:decisionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_decidePolicyForNavigationAction_decisionHandler(
             &self,
             web_view: &WKWebView,
@@ -116,6 +117,7 @@ extern_protocol!(
         /// -webView:decidePolicyForNavigationAction:decisionHandler: will not be called.
         #[optional]
         #[method(webView:decidePolicyForNavigationAction:preferences:decisionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_decidePolicyForNavigationAction_preferences_decisionHandler(
             &self,
             web_view: &WKWebView,
@@ -147,6 +149,7 @@ extern_protocol!(
         /// If you do not implement this method, the web view will allow the response, if the web view can show it.
         #[optional]
         #[method(webView:decidePolicyForNavigationResponse:decisionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_decidePolicyForNavigationResponse_decisionHandler(
             &self,
             web_view: &WKWebView,
@@ -167,6 +170,7 @@ extern_protocol!(
         /// Parameter `navigation`: The navigation.
         #[optional]
         #[method(webView:didStartProvisionalNavigation:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_didStartProvisionalNavigation(
             &self,
             web_view: &WKWebView,
@@ -187,6 +191,7 @@ extern_protocol!(
         /// Parameter `navigation`: The navigation.
         #[optional]
         #[method(webView:didReceiveServerRedirectForProvisionalNavigation:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_didReceiveServerRedirectForProvisionalNavigation(
             &self,
             web_view: &WKWebView,
@@ -209,6 +214,7 @@ extern_protocol!(
         /// Parameter `error`: The error that occurred.
         #[optional]
         #[method(webView:didFailProvisionalNavigation:withError:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_didFailProvisionalNavigation_withError(
             &self,
             web_view: &WKWebView,
@@ -229,6 +235,7 @@ extern_protocol!(
         /// Parameter `navigation`: The navigation.
         #[optional]
         #[method(webView:didCommitNavigation:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_didCommitNavigation(
             &self,
             web_view: &WKWebView,
@@ -248,6 +255,7 @@ extern_protocol!(
         /// Parameter `navigation`: The navigation.
         #[optional]
         #[method(webView:didFinishNavigation:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_didFinishNavigation(
             &self,
             web_view: &WKWebView,
@@ -270,6 +278,7 @@ extern_protocol!(
         /// Parameter `error`: The error that occurred.
         #[optional]
         #[method(webView:didFailNavigation:withError:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_didFailNavigation_withError(
             &self,
             web_view: &WKWebView,
@@ -294,6 +303,7 @@ extern_protocol!(
         /// If you do not implement this method, the web view will respond to the authentication challenge with the NSURLSessionAuthChallengeRejectProtectionSpace disposition.
         #[optional]
         #[method(webView:didReceiveAuthenticationChallenge:completionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_didReceiveAuthenticationChallenge_completionHandler(
             &self,
             web_view: &WKWebView,
@@ -310,6 +320,7 @@ extern_protocol!(
         /// Parameter `webView`: The web view whose underlying web content process was terminated.
         #[optional]
         #[method(webViewWebContentProcessDidTerminate:)]
+        #[unsafe(method_family = none)]
         unsafe fn webViewWebContentProcessDidTerminate(&self, web_view: &WKWebView);
 
         #[cfg(all(feature = "WKWebView", feature = "block2", feature = "objc2-app-kit"))]
@@ -323,6 +334,7 @@ extern_protocol!(
         /// Parameter `decisionHandler`: The decision handler you must invoke to respond to indicate whether or not to continue with the connection establishment.
         #[optional]
         #[method(webView:authenticationChallenge:shouldAllowDeprecatedTLS:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_authenticationChallenge_shouldAllowDeprecatedTLS(
             &self,
             web_view: &WKWebView,
@@ -339,6 +351,7 @@ extern_protocol!(
         #[cfg(target_os = "macos")]
         #[optional]
         #[method(webView:navigationAction:didBecomeDownload:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_navigationAction_didBecomeDownload(
             &self,
             web_view: &WKWebView,
@@ -355,6 +368,7 @@ extern_protocol!(
         #[cfg(target_os = "macos")]
         #[optional]
         #[method(webView:navigationResponse:didBecomeDownload:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_navigationResponse_didBecomeDownload(
             &self,
             web_view: &WKWebView,

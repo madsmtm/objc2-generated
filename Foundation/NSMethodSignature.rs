@@ -17,28 +17,34 @@ unsafe impl NSObjectProtocol for NSMethodSignature {}
 
 extern_methods!(
     unsafe impl NSMethodSignature {
-        #[method_id(signatureWithObjCTypes:)]
+        #[method(signatureWithObjCTypes:)]
         #[unsafe(method_family = none)]
         pub unsafe fn signatureWithObjCTypes(
             types: NonNull<c_char>,
         ) -> Option<Retained<NSMethodSignature>>;
 
         #[method(numberOfArguments)]
+        #[unsafe(method_family = none)]
         pub unsafe fn numberOfArguments(&self) -> NSUInteger;
 
         #[method(getArgumentTypeAtIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getArgumentTypeAtIndex(&self, idx: NSUInteger) -> NonNull<c_char>;
 
         #[method(frameLength)]
+        #[unsafe(method_family = none)]
         pub unsafe fn frameLength(&self) -> NSUInteger;
 
         #[method(isOneway)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isOneway(&self) -> bool;
 
         #[method(methodReturnType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn methodReturnType(&self) -> NonNull<c_char>;
 
         #[method(methodReturnLength)]
+        #[unsafe(method_family = none)]
         pub unsafe fn methodReturnLength(&self) -> NSUInteger;
     }
 );
@@ -46,11 +52,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSMethodSignature {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -40,7 +40,7 @@ extern_methods!(
         /// Creates a circle of radius r centered at the node's origin.
         ///
         /// Parameter `r`: the radius in points
-        #[method_id(bodyWithCircleOfRadius:)]
+        #[method(bodyWithCircleOfRadius:)]
         #[unsafe(method_family = none)]
         pub unsafe fn bodyWithCircleOfRadius(r: CGFloat) -> Retained<SKPhysicsBody>;
 
@@ -48,7 +48,7 @@ extern_methods!(
         /// Creates a circle of radius r centered at a point in the node's coordinate space.
         ///
         /// Parameter `r`: the radius in points
-        #[method_id(bodyWithCircleOfRadius:center:)]
+        #[method(bodyWithCircleOfRadius:center:)]
         #[unsafe(method_family = none)]
         pub unsafe fn bodyWithCircleOfRadius_center(
             r: CGFloat,
@@ -59,7 +59,7 @@ extern_methods!(
         /// Creates a rectangle of the specified size centered at the node's origin.
         ///
         /// Parameter `s`: the size in points
-        #[method_id(bodyWithRectangleOfSize:)]
+        #[method(bodyWithRectangleOfSize:)]
         #[unsafe(method_family = none)]
         pub unsafe fn bodyWithRectangleOfSize(s: CGSize) -> Retained<SKPhysicsBody>;
 
@@ -67,7 +67,7 @@ extern_methods!(
         /// Creates a rectangle of the specified size centered at a point in the node's coordinate space.
         ///
         /// Parameter `s`: the size in points
-        #[method_id(bodyWithRectangleOfSize:center:)]
+        #[method(bodyWithRectangleOfSize:center:)]
         #[unsafe(method_family = none)]
         pub unsafe fn bodyWithRectangleOfSize_center(
             s: CGSize,
@@ -78,7 +78,7 @@ extern_methods!(
         /// The path must represent a convex or concave polygon with counter clockwise winding and no self intersection. Positions are relative to the node's origin.
         ///
         /// Parameter `path`: the path to use
-        #[method_id(bodyWithPolygonFromPath:)]
+        #[method(bodyWithPolygonFromPath:)]
         #[unsafe(method_family = none)]
         pub unsafe fn bodyWithPolygonFromPath(path: &CGPath) -> Retained<SKPhysicsBody>;
 
@@ -88,7 +88,7 @@ extern_methods!(
         /// Parameter `p1`: start point
         ///
         /// Parameter `p2`: end point
-        #[method_id(bodyWithEdgeFromPoint:toPoint:)]
+        #[method(bodyWithEdgeFromPoint:toPoint:)]
         #[unsafe(method_family = none)]
         pub unsafe fn bodyWithEdgeFromPoint_toPoint(
             p1: CGPoint,
@@ -99,7 +99,7 @@ extern_methods!(
         /// Creates an edge chain from a path. The path must have no self intersection. Edges have no volume and are intended to be used to create static environments. Edges can collide with bodies of volume, but not with each other.
         ///
         /// Parameter `path`: the path to use
-        #[method_id(bodyWithEdgeChainFromPath:)]
+        #[method(bodyWithEdgeChainFromPath:)]
         #[unsafe(method_family = none)]
         pub unsafe fn bodyWithEdgeChainFromPath(path: &CGPath) -> Retained<SKPhysicsBody>;
 
@@ -107,7 +107,7 @@ extern_methods!(
         /// Creates an edge loop from a path. A loop is automatically created by joining the last point to the first. The path must have no self intersection. Edges have no volume and are intended to be used to create static environments. Edges can collide with body's of volume, but not with each other.
         ///
         /// Parameter `path`: the path to use
-        #[method_id(bodyWithEdgeLoopFromPath:)]
+        #[method(bodyWithEdgeLoopFromPath:)]
         #[unsafe(method_family = none)]
         pub unsafe fn bodyWithEdgeLoopFromPath(path: &CGPath) -> Retained<SKPhysicsBody>;
 
@@ -115,7 +115,7 @@ extern_methods!(
         /// Creates an edge loop from a CGRect. Edges have no volume and are intended to be used to create static environments. Edges can collide with body's of volume, but not with each other.
         ///
         /// Parameter `rect`: the CGRect to use
-        #[method_id(bodyWithEdgeLoopFromRect:)]
+        #[method(bodyWithEdgeLoopFromRect:)]
         #[unsafe(method_family = none)]
         pub unsafe fn bodyWithEdgeLoopFromRect(rect: CGRect) -> Retained<SKPhysicsBody>;
 
@@ -125,7 +125,7 @@ extern_methods!(
         /// Parameter `texture`: the texture to be interpreted
         ///
         /// Parameter `size`: of the generated physics body
-        #[method_id(bodyWithTexture:size:)]
+        #[method(bodyWithTexture:size:)]
         #[unsafe(method_family = none)]
         pub unsafe fn bodyWithTexture_size(
             texture: &SKTexture,
@@ -140,7 +140,7 @@ extern_methods!(
         /// Parameter `alphaThreshold`: the alpha value above which a pixel is interpreted as opaque
         ///
         /// Parameter `size`: of the generated physics body
-        #[method_id(bodyWithTexture:alphaThreshold:size:)]
+        #[method(bodyWithTexture:alphaThreshold:size:)]
         #[unsafe(method_family = none)]
         pub unsafe fn bodyWithTexture_alphaThreshold_size(
             texture: &SKTexture,
@@ -149,59 +149,71 @@ extern_methods!(
         ) -> Retained<SKPhysicsBody>;
 
         /// Creates an compound body that is the union of the bodies used to create it.
-        #[method_id(bodyWithBodies:)]
+        #[method(bodyWithBodies:)]
         #[unsafe(method_family = none)]
         pub unsafe fn bodyWithBodies(bodies: &NSArray<SKPhysicsBody>) -> Retained<SKPhysicsBody>;
 
         #[method(isDynamic)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isDynamic(&self) -> bool;
 
         /// Setter for [`isDynamic`][Self::isDynamic].
         #[method(setDynamic:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDynamic(&self, dynamic: bool);
 
         #[method(usesPreciseCollisionDetection)]
+        #[unsafe(method_family = none)]
         pub unsafe fn usesPreciseCollisionDetection(&self) -> bool;
 
         /// Setter for [`usesPreciseCollisionDetection`][Self::usesPreciseCollisionDetection].
         #[method(setUsesPreciseCollisionDetection:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUsesPreciseCollisionDetection(
             &self,
             uses_precise_collision_detection: bool,
         );
 
         #[method(allowsRotation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowsRotation(&self) -> bool;
 
         /// Setter for [`allowsRotation`][Self::allowsRotation].
         #[method(setAllowsRotation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAllowsRotation(&self, allows_rotation: bool);
 
         #[method(pinned)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pinned(&self) -> bool;
 
         /// Setter for [`pinned`][Self::pinned].
         #[method(setPinned:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPinned(&self, pinned: bool);
 
         /// If the physics simulation has determined that this body is at rest it may set the resting property to YES. Resting bodies do not participate
         /// in the simulation until some collision with a non-resting  object, or an impulse is applied, that unrests it. If all bodies in the world are resting
         /// then the simulation as a whole is "at rest".
         #[method(isResting)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isResting(&self) -> bool;
 
         /// Setter for [`isResting`][Self::isResting].
         #[method(setResting:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setResting(&self, resting: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Determines the 'roughness' for the surface of the physics body (0.0 - 1.0). Defaults to 0.2
         #[method(friction)]
+        #[unsafe(method_family = none)]
         pub unsafe fn friction(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`friction`][Self::friction].
         #[method(setFriction:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFriction(&self, friction: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -209,21 +221,25 @@ extern_methods!(
         /// electric and magnetic fields. Note that this is a unitless quantity, it is up to the developer to
         /// set charge and field strength appropriately. Defaults to 0.0
         #[method(charge)]
+        #[unsafe(method_family = none)]
         pub unsafe fn charge(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`charge`][Self::charge].
         #[method(setCharge:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCharge(&self, charge: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Determines the 'bounciness' of the physics body (0.0 - 1.0). Defaults to 0.2
         #[method(restitution)]
+        #[unsafe(method_family = none)]
         pub unsafe fn restitution(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`restitution`][Self::restitution].
         #[method(setRestitution:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRestitution(&self, restitution: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -231,21 +247,25 @@ extern_methods!(
         /// Used in conjunction with per frame impulses, an object can be made to move at a constant speed. For example, if an object 64 points in size
         /// and default density and a linearDamping of 25 will slide across the screen in a few seconds if an impulse of magnitude 10 is applied every update.
         #[method(linearDamping)]
+        #[unsafe(method_family = none)]
         pub unsafe fn linearDamping(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`linearDamping`][Self::linearDamping].
         #[method(setLinearDamping:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLinearDamping(&self, linear_damping: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Optionally reduce the body's angular velocity each frame to simulate rotational friction. (0.0 - 1.0). Defaults to 0.1
         #[method(angularDamping)]
+        #[unsafe(method_family = none)]
         pub unsafe fn angularDamping(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`angularDamping`][Self::angularDamping].
         #[method(setAngularDamping:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAngularDamping(&self, angular_damping: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -253,11 +273,13 @@ extern_methods!(
         ///
         /// The unit is arbitrary, as long as the relative densities are consistent throughout the application. Note that density and mass are inherently related (they are directly proportional), so changing one also changes the other. Both are provided so either can be used depending on what is more relevant to your usage.
         #[method(density)]
+        #[unsafe(method_family = none)]
         pub unsafe fn density(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`density`][Self::density].
         #[method(setDensity:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDensity(&self, density: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -265,11 +287,13 @@ extern_methods!(
         ///
         /// The unit is arbitrary, as long as the relative masses are consistent throughout the application. Note that density and mass are inherently related (they are directly proportional), so changing one also changes the other. Both are provided so either can be used depending on what is more relevant to your usage.
         #[method(mass)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mass(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`mass`][Self::mass].
         #[method(setMass:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMass(&self, mass: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -277,106 +301,127 @@ extern_methods!(
         ///
         /// The unit is arbitrary, as long as the relative areas are consistent throughout the application.
         #[method(area)]
+        #[unsafe(method_family = none)]
         pub unsafe fn area(&self) -> CGFloat;
 
         /// Bodies are affected by field forces such as gravity if this property is set and the field's category mask is set appropriately. The default value is YES.
         ///
         /// If this is set a force is applied to the object based on the mass. Set the field force vector in the scene to modify the strength of the force.
         #[method(affectedByGravity)]
+        #[unsafe(method_family = none)]
         pub unsafe fn affectedByGravity(&self) -> bool;
 
         /// Setter for [`affectedByGravity`][Self::affectedByGravity].
         #[method(setAffectedByGravity:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAffectedByGravity(&self, affected_by_gravity: bool);
 
         /// Defines what logical 'categories' of fields this body responds to. Defaults to all bits set (all categories).
         /// Can be forced off via affectedByGravity.
         #[method(fieldBitMask)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fieldBitMask(&self) -> u32;
 
         /// Setter for [`fieldBitMask`][Self::fieldBitMask].
         #[method(setFieldBitMask:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFieldBitMask(&self, field_bit_mask: u32);
 
         /// Defines what logical 'categories' this body belongs to. Defaults to all bits set (all categories).
         #[method(categoryBitMask)]
+        #[unsafe(method_family = none)]
         pub unsafe fn categoryBitMask(&self) -> u32;
 
         /// Setter for [`categoryBitMask`][Self::categoryBitMask].
         #[method(setCategoryBitMask:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCategoryBitMask(&self, category_bit_mask: u32);
 
         /// Defines what logical 'categories' of bodies this body responds to collisions with. Defaults to all bits set (all categories).
         #[method(collisionBitMask)]
+        #[unsafe(method_family = none)]
         pub unsafe fn collisionBitMask(&self) -> u32;
 
         /// Setter for [`collisionBitMask`][Self::collisionBitMask].
         #[method(setCollisionBitMask:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCollisionBitMask(&self, collision_bit_mask: u32);
 
         /// Defines what logical 'categories' of bodies this body generates intersection notifications with. Defaults to all bits cleared (no categories).
         #[method(contactTestBitMask)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contactTestBitMask(&self) -> u32;
 
         /// Setter for [`contactTestBitMask`][Self::contactTestBitMask].
         #[method(setContactTestBitMask:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setContactTestBitMask(&self, contact_test_bit_mask: u32);
 
         #[cfg(feature = "SKPhysicsJoint")]
-        #[method_id(joints)]
+        #[method(joints)]
         #[unsafe(method_family = none)]
         pub unsafe fn joints(&self) -> Retained<NSArray<SKPhysicsJoint>>;
 
         #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         /// The representedObject this physicsBody is currently bound to, or nil if it is not.
-        #[method_id(node)]
+        #[method(node)]
         #[unsafe(method_family = none)]
         pub unsafe fn node(&self, mtm: MainThreadMarker) -> Option<Retained<SKNode>>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(velocity)]
+        #[unsafe(method_family = none)]
         pub unsafe fn velocity(&self) -> CGVector;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`velocity`][Self::velocity].
         #[method(setVelocity:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setVelocity(&self, velocity: CGVector);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(angularVelocity)]
+        #[unsafe(method_family = none)]
         pub unsafe fn angularVelocity(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`angularVelocity`][Self::angularVelocity].
         #[method(setAngularVelocity:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAngularVelocity(&self, angular_velocity: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(applyForce:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn applyForce(&self, force: CGVector);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(applyForce:atPoint:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn applyForce_atPoint(&self, force: CGVector, point: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(applyTorque:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn applyTorque(&self, torque: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(applyImpulse:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn applyImpulse(&self, impulse: CGVector);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(applyImpulse:atPoint:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn applyImpulse_atPoint(&self, impulse: CGVector, point: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(applyAngularImpulse:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn applyAngularImpulse(&self, impulse: CGFloat);
 
-        #[method_id(allContactedBodies)]
+        #[method(allContactedBodies)]
         #[unsafe(method_family = none)]
         pub unsafe fn allContactedBodies(&self) -> Retained<NSArray<SKPhysicsBody>>;
     }
@@ -385,11 +430,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKPhysicsBody {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

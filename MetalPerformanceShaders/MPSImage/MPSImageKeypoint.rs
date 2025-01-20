@@ -65,6 +65,7 @@ extern_methods!(
         ///
         /// Returns a MPSImageKeypointRangeInfo structure
         #[method(keypointRangeInfo)]
+        #[unsafe(method_family = none)]
         pub unsafe fn keypointRangeInfo(&self) -> MPSImageKeypointRangeInfo;
 
         /// Specifies information to find keypoints in an image.
@@ -74,7 +75,7 @@ extern_methods!(
         /// Parameter `info`: Pointer to the MPSImageKeypointRangeInfo struct
         ///
         /// Returns: A valid MPSImageFindKeypoints object or nil, if failure.
-        #[method_id(initWithDevice:info:)]
+        #[method(initWithDevice:info:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_info(
             this: Allocated<Self>,
@@ -82,7 +83,7 @@ extern_methods!(
             info: NonNull<MPSImageKeypointRangeInfo>,
         ) -> Retained<Self>;
 
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -102,7 +103,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -136,6 +137,7 @@ extern_methods!(
         /// Parameter `keypointDataBufferOffset`: Byte offset into keypointData buffer at which to write the keypoint results.
         /// Must be a multiple of 32 bytes.
         #[method(encodeToCommandBuffer:sourceTexture:regions:numberOfRegions:keypointCountBuffer:keypointCountBufferOffset:keypointDataBuffer:keypointDataBufferOffset:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceTexture_regions_numberOfRegions_keypointCountBuffer_keypointCountBufferOffset_keypointDataBuffer_keypointDataBufferOffset(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -162,7 +164,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -175,11 +177,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSImageFindKeypoints {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

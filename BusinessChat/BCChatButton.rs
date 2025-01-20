@@ -77,7 +77,7 @@ extern_methods!(
         ///
         /// Returns: BCChatButton instance.
         #[deprecated]
-        #[method_id(initWithStyle:)]
+        #[method(initWithStyle:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithStyle(
             this: Allocated<Self>,
@@ -85,7 +85,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -98,7 +98,7 @@ extern_methods!(
     /// Methods declared on superclass `NSControl`
     #[cfg(target_os = "macos")]
     unsafe impl BCChatButton {
-        #[method_id(initWithFrame:)]
+        #[method(initWithFrame:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
     }
@@ -108,7 +108,7 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(target_os = "macos")]
     unsafe impl BCChatButton {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -118,7 +118,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(target_os = "macos")]
     unsafe impl BCChatButton {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

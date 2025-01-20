@@ -45,7 +45,7 @@ extern_methods!(
         ///
         /// Parameter `elementProvider`: Called by the system to request the deferred menu items when the containing menu is presented.
         /// Call this block's completion handler when the menu items are available.
-        #[method_id(elementWithProvider:)]
+        #[method(elementWithProvider:)]
         #[unsafe(method_family = none)]
         pub unsafe fn elementWithProvider(
             element_provider: &block2::Block<
@@ -64,7 +64,7 @@ extern_methods!(
         ///
         /// Parameter `elementProvider`: Called by the system to request the deferred menu items when the containing menu is presented.
         /// Call this block's completion handler when the menu items are available.
-        #[method_id(elementWithUncachedProvider:)]
+        #[method(elementWithUncachedProvider:)]
         #[unsafe(method_family = none)]
         pub unsafe fn elementWithUncachedProvider(
             element_provider: &block2::Block<
@@ -79,18 +79,18 @@ extern_methods!(
     /// Methods declared on superclass `UIMenuElement`
     #[cfg(feature = "UIMenuElement")]
     unsafe impl UIDeferredMenuElement {
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

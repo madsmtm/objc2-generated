@@ -14,12 +14,13 @@ extern_category!(
     pub unsafe trait AVPlayerItemMPAdditions {
         /// The current now playing info for the player item.
         /// Setting the info to nil will clear it.
-        #[method_id(nowPlayingInfo)]
+        #[method(nowPlayingInfo)]
         #[unsafe(method_family = none)]
         unsafe fn nowPlayingInfo(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         /// Setter for [`nowPlayingInfo`][Self::nowPlayingInfo].
         #[method(setNowPlayingInfo:)]
+        #[unsafe(method_family = none)]
         unsafe fn setNowPlayingInfo(
             &self,
             now_playing_info: Option<&NSDictionary<NSString, AnyObject>>,

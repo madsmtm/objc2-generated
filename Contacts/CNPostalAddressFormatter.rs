@@ -61,7 +61,7 @@ extern_methods!(
         /// Parameter `style`: The formatting style to be used for the postal address.
         ///
         /// Returns: The formatted postal address.
-        #[method_id(stringFromPostalAddress:style:)]
+        #[method(stringFromPostalAddress:style:)]
         #[unsafe(method_family = none)]
         pub unsafe fn stringFromPostalAddress_style(
             postal_address: &CNPostalAddress,
@@ -82,7 +82,7 @@ extern_methods!(
         /// Parameter `attributes`: The default attributes to use. See NSFormatter for details.
         ///
         /// Returns: The formatted postal address as an attributed string.
-        #[method_id(attributedStringFromPostalAddress:style:withDefaultAttributes:)]
+        #[method(attributedStringFromPostalAddress:style:withDefaultAttributes:)]
         #[unsafe(method_family = none)]
         pub unsafe fn attributedStringFromPostalAddress_style_withDefaultAttributes(
             postal_address: &CNPostalAddress,
@@ -95,10 +95,12 @@ extern_methods!(
         ///
         /// The default value is CNPostalAddressFormatterStyleMailingAddress.
         #[method(style)]
+        #[unsafe(method_family = none)]
         pub unsafe fn style(&self) -> CNPostalAddressFormatterStyle;
 
         /// Setter for [`style`][Self::style].
         #[method(setStyle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setStyle(&self, style: CNPostalAddressFormatterStyle);
 
         #[cfg(feature = "CNPostalAddress")]
@@ -108,7 +110,7 @@ extern_methods!(
         /// Parameter `postalAddress`: The postal address to be formatted.
         ///
         /// Returns: The formatted postal address.
-        #[method_id(stringFromPostalAddress:)]
+        #[method(stringFromPostalAddress:)]
         #[unsafe(method_family = none)]
         pub unsafe fn stringFromPostalAddress(
             &self,
@@ -127,7 +129,7 @@ extern_methods!(
         /// Parameter `attributes`: The default attributes to use. See NSFormatter for details.
         ///
         /// Returns: The formatted postal address as an attributed string.
-        #[method_id(attributedStringFromPostalAddress:withDefaultAttributes:)]
+        #[method(attributedStringFromPostalAddress:withDefaultAttributes:)]
         #[unsafe(method_family = none)]
         pub unsafe fn attributedStringFromPostalAddress_withDefaultAttributes(
             &self,
@@ -140,11 +142,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CNPostalAddressFormatter {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

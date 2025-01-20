@@ -33,6 +33,7 @@ extern_methods!(
         /// ODNode held by an ODRecord will be released when the credentials are changed for the connection
         /// associated with the record.  outError is optional parameter, nil can be passed if error details are not needed.
         #[method(setNodeCredentials:password:error:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setNodeCredentials_password_error(
             &self,
             in_username: Option<&NSString>,
@@ -49,6 +50,7 @@ extern_methods!(
         /// kODErrorCredentialsMethodNotSupported in outError.  Same behavior as ODRecordSetNodeCredentials.  outError
         /// is optional parameter, nil can be passed if error details are not needed.
         #[method(setNodeCredentialsWithRecordType:authenticationType:authenticationItems:continueItems:context:error:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setNodeCredentialsWithRecordType_authenticationType_authenticationItems_continueItems_context_error(
             &self,
             in_record_type: Option<&ODRecordType>,
@@ -64,6 +66,7 @@ extern_methods!(
         /// Unsupported method.
         #[deprecated]
         #[method(setNodeCredentialsUsingKerberosCache:error:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setNodeCredentialsUsingKerberosCache_error(
             &self,
             in_cache_name: Option<&NSString>,
@@ -75,7 +78,7 @@ extern_methods!(
         /// Returns a dictionary containing the password policy for the record if available.  If no policy for record
         /// nil will be returned.  outError is optional parameter, nil can be passed if error details are not needed.
         #[deprecated = "use effectivePoliciesAndReturnError"]
-        #[method_id(passwordPolicyAndReturnError:)]
+        #[method(passwordPolicyAndReturnError:)]
         #[unsafe(method_family = none)]
         pub unsafe fn passwordPolicyAndReturnError(
             &self,
@@ -87,6 +90,7 @@ extern_methods!(
         /// Verifies the password provided is valid for the record.  outError is optional parameter, nil can be passed if
         /// error details are not needed.
         #[method(verifyPassword:error:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn verifyPassword_error(
             &self,
             in_password: Option<&NSString>,
@@ -102,6 +106,7 @@ extern_methods!(
         /// so an error code of kODErrorCredentialsMethodNotSupported may be returned.  outError is optional
         /// parameter, nil can be passed if error details are not needed.
         #[method(verifyExtendedWithAuthenticationType:authenticationItems:continueItems:context:error:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn verifyExtendedWithAuthenticationType_authenticationItems_continueItems_context_error(
             &self,
             in_type: Option<&ODAuthenticationType>,
@@ -116,6 +121,7 @@ extern_methods!(
         /// Changes the password for a record.  The oldPassword can be nil if password is being set assuming the appropriate
         /// privileges are in place.  outError is optional parameter, nil can be passed if error details are not needed.
         #[method(changePassword:toPassword:error:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn changePassword_toPassword_error(
             &self,
             old_password: Option<&NSString>,
@@ -131,6 +137,7 @@ extern_methods!(
         /// if the node does not do immediate commits.  outError is optional parameter, nil can be passed if error details
         /// are not needed.
         #[method(synchronizeAndReturnError:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn synchronizeAndReturnError(
             &self,
             out_error: Option<&mut Option<Retained<NSError>>>,
@@ -139,14 +146,14 @@ extern_methods!(
         /// Type of the record.
         ///
         /// The record type.
-        #[method_id(recordType)]
+        #[method(recordType)]
         #[unsafe(method_family = none)]
         pub unsafe fn recordType(&self) -> Retained<NSString>;
 
         /// Name of the record.
         ///
         /// This is the official record name.
-        #[method_id(recordName)]
+        #[method(recordName)]
         #[unsafe(method_family = none)]
         pub unsafe fn recordName(&self) -> Retained<NSString>;
 
@@ -157,7 +164,7 @@ extern_methods!(
         /// of either NSData or NSString depending on the type of data.  Binary data will be returned as NSData.
         /// If nil is passed, then all currently retrieved attributes will be returned.  outError is optional parameter,
         /// nil can be passed if error details are not needed.
-        #[method_id(recordDetailsForAttributes:error:)]
+        #[method(recordDetailsForAttributes:error:)]
         #[unsafe(method_family = none)]
         pub unsafe fn recordDetailsForAttributes_error(
             &self,
@@ -170,7 +177,7 @@ extern_methods!(
         ///
         /// Returns an NSArray of NSString or NSData depending on the type of data.  Binary data will be
         /// returned as NSData.  outError is optional parameter, nil can be passed if error details are not needed.
-        #[method_id(valuesForAttribute:error:)]
+        #[method(valuesForAttribute:error:)]
         #[unsafe(method_family = none)]
         pub unsafe fn valuesForAttribute_error(
             &self,
@@ -184,6 +191,7 @@ extern_methods!(
         /// Will take a mixture of NSData or NSString or an NSArray of either type when setting the values of an attribute.
         /// outError is optional parameter, nil can be passed if error details are not needed.
         #[method(setValue:forAttribute:error:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setValue_forAttribute_error(
             &self,
             in_value_or_values: Option<&AnyObject>,
@@ -197,6 +205,7 @@ extern_methods!(
         /// Removes all the values for an attribute.  outError is optional parameter, nil can be passed if
         /// error details are not needed.
         #[method(removeValuesForAttribute:error:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeValuesForAttribute_error(
             &self,
             in_attribute: Option<&ODAttributeType>,
@@ -209,6 +218,7 @@ extern_methods!(
         /// Will add a value to an attribute.  Should be either NSData or NSString type.  outError is optional
         /// parameter, nil can be passed if error details are not needed.
         #[method(addValue:toAttribute:error:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addValue_toAttribute_error(
             &self,
             in_value: Option<&AnyObject>,
@@ -222,6 +232,7 @@ extern_methods!(
         /// Will remove a value from an attribute.  Should be either NSData or NSString type.  outError is optional
         /// parameter, nil can be passed if error details are not needed.
         #[method(removeValue:fromAttribute:error:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeValue_fromAttribute_error(
             &self,
             in_value: Option<&AnyObject>,
@@ -234,6 +245,7 @@ extern_methods!(
         /// Deletes the record from the node and invalidates the record.  The ODRecord should be
         /// released after deletion.  outError is optional parameter, nil can be passed if error details are not needed.
         #[method(deleteRecordAndReturnError:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn deleteRecordAndReturnError(
             &self,
             out_error: Option<&mut Option<Retained<NSError>>>,
@@ -243,7 +255,7 @@ extern_methods!(
         ///
         /// This will copy any policies configured for the record.
         #[deprecated = "use accountPoliciesAndReturnError:"]
-        #[method_id(policiesAndReturnError:)]
+        #[method(policiesAndReturnError:)]
         #[unsafe(method_family = none)]
         pub unsafe fn policiesAndReturnError(
             &self,
@@ -254,7 +266,7 @@ extern_methods!(
         ///
         /// This will copy any policies configured for the record.
         #[deprecated = "use authenticationAllowedAndReturnError: and similar methods"]
-        #[method_id(effectivePoliciesAndReturnError:)]
+        #[method(effectivePoliciesAndReturnError:)]
         #[unsafe(method_family = none)]
         pub unsafe fn effectivePoliciesAndReturnError(
             &self,
@@ -267,7 +279,7 @@ extern_methods!(
         /// for the policy in question.  For example, if password history is available, it will state how much history is
         /// supported.
         #[deprecated]
-        #[method_id(supportedPoliciesAndReturnError:)]
+        #[method(supportedPoliciesAndReturnError:)]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedPoliciesAndReturnError(
             &self,
@@ -279,6 +291,7 @@ extern_methods!(
         /// This will set the policy for the record.  Policies are evaluated in combination with node-level policies.
         #[deprecated = "use setAccountPolicies:error:"]
         #[method(setPolicies:error:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPolicies_error(
             &self,
             policies: Option<&NSDictionary>,
@@ -291,6 +304,7 @@ extern_methods!(
         /// This will set a specific policy setting for the record.
         #[deprecated = "use addAccountPolicy:toCategory:error:"]
         #[method(setPolicy:value:error:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPolicy_value_error(
             &self,
             policy: Option<&ODPolicyType>,
@@ -304,6 +318,7 @@ extern_methods!(
         /// This will remove a specific policy setting from the record.
         #[deprecated = "use removeAccountPolicy:fromCategory:error:"]
         #[method(removePolicy:error:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removePolicy_error(
             &self,
             policy: Option<&ODPolicyType>,
@@ -333,6 +348,7 @@ extern_methods!(
         ///
         /// Returns: a BOOL which signifies if the policy addition succeeded, otherwise error is set.
         #[method(addAccountPolicy:toCategory:error:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addAccountPolicy_toCategory_error(
             &self,
             policy: Option<&NSDictionary>,
@@ -354,6 +370,7 @@ extern_methods!(
         ///
         /// Returns: a BOOL which signifies if the policy removal succeeded, otherwise error is set.
         #[method(removeAccountPolicy:fromCategory:error:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeAccountPolicy_fromCategory_error(
             &self,
             policy: Option<&NSDictionary>,
@@ -383,6 +400,7 @@ extern_methods!(
         ///
         /// Returns: a BOOL which signifies if the policy set succeeded, otherwise error is set.
         #[method(setAccountPolicies:error:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAccountPolicies_error(
             &self,
             policies: Option<&NSDictionary>,
@@ -401,7 +419,7 @@ extern_methods!(
         /// Returns: a NSDictionary containing all currently set policies.  The
         /// format of the dictionary is the same as described in
         /// setAccountPolicies.
-        #[method_id(accountPoliciesAndReturnError:)]
+        #[method(accountPoliciesAndReturnError:)]
         #[unsafe(method_family = none)]
         pub unsafe fn accountPoliciesAndReturnError(
             &self,
@@ -431,6 +449,7 @@ extern_methods!(
         ///
         /// Returns: a bool which signifies if the authentication is allowed, otherwise error is set.
         #[method(authenticationAllowedAndReturnError:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn authenticationAllowedAndReturnError(
             &self,
             error: Option<&mut Option<Retained<NSError>>>,
@@ -456,6 +475,7 @@ extern_methods!(
         ///
         /// Returns: a BOOL which signifies if the password change is allowed, otherwise error is set.
         #[method(passwordChangeAllowed:error:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn passwordChangeAllowed_error(
             &self,
             new_password: Option<&NSString>,
@@ -476,6 +496,7 @@ extern_methods!(
         /// Returns: a BOOL which signifies if the password will expire within the
         /// specified time.
         #[method(willPasswordExpire:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn willPasswordExpire(&self, will_expire_in: u64) -> bool;
 
         /// Determines if authentications will expire within the specified time.
@@ -493,6 +514,7 @@ extern_methods!(
         /// Returns: a BOOL which signifies if authentications will expire within the
         /// specified time.
         #[method(willAuthenticationsExpire:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn willAuthenticationsExpire(&self, will_expire_in: u64) -> bool;
 
         /// Determines how many seconds until the password expires.
@@ -509,6 +531,7 @@ extern_methods!(
         /// kODExpirationTimeExpired is returned.  If there are no password
         /// change policies, kODExpirationTimeNeverExpires is returned.
         #[method(secondsUntilPasswordExpires)]
+        #[unsafe(method_family = none)]
         pub unsafe fn secondsUntilPasswordExpires(&self) -> i64;
 
         /// Determines how many seconds until authentications expire.
@@ -526,6 +549,7 @@ extern_methods!(
         /// authentication policies controlling expiration,
         /// kODExpirationTimeNeverExpires is returned.
         #[method(secondsUntilAuthenticationsExpire)]
+        #[unsafe(method_family = none)]
         pub unsafe fn secondsUntilAuthenticationsExpire(&self) -> i64;
     }
 );
@@ -533,11 +557,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ODRecord {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -553,6 +577,7 @@ extern_methods!(
         /// a group record.  Additionally, if the member record is not an appropriate type allowed as part of a group
         /// an error will be returned.  outError is optional parameter, nil can be passed if error details are not needed.
         #[method(addMemberRecord:error:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addMemberRecord_error(
             &self,
             in_record: Option<&ODRecord>,
@@ -565,6 +590,7 @@ extern_methods!(
         /// a group record.  Additionally, if the member record is not an appropriate type allowed as part of a group
         /// an error will be returned.  outError is optional parameter, nil can be passed if error details are not needed.
         #[method(removeMemberRecord:error:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeMemberRecord_error(
             &self,
             in_record: Option<&ODRecord>,
@@ -577,6 +603,7 @@ extern_methods!(
         /// object is not a group then NO will still be returned.  outError is optional parameter, nil can be passed if
         /// error details are not needed.
         #[method(isMemberRecord:error:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isMemberRecord_error(
             &self,
             in_record: Option<&ODRecord>,

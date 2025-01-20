@@ -26,11 +26,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AXMathExpression {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -47,11 +47,11 @@ unsafe impl NSObjectProtocol for AXMathExpressionNumber {}
 
 extern_methods!(
     unsafe impl AXMathExpressionNumber {
-        #[method_id(initWithContent:)]
+        #[method(initWithContent:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContent(this: Allocated<Self>, content: &NSString) -> Retained<Self>;
 
-        #[method_id(content)]
+        #[method(content)]
         #[unsafe(method_family = none)]
         pub unsafe fn content(&self) -> Retained<NSString>;
     }
@@ -60,11 +60,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AXMathExpressionNumber {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -81,11 +81,11 @@ unsafe impl NSObjectProtocol for AXMathExpressionIdentifier {}
 
 extern_methods!(
     unsafe impl AXMathExpressionIdentifier {
-        #[method_id(initWithContent:)]
+        #[method(initWithContent:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContent(this: Allocated<Self>, content: &NSString) -> Retained<Self>;
 
-        #[method_id(content)]
+        #[method(content)]
         #[unsafe(method_family = none)]
         pub unsafe fn content(&self) -> Retained<NSString>;
     }
@@ -94,11 +94,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AXMathExpressionIdentifier {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -115,11 +115,11 @@ unsafe impl NSObjectProtocol for AXMathExpressionOperator {}
 
 extern_methods!(
     unsafe impl AXMathExpressionOperator {
-        #[method_id(initWithContent:)]
+        #[method(initWithContent:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContent(this: Allocated<Self>, content: &NSString) -> Retained<Self>;
 
-        #[method_id(content)]
+        #[method(content)]
         #[unsafe(method_family = none)]
         pub unsafe fn content(&self) -> Retained<NSString>;
     }
@@ -128,11 +128,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AXMathExpressionOperator {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -149,11 +149,11 @@ unsafe impl NSObjectProtocol for AXMathExpressionText {}
 
 extern_methods!(
     unsafe impl AXMathExpressionText {
-        #[method_id(initWithContent:)]
+        #[method(initWithContent:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContent(this: Allocated<Self>, content: &NSString) -> Retained<Self>;
 
-        #[method_id(content)]
+        #[method(content)]
         #[unsafe(method_family = none)]
         pub unsafe fn content(&self) -> Retained<NSString>;
     }
@@ -162,11 +162,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AXMathExpressionText {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -183,7 +183,7 @@ unsafe impl NSObjectProtocol for AXMathExpressionFenced {}
 
 extern_methods!(
     unsafe impl AXMathExpressionFenced {
-        #[method_id(initWithExpressions:openString:closeString:)]
+        #[method(initWithExpressions:openString:closeString:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithExpressions_openString_closeString(
             this: Allocated<Self>,
@@ -192,15 +192,15 @@ extern_methods!(
             close_string: &NSString,
         ) -> Retained<Self>;
 
-        #[method_id(expressions)]
+        #[method(expressions)]
         #[unsafe(method_family = none)]
         pub unsafe fn expressions(&self) -> Retained<NSArray<AXMathExpression>>;
 
-        #[method_id(openString)]
+        #[method(openString)]
         #[unsafe(method_family = none)]
         pub unsafe fn openString(&self) -> Retained<NSString>;
 
-        #[method_id(closeString)]
+        #[method(closeString)]
         #[unsafe(method_family = none)]
         pub unsafe fn closeString(&self) -> Retained<NSString>;
     }
@@ -209,11 +209,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AXMathExpressionFenced {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -230,14 +230,14 @@ unsafe impl NSObjectProtocol for AXMathExpressionRow {}
 
 extern_methods!(
     unsafe impl AXMathExpressionRow {
-        #[method_id(initWithExpressions:)]
+        #[method(initWithExpressions:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithExpressions(
             this: Allocated<Self>,
             expressions: &NSArray<AXMathExpression>,
         ) -> Retained<Self>;
 
-        #[method_id(expressions)]
+        #[method(expressions)]
         #[unsafe(method_family = none)]
         pub unsafe fn expressions(&self) -> Retained<NSArray<AXMathExpression>>;
     }
@@ -246,11 +246,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AXMathExpressionRow {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -267,14 +267,14 @@ unsafe impl NSObjectProtocol for AXMathExpressionTable {}
 
 extern_methods!(
     unsafe impl AXMathExpressionTable {
-        #[method_id(initWithExpressions:)]
+        #[method(initWithExpressions:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithExpressions(
             this: Allocated<Self>,
             expressions: &NSArray<AXMathExpression>,
         ) -> Retained<Self>;
 
-        #[method_id(expressions)]
+        #[method(expressions)]
         #[unsafe(method_family = none)]
         pub unsafe fn expressions(&self) -> Retained<NSArray<AXMathExpression>>;
     }
@@ -283,11 +283,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AXMathExpressionTable {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -304,14 +304,14 @@ unsafe impl NSObjectProtocol for AXMathExpressionTableRow {}
 
 extern_methods!(
     unsafe impl AXMathExpressionTableRow {
-        #[method_id(initWithExpressions:)]
+        #[method(initWithExpressions:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithExpressions(
             this: Allocated<Self>,
             expressions: &NSArray<AXMathExpression>,
         ) -> Retained<Self>;
 
-        #[method_id(expressions)]
+        #[method(expressions)]
         #[unsafe(method_family = none)]
         pub unsafe fn expressions(&self) -> Retained<NSArray<AXMathExpression>>;
     }
@@ -320,11 +320,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AXMathExpressionTableRow {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -341,14 +341,14 @@ unsafe impl NSObjectProtocol for AXMathExpressionTableCell {}
 
 extern_methods!(
     unsafe impl AXMathExpressionTableCell {
-        #[method_id(initWithExpressions:)]
+        #[method(initWithExpressions:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithExpressions(
             this: Allocated<Self>,
             expressions: &NSArray<AXMathExpression>,
         ) -> Retained<Self>;
 
-        #[method_id(expressions)]
+        #[method(expressions)]
         #[unsafe(method_family = none)]
         pub unsafe fn expressions(&self) -> Retained<NSArray<AXMathExpression>>;
     }
@@ -357,11 +357,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AXMathExpressionTableCell {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -378,7 +378,7 @@ unsafe impl NSObjectProtocol for AXMathExpressionUnderOver {}
 
 extern_methods!(
     unsafe impl AXMathExpressionUnderOver {
-        #[method_id(initWithBaseExpression:underExpression:overExpression:)]
+        #[method(initWithBaseExpression:underExpression:overExpression:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBaseExpression_underExpression_overExpression(
             this: Allocated<Self>,
@@ -387,15 +387,15 @@ extern_methods!(
             over_expression: &AXMathExpression,
         ) -> Retained<Self>;
 
-        #[method_id(baseExpression)]
+        #[method(baseExpression)]
         #[unsafe(method_family = none)]
         pub unsafe fn baseExpression(&self) -> Retained<AXMathExpression>;
 
-        #[method_id(underExpression)]
+        #[method(underExpression)]
         #[unsafe(method_family = none)]
         pub unsafe fn underExpression(&self) -> Retained<AXMathExpression>;
 
-        #[method_id(overExpression)]
+        #[method(overExpression)]
         #[unsafe(method_family = none)]
         pub unsafe fn overExpression(&self) -> Retained<AXMathExpression>;
     }
@@ -404,11 +404,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AXMathExpressionUnderOver {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -425,7 +425,7 @@ unsafe impl NSObjectProtocol for AXMathExpressionSubSuperscript {}
 
 extern_methods!(
     unsafe impl AXMathExpressionSubSuperscript {
-        #[method_id(initWithBaseExpression:subscriptExpressions:superscriptExpressions:)]
+        #[method(initWithBaseExpression:subscriptExpressions:superscriptExpressions:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBaseExpression_subscriptExpressions_superscriptExpressions(
             this: Allocated<Self>,
@@ -434,15 +434,15 @@ extern_methods!(
             superscript_expressions: &NSArray<AXMathExpression>,
         ) -> Retained<Self>;
 
-        #[method_id(baseExpression)]
+        #[method(baseExpression)]
         #[unsafe(method_family = none)]
         pub unsafe fn baseExpression(&self) -> Retained<AXMathExpression>;
 
-        #[method_id(subscriptExpressions)]
+        #[method(subscriptExpressions)]
         #[unsafe(method_family = none)]
         pub unsafe fn subscriptExpressions(&self) -> Retained<NSArray<AXMathExpression>>;
 
-        #[method_id(superscriptExpressions)]
+        #[method(superscriptExpressions)]
         #[unsafe(method_family = none)]
         pub unsafe fn superscriptExpressions(&self) -> Retained<NSArray<AXMathExpression>>;
     }
@@ -451,11 +451,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AXMathExpressionSubSuperscript {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -472,7 +472,7 @@ unsafe impl NSObjectProtocol for AXMathExpressionFraction {}
 
 extern_methods!(
     unsafe impl AXMathExpressionFraction {
-        #[method_id(initWithNumeratorExpression:denimonatorExpression:)]
+        #[method(initWithNumeratorExpression:denimonatorExpression:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNumeratorExpression_denimonatorExpression(
             this: Allocated<Self>,
@@ -480,11 +480,11 @@ extern_methods!(
             denimonator_expression: &AXMathExpression,
         ) -> Retained<Self>;
 
-        #[method_id(numeratorExpression)]
+        #[method(numeratorExpression)]
         #[unsafe(method_family = none)]
         pub unsafe fn numeratorExpression(&self) -> Retained<AXMathExpression>;
 
-        #[method_id(denimonatorExpression)]
+        #[method(denimonatorExpression)]
         #[unsafe(method_family = none)]
         pub unsafe fn denimonatorExpression(&self) -> Retained<AXMathExpression>;
     }
@@ -493,11 +493,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AXMathExpressionFraction {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -514,7 +514,7 @@ unsafe impl NSObjectProtocol for AXMathExpressionMultiscript {}
 
 extern_methods!(
     unsafe impl AXMathExpressionMultiscript {
-        #[method_id(initWithBaseExpression:prescriptExpressions:postscriptExpressions:)]
+        #[method(initWithBaseExpression:prescriptExpressions:postscriptExpressions:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBaseExpression_prescriptExpressions_postscriptExpressions(
             this: Allocated<Self>,
@@ -523,17 +523,17 @@ extern_methods!(
             postscript_expressions: &NSArray<AXMathExpressionSubSuperscript>,
         ) -> Retained<Self>;
 
-        #[method_id(baseExpression)]
+        #[method(baseExpression)]
         #[unsafe(method_family = none)]
         pub unsafe fn baseExpression(&self) -> Retained<AXMathExpression>;
 
-        #[method_id(prescriptExpressions)]
+        #[method(prescriptExpressions)]
         #[unsafe(method_family = none)]
         pub unsafe fn prescriptExpressions(
             &self,
         ) -> Retained<NSArray<AXMathExpressionSubSuperscript>>;
 
-        #[method_id(postscriptExpressions)]
+        #[method(postscriptExpressions)]
         #[unsafe(method_family = none)]
         pub unsafe fn postscriptExpressions(
             &self,
@@ -544,11 +544,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AXMathExpressionMultiscript {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -565,7 +565,7 @@ unsafe impl NSObjectProtocol for AXMathExpressionRoot {}
 
 extern_methods!(
     unsafe impl AXMathExpressionRoot {
-        #[method_id(initWithRadicandExpressions:rootIndexExpression:)]
+        #[method(initWithRadicandExpressions:rootIndexExpression:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRadicandExpressions_rootIndexExpression(
             this: Allocated<Self>,
@@ -573,11 +573,11 @@ extern_methods!(
             root_index_expression: &AXMathExpression,
         ) -> Retained<Self>;
 
-        #[method_id(radicandExpressions)]
+        #[method(radicandExpressions)]
         #[unsafe(method_family = none)]
         pub unsafe fn radicandExpressions(&self) -> Retained<NSArray<AXMathExpression>>;
 
-        #[method_id(rootIndexExpression)]
+        #[method(rootIndexExpression)]
         #[unsafe(method_family = none)]
         pub unsafe fn rootIndexExpression(&self) -> Retained<AXMathExpression>;
     }
@@ -586,11 +586,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AXMathExpressionRoot {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -599,7 +599,7 @@ extern_methods!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axmathexpressionprovider?language=objc)
     pub unsafe trait AXMathExpressionProvider: NSObjectProtocol {
-        #[method_id(accessibilityMathExpression)]
+        #[method(accessibilityMathExpression)]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityMathExpression(&self) -> Option<Retained<AXMathExpression>>;
     }

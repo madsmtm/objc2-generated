@@ -195,26 +195,29 @@ extern_protocol!(
     #[cfg(feature = "MTLAllocation")]
     pub unsafe trait MTLResource: MTLAllocation {
         /// A string to help identify this object.
-        #[method_id(label)]
+        #[method(label)]
         #[unsafe(method_family = none)]
         fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
         #[method(setLabel:)]
+        #[unsafe(method_family = none)]
         fn setLabel(&self, label: Option<&NSString>);
 
         #[cfg(feature = "MTLDevice")]
         /// The device this resource was created against.  This resource can only be used with this device.
-        #[method_id(device)]
+        #[method(device)]
         #[unsafe(method_family = none)]
         fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         /// The cache mode used for the CPU mapping for this resource
         #[method(cpuCacheMode)]
+        #[unsafe(method_family = none)]
         fn cpuCacheMode(&self) -> MTLCPUCacheMode;
 
         /// The resource storage mode used for the CPU mapping for this resource
         #[method(storageMode)]
+        #[unsafe(method_family = none)]
         fn storageMode(&self) -> MTLStorageMode;
 
         /// Whether or not the resource is hazard tracked.
@@ -222,10 +225,12 @@ extern_protocol!(
         /// This value can be either MTLHazardTrackingModeUntracked or MTLHazardTrackingModeTracked.
         /// Resources created from heaps are by default untracked, whereas resources created from the device are by default tracked.
         #[method(hazardTrackingMode)]
+        #[unsafe(method_family = none)]
         fn hazardTrackingMode(&self) -> MTLHazardTrackingMode;
 
         /// A packed tuple of the storageMode, cpuCacheMode and hazardTrackingMode properties.
         #[method(resourceOptions)]
+        #[unsafe(method_family = none)]
         fn resourceOptions(&self) -> MTLResourceOptions;
 
         /// Set (or query) the purgeability state of a resource
@@ -233,13 +238,14 @@ extern_protocol!(
         /// Synchronously set the purgeability state of a resource and return what the prior (or current) state is.
         /// FIXME: If the device is keeping a cached copy of the resource, both the shared copy and cached copy are made purgeable.  Any access to the resource by either the CPU or device will be undefined.
         #[method(setPurgeableState:)]
+        #[unsafe(method_family = none)]
         fn setPurgeableState(&self, state: MTLPurgeableState) -> MTLPurgeableState;
 
         #[cfg(feature = "MTLHeap")]
         /// The heap from which this resouce was created.
         ///
         /// Nil when this resource is not backed by a heap.
-        #[method_id(heap)]
+        #[method(heap)]
         #[unsafe(method_family = none)]
         fn heap(&self) -> Option<Retained<ProtocolObject<dyn MTLHeap>>>;
 
@@ -247,10 +253,12 @@ extern_protocol!(
         ///
         /// Zero when this resource was not created on a heap with MTLHeapTypePlacement.
         #[method(heapOffset)]
+        #[unsafe(method_family = none)]
         fn heapOffset(&self) -> NSUInteger;
 
         /// The size in bytes occupied by this resource
         #[method(allocatedSize)]
+        #[unsafe(method_family = none)]
         fn allocatedSize(&self) -> NSUInteger;
 
         /// Allow future heap sub-allocations to alias against this resource's memory.
@@ -261,6 +269,7 @@ extern_protocol!(
         /// from Buffers backed by heap memory has no effect.
         /// Once a resource is made aliasable, the decision cannot be reverted.
         #[method(makeAliasable)]
+        #[unsafe(method_family = none)]
         unsafe fn makeAliasable(&self);
 
         /// Returns whether future heap sub-allocations may alias against this resource's memory.
@@ -273,6 +282,7 @@ extern_protocol!(
         /// If resource is sub-allocated from other resource created on the heap, isAliasable returns
         /// aliasing state of that base resource. Also returns NO when storage mode is memoryless.
         #[method(isAliasable)]
+        #[unsafe(method_family = none)]
         fn isAliasable(&self) -> bool;
     }
 );

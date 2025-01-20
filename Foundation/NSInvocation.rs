@@ -18,45 +18,53 @@ unsafe impl NSObjectProtocol for NSInvocation {}
 extern_methods!(
     unsafe impl NSInvocation {
         #[cfg(feature = "NSMethodSignature")]
-        #[method_id(invocationWithMethodSignature:)]
+        #[method(invocationWithMethodSignature:)]
         #[unsafe(method_family = none)]
         pub unsafe fn invocationWithMethodSignature(
             sig: &NSMethodSignature,
         ) -> Retained<NSInvocation>;
 
         #[cfg(feature = "NSMethodSignature")]
-        #[method_id(methodSignature)]
+        #[method(methodSignature)]
         #[unsafe(method_family = none)]
         pub unsafe fn methodSignature(&self) -> Retained<NSMethodSignature>;
 
         #[method(retainArguments)]
+        #[unsafe(method_family = none)]
         pub unsafe fn retainArguments(&self);
 
         #[method(argumentsRetained)]
+        #[unsafe(method_family = none)]
         pub unsafe fn argumentsRetained(&self) -> bool;
 
-        #[method_id(target)]
+        #[method(target)]
         #[unsafe(method_family = none)]
         pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`target`][Self::target].
         #[method(setTarget:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
 
         #[method(selector)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selector(&self) -> Sel;
 
         /// Setter for [`selector`][Self::selector].
         #[method(setSelector:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSelector(&self, selector: Sel);
 
         #[method(getReturnValue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getReturnValue(&self, ret_loc: NonNull<c_void>);
 
         #[method(setReturnValue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setReturnValue(&self, ret_loc: NonNull<c_void>);
 
         #[method(getArgument:atIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getArgument_atIndex(
             &self,
             argument_location: NonNull<c_void>,
@@ -64,6 +72,7 @@ extern_methods!(
         );
 
         #[method(setArgument:atIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setArgument_atIndex(
             &self,
             argument_location: NonNull<c_void>,
@@ -71,12 +80,15 @@ extern_methods!(
         );
 
         #[method(invoke)]
+        #[unsafe(method_family = none)]
         pub unsafe fn invoke(&self);
 
         #[method(invokeWithTarget:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn invokeWithTarget(&self, target: &AnyObject);
 
         #[method(invokeUsingIMP:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn invokeUsingIMP(&self, imp: Option<Imp>);
     }
 );
@@ -84,11 +96,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSInvocation {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

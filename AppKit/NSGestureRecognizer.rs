@@ -51,7 +51,7 @@ unsafe impl NSObjectProtocol for NSGestureRecognizer {}
 
 extern_methods!(
     unsafe impl NSGestureRecognizer {
-        #[method_id(initWithTarget:action:)]
+        #[method(initWithTarget:action:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTarget_action(
             this: Allocated<Self>,
@@ -59,30 +59,33 @@ extern_methods!(
             action: Option<Sel>,
         ) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(target)]
+        #[method(target)]
         #[unsafe(method_family = none)]
         pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`target`][Self::target].
         #[method(setTarget:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
 
         #[method(action)]
+        #[unsafe(method_family = none)]
         pub unsafe fn action(&self) -> Option<Sel>;
 
         /// Setter for [`action`][Self::action].
         #[method(setAction:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAction(&self, action: Option<Sel>);
 
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -91,89 +94,106 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn NSGestureRecognizerDelegate>>,
         );
 
         #[method(isEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isEnabled(&self) -> bool;
 
         /// Setter for [`isEnabled`][Self::isEnabled].
         #[method(setEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-        #[method_id(view)]
+        #[method(view)]
         #[unsafe(method_family = none)]
         pub unsafe fn view(&self) -> Option<Retained<NSView>>;
 
         #[cfg(feature = "NSPressureConfiguration")]
-        #[method_id(pressureConfiguration)]
+        #[method(pressureConfiguration)]
         #[unsafe(method_family = none)]
         pub unsafe fn pressureConfiguration(&self) -> Retained<NSPressureConfiguration>;
 
         #[cfg(feature = "NSPressureConfiguration")]
         /// Setter for [`pressureConfiguration`][Self::pressureConfiguration].
         #[method(setPressureConfiguration:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPressureConfiguration(
             &self,
             pressure_configuration: &NSPressureConfiguration,
         );
 
         #[method(delaysPrimaryMouseButtonEvents)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delaysPrimaryMouseButtonEvents(&self) -> bool;
 
         /// Setter for [`delaysPrimaryMouseButtonEvents`][Self::delaysPrimaryMouseButtonEvents].
         #[method(setDelaysPrimaryMouseButtonEvents:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelaysPrimaryMouseButtonEvents(
             &self,
             delays_primary_mouse_button_events: bool,
         );
 
         #[method(delaysSecondaryMouseButtonEvents)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delaysSecondaryMouseButtonEvents(&self) -> bool;
 
         /// Setter for [`delaysSecondaryMouseButtonEvents`][Self::delaysSecondaryMouseButtonEvents].
         #[method(setDelaysSecondaryMouseButtonEvents:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelaysSecondaryMouseButtonEvents(
             &self,
             delays_secondary_mouse_button_events: bool,
         );
 
         #[method(delaysOtherMouseButtonEvents)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delaysOtherMouseButtonEvents(&self) -> bool;
 
         /// Setter for [`delaysOtherMouseButtonEvents`][Self::delaysOtherMouseButtonEvents].
         #[method(setDelaysOtherMouseButtonEvents:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelaysOtherMouseButtonEvents(
             &self,
             delays_other_mouse_button_events: bool,
         );
 
         #[method(delaysKeyEvents)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delaysKeyEvents(&self) -> bool;
 
         /// Setter for [`delaysKeyEvents`][Self::delaysKeyEvents].
         #[method(setDelaysKeyEvents:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelaysKeyEvents(&self, delays_key_events: bool);
 
         #[method(delaysMagnificationEvents)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delaysMagnificationEvents(&self) -> bool;
 
         /// Setter for [`delaysMagnificationEvents`][Self::delaysMagnificationEvents].
         #[method(setDelaysMagnificationEvents:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelaysMagnificationEvents(&self, delays_magnification_events: bool);
 
         #[method(delaysRotationEvents)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delaysRotationEvents(&self) -> bool;
 
         /// Setter for [`delaysRotationEvents`][Self::delaysRotationEvents].
         #[method(setDelaysRotationEvents:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelaysRotationEvents(&self, delays_rotation_events: bool);
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(locationInView:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn locationInView(&self, view: Option<&NSView>) -> NSPoint;
     }
 );
@@ -181,11 +201,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSGestureRecognizer {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -196,11 +216,13 @@ extern_methods!(
     unsafe impl NSGestureRecognizer {
         #[cfg(feature = "NSTouch")]
         #[method(allowedTouchTypes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowedTouchTypes(&self) -> NSTouchTypeMask;
 
         #[cfg(feature = "NSTouch")]
         /// Setter for [`allowedTouchTypes`][Self::allowedTouchTypes].
         #[method(setAllowedTouchTypes:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAllowedTouchTypes(&self, allowed_touch_types: NSTouchTypeMask);
     }
 );
@@ -211,6 +233,7 @@ extern_protocol!(
         #[cfg(feature = "NSEvent")]
         #[optional]
         #[method(gestureRecognizer:shouldAttemptToRecognizeWithEvent:)]
+        #[unsafe(method_family = none)]
         unsafe fn gestureRecognizer_shouldAttemptToRecognizeWithEvent(
             &self,
             gesture_recognizer: &NSGestureRecognizer,
@@ -219,6 +242,7 @@ extern_protocol!(
 
         #[optional]
         #[method(gestureRecognizerShouldBegin:)]
+        #[unsafe(method_family = none)]
         unsafe fn gestureRecognizerShouldBegin(
             &self,
             gesture_recognizer: &NSGestureRecognizer,
@@ -226,6 +250,7 @@ extern_protocol!(
 
         #[optional]
         #[method(gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:)]
+        #[unsafe(method_family = none)]
         unsafe fn gestureRecognizer_shouldRecognizeSimultaneouslyWithGestureRecognizer(
             &self,
             gesture_recognizer: &NSGestureRecognizer,
@@ -234,6 +259,7 @@ extern_protocol!(
 
         #[optional]
         #[method(gestureRecognizer:shouldRequireFailureOfGestureRecognizer:)]
+        #[unsafe(method_family = none)]
         unsafe fn gestureRecognizer_shouldRequireFailureOfGestureRecognizer(
             &self,
             gesture_recognizer: &NSGestureRecognizer,
@@ -242,6 +268,7 @@ extern_protocol!(
 
         #[optional]
         #[method(gestureRecognizer:shouldBeRequiredToFailByGestureRecognizer:)]
+        #[unsafe(method_family = none)]
         unsafe fn gestureRecognizer_shouldBeRequiredToFailByGestureRecognizer(
             &self,
             gesture_recognizer: &NSGestureRecognizer,
@@ -251,6 +278,7 @@ extern_protocol!(
         #[cfg(feature = "NSTouch")]
         #[optional]
         #[method(gestureRecognizer:shouldReceiveTouch:)]
+        #[unsafe(method_family = none)]
         unsafe fn gestureRecognizer_shouldReceiveTouch(
             &self,
             gesture_recognizer: &NSGestureRecognizer,
@@ -264,30 +292,36 @@ extern_methods!(
     unsafe impl NSGestureRecognizer {
         /// Setter for [`state`][Self::state].
         #[method(setState:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setState(&self, state: NSGestureRecognizerState);
 
         #[method(reset)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reset(&self);
 
         #[method(canPreventGestureRecognizer:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn canPreventGestureRecognizer(
             &self,
             prevented_gesture_recognizer: &NSGestureRecognizer,
         ) -> bool;
 
         #[method(canBePreventedByGestureRecognizer:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn canBePreventedByGestureRecognizer(
             &self,
             preventing_gesture_recognizer: &NSGestureRecognizer,
         ) -> bool;
 
         #[method(shouldRequireFailureOfGestureRecognizer:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shouldRequireFailureOfGestureRecognizer(
             &self,
             other_gesture_recognizer: &NSGestureRecognizer,
         ) -> bool;
 
         #[method(shouldBeRequiredToFailByGestureRecognizer:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shouldBeRequiredToFailByGestureRecognizer(
             &self,
             other_gesture_recognizer: &NSGestureRecognizer,
@@ -295,82 +329,102 @@ extern_methods!(
 
         #[cfg(feature = "NSEvent")]
         #[method(mouseDown:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mouseDown(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[method(rightMouseDown:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rightMouseDown(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[method(otherMouseDown:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn otherMouseDown(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[method(mouseUp:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mouseUp(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[method(rightMouseUp:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rightMouseUp(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[method(otherMouseUp:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn otherMouseUp(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[method(mouseDragged:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mouseDragged(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[method(rightMouseDragged:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rightMouseDragged(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[method(otherMouseDragged:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn otherMouseDragged(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[method(keyDown:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn keyDown(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[method(keyUp:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn keyUp(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[method(flagsChanged:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn flagsChanged(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[method(tabletPoint:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tabletPoint(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[method(magnifyWithEvent:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn magnifyWithEvent(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[method(rotateWithEvent:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rotateWithEvent(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[method(pressureChangeWithEvent:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pressureChangeWithEvent(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[method(touchesBeganWithEvent:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn touchesBeganWithEvent(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[method(touchesMovedWithEvent:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn touchesMovedWithEvent(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[method(touchesEndedWithEvent:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn touchesEndedWithEvent(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[method(touchesCancelledWithEvent:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn touchesCancelledWithEvent(&self, event: &NSEvent);
     }
 );

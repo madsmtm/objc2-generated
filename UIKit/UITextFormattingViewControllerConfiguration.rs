@@ -32,7 +32,7 @@ extern_methods!(
     unsafe impl UITextFormattingViewControllerConfiguration {
         #[cfg(feature = "UITextFormattingViewControllerComponent")]
         /// Component groups displayed by text formatting view.
-        #[method_id(groups)]
+        #[method(groups)]
         #[unsafe(method_family = none)]
         pub unsafe fn groups(
             &self,
@@ -40,7 +40,7 @@ extern_methods!(
 
         #[cfg(feature = "UITextFormattingViewControllerFormattingStyle")]
         /// Configurations of formatting styles available in text formatting view.
-        #[method_id(formattingStyles)]
+        #[method(formattingStyles)]
         #[unsafe(method_family = none)]
         pub unsafe fn formattingStyles(
             &self,
@@ -49,6 +49,7 @@ extern_methods!(
         #[cfg(feature = "UITextFormattingViewControllerFormattingStyle")]
         /// Setter for [`formattingStyles`][Self::formattingStyles].
         #[method(setFormattingStyles:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFormattingStyles(
             &self,
             formatting_styles: Option<&NSArray<UITextFormattingViewControllerFormattingStyle>>,
@@ -56,7 +57,7 @@ extern_methods!(
 
         #[cfg(feature = "UIFontPickerViewControllerConfiguration")]
         /// Configuration object that will be used to customize `UIFontPickerViewController` if presented by `UITextFormattingViewController`.
-        #[method_id(fontPickerConfiguration)]
+        #[method(fontPickerConfiguration)]
         #[unsafe(method_family = none)]
         pub unsafe fn fontPickerConfiguration(
             &self,
@@ -66,20 +67,21 @@ extern_methods!(
         #[cfg(feature = "UIFontPickerViewControllerConfiguration")]
         /// Setter for [`fontPickerConfiguration`][Self::fontPickerConfiguration].
         #[method(setFontPickerConfiguration:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFontPickerConfiguration(
             &self,
             font_picker_configuration: Option<&UIFontPickerViewControllerConfiguration>,
         );
 
         /// Creates a default configuration with most common text formatting options.
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "UITextFormattingViewControllerComponent")]
         /// Creates a configuration object with provided component groups.
         /// - Parameter groups: Component groups displayed in text formatting view.
-        #[method_id(initWithGroups:)]
+        #[method(initWithGroups:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithGroups(
             this: Allocated<Self>,
@@ -91,7 +93,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITextFormattingViewControllerConfiguration {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

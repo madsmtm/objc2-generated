@@ -163,83 +163,98 @@ extern_methods!(
     #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIDatePicker {
         #[method(datePickerMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn datePickerMode(&self) -> UIDatePickerMode;
 
         /// Setter for [`datePickerMode`][Self::datePickerMode].
         #[method(setDatePickerMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDatePickerMode(&self, date_picker_mode: UIDatePickerMode);
 
-        #[method_id(locale)]
+        #[method(locale)]
         #[unsafe(method_family = none)]
         pub unsafe fn locale(&self) -> Option<Retained<NSLocale>>;
 
         /// Setter for [`locale`][Self::locale].
         #[method(setLocale:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
 
-        #[method_id(calendar)]
+        #[method(calendar)]
         #[unsafe(method_family = none)]
         pub unsafe fn calendar(&self) -> Retained<NSCalendar>;
 
         /// Setter for [`calendar`][Self::calendar].
         #[method(setCalendar:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCalendar(&self, calendar: Option<&NSCalendar>);
 
-        #[method_id(timeZone)]
+        #[method(timeZone)]
         #[unsafe(method_family = none)]
         pub unsafe fn timeZone(&self) -> Option<Retained<NSTimeZone>>;
 
         /// Setter for [`timeZone`][Self::timeZone].
         #[method(setTimeZone:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTimeZone(&self, time_zone: Option<&NSTimeZone>);
 
-        #[method_id(date)]
+        #[method(date)]
         #[unsafe(method_family = none)]
         pub unsafe fn date(&self) -> Retained<NSDate>;
 
         /// Setter for [`date`][Self::date].
         #[method(setDate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDate(&self, date: &NSDate);
 
-        #[method_id(minimumDate)]
+        #[method(minimumDate)]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumDate(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`minimumDate`][Self::minimumDate].
         #[method(setMinimumDate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMinimumDate(&self, minimum_date: Option<&NSDate>);
 
-        #[method_id(maximumDate)]
+        #[method(maximumDate)]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumDate(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`maximumDate`][Self::maximumDate].
         #[method(setMaximumDate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMaximumDate(&self, maximum_date: Option<&NSDate>);
 
         #[method(countDownDuration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn countDownDuration(&self) -> NSTimeInterval;
 
         /// Setter for [`countDownDuration`][Self::countDownDuration].
         #[method(setCountDownDuration:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCountDownDuration(&self, count_down_duration: NSTimeInterval);
 
         #[method(minuteInterval)]
+        #[unsafe(method_family = none)]
         pub unsafe fn minuteInterval(&self) -> NSInteger;
 
         /// Setter for [`minuteInterval`][Self::minuteInterval].
         #[method(setMinuteInterval:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMinuteInterval(&self, minute_interval: NSInteger);
 
         #[method(setDate:animated:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDate_animated(&self, date: &NSDate, animated: bool);
 
         /// Request a style for the date picker. If the style changed, then the date picker may need to be resized and will generate a layout pass to display correctly.
         #[method(preferredDatePickerStyle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preferredDatePickerStyle(&self) -> UIDatePickerStyle;
 
         /// Setter for [`preferredDatePickerStyle`][Self::preferredDatePickerStyle].
         #[method(setPreferredDatePickerStyle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreferredDatePickerStyle(
             &self,
             preferred_date_picker_style: UIDatePickerStyle,
@@ -247,6 +262,7 @@ extern_methods!(
 
         /// The style that the date picker is using for its layout. This property always returns a concrete style (never automatic).
         #[method(datePickerStyle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn datePickerStyle(&self) -> UIDatePickerStyle;
 
         /// When this property is YES,
@@ -259,10 +275,12 @@ extern_methods!(
         /// `minuteInterval`property. Default is
         /// `YES.`
         #[method(roundsToMinuteInterval)]
+        #[unsafe(method_family = none)]
         pub unsafe fn roundsToMinuteInterval(&self) -> bool;
 
         /// Setter for [`roundsToMinuteInterval`][Self::roundsToMinuteInterval].
         #[method(setRoundsToMinuteInterval:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRoundsToMinuteInterval(&self, rounds_to_minute_interval: bool);
     }
 );
@@ -272,11 +290,11 @@ extern_methods!(
     #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIDatePicker {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(initWithFrame:)]
+        #[method(initWithFrame:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -289,7 +307,7 @@ extern_methods!(
             feature = "objc2-core-foundation"
         ))]
         /// Initializes the control and adds primaryAction for the UIControlEventPrimaryActionTriggered control event. Subclasses of UIControl may alter or add behaviors around the usage of primaryAction, see subclass documentation of this initializer for additional information.
-        #[method_id(initWithFrame:primaryAction:)]
+        #[method(initWithFrame:primaryAction:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame_primaryAction(
             this: Allocated<Self>,
@@ -303,11 +321,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIDatePicker {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

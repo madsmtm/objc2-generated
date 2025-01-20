@@ -47,15 +47,18 @@ extern_protocol!(
         #[cfg(feature = "MTLCommandBuffer")]
         /// The dispatch type of the compute command encoder.
         #[method(dispatchType)]
+        #[unsafe(method_family = none)]
         unsafe fn dispatchType(&self) -> MTLDispatchType;
 
         #[cfg(feature = "MTLComputePipeline")]
         /// Set the compute pipeline state that will be used.
         #[method(setComputePipelineState:)]
+        #[unsafe(method_family = none)]
         fn setComputePipelineState(&self, state: &ProtocolObject<dyn MTLComputePipelineState>);
 
         /// Set the data (by copy) for a given buffer binding point.  This will remove any existing MTLBuffer from the binding point.
         #[method(setBytes:length:atIndex:)]
+        #[unsafe(method_family = none)]
         unsafe fn setBytes_length_atIndex(
             &self,
             bytes: NonNull<c_void>,
@@ -70,6 +73,7 @@ extern_protocol!(
         ))]
         /// Set a global buffer for all compute kernels at the given bind point index.
         #[method(setBuffer:offset:atIndex:)]
+        #[unsafe(method_family = none)]
         unsafe fn setBuffer_offset_atIndex(
             &self,
             buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
@@ -79,6 +83,7 @@ extern_protocol!(
 
         /// Set the offset within the current global buffer for all compute kernels at the given bind point index.
         #[method(setBufferOffset:atIndex:)]
+        #[unsafe(method_family = none)]
         unsafe fn setBufferOffset_atIndex(&self, offset: NSUInteger, index: NSUInteger);
 
         #[cfg(all(
@@ -88,6 +93,7 @@ extern_protocol!(
         ))]
         /// Set an array of global buffers for all compute kernels with the given bind point range.
         #[method(setBuffers:offsets:withRange:)]
+        #[unsafe(method_family = none)]
         unsafe fn setBuffers_offsets_withRange(
             &self,
             buffers: NonNull<*const ProtocolObject<dyn MTLBuffer>>,
@@ -104,6 +110,7 @@ extern_protocol!(
         /// only call this when the kernel-buffer is part of the stageInputDescriptor
         /// and has set its stride to `MTLBufferLayoutStrideDynamic`
         #[method(setBuffer:offset:attributeStride:atIndex:)]
+        #[unsafe(method_family = none)]
         unsafe fn setBuffer_offset_attributeStride_atIndex(
             &self,
             buffer: &ProtocolObject<dyn MTLBuffer>,
@@ -121,6 +128,7 @@ extern_protocol!(
         /// given bind point range. Only call this when at least one buffer is part of
         /// the vertexDescriptor, other buffers must set `MTLAttributeStrideStatic`
         #[method(setBuffers:offsets:attributeStrides:withRange:)]
+        #[unsafe(method_family = none)]
         unsafe fn setBuffers_offsets_attributeStrides_withRange(
             &self,
             buffers: NonNull<*const ProtocolObject<dyn MTLBuffer>>,
@@ -132,6 +140,7 @@ extern_protocol!(
         /// only call this when the buffer-index is part of the stageInputDescriptor
         /// and has set its stride to `MTLBufferLayoutStrideDynamic`
         #[method(setBufferOffset:attributeStride:atIndex:)]
+        #[unsafe(method_family = none)]
         unsafe fn setBufferOffset_attributeStride_atIndex(
             &self,
             offset: NSUInteger,
@@ -142,6 +151,7 @@ extern_protocol!(
         /// only call this when the buffer-index is part of the stageInputDescriptor
         /// and has set its stride to `MTLBufferLayoutStrideDynamic`
         #[method(setBytes:length:attributeStride:atIndex:)]
+        #[unsafe(method_family = none)]
         unsafe fn setBytes_length_attributeStride_atIndex(
             &self,
             bytes: NonNull<c_void>,
@@ -157,6 +167,7 @@ extern_protocol!(
         ))]
         /// Set a visible function table at the given buffer index
         #[method(setVisibleFunctionTable:atBufferIndex:)]
+        #[unsafe(method_family = none)]
         unsafe fn setVisibleFunctionTable_atBufferIndex(
             &self,
             visible_function_table: Option<&ProtocolObject<dyn MTLVisibleFunctionTable>>,
@@ -170,6 +181,7 @@ extern_protocol!(
         ))]
         /// Set visible function tables at the given buffer index range
         #[method(setVisibleFunctionTables:withBufferRange:)]
+        #[unsafe(method_family = none)]
         unsafe fn setVisibleFunctionTables_withBufferRange(
             &self,
             visible_function_tables: NonNull<*const ProtocolObject<dyn MTLVisibleFunctionTable>>,
@@ -183,6 +195,7 @@ extern_protocol!(
         ))]
         /// Set a visible function table at the given buffer index
         #[method(setIntersectionFunctionTable:atBufferIndex:)]
+        #[unsafe(method_family = none)]
         unsafe fn setIntersectionFunctionTable_atBufferIndex(
             &self,
             intersection_function_table: Option<&ProtocolObject<dyn MTLIntersectionFunctionTable>>,
@@ -196,6 +209,7 @@ extern_protocol!(
         ))]
         /// Set visible function tables at the given buffer index range
         #[method(setIntersectionFunctionTables:withBufferRange:)]
+        #[unsafe(method_family = none)]
         unsafe fn setIntersectionFunctionTables_withBufferRange(
             &self,
             intersection_function_tables: NonNull<
@@ -211,6 +225,7 @@ extern_protocol!(
         ))]
         /// Set a global raytracing acceleration structure for all compute kernels at the given buffer bind point index.
         #[method(setAccelerationStructure:atBufferIndex:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccelerationStructure_atBufferIndex(
             &self,
             acceleration_structure: Option<&ProtocolObject<dyn MTLAccelerationStructure>>,
@@ -224,6 +239,7 @@ extern_protocol!(
         ))]
         /// Set a global texture for all compute kernels at the given bind point index.
         #[method(setTexture:atIndex:)]
+        #[unsafe(method_family = none)]
         unsafe fn setTexture_atIndex(
             &self,
             texture: Option<&ProtocolObject<dyn MTLTexture>>,
@@ -237,6 +253,7 @@ extern_protocol!(
         ))]
         /// Set an array of global textures for all compute kernels with the given bind point range.
         #[method(setTextures:withRange:)]
+        #[unsafe(method_family = none)]
         unsafe fn setTextures_withRange(
             &self,
             textures: NonNull<*const ProtocolObject<dyn MTLTexture>>,
@@ -246,6 +263,7 @@ extern_protocol!(
         #[cfg(feature = "MTLSampler")]
         /// Set a global sampler for all compute kernels at the given bind point index.
         #[method(setSamplerState:atIndex:)]
+        #[unsafe(method_family = none)]
         unsafe fn setSamplerState_atIndex(
             &self,
             sampler: Option<&ProtocolObject<dyn MTLSamplerState>>,
@@ -255,6 +273,7 @@ extern_protocol!(
         #[cfg(feature = "MTLSampler")]
         /// Set an array of global samplers for all compute kernels with the given bind point range.
         #[method(setSamplerStates:withRange:)]
+        #[unsafe(method_family = none)]
         unsafe fn setSamplerStates_withRange(
             &self,
             samplers: NonNull<*const ProtocolObject<dyn MTLSamplerState>>,
@@ -264,6 +283,7 @@ extern_protocol!(
         #[cfg(feature = "MTLSampler")]
         /// Set a global sampler for all compute kernels at the given bind point index.
         #[method(setSamplerState:lodMinClamp:lodMaxClamp:atIndex:)]
+        #[unsafe(method_family = none)]
         unsafe fn setSamplerState_lodMinClamp_lodMaxClamp_atIndex(
             &self,
             sampler: Option<&ProtocolObject<dyn MTLSamplerState>>,
@@ -275,6 +295,7 @@ extern_protocol!(
         #[cfg(feature = "MTLSampler")]
         /// Set an array of global samplers for all compute kernels with the given bind point range.
         #[method(setSamplerStates:lodMinClamps:lodMaxClamps:withRange:)]
+        #[unsafe(method_family = none)]
         unsafe fn setSamplerStates_lodMinClamps_lodMaxClamps_withRange(
             &self,
             samplers: NonNull<*const ProtocolObject<dyn MTLSamplerState>>,
@@ -285,14 +306,17 @@ extern_protocol!(
 
         /// Set the threadgroup memory byte length at the binding point specified by the index. This applies to all compute kernels.
         #[method(setThreadgroupMemoryLength:atIndex:)]
+        #[unsafe(method_family = none)]
         unsafe fn setThreadgroupMemoryLength_atIndex(&self, length: NSUInteger, index: NSUInteger);
 
         /// Set imageblock sizes.
         #[method(setImageblockWidth:height:)]
+        #[unsafe(method_family = none)]
         unsafe fn setImageblockWidth_height(&self, width: NSUInteger, height: NSUInteger);
 
         #[cfg(feature = "MTLTypes")]
         #[method(setStageInRegion:)]
+        #[unsafe(method_family = none)]
         unsafe fn setStageInRegion(&self, region: MTLRegion);
 
         #[cfg(all(
@@ -301,6 +325,7 @@ extern_protocol!(
             feature = "MTLResource"
         ))]
         #[method(setStageInRegionWithIndirectBuffer:indirectBufferOffset:)]
+        #[unsafe(method_family = none)]
         unsafe fn setStageInRegionWithIndirectBuffer_indirectBufferOffset(
             &self,
             indirect_buffer: &ProtocolObject<dyn MTLBuffer>,
@@ -309,6 +334,7 @@ extern_protocol!(
 
         #[cfg(feature = "MTLTypes")]
         #[method(dispatchThreadgroups:threadsPerThreadgroup:)]
+        #[unsafe(method_family = none)]
         fn dispatchThreadgroups_threadsPerThreadgroup(
             &self,
             threadgroups_per_grid: MTLSize,
@@ -322,6 +348,7 @@ extern_protocol!(
             feature = "MTLTypes"
         ))]
         #[method(dispatchThreadgroupsWithIndirectBuffer:indirectBufferOffset:threadsPerThreadgroup:)]
+        #[unsafe(method_family = none)]
         unsafe fn dispatchThreadgroupsWithIndirectBuffer_indirectBufferOffset_threadsPerThreadgroup(
             &self,
             indirect_buffer: &ProtocolObject<dyn MTLBuffer>,
@@ -331,6 +358,7 @@ extern_protocol!(
 
         #[cfg(feature = "MTLTypes")]
         #[method(dispatchThreads:threadsPerThreadgroup:)]
+        #[unsafe(method_family = none)]
         fn dispatchThreads_threadsPerThreadgroup(
             &self,
             threads_per_grid: MTLSize,
@@ -343,6 +371,7 @@ extern_protocol!(
         /// The fence is updated at kernel submission to maintain global order and prevent deadlock.
         /// Drivers may delay fence updates until the end of the encoder. Drivers may also wait on fences at the beginning of an encoder. It is therefore illegal to wait on a fence after it has been updated in the same encoder.
         #[method(updateFence:)]
+        #[unsafe(method_family = none)]
         fn updateFence(&self, fence: &ProtocolObject<dyn MTLFence>);
 
         #[cfg(feature = "MTLFence")]
@@ -351,6 +380,7 @@ extern_protocol!(
         /// The fence is evaluated at kernel submission to maintain global order and prevent deadlock.
         /// Drivers may delay fence updates until the end of the encoder. Drivers may also wait on fences at the beginning of an encoder. It is therefore illegal to wait on a fence after it has been updated in the same encoder.
         #[method(waitForFence:)]
+        #[unsafe(method_family = none)]
         fn waitForFence(&self, fence: &ProtocolObject<dyn MTLFence>);
 
         #[cfg(all(feature = "MTLAllocation", feature = "MTLResource"))]
@@ -361,6 +391,7 @@ extern_protocol!(
         ///
         /// Warning: Prior to iOS 13, macOS 10.15, this method does not protect against data hazards. If you are deploying to older versions of macOS or iOS, use fences to ensure data hazards are resolved.
         #[method(useResource:usage:)]
+        #[unsafe(method_family = none)]
         fn useResource_usage(
             &self,
             resource: &ProtocolObject<dyn MTLResource>,
@@ -374,6 +405,7 @@ extern_protocol!(
         ///
         /// Warning: Prior to iOS 13, macOS 10.15, this method does not protect against data hazards. If you are deploying to older versions of macOS or iOS, use fences to ensure data hazards are resolved.
         #[method(useResources:count:usage:)]
+        #[unsafe(method_family = none)]
         unsafe fn useResources_count_usage(
             &self,
             resources: NonNull<NonNull<ProtocolObject<dyn MTLResource>>>,
@@ -388,6 +420,7 @@ extern_protocol!(
         ///
         /// Warning: Prior to iOS 13, macOS 10.15, this method does not protect against data hazards. If you are deploying to older versions of macOS or iOS, use fences to ensure data hazards are resolved.
         #[method(useHeap:)]
+        #[unsafe(method_family = none)]
         fn useHeap(&self, heap: &ProtocolObject<dyn MTLHeap>);
 
         #[cfg(all(feature = "MTLAllocation", feature = "MTLHeap"))]
@@ -397,6 +430,7 @@ extern_protocol!(
         ///
         /// Warning: Prior to iOS 13, macOS 10.15, this method does not protect against data hazards. If you are deploying to older versions of macOS or iOS, use fences to ensure data hazards are resolved.
         #[method(useHeaps:count:)]
+        #[unsafe(method_family = none)]
         unsafe fn useHeaps_count(
             &self,
             heaps: NonNull<NonNull<ProtocolObject<dyn MTLHeap>>>,
@@ -412,6 +446,7 @@ extern_protocol!(
         ///
         /// The same indirect command buffer may be executed any number of times within the same encoder.
         #[method(executeCommandsInBuffer:withRange:)]
+        #[unsafe(method_family = none)]
         unsafe fn executeCommandsInBuffer_withRange(
             &self,
             indirect_command_buffer: &ProtocolObject<dyn MTLIndirectCommandBuffer>,
@@ -432,6 +467,7 @@ extern_protocol!(
         ///
         /// The same indirect command buffer may be executed any number of times within the same encoder.
         #[method(executeCommandsInBuffer:indirectBuffer:indirectBufferOffset:)]
+        #[unsafe(method_family = none)]
         unsafe fn executeCommandsInBuffer_indirectBuffer_indirectBufferOffset(
             &self,
             indirect_commandbuffer: &ProtocolObject<dyn MTLIndirectCommandBuffer>,
@@ -443,6 +479,7 @@ extern_protocol!(
         ///
         /// This API ensures that all dispatches in the encoder have completed execution and their side effects are visible to subsequent dispatches in that encoder. Calling barrier on a serial encoder is allowed, but ignored.
         #[method(memoryBarrierWithScope:)]
+        #[unsafe(method_family = none)]
         unsafe fn memoryBarrierWithScope(&self, scope: MTLBarrierScope);
 
         #[cfg(all(feature = "MTLAllocation", feature = "MTLResource"))]
@@ -450,6 +487,7 @@ extern_protocol!(
         ///
         /// This API ensures that all dispatches in the encoder have completed execution and side effects on the specified resources are visible to subsequent dispatches in that encoder. Calling barrier on a serial encoder is allowed, but ignored.
         #[method(memoryBarrierWithResources:count:)]
+        #[unsafe(method_family = none)]
         unsafe fn memoryBarrierWithResources_count(
             &self,
             resources: NonNull<NonNull<ProtocolObject<dyn MTLResource>>>,
@@ -476,6 +514,7 @@ extern_protocol!(
         /// On devices where MTLCounterSamplingPointAtDispatchBoundary is unsupported,
         /// this method is not available and will generate an error if called.
         #[method(sampleCountersInBuffer:atSampleIndex:withBarrier:)]
+        #[unsafe(method_family = none)]
         unsafe fn sampleCountersInBuffer_atSampleIndex_withBarrier(
             &self,
             sample_buffer: &ProtocolObject<dyn MTLCounterSampleBuffer>,

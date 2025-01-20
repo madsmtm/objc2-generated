@@ -25,16 +25,19 @@ unsafe impl NSObjectProtocol for MDLMatrix4x4Array {}
 extern_methods!(
     unsafe impl MDLMatrix4x4Array {
         #[method(elementCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn elementCount(&self) -> NSUInteger;
 
         #[cfg(feature = "MDLTypes")]
         #[method(precision)]
+        #[unsafe(method_family = none)]
         pub unsafe fn precision(&self) -> MDLDataPrecision;
 
         #[method(clear)]
+        #[unsafe(method_family = none)]
         pub unsafe fn clear(&self);
 
-        #[method_id(initWithElementCount:)]
+        #[method(initWithElementCount:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithElementCount(
             this: Allocated<Self>,
@@ -46,11 +49,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLMatrix4x4Array {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

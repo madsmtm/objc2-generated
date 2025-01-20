@@ -69,11 +69,13 @@ extern_methods!(
         ///
         /// Default value is nil.
         #[method(scheduledHandler)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scheduledHandler(&self) -> MPSGraphExecutableScheduledHandler;
 
         #[cfg(all(feature = "MPSGraphTensorData", feature = "block2"))]
         /// Setter for [`scheduledHandler`][Self::scheduledHandler].
         #[method(setScheduledHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setScheduledHandler(
             &self,
             scheduled_handler: MPSGraphExecutableScheduledHandler,
@@ -84,11 +86,13 @@ extern_methods!(
         ///
         /// Default value is nil.
         #[method(completionHandler)]
+        #[unsafe(method_family = none)]
         pub unsafe fn completionHandler(&self) -> MPSGraphExecutableCompletionHandler;
 
         #[cfg(all(feature = "MPSGraphTensorData", feature = "block2"))]
         /// Setter for [`completionHandler`][Self::completionHandler].
         #[method(setCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCompletionHandler(
             &self,
             completion_handler: MPSGraphExecutableCompletionHandler,
@@ -98,10 +102,12 @@ extern_methods!(
         ///
         /// Default value is false.
         #[method(waitUntilCompleted)]
+        #[unsafe(method_family = none)]
         pub unsafe fn waitUntilCompleted(&self) -> bool;
 
         /// Setter for [`waitUntilCompleted`][Self::waitUntilCompleted].
         #[method(setWaitUntilCompleted:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWaitUntilCompleted(&self, wait_until_completed: bool);
 
         /// Waits on these shared events before scheduling execution on the HW.
@@ -112,6 +118,7 @@ extern_methods!(
         /// - event: Shared event to wait on.
         /// - value: Value for shared event to wait on.
         #[method(waitForEvent:value:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn waitForEvent_value(
             &self,
             event: &ProtocolObject<dyn MTLSharedEvent>,
@@ -126,6 +133,7 @@ extern_methods!(
         /// - executionStage: Execution stage to signal event at.
         /// - value: Value for shared event to wait on.
         #[method(signalEvent:atExecutionEvent:value:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn signalEvent_atExecutionEvent_value(
             &self,
             event: &ProtocolObject<dyn MTLSharedEvent>,
@@ -139,11 +147,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MPSGraphCore")]
     unsafe impl MPSGraphExecutableExecutionDescriptor {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -199,31 +207,36 @@ extern_methods!(
         ///
         /// If false, the exisiting .mpsgraphpackage will be overwritten.
         #[method(append)]
+        #[unsafe(method_family = none)]
         pub unsafe fn append(&self) -> bool;
 
         /// Setter for [`append`][Self::append].
         #[method(setAppend:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAppend(&self, append: bool);
 
         /// The deployment platform used to serialize the executable.
         ///
         /// Defaults to the current platform.
         #[method(deploymentPlatform)]
+        #[unsafe(method_family = none)]
         pub unsafe fn deploymentPlatform(&self) -> MPSGraphDeploymentPlatform;
 
         /// Setter for [`deploymentPlatform`][Self::deploymentPlatform].
         #[method(setDeploymentPlatform:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDeploymentPlatform(&self, deployment_platform: MPSGraphDeploymentPlatform);
 
         /// The minimum deployment target to serialize the executable.
         ///
         /// If not set, the package created will target the latest version of the `deploymentPlatform` set.
-        #[method_id(minimumDeploymentTarget)]
+        #[method(minimumDeploymentTarget)]
         #[unsafe(method_family = none)]
         pub unsafe fn minimumDeploymentTarget(&self) -> Retained<NSString>;
 
         /// Setter for [`minimumDeploymentTarget`][Self::minimumDeploymentTarget].
         #[method(setMinimumDeploymentTarget:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMinimumDeploymentTarget(&self, minimum_deployment_target: &NSString);
     }
 );
@@ -232,11 +245,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MPSGraphCore")]
     unsafe impl MPSGraphExecutableSerializationDescriptor {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -265,22 +278,24 @@ extern_methods!(
         ///
         /// Default value is `MPSGraphOptionsDefault`.
         #[method(options)]
+        #[unsafe(method_family = none)]
         pub unsafe fn options(&self) -> MPSGraphOptions;
 
         #[cfg(feature = "MPSGraph")]
         /// Setter for [`options`][Self::options].
         #[method(setOptions:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setOptions(&self, options: MPSGraphOptions);
 
         #[cfg(feature = "MPSGraphTensor")]
         /// Tensors fed to the graph, can be used to order the inputs when executable is created with a graph.
-        #[method_id(feedTensors)]
+        #[method(feedTensors)]
         #[unsafe(method_family = none)]
         pub unsafe fn feedTensors(&self) -> Option<Retained<NSArray<MPSGraphTensor>>>;
 
         #[cfg(feature = "MPSGraphTensor")]
         /// Tensors targeted by the graph, can be used to order the outputs when executable was created with a graph.
-        #[method_id(targetTensors)]
+        #[method(targetTensors)]
         #[unsafe(method_family = none)]
         pub unsafe fn targetTensors(&self) -> Option<Retained<NSArray<MPSGraphTensor>>>;
 
@@ -294,6 +309,7 @@ extern_methods!(
         /// - inputTypes: Input types expected to be passed to the executable.
         /// - compilationDescriptor: Compilation descriptor to be used to specialize, since the executable was created with a compilationDescriptor already this one overrides those settings to the extent it can.
         #[method(specializeWithDevice:inputTypes:compilationDescriptor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn specializeWithDevice_inputTypes_compilationDescriptor(
             &self,
             device: Option<&MPSGraphDevice>,
@@ -310,7 +326,7 @@ extern_methods!(
         /// - device: Optional MPSGraph device to compile with
         /// - inputTypes: Input types expected to be passed to the executable.
         /// - compilationDescriptor: CompilationDescriptor to be used to specialize, since the executable was created with a compilationDescriptor already this one overrides those settings to the extent it can.
-        #[method_id(getOutputTypesWithDevice:inputTypes:compilationDescriptor:)]
+        #[method(getOutputTypesWithDevice:inputTypes:compilationDescriptor:)]
         #[unsafe(method_family = none)]
         pub unsafe fn getOutputTypesWithDevice_inputTypes_compilationDescriptor(
             &self,
@@ -329,7 +345,7 @@ extern_methods!(
         /// - inputsArray: Feeds tensorData for the placeholder tensors, same order as arguments of main function.
         /// - resultsArray: Results tensorData for which the caller wishes MPSGraphTensorData to be returned.
         /// - Returns: A valid MPSGraphTensorData array with results synchronized to the CPU memory if MPSGraphOptionsSynchronizeResults set.
-        #[method_id(runWithMTLCommandQueue:inputsArray:resultsArray:executionDescriptor:)]
+        #[method(runWithMTLCommandQueue:inputsArray:resultsArray:executionDescriptor:)]
         #[unsafe(method_family = none)]
         pub unsafe fn runWithMTLCommandQueue_inputsArray_resultsArray_executionDescriptor(
             &self,
@@ -349,7 +365,7 @@ extern_methods!(
         /// - resultsArray: Tensors for which the caller wishes MPSGraphTensorData to be returned.
         /// - executionDescriptor: ExecutionDescriptor to be passed in and used.
         /// - Returns: A valid MPSGraphTensorData array with results synchronized to the CPU memory if MPSGraphOptionsSynchronizeResults set.
-        #[method_id(runAsyncWithMTLCommandQueue:inputsArray:resultsArray:executionDescriptor:)]
+        #[method(runAsyncWithMTLCommandQueue:inputsArray:resultsArray:executionDescriptor:)]
         #[unsafe(method_family = none)]
         pub unsafe fn runAsyncWithMTLCommandQueue_inputsArray_resultsArray_executionDescriptor(
             &self,
@@ -372,7 +388,7 @@ extern_methods!(
         /// - resultsArray: Tensors for which the caller wishes MPSGraphTensorData to be returned
         /// - executionDescriptor: ExecutionDescriptor to be passed in and used,
         /// - Returns: A valid MPSGraphTensorData array with results synchronized to the CPU memory if MPSGraphOptionsSynchronizeResults set.
-        #[method_id(encodeToCommandBuffer:inputsArray:resultsArray:executionDescriptor:)]
+        #[method(encodeToCommandBuffer:inputsArray:resultsArray:executionDescriptor:)]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_inputsArray_resultsArray_executionDescriptor(
             &self,
@@ -388,6 +404,7 @@ extern_methods!(
         /// - url: The URL where to serialize the MPSGraph executable.
         /// - descriptor: The descriptor to be used to serialize the graph.
         #[method(serializeToMPSGraphPackageAtURL:descriptor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn serializeToMPSGraphPackageAtURL_descriptor(
             &self,
             url: &NSURL,
@@ -400,7 +417,7 @@ extern_methods!(
         /// - Parameters:
         /// - mpsgraphPackageURL: The URL where to read the serialized MPSGraphExecutable.
         /// - compilationDescriptor: Compilation descriptor to be used to specialize, since the executable was created with a compilationDescriptor already this one overrides those settings to the extent it can.
-        #[method_id(initWithMPSGraphPackageAtURL:compilationDescriptor:)]
+        #[method(initWithMPSGraphPackageAtURL:compilationDescriptor:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMPSGraphPackageAtURL_compilationDescriptor(
             this: Allocated<Self>,
@@ -414,7 +431,7 @@ extern_methods!(
         /// - Parameters:
         /// - coreMLPackageURL: The URL where to read the Core ML model package.
         /// - compilationDescriptor: Compilation descriptor to be used to specialize, since the executable was created with a compilationDescriptor already this one overrides those settings to the extent it can.
-        #[method_id(initWithCoreMLPackageAtURL:compilationDescriptor:)]
+        #[method(initWithCoreMLPackageAtURL:compilationDescriptor:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoreMLPackageAtURL_compilationDescriptor(
             this: Allocated<Self>,
@@ -428,11 +445,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MPSGraphCore")]
     unsafe impl MPSGraphExecutable {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -19,6 +19,7 @@ extern_protocol!(
         /// challenge: The challenge which was selected
         #[optional]
         #[method(player:wantsToPlayChallenge:)]
+        #[unsafe(method_family = none)]
         unsafe fn player_wantsToPlayChallenge(&self, player: &GKPlayer, challenge: &GKChallenge);
 
         #[cfg(all(
@@ -31,6 +32,7 @@ extern_protocol!(
         /// challenge: The challenge which was received
         #[optional]
         #[method(player:didReceiveChallenge:)]
+        #[unsafe(method_family = none)]
         unsafe fn player_didReceiveChallenge(&self, player: &GKPlayer, challenge: &GKChallenge);
 
         #[cfg(all(
@@ -44,6 +46,7 @@ extern_protocol!(
         /// friendPlayer: The friend who sent the challenge originally
         #[optional]
         #[method(player:didCompleteChallenge:issuedByFriend:)]
+        #[unsafe(method_family = none)]
         unsafe fn player_didCompleteChallenge_issuedByFriend(
             &self,
             player: &GKPlayer,
@@ -62,6 +65,7 @@ extern_protocol!(
         /// friendPlayer: The friend who completed the challenge
         #[optional]
         #[method(player:issuedChallengeWasCompleted:byFriend:)]
+        #[unsafe(method_family = none)]
         unsafe fn player_issuedChallengeWasCompleted_byFriend(
             &self,
             player: &GKPlayer,

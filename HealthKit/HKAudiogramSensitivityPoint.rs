@@ -27,27 +27,27 @@ extern_methods!(
     unsafe impl HKAudiogramSensitivityPoint {
         #[cfg(feature = "HKQuantity")]
         /// is [HKUnit hertzUnit] or "Hz".
-        #[method_id(frequency)]
+        #[method(frequency)]
         #[unsafe(method_family = none)]
         pub unsafe fn frequency(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
         /// The unit of measurement is `HKUnit.decibelHearingLevelUnit` or "dBHL".
         #[deprecated = "Use tests object which will contain a value for left ear"]
-        #[method_id(leftEarSensitivity)]
+        #[method(leftEarSensitivity)]
         #[unsafe(method_family = none)]
         pub unsafe fn leftEarSensitivity(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKQuantity")]
         /// The unit of measurement is `HKUnit.decibelHearingLevelUnit` or "dBHL".
         #[deprecated = "Use tests object which will contain a value for right ear"]
-        #[method_id(rightEarSensitivity)]
+        #[method(rightEarSensitivity)]
         #[unsafe(method_family = none)]
         pub unsafe fn rightEarSensitivity(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKAudiogramSensitivityTest")]
         /// The tests conducted at this frequency
-        #[method_id(tests)]
+        #[method(tests)]
         #[unsafe(method_family = none)]
         pub unsafe fn tests(&self) -> Retained<NSArray<HKAudiogramSensitivityTest>>;
 
@@ -66,7 +66,7 @@ extern_methods!(
         /// creating the instance.  Errors may include incorrect quantity units
         /// or data that is out of an expected range.
         #[deprecated = "Use +[HKAudiogramSensitivityPoint sensitivityPointWithFrequency:tests:error:]"]
-        #[method_id(sensitivityPointWithFrequency:leftEarSensitivity:rightEarSensitivity:error:_)]
+        #[method(sensitivityPointWithFrequency:leftEarSensitivity:rightEarSensitivity:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn sensitivityPointWithFrequency_leftEarSensitivity_rightEarSensitivity_error(
             frequency: &HKQuantity,
@@ -86,14 +86,14 @@ extern_methods!(
         /// Returns: New instance of a sensitivity point or nil if there were problems
         /// creating the instance.  Errors may include incorrect quantity units
         /// or data that is out of an expected range.
-        #[method_id(sensitivityPointWithFrequency:tests:error:_)]
+        #[method(sensitivityPointWithFrequency:tests:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn sensitivityPointWithFrequency_tests_error(
             frequency: &HKQuantity,
             tests: &NSArray<HKAudiogramSensitivityTest>,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -102,7 +102,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKAudiogramSensitivityPoint {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

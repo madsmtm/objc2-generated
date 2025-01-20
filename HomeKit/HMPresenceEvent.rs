@@ -45,7 +45,7 @@ unsafe impl NSObjectProtocol for HMPresenceEvent {}
 extern_methods!(
     #[cfg(feature = "HMEvent")]
     unsafe impl HMPresenceEvent {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -60,7 +60,7 @@ extern_methods!(
         ///
         ///
         /// Returns: Instance object representing the presence event.
-        #[method_id(initWithPresenceEventType:presenceUserType:)]
+        #[method(initWithPresenceEventType:presenceUserType:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPresenceEventType_presenceUserType(
             this: Allocated<Self>,
@@ -71,11 +71,13 @@ extern_methods!(
         #[cfg(feature = "HMPresenceEventDefines")]
         /// presenceEventType The event type that will trigger the event.
         #[method(presenceEventType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn presenceEventType(&self) -> HMPresenceEventType;
 
         #[cfg(feature = "HMPresenceEventDefines")]
         /// presenceUserType The user type whose presence will trigger the event.
         #[method(presenceUserType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn presenceUserType(&self) -> HMPresenceEventUserType;
     }
 );
@@ -85,7 +87,7 @@ extern_methods!(
     #[cfg(feature = "HMEvent")]
     unsafe impl HMPresenceEvent {
         #[deprecated = "HMEvent is abstract"]
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -129,28 +131,32 @@ unsafe impl NSObjectProtocol for HMMutablePresenceEvent {}
 extern_methods!(
     #[cfg(feature = "HMEvent")]
     unsafe impl HMMutablePresenceEvent {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "HMPresenceEventDefines")]
         /// presenceEventType The event type that will trigger the event.
         #[method(presenceEventType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn presenceEventType(&self) -> HMPresenceEventType;
 
         #[cfg(feature = "HMPresenceEventDefines")]
         /// Setter for [`presenceEventType`][Self::presenceEventType].
         #[method(setPresenceEventType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPresenceEventType(&self, presence_event_type: HMPresenceEventType);
 
         #[cfg(feature = "HMPresenceEventDefines")]
         /// presenceUserType The user type whose presence will trigger the event.
         #[method(presenceUserType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn presenceUserType(&self) -> HMPresenceEventUserType;
 
         #[cfg(feature = "HMPresenceEventDefines")]
         /// Setter for [`presenceUserType`][Self::presenceUserType].
         #[method(setPresenceUserType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPresenceUserType(&self, presence_user_type: HMPresenceEventUserType);
     }
 );
@@ -170,7 +176,7 @@ extern_methods!(
         ///
         ///
         /// Returns: Instance object representing the presence event.
-        #[method_id(initWithPresenceEventType:presenceUserType:)]
+        #[method(initWithPresenceEventType:presenceUserType:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPresenceEventType_presenceUserType(
             this: Allocated<Self>,
@@ -185,7 +191,7 @@ extern_methods!(
     #[cfg(feature = "HMEvent")]
     unsafe impl HMMutablePresenceEvent {
         #[deprecated = "HMEvent is abstract"]
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -22,12 +22,13 @@ unsafe impl NSObjectProtocol for WKInterfaceActivityRing {}
 extern_methods!(
     #[cfg(feature = "WKInterfaceObject")]
     unsafe impl WKInterfaceActivityRing {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-health-kit")]
         #[method(setActivitySummary:animated:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setActivitySummary_animated(
             &self,
             activity_summary: Option<&HKActivitySummary>,
@@ -40,7 +41,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "WKInterfaceObject")]
     unsafe impl WKInterfaceActivityRing {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

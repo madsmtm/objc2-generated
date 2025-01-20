@@ -36,13 +36,13 @@ extern_methods!(
     #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
     unsafe impl VNDetectHumanBodyPose3DRequest {
         /// Creates a new VNDetectHumanBodyPose3DRequest with no completion handler.
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         /// Creates a new VNDetectHumanBodyPose3DRequest with completion handler.
-        #[method_id(initWithCompletionHandler:)]
+        #[method(initWithCompletionHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
@@ -55,7 +55,7 @@ extern_methods!(
         /// Parameter `error`: The address of a variable that will be populated with an error upon failure.  If the caller does not need this information, NULL can be passed.
         ///
         /// Returns: An array of VNHumanBodyPose3DObservationJointName symbols that are supported by the request revision, or nil if a failure occurs.
-        #[method_id(supportedJointNamesAndReturnError:_)]
+        #[method(supportedJointNamesAndReturnError:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedJointNamesAndReturnError(
             &self,
@@ -67,7 +67,7 @@ extern_methods!(
         /// Parameter `error`: The address of a variable that will be populated with an error upon failure.  If the caller does not need this information, NULL can be passed.
         ///
         /// Returns: An array of VNHumanBody3DPoseObservationJointsGroupName symbols that are supported by the request, or nil if a failure occurs.
-        #[method_id(supportedJointsGroupNamesAndReturnError:_)]
+        #[method(supportedJointsGroupNamesAndReturnError:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedJointsGroupNamesAndReturnError(
             &self,
@@ -75,7 +75,7 @@ extern_methods!(
 
         #[cfg(feature = "VNObservation")]
         /// VNHumanBodyPose3DObservation results.
-        #[method_id(results)]
+        #[method(results)]
         #[unsafe(method_family = none)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNHumanBodyPose3DObservation>>>;
     }
@@ -85,7 +85,7 @@ extern_methods!(
     /// Methods declared on superclass `VNStatefulRequest`
     #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
     unsafe impl VNDetectHumanBodyPose3DRequest {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -96,7 +96,7 @@ extern_methods!(
         /// Parameter `frameAnalysisSpacing`: The reciprocal of maximum rate at which buffers will be processed. The request will not process buffers that fall within the frameAnalysisSpacing after it has performed the analysis. The analysis is not done by wall time but by analysis of of the time stamps of the samplebuffers being processed.
         ///
         /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
-        #[method_id(initWithFrameAnalysisSpacing:completionHandler:)]
+        #[method(initWithFrameAnalysisSpacing:completionHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrameAnalysisSpacing_completionHandler(
             this: Allocated<Self>,

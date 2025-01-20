@@ -32,7 +32,7 @@ unsafe impl NSObjectProtocol for VZXHCIControllerConfiguration {}
 extern_methods!(
     #[cfg(feature = "VZUSBControllerConfiguration")]
     unsafe impl VZXHCIControllerConfiguration {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -42,7 +42,7 @@ extern_methods!(
     /// Methods declared on superclass `VZUSBControllerConfiguration`
     #[cfg(feature = "VZUSBControllerConfiguration")]
     unsafe impl VZXHCIControllerConfiguration {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

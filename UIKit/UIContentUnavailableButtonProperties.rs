@@ -31,42 +31,48 @@ extern_methods!(
     unsafe impl UIContentUnavailableButtonProperties {
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         /// The primary action of the button.
-        #[method_id(primaryAction)]
+        #[method(primaryAction)]
         #[unsafe(method_family = none)]
         pub unsafe fn primaryAction(&self) -> Option<Retained<UIAction>>;
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         /// Setter for [`primaryAction`][Self::primaryAction].
         #[method(setPrimaryAction:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPrimaryAction(&self, primary_action: Option<&UIAction>);
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
         /// An optional menu for the button to display.
-        #[method_id(menu)]
+        #[method(menu)]
         #[unsafe(method_family = none)]
         pub unsafe fn menu(&self) -> Option<Retained<UIMenu>>;
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
         /// Setter for [`menu`][Self::menu].
         #[method(setMenu:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMenu(&self, menu: Option<&UIMenu>);
 
         /// Whether the button is enabled. Default is YES.
         #[method(isEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isEnabled(&self) -> bool;
 
         /// Setter for [`isEnabled`][Self::isEnabled].
         #[method(setEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
         #[cfg(feature = "UIButton")]
         /// The role of the button.
         #[method(role)]
+        #[unsafe(method_family = none)]
         pub unsafe fn role(&self) -> UIButtonRole;
 
         #[cfg(feature = "UIButton")]
         /// Setter for [`role`][Self::role].
         #[method(setRole:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRole(&self, role: UIButtonRole);
     }
 );
@@ -74,11 +80,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIContentUnavailableButtonProperties {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

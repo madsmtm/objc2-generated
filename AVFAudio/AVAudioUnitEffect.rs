@@ -46,7 +46,7 @@ extern_methods!(
         /// kAudioUnitType_Panner
         /// kAudioUnitType_RemoteEffect
         /// kAudioUnitType_RemoteMusicEffect
-        #[method_id(initWithAudioComponentDescription:)]
+        #[method(initWithAudioComponentDescription:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAudioComponentDescription(
             this: Allocated<Self>,
@@ -55,10 +55,12 @@ extern_methods!(
 
         /// Bypass state of the audio unit.
         #[method(bypass)]
+        #[unsafe(method_family = none)]
         pub unsafe fn bypass(&self) -> bool;
 
         /// Setter for [`bypass`][Self::bypass].
         #[method(setBypass:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBypass(&self, bypass: bool);
     }
 );
@@ -67,11 +69,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "AVAudioNode", feature = "AVAudioUnit"))]
     unsafe impl AVAudioUnitEffect {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

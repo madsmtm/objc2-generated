@@ -210,7 +210,7 @@ extern_methods!(
         /// On creation, the engine is by default connected to an audio device and automatically renders
         /// in realtime. It can be configured to operate in manual rendering mode through
         /// `enableManualRenderingMode:format:maximumFrameCount:error:`.
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -234,6 +234,7 @@ extern_methods!(
         /// [_player release];
         /// ```
         #[method(attachNode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn attachNode(&self, node: &AVAudioNode);
 
         #[cfg(feature = "AVAudioNode")]
@@ -241,6 +242,7 @@ extern_methods!(
         ///
         /// If necessary, the engine will safely disconnect the node before detaching it.
         #[method(detachNode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn detachNode(&self, node: &AVAudioNode);
 
         #[cfg(all(
@@ -269,6 +271,7 @@ extern_methods!(
         /// Note that any pre-existing connection(s) involving the source's output bus or the
         /// destination's input bus will be broken.
         #[method(connect:to:fromBus:toBus:format:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn connect_to_fromBus_toBus_format(
             &self,
             node1: &AVAudioNode,
@@ -285,6 +288,7 @@ extern_methods!(
         /// and bus 0 on the destination node, except in the case of a destination which is a mixer,
         /// in which case the destination is the mixer's nextAvailableInputBus.
         #[method(connect:to:format:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn connect_to_format(
             &self,
             node1: &AVAudioNode,
@@ -331,6 +335,7 @@ extern_methods!(
         /// - any AVAudioUnitTimeEffect
         /// - any sample rate conversion
         #[method(connect:toConnectionPoints:fromBus:format:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn connect_toConnectionPoints_fromBus_format(
             &self,
             source_node: &AVAudioNode,
@@ -346,6 +351,7 @@ extern_methods!(
         ///
         /// Parameter `bus`: The destination's input bus to disconnect
         #[method(disconnectNodeInput:bus:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn disconnectNodeInput_bus(&self, node: &AVAudioNode, bus: AVAudioNodeBus);
 
         #[cfg(feature = "AVAudioNode")]
@@ -355,6 +361,7 @@ extern_methods!(
         ///
         /// Connections are broken on each of the node's input busses.
         #[method(disconnectNodeInput:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn disconnectNodeInput(&self, node: &AVAudioNode);
 
         #[cfg(all(feature = "AVAudioNode", feature = "AVAudioTypes"))]
@@ -364,6 +371,7 @@ extern_methods!(
         ///
         /// Parameter `bus`: The source's output bus to disconnect
         #[method(disconnectNodeOutput:bus:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn disconnectNodeOutput_bus(&self, node: &AVAudioNode, bus: AVAudioNodeBus);
 
         #[cfg(feature = "AVAudioNode")]
@@ -373,6 +381,7 @@ extern_methods!(
         ///
         /// Connections are broken on each of the node's output busses.
         #[method(disconnectNodeOutput:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn disconnectNodeOutput(&self, node: &AVAudioNode);
 
         /// Prepare the engine for starting.
@@ -383,6 +392,7 @@ extern_methods!(
         /// On AVAudioSession supported platforms, this method may cause the audio session to be implicitly activated. Activating the audio session (implicitly or explicitly) may cause other audio sessions to be interrupted or ducked depending on the session's configuration. It is recommended to configure and activate the app's audio session before preparing the engine.
         /// See https://developer.apple.com/library/archive/documentation/Audio/Conceptual/AudioSessionProgrammingGuide/Introduction/Introduction.html for details.
         #[method(prepare)]
+        #[unsafe(method_family = none)]
         pub unsafe fn prepare(&self);
 
         /// Start the engine.
@@ -404,6 +414,7 @@ extern_methods!(
         ///
         /// On AVAudioSession supported platforms, this method may cause the audio session to be implicitly activated. It is recommended to configure and activate the app's audio session before starting the engine. For more information, see the `prepare` method above.
         #[method(startAndReturnError:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn startAndReturnError(&self) -> Result<(), Retained<NSError>>;
 
         /// Pause the engine.
@@ -415,6 +426,7 @@ extern_methods!(
         /// Pausing the engine does not deallocate the resources allocated by prepare. Resume the
         /// engine by invoking start again.
         #[method(pause)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pause(&self);
 
         /// reset
@@ -425,6 +437,7 @@ extern_methods!(
         ///
         /// In manual rendering mode, the render timeline is reset to a sample time of zero.
         #[method(reset)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reset(&self);
 
         /// When the engine is rendering to/from an audio device, stops the audio hardware and the
@@ -433,6 +446,7 @@ extern_methods!(
         ///
         /// Stopping the engine releases the resources allocated by prepare.
         #[method(stop)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stop(&self);
 
         #[cfg(all(
@@ -452,7 +466,7 @@ extern_methods!(
         /// Connections are always one-to-one or one-to-many, never many-to-one.
         ///
         /// Returns nil if there is no connection on the node's specified input bus.
-        #[method_id(inputConnectionPointForNode:inputBus:)]
+        #[method(inputConnectionPointForNode:inputBus:)]
         #[unsafe(method_family = none)]
         pub unsafe fn inputConnectionPointForNode_inputBus(
             &self,
@@ -477,7 +491,7 @@ extern_methods!(
         /// Connections are always one-to-one or one-to-many, never many-to-one.
         ///
         /// Returns an empty array if there are no connections on the node's specified output bus.
-        #[method_id(outputConnectionPointsForNode:outputBus:)]
+        #[method(outputConnectionPointsForNode:outputBus:)]
         #[unsafe(method_family = none)]
         pub unsafe fn outputConnectionPointsForNode_outputBus(
             &self,
@@ -489,12 +503,14 @@ extern_methods!(
         #[cfg(not(target_os = "watchos"))]
         /// The MusicSequence previously attached to the engine (if any).
         #[method(musicSequence)]
+        #[unsafe(method_family = none)]
         pub unsafe fn musicSequence(&self) -> MusicSequence;
 
         #[cfg(feature = "objc2-audio-toolbox")]
         #[cfg(not(target_os = "watchos"))]
         /// Setter for [`musicSequence`][Self::musicSequence].
         #[method(setMusicSequence:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMusicSequence(&self, music_sequence: MusicSequence);
 
         #[cfg(all(feature = "AVAudioIONode", feature = "AVAudioNode"))]
@@ -514,7 +530,7 @@ extern_methods!(
         /// In manual rendering mode, the output format of the output node will determine the
         /// render format of the engine. It can be changed through
         /// `enableManualRenderingMode:format:maximumFrameCount:error:`.
-        #[method_id(outputNode)]
+        #[method(outputNode)]
         #[unsafe(method_family = none)]
         pub unsafe fn outputNode(&self) -> Retained<AVAudioOutputNode>;
 
@@ -540,7 +556,7 @@ extern_methods!(
         /// In manual rendering mode, the input node can be used to synchronously supply data to
         /// the engine while it is rendering (see
         /// `AVAudioInputNode(setManualRenderingInputPCMFormat:inputBlock:)`.
-        #[method_id(inputNode)]
+        #[method(inputNode)]
         #[unsafe(method_family = none)]
         pub unsafe fn inputNode(&self) -> Retained<AVAudioInputNode>;
 
@@ -558,12 +574,13 @@ extern_methods!(
         ///
         /// By default, the mixer's output format (sample rate and channel count) will track the format
         /// of the output node. You may however make the connection explicitly with a different format.
-        #[method_id(mainMixerNode)]
+        #[method(mainMixerNode)]
         #[unsafe(method_family = none)]
         pub unsafe fn mainMixerNode(&self) -> Retained<AVAudioMixerNode>;
 
         /// The engine's running state.
         #[method(isRunning)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isRunning(&self) -> bool;
 
         /// When auto shutdown is enabled, the engine can start and stop the audio hardware dynamically,
@@ -583,15 +600,17 @@ extern_methods!(
         /// the value is changed when the engine is in manual rendering mode, it will take effect
         /// whenever the engine is switched to render to/from the audio device.
         #[method(isAutoShutdownEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isAutoShutdownEnabled(&self) -> bool;
 
         /// Setter for [`isAutoShutdownEnabled`][Self::isAutoShutdownEnabled].
         #[method(setAutoShutdownEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAutoShutdownEnabled(&self, auto_shutdown_enabled: bool);
 
         #[cfg(feature = "AVAudioNode")]
         /// Set of all nodes attached to the engine.
-        #[method_id(attachedNodes)]
+        #[method(attachedNodes)]
         #[unsafe(method_family = none)]
         pub unsafe fn attachedNodes(&self) -> Retained<NSSet<AVAudioNode>>;
 
@@ -635,6 +654,7 @@ extern_methods!(
         /// Reasons for potential failure when switching to manual rendering mode include:
         /// - Engine is not in a stopped state.
         #[method(enableManualRenderingMode:format:maximumFrameCount:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn enableManualRenderingMode_format_maximumFrameCount_error(
             &self,
             mode: AVAudioEngineManualRenderingMode,
@@ -654,6 +674,7 @@ extern_methods!(
         /// Calling this method when the engine is already rendering to/from an audio device has no
         /// effect.
         #[method(disableManualRenderingMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn disableManualRenderingMode(&self);
 
         #[cfg(all(
@@ -676,11 +697,13 @@ extern_methods!(
         /// call or    `renderOffline:toBuffer:error:` ObjC method can be used.
         /// All the rules outlined in `renderOffline:toBuffer:error:` are applicable here as well.
         #[method(manualRenderingBlock)]
+        #[unsafe(method_family = none)]
         pub unsafe fn manualRenderingBlock(&self) -> AVAudioEngineManualRenderingBlock;
 
         /// Whether or not the engine is operating in manual rendering mode, i.e. not connected
         /// to an audio device and rendering in response to the requests from the client
         #[method(isInManualRenderingMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isInManualRenderingMode(&self) -> bool;
 
         /// The manual rendering mode configured on the engine
@@ -688,6 +711,7 @@ extern_methods!(
         /// This property is meaningful only when the engine is operating in manual rendering mode,
         /// i.e. when `isInManualRenderingMode` returns true.
         #[method(manualRenderingMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn manualRenderingMode(&self) -> AVAudioEngineManualRenderingMode;
 
         #[cfg(feature = "AVAudioFormat")]
@@ -695,7 +719,7 @@ extern_methods!(
         ///
         /// Querying this property when the engine is not in manual rendering mode will return an
         /// invalid format, with zero sample rate and channel count.
-        #[method_id(manualRenderingFormat)]
+        #[method(manualRenderingFormat)]
         #[unsafe(method_family = none)]
         pub unsafe fn manualRenderingFormat(&self) -> Retained<AVAudioFormat>;
 
@@ -705,6 +729,7 @@ extern_methods!(
         ///
         /// Querying this property when the engine is not in manual rendering mode will return zero.
         #[method(manualRenderingMaximumFrameCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn manualRenderingMaximumFrameCount(&self) -> AVAudioFrameCount;
 
         #[cfg(feature = "AVAudioTypes")]
@@ -714,6 +739,7 @@ extern_methods!(
         /// of the render format's sample rate. Resetting the engine (see `reset`) will reset the
         /// timeline back to zero.
         #[method(manualRenderingSampleTime)]
+        #[unsafe(method_family = none)]
         pub unsafe fn manualRenderingSampleTime(&self) -> AVAudioFramePosition;
 
         #[cfg(all(
@@ -751,6 +777,7 @@ extern_methods!(
         /// will be overwritten when making the MIDI connection.
         #[deprecated]
         #[method(connectMIDI:to:format:block:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn connectMIDI_to_format_block(
             &self,
             source_node: &AVAudioNode,
@@ -798,6 +825,7 @@ extern_methods!(
         /// will be overwritten when making the MIDI connection.
         #[deprecated]
         #[method(connectMIDI:toNodes:format:block:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn connectMIDI_toNodes_format_block(
             &self,
             source_node: &AVAudioNode,
@@ -816,6 +844,7 @@ extern_methods!(
         /// If a tap block is installed on the source node, it will be removed when the last
         /// connection from the source node is removed.
         #[method(disconnectMIDI:from:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn disconnectMIDI_from(
             &self,
             source_node: &AVAudioNode,
@@ -832,6 +861,7 @@ extern_methods!(
         /// If a tap block is installed on the source node, it will be removed when the last
         /// connection from the source node is removed.
         #[method(disconnectMIDI:fromNodes:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn disconnectMIDI_fromNodes(
             &self,
             source_node: &AVAudioNode,
@@ -843,6 +873,7 @@ extern_methods!(
         ///
         /// Parameter `node`: The node whose MIDI input is to be disconnected.
         #[method(disconnectMIDIInput:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn disconnectMIDIInput(&self, node: &AVAudioNode);
 
         #[cfg(feature = "AVAudioNode")]
@@ -850,6 +881,7 @@ extern_methods!(
         ///
         /// Parameter `node`: The node whose MIDI outputs are to be disconnected.
         #[method(disconnectMIDIOutput:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn disconnectMIDIOutput(&self, node: &AVAudioNode);
     }
 );
@@ -857,7 +889,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAudioEngine {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

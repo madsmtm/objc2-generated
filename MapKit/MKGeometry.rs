@@ -277,21 +277,23 @@ extern_category!(
     /// Category on [`NSValue`].
     pub unsafe trait NSValueMapKitGeometryExtensions {
         #[cfg(feature = "objc2-core-location")]
-        #[method_id(valueWithMKCoordinate:)]
+        #[method(valueWithMKCoordinate:)]
         #[unsafe(method_family = none)]
         unsafe fn valueWithMKCoordinate(coordinate: CLLocationCoordinate2D) -> Retained<NSValue>;
 
         #[cfg(feature = "objc2-core-location")]
-        #[method_id(valueWithMKCoordinateSpan:)]
+        #[method(valueWithMKCoordinateSpan:)]
         #[unsafe(method_family = none)]
         unsafe fn valueWithMKCoordinateSpan(span: MKCoordinateSpan) -> Retained<NSValue>;
 
         #[cfg(feature = "objc2-core-location")]
         #[method(MKCoordinateValue)]
+        #[unsafe(method_family = none)]
         unsafe fn MKCoordinateValue(&self) -> CLLocationCoordinate2D;
 
         #[cfg(feature = "objc2-core-location")]
         #[method(MKCoordinateSpanValue)]
+        #[unsafe(method_family = none)]
         unsafe fn MKCoordinateSpanValue(&self) -> MKCoordinateSpan;
     }
 

@@ -28,14 +28,14 @@ extern_methods!(
     #[cfg(feature = "NSResponder")]
     unsafe impl NSWindowController {
         #[cfg(feature = "NSWindow")]
-        #[method_id(initWithWindow:)]
+        #[method(initWithWindow:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithWindow(
             this: Allocated<Self>,
             window: Option<&NSWindow>,
         ) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -43,7 +43,7 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSNib")]
-        #[method_id(initWithWindowNibName:)]
+        #[method(initWithWindowNibName:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithWindowNibName(
             this: Allocated<Self>,
@@ -51,7 +51,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSNib")]
-        #[method_id(initWithWindowNibName:owner:)]
+        #[method(initWithWindowNibName:owner:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithWindowNibName_owner(
             this: Allocated<Self>,
@@ -59,7 +59,7 @@ extern_methods!(
             owner: &AnyObject,
         ) -> Retained<Self>;
 
-        #[method_id(initWithWindowNibPath:owner:)]
+        #[method(initWithWindowNibPath:owner:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithWindowNibPath_owner(
             this: Allocated<Self>,
@@ -68,40 +68,43 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSNib")]
-        #[method_id(windowNibName)]
+        #[method(windowNibName)]
         #[unsafe(method_family = none)]
         pub unsafe fn windowNibName(&self) -> Option<Retained<NSNibName>>;
 
-        #[method_id(windowNibPath)]
+        #[method(windowNibPath)]
         #[unsafe(method_family = none)]
         pub unsafe fn windowNibPath(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(owner)]
+        #[method(owner)]
         #[unsafe(method_family = none)]
         pub unsafe fn owner(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSWindow")]
-        #[method_id(windowFrameAutosaveName)]
+        #[method(windowFrameAutosaveName)]
         #[unsafe(method_family = none)]
         pub unsafe fn windowFrameAutosaveName(&self) -> Retained<NSWindowFrameAutosaveName>;
 
         #[cfg(feature = "NSWindow")]
         /// Setter for [`windowFrameAutosaveName`][Self::windowFrameAutosaveName].
         #[method(setWindowFrameAutosaveName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWindowFrameAutosaveName(
             &self,
             window_frame_autosave_name: &NSWindowFrameAutosaveName,
         );
 
         #[method(shouldCascadeWindows)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shouldCascadeWindows(&self) -> bool;
 
         /// Setter for [`shouldCascadeWindows`][Self::shouldCascadeWindows].
         #[method(setShouldCascadeWindows:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShouldCascadeWindows(&self, should_cascade_windows: bool);
 
         #[cfg(feature = "NSPreviewRepresentingActivityItem")]
-        #[method_id(previewRepresentableActivityItems)]
+        #[method(previewRepresentableActivityItems)]
         #[unsafe(method_family = none)]
         pub unsafe fn previewRepresentableActivityItems(
             &self,
@@ -110,6 +113,7 @@ extern_methods!(
         #[cfg(feature = "NSPreviewRepresentingActivityItem")]
         /// Setter for [`previewRepresentableActivityItems`][Self::previewRepresentableActivityItems].
         #[method(setPreviewRepresentableActivityItems:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreviewRepresentableActivityItems(
             &self,
             preview_representable_activity_items: Option<
@@ -117,28 +121,33 @@ extern_methods!(
             >,
         );
 
-        #[method_id(document)]
+        #[method(document)]
         #[unsafe(method_family = none)]
         pub unsafe fn document(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`document`][Self::document].
         #[method(setDocument:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDocument(&self, document: Option<&AnyObject>);
 
         #[method(setDocumentEdited:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDocumentEdited(&self, dirty_flag: bool);
 
         #[method(shouldCloseDocument)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shouldCloseDocument(&self) -> bool;
 
         /// Setter for [`shouldCloseDocument`][Self::shouldCloseDocument].
         #[method(setShouldCloseDocument:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShouldCloseDocument(&self, should_close_document: bool);
 
         #[method(synchronizeWindowTitleWithDocumentName)]
+        #[unsafe(method_family = none)]
         pub unsafe fn synchronizeWindowTitleWithDocumentName(&self);
 
-        #[method_id(windowTitleForDocumentDisplayName:)]
+        #[method(windowTitleForDocumentDisplayName:)]
         #[unsafe(method_family = none)]
         pub unsafe fn windowTitleForDocumentDisplayName(
             &self,
@@ -146,44 +155,52 @@ extern_methods!(
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSViewController")]
-        #[method_id(contentViewController)]
+        #[method(contentViewController)]
         #[unsafe(method_family = none)]
         pub unsafe fn contentViewController(&self) -> Option<Retained<NSViewController>>;
 
         #[cfg(feature = "NSViewController")]
         /// Setter for [`contentViewController`][Self::contentViewController].
         #[method(setContentViewController:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setContentViewController(
             &self,
             content_view_controller: Option<&NSViewController>,
         );
 
         #[cfg(feature = "NSWindow")]
-        #[method_id(window)]
+        #[method(window)]
         #[unsafe(method_family = none)]
         pub unsafe fn window(&self) -> Option<Retained<NSWindow>>;
 
         #[cfg(feature = "NSWindow")]
         /// Setter for [`window`][Self::window].
         #[method(setWindow:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWindow(&self, window: Option<&NSWindow>);
 
         #[method(isWindowLoaded)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isWindowLoaded(&self) -> bool;
 
         #[method(windowWillLoad)]
+        #[unsafe(method_family = none)]
         pub unsafe fn windowWillLoad(&self);
 
         #[method(windowDidLoad)]
+        #[unsafe(method_family = none)]
         pub unsafe fn windowDidLoad(&self);
 
         #[method(loadWindow)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loadWindow(&self);
 
         #[method(close)]
+        #[unsafe(method_family = none)]
         pub unsafe fn close(&self);
 
         #[method(showWindow:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn showWindow(&self, sender: Option<&AnyObject>);
     }
 );
@@ -192,7 +209,7 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(feature = "NSResponder")]
     unsafe impl NSWindowController {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -202,7 +219,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSResponder")]
     unsafe impl NSWindowController {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -214,7 +231,7 @@ extern_methods!(
     #[cfg(feature = "NSResponder")]
     unsafe impl NSWindowController {
         #[cfg(feature = "NSStoryboard")]
-        #[method_id(storyboard)]
+        #[method(storyboard)]
         #[unsafe(method_family = none)]
         pub unsafe fn storyboard(&self) -> Option<Retained<NSStoryboard>>;
     }
@@ -225,6 +242,7 @@ extern_methods!(
     #[cfg(feature = "NSResponder")]
     unsafe impl NSWindowController {
         #[method(dismissController:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dismissController(&self, sender: Option<&AnyObject>);
     }
 );

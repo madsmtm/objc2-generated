@@ -67,7 +67,7 @@ extern_protocol!(
     pub unsafe trait UIActivityItemsConfigurationReading:
         NSObjectProtocol + MainThreadOnly
     {
-        #[method_id(itemProvidersForActivityItemsConfiguration)]
+        #[method(itemProvidersForActivityItemsConfiguration)]
         #[unsafe(method_family = none)]
         unsafe fn itemProvidersForActivityItemsConfiguration(
             &self,
@@ -75,13 +75,14 @@ extern_protocol!(
 
         #[optional]
         #[method(activityItemsConfigurationSupportsInteraction:)]
+        #[unsafe(method_family = none)]
         unsafe fn activityItemsConfigurationSupportsInteraction(
             &self,
             interaction: &UIActivityItemsConfigurationInteraction,
         ) -> bool;
 
         #[optional]
-        #[method_id(activityItemsConfigurationMetadataForKey:)]
+        #[method(activityItemsConfigurationMetadataForKey:)]
         #[unsafe(method_family = none)]
         unsafe fn activityItemsConfigurationMetadataForKey(
             &self,
@@ -89,7 +90,7 @@ extern_protocol!(
         ) -> Option<Retained<AnyObject>>;
 
         #[optional]
-        #[method_id(activityItemsConfigurationMetadataForItemAtIndex:key:)]
+        #[method(activityItemsConfigurationMetadataForItemAtIndex:key:)]
         #[unsafe(method_family = none)]
         unsafe fn activityItemsConfigurationMetadataForItemAtIndex_key(
             &self,
@@ -99,7 +100,7 @@ extern_protocol!(
 
         #[cfg(feature = "objc2-core-foundation")]
         #[optional]
-        #[method_id(activityItemsConfigurationPreviewForItemAtIndex:intent:suggestedSize:)]
+        #[method(activityItemsConfigurationPreviewForItemAtIndex:intent:suggestedSize:)]
         #[unsafe(method_family = none)]
         unsafe fn activityItemsConfigurationPreviewForItemAtIndex_intent_suggestedSize(
             &self,
@@ -110,7 +111,7 @@ extern_protocol!(
 
         #[cfg(feature = "UIActivity")]
         #[optional]
-        #[method_id(applicationActivitiesForActivityItemsConfiguration)]
+        #[method(applicationActivitiesForActivityItemsConfiguration)]
         #[unsafe(method_family = none)]
         unsafe fn applicationActivitiesForActivityItemsConfiguration(
             &self,
@@ -123,7 +124,7 @@ extern_protocol!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationproviding?language=objc)
     pub unsafe trait UIActivityItemsConfigurationProviding: NSObjectProtocol {
-        #[method_id(activityItemsConfiguration)]
+        #[method(activityItemsConfiguration)]
         #[unsafe(method_family = none)]
         unsafe fn activityItemsConfiguration(
             &self,

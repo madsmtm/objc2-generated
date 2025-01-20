@@ -43,36 +43,40 @@ unsafe impl NSObjectProtocol for NSPDFPanel {}
 
 extern_methods!(
     unsafe impl NSPDFPanel {
-        #[method_id(panel)]
+        #[method(panel)]
         #[unsafe(method_family = none)]
         pub unsafe fn panel(mtm: MainThreadMarker) -> Retained<NSPDFPanel>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
-        #[method_id(accessoryController)]
+        #[method(accessoryController)]
         #[unsafe(method_family = none)]
         pub unsafe fn accessoryController(&self) -> Option<Retained<NSViewController>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         /// Setter for [`accessoryController`][Self::accessoryController].
         #[method(setAccessoryController:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAccessoryController(
             &self,
             accessory_controller: Option<&NSViewController>,
         );
 
         #[method(options)]
+        #[unsafe(method_family = none)]
         pub unsafe fn options(&self) -> NSPDFPanelOptions;
 
         /// Setter for [`options`][Self::options].
         #[method(setOptions:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setOptions(&self, options: NSPDFPanelOptions);
 
-        #[method_id(defaultFileName)]
+        #[method(defaultFileName)]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultFileName(&self) -> Retained<NSString>;
 
         /// Setter for [`defaultFileName`][Self::defaultFileName].
         #[method(setDefaultFileName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDefaultFileName(&self, default_file_name: &NSString);
 
         #[cfg(all(
@@ -82,6 +86,7 @@ extern_methods!(
             feature = "block2"
         ))]
         #[method(beginSheetWithPDFInfo:modalForWindow:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn beginSheetWithPDFInfo_modalForWindow_completionHandler(
             &self,
             pdf_info: &NSPDFInfo,
@@ -94,11 +99,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPDFPanel {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

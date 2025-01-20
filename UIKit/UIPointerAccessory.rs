@@ -106,22 +106,25 @@ extern_methods!(
     unsafe impl UIPointerAccessory {
         #[cfg(feature = "UIPointerStyle")]
         /// This accessory's shape.
-        #[method_id(shape)]
+        #[method(shape)]
         #[unsafe(method_family = none)]
         pub unsafe fn shape(&self) -> Retained<UIPointerShape>;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// This accessory shape's position relative to the pointer.
         #[method(position)]
+        #[unsafe(method_family = none)]
         pub unsafe fn position(&self) -> UIPointerAccessoryPosition;
 
         /// Indicates whether the accessory is rotated to match its angle.
         /// This is false by default for custom accessories, but varies for system vended ones.
         #[method(orientationMatchesAngle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn orientationMatchesAngle(&self) -> bool;
 
         /// Setter for [`orientationMatchesAngle`][Self::orientationMatchesAngle].
         #[method(setOrientationMatchesAngle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setOrientationMatchesAngle(&self, orientation_matches_angle: bool);
 
         #[cfg(all(feature = "UIPointerStyle", feature = "objc2-core-foundation"))]
@@ -131,7 +134,7 @@ extern_methods!(
         /// Parameter `shape`: The desired accessory shape.
         ///
         /// Parameter `position`: The desired accessory position.
-        #[method_id(accessoryWithShape:position:)]
+        #[method(accessoryWithShape:position:)]
         #[unsafe(method_family = none)]
         pub unsafe fn accessoryWithShape_position(
             shape: &UIPointerShape,
@@ -140,18 +143,18 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Returns an arrow shaped accessory with the given position.
-        #[method_id(arrowAccessoryWithPosition:)]
+        #[method(arrowAccessoryWithPosition:)]
         #[unsafe(method_family = none)]
         pub unsafe fn arrowAccessoryWithPosition(
             position: UIPointerAccessoryPosition,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

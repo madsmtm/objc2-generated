@@ -31,21 +31,21 @@ unsafe impl NSSecureCoding for UIImageConfiguration {}
 
 extern_methods!(
     unsafe impl UIImageConfiguration {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "UITraitCollection")]
-        #[method_id(traitCollection)]
+        #[method(traitCollection)]
         #[unsafe(method_family = none)]
         pub unsafe fn traitCollection(&self) -> Option<Retained<UITraitCollection>>;
 
         #[cfg(feature = "UITraitCollection")]
-        #[method_id(configurationWithTraitCollection:)]
+        #[method(configurationWithTraitCollection:)]
         #[unsafe(method_family = none)]
         pub unsafe fn configurationWithTraitCollection(
             &self,
@@ -53,25 +53,25 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "UITraitCollection")]
-        #[method_id(configurationWithTraitCollection:)]
+        #[method(configurationWithTraitCollection:)]
         #[unsafe(method_family = none)]
         pub unsafe fn configurationWithTraitCollection_class(
             trait_collection: Option<&UITraitCollection>,
         ) -> Retained<Self>;
 
-        #[method_id(locale)]
+        #[method(locale)]
         #[unsafe(method_family = none)]
         pub unsafe fn locale(&self) -> Option<Retained<NSLocale>>;
 
-        #[method_id(configurationWithLocale:)]
+        #[method(configurationWithLocale:)]
         #[unsafe(method_family = none)]
         pub unsafe fn configurationWithLocale(&self, locale: Option<&NSLocale>) -> Retained<Self>;
 
-        #[method_id(configurationWithLocale:)]
+        #[method(configurationWithLocale:)]
         #[unsafe(method_family = none)]
         pub unsafe fn configurationWithLocale_class(locale: Option<&NSLocale>) -> Retained<Self>;
 
-        #[method_id(configurationByApplyingConfiguration:)]
+        #[method(configurationByApplyingConfiguration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn configurationByApplyingConfiguration(
             &self,

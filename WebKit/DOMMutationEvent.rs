@@ -62,26 +62,28 @@ extern_methods!(
     unsafe impl DOMMutationEvent {
         #[cfg(feature = "DOMNode")]
         #[deprecated]
-        #[method_id(relatedNode)]
+        #[method(relatedNode)]
         #[unsafe(method_family = none)]
         pub unsafe fn relatedNode(&self) -> Option<Retained<DOMNode>>;
 
         #[deprecated]
-        #[method_id(prevValue)]
+        #[method(prevValue)]
         #[unsafe(method_family = none)]
         pub unsafe fn prevValue(&self) -> Retained<NSString>;
 
         #[deprecated]
-        #[method_id(attrName)]
+        #[method(attrName)]
         #[unsafe(method_family = none)]
         pub unsafe fn attrName(&self) -> Retained<NSString>;
 
         #[deprecated]
         #[method(attrChange)]
+        #[unsafe(method_family = none)]
         pub unsafe fn attrChange(&self) -> c_ushort;
 
         #[cfg(feature = "DOMNode")]
         #[method(initMutationEvent:canBubble:cancelable:relatedNode:prevValue:newValue:attrName:attrChange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn initMutationEvent_canBubble_cancelable_relatedNode_prevValue_newValue_attrName_attrChange(
             &self,
             r#type: Option<&NSString>,
@@ -105,7 +107,7 @@ extern_methods!(
     ))]
     unsafe impl DOMMutationEvent {
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -119,7 +121,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMMutationEvent {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -136,6 +138,7 @@ extern_methods!(
         #[cfg(feature = "DOMNode")]
         #[deprecated]
         #[method(initMutationEvent::::::::)]
+        #[unsafe(method_family = none)]
         pub unsafe fn initMutationEvent(
             &self,
             r#type: Option<&NSString>,

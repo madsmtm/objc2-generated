@@ -220,13 +220,13 @@ extern_methods!(
         /// Initialize a new sequencer, which will not be connected to an audio engine.
         ///
         /// This is used to create a sequencer whose tracks will only send events to external MIDI endpoints.
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "AVAudioEngine")]
         /// Initialize a new sequencer, handing it the audio engine.
-        #[method_id(initWithAudioEngine:)]
+        #[method(initWithAudioEngine:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAudioEngine(
             this: Allocated<Self>,
@@ -241,6 +241,7 @@ extern_methods!(
         ///
         /// Parameter `outError`: on exit, if an error occurs, a description of the error
         #[method(loadFromURL:options:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loadFromURL_options_error(
             &self,
             file_url: &NSURL,
@@ -255,6 +256,7 @@ extern_methods!(
         ///
         /// Parameter `outError`: on exit, if an error occurs, a description of the error
         #[method(loadFromData:options:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loadFromData_options_error(
             &self,
             data: &NSData,
@@ -281,6 +283,7 @@ extern_methods!(
         /// The relationship between "tick" and quarter note for saving to Standard MIDI File
         /// - pass in zero to use default - this will be the value that is currently set on the tempo track
         #[method(writeToURL:SMPTEResolution:replaceExisting:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn writeToURL_SMPTEResolution_replaceExisting_error(
             &self,
             file_url: &NSURL,
@@ -291,19 +294,22 @@ extern_methods!(
         #[cfg(feature = "AVAudioTypes")]
         /// Get the time in seconds for the given beat position (timestamp) in the AVMusicTrack
         #[method(secondsForBeats:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn secondsForBeats(&self, beats: AVMusicTimeStamp) -> NSTimeInterval;
 
         #[cfg(feature = "AVAudioTypes")]
         /// Get the beat position (timestamp) for the given time in the AVMusicTrack
         #[method(beatsForSeconds:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn beatsForSeconds(&self, seconds: NSTimeInterval) -> AVMusicTimeStamp;
 
         /// Reverse the order of all events in all AVMusicTracks, including the tempo track
         #[method(reverseEvents)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reverseEvents(&self);
 
         /// Create a new AVMusicTrack and append it to the AVMusicSequencer's list
-        #[method_id(createAndAppendTrack)]
+        #[method(createAndAppendTrack)]
         #[unsafe(method_family = none)]
         pub unsafe fn createAndAppendTrack(&self) -> Retained<AVMusicTrack>;
 
@@ -311,6 +317,7 @@ extern_methods!(
         ///
         /// This does not destroy the AVMusicTrack because it may be re-used.
         #[method(removeTrack:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeTrack(&self, track: &AVMusicTrack) -> bool;
 
         #[cfg(all(feature = "AVAudioTypes", feature = "block2"))]
@@ -320,12 +327,13 @@ extern_methods!(
         ///
         /// Set the block to nil to disable it.
         #[method(setUserCallback:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUserCallback(&self, user_callback: AVAudioSequencerUserCallback);
 
         /// An NSArray containing all the AVMusicTracks in the sequence
         ///
         /// This list will not include the tempo track.
-        #[method_id(tracks)]
+        #[method(tracks)]
         #[unsafe(method_family = none)]
         pub unsafe fn tracks(&self) -> Retained<NSArray<AVMusicTrack>>;
 
@@ -339,14 +347,14 @@ extern_methods!(
         /// The tempo track can be edited and iterated upon as any other track.
         ///
         /// Non-tempo-related events will generate exceptions if added.
-        #[method_id(tempoTrack)]
+        #[method(tempoTrack)]
         #[unsafe(method_family = none)]
         pub unsafe fn tempoTrack(&self) -> Retained<AVMusicTrack>;
 
         /// A dictionary containing meta-data derived from a sequence
         ///
         /// The dictionary can contain one or more of the values accessible via the AVAudioSequencerInfoDictionaryKeys.
-        #[method_id(userInfo)]
+        #[method(userInfo)]
         #[unsafe(method_family = none)]
         pub unsafe fn userInfo(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
     }
@@ -355,7 +363,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAudioSequencer {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -369,10 +377,12 @@ extern_methods!(
         /// Setting this positions the sequencer's player to the specified time.  This can be set while
         /// the player is playing, in which case playback will resume at the new position.
         #[method(currentPositionInSeconds)]
+        #[unsafe(method_family = none)]
         pub unsafe fn currentPositionInSeconds(&self) -> NSTimeInterval;
 
         /// Setter for [`currentPositionInSeconds`][Self::currentPositionInSeconds].
         #[method(setCurrentPositionInSeconds:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCurrentPositionInSeconds(
             &self,
             current_position_in_seconds: NSTimeInterval,
@@ -383,10 +393,12 @@ extern_methods!(
         /// Setting this positions the sequencer's player to the specified beat.  This can be set while
         /// the player is playing, in which case playback will resume at the new position.
         #[method(currentPositionInBeats)]
+        #[unsafe(method_family = none)]
         pub unsafe fn currentPositionInBeats(&self) -> NSTimeInterval;
 
         /// Setter for [`currentPositionInBeats`][Self::currentPositionInBeats].
         #[method(setCurrentPositionInBeats:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCurrentPositionInBeats(&self, current_position_in_beats: NSTimeInterval);
 
         /// Indicates whether or not the sequencer's player is playing
@@ -395,16 +407,19 @@ extern_methods!(
         /// "played" past the end of the events in the sequence, but it is still considered to be
         /// playing (and its time value increasing) until it is explicitly stopped.
         #[method(isPlaying)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isPlaying(&self) -> bool;
 
         /// The playback rate of the sequencer's player
         ///
         /// 1.0 is normal playback rate.  Rate must be > 0.0.
         #[method(rate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rate(&self) -> c_float;
 
         /// Setter for [`rate`][Self::rate].
         #[method(setRate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRate(&self, rate: c_float);
 
         /// Get ready to play the sequence by prerolling all events
@@ -412,6 +427,7 @@ extern_methods!(
         /// Happens automatically on play if it has not already been called, but may produce a delay in
         /// startup.
         #[method(prepareToPlay)]
+        #[unsafe(method_family = none)]
         pub unsafe fn prepareToPlay(&self);
 
         /// Start the sequencer's player
@@ -420,6 +436,7 @@ extern_methods!(
         /// When the sequencer is associated with an audio engine, the sequencer's player will only
         /// play if the audio engine is running.
         #[method(startAndReturnError:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn startAndReturnError(&self) -> Result<(), Retained<NSError>>;
 
         /// Stop the sequencer's player
@@ -428,6 +445,7 @@ extern_methods!(
         /// that a subsequent call to startAndReturnError will resume where it left off. This action
         /// will not stop an associated audio engine.
         #[method(stop)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stop(&self);
     }
 );
@@ -475,22 +493,25 @@ extern_methods!(
         /// attached to an audio engine, and the track must be part of the AVAudioSequencer associated
         /// with that engine. When playing, the track will send its events to that AVAudioUnit. The
         /// destination AU cannot be changed while the track's sequence is playing.
-        #[method_id(destinationAudioUnit)]
+        #[method(destinationAudioUnit)]
         #[unsafe(method_family = none)]
         pub unsafe fn destinationAudioUnit(&self) -> Option<Retained<AVAudioUnit>>;
 
         #[cfg(all(feature = "AVAudioNode", feature = "AVAudioUnit"))]
         /// Setter for [`destinationAudioUnit`][Self::destinationAudioUnit].
         #[method(setDestinationAudioUnit:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDestinationAudioUnit(&self, destination_audio_unit: Option<&AVAudioUnit>);
 
         #[cfg(feature = "objc2-core-midi")]
         #[method(destinationMIDIEndpoint)]
+        #[unsafe(method_family = none)]
         pub unsafe fn destinationMIDIEndpoint(&self) -> MIDIEndpointRef;
 
         #[cfg(feature = "objc2-core-midi")]
         /// Setter for [`destinationMIDIEndpoint`][Self::destinationMIDIEndpoint].
         #[method(setDestinationMIDIEndpoint:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDestinationMIDIEndpoint(&self, destination_midi_endpoint: MIDIEndpointRef);
 
         #[cfg(feature = "AVAudioTypes")]
@@ -498,21 +519,25 @@ extern_methods!(
         ///
         /// The loop is set by specifying its beat range.
         #[method(loopRange)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loopRange(&self) -> AVBeatRange;
 
         #[cfg(feature = "AVAudioTypes")]
         /// Setter for [`loopRange`][Self::loopRange].
         #[method(setLoopRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLoopRange(&self, loop_range: AVBeatRange);
 
         /// Determines whether or not the track is looped.
         ///
         /// If loopRange has not been set, the full track will be looped.
         #[method(isLoopingEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isLoopingEnabled(&self) -> bool;
 
         /// Setter for [`isLoopingEnabled`][Self::isLoopingEnabled].
         #[method(setLoopingEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLoopingEnabled(&self, looping_enabled: bool);
 
         /// The number of times that the track's loop will repeat
@@ -520,10 +545,12 @@ extern_methods!(
         /// If set to AVMusicTrackLoopCountForever, the track will loop forever.
         /// Otherwise, legal values start with 1.
         #[method(numberOfLoops)]
+        #[unsafe(method_family = none)]
         pub unsafe fn numberOfLoops(&self) -> NSInteger;
 
         /// Setter for [`numberOfLoops`][Self::numberOfLoops].
         #[method(setNumberOfLoops:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setNumberOfLoops(&self, number_of_loops: NSInteger);
 
         #[cfg(feature = "AVAudioTypes")]
@@ -531,27 +558,33 @@ extern_methods!(
         ///
         /// By default this value is zero.
         #[method(offsetTime)]
+        #[unsafe(method_family = none)]
         pub unsafe fn offsetTime(&self) -> AVMusicTimeStamp;
 
         #[cfg(feature = "AVAudioTypes")]
         /// Setter for [`offsetTime`][Self::offsetTime].
         #[method(setOffsetTime:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setOffsetTime(&self, offset_time: AVMusicTimeStamp);
 
         /// Whether the track is muted
         #[method(isMuted)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isMuted(&self) -> bool;
 
         /// Setter for [`isMuted`][Self::isMuted].
         #[method(setMuted:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMuted(&self, muted: bool);
 
         /// Whether the track is soloed
         #[method(isSoloed)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isSoloed(&self) -> bool;
 
         /// Setter for [`isSoloed`][Self::isSoloed].
         #[method(setSoloed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSoloed(&self, soloed: bool);
 
         #[cfg(feature = "AVAudioTypes")]
@@ -564,11 +597,13 @@ extern_methods!(
         ///
         /// The property will return the maximum of the user-set track length, or the calculated length.
         #[method(lengthInBeats)]
+        #[unsafe(method_family = none)]
         pub unsafe fn lengthInBeats(&self) -> AVMusicTimeStamp;
 
         #[cfg(feature = "AVAudioTypes")]
         /// Setter for [`lengthInBeats`][Self::lengthInBeats].
         #[method(setLengthInBeats:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLengthInBeats(&self, length_in_beats: AVMusicTimeStamp);
 
         /// The total duration of the track in seconds
@@ -580,10 +615,12 @@ extern_methods!(
         ///
         /// The property will return the maximum of the user-set track length, or the calculated length.
         #[method(lengthInSeconds)]
+        #[unsafe(method_family = none)]
         pub unsafe fn lengthInSeconds(&self) -> NSTimeInterval;
 
         /// Setter for [`lengthInSeconds`][Self::lengthInSeconds].
         #[method(setLengthInSeconds:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLengthInSeconds(&self, length_in_seconds: NSTimeInterval);
 
         /// The time resolution value for the sequence, in ticks (pulses) per quarter note (PPQN)
@@ -598,6 +635,7 @@ extern_methods!(
         ///
         /// This can only be retrieved from the tempo track.
         #[method(timeResolution)]
+        #[unsafe(method_family = none)]
         pub unsafe fn timeResolution(&self) -> NSUInteger;
     }
 );
@@ -605,11 +643,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVMusicTrack {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -648,10 +686,12 @@ extern_methods!(
         /// If a track already contains non-parameter events, setting this to YES will
         /// generate an exception.
         #[method(usesAutomatedParameters)]
+        #[unsafe(method_family = none)]
         pub unsafe fn usesAutomatedParameters(&self) -> bool;
 
         /// Setter for [`usesAutomatedParameters`][Self::usesAutomatedParameters].
         #[method(setUsesAutomatedParameters:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUsesAutomatedParameters(&self, uses_automated_parameters: bool);
 
         #[cfg(all(feature = "AVAudioTypes", feature = "AVMusicEvents"))]
@@ -673,6 +713,7 @@ extern_methods!(
         ///
         /// - All other event subclasses cannot be added to tempo or automation tracks.
         #[method(addEvent:atBeat:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addEvent_atBeat(&self, event: &AVMusicEvent, beat: AVMusicTimeStamp);
 
         #[cfg(feature = "AVAudioTypes")]
@@ -682,6 +723,7 @@ extern_methods!(
         ///
         /// Parameter `beatAmount`: the amount in beats to shift each event.  The amount may be positive or negative.
         #[method(moveEventsInRange:byAmount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn moveEventsInRange_byAmount(
             &self,
             range: AVBeatRange,
@@ -695,6 +737,7 @@ extern_methods!(
         ///
         /// All events outside of the specified range left unmodified.
         #[method(clearEventsInRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn clearEventsInRange(&self, range: AVBeatRange);
 
         #[cfg(feature = "AVAudioTypes")]
@@ -704,6 +747,7 @@ extern_methods!(
         ///
         /// All events past the end of the specified range will be shifted backward by the duration of the range.
         #[method(cutEventsInRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cutEventsInRange(&self, range: AVBeatRange);
 
         #[cfg(feature = "AVAudioTypes")]
@@ -719,6 +763,7 @@ extern_methods!(
         /// All events originally at or past insertStartBeat will be shifted forward by the duration
         /// of the copied-in range.
         #[method(copyEventsInRange:fromTrack:insertAtBeat:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn copyEventsInRange_fromTrack_insertAtBeat(
             &self,
             range: AVBeatRange,
@@ -741,6 +786,7 @@ extern_methods!(
         /// Copying events from track to track follows the same type-exclusion rules as adding
         /// events:  The operation will generate an exception.
         #[method(copyAndMergeEventsInRange:fromTrack:mergeAtBeat:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn copyAndMergeEventsInRange_fromTrack_mergeAtBeat(
             &self,
             range: AVBeatRange,
@@ -766,6 +812,7 @@ extern_methods!(
         /// The event objects returned via the block will not be the same instances
         /// which were added to the AVMusicTrack, though their contents will be identical.
         #[method(enumerateEventsInRange:usingBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn enumerateEventsInRange_usingBlock(
             &self,
             range: AVBeatRange,

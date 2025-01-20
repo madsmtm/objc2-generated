@@ -29,26 +29,27 @@ extern_methods!(
         ///
         /// When NO, all initializers will return nil.
         #[method(isPictureInPictureSupported)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isPictureInPictureSupported() -> bool;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         /// System default Picture in Picture start template image for use in client's Picture in Picture button.
-        #[method_id(pictureInPictureButtonStartImage)]
+        #[method(pictureInPictureButtonStartImage)]
         #[unsafe(method_family = none)]
         pub unsafe fn pictureInPictureButtonStartImage() -> Retained<NSImage>;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         /// System default Picture in Picture stop template image for use in client's Picture in Picture button.
-        #[method_id(pictureInPictureButtonStopImage)]
+        #[method(pictureInPictureButtonStopImage)]
         #[unsafe(method_family = none)]
         pub unsafe fn pictureInPictureButtonStopImage() -> Retained<NSImage>;
 
         /// Parameter `contentSource`: The content source to be shown in Picture in Picture.
         ///
         /// Use this initializer for content that may be a sample buffer display layer or a player layer.
-        #[method_id(initWithContentSource:)]
+        #[method(initWithContentSource:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentSource(
             this: Allocated<Self>,
@@ -60,7 +61,7 @@ extern_methods!(
         /// Parameter `playerLayer`: The player layer from which to source the media content for the Picture in Picture controller.
         ///
         /// Initialize the picture in picture controller with a player layer.
-        #[method_id(initWithPlayerLayer:)]
+        #[method(initWithPlayerLayer:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPlayerLayer(
             this: Allocated<Self>,
@@ -68,7 +69,7 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         /// The receiver's content source. Can be changed while Picture in Picture is active, but the new content source must be ready for display (in the case of AVPlayerLayer, that means AVPlayerLayer.isReadyForDisplay must return YES), otherwise Picture in Picture will stop.
-        #[method_id(contentSource)]
+        #[method(contentSource)]
         #[unsafe(method_family = none)]
         pub unsafe fn contentSource(
             &self,
@@ -76,6 +77,7 @@ extern_methods!(
 
         /// Setter for [`contentSource`][Self::contentSource].
         #[method(setContentSource:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setContentSource(
             &self,
             content_source: Option<&AVPictureInPictureControllerContentSource>,
@@ -84,12 +86,12 @@ extern_methods!(
         #[cfg(feature = "objc2-av-foundation")]
         #[cfg(not(target_os = "watchos"))]
         /// The receiver's player layer.
-        #[method_id(playerLayer)]
+        #[method(playerLayer)]
         #[unsafe(method_family = none)]
         pub unsafe fn playerLayer(&self) -> Retained<AVPlayerLayer>;
 
         /// The receiver's delegate.
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -98,6 +100,7 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn AVPictureInPictureControllerDelegate>>,
@@ -107,50 +110,60 @@ extern_methods!(
         ///
         /// Receiver will call -pictureInPictureControllerWillStartPictureInPicture: if Picture in Picture is currently possible and -pictureInPictureControllerDidStartPictureInPicture: after a successful start. If starting Picture in Picture fails, -pictureInPictureControllerFailedToStartPictureInPicture:withError: is called on the delegate instead. Client can stop Picture in Picture by calling -stopPictureInPicture. In addition the user can stop Picture in Picture through user interaction. It is also possible that Picture in Picture is stopped by the Picture in Picture controller at any time. In all these cases receiver calls -pictureInPictureControllerWillStopPictureInPicture: on the delegate and -pictureInPictureControllerDidStopPictureInPicture:after the stop animation completed.
         #[method(startPictureInPicture)]
+        #[unsafe(method_family = none)]
         pub unsafe fn startPictureInPicture(&self);
 
         /// Stop the local Picture in Picture if currently active. On tvOS, this can also stop Picture in Picture sessions for other applications.
         ///
         /// See startPictureInPicture for details.
         #[method(stopPictureInPicture)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stopPictureInPicture(&self);
 
         /// Whether or not Picture in Picture is currently possible.
         #[method(isPictureInPicturePossible)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isPictureInPicturePossible(&self) -> bool;
 
         /// Whether or not Picture in Picture is currently active.
         #[method(isPictureInPictureActive)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isPictureInPictureActive(&self) -> bool;
 
         /// Whether or not Picture in Picture is currently suspended.
         #[method(isPictureInPictureSuspended)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isPictureInPictureSuspended(&self) -> bool;
 
         /// Whether or not any Picture in Picture is active, and can be stopped.
         ///
         /// When true, stopPictureInPicture will stop the active Picture in Picture session. Apps should re-inspect the system-provided picture in picture start button image when this property changes. Observable.
         #[method(canStopPictureInPicture)]
+        #[unsafe(method_family = none)]
         pub unsafe fn canStopPictureInPicture(&self) -> bool;
 
         /// Disables certain user operations (fast forward, forward skip, and scrubbing).
         ///
         /// This can be used to temporarily enforce playback of mandatory content (such as legalese or advertisements).
         #[method(requiresLinearPlayback)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requiresLinearPlayback(&self) -> bool;
 
         /// Setter for [`requiresLinearPlayback`][Self::requiresLinearPlayback].
         #[method(setRequiresLinearPlayback:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRequiresLinearPlayback(&self, requires_linear_playback: bool);
 
         /// Indicates whether Picture in Picture should be allowed to start automatically when transitioning to background when the receiver’s content is embedded inline. Default is NO.
         ///
         /// This property must only be set to YES for content intended to be the user's primary focus.
         #[method(canStartPictureInPictureAutomaticallyFromInline)]
+        #[unsafe(method_family = none)]
         pub unsafe fn canStartPictureInPictureAutomaticallyFromInline(&self) -> bool;
 
         /// Setter for [`canStartPictureInPictureAutomaticallyFromInline`][Self::canStartPictureInPictureAutomaticallyFromInline].
         #[method(setCanStartPictureInPictureAutomaticallyFromInline:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCanStartPictureInPictureAutomaticallyFromInline(
             &self,
             can_start_picture_in_picture_automatically_from_inline: bool,
@@ -161,11 +174,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVPictureInPictureController {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -186,11 +199,11 @@ unsafe impl NSObjectProtocol for AVPictureInPictureControllerContentSource {}
 
 extern_methods!(
     unsafe impl AVPictureInPictureControllerContentSource {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -199,7 +212,7 @@ extern_methods!(
         /// Parameter `playerLayer`: The player layer to be shown in Picture in Picture.
         ///
         /// Use this initializer for a content source with a player layer.
-        #[method_id(initWithPlayerLayer:)]
+        #[method(initWithPlayerLayer:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPlayerLayer(
             this: Allocated<Self>,
@@ -209,7 +222,7 @@ extern_methods!(
         #[cfg(feature = "objc2-av-foundation")]
         #[cfg(not(target_os = "watchos"))]
         /// The receiver's player layer.
-        #[method_id(playerLayer)]
+        #[method(playerLayer)]
         #[unsafe(method_family = none)]
         pub unsafe fn playerLayer(&self) -> Option<Retained<AVPlayerLayer>>;
     }
@@ -225,6 +238,7 @@ extern_protocol!(
         /// Delegate can implement this method to be notified when Picture in Picture will start.
         #[optional]
         #[method(pictureInPictureControllerWillStartPictureInPicture:)]
+        #[unsafe(method_family = none)]
         unsafe fn pictureInPictureControllerWillStartPictureInPicture(
             &self,
             picture_in_picture_controller: &AVPictureInPictureController,
@@ -235,6 +249,7 @@ extern_protocol!(
         /// Delegate can implement this method to be notified when Picture in Picture did start.
         #[optional]
         #[method(pictureInPictureControllerDidStartPictureInPicture:)]
+        #[unsafe(method_family = none)]
         unsafe fn pictureInPictureControllerDidStartPictureInPicture(
             &self,
             picture_in_picture_controller: &AVPictureInPictureController,
@@ -247,6 +262,7 @@ extern_protocol!(
         /// Delegate can implement this method to be notified when Picture in Picture failed to start.
         #[optional]
         #[method(pictureInPictureController:failedToStartPictureInPictureWithError:)]
+        #[unsafe(method_family = none)]
         unsafe fn pictureInPictureController_failedToStartPictureInPictureWithError(
             &self,
             picture_in_picture_controller: &AVPictureInPictureController,
@@ -258,6 +274,7 @@ extern_protocol!(
         /// Delegate can implement this method to be notified when Picture in Picture will stop.
         #[optional]
         #[method(pictureInPictureControllerWillStopPictureInPicture:)]
+        #[unsafe(method_family = none)]
         unsafe fn pictureInPictureControllerWillStopPictureInPicture(
             &self,
             picture_in_picture_controller: &AVPictureInPictureController,
@@ -268,6 +285,7 @@ extern_protocol!(
         /// Delegate can implement this method to be notified when Picture in Picture did stop.
         #[optional]
         #[method(pictureInPictureControllerDidStopPictureInPicture:)]
+        #[unsafe(method_family = none)]
         unsafe fn pictureInPictureControllerDidStopPictureInPicture(
             &self,
             picture_in_picture_controller: &AVPictureInPictureController,
@@ -281,6 +299,7 @@ extern_protocol!(
         /// Delegate can implement this method to restore the user interface before Picture in Picture stops.
         #[optional]
         #[method(pictureInPictureController:restoreUserInterfaceForPictureInPictureStopWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn pictureInPictureController_restoreUserInterfaceForPictureInPictureStopWithCompletionHandler(
             &self,
             picture_in_picture_controller: &AVPictureInPictureController,

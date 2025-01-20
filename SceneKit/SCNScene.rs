@@ -79,7 +79,7 @@ unsafe impl NSSecureCoding for SCNScene {}
 
 extern_methods!(
     unsafe impl SCNScene {
-        #[method_id(scene)]
+        #[method(scene)]
         #[unsafe(method_family = none)]
         pub unsafe fn scene() -> Retained<Self>;
 
@@ -89,7 +89,7 @@ extern_methods!(
         /// Note that we have only one root node, whereas some file formats might have many nodes
         /// at the root of their hierarchies. The root node(s) of the imported files will therefore be children
         /// of the SCNScene's root node.
-        #[method_id(rootNode)]
+        #[method(rootNode)]
         #[unsafe(method_family = none)]
         pub unsafe fn rootNode(&self) -> Retained<SCNNode>;
 
@@ -97,7 +97,7 @@ extern_methods!(
         /// Specifies the physics world of the receiver.
         ///
         /// Every scene automatically creates a physics world object to simulate physics on nodes in the scene. You use this property to access the scene’s global physics properties, such as gravity. To add physics to a particular node, see physicsBody.
-        #[method_id(physicsWorld)]
+        #[method(physicsWorld)]
         #[unsafe(method_family = none)]
         pub unsafe fn physicsWorld(&self) -> Retained<SCNPhysicsWorld>;
 
@@ -106,7 +106,7 @@ extern_methods!(
         /// The available keys are listed in the "Scene attributes" group.
         ///
         /// Parameter `key`: An NSString object that specifies the attribute to be read
-        #[method_id(attributeForKey:)]
+        #[method(attributeForKey:)]
         #[unsafe(method_family = none)]
         pub unsafe fn attributeForKey(&self, key: &NSString) -> Option<Retained<AnyObject>>;
 
@@ -118,6 +118,7 @@ extern_methods!(
         ///
         /// Parameter `key`: An NSString object that specifies the attribute to be written
         #[method(setAttribute:forKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAttribute_forKey(&self, attribute: Option<&AnyObject>, key: &NSString);
 
         #[cfg(feature = "SCNMaterialProperty")]
@@ -127,7 +128,7 @@ extern_methods!(
         /// The background can be rendered as a skybox by setting a cube map as described in SCNMaterialProperty.h
         /// Colors are supported starting in macOS 10.12 and iOS 10. Prior to that you can use SCNView.backgroundColor.
         /// MDLSkyCubeTexture is supported starting in macOS 10.13 and iOS 11.
-        #[method_id(background)]
+        #[method(background)]
         #[unsafe(method_family = none)]
         pub unsafe fn background(&self) -> Retained<SCNMaterialProperty>;
 
@@ -138,7 +139,7 @@ extern_methods!(
         /// - a cube map (as described in SCNMaterialProperty.h)
         /// - an instance of `MDLSkyCubeTexture` (supported since macOS 10.13 and iOS 11)
         /// - an object returned by `+[SCNMaterialProperty precomputedLightingEnvironmentContentsWithURL:error:]` or `+[SCNMaterialProperty precomputedLightingEnvironmentContentsWithData:error:]`
-        #[method_id(lightingEnvironment)]
+        #[method(lightingEnvironment)]
         #[unsafe(method_family = none)]
         pub unsafe fn lightingEnvironment(&self) -> Retained<SCNMaterialProperty>;
 
@@ -147,7 +148,7 @@ extern_methods!(
         /// Parameter `name`: The name of the file. The method looks for a file with the specified name in the application’s main bundle.
         ///
         /// This method initializes with no options and does not check for errors. The resulting object is not cached.
-        #[method_id(sceneNamed:)]
+        #[method(sceneNamed:)]
         #[unsafe(method_family = none)]
         pub unsafe fn sceneNamed(name: &NSString) -> Option<Retained<Self>>;
 
@@ -161,7 +162,7 @@ extern_methods!(
         /// Parameter `options`: An options dictionary. The relevant keys are documented in the SCNSceneSource class.
         ///
         /// This method initializes with no options and does not check for errors. The resulting object is not cached.
-        #[method_id(sceneNamed:inDirectory:options:)]
+        #[method(sceneNamed:inDirectory:options:)]
         #[unsafe(method_family = none)]
         pub unsafe fn sceneNamed_inDirectory_options(
             name: &NSString,
@@ -180,7 +181,7 @@ extern_methods!(
         ///
         /// This method is here for convenience. It is equivalent to initializing a SCNSceneSource with the specified
         /// url and options, and asking it for its scene with the same options.
-        #[method_id(sceneWithURL:options:error:_)]
+        #[method(sceneWithURL:options:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn sceneWithURL_options_error(
             url: &NSURL,
@@ -205,6 +206,7 @@ extern_methods!(
         /// Starting macOS 10.11 exporting supports .dae, .scn as well as file all formats supported by Model I/O.
         /// Starting iOS 10 exporting supports .scn as well as all file formats supported by Model I/O.
         #[method(writeToURL:options:delegate:progressHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn writeToURL_options_delegate_progressHandler(
             &self,
             url: &NSURL,
@@ -216,21 +218,25 @@ extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// Specifies the receiver's fog start distance. Animatable. Defaults to 0.
         #[method(fogStartDistance)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fogStartDistance(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`fogStartDistance`][Self::fogStartDistance].
         #[method(setFogStartDistance:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFogStartDistance(&self, fog_start_distance: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Specifies the receiver's fog end distance. Animatable. Defaults to 0.
         #[method(fogEndDistance)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fogEndDistance(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`fogEndDistance`][Self::fogEndDistance].
         #[method(setFogEndDistance:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFogEndDistance(&self, fog_end_distance: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -238,42 +244,49 @@ extern_methods!(
         ///
         /// Controls the attenuation between the start and end fog distances. 0 means a constant fog, 1 a linear fog and 2 a quadratic fog, but any positive value will work.
         #[method(fogDensityExponent)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fogDensityExponent(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`fogDensityExponent`][Self::fogDensityExponent].
         #[method(setFogDensityExponent:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFogDensityExponent(&self, fog_density_exponent: CGFloat);
 
         /// Specifies the receiver's fog color (NSColor or CGColorRef). Animatable. Defaults to white.
         ///
         /// The initial value is a NSColor.
-        #[method_id(fogColor)]
+        #[method(fogColor)]
         #[unsafe(method_family = none)]
         pub unsafe fn fogColor(&self) -> Retained<AnyObject>;
 
         /// Setter for [`fogColor`][Self::fogColor].
         #[method(setFogColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFogColor(&self, fog_color: &AnyObject);
 
         /// Determines if the scene use screen space reflection.
         ///
         /// Defaults to NO.
         #[method(wantsScreenSpaceReflection)]
+        #[unsafe(method_family = none)]
         pub unsafe fn wantsScreenSpaceReflection(&self) -> bool;
 
         /// Setter for [`wantsScreenSpaceReflection`][Self::wantsScreenSpaceReflection].
         #[method(setWantsScreenSpaceReflection:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWantsScreenSpaceReflection(&self, wants_screen_space_reflection: bool);
 
         /// Determines the sample count of the screen space reflection.
         ///
         /// Defaults to 64.
         #[method(screenSpaceReflectionSampleCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn screenSpaceReflectionSampleCount(&self) -> NSInteger;
 
         /// Setter for [`screenSpaceReflectionSampleCount`][Self::screenSpaceReflectionSampleCount].
         #[method(setScreenSpaceReflectionSampleCount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setScreenSpaceReflectionSampleCount(
             &self,
             screen_space_reflection_sample_count: NSInteger,
@@ -284,11 +297,13 @@ extern_methods!(
         ///
         /// Defaults to 1000.
         #[method(screenSpaceReflectionMaximumDistance)]
+        #[unsafe(method_family = none)]
         pub unsafe fn screenSpaceReflectionMaximumDistance(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`screenSpaceReflectionMaximumDistance`][Self::screenSpaceReflectionMaximumDistance].
         #[method(setScreenSpaceReflectionMaximumDistance:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setScreenSpaceReflectionMaximumDistance(
             &self,
             screen_space_reflection_maximum_distance: CGFloat,
@@ -299,11 +314,13 @@ extern_methods!(
         ///
         /// Defaults to 8.
         #[method(screenSpaceReflectionStride)]
+        #[unsafe(method_family = none)]
         pub unsafe fn screenSpaceReflectionStride(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`screenSpaceReflectionStride`][Self::screenSpaceReflectionStride].
         #[method(setScreenSpaceReflectionStride:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setScreenSpaceReflectionStride(
             &self,
             screen_space_reflection_stride: CGFloat,
@@ -313,10 +330,12 @@ extern_methods!(
         ///
         /// Pausing a scene will pause animations, actions, particles and physics.
         #[method(isPaused)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isPaused(&self) -> bool;
 
         /// Setter for [`isPaused`][Self::isPaused].
         #[method(setPaused:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPaused(&self, paused: bool);
     }
 );
@@ -324,11 +343,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNScene {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -349,7 +368,7 @@ extern_protocol!(
         ///
         /// Returns: The delegate must returns the url of the image that was exported or nil if it didn't export any image. If the returned value is nil, the image will be exported to a default destination in a default format.
         #[optional]
-        #[method_id(writeImage:withSceneDocumentURL:originalImageURL:)]
+        #[method(writeImage:withSceneDocumentURL:originalImageURL:)]
         #[unsafe(method_family = none)]
         unsafe fn writeImage_withSceneDocumentURL_originalImageURL(
             &self,

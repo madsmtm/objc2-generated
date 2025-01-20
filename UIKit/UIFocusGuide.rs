@@ -29,16 +29,18 @@ extern_methods!(
     unsafe impl UIFocusGuide {
         /// If disabled, UIFocusGuides are ignored by the focus engine, but still participate in layout. Modifying this flag allows you to conditionally enable or disable certain focus behaviors. YES by default.
         #[method(isEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isEnabled(&self) -> bool;
 
         /// Setter for [`isEnabled`][Self::isEnabled].
         #[method(setEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
         #[cfg(feature = "UIFocus")]
         /// Setting preferredFocusEnvironments to a non-empty array marks this guide's layoutFrame as focusable. If empty, this guide is effectively disabled.
         /// If focused, the guide attempts to redirect focus to each environment in the array, in order, stopping when a focusable item in an environment has been found.
-        #[method_id(preferredFocusEnvironments)]
+        #[method(preferredFocusEnvironments)]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredFocusEnvironments(
             &self,
@@ -47,6 +49,7 @@ extern_methods!(
         #[cfg(feature = "UIFocus")]
         /// Setter for [`preferredFocusEnvironments`][Self::preferredFocusEnvironments].
         #[method(setPreferredFocusEnvironments:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreferredFocusEnvironments(
             &self,
             preferred_focus_environments: Option<&NSArray<ProtocolObject<dyn UIFocusEnvironment>>>,
@@ -55,7 +58,7 @@ extern_methods!(
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// Setting a preferred focused view marks this guide's layoutFrame as focusable, and if focused, redirects focus to its preferred focused view. If nil, this guide is effectively disabled.
         #[deprecated]
-        #[method_id(preferredFocusedView)]
+        #[method(preferredFocusedView)]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredFocusedView(&self) -> Option<Retained<UIView>>;
 
@@ -64,6 +67,7 @@ extern_methods!(
         /// Setter for [`preferredFocusedView`][Self::preferredFocusedView].
         #[deprecated]
         #[method(setPreferredFocusedView:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreferredFocusedView(&self, preferred_focused_view: Option<&UIView>);
     }
 );
@@ -72,11 +76,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UILayoutGuide")]
     unsafe impl UIFocusGuide {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

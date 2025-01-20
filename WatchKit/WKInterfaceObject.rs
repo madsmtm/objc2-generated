@@ -66,31 +66,36 @@ unsafe impl NSObjectProtocol for WKInterfaceObject {}
 
 extern_methods!(
     unsafe impl WKInterfaceObject {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(setHidden:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setHidden(&self, hidden: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(setAlpha:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAlpha(&self, alpha: CGFloat);
 
         #[cfg(feature = "WKInterfaceDevice")]
         #[method(setSemanticContentAttribute:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSemanticContentAttribute(
             &self,
             semantic_content_attribute: WKInterfaceSemanticContentAttribute,
         );
 
         #[method(setHorizontalAlignment:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setHorizontalAlignment(
             &self,
             horizontal_alignment: WKInterfaceObjectHorizontalAlignment,
         );
 
         #[method(setVerticalAlignment:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setVerticalAlignment(
             &self,
             vertical_alignment: WKInterfaceObjectVerticalAlignment,
@@ -98,27 +103,33 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(setWidth:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWidth(&self, width: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(setHeight:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setHeight(&self, height: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(setRelativeWidth:withAdjustment:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRelativeWidth_withAdjustment(&self, width: CGFloat, adjustment: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(setRelativeHeight:withAdjustment:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRelativeHeight_withAdjustment(&self, height: CGFloat, adjustment: CGFloat);
 
         #[method(sizeToFitWidth)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sizeToFitWidth(&self);
 
         #[method(sizeToFitHeight)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sizeToFitHeight(&self);
 
-        #[method_id(interfaceProperty)]
+        #[method(interfaceProperty)]
         #[unsafe(method_family = none)]
         pub unsafe fn interfaceProperty(&self) -> Retained<NSString>;
     }
@@ -127,7 +138,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKInterfaceObject {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -137,28 +148,35 @@ extern_methods!(
     /// WKAccessibility
     unsafe impl WKInterfaceObject {
         #[method(setAccessibilityIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAccessibilityIdentifier(
             &self,
             accessibility_identifier: Option<&NSString>,
         );
 
         #[method(setAccessibilityLabel:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAccessibilityLabel(&self, accessibility_label: Option<&NSString>);
 
         #[method(setAccessibilityHint:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAccessibilityHint(&self, accessibility_hint: Option<&NSString>);
 
         #[method(setAccessibilityValue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAccessibilityValue(&self, accessibility_value: Option<&NSString>);
 
         #[method(setIsAccessibilityElement:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIsAccessibilityElement(&self, is_accessibility_element: bool);
 
         #[cfg(feature = "objc2-ui-kit")]
         #[method(setAccessibilityTraits:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAccessibilityTraits(&self, accessibility_traits: UIAccessibilityTraits);
 
         #[method(setAccessibilityImageRegions:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAccessibilityImageRegions(
             &self,
             accessibility_image_regions: &NSArray<WKAccessibilityImageRegion>,
@@ -179,19 +197,22 @@ extern_methods!(
     unsafe impl WKAccessibilityImageRegion {
         #[cfg(feature = "objc2-core-foundation")]
         #[method(frame)]
+        #[unsafe(method_family = none)]
         pub unsafe fn frame(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`frame`][Self::frame].
         #[method(setFrame:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFrame(&self, frame: CGRect);
 
-        #[method_id(label)]
+        #[method(label)]
         #[unsafe(method_family = none)]
         pub unsafe fn label(&self) -> Retained<NSString>;
 
         /// Setter for [`label`][Self::label].
         #[method(setLabel:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLabel(&self, label: &NSString);
     }
 );
@@ -199,11 +220,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKAccessibilityImageRegion {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

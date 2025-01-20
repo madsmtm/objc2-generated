@@ -26,6 +26,7 @@ extern_methods!(
         /// The dimension (or axis) along which to split tensor
         #[deprecated]
         #[method(dimension)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dimension(&self) -> NSUInteger;
 
         /// The number of splits.
@@ -33,6 +34,7 @@ extern_methods!(
         /// The tensor will be split into equally sized chunks.  The last chunk may be smaller in size.
         #[deprecated]
         #[method(splitCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn splitCount(&self) -> NSUInteger;
 
         /// Lengths of each split section.
@@ -40,7 +42,7 @@ extern_methods!(
         /// The tensor will be split into chunks along dimensions with sizes given in
         /// `splitSectionLengths`.
         #[deprecated]
-        #[method_id(splitSectionLengths)]
+        #[method(splitSectionLengths)]
         #[unsafe(method_family = none)]
         pub unsafe fn splitSectionLengths(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
@@ -52,7 +54,7 @@ extern_methods!(
         ///
         /// Returns: A new split layer
         #[deprecated]
-        #[method_id(layerWithSplitCount:dimension:)]
+        #[method(layerWithSplitCount:dimension:)]
         #[unsafe(method_family = none)]
         pub unsafe fn layerWithSplitCount_dimension(
             split_count: NSUInteger,
@@ -67,7 +69,7 @@ extern_methods!(
         ///
         /// Returns: A new split layer
         #[deprecated]
-        #[method_id(layerWithSplitSectionLengths:dimension:)]
+        #[method(layerWithSplitSectionLengths:dimension:)]
         #[unsafe(method_family = none)]
         pub unsafe fn layerWithSplitSectionLengths_dimension(
             split_section_lengths: &NSArray<NSNumber>,
@@ -81,12 +83,12 @@ extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCSplitLayer {
         #[deprecated]
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

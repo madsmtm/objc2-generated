@@ -256,10 +256,11 @@ extern_methods!(
     unsafe impl HKWorkoutEvent {
         /// Represents the type of event that occurred during a workout.
         #[method(type)]
+        #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> HKWorkoutEventType;
 
         #[deprecated]
-        #[method_id(date)]
+        #[method(date)]
         #[unsafe(method_family = none)]
         pub unsafe fn date(&self) -> Retained<NSDate>;
 
@@ -267,7 +268,7 @@ extern_methods!(
         ///
         /// Most event types only support date intervals with zero duration. Events of type HKWorkoutEventTypeLap
         /// and HKWorkoutEventTypeSegment are currently the only events that support a nonzero duration.
-        #[method_id(dateInterval)]
+        #[method(dateInterval)]
         #[unsafe(method_family = none)]
         pub unsafe fn dateInterval(&self) -> Retained<NSDateInterval>;
 
@@ -275,12 +276,12 @@ extern_methods!(
         ///
         /// Keys must be NSString and values must be either NSString, NSNumber, NSDate, or
         /// HKQuantity. See HKMetadata.h for potential metadata keys and values.
-        #[method_id(metadata)]
+        #[method(metadata)]
         #[unsafe(method_family = none)]
         pub unsafe fn metadata(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         #[deprecated]
-        #[method_id(workoutEventWithType:date:)]
+        #[method(workoutEventWithType:date:)]
         #[unsafe(method_family = none)]
         pub unsafe fn workoutEventWithType_date(
             r#type: HKWorkoutEventType,
@@ -288,7 +289,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(workoutEventWithType:date:metadata:)]
+        #[method(workoutEventWithType:date:metadata:)]
         #[unsafe(method_family = none)]
         pub unsafe fn workoutEventWithType_date_metadata(
             r#type: HKWorkoutEventType,
@@ -303,7 +304,7 @@ extern_methods!(
         /// Parameter `dateInterval`: The dateInterval over which the event occurs
         ///
         /// Parameter `metadata`: Dictionary of metadata associated with the event, nullable
-        #[method_id(workoutEventWithType:dateInterval:metadata:)]
+        #[method(workoutEventWithType:dateInterval:metadata:)]
         #[unsafe(method_family = none)]
         pub unsafe fn workoutEventWithType_dateInterval_metadata(
             r#type: HKWorkoutEventType,
@@ -311,7 +312,7 @@ extern_methods!(
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -320,7 +321,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKWorkoutEvent {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -356,6 +357,7 @@ extern_methods!(
     unsafe impl HKWorkout {
         /// Represents the activity that the user was performing during a workout
         #[method(workoutActivityType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn workoutActivityType(&self) -> HKWorkoutActivityType;
 
         /// An array of HKWorkoutEvents that occurred during a workout.
@@ -363,7 +365,7 @@ extern_methods!(
         /// These events will be ordered by date in ascending order. All events must take place
         /// between the start date and end date of the workout. The first workout event should never be a resume event
         /// because it is assumed that the workout begins in a running state.
-        #[method_id(workoutEvents)]
+        #[method(workoutEvents)]
         #[unsafe(method_family = none)]
         pub unsafe fn workoutEvents(&self) -> Option<Retained<NSArray<HKWorkoutEvent>>>;
 
@@ -372,7 +374,7 @@ extern_methods!(
         ///
         /// These activities will be ordered by date in ascending order. All activities must take place
         /// between the start date and end date of the workout.
-        #[method_id(workoutActivities)]
+        #[method(workoutActivities)]
         #[unsafe(method_family = none)]
         pub unsafe fn workoutActivities(&self) -> Retained<NSArray<HKWorkoutActivity>>;
 
@@ -381,6 +383,7 @@ extern_methods!(
         /// The duration is derived from the start and end dates of the workout and takes into account periods that the
         /// workout was paused. Periods that the workout was paused are based off of the workoutEvents property.
         #[method(duration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
         #[cfg(feature = "HKQuantity")]
@@ -389,7 +392,7 @@ extern_methods!(
         /// This metric should represent the total active energy burned during the course of the workout. It should be a
         /// quantity with a unit representing energy.
         #[deprecated = "Use statisticsForType: passing the HKQuantityType for HKQuantityTypeIdentifierActiveEnergyBurned"]
-        #[method_id(totalEnergyBurned)]
+        #[method(totalEnergyBurned)]
         #[unsafe(method_family = none)]
         pub unsafe fn totalEnergyBurned(&self) -> Option<Retained<HKQuantity>>;
 
@@ -399,7 +402,7 @@ extern_methods!(
         /// This metric should represent the total distance traveled during the course of the workout. It should be a
         /// quantity with a unit representing length.
         #[deprecated = "Use statisticsForType: passing the HKQuantityType for the desired distance type"]
-        #[method_id(totalDistance)]
+        #[method(totalDistance)]
         #[unsafe(method_family = none)]
         pub unsafe fn totalDistance(&self) -> Option<Retained<HKQuantity>>;
 
@@ -409,7 +412,7 @@ extern_methods!(
         /// This metric should represent the total count of swimming strokes accumulated during the course of the
         /// workout. It should be a quantity with a unit representing count.
         #[deprecated = "Use statisticsForType: passing the HKQuantityType for HKQuantityTypeIdentifierSwimmingStrokeCount"]
-        #[method_id(totalSwimmingStrokeCount)]
+        #[method(totalSwimmingStrokeCount)]
         #[unsafe(method_family = none)]
         pub unsafe fn totalSwimmingStrokeCount(&self) -> Option<Retained<HKQuantity>>;
 
@@ -419,7 +422,7 @@ extern_methods!(
         /// This metric should represent the total count of flights accumulated during the course of the
         /// workout. It should be a quantity with a unit representing count.
         #[deprecated = "Use statisticsForType: passing the HKQuantityType for HKQuantityTypeIdentifierFlightClimbed"]
-        #[method_id(totalFlightsClimbed)]
+        #[method(totalFlightsClimbed)]
         #[unsafe(method_family = none)]
         pub unsafe fn totalFlightsClimbed(&self) -> Option<Retained<HKQuantity>>;
 
@@ -428,7 +431,7 @@ extern_methods!(
         ///
         /// This dictionary will contain HKStatistics objects containing the statistics by quantity
         /// sample type for all of the samples that have been added to the workout.
-        #[method_id(allStatistics)]
+        #[method(allStatistics)]
         #[unsafe(method_family = none)]
         pub unsafe fn allStatistics(&self) -> Retained<NSDictionary<HKQuantityType, HKStatistics>>;
 
@@ -438,7 +441,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `quantityType`: The quantity type to gather statistics about.
-        #[method_id(statisticsForType:)]
+        #[method(statisticsForType:)]
         #[unsafe(method_family = none)]
         pub unsafe fn statisticsForType(
             &self,
@@ -451,7 +454,7 @@ extern_methods!(
         ///
         /// Parameter `endDate`: The point in time that the workout was ended
         #[deprecated = "Use HKWorkoutBuilder"]
-        #[method_id(workoutWithActivityType:startDate:endDate:)]
+        #[method(workoutWithActivityType:startDate:endDate:)]
         #[unsafe(method_family = none)]
         pub unsafe fn workoutWithActivityType_startDate_endDate(
             workout_activity_type: HKWorkoutActivityType,
@@ -478,7 +481,7 @@ extern_methods!(
         ///
         /// Parameter `metadata`: Metadata for the workout. (Optional)
         #[deprecated = "Use HKWorkoutBuilder"]
-        #[method_id(workoutWithActivityType:startDate:endDate:workoutEvents:totalEnergyBurned:totalDistance:metadata:)]
+        #[method(workoutWithActivityType:startDate:endDate:workoutEvents:totalEnergyBurned:totalDistance:metadata:)]
         #[unsafe(method_family = none)]
         pub unsafe fn workoutWithActivityType_startDate_endDate_workoutEvents_totalEnergyBurned_totalDistance_metadata(
             workout_activity_type: HKWorkoutActivityType,
@@ -511,7 +514,7 @@ extern_methods!(
         ///
         /// Parameter `metadata`: Metadata for the workout. (Optional)
         #[deprecated = "Use HKWorkoutBuilder"]
-        #[method_id(workoutWithActivityType:startDate:endDate:workoutEvents:totalEnergyBurned:totalDistance:device:metadata:)]
+        #[method(workoutWithActivityType:startDate:endDate:workoutEvents:totalEnergyBurned:totalDistance:device:metadata:)]
         #[unsafe(method_family = none)]
         pub unsafe fn workoutWithActivityType_startDate_endDate_workoutEvents_totalEnergyBurned_totalDistance_device_metadata(
             workout_activity_type: HKWorkoutActivityType,
@@ -543,7 +546,7 @@ extern_methods!(
         ///
         /// Parameter `metadata`: Metadata for the workout. (Optional)
         #[deprecated = "Use HKWorkoutBuilder"]
-        #[method_id(workoutWithActivityType:startDate:endDate:duration:totalEnergyBurned:totalDistance:metadata:)]
+        #[method(workoutWithActivityType:startDate:endDate:duration:totalEnergyBurned:totalDistance:metadata:)]
         #[unsafe(method_family = none)]
         pub unsafe fn workoutWithActivityType_startDate_endDate_duration_totalEnergyBurned_totalDistance_metadata(
             workout_activity_type: HKWorkoutActivityType,
@@ -576,7 +579,7 @@ extern_methods!(
         ///
         /// Parameter `metadata`: Metadata for the workout. (Optional)
         #[deprecated = "Use HKWorkoutBuilder"]
-        #[method_id(workoutWithActivityType:startDate:endDate:duration:totalEnergyBurned:totalDistance:device:metadata:)]
+        #[method(workoutWithActivityType:startDate:endDate:duration:totalEnergyBurned:totalDistance:device:metadata:)]
         #[unsafe(method_family = none)]
         pub unsafe fn workoutWithActivityType_startDate_endDate_duration_totalEnergyBurned_totalDistance_device_metadata(
             workout_activity_type: HKWorkoutActivityType,
@@ -612,7 +615,7 @@ extern_methods!(
         ///
         /// Parameter `metadata`: Metadata for the workout. (Optional)
         #[deprecated = "Use HKWorkoutBuilder"]
-        #[method_id(workoutWithActivityType:startDate:endDate:workoutEvents:totalEnergyBurned:totalDistance:totalSwimmingStrokeCount:device:metadata:)]
+        #[method(workoutWithActivityType:startDate:endDate:workoutEvents:totalEnergyBurned:totalDistance:totalSwimmingStrokeCount:device:metadata:)]
         #[unsafe(method_family = none)]
         pub unsafe fn workoutWithActivityType_startDate_endDate_workoutEvents_totalEnergyBurned_totalDistance_totalSwimmingStrokeCount_device_metadata(
             workout_activity_type: HKWorkoutActivityType,
@@ -650,7 +653,7 @@ extern_methods!(
         ///
         /// Parameter `metadata`: Metadata for the workout. (Optional)
         #[deprecated = "Use HKWorkoutBuilder"]
-        #[method_id(workoutWithActivityType:startDate:endDate:workoutEvents:totalEnergyBurned:totalDistance:totalFlightsClimbed:device:metadata:)]
+        #[method(workoutWithActivityType:startDate:endDate:workoutEvents:totalEnergyBurned:totalDistance:totalFlightsClimbed:device:metadata:)]
         #[unsafe(method_family = none)]
         pub unsafe fn workoutWithActivityType_startDate_endDate_workoutEvents_totalEnergyBurned_totalDistance_totalFlightsClimbed_device_metadata(
             workout_activity_type: HKWorkoutActivityType,
@@ -670,7 +673,7 @@ extern_methods!(
     /// Methods declared on superclass `HKObject`
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKWorkout {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -680,7 +683,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKWorkout {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -22,6 +22,7 @@ extern_methods!(
     unsafe impl CXCallDirectoryProvider {
         #[cfg(feature = "CXCallDirectoryExtensionContext")]
         #[method(beginRequestWithExtensionContext:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn beginRequestWithExtensionContext(
             &self,
             context: &CXCallDirectoryExtensionContext,
@@ -32,11 +33,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CXCallDirectoryProvider {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

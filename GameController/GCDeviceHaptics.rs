@@ -84,11 +84,11 @@ extern_methods!(
         ///
         ///
         /// See: GCHapticsLocality
-        #[method_id(supportedLocalities)]
+        #[method(supportedLocalities)]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedLocalities(&self) -> Retained<NSSet<GCHapticsLocality>>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -97,7 +97,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GCDeviceHaptics {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -36,7 +36,7 @@ extern_methods!(
         /// - descriptor: descriptor for the corresponding forward 2D-convolution operation
         /// - name: name for the operation
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(convolutionTranspose2DWithSourceTensor:weightsTensor:outputShape:descriptor:name:)]
+        #[method(convolutionTranspose2DWithSourceTensor:weightsTensor:outputShape:descriptor:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn convolutionTranspose2DWithSourceTensor_weightsTensor_outputShape_descriptor_name(
             &self,
@@ -57,7 +57,7 @@ extern_methods!(
         /// - descriptor: descriptor for the corresponding forward Conv2D operation
         /// - name: name for the operation
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(convolutionTranspose2DWithSourceTensor:weightsTensor:outputShapeTensor:descriptor:name:)]
+        #[method(convolutionTranspose2DWithSourceTensor:weightsTensor:outputShapeTensor:descriptor:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn convolutionTranspose2DWithSourceTensor_weightsTensor_outputShapeTensor_descriptor_name(
             &self,
@@ -85,7 +85,7 @@ extern_methods!(
         /// - forwardConvolutionDescriptor: Forward pass op descriptor
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(convolutionTranspose2DDataGradientWithIncomingGradientTensor:weightsTensor:outputShape:forwardConvolutionDescriptor:name:)]
+        #[method(convolutionTranspose2DDataGradientWithIncomingGradientTensor:weightsTensor:outputShape:forwardConvolutionDescriptor:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn convolutionTranspose2DDataGradientWithIncomingGradientTensor_weightsTensor_outputShape_forwardConvolutionDescriptor_name(
             &self,
@@ -109,7 +109,7 @@ extern_methods!(
         /// - forwardConvolutionDescriptor: Forward pass op descriptor
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(convolutionTranspose2DDataGradientWithIncomingGradientTensor:weightsTensor:outputShapeTensor:forwardConvolutionDescriptor:name:)]
+        #[method(convolutionTranspose2DDataGradientWithIncomingGradientTensor:weightsTensor:outputShapeTensor:forwardConvolutionDescriptor:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn convolutionTranspose2DDataGradientWithIncomingGradientTensor_weightsTensor_outputShapeTensor_forwardConvolutionDescriptor_name(
             &self,
@@ -137,7 +137,7 @@ extern_methods!(
         /// - forwardConvolutionDescriptor: Forward pass op descriptor
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(convolutionTranspose2DWeightsGradientWithIncomingGradientTensor:sourceTensor:outputShape:forwardConvolutionDescriptor:name:)]
+        #[method(convolutionTranspose2DWeightsGradientWithIncomingGradientTensor:sourceTensor:outputShape:forwardConvolutionDescriptor:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn convolutionTranspose2DWeightsGradientWithIncomingGradientTensor_sourceTensor_outputShape_forwardConvolutionDescriptor_name(
             &self,
@@ -161,7 +161,7 @@ extern_methods!(
         /// - forwardConvolutionDescriptor: Forward pass op descriptor
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(convolutionTranspose2DWeightsGradientWithIncomingGradientTensor:sourceTensor:outputShapeTensor:forwardConvolutionDescriptor:name:)]
+        #[method(convolutionTranspose2DWeightsGradientWithIncomingGradientTensor:sourceTensor:outputShapeTensor:forwardConvolutionDescriptor:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn convolutionTranspose2DWeightsGradientWithIncomingGradientTensor_sourceTensor_outputShapeTensor_forwardConvolutionDescriptor_name(
             &self,

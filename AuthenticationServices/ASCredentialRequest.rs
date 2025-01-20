@@ -41,11 +41,12 @@ extern_protocol!(
     {
         /// The type of credential used for this request.
         #[method(type)]
+        #[unsafe(method_family = none)]
         unsafe fn r#type(&self) -> ASCredentialRequestType;
 
         #[cfg(feature = "ASCredentialIdentity")]
         /// The credential identity selected by the user to authenticate.
-        #[method_id(credentialIdentity)]
+        #[method(credentialIdentity)]
         #[unsafe(method_family = none)]
         unsafe fn credentialIdentity(&self) -> Retained<ProtocolObject<dyn ASCredentialIdentity>>;
     }

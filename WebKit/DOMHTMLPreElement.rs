@@ -79,18 +79,22 @@ extern_methods!(
     unsafe impl DOMHTMLPreElement {
         #[deprecated]
         #[method(width)]
+        #[unsafe(method_family = none)]
         pub unsafe fn width(&self) -> c_int;
 
         /// Setter for [`width`][Self::width].
         #[deprecated]
         #[method(setWidth:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWidth(&self, width: c_int);
 
         #[method(wrap)]
+        #[unsafe(method_family = none)]
         pub unsafe fn wrap(&self) -> bool;
 
         /// Setter for [`wrap`][Self::wrap].
         #[method(setWrap:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWrap(&self, wrap: bool);
     }
 );
@@ -106,7 +110,7 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLPreElement {
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -122,7 +126,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLPreElement {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

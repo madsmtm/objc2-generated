@@ -35,7 +35,7 @@ extern_methods!(
         ///
         ///
         /// `AVCaptureSystemExposureBiasSlider` may only be initialized with `AVCaptureDevice` instances that support setting `exposureTargetBias`, otherwise an `NSInvalidArgumentException` is thrown.
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -58,7 +58,7 @@ extern_methods!(
         /// If you need to react to other sources of `exposureTargetBias` changes, you will still need to use key-value observation.
         ///
         /// `AVCaptureSystemExposureBiasSlider` may only be initialized with `AVCaptureDevice` instances that support setting `exposureTargetBias`, otherwise an `NSInvalidArgumentException` is thrown.
-        #[method_id(initWithDevice:action:)]
+        #[method(initWithDevice:action:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_action(
             this: Allocated<Self>,
@@ -72,11 +72,11 @@ extern_methods!(
     /// Methods declared on superclass `AVCaptureControl`
     #[cfg(feature = "AVCaptureControl")]
     unsafe impl AVCaptureSystemExposureBiasSlider {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

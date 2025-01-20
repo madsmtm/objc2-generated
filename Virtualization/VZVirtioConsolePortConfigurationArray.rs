@@ -34,20 +34,22 @@ unsafe impl NSObjectProtocol for VZVirtioConsolePortConfigurationArray {}
 
 extern_methods!(
     unsafe impl VZVirtioConsolePortConfigurationArray {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// The maximum number of ports allocated by this device. The default is the number of ports attached to this device.
         #[method(maximumPortCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maximumPortCount(&self) -> u32;
 
         /// Setter for [`maximumPortCount`][Self::maximumPortCount].
         #[method(setMaximumPortCount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMaximumPortCount(&self, maximum_port_count: u32);
 
         #[cfg(all(
@@ -55,7 +57,7 @@ extern_methods!(
             feature = "VZVirtioConsolePortConfiguration"
         ))]
         /// Get a port configuration at the specified index.
-        #[method_id(objectAtIndexedSubscript:)]
+        #[method(objectAtIndexedSubscript:)]
         #[unsafe(method_family = none)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
@@ -68,6 +70,7 @@ extern_methods!(
         ))]
         /// Set a port configuration at the specified index.
         #[method(setObject:atIndexedSubscript:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setObject_atIndexedSubscript(
             &self,
             configuration: Option<&VZVirtioConsolePortConfiguration>,

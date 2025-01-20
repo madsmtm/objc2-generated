@@ -81,11 +81,13 @@ extern_methods!(
     unsafe impl SKCloudServiceController {
         #[deprecated = "Use MusicAuthorization.currentStatus from MusicKit"]
         #[method(authorizationStatus)]
+        #[unsafe(method_family = none)]
         pub unsafe fn authorizationStatus() -> SKCloudServiceAuthorizationStatus;
 
         #[cfg(feature = "block2")]
         #[deprecated = "Use MusicAuthorization.request() from MusicKit"]
         #[method(requestAuthorization:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestAuthorization(
             completion_handler: &block2::Block<dyn Fn(SKCloudServiceAuthorizationStatus)>,
         );
@@ -93,6 +95,7 @@ extern_methods!(
         #[cfg(feature = "block2")]
         #[deprecated = "Use MusicSubscription.current from MusicKit"]
         #[method(requestCapabilitiesWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestCapabilitiesWithCompletionHandler(
             &self,
             completion_handler: &block2::Block<dyn Fn(SKCloudServiceCapability, *mut NSError)>,
@@ -101,6 +104,7 @@ extern_methods!(
         #[cfg(feature = "block2")]
         #[deprecated = "Use MusicDataRequest.currentCountryCode from MusicKit"]
         #[method(requestStorefrontCountryCodeWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestStorefrontCountryCodeWithCompletionHandler(
             &self,
             completion_handler: &block2::Block<dyn Fn(*mut NSString, *mut NSError)>,
@@ -109,6 +113,7 @@ extern_methods!(
         #[cfg(feature = "block2")]
         #[deprecated = "Use Storefront.current.id"]
         #[method(requestStorefrontIdentifierWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestStorefrontIdentifierWithCompletionHandler(
             &self,
             completion_handler: &block2::Block<dyn Fn(*mut NSString, *mut NSError)>,
@@ -117,6 +122,7 @@ extern_methods!(
         #[cfg(feature = "block2")]
         #[deprecated = "Use MusicKit"]
         #[method(requestUserTokenForDeveloperToken:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestUserTokenForDeveloperToken_completionHandler(
             &self,
             developer_token: &NSString,
@@ -126,6 +132,7 @@ extern_methods!(
         #[cfg(feature = "block2")]
         #[deprecated]
         #[method(requestPersonalizationTokenForClientToken:withCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestPersonalizationTokenForClientToken_withCompletionHandler(
             &self,
             client_token: &NSString,
@@ -137,11 +144,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKCloudServiceController {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

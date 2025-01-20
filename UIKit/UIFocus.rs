@@ -105,7 +105,7 @@ extern_protocol!(
         /// The preferred focus environments define where to search for the default focused item in an environment, such as when focus updates programmatically.
         /// Starting from the target environment, each preferred focus environment is recursively searched in the order of the array until an eligible, focusable item is found.
         /// Preferred focus environments can include focusable and non-focusable items, in addition to non-item environments. Returning an empty array is equivalent to returning an array containing only 'self'.
-        #[method_id(preferredFocusEnvironments)]
+        #[method(preferredFocusEnvironments)]
         #[unsafe(method_family = none)]
         unsafe fn preferredFocusEnvironments(
             &self,
@@ -113,14 +113,14 @@ extern_protocol!(
 
         /// The parent focus environment of this environment, or nil if no parent exists.
         /// NOTE: If you implement this method, you must return a non-nil value for parent focus environment, otherwise your focus environment will not participate in focus interactions.
-        #[method_id(parentFocusEnvironment)]
+        #[method(parentFocusEnvironment)]
         #[unsafe(method_family = none)]
         unsafe fn parentFocusEnvironment(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIFocusEnvironment>>>;
 
         /// The container of any child focus items in this focus environment, or nil if no container exists.
-        #[method_id(focusItemContainer)]
+        #[method(focusItemContainer)]
         #[unsafe(method_family = none)]
         unsafe fn focusItemContainer(
             &self,
@@ -129,20 +129,24 @@ extern_protocol!(
         /// Marks this environment as needing a focus update, which if accepted will attempt to reset focus to this environment, or one of its preferred focus environments, on the next update cycle. If this environment does not currently contain the focused item, then calling this method has no effect. If a parent of this environment is also requesting focus, then this environment's request is rejected in favor of the parent's.
         /// NOTE: If you provide your own implementation, it must call `[[UIFocusSystem focusSystemForEnvironment:self] requestFocusUpdateToEnvironment:self]`;
         #[method(setNeedsFocusUpdate)]
+        #[unsafe(method_family = none)]
         unsafe fn setNeedsFocusUpdate(&self);
 
         /// Forces focus to be updated immediately. If there is an environment that has requested a focus update via -setNeedsFocusUpdate, and the request was accepted, then focus will be updated to that environment or one of its preferred focus environments.
         /// NOTE: If you provide your own implementation, it must call `[[UIFocusSystem focusSystemForEnvironment:self] updateFocusIfNeeded];`.
         #[method(updateFocusIfNeeded)]
+        #[unsafe(method_family = none)]
         unsafe fn updateFocusIfNeeded(&self);
 
         /// Asks whether the system should allow a focus update to occur.
         #[method(shouldUpdateFocusInContext:)]
+        #[unsafe(method_family = none)]
         unsafe fn shouldUpdateFocusInContext(&self, context: &UIFocusUpdateContext) -> bool;
 
         #[cfg(feature = "UIFocusAnimationCoordinator")]
         /// Called when the screen’s focused item has been updated to a new item. Use the animation coordinator to schedule focus-related animations in response to the update.
         #[method(didUpdateFocusInContext:withAnimationCoordinator:)]
+        #[unsafe(method_family = none)]
         unsafe fn didUpdateFocusInContext_withAnimationCoordinator(
             &self,
             context: &UIFocusUpdateContext,
@@ -154,7 +158,7 @@ extern_protocol!(
         /// default sounds, a previously registered identifier for a custom sound, or nil to defer the decision
         /// to the parent.
         #[optional]
-        #[method_id(soundIdentifierForFocusUpdateInContext:)]
+        #[method(soundIdentifierForFocusUpdateInContext:)]
         #[unsafe(method_family = none)]
         unsafe fn soundIdentifierForFocusUpdateInContext(
             &self,
@@ -164,13 +168,13 @@ extern_protocol!(
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[deprecated]
         #[optional]
-        #[method_id(preferredFocusedView)]
+        #[method(preferredFocusedView)]
         #[unsafe(method_family = none)]
         unsafe fn preferredFocusedView(&self) -> Option<Retained<UIView>>;
 
         /// The identifier of the focus group that this view belongs to. If this is nil, subviews inherit their superview's focus group.
         #[optional]
-        #[method_id(focusGroupIdentifier)]
+        #[method(focusGroupIdentifier)]
         #[unsafe(method_family = none)]
         unsafe fn focusGroupIdentifier(&self) -> Option<Retained<NSString>>;
     }
@@ -184,18 +188,20 @@ extern_protocol!(
         /// Indicates whether or not this item is currently allowed to become focused.
         /// Returning NO restricts the item from being focusable, even if it is visible in the user interface. For example, UIControls return NO if they are disabled.
         #[method(canBecomeFocused)]
+        #[unsafe(method_family = none)]
         unsafe fn canBecomeFocused(&self) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The geometric frame of this item, represented in the `coordinateSpace` of the UIFocusItemContainer in which it is contained.
         #[method(frame)]
+        #[unsafe(method_family = none)]
         unsafe fn frame(&self) -> CGRect;
 
         #[cfg(feature = "UIFocusEffect")]
         /// Describes a visual effect to apply when this item is focused. When not implemented, the system may create a default effect for this item.
         /// Returning nil indicates that the system should not apply any visual effects, and that the app will handle applying the appropriate visuals.
         #[optional]
-        #[method_id(focusEffect)]
+        #[method(focusEffect)]
         #[unsafe(method_family = none)]
         unsafe fn focusEffect(&self) -> Option<Retained<UIFocusEffect>>;
 
@@ -203,6 +209,7 @@ extern_protocol!(
         /// Note: this method can only be used to increase an item's priority, not decrease it. For example if an item is currently selected, the actual priority of this item will be determined by MAX(focusGroupPriority, UIFocusGroupPrioritySelected).
         #[optional]
         #[method(focusGroupPriority)]
+        #[unsafe(method_family = none)]
         unsafe fn focusGroupPriority(&self) -> UIFocusGroupPriority;
 
         /// If this property is present and returns `UIFocusItemDeferralModeNever`, the focus deferral will not be enabled again
@@ -212,12 +219,14 @@ extern_protocol!(
         /// Does nothing when focus deferral is not supported on the platform.
         #[optional]
         #[method(focusItemDeferralMode)]
+        #[unsafe(method_family = none)]
         unsafe fn focusItemDeferralMode(&self) -> UIFocusItemDeferralMode;
 
         /// If this returns YES, the focus item is considered transparent in terms of occlusion. Items that are behind it are focusable.
         /// This value is ignored when the item is focusable, in which case the item is never considered transparent.
         #[optional]
         #[method(isTransparentFocusItem)]
+        #[unsafe(method_family = none)]
         unsafe fn isTransparentFocusItem(&self) -> bool;
 
         #[cfg(feature = "UIFocusMovementHint")]
@@ -225,6 +234,7 @@ extern_protocol!(
         /// The provided object is mutated by the focus engine whenever the user's finger moves.
         #[optional]
         #[method(didHintFocusMovement:)]
+        #[unsafe(method_family = none)]
         unsafe fn didHintFocusMovement(&self, hint: &UIFocusMovementHint);
     }
 );
@@ -240,7 +250,7 @@ extern_protocol!(
         /// If you are implementing this protocol, you may find it convenient to return the UIScreen as your coordinate space, and ensure that your contained items report their frames in screen space.
         /// Similarly, you might find that your focus items' containing UIView or UIWindow is the most convenient coordinate space to use.
         /// You may also choose to implement your own object that conforms to UICoordinateSpace, if that is the most natural solution for your architecture.
-        #[method_id(coordinateSpace)]
+        #[method(coordinateSpace)]
         #[unsafe(method_family = none)]
         unsafe fn coordinateSpace(&self) -> Retained<ProtocolObject<dyn UICoordinateSpace>>;
 
@@ -249,7 +259,7 @@ extern_protocol!(
         /// Note: starting in iOS
         /// &
         /// tvOS 16.0, UIView will return its subviews from this method. If you override this method in a UIView subclass, it will be your responsibility to call super and merge your array of custom focus items with UIView's default focus items.
-        #[method_id(focusItemsInRect:)]
+        #[method(focusItemsInRect:)]
         #[unsafe(method_family = none)]
         unsafe fn focusItemsInRect(
             &self,
@@ -269,22 +279,26 @@ extern_protocol!(
         #[cfg(feature = "objc2-core-foundation")]
         /// The current content offset of this scrollable container. If the scrollable container has a `bounds` property, `bounds.origin` must be equal to `contentOffset`.
         #[method(contentOffset)]
+        #[unsafe(method_family = none)]
         unsafe fn contentOffset(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`contentOffset`][Self::contentOffset].
         #[method(setContentOffset:)]
+        #[unsafe(method_family = none)]
         unsafe fn setContentOffset(&self, content_offset: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The total size of the content contained by this container. If this size exceeds the size of
         /// this container's visible size, then scrolling is possible.
         #[method(contentSize)]
+        #[unsafe(method_family = none)]
         unsafe fn contentSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The visible size of this scrollable container.
         #[method(visibleSize)]
+        #[unsafe(method_family = none)]
         unsafe fn visibleSize(&self) -> CGSize;
     }
 );
@@ -304,14 +318,14 @@ unsafe impl NSObjectProtocol for UIFocusUpdateContext {}
 extern_methods!(
     unsafe impl UIFocusUpdateContext {
         /// The item that was focused before the update, i.e. where focus is updating from. May be nil if no item was focused, such as when focus is initially set.
-        #[method_id(previouslyFocusedItem)]
+        #[method(previouslyFocusedItem)]
         #[unsafe(method_family = none)]
         pub unsafe fn previouslyFocusedItem(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIFocusItem>>>;
 
         /// The item that is focused after the update, i.e. where focus is updating to. May be nil if no item is being focused, meaning focus is being lost.
-        #[method_id(nextFocusedItem)]
+        #[method(nextFocusedItem)]
         #[unsafe(method_family = none)]
         pub unsafe fn nextFocusedItem(&self) -> Option<Retained<ProtocolObject<dyn UIFocusItem>>>;
 
@@ -319,7 +333,7 @@ extern_methods!(
         /// The view that was focused before the update. May be nil if no view was focused, such as when setting initial focus.
         /// If previouslyFocusedItem is not a view, this returns that item's containing view, otherwise they are equal.
         /// NOTE: This property will be deprecated in a future release. Use previouslyFocusedItem instead.
-        #[method_id(previouslyFocusedView)]
+        #[method(previouslyFocusedView)]
         #[unsafe(method_family = none)]
         pub unsafe fn previouslyFocusedView(&self) -> Option<Retained<UIView>>;
 
@@ -327,12 +341,13 @@ extern_methods!(
         /// The view that will be focused after the update. May be nil if no view will be focused.
         /// If nextFocusedItem is not a view, this returns that item's containing view, otherwise they are equal.
         /// NOTE: This property will be deprecated in a future release. Use nextFocusedItem instead.
-        #[method_id(nextFocusedView)]
+        #[method(nextFocusedView)]
         #[unsafe(method_family = none)]
         pub unsafe fn nextFocusedView(&self) -> Option<Retained<UIView>>;
 
         /// The focus heading in which the update is occurring.
         #[method(focusHeading)]
+        #[unsafe(method_family = none)]
         pub unsafe fn focusHeading(&self) -> UIFocusHeading;
     }
 );
@@ -340,11 +355,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIFocusUpdateContext {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

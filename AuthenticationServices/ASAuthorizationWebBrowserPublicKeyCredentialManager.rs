@@ -48,12 +48,13 @@ unsafe impl NSObjectProtocol for ASAuthorizationWebBrowserPublicKeyCredentialMan
 
 extern_methods!(
     unsafe impl ASAuthorizationWebBrowserPublicKeyCredentialManager {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[method(requestAuthorizationForPublicKeyCredentials:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestAuthorizationForPublicKeyCredentials(
             &self,
             completion_handler: &block2::Block<
@@ -66,6 +67,7 @@ extern_methods!(
             feature = "block2"
         ))]
         #[method(platformCredentialsForRelyingParty:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn platformCredentialsForRelyingParty_completionHandler(
             &self,
             relying_party: &NSString,
@@ -75,6 +77,7 @@ extern_methods!(
         );
 
         #[method(authorizationStateForPlatformCredentials)]
+        #[unsafe(method_family = none)]
         pub unsafe fn authorizationStateForPlatformCredentials(
             &self,
         ) -> ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationState;
@@ -84,7 +87,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASAuthorizationWebBrowserPublicKeyCredentialManager {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

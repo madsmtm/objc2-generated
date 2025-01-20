@@ -53,21 +53,24 @@ extern_methods!(
     unsafe impl VZVirtualMachineView {
         #[cfg(feature = "VZVirtualMachine")]
         /// The virtual machine to display in the view.
-        #[method_id(virtualMachine)]
+        #[method(virtualMachine)]
         #[unsafe(method_family = none)]
         pub unsafe fn virtualMachine(&self) -> Option<Retained<VZVirtualMachine>>;
 
         #[cfg(feature = "VZVirtualMachine")]
         /// Setter for [`virtualMachine`][Self::virtualMachine].
         #[method(setVirtualMachine:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setVirtualMachine(&self, virtual_machine: Option<&VZVirtualMachine>);
 
         /// Whether certain system hot keys should be sent to the guest instead of the host. Defaults to NO.
         #[method(capturesSystemKeys)]
+        #[unsafe(method_family = none)]
         pub unsafe fn capturesSystemKeys(&self) -> bool;
 
         /// Setter for [`capturesSystemKeys`][Self::capturesSystemKeys].
         #[method(setCapturesSystemKeys:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCapturesSystemKeys(&self, captures_system_keys: bool);
 
         /// Automatically reconfigures the graphics display associated with this view with respect to view changes. Defaults to NO.
@@ -80,10 +83,12 @@ extern_methods!(
         /// at a time. If multiple VZVirtualMachineViews targeting the same VZGraphicsDisplay enable this property,
         /// only one view will respect the property, and the other view will have had the property disabled.
         #[method(automaticallyReconfiguresDisplay)]
+        #[unsafe(method_family = none)]
         pub unsafe fn automaticallyReconfiguresDisplay(&self) -> bool;
 
         /// Setter for [`automaticallyReconfiguresDisplay`][Self::automaticallyReconfiguresDisplay].
         #[method(setAutomaticallyReconfiguresDisplay:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAutomaticallyReconfiguresDisplay(
             &self,
             automatically_reconfigures_display: bool,
@@ -95,11 +100,11 @@ extern_methods!(
     /// Methods declared on superclass `NSView`
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl VZVirtualMachineView {
-        #[method_id(initWithFrame:)]
+        #[method(initWithFrame:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -112,7 +117,7 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl VZVirtualMachineView {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -122,7 +127,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl VZVirtualMachineView {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

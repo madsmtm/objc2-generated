@@ -71,11 +71,11 @@ unsafe impl NSObjectProtocol for ASCredentialIdentityStore {}
 
 extern_methods!(
     unsafe impl ASCredentialIdentityStore {
-        #[method_id(sharedStore)]
+        #[method(sharedStore)]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedStore() -> Retained<ASCredentialIdentityStore>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -88,6 +88,7 @@ extern_methods!(
         /// Use the provided ASCredentialIdentityStoreState to find out if the store is enabled and whether it supports incremental
         /// updates.
         #[method(getCredentialIdentityStoreStateWithCompletion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getCredentialIdentityStoreStateWithCompletion(
             &self,
             completion: &block2::Block<dyn Fn(NonNull<ASCredentialIdentityStoreState>)>,
@@ -108,6 +109,7 @@ extern_methods!(
         ///
         /// Call this method to get a list of all credential identities saved in the store for your extension.
         #[method(getCredentialIdentitiesForService:credentialIdentityTypes:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getCredentialIdentitiesForService_credentialIdentityTypes_completionHandler(
             &self,
             service_identifier: Option<&ASCredentialServiceIdentifier>,
@@ -133,6 +135,7 @@ extern_methods!(
         /// those from credentialIdentities.
         #[deprecated]
         #[method(saveCredentialIdentities:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn saveCredentialIdentities_completion(
             &self,
             credential_identities: &NSArray<ASPasswordCredentialIdentity>,
@@ -154,6 +157,7 @@ extern_methods!(
         /// If some credential identities in credentialIdentities already exist in the store, they will be replaced by
         /// those from credentialIdentities.
         #[method(saveCredentialIdentityEntries:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn saveCredentialIdentityEntries_completion(
             &self,
             credential_identities: &NSArray<ProtocolObject<dyn ASCredentialIdentity>>,
@@ -173,6 +177,7 @@ extern_methods!(
         /// credentials to the store.
         #[deprecated]
         #[method(removeCredentialIdentities:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeCredentialIdentities_completion(
             &self,
             credential_identities: &NSArray<ASPasswordCredentialIdentity>,
@@ -191,6 +196,7 @@ extern_methods!(
         /// Use this method only if the store supports incremental updates to remove previously added
         /// credentials to the store.
         #[method(removeCredentialIdentityEntries:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeCredentialIdentityEntries_completion(
             &self,
             credential_identities: &NSArray<ProtocolObject<dyn ASCredentialIdentity>>,
@@ -204,6 +210,7 @@ extern_methods!(
         /// If the operation fails, an error with domain ASCredentialIdentityStoreErrorDomain will be provided and none of
         /// the existing credential identities will be removed from the store.
         #[method(removeAllCredentialIdentitiesWithCompletion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeAllCredentialIdentitiesWithCompletion(
             &self,
             completion: Option<&block2::Block<dyn Fn(Bool, *mut NSError)>>,
@@ -222,6 +229,7 @@ extern_methods!(
         /// identities will be saved.
         #[deprecated]
         #[method(replaceCredentialIdentitiesWithIdentities:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn replaceCredentialIdentitiesWithIdentities_completion(
             &self,
             new_credential_identities: &NSArray<ASPasswordCredentialIdentity>,
@@ -240,6 +248,7 @@ extern_methods!(
         /// error with domain ASCredentialIdentityStoreErrorDomain will be provided and none of the new credential
         /// identities will be saved.
         #[method(replaceCredentialIdentityEntries:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn replaceCredentialIdentityEntries_completion(
             &self,
             new_credential_identities: &NSArray<ProtocolObject<dyn ASCredentialIdentity>>,
@@ -251,7 +260,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASCredentialIdentityStore {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

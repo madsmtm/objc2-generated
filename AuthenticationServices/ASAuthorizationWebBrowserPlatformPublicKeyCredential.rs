@@ -17,41 +17,41 @@ unsafe impl NSObjectProtocol for ASAuthorizationWebBrowserPlatformPublicKeyCrede
 
 extern_methods!(
     unsafe impl ASAuthorizationWebBrowserPlatformPublicKeyCredential {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// The user name of the saved credential.
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// A user-specified title for the credential.
-        #[method_id(customTitle)]
+        #[method(customTitle)]
         #[unsafe(method_family = none)]
         pub unsafe fn customTitle(&self) -> Option<Retained<NSString>>;
 
         /// The "relying party" (generally website) the credential was saved for.
-        #[method_id(relyingParty)]
+        #[method(relyingParty)]
         #[unsafe(method_family = none)]
         pub unsafe fn relyingParty(&self) -> Retained<NSString>;
 
         /// A unique identifier for this credential.
-        #[method_id(credentialID)]
+        #[method(credentialID)]
         #[unsafe(method_family = none)]
         pub unsafe fn credentialID(&self) -> Retained<NSData>;
 
         /// A unique identifier for the user account associated with this credential. One account may have multiple associated credentials.
-        #[method_id(userHandle)]
+        #[method(userHandle)]
         #[unsafe(method_family = none)]
         pub unsafe fn userHandle(&self) -> Retained<NSData>;
 
         /// The localized name of the credential provider that provided this passkey, either the name of a third party app or "iCloud Keychain".
-        #[method_id(providerName)]
+        #[method(providerName)]
         #[unsafe(method_family = none)]
         pub unsafe fn providerName(&self) -> Retained<NSString>;
     }

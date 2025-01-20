@@ -34,15 +34,15 @@ unsafe impl NSSecureCoding for CLPlacemark {}
 
 extern_methods!(
     unsafe impl CLPlacemark {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(initWithPlacemark:)]
+        #[method(initWithPlacemark:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPlacemark(
             this: Allocated<Self>,
@@ -50,73 +50,73 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "CLLocation")]
-        #[method_id(location)]
+        #[method(location)]
         #[unsafe(method_family = none)]
         pub unsafe fn location(&self) -> Option<Retained<CLLocation>>;
 
         #[cfg(feature = "CLRegion")]
-        #[method_id(region)]
+        #[method(region)]
         #[unsafe(method_family = none)]
         pub unsafe fn region(&self) -> Option<Retained<CLRegion>>;
 
-        #[method_id(timeZone)]
+        #[method(timeZone)]
         #[unsafe(method_family = none)]
         pub unsafe fn timeZone(&self) -> Option<Retained<NSTimeZone>>;
 
         #[deprecated = "Use @properties"]
-        #[method_id(addressDictionary)]
+        #[method(addressDictionary)]
         #[unsafe(method_family = none)]
         pub unsafe fn addressDictionary(&self) -> Option<Retained<NSDictionary>>;
 
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(thoroughfare)]
+        #[method(thoroughfare)]
         #[unsafe(method_family = none)]
         pub unsafe fn thoroughfare(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(subThoroughfare)]
+        #[method(subThoroughfare)]
         #[unsafe(method_family = none)]
         pub unsafe fn subThoroughfare(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(locality)]
+        #[method(locality)]
         #[unsafe(method_family = none)]
         pub unsafe fn locality(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(subLocality)]
+        #[method(subLocality)]
         #[unsafe(method_family = none)]
         pub unsafe fn subLocality(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(administrativeArea)]
+        #[method(administrativeArea)]
         #[unsafe(method_family = none)]
         pub unsafe fn administrativeArea(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(subAdministrativeArea)]
+        #[method(subAdministrativeArea)]
         #[unsafe(method_family = none)]
         pub unsafe fn subAdministrativeArea(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(postalCode)]
+        #[method(postalCode)]
         #[unsafe(method_family = none)]
         pub unsafe fn postalCode(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(ISOcountryCode)]
+        #[method(ISOcountryCode)]
         #[unsafe(method_family = none)]
         pub unsafe fn ISOcountryCode(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(country)]
+        #[method(country)]
         #[unsafe(method_family = none)]
         pub unsafe fn country(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(inlandWater)]
+        #[method(inlandWater)]
         #[unsafe(method_family = none)]
         pub unsafe fn inlandWater(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(ocean)]
+        #[method(ocean)]
         #[unsafe(method_family = none)]
         pub unsafe fn ocean(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(areasOfInterest)]
+        #[method(areasOfInterest)]
         #[unsafe(method_family = none)]
         pub unsafe fn areasOfInterest(&self) -> Option<Retained<NSArray<NSString>>>;
     }
@@ -127,7 +127,7 @@ extern_methods!(
     unsafe impl CLPlacemark {
         #[cfg(feature = "objc2-contacts")]
         #[cfg(not(target_os = "tvos"))]
-        #[method_id(postalAddress)]
+        #[method(postalAddress)]
         #[unsafe(method_family = none)]
         pub unsafe fn postalAddress(&self) -> Option<Retained<CNPostalAddress>>;
     }

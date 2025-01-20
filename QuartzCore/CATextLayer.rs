@@ -42,71 +42,82 @@ unsafe impl NSSecureCoding for CATextLayer {}
 extern_methods!(
     #[cfg(feature = "CALayer")]
     unsafe impl CATextLayer {
-        #[method_id(string)]
+        #[method(string)]
         #[unsafe(method_family = none)]
         pub unsafe fn string(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`string`][Self::string].
         #[method(setString:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setString(&self, string: Option<&AnyObject>);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(font)]
+        #[method(font)]
         #[unsafe(method_family = none)]
         pub unsafe fn font(&self) -> Option<Retained<CFType>>;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`font`][Self::font].
         #[method(setFont:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFont(&self, font: Option<&CFType>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(fontSize)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fontSize(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`fontSize`][Self::fontSize].
         #[method(setFontSize:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFontSize(&self, font_size: CGFloat);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(foregroundColor)]
+        #[method(foregroundColor)]
         #[unsafe(method_family = none)]
         pub unsafe fn foregroundColor(&self) -> Option<Retained<CGColor>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`foregroundColor`][Self::foregroundColor].
         #[method(setForegroundColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setForegroundColor(&self, foreground_color: Option<&CGColor>);
 
         #[method(isWrapped)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isWrapped(&self) -> bool;
 
         /// Setter for [`isWrapped`][Self::isWrapped].
         #[method(setWrapped:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWrapped(&self, wrapped: bool);
 
-        #[method_id(truncationMode)]
+        #[method(truncationMode)]
         #[unsafe(method_family = none)]
         pub unsafe fn truncationMode(&self) -> Retained<CATextLayerTruncationMode>;
 
         /// Setter for [`truncationMode`][Self::truncationMode].
         #[method(setTruncationMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTruncationMode(&self, truncation_mode: &CATextLayerTruncationMode);
 
-        #[method_id(alignmentMode)]
+        #[method(alignmentMode)]
         #[unsafe(method_family = none)]
         pub unsafe fn alignmentMode(&self) -> Retained<CATextLayerAlignmentMode>;
 
         /// Setter for [`alignmentMode`][Self::alignmentMode].
         #[method(setAlignmentMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAlignmentMode(&self, alignment_mode: &CATextLayerAlignmentMode);
 
         #[method(allowsFontSubpixelQuantization)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowsFontSubpixelQuantization(&self) -> bool;
 
         /// Setter for [`allowsFontSubpixelQuantization`][Self::allowsFontSubpixelQuantization].
         #[method(setAllowsFontSubpixelQuantization:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAllowsFontSubpixelQuantization(
             &self,
             allows_font_subpixel_quantization: bool,
@@ -119,15 +130,15 @@ extern_methods!(
     #[cfg(feature = "CALayer")]
     unsafe impl CATextLayer {
         /// Layer creation and initialization. *
-        #[method_id(layer)]
+        #[method(layer)]
         #[unsafe(method_family = none)]
         pub unsafe fn layer() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(initWithLayer:)]
+        #[method(initWithLayer:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
     }
@@ -137,7 +148,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CALayer")]
     unsafe impl CATextLayer {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

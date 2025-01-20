@@ -23,20 +23,22 @@ extern_methods!(
         /// Pointer to memory that contains or will be used for tensor data
         #[deprecated]
         #[method(bytes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn bytes(&self) -> NonNull<c_void>;
 
         /// The size in bytes of the tensor data
         #[deprecated]
         #[method(length)]
+        #[unsafe(method_family = none)]
         pub unsafe fn length(&self) -> NSUInteger;
 
         #[deprecated]
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -53,7 +55,7 @@ extern_methods!(
         /// Returns: A new
         /// `MLCTensorData`object.
         #[deprecated]
-        #[method_id(dataWithBytesNoCopy:length:)]
+        #[method(dataWithBytesNoCopy:length:)]
         #[unsafe(method_family = none)]
         pub unsafe fn dataWithBytesNoCopy_length(
             bytes: NonNull<c_void>,
@@ -73,7 +75,7 @@ extern_methods!(
         /// Returns: A new
         /// `MLCTensorData`object.
         #[deprecated]
-        #[method_id(dataWithImmutableBytesNoCopy:length:)]
+        #[method(dataWithImmutableBytesNoCopy:length:)]
         #[unsafe(method_family = none)]
         pub unsafe fn dataWithImmutableBytesNoCopy_length(
             bytes: NonNull<c_void>,
@@ -92,7 +94,7 @@ extern_methods!(
         ///
         /// Returns: A new
         /// `MLCTensorData`object.
-        #[method_id(dataWithBytesNoCopy:length:deallocator:)]
+        #[method(dataWithBytesNoCopy:length:deallocator:)]
         #[unsafe(method_family = none)]
         pub unsafe fn dataWithBytesNoCopy_length_deallocator(
             bytes: NonNull<c_void>,

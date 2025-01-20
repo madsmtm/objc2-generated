@@ -26,6 +26,7 @@ extern_methods!(
     unsafe impl MTLFunctionConstantValues {
         #[cfg(feature = "MTLArgument")]
         #[method(setConstantValue:type:atIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setConstantValue_type_atIndex(
             &self,
             value: NonNull<c_void>,
@@ -35,6 +36,7 @@ extern_methods!(
 
         #[cfg(feature = "MTLArgument")]
         #[method(setConstantValues:type:withRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setConstantValues_type_withRange(
             &self,
             values: NonNull<c_void>,
@@ -44,6 +46,7 @@ extern_methods!(
 
         #[cfg(feature = "MTLArgument")]
         #[method(setConstantValue:type:withName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setConstantValue_type_withName(
             &self,
             value: NonNull<c_void>,
@@ -52,6 +55,7 @@ extern_methods!(
         );
 
         #[method(reset)]
+        #[unsafe(method_family = none)]
         pub fn reset(&self);
     }
 );
@@ -59,11 +63,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLFunctionConstantValues {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
     }

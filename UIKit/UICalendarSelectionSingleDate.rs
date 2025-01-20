@@ -23,7 +23,7 @@ extern_methods!(
     #[cfg(feature = "UICalendarSelection")]
     unsafe impl UICalendarSelectionSingleDate {
         /// The object that acts as the delegate of the calendar view selection
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -33,16 +33,18 @@ extern_methods!(
         /// `nil`then nothing in the calendar
         /// view is currently selected. The default value is
         /// `nil.`
-        #[method_id(selectedDate)]
+        #[method(selectedDate)]
         #[unsafe(method_family = none)]
         pub unsafe fn selectedDate(&self) -> Option<Retained<NSDateComponents>>;
 
         /// Setter for [`selectedDate`][Self::selectedDate].
         #[method(setSelectedDate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSelectedDate(&self, selected_date: Option<&NSDateComponents>);
 
         /// Sets the selected date to be displayed in the calendar, with an option to animate the setting.
         #[method(setSelectedDate:animated:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSelectedDate_animated(
             &self,
             selected_date: Option<&NSDateComponents>,
@@ -50,7 +52,7 @@ extern_methods!(
         );
 
         /// Creates a new single selection with the specified delegate.
-        #[method_id(initWithDelegate:)]
+        #[method(initWithDelegate:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDelegate(
             this: Allocated<Self>,
@@ -63,11 +65,11 @@ extern_methods!(
     /// Methods declared on superclass `UICalendarSelection`
     #[cfg(feature = "UICalendarSelection")]
     unsafe impl UICalendarSelectionSingleDate {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -86,6 +88,7 @@ extern_protocol!(
         /// `dateComponents`can be
         /// `nil`when the selected date is deselected by the user.
         #[method(dateSelection:didSelectDate:)]
+        #[unsafe(method_family = none)]
         unsafe fn dateSelection_didSelectDate(
             &self,
             selection: &UICalendarSelectionSingleDate,
@@ -107,6 +110,7 @@ extern_protocol!(
         /// Returns: YES if the date can be selected, NO otherwise.
         #[optional]
         #[method(dateSelection:canSelectDate:)]
+        #[unsafe(method_family = none)]
         unsafe fn dateSelection_canSelectDate(
             &self,
             selection: &UICalendarSelectionSingleDate,

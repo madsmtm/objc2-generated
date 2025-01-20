@@ -54,7 +54,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl GKTurnBasedMatchmakerViewController {
-        #[method_id(initWithNibName:bundle:)]
+        #[method(initWithNibName:bundle:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -62,7 +62,7 @@ extern_methods!(
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -76,7 +76,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl GKTurnBasedMatchmakerViewController {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -87,7 +87,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl GKTurnBasedMatchmakerViewController {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -97,7 +97,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl GKTurnBasedMatchmakerViewController {
-        #[method_id(turnBasedMatchmakerDelegate)]
+        #[method(turnBasedMatchmakerDelegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn turnBasedMatchmakerDelegate(
             &self,
@@ -106,6 +106,7 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`turnBasedMatchmakerDelegate`][Self::turnBasedMatchmakerDelegate].
         #[method(setTurnBasedMatchmakerDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTurnBasedMatchmakerDelegate(
             &self,
             turn_based_matchmaker_delegate: Option<
@@ -114,24 +115,28 @@ extern_methods!(
         );
 
         #[method(showExistingMatches)]
+        #[unsafe(method_family = none)]
         pub unsafe fn showExistingMatches(&self) -> bool;
 
         /// Setter for [`showExistingMatches`][Self::showExistingMatches].
         #[method(setShowExistingMatches:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShowExistingMatches(&self, show_existing_matches: bool);
 
         #[cfg(feature = "GKMatchmakerViewController")]
         /// This controls the mode of matchmaking to support in the UI (all, nearby only, automatch only, invite only). Throws an exception if you can not set to the desired mode (due to restrictions)
         #[method(matchmakingMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn matchmakingMode(&self) -> GKMatchmakingMode;
 
         #[cfg(feature = "GKMatchmakerViewController")]
         /// Setter for [`matchmakingMode`][Self::matchmakingMode].
         #[method(setMatchmakingMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMatchmakingMode(&self, matchmaking_mode: GKMatchmakingMode);
 
         #[cfg(feature = "GKMatchmaker")]
-        #[method_id(initWithMatchRequest:)]
+        #[method(initWithMatchRequest:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMatchRequest(
             this: Allocated<Self>,
@@ -147,6 +152,7 @@ extern_protocol!(
         #[cfg(target_os = "macos")]
         /// The user has cancelled
         #[method(turnBasedMatchmakerViewControllerWasCancelled:)]
+        #[unsafe(method_family = none)]
         unsafe fn turnBasedMatchmakerViewControllerWasCancelled(
             &self,
             view_controller: &GKTurnBasedMatchmakerViewController,
@@ -156,6 +162,7 @@ extern_protocol!(
         #[cfg(target_os = "macos")]
         /// Matchmaking has failed with an error
         #[method(turnBasedMatchmakerViewController:didFailWithError:)]
+        #[unsafe(method_family = none)]
         unsafe fn turnBasedMatchmakerViewController_didFailWithError(
             &self,
             view_controller: &GKTurnBasedMatchmakerViewController,
@@ -167,6 +174,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(turnBasedMatchmakerViewController:didFindMatch:)]
+        #[unsafe(method_family = none)]
         unsafe fn turnBasedMatchmakerViewController_didFindMatch(
             &self,
             view_controller: &GKTurnBasedMatchmakerViewController,
@@ -178,6 +186,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(turnBasedMatchmakerViewController:playerQuitForMatch:)]
+        #[unsafe(method_family = none)]
         unsafe fn turnBasedMatchmakerViewController_playerQuitForMatch(
             &self,
             view_controller: &GKTurnBasedMatchmakerViewController,

@@ -152,6 +152,7 @@ extern_protocol!(
         ///
         /// Parameter `completion`: The completion to call to continue device registration.
         #[method(beginDeviceRegistrationUsingLoginManager:options:completion:)]
+        #[unsafe(method_family = none)]
         unsafe fn beginDeviceRegistrationUsingLoginManager_options_completion(
             &self,
             login_manager: &ASAuthorizationProviderExtensionLoginManager,
@@ -175,6 +176,7 @@ extern_protocol!(
         ///
         /// Parameter `completion`: The completion to call to continue user registration.
         #[method(beginUserRegistrationUsingLoginManager:userName:authenticationMethod:options:completion:)]
+        #[unsafe(method_family = none)]
         unsafe fn beginUserRegistrationUsingLoginManager_userName_authenticationMethod_options_completion(
             &self,
             login_manager: &ASAuthorizationProviderExtensionLoginManager,
@@ -187,22 +189,26 @@ extern_protocol!(
         /// Call to extension to free any resources used by the extension during registration. It will be called once after all current registration calls are complete.
         #[optional]
         #[method(registrationDidComplete)]
+        #[unsafe(method_family = none)]
         unsafe fn registrationDidComplete(&self);
 
         /// Call to extension when the registration has been cancelled.
         #[optional]
         #[method(registrationDidCancel)]
+        #[unsafe(method_family = none)]
         unsafe fn registrationDidCancel(&self);
 
         /// The grant types supported by the identity provider.
         #[optional]
         #[method(supportedGrantTypes)]
+        #[unsafe(method_family = none)]
         unsafe fn supportedGrantTypes(&self)
             -> ASAuthorizationProviderExtensionSupportedGrantTypes;
 
         /// The protocol version supported by the identity provider.
         #[optional]
         #[method(protocolVersion)]
+        #[unsafe(method_family = none)]
         unsafe fn protocolVersion(
             &self,
         ) -> ASAuthorizationProviderExtensionPlatformSSOProtocolVersion;
@@ -210,7 +216,7 @@ extern_protocol!(
         #[cfg(feature = "ASAuthorizationProviderExtensionLoginConfiguration")]
         /// The supported device signing algorithms.
         #[optional]
-        #[method_id(supportedDeviceSigningAlgorithms)]
+        #[method(supportedDeviceSigningAlgorithms)]
         #[unsafe(method_family = none)]
         unsafe fn supportedDeviceSigningAlgorithms(
             &self,
@@ -219,7 +225,7 @@ extern_protocol!(
         #[cfg(feature = "ASAuthorizationProviderExtensionLoginConfiguration")]
         /// The supported device encryption algorithms.
         #[optional]
-        #[method_id(supportedDeviceEncryptionAlgorithms)]
+        #[method(supportedDeviceEncryptionAlgorithms)]
         #[unsafe(method_family = none)]
         unsafe fn supportedDeviceEncryptionAlgorithms(
             &self,
@@ -228,7 +234,7 @@ extern_protocol!(
         #[cfg(feature = "ASAuthorizationProviderExtensionLoginConfiguration")]
         /// The supported user Secure Enclave Key signing algorithms.
         #[optional]
-        #[method_id(supportedUserSecureEnclaveKeySigningAlgorithms)]
+        #[method(supportedUserSecureEnclaveKeySigningAlgorithms)]
         #[unsafe(method_family = none)]
         unsafe fn supportedUserSecureEnclaveKeySigningAlgorithms(
             &self,
@@ -242,6 +248,7 @@ extern_protocol!(
         /// The specified keyType will rotate to a new key. The rotation is complete when the completion handler is called.  This is only called by the system for automatic key rotation.
         #[optional]
         #[method(keyWillRotateForKeyType:newKey:loginManager:completion:)]
+        #[unsafe(method_family = none)]
         unsafe fn keyWillRotateForKeyType_newKey_loginManager_completion(
             &self,
             key_type: ASAuthorizationProviderExtensionKeyType,

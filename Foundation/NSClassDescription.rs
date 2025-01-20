@@ -18,37 +18,39 @@ unsafe impl NSObjectProtocol for NSClassDescription {}
 extern_methods!(
     unsafe impl NSClassDescription {
         #[method(registerClassDescription:forClass:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn registerClassDescription_forClass(
             description: &NSClassDescription,
             a_class: &AnyClass,
         );
 
         #[method(invalidateClassDescriptionCache)]
+        #[unsafe(method_family = none)]
         pub unsafe fn invalidateClassDescriptionCache();
 
-        #[method_id(classDescriptionForClass:)]
+        #[method(classDescriptionForClass:)]
         #[unsafe(method_family = none)]
         pub unsafe fn classDescriptionForClass(
             a_class: &AnyClass,
         ) -> Option<Retained<NSClassDescription>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[method_id(attributeKeys)]
+        #[method(attributeKeys)]
         #[unsafe(method_family = none)]
         pub unsafe fn attributeKeys(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[method_id(toOneRelationshipKeys)]
+        #[method(toOneRelationshipKeys)]
         #[unsafe(method_family = none)]
         pub unsafe fn toOneRelationshipKeys(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[method_id(toManyRelationshipKeys)]
+        #[method(toManyRelationshipKeys)]
         #[unsafe(method_family = none)]
         pub unsafe fn toManyRelationshipKeys(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(inverseForRelationshipKey:)]
+        #[method(inverseForRelationshipKey:)]
         #[unsafe(method_family = none)]
         pub unsafe fn inverseForRelationshipKey(
             &self,
@@ -60,11 +62,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSClassDescription {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -74,27 +76,27 @@ extern_category!(
     /// Category "NSClassDescriptionPrimitives" on [`NSObject`].
     #[doc(alias = "NSClassDescriptionPrimitives")]
     pub unsafe trait NSObjectNSClassDescriptionPrimitives {
-        #[method_id(classDescription)]
+        #[method(classDescription)]
         #[unsafe(method_family = none)]
         unsafe fn classDescription(&self) -> Retained<NSClassDescription>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[method_id(attributeKeys)]
+        #[method(attributeKeys)]
         #[unsafe(method_family = none)]
         unsafe fn attributeKeys(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[method_id(toOneRelationshipKeys)]
+        #[method(toOneRelationshipKeys)]
         #[unsafe(method_family = none)]
         unsafe fn toOneRelationshipKeys(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[method_id(toManyRelationshipKeys)]
+        #[method(toManyRelationshipKeys)]
         #[unsafe(method_family = none)]
         unsafe fn toManyRelationshipKeys(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(inverseForRelationshipKey:)]
+        #[method(inverseForRelationshipKey:)]
         #[unsafe(method_family = none)]
         unsafe fn inverseForRelationshipKey(
             &self,

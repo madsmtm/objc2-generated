@@ -141,6 +141,7 @@ unsafe impl NSSecureCoding for CLFloor {}
 extern_methods!(
     unsafe impl CLFloor {
         #[method(level)]
+        #[unsafe(method_family = none)]
         pub unsafe fn level(&self) -> NSInteger;
     }
 );
@@ -148,11 +149,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CLFloor {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -179,7 +180,7 @@ unsafe impl NSSecureCoding for CLLocationSourceInformation {}
 
 extern_methods!(
     unsafe impl CLLocationSourceInformation {
-        #[method_id(initWithSoftwareSimulationState:andExternalAccessoryState:)]
+        #[method(initWithSoftwareSimulationState:andExternalAccessoryState:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSoftwareSimulationState_andExternalAccessoryState(
             this: Allocated<Self>,
@@ -188,9 +189,11 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[method(isSimulatedBySoftware)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isSimulatedBySoftware(&self) -> bool;
 
         #[method(isProducedByAccessory)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isProducedByAccessory(&self) -> bool;
     }
 );
@@ -198,11 +201,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CLLocationSourceInformation {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -233,7 +236,7 @@ unsafe impl NSSecureCoding for CLLocation {}
 
 extern_methods!(
     unsafe impl CLLocation {
-        #[method_id(initWithLatitude:longitude:)]
+        #[method(initWithLatitude:longitude:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLatitude_longitude(
             this: Allocated<Self>,
@@ -241,7 +244,7 @@ extern_methods!(
             longitude: CLLocationDegrees,
         ) -> Retained<Self>;
 
-        #[method_id(initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:timestamp:)]
+        #[method(initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:timestamp:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoordinate_altitude_horizontalAccuracy_verticalAccuracy_timestamp(
             this: Allocated<Self>,
@@ -252,7 +255,7 @@ extern_methods!(
             timestamp: &NSDate,
         ) -> Retained<Self>;
 
-        #[method_id(initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:course:speed:timestamp:)]
+        #[method(initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:course:speed:timestamp:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoordinate_altitude_horizontalAccuracy_verticalAccuracy_course_speed_timestamp(
             this: Allocated<Self>,
@@ -265,7 +268,7 @@ extern_methods!(
             timestamp: &NSDate,
         ) -> Retained<Self>;
 
-        #[method_id(initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:course:courseAccuracy:speed:speedAccuracy:timestamp:)]
+        #[method(initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:course:courseAccuracy:speed:speedAccuracy:timestamp:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoordinate_altitude_horizontalAccuracy_verticalAccuracy_course_courseAccuracy_speed_speedAccuracy_timestamp(
             this: Allocated<Self>,
@@ -280,7 +283,7 @@ extern_methods!(
             timestamp: &NSDate,
         ) -> Retained<Self>;
 
-        #[method_id(initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:course:courseAccuracy:speed:speedAccuracy:timestamp:sourceInfo:)]
+        #[method(initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:course:courseAccuracy:speed:speedAccuracy:timestamp:sourceInfo:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoordinate_altitude_horizontalAccuracy_verticalAccuracy_course_courseAccuracy_speed_speedAccuracy_timestamp_sourceInfo(
             this: Allocated<Self>,
@@ -297,41 +300,50 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[method(coordinate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn coordinate(&self) -> CLLocationCoordinate2D;
 
         #[method(altitude)]
+        #[unsafe(method_family = none)]
         pub unsafe fn altitude(&self) -> CLLocationDistance;
 
         #[method(ellipsoidalAltitude)]
+        #[unsafe(method_family = none)]
         pub unsafe fn ellipsoidalAltitude(&self) -> CLLocationDistance;
 
         #[method(horizontalAccuracy)]
+        #[unsafe(method_family = none)]
         pub unsafe fn horizontalAccuracy(&self) -> CLLocationAccuracy;
 
         #[method(verticalAccuracy)]
+        #[unsafe(method_family = none)]
         pub unsafe fn verticalAccuracy(&self) -> CLLocationAccuracy;
 
         #[method(course)]
+        #[unsafe(method_family = none)]
         pub unsafe fn course(&self) -> CLLocationDirection;
 
         #[method(courseAccuracy)]
+        #[unsafe(method_family = none)]
         pub unsafe fn courseAccuracy(&self) -> CLLocationDirectionAccuracy;
 
         #[method(speed)]
+        #[unsafe(method_family = none)]
         pub unsafe fn speed(&self) -> CLLocationSpeed;
 
         #[method(speedAccuracy)]
+        #[unsafe(method_family = none)]
         pub unsafe fn speedAccuracy(&self) -> CLLocationSpeedAccuracy;
 
-        #[method_id(timestamp)]
+        #[method(timestamp)]
         #[unsafe(method_family = none)]
         pub unsafe fn timestamp(&self) -> Retained<NSDate>;
 
-        #[method_id(floor)]
+        #[method(floor)]
         #[unsafe(method_family = none)]
         pub unsafe fn floor(&self) -> Option<Retained<CLFloor>>;
 
-        #[method_id(sourceInformation)]
+        #[method(sourceInformation)]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceInformation(&self) -> Option<Retained<CLLocationSourceInformation>>;
     }
@@ -340,11 +352,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CLLocation {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -37,62 +37,74 @@ extern_methods!(
         #[cfg(feature = "VNTypes")]
         /// Specifies the minimum aspect ratio of the rectangle(s) to look for, range [0.0, 1.0], default 0.5
         #[method(minimumAspectRatio)]
+        #[unsafe(method_family = none)]
         pub unsafe fn minimumAspectRatio(&self) -> VNAspectRatio;
 
         #[cfg(feature = "VNTypes")]
         /// Setter for [`minimumAspectRatio`][Self::minimumAspectRatio].
         #[method(setMinimumAspectRatio:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMinimumAspectRatio(&self, minimum_aspect_ratio: VNAspectRatio);
 
         #[cfg(feature = "VNTypes")]
         /// Specifies the maximum aspect ratio of the rectangle(s) to look for, range [0.0, 1.0], default 1.0
         #[method(maximumAspectRatio)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maximumAspectRatio(&self) -> VNAspectRatio;
 
         #[cfg(feature = "VNTypes")]
         /// Setter for [`maximumAspectRatio`][Self::maximumAspectRatio].
         #[method(setMaximumAspectRatio:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMaximumAspectRatio(&self, maximum_aspect_ratio: VNAspectRatio);
 
         #[cfg(feature = "VNTypes")]
         /// Specifies the maximum number of degrees a rectangle corner angle can deviate from 90 degrees, range [0,45], default 30
         #[method(quadratureTolerance)]
+        #[unsafe(method_family = none)]
         pub unsafe fn quadratureTolerance(&self) -> VNDegrees;
 
         #[cfg(feature = "VNTypes")]
         /// Setter for [`quadratureTolerance`][Self::quadratureTolerance].
         #[method(setQuadratureTolerance:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setQuadratureTolerance(&self, quadrature_tolerance: VNDegrees);
 
         /// Specifies the minimum size of the rectangle to be detected, as a proportion of the smallest dimension, range [0.0, 1.0], default .2. Any smaller rectangles that may have been detected will not be returned.
         #[method(minimumSize)]
+        #[unsafe(method_family = none)]
         pub unsafe fn minimumSize(&self) -> c_float;
 
         /// Setter for [`minimumSize`][Self::minimumSize].
         #[method(setMinimumSize:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMinimumSize(&self, minimum_size: c_float);
 
         #[cfg(feature = "VNTypes")]
         /// Specifies a minimum confidence score, range [0.0, 1.0], default 0.0. Any rectangles with a lower confidence score will not be returned.
         #[method(minimumConfidence)]
+        #[unsafe(method_family = none)]
         pub unsafe fn minimumConfidence(&self) -> VNConfidence;
 
         #[cfg(feature = "VNTypes")]
         /// Setter for [`minimumConfidence`][Self::minimumConfidence].
         #[method(setMinimumConfidence:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMinimumConfidence(&self, minimum_confidence: VNConfidence);
 
         /// Specifies the maximum number of rectangles to be returned.  The default is 1.  Setting this property to 0 will allow an unlimited number of observations to be returned.
         #[method(maximumObservations)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maximumObservations(&self) -> NSUInteger;
 
         /// Setter for [`maximumObservations`][Self::maximumObservations].
         #[method(setMaximumObservations:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMaximumObservations(&self, maximum_observations: NSUInteger);
 
         #[cfg(feature = "VNObservation")]
         /// VNRectangleObservation results.
-        #[method_id(results)]
+        #[method(results)]
         #[unsafe(method_family = none)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNRectangleObservation>>>;
     }
@@ -103,7 +115,7 @@ extern_methods!(
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectRectanglesRequest {
         /// Creates a new VNRequest with no completion handler.
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -112,7 +124,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
-        #[method_id(initWithCompletionHandler:)]
+        #[method(initWithCompletionHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
@@ -125,7 +137,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectRectanglesRequest {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

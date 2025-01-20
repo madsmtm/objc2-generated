@@ -42,7 +42,7 @@ extern_methods!(
         #[cfg(feature = "UISceneSession")]
         /// Creates the placement that will target the given `sceneSession`.
         /// - Parameter targetSceneSession: The scene session of the window scene that will be backgrounded.
-        #[method_id(placementTargetingSceneSession:)]
+        #[method(placementTargetingSceneSession:)]
         #[unsafe(method_family = none)]
         pub unsafe fn placementTargetingSceneSession(
             target_scene_session: &UISceneSession,
@@ -54,11 +54,11 @@ extern_methods!(
     /// Methods declared on superclass `UIWindowScenePlacement`
     #[cfg(feature = "UIWindowScenePlacement")]
     unsafe impl UIWindowScenePushPlacement {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

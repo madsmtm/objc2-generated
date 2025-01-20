@@ -57,18 +57,19 @@ extern_protocol!(
     pub unsafe trait UIGuidedAccessRestrictionDelegate:
         NSObjectProtocol + MainThreadOnly
     {
-        #[method_id(guidedAccessRestrictionIdentifiers)]
+        #[method(guidedAccessRestrictionIdentifiers)]
         #[unsafe(method_family = none)]
         unsafe fn guidedAccessRestrictionIdentifiers(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[method(guidedAccessRestrictionWithIdentifier:didChangeState:)]
+        #[unsafe(method_family = none)]
         unsafe fn guidedAccessRestrictionWithIdentifier_didChangeState(
             &self,
             restriction_identifier: &NSString,
             new_restriction_state: UIGuidedAccessRestrictionState,
         );
 
-        #[method_id(textForGuidedAccessRestrictionWithIdentifier:)]
+        #[method(textForGuidedAccessRestrictionWithIdentifier:)]
         #[unsafe(method_family = none)]
         unsafe fn textForGuidedAccessRestrictionWithIdentifier(
             &self,
@@ -76,7 +77,7 @@ extern_protocol!(
         ) -> Option<Retained<NSString>>;
 
         #[optional]
-        #[method_id(detailTextForGuidedAccessRestrictionWithIdentifier:)]
+        #[method(detailTextForGuidedAccessRestrictionWithIdentifier:)]
         #[unsafe(method_family = none)]
         unsafe fn detailTextForGuidedAccessRestrictionWithIdentifier(
             &self,

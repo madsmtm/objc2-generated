@@ -22,7 +22,7 @@ unsafe impl NSObjectProtocol for WKRefreshBackgroundTask {}
 
 extern_methods!(
     unsafe impl WKRefreshBackgroundTask {
-        #[method_id(userInfo)]
+        #[method(userInfo)]
         #[unsafe(method_family = none)]
         pub unsafe fn userInfo(
             &self,
@@ -49,11 +49,13 @@ extern_methods!(
         ///  }
         /// ```
         #[method(expirationHandler)]
+        #[unsafe(method_family = none)]
         pub unsafe fn expirationHandler(&self) -> *mut block2::Block<dyn Fn()>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`expirationHandler`][Self::expirationHandler].
         #[method(setExpirationHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setExpirationHandler(
             &self,
             expiration_handler: Option<&block2::Block<dyn Fn()>>,
@@ -61,9 +63,11 @@ extern_methods!(
 
         #[deprecated = "Use -setTaskCompletedWithSnapshot: instead, pass NO to duplicate existing behavior"]
         #[method(setTaskCompleted)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTaskCompleted(&self);
 
         #[method(setTaskCompletedWithSnapshot:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTaskCompletedWithSnapshot(&self, refresh_snapshot: bool);
     }
 );
@@ -71,11 +75,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKRefreshBackgroundTask {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -97,11 +101,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKApplicationRefreshBackgroundTask {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -146,12 +150,15 @@ extern_methods!(
     unsafe impl WKSnapshotRefreshBackgroundTask {
         #[deprecated = "Use reasonForSnapshot instead, WKSnapshotReasonReturnToPrimaryUI is equivalent to returnToDefaultState=true"]
         #[method(returnToDefaultState)]
+        #[unsafe(method_family = none)]
         pub unsafe fn returnToDefaultState(&self) -> bool;
 
         #[method(reasonForSnapshot)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reasonForSnapshot(&self) -> WKSnapshotReason;
 
         #[method(setTaskCompletedWithDefaultStateRestored:estimatedSnapshotExpiration:userInfo:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTaskCompletedWithDefaultStateRestored_estimatedSnapshotExpiration_userInfo(
             &self,
             restored_default_state: bool,
@@ -164,11 +171,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKSnapshotRefreshBackgroundTask {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -185,7 +192,7 @@ unsafe impl NSObjectProtocol for WKURLSessionRefreshBackgroundTask {}
 
 extern_methods!(
     unsafe impl WKURLSessionRefreshBackgroundTask {
-        #[method_id(sessionIdentifier)]
+        #[method(sessionIdentifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn sessionIdentifier(&self) -> Retained<NSString>;
     }
@@ -194,11 +201,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKURLSessionRefreshBackgroundTask {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -220,11 +227,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKWatchConnectivityRefreshBackgroundTask {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -246,11 +253,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKRelevantShortcutRefreshBackgroundTask {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -272,11 +279,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKIntentDidRunRefreshBackgroundTask {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -302,11 +309,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKBluetoothAlertRefreshBackgroundTask {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -318,6 +325,7 @@ extern_methods!(
     unsafe impl WKExtension {
         #[cfg(feature = "block2")]
         #[method(scheduleBackgroundRefreshWithPreferredDate:userInfo:scheduledCompletion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scheduleBackgroundRefreshWithPreferredDate_userInfo_scheduledCompletion(
             &self,
             preferred_fire_date: &NSDate,
@@ -327,6 +335,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[method(scheduleSnapshotRefreshWithPreferredDate:userInfo:scheduledCompletion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scheduleSnapshotRefreshWithPreferredDate_userInfo_scheduledCompletion(
             &self,
             preferred_fire_date: &NSDate,
@@ -342,6 +351,7 @@ extern_methods!(
     unsafe impl WKApplication {
         #[cfg(feature = "block2")]
         #[method(scheduleBackgroundRefreshWithPreferredDate:userInfo:scheduledCompletion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scheduleBackgroundRefreshWithPreferredDate_userInfo_scheduledCompletion(
             &self,
             preferred_fire_date: &NSDate,
@@ -351,6 +361,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[method(scheduleSnapshotRefreshWithPreferredDate:userInfo:scheduledCompletion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scheduleSnapshotRefreshWithPreferredDate_userInfo_scheduledCompletion(
             &self,
             preferred_fire_date: &NSDate,

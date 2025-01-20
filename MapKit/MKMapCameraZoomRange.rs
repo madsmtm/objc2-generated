@@ -36,7 +36,7 @@ unsafe impl NSSecureCoding for MKMapCameraZoomRange {}
 extern_methods!(
     unsafe impl MKMapCameraZoomRange {
         #[cfg(feature = "objc2-core-location")]
-        #[method_id(initWithMinCenterCoordinateDistance:maxCenterCoordinateDistance:)]
+        #[method(initWithMinCenterCoordinateDistance:maxCenterCoordinateDistance:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMinCenterCoordinateDistance_maxCenterCoordinateDistance(
             this: Allocated<Self>,
@@ -45,7 +45,7 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "objc2-core-location")]
-        #[method_id(initWithMinCenterCoordinateDistance:)]
+        #[method(initWithMinCenterCoordinateDistance:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMinCenterCoordinateDistance(
             this: Allocated<Self>,
@@ -53,7 +53,7 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "objc2-core-location")]
-        #[method_id(initWithMaxCenterCoordinateDistance:)]
+        #[method(initWithMaxCenterCoordinateDistance:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMaxCenterCoordinateDistance(
             this: Allocated<Self>,
@@ -62,10 +62,12 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-location")]
         #[method(minCenterCoordinateDistance)]
+        #[unsafe(method_family = none)]
         pub unsafe fn minCenterCoordinateDistance(&self) -> CLLocationDistance;
 
         #[cfg(feature = "objc2-core-location")]
         #[method(maxCenterCoordinateDistance)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maxCenterCoordinateDistance(&self) -> CLLocationDistance;
     }
 );
@@ -73,11 +75,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKMapCameraZoomRange {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

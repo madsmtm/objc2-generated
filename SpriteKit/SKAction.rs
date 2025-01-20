@@ -86,20 +86,24 @@ extern_methods!(
     unsafe impl SKAction {
         /// The duration required to complete an action, in seconds.
         #[method(duration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
         /// Setter for [`duration`][Self::duration].
         #[method(setDuration:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDuration(&self, duration: NSTimeInterval);
 
         /// The timing mode used to execute an action
         ///
         /// See: SKActionTimingMode
         #[method(timingMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn timingMode(&self) -> SKActionTimingMode;
 
         /// Setter for [`timingMode`][Self::timingMode].
         #[method(setTimingMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTimingMode(&self, timing_mode: SKActionTimingMode);
 
         #[cfg(feature = "block2")]
@@ -108,21 +112,25 @@ extern_methods!(
         ///
         /// See: SKActionTimingFunction
         #[method(timingFunction)]
+        #[unsafe(method_family = none)]
         pub unsafe fn timingFunction(&self) -> SKActionTimingFunction;
 
         #[cfg(feature = "block2")]
         /// Setter for [`timingFunction`][Self::timingFunction].
         #[method(setTimingFunction:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTimingFunction(&self, timing_function: SKActionTimingFunction);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// A speed factor that modifies how fast an action runs. Default value is 1.0
         #[method(speed)]
+        #[unsafe(method_family = none)]
         pub unsafe fn speed(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`speed`][Self::speed].
         #[method(setSpeed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSpeed(&self, speed: CGFloat);
 
         /// Creates an action that reverses the behavior of another action
@@ -130,7 +138,7 @@ extern_methods!(
         ///
         /// Returns: This method always returns an action object; however, not all actions
         /// are reversible
-        #[method_id(reversedAction)]
+        #[method(reversedAction)]
         #[unsafe(method_family = none)]
         pub unsafe fn reversedAction(&self) -> Retained<SKAction>;
     }
@@ -139,11 +147,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKAction {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -158,7 +166,7 @@ extern_methods!(
         /// Parameter `delta`: A vector that describes the change to apply to the node’s position
         ///
         /// Parameter `duration`: The duration of the animation, in seconds
-        #[method_id(moveBy:duration:)]
+        #[method(moveBy:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn moveBy_duration(
             delta: CGVector,
@@ -166,7 +174,7 @@ extern_methods!(
         ) -> Retained<SKAction>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(moveByX:y:duration:)]
+        #[method(moveByX:y:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn moveByX_y_duration(
             delta_x: CGFloat,
@@ -180,7 +188,7 @@ extern_methods!(
         /// Parameter `location`: The coordinates for the node’s new position
         ///
         /// Parameter `duration`: The duration of the animation, in seconds
-        #[method_id(moveTo:duration:)]
+        #[method(moveTo:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn moveTo_duration(
             location: CGPoint,
@@ -188,12 +196,12 @@ extern_methods!(
         ) -> Retained<SKAction>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(moveToX:duration:)]
+        #[method(moveToX:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn moveToX_duration(x: CGFloat, duration: NSTimeInterval) -> Retained<SKAction>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(moveToY:duration:)]
+        #[method(moveToY:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn moveToY_duration(y: CGFloat, duration: NSTimeInterval) -> Retained<SKAction>;
 
@@ -203,7 +211,7 @@ extern_methods!(
         /// Parameter `radians`: The amount to rotate the node, in radians
         ///
         /// Parameter `duration`: The duration of the animation, in seconds
-        #[method_id(rotateByAngle:duration:)]
+        #[method(rotateByAngle:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn rotateByAngle_duration(
             radians: CGFloat,
@@ -216,7 +224,7 @@ extern_methods!(
         /// Parameter `radians`: The angle to rotate the node to, in radians
         ///
         /// Parameter `duration`: The duration of the animation
-        #[method_id(rotateToAngle:duration:)]
+        #[method(rotateToAngle:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn rotateToAngle_duration(
             radians: CGFloat,
@@ -233,7 +241,7 @@ extern_methods!(
         /// Parameter `shortestUnitArc`: If YES, then the rotation is performed in whichever
         /// direction results in the smallest rotation. If NO, then the rotation
         /// is interpolated
-        #[method_id(rotateToAngle:duration:shortestUnitArc:)]
+        #[method(rotateToAngle:duration:shortestUnitArc:)]
         #[unsafe(method_family = none)]
         pub unsafe fn rotateToAngle_duration_shortestUnitArc(
             radians: CGFloat,
@@ -249,7 +257,7 @@ extern_methods!(
         /// Parameter `height`: The amount to add to the sprite’s height
         ///
         /// Parameter `duration`: The duration of the animation, in seconds
-        #[method_id(resizeByWidth:height:duration:)]
+        #[method(resizeByWidth:height:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn resizeByWidth_height_duration(
             width: CGFloat,
@@ -265,7 +273,7 @@ extern_methods!(
         /// Parameter `height`: The new height of the sprite
         ///
         /// Parameter `duration`: The duration of the animation, in seconds
-        #[method_id(resizeToWidth:height:duration:)]
+        #[method(resizeToWidth:height:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn resizeToWidth_height_duration(
             width: CGFloat,
@@ -274,7 +282,7 @@ extern_methods!(
         ) -> Retained<SKAction>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(resizeToWidth:duration:)]
+        #[method(resizeToWidth:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn resizeToWidth_duration(
             width: CGFloat,
@@ -282,7 +290,7 @@ extern_methods!(
         ) -> Retained<SKAction>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(resizeToHeight:duration:)]
+        #[method(resizeToHeight:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn resizeToHeight_duration(
             height: CGFloat,
@@ -295,7 +303,7 @@ extern_methods!(
         /// Parameter `scale`: The amount to modify to the node’s x and y scale values
         ///
         /// Parameter `duration`: The duration of the animation, in seconds
-        #[method_id(scaleBy:duration:)]
+        #[method(scaleBy:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn scaleBy_duration(
             scale: CGFloat,
@@ -303,7 +311,7 @@ extern_methods!(
         ) -> Retained<SKAction>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(scaleXBy:y:duration:)]
+        #[method(scaleXBy:y:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn scaleXBy_y_duration(
             x_scale: CGFloat,
@@ -317,7 +325,7 @@ extern_methods!(
         /// Parameter `scale`: The new value for the node’s x and y scale values
         ///
         /// Parameter `duration`: The duration of the animation, in seconds
-        #[method_id(scaleTo:duration:)]
+        #[method(scaleTo:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn scaleTo_duration(
             scale: CGFloat,
@@ -325,7 +333,7 @@ extern_methods!(
         ) -> Retained<SKAction>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(scaleXTo:y:duration:)]
+        #[method(scaleXTo:y:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn scaleXTo_y_duration(
             x_scale: CGFloat,
@@ -334,7 +342,7 @@ extern_methods!(
         ) -> Retained<SKAction>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(scaleXTo:duration:)]
+        #[method(scaleXTo:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn scaleXTo_duration(
             scale: CGFloat,
@@ -342,7 +350,7 @@ extern_methods!(
         ) -> Retained<SKAction>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(scaleYTo:duration:)]
+        #[method(scaleYTo:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn scaleYTo_duration(
             scale: CGFloat,
@@ -355,7 +363,7 @@ extern_methods!(
         /// yScale to achieve the desired size (in parent's coordinate space)
         ///
         /// Parameter `duration`: The duration of the animation, in seconds
-        #[method_id(scaleToSize:duration:)]
+        #[method(scaleToSize:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn scaleToSize_duration(
             size: CGSize,
@@ -377,7 +385,7 @@ extern_methods!(
         /// the order of the actions. Each action in the reversed sequence is itself
         /// reversed. For example, if an action sequence is {1,2,3}, the reversed
         /// sequence would be {3R,2R,1R}.
-        #[method_id(sequence:)]
+        #[method(sequence:)]
         #[unsafe(method_family = none)]
         pub unsafe fn sequence(actions: &NSArray<SKAction>) -> Retained<SKAction>;
 
@@ -393,7 +401,7 @@ extern_methods!(
         /// action completes, then idles until the group completes the remaining
         /// actions. This matters most when creating a repeating action that repeats
         /// a group.
-        #[method_id(group:)]
+        #[method(group:)]
         #[unsafe(method_family = none)]
         pub unsafe fn group(actions: &NSArray<SKAction>) -> Retained<SKAction>;
 
@@ -402,7 +410,7 @@ extern_methods!(
         /// Parameter `action`: The action to execute
         ///
         /// Parameter `count`: The number of times to execute the action
-        #[method_id(repeatAction:count:)]
+        #[method(repeatAction:count:)]
         #[unsafe(method_family = none)]
         pub unsafe fn repeatAction_count(
             action: &SKAction,
@@ -412,21 +420,21 @@ extern_methods!(
         /// Creates an action that repeats forever
         ///
         /// Parameter `action`: The action to execute
-        #[method_id(repeatActionForever:)]
+        #[method(repeatActionForever:)]
         #[unsafe(method_family = none)]
         pub unsafe fn repeatActionForever(action: &SKAction) -> Retained<SKAction>;
 
         /// Creates an action that changes the alpha value of the node to 1.0
         ///
         /// Parameter `duration`: The duration of the animation, in seconds
-        #[method_id(fadeInWithDuration:)]
+        #[method(fadeInWithDuration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn fadeInWithDuration(duration: NSTimeInterval) -> Retained<SKAction>;
 
         /// Creates an action that changes the alpha value of the node to 0.0
         ///
         /// Parameter `duration`: The duration of the animation, in seconds
-        #[method_id(fadeOutWithDuration:)]
+        #[method(fadeOutWithDuration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn fadeOutWithDuration(duration: NSTimeInterval) -> Retained<SKAction>;
 
@@ -436,7 +444,7 @@ extern_methods!(
         /// Parameter `factor`: The amount to modify the node’s alpha value
         ///
         /// Parameter `duration`: The duration of the animation, in seconds
-        #[method_id(fadeAlphaBy:duration:)]
+        #[method(fadeAlphaBy:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn fadeAlphaBy_duration(
             factor: CGFloat,
@@ -449,7 +457,7 @@ extern_methods!(
         /// Parameter `alpha`: The new value of the node’s alpha
         ///
         /// Parameter `duration`: The duration of the animation, in seconds
-        #[method_id(fadeAlphaTo:duration:)]
+        #[method(fadeAlphaTo:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn fadeAlphaTo_duration(
             alpha: CGFloat,
@@ -457,12 +465,12 @@ extern_methods!(
         ) -> Retained<SKAction>;
 
         /// Creates an action that hides a node
-        #[method_id(hide)]
+        #[method(hide)]
         #[unsafe(method_family = none)]
         pub unsafe fn hide() -> Retained<SKAction>;
 
         /// Creates an action that unhides a node
-        #[method_id(unhide)]
+        #[method(unhide)]
         #[unsafe(method_family = none)]
         pub unsafe fn unhide() -> Retained<SKAction>;
 
@@ -470,12 +478,12 @@ extern_methods!(
         /// Creates an action that changes a sprite’s texture
         ///
         /// Parameter `texture`: The new texture to use on the sprite
-        #[method_id(setTexture:)]
+        #[method(setTexture:)]
         #[unsafe(method_family = none)]
         pub unsafe fn setTexture(texture: &SKTexture) -> Retained<SKAction>;
 
         #[cfg(feature = "SKTexture")]
-        #[method_id(setNormalTexture:)]
+        #[method(setNormalTexture:)]
         #[unsafe(method_family = none)]
         pub unsafe fn setNormalTexture(texture: &SKTexture) -> Retained<SKAction>;
 
@@ -486,12 +494,12 @@ extern_methods!(
         ///
         /// Parameter `resize`: If YES, the sprite is resized to match the new texture.
         /// If NO, the size of the sprite is unchanged.
-        #[method_id(setTexture:resize:)]
+        #[method(setTexture:resize:)]
         #[unsafe(method_family = none)]
         pub unsafe fn setTexture_resize(texture: &SKTexture, resize: bool) -> Retained<SKAction>;
 
         #[cfg(feature = "SKTexture")]
-        #[method_id(setNormalTexture:resize:)]
+        #[method(setNormalTexture:resize:)]
         #[unsafe(method_family = none)]
         pub unsafe fn setNormalTexture_resize(
             texture: &SKTexture,
@@ -504,7 +512,7 @@ extern_methods!(
         /// Parameter `textures`: An array of textures to use when animating a sprite
         ///
         /// Parameter `sec`: The amount of time that each texture is displayed
-        #[method_id(animateWithTextures:timePerFrame:)]
+        #[method(animateWithTextures:timePerFrame:)]
         #[unsafe(method_family = none)]
         pub unsafe fn animateWithTextures_timePerFrame(
             textures: &NSArray<SKTexture>,
@@ -512,7 +520,7 @@ extern_methods!(
         ) -> Retained<SKAction>;
 
         #[cfg(feature = "SKTexture")]
-        #[method_id(animateWithNormalTextures:timePerFrame:)]
+        #[method(animateWithNormalTextures:timePerFrame:)]
         #[unsafe(method_family = none)]
         pub unsafe fn animateWithNormalTextures_timePerFrame(
             textures: &NSArray<SKTexture>,
@@ -535,7 +543,7 @@ extern_methods!(
         /// size of the original texture.
         /// If NO, when the action completes the sprite’s texture remains
         /// set to the final texture in the array.
-        #[method_id(animateWithTextures:timePerFrame:resize:restore:)]
+        #[method(animateWithTextures:timePerFrame:resize:restore:)]
         #[unsafe(method_family = none)]
         pub unsafe fn animateWithTextures_timePerFrame_resize_restore(
             textures: &NSArray<SKTexture>,
@@ -545,7 +553,7 @@ extern_methods!(
         ) -> Retained<SKAction>;
 
         #[cfg(feature = "SKTexture")]
-        #[method_id(animateWithNormalTextures:timePerFrame:resize:restore:)]
+        #[method(animateWithNormalTextures:timePerFrame:resize:restore:)]
         #[unsafe(method_family = none)]
         pub unsafe fn animateWithNormalTextures_timePerFrame_resize_restore(
             textures: &NSArray<SKTexture>,
@@ -566,7 +574,7 @@ extern_methods!(
         /// The file name must be the name or path of a file of a platform
         /// supported audio file format. Use a LinearPCM format audio file with 8 or 16 bits
         /// per channel for best performance
-        #[method_id(playSoundFileNamed:waitForCompletion:)]
+        #[method(playSoundFileNamed:waitForCompletion:)]
         #[unsafe(method_family = none)]
         pub unsafe fn playSoundFileNamed_waitForCompletion(
             sound_file: &NSString,
@@ -582,7 +590,7 @@ extern_methods!(
         /// Parameter `colorBlendFactor`: The new blend factor for the sprite
         ///
         /// Parameter `duration`: The duration of the animation, in seconds
-        #[method_id(colorizeWithColor:colorBlendFactor:duration:)]
+        #[method(colorizeWithColor:colorBlendFactor:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn colorizeWithColor_colorBlendFactor_duration(
             color: &NSColor,
@@ -591,7 +599,7 @@ extern_methods!(
         ) -> Retained<SKAction>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(colorizeWithColorBlendFactor:duration:)]
+        #[method(colorizeWithColorBlendFactor:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn colorizeWithColorBlendFactor_duration(
             color_blend_factor: CGFloat,
@@ -605,7 +613,7 @@ extern_methods!(
         /// Parameter `duration`: The duration of the animation, in seconds
         ///
         /// See: SKFieldNode
-        #[method_id(falloffTo:duration:)]
+        #[method(falloffTo:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn falloffTo_duration(
             falloff: c_float,
@@ -619,7 +627,7 @@ extern_methods!(
         /// Parameter `duration`: The duration of the animation, in seconds
         ///
         /// See: SKFieldNode
-        #[method_id(falloffBy:duration:)]
+        #[method(falloffBy:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn falloffBy_duration(
             falloff: c_float,
@@ -635,7 +643,7 @@ extern_methods!(
         /// current position
         ///
         /// Parameter `duration`: The duration of the animation, in seconds
-        #[method_id(followPath:duration:)]
+        #[method(followPath:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn followPath_duration(
             path: &CGPath,
@@ -658,7 +666,7 @@ extern_methods!(
         /// the node is unchanged.
         ///
         /// Parameter `duration`: The duration of the animation
-        #[method_id(followPath:asOffset:orientToPath:duration:)]
+        #[method(followPath:asOffset:orientToPath:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn followPath_asOffset_orientToPath_duration(
             path: &CGPath,
@@ -676,12 +684,12 @@ extern_methods!(
         /// current position
         ///
         /// Parameter `speed`: The speed in pixels per second to move along the path
-        #[method_id(followPath:speed:)]
+        #[method(followPath:speed:)]
         #[unsafe(method_family = none)]
         pub unsafe fn followPath_speed(path: &CGPath, speed: CGFloat) -> Retained<SKAction>;
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
-        #[method_id(followPath:asOffset:orientToPath:speed:)]
+        #[method(followPath:asOffset:orientToPath:speed:)]
         #[unsafe(method_family = none)]
         pub unsafe fn followPath_asOffset_orientToPath_speed(
             path: &CGPath,
@@ -697,7 +705,7 @@ extern_methods!(
         /// Parameter `speed`: amount to modify the speed by
         ///
         /// Parameter `duration`: The duration of the animation, in seconds
-        #[method_id(speedBy:duration:)]
+        #[method(speedBy:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn speedBy_duration(
             speed: CGFloat,
@@ -710,7 +718,7 @@ extern_methods!(
         /// Parameter `speed`: The new value for the node’s speed
         ///
         /// Parameter `duration`: The duration of the animation, in seconds
-        #[method_id(speedTo:duration:)]
+        #[method(speedTo:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn speedTo_duration(
             speed: CGFloat,
@@ -732,7 +740,7 @@ extern_methods!(
         /// Parameter `root`: Where to start the inverse kinematic operation from
         ///
         /// Parameter `duration`: The duration of the animation, in seconds
-        #[method_id(reachTo:rootNode:duration:)]
+        #[method(reachTo:rootNode:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn reachTo_rootNode_duration(
             position: CGPoint,
@@ -755,7 +763,7 @@ extern_methods!(
         /// Parameter `root`: Where to start the inverse kinematic operation from
         ///
         /// Parameter `velocity`: The speed in points per second of the end node in the chain
-        #[method_id(reachTo:rootNode:velocity:)]
+        #[method(reachTo:rootNode:velocity:)]
         #[unsafe(method_family = none)]
         pub unsafe fn reachTo_rootNode_velocity(
             position: CGPoint,
@@ -774,7 +782,7 @@ extern_methods!(
         /// Parameter `root`: Where to start the inverse kinematic operation from
         ///
         /// Parameter `sec`: The duration of the animation, in seconds
-        #[method_id(reachToNode:rootNode:duration:)]
+        #[method(reachToNode:rootNode:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn reachToNode_rootNode_duration(
             node: &SKNode,
@@ -797,7 +805,7 @@ extern_methods!(
         /// Parameter `root`: Where to start the inverse kinematic operation from
         ///
         /// Parameter `velocity`: The speed in points per second of the end node in the chain
-        #[method_id(reachToNode:rootNode:velocity:)]
+        #[method(reachToNode:rootNode:velocity:)]
         #[unsafe(method_family = none)]
         pub unsafe fn reachToNode_rootNode_velocity(
             node: &SKNode,
@@ -812,7 +820,7 @@ extern_methods!(
         /// Parameter `duration`: The duration of the animation, in seconds
         ///
         /// See: SKFieldNode
-        #[method_id(strengthTo:duration:)]
+        #[method(strengthTo:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn strengthTo_duration(
             strength: c_float,
@@ -826,7 +834,7 @@ extern_methods!(
         /// Parameter `duration`: The duration of the animation, in seconds
         ///
         /// See: SKFieldNode
-        #[method_id(strengthBy:duration:)]
+        #[method(strengthBy:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn strengthBy_duration(
             strength: c_float,
@@ -836,7 +844,7 @@ extern_methods!(
         /// Creates an action that idles for a specified period of time
         ///
         /// Parameter `duration`: The duration of the idle, in seconds
-        #[method_id(waitForDuration:)]
+        #[method(waitForDuration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn waitForDuration(duration: NSTimeInterval) -> Retained<SKAction>;
 
@@ -845,7 +853,7 @@ extern_methods!(
         /// Parameter `duration`: The duration of the idle, in seconds
         ///
         /// Parameter `durationRange`: The range of possible values for the duration
-        #[method_id(waitForDuration:withRange:)]
+        #[method(waitForDuration:withRange:)]
         #[unsafe(method_family = none)]
         pub unsafe fn waitForDuration_withRange(
             duration: NSTimeInterval,
@@ -853,7 +861,7 @@ extern_methods!(
         ) -> Retained<SKAction>;
 
         /// Creates an action that removes the node from its parent
-        #[method_id(removeFromParent)]
+        #[method(removeFromParent)]
         #[unsafe(method_family = none)]
         pub unsafe fn removeFromParent() -> Retained<SKAction>;
 
@@ -862,7 +870,7 @@ extern_methods!(
         /// Parameter `selector`: The selector of the method to call
         ///
         /// Parameter `target`: The target object
-        #[method_id(performSelector:onTarget:)]
+        #[method(performSelector:onTarget:)]
         #[unsafe(method_family = none)]
         pub unsafe fn performSelector_onTarget(
             selector: Sel,
@@ -876,7 +884,7 @@ extern_methods!(
         /// Parameter `name`: the name of a child object
         ///
         /// See: SKNode.name
-        #[method_id(runAction:onChildWithName:)]
+        #[method(runAction:onChildWithName:)]
         #[unsafe(method_family = none)]
         pub unsafe fn runAction_onChildWithName(
             action: &SKAction,
@@ -897,7 +905,7 @@ extern_methods!(
         /// Parameter `block`: The block to run. The block takes the following parameters:
         /// node The node on which the action is running.
         /// elapsedTime The amount of time that has passed in the animation.
-        #[method_id(customActionWithDuration:actionBlock:)]
+        #[method(customActionWithDuration:actionBlock:)]
         #[unsafe(method_family = none)]
         pub unsafe fn customActionWithDuration_actionBlock(
             duration: NSTimeInterval,
@@ -907,7 +915,7 @@ extern_methods!(
         /// Creates an action of the given name from an action file.
         ///
         /// Parameter `name`: The name of the action
-        #[method_id(actionNamed:)]
+        #[method(actionNamed:)]
         #[unsafe(method_family = none)]
         pub unsafe fn actionNamed(name: &NSString) -> Option<Retained<SKAction>>;
 
@@ -916,7 +924,7 @@ extern_methods!(
         /// Parameter `name`: The name of the action
         ///
         /// Parameter `duration`: The duration of the action
-        #[method_id(actionNamed:duration:)]
+        #[method(actionNamed:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn actionNamed_duration(
             name: &NSString,
@@ -928,7 +936,7 @@ extern_methods!(
         /// Parameter `name`: The name of the action
         ///
         /// Parameter `url`: The url of the file containing the action
-        #[method_id(actionNamed:fromURL:)]
+        #[method(actionNamed:fromURL:)]
         #[unsafe(method_family = none)]
         pub unsafe fn actionNamed_fromURL(
             name: &NSString,
@@ -942,7 +950,7 @@ extern_methods!(
         /// Parameter `url`: The url of the file containing the action
         ///
         /// Parameter `duration`: The duration of the action
-        #[method_id(actionNamed:fromURL:duration:)]
+        #[method(actionNamed:fromURL:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn actionNamed_fromURL_duration(
             name: &NSString,
@@ -955,28 +963,28 @@ extern_methods!(
 extern_methods!(
     /// NodeWithPhysicsBody
     unsafe impl SKAction {
-        #[method_id(changeChargeTo:duration:)]
+        #[method(changeChargeTo:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn changeChargeTo_duration(
             v: c_float,
             duration: NSTimeInterval,
         ) -> Retained<SKAction>;
 
-        #[method_id(changeChargeBy:duration:)]
+        #[method(changeChargeBy:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn changeChargeBy_duration(
             v: c_float,
             duration: NSTimeInterval,
         ) -> Retained<SKAction>;
 
-        #[method_id(changeMassTo:duration:)]
+        #[method(changeMassTo:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn changeMassTo_duration(
             v: c_float,
             duration: NSTimeInterval,
         ) -> Retained<SKAction>;
 
-        #[method_id(changeMassBy:duration:)]
+        #[method(changeMassBy:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn changeMassBy_duration(
             v: c_float,
@@ -984,7 +992,7 @@ extern_methods!(
         ) -> Retained<SKAction>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(applyForce:duration:)]
+        #[method(applyForce:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn applyForce_duration(
             force: CGVector,
@@ -992,7 +1000,7 @@ extern_methods!(
         ) -> Retained<SKAction>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(applyForce:atPoint:duration:)]
+        #[method(applyForce:atPoint:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn applyForce_atPoint_duration(
             force: CGVector,
@@ -1001,7 +1009,7 @@ extern_methods!(
         ) -> Retained<SKAction>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(applyTorque:duration:)]
+        #[method(applyTorque:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn applyTorque_duration(
             torque: CGFloat,
@@ -1009,7 +1017,7 @@ extern_methods!(
         ) -> Retained<SKAction>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(applyImpulse:duration:)]
+        #[method(applyImpulse:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn applyImpulse_duration(
             impulse: CGVector,
@@ -1017,7 +1025,7 @@ extern_methods!(
         ) -> Retained<SKAction>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(applyImpulse:atPoint:duration:)]
+        #[method(applyImpulse:atPoint:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn applyImpulse_atPoint_duration(
             impulse: CGVector,
@@ -1026,7 +1034,7 @@ extern_methods!(
         ) -> Retained<SKAction>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(applyAngularImpulse:duration:)]
+        #[method(applyAngularImpulse:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn applyAngularImpulse_duration(
             impulse: CGFloat,
@@ -1038,26 +1046,26 @@ extern_methods!(
 extern_methods!(
     /// PlaybackControl
     unsafe impl SKAction {
-        #[method_id(play)]
+        #[method(play)]
         #[unsafe(method_family = none)]
         pub unsafe fn play() -> Retained<SKAction>;
 
-        #[method_id(pause)]
+        #[method(pause)]
         #[unsafe(method_family = none)]
         pub unsafe fn pause() -> Retained<SKAction>;
 
-        #[method_id(stop)]
+        #[method(stop)]
         #[unsafe(method_family = none)]
         pub unsafe fn stop() -> Retained<SKAction>;
 
-        #[method_id(changePlaybackRateTo:duration:)]
+        #[method(changePlaybackRateTo:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn changePlaybackRateTo_duration(
             v: c_float,
             duration: NSTimeInterval,
         ) -> Retained<SKAction>;
 
-        #[method_id(changePlaybackRateBy:duration:)]
+        #[method(changePlaybackRateBy:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn changePlaybackRateBy_duration(
             v: c_float,
@@ -1069,14 +1077,14 @@ extern_methods!(
 extern_methods!(
     /// MixerControl
     unsafe impl SKAction {
-        #[method_id(changeVolumeTo:duration:)]
+        #[method(changeVolumeTo:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn changeVolumeTo_duration(
             v: c_float,
             duration: NSTimeInterval,
         ) -> Retained<SKAction>;
 
-        #[method_id(changeVolumeBy:duration:)]
+        #[method(changeVolumeBy:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn changeVolumeBy_duration(
             v: c_float,

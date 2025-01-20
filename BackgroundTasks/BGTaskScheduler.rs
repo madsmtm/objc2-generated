@@ -90,16 +90,16 @@ unsafe impl NSObjectProtocol for BGTaskScheduler {}
 
 extern_methods!(
     unsafe impl BGTaskScheduler {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// The shared background task scheduler instance.
-        #[method_id(sharedScheduler)]
+        #[method(sharedScheduler)]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedScheduler() -> Retained<BGTaskScheduler>;
 
@@ -118,6 +118,7 @@ extern_methods!(
         /// - error: On input, a pointer to an error object. If an error occurs, this pointer is set to an error object containing the error information. Specify `nil` for this parameter to ignore the error information.
         /// identifier and optional configuration information.
         #[method(submitTaskRequest:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn submitTaskRequest_error(
             &self,
             task_request: &BGTaskRequest,
@@ -128,10 +129,12 @@ extern_methods!(
         /// - Parameters:
         /// - identifier: The string identifier of the task request to cancel.
         #[method(cancelTaskRequestWithIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cancelTaskRequestWithIdentifier(&self, identifier: &NSString);
 
         /// Cancel all scheduled task requests.
         #[method(cancelAllTaskRequests)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cancelAllTaskRequests(&self);
 
         #[cfg(all(feature = "BGTaskRequest", feature = "block2"))]
@@ -148,6 +151,7 @@ extern_methods!(
         /// attributes of a request has no effect. To change the attributes submit a new
         /// task request using ``BGTaskScheduler/submitTaskRequest:error:``.
         #[method(getPendingTaskRequestsWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getPendingTaskRequestsWithCompletionHandler(
             &self,
             completion_handler: &block2::Block<dyn Fn(NonNull<NSArray<BGTaskRequest>>)>,

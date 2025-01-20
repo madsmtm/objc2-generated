@@ -79,24 +79,26 @@ extern_methods!(
     unsafe impl UIListContentTextProperties {
         #[cfg(feature = "UIFont")]
         /// The font used for the text.
-        #[method_id(font)]
+        #[method(font)]
         #[unsafe(method_family = none)]
         pub unsafe fn font(&self) -> Retained<UIFont>;
 
         #[cfg(feature = "UIFont")]
         /// Setter for [`font`][Self::font].
         #[method(setFont:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFont(&self, font: &UIFont);
 
         #[cfg(feature = "UIColor")]
         /// The color of the text.
-        #[method_id(color)]
+        #[method(color)]
         #[unsafe(method_family = none)]
         pub unsafe fn color(&self) -> Retained<UIColor>;
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`color`][Self::color].
         #[method(setColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setColor(&self, color: &UIColor);
 
         #[cfg(all(
@@ -106,6 +108,7 @@ extern_methods!(
         ))]
         /// Optional color transformer that is used to resolve the color. A nil value means the `color` is used as-is.
         #[method(colorTransformer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colorTransformer(&self) -> UIConfigurationColorTransformer;
 
         #[cfg(all(
@@ -115,6 +118,7 @@ extern_methods!(
         ))]
         /// Setter for [`colorTransformer`][Self::colorTransformer].
         #[method(setColorTransformer:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setColorTransformer(
             &self,
             color_transformer: UIConfigurationColorTransformer,
@@ -122,60 +126,72 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         /// Returns the resolved color, based on the `color` and `colorTransformer`.
-        #[method_id(resolvedColor)]
+        #[method(resolvedColor)]
         #[unsafe(method_family = none)]
         pub unsafe fn resolvedColor(&self) -> Retained<UIColor>;
 
         /// The alignment for the text.
         #[method(alignment)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alignment(&self) -> UIListContentTextAlignment;
 
         /// Setter for [`alignment`][Self::alignment].
         #[method(setAlignment:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAlignment(&self, alignment: UIListContentTextAlignment);
 
         #[cfg(feature = "NSParagraphStyle")]
         /// The line break mode to use for the text.
         #[method(lineBreakMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn lineBreakMode(&self) -> NSLineBreakMode;
 
         #[cfg(feature = "NSParagraphStyle")]
         /// Setter for [`lineBreakMode`][Self::lineBreakMode].
         #[method(setLineBreakMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLineBreakMode(&self, line_break_mode: NSLineBreakMode);
 
         /// The maximum number of lines for the text. 0 indicates the number of lines is unlimited.
         #[method(numberOfLines)]
+        #[unsafe(method_family = none)]
         pub unsafe fn numberOfLines(&self) -> NSInteger;
 
         /// Setter for [`numberOfLines`][Self::numberOfLines].
         #[method(setNumberOfLines:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setNumberOfLines(&self, number_of_lines: NSInteger);
 
         /// Whether the font size of the text is automatically adjusted when necessary to fit in the available width.
         #[method(adjustsFontSizeToFitWidth)]
+        #[unsafe(method_family = none)]
         pub unsafe fn adjustsFontSizeToFitWidth(&self) -> bool;
 
         /// Setter for [`adjustsFontSizeToFitWidth`][Self::adjustsFontSizeToFitWidth].
         #[method(setAdjustsFontSizeToFitWidth:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAdjustsFontSizeToFitWidth(&self, adjusts_font_size_to_fit_width: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// When `adjustsFontSizeToFitWidth` is enabled, the smallest multiplier for the font size used to make the text fit.
         #[method(minimumScaleFactor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn minimumScaleFactor(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`minimumScaleFactor`][Self::minimumScaleFactor].
         #[method(setMinimumScaleFactor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMinimumScaleFactor(&self, minimum_scale_factor: CGFloat);
 
         /// Whether the text is tightened before truncating.
         #[method(allowsDefaultTighteningForTruncation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowsDefaultTighteningForTruncation(&self) -> bool;
 
         /// Setter for [`allowsDefaultTighteningForTruncation`][Self::allowsDefaultTighteningForTruncation].
         #[method(setAllowsDefaultTighteningForTruncation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAllowsDefaultTighteningForTruncation(
             &self,
             allows_default_tightening_for_truncation: bool,
@@ -183,10 +199,12 @@ extern_methods!(
 
         /// Whether the font is automatically updated when the content size category changes.
         #[method(adjustsFontForContentSizeCategory)]
+        #[unsafe(method_family = none)]
         pub unsafe fn adjustsFontForContentSizeCategory(&self) -> bool;
 
         /// Setter for [`adjustsFontForContentSizeCategory`][Self::adjustsFontForContentSizeCategory].
         #[method(setAdjustsFontForContentSizeCategory:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAdjustsFontForContentSizeCategory(
             &self,
             adjusts_font_for_content_size_category: bool,
@@ -194,10 +212,12 @@ extern_methods!(
 
         /// Whether the full text will be shown when a pointer hovers over truncated text.
         #[method(showsExpansionTextWhenTruncated)]
+        #[unsafe(method_family = none)]
         pub unsafe fn showsExpansionTextWhenTruncated(&self) -> bool;
 
         /// Setter for [`showsExpansionTextWhenTruncated`][Self::showsExpansionTextWhenTruncated].
         #[method(setShowsExpansionTextWhenTruncated:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShowsExpansionTextWhenTruncated(
             &self,
             shows_expansion_text_when_truncated: bool,
@@ -205,10 +225,12 @@ extern_methods!(
 
         /// A transform that is applied to the text before it is displayed.
         #[method(transform)]
+        #[unsafe(method_family = none)]
         pub unsafe fn transform(&self) -> UIListContentTextTransform;
 
         /// Setter for [`transform`][Self::transform].
         #[method(setTransform:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTransform(&self, transform: UIListContentTextTransform);
     }
 );
@@ -216,11 +238,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIListContentTextProperties {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

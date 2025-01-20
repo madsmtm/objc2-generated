@@ -26,21 +26,22 @@ unsafe impl NSObjectProtocol for GKSavedGame {}
 
 extern_methods!(
     unsafe impl GKSavedGame {
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(deviceName)]
+        #[method(deviceName)]
         #[unsafe(method_family = none)]
         pub unsafe fn deviceName(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(modificationDate)]
+        #[method(modificationDate)]
         #[unsafe(method_family = none)]
         pub unsafe fn modificationDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "block2")]
         /// Asynchronously load the data for this saved game. The completion handler is called with loaded data or an error.
         #[method(loadDataWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loadDataWithCompletionHandler(
             &self,
             handler: Option<&block2::Block<dyn Fn(*mut NSData, *mut NSError)>>,
@@ -51,11 +52,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKSavedGame {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -73,6 +74,7 @@ extern_methods!(
         /// Asynchronously fetch saved games. The handler is called with an array of GKSavedGame objects or an error.
         /// If there is more than one saved game with the same name then a conflict exists. The application should determine the correct data to use and call resolveConflictingSavedGames:withData:completionHandler:. This may require data merging or asking the user.
         #[method(fetchSavedGamesWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fetchSavedGamesWithCompletionHandler(
             &self,
             handler: Option<&block2::Block<dyn Fn(*mut NSArray<GKSavedGame>, *mut NSError)>>,
@@ -82,6 +84,7 @@ extern_methods!(
         /// Asynchronously save game data. If a saved game with that name already exists it is overwritten, otherwise a new one is created. The completion handler is called with the new / modified GKSavedGame or an error.
         /// If the saved game was in conflict then the overwritten version will be the one with the same deviceName if present, otherwise the most recent overall.
         #[method(saveGameData:withName:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn saveGameData_withName_completionHandler(
             &self,
             data: &NSData,
@@ -92,6 +95,7 @@ extern_methods!(
         #[cfg(feature = "block2")]
         /// Asynchronously delete saved games with the given name. The completion handler will indicate whether or not the deletion was successful.
         #[method(deleteSavedGamesWithName:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn deleteSavedGamesWithName_completionHandler(
             &self,
             name: &NSString,
@@ -101,6 +105,7 @@ extern_methods!(
         #[cfg(feature = "block2")]
         /// Asynchronously resolve a saved game conflict. This deletes all versions included in conflictingSavedGames and creates a new version with the given data. The completion handler is called with the newly created save and all other remaining versions or an error.
         #[method(resolveConflictingSavedGames:withData:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resolveConflictingSavedGames_withData_completionHandler(
             &self,
             conflicting_saved_games: &NSArray<GKSavedGame>,

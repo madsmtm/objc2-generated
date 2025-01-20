@@ -76,25 +76,28 @@ extern_methods!(
         #[cfg(feature = "HKQuantity")]
         /// Ear sensitivity measured in dB from a baseline of 0 dB. Reduced hearing sensitivity corresponds to an increase from 0 dB.
         /// The unit of measurement is `HKUnit.decibelHearingLevelUnit` or "dBHL".
-        #[method_id(sensitivity)]
+        #[method(sensitivity)]
         #[unsafe(method_family = none)]
         pub unsafe fn sensitivity(&self) -> Retained<HKQuantity>;
 
         /// The conduction type
         #[method(type)]
+        #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> HKAudiogramConductionType;
 
         /// Indicates if the test was conducted with or without masking
         #[method(masked)]
+        #[unsafe(method_family = none)]
         pub unsafe fn masked(&self) -> bool;
 
         /// The test side
         #[method(side)]
+        #[unsafe(method_family = none)]
         pub unsafe fn side(&self) -> HKAudiogramSensitivityTestSide;
 
         #[cfg(feature = "HKAudiogramSensitivityPointClampingRange")]
         /// If present, indicates that the range within which the sensitivity point should be clamped.
-        #[method_id(clampingRange)]
+        #[method(clampingRange)]
         #[unsafe(method_family = none)]
         pub unsafe fn clampingRange(
             &self,
@@ -120,7 +123,7 @@ extern_methods!(
         ///
         /// Returns: New instance of a Sensitivity Test or nil if there were problems
         /// creating the instance.  Errors may include incorrect quantity units or sensitivity out of range
-        #[method_id(initWithSensitivity:type:masked:side:clampingRange:error:_)]
+        #[method(initWithSensitivity:type:masked:side:clampingRange:error:_)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSensitivity_type_masked_side_clampingRange_error(
             this: Allocated<Self>,
@@ -131,11 +134,11 @@ extern_methods!(
             clamping_range: Option<&HKAudiogramSensitivityPointClampingRange>,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

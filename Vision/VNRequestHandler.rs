@@ -66,7 +66,7 @@ unsafe impl NSObjectProtocol for VNImageRequestHandler {}
 
 extern_methods!(
     unsafe impl VNImageRequestHandler {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -77,7 +77,7 @@ extern_methods!(
         /// Parameter `pixelBuffer`: A CVPixelBuffer containing the image to be used for performing the requests. The content of the buffer cannot be modified for the lifetime of the VNImageRequestHandler.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the buffer/image like VNImageOptionCameraIntrinsics
-        #[method_id(initWithCVPixelBuffer:options:)]
+        #[method(initWithCVPixelBuffer:options:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCVPixelBuffer_options(
             this: Allocated<Self>,
@@ -92,7 +92,7 @@ extern_methods!(
         /// Parameter `image`: A CGImageRef containing the image to be used for performing the requests. The content of the image cannot be modified.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the buffer/image like VNImageOptionCameraIntrinsics
-        #[method_id(initWithCGImage:options:)]
+        #[method(initWithCGImage:options:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCGImage_options(
             this: Allocated<Self>,
@@ -110,7 +110,7 @@ extern_methods!(
         ///
         ///
         /// Note: :  Request results may not be accurate in simulator due to CI's inability to render certain pixel formats in the simulator. The orientation of the original image should be applied for instance by using imageByApplyingOrientation or use the initWithCIImage:options:orientation API.
-        #[method_id(initWithCIImage:options:)]
+        #[method(initWithCIImage:options:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCIImage_options(
             this: Allocated<Self>,
@@ -127,7 +127,7 @@ extern_methods!(
         ///
         ///
         /// Note: :  Request results may not be accurate in simulator due to CI's inability to render certain pixel formats in the simulator
-        #[method_id(initWithURL:options:)]
+        #[method(initWithURL:options:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL_options(
             this: Allocated<Self>,
@@ -144,7 +144,7 @@ extern_methods!(
         ///
         ///
         /// Note: :  Request results may not be accurate in simulator due to CI's inability to render certain pixel formats in the simulator
-        #[method_id(initWithData:options:)]
+        #[method(initWithData:options:)]
         #[unsafe(method_family = init)]
         pub fn initWithData_options(
             this: Allocated<Self>,
@@ -161,7 +161,7 @@ extern_methods!(
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the buffer/image like VNImageOptionCameraIntrinsics
         ///
         /// Note: CMSampleBuffers can contain metadata like camera intrinsics that will be used by algorithms supporting it unless overwritten by the options.
-        #[method_id(initWithCMSampleBuffer:options:)]
+        #[method(initWithCMSampleBuffer:options:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCMSampleBuffer_options(
             this: Allocated<Self>,
@@ -182,6 +182,7 @@ extern_methods!(
         ///
         /// Returns: Returns true if all requests were scheduled and performed. Check individual requests results and errors for their respective success and failures.
         #[method(performRequests:error:_)]
+        #[unsafe(method_family = none)]
         pub fn performRequests_error(
             &self,
             requests: &NSArray<VNRequest>,
@@ -192,7 +193,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNImageRequestHandler {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -217,7 +218,7 @@ unsafe impl NSObjectProtocol for VNSequenceRequestHandler {}
 extern_methods!(
     unsafe impl VNSequenceRequestHandler {
         /// Creates a new object.
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -233,6 +234,7 @@ extern_methods!(
         ///
         /// Parameter `error`: On input, a pointer to an error object. If an error occurs, this pointer is set to an actual error object containing the error information. You may specify NULL for this parameter if you do not want the error information.
         #[method(performRequests:onCVPixelBuffer:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn performRequests_onCVPixelBuffer_error(
             &self,
             requests: &NSArray<VNRequest>,
@@ -251,6 +253,7 @@ extern_methods!(
         ///
         /// Parameter `error`: On input, a pointer to an error object. If an error occurs, this pointer is set to an actual error object containing the error information. You may specify NULL for this parameter if you do not want the error information.
         #[method(performRequests:onCGImage:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn performRequests_onCGImage_error(
             &self,
             requests: &NSArray<VNRequest>,
@@ -269,6 +272,7 @@ extern_methods!(
         ///
         /// Parameter `error`: On input, a pointer to an error object. If an error occurs, this pointer is set to an actual error object containing the error information. You may specify NULL for this parameter if you do not want the error information.
         #[method(performRequests:onCIImage:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn performRequests_onCIImage_error(
             &self,
             requests: &NSArray<VNRequest>,
@@ -287,6 +291,7 @@ extern_methods!(
         ///
         /// Parameter `error`: On input, a pointer to an error object. If an error occurs, this pointer is set to an actual error object containing the error information. You may specify NULL for this parameter if you do not want the error information.
         #[method(performRequests:onImageURL:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn performRequests_onImageURL_error(
             &self,
             requests: &NSArray<VNRequest>,
@@ -305,6 +310,7 @@ extern_methods!(
         ///
         /// Parameter `error`: On input, a pointer to an error object. If an error occurs, this pointer is set to an actual error object containing the error information. You may specify NULL for this parameter if you do not want the error information.
         #[method(performRequests:onImageData:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn performRequests_onImageData_error(
             &self,
             requests: &NSArray<VNRequest>,
@@ -323,6 +329,7 @@ extern_methods!(
         ///
         /// Parameter `error`: On input, a pointer to an error object. If an error occurs, this pointer is set to an actual error object containing the error information. You may specify NULL for this parameter if you do not want the error information.
         #[method(performRequests:onCMSampleBuffer:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn performRequests_onCMSampleBuffer_error(
             &self,
             requests: &NSArray<VNRequest>,
@@ -334,7 +341,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNSequenceRequestHandler {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -124,43 +124,54 @@ unsafe impl NSObjectProtocol for CLLocationManager {}
 extern_methods!(
     unsafe impl CLLocationManager {
         #[method(locationServicesEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn locationServicesEnabled_class() -> bool;
 
         #[method(headingAvailable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn headingAvailable_class() -> bool;
 
         #[method(significantLocationChangeMonitoringAvailable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn significantLocationChangeMonitoringAvailable() -> bool;
 
         #[method(isMonitoringAvailableForClass:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isMonitoringAvailableForClass(region_class: &AnyClass) -> bool;
 
         #[deprecated]
         #[method(regionMonitoringAvailable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn regionMonitoringAvailable() -> bool;
 
         #[deprecated = "Use +isMonitoringAvailableForClass: and -authorizationStatus instead"]
         #[method(regionMonitoringEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn regionMonitoringEnabled() -> bool;
 
         #[method(isRangingAvailable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isRangingAvailable() -> bool;
 
         #[method(authorizationStatus)]
+        #[unsafe(method_family = none)]
         pub unsafe fn authorizationStatus(&self) -> CLAuthorizationStatus;
 
         #[deprecated]
         #[method(authorizationStatus)]
+        #[unsafe(method_family = none)]
         pub unsafe fn authorizationStatus_class() -> CLAuthorizationStatus;
 
         #[method(accuracyAuthorization)]
+        #[unsafe(method_family = none)]
         pub unsafe fn accuracyAuthorization(&self) -> CLAccuracyAuthorization;
 
         #[method(isAuthorizedForWidgetUpdates)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isAuthorizedForWidgetUpdates(&self) -> bool;
 
         #[cfg(feature = "CLLocationManagerDelegate")]
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -170,6 +181,7 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn CLLocationManagerDelegate>>,
@@ -177,115 +189,135 @@ extern_methods!(
 
         #[deprecated]
         #[method(locationServicesEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn locationServicesEnabled(&self) -> bool;
 
         #[deprecated = "Set the purpose string in Info.plist using key NSLocationUsageDescription"]
-        #[method_id(purpose)]
+        #[method(purpose)]
         #[unsafe(method_family = none)]
         pub unsafe fn purpose(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`purpose`][Self::purpose].
         #[deprecated = "Set the purpose string in Info.plist using key NSLocationUsageDescription"]
         #[method(setPurpose:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPurpose(&self, purpose: Option<&NSString>);
 
         #[method(activityType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn activityType(&self) -> CLActivityType;
 
         /// Setter for [`activityType`][Self::activityType].
         #[method(setActivityType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setActivityType(&self, activity_type: CLActivityType);
 
         #[cfg(feature = "CLLocation")]
         #[method(distanceFilter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn distanceFilter(&self) -> CLLocationDistance;
 
         #[cfg(feature = "CLLocation")]
         /// Setter for [`distanceFilter`][Self::distanceFilter].
         #[method(setDistanceFilter:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDistanceFilter(&self, distance_filter: CLLocationDistance);
 
         #[cfg(feature = "CLLocation")]
         #[method(desiredAccuracy)]
+        #[unsafe(method_family = none)]
         pub unsafe fn desiredAccuracy(&self) -> CLLocationAccuracy;
 
         #[cfg(feature = "CLLocation")]
         /// Setter for [`desiredAccuracy`][Self::desiredAccuracy].
         #[method(setDesiredAccuracy:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDesiredAccuracy(&self, desired_accuracy: CLLocationAccuracy);
 
         #[method(pausesLocationUpdatesAutomatically)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pausesLocationUpdatesAutomatically(&self) -> bool;
 
         /// Setter for [`pausesLocationUpdatesAutomatically`][Self::pausesLocationUpdatesAutomatically].
         #[method(setPausesLocationUpdatesAutomatically:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPausesLocationUpdatesAutomatically(
             &self,
             pauses_location_updates_automatically: bool,
         );
 
         #[method(allowsBackgroundLocationUpdates)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowsBackgroundLocationUpdates(&self) -> bool;
 
         /// Setter for [`allowsBackgroundLocationUpdates`][Self::allowsBackgroundLocationUpdates].
         #[method(setAllowsBackgroundLocationUpdates:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAllowsBackgroundLocationUpdates(
             &self,
             allows_background_location_updates: bool,
         );
 
         #[method(showsBackgroundLocationIndicator)]
+        #[unsafe(method_family = none)]
         pub unsafe fn showsBackgroundLocationIndicator(&self) -> bool;
 
         /// Setter for [`showsBackgroundLocationIndicator`][Self::showsBackgroundLocationIndicator].
         #[method(setShowsBackgroundLocationIndicator:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShowsBackgroundLocationIndicator(
             &self,
             shows_background_location_indicator: bool,
         );
 
         #[cfg(feature = "CLLocation")]
-        #[method_id(location)]
+        #[method(location)]
         #[unsafe(method_family = none)]
         pub unsafe fn location(&self) -> Option<Retained<CLLocation>>;
 
         #[deprecated]
         #[method(headingAvailable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn headingAvailable(&self) -> bool;
 
         #[cfg(feature = "CLLocation")]
         #[method(headingFilter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn headingFilter(&self) -> CLLocationDegrees;
 
         #[cfg(feature = "CLLocation")]
         /// Setter for [`headingFilter`][Self::headingFilter].
         #[method(setHeadingFilter:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setHeadingFilter(&self, heading_filter: CLLocationDegrees);
 
         #[method(headingOrientation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn headingOrientation(&self) -> CLDeviceOrientation;
 
         /// Setter for [`headingOrientation`][Self::headingOrientation].
         #[method(setHeadingOrientation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setHeadingOrientation(&self, heading_orientation: CLDeviceOrientation);
 
         #[cfg(feature = "CLHeading")]
-        #[method_id(heading)]
+        #[method(heading)]
         #[unsafe(method_family = none)]
         pub unsafe fn heading(&self) -> Option<Retained<CLHeading>>;
 
         #[cfg(feature = "CLLocation")]
         #[method(maximumRegionMonitoringDistance)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maximumRegionMonitoringDistance(&self) -> CLLocationDistance;
 
         #[cfg(feature = "CLRegion")]
-        #[method_id(monitoredRegions)]
+        #[method(monitoredRegions)]
         #[unsafe(method_family = none)]
         pub unsafe fn monitoredRegions(&self) -> Retained<NSSet<CLRegion>>;
 
         #[cfg(feature = "CLRegion")]
         #[deprecated = "Use -rangedBeaconConstraints"]
-        #[method_id(rangedRegions)]
+        #[method(rangedRegions)]
         #[unsafe(method_family = none)]
         pub unsafe fn rangedRegions(&self) -> Retained<NSSet<CLRegion>>;
 
@@ -294,19 +326,22 @@ extern_methods!(
             feature = "CLBeaconIdentityConstraint",
             feature = "CLCondition"
         ))]
-        #[method_id(rangedBeaconConstraints)]
+        #[method(rangedBeaconConstraints)]
         #[unsafe(method_family = none)]
         pub unsafe fn rangedBeaconConstraints(&self)
             -> Retained<NSSet<CLBeaconIdentityConstraint>>;
 
         #[method(requestWhenInUseAuthorization)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestWhenInUseAuthorization(&self);
 
         #[method(requestAlwaysAuthorization)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestAlwaysAuthorization(&self);
 
         #[cfg(feature = "block2")]
         #[method(requestTemporaryFullAccuracyAuthorizationWithPurposeKey:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestTemporaryFullAccuracyAuthorizationWithPurposeKey_completion(
             &self,
             purpose_key: &NSString,
@@ -314,48 +349,60 @@ extern_methods!(
         );
 
         #[method(requestTemporaryFullAccuracyAuthorizationWithPurposeKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestTemporaryFullAccuracyAuthorizationWithPurposeKey(
             &self,
             purpose_key: &NSString,
         );
 
         #[method(startUpdatingLocation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn startUpdatingLocation(&self);
 
         #[method(stopUpdatingLocation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stopUpdatingLocation(&self);
 
         #[method(requestLocation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestLocation(&self);
 
         #[method(startUpdatingHeading)]
+        #[unsafe(method_family = none)]
         pub unsafe fn startUpdatingHeading(&self);
 
         #[method(stopUpdatingHeading)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stopUpdatingHeading(&self);
 
         #[method(dismissHeadingCalibrationDisplay)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dismissHeadingCalibrationDisplay(&self);
 
         #[method(startMonitoringSignificantLocationChanges)]
+        #[unsafe(method_family = none)]
         pub unsafe fn startMonitoringSignificantLocationChanges(&self);
 
         #[method(stopMonitoringSignificantLocationChanges)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stopMonitoringSignificantLocationChanges(&self);
 
         #[cfg(feature = "block2")]
         #[method(startMonitoringLocationPushesWithCompletion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn startMonitoringLocationPushesWithCompletion(
             &self,
             completion: Option<&block2::Block<dyn Fn(*mut NSData, *mut NSError)>>,
         );
 
         #[method(stopMonitoringLocationPushes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stopMonitoringLocationPushes(&self);
 
         #[cfg(all(feature = "CLLocation", feature = "CLRegion"))]
         #[deprecated]
         #[method(startMonitoringForRegion:desiredAccuracy:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn startMonitoringForRegion_desiredAccuracy(
             &self,
             region: &CLRegion,
@@ -365,26 +412,31 @@ extern_methods!(
         #[cfg(feature = "CLRegion")]
         #[deprecated]
         #[method(stopMonitoringForRegion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stopMonitoringForRegion(&self, region: &CLRegion);
 
         #[cfg(feature = "CLRegion")]
         #[deprecated]
         #[method(startMonitoringForRegion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn startMonitoringForRegion(&self, region: &CLRegion);
 
         #[cfg(feature = "CLRegion")]
         #[deprecated]
         #[method(requestStateForRegion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestStateForRegion(&self, region: &CLRegion);
 
         #[cfg(all(feature = "CLBeaconRegion", feature = "CLRegion"))]
         #[deprecated = "Use -startRangingBeaconsSatisfyingConstraint:"]
         #[method(startRangingBeaconsInRegion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn startRangingBeaconsInRegion(&self, region: &CLBeaconRegion);
 
         #[cfg(all(feature = "CLBeaconRegion", feature = "CLRegion"))]
         #[deprecated = "Use -stopRangingBeaconsSatisfyingConstraint:"]
         #[method(stopRangingBeaconsInRegion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stopRangingBeaconsInRegion(&self, region: &CLBeaconRegion);
 
         #[cfg(all(
@@ -393,6 +445,7 @@ extern_methods!(
             feature = "CLCondition"
         ))]
         #[method(startRangingBeaconsSatisfyingConstraint:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn startRangingBeaconsSatisfyingConstraint(
             &self,
             constraint: &CLBeaconIdentityConstraint,
@@ -404,6 +457,7 @@ extern_methods!(
             feature = "CLCondition"
         ))]
         #[method(stopRangingBeaconsSatisfyingConstraint:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stopRangingBeaconsSatisfyingConstraint(
             &self,
             constraint: &CLBeaconIdentityConstraint,
@@ -412,6 +466,7 @@ extern_methods!(
         #[cfg(feature = "CLLocation")]
         #[deprecated = "You can remove calls to this method"]
         #[method(allowDeferredLocationUpdatesUntilTraveled:timeout:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowDeferredLocationUpdatesUntilTraveled_timeout(
             &self,
             distance: CLLocationDistance,
@@ -420,14 +475,17 @@ extern_methods!(
 
         #[deprecated = "You can remove calls to this method"]
         #[method(disallowDeferredLocationUpdates)]
+        #[unsafe(method_family = none)]
         pub unsafe fn disallowDeferredLocationUpdates(&self);
 
         #[deprecated = "You can remove calls to this method"]
         #[method(deferredLocationUpdatesAvailable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn deferredLocationUpdatesAvailable() -> bool;
 
         #[cfg(all(feature = "CLLocation", feature = "block2"))]
         #[method(requestHistoricalLocationsWithPurposeKey:sampleCount:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestHistoricalLocationsWithPurposeKey_sampleCount_completionHandler(
             &self,
             purpose_key: &NSString,
@@ -440,11 +498,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CLLocationManager {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -88,10 +88,12 @@ extern_methods!(
         /// implementation subject to rounding and/or clamping as necessary.
         /// Defaults to 1.0 at initialization time.
         #[method(alpha)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alpha(&self) -> c_double;
 
         /// Setter for [`alpha`][Self::alpha].
         #[method(setAlpha:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAlpha(&self, alpha: c_double);
 
         /// The scale factor to apply to the addend if available.  Specified in double
@@ -99,10 +101,12 @@ extern_methods!(
         /// implementation subject to rounding and/or clamping as necessary.
         /// Defaults to 1.0 at initialization time.
         #[method(beta)]
+        #[unsafe(method_family = none)]
         pub unsafe fn beta(&self) -> c_double;
 
         /// Setter for [`beta`][Self::beta].
         #[method(setBeta:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBeta(&self, beta: c_double);
     }
 );
@@ -115,7 +119,7 @@ extern_methods!(
         feature = "MPSNDArrayKernel"
     ))]
     unsafe impl MPSNDArrayMatrixMultiplication {
-        #[method_id(initWithDevice:sourceCount:)]
+        #[method(initWithDevice:sourceCount:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_sourceCount(
             this: Allocated<Self>,
@@ -123,7 +127,7 @@ extern_methods!(
             count: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -141,7 +145,7 @@ extern_methods!(
         feature = "MPSNDArrayKernel"
     ))]
     unsafe impl MPSNDArrayMatrixMultiplication {
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -166,7 +170,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -183,11 +187,11 @@ extern_methods!(
         feature = "MPSNDArrayKernel"
     ))]
     unsafe impl MPSNDArrayMatrixMultiplication {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

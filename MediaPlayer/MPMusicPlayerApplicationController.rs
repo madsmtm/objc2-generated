@@ -18,16 +18,16 @@ unsafe impl NSObjectProtocol for MPMusicPlayerControllerQueue {}
 
 extern_methods!(
     unsafe impl MPMusicPlayerControllerQueue {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItem"))]
-        #[method_id(items)]
+        #[method(items)]
         #[unsafe(method_family = none)]
         pub unsafe fn items(&self) -> Retained<NSArray<MPMediaItem>>;
     }
@@ -50,6 +50,7 @@ extern_methods!(
             feature = "MPMusicPlayerQueueDescriptor"
         ))]
         #[method(insertQueueDescriptor:afterItem:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn insertQueueDescriptor_afterItem(
             &self,
             queue_descriptor: &MPMusicPlayerQueueDescriptor,
@@ -58,6 +59,7 @@ extern_methods!(
 
         #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItem"))]
         #[method(removeItem:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeItem(&self, item: &MPMediaItem);
     }
 );
@@ -65,11 +67,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPMusicPlayerControllerQueue`
     unsafe impl MPMusicPlayerControllerMutableQueue {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -94,6 +96,7 @@ extern_methods!(
     unsafe impl MPMusicPlayerApplicationController {
         #[cfg(feature = "block2")]
         #[method(performQueueTransaction:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn performQueueTransaction_completionHandler(
             &self,
             queue_transaction: &block2::Block<dyn Fn(NonNull<MPMusicPlayerControllerMutableQueue>)>,
@@ -108,11 +111,11 @@ extern_methods!(
     /// Methods declared on superclass `MPMusicPlayerController`
     #[cfg(feature = "MPMusicPlayerController")]
     unsafe impl MPMusicPlayerApplicationController {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

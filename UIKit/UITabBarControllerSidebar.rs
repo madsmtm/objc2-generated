@@ -50,18 +50,18 @@ unsafe impl NSObjectProtocol for UITabSidebarScrollTarget {}
 extern_methods!(
     unsafe impl UITabSidebarScrollTarget {
         /// Scrolls to the `headerContentConfiguration` if it is set.
-        #[method_id(targetForHeader)]
+        #[method(targetForHeader)]
         #[unsafe(method_family = none)]
         pub unsafe fn targetForHeader(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// Scrolls to the `footerContentConfiguration` if it is set.
-        #[method_id(targetForFooter)]
+        #[method(targetForFooter)]
         #[unsafe(method_family = none)]
         pub unsafe fn targetForFooter(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(feature = "UITab")]
         /// Scrolls to the item representing the tab if it exists.
-        #[method_id(targetForTab:)]
+        #[method(targetForTab:)]
         #[unsafe(method_family = none)]
         pub unsafe fn targetForTab(tab: &UITab) -> Retained<Self>;
     }
@@ -70,11 +70,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITabSidebarScrollTarget {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -93,7 +93,7 @@ unsafe impl NSObjectProtocol for UITabBarControllerSidebar {}
 extern_methods!(
     unsafe impl UITabBarControllerSidebar {
         /// The object managing the delegate of the sidebar.
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -102,6 +102,7 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn UITabBarControllerSidebarDelegate>>,
@@ -109,25 +110,29 @@ extern_methods!(
 
         /// Determines if the sidebar is currently hidden.
         #[method(isHidden)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isHidden(&self) -> bool;
 
         /// Setter for [`isHidden`][Self::isHidden].
         #[method(setHidden:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setHidden(&self, hidden: bool);
 
         /// The preferred layout for how the sidebar lays out with the tab bar controller's
         /// content. Default is `.automatic`
         #[method(preferredLayout)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preferredLayout(&self) -> UITabBarControllerSidebarLayout;
 
         /// Setter for [`preferredLayout`][Self::preferredLayout].
         #[method(setPreferredLayout:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreferredLayout(&self, preferred_layout: UITabBarControllerSidebarLayout);
 
         #[cfg(feature = "UIContentConfiguration")]
         /// Content configuration for an optional header to display in the sidebar.
         /// The header is displayed above all tab content in the sidebar.
-        #[method_id(headerContentConfiguration)]
+        #[method(headerContentConfiguration)]
         #[unsafe(method_family = none)]
         pub unsafe fn headerContentConfiguration(
             &self,
@@ -136,6 +141,7 @@ extern_methods!(
         #[cfg(feature = "UIContentConfiguration")]
         /// Setter for [`headerContentConfiguration`][Self::headerContentConfiguration].
         #[method(setHeaderContentConfiguration:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setHeaderContentConfiguration(
             &self,
             header_content_configuration: Option<&ProtocolObject<dyn UIContentConfiguration>>,
@@ -144,7 +150,7 @@ extern_methods!(
         #[cfg(feature = "UIContentConfiguration")]
         /// Content configuration for an optional header to display in the sidebar.
         /// The footer is displayed below all tab content in the sidebar.
-        #[method_id(footerContentConfiguration)]
+        #[method(footerContentConfiguration)]
         #[unsafe(method_family = none)]
         pub unsafe fn footerContentConfiguration(
             &self,
@@ -153,6 +159,7 @@ extern_methods!(
         #[cfg(feature = "UIContentConfiguration")]
         /// Setter for [`footerContentConfiguration`][Self::footerContentConfiguration].
         #[method(setFooterContentConfiguration:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFooterContentConfiguration(
             &self,
             footer_content_configuration: Option<&ProtocolObject<dyn UIContentConfiguration>>,
@@ -163,17 +170,19 @@ extern_methods!(
         /// will be managed by the sidebar itself, and its height will be set to the value it returns
         /// from `systemLayoutSizeFittingSize:withHorizontalFittingPriority:verticalFittingPriority:`
         /// Default is nil.
-        #[method_id(bottomBarView)]
+        #[method(bottomBarView)]
         #[unsafe(method_family = none)]
         pub unsafe fn bottomBarView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// Setter for [`bottomBarView`][Self::bottomBarView].
         #[method(setBottomBarView:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBottomBarView(&self, bottom_bar_view: Option<&UIView>);
 
         /// Scrolls to the specified target in the sidebar with an option to animate the change.
         #[method(scrollToTarget:animated:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scrollToTarget_animated(
             &self,
             target: &UITabSidebarScrollTarget,
@@ -184,13 +193,14 @@ extern_methods!(
         /// Requests the sidebar reconfigure the item representing the specified tab. This method has no effect if the `tab` is not
         /// currently displayed in the sidebar.
         #[method(reconfigureItemForTab:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reconfigureItemForTab(&self, tab: &UITab);
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -203,10 +213,12 @@ extern_protocol!(
     {
         #[cfg(feature = "block2")]
         #[method(addAnimations:)]
+        #[unsafe(method_family = none)]
         unsafe fn addAnimations(&self, animations: &block2::Block<dyn Fn()>);
 
         #[cfg(feature = "block2")]
         #[method(addCompletion:)]
+        #[unsafe(method_family = none)]
         unsafe fn addCompletion(&self, completion: &block2::Block<dyn Fn()>);
     }
 );
@@ -224,6 +236,7 @@ extern_protocol!(
         /// if the sidebar visibility is changed without animation.
         #[optional]
         #[method(tabBarController:sidebarVisibilityWillChange:animator:)]
+        #[unsafe(method_family = none)]
         unsafe fn tabBarController_sidebarVisibilityWillChange_animator(
             &self,
             tab_bar_controller: &UITabBarController,
@@ -241,7 +254,7 @@ extern_protocol!(
         /// to the appropriate defaults for its given content. If this method is not implemented, a default sidebar
         /// item will be provided for the request.
         #[optional]
-        #[method_id(tabBarController:sidebar:itemForRequest:)]
+        #[method(tabBarController:sidebar:itemForRequest:)]
         #[unsafe(method_family = none)]
         unsafe fn tabBarController_sidebar_itemForRequest(
             &self,
@@ -261,6 +274,7 @@ extern_protocol!(
         /// item from the delegate method `tabBarController:sidebar:itemForRequest:`
         #[optional]
         #[method(tabBarController:sidebar:updateItem:)]
+        #[unsafe(method_family = none)]
         unsafe fn tabBarController_sidebar_updateItem(
             &self,
             tab_bar_controller: &UITabBarController,
@@ -277,6 +291,7 @@ extern_protocol!(
         /// Notifies the delegate when the sidebar is about to display the row representing the specified `tab`
         #[optional]
         #[method(tabBarController:sidebar:willBeginDisplayingTab:)]
+        #[unsafe(method_family = none)]
         unsafe fn tabBarController_sidebar_willBeginDisplayingTab(
             &self,
             tab_bar_controller: &UITabBarController,
@@ -293,6 +308,7 @@ extern_protocol!(
         /// Notifies the delegate when the sidebar has finished displaying the row representing the specified `tab`
         #[optional]
         #[method(tabBarController:sidebar:didEndDisplayingTab:)]
+        #[unsafe(method_family = none)]
         unsafe fn tabBarController_sidebar_didEndDisplayingTab(
             &self,
             tab_bar_controller: &UITabBarController,
@@ -310,7 +326,7 @@ extern_protocol!(
         /// Called when the sidebar is about to show leading swipe actions for the specified `tab`.
         /// Return either a concrete `UISwipeActionsConfiguration` or nil if the tab does not show swipe actions.
         #[optional]
-        #[method_id(tabBarController:sidebar:leadingSwipeActionsConfigurationForTab:)]
+        #[method(tabBarController:sidebar:leadingSwipeActionsConfigurationForTab:)]
         #[unsafe(method_family = none)]
         unsafe fn tabBarController_sidebar_leadingSwipeActionsConfigurationForTab(
             &self,
@@ -329,7 +345,7 @@ extern_protocol!(
         /// Called when the sidebar is about to show trailing swipe actions for a particular tab.
         /// Return either a UISwipeActionsConfiguration object or nil if this tab does not show swipe actions.
         #[optional]
-        #[method_id(tabBarController:sidebar:trailingSwipeActionsConfigurationForTab:)]
+        #[method(tabBarController:sidebar:trailingSwipeActionsConfigurationForTab:)]
         #[unsafe(method_family = none)]
         unsafe fn tabBarController_sidebar_trailingSwipeActionsConfigurationForTab(
             &self,
@@ -348,7 +364,7 @@ extern_protocol!(
         /// Called when the sidebar is about to display a context menu for the specified `tab`.
         /// Return either a concrete `UIContextMenuConfiguration` or nil if the tab does not show context menus.
         #[optional]
-        #[method_id(tabBarController:sidebar:contextMenuConfigurationForTab:)]
+        #[method(tabBarController:sidebar:contextMenuConfigurationForTab:)]
         #[unsafe(method_family = none)]
         unsafe fn tabBarController_sidebar_contextMenuConfigurationForTab(
             &self,

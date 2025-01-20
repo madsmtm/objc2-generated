@@ -20,24 +20,25 @@ unsafe impl NSObjectProtocol for CBATTRequest {}
 
 extern_methods!(
     unsafe impl CBATTRequest {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "CBCentral", feature = "CBPeer"))]
         /// The central that originated the request.
-        #[method_id(central)]
+        #[method(central)]
         #[unsafe(method_family = none)]
         pub unsafe fn central(&self) -> Retained<CBCentral>;
 
         #[cfg(all(feature = "CBAttribute", feature = "CBCharacteristic"))]
         /// The characteristic whose value will be read or written.
-        #[method_id(characteristic)]
+        #[method(characteristic)]
         #[unsafe(method_family = none)]
         pub unsafe fn characteristic(&self) -> Retained<CBCharacteristic>;
 
         /// The zero-based index of the first byte for the read or write.
         #[method(offset)]
+        #[unsafe(method_family = none)]
         pub unsafe fn offset(&self) -> NSUInteger;
 
         /// The data being read or written.
@@ -57,12 +58,13 @@ extern_methods!(
         /// value
         /// </i>
         /// will contain the data to be written.
-        #[method_id(value)]
+        #[method(value)]
         #[unsafe(method_family = none)]
         pub unsafe fn value(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`value`][Self::value].
         #[method(setValue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setValue(&self, value: Option<&NSData>);
     }
 );
@@ -70,7 +72,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CBATTRequest {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

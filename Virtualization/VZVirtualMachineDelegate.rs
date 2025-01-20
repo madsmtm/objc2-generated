@@ -18,6 +18,7 @@ extern_protocol!(
         /// Parameter `virtualMachine`: The virtual machine invoking the delegate method.
         #[optional]
         #[method(guestDidStopVirtualMachine:)]
+        #[unsafe(method_family = none)]
         unsafe fn guestDidStopVirtualMachine(&self, virtual_machine: &VZVirtualMachine);
 
         #[cfg(feature = "VZVirtualMachine")]
@@ -28,6 +29,7 @@ extern_protocol!(
         /// Parameter `error`: The error.
         #[optional]
         #[method(virtualMachine:didStopWithError:)]
+        #[unsafe(method_family = none)]
         unsafe fn virtualMachine_didStopWithError(
             &self,
             virtual_machine: &VZVirtualMachine,
@@ -49,6 +51,7 @@ extern_protocol!(
         /// Parameter `error`: The error.
         #[optional]
         #[method(virtualMachine:networkDevice:attachmentWasDisconnectedWithError:)]
+        #[unsafe(method_family = none)]
         unsafe fn virtualMachine_networkDevice_attachmentWasDisconnectedWithError(
             &self,
             virtual_machine: &VZVirtualMachine,

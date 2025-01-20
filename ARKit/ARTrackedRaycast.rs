@@ -30,13 +30,14 @@ extern_methods!(
         /// The raycast will be continuously tracked until stopped.
         /// Resetting session's tracking, changing its configuration or deallocation of ARTrackedRaycast object cause the raycast to stop.
         #[method(stopTracking)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stopTracking(&self);
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(&self) -> Retained<Self>;
     }
@@ -47,7 +48,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2")]
     unsafe impl ARTrackedRaycast {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new_class() -> Retained<Self>;
     }

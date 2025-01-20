@@ -29,6 +29,7 @@ extern_methods!(
         ///
         /// Returns a  value indicating whether the current device supports Fall Detection.
         #[method(isAvailable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isAvailable() -> bool;
 
         #[cfg(feature = "CMAuthorization")]
@@ -36,12 +37,13 @@ extern_methods!(
         ///
         /// Returns a value indicating whether the user has authorized the app to receive Fall Detection updates
         #[method(authorizationStatus)]
+        #[unsafe(method_family = none)]
         pub unsafe fn authorizationStatus(&self) -> CMAuthorizationStatus;
 
         /// delegate
         ///
         /// The delegate object to receive Fall Detection events.
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -50,6 +52,7 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn CMFallDetectionDelegate>>,
@@ -58,6 +61,7 @@ extern_methods!(
         #[cfg(all(feature = "CMAuthorization", feature = "block2"))]
         /// Requests the user’s permission to access Fall Detection information.
         #[method(requestAuthorizationWithHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestAuthorizationWithHandler(
             &self,
             handler: &block2::Block<dyn Fn(CMAuthorizationStatus)>,
@@ -68,11 +72,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CMFallDetectionManager {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -106,6 +110,7 @@ extern_protocol!(
         /// Fall Detection events can be simulated with the watchOS simulator. Use it to test the background functionality of your app.
         #[optional]
         #[method(fallDetectionManager:didDetectEvent:completionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn fallDetectionManager_didDetectEvent_completionHandler(
             &self,
             fall_detection_manager: &CMFallDetectionManager,
@@ -116,6 +121,7 @@ extern_protocol!(
         /// Update the delegate when the app's Fall Detection authorization status changes
         #[optional]
         #[method(fallDetectionManagerDidChangeAuthorization:)]
+        #[unsafe(method_family = none)]
         unsafe fn fallDetectionManagerDidChangeAuthorization(
             &self,
             fall_detection_manager: &CMFallDetectionManager,

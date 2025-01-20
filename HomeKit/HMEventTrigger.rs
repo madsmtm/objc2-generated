@@ -53,7 +53,7 @@ unsafe impl NSObjectProtocol for HMEventTrigger {}
 extern_methods!(
     #[cfg(feature = "HMTrigger")]
     unsafe impl HMEventTrigger {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -73,7 +73,7 @@ extern_methods!(
         ///
         ///
         /// Returns: Instance object representing the event trigger.
-        #[method_id(initWithName:events:predicate:)]
+        #[method(initWithName:events:predicate:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithName_events_predicate(
             this: Allocated<Self>,
@@ -105,7 +105,7 @@ extern_methods!(
         ///
         ///
         /// Returns: Instance object representing the event trigger.
-        #[method_id(initWithName:events:endEvents:recurrences:predicate:)]
+        #[method(initWithName:events:endEvents:recurrences:predicate:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithName_events_endEvents_recurrences_predicate(
             this: Allocated<Self>,
@@ -118,7 +118,7 @@ extern_methods!(
 
         #[cfg(feature = "HMEvent")]
         /// The events associated with the trigger.
-        #[method_id(events)]
+        #[method(events)]
         #[unsafe(method_family = none)]
         pub unsafe fn events(&self) -> Retained<NSArray<HMEvent>>;
 
@@ -126,27 +126,29 @@ extern_methods!(
         /// The events that correspond to executing the restore of the scene before the trigger was executed.
         /// E.g. Execute the scene for 10 mins and restore original state is achieved by specifying a corresponding
         /// HMDurationEvent in the list of endEvents.
-        #[method_id(endEvents)]
+        #[method(endEvents)]
         #[unsafe(method_family = none)]
         pub unsafe fn endEvents(&self) -> Retained<NSArray<HMEvent>>;
 
         /// The predicate to evaluate before executing the action sets associated with the trigger.
-        #[method_id(predicate)]
+        #[method(predicate)]
         #[unsafe(method_family = none)]
         pub unsafe fn predicate(&self) -> Option<Retained<NSPredicate>>;
 
         /// recurrences Specifies the recurrences for when the trigger is evaluated. This only supports days of the week.
-        #[method_id(recurrences)]
+        #[method(recurrences)]
         #[unsafe(method_family = none)]
         pub unsafe fn recurrences(&self) -> Option<Retained<NSArray<NSDateComponents>>>;
 
         /// Specifies whether this trigger is executed only once after which the trigger is disabled.
         #[method(executeOnce)]
+        #[unsafe(method_family = none)]
         pub unsafe fn executeOnce(&self) -> bool;
 
         #[cfg(feature = "HMEventTriggerActivationState")]
         /// Specifies the current activation state of the trigger.
         #[method(triggerActivationState)]
+        #[unsafe(method_family = none)]
         pub unsafe fn triggerActivationState(&self) -> HMEventTriggerActivationState;
 
         #[cfg(all(feature = "HMEvent", feature = "block2"))]
@@ -161,6 +163,7 @@ extern_methods!(
         /// will be nil on success.
         #[deprecated = "Use updateEvents:completionHandler: instead"]
         #[method(addEvent:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addEvent_completionHandler(
             &self,
             event: &HMEvent,
@@ -179,6 +182,7 @@ extern_methods!(
         /// will be nil on success.
         #[deprecated = "Use updateEvents:completionHandler: instead"]
         #[method(removeEvent:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeEvent_completionHandler(
             &self,
             event: &HMEvent,
@@ -196,6 +200,7 @@ extern_methods!(
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
         #[method(updateEvents:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updateEvents_completionHandler(
             &self,
             events: &NSArray<HMEvent>,
@@ -213,6 +218,7 @@ extern_methods!(
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
         #[method(updateEndEvents:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updateEndEvents_completionHandler(
             &self,
             end_events: &NSArray<HMEvent>,
@@ -230,6 +236,7 @@ extern_methods!(
         /// The NSError provides more information on the status of the request,
         /// error will be nil on success.
         #[method(updatePredicate:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updatePredicate_completionHandler(
             &self,
             predicate: Option<&NSPredicate>,
@@ -247,6 +254,7 @@ extern_methods!(
         /// The NSError provides more information on the status of the request,
         /// error will be nil on success.
         #[method(updateRecurrences:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updateRecurrences_completionHandler(
             &self,
             recurrences: Option<&NSArray<NSDateComponents>>,
@@ -264,6 +272,7 @@ extern_methods!(
         /// The NSError provides more information on the status of the request, error
         /// will be nil on success.
         #[method(updateExecuteOnce:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updateExecuteOnce_completionHandler(
             &self,
             execute_once: bool,
@@ -276,7 +285,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "HMTrigger")]
     unsafe impl HMEventTrigger {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -300,7 +309,7 @@ extern_methods!(
         ///
         /// Returns: Predicate object representing a condition to evaluate before executing the action set.
         #[deprecated = "Use predicateForEvaluatingTriggerOccurringBeforeSignificantEvent: instead"]
-        #[method_id(predicateForEvaluatingTriggerOccurringBeforeSignificantEvent:applyingOffset:)]
+        #[method(predicateForEvaluatingTriggerOccurringBeforeSignificantEvent:applyingOffset:)]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateForEvaluatingTriggerOccurringBeforeSignificantEvent_applyingOffset(
             significant_event: &NSString,
@@ -319,7 +328,7 @@ extern_methods!(
         ///
         ///
         /// Returns: Predicate object representing a condition to evaluate before executing the action set.
-        #[method_id(predicateForEvaluatingTriggerOccurringBeforeSignificantEvent:)]
+        #[method(predicateForEvaluatingTriggerOccurringBeforeSignificantEvent:)]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateForEvaluatingTriggerOccurringBeforeSignificantEvent(
             significant_event: &HMSignificantTimeEvent,
@@ -339,7 +348,7 @@ extern_methods!(
         ///
         /// Returns: Predicate object representing a condition to evaluate before executing the action set.
         #[deprecated = "Use predicateForEvaluatingTriggerOccurringAfterSignificantEvent: instead"]
-        #[method_id(predicateForEvaluatingTriggerOccurringAfterSignificantEvent:applyingOffset:)]
+        #[method(predicateForEvaluatingTriggerOccurringAfterSignificantEvent:applyingOffset:)]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateForEvaluatingTriggerOccurringAfterSignificantEvent_applyingOffset(
             significant_event: &NSString,
@@ -358,7 +367,7 @@ extern_methods!(
         ///
         ///
         /// Returns: Predicate object representing a condition to evaluate before executing the action set.
-        #[method_id(predicateForEvaluatingTriggerOccurringAfterSignificantEvent:)]
+        #[method(predicateForEvaluatingTriggerOccurringAfterSignificantEvent:)]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateForEvaluatingTriggerOccurringAfterSignificantEvent(
             significant_event: &HMSignificantTimeEvent,
@@ -379,7 +388,7 @@ extern_methods!(
         ///
         ///
         /// Returns: Predicate object representing a condition to evaluate before executing the action set.
-        #[method_id(predicateForEvaluatingTriggerOccurringBetweenSignificantEvent:secondSignificantEvent:)]
+        #[method(predicateForEvaluatingTriggerOccurringBetweenSignificantEvent:secondSignificantEvent:)]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateForEvaluatingTriggerOccurringBetweenSignificantEvent_secondSignificantEvent(
             first_significant_event: &HMSignificantTimeEvent,
@@ -393,7 +402,7 @@ extern_methods!(
         ///
         ///
         /// Returns: Predicate object representing a condition to evaluate before executing the action set.
-        #[method_id(predicateForEvaluatingTriggerOccurringBeforeDateWithComponents:)]
+        #[method(predicateForEvaluatingTriggerOccurringBeforeDateWithComponents:)]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateForEvaluatingTriggerOccurringBeforeDateWithComponents(
             date_components: &NSDateComponents,
@@ -406,7 +415,7 @@ extern_methods!(
         ///
         ///
         /// Returns: Predicate object representing a condition to evaluate before executing the action set.
-        #[method_id(predicateForEvaluatingTriggerOccurringOnDateWithComponents:)]
+        #[method(predicateForEvaluatingTriggerOccurringOnDateWithComponents:)]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateForEvaluatingTriggerOccurringOnDateWithComponents(
             date_components: &NSDateComponents,
@@ -419,7 +428,7 @@ extern_methods!(
         ///
         ///
         /// Returns: Predicate object representing a condition to evaluate before executing the action set.
-        #[method_id(predicateForEvaluatingTriggerOccurringAfterDateWithComponents:)]
+        #[method(predicateForEvaluatingTriggerOccurringAfterDateWithComponents:)]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateForEvaluatingTriggerOccurringAfterDateWithComponents(
             date_components: &NSDateComponents,
@@ -435,7 +444,7 @@ extern_methods!(
         ///
         ///
         /// Returns: Predicate object representing a condition to evaluate before executing the action set.
-        #[method_id(predicateForEvaluatingTriggerOccurringBetweenDateWithComponents:secondDateWithComponents:)]
+        #[method(predicateForEvaluatingTriggerOccurringBetweenDateWithComponents:secondDateWithComponents:)]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateForEvaluatingTriggerOccurringBetweenDateWithComponents_secondDateWithComponents(
             first_date_components: &NSDateComponents,
@@ -458,7 +467,7 @@ extern_methods!(
         ///
         ///
         /// Returns: Predicate object representing a condition to evaluate before executing the action set.
-        #[method_id(predicateForEvaluatingTriggerWithCharacteristic:relatedBy:toValue:)]
+        #[method(predicateForEvaluatingTriggerWithCharacteristic:relatedBy:toValue:)]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateForEvaluatingTriggerWithCharacteristic_relatedBy_toValue(
             characteristic: &HMCharacteristic,
@@ -474,7 +483,7 @@ extern_methods!(
         ///
         ///
         /// Returns: Predicate object representing a condition to evaluate before executing the action set.
-        #[method_id(predicateForEvaluatingTriggerWithPresence:)]
+        #[method(predicateForEvaluatingTriggerWithPresence:)]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateForEvaluatingTriggerWithPresence(
             presence_event: &HMPresenceEvent,

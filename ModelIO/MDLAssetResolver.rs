@@ -11,9 +11,10 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlassetresolver?language=objc)
     pub unsafe trait MDLAssetResolver: NSObjectProtocol {
         #[method(canResolveAssetNamed:)]
+        #[unsafe(method_family = none)]
         unsafe fn canResolveAssetNamed(&self, name: &NSString) -> bool;
 
-        #[method_id(resolveAssetNamed:)]
+        #[method(resolveAssetNamed:)]
         #[unsafe(method_family = none)]
         unsafe fn resolveAssetNamed(&self, name: &NSString) -> Retained<NSURL>;
     }
@@ -37,12 +38,12 @@ unsafe impl NSObjectProtocol for MDLRelativeAssetResolver {}
 extern_methods!(
     unsafe impl MDLRelativeAssetResolver {
         #[cfg(feature = "MDLAsset")]
-        #[method_id(initWithAsset:)]
+        #[method(initWithAsset:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAsset(this: Allocated<Self>, asset: &MDLAsset) -> Retained<Self>;
 
         #[cfg(feature = "MDLAsset")]
-        #[method_id(asset)]
+        #[method(asset)]
         #[unsafe(method_family = none)]
         pub unsafe fn asset(&self) -> Option<Retained<MDLAsset>>;
 
@@ -50,6 +51,7 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`asset`][Self::asset].
         #[method(setAsset:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAsset(&self, asset: Option<&MDLAsset>);
     }
 );
@@ -57,11 +59,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLRelativeAssetResolver {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -92,16 +94,17 @@ unsafe impl NSObjectProtocol for MDLPathAssetResolver {}
 
 extern_methods!(
     unsafe impl MDLPathAssetResolver {
-        #[method_id(initWithPath:)]
+        #[method(initWithPath:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPath(this: Allocated<Self>, path: &NSString) -> Retained<Self>;
 
-        #[method_id(path)]
+        #[method(path)]
         #[unsafe(method_family = none)]
         pub unsafe fn path(&self) -> Retained<NSString>;
 
         /// Setter for [`path`][Self::path].
         #[method(setPath:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPath(&self, path: &NSString);
     }
 );
@@ -109,11 +112,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLPathAssetResolver {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -132,16 +135,17 @@ unsafe impl NSObjectProtocol for MDLBundleAssetResolver {}
 
 extern_methods!(
     unsafe impl MDLBundleAssetResolver {
-        #[method_id(initWithBundle:)]
+        #[method(initWithBundle:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBundle(this: Allocated<Self>, path: &NSString) -> Retained<Self>;
 
-        #[method_id(path)]
+        #[method(path)]
         #[unsafe(method_family = none)]
         pub unsafe fn path(&self) -> Retained<NSString>;
 
         /// Setter for [`path`][Self::path].
         #[method(setPath:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPath(&self, path: &NSString);
     }
 );
@@ -149,11 +153,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLBundleAssetResolver {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

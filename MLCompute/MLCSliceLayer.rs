@@ -29,19 +29,19 @@ extern_methods!(
     unsafe impl MLCSliceLayer {
         /// A vector of length equal to that of source. The element at index i specifies the beginning of slice in dimension i.
         #[deprecated]
-        #[method_id(start)]
+        #[method(start)]
         #[unsafe(method_family = none)]
         pub unsafe fn start(&self) -> Retained<NSArray<NSNumber>>;
 
         /// A vector of length equal to that of source. The element at index i specifies the end of slice in dimension i.
         #[deprecated]
-        #[method_id(end)]
+        #[method(end)]
         #[unsafe(method_family = none)]
         pub unsafe fn end(&self) -> Retained<NSArray<NSNumber>>;
 
         /// A vector of length equal to that of source. The element at index i specifies the stride of slice in dimension i.
         #[deprecated]
-        #[method_id(stride)]
+        #[method(stride)]
         #[unsafe(method_family = none)]
         pub unsafe fn stride(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
@@ -51,7 +51,7 @@ extern_methods!(
         ///
         /// Returns: A new layer for slicing tensors.
         #[deprecated]
-        #[method_id(sliceLayerWithStart:end:stride:)]
+        #[method(sliceLayerWithStart:end:stride:)]
         #[unsafe(method_family = none)]
         pub unsafe fn sliceLayerWithStart_end_stride(
             start: &NSArray<NSNumber>,
@@ -66,12 +66,12 @@ extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCSliceLayer {
         #[deprecated]
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

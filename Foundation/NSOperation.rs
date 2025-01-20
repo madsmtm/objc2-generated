@@ -48,88 +48,109 @@ unsafe impl NSObjectProtocol for NSOperation {}
 extern_methods!(
     unsafe impl NSOperation {
         #[method(start)]
+        #[unsafe(method_family = none)]
         pub unsafe fn start(&self);
 
         #[method(main)]
+        #[unsafe(method_family = none)]
         pub unsafe fn main(&self);
 
         #[method(isCancelled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isCancelled(&self) -> bool;
 
         #[method(cancel)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cancel(&self);
 
         #[method(isExecuting)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isExecuting(&self) -> bool;
 
         #[method(isFinished)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isFinished(&self) -> bool;
 
         #[method(isConcurrent)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isConcurrent(&self) -> bool;
 
         #[method(isAsynchronous)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isAsynchronous(&self) -> bool;
 
         #[method(isReady)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isReady(&self) -> bool;
 
         #[method(addDependency:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addDependency(&self, op: &NSOperation);
 
         #[method(removeDependency:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeDependency(&self, op: &NSOperation);
 
         #[cfg(feature = "NSArray")]
-        #[method_id(dependencies)]
+        #[method(dependencies)]
         #[unsafe(method_family = none)]
         pub unsafe fn dependencies(&self) -> Retained<NSArray<NSOperation>>;
 
         #[method(queuePriority)]
+        #[unsafe(method_family = none)]
         pub unsafe fn queuePriority(&self) -> NSOperationQueuePriority;
 
         /// Setter for [`queuePriority`][Self::queuePriority].
         #[method(setQueuePriority:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setQueuePriority(&self, queue_priority: NSOperationQueuePriority);
 
         #[cfg(feature = "block2")]
         #[method(completionBlock)]
+        #[unsafe(method_family = none)]
         pub unsafe fn completionBlock(&self) -> *mut block2::Block<dyn Fn()>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`completionBlock`][Self::completionBlock].
         #[method(setCompletionBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCompletionBlock(&self, completion_block: Option<&block2::Block<dyn Fn()>>);
 
         #[method(waitUntilFinished)]
+        #[unsafe(method_family = none)]
         pub unsafe fn waitUntilFinished(&self);
 
         #[deprecated = "Not supported"]
         #[method(threadPriority)]
+        #[unsafe(method_family = none)]
         pub unsafe fn threadPriority(&self) -> c_double;
 
         /// Setter for [`threadPriority`][Self::threadPriority].
         #[deprecated = "Not supported"]
         #[method(setThreadPriority:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setThreadPriority(&self, thread_priority: c_double);
 
         #[cfg(feature = "NSObjCRuntime")]
         #[method(qualityOfService)]
+        #[unsafe(method_family = none)]
         pub unsafe fn qualityOfService(&self) -> NSQualityOfService;
 
         #[cfg(feature = "NSObjCRuntime")]
         /// Setter for [`qualityOfService`][Self::qualityOfService].
         #[method(setQualityOfService:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setQualityOfService(&self, quality_of_service: NSQualityOfService);
 
         #[cfg(feature = "NSString")]
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`name`][Self::name].
         #[method(setName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
     }
 );
@@ -137,11 +158,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSOperation {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -163,12 +184,13 @@ unsafe impl NSObjectProtocol for NSBlockOperation {}
 extern_methods!(
     unsafe impl NSBlockOperation {
         #[cfg(feature = "block2")]
-        #[method_id(blockOperationWithBlock:)]
+        #[method(blockOperationWithBlock:)]
         #[unsafe(method_family = none)]
         pub unsafe fn blockOperationWithBlock(block: &block2::Block<dyn Fn()>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[method(addExecutionBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addExecutionBlock(&self, block: &block2::Block<dyn Fn()>);
     }
 );
@@ -176,11 +198,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSBlockOperation {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -197,7 +219,7 @@ unsafe impl NSObjectProtocol for NSInvocationOperation {}
 
 extern_methods!(
     unsafe impl NSInvocationOperation {
-        #[method_id(initWithTarget:selector:object:)]
+        #[method(initWithTarget:selector:object:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTarget_selector_object(
             this: Allocated<Self>,
@@ -207,7 +229,7 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSInvocation")]
-        #[method_id(initWithInvocation:)]
+        #[method(initWithInvocation:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithInvocation(
             this: Allocated<Self>,
@@ -215,11 +237,11 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSInvocation")]
-        #[method_id(invocation)]
+        #[method(invocation)]
         #[unsafe(method_family = none)]
         pub unsafe fn invocation(&self) -> Retained<NSInvocation>;
 
-        #[method_id(result)]
+        #[method(result)]
         #[unsafe(method_family = none)]
         pub unsafe fn result(&self) -> Option<Retained<AnyObject>>;
     }
@@ -228,11 +250,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSInvocationOperation {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -287,15 +309,17 @@ extern_methods!(
         ///
         /// NSOperationQueue *queue = [[NSOperationQueue alloc] init];
         /// queue.progress.totalUnitCount = 10;
-        #[method_id(progress)]
+        #[method(progress)]
         #[unsafe(method_family = none)]
         pub unsafe fn progress(&self) -> Retained<NSProgress>;
 
         #[method(addOperation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addOperation(&self, op: &NSOperation);
 
         #[cfg(feature = "NSArray")]
         #[method(addOperations:waitUntilFinished:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addOperations_waitUntilFinished(
             &self,
             ops: &NSArray<NSOperation>,
@@ -304,6 +328,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[method(addOperationWithBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addOperationWithBlock(&self, block: &block2::Block<dyn Fn()>);
 
         #[cfg(feature = "block2")]
@@ -313,55 +338,65 @@ extern_methods!(
         /// prevents any subsequent operations to be executed until the barrier has been completed. This acts similarly to the
         /// `dispatch_barrier_async` function.
         #[method(addBarrierBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addBarrierBlock(&self, barrier: &block2::Block<dyn Fn()>);
 
         #[method(maxConcurrentOperationCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maxConcurrentOperationCount(&self) -> NSInteger;
 
         /// Setter for [`maxConcurrentOperationCount`][Self::maxConcurrentOperationCount].
         #[method(setMaxConcurrentOperationCount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMaxConcurrentOperationCount(
             &self,
             max_concurrent_operation_count: NSInteger,
         );
 
         #[method(isSuspended)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isSuspended(&self) -> bool;
 
         /// Setter for [`isSuspended`][Self::isSuspended].
         #[method(setSuspended:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSuspended(&self, suspended: bool);
 
         #[cfg(feature = "NSString")]
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`name`][Self::name].
         #[method(setName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
         #[cfg(feature = "NSObjCRuntime")]
         #[method(qualityOfService)]
+        #[unsafe(method_family = none)]
         pub unsafe fn qualityOfService(&self) -> NSQualityOfService;
 
         #[cfg(feature = "NSObjCRuntime")]
         /// Setter for [`qualityOfService`][Self::qualityOfService].
         #[method(setQualityOfService:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setQualityOfService(&self, quality_of_service: NSQualityOfService);
 
         #[method(cancelAllOperations)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cancelAllOperations(&self);
 
         #[method(waitUntilAllOperationsAreFinished)]
+        #[unsafe(method_family = none)]
         pub unsafe fn waitUntilAllOperationsAreFinished(&self);
 
-        #[method_id(currentQueue)]
+        #[method(currentQueue)]
         #[unsafe(method_family = none)]
         pub unsafe fn currentQueue() -> Option<Retained<NSOperationQueue>>;
 
-        #[method_id(mainQueue)]
+        #[method(mainQueue)]
         #[unsafe(method_family = none)]
         pub unsafe fn mainQueue() -> Retained<NSOperationQueue>;
     }
@@ -370,11 +405,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSOperationQueue {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -385,12 +420,13 @@ extern_methods!(
     unsafe impl NSOperationQueue {
         #[cfg(feature = "NSArray")]
         #[deprecated = "access to operations is inherently a race condition, it should not be used. For barrier style behaviors please use addBarrierBlock: instead"]
-        #[method_id(operations)]
+        #[method(operations)]
         #[unsafe(method_family = none)]
         pub unsafe fn operations(&self) -> Retained<NSArray<NSOperation>>;
 
         #[deprecated]
         #[method(operationCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn operationCount(&self) -> NSUInteger;
     }
 );

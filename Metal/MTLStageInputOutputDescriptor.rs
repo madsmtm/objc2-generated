@@ -203,24 +203,30 @@ unsafe impl NSObjectProtocol for MTLBufferLayoutDescriptor {}
 extern_methods!(
     unsafe impl MTLBufferLayoutDescriptor {
         #[method(stride)]
+        #[unsafe(method_family = none)]
         pub fn stride(&self) -> NSUInteger;
 
         /// Setter for [`stride`][Self::stride].
         #[method(setStride:)]
+        #[unsafe(method_family = none)]
         pub fn setStride(&self, stride: NSUInteger);
 
         #[method(stepFunction)]
+        #[unsafe(method_family = none)]
         pub fn stepFunction(&self) -> MTLStepFunction;
 
         /// Setter for [`stepFunction`][Self::stepFunction].
         #[method(setStepFunction:)]
+        #[unsafe(method_family = none)]
         pub fn setStepFunction(&self, step_function: MTLStepFunction);
 
         #[method(stepRate)]
+        #[unsafe(method_family = none)]
         pub fn stepRate(&self) -> NSUInteger;
 
         /// Setter for [`stepRate`][Self::stepRate].
         #[method(setStepRate:)]
+        #[unsafe(method_family = none)]
         pub fn setStepRate(&self, step_rate: NSUInteger);
     }
 );
@@ -228,11 +234,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLBufferLayoutDescriptor {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -249,7 +255,7 @@ unsafe impl NSObjectProtocol for MTLBufferLayoutDescriptorArray {}
 
 extern_methods!(
     unsafe impl MTLBufferLayoutDescriptorArray {
-        #[method_id(objectAtIndexedSubscript:)]
+        #[method(objectAtIndexedSubscript:)]
         #[unsafe(method_family = none)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
@@ -257,6 +263,7 @@ extern_methods!(
         ) -> Retained<MTLBufferLayoutDescriptor>;
 
         #[method(setObject:atIndexedSubscript:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setObject_atIndexedSubscript(
             &self,
             buffer_desc: Option<&MTLBufferLayoutDescriptor>,
@@ -268,11 +275,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLBufferLayoutDescriptorArray {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -296,24 +303,30 @@ unsafe impl NSObjectProtocol for MTLAttributeDescriptor {}
 extern_methods!(
     unsafe impl MTLAttributeDescriptor {
         #[method(format)]
+        #[unsafe(method_family = none)]
         pub fn format(&self) -> MTLAttributeFormat;
 
         /// Setter for [`format`][Self::format].
         #[method(setFormat:)]
+        #[unsafe(method_family = none)]
         pub fn setFormat(&self, format: MTLAttributeFormat);
 
         #[method(offset)]
+        #[unsafe(method_family = none)]
         pub fn offset(&self) -> NSUInteger;
 
         /// Setter for [`offset`][Self::offset].
         #[method(setOffset:)]
+        #[unsafe(method_family = none)]
         pub fn setOffset(&self, offset: NSUInteger);
 
         #[method(bufferIndex)]
+        #[unsafe(method_family = none)]
         pub fn bufferIndex(&self) -> NSUInteger;
 
         /// Setter for [`bufferIndex`][Self::bufferIndex].
         #[method(setBufferIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBufferIndex(&self, buffer_index: NSUInteger);
     }
 );
@@ -321,11 +334,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLAttributeDescriptor {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -342,7 +355,7 @@ unsafe impl NSObjectProtocol for MTLAttributeDescriptorArray {}
 
 extern_methods!(
     unsafe impl MTLAttributeDescriptorArray {
-        #[method_id(objectAtIndexedSubscript:)]
+        #[method(objectAtIndexedSubscript:)]
         #[unsafe(method_family = none)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
@@ -350,6 +363,7 @@ extern_methods!(
         ) -> Retained<MTLAttributeDescriptor>;
 
         #[method(setObject:atIndexedSubscript:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setObject_atIndexedSubscript(
             &self,
             attribute_desc: Option<&MTLAttributeDescriptor>,
@@ -361,11 +375,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLAttributeDescriptorArray {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -388,33 +402,38 @@ unsafe impl NSObjectProtocol for MTLStageInputOutputDescriptor {}
 
 extern_methods!(
     unsafe impl MTLStageInputOutputDescriptor {
-        #[method_id(stageInputOutputDescriptor)]
+        #[method(stageInputOutputDescriptor)]
         #[unsafe(method_family = none)]
         pub fn stageInputOutputDescriptor() -> Retained<MTLStageInputOutputDescriptor>;
 
-        #[method_id(layouts)]
+        #[method(layouts)]
         #[unsafe(method_family = none)]
         pub fn layouts(&self) -> Retained<MTLBufferLayoutDescriptorArray>;
 
-        #[method_id(attributes)]
+        #[method(attributes)]
         #[unsafe(method_family = none)]
         pub fn attributes(&self) -> Retained<MTLAttributeDescriptorArray>;
 
         #[method(indexType)]
+        #[unsafe(method_family = none)]
         pub fn indexType(&self) -> MTLIndexType;
 
         /// Setter for [`indexType`][Self::indexType].
         #[method(setIndexType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIndexType(&self, index_type: MTLIndexType);
 
         #[method(indexBufferIndex)]
+        #[unsafe(method_family = none)]
         pub fn indexBufferIndex(&self) -> NSUInteger;
 
         /// Setter for [`indexBufferIndex`][Self::indexBufferIndex].
         #[method(setIndexBufferIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIndexBufferIndex(&self, index_buffer_index: NSUInteger);
 
         #[method(reset)]
+        #[unsafe(method_family = none)]
         pub fn reset(&self);
     }
 );
@@ -422,11 +441,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLStageInputOutputDescriptor {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

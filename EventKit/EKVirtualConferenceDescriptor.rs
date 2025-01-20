@@ -32,7 +32,7 @@ extern_methods!(
         /// provides. This is chosen by your extension and is passed back to your
         /// extension if the user chooses to create a virtual conference of the
         /// associated room type.
-        #[method_id(initWithTitle:identifier:)]
+        #[method(initWithTitle:identifier:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTitle_identifier(
             this: Allocated<Self>,
@@ -40,19 +40,19 @@ extern_methods!(
             identifier: &EKVirtualConferenceRoomTypeIdentifier,
         ) -> Retained<Self>;
 
-        #[method_id(title)]
+        #[method(title)]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
-        #[method_id(identifier)]
+        #[method(identifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<EKVirtualConferenceRoomTypeIdentifier>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -81,7 +81,7 @@ extern_methods!(
         /// what each URL represents.
         ///
         /// Parameter `URL`: A URL that, when opened, will join the virtual conference.
-        #[method_id(initWithTitle:URL:)]
+        #[method(initWithTitle:URL:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTitle_URL(
             this: Allocated<Self>,
@@ -89,19 +89,19 @@ extern_methods!(
             url: &NSURL,
         ) -> Retained<Self>;
 
-        #[method_id(title)]
+        #[method(title)]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(URL)]
+        #[method(URL)]
         #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -134,7 +134,7 @@ extern_methods!(
         /// Parameter `conferenceDetails`: A user-readable string containing any other information you wish to
         /// communicate to the user about this virtual conference. This string will
         /// be displayed in the UI. This argument is optional and may be left nil.
-        #[method_id(initWithTitle:URLDescriptors:conferenceDetails:)]
+        #[method(initWithTitle:URLDescriptors:conferenceDetails:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTitle_URLDescriptors_conferenceDetails(
             this: Allocated<Self>,
@@ -143,23 +143,23 @@ extern_methods!(
             conference_details: Option<&NSString>,
         ) -> Retained<Self>;
 
-        #[method_id(title)]
+        #[method(title)]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(URLDescriptors)]
+        #[method(URLDescriptors)]
         #[unsafe(method_family = none)]
         pub unsafe fn URLDescriptors(&self) -> Retained<NSArray<EKVirtualConferenceURLDescriptor>>;
 
-        #[method_id(conferenceDetails)]
+        #[method(conferenceDetails)]
         #[unsafe(method_family = none)]
         pub unsafe fn conferenceDetails(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

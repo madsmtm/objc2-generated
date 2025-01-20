@@ -35,10 +35,12 @@ extern_methods!(
         /// Specifying this option has a performance cost.
         /// This property may not be modified once the query has been executed.
         #[method(includeSample)]
+        #[unsafe(method_family = none)]
         pub unsafe fn includeSample(&self) -> bool;
 
         /// Setter for [`includeSample`][Self::includeSample].
         #[method(setIncludeSample:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIncludeSample(&self, include_sample: bool);
 
         /// Order enumerated results first by quantitySample.startDate,
@@ -52,10 +54,12 @@ extern_methods!(
         /// dateInterval.startDate order if more than one quantitySample overlap in time.
         /// This property may not be modified once the query has been executed.
         #[method(orderByQuantitySampleStartDate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn orderByQuantitySampleStartDate(&self) -> bool;
 
         /// Setter for [`orderByQuantitySampleStartDate`][Self::orderByQuantitySampleStartDate].
         #[method(setOrderByQuantitySampleStartDate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setOrderByQuantitySampleStartDate(
             &self,
             order_by_quantity_sample_start_date: bool,
@@ -91,7 +95,7 @@ extern_methods!(
         /// The stopQuery call can be made within the quantityHandler block.
         /// Once done is YES, or stopQuery has been called, the query is
         /// complete and no more calls to quantityHandler will be made.
-        #[method_id(initWithQuantityType:predicate:quantityHandler:)]
+        #[method(initWithQuantityType:predicate:quantityHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithQuantityType_predicate_quantityHandler(
             this: Allocated<Self>,
@@ -117,7 +121,7 @@ extern_methods!(
             feature = "block2"
         ))]
         #[deprecated]
-        #[method_id(initWithSample:quantityHandler:)]
+        #[method(initWithSample:quantityHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSample_quantityHandler(
             this: Allocated<Self>,
@@ -139,7 +143,7 @@ extern_methods!(
     /// Methods declared on superclass `HKQuery`
     #[cfg(feature = "HKQuery")]
     unsafe impl HKQuantitySeriesSampleQuery {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -149,7 +153,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "HKQuery")]
     unsafe impl HKQuantitySeriesSampleQuery {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

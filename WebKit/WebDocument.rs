@@ -21,6 +21,7 @@ extern_protocol!(
         /// Parameter `dataSource`: The corresponding data source.
         #[deprecated]
         #[method(setDataSource:)]
+        #[unsafe(method_family = none)]
         unsafe fn setDataSource(&self, data_source: Option<&WebDataSource>);
 
         #[cfg(feature = "WebDataSource")]
@@ -29,6 +30,7 @@ extern_protocol!(
         /// Parameter `dataSource`: The corresponding data source.
         #[deprecated]
         #[method(dataSourceUpdated:)]
+        #[unsafe(method_family = none)]
         unsafe fn dataSourceUpdated(&self, data_source: Option<&WebDataSource>);
 
         /// Called when WebKit has determined that the document view needs to layout.
@@ -37,12 +39,14 @@ extern_protocol!(
         /// Parameter `flag`: YES to cause a layout, no to not cause a layout.
         #[deprecated]
         #[method(setNeedsLayout:)]
+        #[unsafe(method_family = none)]
         unsafe fn setNeedsLayout(&self, flag: bool);
 
         /// Called when the document view must immediately layout. For simple views,
         /// setting the frame is a sufficient implementation of this method.
         #[deprecated]
         #[method(layout)]
+        #[unsafe(method_family = none)]
         unsafe fn layout(&self);
 
         #[cfg(feature = "objc2-app-kit")]
@@ -52,11 +56,13 @@ extern_protocol!(
         /// Called before the host window is set on the parent web view.
         #[deprecated]
         #[method(viewWillMoveToHostWindow:)]
+        #[unsafe(method_family = none)]
         unsafe fn viewWillMoveToHostWindow(&self, host_window: Option<&NSWindow>);
 
         /// Called after the host window is set on the parent web view.
         #[deprecated]
         #[method(viewDidMoveToHostWindow)]
+        #[unsafe(method_family = none)]
         unsafe fn viewDidMoveToHostWindow(&self);
     }
 );
@@ -80,6 +86,7 @@ extern_protocol!(
         /// Returns: YES if found, NO if not found.
         #[deprecated]
         #[method(searchFor:direction:caseSensitive:wrap:)]
+        #[unsafe(method_family = none)]
         unsafe fn searchFor_direction_caseSensitive_wrap(
             &self,
             string: Option<&NSString>,
@@ -99,40 +106,43 @@ extern_protocol!(
         /// Returns: YES if the document view support text encoding, NO if it doesn't.
         #[deprecated]
         #[method(supportsTextEncoding)]
+        #[unsafe(method_family = none)]
         unsafe fn supportsTextEncoding(&self) -> bool;
 
         /// Returns: String that represents the entire document.
         #[deprecated]
-        #[method_id(string)]
+        #[method(string)]
         #[unsafe(method_family = none)]
         unsafe fn string(&self) -> Option<Retained<NSString>>;
 
         /// Returns: Attributed string that represents the entire document.
         #[deprecated]
-        #[method_id(attributedString)]
+        #[method(attributedString)]
         #[unsafe(method_family = none)]
         unsafe fn attributedString(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Returns: String that represents the current selection.
         #[deprecated]
-        #[method_id(selectedString)]
+        #[method(selectedString)]
         #[unsafe(method_family = none)]
         unsafe fn selectedString(&self) -> Option<Retained<NSString>>;
 
         /// Returns: Attributed string that represents the current selection.
         #[deprecated]
-        #[method_id(selectedAttributedString)]
+        #[method(selectedAttributedString)]
         #[unsafe(method_family = none)]
         unsafe fn selectedAttributedString(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Selects all the text in the document.
         #[deprecated]
         #[method(selectAll)]
+        #[unsafe(method_family = none)]
         unsafe fn selectAll(&self);
 
         /// Causes a text selection to lose its selection.
         #[deprecated]
         #[method(deselectAll)]
+        #[unsafe(method_family = none)]
         unsafe fn deselectAll(&self);
     }
 );
@@ -149,6 +159,7 @@ extern_protocol!(
         /// Parameter `dataSource`: The data source that is set.
         #[deprecated]
         #[method(setDataSource:)]
+        #[unsafe(method_family = none)]
         unsafe fn setDataSource(&self, data_source: Option<&WebDataSource>);
 
         #[cfg(feature = "WebDataSource")]
@@ -159,6 +170,7 @@ extern_protocol!(
         /// Parameter `dataSource`: The data source that has received data.
         #[deprecated]
         #[method(receivedData:withDataSource:)]
+        #[unsafe(method_family = none)]
         unsafe fn receivedData_withDataSource(
             &self,
             data: Option<&NSData>,
@@ -173,6 +185,7 @@ extern_protocol!(
         /// Parameter `dataSource`: The data source that has received the error.
         #[deprecated]
         #[method(receivedError:withDataSource:)]
+        #[unsafe(method_family = none)]
         unsafe fn receivedError_withDataSource(
             &self,
             error: Option<&NSError>,
@@ -185,23 +198,25 @@ extern_protocol!(
         /// Parameter `dataSource`: The datasource that has finished loading.
         #[deprecated]
         #[method(finishedLoadingWithDataSource:)]
+        #[unsafe(method_family = none)]
         unsafe fn finishedLoadingWithDataSource(&self, data_source: Option<&WebDataSource>);
 
         /// Returns: Returns true if the representation can provide document source.
         #[deprecated]
         #[method(canProvideDocumentSource)]
+        #[unsafe(method_family = none)]
         unsafe fn canProvideDocumentSource(&self) -> bool;
 
         /// Returns: Returns the textual source representation of the document.  For HTML documents
         /// this is the original HTML source.
         #[deprecated]
-        #[method_id(documentSource)]
+        #[method(documentSource)]
         #[unsafe(method_family = none)]
         unsafe fn documentSource(&self) -> Option<Retained<NSString>>;
 
         /// Returns: Return the title for the document.
         #[deprecated]
-        #[method_id(title)]
+        #[method(title)]
         #[unsafe(method_family = none)]
         unsafe fn title(&self) -> Option<Retained<NSString>>;
     }

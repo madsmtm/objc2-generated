@@ -41,15 +41,15 @@ unsafe impl NSSecureCoding for VNDetectedPoint {}
 extern_methods!(
     #[cfg(feature = "VNGeometry")]
     unsafe impl VNDetectedPoint {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(initWithX:y:)]
+        #[method(initWithX:y:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithX_y(
             this: Allocated<Self>,
@@ -58,13 +58,14 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(initWithLocation:)]
+        #[method(initWithLocation:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLocation(this: Allocated<Self>, location: CGPoint) -> Retained<Self>;
 
         #[cfg(feature = "VNTypes")]
         /// The confidence in the accuracy of the location, in the range of [0.0, 1.0].
         #[method(confidence)]
+        #[unsafe(method_family = none)]
         pub unsafe fn confidence(&self) -> VNConfidence;
     }
 );
@@ -105,7 +106,7 @@ extern_methods!(
         /// The is the identifier that provides context as to the kind of point that was recognized.
         ///
         /// The string is defined by the model that recognized the point. Usually these are technical labels that are not localized and not meant to be used directly to be presented to an end user in the UI.
-        #[method_id(identifier)]
+        #[method(identifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<VNRecognizedPointKey>;
     }
@@ -115,15 +116,15 @@ extern_methods!(
     /// Methods declared on superclass `VNDetectedPoint`
     #[cfg(feature = "VNGeometry")]
     unsafe impl VNRecognizedPoint {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(initWithX:y:)]
+        #[method(initWithX:y:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithX_y(
             this: Allocated<Self>,
@@ -132,7 +133,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(initWithLocation:)]
+        #[method(initWithLocation:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLocation(this: Allocated<Self>, location: CGPoint) -> Retained<Self>;
     }

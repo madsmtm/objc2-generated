@@ -19,12 +19,12 @@ unsafe impl NSObjectProtocol for CXCallController {}
 extern_methods!(
     unsafe impl CXCallController {
         /// Initialize call controller with a private, serial queue.
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "CXCallObserver")]
-        #[method_id(callObserver)]
+        #[method(callObserver)]
         #[unsafe(method_family = none)]
         pub unsafe fn callObserver(&self) -> Retained<CXCallObserver>;
 
@@ -36,6 +36,7 @@ extern_methods!(
         ///
         /// Completion block is performed on the queue supplied to designated initializer.
         #[method(requestTransaction:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestTransaction_completion(
             &self,
             transaction: &CXTransaction,
@@ -50,6 +51,7 @@ extern_methods!(
         ///
         /// Completion block is performed on the queue supplied to designated initializer.
         #[method(requestTransactionWithActions:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestTransactionWithActions_completion(
             &self,
             actions: &NSArray<CXAction>,
@@ -64,6 +66,7 @@ extern_methods!(
         ///
         /// Completion block is performed on the queue supplied to designated initializer.
         #[method(requestTransactionWithAction:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestTransactionWithAction_completion(
             &self,
             action: &CXAction,
@@ -75,7 +78,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CXCallController {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

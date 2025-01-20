@@ -65,7 +65,7 @@ extern_methods!(
         /// This method creates a new printer object from the printer's URL.
         /// A UIPrinter object is returned even if the printer is not available
         /// on the network.
-        #[method_id(printerWithURL:)]
+        #[method(printerWithURL:)]
         #[unsafe(method_family = none)]
         pub unsafe fn printerWithURL(url: &NSURL, mtm: MainThreadMarker) -> Retained<UIPrinter>;
 
@@ -74,14 +74,14 @@ extern_methods!(
         /// This method returns the full URL of the printer which can be
         /// used in future calls to printerWithURL to access the same
         /// printer.
-        #[method_id(URL)]
+        #[method(URL)]
         #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
 
         /// Return a human-readable printer name.
         ///
         /// This method returns the printer name suitable for displaying in the UI.
-        #[method_id(displayName)]
+        #[method(displayName)]
         #[unsafe(method_family = none)]
         pub unsafe fn displayName(&self) -> Retained<NSString>;
 
@@ -92,7 +92,7 @@ extern_methods!(
         /// Returns nil if the printer doesn't have a location string.
         /// This property's value is undefined until contactPrinter: has been called and
         /// completed successfully.
-        #[method_id(displayLocation)]
+        #[method(displayLocation)]
         #[unsafe(method_family = none)]
         pub unsafe fn displayLocation(&self) -> Option<Retained<NSString>>;
 
@@ -103,6 +103,7 @@ extern_methods!(
         /// This property's value is undefined until contactPrinter: has been called and
         /// completed successfully.
         #[method(supportedJobTypes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn supportedJobTypes(&self) -> UIPrinterJobTypes;
 
         /// Return make (manufacturer) and model of the printer.
@@ -111,7 +112,7 @@ extern_methods!(
         /// is usually the manufacturer, model, and model number.
         /// This property's value is undefined until contactPrinter: has been called and
         /// completed successfully.
-        #[method_id(makeAndModel)]
+        #[method(makeAndModel)]
         #[unsafe(method_family = none)]
         pub unsafe fn makeAndModel(&self) -> Option<Retained<NSString>>;
 
@@ -122,6 +123,7 @@ extern_methods!(
         /// This property's value is undefined until contactPrinter: has been called and
         /// completed successfully.
         #[method(supportsColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn supportsColor(&self) -> bool;
 
         /// Return whether this printer supports duplex (double-sided) printing.
@@ -131,6 +133,7 @@ extern_methods!(
         /// This property's value is undefined until contactPrinter: has been called and
         /// completed successfully.
         #[method(supportsDuplex)]
+        #[unsafe(method_family = none)]
         pub unsafe fn supportsDuplex(&self) -> bool;
 
         #[cfg(feature = "block2")]
@@ -141,6 +144,7 @@ extern_methods!(
         /// supportsColor, and supportsDuplex for the printer.
         /// The operation can take up to 30 seconds.
         #[method(contactPrinter:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contactPrinter(
             &self,
             completion_handler: Option<&block2::Block<dyn Fn(Bool)>>,
@@ -151,11 +155,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIPrinter {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

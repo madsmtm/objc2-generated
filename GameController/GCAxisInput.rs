@@ -25,6 +25,7 @@ extern_protocol!(
         ///
         /// Parameter `value`: the value the axis was set to at the time the valueChangedHandler fired.
         #[method(valueDidChangeHandler)]
+        #[unsafe(method_family = none)]
         unsafe fn valueDidChangeHandler(
             &self,
         ) -> *mut block2::Block<
@@ -38,6 +39,7 @@ extern_protocol!(
         #[cfg(all(feature = "GCPhysicalInputElement", feature = "block2"))]
         /// Setter for [`valueDidChangeHandler`][Self::valueDidChangeHandler].
         #[method(setValueDidChangeHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn setValueDidChangeHandler(
             &self,
             value_did_change_handler: Option<
@@ -60,6 +62,7 @@ extern_protocol!(
         /// meaning the axis is inside the deadzone.  Any value greater than or less than
         /// zero is not in the deadzone.
         #[method(value)]
+        #[unsafe(method_family = none)]
         unsafe fn value(&self) -> c_float;
 
         /// Check if the axis can support more than just digital values.
@@ -67,6 +70,7 @@ extern_protocol!(
         /// Defaults to
         /// `YES`for most axis inputs.
         #[method(isAnalog)]
+        #[unsafe(method_family = none)]
         unsafe fn isAnalog(&self) -> bool;
 
         /// Check if the axis input value "rolls over" when reaching either the extreme
@@ -76,6 +80,7 @@ extern_protocol!(
         /// Defaults to
         /// `NO`for most axis elements.
         #[method(canWrap)]
+        #[unsafe(method_family = none)]
         unsafe fn canWrap(&self) -> bool;
 
         /// The timestamp of the last value.
@@ -84,6 +89,7 @@ extern_protocol!(
         /// subtract a previous timestamp from the current timestamp to determine the time
         /// (in seconds) between changes to the value.
         #[method(lastValueTimestamp)]
+        #[unsafe(method_family = none)]
         unsafe fn lastValueTimestamp(&self) -> NSTimeInterval;
 
         /// The interval (in seconds) between the timestamp of the last event and the
@@ -93,12 +99,13 @@ extern_protocol!(
         /// include (wired or wireless) transmission latency, or latency accrued on
         /// the device before the event was transmitted to the host.
         #[method(lastValueLatency)]
+        #[unsafe(method_family = none)]
         unsafe fn lastValueLatency(&self) -> NSTimeInterval;
 
         #[cfg(feature = "GCPhysicalInputSource")]
         /// An object describing the physical action(s) the user performs to manipulate
         /// this input.
-        #[method_id(sources)]
+        #[method(sources)]
         #[unsafe(method_family = none)]
         unsafe fn sources(&self) -> Retained<NSSet<ProtocolObject<dyn GCPhysicalInputSource>>>;
     }

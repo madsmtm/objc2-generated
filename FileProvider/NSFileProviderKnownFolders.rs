@@ -26,7 +26,7 @@ extern_methods!(
         /// When replicating a known folder the system will reuse a folder located at the specified
         /// filename within the parent if one exists, or create a new item at this location if none
         /// exists yet.
-        #[method_id(initWithParentItemIdentifier:filename:)]
+        #[method(initWithParentItemIdentifier:filename:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithParentItemIdentifier_filename(
             this: Allocated<Self>,
@@ -39,7 +39,7 @@ extern_methods!(
         ///
         /// If the known folder already exists on the server, the provider can specify the exact identifier
         /// of the item that needs to be used to back the known folder.
-        #[method_id(initWithExistingItemIdentifier:)]
+        #[method(initWithExistingItemIdentifier:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithExistingItemIdentifier(
             this: Allocated<Self>,
@@ -51,11 +51,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSFileProviderKnownFolderLocation {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -84,10 +84,12 @@ extern_methods!(
         ///
         /// Default value is YES.
         #[method(shouldCreateBinaryCompatibilitySymlink)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shouldCreateBinaryCompatibilitySymlink(&self) -> bool;
 
         /// Setter for [`shouldCreateBinaryCompatibilitySymlink`][Self::shouldCreateBinaryCompatibilitySymlink].
         #[method(setShouldCreateBinaryCompatibilitySymlink:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShouldCreateBinaryCompatibilitySymlink(
             &self,
             should_create_binary_compatibility_symlink: bool,
@@ -96,13 +98,14 @@ extern_methods!(
         /// Candidate item for ~/Desktop
         ///
         /// For user experience reasons, it is strongly recommended to name the target folder "Desktop".
-        #[method_id(desktopLocation)]
+        #[method(desktopLocation)]
         #[unsafe(method_family = none)]
         pub unsafe fn desktopLocation(&self)
             -> Option<Retained<NSFileProviderKnownFolderLocation>>;
 
         /// Setter for [`desktopLocation`][Self::desktopLocation].
         #[method(setDesktopLocation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDesktopLocation(
             &self,
             desktop_location: Option<&NSFileProviderKnownFolderLocation>,
@@ -111,7 +114,7 @@ extern_methods!(
         /// Candidate item for ~/Documents
         ///
         /// For user experience reasons, it is strongly recommended to name the target folder "Documents".
-        #[method_id(documentsLocation)]
+        #[method(documentsLocation)]
         #[unsafe(method_family = none)]
         pub unsafe fn documentsLocation(
             &self,
@@ -119,12 +122,13 @@ extern_methods!(
 
         /// Setter for [`documentsLocation`][Self::documentsLocation].
         #[method(setDocumentsLocation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDocumentsLocation(
             &self,
             documents_location: Option<&NSFileProviderKnownFolderLocation>,
         );
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -133,7 +137,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSFileProviderKnownFolderLocations {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -179,6 +183,7 @@ extern_methods!(
         ///
         /// Currently, only claiming both ~/Desktop and ~/Documents together is allowed.
         #[method(claimKnownFolders:localizedReason:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn claimKnownFolders_localizedReason_completionHandler(
             &self,
             known_folders: &NSFileProviderKnownFolderLocations,
@@ -192,6 +197,7 @@ extern_methods!(
         /// This call can be used by the provider to immediately disable replication of the specified
         /// known folders.
         #[method(releaseKnownFolders:localizedReason:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn releaseKnownFolders_localizedReason_completionHandler(
             &self,
             known_folders: NSFileProviderKnownFolders,
@@ -211,6 +217,7 @@ extern_protocol!(
         /// The system provides a list of folders that the user decides to move to this domain, and expect in return non-nil locations for those known
         /// folders.
         #[method(getKnownFolderLocations:completionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn getKnownFolderLocations_completionHandler(
             &self,
             known_folders: NSFileProviderKnownFolders,

@@ -59,7 +59,7 @@ extern_methods!(
         /// Parameter `rows`: the number of rows in the map that can hold tiles
         ///
         /// Parameter `tileSize`: the size of each tile in points
-        #[method_id(tileMapNodeWithTileSet:columns:rows:tileSize:)]
+        #[method(tileMapNodeWithTileSet:columns:rows:tileSize:)]
         #[unsafe(method_family = none)]
         pub unsafe fn tileMapNodeWithTileSet_columns_rows_tileSize(
             tile_set: &SKTileSet,
@@ -81,7 +81,7 @@ extern_methods!(
         /// Parameter `tileSize`: the size of each tile in points
         ///
         /// Parameter `tileGroup`: the tile group we wish to fill the tile map with
-        #[method_id(tileMapNodeWithTileSet:columns:rows:tileSize:fillWithTileGroup:)]
+        #[method(tileMapNodeWithTileSet:columns:rows:tileSize:fillWithTileGroup:)]
         #[unsafe(method_family = none)]
         pub unsafe fn tileMapNodeWithTileSet_columns_rows_tileSize_fillWithTileGroup(
             tile_set: &SKTileSet,
@@ -104,7 +104,7 @@ extern_methods!(
         /// Parameter `tileSize`: the size of each tile in points
         ///
         /// Parameter `tileGroupLayout`: an array of tile groups that we want to use to fill the tile map
-        #[method_id(tileMapNodeWithTileSet:columns:rows:tileSize:tileGroupLayout:)]
+        #[method(tileMapNodeWithTileSet:columns:rows:tileSize:tileGroupLayout:)]
         #[unsafe(method_family = none)]
         pub unsafe fn tileMapNodeWithTileSet_columns_rows_tileSize_tileGroupLayout(
             tile_set: &SKTileSet,
@@ -125,7 +125,7 @@ extern_methods!(
         /// Parameter `rows`: the number of rows in the map that can hold tiles
         ///
         /// Parameter `tileSize`: the size of each tile in points
-        #[method_id(initWithTileSet:columns:rows:tileSize:)]
+        #[method(initWithTileSet:columns:rows:tileSize:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTileSet_columns_rows_tileSize(
             this: Allocated<Self>,
@@ -147,7 +147,7 @@ extern_methods!(
         /// Parameter `tileSize`: the size of each tile in points
         ///
         /// Parameter `tileGroup`: the tile group we wish to fill the tile map with
-        #[method_id(initWithTileSet:columns:rows:tileSize:fillWithTileGroup:)]
+        #[method(initWithTileSet:columns:rows:tileSize:fillWithTileGroup:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTileSet_columns_rows_tileSize_fillWithTileGroup(
             this: Allocated<Self>,
@@ -170,7 +170,7 @@ extern_methods!(
         /// Parameter `tileSize`: the size of each tile in points
         ///
         /// Parameter `tileGroupLayout`: an array of tile groups that we want to use to fill the tile map
-        #[method_id(initWithTileSet:columns:rows:tileSize:tileGroupLayout:)]
+        #[method(initWithTileSet:columns:rows:tileSize:tileGroupLayout:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTileSet_columns_rows_tileSize_tileGroupLayout(
             this: Allocated<Self>,
@@ -183,113 +183,130 @@ extern_methods!(
 
         /// The number of columns in the tile map.
         #[method(numberOfColumns)]
+        #[unsafe(method_family = none)]
         pub unsafe fn numberOfColumns(&self) -> NSUInteger;
 
         /// Setter for [`numberOfColumns`][Self::numberOfColumns].
         #[method(setNumberOfColumns:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setNumberOfColumns(&self, number_of_columns: NSUInteger);
 
         /// The number of rows in the tile map.
         #[method(numberOfRows)]
+        #[unsafe(method_family = none)]
         pub unsafe fn numberOfRows(&self) -> NSUInteger;
 
         /// Setter for [`numberOfRows`][Self::numberOfRows].
         #[method(setNumberOfRows:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setNumberOfRows(&self, number_of_rows: NSUInteger);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The size of each tile in the map.
         #[method(tileSize)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tileSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`tileSize`][Self::tileSize].
         #[method(setTileSize:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTileSize(&self, tile_size: CGSize);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The size of the tile map. This is dependent on the tileSize, the number of columns and rows in the map, and the tile set type.
         #[method(mapSize)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mapSize(&self) -> CGSize;
 
         #[cfg(feature = "SKTileSet")]
         /// The tile set being used by this tile map.
-        #[method_id(tileSet)]
+        #[method(tileSet)]
         #[unsafe(method_family = none)]
         pub unsafe fn tileSet(&self) -> Retained<SKTileSet>;
 
         #[cfg(feature = "SKTileSet")]
         /// Setter for [`tileSet`][Self::tileSet].
         #[method(setTileSet:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTileSet(&self, tile_set: &SKTileSet);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Controls the blending between the texture and the tile map color. The valid interval of values is from 0.0 up to and including 1.0. A value above or below that interval is clamped to the minimum (0.0) if below or the maximum (1.0) if above.
         #[method(colorBlendFactor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colorBlendFactor(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`colorBlendFactor`][Self::colorBlendFactor].
         #[method(setColorBlendFactor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setColorBlendFactor(&self, color_blend_factor: CGFloat);
 
         /// Base color for the tile map (If no texture is present, the color still is drawn).
-        #[method_id(color)]
+        #[method(color)]
         #[unsafe(method_family = none)]
         pub unsafe fn color(&self) -> Retained<NSColor>;
 
         /// Setter for [`color`][Self::color].
         #[method(setColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setColor(&self, color: &NSColor);
 
         /// Sets the blend mode to use when composing the tile map with the final framebuffer.
         ///
         /// See: SKNode.SKBlendMode
         #[method(blendMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn blendMode(&self) -> SKBlendMode;
 
         /// Setter for [`blendMode`][Self::blendMode].
         #[method(setBlendMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBlendMode(&self, blend_mode: SKBlendMode);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Used to choose the location in the tile map that maps to its 'position' in the parent's coordinate space. The valid interval for each input is from 0.0 up to and including 1.0.
         #[method(anchorPoint)]
+        #[unsafe(method_family = none)]
         pub unsafe fn anchorPoint(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`anchorPoint`][Self::anchorPoint].
         #[method(setAnchorPoint:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAnchorPoint(&self, anchor_point: CGPoint);
 
         #[cfg(feature = "SKShader")]
         /// A property that determines whether the tile map is rendered using a custom shader.
-        #[method_id(shader)]
+        #[method(shader)]
         #[unsafe(method_family = none)]
         pub unsafe fn shader(&self) -> Option<Retained<SKShader>>;
 
         #[cfg(feature = "SKShader")]
         /// Setter for [`shader`][Self::shader].
         #[method(setShader:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShader(&self, shader: Option<&SKShader>);
 
         #[cfg(feature = "SKAttribute")]
         /// Optional dictionary of SKAttributeValues
         /// Attributes can be used with custom SKShaders.
-        #[method_id(attributeValues)]
+        #[method(attributeValues)]
         #[unsafe(method_family = none)]
         pub unsafe fn attributeValues(&self) -> Retained<NSDictionary<NSString, SKAttributeValue>>;
 
         #[cfg(feature = "SKAttribute")]
         /// Setter for [`attributeValues`][Self::attributeValues].
         #[method(setAttributeValues:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAttributeValues(
             &self,
             attribute_values: &NSDictionary<NSString, SKAttributeValue>,
         );
 
         #[cfg(feature = "SKAttribute")]
-        #[method_id(valueForAttributeNamed:)]
+        #[method(valueForAttributeNamed:)]
         #[unsafe(method_family = none)]
         pub unsafe fn valueForAttributeNamed(
             &self,
@@ -298,6 +315,7 @@ extern_methods!(
 
         #[cfg(feature = "SKAttribute")]
         #[method(setValue:forAttributeNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setValue_forAttributeNamed(&self, value: &SKAttributeValue, key: &NSString);
 
         /// Bitmask to indicate being lit by a set of lights using overlapping lighting categories.
@@ -307,17 +325,21 @@ extern_methods!(
         ///
         /// When used together with a normal texture, complex lighting effects can be used.
         #[method(lightingBitMask)]
+        #[unsafe(method_family = none)]
         pub unsafe fn lightingBitMask(&self) -> u32;
 
         /// Setter for [`lightingBitMask`][Self::lightingBitMask].
         #[method(setLightingBitMask:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLightingBitMask(&self, lighting_bit_mask: u32);
 
         #[method(enableAutomapping)]
+        #[unsafe(method_family = none)]
         pub unsafe fn enableAutomapping(&self) -> bool;
 
         /// Setter for [`enableAutomapping`][Self::enableAutomapping].
         #[method(setEnableAutomapping:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setEnableAutomapping(&self, enable_automapping: bool);
 
         #[cfg(feature = "SKTileSet")]
@@ -325,6 +347,7 @@ extern_methods!(
         ///
         /// Parameter `tileGroup`: the tile group that will be used to fill the map
         #[method(fillWithTileGroup:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fillWithTileGroup(&self, tile_group: Option<&SKTileGroup>);
 
         #[cfg(feature = "SKTileDefinition")]
@@ -333,7 +356,7 @@ extern_methods!(
         /// Parameter `column`: the column index of the tile
         ///
         /// Parameter `row`: the row index of the tile
-        #[method_id(tileDefinitionAtColumn:row:)]
+        #[method(tileDefinitionAtColumn:row:)]
         #[unsafe(method_family = none)]
         pub unsafe fn tileDefinitionAtColumn_row(
             &self,
@@ -347,7 +370,7 @@ extern_methods!(
         /// Parameter `column`: the column index of the tile
         ///
         /// Parameter `row`: the row index of the tile
-        #[method_id(tileGroupAtColumn:row:)]
+        #[method(tileGroupAtColumn:row:)]
         #[unsafe(method_family = none)]
         pub unsafe fn tileGroupAtColumn_row(
             &self,
@@ -364,6 +387,7 @@ extern_methods!(
         ///
         /// Parameter `row`: the row index of the tile
         #[method(setTileGroup:forColumn:row:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTileGroup_forColumn_row(
             &self,
             tile_group: Option<&SKTileGroup>,
@@ -382,6 +406,7 @@ extern_methods!(
         ///
         /// Parameter `row`: the row index of the tile
         #[method(setTileGroup:andTileDefinition:forColumn:row:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTileGroup_andTileDefinition_forColumn_row(
             &self,
             tile_group: &SKTileGroup,
@@ -395,6 +420,7 @@ extern_methods!(
         ///
         /// Parameter `position`: the position we want to check against the tile map
         #[method(tileColumnIndexFromPosition:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tileColumnIndexFromPosition(&self, position: CGPoint) -> NSUInteger;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -402,6 +428,7 @@ extern_methods!(
         ///
         /// Parameter `position`: the position we want to check against the tile map
         #[method(tileRowIndexFromPosition:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tileRowIndexFromPosition(&self, position: CGPoint) -> NSUInteger;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -411,6 +438,7 @@ extern_methods!(
         ///
         /// Parameter `row`: the row index of the tile
         #[method(centerOfTileAtColumn:row:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn centerOfTileAtColumn_row(
             &self,
             column: NSUInteger,
@@ -424,30 +452,30 @@ extern_methods!(
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl SKTileMapNode {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Support coding and decoding via NSKeyedArchiver.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(node)]
+        #[method(node)]
         #[unsafe(method_family = none)]
         pub unsafe fn node(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(nodeWithFileNamed:)]
+        #[method(nodeWithFileNamed:)]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeWithFileNamed(
             filename: &NSString,
             mtm: MainThreadMarker,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(nodeWithFileNamed:securelyWithClasses:andError:_)]
+        #[method(nodeWithFileNamed:securelyWithClasses:andError:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeWithFileNamed_securelyWithClasses_andError(
             filename: &NSString,
@@ -462,7 +490,7 @@ extern_methods!(
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl SKTileMapNode {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

@@ -70,7 +70,7 @@ extern_methods!(
     #[cfg(feature = "objc2")]
     unsafe impl MIDINetworkHost {
         #[cfg(feature = "objc2-foundation")]
-        #[method_id(hostWithName:address:port:)]
+        #[method(hostWithName:address:port:)]
         #[unsafe(method_family = none)]
         pub unsafe fn hostWithName_address_port(
             name: &NSString,
@@ -79,7 +79,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-foundation")]
-        #[method_id(hostWithName:netService:)]
+        #[method(hostWithName:netService:)]
         #[unsafe(method_family = none)]
         pub unsafe fn hostWithName_netService(
             name: &NSString,
@@ -87,7 +87,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-foundation")]
-        #[method_id(hostWithName:netServiceName:netServiceDomain:)]
+        #[method(hostWithName:netServiceName:netServiceDomain:)]
         #[unsafe(method_family = none)]
         pub unsafe fn hostWithName_netServiceName_netServiceDomain(
             name: &NSString,
@@ -96,28 +96,30 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[method(hasSameAddressAs:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hasSameAddressAs(&self, other: &MIDINetworkHost) -> bool;
 
         #[cfg(feature = "objc2-foundation")]
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "objc2-foundation")]
-        #[method_id(address)]
+        #[method(address)]
         #[unsafe(method_family = none)]
         pub unsafe fn address(&self) -> Retained<NSString>;
 
         #[method(port)]
+        #[unsafe(method_family = none)]
         pub unsafe fn port(&self) -> NSUInteger;
 
         #[cfg(feature = "objc2-foundation")]
-        #[method_id(netServiceName)]
+        #[method(netServiceName)]
         #[unsafe(method_family = none)]
         pub unsafe fn netServiceName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "objc2-foundation")]
-        #[method_id(netServiceDomain)]
+        #[method(netServiceDomain)]
         #[unsafe(method_family = none)]
         pub unsafe fn netServiceDomain(&self) -> Option<Retained<NSString>>;
     }
@@ -128,11 +130,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2")]
     unsafe impl MIDINetworkHost {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -154,11 +156,11 @@ unsafe impl NSObjectProtocol for MIDINetworkConnection {}
 extern_methods!(
     #[cfg(feature = "objc2")]
     unsafe impl MIDINetworkConnection {
-        #[method_id(connectionWithHost:)]
+        #[method(connectionWithHost:)]
         #[unsafe(method_family = none)]
         pub unsafe fn connectionWithHost(host: &MIDINetworkHost) -> Retained<Self>;
 
-        #[method_id(host)]
+        #[method(host)]
         #[unsafe(method_family = none)]
         pub unsafe fn host(&self) -> Retained<MIDINetworkHost>;
     }
@@ -169,11 +171,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2")]
     unsafe impl MIDINetworkConnection {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -195,65 +197,76 @@ unsafe impl NSObjectProtocol for MIDINetworkSession {}
 extern_methods!(
     #[cfg(feature = "objc2")]
     unsafe impl MIDINetworkSession {
-        #[method_id(defaultSession)]
+        #[method(defaultSession)]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultSession() -> Retained<MIDINetworkSession>;
 
         #[method(isEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isEnabled(&self) -> bool;
 
         /// Setter for [`isEnabled`][Self::isEnabled].
         #[method(setEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
         #[method(networkPort)]
+        #[unsafe(method_family = none)]
         pub unsafe fn networkPort(&self) -> NSUInteger;
 
         #[cfg(feature = "objc2-foundation")]
-        #[method_id(networkName)]
+        #[method(networkName)]
         #[unsafe(method_family = none)]
         pub unsafe fn networkName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "objc2-foundation")]
-        #[method_id(localName)]
+        #[method(localName)]
         #[unsafe(method_family = none)]
         pub unsafe fn localName(&self) -> Retained<NSString>;
 
         #[method(connectionPolicy)]
+        #[unsafe(method_family = none)]
         pub unsafe fn connectionPolicy(&self) -> MIDINetworkConnectionPolicy;
 
         /// Setter for [`connectionPolicy`][Self::connectionPolicy].
         #[method(setConnectionPolicy:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setConnectionPolicy(&self, connection_policy: MIDINetworkConnectionPolicy);
 
         #[cfg(feature = "objc2-foundation")]
-        #[method_id(contacts)]
+        #[method(contacts)]
         #[unsafe(method_family = none)]
         pub unsafe fn contacts(&self) -> Retained<NSSet<MIDINetworkHost>>;
 
         #[method(addContact:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addContact(&self, contact: &MIDINetworkHost) -> bool;
 
         #[method(removeContact:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeContact(&self, contact: &MIDINetworkHost) -> bool;
 
         #[cfg(feature = "objc2-foundation")]
-        #[method_id(connections)]
+        #[method(connections)]
         #[unsafe(method_family = none)]
         pub unsafe fn connections(&self) -> Retained<NSSet<MIDINetworkConnection>>;
 
         #[method(addConnection:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addConnection(&self, connection: &MIDINetworkConnection) -> bool;
 
         #[method(removeConnection:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeConnection(&self, connection: &MIDINetworkConnection) -> bool;
 
         #[cfg(feature = "MIDIServices")]
         #[method(sourceEndpoint)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sourceEndpoint(&self) -> MIDIEndpointRef;
 
         #[cfg(feature = "MIDIServices")]
         #[method(destinationEndpoint)]
+        #[unsafe(method_family = none)]
         pub unsafe fn destinationEndpoint(&self) -> MIDIEndpointRef;
     }
 );
@@ -263,11 +276,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2")]
     unsafe impl MIDINetworkSession {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

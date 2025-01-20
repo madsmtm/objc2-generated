@@ -23,20 +23,22 @@ unsafe impl NSObjectProtocol for VZVirtioSocketConnection {}
 
 extern_methods!(
     unsafe impl VZVirtioSocketConnection {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// The destination port number of the connection.
         #[method(destinationPort)]
+        #[unsafe(method_family = none)]
         pub unsafe fn destinationPort(&self) -> u32;
 
         /// The source port number of the connection.
         #[method(sourcePort)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sourcePort(&self) -> u32;
 
         /// The file descriptor associated with the socket.
@@ -47,10 +49,12 @@ extern_methods!(
         ///
         /// The file descriptor is owned by the VZVirtioSocketConnection. It is automatically closed when the object is destroyed.
         #[method(fileDescriptor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fileDescriptor(&self) -> c_int;
 
         /// Close the file descriptor that's associated with the socket.
         #[method(close)]
+        #[unsafe(method_family = none)]
         pub unsafe fn close(&self);
     }
 );

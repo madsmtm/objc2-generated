@@ -28,12 +28,13 @@ extern_methods!(
         ///
         /// This field corresponds to `source_id` in the subsequent attribution report.
         #[method(sourceIdentifier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sourceIdentifier(&self) -> u8;
 
         /// The destination URL of an attribution. For example, the link opened when an advertisement is tapped.
         ///
         /// This field corresponds to `attributed_on_site` in the subsequent attribution report.
-        #[method_id(destinationURL)]
+        #[method(destinationURL)]
         #[unsafe(method_family = none)]
         pub unsafe fn destinationURL(&self) -> Retained<NSURL>;
 
@@ -41,21 +42,21 @@ extern_methods!(
         /// as a string in your app's Info.plist under the `NSAdvertisingAttributionReportEndpoint` key.
         ///
         /// This field corresponds to `source_site` in the subsequent attribution report.
-        #[method_id(reportEndpoint)]
+        #[method(reportEndpoint)]
         #[unsafe(method_family = none)]
         pub unsafe fn reportEndpoint(&self) -> Option<Retained<NSURL>>;
 
         /// A high-level description of the source of the attribution. For example, this could be a description of the content of an advertisement a user taps on.
         ///
         /// The system may truncate this field if it is too long.
-        #[method_id(sourceDescription)]
+        #[method(sourceDescription)]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceDescription(&self) -> Retained<NSString>;
 
         /// The name of the party that purchased the content to be attributed. For example, this could be the name of the party that purchased the placement of an advertisement.
         ///
         /// The system may truncate this field if it is too long.
-        #[method_id(purchaser)]
+        #[method(purchaser)]
         #[unsafe(method_family = none)]
         pub unsafe fn purchaser(&self) -> Retained<NSString>;
 
@@ -74,7 +75,7 @@ extern_methods!(
         /// Returns: An instance of `UIEventAttribution` with the specified values for each field.
         ///
         /// The `sourceDescription` and `purchaser` fields may be truncated by the system if they are too long.
-        #[method_id(initWithSourceIdentifier:destinationURL:sourceDescription:purchaser:)]
+        #[method(initWithSourceIdentifier:destinationURL:sourceDescription:purchaser:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSourceIdentifier_destinationURL_sourceDescription_purchaser(
             this: Allocated<Self>,
@@ -84,11 +85,11 @@ extern_methods!(
             purchaser: &NSString,
         ) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

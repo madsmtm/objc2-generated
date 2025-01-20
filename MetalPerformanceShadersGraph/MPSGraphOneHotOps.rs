@@ -33,7 +33,7 @@ extern_methods!(
         /// - offValue: The value for indices not designated by the indicesTensor. This value must match the specified data type. Defaults to 0.0f
         /// - name: Name for the operation
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(oneHotWithIndicesTensor:depth:axis:dataType:onValue:offValue:name:)]
+        #[method(oneHotWithIndicesTensor:depth:axis:dataType:onValue:offValue:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn oneHotWithIndicesTensor_depth_axis_dataType_onValue_offValue_name(
             &self,
@@ -65,7 +65,7 @@ extern_methods!(
         /// - offValue: The value for indices not designated by the indicesTensor. This value must match the specified data type.
         /// - name: Name for the operation
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(oneHotWithIndicesTensor:depth:dataType:onValue:offValue:name:)]
+        #[method(oneHotWithIndicesTensor:depth:dataType:onValue:offValue:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn oneHotWithIndicesTensor_depth_dataType_onValue_offValue_name(
             &self,
@@ -95,7 +95,7 @@ extern_methods!(
         /// - dataType: MPSDataType of the result tensor.
         /// - name: Name for the operation
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(oneHotWithIndicesTensor:depth:axis:dataType:name:)]
+        #[method(oneHotWithIndicesTensor:depth:axis:dataType:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn oneHotWithIndicesTensor_depth_axis_dataType_name(
             &self,
@@ -120,7 +120,7 @@ extern_methods!(
         /// - axis: The axis to insert the new oneHot vector at
         /// - name: Name for the operation
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(oneHotWithIndicesTensor:depth:axis:name:)]
+        #[method(oneHotWithIndicesTensor:depth:axis:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn oneHotWithIndicesTensor_depth_axis_name(
             &self,
@@ -147,7 +147,7 @@ extern_methods!(
         /// - dataType: MPSDataType of the result tensor.
         /// - name: Name for the operation
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(oneHotWithIndicesTensor:depth:dataType:name:)]
+        #[method(oneHotWithIndicesTensor:depth:dataType:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn oneHotWithIndicesTensor_depth_dataType_name(
             &self,
@@ -170,7 +170,7 @@ extern_methods!(
         /// - depth: Depth of the oneHot vector along the axis
         /// - name: Name for the operation
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(oneHotWithIndicesTensor:depth:name:)]
+        #[method(oneHotWithIndicesTensor:depth:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn oneHotWithIndicesTensor_depth_name(
             &self,

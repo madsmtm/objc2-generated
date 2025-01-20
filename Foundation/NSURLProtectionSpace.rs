@@ -177,7 +177,7 @@ extern_methods!(
         /// digest" and @"form".
         ///
         /// Returns: The initialized object.
-        #[method_id(initWithHost:port:protocol:realm:authenticationMethod:)]
+        #[method(initWithHost:port:protocol:realm:authenticationMethod:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithHost_port_protocol_realm_authenticationMethod(
             this: Allocated<Self>,
@@ -208,7 +208,7 @@ extern_methods!(
         /// digest"
         ///
         /// Returns: The initialized object.
-        #[method_id(initWithProxyHost:port:type:realm:authenticationMethod:)]
+        #[method(initWithProxyHost:port:type:realm:authenticationMethod:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithProxyHost_port_type_realm_authenticationMethod(
             this: Allocated<Self>,
@@ -227,7 +227,7 @@ extern_methods!(
         /// authentication, and may be nil otherwise.
         ///
         /// Returns: The realm string
-        #[method_id(realm)]
+        #[method(realm)]
         #[unsafe(method_family = none)]
         pub unsafe fn realm(&self) -> Option<Retained<NSString>>;
 
@@ -235,19 +235,21 @@ extern_methods!(
         ///
         /// Returns: YES if a secure authentication method or protocol will be used, NO otherwise
         #[method(receivesCredentialSecurely)]
+        #[unsafe(method_family = none)]
         pub unsafe fn receivesCredentialSecurely(&self) -> bool;
 
         /// Determine if this authenticating protection space is a proxy server
         ///
         /// Returns: YES if a proxy, NO otherwise
         #[method(isProxy)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isProxy(&self) -> bool;
 
         #[cfg(feature = "NSString")]
         /// Get the proxy host if this is a proxy authentication, or the host from the URL.
         ///
         /// Returns: The host for this protection space.
-        #[method_id(host)]
+        #[method(host)]
         #[unsafe(method_family = none)]
         pub unsafe fn host(&self) -> Retained<NSString>;
 
@@ -255,13 +257,14 @@ extern_methods!(
         ///
         /// Returns: The port for this protection space, or 0 if not set.
         #[method(port)]
+        #[unsafe(method_family = none)]
         pub unsafe fn port(&self) -> NSInteger;
 
         #[cfg(feature = "NSString")]
         /// Get the type of this protection space, if a proxy
         ///
         /// Returns: The type string, or nil if not a proxy.
-        #[method_id(proxyType)]
+        #[method(proxyType)]
         #[unsafe(method_family = none)]
         pub unsafe fn proxyType(&self) -> Option<Retained<NSString>>;
 
@@ -269,7 +272,7 @@ extern_methods!(
         /// Get the protocol of this protection space, if not a proxy
         ///
         /// Returns: The type string, or nil if a proxy.
-        #[method_id(protocol)]
+        #[method(protocol)]
         #[unsafe(method_family = none)]
         pub unsafe fn protocol(&self) -> Option<Retained<NSString>>;
 
@@ -277,7 +280,7 @@ extern_methods!(
         /// Get the authentication method to be used for this protection space
         ///
         /// Returns: The authentication method
-        #[method_id(authenticationMethod)]
+        #[method(authenticationMethod)]
         #[unsafe(method_family = none)]
         pub unsafe fn authenticationMethod(&self) -> Retained<NSString>;
     }
@@ -286,11 +289,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSURLProtectionSpace {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -304,7 +307,7 @@ extern_methods!(
         /// Returns an array of acceptable certificate issuing authorities for client certification authentication. Issuers are identified by their distinguished name and returned as a DER encoded data.
         ///
         /// Returns: An array of NSData objects.  (Nil if the authenticationMethod is not NSURLAuthenticationMethodClientCertificate)
-        #[method_id(distinguishedNames)]
+        #[method(distinguishedNames)]
         #[unsafe(method_family = none)]
         pub unsafe fn distinguishedNames(&self) -> Option<Retained<NSArray<NSData>>>;
     }

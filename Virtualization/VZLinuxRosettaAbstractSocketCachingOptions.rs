@@ -34,7 +34,7 @@ extern_methods!(
         ///
         /// Rosetta can be optionally configured to use cached translations from the Rosetta translation daemon communicating through an Abstract Socket.
         /// If name exceeds maximumNameLength UTF-8 bytes, nil is returned and the error is set.
-        #[method_id(initWithName:error:_)]
+        #[method(initWithName:error:_)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithName_error(
             this: Allocated<Self>,
@@ -44,12 +44,13 @@ extern_methods!(
         /// Name set by initWithName.
         ///
         /// This is the name of the Abstract Socket to be used by Rosetta.
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// The maximum allowed length of name, as defined by the sockaddr_un structure in Linux.
         #[method(maximumNameLength)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maximumNameLength() -> NSUInteger;
     }
 );
@@ -58,11 +59,11 @@ extern_methods!(
     /// Methods declared on superclass `VZLinuxRosettaCachingOptions`
     #[cfg(feature = "VZLinuxRosettaCachingOptions")]
     unsafe impl VZLinuxRosettaAbstractSocketCachingOptions {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

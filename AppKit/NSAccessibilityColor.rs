@@ -10,7 +10,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycolor?language=objc)
     pub unsafe trait NSAccessibilityColor {
         /// Returns a localized description of the color for use in accessibility attributes.
-        #[method_id(accessibilityName)]
+        #[method(accessibilityName)]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityName(&self) -> Retained<NSString>;
     }

@@ -21,23 +21,27 @@ extern_methods!(
     #[cfg(feature = "WKInterfaceObject")]
     unsafe impl WKInterfaceSKScene {
         #[deprecated = "Use SpriteKit.SpriteView instead."]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Pause the entire interface
         #[method(isPaused)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isPaused(&self) -> bool;
 
         /// Setter for [`isPaused`][Self::isPaused].
         #[method(setPaused:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPaused(&self, paused: bool);
 
         #[method(preferredFramesPerSecond)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preferredFramesPerSecond(&self) -> NSInteger;
 
         /// Setter for [`preferredFramesPerSecond`][Self::preferredFramesPerSecond].
         #[method(setPreferredFramesPerSecond:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreferredFramesPerSecond(&self, preferred_frames_per_second: NSInteger);
     }
 );
@@ -46,7 +50,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "WKInterfaceObject")]
     unsafe impl WKInterfaceSKScene {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

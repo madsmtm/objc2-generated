@@ -29,23 +29,24 @@ unsafe impl NSSecureCoding for CXAction {}
 extern_methods!(
     unsafe impl CXAction {
         /// Unique ID
-        #[method_id(UUID)]
+        #[method(UUID)]
         #[unsafe(method_family = none)]
         pub unsafe fn UUID(&self) -> Retained<NSUUID>;
 
         /// Whether all actions are either fulfilled or failed
         #[method(isComplete)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isComplete(&self) -> bool;
 
-        #[method_id(timeoutDate)]
+        #[method(timeoutDate)]
         #[unsafe(method_family = none)]
         pub unsafe fn timeoutDate(&self) -> Retained<NSDate>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -54,10 +55,12 @@ extern_methods!(
 
         /// Report successful execution of the receiver.
         #[method(fulfill)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fulfill(&self);
 
         /// Report failed execution of the receiver.
         #[method(fail)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fail(&self);
     }
 );
@@ -65,7 +68,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CXAction {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

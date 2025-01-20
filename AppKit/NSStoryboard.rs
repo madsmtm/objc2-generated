@@ -28,30 +28,30 @@ unsafe impl NSObjectProtocol for NSStoryboard {}
 
 extern_methods!(
     unsafe impl NSStoryboard {
-        #[method_id(mainStoryboard)]
+        #[method(mainStoryboard)]
         #[unsafe(method_family = none)]
         pub unsafe fn mainStoryboard() -> Option<Retained<NSStoryboard>>;
 
-        #[method_id(storyboardWithName:bundle:)]
+        #[method(storyboardWithName:bundle:)]
         #[unsafe(method_family = none)]
         pub unsafe fn storyboardWithName_bundle(
             name: &NSStoryboardName,
             storyboard_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method_id(instantiateInitialController)]
+        #[method(instantiateInitialController)]
         #[unsafe(method_family = none)]
         pub unsafe fn instantiateInitialController(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "block2")]
-        #[method_id(instantiateInitialControllerWithCreator:)]
+        #[method(instantiateInitialControllerWithCreator:)]
         #[unsafe(method_family = none)]
         pub unsafe fn instantiateInitialControllerWithCreator(
             &self,
             block: NSStoryboardControllerCreator,
         ) -> Option<Retained<AnyObject>>;
 
-        #[method_id(instantiateControllerWithIdentifier:)]
+        #[method(instantiateControllerWithIdentifier:)]
         #[unsafe(method_family = none)]
         pub unsafe fn instantiateControllerWithIdentifier(
             &self,
@@ -59,7 +59,7 @@ extern_methods!(
         ) -> Retained<AnyObject>;
 
         #[cfg(feature = "block2")]
-        #[method_id(instantiateControllerWithIdentifier:creator:)]
+        #[method(instantiateControllerWithIdentifier:creator:)]
         #[unsafe(method_family = none)]
         pub unsafe fn instantiateControllerWithIdentifier_creator(
             &self,
@@ -72,11 +72,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSStoryboard {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -79,99 +79,109 @@ extern_methods!(
     unsafe impl DOMHTMLLinkElement {
         #[deprecated]
         #[method(disabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn disabled(&self) -> bool;
 
         /// Setter for [`disabled`][Self::disabled].
         #[deprecated]
         #[method(setDisabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDisabled(&self, disabled: bool);
 
         #[deprecated]
-        #[method_id(charset)]
+        #[method(charset)]
         #[unsafe(method_family = none)]
         pub unsafe fn charset(&self) -> Retained<NSString>;
 
         /// Setter for [`charset`][Self::charset].
         #[deprecated]
         #[method(setCharset:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCharset(&self, charset: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(href)]
+        #[method(href)]
         #[unsafe(method_family = none)]
         pub unsafe fn href(&self) -> Retained<NSString>;
 
         /// Setter for [`href`][Self::href].
         #[deprecated]
         #[method(setHref:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setHref(&self, href: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(hreflang)]
+        #[method(hreflang)]
         #[unsafe(method_family = none)]
         pub unsafe fn hreflang(&self) -> Retained<NSString>;
 
         /// Setter for [`hreflang`][Self::hreflang].
         #[deprecated]
         #[method(setHreflang:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setHreflang(&self, hreflang: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(media)]
+        #[method(media)]
         #[unsafe(method_family = none)]
         pub unsafe fn media(&self) -> Retained<NSString>;
 
         /// Setter for [`media`][Self::media].
         #[deprecated]
         #[method(setMedia:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMedia(&self, media: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(rel)]
+        #[method(rel)]
         #[unsafe(method_family = none)]
         pub unsafe fn rel(&self) -> Retained<NSString>;
 
         /// Setter for [`rel`][Self::rel].
         #[deprecated]
         #[method(setRel:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRel(&self, rel: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(rev)]
+        #[method(rev)]
         #[unsafe(method_family = none)]
         pub unsafe fn rev(&self) -> Retained<NSString>;
 
         /// Setter for [`rev`][Self::rev].
         #[deprecated]
         #[method(setRev:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRev(&self, rev: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(target)]
+        #[method(target)]
         #[unsafe(method_family = none)]
         pub unsafe fn target(&self) -> Retained<NSString>;
 
         /// Setter for [`target`][Self::target].
         #[deprecated]
         #[method(setTarget:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTarget(&self, target: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(type)]
+        #[method(type)]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> Retained<NSString>;
 
         /// Setter for [`type`][Self::type].
         #[deprecated]
         #[method(setType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setType(&self, r#type: Option<&NSString>);
 
         #[cfg(feature = "DOMStyleSheet")]
-        #[method_id(sheet)]
+        #[method(sheet)]
         #[unsafe(method_family = none)]
         pub unsafe fn sheet(&self) -> Option<Retained<DOMStyleSheet>>;
 
-        #[method_id(absoluteLinkURL)]
+        #[method(absoluteLinkURL)]
         #[unsafe(method_family = none)]
         pub unsafe fn absoluteLinkURL(&self) -> Retained<NSURL>;
     }
@@ -188,7 +198,7 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLLinkElement {
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -204,7 +214,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLLinkElement {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

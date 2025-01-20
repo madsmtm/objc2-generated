@@ -78,256 +78,309 @@ unsafe impl NSSecureCoding for CIRAWFilter {}
 extern_methods!(
     #[cfg(feature = "CIFilter")]
     unsafe impl CIRAWFilter {
-        #[method_id(supportedCameraModels)]
+        #[method(supportedCameraModels)]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedCameraModels() -> Retained<NSArray<NSString>>;
 
-        #[method_id(supportedDecoderVersions)]
+        #[method(supportedDecoderVersions)]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedDecoderVersions(&self) -> Retained<NSArray<CIRAWDecoderVersion>>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(nativeSize)]
+        #[unsafe(method_family = none)]
         pub unsafe fn nativeSize(&self) -> CGSize;
 
-        #[method_id(properties)]
+        #[method(properties)]
         #[unsafe(method_family = none)]
         pub unsafe fn properties(&self) -> Retained<NSDictionary>;
 
         #[method(isDraftModeEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isDraftModeEnabled(&self) -> bool;
 
         /// Setter for [`isDraftModeEnabled`][Self::isDraftModeEnabled].
         #[method(setDraftModeEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDraftModeEnabled(&self, draft_mode_enabled: bool);
 
-        #[method_id(decoderVersion)]
+        #[method(decoderVersion)]
         #[unsafe(method_family = none)]
         pub unsafe fn decoderVersion(&self) -> Retained<CIRAWDecoderVersion>;
 
         /// Setter for [`decoderVersion`][Self::decoderVersion].
         #[method(setDecoderVersion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDecoderVersion(&self, decoder_version: &CIRAWDecoderVersion);
 
         #[method(scaleFactor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scaleFactor(&self) -> c_float;
 
         /// Setter for [`scaleFactor`][Self::scaleFactor].
         #[method(setScaleFactor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setScaleFactor(&self, scale_factor: c_float);
 
         #[method(exposure)]
+        #[unsafe(method_family = none)]
         pub unsafe fn exposure(&self) -> c_float;
 
         /// Setter for [`exposure`][Self::exposure].
         #[method(setExposure:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setExposure(&self, exposure: c_float);
 
         #[method(baselineExposure)]
+        #[unsafe(method_family = none)]
         pub unsafe fn baselineExposure(&self) -> c_float;
 
         /// Setter for [`baselineExposure`][Self::baselineExposure].
         #[method(setBaselineExposure:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBaselineExposure(&self, baseline_exposure: c_float);
 
         #[method(shadowBias)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shadowBias(&self) -> c_float;
 
         /// Setter for [`shadowBias`][Self::shadowBias].
         #[method(setShadowBias:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShadowBias(&self, shadow_bias: c_float);
 
         #[method(boostAmount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn boostAmount(&self) -> c_float;
 
         /// Setter for [`boostAmount`][Self::boostAmount].
         #[method(setBoostAmount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBoostAmount(&self, boost_amount: c_float);
 
         #[method(boostShadowAmount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn boostShadowAmount(&self) -> c_float;
 
         /// Setter for [`boostShadowAmount`][Self::boostShadowAmount].
         #[method(setBoostShadowAmount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBoostShadowAmount(&self, boost_shadow_amount: c_float);
 
         #[method(isGamutMappingEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isGamutMappingEnabled(&self) -> bool;
 
         /// Setter for [`isGamutMappingEnabled`][Self::isGamutMappingEnabled].
         #[method(setGamutMappingEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setGamutMappingEnabled(&self, gamut_mapping_enabled: bool);
 
         #[method(isLensCorrectionSupported)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isLensCorrectionSupported(&self) -> bool;
 
         #[method(isLensCorrectionEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isLensCorrectionEnabled(&self) -> bool;
 
         /// Setter for [`isLensCorrectionEnabled`][Self::isLensCorrectionEnabled].
         #[method(setLensCorrectionEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLensCorrectionEnabled(&self, lens_correction_enabled: bool);
 
         #[method(isLuminanceNoiseReductionSupported)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isLuminanceNoiseReductionSupported(&self) -> bool;
 
         #[method(luminanceNoiseReductionAmount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn luminanceNoiseReductionAmount(&self) -> c_float;
 
         /// Setter for [`luminanceNoiseReductionAmount`][Self::luminanceNoiseReductionAmount].
         #[method(setLuminanceNoiseReductionAmount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLuminanceNoiseReductionAmount(
             &self,
             luminance_noise_reduction_amount: c_float,
         );
 
         #[method(isColorNoiseReductionSupported)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isColorNoiseReductionSupported(&self) -> bool;
 
         #[method(colorNoiseReductionAmount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colorNoiseReductionAmount(&self) -> c_float;
 
         /// Setter for [`colorNoiseReductionAmount`][Self::colorNoiseReductionAmount].
         #[method(setColorNoiseReductionAmount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setColorNoiseReductionAmount(&self, color_noise_reduction_amount: c_float);
 
         #[method(isSharpnessSupported)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isSharpnessSupported(&self) -> bool;
 
         #[method(sharpnessAmount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sharpnessAmount(&self) -> c_float;
 
         /// Setter for [`sharpnessAmount`][Self::sharpnessAmount].
         #[method(setSharpnessAmount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSharpnessAmount(&self, sharpness_amount: c_float);
 
         #[method(isContrastSupported)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isContrastSupported(&self) -> bool;
 
         #[method(contrastAmount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contrastAmount(&self) -> c_float;
 
         /// Setter for [`contrastAmount`][Self::contrastAmount].
         #[method(setContrastAmount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setContrastAmount(&self, contrast_amount: c_float);
 
         #[method(isDetailSupported)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isDetailSupported(&self) -> bool;
 
         #[method(detailAmount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn detailAmount(&self) -> c_float;
 
         /// Setter for [`detailAmount`][Self::detailAmount].
         #[method(setDetailAmount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDetailAmount(&self, detail_amount: c_float);
 
         #[method(isMoireReductionSupported)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isMoireReductionSupported(&self) -> bool;
 
         #[method(moireReductionAmount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn moireReductionAmount(&self) -> c_float;
 
         /// Setter for [`moireReductionAmount`][Self::moireReductionAmount].
         #[method(setMoireReductionAmount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMoireReductionAmount(&self, moire_reduction_amount: c_float);
 
         #[method(isLocalToneMapSupported)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isLocalToneMapSupported(&self) -> bool;
 
         #[method(localToneMapAmount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn localToneMapAmount(&self) -> c_float;
 
         /// Setter for [`localToneMapAmount`][Self::localToneMapAmount].
         #[method(setLocalToneMapAmount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLocalToneMapAmount(&self, local_tone_map_amount: c_float);
 
         #[method(extendedDynamicRangeAmount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn extendedDynamicRangeAmount(&self) -> c_float;
 
         /// Setter for [`extendedDynamicRangeAmount`][Self::extendedDynamicRangeAmount].
         #[method(setExtendedDynamicRangeAmount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setExtendedDynamicRangeAmount(&self, extended_dynamic_range_amount: c_float);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(neutralChromaticity)]
+        #[unsafe(method_family = none)]
         pub unsafe fn neutralChromaticity(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`neutralChromaticity`][Self::neutralChromaticity].
         #[method(setNeutralChromaticity:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setNeutralChromaticity(&self, neutral_chromaticity: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(neutralLocation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn neutralLocation(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`neutralLocation`][Self::neutralLocation].
         #[method(setNeutralLocation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setNeutralLocation(&self, neutral_location: CGPoint);
 
         #[method(neutralTemperature)]
+        #[unsafe(method_family = none)]
         pub unsafe fn neutralTemperature(&self) -> c_float;
 
         /// Setter for [`neutralTemperature`][Self::neutralTemperature].
         #[method(setNeutralTemperature:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setNeutralTemperature(&self, neutral_temperature: c_float);
 
         #[method(neutralTint)]
+        #[unsafe(method_family = none)]
         pub unsafe fn neutralTint(&self) -> c_float;
 
         /// Setter for [`neutralTint`][Self::neutralTint].
         #[method(setNeutralTint:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setNeutralTint(&self, neutral_tint: c_float);
 
-        #[method_id(linearSpaceFilter)]
+        #[method(linearSpaceFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn linearSpaceFilter(&self) -> Option<Retained<CIFilter>>;
 
         /// Setter for [`linearSpaceFilter`][Self::linearSpaceFilter].
         #[method(setLinearSpaceFilter:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLinearSpaceFilter(&self, linear_space_filter: Option<&CIFilter>);
 
         #[cfg(feature = "CIImage")]
-        #[method_id(previewImage)]
+        #[method(previewImage)]
         #[unsafe(method_family = none)]
         pub unsafe fn previewImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
-        #[method_id(portraitEffectsMatte)]
+        #[method(portraitEffectsMatte)]
         #[unsafe(method_family = none)]
         pub unsafe fn portraitEffectsMatte(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
-        #[method_id(semanticSegmentationSkinMatte)]
+        #[method(semanticSegmentationSkinMatte)]
         #[unsafe(method_family = none)]
         pub unsafe fn semanticSegmentationSkinMatte(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
-        #[method_id(semanticSegmentationHairMatte)]
+        #[method(semanticSegmentationHairMatte)]
         #[unsafe(method_family = none)]
         pub unsafe fn semanticSegmentationHairMatte(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
-        #[method_id(semanticSegmentationGlassesMatte)]
+        #[method(semanticSegmentationGlassesMatte)]
         #[unsafe(method_family = none)]
         pub unsafe fn semanticSegmentationGlassesMatte(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
-        #[method_id(semanticSegmentationSkyMatte)]
+        #[method(semanticSegmentationSkyMatte)]
         #[unsafe(method_family = none)]
         pub unsafe fn semanticSegmentationSkyMatte(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
-        #[method_id(semanticSegmentationTeethMatte)]
+        #[method(semanticSegmentationTeethMatte)]
         #[unsafe(method_family = none)]
         pub unsafe fn semanticSegmentationTeethMatte(&self) -> Option<Retained<CIImage>>;
 
-        #[method_id(filterWithImageURL:)]
+        #[method(filterWithImageURL:)]
         #[unsafe(method_family = none)]
         pub unsafe fn filterWithImageURL(url: &NSURL) -> Option<Retained<Self>>;
 
-        #[method_id(filterWithImageData:identifierHint:)]
+        #[method(filterWithImageData:identifierHint:)]
         #[unsafe(method_family = none)]
         pub unsafe fn filterWithImageData_identifierHint(
             data: &NSData,
@@ -335,7 +388,7 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "objc2-core-video")]
-        #[method_id(filterWithCVPixelBuffer:properties:)]
+        #[method(filterWithCVPixelBuffer:properties:)]
         #[unsafe(method_family = none)]
         pub unsafe fn filterWithCVPixelBuffer_properties(
             buffer: &CVPixelBuffer,
@@ -348,11 +401,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CIFilter")]
     unsafe impl CIRAWFilter {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

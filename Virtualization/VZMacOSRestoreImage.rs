@@ -32,11 +32,11 @@ unsafe impl NSObjectProtocol for VZMacOSRestoreImage {}
 
 extern_methods!(
     unsafe impl VZMacOSRestoreImage {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -52,6 +52,7 @@ extern_methods!(
         /// VZMacOSRestoreImage can load IPSW installation media from a local file. If the fileURL parameter does not refer to
         /// a local file, an exception will be raised.
         #[method(loadFileURL:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loadFileURL_completionHandler(
             file_url: &NSURL,
             completion_handler: &block2::Block<dyn Fn(*mut VZMacOSRestoreImage, *mut NSError)>,
@@ -71,12 +72,14 @@ extern_methods!(
         /// the restore image has been downloaded, a VZMacOSInstaller can be initialized using a URL referring to the
         /// local file.
         #[method(fetchLatestSupportedWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fetchLatestSupportedWithCompletionHandler(
             completion_handler: &block2::Block<dyn Fn(*mut VZMacOSRestoreImage, *mut NSError)>,
         );
 
         /// Whether this restore image is supported on the current host.
         #[method(isSupported)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isSupported(&self) -> bool;
 
         /// The URL of this restore image.
@@ -84,17 +87,18 @@ extern_methods!(
         /// If the restore image was loaded using +[VZMacOSRestoreImage loadFileURL:completionHandler:], the value of this property will be a file URL.
         /// If the restore image was fetched using +[VZMacOSRestoreImage fetchLatestSupportedWithCompletionHandler:],
         /// the value of this property will be a network URL referring to an installation media file.
-        #[method_id(URL)]
+        #[method(URL)]
         #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
 
         /// The build version this restore image contains.
-        #[method_id(buildVersion)]
+        #[method(buildVersion)]
         #[unsafe(method_family = none)]
         pub unsafe fn buildVersion(&self) -> Retained<NSString>;
 
         /// The operating system version this restore image contains.
         #[method(operatingSystemVersion)]
+        #[unsafe(method_family = none)]
         pub unsafe fn operatingSystemVersion(&self) -> NSOperatingSystemVersion;
 
         #[cfg(feature = "VZMacOSConfigurationRequirements")]
@@ -104,7 +108,7 @@ extern_methods!(
         /// hardware models may not be supported by the current host. The mostFeaturefulSupportedConfiguration property can be used to
         /// determine the hardware model and configuration requirements that will provide the most complete feature set on the current
         /// host. If none of the hardware models are supported on the current host, this property is nil.
-        #[method_id(mostFeaturefulSupportedConfiguration)]
+        #[method(mostFeaturefulSupportedConfiguration)]
         #[unsafe(method_family = none)]
         pub unsafe fn mostFeaturefulSupportedConfiguration(
             &self,

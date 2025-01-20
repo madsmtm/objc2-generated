@@ -28,17 +28,18 @@ unsafe impl<UnitType: ?Sized + NSSecureCoding> NSSecureCoding for MXHistogramBuc
 extern_methods!(
     unsafe impl<UnitType: Message> MXHistogramBucket<UnitType> {
         /// An NSMeasurement representing the start of a histogram bucket.
-        #[method_id(bucketStart)]
+        #[method(bucketStart)]
         #[unsafe(method_family = none)]
         pub unsafe fn bucketStart(&self) -> Retained<NSMeasurement<UnitType>>;
 
         /// An NSMeasurement representing the end of a histogram bucket.
-        #[method_id(bucketEnd)]
+        #[method(bucketEnd)]
         #[unsafe(method_family = none)]
         pub unsafe fn bucketEnd(&self) -> Retained<NSMeasurement<UnitType>>;
 
         /// An NSUInteger representing the number of samples in this histogram bucket.
         #[method(bucketCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn bucketCount(&self) -> NSUInteger;
     }
 );
@@ -46,11 +47,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<UnitType: Message> MXHistogramBucket<UnitType> {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -77,10 +78,11 @@ extern_methods!(
         ///
         /// This value can never be negative.
         #[method(totalBucketCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn totalBucketCount(&self) -> NSUInteger;
 
         /// An NSEnumerator that can be used to enumerate the buckets of this histogram.
-        #[method_id(bucketEnumerator)]
+        #[method(bucketEnumerator)]
         #[unsafe(method_family = none)]
         pub unsafe fn bucketEnumerator(
             &self,
@@ -91,11 +93,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<UnitType: Message> MXHistogram<UnitType> {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

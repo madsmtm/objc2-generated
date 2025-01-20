@@ -25,22 +25,22 @@ unsafe impl NSObjectProtocol for MLModelStructureProgramBinding {}
 
 extern_methods!(
     unsafe impl MLModelStructureProgramBinding {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// The name of the variable in the Program.
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "MLModelStructureProgramValue")]
         /// The compile time constant value in the Program.
-        #[method_id(value)]
+        #[method(value)]
         #[unsafe(method_family = none)]
         pub unsafe fn value(&self) -> Option<Retained<MLModelStructureProgramValue>>;
     }

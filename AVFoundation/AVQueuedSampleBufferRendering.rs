@@ -47,7 +47,7 @@ extern_protocol!(
         /// The timebase is used to interpret time stamps.
         ///
         /// The timebase is read-only.  Use the AVSampleBufferRenderSynchronizer to set the rate or time.
-        #[method_id(timebase)]
+        #[method(timebase)]
         #[unsafe(method_family = none)]
         unsafe fn timebase(&self) -> Retained<CMTimebase>;
 
@@ -64,6 +64,7 @@ extern_protocol!(
         ///
         /// The combination of either a non-NULL controlTimebase or an AVSampleBufferRenderSynchronizer with the use of kCMSampleAttachmentKey_DisplayImmediately as an attachment to the CMSampleBuffers that are enqueued for display is not recommended.
         #[method(enqueueSampleBuffer:)]
+        #[unsafe(method_family = none)]
         unsafe fn enqueueSampleBuffer(&self, sample_buffer: &CMSampleBuffer);
 
         /// Instructs the receiver to discard pending enqueued sample buffers.
@@ -74,6 +75,7 @@ extern_protocol!(
         ///
         /// It is not possible to determine which sample buffers have been decoded, so the next frame passed to enqueueSampleBuffer: should be an IDR frame (also known as a key frame or sync sample).
         #[method(flush)]
+        #[unsafe(method_family = none)]
         unsafe fn flush(&self);
 
         /// Indicates the readiness of the receiver to accept more sample buffers.
@@ -90,18 +92,21 @@ extern_protocol!(
         ///
         /// This property is not key value observable.
         #[method(isReadyForMoreMediaData)]
+        #[unsafe(method_family = none)]
         unsafe fn isReadyForMoreMediaData(&self) -> bool;
 
         /// Cancels any current requestMediaDataWhenReadyOnQueue:usingBlock: call.
         ///
         /// This method may be called from outside the block or from within the block.
         #[method(stopRequestingMediaData)]
+        #[unsafe(method_family = none)]
         unsafe fn stopRequestingMediaData(&self);
 
         /// Indicates whether the enqueued media data meets the renderer's preroll level.
         ///
         /// Clients should fetch the value of this property to learn if the renderer has had enough media data enqueued to start playback reliably. Starting playback when this property is NO may prevent smooth playback following an immediate start.
         #[method(hasSufficientMediaDataForReliablePlaybackStart)]
+        #[unsafe(method_family = none)]
         unsafe fn hasSufficientMediaDataForReliablePlaybackStart(&self) -> bool;
     }
 );

@@ -27,10 +27,12 @@ unsafe impl NSObjectProtocol for CLGeocoder {}
 extern_methods!(
     unsafe impl CLGeocoder {
         #[method(isGeocoding)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isGeocoding(&self) -> bool;
 
         #[cfg(all(feature = "CLLocation", feature = "CLPlacemark", feature = "block2"))]
         #[method(reverseGeocodeLocation:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reverseGeocodeLocation_completionHandler(
             &self,
             location: &CLLocation,
@@ -39,6 +41,7 @@ extern_methods!(
 
         #[cfg(all(feature = "CLLocation", feature = "CLPlacemark", feature = "block2"))]
         #[method(reverseGeocodeLocation:preferredLocale:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reverseGeocodeLocation_preferredLocale_completionHandler(
             &self,
             location: &CLLocation,
@@ -49,6 +52,7 @@ extern_methods!(
         #[cfg(all(feature = "CLPlacemark", feature = "block2"))]
         #[deprecated = "Use -geocodePostalAddress:completionHandler:"]
         #[method(geocodeAddressDictionary:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geocodeAddressDictionary_completionHandler(
             &self,
             address_dictionary: &NSDictionary,
@@ -57,6 +61,7 @@ extern_methods!(
 
         #[cfg(all(feature = "CLPlacemark", feature = "CLRegion", feature = "block2"))]
         #[method(geocodeAddressString:inRegion:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geocodeAddressString_inRegion_completionHandler(
             &self,
             address_string: &NSString,
@@ -66,6 +71,7 @@ extern_methods!(
 
         #[cfg(all(feature = "CLPlacemark", feature = "CLRegion", feature = "block2"))]
         #[method(geocodeAddressString:inRegion:preferredLocale:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geocodeAddressString_inRegion_preferredLocale_completionHandler(
             &self,
             address_string: &NSString,
@@ -76,6 +82,7 @@ extern_methods!(
 
         #[cfg(all(feature = "CLPlacemark", feature = "block2"))]
         #[method(geocodeAddressString:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geocodeAddressString_completionHandler(
             &self,
             address_string: &NSString,
@@ -83,6 +90,7 @@ extern_methods!(
         );
 
         #[method(cancelGeocode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cancelGeocode(&self);
     }
 );
@@ -90,11 +98,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CLGeocoder {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -110,6 +118,7 @@ extern_methods!(
         ))]
         #[cfg(not(target_os = "tvos"))]
         #[method(geocodePostalAddress:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geocodePostalAddress_completionHandler(
             &self,
             postal_address: &CNPostalAddress,
@@ -123,6 +132,7 @@ extern_methods!(
         ))]
         #[cfg(not(target_os = "tvos"))]
         #[method(geocodePostalAddress:preferredLocale:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geocodePostalAddress_preferredLocale_completionHandler(
             &self,
             postal_address: &CNPostalAddress,

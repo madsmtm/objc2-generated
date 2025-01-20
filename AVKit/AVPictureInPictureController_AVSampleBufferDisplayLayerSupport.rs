@@ -17,6 +17,7 @@ extern_methods!(
         ///
         /// This should always be called whenever playback is paused or unpaused, or the underlying content duration changes.
         #[method(invalidatePlaybackState)]
+        #[unsafe(method_family = none)]
         pub unsafe fn invalidatePlaybackState(&self);
     }
 );
@@ -35,6 +36,7 @@ extern_protocol!(
         ///
         /// Informs delegate that the user initiated a request to play or pause the content.
         #[method(pictureInPictureController:setPlaying:)]
+        #[unsafe(method_family = none)]
         unsafe fn pictureInPictureController_setPlaying(
             &self,
             picture_in_picture_controller: &AVPictureInPictureController,
@@ -50,6 +52,7 @@ extern_protocol!(
         ///
         /// Returns: A CMTimeRange indicating the content's time range.
         #[method(pictureInPictureControllerTimeRangeForPlayback:)]
+        #[unsafe(method_family = none)]
         unsafe fn pictureInPictureControllerTimeRangeForPlayback(
             &self,
             picture_in_picture_controller: &AVPictureInPictureController,
@@ -64,6 +67,7 @@ extern_protocol!(
         ///
         /// Returns: A boolean value indicating whether or not the playback UI should indicate playback has been paused or is playing.
         #[method(pictureInPictureControllerIsPlaybackPaused:)]
+        #[unsafe(method_family = none)]
         unsafe fn pictureInPictureControllerIsPlaybackPaused(
             &self,
             picture_in_picture_controller: &AVPictureInPictureController,
@@ -76,6 +80,7 @@ extern_protocol!(
         ///
         /// This method is called when the system Picture in Picture window changes size. Delegate take the new render size and AVPictureInPictureController.isPictureInPictureActive into account when choosing media variants in order to avoid uncessary decoding overhead.
         #[method(pictureInPictureController:didTransitionToRenderSize:)]
+        #[unsafe(method_family = none)]
         unsafe fn pictureInPictureController_didTransitionToRenderSize(
             &self,
             picture_in_picture_controller: &AVPictureInPictureController,
@@ -97,6 +102,7 @@ extern_protocol!(
         ///
         /// Clients may choose to seek by a different interval for efficiency reasons (for example, seeking to a keyframe) or if the requested interval falls outside of the playable timeline. Clients must invoke the completion handler to indicate the seek operation has finished or failed. By the time the completion handler has been invoked, the timebase should reflect the current time and playback rate. Failure to invoke this completion handler is an application error and will result in playback UI permanently stuck in a “seeking” state.
         #[method(pictureInPictureController:skipByInterval:completionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn pictureInPictureController_skipByInterval_completionHandler(
             &self,
             picture_in_picture_controller: &AVPictureInPictureController,
@@ -116,6 +122,7 @@ extern_protocol!(
         /// Returns: A boolean value indicating whether or not background audio playback is always prohibited.
         #[optional]
         #[method(pictureInPictureControllerShouldProhibitBackgroundAudioPlayback:)]
+        #[unsafe(method_family = none)]
         unsafe fn pictureInPictureControllerShouldProhibitBackgroundAudioPlayback(
             &self,
             picture_in_picture_controller: &AVPictureInPictureController,
@@ -134,7 +141,7 @@ extern_methods!(
         /// Parameter `playbackDelegate`: The playback delegate for controlling sample buffer display layer's playback in Picture in Picture.
         ///
         /// Use this initializer for a content source with a sample buffer display layer and playback delegate.
-        #[method_id(initWithSampleBufferDisplayLayer:playbackDelegate:)]
+        #[method(initWithSampleBufferDisplayLayer:playbackDelegate:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSampleBufferDisplayLayer_playbackDelegate(
             this: Allocated<Self>,
@@ -145,14 +152,14 @@ extern_methods!(
         #[cfg(feature = "objc2-av-foundation")]
         #[cfg(not(target_os = "watchos"))]
         /// The receiver's sample buffer display layer.
-        #[method_id(sampleBufferDisplayLayer)]
+        #[method(sampleBufferDisplayLayer)]
         #[unsafe(method_family = none)]
         pub unsafe fn sampleBufferDisplayLayer(
             &self,
         ) -> Option<Retained<AVSampleBufferDisplayLayer>>;
 
         /// The receiver's sample buffer playback delegate.
-        #[method_id(sampleBufferPlaybackDelegate)]
+        #[method(sampleBufferPlaybackDelegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn sampleBufferPlaybackDelegate(
             &self,

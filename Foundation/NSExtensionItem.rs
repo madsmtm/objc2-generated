@@ -32,46 +32,50 @@ unsafe impl NSSecureCoding for NSExtensionItem {}
 extern_methods!(
     unsafe impl NSExtensionItem {
         #[cfg(feature = "NSAttributedString")]
-        #[method_id(attributedTitle)]
+        #[method(attributedTitle)]
         #[unsafe(method_family = none)]
         pub unsafe fn attributedTitle(&self) -> Option<Retained<NSAttributedString>>;
 
         #[cfg(feature = "NSAttributedString")]
         /// Setter for [`attributedTitle`][Self::attributedTitle].
         #[method(setAttributedTitle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAttributedTitle(&self, attributed_title: Option<&NSAttributedString>);
 
         #[cfg(feature = "NSAttributedString")]
-        #[method_id(attributedContentText)]
+        #[method(attributedContentText)]
         #[unsafe(method_family = none)]
         pub unsafe fn attributedContentText(&self) -> Option<Retained<NSAttributedString>>;
 
         #[cfg(feature = "NSAttributedString")]
         /// Setter for [`attributedContentText`][Self::attributedContentText].
         #[method(setAttributedContentText:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAttributedContentText(
             &self,
             attributed_content_text: Option<&NSAttributedString>,
         );
 
         #[cfg(all(feature = "NSArray", feature = "NSItemProvider"))]
-        #[method_id(attachments)]
+        #[method(attachments)]
         #[unsafe(method_family = none)]
         pub unsafe fn attachments(&self) -> Option<Retained<NSArray<NSItemProvider>>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSItemProvider"))]
         /// Setter for [`attachments`][Self::attachments].
         #[method(setAttachments:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAttachments(&self, attachments: Option<&NSArray<NSItemProvider>>);
 
         #[cfg(feature = "NSDictionary")]
-        #[method_id(userInfo)]
+        #[method(userInfo)]
         #[unsafe(method_family = none)]
         pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary>>;
 
         #[cfg(feature = "NSDictionary")]
         /// Setter for [`userInfo`][Self::userInfo].
         #[method(setUserInfo:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary>);
     }
 );
@@ -79,11 +83,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSExtensionItem {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

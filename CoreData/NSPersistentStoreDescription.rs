@@ -24,90 +24,105 @@ unsafe impl NSObjectProtocol for NSPersistentStoreDescription {}
 
 extern_methods!(
     unsafe impl NSPersistentStoreDescription {
-        #[method_id(persistentStoreDescriptionWithURL:)]
+        #[method(persistentStoreDescriptionWithURL:)]
         #[unsafe(method_family = none)]
         pub unsafe fn persistentStoreDescriptionWithURL(url: &NSURL) -> Retained<Self>;
 
-        #[method_id(type)]
+        #[method(type)]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> Retained<NSString>;
 
         /// Setter for [`type`][Self::type].
         #[method(setType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setType(&self, r#type: &NSString);
 
-        #[method_id(configuration)]
+        #[method(configuration)]
         #[unsafe(method_family = none)]
         pub unsafe fn configuration(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`configuration`][Self::configuration].
         #[method(setConfiguration:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setConfiguration(&self, configuration: Option<&NSString>);
 
-        #[method_id(URL)]
+        #[method(URL)]
         #[unsafe(method_family = none)]
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`URL`][Self::URL].
         #[method(setURL:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setURL(&self, url: Option<&NSURL>);
 
-        #[method_id(options)]
+        #[method(options)]
         #[unsafe(method_family = none)]
         pub unsafe fn options(&self) -> Retained<NSDictionary<NSString, NSObject>>;
 
         #[method(setOption:forKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setOption_forKey(&self, option: Option<&NSObject>, key: &NSString);
 
         #[method(isReadOnly)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isReadOnly(&self) -> bool;
 
         /// Setter for [`isReadOnly`][Self::isReadOnly].
         #[method(setReadOnly:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setReadOnly(&self, read_only: bool);
 
         #[method(timeout)]
+        #[unsafe(method_family = none)]
         pub unsafe fn timeout(&self) -> NSTimeInterval;
 
         /// Setter for [`timeout`][Self::timeout].
         #[method(setTimeout:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTimeout(&self, timeout: NSTimeInterval);
 
-        #[method_id(sqlitePragmas)]
+        #[method(sqlitePragmas)]
         #[unsafe(method_family = none)]
         pub unsafe fn sqlitePragmas(&self) -> Retained<NSDictionary<NSString, NSObject>>;
 
         #[method(setValue:forPragmaNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setValue_forPragmaNamed(&self, value: Option<&NSObject>, name: &NSString);
 
         #[method(shouldAddStoreAsynchronously)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shouldAddStoreAsynchronously(&self) -> bool;
 
         /// Setter for [`shouldAddStoreAsynchronously`][Self::shouldAddStoreAsynchronously].
         #[method(setShouldAddStoreAsynchronously:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShouldAddStoreAsynchronously(&self, should_add_store_asynchronously: bool);
 
         #[method(shouldMigrateStoreAutomatically)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shouldMigrateStoreAutomatically(&self) -> bool;
 
         /// Setter for [`shouldMigrateStoreAutomatically`][Self::shouldMigrateStoreAutomatically].
         #[method(setShouldMigrateStoreAutomatically:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShouldMigrateStoreAutomatically(
             &self,
             should_migrate_store_automatically: bool,
         );
 
         #[method(shouldInferMappingModelAutomatically)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shouldInferMappingModelAutomatically(&self) -> bool;
 
         /// Setter for [`shouldInferMappingModelAutomatically`][Self::shouldInferMappingModelAutomatically].
         #[method(setShouldInferMappingModelAutomatically:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShouldInferMappingModelAutomatically(
             &self,
             should_infer_mapping_model_automatically: bool,
         );
 
-        #[method_id(initWithURL:)]
+        #[method(initWithURL:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
     }
@@ -116,11 +131,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPersistentStoreDescription {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -132,7 +147,7 @@ extern_methods!(
         #[cfg(feature = "NSPersistentCloudKitContainerOptions")]
         /// Use this property to apply customized instances of NSPersistentCloudKitContainerOptions to
         /// a store description you wish to use with CloudKit.
-        #[method_id(cloudKitContainerOptions)]
+        #[method(cloudKitContainerOptions)]
         #[unsafe(method_family = none)]
         pub unsafe fn cloudKitContainerOptions(
             &self,
@@ -141,6 +156,7 @@ extern_methods!(
         #[cfg(feature = "NSPersistentCloudKitContainerOptions")]
         /// Setter for [`cloudKitContainerOptions`][Self::cloudKitContainerOptions].
         #[method(setCloudKitContainerOptions:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCloudKitContainerOptions(
             &self,
             cloud_kit_container_options: Option<&NSPersistentCloudKitContainerOptions>,

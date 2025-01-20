@@ -36,19 +36,22 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl GKDialogController {
-        #[method_id(parentWindow)]
+        #[method(parentWindow)]
         #[unsafe(method_family = none)]
         pub unsafe fn parentWindow(&self) -> Option<Retained<NSWindow>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`parentWindow`][Self::parentWindow].
         #[method(setParentWindow:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setParentWindow(&self, parent_window: Option<&NSWindow>);
 
         #[method(presentViewController:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn presentViewController(&self, view_controller: &NSViewController) -> bool;
 
         #[method(dismiss:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dismiss(&self, sender: &AnyObject);
     }
 );
@@ -58,11 +61,11 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl GKDialogController {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -76,7 +79,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl GKDialogController {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -87,7 +90,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl GKDialogController {
-        #[method_id(sharedDialogController)]
+        #[method(sharedDialogController)]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedDialogController(mtm: MainThreadMarker)
             -> Retained<GKDialogController>;

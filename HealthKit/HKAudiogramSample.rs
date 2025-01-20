@@ -36,7 +36,7 @@ extern_methods!(
     unsafe impl HKAudiogramSample {
         #[cfg(feature = "HKAudiogramSensitivityPoint")]
         /// The hearing sensitivity readings associated with a hearing test.
-        #[method_id(sensitivityPoints)]
+        #[method(sensitivityPoints)]
         #[unsafe(method_family = none)]
         pub unsafe fn sensitivityPoints(&self) -> Retained<NSArray<HKAudiogramSensitivityPoint>>;
 
@@ -53,7 +53,7 @@ extern_methods!(
         ///
         /// Returns: A new instance of an audiogram sample.
         #[deprecated]
-        #[method_id(audiogramSampleWithSensitivityPoints:startDate:endDate:metadata:)]
+        #[method(audiogramSampleWithSensitivityPoints:startDate:endDate:metadata:)]
         #[unsafe(method_family = none)]
         pub unsafe fn audiogramSampleWithSensitivityPoints_startDate_endDate_metadata(
             sensitivity_points: &NSArray<HKAudiogramSensitivityPoint>,
@@ -76,7 +76,7 @@ extern_methods!(
         /// Parameter `metadata`: Optional metadata associated with the sample.
         ///
         /// Returns: A new instance of an audiogram sample.
-        #[method_id(audiogramSampleWithSensitivityPoints:startDate:endDate:device:metadata:)]
+        #[method(audiogramSampleWithSensitivityPoints:startDate:endDate:device:metadata:)]
         #[unsafe(method_family = none)]
         pub unsafe fn audiogramSampleWithSensitivityPoints_startDate_endDate_device_metadata(
             sensitivity_points: &NSArray<HKAudiogramSensitivityPoint>,
@@ -92,7 +92,7 @@ extern_methods!(
     /// Methods declared on superclass `HKObject`
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKAudiogramSample {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -102,7 +102,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKAudiogramSample {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -107,67 +107,81 @@ extern_methods!(
         feature = "NSWindow"
     ))]
     unsafe impl NSOpenPanel {
-        #[method_id(openPanel)]
+        #[method(openPanel)]
         #[unsafe(method_family = none)]
         pub unsafe fn openPanel(mtm: MainThreadMarker) -> Retained<NSOpenPanel>;
 
-        #[method_id(URLs)]
+        #[method(URLs)]
         #[unsafe(method_family = none)]
         pub unsafe fn URLs(&self) -> Retained<NSArray<NSURL>>;
 
         #[method(resolvesAliases)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resolvesAliases(&self) -> bool;
 
         /// Setter for [`resolvesAliases`][Self::resolvesAliases].
         #[method(setResolvesAliases:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setResolvesAliases(&self, resolves_aliases: bool);
 
         #[method(canChooseDirectories)]
+        #[unsafe(method_family = none)]
         pub unsafe fn canChooseDirectories(&self) -> bool;
 
         /// Setter for [`canChooseDirectories`][Self::canChooseDirectories].
         #[method(setCanChooseDirectories:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCanChooseDirectories(&self, can_choose_directories: bool);
 
         #[method(allowsMultipleSelection)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowsMultipleSelection(&self) -> bool;
 
         /// Setter for [`allowsMultipleSelection`][Self::allowsMultipleSelection].
         #[method(setAllowsMultipleSelection:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAllowsMultipleSelection(&self, allows_multiple_selection: bool);
 
         #[method(canChooseFiles)]
+        #[unsafe(method_family = none)]
         pub unsafe fn canChooseFiles(&self) -> bool;
 
         /// Setter for [`canChooseFiles`][Self::canChooseFiles].
         #[method(setCanChooseFiles:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCanChooseFiles(&self, can_choose_files: bool);
 
         #[method(canResolveUbiquitousConflicts)]
+        #[unsafe(method_family = none)]
         pub unsafe fn canResolveUbiquitousConflicts(&self) -> bool;
 
         /// Setter for [`canResolveUbiquitousConflicts`][Self::canResolveUbiquitousConflicts].
         #[method(setCanResolveUbiquitousConflicts:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCanResolveUbiquitousConflicts(
             &self,
             can_resolve_ubiquitous_conflicts: bool,
         );
 
         #[method(canDownloadUbiquitousContents)]
+        #[unsafe(method_family = none)]
         pub unsafe fn canDownloadUbiquitousContents(&self) -> bool;
 
         /// Setter for [`canDownloadUbiquitousContents`][Self::canDownloadUbiquitousContents].
         #[method(setCanDownloadUbiquitousContents:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCanDownloadUbiquitousContents(
             &self,
             can_download_ubiquitous_contents: bool,
         );
 
         #[method(isAccessoryViewDisclosed)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isAccessoryViewDisclosed(&self) -> bool;
 
         /// Setter for [`isAccessoryViewDisclosed`][Self::isAccessoryViewDisclosed].
         #[method(setAccessoryViewDisclosed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAccessoryViewDisclosed(&self, accessory_view_disclosed: bool);
     }
 );
@@ -182,7 +196,7 @@ extern_methods!(
     ))]
     unsafe impl NSOpenPanel {
         #[cfg(feature = "NSGraphics")]
-        #[method_id(initWithContentRect:styleMask:backing:defer:)]
+        #[method(initWithContentRect:styleMask:backing:defer:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer(
             this: Allocated<Self>,
@@ -193,7 +207,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSGraphics", feature = "NSScreen"))]
-        #[method_id(initWithContentRect:styleMask:backing:defer:screen:)]
+        #[method(initWithContentRect:styleMask:backing:defer:screen:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer_screen(
             this: Allocated<Self>,
@@ -204,13 +218,13 @@ extern_methods!(
             screen: Option<&NSScreen>,
         ) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "NSViewController")]
         /// Convenience method for creating an autoreleased titled window with the given contentViewController. A basic NSWindow with the following attributes is made: titled, closable, resizable, miniaturizable. The window's title is automatically bound to the contentViewController's title. The size of the window can easily be controlled by utilizing autolayout and applying size constraints to the view (or its subviews). The window has isReleasedWhenClosed set to NO, and it must be explicitly retained to keep the window instance alive. To have it automatically be freed when it is closed, do the following: [window retain] and [window setReleasedWhenClosed:YES].
-        #[method_id(windowWithContentViewController:)]
+        #[method(windowWithContentViewController:)]
         #[unsafe(method_family = none)]
         pub unsafe fn windowWithContentViewController(
             content_view_controller: &NSViewController,
@@ -227,7 +241,7 @@ extern_methods!(
         feature = "NSWindow"
     ))]
     unsafe impl NSOpenPanel {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -242,7 +256,7 @@ extern_methods!(
         feature = "NSWindow"
     ))]
     unsafe impl NSOpenPanel {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -258,10 +272,12 @@ extern_methods!(
     ))]
     unsafe impl NSOpenPanel {
         #[method(showsContentTypes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn showsContentTypes(&self) -> bool;
 
         /// Setter for [`showsContentTypes`][Self::showsContentTypes].
         #[method(setShowsContentTypes:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShowsContentTypes(&self, shows_content_types: bool);
     }
 );
@@ -276,12 +292,13 @@ extern_methods!(
     ))]
     unsafe impl NSOpenPanel {
         #[deprecated]
-        #[method_id(filenames)]
+        #[method(filenames)]
         #[unsafe(method_family = none)]
         pub unsafe fn filenames(&self) -> Retained<NSArray>;
 
         #[deprecated]
         #[method(beginSheetForDirectory:file:types:modalForWindow:modalDelegate:didEndSelector:contextInfo:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn beginSheetForDirectory_file_types_modalForWindow_modalDelegate_didEndSelector_contextInfo(
             &self,
             path: Option<&NSString>,
@@ -295,6 +312,7 @@ extern_methods!(
 
         #[deprecated]
         #[method(beginForDirectory:file:types:modelessDelegate:didEndSelector:contextInfo:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn beginForDirectory_file_types_modelessDelegate_didEndSelector_contextInfo(
             &self,
             path: Option<&NSString>,
@@ -307,6 +325,7 @@ extern_methods!(
 
         #[deprecated]
         #[method(runModalForDirectory:file:types:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn runModalForDirectory_file_types(
             &self,
             path: Option<&NSString>,
@@ -316,6 +335,7 @@ extern_methods!(
 
         #[deprecated]
         #[method(runModalForTypes:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn runModalForTypes(&self, file_types: Option<&NSArray>) -> NSInteger;
     }
 );

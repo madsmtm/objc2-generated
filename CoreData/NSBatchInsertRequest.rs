@@ -29,16 +29,16 @@ unsafe impl NSObjectProtocol for NSBatchInsertRequest {}
 extern_methods!(
     #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl NSBatchInsertRequest {
-        #[method_id(entityName)]
+        #[method(entityName)]
         #[unsafe(method_family = none)]
         pub unsafe fn entityName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSEntityDescription")]
-        #[method_id(entity)]
+        #[method(entity)]
         #[unsafe(method_family = none)]
         pub unsafe fn entity(&self) -> Option<Retained<NSEntityDescription>>;
 
-        #[method_id(objectsToInsert)]
+        #[method(objectsToInsert)]
         #[unsafe(method_family = none)]
         pub unsafe fn objectsToInsert(
             &self,
@@ -46,6 +46,7 @@ extern_methods!(
 
         /// Setter for [`objectsToInsert`][Self::objectsToInsert].
         #[method(setObjectsToInsert:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setObjectsToInsert(
             &self,
             objects_to_insert: Option<&NSArray<NSDictionary<NSString, AnyObject>>>,
@@ -53,6 +54,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[method(dictionaryHandler)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dictionaryHandler(
             &self,
         ) -> *mut block2::Block<dyn Fn(NonNull<NSMutableDictionary<NSString, AnyObject>>) -> Bool>;
@@ -60,6 +62,7 @@ extern_methods!(
         #[cfg(feature = "block2")]
         /// Setter for [`dictionaryHandler`][Self::dictionaryHandler].
         #[method(setDictionaryHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDictionaryHandler(
             &self,
             dictionary_handler: Option<
@@ -69,6 +72,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSManagedObject", feature = "block2"))]
         #[method(managedObjectHandler)]
+        #[unsafe(method_family = none)]
         pub unsafe fn managedObjectHandler(
             &self,
         ) -> *mut block2::Block<dyn Fn(NonNull<NSManagedObject>) -> Bool>;
@@ -76,6 +80,7 @@ extern_methods!(
         #[cfg(all(feature = "NSManagedObject", feature = "block2"))]
         /// Setter for [`managedObjectHandler`][Self::managedObjectHandler].
         #[method(setManagedObjectHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setManagedObjectHandler(
             &self,
             managed_object_handler: Option<
@@ -85,14 +90,16 @@ extern_methods!(
 
         #[cfg(feature = "NSPersistentStoreResult")]
         #[method(resultType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resultType(&self) -> NSBatchInsertRequestResultType;
 
         #[cfg(feature = "NSPersistentStoreResult")]
         /// Setter for [`resultType`][Self::resultType].
         #[method(setResultType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setResultType(&self, result_type: NSBatchInsertRequestResultType);
 
-        #[method_id(batchInsertRequestWithEntityName:objects:)]
+        #[method(batchInsertRequestWithEntityName:objects:)]
         #[unsafe(method_family = none)]
         pub unsafe fn batchInsertRequestWithEntityName_objects(
             entity_name: &NSString,
@@ -100,7 +107,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        #[method_id(batchInsertRequestWithEntityName:dictionaryHandler:)]
+        #[method(batchInsertRequestWithEntityName:dictionaryHandler:)]
         #[unsafe(method_family = none)]
         pub unsafe fn batchInsertRequestWithEntityName_dictionaryHandler(
             entity_name: &NSString,
@@ -110,7 +117,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSManagedObject", feature = "block2"))]
-        #[method_id(batchInsertRequestWithEntityName:managedObjectHandler:)]
+        #[method(batchInsertRequestWithEntityName:managedObjectHandler:)]
         #[unsafe(method_family = none)]
         pub unsafe fn batchInsertRequestWithEntityName_managedObjectHandler(
             entity_name: &NSString,
@@ -118,11 +125,11 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(initWithEntityName:objects:)]
+        #[method(initWithEntityName:objects:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithEntityName_objects(
             this: Allocated<Self>,
@@ -131,7 +138,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSEntityDescription")]
-        #[method_id(initWithEntity:objects:)]
+        #[method(initWithEntity:objects:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithEntity_objects(
             this: Allocated<Self>,
@@ -140,7 +147,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSEntityDescription", feature = "block2"))]
-        #[method_id(initWithEntity:dictionaryHandler:)]
+        #[method(initWithEntity:dictionaryHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithEntity_dictionaryHandler(
             this: Allocated<Self>,
@@ -155,7 +162,7 @@ extern_methods!(
             feature = "NSManagedObject",
             feature = "block2"
         ))]
-        #[method_id(initWithEntity:managedObjectHandler:)]
+        #[method(initWithEntity:managedObjectHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithEntity_managedObjectHandler(
             this: Allocated<Self>,
@@ -164,7 +171,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        #[method_id(initWithEntityName:dictionaryHandler:)]
+        #[method(initWithEntityName:dictionaryHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithEntityName_dictionaryHandler(
             this: Allocated<Self>,
@@ -175,7 +182,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSManagedObject", feature = "block2"))]
-        #[method_id(initWithEntityName:managedObjectHandler:)]
+        #[method(initWithEntityName:managedObjectHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithEntityName_managedObjectHandler(
             this: Allocated<Self>,
@@ -189,7 +196,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl NSBatchInsertRequest {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

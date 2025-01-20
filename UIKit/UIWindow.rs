@@ -79,7 +79,7 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIWindow {
         #[cfg(all(feature = "UIScene", feature = "UIWindowScene"))]
-        #[method_id(initWithWindowScene:)]
+        #[method(initWithWindowScene:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithWindowScene(
             this: Allocated<Self>,
@@ -87,7 +87,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIScene", feature = "UIWindowScene"))]
-        #[method_id(windowScene)]
+        #[method(windowScene)]
         #[unsafe(method_family = none)]
         pub unsafe fn windowScene(&self) -> Option<Retained<UIWindowScene>>;
 
@@ -95,68 +95,83 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`windowScene`][Self::windowScene].
         #[method(setWindowScene:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWindowScene(&self, window_scene: Option<&UIWindowScene>);
 
         #[method(canResizeToFitContent)]
+        #[unsafe(method_family = none)]
         pub unsafe fn canResizeToFitContent(&self) -> bool;
 
         /// Setter for [`canResizeToFitContent`][Self::canResizeToFitContent].
         #[method(setCanResizeToFitContent:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCanResizeToFitContent(&self, can_resize_to_fit_content: bool);
 
         #[cfg(feature = "UIScreen")]
-        #[method_id(screen)]
+        #[method(screen)]
         #[unsafe(method_family = none)]
         pub fn screen(&self) -> Retained<UIScreen>;
 
         #[cfg(feature = "UIScreen")]
         /// Setter for [`screen`][Self::screen].
         #[method(setScreen:)]
+        #[unsafe(method_family = none)]
         pub fn setScreen(&self, screen: &UIScreen);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(windowLevel)]
+        #[unsafe(method_family = none)]
         pub unsafe fn windowLevel(&self) -> UIWindowLevel;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`windowLevel`][Self::windowLevel].
         #[method(setWindowLevel:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWindowLevel(&self, window_level: UIWindowLevel);
 
         #[method(isKeyWindow)]
+        #[unsafe(method_family = none)]
         pub fn isKeyWindow(&self) -> bool;
 
         #[method(canBecomeKeyWindow)]
+        #[unsafe(method_family = none)]
         pub unsafe fn canBecomeKeyWindow(&self) -> bool;
 
         #[method(becomeKeyWindow)]
+        #[unsafe(method_family = none)]
         pub unsafe fn becomeKeyWindow(&self);
 
         #[method(resignKeyWindow)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resignKeyWindow(&self);
 
         #[method(makeKeyWindow)]
+        #[unsafe(method_family = none)]
         pub unsafe fn makeKeyWindow(&self);
 
         #[method(makeKeyAndVisible)]
+        #[unsafe(method_family = none)]
         pub fn makeKeyAndVisible(&self);
 
         #[cfg(feature = "UIViewController")]
-        #[method_id(rootViewController)]
+        #[method(rootViewController)]
         #[unsafe(method_family = none)]
         pub fn rootViewController(&self) -> Option<Retained<UIViewController>>;
 
         #[cfg(feature = "UIViewController")]
         /// Setter for [`rootViewController`][Self::rootViewController].
         #[method(setRootViewController:)]
+        #[unsafe(method_family = none)]
         pub fn setRootViewController(&self, root_view_controller: Option<&UIViewController>);
 
         #[cfg(feature = "UIEvent")]
         #[method(sendEvent:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sendEvent(&self, event: &UIEvent);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(convertPoint:toWindow:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn convertPoint_toWindow(
             &self,
             point: CGPoint,
@@ -165,6 +180,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(convertPoint:fromWindow:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn convertPoint_fromWindow(
             &self,
             point: CGPoint,
@@ -173,6 +189,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(convertRect:toWindow:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn convertRect_toWindow(
             &self,
             rect: CGRect,
@@ -181,6 +198,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(convertRect:fromWindow:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn convertRect_fromWindow(
             &self,
             rect: CGRect,
@@ -194,11 +212,11 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIWindow {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(initWithFrame:)]
+        #[method(initWithFrame:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -211,11 +229,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIWindow {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -228,11 +246,13 @@ extern_protocol!(
         /// Update the aspect ratio (width / height) for the given content
         /// Defaults to 1.0. Must be > 0.0 and values may be clamped within a reasonable range of approximately 1:100 to 100:1.
         #[method(aspectRatio)]
+        #[unsafe(method_family = none)]
         unsafe fn aspectRatio(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`aspectRatio`][Self::aspectRatio].
         #[method(setAspectRatio:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAspectRatio(&self, aspect_ratio: CGFloat);
     }
 );
@@ -254,7 +274,7 @@ extern_methods!(
         /// that are direct subviews of, or very close descendants of, the guide's window. Creating constraints from this layout guide to views deeper in the view hierarchy or across
         /// views owned by child view controllers can significantly degrade performance and possibly raise an exception. Additionally, the safe area insets added by child view
         /// controllers will not be reflected in these cases. For anything other than full-screen/window media content, the standard `safeAreaLayoutGuide` on UIView should be used.
-        #[method_id(safeAreaAspectFitLayoutGuide)]
+        #[method(safeAreaAspectFitLayoutGuide)]
         #[unsafe(method_family = none)]
         pub unsafe fn safeAreaAspectFitLayoutGuide(&self) -> Retained<UILayoutGuide>;
     }

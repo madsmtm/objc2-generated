@@ -10,12 +10,12 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationwebbrowserplatformpublickeycredentialregistrationrequest?language=objc)
     pub unsafe trait ASAuthorizationWebBrowserPlatformPublicKeyCredentialRegistrationRequest {
         #[cfg(feature = "ASPublicKeyCredentialClientData")]
-        #[method_id(clientData)]
+        #[method(clientData)]
         #[unsafe(method_family = none)]
         unsafe fn clientData(&self) -> Option<Retained<ASPublicKeyCredentialClientData>>;
 
         #[cfg(feature = "ASAuthorizationPlatformPublicKeyCredentialDescriptor")]
-        #[method_id(excludedCredentials)]
+        #[method(excludedCredentials)]
         #[unsafe(method_family = none)]
         unsafe fn excludedCredentials(
             &self,
@@ -24,6 +24,7 @@ extern_protocol!(
         #[cfg(feature = "ASAuthorizationPlatformPublicKeyCredentialDescriptor")]
         /// Setter for [`excludedCredentials`][Self::excludedCredentials].
         #[method(setExcludedCredentials:)]
+        #[unsafe(method_family = none)]
         unsafe fn setExcludedCredentials(
             &self,
             excluded_credentials: Option<
@@ -32,10 +33,12 @@ extern_protocol!(
         );
 
         #[method(shouldShowHybridTransport)]
+        #[unsafe(method_family = none)]
         unsafe fn shouldShowHybridTransport(&self) -> bool;
 
         /// Setter for [`shouldShowHybridTransport`][Self::shouldShowHybridTransport].
         #[method(setShouldShowHybridTransport:)]
+        #[unsafe(method_family = none)]
         unsafe fn setShouldShowHybridTransport(&self, should_show_hybrid_transport: bool);
     }
 );

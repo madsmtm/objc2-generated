@@ -51,76 +51,89 @@ extern_methods!(
     unsafe impl WCSession {
         /// Check if session is supported on this iOS device. Session is always available on WatchOS
         #[method(isSupported)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isSupported() -> bool;
 
         /// Use the default session for all transferring of content and state monitoring.
-        #[method_id(defaultSession)]
+        #[method(defaultSession)]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultSession() -> Retained<WCSession>;
 
         /// Use the default session instead.
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// A delegate must exist before the session will allow sends.
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn WCSessionDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn WCSessionDelegate>>);
 
         /// The default session must be activated on startup before the session's properties contain correct values and will begin receiving delegate callbacks. Calling activate without a delegate set is undefined. If the WCSessionDelegate session:activationDidCompleteWithState:error: is implemented this method becomes an asynchronous call.
         #[method(activateSession)]
+        #[unsafe(method_family = none)]
         pub unsafe fn activateSession(&self);
 
         /// The state of the current session
         #[method(activationState)]
+        #[unsafe(method_family = none)]
         pub unsafe fn activationState(&self) -> WCSessionActivationState;
 
         /// Whether or not there is more content for the session to deliver
         #[method(hasContentPending)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hasContentPending(&self) -> bool;
 
         /// Check if iOS device is paired to a watch
         #[method(isPaired)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isPaired(&self) -> bool;
 
         /// Check if the user has the Watch app installed
         #[method(isWatchAppInstalled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isWatchAppInstalled(&self) -> bool;
 
         /// Check if the user has the Watch app's complication enabled
         #[method(isComplicationEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isComplicationEnabled(&self) -> bool;
 
         /// The number of calls remaining to transferCurrentComplicationUserInfo: before the system starts transferring the complicationUserInfo as regular userInfos. If this is 0, the complicationUserInfo will be transferred as regular userInfos. Count will be 0 whenever the complication is not enabled
         #[method(remainingComplicationUserInfoTransfers)]
+        #[unsafe(method_family = none)]
         pub unsafe fn remainingComplicationUserInfoTransfers(&self) -> NSUInteger;
 
         /// Use this directory to persist any data specific to the selected Watch. The location of the URL will change when the selected Watch changes. This directory will be deleted upon next launch if the watch app is uninstalled for the selected Watch, or that Watch is unpaired. If the watch app is not installed for the selected Watch the value will be nil.
-        #[method_id(watchDirectoryURL)]
+        #[method(watchDirectoryURL)]
         #[unsafe(method_family = none)]
         pub unsafe fn watchDirectoryURL(&self) -> Option<Retained<NSURL>>;
 
         /// Check if the companion app is installed on the paired iPhone. This only applies to Watch apps that can run independently.
         #[method(isCompanionAppInstalled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isCompanionAppInstalled(&self) -> bool;
 
         /// The counterpart app must be reachable for a send message to succeed.
         #[method(isReachable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isReachable(&self) -> bool;
 
         /// Reachability in the Watch app requires the paired iOS device to have been unlocked at least once after reboot. This property can be used to determine if the iOS device needs to be unlocked. If the reachable property is set to NO it may be because the iOS device has rebooted and needs to be unlocked. If this is the case, the Watch can show a prompt to the user suggesting they unlock their paired iOS device.
         #[method(iOSDeviceNeedsUnlockAfterRebootForReachability)]
+        #[unsafe(method_family = none)]
         pub unsafe fn iOSDeviceNeedsUnlockAfterRebootForReachability(&self) -> bool;
 
         #[cfg(feature = "block2")]
         /// Clients can use this method to send messages to the counterpart app. Clients wishing to receive a reply to a particular message should pass in a replyHandler block. If the message cannot be sent or if the reply could not be received, the errorHandler block will be invoked with an error. If both a replyHandler and an errorHandler are specified, then exactly one of them will be invoked. Messages can only be sent while the sending app is running. If the sending app exits before the message is dispatched the send will fail. If the counterpart app is not running the counterpart app will be launched upon receiving the message (iOS counterpart app only). The message dictionary can only accept the property list types.
         #[method(sendMessage:replyHandler:errorHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sendMessage_replyHandler_errorHandler(
             &self,
             message: &NSDictionary<NSString, AnyObject>,
@@ -133,6 +146,7 @@ extern_methods!(
         #[cfg(feature = "block2")]
         /// Clients can use this method to send message data. All the policies of send message apply to send message data. Send message data is meant for clients that have an existing transfer format and do not need the convenience of the send message dictionary.
         #[method(sendMessageData:replyHandler:errorHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sendMessageData_replyHandler_errorHandler(
             &self,
             data: &NSData,
@@ -141,18 +155,19 @@ extern_methods!(
         );
 
         /// Setting the applicationContext is a way to transfer the latest state of an app. After updating the applicationContext, the system initiates the data transfer at an appropriate time, which can occur after the app exits. The counterpart app will receive a delegate callback on next launch if the applicationContext has successfully arrived. If there is no app context, it should be updated with an empty dictionary. The applicationContext dictionary can only accept the property list types.
-        #[method_id(applicationContext)]
+        #[method(applicationContext)]
         #[unsafe(method_family = none)]
         pub unsafe fn applicationContext(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[method(updateApplicationContext:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updateApplicationContext_error(
             &self,
             application_context: &NSDictionary<NSString, AnyObject>,
         ) -> Result<(), Retained<NSError>>;
 
         /// Stores the most recently received applicationContext from the counterpart app.
-        #[method_id(receivedApplicationContext)]
+        #[method(receivedApplicationContext)]
         #[unsafe(method_family = none)]
         pub unsafe fn receivedApplicationContext(
             &self,
@@ -160,7 +175,7 @@ extern_methods!(
 
         #[cfg(feature = "WCSessionUserInfoTransfer")]
         /// The system will enqueue the user info dictionary and transfer it to the counterpart app at an opportune time. The transfer of user info will continue after the sending app has exited. The counterpart app will receive a delegate callback on next launch if the file has successfully arrived. The userInfo dictionary can only accept the property list types.
-        #[method_id(transferUserInfo:)]
+        #[method(transferUserInfo:)]
         #[unsafe(method_family = none)]
         pub unsafe fn transferUserInfo(
             &self,
@@ -169,7 +184,7 @@ extern_methods!(
 
         #[cfg(feature = "WCSessionUserInfoTransfer")]
         /// Enqueues a user info dictionary containing the most current information for an enabled complication. If the app's complication is enabled the system will try to transfer this user info immediately. Once a current complication user info is received the system will launch the Watch App Extension in the background and allow it to update the complication content. If the current user info cannot be transferred (i.e. devices disconnected, out of background launch budget, etc.) it will wait in the outstandingUserInfoTransfers queue until next opportune time. There can only be one current complication user info in the outstandingUserInfoTransfers queue. If a current complication user info is outstanding (waiting to transfer) and -transferCurrentComplicationUserInfo: is called again with new user info, the new user info will be tagged as current and the previously current user info will be untagged. The previous user info will however stay in the queue of outstanding transfers.
-        #[method_id(transferCurrentComplicationUserInfo:)]
+        #[method(transferCurrentComplicationUserInfo:)]
         #[unsafe(method_family = none)]
         pub unsafe fn transferCurrentComplicationUserInfo(
             &self,
@@ -178,7 +193,7 @@ extern_methods!(
 
         #[cfg(feature = "WCSessionUserInfoTransfer")]
         /// Returns an array of user info transfers that are still transferring (i.e. have not been cancelled, failed, or been received by the counterpart app).
-        #[method_id(outstandingUserInfoTransfers)]
+        #[method(outstandingUserInfoTransfers)]
         #[unsafe(method_family = none)]
         pub unsafe fn outstandingUserInfoTransfers(
             &self,
@@ -186,7 +201,7 @@ extern_methods!(
 
         #[cfg(feature = "WCSessionFile")]
         /// The system will enqueue the file and transfer it to the counterpart app at an opportune time. The transfer of a file will continue after the sending app has exited. The counterpart app will receive a delegate callback on next launch if the file has successfully arrived. The metadata dictionary can only accept the property list types.
-        #[method_id(transferFile:metadata:)]
+        #[method(transferFile:metadata:)]
         #[unsafe(method_family = none)]
         pub unsafe fn transferFile_metadata(
             &self,
@@ -196,7 +211,7 @@ extern_methods!(
 
         #[cfg(feature = "WCSessionFile")]
         /// Returns an array of file transfers that are still transferring (i.e. have not been cancelled, failed, or been received by the counterpart app).
-        #[method_id(outstandingFileTransfers)]
+        #[method(outstandingFileTransfers)]
         #[unsafe(method_family = none)]
         pub unsafe fn outstandingFileTransfers(&self) -> Retained<NSArray<WCSessionFileTransfer>>;
     }
@@ -205,7 +220,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WCSession {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -222,6 +237,7 @@ extern_protocol!(
     pub unsafe trait WCSessionDelegate: NSObjectProtocol {
         /// Called when the session has completed activation. If session state is WCSessionActivationStateNotActivated there will be an error with more details.
         #[method(session:activationDidCompleteWithState:error:)]
+        #[unsafe(method_family = none)]
         unsafe fn session_activationDidCompleteWithState_error(
             &self,
             session: &WCSession,
@@ -231,30 +247,36 @@ extern_protocol!(
 
         /// Called when the session can no longer be used to modify or add any new transfers and, all interactive messages will be cancelled, but delegate callbacks for background transfers can still occur. This will happen when the selected watch is being changed.
         #[method(sessionDidBecomeInactive:)]
+        #[unsafe(method_family = none)]
         unsafe fn sessionDidBecomeInactive(&self, session: &WCSession);
 
         /// Called when all delegate callbacks for the previously selected watch has occurred. The session can be re-activated for the now selected watch using activateSession.
         #[method(sessionDidDeactivate:)]
+        #[unsafe(method_family = none)]
         unsafe fn sessionDidDeactivate(&self, session: &WCSession);
 
         /// Called when any of the Watch state properties change.
         #[optional]
         #[method(sessionWatchStateDidChange:)]
+        #[unsafe(method_family = none)]
         unsafe fn sessionWatchStateDidChange(&self, session: &WCSession);
 
         /// Called when the installed state of the Companion app changes.
         #[optional]
         #[method(sessionCompanionAppInstalledDidChange:)]
+        #[unsafe(method_family = none)]
         unsafe fn sessionCompanionAppInstalledDidChange(&self, session: &WCSession);
 
         /// Called when the reachable state of the counterpart app changes. The receiver should check the reachable property on receiving this delegate callback.
         #[optional]
         #[method(sessionReachabilityDidChange:)]
+        #[unsafe(method_family = none)]
         unsafe fn sessionReachabilityDidChange(&self, session: &WCSession);
 
         /// Called on the delegate of the receiver. Will be called on startup if the incoming message caused the receiver to launch.
         #[optional]
         #[method(session:didReceiveMessage:)]
+        #[unsafe(method_family = none)]
         unsafe fn session_didReceiveMessage(
             &self,
             session: &WCSession,
@@ -265,6 +287,7 @@ extern_protocol!(
         /// Called on the delegate of the receiver when the sender sends a message that expects a reply. Will be called on startup if the incoming message caused the receiver to launch.
         #[optional]
         #[method(session:didReceiveMessage:replyHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn session_didReceiveMessage_replyHandler(
             &self,
             session: &WCSession,
@@ -275,12 +298,14 @@ extern_protocol!(
         /// Called on the delegate of the receiver. Will be called on startup if the incoming message data caused the receiver to launch.
         #[optional]
         #[method(session:didReceiveMessageData:)]
+        #[unsafe(method_family = none)]
         unsafe fn session_didReceiveMessageData(&self, session: &WCSession, message_data: &NSData);
 
         #[cfg(feature = "block2")]
         /// Called on the delegate of the receiver when the sender sends message data that expects a reply. Will be called on startup if the incoming message data caused the receiver to launch.
         #[optional]
         #[method(session:didReceiveMessageData:replyHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn session_didReceiveMessageData_replyHandler(
             &self,
             session: &WCSession,
@@ -291,6 +316,7 @@ extern_protocol!(
         /// Called on the delegate of the receiver. Will be called on startup if an applicationContext is available.
         #[optional]
         #[method(session:didReceiveApplicationContext:)]
+        #[unsafe(method_family = none)]
         unsafe fn session_didReceiveApplicationContext(
             &self,
             session: &WCSession,
@@ -301,6 +327,7 @@ extern_protocol!(
         /// Called on the sending side after the user info transfer has successfully completed or failed with an error. Will be called on next launch if the sender was not running when the user info finished.
         #[optional]
         #[method(session:didFinishUserInfoTransfer:error:)]
+        #[unsafe(method_family = none)]
         unsafe fn session_didFinishUserInfoTransfer_error(
             &self,
             session: &WCSession,
@@ -311,6 +338,7 @@ extern_protocol!(
         /// Called on the delegate of the receiver. Will be called on startup if the user info finished transferring when the receiver was not running.
         #[optional]
         #[method(session:didReceiveUserInfo:)]
+        #[unsafe(method_family = none)]
         unsafe fn session_didReceiveUserInfo(
             &self,
             session: &WCSession,
@@ -321,6 +349,7 @@ extern_protocol!(
         /// Called on the sending side after the file transfer has successfully completed or failed with an error. Will be called on next launch if the sender was not running when the transfer finished.
         #[optional]
         #[method(session:didFinishFileTransfer:error:)]
+        #[unsafe(method_family = none)]
         unsafe fn session_didFinishFileTransfer_error(
             &self,
             session: &WCSession,
@@ -332,6 +361,7 @@ extern_protocol!(
         /// Called on the delegate of the receiver. Will be called on startup if the file finished transferring when the receiver was not running. The incoming file will be located in the Documents/Inbox/ folder when being delivered. The receiver must take ownership of the file by moving it to another location. The system will remove any content that has not been moved when this delegate method returns.
         #[optional]
         #[method(session:didReceiveFile:)]
+        #[unsafe(method_family = none)]
         unsafe fn session_didReceiveFile(&self, session: &WCSession, file: &WCSessionFile);
     }
 );

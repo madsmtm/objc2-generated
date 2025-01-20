@@ -19,6 +19,7 @@ extern_protocol!(
     pub unsafe trait NSGlyphStorage {
         #[cfg(feature = "NSFont")]
         #[method(insertGlyphs:length:forStartingGlyphAtIndex:characterIndex:)]
+        #[unsafe(method_family = none)]
         unsafe fn insertGlyphs_length_forStartingGlyphAtIndex_characterIndex(
             &self,
             glyphs: NonNull<NSGlyph>,
@@ -28,6 +29,7 @@ extern_protocol!(
         );
 
         #[method(setIntAttribute:value:forGlyphAtIndex:)]
+        #[unsafe(method_family = none)]
         unsafe fn setIntAttribute_value_forGlyphAtIndex(
             &self,
             attribute_tag: NSInteger,
@@ -35,11 +37,12 @@ extern_protocol!(
             glyph_index: NSUInteger,
         );
 
-        #[method_id(attributedString)]
+        #[method(attributedString)]
         #[unsafe(method_family = none)]
         unsafe fn attributedString(&self) -> Retained<NSAttributedString>;
 
         #[method(layoutOptions)]
+        #[unsafe(method_family = none)]
         unsafe fn layoutOptions(&self) -> NSUInteger;
     }
 );
@@ -56,6 +59,7 @@ unsafe impl NSObjectProtocol for NSGlyphGenerator {}
 extern_methods!(
     unsafe impl NSGlyphGenerator {
         #[method(generateGlyphsForGlyphStorage:desiredNumberOfCharacters:glyphIndex:characterIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn generateGlyphsForGlyphStorage_desiredNumberOfCharacters_glyphIndex_characterIndex(
             &self,
             glyph_storage: &ProtocolObject<dyn NSGlyphStorage>,
@@ -64,7 +68,7 @@ extern_methods!(
             char_index: *mut NSUInteger,
         );
 
-        #[method_id(sharedGlyphGenerator)]
+        #[method(sharedGlyphGenerator)]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedGlyphGenerator() -> Retained<NSGlyphGenerator>;
     }
@@ -73,11 +77,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSGlyphGenerator {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -72,6 +72,7 @@ extern_methods!(
         ///
         /// Returns: A value indicating whether this credential is stored permanently, per session or not at all.
         #[method(persistence)]
+        #[unsafe(method_family = none)]
         pub unsafe fn persistence(&self) -> NSURLCredentialPersistence;
     }
 );
@@ -79,11 +80,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSURLCredential {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -103,7 +104,7 @@ extern_methods!(
         /// Parameter `persistence`: enum that says to store per session, permanently or not at all
         ///
         /// Returns: The initialized NSURLCredential
-        #[method_id(initWithUser:password:persistence:)]
+        #[method(initWithUser:password:persistence:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithUser_password_persistence(
             this: Allocated<Self>,
@@ -122,7 +123,7 @@ extern_methods!(
         /// Parameter `persistence`: enum that says to store per session, permanently or not at all
         ///
         /// Returns: The new autoreleased NSURLCredential
-        #[method_id(credentialWithUser:password:persistence:)]
+        #[method(credentialWithUser:password:persistence:)]
         #[unsafe(method_family = none)]
         pub unsafe fn credentialWithUser_password_persistence(
             user: &NSString,
@@ -134,7 +135,7 @@ extern_methods!(
         /// Get the username
         ///
         /// Returns: The user string
-        #[method_id(user)]
+        #[method(user)]
         #[unsafe(method_family = none)]
         pub unsafe fn user(&self) -> Option<Retained<NSString>>;
 
@@ -146,7 +147,7 @@ extern_methods!(
         /// This method might actually attempt to retrieve the
         /// password from an external store, possible resulting in prompting,
         /// so do not call it unless needed.
-        #[method_id(password)]
+        #[method(password)]
         #[unsafe(method_family = none)]
         pub unsafe fn password(&self) -> Option<Retained<NSString>>;
 
@@ -159,6 +160,7 @@ extern_methods!(
         /// method returns YES, since getting the password may fail, or the
         /// user may refuse access.
         #[method(hasPassword)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hasPassword(&self) -> bool;
     }
 );
@@ -171,7 +173,7 @@ extern_methods!(
         /// Returns an NSArray of SecCertificateRef objects representing the client certificate for this credential, if this credential was created with an identity and certificate.
         ///
         /// Returns: an NSArray of SecCertificateRef or NULL if this is a username/password credential
-        #[method_id(certificates)]
+        #[method(certificates)]
         #[unsafe(method_family = none)]
         pub unsafe fn certificates(&self) -> Retained<NSArray>;
     }

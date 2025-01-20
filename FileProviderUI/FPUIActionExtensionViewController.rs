@@ -72,7 +72,7 @@ extern_methods!(
     unsafe impl FPUIActionExtensionViewController {
         #[cfg(feature = "FPUIActionExtensionContext")]
         /// The extension context provided by the host app.
-        #[method_id(extensionContext)]
+        #[method(extensionContext)]
         #[unsafe(method_family = none)]
         pub unsafe fn extensionContext(&self) -> Retained<FPUIActionExtensionContext>;
 
@@ -95,6 +95,7 @@ extern_methods!(
         /// ://com.apple.documentation/documentation/foundation/nserror/1411580-userinfo>
         /// property.
         #[method(prepareForError:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn prepareForError(&self, error: &NSError);
 
         /// Performs any necessary setup or configuration for the specified action.
@@ -111,6 +112,7 @@ extern_methods!(
         ///
         /// - itemIdentifiers: The identifiers of the items affected by the action.
         #[method(prepareForActionWithIdentifier:itemIdentifiers:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn prepareForActionWithIdentifier_itemIdentifiers(
             &self,
             action_identifier: &NSString,
@@ -124,7 +126,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl FPUIActionExtensionViewController {
-        #[method_id(initWithNibName:bundle:)]
+        #[method(initWithNibName:bundle:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -132,7 +134,7 @@ extern_methods!(
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -146,7 +148,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl FPUIActionExtensionViewController {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -157,7 +159,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl FPUIActionExtensionViewController {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

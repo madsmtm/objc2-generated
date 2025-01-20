@@ -79,10 +79,12 @@ extern_methods!(
         /// Note: Ignored when `bidirectional = YES`.
         /// Default value: `NO`.
         #[method(reverse)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reverse(&self) -> bool;
 
         /// Setter for [`reverse`][Self::reverse].
         #[method(setReverse:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setReverse(&self, reverse: bool);
 
         /// A parameter that defines a bidirectional RNN layer.
@@ -91,10 +93,12 @@ extern_methods!(
         /// are concatenated together on the channel-axis.
         /// Default value: `NO`.
         #[method(bidirectional)]
+        #[unsafe(method_family = none)]
         pub unsafe fn bidirectional(&self) -> bool;
 
         /// Setter for [`bidirectional`][Self::bidirectional].
         #[method(setBidirectional:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBidirectional(&self, bidirectional: bool);
 
         /// A parameter that makes the RNN layer support training.
@@ -102,24 +106,28 @@ extern_methods!(
         /// If set to `YES` then the layer will produce training state tensor as a secondary output.
         /// Default value: `NO`.
         #[method(training)]
+        #[unsafe(method_family = none)]
         pub unsafe fn training(&self) -> bool;
 
         /// Setter for [`training`][Self::training].
         #[method(setTraining:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTraining(&self, training: bool);
 
         /// A parameter that defines the activation function to use with the RNN operation.
         ///
         /// Default value: `MPSGraphRNNActivationRelu`.
         #[method(activation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn activation(&self) -> MPSGraphRNNActivation;
 
         /// Setter for [`activation`][Self::activation].
         #[method(setActivation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setActivation(&self, activation: MPSGraphRNNActivation);
 
         /// Creates a single gate RNN descriptor with default values.
-        #[method_id(descriptor)]
+        #[method(descriptor)]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptor() -> Option<Retained<Self>>;
     }
@@ -129,11 +137,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MPSGraphCore")]
     unsafe impl MPSGraphSingleGateRNNDescriptor {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -178,10 +186,12 @@ extern_methods!(
         /// Note: Ignored when `bidirectional = YES`.
         /// Default value: `NO`.
         #[method(reverse)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reverse(&self) -> bool;
 
         /// Setter for [`reverse`][Self::reverse].
         #[method(setReverse:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setReverse(&self, reverse: bool);
 
         /// A parameter that defines a bidirectional LSTM layer.
@@ -190,10 +200,12 @@ extern_methods!(
         /// are concatenated together on the channel-axis.
         /// Default value: `NO`.
         #[method(bidirectional)]
+        #[unsafe(method_family = none)]
         pub unsafe fn bidirectional(&self) -> bool;
 
         /// Setter for [`bidirectional`][Self::bidirectional].
         #[method(setBidirectional:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBidirectional(&self, bidirectional: bool);
 
         /// A parameter that controls whether or not to return the output cell from the LSTM layer.
@@ -201,10 +213,12 @@ extern_methods!(
         /// If set to `YES` then this layer will produce the internal cell of the LSTM unit as secondary output.
         /// Default value: `NO`.
         #[method(produceCell)]
+        #[unsafe(method_family = none)]
         pub unsafe fn produceCell(&self) -> bool;
 
         /// Setter for [`produceCell`][Self::produceCell].
         #[method(setProduceCell:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setProduceCell(&self, produce_cell: bool);
 
         /// A parameter that enables the LSTM layer to support training.
@@ -212,10 +226,12 @@ extern_methods!(
         /// If set to `YES` then the layer will produce training state tensor as a secondary output.
         /// Default value: `NO`.
         #[method(training)]
+        #[unsafe(method_family = none)]
         pub unsafe fn training(&self) -> bool;
 
         /// Setter for [`training`][Self::training].
         #[method(setTraining:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTraining(&self, training: bool);
 
         /// A parameter that controls the internal order of the LSTM gates.
@@ -223,64 +239,76 @@ extern_methods!(
         /// If set to `YES` then the layer will use the gate-ordering `[ i, z, f, o ]` instead of default `[ i, f, z, o ]`.
         /// Default value: `NO`
         #[method(forgetGateLast)]
+        #[unsafe(method_family = none)]
         pub unsafe fn forgetGateLast(&self) -> bool;
 
         /// Setter for [`forgetGateLast`][Self::forgetGateLast].
         #[method(setForgetGateLast:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setForgetGateLast(&self, forget_gate_last: bool);
 
         /// A parameter that defines the activation function used with the input gate of the LSTM operation.
         ///
         /// Default value: `MPSGraphRNNActivationSigmoid`.
         #[method(inputGateActivation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn inputGateActivation(&self) -> MPSGraphRNNActivation;
 
         /// Setter for [`inputGateActivation`][Self::inputGateActivation].
         #[method(setInputGateActivation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setInputGateActivation(&self, input_gate_activation: MPSGraphRNNActivation);
 
         /// A parameter that defines the activation function used with the forget gate of the LSTM operation.
         ///
         /// Default value: `MPSGraphRNNActivationSigmoid`.
         #[method(forgetGateActivation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn forgetGateActivation(&self) -> MPSGraphRNNActivation;
 
         /// Setter for [`forgetGateActivation`][Self::forgetGateActivation].
         #[method(setForgetGateActivation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setForgetGateActivation(&self, forget_gate_activation: MPSGraphRNNActivation);
 
         /// A parameter that defines the activation function used with the cell gate of the LSTM operation.
         ///
         /// Default value: `MPSGraphRNNActivationTanh`.
         #[method(cellGateActivation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cellGateActivation(&self) -> MPSGraphRNNActivation;
 
         /// Setter for [`cellGateActivation`][Self::cellGateActivation].
         #[method(setCellGateActivation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCellGateActivation(&self, cell_gate_activation: MPSGraphRNNActivation);
 
         /// A parameter that defines the activation function used with the output gate of the LSTM operation.
         ///
         /// Default value: `MPSGraphRNNActivationSigmoid`.
         #[method(outputGateActivation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn outputGateActivation(&self) -> MPSGraphRNNActivation;
 
         /// Setter for [`outputGateActivation`][Self::outputGateActivation].
         #[method(setOutputGateActivation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setOutputGateActivation(&self, output_gate_activation: MPSGraphRNNActivation);
 
         /// A parameter that defines the activation function used with the current cell value of the LSTM operation.
         ///
         /// Default value: `MPSGraphRNNActivationTanh`.
         #[method(activation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn activation(&self) -> MPSGraphRNNActivation;
 
         /// Setter for [`activation`][Self::activation].
         #[method(setActivation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setActivation(&self, activation: MPSGraphRNNActivation);
 
         /// Creates an LSTM descriptor with default values.
-        #[method_id(descriptor)]
+        #[method(descriptor)]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptor() -> Option<Retained<Self>>;
     }
@@ -290,11 +318,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MPSGraphCore")]
     unsafe impl MPSGraphLSTMDescriptor {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -338,10 +366,12 @@ extern_methods!(
         /// Note: Ignored when `bidirectional = YES`.
         /// Default value: `NO`.
         #[method(reverse)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reverse(&self) -> bool;
 
         /// Setter for [`reverse`][Self::reverse].
         #[method(setReverse:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setReverse(&self, reverse: bool);
 
         /// A parameter that defines a bidirectional GRU layer.
@@ -350,10 +380,12 @@ extern_methods!(
         /// are concatenated together on the channel-axis.
         /// Default value: `NO`.
         #[method(bidirectional)]
+        #[unsafe(method_family = none)]
         pub unsafe fn bidirectional(&self) -> bool;
 
         /// Setter for [`bidirectional`][Self::bidirectional].
         #[method(setBidirectional:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBidirectional(&self, bidirectional: bool);
 
         /// A parameter that enables the GRU layer to support training.
@@ -361,10 +393,12 @@ extern_methods!(
         /// If set to `YES` then the layer will produce training state tensor as a secondary output.
         /// Default value: `NO`.
         #[method(training)]
+        #[unsafe(method_family = none)]
         pub unsafe fn training(&self) -> bool;
 
         /// Setter for [`training`][Self::training].
         #[method(setTraining:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTraining(&self, training: bool);
 
         /// A parameter that controls the internal order of the GRU gates.
@@ -372,10 +406,12 @@ extern_methods!(
         /// If set to `YES` then the layer will use the gate-ordering `[ r, z, o ]` instead of default `[ z, r, o ]`.
         /// Default value: `NO`.
         #[method(resetGateFirst)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resetGateFirst(&self) -> bool;
 
         /// Setter for [`resetGateFirst`][Self::resetGateFirst].
         #[method(setResetGateFirst:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setResetGateFirst(&self, reset_gate_first: bool);
 
         /// A parameter that chooses between two variants for the reset gate computation.
@@ -384,10 +420,12 @@ extern_methods!(
         /// Otherwise it's computed as `c[t] = (h[t-1] r[t] m) R^T`.
         /// Default value: `NO`.
         #[method(resetAfter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resetAfter(&self) -> bool;
 
         /// Setter for [`resetAfter`][Self::resetAfter].
         #[method(setResetAfter:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setResetAfter(&self, reset_after: bool);
 
         /// A parameter that chooses between two variants for the final output computation.
@@ -396,44 +434,52 @@ extern_methods!(
         /// Otherwise it's computed as `h[t] = (1-z[t]) h[t-1] + z[t] o[t]`.
         /// Default value: `NO`.
         #[method(flipZ)]
+        #[unsafe(method_family = none)]
         pub unsafe fn flipZ(&self) -> bool;
 
         /// Setter for [`flipZ`][Self::flipZ].
         #[method(setFlipZ:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFlipZ(&self, flip_z: bool);
 
         /// A parameter that defines the activation function to use with the update-gate of the GRU operation.
         ///
         /// Default value: `MPSGraphRNNActivationSigmoid`.
         #[method(updateGateActivation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updateGateActivation(&self) -> MPSGraphRNNActivation;
 
         /// Setter for [`updateGateActivation`][Self::updateGateActivation].
         #[method(setUpdateGateActivation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUpdateGateActivation(&self, update_gate_activation: MPSGraphRNNActivation);
 
         /// A parameter that defines the activation function to use with the reset-gate of the GRU operation.
         ///
         /// Default value: `MPSGraphRNNActivationSigmoid`.
         #[method(resetGateActivation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resetGateActivation(&self) -> MPSGraphRNNActivation;
 
         /// Setter for [`resetGateActivation`][Self::resetGateActivation].
         #[method(setResetGateActivation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setResetGateActivation(&self, reset_gate_activation: MPSGraphRNNActivation);
 
         /// A parameter that defines the activation function to use with the output-gate of the GRU operation.
         ///
         /// Default value: `MPSGraphRNNActivationTanh`.
         #[method(outputGateActivation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn outputGateActivation(&self) -> MPSGraphRNNActivation;
 
         /// Setter for [`outputGateActivation`][Self::outputGateActivation].
         #[method(setOutputGateActivation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setOutputGateActivation(&self, output_gate_activation: MPSGraphRNNActivation);
 
         /// Creates an GRU descriptor with default values.
-        #[method_id(descriptor)]
+        #[method(descriptor)]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptor() -> Option<Retained<Self>>;
     }
@@ -443,11 +489,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MPSGraphCore")]
     unsafe impl MPSGraphGRUDescriptor {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -483,7 +529,7 @@ extern_methods!(
         /// - descriptor: A descriptor that defines the parameters for the RNN operation.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor array of size 1 or 2, depending on value of `descriptor.training`. The layout of the both outputs is [T,N,H] or [T,N,2H] for bidirectional.
-        #[method_id(singleGateRNNWithSourceTensor:recurrentWeight:inputWeight:bias:initState:mask:descriptor:name:)]
+        #[method(singleGateRNNWithSourceTensor:recurrentWeight:inputWeight:bias:initState:mask:descriptor:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn singleGateRNNWithSourceTensor_recurrentWeight_inputWeight_bias_initState_mask_descriptor_name(
             &self,
@@ -522,7 +568,7 @@ extern_methods!(
         /// - descriptor: A descriptor that defines the parameters for the RNN operation.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor array of size 1 or 2, depending on value of `descriptor.training`. The layout of the both outputs is [T,N,H] or [T,N,2H] for bidirectional.
-        #[method_id(singleGateRNNWithSourceTensor:recurrentWeight:inputWeight:bias:initState:descriptor:name:)]
+        #[method(singleGateRNNWithSourceTensor:recurrentWeight:inputWeight:bias:initState:descriptor:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn singleGateRNNWithSourceTensor_recurrentWeight_inputWeight_bias_initState_descriptor_name(
             &self,
@@ -557,7 +603,7 @@ extern_methods!(
         /// - descriptor: A descriptor that defines the parameters for the RNN operation.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor array of size 1 or 2, depending on value of `descriptor.training`. The layout of the both outputs is [T,N,H] or [T,N,2H] for bidirectional.
-        #[method_id(singleGateRNNWithSourceTensor:recurrentWeight:initState:descriptor:name:)]
+        #[method(singleGateRNNWithSourceTensor:recurrentWeight:initState:descriptor:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn singleGateRNNWithSourceTensor_recurrentWeight_initState_descriptor_name(
             &self,
@@ -595,7 +641,7 @@ extern_methods!(
         /// - Returns: A valid `MPSGraphTensor` array containing gradients for each input tensor, except for `sourceGradient` and `mask`.
         /// In case an input is `nil`, no gradient will be returned for it.
         /// The order of the gradients will be: for `source`, for `recurrentWeight`, for `inputWeight`, for `bias` and finally for `initState`.
-        #[method_id(singleGateRNNGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:stateGradient:inputWeight:bias:initState:mask:descriptor:name:)]
+        #[method(singleGateRNNGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:stateGradient:inputWeight:bias:initState:mask:descriptor:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn singleGateRNNGradientsWithSourceTensor_recurrentWeight_sourceGradient_zState_stateGradient_inputWeight_bias_initState_mask_descriptor_name(
             &self,
@@ -638,7 +684,7 @@ extern_methods!(
         /// - Returns: A valid `MPSGraphTensor` array containing gradients for each input tensor, except for `sourceGradient` and `mask`.
         /// In case an input is `nil`, no gradient will be returned for it.
         /// The order of the gradients will be: for `source`, for `recurrentWeight`, for `inputWeight`, for `bias` and finally for `initState`.
-        #[method_id(singleGateRNNGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:inputWeight:bias:initState:mask:descriptor:name:)]
+        #[method(singleGateRNNGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:inputWeight:bias:initState:mask:descriptor:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn singleGateRNNGradientsWithSourceTensor_recurrentWeight_sourceGradient_zState_inputWeight_bias_initState_mask_descriptor_name(
             &self,
@@ -679,7 +725,7 @@ extern_methods!(
         /// - Returns: A valid `MPSGraphTensor` array containing gradients for each input tensor, except for `sourceGradient` and `mask`.
         /// In case an input is `nil`, no gradient will be returned for it.
         /// The order of the gradients will be: for `source`, for `recurrentWeight`, for `inputWeight`, for `bias` and finally for `initState`.
-        #[method_id(singleGateRNNGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:inputWeight:bias:initState:descriptor:name:)]
+        #[method(singleGateRNNGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:inputWeight:bias:initState:descriptor:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn singleGateRNNGradientsWithSourceTensor_recurrentWeight_sourceGradient_zState_inputWeight_bias_initState_descriptor_name(
             &self,
@@ -716,7 +762,7 @@ extern_methods!(
         /// - Returns: A valid `MPSGraphTensor` array containing gradients for each input tensor, except for `sourceGradient` and `mask`.
         /// In case an input is `nil`, no gradient will be returned for it.
         /// The order of the gradients will be: for `source`, for `recurrentWeight`, for `inputWeight`, for `bias` and finally for `initState`.
-        #[method_id(singleGateRNNGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:initState:descriptor:name:)]
+        #[method(singleGateRNNGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:initState:descriptor:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn singleGateRNNGradientsWithSourceTensor_recurrentWeight_sourceGradient_zState_initState_descriptor_name(
             &self,
@@ -761,7 +807,7 @@ extern_methods!(
         /// - name: The name for the operation.
         /// - Returns: A valid `MPSGraphTensor` array of size 1 or 2 or 3, depending on values of `descriptor.produceCell` and `descriptor.training`.
         /// The layout of the both state and cell outputs are [T,N,H] or [T,N,2H] for bidirectional, and the layout of the trainingState output is [T,N,4H] or [T,N,8H] for bidirectional.
-        #[method_id(LSTMWithSourceTensor:recurrentWeight:inputWeight:bias:initState:initCell:mask:peephole:descriptor:name:)]
+        #[method(LSTMWithSourceTensor:recurrentWeight:inputWeight:bias:initState:initCell:mask:peephole:descriptor:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn LSTMWithSourceTensor_recurrentWeight_inputWeight_bias_initState_initCell_mask_peephole_descriptor_name(
             &self,
@@ -807,7 +853,7 @@ extern_methods!(
         /// - name: The name for the operation.
         /// - Returns: A valid `MPSGraphTensor` array of size 1 or 2 or 3, depending on values of `descriptor.produceCell` and `descriptor.training`.
         /// The layout of the both state and cell outputs are [T,N,H] or [T,N,2H] for bidirectional, and the layout of the trainingState output is [T,N,4H] or [T,N,8H] for bidirectional.
-        #[method_id(LSTMWithSourceTensor:recurrentWeight:inputWeight:bias:initState:initCell:descriptor:name:)]
+        #[method(LSTMWithSourceTensor:recurrentWeight:inputWeight:bias:initState:initCell:descriptor:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn LSTMWithSourceTensor_recurrentWeight_inputWeight_bias_initState_initCell_descriptor_name(
             &self,
@@ -849,7 +895,7 @@ extern_methods!(
         /// - name: The name for the operation.
         /// - Returns: A valid `MPSGraphTensor` array of size 1 or 2 or 3, depending on values of `descriptor.produceCell` and `descriptor.training`.
         /// The layout of the both state and cell outputs are [T,N,H] or [T,N,2H] for bidirectional, and the layout of the trainingState output is [T,N,4H] or [T,N,8H] for bidirectional.
-        #[method_id(LSTMWithSourceTensor:recurrentWeight:initState:initCell:descriptor:name:)]
+        #[method(LSTMWithSourceTensor:recurrentWeight:initState:initCell:descriptor:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn LSTMWithSourceTensor_recurrentWeight_initState_initCell_descriptor_name(
             &self,
@@ -892,7 +938,7 @@ extern_methods!(
         /// - Returns: A valid `MPSGraphTensor` array containing gradients for each input tensor, except for `sourceGradient` and `mask`.
         /// In case an input is nil, no gradient will be returned for it.
         /// The order of the gradients will be: for `source`, for `recurrentWeight`, for `inputWeight`, for `bias`, for `peephole`, for `initState` and for `initCell`.
-        #[method_id(LSTMGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:cellOutputFwd:stateGradient:cellGradient:inputWeight:bias:initState:initCell:mask:peephole:descriptor:name:)]
+        #[method(LSTMGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:cellOutputFwd:stateGradient:cellGradient:inputWeight:bias:initState:initCell:mask:peephole:descriptor:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn LSTMGradientsWithSourceTensor_recurrentWeight_sourceGradient_zState_cellOutputFwd_stateGradient_cellGradient_inputWeight_bias_initState_initCell_mask_peephole_descriptor_name(
             &self,
@@ -941,7 +987,7 @@ extern_methods!(
         /// - Returns: A valid `MPSGraphTensor` array containing gradients for each input tensor, except for `sourceGradient` and `mask`.
         /// In case an input is nil, no gradient will be returned for it.
         /// The order of the gradients will be: for `source`, for `recurrentWeight`, for `inputWeight`, for `bias`, for `peephole`, for `initState` and for `initCell`.
-        #[method_id(LSTMGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:cellOutputFwd:inputWeight:bias:initState:initCell:mask:descriptor:name:)]
+        #[method(LSTMGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:cellOutputFwd:inputWeight:bias:initState:initCell:mask:descriptor:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn LSTMGradientsWithSourceTensor_recurrentWeight_sourceGradient_zState_cellOutputFwd_inputWeight_bias_initState_initCell_mask_descriptor_name(
             &self,
@@ -986,7 +1032,7 @@ extern_methods!(
         /// - Returns: A valid `MPSGraphTensor` array containing gradients for each input tensor, except for `sourceGradient` and `mask`.
         /// In case an input is nil, no gradient will be returned for it.
         /// The order of the gradients will be: for `source`, for `recurrentWeight`, for `inputWeight`, for `bias`, for `initState` and for `initCell`.
-        #[method_id(LSTMGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:cellOutputFwd:inputWeight:bias:initState:initCell:descriptor:name:)]
+        #[method(LSTMGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:cellOutputFwd:inputWeight:bias:initState:initCell:descriptor:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn LSTMGradientsWithSourceTensor_recurrentWeight_sourceGradient_zState_cellOutputFwd_inputWeight_bias_initState_initCell_descriptor_name(
             &self,
@@ -1024,7 +1070,7 @@ extern_methods!(
         /// - Returns: A valid `MPSGraphTensor` array containing gradients for each input tensor, except for `sourceGradient` and `mask`.
         /// In case an input is nil, no gradient will be returned for it.
         /// The order of the gradients will be: for `source`, for `recurrentWeight`, for `inputWeight`, for `bias`, for `initState` and for `initCell`.
-        #[method_id(LSTMGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:cellOutputFwd:descriptor:name:)]
+        #[method(LSTMGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:cellOutputFwd:descriptor:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn LSTMGradientsWithSourceTensor_recurrentWeight_sourceGradient_zState_cellOutputFwd_descriptor_name(
             &self,
@@ -1076,7 +1122,7 @@ extern_methods!(
         /// - Returns: A valid `MPSGraphTensor` array of size 1 or 2 depending on value of  `descriptor.training`.
         /// The layout of the state output is [T,N,H] or [T,N,2H] for bidirectional,
         /// and the layout of the `trainingState` output is [T,N,3H] or [T,N,6H] for bidirectional.
-        #[method_id(GRUWithSourceTensor:recurrentWeight:inputWeight:bias:initState:mask:secondaryBias:descriptor:name:)]
+        #[method(GRUWithSourceTensor:recurrentWeight:inputWeight:bias:initState:mask:secondaryBias:descriptor:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn GRUWithSourceTensor_recurrentWeight_inputWeight_bias_initState_mask_secondaryBias_descriptor_name(
             &self,
@@ -1128,7 +1174,7 @@ extern_methods!(
         /// - Returns: A valid `MPSGraphTensor` array of size 1 or 2 depending on value of  `descriptor.training`.
         /// The layout of the state output is [T,N,H] or [T,N,2H] for bidirectional,
         /// and the layout of the `trainingState` output is [T,N,3H] or [T,N,6H] for bidirectional.
-        #[method_id(GRUWithSourceTensor:recurrentWeight:inputWeight:bias:initState:descriptor:name:)]
+        #[method(GRUWithSourceTensor:recurrentWeight:inputWeight:bias:initState:descriptor:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn GRUWithSourceTensor_recurrentWeight_inputWeight_bias_initState_descriptor_name(
             &self,
@@ -1177,7 +1223,7 @@ extern_methods!(
         /// - Returns: A valid `MPSGraphTensor` array of size 1 or 2 depending on value of  `descriptor.training`.
         /// The layout of the state output is [T,N,H] or [T,N,2H] for bidirectional,
         /// and the layout of the `trainingState` output is [T,N,3H] or [T,N,6H] for bidirectional.
-        #[method_id(GRUWithSourceTensor:recurrentWeight:inputWeight:bias:descriptor:name:)]
+        #[method(GRUWithSourceTensor:recurrentWeight:inputWeight:bias:descriptor:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn GRUWithSourceTensor_recurrentWeight_inputWeight_bias_descriptor_name(
             &self,
@@ -1217,7 +1263,7 @@ extern_methods!(
         /// - Returns: A valid `MPSGraphTensor` array containing gradients for each input tensor, except for `sourceGradient` and `mask`.
         /// In case an input is nil, no gradient will be returned for it.
         /// The order of the gradients will be: for `source`, for `recurrentWeight`, for `inputWeight`, for `bias`, for `initState` and for `secondaryBias`.
-        #[method_id(GRUGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:outputFwd:stateGradient:inputWeight:bias:initState:mask:secondaryBias:descriptor:name:)]
+        #[method(GRUGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:outputFwd:stateGradient:inputWeight:bias:initState:mask:secondaryBias:descriptor:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn GRUGradientsWithSourceTensor_recurrentWeight_sourceGradient_zState_outputFwd_stateGradient_inputWeight_bias_initState_mask_secondaryBias_descriptor_name(
             &self,
@@ -1261,7 +1307,7 @@ extern_methods!(
         /// - Returns: A valid `MPSGraphTensor` array containing gradients for each input tensor, except for `sourceGradient` and `mask`.
         /// In case an input is nil, no gradient will be returned for it.
         /// The order of the gradients will be: for `source`, for `recurrentWeight`, for `inputWeight`, for `bias` and for `initState`.
-        #[method_id(GRUGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:outputFwd:inputWeight:bias:initState:descriptor:name:)]
+        #[method(GRUGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:outputFwd:inputWeight:bias:initState:descriptor:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn GRUGradientsWithSourceTensor_recurrentWeight_sourceGradient_zState_outputFwd_inputWeight_bias_initState_descriptor_name(
             &self,
@@ -1301,7 +1347,7 @@ extern_methods!(
         /// - Returns: A valid `MPSGraphTensor` array containing gradients for each input tensor, except for `sourceGradient` and `mask`.
         /// In case an input is nil, no gradient will be returned for it.
         /// The order of the gradients will be: for `source`, for `recurrentWeight`, for `inputWeight` and for `bias`.
-        #[method_id(GRUGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:outputFwd:inputWeight:bias:descriptor:name:)]
+        #[method(GRUGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:outputFwd:inputWeight:bias:descriptor:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn GRUGradientsWithSourceTensor_recurrentWeight_sourceGradient_zState_outputFwd_inputWeight_bias_descriptor_name(
             &self,

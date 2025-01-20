@@ -45,19 +45,22 @@ extern_methods!(
     unsafe impl MPSNNResizeBilinear {
         /// The resize width.
         #[method(resizeWidth)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resizeWidth(&self) -> NSUInteger;
 
         /// The resize height.
         #[method(resizeHeight)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resizeHeight(&self) -> NSUInteger;
 
         /// If YES, the centers of the 4 corner pixels of the input and output regions are aligned,
         /// preserving the values at the corner pixels.
         /// The default is NO.
         #[method(alignCorners)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alignCorners(&self) -> bool;
 
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -76,7 +79,7 @@ extern_methods!(
         /// preserving the values at the corner pixels.
         ///
         /// Returns: A valid MPSNNResizeBilinear object or nil, if failure.
-        #[method_id(initWithDevice:resizeWidth:resizeHeight:alignCorners:)]
+        #[method(initWithDevice:resizeWidth:resizeHeight:alignCorners:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_resizeWidth_resizeHeight_alignCorners(
             this: Allocated<Self>,
@@ -95,7 +98,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSNNResizeBilinear
         ///
         /// Returns: A new MPSNNResizeBilinear object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -117,7 +120,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -130,11 +133,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNNResizeBilinear {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -178,14 +181,17 @@ extern_methods!(
     unsafe impl MPSNNCropAndResizeBilinear {
         /// The resize width.
         #[method(resizeWidth)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resizeWidth(&self) -> NSUInteger;
 
         /// The resize height.
         #[method(resizeHeight)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resizeHeight(&self) -> NSUInteger;
 
         /// the number of bounding box i.e. regions to resize.
         #[method(numberOfRegions)]
+        #[unsafe(method_family = none)]
         pub unsafe fn numberOfRegions(&self) -> NSUInteger;
 
         #[cfg(feature = "MPSCoreTypes")]
@@ -195,9 +201,10 @@ extern_methods!(
         /// [0, 1] range is allowed, in which case we use extrapolation_value to extrapolate
         /// the input image values.
         #[method(regions)]
+        #[unsafe(method_family = none)]
         pub unsafe fn regions(&self) -> NonNull<MPSRegion>;
 
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -219,7 +226,7 @@ extern_methods!(
         /// source image to use for each box/region to perform the resize operation.
         ///
         /// Returns: A valid MPSNNCropAndResizeBilinear object or nil, if failure.
-        #[method_id(initWithDevice:resizeWidth:resizeHeight:numberOfRegions:regions:)]
+        #[method(initWithDevice:resizeWidth:resizeHeight:numberOfRegions:regions:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_resizeWidth_resizeHeight_numberOfRegions_regions(
             this: Allocated<Self>,
@@ -239,7 +246,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSNNCropAndResizeBilinear
         ///
         /// Returns: A new MPSNNResizeBilinear object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -261,7 +268,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -274,11 +281,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNNCropAndResizeBilinear {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

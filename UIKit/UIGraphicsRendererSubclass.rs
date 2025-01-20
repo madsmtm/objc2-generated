@@ -18,10 +18,12 @@ extern_methods!(
     #[cfg(feature = "UIGraphicsRenderer")]
     unsafe impl UIGraphicsRenderer {
         #[method(rendererContextClass)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rendererContextClass() -> &'static AnyClass;
 
         #[cfg(feature = "objc2-core-graphics")]
         #[method(prepareCGContext:withRendererContext:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn prepareCGContext_withRendererContext(
             context: &CGContext,
             renderer_context: &UIGraphicsRendererContext,
@@ -29,6 +31,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[method(runDrawingActions:completionActions:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn runDrawingActions_completionActions_error(
             &self,
             drawing_actions: UIGraphicsDrawingActions,

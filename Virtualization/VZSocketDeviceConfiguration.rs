@@ -31,11 +31,11 @@ unsafe impl NSObjectProtocol for VZSocketDeviceConfiguration {}
 
 extern_methods!(
     unsafe impl VZSocketDeviceConfiguration {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

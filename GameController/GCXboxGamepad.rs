@@ -32,22 +32,22 @@ extern_methods!(
         ///
         /// Note: The four extra digital buttons on the Xbox Elite Wireless Controller are only directly addressable when the controller
         /// is on its default mapping profile. Otherwise, the paddle buttons are directly bound to other inputs on the controller.
-        #[method_id(paddleButton1)]
+        #[method(paddleButton1)]
         #[unsafe(method_family = none)]
         pub unsafe fn paddleButton1(&self) -> Option<Retained<GCControllerButtonInput>>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
-        #[method_id(paddleButton2)]
+        #[method(paddleButton2)]
         #[unsafe(method_family = none)]
         pub unsafe fn paddleButton2(&self) -> Option<Retained<GCControllerButtonInput>>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
-        #[method_id(paddleButton3)]
+        #[method(paddleButton3)]
         #[unsafe(method_family = none)]
         pub unsafe fn paddleButton3(&self) -> Option<Retained<GCControllerButtonInput>>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
-        #[method_id(paddleButton4)]
+        #[method(paddleButton4)]
         #[unsafe(method_family = none)]
         pub unsafe fn paddleButton4(&self) -> Option<Retained<GCControllerButtonInput>>;
 
@@ -61,7 +61,7 @@ extern_methods!(
         /// Note: The Share button is reserved by the system for screenshot and video recording gestures. If you wish to disable these
         /// gestures in your app and take control of the Share button, set buttonShare.preferredSystemGestureState to
         /// GCSystemGestureStateDisabled.
-        #[method_id(buttonShare)]
+        #[method(buttonShare)]
         #[unsafe(method_family = none)]
         pub unsafe fn buttonShare(&self) -> Option<Retained<GCControllerButtonInput>>;
     }
@@ -71,11 +71,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "GCExtendedGamepad", feature = "GCPhysicalInputProfile"))]
     unsafe impl GCXboxGamepad {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

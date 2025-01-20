@@ -20,30 +20,35 @@ unsafe impl NSObjectProtocol for GKVoiceChatService {}
 
 extern_methods!(
     unsafe impl GKVoiceChatService {
-        #[method_id(defaultVoiceChatService)]
+        #[method(defaultVoiceChatService)]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultVoiceChatService() -> Option<Retained<GKVoiceChatService>>;
 
         #[method(isVoIPAllowed)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isVoIPAllowed() -> bool;
 
         #[cfg(feature = "GKPublicProtocols")]
-        #[method_id(client)]
+        #[method(client)]
         #[unsafe(method_family = none)]
         pub unsafe fn client(&self) -> Option<Retained<ProtocolObject<dyn GKVoiceChatClient>>>;
 
         #[cfg(feature = "GKPublicProtocols")]
         /// Setter for [`client`][Self::client].
         #[method(setClient:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setClient(&self, client: Option<&ProtocolObject<dyn GKVoiceChatClient>>);
 
         #[method(stopVoiceChatWithParticipantID:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stopVoiceChatWithParticipantID(&self, participant_id: Option<&NSString>);
 
         #[method(denyCallID:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn denyCallID(&self, call_id: NSInteger);
 
         #[method(receivedRealTimeData:fromParticipantID:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn receivedRealTimeData_fromParticipantID(
             &self,
             audio: Option<&NSData>,
@@ -51,6 +56,7 @@ extern_methods!(
         );
 
         #[method(receivedData:fromParticipantID:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn receivedData_fromParticipantID(
             &self,
             arbitrary_data: Option<&NSData>,
@@ -58,37 +64,47 @@ extern_methods!(
         );
 
         #[method(isMicrophoneMuted)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isMicrophoneMuted(&self) -> bool;
 
         /// Setter for [`isMicrophoneMuted`][Self::isMicrophoneMuted].
         #[method(setMicrophoneMuted:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMicrophoneMuted(&self, microphone_muted: bool);
 
         #[method(remoteParticipantVolume)]
+        #[unsafe(method_family = none)]
         pub unsafe fn remoteParticipantVolume(&self) -> c_float;
 
         /// Setter for [`remoteParticipantVolume`][Self::remoteParticipantVolume].
         #[method(setRemoteParticipantVolume:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRemoteParticipantVolume(&self, remote_participant_volume: c_float);
 
         #[method(isOutputMeteringEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isOutputMeteringEnabled(&self) -> bool;
 
         /// Setter for [`isOutputMeteringEnabled`][Self::isOutputMeteringEnabled].
         #[method(setOutputMeteringEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setOutputMeteringEnabled(&self, output_metering_enabled: bool);
 
         #[method(isInputMeteringEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isInputMeteringEnabled(&self) -> bool;
 
         /// Setter for [`isInputMeteringEnabled`][Self::isInputMeteringEnabled].
         #[method(setInputMeteringEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setInputMeteringEnabled(&self, input_metering_enabled: bool);
 
         #[method(outputMeterLevel)]
+        #[unsafe(method_family = none)]
         pub unsafe fn outputMeterLevel(&self) -> c_float;
 
         #[method(inputMeterLevel)]
+        #[unsafe(method_family = none)]
         pub unsafe fn inputMeterLevel(&self) -> c_float;
     }
 );
@@ -96,11 +112,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKVoiceChatService {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

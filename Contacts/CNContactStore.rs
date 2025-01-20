@@ -93,6 +93,7 @@ extern_methods!(
         ///
         /// Returns: Returns the authorization status for the given entityType.
         #[method(authorizationStatusForEntityType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn authorizationStatusForEntityType(
             entity_type: CNEntityType,
         ) -> CNAuthorizationStatus;
@@ -111,6 +112,7 @@ extern_methods!(
         ///
         /// Parameter `completionHandler`: This block is called upon completion. If the user grants access then granted is YES and error is nil. Otherwise granted is NO with an error.
         #[method(requestAccessForEntityType:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestAccessForEntityType_completionHandler(
             &self,
             entity_type: CNEntityType,
@@ -134,7 +136,7 @@ extern_methods!(
         /// Parameter `error`: If an error occurs, contains error information.
         ///
         /// Returns: An array of CNContact objects matching the predicate. If no matches are found, an empty array is returned. If an error occurs, nil is returned.
-        #[method_id(unifiedContactsMatchingPredicate:keysToFetch:error:_)]
+        #[method(unifiedContactsMatchingPredicate:keysToFetch:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn unifiedContactsMatchingPredicate_keysToFetch_error(
             &self,
@@ -156,7 +158,7 @@ extern_methods!(
         /// Parameter `error`: If an error occurs, contains error information.
         ///
         /// Returns: The unified contact matching or linked to the identifier. If no contact with the given identifier is found, nil is returned and error is set to CNErrorCodeRecordDoesNotExist.
-        #[method_id(unifiedContactWithIdentifier:keysToFetch:error:_)]
+        #[method(unifiedContactWithIdentifier:keysToFetch:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn unifiedContactWithIdentifier_keysToFetch_error(
             &self,
@@ -176,7 +178,7 @@ extern_methods!(
         /// Parameter `error`: If an error occurs, contains error information.
         ///
         /// Returns: The unified contact that is the "me" card. If no "me" card is set, nil is returned.
-        #[method_id(unifiedMeContactWithKeysToFetch:error:_)]
+        #[method(unifiedMeContactWithKeysToFetch:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn unifiedMeContactWithKeysToFetch_error(
             &self,
@@ -207,7 +209,7 @@ extern_methods!(
         ///
         /// Returns: An enumerator of the records matching the result, or
         /// `nil`if there was an error.
-        #[method_id(enumeratorForContactFetchRequest:error:_)]
+        #[method(enumeratorForContactFetchRequest:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn enumeratorForContactFetchRequest_error(
             &self,
@@ -238,7 +240,7 @@ extern_methods!(
         ///
         /// Returns: An enumerator of the events matching the result, or
         /// `nil`if there was an error.
-        #[method_id(enumeratorForChangeHistoryFetchRequest:error:_)]
+        #[method(enumeratorForChangeHistoryFetchRequest:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn enumeratorForChangeHistoryFetchRequest_error(
             &self,
@@ -265,6 +267,7 @@ extern_methods!(
         ///
         /// Returns: YES if successful, otherwise NO.
         #[method(enumerateContactsWithFetchRequest:error:usingBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn enumerateContactsWithFetchRequest_error_usingBlock(
             &self,
             fetch_request: &CNContactFetchRequest,
@@ -284,7 +287,7 @@ extern_methods!(
         /// Parameter `error`: If an error occurs, contains error information.
         ///
         /// Returns: An array of CNGroup objects matching the predicate. If no matches are found, an empty array is returned. If an error occurs, nil is returned.
-        #[method_id(groupsMatchingPredicate:error:_)]
+        #[method(groupsMatchingPredicate:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn groupsMatchingPredicate_error(
             &self,
@@ -303,7 +306,7 @@ extern_methods!(
         /// Parameter `error`: If an error occurs, contains error information.
         ///
         /// Returns: An array of CNContainer objects matching the predicate. If no matches are found, an empty array is returned. If an error occurs, nil is returned.
-        #[method_id(containersMatchingPredicate:error:_)]
+        #[method(containersMatchingPredicate:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn containersMatchingPredicate_error(
             &self,
@@ -323,6 +326,7 @@ extern_methods!(
         ///
         /// Returns: YES if successful, otherwise NO.
         #[method(executeSaveRequest:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn executeSaveRequest_error(
             &self,
             save_request: &CNSaveRequest,
@@ -333,7 +337,7 @@ extern_methods!(
         ///
         /// Retrieve the current history token. If you are fetching contacts or change history events, you should use the token on the
         /// `CNFetchResult`instead.
-        #[method_id(currentHistoryToken)]
+        #[method(currentHistoryToken)]
         #[unsafe(method_family = none)]
         pub unsafe fn currentHistoryToken(&self) -> Option<Retained<NSData>>;
 
@@ -344,7 +348,7 @@ extern_methods!(
         ///
         ///
         /// Returns: The identifier of the default container. If the caller lacks Contacts authorization or an error occurs, nil is returned.
-        #[method_id(defaultContainerIdentifier)]
+        #[method(defaultContainerIdentifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultContainerIdentifier(&self) -> Retained<NSString>;
     }
@@ -353,11 +357,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CNContactStore {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

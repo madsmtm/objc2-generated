@@ -70,57 +70,64 @@ extern_methods!(
     #[cfg(feature = "UIMenuElement")]
     unsafe impl UIAction {
         /// Short display title.
-        #[method_id(title)]
+        #[method(title)]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
         #[cfg(feature = "UIImage")]
         /// Image that can appear next to this action.
-        #[method_id(image)]
+        #[method(image)]
         #[unsafe(method_family = none)]
         pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         /// Setter for [`image`][Self::image].
         #[method(setImage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setImage(&self, image: Option<&UIImage>);
 
         /// Elaborated title used in keyboard shortcut overlay.
-        #[method_id(discoverabilityTitle)]
+        #[method(discoverabilityTitle)]
         #[unsafe(method_family = none)]
         pub unsafe fn discoverabilityTitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`discoverabilityTitle`][Self::discoverabilityTitle].
         #[method(setDiscoverabilityTitle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDiscoverabilityTitle(&self, discoverability_title: Option<&NSString>);
 
         /// This action's identifier.
-        #[method_id(identifier)]
+        #[method(identifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<UIActionIdentifier>;
 
         /// This action's style.
         #[method(attributes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn attributes(&self) -> UIMenuElementAttributes;
 
         /// Setter for [`attributes`][Self::attributes].
         #[method(setAttributes:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAttributes(&self, attributes: UIMenuElementAttributes);
 
         /// State that can appear next to this action.
         #[method(state)]
+        #[unsafe(method_family = none)]
         pub unsafe fn state(&self) -> UIMenuElementState;
 
         /// Setter for [`state`][Self::state].
         #[method(setState:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setState(&self, state: UIMenuElementState);
 
         /// If available, the object on behalf of which the actionHandler is called.
-        #[method_id(sender)]
+        #[method(sender)]
         #[unsafe(method_family = none)]
         pub unsafe fn sender(&self) -> Option<Retained<AnyObject>>;
 
@@ -132,7 +139,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A new UIAction.
-        #[method_id(actionWithHandler:)]
+        #[method(actionWithHandler:)]
         #[unsafe(method_family = none)]
         pub unsafe fn actionWithHandler(
             handler: UIActionHandler,
@@ -153,7 +160,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A new UIAction.
-        #[method_id(actionWithTitle:image:identifier:handler:)]
+        #[method(actionWithTitle:image:identifier:handler:)]
         #[unsafe(method_family = none)]
         pub unsafe fn actionWithTitle_image_identifier_handler(
             title: &NSString,
@@ -163,11 +170,11 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -177,7 +184,7 @@ extern_methods!(
     /// Methods declared on superclass `UIMenuElement`
     #[cfg(feature = "UIMenuElement")]
     unsafe impl UIAction {
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -204,7 +211,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A new UIAction.
-        #[method_id(captureTextFromCameraActionForResponder:identifier:)]
+        #[method(captureTextFromCameraActionForResponder:identifier:)]
         #[unsafe(method_family = none)]
         pub unsafe fn captureTextFromCameraActionForResponder_identifier(
             responder: &UIResponder,

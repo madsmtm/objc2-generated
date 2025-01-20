@@ -35,11 +35,11 @@ extern_methods!(
     unsafe impl MIDIUMPMutableFunctionBlock {
         #[cfg(all(feature = "MIDIUMPEndpoint", feature = "MIDIUMPMutableEndpoint"))]
         /// The UMP Endpoint to which this Function Block is registered.
-        #[method_id(UMPEndpoint)]
+        #[method(UMPEndpoint)]
         #[unsafe(method_family = none)]
         pub unsafe fn UMPEndpoint(&self) -> Option<Retained<MIDIUMPMutableEndpoint>>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -66,7 +66,7 @@ extern_methods!(
         ///
         /// This operation will fail if virtual MIDI endpoint creation is not allowed
         /// (for example, on iOS, if your app doesn't list 'audio' in UIBackgroundModes).
-        #[method_id(initWithName:direction:firstGroup:totalGroupsSpanned:maxSysEx8Streams:MIDI1Info:UIHint:isEnabled:)]
+        #[method(initWithName:direction:firstGroup:totalGroupsSpanned:maxSysEx8Streams:MIDI1Info:UIHint:isEnabled:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithName_direction_firstGroup_totalGroupsSpanned_maxSysEx8Streams_MIDI1Info_UIHint_isEnabled(
             this: Allocated<Self>,
@@ -96,6 +96,7 @@ extern_methods!(
         /// the state must always be enabled and may not change. If registered to a UMP Endpoint,
         /// changes to the Function Block state are propagated to the system-wide cache.
         #[method(setEnabled:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setEnabled_error(&self, is_enabled: bool) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "objc2-foundation")]
@@ -113,6 +114,7 @@ extern_methods!(
         /// The Function Block name string. Updating the name of a Function Block will cause the
         /// updated name to be propagated to all local copies of the system-wide cache.
         #[method(setName:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setName_error(&self, name: &NSString) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "MIDIMessages", feature = "objc2-foundation"))]
@@ -134,6 +136,7 @@ extern_methods!(
         /// relocated.
         /// Returns YES if the first Group of the Function Block was changed.
         #[method(reconfigureWithFirstGroup:direction:MIDI1Info:UIHint:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reconfigureWithFirstGroup_direction_MIDI1Info_UIHint_error(
             &self,
             first_group: MIDIUMPGroupNumber,
@@ -149,7 +152,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MIDIUMPFunctionBlock", feature = "objc2"))]
     unsafe impl MIDIUMPMutableFunctionBlock {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

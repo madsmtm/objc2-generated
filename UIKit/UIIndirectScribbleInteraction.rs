@@ -29,15 +29,15 @@ unsafe impl UIInteraction for UIIndirectScribbleInteraction {}
 
 extern_methods!(
     unsafe impl UIIndirectScribbleInteraction {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(initWithDelegate:)]
+        #[method(initWithDelegate:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDelegate(
             this: Allocated<Self>,
@@ -45,7 +45,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The delegate for the interaction, to supply and customize writable elements in the interaction's view.
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -53,6 +53,7 @@ extern_methods!(
 
         /// : Indicates if the user is actively writing. It will be set to YES in between calls to -indirectScribbleInteraction:willBeginWritingInElement: and -indirectScribbleInteraction:didFinishWritingInElement: calls.
         #[method(isHandlingWriting)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isHandlingWriting(&self) -> bool;
     }
 );
@@ -78,6 +79,7 @@ extern_protocol!(
         ///
         /// Parameter `completion`: You must call the completion handler, synchronously or asynchronously, with an array of identifiers of the available elements, or an empty array if no elements are available.
         #[method(indirectScribbleInteraction:requestElementsInRect:completion:)]
+        #[unsafe(method_family = none)]
         unsafe fn indirectScribbleInteraction_requestElementsInRect_completion(
             &self,
             interaction: &UIIndirectScribbleInteraction,
@@ -93,6 +95,7 @@ extern_protocol!(
         ///
         /// Returns: Return YES if the element is the one currently focused.
         #[method(indirectScribbleInteraction:isElementFocused:)]
+        #[unsafe(method_family = none)]
         unsafe fn indirectScribbleInteraction_isElementFocused(
             &self,
             interaction: &UIIndirectScribbleInteraction,
@@ -108,6 +111,7 @@ extern_protocol!(
         ///
         /// Returns: Frame for the element, in the interactions's view coordinate system.
         #[method(indirectScribbleInteraction:frameForElement:)]
+        #[unsafe(method_family = none)]
         unsafe fn indirectScribbleInteraction_frameForElement(
             &self,
             interaction: &UIIndirectScribbleInteraction,
@@ -131,6 +135,7 @@ extern_protocol!(
         ///
         /// Parameter `completion`: You must always call the completion handler, either synchronously or asynchronously. On success, the first parameter should be the text input that became first responder and that will handle text operations for this element. On failure, call the completion with a nil parameter.
         #[method(indirectScribbleInteraction:focusElementIfNeeded:referencePoint:completion:)]
+        #[unsafe(method_family = none)]
         unsafe fn indirectScribbleInteraction_focusElementIfNeeded_referencePoint_completion(
             &self,
             interaction: &UIIndirectScribbleInteraction,
@@ -149,6 +154,7 @@ extern_protocol!(
         /// Returns: Return YES to delay focusing the element.
         #[optional]
         #[method(indirectScribbleInteraction:shouldDelayFocusForElement:)]
+        #[unsafe(method_family = none)]
         unsafe fn indirectScribbleInteraction_shouldDelayFocusForElement(
             &self,
             interaction: &UIIndirectScribbleInteraction,
@@ -162,6 +168,7 @@ extern_protocol!(
         /// Parameter `elementIdentifier`: The identifier of the element the user is writing into.
         #[optional]
         #[method(indirectScribbleInteraction:willBeginWritingInElement:)]
+        #[unsafe(method_family = none)]
         unsafe fn indirectScribbleInteraction_willBeginWritingInElement(
             &self,
             interaction: &UIIndirectScribbleInteraction,
@@ -175,6 +182,7 @@ extern_protocol!(
         /// Parameter `elementIdentifier`: The identifier of the element the user finished writing into.
         #[optional]
         #[method(indirectScribbleInteraction:didFinishWritingInElement:)]
+        #[unsafe(method_family = none)]
         unsafe fn indirectScribbleInteraction_didFinishWritingInElement(
             &self,
             interaction: &UIIndirectScribbleInteraction,

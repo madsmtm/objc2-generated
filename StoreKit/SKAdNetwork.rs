@@ -39,6 +39,7 @@ extern_methods!(
     unsafe impl SKAdNetwork {
         #[cfg(all(feature = "SKAdImpression", feature = "block2"))]
         #[method(startImpression:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn startImpression_completionHandler(
             impression: &SKAdImpression,
             completion: Option<&block2::Block<dyn Fn(*mut NSError)>>,
@@ -46,6 +47,7 @@ extern_methods!(
 
         #[cfg(all(feature = "SKAdImpression", feature = "block2"))]
         #[method(endImpression:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn endImpression_completionHandler(
             impression: &SKAdImpression,
             completion: Option<&block2::Block<dyn Fn(*mut NSError)>>,
@@ -53,14 +55,17 @@ extern_methods!(
 
         #[deprecated = "Use updatePostbackConversionValue:completionHandler: instead"]
         #[method(registerAppForAdNetworkAttribution)]
+        #[unsafe(method_family = none)]
         pub unsafe fn registerAppForAdNetworkAttribution();
 
         #[deprecated = "Use updatePostbackConversionValue:completionHandler: instead"]
         #[method(updateConversionValue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updateConversionValue(conversion_value: NSInteger);
 
         #[cfg(feature = "block2")]
         #[method(updatePostbackConversionValue:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updatePostbackConversionValue_completionHandler(
             conversion_value: NSInteger,
             completion: Option<&block2::Block<dyn Fn(*mut NSError)>>,
@@ -68,6 +73,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[method(updatePostbackConversionValue:coarseValue:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updatePostbackConversionValue_coarseValue_completionHandler(
             fine_value: NSInteger,
             coarse_value: &SKAdNetworkCoarseConversionValue,
@@ -76,6 +82,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[method(updatePostbackConversionValue:coarseValue:lockWindow:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updatePostbackConversionValue_coarseValue_lockWindow_completionHandler(
             fine_value: NSInteger,
             coarse_value: &SKAdNetworkCoarseConversionValue,
@@ -88,11 +95,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKAdNetwork {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

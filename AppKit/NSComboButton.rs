@@ -104,7 +104,7 @@ extern_methods!(
         /// Parameter `target`: The target object that receives primary action messages from the control.
         ///
         /// Parameter `action`: The action message sent by the primary action portion of the control.
-        #[method_id(comboButtonWithTitle:menu:target:action:)]
+        #[method(comboButtonWithTitle:menu:target:action:)]
         #[unsafe(method_family = none)]
         pub unsafe fn comboButtonWithTitle_menu_target_action(
             title: &NSString,
@@ -124,7 +124,7 @@ extern_methods!(
         /// Parameter `target`: The target object that receives primary action messages from the control.
         ///
         /// Parameter `action`: The action message sent by the primary action portion of the control.
-        #[method_id(comboButtonWithImage:menu:target:action:)]
+        #[method(comboButtonWithImage:menu:target:action:)]
         #[unsafe(method_family = none)]
         pub unsafe fn comboButtonWithImage_menu_target_action(
             image: &NSImage,
@@ -146,7 +146,7 @@ extern_methods!(
         /// Parameter `target`: The target object that receives primary action messages from the control.
         ///
         /// Parameter `action`: The action message sent by the primary action portion of the control.
-        #[method_id(comboButtonWithTitle:image:menu:target:action:)]
+        #[method(comboButtonWithTitle:image:menu:target:action:)]
         #[unsafe(method_family = none)]
         pub unsafe fn comboButtonWithTitle_image_menu_target_action(
             title: &NSString,
@@ -158,52 +158,59 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The title displayed on the control. The default value is an empty string.
-        #[method_id(title)]
+        #[method(title)]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
         #[cfg(feature = "NSImage")]
         /// The image displayed on the control. The default value is `nil`.
-        #[method_id(image)]
+        #[method(image)]
         #[unsafe(method_family = none)]
         pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
         /// Setter for [`image`][Self::image].
         #[method(setImage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 
         #[cfg(feature = "NSCell")]
         /// The scaling mode applied to fit the button's image within the content area. The default value is `NSImageScaleProportionallyDown`.
         #[method(imageScaling)]
+        #[unsafe(method_family = none)]
         pub unsafe fn imageScaling(&self) -> NSImageScaling;
 
         #[cfg(feature = "NSCell")]
         /// Setter for [`imageScaling`][Self::imageScaling].
         #[method(setImageScaling:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setImageScaling(&self, image_scaling: NSImageScaling);
 
         #[cfg(feature = "NSMenu")]
         /// Overrides behavior of NSResponder menu. This menu is shown when interacting with the button (see NSComboButtonStyle). NSComboButton does not have a context menu. Items in this menu specify their own target and action independent of the primary action that is configured on the control.
-        #[method_id(menu)]
+        #[method(menu)]
         #[unsafe(method_family = none)]
         pub unsafe fn menu(&self) -> Retained<NSMenu>;
 
         #[cfg(feature = "NSMenu")]
         /// Setter for [`menu`][Self::menu].
         #[method(setMenu:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMenu(&self, menu: &NSMenu);
 
         /// Specifies the visual presentation and behavior for NSComboButton's primary action and its menu. The default value is `NSComboButtonStyleSplit`.
         #[method(style)]
+        #[unsafe(method_family = none)]
         pub unsafe fn style(&self) -> NSComboButtonStyle;
 
         /// Setter for [`style`][Self::style].
         #[method(setStyle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setStyle(&self, style: NSComboButtonStyle);
     }
 );
@@ -212,11 +219,11 @@ extern_methods!(
     /// Methods declared on superclass `NSControl`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSComboButton {
-        #[method_id(initWithFrame:)]
+        #[method(initWithFrame:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -229,7 +236,7 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSComboButton {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -239,7 +246,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSComboButton {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

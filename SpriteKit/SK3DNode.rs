@@ -50,7 +50,7 @@ extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// Designated initializer.
         /// Initialize a 3D Node with the viewport size the 3D content will be rendered with.
-        #[method_id(initWithViewportSize:)]
+        #[method(initWithViewportSize:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithViewportSize(
             this: Allocated<Self>,
@@ -58,7 +58,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Support coding and decoding via NSKeyedArchiver.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -67,7 +67,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Create a 3D Node with the viewport size the 3D content will be rendered with.
-        #[method_id(nodeWithViewportSize:)]
+        #[method(nodeWithViewportSize:)]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeWithViewportSize(
             viewport_size: CGSize,
@@ -77,47 +77,57 @@ extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// The viewport size that the 3D content will be rendered with
         #[method(viewportSize)]
+        #[unsafe(method_family = none)]
         pub unsafe fn viewportSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`viewportSize`][Self::viewportSize].
         #[method(setViewportSize:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setViewportSize(&self, viewport_size: CGSize);
 
         /// Specifies the current time to display the scene.
         #[method(sceneTime)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sceneTime(&self) -> NSTimeInterval;
 
         /// Setter for [`sceneTime`][Self::sceneTime].
         #[method(setSceneTime:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSceneTime(&self, scene_time: NSTimeInterval);
 
         /// Returns YES if the scene is playing, NO otherwise.
         #[method(isPlaying)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isPlaying(&self) -> bool;
 
         /// Setter for [`isPlaying`][Self::isPlaying].
         #[method(setPlaying:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPlaying(&self, playing: bool);
 
         /// Indicates whether the receiver restarts playback when it reaches the end of its content. Default: YES.
         ///
         /// YES when the receiver restarts playback when it finishes, NO otherwise.
         #[method(loops)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loops(&self) -> bool;
 
         /// Setter for [`loops`][Self::loops].
         #[method(setLoops:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLoops(&self, loops: bool);
 
         /// Specifies whether the receiver should automatically light up scenes that have no light source. The default is NO.
         ///
         /// When enabled, a diffuse light is automatically added and placed while rendering scenes that have no light or only ambient lights.
         #[method(autoenablesDefaultLighting)]
+        #[unsafe(method_family = none)]
         pub unsafe fn autoenablesDefaultLighting(&self) -> bool;
 
         /// Setter for [`autoenablesDefaultLighting`][Self::autoenablesDefaultLighting].
         #[method(setAutoenablesDefaultLighting:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAutoenablesDefaultLighting(&self, autoenables_default_lighting: bool);
     }
 );
@@ -127,22 +137,22 @@ extern_methods!(
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl SK3DNode {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(node)]
+        #[method(node)]
         #[unsafe(method_family = none)]
         pub unsafe fn node(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(nodeWithFileNamed:)]
+        #[method(nodeWithFileNamed:)]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeWithFileNamed(
             filename: &NSString,
             mtm: MainThreadMarker,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(nodeWithFileNamed:securelyWithClasses:andError:_)]
+        #[method(nodeWithFileNamed:securelyWithClasses:andError:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeWithFileNamed_securelyWithClasses_andError(
             filename: &NSString,
@@ -157,7 +167,7 @@ extern_methods!(
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl SK3DNode {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

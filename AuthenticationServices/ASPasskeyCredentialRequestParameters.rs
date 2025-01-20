@@ -36,36 +36,36 @@ unsafe impl NSSecureCoding for ASPasskeyCredentialRequestParameters {}
 
 extern_methods!(
     unsafe impl ASPasskeyCredentialRequestParameters {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// The relying party identifier for this request.
-        #[method_id(relyingPartyIdentifier)]
+        #[method(relyingPartyIdentifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn relyingPartyIdentifier(&self) -> Retained<NSString>;
 
         /// Hash of client data for credential provider to sign as part of the operation.
-        #[method_id(clientDataHash)]
+        #[method(clientDataHash)]
         #[unsafe(method_family = none)]
         pub unsafe fn clientDataHash(&self) -> Retained<NSData>;
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialConstants")]
         /// A preference for whether the authenticator should attempt to verify that it is being used by its owner, such as through a PIN or biometrics.
-        #[method_id(userVerificationPreference)]
+        #[method(userVerificationPreference)]
         #[unsafe(method_family = none)]
         pub unsafe fn userVerificationPreference(
             &self,
         ) -> Retained<ASAuthorizationPublicKeyCredentialUserVerificationPreference>;
 
         /// A list of allowed credential IDs for this request. An empty list means all credentials are allowed.
-        #[method_id(allowedCredentials)]
+        #[method(allowedCredentials)]
         #[unsafe(method_family = none)]
         pub unsafe fn allowedCredentials(&self) -> Retained<NSArray<NSData>>;
 
         #[cfg(feature = "ASPasskeyAssertionCredentialExtensionInput")]
         /// Inputs for WebAuthn extensions used for passkey assertion.
-        #[method_id(extensionInput)]
+        #[method(extensionInput)]
         #[unsafe(method_family = none)]
         pub unsafe fn extensionInput(
             &self,
@@ -76,7 +76,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASPasskeyCredentialRequestParameters {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

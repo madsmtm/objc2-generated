@@ -78,62 +78,69 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLTableColElement {
         #[deprecated]
-        #[method_id(align)]
+        #[method(align)]
         #[unsafe(method_family = none)]
         pub unsafe fn align(&self) -> Retained<NSString>;
 
         /// Setter for [`align`][Self::align].
         #[deprecated]
         #[method(setAlign:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAlign(&self, align: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(ch)]
+        #[method(ch)]
         #[unsafe(method_family = none)]
         pub unsafe fn ch(&self) -> Retained<NSString>;
 
         /// Setter for [`ch`][Self::ch].
         #[deprecated]
         #[method(setCh:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCh(&self, ch: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(chOff)]
+        #[method(chOff)]
         #[unsafe(method_family = none)]
         pub unsafe fn chOff(&self) -> Retained<NSString>;
 
         /// Setter for [`chOff`][Self::chOff].
         #[deprecated]
         #[method(setChOff:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setChOff(&self, ch_off: Option<&NSString>);
 
         #[deprecated]
         #[method(span)]
+        #[unsafe(method_family = none)]
         pub unsafe fn span(&self) -> c_int;
 
         /// Setter for [`span`][Self::span].
         #[deprecated]
         #[method(setSpan:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSpan(&self, span: c_int);
 
         #[deprecated]
-        #[method_id(vAlign)]
+        #[method(vAlign)]
         #[unsafe(method_family = none)]
         pub unsafe fn vAlign(&self) -> Retained<NSString>;
 
         /// Setter for [`vAlign`][Self::vAlign].
         #[deprecated]
         #[method(setVAlign:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setVAlign(&self, v_align: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(width)]
+        #[method(width)]
         #[unsafe(method_family = none)]
         pub unsafe fn width(&self) -> Retained<NSString>;
 
         /// Setter for [`width`][Self::width].
         #[deprecated]
         #[method(setWidth:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWidth(&self, width: Option<&NSString>);
     }
 );
@@ -149,7 +156,7 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLTableColElement {
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -165,7 +172,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLTableColElement {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

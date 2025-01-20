@@ -18,12 +18,13 @@ unsafe impl NSObjectProtocol for MKLocalSearchResponse {}
 extern_methods!(
     unsafe impl MKLocalSearchResponse {
         #[cfg(feature = "MKMapItem")]
-        #[method_id(mapItems)]
+        #[method(mapItems)]
         #[unsafe(method_family = none)]
         pub unsafe fn mapItems(&self) -> Retained<NSArray<MKMapItem>>;
 
         #[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
         #[method(boundingRegion)]
+        #[unsafe(method_family = none)]
         pub unsafe fn boundingRegion(&self) -> MKCoordinateRegion;
     }
 );
@@ -31,11 +32,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKLocalSearchResponse {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

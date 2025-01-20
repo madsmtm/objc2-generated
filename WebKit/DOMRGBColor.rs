@@ -34,31 +34,31 @@ extern_methods!(
     unsafe impl DOMRGBColor {
         #[cfg(all(feature = "DOMCSSPrimitiveValue", feature = "DOMCSSValue"))]
         #[deprecated]
-        #[method_id(red)]
+        #[method(red)]
         #[unsafe(method_family = none)]
         pub unsafe fn red(&self) -> Option<Retained<DOMCSSPrimitiveValue>>;
 
         #[cfg(all(feature = "DOMCSSPrimitiveValue", feature = "DOMCSSValue"))]
         #[deprecated]
-        #[method_id(green)]
+        #[method(green)]
         #[unsafe(method_family = none)]
         pub unsafe fn green(&self) -> Option<Retained<DOMCSSPrimitiveValue>>;
 
         #[cfg(all(feature = "DOMCSSPrimitiveValue", feature = "DOMCSSValue"))]
         #[deprecated]
-        #[method_id(blue)]
+        #[method(blue)]
         #[unsafe(method_family = none)]
         pub unsafe fn blue(&self) -> Option<Retained<DOMCSSPrimitiveValue>>;
 
         #[cfg(all(feature = "DOMCSSPrimitiveValue", feature = "DOMCSSValue"))]
         #[deprecated]
-        #[method_id(alpha)]
+        #[method(alpha)]
         #[unsafe(method_family = none)]
         pub unsafe fn alpha(&self) -> Option<Retained<DOMCSSPrimitiveValue>>;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
-        #[method_id(color)]
+        #[method(color)]
         #[unsafe(method_family = none)]
         pub unsafe fn color(&self) -> Retained<NSColor>;
     }
@@ -69,7 +69,7 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMRGBColor {
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -79,7 +79,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMRGBColor {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -46,11 +46,11 @@ unsafe impl NSSecureCoding for NSSound {}
 
 extern_methods!(
     unsafe impl NSSound {
-        #[method_id(soundNamed:)]
+        #[method(soundNamed:)]
         #[unsafe(method_family = none)]
         pub unsafe fn soundNamed(name: &NSSoundName) -> Option<Retained<NSSound>>;
 
-        #[method_id(initWithContentsOfURL:byReference:)]
+        #[method(initWithContentsOfURL:byReference:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL_byReference(
             this: Allocated<Self>,
@@ -58,7 +58,7 @@ extern_methods!(
             by_ref: bool,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(initWithContentsOfFile:byReference:)]
+        #[method(initWithContentsOfFile:byReference:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfFile_byReference(
             this: Allocated<Self>,
@@ -66,27 +66,29 @@ extern_methods!(
             by_ref: bool,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(initWithData:)]
+        #[method(initWithData:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithData(this: Allocated<Self>, data: &NSData) -> Option<Retained<Self>>;
 
         #[method(setName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, string: Option<&NSSoundName>) -> bool;
 
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSSoundName>>;
 
         #[cfg(feature = "NSPasteboard")]
         #[method(canInitWithPasteboard:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn canInitWithPasteboard(pasteboard: &NSPasteboard) -> bool;
 
-        #[method_id(soundUnfilteredTypes)]
+        #[method(soundUnfilteredTypes)]
         #[unsafe(method_family = none)]
         pub unsafe fn soundUnfilteredTypes() -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSPasteboard")]
-        #[method_id(initWithPasteboard:)]
+        #[method(initWithPasteboard:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPasteboard(
             this: Allocated<Self>,
@@ -95,24 +97,30 @@ extern_methods!(
 
         #[cfg(feature = "NSPasteboard")]
         #[method(writeToPasteboard:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn writeToPasteboard(&self, pasteboard: &NSPasteboard);
 
         #[method(play)]
+        #[unsafe(method_family = none)]
         pub unsafe fn play(&self) -> bool;
 
         #[method(pause)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pause(&self) -> bool;
 
         #[method(resume)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resume(&self) -> bool;
 
         #[method(stop)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stop(&self) -> bool;
 
         #[method(isPlaying)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isPlaying(&self) -> bool;
 
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -122,33 +130,41 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSSoundDelegate>>);
 
         #[method(duration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
         #[method(volume)]
+        #[unsafe(method_family = none)]
         pub unsafe fn volume(&self) -> c_float;
 
         /// Setter for [`volume`][Self::volume].
         #[method(setVolume:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setVolume(&self, volume: c_float);
 
         #[method(currentTime)]
+        #[unsafe(method_family = none)]
         pub unsafe fn currentTime(&self) -> NSTimeInterval;
 
         /// Setter for [`currentTime`][Self::currentTime].
         #[method(setCurrentTime:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCurrentTime(&self, current_time: NSTimeInterval);
 
         #[method(loops)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loops(&self) -> bool;
 
         /// Setter for [`loops`][Self::loops].
         #[method(setLoops:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLoops(&self, loops: bool);
 
-        #[method_id(playbackDeviceIdentifier)]
+        #[method(playbackDeviceIdentifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn playbackDeviceIdentifier(
             &self,
@@ -156,6 +172,7 @@ extern_methods!(
 
         /// Setter for [`playbackDeviceIdentifier`][Self::playbackDeviceIdentifier].
         #[method(setPlaybackDeviceIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPlaybackDeviceIdentifier(
             &self,
             playback_device_identifier: Option<&NSSoundPlaybackDeviceIdentifier>,
@@ -163,10 +180,11 @@ extern_methods!(
 
         #[deprecated]
         #[method(setChannelMapping:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setChannelMapping(&self, channel_mapping: Option<&NSArray>);
 
         #[deprecated]
-        #[method_id(channelMapping)]
+        #[method(channelMapping)]
         #[unsafe(method_family = none)]
         pub unsafe fn channelMapping(&self) -> Option<Retained<NSArray>>;
     }
@@ -175,11 +193,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSSound {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -189,12 +207,12 @@ extern_methods!(
     /// NSDeprecated
     unsafe impl NSSound {
         #[deprecated]
-        #[method_id(soundUnfilteredFileTypes)]
+        #[method(soundUnfilteredFileTypes)]
         #[unsafe(method_family = none)]
         pub unsafe fn soundUnfilteredFileTypes() -> Option<Retained<NSArray>>;
 
         #[deprecated]
-        #[method_id(soundUnfilteredPasteboardTypes)]
+        #[method(soundUnfilteredPasteboardTypes)]
         #[unsafe(method_family = none)]
         pub unsafe fn soundUnfilteredPasteboardTypes() -> Option<Retained<NSArray>>;
     }
@@ -205,6 +223,7 @@ extern_protocol!(
     pub unsafe trait NSSoundDelegate: NSObjectProtocol + MainThreadOnly {
         #[optional]
         #[method(sound:didFinishPlaying:)]
+        #[unsafe(method_family = none)]
         unsafe fn sound_didFinishPlaying(&self, sound: &NSSound, flag: bool);
     }
 );
@@ -212,7 +231,7 @@ extern_protocol!(
 extern_category!(
     /// Category on [`NSBundle`].
     pub unsafe trait NSBundleSoundExtensions {
-        #[method_id(pathForSoundResource:)]
+        #[method(pathForSoundResource:)]
         #[unsafe(method_family = none)]
         unsafe fn pathForSoundResource(&self, name: &NSSoundName) -> Option<Retained<NSString>>;
     }

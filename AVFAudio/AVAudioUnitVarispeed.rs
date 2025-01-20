@@ -55,10 +55,12 @@ extern_methods!(
         /// Default:    1.0
         /// Unit:       Generic
         #[method(rate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rate(&self) -> c_float;
 
         /// Setter for [`rate`][Self::rate].
         #[method(setRate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRate(&self, rate: c_float);
     }
 );
@@ -79,7 +81,7 @@ extern_methods!(
         /// Parameter `audioComponentDescription`: AudioComponentDescription of the audio unit to be initialized
         ///
         /// The componentType must be kAudioUnitType_FormatConverter
-        #[method_id(initWithAudioComponentDescription:)]
+        #[method(initWithAudioComponentDescription:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAudioComponentDescription(
             this: Allocated<Self>,
@@ -96,11 +98,11 @@ extern_methods!(
         feature = "AVAudioUnitTimeEffect"
     ))]
     unsafe impl AVAudioUnitVarispeed {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

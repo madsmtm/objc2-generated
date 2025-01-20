@@ -151,7 +151,7 @@ unsafe impl UITraitEnvironment for UIPageViewController {}
 extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIPageViewController {
-        #[method_id(initWithTransitionStyle:navigationOrientation:options:)]
+        #[method(initWithTransitionStyle:navigationOrientation:options:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTransitionStyle_navigationOrientation_options(
             this: Allocated<Self>,
@@ -160,14 +160,14 @@ extern_methods!(
             options: Option<&NSDictionary<UIPageViewControllerOptionsKey, AnyObject>>,
         ) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -176,12 +176,13 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn UIPageViewControllerDelegate>>,
         );
 
-        #[method_id(dataSource)]
+        #[method(dataSource)]
         #[unsafe(method_family = none)]
         pub unsafe fn dataSource(
             &self,
@@ -190,38 +191,45 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`dataSource`][Self::dataSource].
         #[method(setDataSource:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDataSource(
             &self,
             data_source: Option<&ProtocolObject<dyn UIPageViewControllerDataSource>>,
         );
 
         #[method(transitionStyle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn transitionStyle(&self) -> UIPageViewControllerTransitionStyle;
 
         #[method(navigationOrientation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn navigationOrientation(&self) -> UIPageViewControllerNavigationOrientation;
 
         #[method(spineLocation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn spineLocation(&self) -> UIPageViewControllerSpineLocation;
 
         #[method(isDoubleSided)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isDoubleSided(&self) -> bool;
 
         /// Setter for [`isDoubleSided`][Self::isDoubleSided].
         #[method(setDoubleSided:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDoubleSided(&self, double_sided: bool);
 
         #[cfg(feature = "UIGestureRecognizer")]
-        #[method_id(gestureRecognizers)]
+        #[method(gestureRecognizers)]
         #[unsafe(method_family = none)]
         pub unsafe fn gestureRecognizers(&self) -> Retained<NSArray<UIGestureRecognizer>>;
 
-        #[method_id(viewControllers)]
+        #[method(viewControllers)]
         #[unsafe(method_family = none)]
         pub unsafe fn viewControllers(&self) -> Option<Retained<NSArray<UIViewController>>>;
 
         #[cfg(feature = "block2")]
         #[method(setViewControllers:direction:animated:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setViewControllers_direction_animated_completion(
             &self,
             view_controllers: Option<&NSArray<UIViewController>>,
@@ -236,7 +244,7 @@ extern_methods!(
     /// Methods declared on superclass `UIViewController`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIPageViewController {
-        #[method_id(initWithNibName:bundle:)]
+        #[method(initWithNibName:bundle:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -250,11 +258,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIPageViewController {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -268,6 +276,7 @@ extern_protocol!(
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
         #[method(pageViewController:willTransitionToViewControllers:)]
+        #[unsafe(method_family = none)]
         unsafe fn pageViewController_willTransitionToViewControllers(
             &self,
             page_view_controller: &UIPageViewController,
@@ -277,6 +286,7 @@ extern_protocol!(
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
         #[method(pageViewController:didFinishAnimating:previousViewControllers:transitionCompleted:)]
+        #[unsafe(method_family = none)]
         unsafe fn pageViewController_didFinishAnimating_previousViewControllers_transitionCompleted(
             &self,
             page_view_controller: &UIPageViewController,
@@ -292,6 +302,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(pageViewController:spineLocationForInterfaceOrientation:)]
+        #[unsafe(method_family = none)]
         unsafe fn pageViewController_spineLocationForInterfaceOrientation(
             &self,
             page_view_controller: &UIPageViewController,
@@ -305,6 +316,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(pageViewControllerSupportedInterfaceOrientations:)]
+        #[unsafe(method_family = none)]
         unsafe fn pageViewControllerSupportedInterfaceOrientations(
             &self,
             page_view_controller: &UIPageViewController,
@@ -317,6 +329,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(pageViewControllerPreferredInterfaceOrientationForPresentation:)]
+        #[unsafe(method_family = none)]
         unsafe fn pageViewControllerPreferredInterfaceOrientationForPresentation(
             &self,
             page_view_controller: &UIPageViewController,
@@ -330,7 +343,7 @@ extern_protocol!(
         NSObjectProtocol + MainThreadOnly
     {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-        #[method_id(pageViewController:viewControllerBeforeViewController:)]
+        #[method(pageViewController:viewControllerBeforeViewController:)]
         #[unsafe(method_family = none)]
         unsafe fn pageViewController_viewControllerBeforeViewController(
             &self,
@@ -339,7 +352,7 @@ extern_protocol!(
         ) -> Option<Retained<UIViewController>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-        #[method_id(pageViewController:viewControllerAfterViewController:)]
+        #[method(pageViewController:viewControllerAfterViewController:)]
         #[unsafe(method_family = none)]
         unsafe fn pageViewController_viewControllerAfterViewController(
             &self,
@@ -350,6 +363,7 @@ extern_protocol!(
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
         #[method(presentationCountForPageViewController:)]
+        #[unsafe(method_family = none)]
         unsafe fn presentationCountForPageViewController(
             &self,
             page_view_controller: &UIPageViewController,
@@ -358,6 +372,7 @@ extern_protocol!(
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
         #[method(presentationIndexForPageViewController:)]
+        #[unsafe(method_family = none)]
         unsafe fn presentationIndexForPageViewController(
             &self,
             page_view_controller: &UIPageViewController,

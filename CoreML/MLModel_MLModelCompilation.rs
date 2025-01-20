@@ -33,7 +33,7 @@ extern_methods!(
         ///  [MLModel modelWithContentsOfURL:error:]
         /// ```
         #[deprecated = "Use the asynchronous interface compileModelAtURL:completionHandler:error: instead."]
-        #[method_id(compileModelAtURL:error:_)]
+        #[method(compileModelAtURL:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn compileModelAtURL_error(
             model_url: &NSURL,
@@ -55,6 +55,7 @@ extern_methods!(
         ///  [MLModel modelWithContentsOfURL:error:]
         /// ```
         #[method(compileModelAtURL:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn compileModelAtURL_completionHandler(
             model_url: &NSURL,
             handler: &block2::Block<dyn Fn(*mut NSURL, *mut NSError)>,

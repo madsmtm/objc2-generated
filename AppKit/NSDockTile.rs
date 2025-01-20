@@ -23,37 +23,43 @@ unsafe impl NSObjectProtocol for NSDockTile {}
 extern_methods!(
     unsafe impl NSDockTile {
         #[method(size)]
+        #[unsafe(method_family = none)]
         pub unsafe fn size(&self) -> NSSize;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-        #[method_id(contentView)]
+        #[method(contentView)]
         #[unsafe(method_family = none)]
         pub unsafe fn contentView(&self, mtm: MainThreadMarker) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         /// Setter for [`contentView`][Self::contentView].
         #[method(setContentView:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setContentView(&self, content_view: Option<&NSView>);
 
         #[method(display)]
+        #[unsafe(method_family = none)]
         pub unsafe fn display(&self);
 
         #[method(showsApplicationBadge)]
+        #[unsafe(method_family = none)]
         pub unsafe fn showsApplicationBadge(&self) -> bool;
 
         /// Setter for [`showsApplicationBadge`][Self::showsApplicationBadge].
         #[method(setShowsApplicationBadge:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShowsApplicationBadge(&self, shows_application_badge: bool);
 
-        #[method_id(badgeLabel)]
+        #[method(badgeLabel)]
         #[unsafe(method_family = none)]
         pub unsafe fn badgeLabel(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`badgeLabel`][Self::badgeLabel].
         #[method(setBadgeLabel:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBadgeLabel(&self, badge_label: Option<&NSString>);
 
-        #[method_id(owner)]
+        #[method(owner)]
         #[unsafe(method_family = none)]
         pub unsafe fn owner(&self) -> Option<Retained<AnyObject>>;
     }
@@ -62,11 +68,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSDockTile {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -76,11 +82,12 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdocktileplugin?language=objc)
     pub unsafe trait NSDockTilePlugIn: NSObjectProtocol {
         #[method(setDockTile:)]
+        #[unsafe(method_family = none)]
         unsafe fn setDockTile(&self, dock_tile: Option<&NSDockTile>);
 
         #[cfg(feature = "NSMenu")]
         #[optional]
-        #[method_id(dockMenu)]
+        #[method(dockMenu)]
         #[unsafe(method_family = none)]
         unsafe fn dockMenu(&self, mtm: MainThreadMarker) -> Option<Retained<NSMenu>>;
     }

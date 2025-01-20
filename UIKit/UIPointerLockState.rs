@@ -18,11 +18,11 @@ unsafe impl NSObjectProtocol for UIPointerLockState {}
 
 extern_methods!(
     unsafe impl UIPointerLockState {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
@@ -30,6 +30,7 @@ extern_methods!(
         /// The preferred pointer lock value specified by a view controller is only a request, which may or may not be honored.
         /// This property is key-value observable and UIPointerLockState.didChangeNotification is posted when it changes.
         #[method(isLocked)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isLocked(&self) -> bool;
     }
 );
@@ -38,7 +39,7 @@ extern_methods!(
     /// PointerLockState
     #[cfg(all(feature = "UIResponder", feature = "UIScene"))]
     unsafe impl UIScene {
-        #[method_id(pointerLockState)]
+        #[method(pointerLockState)]
         #[unsafe(method_family = none)]
         pub unsafe fn pointerLockState(&self) -> Option<Retained<UIPointerLockState>>;
     }

@@ -184,24 +184,30 @@ unsafe impl NSObjectProtocol for MTLVertexBufferLayoutDescriptor {}
 extern_methods!(
     unsafe impl MTLVertexBufferLayoutDescriptor {
         #[method(stride)]
+        #[unsafe(method_family = none)]
         pub fn stride(&self) -> NSUInteger;
 
         /// Setter for [`stride`][Self::stride].
         #[method(setStride:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setStride(&self, stride: NSUInteger);
 
         #[method(stepFunction)]
+        #[unsafe(method_family = none)]
         pub fn stepFunction(&self) -> MTLVertexStepFunction;
 
         /// Setter for [`stepFunction`][Self::stepFunction].
         #[method(setStepFunction:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setStepFunction(&self, step_function: MTLVertexStepFunction);
 
         #[method(stepRate)]
+        #[unsafe(method_family = none)]
         pub fn stepRate(&self) -> NSUInteger;
 
         /// Setter for [`stepRate`][Self::stepRate].
         #[method(setStepRate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setStepRate(&self, step_rate: NSUInteger);
     }
 );
@@ -209,11 +215,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLVertexBufferLayoutDescriptor {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
     }
@@ -237,7 +243,7 @@ unsafe impl NSObjectProtocol for MTLVertexBufferLayoutDescriptorArray {}
 
 extern_methods!(
     unsafe impl MTLVertexBufferLayoutDescriptorArray {
-        #[method_id(objectAtIndexedSubscript:)]
+        #[method(objectAtIndexedSubscript:)]
         #[unsafe(method_family = none)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
@@ -245,6 +251,7 @@ extern_methods!(
         ) -> Retained<MTLVertexBufferLayoutDescriptor>;
 
         #[method(setObject:atIndexedSubscript:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setObject_atIndexedSubscript(
             &self,
             buffer_desc: Option<&MTLVertexBufferLayoutDescriptor>,
@@ -256,11 +263,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLVertexBufferLayoutDescriptorArray {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -284,24 +291,30 @@ unsafe impl NSObjectProtocol for MTLVertexAttributeDescriptor {}
 extern_methods!(
     unsafe impl MTLVertexAttributeDescriptor {
         #[method(format)]
+        #[unsafe(method_family = none)]
         pub fn format(&self) -> MTLVertexFormat;
 
         /// Setter for [`format`][Self::format].
         #[method(setFormat:)]
+        #[unsafe(method_family = none)]
         pub fn setFormat(&self, format: MTLVertexFormat);
 
         #[method(offset)]
+        #[unsafe(method_family = none)]
         pub fn offset(&self) -> NSUInteger;
 
         /// Setter for [`offset`][Self::offset].
         #[method(setOffset:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setOffset(&self, offset: NSUInteger);
 
         #[method(bufferIndex)]
+        #[unsafe(method_family = none)]
         pub fn bufferIndex(&self) -> NSUInteger;
 
         /// Setter for [`bufferIndex`][Self::bufferIndex].
         #[method(setBufferIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBufferIndex(&self, buffer_index: NSUInteger);
     }
 );
@@ -309,11 +322,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLVertexAttributeDescriptor {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
     }
@@ -337,7 +350,7 @@ unsafe impl NSObjectProtocol for MTLVertexAttributeDescriptorArray {}
 
 extern_methods!(
     unsafe impl MTLVertexAttributeDescriptorArray {
-        #[method_id(objectAtIndexedSubscript:)]
+        #[method(objectAtIndexedSubscript:)]
         #[unsafe(method_family = none)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
@@ -345,6 +358,7 @@ extern_methods!(
         ) -> Retained<MTLVertexAttributeDescriptor>;
 
         #[method(setObject:atIndexedSubscript:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setObject_atIndexedSubscript(
             &self,
             attribute_desc: Option<&MTLVertexAttributeDescriptor>,
@@ -356,11 +370,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLVertexAttributeDescriptorArray {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -383,19 +397,20 @@ unsafe impl NSObjectProtocol for MTLVertexDescriptor {}
 
 extern_methods!(
     unsafe impl MTLVertexDescriptor {
-        #[method_id(vertexDescriptor)]
+        #[method(vertexDescriptor)]
         #[unsafe(method_family = none)]
         pub fn vertexDescriptor() -> Retained<MTLVertexDescriptor>;
 
-        #[method_id(layouts)]
+        #[method(layouts)]
         #[unsafe(method_family = none)]
         pub fn layouts(&self) -> Retained<MTLVertexBufferLayoutDescriptorArray>;
 
-        #[method_id(attributes)]
+        #[method(attributes)]
         #[unsafe(method_family = none)]
         pub fn attributes(&self) -> Retained<MTLVertexAttributeDescriptorArray>;
 
         #[method(reset)]
+        #[unsafe(method_family = none)]
         pub fn reset(&self);
     }
 );
@@ -403,11 +418,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLVertexDescriptor {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

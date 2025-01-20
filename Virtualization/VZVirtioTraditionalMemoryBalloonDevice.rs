@@ -47,11 +47,11 @@ unsafe impl NSObjectProtocol for VZVirtioTraditionalMemoryBalloonDevice {}
 extern_methods!(
     #[cfg(feature = "VZMemoryBalloonDevice")]
     unsafe impl VZVirtioTraditionalMemoryBalloonDevice {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -67,10 +67,12 @@ extern_methods!(
         ///
         /// See: VZVirtualMachineConfiguration.memorySize
         #[method(targetVirtualMachineMemorySize)]
+        #[unsafe(method_family = none)]
         pub unsafe fn targetVirtualMachineMemorySize(&self) -> u64;
 
         /// Setter for [`targetVirtualMachineMemorySize`][Self::targetVirtualMachineMemorySize].
         #[method(setTargetVirtualMachineMemorySize:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTargetVirtualMachineMemorySize(
             &self,
             target_virtual_machine_memory_size: u64,

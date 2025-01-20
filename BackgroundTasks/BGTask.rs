@@ -25,7 +25,7 @@ extern_methods!(
         ///
         /// The identifier is the same as the one used to register the launch handler in
         /// ``BGTaskScheduler/registerForTaskWithIdentifier:usingQueue:launchHandler:``.
-        #[method_id(identifier)]
+        #[method(identifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
@@ -50,21 +50,23 @@ extern_methods!(
         /// The handler may be called before the background process uses the full amount of its
         /// allocated time.
         #[method(expirationHandler)]
+        #[unsafe(method_family = none)]
         pub unsafe fn expirationHandler(&self) -> *mut block2::Block<dyn Fn()>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`expirationHandler`][Self::expirationHandler].
         #[method(setExpirationHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setExpirationHandler(
             &self,
             expiration_handler: Option<&block2::Block<dyn Fn()>>,
         );
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -81,6 +83,7 @@ extern_methods!(
         /// - Parameters:
         /// - success: A `Boolean` indicating if the task completed successfully or not.
         #[method(setTaskCompletedWithSuccess:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTaskCompletedWithSuccess(&self, success: bool);
     }
 );
@@ -119,11 +122,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `BGTask`
     unsafe impl BGProcessingTask {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -151,11 +154,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `BGTask`
     unsafe impl BGHealthResearchTask {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -189,11 +192,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `BGTask`
     unsafe impl BGAppRefreshTask {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

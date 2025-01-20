@@ -33,6 +33,7 @@ extern_protocol!(
         ///
         /// Parameter `completion`: Completion block for returning a response.
         #[method(handleCapabilitiesQueryRequest:context:completion:)]
+        #[unsafe(method_family = none)]
         unsafe fn handleCapabilitiesQueryRequest_context_completion(
             &self,
             capabilities_query_request: &ILMessageFilterCapabilitiesQueryRequest,

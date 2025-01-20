@@ -50,6 +50,7 @@ extern_methods!(
         /// of pixels centered on the corresponding source pixel for each destination
         /// pixel.  The kernel diameter must be an odd number.
         #[method(kernelDiameter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn kernelDiameter(&self) -> NSUInteger;
 
         /// Initialize a filter for a particular kernel size and device
@@ -59,7 +60,7 @@ extern_methods!(
         /// Parameter `kernelDiameter`: Diameter of the median filter. Must be an odd number.
         ///
         /// Returns: A valid object or nil, if failure.
-        #[method_id(initWithDevice:kernelDiameter:)]
+        #[method(initWithDevice:kernelDiameter:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_kernelDiameter(
             this: Allocated<Self>,
@@ -80,7 +81,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -88,7 +89,7 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -97,10 +98,12 @@ extern_methods!(
 
         /// The maximum diameter in pixels of the filter window supported by the median filter.
         #[method(maxKernelDiameter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maxKernelDiameter() -> NSUInteger;
 
         /// The minimum diameter in pixels of the filter window supported by the median filter.
         #[method(minKernelDiameter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn minKernelDiameter() -> NSUInteger;
     }
 );
@@ -117,7 +120,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -130,11 +133,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageMedian {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

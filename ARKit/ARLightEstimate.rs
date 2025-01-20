@@ -40,6 +40,7 @@ extern_methods!(
         ///
         /// In a well lit environment, this value is close to 1000. It typically ranges from 0 (very dark) to around 2000 (very bright).
         #[method(ambientIntensity)]
+        #[unsafe(method_family = none)]
         pub unsafe fn ambientIntensity(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -48,14 +49,15 @@ extern_methods!(
         ///
         /// This specifies the ambient color temperature of the lighting in Kelvin (6500 corresponds to pure white).
         #[method(ambientColorTemperature)]
+        #[unsafe(method_family = none)]
         pub unsafe fn ambientColorTemperature(&self) -> CGFloat;
 
         /// Unavailable
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -91,13 +93,14 @@ extern_methods!(
         ///
         /// The data is an array of 27 32-bit floating-point values, containing three non-interleaved data sets
         /// corresponding to the red, green, and blue sets of coefficients.
-        #[method_id(sphericalHarmonicsCoefficients)]
+        #[method(sphericalHarmonicsCoefficients)]
         #[unsafe(method_family = none)]
         pub unsafe fn sphericalHarmonicsCoefficients(&self) -> Retained<NSData>;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The intensity of light in the primary direction.
         #[method(primaryLightIntensity)]
+        #[unsafe(method_family = none)]
         pub unsafe fn primaryLightIntensity(&self) -> CGFloat;
     }
 );
@@ -108,11 +111,11 @@ extern_methods!(
     #[cfg(feature = "objc2")]
     unsafe impl ARDirectionalLightEstimate {
         /// Unavailable
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

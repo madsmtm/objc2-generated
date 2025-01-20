@@ -25,7 +25,7 @@ extern_methods!(
             feature = "UIViewController",
             feature = "block2"
         ))]
-        #[method_id(segueWithIdentifier:source:destination:performHandler:)]
+        #[method(segueWithIdentifier:source:destination:performHandler:)]
         #[unsafe(method_family = none)]
         pub unsafe fn segueWithIdentifier_source_destination_performHandler(
             identifier: Option<&NSString>,
@@ -36,7 +36,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
-        #[method_id(initWithIdentifier:source:destination:)]
+        #[method(initWithIdentifier:source:destination:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifier_source_destination(
             this: Allocated<Self>,
@@ -46,24 +46,24 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
-        #[method_id(identifier)]
+        #[method(identifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
-        #[method_id(sourceViewController)]
+        #[method(sourceViewController)]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceViewController(&self) -> Retained<UIViewController>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
-        #[method_id(destinationViewController)]
+        #[method(destinationViewController)]
         #[unsafe(method_family = none)]
         pub unsafe fn destinationViewController(&self) -> Retained<UIViewController>;
 
@@ -71,6 +71,7 @@ extern_methods!(
         /// The segue runtime will call +[UIView setAnimationsAreEnabled:] prior to invoking this method, based on the value of the Animates checkbox in the Properties Inspector for the segue.
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
         #[method(perform)]
+        #[unsafe(method_family = none)]
         pub unsafe fn perform(&self);
     }
 );
@@ -78,7 +79,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIStoryboardSegue {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -99,19 +100,20 @@ unsafe impl NSObjectProtocol for UIStoryboardUnwindSegueSource {}
 
 extern_methods!(
     unsafe impl UIStoryboardUnwindSegueSource {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-        #[method_id(sourceViewController)]
+        #[method(sourceViewController)]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceViewController(&self) -> Retained<UIViewController>;
 
         #[method(unwindAction)]
+        #[unsafe(method_family = none)]
         pub unsafe fn unwindAction(&self) -> Sel;
 
-        #[method_id(sender)]
+        #[method(sender)]
         #[unsafe(method_family = none)]
         pub unsafe fn sender(&self) -> Option<Retained<AnyObject>>;
     }
@@ -120,7 +122,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIStoryboardUnwindSegueSource {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

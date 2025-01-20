@@ -64,16 +64,18 @@ unsafe impl NSSecureCoding for UICommandAlternate {}
 extern_methods!(
     unsafe impl UICommandAlternate {
         /// Short display title.
-        #[method_id(title)]
+        #[method(title)]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Action to take on choosing this command alternate.
         #[method(action)]
+        #[unsafe(method_family = none)]
         pub unsafe fn action(&self) -> Sel;
 
         /// Bitmask of modifier flags to choose this command alternate.
         #[method(modifierFlags)]
+        #[unsafe(method_family = none)]
         pub unsafe fn modifierFlags(&self) -> UIKeyModifierFlags;
 
         /// Initialize an alternate action to take for a command.
@@ -86,7 +88,7 @@ extern_methods!(
         /// Parameter `modifierFlags`: Bitmask of modifier flags to choose this command alternate.
         ///
         /// Returns: A new command alternate.
-        #[method_id(alternateWithTitle:action:modifierFlags:)]
+        #[method(alternateWithTitle:action:modifierFlags:)]
         #[unsafe(method_family = none)]
         pub unsafe fn alternateWithTitle_action_modifierFlags(
             title: &NSString,
@@ -95,15 +97,15 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -147,61 +149,69 @@ extern_methods!(
     #[cfg(feature = "UIMenuElement")]
     unsafe impl UICommand {
         /// Short display title.
-        #[method_id(title)]
+        #[method(title)]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
         #[cfg(feature = "UIImage")]
         /// Image that can appear next to this command
-        #[method_id(image)]
+        #[method(image)]
         #[unsafe(method_family = none)]
         pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         /// Setter for [`image`][Self::image].
         #[method(setImage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setImage(&self, image: Option<&UIImage>);
 
         /// Elaborated title used in keyboard shortcut overlay.
-        #[method_id(discoverabilityTitle)]
+        #[method(discoverabilityTitle)]
         #[unsafe(method_family = none)]
         pub unsafe fn discoverabilityTitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`discoverabilityTitle`][Self::discoverabilityTitle].
         #[method(setDiscoverabilityTitle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDiscoverabilityTitle(&self, discoverability_title: Option<&NSString>);
 
         /// Action to take on choosing this command.
         #[method(action)]
+        #[unsafe(method_family = none)]
         pub unsafe fn action(&self) -> Sel;
 
         /// Property list object to distinguish commands, if needed.
-        #[method_id(propertyList)]
+        #[method(propertyList)]
         #[unsafe(method_family = none)]
         pub unsafe fn propertyList(&self) -> Option<Retained<AnyObject>>;
 
         /// Command attributes.
         #[method(attributes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn attributes(&self) -> UIMenuElementAttributes;
 
         /// Setter for [`attributes`][Self::attributes].
         #[method(setAttributes:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAttributes(&self, attributes: UIMenuElementAttributes);
 
         /// State that can appear next to the command.
         #[method(state)]
+        #[unsafe(method_family = none)]
         pub unsafe fn state(&self) -> UIMenuElementState;
 
         /// Setter for [`state`][Self::state].
         #[method(setState:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setState(&self, state: UIMenuElementState);
 
         /// Alternates that differ in modifier flags, if any.
-        #[method_id(alternates)]
+        #[method(alternates)]
         #[unsafe(method_family = none)]
         pub unsafe fn alternates(&self) -> Retained<NSArray<UICommandAlternate>>;
 
@@ -218,7 +228,7 @@ extern_methods!(
         /// Parameter `propertyList`: Property list object to distinguish commands, if needed.
         ///
         /// Returns: A new keyless command.
-        #[method_id(commandWithTitle:image:action:propertyList:)]
+        #[method(commandWithTitle:image:action:propertyList:)]
         #[unsafe(method_family = none)]
         pub unsafe fn commandWithTitle_image_action_propertyList(
             title: &NSString,
@@ -243,7 +253,7 @@ extern_methods!(
         /// Parameter `alternates`: Alternates that differ in modifier flags.
         ///
         /// Returns: A new keyless command with alternates.
-        #[method_id(commandWithTitle:image:action:propertyList:alternates:)]
+        #[method(commandWithTitle:image:action:propertyList:alternates:)]
         #[unsafe(method_family = none)]
         pub unsafe fn commandWithTitle_image_action_propertyList_alternates(
             title: &NSString,
@@ -254,15 +264,15 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,

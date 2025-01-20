@@ -22,7 +22,7 @@ unsafe impl NSObjectProtocol for CLMonitorConfiguration {}
 
 extern_methods!(
     unsafe impl CLMonitorConfiguration {
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
@@ -32,6 +32,7 @@ extern_methods!(
             feature = "block2"
         ))]
         #[method(eventHandler)]
+        #[unsafe(method_family = none)]
         pub unsafe fn eventHandler(
             &self,
         ) -> NonNull<block2::Block<dyn Fn(NonNull<CLMonitor>, NonNull<CLMonitoringEvent>)>>;
@@ -41,11 +42,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CLMonitorConfiguration {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

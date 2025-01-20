@@ -63,7 +63,7 @@ extern_methods!(
         /// See: ASAuthorizationAppleIDRequest to be serviced by
         ///
         /// See: ASAuthorizationController.
-        #[method_id(createRequest)]
+        #[method(createRequest)]
         #[unsafe(method_family = none)]
         pub unsafe fn createRequest(&self) -> Retained<ASAuthorizationAppleIDRequest>;
 
@@ -81,6 +81,7 @@ extern_methods!(
         ///
         /// See: ASAuthorizationAppleIDProviderCredentialNotFound, an error will also be passed in the completion block.
         #[method(getCredentialStateForUserID:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getCredentialStateForUserID_completion(
             &self,
             user_id: &NSString,
@@ -94,11 +95,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASAuthorizationAppleIDProvider {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

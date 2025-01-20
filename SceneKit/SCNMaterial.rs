@@ -171,24 +171,25 @@ unsafe impl SCNShadable for SCNMaterial {}
 extern_methods!(
     unsafe impl SCNMaterial {
         /// Creates and initialize a material instance.
-        #[method_id(material)]
+        #[method(material)]
         #[unsafe(method_family = none)]
         pub unsafe fn material() -> Retained<Self>;
 
         /// Determines the name of the receiver.
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
         #[method(setName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
         #[cfg(feature = "SCNMaterialProperty")]
         /// Specifies the receiver's diffuse property.
         ///
         /// The diffuse property specifies the amount of light diffusely reflected from the surface. The diffuse light is reflected equally in all directions and is therefore independent of the point of view.
-        #[method_id(diffuse)]
+        #[method(diffuse)]
         #[unsafe(method_family = none)]
         pub unsafe fn diffuse(&self) -> Retained<SCNMaterialProperty>;
 
@@ -196,7 +197,7 @@ extern_methods!(
         /// Specifies the receiver's ambient property.
         ///
         /// The ambient property specifies the amount of ambient light to reflect. This property has no visual impact on scenes that have no ambient light. Setting the ambient has no effect if locksAmbientWithDiffuse is set to YES.
-        #[method_id(ambient)]
+        #[method(ambient)]
         #[unsafe(method_family = none)]
         pub unsafe fn ambient(&self) -> Retained<SCNMaterialProperty>;
 
@@ -204,31 +205,31 @@ extern_methods!(
         /// Specifies the receiver's specular property.
         ///
         /// The specular property specifies the amount of light to reflect in a mirror-like manner. The specular intensity increases when the point of view lines up with the direction of the reflected light.
-        #[method_id(specular)]
+        #[method(specular)]
         #[unsafe(method_family = none)]
         pub unsafe fn specular(&self) -> Retained<SCNMaterialProperty>;
 
         #[cfg(feature = "SCNMaterialProperty")]
         /// The emission property specifies the amount of light the material emits. This emission does not light up other surfaces in the scene.
-        #[method_id(emission)]
+        #[method(emission)]
         #[unsafe(method_family = none)]
         pub unsafe fn emission(&self) -> Retained<SCNMaterialProperty>;
 
         #[cfg(feature = "SCNMaterialProperty")]
         /// The transparent property specifies the transparent areas of the material.
-        #[method_id(transparent)]
+        #[method(transparent)]
         #[unsafe(method_family = none)]
         pub unsafe fn transparent(&self) -> Retained<SCNMaterialProperty>;
 
         #[cfg(feature = "SCNMaterialProperty")]
         /// The reflective property specifies the reflectivity of the surface. The surface will not actually reflect other objects in the scene. This property may be used as a sphere mapping to reflect a precomputed environment.
-        #[method_id(reflective)]
+        #[method(reflective)]
         #[unsafe(method_family = none)]
         pub unsafe fn reflective(&self) -> Retained<SCNMaterialProperty>;
 
         #[cfg(feature = "SCNMaterialProperty")]
         /// The multiply property specifies a color or an image used to multiply the output fragments with. The computed fragments are multiplied with the multiply value to produce the final fragments. This property may be used for shadow maps, to fade out or tint 3d objects.
-        #[method_id(multiply)]
+        #[method(multiply)]
         #[unsafe(method_family = none)]
         pub unsafe fn multiply(&self) -> Retained<SCNMaterialProperty>;
 
@@ -236,7 +237,7 @@ extern_methods!(
         /// The normal property specifies the surface orientation.
         ///
         /// When an image is set on the normal property the material is automatically lit per pixel. Setting a color has no effect.
-        #[method_id(normal)]
+        #[method(normal)]
         #[unsafe(method_family = none)]
         pub unsafe fn normal(&self) -> Retained<SCNMaterialProperty>;
 
@@ -244,60 +245,62 @@ extern_methods!(
         /// The displacement property specifies how vertex are translated in tangent space.
         ///
         /// Pass a grayscale image for a simple 'elevation' or rgb image for a vector displacement.
-        #[method_id(displacement)]
+        #[method(displacement)]
         #[unsafe(method_family = none)]
         pub unsafe fn displacement(&self) -> Retained<SCNMaterialProperty>;
 
         #[cfg(feature = "SCNMaterialProperty")]
         /// The ambientOcclusion property specifies the ambient occlusion of the surface. The ambient occlusion is multiplied with the ambient light, then the result is added to the lighting contribution. This property has no visual impact on scenes that have no ambient light. When an ambient occlusion map is set, the ambient property is ignored.
-        #[method_id(ambientOcclusion)]
+        #[method(ambientOcclusion)]
         #[unsafe(method_family = none)]
         pub unsafe fn ambientOcclusion(&self) -> Retained<SCNMaterialProperty>;
 
         #[cfg(feature = "SCNMaterialProperty")]
         /// The selfIllumination property specifies a texture or a color that is added to the lighting contribution of the surface. When a selfIllumination is set, the emission property is ignored.
-        #[method_id(selfIllumination)]
+        #[method(selfIllumination)]
         #[unsafe(method_family = none)]
         pub unsafe fn selfIllumination(&self) -> Retained<SCNMaterialProperty>;
 
         #[cfg(feature = "SCNMaterialProperty")]
         /// The metalness property specifies how metallic the material's surface appears. Lower values (darker colors) cause the material to appear more like a dielectric surface. Higher values (brighter colors) cause the surface to appear more metallic. This property is only used when 'lightingModelName' is 'SCNLightingModelPhysicallyBased'.
-        #[method_id(metalness)]
+        #[method(metalness)]
         #[unsafe(method_family = none)]
         pub unsafe fn metalness(&self) -> Retained<SCNMaterialProperty>;
 
         #[cfg(feature = "SCNMaterialProperty")]
         /// The roughness property specifies the apparent smoothness of the surface. Lower values (darker colors) cause the material to appear shiny, with well-defined specular highlights. Higher values (brighter colors) cause specular highlights to spread out and the diffuse property of the material to become more retroreflective. This property is only used when 'lightingModelName' is 'SCNLightingModelPhysicallyBased'.
-        #[method_id(roughness)]
+        #[method(roughness)]
         #[unsafe(method_family = none)]
         pub unsafe fn roughness(&self) -> Retained<SCNMaterialProperty>;
 
         #[cfg(feature = "SCNMaterialProperty")]
         /// The clearCoat property specifies color and intensity of the coat layer.
-        #[method_id(clearCoat)]
+        #[method(clearCoat)]
         #[unsafe(method_family = none)]
         pub unsafe fn clearCoat(&self) -> Retained<SCNMaterialProperty>;
 
         #[cfg(feature = "SCNMaterialProperty")]
         /// The clearCoat property specifies color and intensity of the coat roughness.
-        #[method_id(clearCoatRoughness)]
+        #[method(clearCoatRoughness)]
         #[unsafe(method_family = none)]
         pub unsafe fn clearCoatRoughness(&self) -> Retained<SCNMaterialProperty>;
 
         #[cfg(feature = "SCNMaterialProperty")]
         /// The clearCoatNormal property specifies color and intensity of the optional coat normal map.
-        #[method_id(clearCoatNormal)]
+        #[method(clearCoatNormal)]
         #[unsafe(method_family = none)]
         pub unsafe fn clearCoatNormal(&self) -> Retained<SCNMaterialProperty>;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Specifies the receiver's shininess value. Defaults to 1.0. Animatable.
         #[method(shininess)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shininess(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`shininess`][Self::shininess].
         #[method(setShininess:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShininess(&self, shininess: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -305,94 +308,115 @@ extern_methods!(
         ///
         /// The color of the transparent property is multiplied by this property. The result is then used to produce the final transparency according to the rule defined by the transparencyMode property.
         #[method(transparency)]
+        #[unsafe(method_family = none)]
         pub unsafe fn transparency(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`transparency`][Self::transparency].
         #[method(setTransparency:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTransparency(&self, transparency: CGFloat);
 
         /// Determines the receiver's lighting model. See above for the list of lighting models. Defaults to SCNLightingModelBlinn.
-        #[method_id(lightingModelName)]
+        #[method(lightingModelName)]
         #[unsafe(method_family = none)]
         pub unsafe fn lightingModelName(&self) -> Retained<SCNLightingModel>;
 
         /// Setter for [`lightingModelName`][Self::lightingModelName].
         #[method(setLightingModelName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLightingModelName(&self, lighting_model_name: &SCNLightingModel);
 
         /// Determines whether the receiver is lit per pixel. Defaults to YES. Animatable.
         #[method(isLitPerPixel)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isLitPerPixel(&self) -> bool;
 
         /// Setter for [`isLitPerPixel`][Self::isLitPerPixel].
         #[method(setLitPerPixel:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLitPerPixel(&self, lit_per_pixel: bool);
 
         /// Determines whether the receiver is double sided. Defaults to NO. Animatable.
         #[method(isDoubleSided)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isDoubleSided(&self) -> bool;
 
         /// Setter for [`isDoubleSided`][Self::isDoubleSided].
         #[method(setDoubleSided:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDoubleSided(&self, double_sided: bool);
 
         /// Determines of to how to rasterize the receiver's primitives. Defaults to SCNFillModeFill.
         #[method(fillMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fillMode(&self) -> SCNFillMode;
 
         /// Setter for [`fillMode`][Self::fillMode].
         #[method(setFillMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFillMode(&self, fill_mode: SCNFillMode);
 
         /// Determines the culling mode of the receiver. Defaults to SCNCullModeBack. Animatable.
         #[method(cullMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cullMode(&self) -> SCNCullMode;
 
         /// Setter for [`cullMode`][Self::cullMode].
         #[method(setCullMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCullMode(&self, cull_mode: SCNCullMode);
 
         /// Determines the transparency mode of the receiver. See above for the transparency modes. Defaults to SCNTransparencyModeDefault.
         #[method(transparencyMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn transparencyMode(&self) -> SCNTransparencyMode;
 
         /// Setter for [`transparencyMode`][Self::transparencyMode].
         #[method(setTransparencyMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTransparencyMode(&self, transparency_mode: SCNTransparencyMode);
 
         /// Makes the ambient property automatically match the diffuse property. Defaults to NO on 10.9 and before, defaults to YES otherwise. Animatable.
         #[method(locksAmbientWithDiffuse)]
+        #[unsafe(method_family = none)]
         pub unsafe fn locksAmbientWithDiffuse(&self) -> bool;
 
         /// Setter for [`locksAmbientWithDiffuse`][Self::locksAmbientWithDiffuse].
         #[method(setLocksAmbientWithDiffuse:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLocksAmbientWithDiffuse(&self, locks_ambient_with_diffuse: bool);
 
         /// Determines whether the receiver writes to the depth buffer when rendered. Defaults to YES.
         #[method(writesToDepthBuffer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn writesToDepthBuffer(&self) -> bool;
 
         /// Setter for [`writesToDepthBuffer`][Self::writesToDepthBuffer].
         #[method(setWritesToDepthBuffer:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWritesToDepthBuffer(&self, writes_to_depth_buffer: bool);
 
         #[cfg(feature = "SceneKitTypes")]
         /// Determines whether the receiver writes to the color buffer when rendered. Defaults to SCNColorMaskAll.
         #[method(colorBufferWriteMask)]
+        #[unsafe(method_family = none)]
         pub unsafe fn colorBufferWriteMask(&self) -> SCNColorMask;
 
         #[cfg(feature = "SceneKitTypes")]
         /// Setter for [`colorBufferWriteMask`][Self::colorBufferWriteMask].
         #[method(setColorBufferWriteMask:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setColorBufferWriteMask(&self, color_buffer_write_mask: SCNColorMask);
 
         /// Determines whether the receiver reads from the depth buffer when rendered. Defaults to YES.
         #[method(readsFromDepthBuffer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn readsFromDepthBuffer(&self) -> bool;
 
         /// Setter for [`readsFromDepthBuffer`][Self::readsFromDepthBuffer].
         #[method(setReadsFromDepthBuffer:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setReadsFromDepthBuffer(&self, reads_from_depth_buffer: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -400,19 +424,23 @@ extern_methods!(
         ///
         /// The effect of the reflectivity property is modulated by this property. The fresnelExponent changes the exponent of the reflectance. The bigger the exponent, the more concentrated the reflection is around the edges.
         #[method(fresnelExponent)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fresnelExponent(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`fresnelExponent`][Self::fresnelExponent].
         #[method(setFresnelExponent:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFresnelExponent(&self, fresnel_exponent: CGFloat);
 
         /// Specifies the receiver's blend mode. Defaults to SCNBlendModeAlpha.
         #[method(blendMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn blendMode(&self) -> SCNBlendMode;
 
         /// Setter for [`blendMode`][Self::blendMode].
         #[method(setBlendMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBlendMode(&self, blend_mode: SCNBlendMode);
     }
 );
@@ -420,11 +448,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNMaterial {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

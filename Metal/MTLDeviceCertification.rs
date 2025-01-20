@@ -39,9 +39,11 @@ extern_category!(
     #[doc(alias = "NSDeviceCertification")]
     pub unsafe trait NSProcessInfoNSDeviceCertification {
         #[method(isDeviceCertifiedFor:)]
+        #[unsafe(method_family = none)]
         unsafe fn isDeviceCertifiedFor(&self, performance_tier: NSDeviceCertification) -> bool;
 
         #[method(hasPerformanceProfile:)]
+        #[unsafe(method_family = none)]
         unsafe fn hasPerformanceProfile(
             &self,
             performance_profile: NSProcessPerformanceProfile,

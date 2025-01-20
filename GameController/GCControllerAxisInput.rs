@@ -34,11 +34,13 @@ extern_methods!(
     unsafe impl GCControllerAxisInput {
         #[cfg(feature = "block2")]
         #[method(valueChangedHandler)]
+        #[unsafe(method_family = none)]
         pub unsafe fn valueChangedHandler(&self) -> GCControllerAxisValueChangedHandler;
 
         #[cfg(feature = "block2")]
         /// Setter for [`valueChangedHandler`][Self::valueChangedHandler].
         #[method(setValueChangedHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setValueChangedHandler(
             &self,
             value_changed_handler: GCControllerAxisValueChangedHandler,
@@ -51,6 +53,7 @@ extern_methods!(
         /// As an axis is often used in a digital sense, you can rely on a value of 0 meaning the axis is inside the deadzone.
         /// Any value greater than or less than zero is not in the deadzone.
         #[method(value)]
+        #[unsafe(method_family = none)]
         pub unsafe fn value(&self) -> c_float;
 
         /// Sets the normalized value for the input.
@@ -62,6 +65,7 @@ extern_methods!(
         ///
         /// See: value
         #[method(setValue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setValue(&self, value: c_float);
     }
 );
@@ -70,11 +74,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "GCControllerElement")]
     unsafe impl GCControllerAxisInput {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

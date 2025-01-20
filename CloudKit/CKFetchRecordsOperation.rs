@@ -21,30 +21,31 @@ unsafe impl NSObjectProtocol for CKFetchRecordsOperation {}
 extern_methods!(
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchRecordsOperation {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordID")]
-        #[method_id(initWithRecordIDs:)]
+        #[method(initWithRecordIDs:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRecordIDs(
             this: Allocated<Self>,
             record_i_ds: &NSArray<CKRecordID>,
         ) -> Retained<Self>;
 
-        #[method_id(fetchCurrentUserRecordOperation)]
+        #[method(fetchCurrentUserRecordOperation)]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchCurrentUserRecordOperation() -> Retained<Self>;
 
         #[cfg(feature = "CKRecordID")]
-        #[method_id(recordIDs)]
+        #[method(recordIDs)]
         #[unsafe(method_family = none)]
         pub unsafe fn recordIDs(&self) -> Option<Retained<NSArray<CKRecordID>>>;
 
         #[cfg(feature = "CKRecordID")]
         /// Setter for [`recordIDs`][Self::recordIDs].
         #[method(setRecordIDs:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRecordIDs(&self, record_i_ds: Option<&NSArray<CKRecordID>>);
 
         #[cfg(feature = "CKRecord")]
@@ -54,13 +55,14 @@ extern_methods!(
         /// If nil, declares the entire record should be downloaded. If set to an empty array, declares that no user fields should be downloaded.
         /// Defaults to
         /// `nil.`
-        #[method_id(desiredKeys)]
+        #[method(desiredKeys)]
         #[unsafe(method_family = none)]
         pub unsafe fn desiredKeys(&self) -> Option<Retained<NSArray<CKRecordFieldKey>>>;
 
         #[cfg(feature = "CKRecord")]
         /// Setter for [`desiredKeys`][Self::desiredKeys].
         #[method(setDesiredKeys:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDesiredKeys(&self, desired_keys: Option<&NSArray<CKRecordFieldKey>>);
 
         #[cfg(all(feature = "CKRecordID", feature = "block2"))]
@@ -74,6 +76,7 @@ extern_methods!(
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(perRecordProgressBlock)]
+        #[unsafe(method_family = none)]
         pub unsafe fn perRecordProgressBlock(
             &self,
         ) -> *mut block2::Block<dyn Fn(NonNull<CKRecordID>, c_double)>;
@@ -81,6 +84,7 @@ extern_methods!(
         #[cfg(all(feature = "CKRecordID", feature = "block2"))]
         /// Setter for [`perRecordProgressBlock`][Self::perRecordProgressBlock].
         #[method(setPerRecordProgressBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPerRecordProgressBlock(
             &self,
             per_record_progress_block: Option<
@@ -97,6 +101,7 @@ extern_methods!(
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(perRecordCompletionBlock)]
+        #[unsafe(method_family = none)]
         pub unsafe fn perRecordCompletionBlock(
             &self,
         ) -> *mut block2::Block<dyn Fn(*mut CKRecord, *mut CKRecordID, *mut NSError)>;
@@ -104,6 +109,7 @@ extern_methods!(
         #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
         /// Setter for [`perRecordCompletionBlock`][Self::perRecordCompletionBlock].
         #[method(setPerRecordCompletionBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPerRecordCompletionBlock(
             &self,
             per_record_completion_block: Option<
@@ -132,6 +138,7 @@ extern_methods!(
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(fetchRecordsCompletionBlock)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fetchRecordsCompletionBlock(
             &self,
         ) -> *mut block2::Block<dyn Fn(*mut NSDictionary<CKRecordID, CKRecord>, *mut NSError)>;
@@ -139,6 +146,7 @@ extern_methods!(
         #[cfg(all(feature = "CKRecord", feature = "CKRecordID", feature = "block2"))]
         /// Setter for [`fetchRecordsCompletionBlock`][Self::fetchRecordsCompletionBlock].
         #[method(setFetchRecordsCompletionBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFetchRecordsCompletionBlock(
             &self,
             fetch_records_completion_block: Option<
@@ -152,7 +160,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchRecordsOperation {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

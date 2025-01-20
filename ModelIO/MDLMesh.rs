@@ -25,43 +25,52 @@ unsafe impl NSObjectProtocol for MDLVertexAttributeData {}
 extern_methods!(
     unsafe impl MDLVertexAttributeData {
         #[cfg(feature = "MDLMeshBuffer")]
-        #[method_id(map)]
+        #[method(map)]
         #[unsafe(method_family = none)]
         pub unsafe fn map(&self) -> Retained<MDLMeshBufferMap>;
 
         #[cfg(feature = "MDLMeshBuffer")]
         /// Setter for [`map`][Self::map].
         #[method(setMap:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMap(&self, map: &MDLMeshBufferMap);
 
         #[method(dataStart)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dataStart(&self) -> NonNull<c_void>;
 
         /// Setter for [`dataStart`][Self::dataStart].
         #[method(setDataStart:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDataStart(&self, data_start: NonNull<c_void>);
 
         #[method(stride)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stride(&self) -> NSUInteger;
 
         /// Setter for [`stride`][Self::stride].
         #[method(setStride:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setStride(&self, stride: NSUInteger);
 
         #[cfg(feature = "MDLVertexDescriptor")]
         #[method(format)]
+        #[unsafe(method_family = none)]
         pub unsafe fn format(&self) -> MDLVertexFormat;
 
         #[cfg(feature = "MDLVertexDescriptor")]
         /// Setter for [`format`][Self::format].
         #[method(setFormat:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFormat(&self, format: MDLVertexFormat);
 
         #[method(bufferSize)]
+        #[unsafe(method_family = none)]
         pub unsafe fn bufferSize(&self) -> NSUInteger;
 
         /// Setter for [`bufferSize`][Self::bufferSize].
         #[method(setBufferSize:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBufferSize(&self, buffer_size: NSUInteger);
     }
 );
@@ -69,11 +78,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLVertexAttributeData {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -105,7 +114,7 @@ extern_methods!(
         /// Initialize a mesh with an allocator
         ///
         /// Returns: An empty mesh
-        #[method_id(initWithBufferAllocator:)]
+        #[method(initWithBufferAllocator:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBufferAllocator(
             this: Allocated<Self>,
@@ -130,7 +139,7 @@ extern_methods!(
         ///
         /// Parameter `submeshes`: Array of submeshes with index buffers referencing vertex data
         /// and/or materials to be applied to mesh
-        #[method_id(initWithVertexBuffer:vertexCount:descriptor:submeshes:)]
+        #[method(initWithVertexBuffer:vertexCount:descriptor:submeshes:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithVertexBuffer_vertexCount_descriptor_submeshes(
             this: Allocated<Self>,
@@ -160,7 +169,7 @@ extern_methods!(
         ///
         /// Allows initialization with the layout of the vertexBuffers in a
         /// structure-of-arrays form, in other words, non-interleaved vertex attributes
-        #[method_id(initWithVertexBuffers:vertexCount:descriptor:submeshes:)]
+        #[method(initWithVertexBuffers:vertexCount:descriptor:submeshes:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithVertexBuffers_vertexCount_descriptor_submeshes(
             this: Allocated<Self>,
@@ -174,7 +183,7 @@ extern_methods!(
         ///
         /// the vertex buffer will remain mapped until the MDLVertexAttributeData
         /// is freed.
-        #[method_id(vertexAttributeDataForAttributeNamed:)]
+        #[method(vertexAttributeDataForAttributeNamed:)]
         #[unsafe(method_family = none)]
         pub unsafe fn vertexAttributeDataForAttributeNamed(
             &self,
@@ -191,7 +200,7 @@ extern_methods!(
         /// elements will be set to zero.
         /// The vertex buffer will remain mapped until the MDLVertexAttributeData
         /// is freed.
-        #[method_id(vertexAttributeDataForAttributeNamed:asFormat:)]
+        #[method(vertexAttributeDataForAttributeNamed:asFormat:)]
         #[unsafe(method_family = none)]
         pub unsafe fn vertexAttributeDataForAttributeNamed_asFormat(
             &self,
@@ -213,13 +222,14 @@ extern_methods!(
         ///
         /// The allocator associated with each original meshbuffer is used to
         /// reallocate the corresponding resultant meshbuffer.
-        #[method_id(vertexDescriptor)]
+        #[method(vertexDescriptor)]
         #[unsafe(method_family = none)]
         pub unsafe fn vertexDescriptor(&self) -> Retained<MDLVertexDescriptor>;
 
         #[cfg(feature = "MDLVertexDescriptor")]
         /// Setter for [`vertexDescriptor`][Self::vertexDescriptor].
         #[method(setVertexDescriptor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setVertexDescriptor(&self, vertex_descriptor: &MDLVertexDescriptor);
 
         /// Number of vertices in the vertexBuffers
@@ -228,23 +238,26 @@ extern_methods!(
         /// this value with the stride of the buffer in the vertexDescriptor's
         /// layout
         #[method(vertexCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn vertexCount(&self) -> NSUInteger;
 
         /// Setter for [`vertexCount`][Self::vertexCount].
         #[method(setVertexCount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setVertexCount(&self, vertex_count: NSUInteger);
 
         #[cfg(feature = "MDLMeshBuffer")]
         /// Array of buffers containing vertex data
         ///
         /// The vertex buffers in this array are indexed by the vertex descriptor.
-        #[method_id(vertexBuffers)]
+        #[method(vertexBuffers)]
         #[unsafe(method_family = none)]
         pub unsafe fn vertexBuffers(&self) -> Retained<NSArray<ProtocolObject<dyn MDLMeshBuffer>>>;
 
         #[cfg(feature = "MDLMeshBuffer")]
         /// Setter for [`vertexBuffers`][Self::vertexBuffers].
         #[method(setVertexBuffers:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setVertexBuffers(
             &self,
             vertex_buffers: &NSArray<ProtocolObject<dyn MDLMeshBuffer>>,
@@ -253,18 +266,19 @@ extern_methods!(
         #[cfg(feature = "MDLSubmesh")]
         /// Array of submeshes containing an indexbuffer referencing the vertex
         /// data and material to be applied when the mesh is rendered
-        #[method_id(submeshes)]
+        #[method(submeshes)]
         #[unsafe(method_family = none)]
         pub unsafe fn submeshes(&self) -> Option<Retained<NSMutableArray<MDLSubmesh>>>;
 
         #[cfg(feature = "MDLSubmesh")]
         /// Setter for [`submeshes`][Self::submeshes].
         #[method(setSubmeshes:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSubmeshes(&self, submeshes: Option<&NSMutableArray<MDLSubmesh>>);
 
         #[cfg(feature = "MDLMeshBuffer")]
         /// allocator used to allocate contained mesh buffers
-        #[method_id(allocator)]
+        #[method(allocator)]
         #[unsafe(method_family = none)]
         pub unsafe fn allocator(&self) -> Retained<ProtocolObject<dyn MDLMeshBufferAllocator>>;
     }
@@ -274,11 +288,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MDLObject")]
     unsafe impl MDLMesh {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -294,6 +308,7 @@ extern_methods!(
         /// The mesh's allocator will be used to create storage for the new
         /// attribute.
         #[method(addAttributeWithName:format:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addAttributeWithName_format(&self, name: &NSString, format: MDLVertexFormat);
 
         #[cfg(feature = "MDLVertexDescriptor")]
@@ -311,6 +326,7 @@ extern_methods!(
         /// Parameter `stride`: The increment in bytes from the start of one data entry to
         /// the next.
         #[method(addAttributeWithName:format:type:data:stride:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addAttributeWithName_format_type_data_stride(
             &self,
             name: &NSString,
@@ -342,6 +358,7 @@ extern_methods!(
         /// Attributes corresponding to multiple times can be retrieved from
         /// the vertex descriptor.
         #[method(addAttributeWithName:format:type:data:stride:time:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addAttributeWithName_format_type_data_stride_time(
             &self,
             name: &NSString,
@@ -367,6 +384,7 @@ extern_methods!(
         /// be overwritten with vertex normal data. 'vertexDescriptor' will be
         /// updated to reflect the new attribute.
         #[method(addNormalsWithAttributeNamed:creaseThreshold:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addNormalsWithAttributeNamed_creaseThreshold(
             &self,
             attribute_name: Option<&NSString>,
@@ -387,6 +405,7 @@ extern_methods!(
         /// the new attributes if necessary. The basis may not be orthogonal; to gaurantee an orthogonal
         /// tangent basis please use addOrthTanBasisForTextureCoordinateAttibuteNamed selector.
         #[method(addTangentBasisForTextureCoordinateAttributeNamed:tangentAttributeNamed:bitangentAttributeNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addTangentBasisForTextureCoordinateAttributeNamed_tangentAttributeNamed_bitangentAttributeNamed(
             &self,
             texture_coordinate_attribute_name: &NSString,
@@ -409,6 +428,7 @@ extern_methods!(
         /// Note that this method does NOT produce a T.w component which is used in B = (N x T) * T.w
         /// Please use addOrthTanBasisForTextureCoordinateAttributeNamed.
         #[method(addTangentBasisForTextureCoordinateAttributeNamed:normalAttributeNamed:tangentAttributeNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addTangentBasisForTextureCoordinateAttributeNamed_normalAttributeNamed_tangentAttributeNamed(
             &self,
             texture_coordinate_attribute_name: &NSString,
@@ -417,6 +437,7 @@ extern_methods!(
         );
 
         #[method(addOrthTanBasisForTextureCoordinateAttributeNamed:normalAttributeNamed:tangentAttributeNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addOrthTanBasisForTextureCoordinateAttributeNamed_normalAttributeNamed_tangentAttributeNamed(
             &self,
             texture_coordinate_attribute_name: &NSString,
@@ -431,6 +452,7 @@ extern_methods!(
         /// Uses the attribute named MDLVertexAttributePosition and if available,
         /// the attribute named MDLVertexAttributeNormal to calculate texture coordinates
         #[method(addUnwrappedTextureCoordinatesForAttributeNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addUnwrappedTextureCoordinatesForAttributeNamed(
             &self,
             texture_coordinate_attribute_name: &NSString,
@@ -447,6 +469,7 @@ extern_methods!(
         /// coordinate attribute exists on the mesh. An exception will be raised if
         /// the attribute cannot be found
         #[method(flipTextureCoordinatesInAttributeNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn flipTextureCoordinatesInAttributeNamed(
             &self,
             texture_coordinate_attribute_name: &NSString,
@@ -459,6 +482,7 @@ extern_methods!(
         /// buffers on submeshes may grow to accomadate any vertices added.
         #[deprecated]
         #[method(makeVerticesUnique)]
+        #[unsafe(method_family = none)]
         pub unsafe fn makeVerticesUnique(&self);
 
         /// Deindexes the vertex array
@@ -467,6 +491,7 @@ extern_methods!(
         /// vertices so faces do not share vertices. The vertex buffer and index
         /// buffers on submeshes may grow to accomadate any vertices added.
         #[method(makeVerticesUniqueAndReturnError:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn makeVerticesUniqueAndReturnError(&self) -> Result<(), Retained<NSError>>;
 
         /// replace existing attribute data with new attribute data retaining
@@ -475,6 +500,7 @@ extern_methods!(
         /// If the specified attribute does not already exist, it will be
         /// created.
         #[method(replaceAttributeNamed:withData:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn replaceAttributeNamed_withData(
             &self,
             name: &NSString,
@@ -487,6 +513,7 @@ extern_methods!(
         /// If the specified attribute does not already exist, it will be
         /// created with the same format as the newData.
         #[method(updateAttributeNamed:withData:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updateAttributeNamed_withData(
             &self,
             name: &NSString,
@@ -497,6 +524,7 @@ extern_methods!(
         ///
         /// if the named attribute does not exist, nothing happens.
         #[method(removeAttributeNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeAttributeNamed(&self, name: &NSString);
     }
 );
@@ -523,7 +551,7 @@ extern_methods!(
         ///
         /// Returns: Returns a mesh subdivided to index level, unless subdivision is
         /// impossible.
-        #[method_id(initMeshBySubdividingMesh:submeshIndex:subdivisionLevels:allocator:)]
+        #[method(initMeshBySubdividingMesh:submeshIndex:subdivisionLevels:allocator:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initMeshBySubdividingMesh_submeshIndex_subdivisionLevels_allocator(
             this: Allocated<Self>,
@@ -534,7 +562,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MDLMeshBuffer", feature = "MDLTypes"))]
-        #[method_id(newIcosahedronWithRadius:inwardNormals:geometryType:allocator:)]
+        #[method(newIcosahedronWithRadius:inwardNormals:geometryType:allocator:)]
         #[unsafe(method_family = new)]
         pub unsafe fn newIcosahedronWithRadius_inwardNormals_geometryType_allocator(
             radius: c_float,
@@ -544,7 +572,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MDLMeshBuffer")]
-        #[method_id(newIcosahedronWithRadius:inwardNormals:allocator:)]
+        #[method(newIcosahedronWithRadius:inwardNormals:allocator:)]
         #[unsafe(method_family = new)]
         pub unsafe fn newIcosahedronWithRadius_inwardNormals_allocator(
             radius: c_float,
@@ -552,7 +580,7 @@ extern_methods!(
             allocator: Option<&ProtocolObject<dyn MDLMeshBufferAllocator>>,
         ) -> Retained<Self>;
 
-        #[method_id(newSubdividedMesh:submeshIndex:subdivisionLevels:)]
+        #[method(newSubdividedMesh:submeshIndex:subdivisionLevels:)]
         #[unsafe(method_family = new)]
         pub unsafe fn newSubdividedMesh_submeshIndex_subdivisionLevels(
             mesh: &MDLMesh,
@@ -589,6 +617,7 @@ extern_methods!(
         ///
         /// Returns: Success or failure of the baking process.
         #[method(generateAmbientOcclusionTextureWithQuality:attenuationFactor:objectsToConsider:vertexAttributeNamed:materialPropertyNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn generateAmbientOcclusionTextureWithQuality_attenuationFactor_objectsToConsider_vertexAttributeNamed_materialPropertyNamed(
             &self,
             bake_quality: c_float,
@@ -599,6 +628,7 @@ extern_methods!(
         ) -> bool;
 
         #[method(generateAmbientOcclusionVertexColorsWithRaysPerSample:attenuationFactor:objectsToConsider:vertexAttributeNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn generateAmbientOcclusionVertexColorsWithRaysPerSample_attenuationFactor_objectsToConsider_vertexAttributeNamed(
             &self,
             rays_per_sample: NSInteger,
@@ -608,6 +638,7 @@ extern_methods!(
         ) -> bool;
 
         #[method(generateAmbientOcclusionVertexColorsWithQuality:attenuationFactor:objectsToConsider:vertexAttributeNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn generateAmbientOcclusionVertexColorsWithQuality_attenuationFactor_objectsToConsider_vertexAttributeNamed(
             &self,
             bake_quality: c_float,
@@ -618,6 +649,7 @@ extern_methods!(
 
         #[cfg(feature = "MDLLight")]
         #[method(generateLightMapTextureWithQuality:lightsToConsider:objectsToConsider:vertexAttributeNamed:materialPropertyNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn generateLightMapTextureWithQuality_lightsToConsider_objectsToConsider_vertexAttributeNamed_materialPropertyNamed(
             &self,
             bake_quality: c_float,
@@ -629,6 +661,7 @@ extern_methods!(
 
         #[cfg(feature = "MDLLight")]
         #[method(generateLightMapVertexColorsWithLightsToConsider:objectsToConsider:vertexAttributeNamed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn generateLightMapVertexColorsWithLightsToConsider_objectsToConsider_vertexAttributeNamed(
             &self,
             lights_to_consider: &NSArray<MDLLight>,

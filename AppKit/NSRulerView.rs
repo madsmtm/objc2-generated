@@ -103,6 +103,7 @@ extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// *********************** Registering new units ************************
         #[method(registerUnitWithName:abbreviation:unitToPointsConversionFactor:stepUpCycle:stepDownCycle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn registerUnitWithName_abbreviation_unitToPointsConversionFactor_stepUpCycle_stepDownCycle(
             unit_name: &NSRulerViewUnitName,
             abbreviation: &NSString,
@@ -113,12 +114,12 @@ extern_methods!(
         );
 
         /// ************************** Initialization ***************************
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "NSScrollView")]
-        #[method_id(initWithScrollView:orientation:)]
+        #[method(initWithScrollView:orientation:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithScrollView_orientation(
             this: Allocated<Self>,
@@ -128,7 +129,7 @@ extern_methods!(
 
         #[cfg(feature = "NSScrollView")]
         /// ************************** Basic setup ***************************
-        #[method_id(scrollView)]
+        #[method(scrollView)]
         #[unsafe(method_family = none)]
         pub unsafe fn scrollView(&self) -> Option<Retained<NSScrollView>>;
 
@@ -136,40 +137,49 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`scrollView`][Self::scrollView].
         #[method(setScrollView:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setScrollView(&self, scroll_view: Option<&NSScrollView>);
 
         #[method(orientation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn orientation(&self) -> NSRulerOrientation;
 
         /// Setter for [`orientation`][Self::orientation].
         #[method(setOrientation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setOrientation(&self, orientation: NSRulerOrientation);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// ************************** Ruler geometry ***************************
         #[method(baselineLocation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn baselineLocation(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(requiredThickness)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requiredThickness(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(ruleThickness)]
+        #[unsafe(method_family = none)]
         pub unsafe fn ruleThickness(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`ruleThickness`][Self::ruleThickness].
         #[method(setRuleThickness:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRuleThickness(&self, rule_thickness: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(reservedThicknessForMarkers)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reservedThicknessForMarkers(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`reservedThicknessForMarkers`][Self::reservedThicknessForMarkers].
         #[method(setReservedThicknessForMarkers:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setReservedThicknessForMarkers(
             &self,
             reserved_thickness_for_markers: CGFloat,
@@ -177,80 +187,92 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(reservedThicknessForAccessoryView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reservedThicknessForAccessoryView(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`reservedThicknessForAccessoryView`][Self::reservedThicknessForAccessoryView].
         #[method(setReservedThicknessForAccessoryView:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setReservedThicknessForAccessoryView(
             &self,
             reserved_thickness_for_accessory_view: CGFloat,
         );
 
         /// ************************** Rule configuration ***************************
-        #[method_id(measurementUnits)]
+        #[method(measurementUnits)]
         #[unsafe(method_family = none)]
         pub unsafe fn measurementUnits(&self) -> Retained<NSRulerViewUnitName>;
 
         /// Setter for [`measurementUnits`][Self::measurementUnits].
         #[method(setMeasurementUnits:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMeasurementUnits(&self, measurement_units: &NSRulerViewUnitName);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(originOffset)]
+        #[unsafe(method_family = none)]
         pub unsafe fn originOffset(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`originOffset`][Self::originOffset].
         #[method(setOriginOffset:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setOriginOffset(&self, origin_offset: CGFloat);
 
         /// ************************** Client view setup ***************************
-        #[method_id(clientView)]
+        #[method(clientView)]
         #[unsafe(method_family = none)]
         pub unsafe fn clientView(&self) -> Option<Retained<NSView>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`clientView`][Self::clientView].
         #[method(setClientView:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setClientView(&self, client_view: Option<&NSView>);
 
         #[cfg(feature = "NSRulerMarker")]
         #[method(addMarker:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addMarker(&self, marker: &NSRulerMarker);
 
         #[cfg(feature = "NSRulerMarker")]
         #[method(removeMarker:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeMarker(&self, marker: &NSRulerMarker);
 
         #[cfg(feature = "NSRulerMarker")]
-        #[method_id(markers)]
+        #[method(markers)]
         #[unsafe(method_family = none)]
         pub unsafe fn markers(&self) -> Option<Retained<NSArray<NSRulerMarker>>>;
 
         #[cfg(feature = "NSRulerMarker")]
         /// Setter for [`markers`][Self::markers].
         #[method(setMarkers:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMarkers(&self, markers: Option<&NSArray<NSRulerMarker>>);
 
         #[cfg(all(feature = "NSEvent", feature = "NSRulerMarker"))]
         #[method(trackMarker:withMouseEvent:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn trackMarker_withMouseEvent(
             &self,
             marker: &NSRulerMarker,
             event: &NSEvent,
         ) -> bool;
 
-        #[method_id(accessoryView)]
+        #[method(accessoryView)]
         #[unsafe(method_family = none)]
         pub unsafe fn accessoryView(&self) -> Option<Retained<NSView>>;
 
         /// Setter for [`accessoryView`][Self::accessoryView].
         #[method(setAccessoryView:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAccessoryView(&self, accessory_view: Option<&NSView>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(moveRulerlineFromLocation:toLocation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn moveRulerlineFromLocation_toLocation(
             &self,
             old_location: CGFloat,
@@ -259,16 +281,20 @@ extern_methods!(
 
         /// ********************* Drawing and hash invalidation **********************
         #[method(invalidateHashMarks)]
+        #[unsafe(method_family = none)]
         pub unsafe fn invalidateHashMarks(&self);
 
         #[method(drawHashMarksAndLabelsInRect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn drawHashMarksAndLabelsInRect(&self, rect: NSRect);
 
         #[method(drawMarkersInRect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn drawMarkersInRect(&self, rect: NSRect);
 
         /// ************************** Key overrides ***************************
         #[method(isFlipped)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isFlipped(&self) -> bool;
     }
 );
@@ -277,7 +303,7 @@ extern_methods!(
     /// Methods declared on superclass `NSView`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSRulerView {
-        #[method_id(initWithFrame:)]
+        #[method(initWithFrame:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
     }
@@ -287,7 +313,7 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSRulerView {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -297,7 +323,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSRulerView {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -309,6 +335,7 @@ extern_methods!(
     unsafe impl NSView {
         #[cfg(feature = "NSRulerMarker")]
         #[method(rulerView:shouldMoveMarker:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rulerView_shouldMoveMarker(
             &self,
             ruler: &NSRulerView,
@@ -317,6 +344,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSRulerMarker", feature = "objc2-core-foundation"))]
         #[method(rulerView:willMoveMarker:toLocation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rulerView_willMoveMarker_toLocation(
             &self,
             ruler: &NSRulerView,
@@ -326,10 +354,12 @@ extern_methods!(
 
         #[cfg(feature = "NSRulerMarker")]
         #[method(rulerView:didMoveMarker:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rulerView_didMoveMarker(&self, ruler: &NSRulerView, marker: &NSRulerMarker);
 
         #[cfg(feature = "NSRulerMarker")]
         #[method(rulerView:shouldRemoveMarker:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rulerView_shouldRemoveMarker(
             &self,
             ruler: &NSRulerView,
@@ -338,10 +368,12 @@ extern_methods!(
 
         #[cfg(feature = "NSRulerMarker")]
         #[method(rulerView:didRemoveMarker:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rulerView_didRemoveMarker(&self, ruler: &NSRulerView, marker: &NSRulerMarker);
 
         #[cfg(feature = "NSRulerMarker")]
         #[method(rulerView:shouldAddMarker:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rulerView_shouldAddMarker(
             &self,
             ruler: &NSRulerView,
@@ -350,6 +382,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSRulerMarker", feature = "objc2-core-foundation"))]
         #[method(rulerView:willAddMarker:atLocation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rulerView_willAddMarker_atLocation(
             &self,
             ruler: &NSRulerView,
@@ -359,17 +392,21 @@ extern_methods!(
 
         #[cfg(feature = "NSRulerMarker")]
         #[method(rulerView:didAddMarker:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rulerView_didAddMarker(&self, ruler: &NSRulerView, marker: &NSRulerMarker);
 
         #[cfg(feature = "NSEvent")]
         #[method(rulerView:handleMouseDown:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rulerView_handleMouseDown(&self, ruler: &NSRulerView, event: &NSEvent);
 
         #[method(rulerView:willSetClientView:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rulerView_willSetClientView(&self, ruler: &NSRulerView, new_client: &NSView);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(rulerView:locationForPoint:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rulerView_locationForPoint(
             &self,
             ruler: &NSRulerView,
@@ -378,6 +415,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(rulerView:pointForLocation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rulerView_pointForLocation(
             &self,
             ruler: &NSRulerView,

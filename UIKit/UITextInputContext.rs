@@ -18,38 +18,44 @@ unsafe impl NSObjectProtocol for UITextInputContext {}
 extern_methods!(
     unsafe impl UITextInputContext {
         #[method(isPencilInputExpected)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isPencilInputExpected(&self) -> bool;
 
         /// Setter for [`isPencilInputExpected`][Self::isPencilInputExpected].
         #[method(setPencilInputExpected:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPencilInputExpected(&self, pencil_input_expected: bool);
 
         #[method(isDictationInputExpected)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isDictationInputExpected(&self) -> bool;
 
         /// Setter for [`isDictationInputExpected`][Self::isDictationInputExpected].
         #[method(setDictationInputExpected:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDictationInputExpected(&self, dictation_input_expected: bool);
 
         #[method(isHardwareKeyboardInputExpected)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isHardwareKeyboardInputExpected(&self) -> bool;
 
         /// Setter for [`isHardwareKeyboardInputExpected`][Self::isHardwareKeyboardInputExpected].
         #[method(setHardwareKeyboardInputExpected:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setHardwareKeyboardInputExpected(
             &self,
             hardware_keyboard_input_expected: bool,
         );
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(current)]
+        #[method(current)]
         #[unsafe(method_family = none)]
         pub unsafe fn current() -> Option<Retained<UITextInputContext>>;
     }

@@ -26,24 +26,26 @@ extern_methods!(
         /// Whether or not this device is capable of participating in a nearby interaction session.
         #[deprecated]
         #[method(isSupported)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isSupported() -> bool;
 
         #[cfg(feature = "NIDeviceCapability")]
         /// Get the protocol that describes nearby interaction capabilities on this device.
         ///
         /// Detailed description on the capability protocol is in NIDeviceCapability.h.
-        #[method_id(deviceCapabilities)]
+        #[method(deviceCapabilities)]
         #[unsafe(method_family = none)]
         pub unsafe fn deviceCapabilities() -> Retained<ProtocolObject<dyn NIDeviceCapability>>;
 
         /// A delegate for receiving NISession updates.
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NISessionDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NISessionDelegate>>);
 
         #[cfg(feature = "NIConfiguration")]
@@ -52,13 +54,13 @@ extern_methods!(
         ///
         /// Copy this discoveryToken and share it with a peer device.
         /// The discoveryToken is unique to this device and this session.
-        #[method_id(discoveryToken)]
+        #[method(discoveryToken)]
         #[unsafe(method_family = none)]
         pub unsafe fn discoveryToken(&self) -> Option<Retained<NIDiscoveryToken>>;
 
         #[cfg(feature = "NIConfiguration")]
         /// The nearby interaction configuration currently being used by the session.
-        #[method_id(configuration)]
+        #[method(configuration)]
         #[unsafe(method_family = none)]
         pub unsafe fn configuration(&self) -> Option<Retained<NIConfiguration>>;
 
@@ -68,12 +70,14 @@ extern_methods!(
         /// Parameter `configuration`: Nearby interaction configuration for this session.
         /// Both devices must call -runWithConfiguration: with a valid configuration identifying the other device in order to receive nearby object updates.
         #[method(runWithConfiguration:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn runWithConfiguration(&self, configuration: &NIConfiguration);
 
         /// Pause an ongoing nearby interaction session.
         ///
         /// Paused sessions may be restarted by calling -runWithConfiguration:. The same local discoveryToken will be used.
         #[method(pause)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pause(&self);
 
         /// Invalidate an ongoing nearby interaction session.
@@ -81,6 +85,7 @@ extern_methods!(
         /// Invalidate sessions you wish to terminate and do not intend to restart. A peer device in a nearby interaction session will receive a callback to -didRemoveNearbyObject:withReason: some time after a call to invalidate (see NINearbyObjectRemovalReason).
         /// calling -runWithConfiguration: after invalidation will result in an error.
         #[method(invalidate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn invalidate(&self);
 
         #[cfg(feature = "objc2-ar-kit")]
@@ -97,6 +102,7 @@ extern_methods!(
         ///
         /// If the platform does not support camera assistance or an ARSession is provided without enabling cameraAssistanceEnabled property in the NIConfiguration, the NISession will invalidate with error (see NIError.h)
         #[method(setARSession:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setARSession(&self, session: &ARSession);
     }
 );
@@ -104,11 +110,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NISession {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -188,19 +194,20 @@ unsafe impl NSSecureCoding for NIAlgorithmConvergence {}
 extern_methods!(
     unsafe impl NIAlgorithmConvergence {
         #[method(status)]
+        #[unsafe(method_family = none)]
         pub unsafe fn status(&self) -> NIAlgorithmConvergenceStatus;
 
         #[cfg(feature = "NIAlgorithmConvergenceStatusReason")]
-        #[method_id(reasons)]
+        #[method(reasons)]
         #[unsafe(method_family = none)]
         pub unsafe fn reasons(&self) -> Retained<NSArray<NIAlgorithmConvergenceStatusReason>>;
 
         /// Unavailable
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -219,6 +226,7 @@ extern_protocol!(
         /// Parameter `nearbyObjects`: The nearby objects that have been updated.
         #[optional]
         #[method(session:didUpdateNearbyObjects:)]
+        #[unsafe(method_family = none)]
         unsafe fn session_didUpdateNearbyObjects(
             &self,
             session: &NISession,
@@ -237,6 +245,7 @@ extern_protocol!(
         /// Parameter `reason`: The reason the nearby object(s) were removed.  All objects in nearbyObjects are removed for the same reason. If multiple nearby objects are removed for different reasons, -didRemoveNearbyObjects:reason: will be called multiple times.
         #[optional]
         #[method(session:didRemoveNearbyObjects:withReason:)]
+        #[unsafe(method_family = none)]
         unsafe fn session_didRemoveNearbyObjects_withReason(
             &self,
             session: &NISession,
@@ -252,6 +261,7 @@ extern_protocol!(
         /// Parameter `session`: The nearby interaction session that was suspended.
         #[optional]
         #[method(sessionWasSuspended:)]
+        #[unsafe(method_family = none)]
         unsafe fn sessionWasSuspended(&self, session: &NISession);
 
         /// This is called when a session may be resumed.
@@ -259,6 +269,7 @@ extern_protocol!(
         /// Parameter `session`: The nearby interaction session that was suspended.
         #[optional]
         #[method(sessionSuspensionEnded:)]
+        #[unsafe(method_family = none)]
         unsafe fn sessionSuspensionEnded(&self, session: &NISession);
 
         /// This is called when a session is invalidated.
@@ -268,6 +279,7 @@ extern_protocol!(
         /// Parameter `error`: The error indicating the reason for invalidation of the session (see NIError.h).
         #[optional]
         #[method(session:didInvalidateWithError:)]
+        #[unsafe(method_family = none)]
         unsafe fn session_didInvalidateWithError(&self, session: &NISession, error: &NSError);
 
         #[cfg(feature = "NINearbyObject")]
@@ -286,6 +298,7 @@ extern_protocol!(
         /// Parameter `object`: A representation of the accessory as a NINearbyObject. The discoveryToken property will be equal to the one in the configuration used to run the session.
         #[optional]
         #[method(session:didGenerateShareableConfigurationData:forObject:)]
+        #[unsafe(method_family = none)]
         unsafe fn session_didGenerateShareableConfigurationData_forObject(
             &self,
             session: &NISession,
@@ -303,6 +316,7 @@ extern_protocol!(
         /// Parameter `object`: which nearby object this state was updated, if null, applies to the entire session
         #[optional]
         #[method(session:didUpdateAlgorithmConvergence:forObject:)]
+        #[unsafe(method_family = none)]
         unsafe fn session_didUpdateAlgorithmConvergence_forObject(
             &self,
             session: &NISession,
@@ -325,6 +339,7 @@ extern_protocol!(
         /// Note that #2 and #3 can be monitored by other delegate methods such as -sessionWasSuspended: and -session:didInvalidateWithError:
         #[optional]
         #[method(sessionDidStartRunning:)]
+        #[unsafe(method_family = none)]
         unsafe fn sessionDidStartRunning(&self, session: &NISession);
     }
 );

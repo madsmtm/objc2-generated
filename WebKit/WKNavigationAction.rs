@@ -55,7 +55,7 @@ extern_methods!(
     unsafe impl WKNavigationAction {
         #[cfg(feature = "WKFrameInfo")]
         /// The target frame, or nil if this is a new window navigation.
-        #[method_id(targetFrame)]
+        #[method(targetFrame)]
         #[unsafe(method_family = none)]
         pub unsafe fn targetFrame(&self) -> Option<Retained<WKFrameInfo>>;
 
@@ -63,25 +63,29 @@ extern_methods!(
         ///
         /// The value is one of the constants of the enumerated type WKNavigationType.
         #[method(navigationType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn navigationType(&self) -> WKNavigationType;
 
         /// The navigation's request.
-        #[method_id(request)]
+        #[method(request)]
         #[unsafe(method_family = none)]
         pub unsafe fn request(&self) -> Retained<NSURLRequest>;
 
         /// A value indicating whether the web content used a download attribute to indicate that this should be downloaded.
         #[method(shouldPerformDownload)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shouldPerformDownload(&self) -> bool;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         /// The modifier keys that were in effect when the navigation was requested.
         #[method(modifierFlags)]
+        #[unsafe(method_family = none)]
         pub unsafe fn modifierFlags(&self) -> NSEventModifierFlags;
 
         /// The number of the mouse button causing the navigation to be requested.
         #[method(buttonNumber)]
+        #[unsafe(method_family = none)]
         pub unsafe fn buttonNumber(&self) -> NSInteger;
     }
 );
@@ -89,11 +93,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKNavigationAction {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

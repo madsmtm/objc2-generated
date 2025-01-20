@@ -50,13 +50,14 @@ unsafe impl NSSecureCoding for CXHandle {}
 extern_methods!(
     unsafe impl CXHandle {
         #[method(type)]
+        #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> CXHandleType;
 
-        #[method_id(value)]
+        #[method(value)]
         #[unsafe(method_family = none)]
         pub unsafe fn value(&self) -> Retained<NSString>;
 
-        #[method_id(initWithType:value:)]
+        #[method(initWithType:value:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithType_value(
             this: Allocated<Self>,
@@ -64,11 +65,12 @@ extern_methods!(
             value: &NSString,
         ) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(isEqualToHandle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isEqualToHandle(&self, handle: &CXHandle) -> bool;
     }
 );
@@ -76,7 +78,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CXHandle {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

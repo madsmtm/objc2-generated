@@ -18,17 +18,19 @@ unsafe impl NSObjectProtocol for NSSpeechRecognizer {}
 
 extern_methods!(
     unsafe impl NSSpeechRecognizer {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Option<Retained<Self>>;
 
         #[method(startListening)]
+        #[unsafe(method_family = none)]
         pub unsafe fn startListening(&self);
 
         #[method(stopListening)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stopListening(&self);
 
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -38,39 +40,46 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn NSSpeechRecognizerDelegate>>,
         );
 
-        #[method_id(commands)]
+        #[method(commands)]
         #[unsafe(method_family = none)]
         pub unsafe fn commands(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`commands`][Self::commands].
         #[method(setCommands:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCommands(&self, commands: Option<&NSArray<NSString>>);
 
-        #[method_id(displayedCommandsTitle)]
+        #[method(displayedCommandsTitle)]
         #[unsafe(method_family = none)]
         pub unsafe fn displayedCommandsTitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`displayedCommandsTitle`][Self::displayedCommandsTitle].
         #[method(setDisplayedCommandsTitle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDisplayedCommandsTitle(&self, displayed_commands_title: Option<&NSString>);
 
         #[method(listensInForegroundOnly)]
+        #[unsafe(method_family = none)]
         pub unsafe fn listensInForegroundOnly(&self) -> bool;
 
         /// Setter for [`listensInForegroundOnly`][Self::listensInForegroundOnly].
         #[method(setListensInForegroundOnly:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setListensInForegroundOnly(&self, listens_in_foreground_only: bool);
 
         #[method(blocksOtherRecognizers)]
+        #[unsafe(method_family = none)]
         pub unsafe fn blocksOtherRecognizers(&self) -> bool;
 
         /// Setter for [`blocksOtherRecognizers`][Self::blocksOtherRecognizers].
         #[method(setBlocksOtherRecognizers:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBlocksOtherRecognizers(&self, blocks_other_recognizers: bool);
     }
 );
@@ -78,7 +87,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSSpeechRecognizer {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -89,6 +98,7 @@ extern_protocol!(
     pub unsafe trait NSSpeechRecognizerDelegate: NSObjectProtocol + MainThreadOnly {
         #[optional]
         #[method(speechRecognizer:didRecognizeCommand:)]
+        #[unsafe(method_family = none)]
         unsafe fn speechRecognizer_didRecognizeCommand(
             &self,
             sender: &NSSpeechRecognizer,

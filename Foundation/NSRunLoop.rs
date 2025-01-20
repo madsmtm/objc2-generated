@@ -31,43 +31,47 @@ unsafe impl NSObjectProtocol for NSRunLoop {}
 
 extern_methods!(
     unsafe impl NSRunLoop {
-        #[method_id(currentRunLoop)]
+        #[method(currentRunLoop)]
         #[unsafe(method_family = none)]
         pub unsafe fn currentRunLoop() -> Retained<NSRunLoop>;
 
-        #[method_id(mainRunLoop)]
+        #[method(mainRunLoop)]
         #[unsafe(method_family = none)]
         pub unsafe fn mainRunLoop() -> Retained<NSRunLoop>;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
-        #[method_id(currentMode)]
+        #[method(currentMode)]
         #[unsafe(method_family = none)]
         pub unsafe fn currentMode(&self) -> Option<Retained<NSRunLoopMode>>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(getCFRunLoop)]
+        #[method(getCFRunLoop)]
         #[unsafe(method_family = none)]
         pub unsafe fn getCFRunLoop(&self) -> Retained<CFRunLoop>;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSString", feature = "NSTimer"))]
         #[method(addTimer:forMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addTimer_forMode(&self, timer: &NSTimer, mode: &NSRunLoopMode);
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSPort", feature = "NSString"))]
         #[method(addPort:forMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addPort_forMode(&self, a_port: &NSPort, mode: &NSRunLoopMode);
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSPort", feature = "NSString"))]
         #[method(removePort:forMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removePort_forMode(&self, a_port: &NSPort, mode: &NSRunLoopMode);
 
         #[cfg(all(feature = "NSDate", feature = "NSObjCRuntime", feature = "NSString"))]
-        #[method_id(limitDateForMode:)]
+        #[method(limitDateForMode:)]
         #[unsafe(method_family = none)]
         pub unsafe fn limitDateForMode(&self, mode: &NSRunLoopMode) -> Option<Retained<NSDate>>;
 
         #[cfg(all(feature = "NSDate", feature = "NSObjCRuntime", feature = "NSString"))]
         #[method(acceptInputForMode:beforeDate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn acceptInputForMode_beforeDate(
             &self,
             mode: &NSRunLoopMode,
@@ -79,11 +83,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSRunLoop {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -93,18 +97,22 @@ extern_methods!(
     /// NSRunLoopConveniences
     unsafe impl NSRunLoop {
         #[method(run)]
+        #[unsafe(method_family = none)]
         pub unsafe fn run(&self);
 
         #[cfg(feature = "NSDate")]
         #[method(runUntilDate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn runUntilDate(&self, limit_date: &NSDate);
 
         #[cfg(all(feature = "NSDate", feature = "NSObjCRuntime", feature = "NSString"))]
         #[method(runMode:beforeDate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn runMode_beforeDate(&self, mode: &NSRunLoopMode, limit_date: &NSDate) -> bool;
 
         #[deprecated = "Not supported"]
         #[method(configureAsServer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn configureAsServer(&self);
 
         #[cfg(all(
@@ -117,6 +125,7 @@ extern_methods!(
         /// - parameter: modes   An array of input modes for which the block may be executed.
         /// - parameter: block   The block to execute
         #[method(performInModes:block:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn performInModes_block(
             &self,
             modes: &NSArray<NSRunLoopMode>,
@@ -127,6 +136,7 @@ extern_methods!(
         /// Schedules the execution of a block on the target run loop.
         /// - parameter: block   The block to execute
         #[method(performBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn performBlock(&self, block: &block2::Block<dyn Fn()>);
     }
 );
@@ -143,6 +153,7 @@ extern_category!(
             feature = "NSString"
         ))]
         #[method(performSelector:withObject:afterDelay:inModes:)]
+        #[unsafe(method_family = none)]
         unsafe fn performSelector_withObject_afterDelay_inModes(
             &self,
             a_selector: Sel,
@@ -153,6 +164,7 @@ extern_category!(
 
         #[cfg(feature = "NSDate")]
         #[method(performSelector:withObject:afterDelay:)]
+        #[unsafe(method_family = none)]
         unsafe fn performSelector_withObject_afterDelay(
             &self,
             a_selector: Sel,
@@ -161,6 +173,7 @@ extern_category!(
         );
 
         #[method(cancelPreviousPerformRequestsWithTarget:selector:object:)]
+        #[unsafe(method_family = none)]
         unsafe fn cancelPreviousPerformRequestsWithTarget_selector_object(
             a_target: &AnyObject,
             a_selector: Sel,
@@ -168,6 +181,7 @@ extern_category!(
         );
 
         #[method(cancelPreviousPerformRequestsWithTarget:)]
+        #[unsafe(method_family = none)]
         unsafe fn cancelPreviousPerformRequestsWithTarget(a_target: &AnyObject);
     }
 
@@ -179,6 +193,7 @@ extern_methods!(
     unsafe impl NSRunLoop {
         #[cfg(all(feature = "NSArray", feature = "NSObjCRuntime", feature = "NSString"))]
         #[method(performSelector:target:argument:order:modes:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn performSelector_target_argument_order_modes(
             &self,
             a_selector: Sel,
@@ -189,6 +204,7 @@ extern_methods!(
         );
 
         #[method(cancelPerformSelector:target:argument:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cancelPerformSelector_target_argument(
             &self,
             a_selector: Sel,
@@ -197,6 +213,7 @@ extern_methods!(
         );
 
         #[method(cancelPerformSelectorsWithTarget:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cancelPerformSelectorsWithTarget(&self, target: &AnyObject);
     }
 );

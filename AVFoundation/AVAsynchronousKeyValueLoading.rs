@@ -53,6 +53,7 @@ extern_protocol!(
         ///
         /// Parameter `handler`: The block to be invoked when loading succeeds, fails, or is cancelled.
         #[method(loadValuesAsynchronouslyForKeys:completionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn loadValuesAsynchronouslyForKeys_completionHandler(
             &self,
             keys: &NSArray<NSString>,

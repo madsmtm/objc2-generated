@@ -11,16 +11,18 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinteraction?language=objc)
     pub unsafe trait UIInteraction: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[method_id(view)]
+        #[method(view)]
         #[unsafe(method_family = none)]
         unsafe fn view(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method(willMoveToView:)]
+        #[unsafe(method_family = none)]
         unsafe fn willMoveToView(&self, view: Option<&UIView>);
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method(didMoveToView:)]
+        #[unsafe(method_family = none)]
         unsafe fn didMoveToView(&self, view: Option<&UIView>);
     }
 );
@@ -30,17 +32,20 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIView {
         #[method(addInteraction:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addInteraction(&self, interaction: &ProtocolObject<dyn UIInteraction>);
 
         #[method(removeInteraction:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeInteraction(&self, interaction: &ProtocolObject<dyn UIInteraction>);
 
-        #[method_id(interactions)]
+        #[method(interactions)]
         #[unsafe(method_family = none)]
         pub unsafe fn interactions(&self) -> Retained<NSArray<ProtocolObject<dyn UIInteraction>>>;
 
         /// Setter for [`interactions`][Self::interactions].
         #[method(setInteractions:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setInteractions(
             &self,
             interactions: &NSArray<ProtocolObject<dyn UIInteraction>>,

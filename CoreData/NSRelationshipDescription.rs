@@ -57,59 +57,70 @@ extern_methods!(
     #[cfg(feature = "NSPropertyDescription")]
     unsafe impl NSRelationshipDescription {
         #[cfg(feature = "NSEntityDescription")]
-        #[method_id(destinationEntity)]
+        #[method(destinationEntity)]
         #[unsafe(method_family = none)]
         pub unsafe fn destinationEntity(&self) -> Option<Retained<NSEntityDescription>>;
 
         #[cfg(feature = "NSEntityDescription")]
         /// Setter for [`destinationEntity`][Self::destinationEntity].
         #[method(setDestinationEntity:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDestinationEntity(&self, destination_entity: Option<&NSEntityDescription>);
 
-        #[method_id(inverseRelationship)]
+        #[method(inverseRelationship)]
         #[unsafe(method_family = none)]
         pub unsafe fn inverseRelationship(&self) -> Option<Retained<NSRelationshipDescription>>;
 
         /// Setter for [`inverseRelationship`][Self::inverseRelationship].
         #[method(setInverseRelationship:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setInverseRelationship(
             &self,
             inverse_relationship: Option<&NSRelationshipDescription>,
         );
 
         #[method(maxCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maxCount(&self) -> NSUInteger;
 
         /// Setter for [`maxCount`][Self::maxCount].
         #[method(setMaxCount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMaxCount(&self, max_count: NSUInteger);
 
         #[method(minCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn minCount(&self) -> NSUInteger;
 
         /// Setter for [`minCount`][Self::minCount].
         #[method(setMinCount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMinCount(&self, min_count: NSUInteger);
 
         #[method(deleteRule)]
+        #[unsafe(method_family = none)]
         pub unsafe fn deleteRule(&self) -> NSDeleteRule;
 
         /// Setter for [`deleteRule`][Self::deleteRule].
         #[method(setDeleteRule:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDeleteRule(&self, delete_rule: NSDeleteRule);
 
         #[method(isToMany)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isToMany(&self) -> bool;
 
-        #[method_id(versionHash)]
+        #[method(versionHash)]
         #[unsafe(method_family = none)]
         pub unsafe fn versionHash(&self) -> Retained<NSData>;
 
         #[method(isOrdered)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isOrdered(&self) -> bool;
 
         /// Setter for [`isOrdered`][Self::isOrdered].
         #[method(setOrdered:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setOrdered(&self, ordered: bool);
     }
 );
@@ -118,11 +129,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSPropertyDescription")]
     unsafe impl NSRelationshipDescription {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

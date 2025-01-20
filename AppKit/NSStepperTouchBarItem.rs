@@ -28,7 +28,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `formatter`: A formatter used to display a textual representation of the stepper's value
-        #[method_id(stepperTouchBarItemWithIdentifier:formatter:)]
+        #[method(stepperTouchBarItemWithIdentifier:formatter:)]
         #[unsafe(method_family = none)]
         pub unsafe fn stepperTouchBarItemWithIdentifier_formatter(
             identifier: &NSTouchBarItemIdentifier,
@@ -41,7 +41,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `drawingHandler`: A block that draws a graphical representation of the stepper's value in the specified rectangle. The coordinates of this rectangle are specified in points.
-        #[method_id(stepperTouchBarItemWithIdentifier:drawingHandler:)]
+        #[method(stepperTouchBarItemWithIdentifier:drawingHandler:)]
         #[unsafe(method_family = none)]
         pub unsafe fn stepperTouchBarItemWithIdentifier_drawingHandler(
             identifier: &NSTouchBarItemIdentifier,
@@ -51,61 +51,73 @@ extern_methods!(
 
         /// The stepper's maximum value. The default is 59.0.
         #[method(maxValue)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maxValue(&self) -> c_double;
 
         /// Setter for [`maxValue`][Self::maxValue].
         #[method(setMaxValue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMaxValue(&self, max_value: c_double);
 
         /// The stepper's minimum value. The default is 0.0.
         #[method(minValue)]
+        #[unsafe(method_family = none)]
         pub unsafe fn minValue(&self) -> c_double;
 
         /// Setter for [`minValue`][Self::minValue].
         #[method(setMinValue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMinValue(&self, min_value: c_double);
 
         /// The stepper's increment value. The default is 1.0.
         #[method(increment)]
+        #[unsafe(method_family = none)]
         pub unsafe fn increment(&self) -> c_double;
 
         /// Setter for [`increment`][Self::increment].
         #[method(setIncrement:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIncrement(&self, increment: c_double);
 
         /// The current value of the stepper.
         #[method(value)]
+        #[unsafe(method_family = none)]
         pub unsafe fn value(&self) -> c_double;
 
         /// Setter for [`value`][Self::value].
         #[method(setValue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setValue(&self, value: c_double);
 
         /// The target object that receives action messages from the stepper.
-        #[method_id(target)]
+        #[method(target)]
         #[unsafe(method_family = none)]
         pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`target`][Self::target].
         #[method(setTarget:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
 
         /// The action-message selector associated with the stepper.
         #[method(action)]
+        #[unsafe(method_family = none)]
         pub unsafe fn action(&self) -> Option<Sel>;
 
         /// Setter for [`action`][Self::action].
         #[method(setAction:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAction(&self, action: Option<Sel>);
 
         /// The localized string labelling this item during user customization. The default value is empty string.
-        #[method_id(customizationLabel)]
+        #[method(customizationLabel)]
         #[unsafe(method_family = none)]
         pub unsafe fn customizationLabel(&self) -> Retained<NSString>;
 
         /// Setter for [`customizationLabel`][Self::customizationLabel].
         #[method(setCustomizationLabel:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCustomizationLabel(&self, customization_label: Option<&NSString>);
     }
 );
@@ -114,21 +126,21 @@ extern_methods!(
     /// Methods declared on superclass `NSTouchBarItem`
     #[cfg(feature = "NSTouchBarItem")]
     unsafe impl NSStepperTouchBarItem {
-        #[method_id(initWithIdentifier:)]
+        #[method(initWithIdentifier:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,
             identifier: &NSTouchBarItemIdentifier,
         ) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -138,7 +150,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSTouchBarItem")]
     unsafe impl NSStepperTouchBarItem {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

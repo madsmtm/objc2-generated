@@ -19,7 +19,7 @@ unsafe impl NSObjectProtocol for MDLSubmeshTopology {}
 extern_methods!(
     unsafe impl MDLSubmeshTopology {
         /// create a topology object corresponding to the topology in the submesh
-        #[method_id(initWithSubmesh:)]
+        #[method(initWithSubmesh:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSubmesh(
             this: Allocated<Self>,
@@ -41,13 +41,14 @@ extern_methods!(
         /// in order, three indices for the first triangle, followed by three
         /// for the second, followed by four for the polygon, and finally two
         /// indices for the line.
-        #[method_id(faceTopology)]
+        #[method(faceTopology)]
         #[unsafe(method_family = none)]
         pub unsafe fn faceTopology(&self) -> Option<Retained<ProtocolObject<dyn MDLMeshBuffer>>>;
 
         #[cfg(feature = "MDLMeshBuffer")]
         /// Setter for [`faceTopology`][Self::faceTopology].
         #[method(setFaceTopology:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFaceTopology(
             &self,
             face_topology: Option<&ProtocolObject<dyn MDLMeshBuffer>>,
@@ -55,10 +56,12 @@ extern_methods!(
 
         /// The number of faces encoded in faceTopologyBuffer
         #[method(faceCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn faceCount(&self) -> NSUInteger;
 
         /// Setter for [`faceCount`][Self::faceCount].
         #[method(setFaceCount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFaceCount(&self, face_count: NSUInteger);
 
         #[cfg(feature = "MDLMeshBuffer")]
@@ -71,7 +74,7 @@ extern_methods!(
         /// Since the number of entries in this vertex buffer is likely to be different
         /// than the number of entries in any other vertex buffer, it shouldn't be
         /// interleaved with other data.
-        #[method_id(vertexCreaseIndices)]
+        #[method(vertexCreaseIndices)]
         #[unsafe(method_family = none)]
         pub unsafe fn vertexCreaseIndices(
             &self,
@@ -80,19 +83,21 @@ extern_methods!(
         #[cfg(feature = "MDLMeshBuffer")]
         /// Setter for [`vertexCreaseIndices`][Self::vertexCreaseIndices].
         #[method(setVertexCreaseIndices:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setVertexCreaseIndices(
             &self,
             vertex_crease_indices: Option<&ProtocolObject<dyn MDLMeshBuffer>>,
         );
 
         #[cfg(feature = "MDLMeshBuffer")]
-        #[method_id(vertexCreases)]
+        #[method(vertexCreases)]
         #[unsafe(method_family = none)]
         pub unsafe fn vertexCreases(&self) -> Option<Retained<ProtocolObject<dyn MDLMeshBuffer>>>;
 
         #[cfg(feature = "MDLMeshBuffer")]
         /// Setter for [`vertexCreases`][Self::vertexCreases].
         #[method(setVertexCreases:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setVertexCreases(
             &self,
             vertex_creases: Option<&ProtocolObject<dyn MDLMeshBuffer>>,
@@ -100,10 +105,12 @@ extern_methods!(
 
         /// The number of vertex creases encoded in vertexCreases
         #[method(vertexCreaseCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn vertexCreaseCount(&self) -> NSUInteger;
 
         /// Setter for [`vertexCreaseCount`][Self::vertexCreaseCount].
         #[method(setVertexCreaseCount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setVertexCreaseCount(&self, vertex_crease_count: NSUInteger);
 
         #[cfg(feature = "MDLMeshBuffer")]
@@ -118,7 +125,7 @@ extern_methods!(
         /// Since the number of entries in this vertex buffer is likely to be different
         /// than the number of entries in any other vertex buffer, it shouldn't be
         /// interleaved with other data.
-        #[method_id(edgeCreaseIndices)]
+        #[method(edgeCreaseIndices)]
         #[unsafe(method_family = none)]
         pub unsafe fn edgeCreaseIndices(
             &self,
@@ -127,19 +134,21 @@ extern_methods!(
         #[cfg(feature = "MDLMeshBuffer")]
         /// Setter for [`edgeCreaseIndices`][Self::edgeCreaseIndices].
         #[method(setEdgeCreaseIndices:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setEdgeCreaseIndices(
             &self,
             edge_crease_indices: Option<&ProtocolObject<dyn MDLMeshBuffer>>,
         );
 
         #[cfg(feature = "MDLMeshBuffer")]
-        #[method_id(edgeCreases)]
+        #[method(edgeCreases)]
         #[unsafe(method_family = none)]
         pub unsafe fn edgeCreases(&self) -> Option<Retained<ProtocolObject<dyn MDLMeshBuffer>>>;
 
         #[cfg(feature = "MDLMeshBuffer")]
         /// Setter for [`edgeCreases`][Self::edgeCreases].
         #[method(setEdgeCreases:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setEdgeCreases(
             &self,
             edge_creases: Option<&ProtocolObject<dyn MDLMeshBuffer>>,
@@ -147,10 +156,12 @@ extern_methods!(
 
         /// The number of edge creases encoded in edgeCreases
         #[method(edgeCreaseCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn edgeCreaseCount(&self) -> NSUInteger;
 
         /// Setter for [`edgeCreaseCount`][Self::edgeCreaseCount].
         #[method(setEdgeCreaseCount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setEdgeCreaseCount(&self, edge_crease_count: NSUInteger);
 
         #[cfg(feature = "MDLMeshBuffer")]
@@ -160,21 +171,24 @@ extern_methods!(
         /// Since the number of entries in this vertex buffer is likely to be different
         /// than the number of entries in any other vertex buffer, it shouldn't be
         /// interleaved with other data.
-        #[method_id(holes)]
+        #[method(holes)]
         #[unsafe(method_family = none)]
         pub unsafe fn holes(&self) -> Option<Retained<ProtocolObject<dyn MDLMeshBuffer>>>;
 
         #[cfg(feature = "MDLMeshBuffer")]
         /// Setter for [`holes`][Self::holes].
         #[method(setHoles:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setHoles(&self, holes: Option<&ProtocolObject<dyn MDLMeshBuffer>>);
 
         /// The number of holes encoded in holes
         #[method(holeCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn holeCount(&self) -> NSUInteger;
 
         /// Setter for [`holeCount`][Self::holeCount].
         #[method(setHoleCount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setHoleCount(&self, hole_count: NSUInteger);
     }
 );
@@ -182,11 +196,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLSubmeshTopology {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -214,7 +228,7 @@ extern_methods!(
             feature = "MDLTypes"
         ))]
         /// Initialize submesh with all data necessary to make properties valid
-        #[method_id(initWithName:indexBuffer:indexCount:indexType:geometryType:material:)]
+        #[method(initWithName:indexBuffer:indexCount:indexType:geometryType:material:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithName_indexBuffer_indexCount_indexType_geometryType_material(
             this: Allocated<Self>,
@@ -232,7 +246,7 @@ extern_methods!(
             feature = "MDLTypes"
         ))]
         /// Initialize submesh with all data necessary to make properties valid
-        #[method_id(initWithIndexBuffer:indexCount:indexType:geometryType:material:)]
+        #[method(initWithIndexBuffer:indexCount:indexType:geometryType:material:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIndexBuffer_indexCount_indexType_geometryType_material(
             this: Allocated<Self>,
@@ -254,7 +268,7 @@ extern_methods!(
         /// The geometry type will typically be MDLGeometryTypeVariableTopology,
         /// if other types are used the faceTopologyBuffer contents should
         /// reflect that.
-        #[method_id(initWithName:indexBuffer:indexCount:indexType:geometryType:material:topology:)]
+        #[method(initWithName:indexBuffer:indexCount:indexType:geometryType:material:topology:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithName_indexBuffer_indexCount_indexType_geometryType_material_topology(
             this: Allocated<Self>,
@@ -274,7 +288,7 @@ extern_methods!(
         /// If a conversion from the source submesh's geometry type to the requested
         /// geometry type is possible, conversion will be performed. Otherwise nil will
         /// be returned.
-        #[method_id(initWithMDLSubmesh:indexType:geometryType:)]
+        #[method(initWithMDLSubmesh:indexType:geometryType:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMDLSubmesh_indexType_geometryType(
             this: Allocated<Self>,
@@ -285,12 +299,12 @@ extern_methods!(
 
         #[cfg(feature = "MDLMeshBuffer")]
         /// Index data referencing vertex data in parent mesh
-        #[method_id(indexBuffer)]
+        #[method(indexBuffer)]
         #[unsafe(method_family = none)]
         pub unsafe fn indexBuffer(&self) -> Retained<ProtocolObject<dyn MDLMeshBuffer>>;
 
         #[cfg(all(feature = "MDLMeshBuffer", feature = "MDLTypes"))]
-        #[method_id(indexBufferAsIndexType:)]
+        #[method(indexBufferAsIndexType:)]
         #[unsafe(method_family = none)]
         pub unsafe fn indexBufferAsIndexType(
             &self,
@@ -299,6 +313,7 @@ extern_methods!(
 
         /// Number of indices in the indexBuffer
         #[method(indexCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indexCount(&self) -> NSUInteger;
 
         #[cfg(feature = "MDLTypes")]
@@ -306,23 +321,26 @@ extern_methods!(
         ///
         /// Support 8, 16, and 32 bit unsigned integer values
         #[method(indexType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indexType(&self) -> MDLIndexBitDepth;
 
         #[cfg(feature = "MDLTypes")]
         /// Type of primitive that vertices referenced by the indexBuffer are
         /// assembled into
         #[method(geometryType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn geometryType(&self) -> MDLGeometryType;
 
         #[cfg(feature = "MDLMaterial")]
         /// Material to apply when rendering this object
-        #[method_id(material)]
+        #[method(material)]
         #[unsafe(method_family = none)]
         pub unsafe fn material(&self) -> Option<Retained<MDLMaterial>>;
 
         #[cfg(feature = "MDLMaterial")]
         /// Setter for [`material`][Self::material].
         #[method(setMaterial:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMaterial(&self, material: Option<&MDLMaterial>);
 
         /// Topology data structure for use with MDLGeometryTypeVariableTopology
@@ -331,21 +349,23 @@ extern_methods!(
         /// ignored for geometry types other than MDLGeometryTypeVariableTopology.
         /// A submesh of type MDLGeometryTypeVariableTopology with no topology
         /// data is an empty submesh.
-        #[method_id(topology)]
+        #[method(topology)]
         #[unsafe(method_family = none)]
         pub unsafe fn topology(&self) -> Option<Retained<MDLSubmeshTopology>>;
 
         /// Setter for [`topology`][Self::topology].
         #[method(setTopology:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTopology(&self, topology: Option<&MDLSubmeshTopology>);
 
         /// Identifying name for this object
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
         #[method(setName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: &NSString);
     }
 );
@@ -353,11 +373,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLSubmesh {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -19,13 +19,13 @@ extern_methods!(
     unsafe impl LAEnvironment {
         /// The clients should use
         /// `currentUser`class property.
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// The clients should use
         /// `currentUser`class property.
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -33,22 +33,24 @@ extern_methods!(
         ///
         /// The observer will be held weakly so its instance should be kept alive by the caller.
         #[method(addObserver:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addObserver(&self, observer: &ProtocolObject<dyn LAEnvironmentObserver>);
 
         /// Removes the previously registered observer.
         ///
         /// If the observer is deallocated, it will be removed automatically.
         #[method(removeObserver:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeObserver(&self, observer: &ProtocolObject<dyn LAEnvironmentObserver>);
 
         /// Environment of the current user.
-        #[method_id(currentUser)]
+        #[method(currentUser)]
         #[unsafe(method_family = none)]
         pub unsafe fn currentUser() -> Retained<LAEnvironment>;
 
         #[cfg(feature = "LAEnvironmentState")]
         /// The environment state information.
-        #[method_id(state)]
+        #[method(state)]
         #[unsafe(method_family = none)]
         pub unsafe fn state(&self) -> Retained<LAEnvironmentState>;
     }
@@ -66,6 +68,7 @@ extern_protocol!(
         /// Parameter `oldState`: The old environment state (before update)
         #[optional]
         #[method(environment:stateDidChangeFromOldState:)]
+        #[unsafe(method_family = none)]
         unsafe fn environment_stateDidChangeFromOldState(
             &self,
             environment: &LAEnvironment,

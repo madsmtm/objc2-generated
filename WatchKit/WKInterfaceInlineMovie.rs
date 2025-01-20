@@ -21,34 +21,42 @@ unsafe impl NSObjectProtocol for WKInterfaceInlineMovie {}
 extern_methods!(
     #[cfg(feature = "WKInterfaceObject")]
     unsafe impl WKInterfaceInlineMovie {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(setMovieURL:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMovieURL(&self, url: &NSURL);
 
         #[cfg(feature = "WKInterfaceController")]
         #[method(setVideoGravity:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setVideoGravity(&self, video_gravity: WKVideoGravity);
 
         #[method(setLoops:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLoops(&self, loops: bool);
 
         #[method(setAutoplays:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAutoplays(&self, autoplays: bool);
 
         #[cfg(feature = "WKImage")]
         #[method(setPosterImage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPosterImage(&self, poster_image: Option<&WKImage>);
 
         #[method(play)]
+        #[unsafe(method_family = none)]
         pub unsafe fn play(&self);
 
         #[method(playFromBeginning)]
+        #[unsafe(method_family = none)]
         pub unsafe fn playFromBeginning(&self);
 
         #[method(pause)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pause(&self);
     }
 );
@@ -57,7 +65,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "WKInterfaceObject")]
     unsafe impl WKInterfaceInlineMovie {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -45,17 +45,18 @@ unsafe impl<ObjectType: ?Sized + NSSecureCoding> NSSecureCoding for NSArray<Obje
 extern_methods!(
     unsafe impl<ObjectType: Message> NSArray<ObjectType> {
         #[method(count)]
+        #[unsafe(method_family = none)]
         pub fn count(&self) -> NSUInteger;
 
-        #[method_id(objectAtIndex:)]
+        #[method(objectAtIndex:)]
         #[unsafe(method_family = none)]
         pub fn objectAtIndex(&self, index: NSUInteger) -> Retained<ObjectType>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(initWithObjects:count:)]
+        #[method(initWithObjects:count:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithObjects_count(
             this: Allocated<Self>,
@@ -64,7 +65,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -76,7 +77,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<ObjectType: Message> NSArray<ObjectType> {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
     }
@@ -116,14 +117,14 @@ unsafe impl RefEncode for NSBinarySearchingOptions {
 extern_methods!(
     /// NSExtendedArray
     unsafe impl<ObjectType: Message> NSArray<ObjectType> {
-        #[method_id(arrayByAddingObject:)]
+        #[method(arrayByAddingObject:)]
         #[unsafe(method_family = none)]
         pub unsafe fn arrayByAddingObject(
             &self,
             an_object: &ObjectType,
         ) -> Retained<NSArray<ObjectType>>;
 
-        #[method_id(arrayByAddingObjectsFromArray:)]
+        #[method(arrayByAddingObjectsFromArray:)]
         #[unsafe(method_family = none)]
         pub unsafe fn arrayByAddingObjectsFromArray(
             &self,
@@ -131,20 +132,21 @@ extern_methods!(
         ) -> Retained<NSArray<ObjectType>>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(componentsJoinedByString:)]
+        #[method(componentsJoinedByString:)]
         #[unsafe(method_family = none)]
         pub unsafe fn componentsJoinedByString(&self, separator: &NSString) -> Retained<NSString>;
 
         #[method(containsObject:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn containsObject(&self, an_object: &ObjectType) -> bool;
 
         #[cfg(feature = "NSString")]
-        #[method_id(description)]
+        #[method(description)]
         #[unsafe(method_family = none)]
         pub unsafe fn description(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(descriptionWithLocale:)]
+        #[method(descriptionWithLocale:)]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptionWithLocale(
             &self,
@@ -152,7 +154,7 @@ extern_methods!(
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(descriptionWithLocale:indent:)]
+        #[method(descriptionWithLocale:indent:)]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptionWithLocale_indent(
             &self,
@@ -160,7 +162,7 @@ extern_methods!(
             level: NSUInteger,
         ) -> Retained<NSString>;
 
-        #[method_id(firstObjectCommonWithArray:)]
+        #[method(firstObjectCommonWithArray:)]
         #[unsafe(method_family = none)]
         pub unsafe fn firstObjectCommonWithArray(
             &self,
@@ -169,6 +171,7 @@ extern_methods!(
 
         #[cfg(feature = "NSRange")]
         #[method(getObjects:range:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getObjects_range(
             &self,
             objects: NonNull<NonNull<ObjectType>>,
@@ -176,10 +179,12 @@ extern_methods!(
         );
 
         #[method(indexOfObject:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indexOfObject(&self, an_object: &ObjectType) -> NSUInteger;
 
         #[cfg(feature = "NSRange")]
         #[method(indexOfObject:inRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indexOfObject_inRange(
             &self,
             an_object: &ObjectType,
@@ -187,10 +192,12 @@ extern_methods!(
         ) -> NSUInteger;
 
         #[method(indexOfObjectIdenticalTo:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indexOfObjectIdenticalTo(&self, an_object: &ObjectType) -> NSUInteger;
 
         #[cfg(feature = "NSRange")]
         #[method(indexOfObjectIdenticalTo:inRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indexOfObjectIdenticalTo_inRange(
             &self,
             an_object: &ObjectType,
@@ -198,32 +205,33 @@ extern_methods!(
         ) -> NSUInteger;
 
         #[method(isEqualToArray:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isEqualToArray(&self, other_array: &NSArray<ObjectType>) -> bool;
 
-        #[method_id(firstObject)]
+        #[method(firstObject)]
         #[unsafe(method_family = none)]
         pub fn firstObject(&self) -> Option<Retained<ObjectType>>;
 
-        #[method_id(lastObject)]
+        #[method(lastObject)]
         #[unsafe(method_family = none)]
         pub fn lastObject(&self) -> Option<Retained<ObjectType>>;
 
         #[cfg(feature = "NSEnumerator")]
-        #[method_id(objectEnumerator)]
+        #[method(objectEnumerator)]
         #[unsafe(method_family = none)]
         pub unsafe fn objectEnumerator(&self) -> Retained<NSEnumerator<ObjectType>>;
 
         #[cfg(feature = "NSEnumerator")]
-        #[method_id(reverseObjectEnumerator)]
+        #[method(reverseObjectEnumerator)]
         #[unsafe(method_family = none)]
         pub unsafe fn reverseObjectEnumerator(&self) -> Retained<NSEnumerator<ObjectType>>;
 
         #[cfg(feature = "NSData")]
-        #[method_id(sortedArrayHint)]
+        #[method(sortedArrayHint)]
         #[unsafe(method_family = none)]
         pub unsafe fn sortedArrayHint(&self) -> Retained<NSData>;
 
-        #[method_id(sortedArrayUsingFunction:context:)]
+        #[method(sortedArrayUsingFunction:context:)]
         #[unsafe(method_family = none)]
         pub unsafe fn sortedArrayUsingFunction_context(
             &self,
@@ -236,7 +244,7 @@ extern_methods!(
         ) -> Retained<NSArray<ObjectType>>;
 
         #[cfg(feature = "NSData")]
-        #[method_id(sortedArrayUsingFunction:context:hint:)]
+        #[method(sortedArrayUsingFunction:context:hint:)]
         #[unsafe(method_family = none)]
         pub unsafe fn sortedArrayUsingFunction_context_hint(
             &self,
@@ -249,7 +257,7 @@ extern_methods!(
             hint: Option<&NSData>,
         ) -> Retained<NSArray<ObjectType>>;
 
-        #[method_id(sortedArrayUsingSelector:)]
+        #[method(sortedArrayUsingSelector:)]
         #[unsafe(method_family = none)]
         pub unsafe fn sortedArrayUsingSelector(
             &self,
@@ -257,18 +265,21 @@ extern_methods!(
         ) -> Retained<NSArray<ObjectType>>;
 
         #[cfg(feature = "NSRange")]
-        #[method_id(subarrayWithRange:)]
+        #[method(subarrayWithRange:)]
         #[unsafe(method_family = none)]
         pub unsafe fn subarrayWithRange(&self, range: NSRange) -> Retained<NSArray<ObjectType>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
         #[method(writeToURL:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn writeToURL_error(&self, url: &NSURL) -> Result<(), Retained<NSError>>;
 
         #[method(makeObjectsPerformSelector:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn makeObjectsPerformSelector(&self, a_selector: Sel);
 
         #[method(makeObjectsPerformSelector:withObject:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn makeObjectsPerformSelector_withObject(
             &self,
             a_selector: Sel,
@@ -276,19 +287,20 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSIndexSet")]
-        #[method_id(objectsAtIndexes:)]
+        #[method(objectsAtIndexes:)]
         #[unsafe(method_family = none)]
         pub unsafe fn objectsAtIndexes(
             &self,
             indexes: &NSIndexSet,
         ) -> Retained<NSArray<ObjectType>>;
 
-        #[method_id(objectAtIndexedSubscript:)]
+        #[method(objectAtIndexedSubscript:)]
         #[unsafe(method_family = none)]
         pub unsafe fn objectAtIndexedSubscript(&self, idx: NSUInteger) -> Retained<ObjectType>;
 
         #[cfg(feature = "block2")]
         #[method(enumerateObjectsUsingBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn enumerateObjectsUsingBlock(
             &self,
             block: &block2::Block<dyn Fn(NonNull<ObjectType>, NSUInteger, NonNull<Bool>) + '_>,
@@ -296,6 +308,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "block2"))]
         #[method(enumerateObjectsWithOptions:usingBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn enumerateObjectsWithOptions_usingBlock(
             &self,
             opts: NSEnumerationOptions,
@@ -304,6 +317,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSIndexSet", feature = "NSObjCRuntime", feature = "block2"))]
         #[method(enumerateObjectsAtIndexes:options:usingBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn enumerateObjectsAtIndexes_options_usingBlock(
             &self,
             s: &NSIndexSet,
@@ -313,6 +327,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[method(indexOfObjectPassingTest:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indexOfObjectPassingTest(
             &self,
             predicate: &block2::Block<
@@ -322,6 +337,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "block2"))]
         #[method(indexOfObjectWithOptions:passingTest:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indexOfObjectWithOptions_passingTest(
             &self,
             opts: NSEnumerationOptions,
@@ -332,6 +348,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSIndexSet", feature = "NSObjCRuntime", feature = "block2"))]
         #[method(indexOfObjectAtIndexes:options:passingTest:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indexOfObjectAtIndexes_options_passingTest(
             &self,
             s: &NSIndexSet,
@@ -342,7 +359,7 @@ extern_methods!(
         ) -> NSUInteger;
 
         #[cfg(all(feature = "NSIndexSet", feature = "block2"))]
-        #[method_id(indexesOfObjectsPassingTest:)]
+        #[method(indexesOfObjectsPassingTest:)]
         #[unsafe(method_family = none)]
         pub unsafe fn indexesOfObjectsPassingTest(
             &self,
@@ -352,7 +369,7 @@ extern_methods!(
         ) -> Retained<NSIndexSet>;
 
         #[cfg(all(feature = "NSIndexSet", feature = "NSObjCRuntime", feature = "block2"))]
-        #[method_id(indexesOfObjectsWithOptions:passingTest:)]
+        #[method(indexesOfObjectsWithOptions:passingTest:)]
         #[unsafe(method_family = none)]
         pub unsafe fn indexesOfObjectsWithOptions_passingTest(
             &self,
@@ -363,7 +380,7 @@ extern_methods!(
         ) -> Retained<NSIndexSet>;
 
         #[cfg(all(feature = "NSIndexSet", feature = "NSObjCRuntime", feature = "block2"))]
-        #[method_id(indexesOfObjectsAtIndexes:options:passingTest:)]
+        #[method(indexesOfObjectsAtIndexes:options:passingTest:)]
         #[unsafe(method_family = none)]
         pub unsafe fn indexesOfObjectsAtIndexes_options_passingTest(
             &self,
@@ -375,7 +392,7 @@ extern_methods!(
         ) -> Retained<NSIndexSet>;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "block2"))]
-        #[method_id(sortedArrayUsingComparator:)]
+        #[method(sortedArrayUsingComparator:)]
         #[unsafe(method_family = none)]
         pub unsafe fn sortedArrayUsingComparator(
             &self,
@@ -383,7 +400,7 @@ extern_methods!(
         ) -> Retained<NSArray<ObjectType>>;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "block2"))]
-        #[method_id(sortedArrayWithOptions:usingComparator:)]
+        #[method(sortedArrayWithOptions:usingComparator:)]
         #[unsafe(method_family = none)]
         pub unsafe fn sortedArrayWithOptions_usingComparator(
             &self,
@@ -393,6 +410,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSRange", feature = "block2"))]
         #[method(indexOfObject:inSortedRange:options:usingComparator:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indexOfObject_inSortedRange_options_usingComparator(
             &self,
             obj: &ObjectType,
@@ -406,33 +424,33 @@ extern_methods!(
 extern_methods!(
     /// NSArrayCreation
     unsafe impl<ObjectType: Message> NSArray<ObjectType> {
-        #[method_id(array)]
+        #[method(array)]
         #[unsafe(method_family = none)]
         pub unsafe fn array() -> Retained<Self>;
 
-        #[method_id(arrayWithObject:)]
+        #[method(arrayWithObject:)]
         #[unsafe(method_family = none)]
         pub unsafe fn arrayWithObject(an_object: &ObjectType) -> Retained<Self>;
 
-        #[method_id(arrayWithObjects:count:)]
+        #[method(arrayWithObjects:count:)]
         #[unsafe(method_family = none)]
         pub unsafe fn arrayWithObjects_count(
             objects: NonNull<NonNull<ObjectType>>,
             cnt: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(arrayWithArray:)]
+        #[method(arrayWithArray:)]
         #[unsafe(method_family = none)]
         pub unsafe fn arrayWithArray(array: &NSArray<ObjectType>) -> Retained<Self>;
 
-        #[method_id(initWithArray:)]
+        #[method(initWithArray:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithArray(
             this: Allocated<Self>,
             array: &NSArray<ObjectType>,
         ) -> Retained<Self>;
 
-        #[method_id(initWithArray:copyItems:)]
+        #[method(initWithArray:copyItems:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithArray_copyItems(
             this: Allocated<Self>,
@@ -441,7 +459,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
-        #[method_id(initWithContentsOfURL:error:_)]
+        #[method(initWithContentsOfURL:error:_)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL_error(
             this: Allocated<Self>,
@@ -449,7 +467,7 @@ extern_methods!(
         ) -> Result<Retained<NSArray<ObjectType>>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
-        #[method_id(arrayWithContentsOfURL:error:_)]
+        #[method(arrayWithContentsOfURL:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn arrayWithContentsOfURL_error(
             url: &NSURL,
@@ -462,33 +480,33 @@ extern_methods!(
     ///
     /// NSArrayCreation
     unsafe impl<ObjectType: Message> NSMutableArray<ObjectType> {
-        #[method_id(array)]
+        #[method(array)]
         #[unsafe(method_family = none)]
         pub unsafe fn array() -> Retained<Self>;
 
-        #[method_id(arrayWithObject:)]
+        #[method(arrayWithObject:)]
         #[unsafe(method_family = none)]
         pub unsafe fn arrayWithObject(an_object: &ObjectType) -> Retained<Self>;
 
-        #[method_id(arrayWithObjects:count:)]
+        #[method(arrayWithObjects:count:)]
         #[unsafe(method_family = none)]
         pub unsafe fn arrayWithObjects_count(
             objects: NonNull<NonNull<ObjectType>>,
             cnt: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(arrayWithArray:)]
+        #[method(arrayWithArray:)]
         #[unsafe(method_family = none)]
         pub unsafe fn arrayWithArray(array: &NSArray<ObjectType>) -> Retained<Self>;
 
-        #[method_id(initWithArray:)]
+        #[method(initWithArray:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithArray(
             this: Allocated<Self>,
             array: &NSArray<ObjectType>,
         ) -> Retained<Self>;
 
-        #[method_id(initWithArray:copyItems:)]
+        #[method(initWithArray:copyItems:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithArray_copyItems(
             this: Allocated<Self>,
@@ -502,7 +520,7 @@ extern_methods!(
     /// NSArrayDiffing
     unsafe impl<ObjectType: Message> NSArray<ObjectType> {
         #[cfg(all(feature = "NSOrderedCollectionDifference", feature = "block2"))]
-        #[method_id(differenceFromArray:withOptions:usingEquivalenceTest:)]
+        #[method(differenceFromArray:withOptions:usingEquivalenceTest:)]
         #[unsafe(method_family = none)]
         pub unsafe fn differenceFromArray_withOptions_usingEquivalenceTest(
             &self,
@@ -512,7 +530,7 @@ extern_methods!(
         ) -> Retained<NSOrderedCollectionDifference<ObjectType>>;
 
         #[cfg(feature = "NSOrderedCollectionDifference")]
-        #[method_id(differenceFromArray:withOptions:)]
+        #[method(differenceFromArray:withOptions:)]
         #[unsafe(method_family = none)]
         pub unsafe fn differenceFromArray_withOptions(
             &self,
@@ -521,7 +539,7 @@ extern_methods!(
         ) -> Retained<NSOrderedCollectionDifference<ObjectType>>;
 
         #[cfg(feature = "NSOrderedCollectionDifference")]
-        #[method_id(differenceFromArray:)]
+        #[method(differenceFromArray:)]
         #[unsafe(method_family = none)]
         pub unsafe fn differenceFromArray(
             &self,
@@ -529,7 +547,7 @@ extern_methods!(
         ) -> Retained<NSOrderedCollectionDifference<ObjectType>>;
 
         #[cfg(feature = "NSOrderedCollectionDifference")]
-        #[method_id(arrayByApplyingDifference:)]
+        #[method(arrayByApplyingDifference:)]
         #[unsafe(method_family = none)]
         pub unsafe fn arrayByApplyingDifference(
             &self,
@@ -543,11 +561,12 @@ extern_methods!(
     unsafe impl<ObjectType: Message> NSArray<ObjectType> {
         #[deprecated = "Use -getObjects:range: instead"]
         #[method(getObjects:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getObjects(&self, objects: NonNull<NonNull<ObjectType>>);
 
         #[cfg(feature = "NSString")]
         #[deprecated]
-        #[method_id(arrayWithContentsOfFile:)]
+        #[method(arrayWithContentsOfFile:)]
         #[unsafe(method_family = none)]
         pub unsafe fn arrayWithContentsOfFile(
             path: &NSString,
@@ -555,13 +574,13 @@ extern_methods!(
 
         #[cfg(feature = "NSURL")]
         #[deprecated]
-        #[method_id(arrayWithContentsOfURL:)]
+        #[method(arrayWithContentsOfURL:)]
         #[unsafe(method_family = none)]
         pub unsafe fn arrayWithContentsOfURL(url: &NSURL) -> Option<Retained<NSArray<ObjectType>>>;
 
         #[cfg(feature = "NSString")]
         #[deprecated]
-        #[method_id(initWithContentsOfFile:)]
+        #[method(initWithContentsOfFile:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfFile(
             this: Allocated<Self>,
@@ -570,7 +589,7 @@ extern_methods!(
 
         #[cfg(feature = "NSURL")]
         #[deprecated]
-        #[method_id(initWithContentsOfURL:)]
+        #[method(initWithContentsOfURL:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL(
             this: Allocated<Self>,
@@ -580,6 +599,7 @@ extern_methods!(
         #[cfg(feature = "NSString")]
         #[deprecated]
         #[method(writeToFile:atomically:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn writeToFile_atomically(
             &self,
             path: &NSString,
@@ -589,6 +609,7 @@ extern_methods!(
         #[cfg(feature = "NSURL")]
         #[deprecated]
         #[method(writeToURL:atomically:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn writeToURL_atomically(&self, url: &NSURL, atomically: bool) -> bool;
     }
 );
@@ -632,30 +653,35 @@ unsafe impl<ObjectType: ?Sized + NSSecureCoding> NSSecureCoding for NSMutableArr
 extern_methods!(
     unsafe impl<ObjectType: Message> NSMutableArray<ObjectType> {
         #[method(addObject:)]
+        #[unsafe(method_family = none)]
         pub fn addObject(&self, an_object: &ObjectType);
 
         #[method(insertObject:atIndex:)]
+        #[unsafe(method_family = none)]
         pub fn insertObject_atIndex(&self, an_object: &ObjectType, index: NSUInteger);
 
         #[method(removeLastObject)]
+        #[unsafe(method_family = none)]
         pub fn removeLastObject(&self);
 
         #[method(removeObjectAtIndex:)]
+        #[unsafe(method_family = none)]
         pub fn removeObjectAtIndex(&self, index: NSUInteger);
 
         #[method(replaceObjectAtIndex:withObject:)]
+        #[unsafe(method_family = none)]
         pub fn replaceObjectAtIndex_withObject(&self, index: NSUInteger, an_object: &ObjectType);
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(initWithCapacity:)]
+        #[method(initWithCapacity:)]
         #[unsafe(method_family = init)]
         pub fn initWithCapacity(this: Allocated<Self>, num_items: NSUInteger) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -667,7 +693,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSArray`
     unsafe impl<ObjectType: Message> NSMutableArray<ObjectType> {
-        #[method_id(initWithObjects:count:)]
+        #[method(initWithObjects:count:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithObjects_count(
             this: Allocated<Self>,
@@ -680,7 +706,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<ObjectType: Message> NSMutableArray<ObjectType> {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub fn new() -> Retained<Self>;
     }
@@ -697,9 +723,11 @@ extern_methods!(
     /// NSExtendedMutableArray
     unsafe impl<ObjectType: Message> NSMutableArray<ObjectType> {
         #[method(addObjectsFromArray:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addObjectsFromArray(&self, other_array: &NSArray<ObjectType>);
 
         #[method(exchangeObjectAtIndex:withObjectAtIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn exchangeObjectAtIndex_withObjectAtIndex(
             &self,
             idx1: NSUInteger,
@@ -707,17 +735,21 @@ extern_methods!(
         );
 
         #[method(removeAllObjects)]
+        #[unsafe(method_family = none)]
         pub fn removeAllObjects(&self);
 
         #[cfg(feature = "NSRange")]
         #[method(removeObject:inRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeObject_inRange(&self, an_object: &ObjectType, range: NSRange);
 
         #[method(removeObject:)]
+        #[unsafe(method_family = none)]
         pub fn removeObject(&self, an_object: &ObjectType);
 
         #[cfg(feature = "NSRange")]
         #[method(removeObjectIdenticalTo:inRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeObjectIdenticalTo_inRange(
             &self,
             an_object: &ObjectType,
@@ -725,10 +757,12 @@ extern_methods!(
         );
 
         #[method(removeObjectIdenticalTo:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeObjectIdenticalTo(&self, an_object: &ObjectType);
 
         #[deprecated = "Not supported"]
         #[method(removeObjectsFromIndices:numIndices:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeObjectsFromIndices_numIndices(
             &self,
             indices: NonNull<NSUInteger>,
@@ -736,14 +770,17 @@ extern_methods!(
         );
 
         #[method(removeObjectsInArray:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeObjectsInArray(&self, other_array: &NSArray<ObjectType>);
 
         #[cfg(feature = "NSRange")]
         #[method(removeObjectsInRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeObjectsInRange(&self, range: NSRange);
 
         #[cfg(feature = "NSRange")]
         #[method(replaceObjectsInRange:withObjectsFromArray:range:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn replaceObjectsInRange_withObjectsFromArray_range(
             &self,
             range: NSRange,
@@ -753,6 +790,7 @@ extern_methods!(
 
         #[cfg(feature = "NSRange")]
         #[method(replaceObjectsInRange:withObjectsFromArray:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn replaceObjectsInRange_withObjectsFromArray(
             &self,
             range: NSRange,
@@ -760,9 +798,11 @@ extern_methods!(
         );
 
         #[method(setArray:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setArray(&self, other_array: &NSArray<ObjectType>);
 
         #[method(sortUsingFunction:context:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sortUsingFunction_context(
             &self,
             compare: unsafe extern "C-unwind" fn(
@@ -774,10 +814,12 @@ extern_methods!(
         );
 
         #[method(sortUsingSelector:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sortUsingSelector(&self, comparator: Sel);
 
         #[cfg(feature = "NSIndexSet")]
         #[method(insertObjects:atIndexes:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn insertObjects_atIndexes(
             &self,
             objects: &NSArray<ObjectType>,
@@ -786,10 +828,12 @@ extern_methods!(
 
         #[cfg(feature = "NSIndexSet")]
         #[method(removeObjectsAtIndexes:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeObjectsAtIndexes(&self, indexes: &NSIndexSet);
 
         #[cfg(feature = "NSIndexSet")]
         #[method(replaceObjectsAtIndexes:withObjects:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn replaceObjectsAtIndexes_withObjects(
             &self,
             indexes: &NSIndexSet,
@@ -797,14 +841,17 @@ extern_methods!(
         );
 
         #[method(setObject:atIndexedSubscript:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setObject_atIndexedSubscript(&self, obj: &ObjectType, idx: NSUInteger);
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "block2"))]
         #[method(sortUsingComparator:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sortUsingComparator(&self, cmptr: NSComparator);
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "block2"))]
         #[method(sortWithOptions:usingComparator:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sortWithOptions_usingComparator(
             &self,
             opts: NSSortOptions,
@@ -816,26 +863,26 @@ extern_methods!(
 extern_methods!(
     /// NSMutableArrayCreation
     unsafe impl<ObjectType: Message> NSMutableArray<ObjectType> {
-        #[method_id(arrayWithCapacity:)]
+        #[method(arrayWithCapacity:)]
         #[unsafe(method_family = none)]
         pub unsafe fn arrayWithCapacity(num_items: NSUInteger) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(arrayWithContentsOfFile:)]
+        #[method(arrayWithContentsOfFile:)]
         #[unsafe(method_family = none)]
         pub unsafe fn arrayWithContentsOfFile(
             path: &NSString,
         ) -> Option<Retained<NSMutableArray<ObjectType>>>;
 
         #[cfg(feature = "NSURL")]
-        #[method_id(arrayWithContentsOfURL:)]
+        #[method(arrayWithContentsOfURL:)]
         #[unsafe(method_family = none)]
         pub unsafe fn arrayWithContentsOfURL(
             url: &NSURL,
         ) -> Option<Retained<NSMutableArray<ObjectType>>>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(initWithContentsOfFile:)]
+        #[method(initWithContentsOfFile:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfFile(
             this: Allocated<Self>,
@@ -843,7 +890,7 @@ extern_methods!(
         ) -> Option<Retained<NSMutableArray<ObjectType>>>;
 
         #[cfg(feature = "NSURL")]
-        #[method_id(initWithContentsOfURL:)]
+        #[method(initWithContentsOfURL:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL(
             this: Allocated<Self>,
@@ -857,6 +904,7 @@ extern_methods!(
     unsafe impl<ObjectType: Message> NSMutableArray<ObjectType> {
         #[cfg(feature = "NSOrderedCollectionDifference")]
         #[method(applyDifference:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn applyDifference(
             &self,
             difference: &NSOrderedCollectionDifference<ObjectType>,

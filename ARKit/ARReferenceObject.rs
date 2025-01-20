@@ -49,13 +49,14 @@ extern_methods!(
     unsafe impl ARReferenceObject {
         #[cfg(feature = "objc2-foundation")]
         /// An optional name used to identify the object.
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "objc2-foundation")]
         /// Setter for [`name`][Self::name].
         #[method(setName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
         #[cfg(feature = "objc2-foundation")]
@@ -63,13 +64,13 @@ extern_methods!(
         ///
         /// If this object was loaded via an AR resource group in the Xcode asset catalogue this property will have the name of the resource group,
         /// else be set to nil.
-        #[method_id(resourceGroupName)]
+        #[method(resourceGroupName)]
         #[unsafe(method_family = none)]
         pub unsafe fn resourceGroupName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "ARPointCloud")]
         /// The feature points of the object.
-        #[method_id(rawFeaturePoints)]
+        #[method(rawFeaturePoints)]
         #[unsafe(method_family = none)]
         pub unsafe fn rawFeaturePoints(&self) -> Retained<ARPointCloud>;
 
@@ -82,7 +83,7 @@ extern_methods!(
         /// Parameter `bundle`: The bundle containing the image file or asset catalog. Specify nil to search the app’s main bundle.
         ///
         /// Returns: The set of reference objects or nil on error.
-        #[method_id(referenceObjectsInGroupNamed:bundle:)]
+        #[method(referenceObjectsInGroupNamed:bundle:)]
         #[unsafe(method_family = none)]
         pub unsafe fn referenceObjectsInGroupNamed_bundle(
             name: &NSString,
@@ -95,7 +96,7 @@ extern_methods!(
         /// Parameter `url`: The URL from which to read data (.arobject archive).
         ///
         /// Parameter `error`: The error to populate if the object could not be initialized.
-        #[method_id(initWithArchiveURL:error:_)]
+        #[method(initWithArchiveURL:error:_)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithArchiveURL_error(
             this: Allocated<Self>,
@@ -117,6 +118,7 @@ extern_methods!(
         ///
         /// Returns: YES if the location is written successfully, otherwise NO.
         #[method(exportObjectToURL:previewImage:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn exportObjectToURL_previewImage_error(
             &self,
             url: &NSURL,
@@ -134,7 +136,7 @@ extern_methods!(
         /// Parameter `error`: The error to populate if the merge is not successful.
         ///
         /// Returns: A new reference object combining features of both scans or nil if the merge was not successful.
-        #[method_id(referenceObjectByMergingObject:error:_)]
+        #[method(referenceObjectByMergingObject:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn referenceObjectByMergingObject_error(
             &self,
@@ -142,11 +144,11 @@ extern_methods!(
         ) -> Result<Retained<ARReferenceObject>, Retained<NSError>>;
 
         /// Unavailable
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

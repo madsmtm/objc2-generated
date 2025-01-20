@@ -11,7 +11,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkurlschemetask?language=objc)
     pub unsafe trait WKURLSchemeTask: NSObjectProtocol {
         /// The request to load for this task.
-        #[method_id(request)]
+        #[method(request)]
         #[unsafe(method_family = none)]
         unsafe fn request(&self) -> Retained<NSURLRequest>;
 
@@ -24,6 +24,7 @@ extern_protocol!(
         /// An exception will be thrown if you try to send a new response object after the task has already been completed.
         /// An exception will be thrown if your app has been told to stop loading this task via the registered WKURLSchemeHandler object.
         #[method(didReceiveResponse:)]
+        #[unsafe(method_family = none)]
         unsafe fn didReceiveResponse(&self, response: &NSURLResponse);
 
         /// Add received data to the task.
@@ -37,6 +38,7 @@ extern_protocol!(
         /// An exception will be thrown if you try to send the task any data after the task has already been completed.
         /// An exception will be thrown if your app has been told to stop loading this task via the registered WKURLSchemeHandler object.
         #[method(didReceiveData:)]
+        #[unsafe(method_family = none)]
         unsafe fn didReceiveData(&self, data: &NSData);
 
         /// Mark the task as successfully completed.
@@ -45,6 +47,7 @@ extern_protocol!(
         /// An exception will be thrown if you try to mark a task completed after it has already been marked completed or failed.
         /// An exception will be thrown if your app has been told to stop loading this task via the registered WKURLSchemeHandler object.
         #[method(didFinish)]
+        #[unsafe(method_family = none)]
         unsafe fn didFinish(&self);
 
         /// Mark the task as failed.
@@ -54,6 +57,7 @@ extern_protocol!(
         /// An exception will be thrown if you try to mark a task failed after it has already been marked completed or failed.
         /// An exception will be thrown if your app has been told to stop loading this task via the registered WKURLSchemeHandler object.
         #[method(didFailWithError:)]
+        #[unsafe(method_family = none)]
         unsafe fn didFailWithError(&self, error: &NSError);
     }
 );

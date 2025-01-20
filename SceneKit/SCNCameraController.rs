@@ -44,6 +44,7 @@ extern_protocol!(
     pub unsafe trait SCNCameraControllerDelegate: NSObjectProtocol {
         #[optional]
         #[method(cameraInertiaWillStartForController:)]
+        #[unsafe(method_family = none)]
         unsafe fn cameraInertiaWillStartForController(
             &self,
             camera_controller: &SCNCameraController,
@@ -51,6 +52,7 @@ extern_protocol!(
 
         #[optional]
         #[method(cameraInertiaDidEndForController:)]
+        #[unsafe(method_family = none)]
         unsafe fn cameraInertiaDidEndForController(&self, camera_controller: &SCNCameraController);
     }
 );
@@ -66,7 +68,7 @@ unsafe impl NSObjectProtocol for SCNCameraController {}
 
 extern_methods!(
     unsafe impl SCNCameraController {
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -74,99 +76,123 @@ extern_methods!(
 
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn SCNCameraControllerDelegate>>,
         );
 
         #[cfg(feature = "SCNNode")]
-        #[method_id(pointOfView)]
+        #[method(pointOfView)]
         #[unsafe(method_family = none)]
         pub unsafe fn pointOfView(&self) -> Option<Retained<SCNNode>>;
 
         #[cfg(feature = "SCNNode")]
         /// Setter for [`pointOfView`][Self::pointOfView].
         #[method(setPointOfView:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPointOfView(&self, point_of_view: Option<&SCNNode>);
 
         #[method(interactionMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn interactionMode(&self) -> SCNInteractionMode;
 
         /// Setter for [`interactionMode`][Self::interactionMode].
         #[method(setInteractionMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setInteractionMode(&self, interaction_mode: SCNInteractionMode);
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         #[method(target)]
+        #[unsafe(method_family = none)]
         pub unsafe fn target(&self) -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Setter for [`target`][Self::target].
         #[method(setTarget:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTarget(&self, target: SCNVector3);
 
         #[method(automaticTarget)]
+        #[unsafe(method_family = none)]
         pub unsafe fn automaticTarget(&self) -> bool;
 
         /// Setter for [`automaticTarget`][Self::automaticTarget].
         #[method(setAutomaticTarget:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAutomaticTarget(&self, automatic_target: bool);
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         #[method(worldUp)]
+        #[unsafe(method_family = none)]
         pub unsafe fn worldUp(&self) -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Setter for [`worldUp`][Self::worldUp].
         #[method(setWorldUp:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWorldUp(&self, world_up: SCNVector3);
 
         #[method(inertiaEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn inertiaEnabled(&self) -> bool;
 
         /// Setter for [`inertiaEnabled`][Self::inertiaEnabled].
         #[method(setInertiaEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setInertiaEnabled(&self, inertia_enabled: bool);
 
         #[method(inertiaFriction)]
+        #[unsafe(method_family = none)]
         pub unsafe fn inertiaFriction(&self) -> c_float;
 
         /// Setter for [`inertiaFriction`][Self::inertiaFriction].
         #[method(setInertiaFriction:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setInertiaFriction(&self, inertia_friction: c_float);
 
         #[method(isInertiaRunning)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isInertiaRunning(&self) -> bool;
 
         #[method(minimumVerticalAngle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn minimumVerticalAngle(&self) -> c_float;
 
         /// Setter for [`minimumVerticalAngle`][Self::minimumVerticalAngle].
         #[method(setMinimumVerticalAngle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMinimumVerticalAngle(&self, minimum_vertical_angle: c_float);
 
         #[method(maximumVerticalAngle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maximumVerticalAngle(&self) -> c_float;
 
         /// Setter for [`maximumVerticalAngle`][Self::maximumVerticalAngle].
         #[method(setMaximumVerticalAngle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMaximumVerticalAngle(&self, maximum_vertical_angle: c_float);
 
         #[method(minimumHorizontalAngle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn minimumHorizontalAngle(&self) -> c_float;
 
         /// Setter for [`minimumHorizontalAngle`][Self::minimumHorizontalAngle].
         #[method(setMinimumHorizontalAngle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMinimumHorizontalAngle(&self, minimum_horizontal_angle: c_float);
 
         #[method(maximumHorizontalAngle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maximumHorizontalAngle(&self) -> c_float;
 
         /// Setter for [`maximumHorizontalAngle`][Self::maximumHorizontalAngle].
         #[method(setMaximumHorizontalAngle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMaximumHorizontalAngle(&self, maximum_horizontal_angle: c_float);
 
         #[method(translateInCameraSpaceByX:Y:Z:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn translateInCameraSpaceByX_Y_Z(
             &self,
             delta_x: c_float,
@@ -176,13 +202,16 @@ extern_methods!(
 
         #[cfg(feature = "SCNNode")]
         #[method(frameNodes:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn frameNodes(&self, nodes: &NSArray<SCNNode>);
 
         #[method(rotateByX:Y:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rotateByX_Y(&self, delta_x: c_float, delta_y: c_float);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(rollBy:aroundScreenPoint:viewport:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rollBy_aroundScreenPoint_viewport(
             &self,
             delta: c_float,
@@ -192,6 +221,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(dollyBy:onScreenPoint:viewport:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dollyBy_onScreenPoint_viewport(
             &self,
             delta: c_float,
@@ -200,23 +230,29 @@ extern_methods!(
         );
 
         #[method(rollAroundTarget:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rollAroundTarget(&self, delta: c_float);
 
         #[method(dollyToTarget:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dollyToTarget(&self, delta: c_float);
 
         #[method(clearRoll)]
+        #[unsafe(method_family = none)]
         pub unsafe fn clearRoll(&self);
 
         #[method(stopInertia)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stopInertia(&self);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(beginInteraction:withViewport:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn beginInteraction_withViewport(&self, location: CGPoint, viewport: CGSize);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(continueInteraction:withViewport:sensitivity:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn continueInteraction_withViewport_sensitivity(
             &self,
             location: CGPoint,
@@ -226,6 +262,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(endInteraction:withViewport:velocity:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn endInteraction_withViewport_velocity(
             &self,
             location: CGPoint,
@@ -238,11 +275,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNCameraController {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

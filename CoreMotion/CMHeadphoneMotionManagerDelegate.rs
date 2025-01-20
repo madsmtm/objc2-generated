@@ -12,11 +12,13 @@ extern_protocol!(
         #[cfg(feature = "CMHeadphoneMotionManager")]
         #[optional]
         #[method(headphoneMotionManagerDidConnect:)]
+        #[unsafe(method_family = none)]
         unsafe fn headphoneMotionManagerDidConnect(&self, manager: &CMHeadphoneMotionManager);
 
         #[cfg(feature = "CMHeadphoneMotionManager")]
         #[optional]
         #[method(headphoneMotionManagerDidDisconnect:)]
+        #[unsafe(method_family = none)]
         unsafe fn headphoneMotionManagerDidDisconnect(&self, manager: &CMHeadphoneMotionManager);
     }
 );

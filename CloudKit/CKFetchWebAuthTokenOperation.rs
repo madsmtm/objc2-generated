@@ -23,11 +23,11 @@ unsafe impl NSObjectProtocol for CKFetchWebAuthTokenOperation {}
 extern_methods!(
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchWebAuthTokenOperation {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(initWithAPIToken:)]
+        #[method(initWithAPIToken:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAPIToken(
             this: Allocated<Self>,
@@ -35,12 +35,13 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// APIToken is expected to be set before you begin this operation.
-        #[method_id(APIToken)]
+        #[method(APIToken)]
         #[unsafe(method_family = none)]
         pub unsafe fn APIToken(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`APIToken`][Self::APIToken].
         #[method(setAPIToken:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAPIToken(&self, api_token: Option<&NSString>);
 
         #[cfg(feature = "block2")]
@@ -59,6 +60,7 @@ extern_methods!(
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(fetchWebAuthTokenCompletionBlock)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fetchWebAuthTokenCompletionBlock(
             &self,
         ) -> *mut block2::Block<dyn Fn(*mut NSString, *mut NSError)>;
@@ -66,6 +68,7 @@ extern_methods!(
         #[cfg(feature = "block2")]
         /// Setter for [`fetchWebAuthTokenCompletionBlock`][Self::fetchWebAuthTokenCompletionBlock].
         #[method(setFetchWebAuthTokenCompletionBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFetchWebAuthTokenCompletionBlock(
             &self,
             fetch_web_auth_token_completion_block: Option<
@@ -79,7 +82,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchWebAuthTokenOperation {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

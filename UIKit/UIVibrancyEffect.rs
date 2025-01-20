@@ -36,7 +36,7 @@ extern_methods!(
     #[cfg(feature = "UIVisualEffect")]
     unsafe impl UIVibrancyEffect {
         #[cfg(feature = "UIBlurEffect")]
-        #[method_id(effectForBlurEffect:)]
+        #[method(effectForBlurEffect:)]
         #[unsafe(method_family = none)]
         pub unsafe fn effectForBlurEffect(blur_effect: &UIBlurEffect)
             -> Retained<UIVibrancyEffect>;
@@ -47,11 +47,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UIVisualEffect")]
     unsafe impl UIVibrancyEffect {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -94,7 +94,7 @@ extern_methods!(
     #[cfg(feature = "UIVisualEffect")]
     unsafe impl UIVibrancyEffect {
         #[cfg(feature = "UIBlurEffect")]
-        #[method_id(effectForBlurEffect:style:)]
+        #[method(effectForBlurEffect:style:)]
         #[unsafe(method_family = none)]
         pub unsafe fn effectForBlurEffect_style(
             blur_effect: &UIBlurEffect,

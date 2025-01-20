@@ -30,6 +30,7 @@ extern_methods!(
         /// in the gzip format for example. In order to ensure that a download can be later resumed,
         /// canResumeDownloadDecodedWithEncodingMIMEType: should be used when download:shouldDecodeSourceDataOfMIMEType: is called.
         #[method(canResumeDownloadDecodedWithEncodingMIMEType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn canResumeDownloadDecodedWithEncodingMIMEType(mime_type: &NSString) -> bool;
 
         #[cfg(feature = "NSURLRequest")]
@@ -41,7 +42,7 @@ extern_methods!(
         ///
         /// Returns: An initialized NSURLDownload object.
         #[deprecated = "Use NSURLSession downloadTask (see NSURLSession.h)"]
-        #[method_id(initWithRequest:delegate:)]
+        #[method(initWithRequest:delegate:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRequest_delegate(
             this: Allocated<Self>,
@@ -60,7 +61,7 @@ extern_methods!(
         ///
         /// Returns: An initialized NSURLDownload object.
         #[deprecated = "Use NSURLSession downloadTask (see NSURLSession.h)"]
-        #[method_id(initWithResumeData:delegate:path:)]
+        #[method(initWithResumeData:delegate:path:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResumeData_delegate_path(
             this: Allocated<Self>,
@@ -71,6 +72,7 @@ extern_methods!(
 
         /// Cancels the download and deletes the downloaded file.
         #[method(cancel)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cancel(&self);
 
         #[cfg(feature = "NSString")]
@@ -86,13 +88,14 @@ extern_methods!(
         /// appended to the filename to prevent the overwrite. Because of this, use the path
         /// passed with didCreateDestination: to determine the actual path of the downloaded file.
         #[method(setDestination:allowOverwrite:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDestination_allowOverwrite(&self, path: &NSString, allow_overwrite: bool);
 
         #[cfg(feature = "NSURLRequest")]
         /// Returns the request of the download.
         ///
         /// Returns: The request of the download.
-        #[method_id(request)]
+        #[method(request)]
         #[unsafe(method_family = none)]
         pub unsafe fn request(&self) -> Retained<NSURLRequest>;
 
@@ -106,7 +109,7 @@ extern_methods!(
         /// Non-nil is returned if the download was cancelled or ended in error after some but not all data has been received.
         /// The protocol of the download as well as the server must support resuming for non-nil to be returned.
         /// In order to later resume a download, be sure to call setDeletesFileUponFailure: with NO.
-        #[method_id(resumeData)]
+        #[method(resumeData)]
         #[unsafe(method_family = none)]
         pub unsafe fn resumeData(&self) -> Option<Retained<NSData>>;
 
@@ -116,10 +119,12 @@ extern_methods!(
         /// deletesFileUponFailure must be set to NO as soon as possible to prevent the downloaded file
         /// from being deleted. deletesFileUponFailure is YES by default.
         #[method(deletesFileUponFailure)]
+        #[unsafe(method_family = none)]
         pub unsafe fn deletesFileUponFailure(&self) -> bool;
 
         /// Setter for [`deletesFileUponFailure`][Self::deletesFileUponFailure].
         #[method(setDeletesFileUponFailure:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDeletesFileUponFailure(&self, deletes_file_upon_failure: bool);
     }
 );
@@ -127,11 +132,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSURLDownload {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -147,6 +152,7 @@ extern_protocol!(
         /// Parameter `download`: The download that just started downloading.
         #[optional]
         #[method(downloadDidBegin:)]
+        #[unsafe(method_family = none)]
         unsafe fn downloadDidBegin(&self, download: &NSURLDownload);
 
         #[cfg(all(feature = "NSURLRequest", feature = "NSURLResponse"))]
@@ -163,7 +169,7 @@ extern_protocol!(
         /// This method gives the delegate an opportunity to inspect the request
         /// that will be used to continue loading the request, and modify it if necessary.
         #[optional]
-        #[method_id(download:willSendRequest:redirectResponse:)]
+        #[method(download:willSendRequest:redirectResponse:)]
         #[unsafe(method_family = none)]
         unsafe fn download_willSendRequest_redirectResponse(
             &self,
@@ -189,6 +195,7 @@ extern_protocol!(
         /// Returns: a boolean value that indicates the willingness of the delegate to handle the authentication
         #[optional]
         #[method(download:canAuthenticateAgainstProtectionSpace:)]
+        #[unsafe(method_family = none)]
         unsafe fn download_canAuthenticateAgainstProtectionSpace(
             &self,
             connection: &NSURLDownload,
@@ -207,6 +214,7 @@ extern_protocol!(
         /// the connection sender when done.
         #[optional]
         #[method(download:didReceiveAuthenticationChallenge:)]
+        #[unsafe(method_family = none)]
         unsafe fn download_didReceiveAuthenticationChallenge(
             &self,
             download: &NSURLDownload,
@@ -221,6 +229,7 @@ extern_protocol!(
         /// Parameter `challenge`: The NSURLAuthenticationChallenge to cancel authentication for
         #[optional]
         #[method(download:didCancelAuthenticationChallenge:)]
+        #[unsafe(method_family = none)]
         unsafe fn download_didCancelAuthenticationChallenge(
             &self,
             download: &NSURLDownload,
@@ -243,6 +252,7 @@ extern_protocol!(
         /// Returns: NO if the download should not consult the credential storage, Yes if it should.
         #[optional]
         #[method(downloadShouldUseCredentialStorage:)]
+        #[unsafe(method_family = none)]
         unsafe fn downloadShouldUseCredentialStorage(&self, download: &NSURLDownload) -> bool;
 
         #[cfg(feature = "NSURLResponse")]
@@ -258,6 +268,7 @@ extern_protocol!(
         /// and should check the new response for the expected content length.
         #[optional]
         #[method(download:didReceiveResponse:)]
+        #[unsafe(method_family = none)]
         unsafe fn download_didReceiveResponse(
             &self,
             download: &NSURLDownload,
@@ -279,6 +290,7 @@ extern_protocol!(
         /// when a download is initialized with initWithResumeData:delegate:path:.
         #[optional]
         #[method(download:willResumeWithResponse:fromByte:)]
+        #[unsafe(method_family = none)]
         unsafe fn download_willResumeWithResponse_fromByte(
             &self,
             download: &NSURLDownload,
@@ -295,6 +307,7 @@ extern_protocol!(
         /// This method will be called one or more times.
         #[optional]
         #[method(download:didReceiveDataOfLength:)]
+        #[unsafe(method_family = none)]
         unsafe fn download_didReceiveDataOfLength(
             &self,
             download: &NSURLDownload,
@@ -315,6 +328,7 @@ extern_protocol!(
         /// download is not encoded.
         #[optional]
         #[method(download:shouldDecodeSourceDataOfMIMEType:)]
+        #[unsafe(method_family = none)]
         unsafe fn download_shouldDecodeSourceDataOfMIMEType(
             &self,
             download: &NSURLDownload,
@@ -336,6 +350,7 @@ extern_protocol!(
         /// setDestination:allowOverwrite: has already been called.
         #[optional]
         #[method(download:decideDestinationWithSuggestedFilename:)]
+        #[unsafe(method_family = none)]
         unsafe fn download_decideDestinationWithSuggestedFilename(
             &self,
             download: &NSURLDownload,
@@ -350,6 +365,7 @@ extern_protocol!(
         /// Parameter `path`: The path of the downloaded file.
         #[optional]
         #[method(download:didCreateDestination:)]
+        #[unsafe(method_family = none)]
         unsafe fn download_didCreateDestination(&self, download: &NSURLDownload, path: &NSString);
 
         /// This method is called when the download has finished downloading.
@@ -360,6 +376,7 @@ extern_protocol!(
         /// This method or download:didFailWithError: will only be called once.
         #[optional]
         #[method(downloadDidFinish:)]
+        #[unsafe(method_family = none)]
         unsafe fn downloadDidFinish(&self, download: &NSURLDownload);
 
         #[cfg(feature = "NSError")]
@@ -373,6 +390,7 @@ extern_protocol!(
         /// This method or downloadDidFinish: will only be called once.
         #[optional]
         #[method(download:didFailWithError:)]
+        #[unsafe(method_family = none)]
         unsafe fn download_didFailWithError(&self, download: &NSURLDownload, error: &NSError);
     }
 );

@@ -55,74 +55,90 @@ extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSClipView {
         #[cfg(feature = "NSColor")]
-        #[method_id(backgroundColor)]
+        #[method(backgroundColor)]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundColor(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`backgroundColor`][Self::backgroundColor].
         #[method(setBackgroundColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColor(&self, background_color: &NSColor);
 
         #[method(drawsBackground)]
+        #[unsafe(method_family = none)]
         pub unsafe fn drawsBackground(&self) -> bool;
 
         /// Setter for [`drawsBackground`][Self::drawsBackground].
         #[method(setDrawsBackground:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDrawsBackground(&self, draws_background: bool);
 
-        #[method_id(documentView)]
+        #[method(documentView)]
         #[unsafe(method_family = none)]
         pub unsafe fn documentView(&self) -> Option<Retained<NSView>>;
 
         /// Setter for [`documentView`][Self::documentView].
         #[method(setDocumentView:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDocumentView(&self, document_view: Option<&NSView>);
 
         #[method(documentRect)]
+        #[unsafe(method_family = none)]
         pub unsafe fn documentRect(&self) -> NSRect;
 
         #[cfg(feature = "NSCursor")]
-        #[method_id(documentCursor)]
+        #[method(documentCursor)]
         #[unsafe(method_family = none)]
         pub unsafe fn documentCursor(&self) -> Option<Retained<NSCursor>>;
 
         #[cfg(feature = "NSCursor")]
         /// Setter for [`documentCursor`][Self::documentCursor].
         #[method(setDocumentCursor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDocumentCursor(&self, document_cursor: Option<&NSCursor>);
 
         #[method(documentVisibleRect)]
+        #[unsafe(method_family = none)]
         pub unsafe fn documentVisibleRect(&self) -> NSRect;
 
         #[method(viewFrameChanged:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn viewFrameChanged(&self, notification: &NSNotification);
 
         #[method(viewBoundsChanged:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn viewBoundsChanged(&self, notification: &NSNotification);
 
         #[cfg(feature = "NSEvent")]
         #[method(autoscroll:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn autoscroll(&self, event: &NSEvent) -> bool;
 
         #[method(scrollToPoint:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scrollToPoint(&self, new_origin: NSPoint);
 
         #[method(constrainBoundsRect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn constrainBoundsRect(&self, proposed_bounds: NSRect) -> NSRect;
 
         #[method(contentInsets)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contentInsets(&self) -> NSEdgeInsets;
 
         /// Setter for [`contentInsets`][Self::contentInsets].
         #[method(setContentInsets:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setContentInsets(&self, content_insets: NSEdgeInsets);
 
         #[method(automaticallyAdjustsContentInsets)]
+        #[unsafe(method_family = none)]
         pub unsafe fn automaticallyAdjustsContentInsets(&self) -> bool;
 
         /// Setter for [`automaticallyAdjustsContentInsets`][Self::automaticallyAdjustsContentInsets].
         #[method(setAutomaticallyAdjustsContentInsets:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAutomaticallyAdjustsContentInsets(
             &self,
             automatically_adjusts_content_insets: bool,
@@ -134,11 +150,11 @@ extern_methods!(
     /// Methods declared on superclass `NSView`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSClipView {
-        #[method_id(initWithFrame:)]
+        #[method(initWithFrame:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -151,7 +167,7 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSClipView {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -161,7 +177,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSClipView {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -172,9 +188,11 @@ extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSView {
         #[method(reflectScrolledClipView:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reflectScrolledClipView(&self, clip_view: &NSClipView);
 
         #[method(scrollClipView:toPoint:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scrollClipView_toPoint(&self, clip_view: &NSClipView, point: NSPoint);
     }
 );
@@ -184,15 +202,18 @@ extern_methods!(
     unsafe impl NSClipView {
         #[deprecated = "Use -constrainBoundsRect: instead."]
         #[method(constrainScrollPoint:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn constrainScrollPoint(&self, new_origin: NSPoint) -> NSPoint;
 
         #[deprecated = "Setting this property has no effect.  NSClipView will always minimize the area of the document view that is invalidated.  To force invalidation of the document view, use -[NSView setNeedsDisplayInRect:]."]
         #[method(copiesOnScroll)]
+        #[unsafe(method_family = none)]
         pub unsafe fn copiesOnScroll(&self) -> bool;
 
         /// Setter for [`copiesOnScroll`][Self::copiesOnScroll].
         #[deprecated = "Setting this property has no effect.  NSClipView will always minimize the area of the document view that is invalidated.  To force invalidation of the document view, use -[NSView setNeedsDisplayInRect:]."]
         #[method(setCopiesOnScroll:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCopiesOnScroll(&self, copies_on_scroll: bool);
     }
 );

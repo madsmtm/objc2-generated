@@ -32,11 +32,11 @@ unsafe impl NSObjectProtocol for VZSerialPortConfiguration {}
 
 extern_methods!(
     unsafe impl VZSerialPortConfiguration {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -46,13 +46,14 @@ extern_methods!(
         /// See: VZFileHandleSerialPortAttachment
         ///
         /// See: VZFileSerialPortAttachment
-        #[method_id(attachment)]
+        #[method(attachment)]
         #[unsafe(method_family = none)]
         pub unsafe fn attachment(&self) -> Option<Retained<VZSerialPortAttachment>>;
 
         #[cfg(feature = "VZSerialPortAttachment")]
         /// Setter for [`attachment`][Self::attachment].
         #[method(setAttachment:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAttachment(&self, attachment: Option<&VZSerialPortAttachment>);
     }
 );

@@ -37,7 +37,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `observation`: Detected object observation with bounding box info.
-        #[method_id(initWithDetectedObjectObservation:)]
+        #[method(initWithDetectedObjectObservation:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDetectedObjectObservation(
             this: Allocated<Self>,
@@ -51,7 +51,7 @@ extern_methods!(
         /// Parameter `observation`: Detected object observation with bounding box info.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
-        #[method_id(initWithDetectedObjectObservation:completionHandler:)]
+        #[method(initWithDetectedObjectObservation:completionHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDetectedObjectObservation_completionHandler(
             this: Allocated<Self>,
@@ -59,12 +59,12 @@ extern_methods!(
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        #[method_id(initWithCompletionHandler:)]
+        #[method(initWithCompletionHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
@@ -77,7 +77,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "VNRequest", feature = "VNTrackingRequest"))]
     unsafe impl VNTrackObjectRequest {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

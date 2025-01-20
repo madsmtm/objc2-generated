@@ -51,26 +51,32 @@ extern_methods!(
     unsafe impl MPSCNNSpatialNormalization {
         /// The value of alpha.  Default is 1.0. Must be non-negative.
         #[method(alpha)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alpha(&self) -> c_float;
 
         /// Setter for [`alpha`][Self::alpha].
         #[method(setAlpha:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAlpha(&self, alpha: c_float);
 
         /// The value of beta.  Default is 5.0
         #[method(beta)]
+        #[unsafe(method_family = none)]
         pub unsafe fn beta(&self) -> c_float;
 
         /// Setter for [`beta`][Self::beta].
         #[method(setBeta:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBeta(&self, beta: c_float);
 
         /// The value of delta.  Default is 1.0
         #[method(delta)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delta(&self) -> c_float;
 
         /// Setter for [`delta`][Self::delta].
         #[method(setDelta:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelta(&self, delta: c_float);
 
         /// Initialize a spatial normalization filter
@@ -84,7 +90,7 @@ extern_methods!(
         /// Returns: A valid MPSCNNSpatialNormalization object or nil, if failure.
         ///
         /// NOTE:  For now, kernelWidth must be equal to kernelHeight
-        #[method_id(initWithDevice:kernelWidth:kernelHeight:)]
+        #[method(initWithDevice:kernelWidth:kernelHeight:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_kernelWidth_kernelHeight(
             this: Allocated<Self>,
@@ -106,7 +112,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -114,7 +120,7 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -135,7 +141,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -148,11 +154,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNSpatialNormalization {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -212,26 +218,32 @@ extern_methods!(
     unsafe impl MPSCNNSpatialNormalizationGradient {
         /// The value of alpha.  Default is 1.0. Must be non-negative.
         #[method(alpha)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alpha(&self) -> c_float;
 
         /// Setter for [`alpha`][Self::alpha].
         #[method(setAlpha:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAlpha(&self, alpha: c_float);
 
         /// The value of beta.  Default is 5.0
         #[method(beta)]
+        #[unsafe(method_family = none)]
         pub unsafe fn beta(&self) -> c_float;
 
         /// Setter for [`beta`][Self::beta].
         #[method(setBeta:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBeta(&self, beta: c_float);
 
         /// The value of delta.  Default is 1.0
         #[method(delta)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delta(&self) -> c_float;
 
         /// Setter for [`delta`][Self::delta].
         #[method(setDelta:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelta(&self, delta: c_float);
 
         /// Initialize a spatial normalization filter
@@ -245,7 +257,7 @@ extern_methods!(
         /// Returns: A valid MPSCNNSpatialNormalization object or nil, if failure.
         ///
         /// NOTE:  For now, kernelWidth must be equal to kernelHeight
-        #[method_id(initWithDevice:kernelWidth:kernelHeight:)]
+        #[method(initWithDevice:kernelWidth:kernelHeight:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_kernelWidth_kernelHeight(
             this: Allocated<Self>,
@@ -267,7 +279,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -288,7 +300,7 @@ extern_methods!(
         /// Returns: A pointer to the newly initialized object. This will fail, returning
         /// nil if the device is not supported. Devices must be
         /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -309,7 +321,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -322,11 +334,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNSpatialNormalizationGradient {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -394,50 +406,62 @@ extern_methods!(
         /// MPSCNNLocalContrastNormalizationNode used with
         /// the MPSNNGraph uses 1.0 as a default.
         #[method(alpha)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alpha(&self) -> c_float;
 
         /// Setter for [`alpha`][Self::alpha].
         #[method(setAlpha:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAlpha(&self, alpha: c_float);
 
         /// The value of beta.  Default is 0.5
         #[method(beta)]
+        #[unsafe(method_family = none)]
         pub unsafe fn beta(&self) -> c_float;
 
         /// Setter for [`beta`][Self::beta].
         #[method(setBeta:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBeta(&self, beta: c_float);
 
         /// The value of delta.  Default is 1/1024
         #[method(delta)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delta(&self) -> c_float;
 
         /// Setter for [`delta`][Self::delta].
         #[method(setDelta:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelta(&self, delta: c_float);
 
         /// The value of p0.  Default is 1.0
         #[method(p0)]
+        #[unsafe(method_family = none)]
         pub unsafe fn p0(&self) -> c_float;
 
         /// Setter for [`p0`][Self::p0].
         #[method(setP0:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setP0(&self, p0: c_float);
 
         /// The value of pm.  Default is 0.0
         #[method(pm)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pm(&self) -> c_float;
 
         /// Setter for [`pm`][Self::pm].
         #[method(setPm:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPm(&self, pm: c_float);
 
         /// The value of ps.  Default is 1.0
         #[method(ps)]
+        #[unsafe(method_family = none)]
         pub unsafe fn ps(&self) -> c_float;
 
         /// Setter for [`ps`][Self::ps].
         #[method(setPs:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPs(&self, ps: c_float);
 
         /// Initialize a local contrast normalization filter
@@ -451,7 +475,7 @@ extern_methods!(
         /// Returns: A valid MPSCNNLocalContrastNormalization object or nil, if failure.
         ///
         /// NOTE:  For now, kernelWidth must be equal to kernelHeight
-        #[method_id(initWithDevice:kernelWidth:kernelHeight:)]
+        #[method(initWithDevice:kernelWidth:kernelHeight:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_kernelWidth_kernelHeight(
             this: Allocated<Self>,
@@ -473,7 +497,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -481,7 +505,7 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -502,7 +526,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -515,11 +539,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNLocalContrastNormalization {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -598,50 +622,62 @@ extern_methods!(
         /// MPSCNNLocalContrastNormalizationNode used with
         /// the MPSNNGraph uses 1.0 as a default.
         #[method(alpha)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alpha(&self) -> c_float;
 
         /// Setter for [`alpha`][Self::alpha].
         #[method(setAlpha:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAlpha(&self, alpha: c_float);
 
         /// The value of beta.  Default is 0.5
         #[method(beta)]
+        #[unsafe(method_family = none)]
         pub unsafe fn beta(&self) -> c_float;
 
         /// Setter for [`beta`][Self::beta].
         #[method(setBeta:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBeta(&self, beta: c_float);
 
         /// The value of delta.  Default is 1/1024
         #[method(delta)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delta(&self) -> c_float;
 
         /// Setter for [`delta`][Self::delta].
         #[method(setDelta:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelta(&self, delta: c_float);
 
         /// The value of p0.  Default is 1.0
         #[method(p0)]
+        #[unsafe(method_family = none)]
         pub unsafe fn p0(&self) -> c_float;
 
         /// Setter for [`p0`][Self::p0].
         #[method(setP0:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setP0(&self, p0: c_float);
 
         /// The value of pm.  Default is 0.0
         #[method(pm)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pm(&self) -> c_float;
 
         /// Setter for [`pm`][Self::pm].
         #[method(setPm:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPm(&self, pm: c_float);
 
         /// The value of ps.  Default is 1.0
         #[method(ps)]
+        #[unsafe(method_family = none)]
         pub unsafe fn ps(&self) -> c_float;
 
         /// Setter for [`ps`][Self::ps].
         #[method(setPs:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPs(&self, ps: c_float);
 
         /// Initialize a local contrast normalization filter
@@ -655,7 +691,7 @@ extern_methods!(
         /// Returns: A valid MPSCNNLocalContrastNormalization object or nil, if failure.
         ///
         /// NOTE:  For now, kernelWidth must be equal to kernelHeight
-        #[method_id(initWithDevice:kernelWidth:kernelHeight:)]
+        #[method(initWithDevice:kernelWidth:kernelHeight:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_kernelWidth_kernelHeight(
             this: Allocated<Self>,
@@ -677,7 +713,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -698,7 +734,7 @@ extern_methods!(
         /// Returns: A pointer to the newly initialized object. This will fail, returning
         /// nil if the device is not supported. Devices must be
         /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -719,7 +755,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -732,11 +768,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNLocalContrastNormalizationGradient {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -790,30 +826,37 @@ extern_methods!(
     unsafe impl MPSCNNCrossChannelNormalization {
         /// The value of alpha.  Default is 1.0. Must be non-negative.
         #[method(alpha)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alpha(&self) -> c_float;
 
         /// Setter for [`alpha`][Self::alpha].
         #[method(setAlpha:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAlpha(&self, alpha: c_float);
 
         /// The value of beta.  Default is 5.0
         #[method(beta)]
+        #[unsafe(method_family = none)]
         pub unsafe fn beta(&self) -> c_float;
 
         /// Setter for [`beta`][Self::beta].
         #[method(setBeta:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBeta(&self, beta: c_float);
 
         /// The value of delta.  Default is 1.0
         #[method(delta)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delta(&self) -> c_float;
 
         /// Setter for [`delta`][Self::delta].
         #[method(setDelta:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelta(&self, delta: c_float);
 
         /// The size of the square filter window.  Default is 5
         #[method(kernelSize)]
+        #[unsafe(method_family = none)]
         pub unsafe fn kernelSize(&self) -> NSUInteger;
 
         /// Initialize a local response normalization filter in a channel
@@ -823,7 +866,7 @@ extern_methods!(
         /// Parameter `kernelSize`: The kernel filter size in each dimension.
         ///
         /// Returns: A valid MPSCNNCrossChannelNormalization object or nil, if failure.
-        #[method_id(initWithDevice:kernelSize:)]
+        #[method(initWithDevice:kernelSize:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_kernelSize(
             this: Allocated<Self>,
@@ -844,7 +887,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -852,7 +895,7 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -873,7 +916,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -886,11 +929,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNCrossChannelNormalization {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -951,30 +994,37 @@ extern_methods!(
     unsafe impl MPSCNNCrossChannelNormalizationGradient {
         /// The value of alpha.  Default is 1.0. Must be non-negative.
         #[method(alpha)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alpha(&self) -> c_float;
 
         /// Setter for [`alpha`][Self::alpha].
         #[method(setAlpha:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAlpha(&self, alpha: c_float);
 
         /// The value of beta.  Default is 5.0
         #[method(beta)]
+        #[unsafe(method_family = none)]
         pub unsafe fn beta(&self) -> c_float;
 
         /// Setter for [`beta`][Self::beta].
         #[method(setBeta:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBeta(&self, beta: c_float);
 
         /// The value of delta.  Default is 1.0
         #[method(delta)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delta(&self) -> c_float;
 
         /// Setter for [`delta`][Self::delta].
         #[method(setDelta:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelta(&self, delta: c_float);
 
         /// The size of the square filter window.  Default is 5
         #[method(kernelSize)]
+        #[unsafe(method_family = none)]
         pub unsafe fn kernelSize(&self) -> NSUInteger;
 
         /// Initialize a cross channel normalization gradient filter
@@ -984,7 +1034,7 @@ extern_methods!(
         /// Parameter `kernelSize`: The kernel filter size in each dimension.
         ///
         /// Returns: A valid MPSCNNCrossChannelNormalization object or nil, if failure.
-        #[method_id(initWithDevice:kernelSize:)]
+        #[method(initWithDevice:kernelSize:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_kernelSize(
             this: Allocated<Self>,
@@ -1005,7 +1055,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -1026,7 +1076,7 @@ extern_methods!(
         /// Returns: A pointer to the newly initialized object. This will fail, returning
         /// nil if the device is not supported. Devices must be
         /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -1047,7 +1097,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -1060,11 +1110,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNCrossChannelNormalizationGradient {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -41,10 +41,12 @@ extern_methods!(
         ///
         /// Should be [0.0, 1.0].
         #[method(progress)]
+        #[unsafe(method_family = none)]
         pub unsafe fn progress(&self) -> c_double;
 
         /// Setter for [`progress`][Self::progress].
         #[method(setProgress:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setProgress(&self, progress: c_double);
 
         /// Returns the total time tracked in this activity (excluding any previous activities).
@@ -53,6 +55,7 @@ extern_methods!(
         /// `-start`and
         /// `-stop.`
         #[method(duration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
         #[cfg(feature = "CLSActivityItem")]
@@ -60,13 +63,14 @@ extern_methods!(
         ///
         /// This can be nil indicating
         /// `progress`property is the primary data instead of any activityItems.
-        #[method_id(primaryActivityItem)]
+        #[method(primaryActivityItem)]
         #[unsafe(method_family = none)]
         pub unsafe fn primaryActivityItem(&self) -> Option<Retained<CLSActivityItem>>;
 
         #[cfg(feature = "CLSActivityItem")]
         /// Setter for [`primaryActivityItem`][Self::primaryActivityItem].
         #[method(setPrimaryActivityItem:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPrimaryActivityItem(
             &self,
             primary_activity_item: Option<&CLSActivityItem>,
@@ -80,16 +84,18 @@ extern_methods!(
         ///
         /// Parameter `end`: Ending percentage.
         #[method(addProgressRangeFromStart:toEnd:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addProgressRangeFromStart_toEnd(&self, start: c_double, end: c_double);
 
         #[cfg(feature = "CLSActivityItem")]
         /// Add an activity item to this CLSActivity.
         #[method(addAdditionalActivityItem:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addAdditionalActivityItem(&self, activity_item: &CLSActivityItem);
 
         #[cfg(feature = "CLSActivityItem")]
         /// Array of all additional activity items on this CLSActivity.
-        #[method_id(additionalActivityItems)]
+        #[method(additionalActivityItems)]
         #[unsafe(method_family = none)]
         pub unsafe fn additionalActivityItems(&self) -> Retained<NSArray<CLSActivityItem>>;
     }
@@ -99,11 +105,11 @@ extern_methods!(
     /// Methods declared on superclass `CLSObject`
     #[cfg(feature = "CLSObject")]
     unsafe impl CLSActivity {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -115,24 +121,28 @@ extern_methods!(
     unsafe impl CLSActivity {
         /// Returns whether this Activity has been started or not.
         #[method(isStarted)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isStarted(&self) -> bool;
 
         /// Start Activity.
         ///
         /// Starts the activity (or resumes if previously stopped).
         #[method(start)]
+        #[unsafe(method_family = none)]
         pub unsafe fn start(&self);
 
         /// Stop Activity.
         ///
         /// Stops or pauses the activity and ends the time being tracked on it.
         #[method(stop)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stop(&self);
 
         /// Deletes all activity items.
         ///
         /// Convenience method to delete all activity items associated with the current activity.
         #[method(removeAllActivityItems)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeAllActivityItems(&self);
     }
 );
@@ -145,14 +155,14 @@ extern_methods!(
         ///
         /// Activity associated with a context.  If no activity was ever created this is nil. See:
         /// `-[CLSContext`createNewActivity]; for more details.
-        #[method_id(currentActivity)]
+        #[method(currentActivity)]
         #[unsafe(method_family = none)]
         pub unsafe fn currentActivity(&self) -> Option<Retained<CLSActivity>>;
 
         /// Creates a new activity
         ///
         /// Creates a new activity and sets it as the current activity.
-        #[method_id(createNewActivity)]
+        #[method(createNewActivity)]
         #[unsafe(method_family = none)]
         pub unsafe fn createNewActivity(&self) -> Retained<CLSActivity>;
     }

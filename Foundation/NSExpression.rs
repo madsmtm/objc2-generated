@@ -74,34 +74,34 @@ unsafe impl NSSecureCoding for NSExpression {}
 extern_methods!(
     unsafe impl NSExpression {
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[method_id(expressionWithFormat:argumentArray:)]
+        #[method(expressionWithFormat:argumentArray:)]
         #[unsafe(method_family = none)]
         pub unsafe fn expressionWithFormat_argumentArray(
             expression_format: &NSString,
             arguments: &NSArray,
         ) -> Retained<NSExpression>;
 
-        #[method_id(expressionForConstantValue:)]
+        #[method(expressionForConstantValue:)]
         #[unsafe(method_family = none)]
         pub unsafe fn expressionForConstantValue(obj: Option<&AnyObject>)
             -> Retained<NSExpression>;
 
-        #[method_id(expressionForEvaluatedObject)]
+        #[method(expressionForEvaluatedObject)]
         #[unsafe(method_family = none)]
         pub unsafe fn expressionForEvaluatedObject() -> Retained<NSExpression>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(expressionForVariable:)]
+        #[method(expressionForVariable:)]
         #[unsafe(method_family = none)]
         pub unsafe fn expressionForVariable(string: &NSString) -> Retained<NSExpression>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(expressionForKeyPath:)]
+        #[method(expressionForKeyPath:)]
         #[unsafe(method_family = none)]
         pub unsafe fn expressionForKeyPath(key_path: &NSString) -> Retained<NSExpression>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[method_id(expressionForFunction:arguments:)]
+        #[method(expressionForFunction:arguments:)]
         #[unsafe(method_family = none)]
         pub unsafe fn expressionForFunction_arguments(
             name: &NSString,
@@ -109,27 +109,27 @@ extern_methods!(
         ) -> Retained<NSExpression>;
 
         #[cfg(feature = "NSArray")]
-        #[method_id(expressionForAggregate:)]
+        #[method(expressionForAggregate:)]
         #[unsafe(method_family = none)]
         pub unsafe fn expressionForAggregate(
             subexpressions: &NSArray<NSExpression>,
         ) -> Retained<NSExpression>;
 
-        #[method_id(expressionForUnionSet:with:)]
+        #[method(expressionForUnionSet:with:)]
         #[unsafe(method_family = none)]
         pub unsafe fn expressionForUnionSet_with(
             left: &NSExpression,
             right: &NSExpression,
         ) -> Retained<NSExpression>;
 
-        #[method_id(expressionForIntersectSet:with:)]
+        #[method(expressionForIntersectSet:with:)]
         #[unsafe(method_family = none)]
         pub unsafe fn expressionForIntersectSet_with(
             left: &NSExpression,
             right: &NSExpression,
         ) -> Retained<NSExpression>;
 
-        #[method_id(expressionForMinusSet:with:)]
+        #[method(expressionForMinusSet:with:)]
         #[unsafe(method_family = none)]
         pub unsafe fn expressionForMinusSet_with(
             left: &NSExpression,
@@ -137,7 +137,7 @@ extern_methods!(
         ) -> Retained<NSExpression>;
 
         #[cfg(all(feature = "NSPredicate", feature = "NSString"))]
-        #[method_id(expressionForSubquery:usingIteratorVariable:predicate:)]
+        #[method(expressionForSubquery:usingIteratorVariable:predicate:)]
         #[unsafe(method_family = none)]
         pub unsafe fn expressionForSubquery_usingIteratorVariable_predicate(
             expression: &NSExpression,
@@ -146,7 +146,7 @@ extern_methods!(
         ) -> Retained<NSExpression>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[method_id(expressionForFunction:selectorName:arguments:)]
+        #[method(expressionForFunction:selectorName:arguments:)]
         #[unsafe(method_family = none)]
         pub unsafe fn expressionForFunction_selectorName_arguments(
             target: &NSExpression,
@@ -154,12 +154,12 @@ extern_methods!(
             parameters: Option<&NSArray>,
         ) -> Retained<NSExpression>;
 
-        #[method_id(expressionForAnyKey)]
+        #[method(expressionForAnyKey)]
         #[unsafe(method_family = none)]
         pub unsafe fn expressionForAnyKey() -> Retained<NSExpression>;
 
         #[cfg(all(feature = "NSArray", feature = "NSDictionary", feature = "block2"))]
-        #[method_id(expressionForBlock:arguments:)]
+        #[method(expressionForBlock:arguments:)]
         #[unsafe(method_family = none)]
         pub unsafe fn expressionForBlock_arguments(
             block: &block2::Block<
@@ -173,7 +173,7 @@ extern_methods!(
         ) -> Retained<NSExpression>;
 
         #[cfg(feature = "NSPredicate")]
-        #[method_id(expressionForConditional:trueExpression:falseExpression:)]
+        #[method(expressionForConditional:trueExpression:falseExpression:)]
         #[unsafe(method_family = none)]
         pub unsafe fn expressionForConditional_trueExpression_falseExpression(
             predicate: &NSPredicate,
@@ -181,7 +181,7 @@ extern_methods!(
             false_expression: &NSExpression,
         ) -> Retained<NSExpression>;
 
-        #[method_id(initWithExpressionType:)]
+        #[method(initWithExpressionType:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithExpressionType(
             this: Allocated<Self>,
@@ -189,7 +189,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -197,63 +197,65 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[method(expressionType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn expressionType(&self) -> NSExpressionType;
 
-        #[method_id(constantValue)]
+        #[method(constantValue)]
         #[unsafe(method_family = none)]
         pub unsafe fn constantValue(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(keyPath)]
+        #[method(keyPath)]
         #[unsafe(method_family = none)]
         pub unsafe fn keyPath(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(function)]
+        #[method(function)]
         #[unsafe(method_family = none)]
         pub unsafe fn function(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(variable)]
+        #[method(variable)]
         #[unsafe(method_family = none)]
         pub unsafe fn variable(&self) -> Retained<NSString>;
 
-        #[method_id(operand)]
+        #[method(operand)]
         #[unsafe(method_family = none)]
         pub unsafe fn operand(&self) -> Retained<NSExpression>;
 
         #[cfg(feature = "NSArray")]
-        #[method_id(arguments)]
+        #[method(arguments)]
         #[unsafe(method_family = none)]
         pub unsafe fn arguments(&self) -> Option<Retained<NSArray<NSExpression>>>;
 
-        #[method_id(collection)]
+        #[method(collection)]
         #[unsafe(method_family = none)]
         pub unsafe fn collection(&self) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSPredicate")]
-        #[method_id(predicate)]
+        #[method(predicate)]
         #[unsafe(method_family = none)]
         pub unsafe fn predicate(&self) -> Retained<NSPredicate>;
 
-        #[method_id(leftExpression)]
+        #[method(leftExpression)]
         #[unsafe(method_family = none)]
         pub unsafe fn leftExpression(&self) -> Retained<NSExpression>;
 
-        #[method_id(rightExpression)]
+        #[method(rightExpression)]
         #[unsafe(method_family = none)]
         pub unsafe fn rightExpression(&self) -> Retained<NSExpression>;
 
-        #[method_id(trueExpression)]
+        #[method(trueExpression)]
         #[unsafe(method_family = none)]
         pub unsafe fn trueExpression(&self) -> Retained<NSExpression>;
 
-        #[method_id(falseExpression)]
+        #[method(falseExpression)]
         #[unsafe(method_family = none)]
         pub unsafe fn falseExpression(&self) -> Retained<NSExpression>;
 
         #[cfg(all(feature = "NSArray", feature = "NSDictionary", feature = "block2"))]
         #[method(expressionBlock)]
+        #[unsafe(method_family = none)]
         pub unsafe fn expressionBlock(
             &self,
         ) -> NonNull<
@@ -267,7 +269,7 @@ extern_methods!(
         >;
 
         #[cfg(feature = "NSDictionary")]
-        #[method_id(expressionValueWithObject:context:)]
+        #[method(expressionValueWithObject:context:)]
         #[unsafe(method_family = none)]
         pub unsafe fn expressionValueWithObject_context(
             &self,
@@ -276,6 +278,7 @@ extern_methods!(
         ) -> Option<Retained<AnyObject>>;
 
         #[method(allowEvaluation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowEvaluation(&self);
     }
 );
@@ -283,11 +286,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSExpression {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

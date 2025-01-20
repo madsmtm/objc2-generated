@@ -128,7 +128,7 @@ extern_methods!(
     unsafe impl UIDocumentBrowserViewController {
         /// Parameter `allowedContentTypes`: The document types that the user should be able to open. If nil, the types specified via the CFBundleDocumentTypes key in the application plist will be used instead.
         #[deprecated]
-        #[method_id(initForOpeningFilesWithContentTypes:)]
+        #[method(initForOpeningFilesWithContentTypes:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initForOpeningFilesWithContentTypes(
             this: Allocated<Self>,
@@ -137,7 +137,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-uniform-type-identifiers")]
         /// Parameter `contentTypes`: The content types that the user should be able to open. If nil, the types specified via the CFBundleDocumentTypes key in the application plist will be used instead.
-        #[method_id(initForOpeningContentTypes:)]
+        #[method(initForOpeningContentTypes:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initForOpeningContentTypes(
             this: Allocated<Self>,
@@ -145,7 +145,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Please use the designated initializers above instead.
-        #[method_id(initWithNibName:bundle:)]
+        #[method(initWithNibName:bundle:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -153,7 +153,7 @@ extern_methods!(
             bundle: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -162,6 +162,7 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn UIDocumentBrowserViewControllerDelegate>>,
@@ -169,15 +170,17 @@ extern_methods!(
 
         /// Defaults to YES
         #[method(allowsDocumentCreation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowsDocumentCreation(&self) -> bool;
 
         /// Setter for [`allowsDocumentCreation`][Self::allowsDocumentCreation].
         #[method(setAllowsDocumentCreation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAllowsDocumentCreation(&self, allows_document_creation: bool);
 
         #[cfg(feature = "UIDocument")]
         /// The active document creation intent.
-        #[method_id(activeDocumentCreationIntent)]
+        #[method(activeDocumentCreationIntent)]
         #[unsafe(method_family = none)]
         pub unsafe fn activeDocumentCreationIntent(
             &self,
@@ -185,14 +188,16 @@ extern_methods!(
 
         /// Defaults to NO
         #[method(allowsPickingMultipleItems)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowsPickingMultipleItems(&self) -> bool;
 
         /// Setter for [`allowsPickingMultipleItems`][Self::allowsPickingMultipleItems].
         #[method(setAllowsPickingMultipleItems:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAllowsPickingMultipleItems(&self, allows_picking_multiple_items: bool);
 
         #[deprecated = "allowedContentTypes is no longer supported"]
-        #[method_id(allowedContentTypes)]
+        #[method(allowedContentTypes)]
         #[unsafe(method_family = none)]
         pub unsafe fn allowedContentTypes(&self) -> Retained<NSArray<NSString>>;
 
@@ -201,7 +206,7 @@ extern_methods!(
         /// Can be defined via the 'UIDocumentBrowserRecentDocumentContentTypes' key in the app Info.plist.
         /// Note that the recentDocumentsContentTypes must be a subset conforming to the types declared in allowedContentTypes.
         #[deprecated]
-        #[method_id(recentDocumentsContentTypes)]
+        #[method(recentDocumentsContentTypes)]
         #[unsafe(method_family = none)]
         pub unsafe fn recentDocumentsContentTypes(&self) -> Retained<NSArray<NSString>>;
 
@@ -210,21 +215,23 @@ extern_methods!(
         /// Default is same as content types passed in the designated initializer or as CFBundleDocumentTypes  in the app Info.plist.
         /// Can be defined via the 'UIDocumentBrowserRecentDocumentContentTypes' key in the app Info.plist.
         /// Note that the contentTypesForRecentDocuments must be a subset conforming to the types passed in the initializer or Info.plist.
-        #[method_id(contentTypesForRecentDocuments)]
+        #[method(contentTypesForRecentDocuments)]
         #[unsafe(method_family = none)]
         pub unsafe fn contentTypesForRecentDocuments(&self) -> Retained<NSArray<UTType>>;
 
         /// Force the display of file extensions (default: NO).
         #[method(shouldShowFileExtensions)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shouldShowFileExtensions(&self) -> bool;
 
         /// Setter for [`shouldShowFileExtensions`][Self::shouldShowFileExtensions].
         #[method(setShouldShowFileExtensions:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShouldShowFileExtensions(&self, should_show_file_extensions: bool);
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         /// An array of buttons that will be added to the existing buttons in the UIDocumentBrowserViewController navigation bar
-        #[method_id(additionalLeadingNavigationBarButtonItems)]
+        #[method(additionalLeadingNavigationBarButtonItems)]
         #[unsafe(method_family = none)]
         pub unsafe fn additionalLeadingNavigationBarButtonItems(
             &self,
@@ -233,6 +240,7 @@ extern_methods!(
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         /// Setter for [`additionalLeadingNavigationBarButtonItems`][Self::additionalLeadingNavigationBarButtonItems].
         #[method(setAdditionalLeadingNavigationBarButtonItems:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAdditionalLeadingNavigationBarButtonItems(
             &self,
             additional_leading_navigation_bar_button_items: &NSArray<UIBarButtonItem>,
@@ -240,7 +248,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         /// An array of buttons that will be added to the existing buttons in the UIDocumentBrowserViewController navigation bar
-        #[method_id(additionalTrailingNavigationBarButtonItems)]
+        #[method(additionalTrailingNavigationBarButtonItems)]
         #[unsafe(method_family = none)]
         pub unsafe fn additionalTrailingNavigationBarButtonItems(
             &self,
@@ -249,6 +257,7 @@ extern_methods!(
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         /// Setter for [`additionalTrailingNavigationBarButtonItems`][Self::additionalTrailingNavigationBarButtonItems].
         #[method(setAdditionalTrailingNavigationBarButtonItems:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAdditionalTrailingNavigationBarButtonItems(
             &self,
             additional_trailing_navigation_bar_button_items: &NSArray<UIBarButtonItem>,
@@ -258,6 +267,7 @@ extern_methods!(
         /// Called to reveal a document at the URL.
         /// Typically called from the application delegate method application:openURL:options:; to let the application present the document.
         #[method(revealDocumentAtURL:importIfNeeded:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn revealDocumentAtURL_importIfNeeded_completion(
             &self,
             url: &NSURL,
@@ -268,6 +278,7 @@ extern_methods!(
         #[cfg(feature = "block2")]
         /// Allow a document to be imported next to another document.
         #[method(importDocumentAtURL:nextToDocumentAtURL:mode:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn importDocumentAtURL_nextToDocumentAtURL_mode_completionHandler(
             &self,
             document_url: &NSURL,
@@ -281,6 +292,7 @@ extern_methods!(
         /// If the proposed name is already taken, a different name may be used after confirming with the user.
         /// The finalURL and error are available in the completion handler.
         #[method(renameDocumentAtURL:proposedName:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn renameDocumentAtURL_proposedName_completionHandler(
             &self,
             document_url: &NSURL,
@@ -289,7 +301,7 @@ extern_methods!(
         );
 
         /// A UIDocumentBrowserTransitionController object is used to display a loading indicator, while the application is spending time on time-consuming operations (e.g., loading, parsing, …) after having finished the file download, and before presenting it. To be used together with the UIViewControllerTransitioningDelegate protocol for custom view controller transitions.
-        #[method_id(transitionControllerForDocumentAtURL:)]
+        #[method(transitionControllerForDocumentAtURL:)]
         #[unsafe(method_family = none)]
         pub unsafe fn transitionControllerForDocumentAtURL(
             &self,
@@ -297,7 +309,7 @@ extern_methods!(
         ) -> Retained<UIDocumentBrowserTransitionController>;
 
         #[deprecated]
-        #[method_id(transitionControllerForDocumentURL:)]
+        #[method(transitionControllerForDocumentURL:)]
         #[unsafe(method_family = none)]
         pub unsafe fn transitionControllerForDocumentURL(
             &self,
@@ -306,33 +318,37 @@ extern_methods!(
 
         #[cfg(feature = "UIDocumentBrowserAction")]
         /// Allows clients to add custom actions in the menu and the navigation bar. These actions are contextual to the document items.
-        #[method_id(customActions)]
+        #[method(customActions)]
         #[unsafe(method_family = none)]
         pub unsafe fn customActions(&self) -> Retained<NSArray<UIDocumentBrowserAction>>;
 
         #[cfg(feature = "UIDocumentBrowserAction")]
         /// Setter for [`customActions`][Self::customActions].
         #[method(setCustomActions:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCustomActions(&self, custom_actions: &NSArray<UIDocumentBrowserAction>);
 
         /// Allows clients to customize the look of the browser. Default: UIDocumentBrowserUserInterfaceStyleWhite
         #[method(browserUserInterfaceStyle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn browserUserInterfaceStyle(&self) -> UIDocumentBrowserUserInterfaceStyle;
 
         /// Setter for [`browserUserInterfaceStyle`][Self::browserUserInterfaceStyle].
         #[method(setBrowserUserInterfaceStyle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBrowserUserInterfaceStyle(
             &self,
             browser_user_interface_style: UIDocumentBrowserUserInterfaceStyle,
         );
 
         /// Title of the Create Document button (default: "Create Document”).
-        #[method_id(localizedCreateDocumentActionTitle)]
+        #[method(localizedCreateDocumentActionTitle)]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedCreateDocumentActionTitle(&self) -> Retained<NSString>;
 
         /// Setter for [`localizedCreateDocumentActionTitle`][Self::localizedCreateDocumentActionTitle].
         #[method(setLocalizedCreateDocumentActionTitle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLocalizedCreateDocumentActionTitle(
             &self,
             localized_create_document_action_title: &NSString,
@@ -341,11 +357,13 @@ extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// Aspect ratio of the Create Document button defined as width / height (default: 2/3).
         #[method(defaultDocumentAspectRatio)]
+        #[unsafe(method_family = none)]
         pub unsafe fn defaultDocumentAspectRatio(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`defaultDocumentAspectRatio`][Self::defaultDocumentAspectRatio].
         #[method(setDefaultDocumentAspectRatio:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDefaultDocumentAspectRatio(&self, default_document_aspect_ratio: CGFloat);
     }
 );
@@ -354,7 +372,7 @@ extern_methods!(
     /// Methods declared on superclass `UIViewController`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIDocumentBrowserViewController {
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -367,11 +385,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIDocumentBrowserViewController {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -387,6 +405,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(documentBrowser:didPickDocumentURLs:)]
+        #[unsafe(method_family = none)]
         unsafe fn documentBrowser_didPickDocumentURLs(
             &self,
             controller: &UIDocumentBrowserViewController,
@@ -396,6 +415,7 @@ extern_protocol!(
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
         #[method(documentBrowser:didPickDocumentsAtURLs:)]
+        #[unsafe(method_family = none)]
         unsafe fn documentBrowser_didPickDocumentsAtURLs(
             &self,
             controller: &UIDocumentBrowserViewController,
@@ -419,6 +439,7 @@ extern_protocol!(
         /// If you do not implement this method, document creation will not be available.
         #[optional]
         #[method(documentBrowser:didRequestDocumentCreationWithHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn documentBrowser_didRequestDocumentCreationWithHandler(
             &self,
             controller: &UIDocumentBrowserViewController,
@@ -428,6 +449,7 @@ extern_protocol!(
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
         #[method(documentBrowser:didImportDocumentAtURL:toDestinationURL:)]
+        #[unsafe(method_family = none)]
         unsafe fn documentBrowser_didImportDocumentAtURL_toDestinationURL(
             &self,
             controller: &UIDocumentBrowserViewController,
@@ -438,6 +460,7 @@ extern_protocol!(
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
         #[method(documentBrowser:failedToImportDocumentAtURL:error:)]
+        #[unsafe(method_family = none)]
         unsafe fn documentBrowser_failedToImportDocumentAtURL_error(
             &self,
             controller: &UIDocumentBrowserViewController,
@@ -452,7 +475,7 @@ extern_protocol!(
         ))]
         /// Allows clients to add application specific UIActivity instances
         #[optional]
-        #[method_id(documentBrowser:applicationActivitiesForDocumentURLs:)]
+        #[method(documentBrowser:applicationActivitiesForDocumentURLs:)]
         #[unsafe(method_family = none)]
         unsafe fn documentBrowser_applicationActivitiesForDocumentURLs(
             &self,
@@ -468,6 +491,7 @@ extern_protocol!(
         /// Implement this to customize the UIActivityViewController before it's presented.
         #[optional]
         #[method(documentBrowser:willPresentActivityViewController:)]
+        #[unsafe(method_family = none)]
         unsafe fn documentBrowser_willPresentActivityViewController(
             &self,
             controller: &UIDocumentBrowserViewController,
@@ -497,24 +521,25 @@ unsafe impl UIViewControllerAnimatedTransitioning for UIDocumentBrowserTransitio
 
 extern_methods!(
     unsafe impl UIDocumentBrowserTransitionController {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// An optional progress can be displayed on the document thumbnail while the document is loading (during opening).
-        #[method_id(loadingProgress)]
+        #[method(loadingProgress)]
         #[unsafe(method_family = none)]
         pub unsafe fn loadingProgress(&self) -> Option<Retained<NSProgress>>;
 
         /// Setter for [`loadingProgress`][Self::loadingProgress].
         #[method(setLoadingProgress:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLoadingProgress(&self, loading_progress: Option<&NSProgress>);
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// This view will be used for the zoom transition from/to the document collection view.
         /// If UIDocumentBrowserViewController is being dismissed, this view should be a subview of the presented view controller's view
         /// If UIDocumentBrowserViewController is being presented, this view should be a subview of the presenting view controller's view
-        #[method_id(targetView)]
+        #[method(targetView)]
         #[unsafe(method_family = none)]
         pub unsafe fn targetView(&self) -> Option<Retained<UIView>>;
 
@@ -522,6 +547,7 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`targetView`][Self::targetView].
         #[method(setTargetView:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTargetView(&self, target_view: Option<&UIView>);
     }
 );
@@ -529,7 +555,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIDocumentBrowserTransitionController {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

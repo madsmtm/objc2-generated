@@ -57,7 +57,7 @@ unsafe impl NSObjectProtocol for FPUIActionExtensionContext {}
 extern_methods!(
     unsafe impl FPUIActionExtensionContext {
         /// The identifier for the domain managed by the current file provider.
-        #[method_id(domainIdentifier)]
+        #[method(domainIdentifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn domainIdentifier(&self) -> Option<Retained<NSFileProviderDomainIdentifier>>;
 
@@ -65,10 +65,12 @@ extern_methods!(
         ///
         /// Call this method when the action completes successfully.
         #[method(completeRequest)]
+        #[unsafe(method_family = none)]
         pub unsafe fn completeRequest(&self);
 
         #[cfg(feature = "block2")]
         #[method(completeRequestReturningItems:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn completeRequestReturningItems_completionHandler(
             &self,
             items: Option<&NSArray>,
@@ -81,6 +83,7 @@ extern_methods!(
         /// ``FPUIErrorDomain``. Set the error code to a ``FPUIExtensionErrorCode``
         /// value.
         #[method(cancelRequestWithError:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cancelRequestWithError(&self, error: &NSError);
     }
 );
@@ -88,11 +91,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl FPUIActionExtensionContext {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

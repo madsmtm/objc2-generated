@@ -33,7 +33,7 @@ extern_category!(
         /// `YES`file coordination will be used and this parameter is ignored.
         ///
         /// Parameter `visibility`: The visibility of this representation.
-        #[method_id(initWithContentsOfURL:contentType:openInPlace:coordinated:visibility:)]
+        #[method(initWithContentsOfURL:contentType:openInPlace:coordinated:visibility:)]
         #[unsafe(method_family = init)]
         unsafe fn initWithContentsOfURL_contentType_openInPlace_coordinated_visibility(
             this: Allocated<Self>,
@@ -57,6 +57,7 @@ extern_category!(
         ///
         /// Parameter `loadHandler`: A block called to provide the data representation.
         #[method(registerDataRepresentationForContentType:visibility:loadHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn registerDataRepresentationForContentType_visibility_loadHandler(
             &self,
             content_type: &UTType,
@@ -94,6 +95,7 @@ extern_category!(
         ///
         /// Parameter `loadHandler`: A block called to provide the file representation.
         #[method(registerFileRepresentationForContentType:visibility:openInPlace:loadHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn registerFileRepresentationForContentType_visibility_openInPlace_loadHandler(
             &self,
             content_type: &UTType,
@@ -111,13 +113,13 @@ extern_category!(
         ///
         /// Content types should be registered in order of fidelity. Prefer using content types that appear earlier
         /// in the array.
-        #[method_id(registeredContentTypes)]
+        #[method(registeredContentTypes)]
         #[unsafe(method_family = none)]
         unsafe fn registeredContentTypes(&self) -> Retained<NSArray<UTType>>;
 
         #[cfg(feature = "UTType")]
         /// Registered content types that can be loaded as files opened in place
-        #[method_id(registeredContentTypesForOpenInPlace)]
+        #[method(registeredContentTypesForOpenInPlace)]
         #[unsafe(method_family = none)]
         unsafe fn registeredContentTypesForOpenInPlace(&self) -> Retained<NSArray<UTType>>;
 
@@ -126,7 +128,7 @@ extern_category!(
         ///
         /// The returned content types are given in order of fidelity. Prefer content types that appear earlier
         /// in the array.
-        #[method_id(registeredContentTypesConformingToContentType:)]
+        #[method(registeredContentTypesConformingToContentType:)]
         #[unsafe(method_family = none)]
         unsafe fn registeredContentTypesConformingToContentType(
             &self,
@@ -152,7 +154,7 @@ extern_category!(
         /// `error`parameter.
         ///
         /// Returns: A progress object. Use it to monitor loading progress, or to cancel loading.
-        #[method_id(loadDataRepresentationForContentType:completionHandler:)]
+        #[method(loadDataRepresentationForContentType:completionHandler:)]
         #[unsafe(method_family = none)]
         unsafe fn loadDataRepresentationForContentType_completionHandler(
             &self,
@@ -193,7 +195,7 @@ extern_category!(
         /// created in a temporary directory.
         ///
         /// Returns: A progress object. Use it to monitor loading progress, or to cancel loading.
-        #[method_id(loadFileRepresentationForContentType:openInPlace:completionHandler:)]
+        #[method(loadFileRepresentationForContentType:openInPlace:completionHandler:)]
         #[unsafe(method_family = none)]
         unsafe fn loadFileRepresentationForContentType_openInPlace_completionHandler(
             &self,

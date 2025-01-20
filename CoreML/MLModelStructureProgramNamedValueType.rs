@@ -23,22 +23,22 @@ unsafe impl NSObjectProtocol for MLModelStructureProgramNamedValueType {}
 
 extern_methods!(
     unsafe impl MLModelStructureProgramNamedValueType {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// The name of the parameter.
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "MLModelStructureProgramValueType")]
         /// The type of the parameter.
-        #[method_id(type)]
+        #[method(type)]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> Retained<MLModelStructureProgramValueType>;
     }

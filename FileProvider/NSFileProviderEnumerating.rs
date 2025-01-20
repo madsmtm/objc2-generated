@@ -41,6 +41,7 @@ extern_protocol!(
     pub unsafe trait NSFileProviderEnumerationObserver: NSObjectProtocol {
         #[cfg(feature = "NSFileProviderItem")]
         #[method(didEnumerateItems:)]
+        #[unsafe(method_family = none)]
         unsafe fn didEnumerateItems(
             &self,
             updated_items: &NSArray<ProtocolObject<dyn NSFileProviderItemProtocol>>,
@@ -55,9 +56,11 @@ extern_protocol!(
         /// Page data is limited to 500 bytes.  Setting a larger nextPage interrupts the
         /// enumeration.
         #[method(finishEnumeratingUpToPage:)]
+        #[unsafe(method_family = none)]
         unsafe fn finishEnumeratingUpToPage(&self, next_page: Option<&NSFileProviderPage>);
 
         #[method(finishEnumeratingWithError:)]
+        #[unsafe(method_family = none)]
         unsafe fn finishEnumeratingWithError(&self, error: &NSError);
 
         /// Size of the page suggested by the system for better performance.
@@ -70,6 +73,7 @@ extern_protocol!(
         /// system enforces a maximum of 100 times the suggested size.
         #[optional]
         #[method(suggestedPageSize)]
+        #[unsafe(method_family = none)]
         unsafe fn suggestedPageSize(&self) -> NSInteger;
     }
 );
@@ -80,6 +84,7 @@ extern_protocol!(
         #[cfg(feature = "NSFileProviderItem")]
         /// Send updates to existing items, or insert new items.
         #[method(didUpdateItems:)]
+        #[unsafe(method_family = none)]
         unsafe fn didUpdateItems(
             &self,
             updated_items: &NSArray<ProtocolObject<dyn NSFileProviderItemProtocol>>,
@@ -88,6 +93,7 @@ extern_protocol!(
         #[cfg(feature = "NSFileProviderItem")]
         /// Delete existing items.  No-op if the item was unknown.
         #[method(didDeleteItemsWithIdentifiers:)]
+        #[unsafe(method_family = none)]
         unsafe fn didDeleteItemsWithIdentifiers(
             &self,
             deleted_item_identifiers: &NSArray<NSFileProviderItemIdentifier>,
@@ -109,6 +115,7 @@ extern_protocol!(
         /// same effect as calling finishEnumeratingWithError with an expired sync anchor
         /// error.
         #[method(finishEnumeratingChangesUpToSyncAnchor:moreComing:)]
+        #[unsafe(method_family = none)]
         unsafe fn finishEnumeratingChangesUpToSyncAnchor_moreComing(
             &self,
             anchor: &NSFileProviderSyncAnchor,
@@ -119,6 +126,7 @@ extern_protocol!(
         /// drop all cached data and start the enumeration over starting with sync anchor
         /// nil.
         #[method(finishEnumeratingWithError:)]
+        #[unsafe(method_family = none)]
         unsafe fn finishEnumeratingWithError(&self, error: &NSError);
 
         /// Size of the batch suggested by the system for better performance.
@@ -139,6 +147,7 @@ extern_protocol!(
         /// The system enforces a maximum of 100 times the suggested size.
         #[optional]
         #[method(suggestedBatchSize)]
+        #[unsafe(method_family = none)]
         unsafe fn suggestedBatchSize(&self) -> NSInteger;
     }
 );
@@ -147,6 +156,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderenumerator?language=objc)
     pub unsafe trait NSFileProviderEnumerator: NSObjectProtocol {
         #[method(invalidate)]
+        #[unsafe(method_family = none)]
         unsafe fn invalidate(&self);
 
         /// Enumerate items starting from the specified page, typically
@@ -174,6 +184,7 @@ extern_protocol!(
         /// return everything that is readily available and wait for the enumeration of the
         /// next page.
         #[method(enumerateItemsForObserver:startingAtPage:)]
+        #[unsafe(method_family = none)]
         unsafe fn enumerateItemsForObserver_startingAtPage(
             &self,
             observer: &ProtocolObject<dyn NSFileProviderEnumerationObserver>,
@@ -210,6 +221,7 @@ extern_protocol!(
         /// next batch.
         #[optional]
         #[method(enumerateChangesForObserver:fromSyncAnchor:)]
+        #[unsafe(method_family = none)]
         unsafe fn enumerateChangesForObserver_fromSyncAnchor(
             &self,
             observer: &ProtocolObject<dyn NSFileProviderChangeObserver>,
@@ -238,6 +250,7 @@ extern_protocol!(
         /// they are not implemented.
         #[optional]
         #[method(currentSyncAnchorWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn currentSyncAnchorWithCompletionHandler(
             &self,
             completion_handler: &block2::Block<dyn Fn(*mut NSFileProviderSyncAnchor)>,
@@ -275,7 +288,7 @@ extern_methods!(
         /// the very item that the enumeration was started on.
         ///
         /// If returning nil, you must set the error out parameter.
-        #[method_id(enumeratorForContainerItemIdentifier:error:_)]
+        #[method(enumeratorForContainerItemIdentifier:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn enumeratorForContainerItemIdentifier_error(
             &self,

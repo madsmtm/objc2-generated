@@ -34,6 +34,7 @@ extern_category!(
         ///
         /// Input methods implementing this method should return YES if the input was excepted, and NO if not excepted.
         #[method(inputText:key:modifiers:client:)]
+        #[unsafe(method_family = none)]
         unsafe fn inputText_key_modifiers_client(
             &self,
             string: Option<&NSString>,
@@ -46,6 +47,7 @@ extern_category!(
         ///
         /// If the input string is not excepted the input method should return NO.  When text is accepted return YES.  Input methods should implement this method when they are using keybinding (i.e. have implemented didCommandBySelector:client:).
         #[method(inputText:client:)]
+        #[unsafe(method_family = none)]
         unsafe fn inputText_client(
             &self,
             string: Option<&NSString>,
@@ -57,6 +59,7 @@ extern_category!(
         ///
         /// Return YES if the event was handled. NO if not handled.
         #[method(handleEvent:client:)]
+        #[unsafe(method_family = none)]
         unsafe fn handleEvent_client(
             &self,
             event: Option<&NSEvent>,
@@ -69,6 +72,7 @@ extern_category!(
         ///
         /// For example.  Suppose you have implemented a version of insertNewline: that terminates the conversion session and sends the fully converted text to the client.  However, if you conversion buffer is empty you want the application to receive the return key that triggered the call to insertNewline:.  In that case when didCommandBySelector:client: is called you should test your buffer before calling your implementation of insertNewline:.  If the buffer is empty you would return NO indicating that the return key should be passed on to the application.  If the buffer is not empty you would call insertNewline: and then return YES as the result of didCommandBySelector:client:.
         #[method(didCommandBySelector:client:)]
+        #[unsafe(method_family = none)]
         unsafe fn didCommandBySelector_client(
             &self,
             a_selector: Option<Sel>,
@@ -78,14 +82,14 @@ extern_category!(
         /// Return the current composed string.  This may be an NSString or NSAttributedString.
         ///
         /// A composed string refers to the buffer that an input method typically maintains to mirror the text contained in the active inline area.  It is called the composed string to reflect the fact that the input method composed the string by converting the characters input by the user.  In addition, using the term composed string makes it easier to differentiate between an input method's buffer and the text in the active inline area that the user sees. The returned object should be an autoreleased object.
-        #[method_id(composedString:)]
+        #[method(composedString:)]
         #[unsafe(method_family = none)]
         unsafe fn composedString(&self, sender: Option<&AnyObject>) -> Option<Retained<AnyObject>>;
 
         /// Return the a string consisting of the original pre-composition unicodes.
         ///
         /// If an input method stores the original input text it should return that text here.  The return value is an attributed string so that input method's can potentially restore changes they may have made to the font, etc.  The returned object should be an autoreleased object.
-        #[method_id(originalString:)]
+        #[method(originalString:)]
         #[unsafe(method_family = none)]
         unsafe fn originalString(
             &self,
@@ -96,12 +100,13 @@ extern_category!(
         ///
         /// If an input method implements this method it will be called when the client wishes to end the composition session immediately. A typical response would be to call the client's insertText method and then clean up any per-session buffers and variables.  After receiving this message an input method should consider the given composition session finished.
         #[method(commitComposition:)]
+        #[unsafe(method_family = none)]
         unsafe fn commitComposition(&self, sender: Option<&AnyObject>);
 
         /// Called to get an array of candidates.
         ///
         /// An input method would look up its currently composed string and return a list of candidate strings that that string might map to. The returned NSArray should be an autoreleased object.
-        #[method_id(candidates:)]
+        #[method(candidates:)]
         #[unsafe(method_family = none)]
         unsafe fn candidates(&self, sender: Option<&AnyObject>) -> Option<Retained<NSArray>>;
     }
@@ -116,14 +121,16 @@ extern_protocol!(
     pub unsafe trait IMKStateSetting {
         /// Activates the input method.
         #[method(activateServer:)]
+        #[unsafe(method_family = none)]
         unsafe fn activateServer(&self, sender: Option<&AnyObject>);
 
         /// Deactivate the input method.
         #[method(deactivateServer:)]
+        #[unsafe(method_family = none)]
         unsafe fn deactivateServer(&self, sender: Option<&AnyObject>);
 
         /// Return a object value whose key is tag.  The returned object should be autoreleased.
-        #[method_id(valueForTag:client:)]
+        #[method(valueForTag:client:)]
         #[unsafe(method_family = none)]
         unsafe fn valueForTag_client(
             &self,
@@ -133,6 +140,7 @@ extern_protocol!(
 
         /// Set the tagged value to the object specified by value.
         #[method(setValue:forTag:client:)]
+        #[unsafe(method_family = none)]
         unsafe fn setValue_forTag_client(
             &self,
             value: Option<&AnyObject>,
@@ -143,7 +151,7 @@ extern_protocol!(
         /// This is called to obtain the input method's modes dictionary.
         ///
         /// Typically this is called to to build the text input menu.  By calling the input method rather than reading the modes from the info.plist the input method can dynamically modify he modes supported. The returned NSDictionary should be an autoreleased object.
-        #[method_id(modes:)]
+        #[method(modes:)]
         #[unsafe(method_family = none)]
         unsafe fn modes(&self, sender: Option<&AnyObject>) -> Option<Retained<NSDictionary>>;
 
@@ -152,6 +160,7 @@ extern_protocol!(
         /// A client will check with an input method to see if an event is supported by calling the method.  The default implementation returns NSKeyDownMask.
         /// If your input method only handles key downs the InputMethodKit provides default mouse handling.  The default mousedown handling behavior is as follows: if there is an active composition area and the user clicks in the text but outside of the composition area the InputMethodKit will send your input method a commitComposition: message. Note that this will only happen for input methods that return just NSKeyDownMask (i.e. the default value) as the result of recognizedEvents.
         #[method(recognizedEvents:)]
+        #[unsafe(method_family = none)]
         unsafe fn recognizedEvents(&self, sender: Option<&AnyObject>) -> NSUInteger;
 
         /// Looks for a nib file containing a windowController class and a preferences utility. If found the panel is displayed.
@@ -159,6 +168,7 @@ extern_protocol!(
         /// To use this method include a menu item whose action is showPreferences: in your input method's menu.  If that is done the method will be called automatically when a user selects the item in the Text Input Menu.
         /// The default implementation looks for a nib file called preferences.nib.  If found a windowController class is allocated and the nib is loaded.  You can provide a custom windowController class by naming the class in your input methods info.plist file.  To do that provide a string value that names the custom class with a key of InputMethodServerPreferencesWindowControllerClass.
         #[method(showPreferences:)]
+        #[unsafe(method_family = none)]
         unsafe fn showPreferences(&self, sender: Option<&AnyObject>);
     }
 );
@@ -172,6 +182,7 @@ extern_protocol!(
         ///
         /// A mouse down event happened at given index within the sender�s text storage, at the given point, and with modifier keys identified in flags. Return YES if handled.  Set keepTracking to YES if you want to receive subsequent mouseMoved and mouseUp events.
         #[method(mouseDownOnCharacterIndex:coordinate:withModifier:continueTracking:client:)]
+        #[unsafe(method_family = none)]
         unsafe fn mouseDownOnCharacterIndex_coordinate_withModifier_continueTracking_client(
             &self,
             index: NSUInteger,
@@ -185,6 +196,7 @@ extern_protocol!(
         ///
         /// A mouse up event happened at given index within the sender text view�s text storage, at the given point, with modifier keys identified in flags. Return YES if handled.
         #[method(mouseUpOnCharacterIndex:coordinate:withModifier:client:)]
+        #[unsafe(method_family = none)]
         unsafe fn mouseUpOnCharacterIndex_coordinate_withModifier_client(
             &self,
             index: NSUInteger,
@@ -197,6 +209,7 @@ extern_protocol!(
         ///
         /// A mouse moved event happened at given index within the sender text view�s text storage, at the given point, with modifier keys identified in flags. Return YES if handled.
         #[method(mouseMovedOnCharacterIndex:coordinate:withModifier:client:)]
+        #[unsafe(method_family = none)]
         unsafe fn mouseMovedOnCharacterIndex_coordinate_withModifier_client(
             &self,
             index: NSUInteger,
@@ -234,7 +247,7 @@ extern_methods!(
         /// The inputClient parameter is the client side object that will be sending messages to the controller via the IMKServer.  The client object always conforms to the IMKTextInput protocol.
         ///
         /// Methods in the protocols that are implemented by the delegate object always include a client parameter.  Methods in the IMKInputController class do not take a client.  This is because the client is stored as an ivar in the IMKInputController.
-        #[method_id(initWithServer:delegate:client:)]
+        #[method(initWithServer:delegate:client:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithServer_delegate_client(
             this: Allocated<Self>,
@@ -247,18 +260,20 @@ extern_methods!(
         ///
         /// This method will call the protocol method composedString: to obtain the current composition. The current composition will be sent to the client by a call to the method setMarkedText:
         #[method(updateComposition)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updateComposition(&self);
 
         /// Stops the current composition and replaces marked text with the original text.
         ///
         /// Calls the method originalString to obtain the original text and sends that to the client via a call to IMKInputSession protocol method insertText:
         #[method(cancelComposition)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cancelComposition(&self);
 
         /// Called to obtain a dictionary of text attributes.
         ///
         /// The default implementation returns an empty dictionary.  You should override this method if your input method wants to provide font or glyphInformation. The returned object should be an autoreleased object.
-        #[method_id(compositionAttributesAtRange:)]
+        #[method(compositionAttributesAtRange:)]
         #[unsafe(method_family = none)]
         pub unsafe fn compositionAttributesAtRange(
             &self,
@@ -269,6 +284,7 @@ extern_methods!(
         ///
         /// This method is called by updateComposition: to obtain the selection range for markedText.  The default implementation sets the selection range at the end of the marked text.
         #[method(selectionRange)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectionRange(&self) -> NSRange;
 
         /// Returns the range in the client document that text should replace.
@@ -277,6 +293,7 @@ extern_methods!(
         ///
         /// An example of an input method that might override this method would be one replaced words with synonyms.  That input method would watch for certain words and when one of those words was seen it would be replaced by marked text that was a synonym of the word.
         #[method(replacementRange)]
+        #[unsafe(method_family = none)]
         pub unsafe fn replacementRange(&self) -> NSRange;
 
         /// Returns a dictionary of text attributes that can be used to mark a range of an attributed string that is going to be sent to a client.
@@ -286,7 +303,7 @@ extern_methods!(
         /// The default implementation begins by calling compositionAttributesAtRange: to obtain extra attributes that an input method wants to include such as font or  glyph information.  Then the appropriate underline and underline color information is added to the attributes dictionary for the style parameter.
         ///
         /// Finally the style value is added as dictionary value.  The key for the style value is NSMarkedClauseSegment. The returned object should be an autoreleased object.
-        #[method_id(markForStyle:atRange:)]
+        #[method(markForStyle:atRange:)]
         #[unsafe(method_family = none)]
         pub unsafe fn markForStyle_atRange(
             &self,
@@ -309,6 +326,7 @@ extern_methods!(
         /// <IMKTextInput
         /// , NSObject> - the current client
         #[method(doCommandBySelector:commandDictionary:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn doCommandBySelector_commandDictionary(
             &self,
             a_selector: Option<Sel>,
@@ -317,39 +335,43 @@ extern_methods!(
 
         /// Called to inform an input method that any visible UI should be closed.
         #[method(hidePalettes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hidePalettes(&self);
 
         #[cfg(feature = "objc2-app-kit")]
         /// Returns a menu of input method specific commands.
         ///
         /// This method is called whenever the menu needs to be drawn so that input methods can update the menu to reflect their current state. The returned NSMenu is an autoreleased object.
-        #[method_id(menu)]
+        #[method(menu)]
         #[unsafe(method_family = none)]
         pub unsafe fn menu(&self, mtm: MainThreadMarker) -> Option<Retained<NSMenu>>;
 
         /// Returns the input controller's delegate object. The returned id is an autoreleased object.
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<AnyObject>>;
 
         /// Set the input controller's delegate object.
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, new_delegate: Option<&AnyObject>);
 
         #[cfg(feature = "IMKServer")]
         /// Return the server object which is managing this input controller. The returned IMKServer is an autoreleased object.
-        #[method_id(server)]
+        #[method(server)]
         #[unsafe(method_family = none)]
         pub unsafe fn server(&self) -> Option<Retained<IMKServer>>;
 
         /// Called to notify an input controller that it is about to be closed.
         #[method(inputControllerWillClose)]
+        #[unsafe(method_family = none)]
         pub unsafe fn inputControllerWillClose(&self);
 
         /// Called when a user has selected a annotation in a candidate window.
         ///
         /// When a candidate window is displayed and the user selects an annotation the selected annotation is sent to the input controller via this method.  The currently selected candidateString is also sent to the input method.
         #[method(annotationSelected:forCandidate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn annotationSelected_forCandidate(
             &self,
             annotation_string: Option<&NSAttributedString>,
@@ -360,6 +382,7 @@ extern_methods!(
         ///
         /// The candidate parameter is the candidate string that the selection changed to.  Note this method is called to indicate that the user is moving around in the candidate window.  The candidate object is not a final selection.
         #[method(candidateSelectionChanged:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn candidateSelectionChanged(
             &self,
             candidate_string: Option<&NSAttributedString>,
@@ -369,6 +392,7 @@ extern_methods!(
         ///
         /// The candidate parameter is the users final choice from the candidate window. The candidate window will have been closed before this method is called.
         #[method(candidateSelected:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn candidateSelected(&self, candidate_string: Option<&NSAttributedString>);
     }
 );
@@ -376,11 +400,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl IMKInputController {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

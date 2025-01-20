@@ -30,6 +30,7 @@ extern_methods!(
         /// number of anchor boxes used to detect object per grid cell
         #[deprecated]
         #[method(anchorBoxCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn anchorBoxCount(&self) -> NSUInteger;
 
         /// `NSData`containing the width and height for
@@ -38,7 +39,7 @@ extern_methods!(
         /// `NSData`should have 2 floating-point values per anchor box which represent the width
         /// and height of the anchor box.
         #[deprecated]
-        #[method_id(anchorBoxes)]
+        #[method(anchorBoxes)]
         #[unsafe(method_family = none)]
         pub unsafe fn anchorBoxes(&self) -> Retained<NSData>;
 
@@ -46,41 +47,49 @@ extern_methods!(
         /// of predicted bounding box and the groundTruth boundingBox.  The default is YES
         #[deprecated]
         #[method(shouldRescore)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shouldRescore(&self) -> bool;
 
         /// Setter for [`shouldRescore`][Self::shouldRescore].
         #[deprecated]
         #[method(setShouldRescore:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShouldRescore(&self, should_rescore: bool);
 
         /// The scale factor for spatial position loss and loss gradient.  The default is 10.0
         #[deprecated]
         #[method(scaleSpatialPositionLoss)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scaleSpatialPositionLoss(&self) -> c_float;
 
         /// Setter for [`scaleSpatialPositionLoss`][Self::scaleSpatialPositionLoss].
         #[deprecated]
         #[method(setScaleSpatialPositionLoss:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setScaleSpatialPositionLoss(&self, scale_spatial_position_loss: c_float);
 
         /// The scale factor for spatial size loss and loss gradient.  The default is 10.0
         #[deprecated]
         #[method(scaleSpatialSizeLoss)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scaleSpatialSizeLoss(&self) -> c_float;
 
         /// Setter for [`scaleSpatialSizeLoss`][Self::scaleSpatialSizeLoss].
         #[deprecated]
         #[method(setScaleSpatialSizeLoss:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setScaleSpatialSizeLoss(&self, scale_spatial_size_loss: c_float);
 
         /// The scale factor for no object confidence loss and loss gradient.  The default is 5.0
         #[deprecated]
         #[method(scaleNoObjectConfidenceLoss)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scaleNoObjectConfidenceLoss(&self) -> c_float;
 
         /// Setter for [`scaleNoObjectConfidenceLoss`][Self::scaleNoObjectConfidenceLoss].
         #[deprecated]
         #[method(setScaleNoObjectConfidenceLoss:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setScaleNoObjectConfidenceLoss(
             &self,
             scale_no_object_confidence_loss: c_float,
@@ -89,32 +98,38 @@ extern_methods!(
         /// The scale factor for object confidence loss and loss gradient.  The default is 100.0
         #[deprecated]
         #[method(scaleObjectConfidenceLoss)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scaleObjectConfidenceLoss(&self) -> c_float;
 
         /// Setter for [`scaleObjectConfidenceLoss`][Self::scaleObjectConfidenceLoss].
         #[deprecated]
         #[method(setScaleObjectConfidenceLoss:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setScaleObjectConfidenceLoss(&self, scale_object_confidence_loss: c_float);
 
         /// The scale factor for no object classes loss and loss gradient.  The default is 2.0
         #[deprecated]
         #[method(scaleClassLoss)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scaleClassLoss(&self) -> c_float;
 
         /// Setter for [`scaleClassLoss`][Self::scaleClassLoss].
         #[deprecated]
         #[method(setScaleClassLoss:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setScaleClassLoss(&self, scale_class_loss: c_float);
 
         /// If the prediction IOU with groundTruth is higher than this
         /// value we consider it a confident object presence, The default is 0.7
         #[deprecated]
         #[method(minimumIOUForObjectPresence)]
+        #[unsafe(method_family = none)]
         pub unsafe fn minimumIOUForObjectPresence(&self) -> c_float;
 
         /// Setter for [`minimumIOUForObjectPresence`][Self::minimumIOUForObjectPresence].
         #[deprecated]
         #[method(setMinimumIOUForObjectPresence:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMinimumIOUForObjectPresence(
             &self,
             minimum_iou_for_object_presence: c_float,
@@ -124,20 +139,22 @@ extern_methods!(
         /// value we consider it a confident object absence.  The default is 0.3
         #[deprecated]
         #[method(maximumIOUForObjectAbsence)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maximumIOUForObjectAbsence(&self) -> c_float;
 
         /// Setter for [`maximumIOUForObjectAbsence`][Self::maximumIOUForObjectAbsence].
         #[deprecated]
         #[method(setMaximumIOUForObjectAbsence:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMaximumIOUForObjectAbsence(&self, maximum_iou_for_object_absence: c_float);
 
         #[deprecated]
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -149,7 +166,7 @@ extern_methods!(
         ///
         /// Returns: A new MLCYOLOLossDescriptor object.
         #[deprecated]
-        #[method_id(descriptorWithAnchorBoxes:anchorBoxCount:)]
+        #[method(descriptorWithAnchorBoxes:anchorBoxCount:)]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithAnchorBoxes_anchorBoxCount(
             anchor_boxes: &NSData,

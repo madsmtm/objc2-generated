@@ -25,16 +25,18 @@ unsafe impl NSObjectProtocol for MTLVisibleFunctionTableDescriptor {}
 extern_methods!(
     unsafe impl MTLVisibleFunctionTableDescriptor {
         /// Create an autoreleased visible function table descriptor
-        #[method_id(visibleFunctionTableDescriptor)]
+        #[method(visibleFunctionTableDescriptor)]
         #[unsafe(method_family = none)]
         pub unsafe fn visibleFunctionTableDescriptor() -> Retained<MTLVisibleFunctionTableDescriptor>;
 
         /// The number of functions in the table.
         #[method(functionCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn functionCount(&self) -> NSUInteger;
 
         /// Setter for [`functionCount`][Self::functionCount].
         #[method(setFunctionCount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFunctionCount(&self, function_count: NSUInteger);
     }
 );
@@ -42,11 +44,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLVisibleFunctionTableDescriptor {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -59,10 +61,12 @@ extern_protocol!(
         #[cfg(feature = "MTLTypes")]
         /// Handle of the GPU resource suitable for storing in an Argument Buffer
         #[method(gpuResourceID)]
+        #[unsafe(method_family = none)]
         unsafe fn gpuResourceID(&self) -> MTLResourceID;
 
         #[cfg(feature = "MTLFunctionHandle")]
         #[method(setFunction:atIndex:)]
+        #[unsafe(method_family = none)]
         unsafe fn setFunction_atIndex(
             &self,
             function: Option<&ProtocolObject<dyn MTLFunctionHandle>>,
@@ -71,6 +75,7 @@ extern_protocol!(
 
         #[cfg(feature = "MTLFunctionHandle")]
         #[method(setFunctions:withRange:)]
+        #[unsafe(method_family = none)]
         unsafe fn setFunctions_withRange(
             &self,
             functions: NonNull<*const ProtocolObject<dyn MTLFunctionHandle>>,

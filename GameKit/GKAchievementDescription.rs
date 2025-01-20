@@ -30,50 +30,54 @@ extern_methods!(
         #[cfg(feature = "block2")]
         /// Asynchronously load all achievement descriptions
         #[method(loadAchievementDescriptionsWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loadAchievementDescriptionsWithCompletionHandler(
             completion_handler: Option<
                 &block2::Block<dyn Fn(*mut NSArray<GKAchievementDescription>, *mut NSError)>,
             >,
         );
 
-        #[method_id(identifier)]
+        #[method(identifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         /// The group identifier for the achievement, if one exists.
-        #[method_id(groupIdentifier)]
+        #[method(groupIdentifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn groupIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// The title of the achievement.
-        #[method_id(title)]
+        #[method(title)]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// The description for an unachieved achievement.
-        #[method_id(achievedDescription)]
+        #[method(achievedDescription)]
         #[unsafe(method_family = none)]
         pub unsafe fn achievedDescription(&self) -> Retained<NSString>;
 
         /// The description for an achieved achievement.
-        #[method_id(unachievedDescription)]
+        #[method(unachievedDescription)]
         #[unsafe(method_family = none)]
         pub unsafe fn unachievedDescription(&self) -> Retained<NSString>;
 
         /// Maximum points available for completing this achievement.
         #[method(maximumPoints)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maximumPoints(&self) -> NSInteger;
 
         /// Whether or not the achievement should be listed or displayed if not yet unhidden by the game.
         #[method(isHidden)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isHidden(&self) -> bool;
 
         /// Whether or not the achievement will be reported by the game when the user earns it again. This allows the achievement to be used for challenges when the recipient has previously earned it.
         #[method(isReplayable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isReplayable(&self) -> bool;
 
         /// If present, the rarity of the achievement expressed as a percentage of players that earned it. Null if not enough data is available to compute it.
-        #[method_id(rarityPercent)]
+        #[method(rarityPercent)]
         #[unsafe(method_family = none)]
         pub unsafe fn rarityPercent(&self) -> Option<Retained<NSNumber>>;
     }
@@ -82,11 +86,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKAchievementDescription {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -98,13 +102,14 @@ extern_methods!(
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         #[deprecated]
-        #[method_id(image)]
+        #[method(image)]
         #[unsafe(method_family = none)]
         pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         #[method(loadImageWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loadImageWithCompletionHandler(
             &self,
             completion_handler: Option<&block2::Block<dyn Fn(*mut NSImage, *mut NSError)>>,
@@ -112,13 +117,13 @@ extern_methods!(
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
-        #[method_id(incompleteAchievementImage)]
+        #[method(incompleteAchievementImage)]
         #[unsafe(method_family = none)]
         pub unsafe fn incompleteAchievementImage() -> Retained<NSImage>;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
-        #[method_id(placeholderCompletedAchievementImage)]
+        #[method(placeholderCompletedAchievementImage)]
         #[unsafe(method_family = none)]
         pub unsafe fn placeholderCompletedAchievementImage() -> Retained<NSImage>;
     }

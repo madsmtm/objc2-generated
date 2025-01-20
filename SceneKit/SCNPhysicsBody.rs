@@ -78,20 +78,20 @@ unsafe impl NSSecureCoding for SCNPhysicsBody {}
 
 extern_methods!(
     unsafe impl SCNPhysicsBody {
-        #[method_id(staticBody)]
+        #[method(staticBody)]
         #[unsafe(method_family = none)]
         pub unsafe fn staticBody() -> Retained<Self>;
 
-        #[method_id(dynamicBody)]
+        #[method(dynamicBody)]
         #[unsafe(method_family = none)]
         pub unsafe fn dynamicBody() -> Retained<Self>;
 
-        #[method_id(kinematicBody)]
+        #[method(kinematicBody)]
         #[unsafe(method_family = none)]
         pub unsafe fn kinematicBody() -> Retained<Self>;
 
         #[cfg(feature = "SCNPhysicsShape")]
-        #[method_id(bodyWithType:shape:)]
+        #[method(bodyWithType:shape:)]
         #[unsafe(method_family = none)]
         pub unsafe fn bodyWithType_shape(
             r#type: SCNPhysicsBodyType,
@@ -99,181 +99,223 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[method(type)]
+        #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> SCNPhysicsBodyType;
 
         /// Setter for [`type`][Self::type].
         #[method(setType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setType(&self, r#type: SCNPhysicsBodyType);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(mass)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mass(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`mass`][Self::mass].
         #[method(setMass:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMass(&self, mass: CGFloat);
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         #[method(momentOfInertia)]
+        #[unsafe(method_family = none)]
         pub unsafe fn momentOfInertia(&self) -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Setter for [`momentOfInertia`][Self::momentOfInertia].
         #[method(setMomentOfInertia:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMomentOfInertia(&self, moment_of_inertia: SCNVector3);
 
         #[method(usesDefaultMomentOfInertia)]
+        #[unsafe(method_family = none)]
         pub unsafe fn usesDefaultMomentOfInertia(&self) -> bool;
 
         /// Setter for [`usesDefaultMomentOfInertia`][Self::usesDefaultMomentOfInertia].
         #[method(setUsesDefaultMomentOfInertia:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUsesDefaultMomentOfInertia(&self, uses_default_moment_of_inertia: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(charge)]
+        #[unsafe(method_family = none)]
         pub unsafe fn charge(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`charge`][Self::charge].
         #[method(setCharge:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCharge(&self, charge: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(friction)]
+        #[unsafe(method_family = none)]
         pub unsafe fn friction(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`friction`][Self::friction].
         #[method(setFriction:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFriction(&self, friction: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(restitution)]
+        #[unsafe(method_family = none)]
         pub unsafe fn restitution(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`restitution`][Self::restitution].
         #[method(setRestitution:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRestitution(&self, restitution: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(rollingFriction)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rollingFriction(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`rollingFriction`][Self::rollingFriction].
         #[method(setRollingFriction:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRollingFriction(&self, rolling_friction: CGFloat);
 
         #[cfg(feature = "SCNPhysicsShape")]
-        #[method_id(physicsShape)]
+        #[method(physicsShape)]
         #[unsafe(method_family = none)]
         pub unsafe fn physicsShape(&self) -> Option<Retained<SCNPhysicsShape>>;
 
         #[cfg(feature = "SCNPhysicsShape")]
         /// Setter for [`physicsShape`][Self::physicsShape].
         #[method(setPhysicsShape:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPhysicsShape(&self, physics_shape: Option<&SCNPhysicsShape>);
 
         #[method(isResting)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isResting(&self) -> bool;
 
         #[method(allowsResting)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowsResting(&self) -> bool;
 
         /// Setter for [`allowsResting`][Self::allowsResting].
         #[method(setAllowsResting:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAllowsResting(&self, allows_resting: bool);
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         #[method(velocity)]
+        #[unsafe(method_family = none)]
         pub unsafe fn velocity(&self) -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Setter for [`velocity`][Self::velocity].
         #[method(setVelocity:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setVelocity(&self, velocity: SCNVector3);
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         #[method(angularVelocity)]
+        #[unsafe(method_family = none)]
         pub unsafe fn angularVelocity(&self) -> SCNVector4;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Setter for [`angularVelocity`][Self::angularVelocity].
         #[method(setAngularVelocity:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAngularVelocity(&self, angular_velocity: SCNVector4);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(damping)]
+        #[unsafe(method_family = none)]
         pub unsafe fn damping(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`damping`][Self::damping].
         #[method(setDamping:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDamping(&self, damping: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(angularDamping)]
+        #[unsafe(method_family = none)]
         pub unsafe fn angularDamping(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`angularDamping`][Self::angularDamping].
         #[method(setAngularDamping:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAngularDamping(&self, angular_damping: CGFloat);
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         #[method(velocityFactor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn velocityFactor(&self) -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Setter for [`velocityFactor`][Self::velocityFactor].
         #[method(setVelocityFactor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setVelocityFactor(&self, velocity_factor: SCNVector3);
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         #[method(angularVelocityFactor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn angularVelocityFactor(&self) -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Setter for [`angularVelocityFactor`][Self::angularVelocityFactor].
         #[method(setAngularVelocityFactor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAngularVelocityFactor(&self, angular_velocity_factor: SCNVector3);
 
         #[method(categoryBitMask)]
+        #[unsafe(method_family = none)]
         pub unsafe fn categoryBitMask(&self) -> NSUInteger;
 
         /// Setter for [`categoryBitMask`][Self::categoryBitMask].
         #[method(setCategoryBitMask:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCategoryBitMask(&self, category_bit_mask: NSUInteger);
 
         #[method(collisionBitMask)]
+        #[unsafe(method_family = none)]
         pub unsafe fn collisionBitMask(&self) -> NSUInteger;
 
         /// Setter for [`collisionBitMask`][Self::collisionBitMask].
         #[method(setCollisionBitMask:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCollisionBitMask(&self, collision_bit_mask: NSUInteger);
 
         #[method(contactTestBitMask)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contactTestBitMask(&self) -> NSUInteger;
 
         /// Setter for [`contactTestBitMask`][Self::contactTestBitMask].
         #[method(setContactTestBitMask:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setContactTestBitMask(&self, contact_test_bit_mask: NSUInteger);
 
         #[method(isAffectedByGravity)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isAffectedByGravity(&self) -> bool;
 
         /// Setter for [`isAffectedByGravity`][Self::isAffectedByGravity].
         #[method(setAffectedByGravity:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAffectedByGravity(&self, affected_by_gravity: bool);
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         #[method(applyForce:impulse:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn applyForce_impulse(&self, direction: SCNVector3, impulse: bool);
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         #[method(applyForce:atPosition:impulse:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn applyForce_atPosition_impulse(
             &self,
             direction: SCNVector3,
@@ -283,24 +325,30 @@ extern_methods!(
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         #[method(applyTorque:impulse:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn applyTorque_impulse(&self, torque: SCNVector4, impulse: bool);
 
         #[method(clearAllForces)]
+        #[unsafe(method_family = none)]
         pub unsafe fn clearAllForces(&self);
 
         #[method(resetTransform)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resetTransform(&self);
 
         #[method(setResting:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setResting(&self, resting: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(continuousCollisionDetectionThreshold)]
+        #[unsafe(method_family = none)]
         pub unsafe fn continuousCollisionDetectionThreshold(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`continuousCollisionDetectionThreshold`][Self::continuousCollisionDetectionThreshold].
         #[method(setContinuousCollisionDetectionThreshold:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setContinuousCollisionDetectionThreshold(
             &self,
             continuous_collision_detection_threshold: CGFloat,
@@ -308,29 +356,35 @@ extern_methods!(
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         #[method(centerOfMassOffset)]
+        #[unsafe(method_family = none)]
         pub unsafe fn centerOfMassOffset(&self) -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Setter for [`centerOfMassOffset`][Self::centerOfMassOffset].
         #[method(setCenterOfMassOffset:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCenterOfMassOffset(&self, center_of_mass_offset: SCNVector3);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(linearRestingThreshold)]
+        #[unsafe(method_family = none)]
         pub unsafe fn linearRestingThreshold(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`linearRestingThreshold`][Self::linearRestingThreshold].
         #[method(setLinearRestingThreshold:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLinearRestingThreshold(&self, linear_resting_threshold: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(angularRestingThreshold)]
+        #[unsafe(method_family = none)]
         pub unsafe fn angularRestingThreshold(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`angularRestingThreshold`][Self::angularRestingThreshold].
         #[method(setAngularRestingThreshold:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAngularRestingThreshold(&self, angular_resting_threshold: CGFloat);
     }
 );
@@ -338,11 +392,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNPhysicsBody {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

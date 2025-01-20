@@ -102,7 +102,7 @@ unsafe impl UITraitEnvironment for UIActivityIndicatorView {}
 extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIActivityIndicatorView {
-        #[method_id(initWithActivityIndicatorStyle:)]
+        #[method(initWithActivityIndicatorStyle:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithActivityIndicatorStyle(
             this: Allocated<Self>,
@@ -110,48 +110,56 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(initWithFrame:)]
+        #[method(initWithFrame:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[method(activityIndicatorViewStyle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn activityIndicatorViewStyle(&self) -> UIActivityIndicatorViewStyle;
 
         /// Setter for [`activityIndicatorViewStyle`][Self::activityIndicatorViewStyle].
         #[method(setActivityIndicatorViewStyle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setActivityIndicatorViewStyle(
             &self,
             activity_indicator_view_style: UIActivityIndicatorViewStyle,
         );
 
         #[method(hidesWhenStopped)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hidesWhenStopped(&self) -> bool;
 
         /// Setter for [`hidesWhenStopped`][Self::hidesWhenStopped].
         #[method(setHidesWhenStopped:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setHidesWhenStopped(&self, hides_when_stopped: bool);
 
         #[cfg(feature = "UIColor")]
-        #[method_id(color)]
+        #[method(color)]
         #[unsafe(method_family = none)]
         pub unsafe fn color(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`color`][Self::color].
         #[method(setColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setColor(&self, color: Option<&UIColor>);
 
         #[method(startAnimating)]
+        #[unsafe(method_family = none)]
         pub unsafe fn startAnimating(&self);
 
         #[method(stopAnimating)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stopAnimating(&self);
 
         #[method(isAnimating)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isAnimating(&self) -> bool;
     }
 );
@@ -160,11 +168,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIActivityIndicatorView {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

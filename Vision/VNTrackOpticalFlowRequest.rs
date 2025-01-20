@@ -101,7 +101,7 @@ extern_methods!(
         /// Create a new request that can statefully track the optical from from one image to another.
         ///
         /// This is a convenience initializer for a frame analysis spacing of kCMTimeZero and a nil completion handler.
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -109,7 +109,7 @@ extern_methods!(
         /// Create a new request that can statefully track the optical from from one image to another.
         ///
         /// This is a convenience initializer for a frame analysis spacing of kCMTimeZero.
-        #[method_id(initWithCompletionHandler:)]
+        #[method(initWithCompletionHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
@@ -120,10 +120,12 @@ extern_methods!(
         ///
         /// The computational time typically trends with the accuracy level.  This parameter allows for selective tuning by the client application.
         #[method(computationAccuracy)]
+        #[unsafe(method_family = none)]
         pub unsafe fn computationAccuracy(&self) -> VNTrackOpticalFlowRequestComputationAccuracy;
 
         /// Setter for [`computationAccuracy`][Self::computationAccuracy].
         #[method(setComputationAccuracy:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setComputationAccuracy(
             &self,
             computation_accuracy: VNTrackOpticalFlowRequestComputationAccuracy,
@@ -131,25 +133,29 @@ extern_methods!(
 
         /// Pixel format type of the output buffer. Valid values are `kCVPixelFormatType_TwoComponent32Float` and `kCVPixelFormatType_TwoComponent16Half`.  Default is `kCVPixelFormatType_TwoComponent32Float`.
         #[method(outputPixelFormat)]
+        #[unsafe(method_family = none)]
         pub unsafe fn outputPixelFormat(&self) -> OSType;
 
         /// Setter for [`outputPixelFormat`][Self::outputPixelFormat].
         #[method(setOutputPixelFormat:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setOutputPixelFormat(&self, output_pixel_format: OSType);
 
         /// Setting this to `YES` will keep the raw pixel buffer coming from the the ML network. The default is `NO`.
         ///
         /// When set to `YES`, the outputPixelFormat is ignored.
         #[method(keepNetworkOutput)]
+        #[unsafe(method_family = none)]
         pub unsafe fn keepNetworkOutput(&self) -> bool;
 
         /// Setter for [`keepNetworkOutput`][Self::keepNetworkOutput].
         #[method(setKeepNetworkOutput:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setKeepNetworkOutput(&self, keep_network_output: bool);
 
         #[cfg(feature = "VNObservation")]
         /// VNPixelBufferObservation results.
-        #[method_id(results)]
+        #[method(results)]
         #[unsafe(method_family = none)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNPixelBufferObservation>>>;
     }
@@ -159,7 +165,7 @@ extern_methods!(
     /// Methods declared on superclass `VNStatefulRequest`
     #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
     unsafe impl VNTrackOpticalFlowRequest {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -170,7 +176,7 @@ extern_methods!(
         /// Parameter `frameAnalysisSpacing`: The reciprocal of maximum rate at which buffers will be processed. The request will not process buffers that fall within the frameAnalysisSpacing after it has performed the analysis. The analysis is not done by wall time but by analysis of of the time stamps of the samplebuffers being processed.
         ///
         /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
-        #[method_id(initWithFrameAnalysisSpacing:completionHandler:)]
+        #[method(initWithFrameAnalysisSpacing:completionHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrameAnalysisSpacing_completionHandler(
             this: Allocated<Self>,

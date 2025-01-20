@@ -26,32 +26,32 @@ unsafe impl NSSecureCoding for MXDiagnostic {}
 extern_methods!(
     unsafe impl MXDiagnostic {
         #[cfg(feature = "MXMetaData")]
-        #[method_id(metaData)]
+        #[method(metaData)]
         #[unsafe(method_family = none)]
         pub unsafe fn metaData(&self) -> Retained<MXMetaData>;
 
         /// An NSString representation of the application version from which this diagnostic was generated.
-        #[method_id(applicationVersion)]
+        #[method(applicationVersion)]
         #[unsafe(method_family = none)]
         pub unsafe fn applicationVersion(&self) -> Retained<NSString>;
 
         #[cfg(feature = "MXSignpostRecord")]
         /// An NSArray representing the list of signpost records.
-        #[method_id(signpostData)]
+        #[method(signpostData)]
         #[unsafe(method_family = none)]
         pub unsafe fn signpostData(&self) -> Option<Retained<NSArray<MXSignpostRecord>>>;
 
         /// Convenience method to return a JSON representation of this diagnostic.
         ///
         /// Returns: An NSData object containing the JSON representation
-        #[method_id(JSONRepresentation)]
+        #[method(JSONRepresentation)]
         #[unsafe(method_family = none)]
         pub unsafe fn JSONRepresentation(&self) -> Retained<NSData>;
 
         /// Convenience method to return a NSDictionary representation of this diagnostic.
         ///
         /// Returns: An NSDictionary object containing the dictionary representation
-        #[method_id(dictionaryRepresentation)]
+        #[method(dictionaryRepresentation)]
         #[unsafe(method_family = none)]
         pub unsafe fn dictionaryRepresentation(&self) -> Retained<NSDictionary>;
     }
@@ -60,11 +60,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MXDiagnostic {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

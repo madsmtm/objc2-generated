@@ -34,13 +34,13 @@ extern_methods!(
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchRecordChangesOperation {
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "CKRecordZoneID", feature = "CKServerChangeToken"))]
         #[deprecated]
-        #[method_id(initWithRecordZoneID:previousServerChangeToken:)]
+        #[method(initWithRecordZoneID:previousServerChangeToken:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRecordZoneID_previousServerChangeToken(
             this: Allocated<Self>,
@@ -50,7 +50,7 @@ extern_methods!(
 
         #[cfg(feature = "CKRecordZoneID")]
         #[deprecated]
-        #[method_id(recordZoneID)]
+        #[method(recordZoneID)]
         #[unsafe(method_family = none)]
         pub unsafe fn recordZoneID(&self) -> Option<Retained<CKRecordZoneID>>;
 
@@ -58,11 +58,12 @@ extern_methods!(
         /// Setter for [`recordZoneID`][Self::recordZoneID].
         #[deprecated]
         #[method(setRecordZoneID:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRecordZoneID(&self, record_zone_id: Option<&CKRecordZoneID>);
 
         #[cfg(feature = "CKServerChangeToken")]
         #[deprecated]
-        #[method_id(previousServerChangeToken)]
+        #[method(previousServerChangeToken)]
         #[unsafe(method_family = none)]
         pub unsafe fn previousServerChangeToken(&self) -> Option<Retained<CKServerChangeToken>>;
 
@@ -70,6 +71,7 @@ extern_methods!(
         /// Setter for [`previousServerChangeToken`][Self::previousServerChangeToken].
         #[deprecated]
         #[method(setPreviousServerChangeToken:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreviousServerChangeToken(
             &self,
             previous_server_change_token: Option<&CKServerChangeToken>,
@@ -77,11 +79,13 @@ extern_methods!(
 
         #[deprecated]
         #[method(resultsLimit)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resultsLimit(&self) -> NSUInteger;
 
         /// Setter for [`resultsLimit`][Self::resultsLimit].
         #[deprecated]
         #[method(setResultsLimit:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setResultsLimit(&self, results_limit: NSUInteger);
 
         #[cfg(feature = "CKRecord")]
@@ -92,7 +96,7 @@ extern_methods!(
         /// Defaults to
         /// `nil.`
         #[deprecated]
-        #[method_id(desiredKeys)]
+        #[method(desiredKeys)]
         #[unsafe(method_family = none)]
         pub unsafe fn desiredKeys(&self) -> Option<Retained<NSArray<CKRecordFieldKey>>>;
 
@@ -100,6 +104,7 @@ extern_methods!(
         /// Setter for [`desiredKeys`][Self::desiredKeys].
         #[deprecated]
         #[method(setDesiredKeys:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDesiredKeys(&self, desired_keys: Option<&NSArray<CKRecordFieldKey>>);
 
         #[cfg(all(feature = "CKRecord", feature = "block2"))]
@@ -109,12 +114,14 @@ extern_methods!(
         /// should not be concurrently used outside of blocks assigned to this operation.
         #[deprecated]
         #[method(recordChangedBlock)]
+        #[unsafe(method_family = none)]
         pub unsafe fn recordChangedBlock(&self) -> *mut block2::Block<dyn Fn(NonNull<CKRecord>)>;
 
         #[cfg(all(feature = "CKRecord", feature = "block2"))]
         /// Setter for [`recordChangedBlock`][Self::recordChangedBlock].
         #[deprecated]
         #[method(setRecordChangedBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRecordChangedBlock(
             &self,
             record_changed_block: Option<&block2::Block<dyn Fn(NonNull<CKRecord>)>>,
@@ -127,6 +134,7 @@ extern_methods!(
         /// should not be concurrently used outside of blocks assigned to this operation.
         #[deprecated]
         #[method(recordWithIDWasDeletedBlock)]
+        #[unsafe(method_family = none)]
         pub unsafe fn recordWithIDWasDeletedBlock(
             &self,
         ) -> *mut block2::Block<dyn Fn(NonNull<CKRecordID>)>;
@@ -135,6 +143,7 @@ extern_methods!(
         /// Setter for [`recordWithIDWasDeletedBlock`][Self::recordWithIDWasDeletedBlock].
         #[deprecated]
         #[method(setRecordWithIDWasDeletedBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRecordWithIDWasDeletedBlock(
             &self,
             record_with_id_was_deleted_block: Option<&block2::Block<dyn Fn(NonNull<CKRecordID>)>>,
@@ -147,6 +156,7 @@ extern_methods!(
         /// Another CKFetchRecordChangesOperation operation should be run with the updated serverChangeToken token from this operation.
         #[deprecated]
         #[method(moreComing)]
+        #[unsafe(method_family = none)]
         pub unsafe fn moreComing(&self) -> bool;
 
         #[cfg(all(feature = "CKServerChangeToken", feature = "block2"))]
@@ -167,6 +177,7 @@ extern_methods!(
         /// should not be concurrently used outside of blocks assigned to this operation.
         #[deprecated]
         #[method(fetchRecordChangesCompletionBlock)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fetchRecordChangesCompletionBlock(
             &self,
         ) -> *mut block2::Block<dyn Fn(*mut CKServerChangeToken, *mut NSData, *mut NSError)>;
@@ -175,6 +186,7 @@ extern_methods!(
         /// Setter for [`fetchRecordChangesCompletionBlock`][Self::fetchRecordChangesCompletionBlock].
         #[deprecated]
         #[method(setFetchRecordChangesCompletionBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFetchRecordChangesCompletionBlock(
             &self,
             fetch_record_changes_completion_block: Option<
@@ -188,7 +200,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchRecordChangesOperation {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -25,6 +25,7 @@ extern_methods!(
         #[cfg(feature = "block2")]
         /// Asynchronously load all achievements for the local player
         #[method(loadAchievementsWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loadAchievementsWithCompletionHandler(
             completion_handler: Option<
                 &block2::Block<dyn Fn(*mut NSArray<GKAchievement>, *mut NSError)>,
@@ -37,12 +38,13 @@ extern_methods!(
         /// 1. Local player not authenticated
         /// 2. Communications failure
         #[method(resetAchievementsWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resetAchievementsWithCompletionHandler(
             completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
         );
 
         /// Designated initializer
-        #[method_id(initWithIdentifier:)]
+        #[method(initWithIdentifier:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,
@@ -51,7 +53,7 @@ extern_methods!(
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         /// Initialize the achievement for a specific player. Use to submit participant achievements when ending a turn-based match.
-        #[method_id(initWithIdentifier:player:)]
+        #[method(initWithIdentifier:player:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifier_player(
             this: Allocated<Self>,
@@ -66,48 +68,55 @@ extern_methods!(
         /// 2. Communications failure
         /// 3. Reported Achievement does not exist
         #[method(reportAchievements:withCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reportAchievements_withCompletionHandler(
             achievements: &NSArray<GKAchievement>,
             completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
         );
 
         /// Achievement identifier
-        #[method_id(identifier)]
+        #[method(identifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         /// Setter for [`identifier`][Self::identifier].
         #[method(setIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIdentifier(&self, identifier: &NSString);
 
         /// Required, Percentage of achievement complete.
         #[method(percentComplete)]
+        #[unsafe(method_family = none)]
         pub unsafe fn percentComplete(&self) -> c_double;
 
         /// Setter for [`percentComplete`][Self::percentComplete].
         #[method(setPercentComplete:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPercentComplete(&self, percent_complete: c_double);
 
         /// Set to NO until percentComplete = 100.
         #[method(isCompleted)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isCompleted(&self) -> bool;
 
         /// Date the achievement was last reported. Read-only. Created at initialization
-        #[method_id(lastReportedDate)]
+        #[method(lastReportedDate)]
         #[unsafe(method_family = none)]
         pub unsafe fn lastReportedDate(&self) -> Retained<NSDate>;
 
         /// A banner will be momentarily displayed after reporting a completed achievement
         #[method(showsCompletionBanner)]
+        #[unsafe(method_family = none)]
         pub unsafe fn showsCompletionBanner(&self) -> bool;
 
         /// Setter for [`showsCompletionBanner`][Self::showsCompletionBanner].
         #[method(setShowsCompletionBanner:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShowsCompletionBanner(&self, shows_completion_banner: bool);
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         /// The identifier of the player that earned the achievement.
-        #[method_id(player)]
+        #[method(player)]
         #[unsafe(method_family = none)]
         pub unsafe fn player(&self) -> Option<Retained<GKPlayer>>;
     }
@@ -116,11 +125,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKAchievement {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -132,6 +141,7 @@ extern_methods!(
         #[cfg(feature = "block2")]
         #[deprecated]
         #[method(reportAchievementWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reportAchievementWithCompletionHandler(
             &self,
             completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
@@ -139,6 +149,7 @@ extern_methods!(
 
         #[deprecated]
         #[method(isHidden)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isHidden(&self) -> bool;
     }
 );
@@ -148,7 +159,7 @@ extern_methods!(
     unsafe impl GKAchievement {
         /// * This method is obsolete. Calling this initialiser does nothing and will return nil **
         #[deprecated]
-        #[method_id(initWithIdentifier:forPlayer:)]
+        #[method(initWithIdentifier:forPlayer:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifier_forPlayer(
             this: Allocated<Self>,
@@ -158,7 +169,7 @@ extern_methods!(
 
         /// * This property is obsolete. **
         #[deprecated]
-        #[method_id(playerID)]
+        #[method(playerID)]
         #[unsafe(method_family = none)]
         pub unsafe fn playerID(&self) -> Option<Retained<NSString>>;
     }

@@ -39,39 +39,42 @@ unsafe impl NSSecureCoding for HKFHIRVersion {}
 extern_methods!(
     unsafe impl HKFHIRVersion {
         #[method(majorVersion)]
+        #[unsafe(method_family = none)]
         pub unsafe fn majorVersion(&self) -> NSInteger;
 
         #[method(minorVersion)]
+        #[unsafe(method_family = none)]
         pub unsafe fn minorVersion(&self) -> NSInteger;
 
         #[method(patchVersion)]
+        #[unsafe(method_family = none)]
         pub unsafe fn patchVersion(&self) -> NSInteger;
 
         #[cfg(feature = "HKFHIRRelease")]
-        #[method_id(FHIRRelease)]
+        #[method(FHIRRelease)]
         #[unsafe(method_family = none)]
         pub unsafe fn FHIRRelease(&self) -> Retained<HKFHIRRelease>;
 
         /// A string representation in the format "{major}.{minor}.{patch}".
-        #[method_id(stringRepresentation)]
+        #[method(stringRepresentation)]
         #[unsafe(method_family = none)]
         pub unsafe fn stringRepresentation(&self) -> Retained<NSString>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(versionFromVersionString:error:_)]
+        #[method(versionFromVersionString:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn versionFromVersionString_error(
             version_string: &NSString,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[method_id(primaryDSTU2Version)]
+        #[method(primaryDSTU2Version)]
         #[unsafe(method_family = none)]
         pub unsafe fn primaryDSTU2Version() -> Retained<Self>;
 
-        #[method_id(primaryR4Version)]
+        #[method(primaryR4Version)]
         #[unsafe(method_family = none)]
         pub unsafe fn primaryR4Version() -> Retained<Self>;
     }
@@ -80,7 +83,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKFHIRVersion {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

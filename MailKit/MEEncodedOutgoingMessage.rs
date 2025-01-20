@@ -21,7 +21,7 @@ unsafe impl NSSecureCoding for MEEncodedOutgoingMessage {}
 
 extern_methods!(
     unsafe impl MEEncodedOutgoingMessage {
-        #[method_id(initWithRawData:isSigned:isEncrypted:)]
+        #[method(initWithRawData:isSigned:isEncrypted:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRawData_isSigned_isEncrypted(
             this: Allocated<Self>,
@@ -31,16 +31,18 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The full encoded RFC822 message including headers and body.
-        #[method_id(rawData)]
+        #[method(rawData)]
         #[unsafe(method_family = none)]
         pub unsafe fn rawData(&self) -> Retained<NSData>;
 
         /// Whether or not the encoded message is signed
         #[method(isSigned)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isSigned(&self) -> bool;
 
         /// Whether or not the encoded message is encrypted
         #[method(isEncrypted)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isEncrypted(&self) -> bool;
     }
 );
@@ -48,11 +50,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MEEncodedOutgoingMessage {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

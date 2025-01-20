@@ -221,11 +221,11 @@ unsafe impl NSSecureCoding for AVSpeechSynthesisVoice {}
 
 extern_methods!(
     unsafe impl AVSpeechSynthesisVoice {
-        #[method_id(speechVoices)]
+        #[method(speechVoices)]
         #[unsafe(method_family = none)]
         pub unsafe fn speechVoices() -> Retained<NSArray<AVSpeechSynthesisVoice>>;
 
-        #[method_id(currentLanguageCode)]
+        #[method(currentLanguageCode)]
         #[unsafe(method_family = none)]
         pub unsafe fn currentLanguageCode() -> Retained<NSString>;
 
@@ -238,7 +238,7 @@ extern_methods!(
         /// Passing in an invalid languageCode will return nil.
         /// Will return enhanced quality voice if available, default quality otherwise.
         /// Examples: en-US (U.S. English), fr-CA (French Canadian)
-        #[method_id(voiceWithLanguage:)]
+        #[method(voiceWithLanguage:)]
         #[unsafe(method_family = none)]
         pub unsafe fn voiceWithLanguage(
             language_code: Option<&NSString>,
@@ -250,35 +250,38 @@ extern_methods!(
         ///
         /// Passing in an invalid identifier will return nil.
         /// Returns nil if the identifier is valid, but the voice is not available on device (i.e. not yet downloaded by the user).
-        #[method_id(voiceWithIdentifier:)]
+        #[method(voiceWithIdentifier:)]
         #[unsafe(method_family = none)]
         pub unsafe fn voiceWithIdentifier(
             identifier: &NSString,
         ) -> Option<Retained<AVSpeechSynthesisVoice>>;
 
-        #[method_id(language)]
+        #[method(language)]
         #[unsafe(method_family = none)]
         pub unsafe fn language(&self) -> Retained<NSString>;
 
-        #[method_id(identifier)]
+        #[method(identifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[method(quality)]
+        #[unsafe(method_family = none)]
         pub unsafe fn quality(&self) -> AVSpeechSynthesisVoiceQuality;
 
         #[method(gender)]
+        #[unsafe(method_family = none)]
         pub unsafe fn gender(&self) -> AVSpeechSynthesisVoiceGender;
 
-        #[method_id(audioFileSettings)]
+        #[method(audioFileSettings)]
         #[unsafe(method_family = none)]
         pub unsafe fn audioFileSettings(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[method(voiceTraits)]
+        #[unsafe(method_family = none)]
         pub unsafe fn voiceTraits(&self) -> AVSpeechSynthesisVoiceTraits;
     }
 );
@@ -286,11 +289,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVSpeechSynthesisVoice {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -322,11 +325,11 @@ unsafe impl NSSecureCoding for AVSpeechUtterance {}
 
 extern_methods!(
     unsafe impl AVSpeechUtterance {
-        #[method_id(speechUtteranceWithString:)]
+        #[method(speechUtteranceWithString:)]
         #[unsafe(method_family = none)]
         pub unsafe fn speechUtteranceWithString(string: &NSString) -> Retained<Self>;
 
-        #[method_id(speechUtteranceWithAttributedString:)]
+        #[method(speechUtteranceWithAttributedString:)]
         #[unsafe(method_family = none)]
         pub unsafe fn speechUtteranceWithAttributedString(
             string: &NSAttributedString,
@@ -334,17 +337,17 @@ extern_methods!(
 
         /// A speech utterance that expects markup written using the Speech Synthesis Markup Language (SSML) standard.
         /// Returns nil if invalid SSML is passed in.
-        #[method_id(speechUtteranceWithSSMLRepresentation:)]
+        #[method(speechUtteranceWithSSMLRepresentation:)]
         #[unsafe(method_family = none)]
         pub unsafe fn speechUtteranceWithSSMLRepresentation(
             string: &NSString,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(initWithString:)]
+        #[method(initWithString:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithString(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
 
-        #[method_id(initWithAttributedString:)]
+        #[method(initWithAttributedString:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAttributedString(
             this: Allocated<Self>,
@@ -364,72 +367,85 @@ extern_methods!(
         /// `rate,``pitchMultiplier,``pitchMultiplier`will not apply to an utterance that uses an SSML representation.
         ///
         /// Returns nil if invalid SSML is passed in.
-        #[method_id(initWithSSMLRepresentation:)]
+        #[method(initWithSSMLRepresentation:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSSMLRepresentation(
             this: Allocated<Self>,
             string: &NSString,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(voice)]
+        #[method(voice)]
         #[unsafe(method_family = none)]
         pub unsafe fn voice(&self) -> Option<Retained<AVSpeechSynthesisVoice>>;
 
         /// Setter for [`voice`][Self::voice].
         #[method(setVoice:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setVoice(&self, voice: Option<&AVSpeechSynthesisVoice>);
 
-        #[method_id(speechString)]
+        #[method(speechString)]
         #[unsafe(method_family = none)]
         pub unsafe fn speechString(&self) -> Retained<NSString>;
 
-        #[method_id(attributedSpeechString)]
+        #[method(attributedSpeechString)]
         #[unsafe(method_family = none)]
         pub unsafe fn attributedSpeechString(&self) -> Retained<NSAttributedString>;
 
         #[method(rate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rate(&self) -> c_float;
 
         /// Setter for [`rate`][Self::rate].
         #[method(setRate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRate(&self, rate: c_float);
 
         #[method(pitchMultiplier)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pitchMultiplier(&self) -> c_float;
 
         /// Setter for [`pitchMultiplier`][Self::pitchMultiplier].
         #[method(setPitchMultiplier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPitchMultiplier(&self, pitch_multiplier: c_float);
 
         #[method(volume)]
+        #[unsafe(method_family = none)]
         pub unsafe fn volume(&self) -> c_float;
 
         /// Setter for [`volume`][Self::volume].
         #[method(setVolume:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setVolume(&self, volume: c_float);
 
         #[method(prefersAssistiveTechnologySettings)]
+        #[unsafe(method_family = none)]
         pub unsafe fn prefersAssistiveTechnologySettings(&self) -> bool;
 
         /// Setter for [`prefersAssistiveTechnologySettings`][Self::prefersAssistiveTechnologySettings].
         #[method(setPrefersAssistiveTechnologySettings:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPrefersAssistiveTechnologySettings(
             &self,
             prefers_assistive_technology_settings: bool,
         );
 
         #[method(preUtteranceDelay)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preUtteranceDelay(&self) -> NSTimeInterval;
 
         /// Setter for [`preUtteranceDelay`][Self::preUtteranceDelay].
         #[method(setPreUtteranceDelay:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreUtteranceDelay(&self, pre_utterance_delay: NSTimeInterval);
 
         #[method(postUtteranceDelay)]
+        #[unsafe(method_family = none)]
         pub unsafe fn postUtteranceDelay(&self) -> NSTimeInterval;
 
         /// Setter for [`postUtteranceDelay`][Self::postUtteranceDelay].
         #[method(setPostUtteranceDelay:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPostUtteranceDelay(&self, post_utterance_delay: NSTimeInterval);
     }
 );
@@ -437,11 +453,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVSpeechUtterance {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -463,7 +479,7 @@ unsafe impl NSObjectProtocol for AVSpeechSynthesizer {}
 
 extern_methods!(
     unsafe impl AVSpeechSynthesizer {
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -472,22 +488,27 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn AVSpeechSynthesizerDelegate>>,
         );
 
         #[method(isSpeaking)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isSpeaking(&self) -> bool;
 
         #[method(isPaused)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isPaused(&self) -> bool;
 
         #[method(speakUtterance:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn speakUtterance(&self, utterance: &AVSpeechUtterance);
 
         #[cfg(all(feature = "AVAudioBuffer", feature = "block2"))]
         #[method(writeUtterance:toBufferCallback:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn writeUtterance_toBufferCallback(
             &self,
             utterance: &AVSpeechUtterance,
@@ -498,6 +519,7 @@ extern_methods!(
         /// Use this method to receive audio buffers and associated metadata that can be used to store or further process synthesized speech.
         /// The dictionary provided by -[AVSpeechSynthesisVoice audioFileSettings] can be used to create an AVAudioFile.
         #[method(writeUtterance:toBufferCallback:toMarkerCallback:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn writeUtterance_toBufferCallback_toMarkerCallback(
             &self,
             utterance: &AVSpeechUtterance,
@@ -506,16 +528,19 @@ extern_methods!(
         );
 
         #[method(stopSpeakingAtBoundary:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stopSpeakingAtBoundary(&self, boundary: AVSpeechBoundary) -> bool;
 
         #[method(pauseSpeakingAtBoundary:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pauseSpeakingAtBoundary(&self, boundary: AVSpeechBoundary) -> bool;
 
         #[method(continueSpeaking)]
+        #[unsafe(method_family = none)]
         pub unsafe fn continueSpeaking(&self) -> bool;
 
         #[cfg(feature = "AVAudioSessionRoute")]
-        #[method_id(outputChannels)]
+        #[method(outputChannels)]
         #[unsafe(method_family = none)]
         pub unsafe fn outputChannels(
             &self,
@@ -524,23 +549,28 @@ extern_methods!(
         #[cfg(feature = "AVAudioSessionRoute")]
         /// Setter for [`outputChannels`][Self::outputChannels].
         #[method(setOutputChannels:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setOutputChannels(
             &self,
             output_channels: Option<&NSArray<AVAudioSessionChannelDescription>>,
         );
 
         #[method(usesApplicationAudioSession)]
+        #[unsafe(method_family = none)]
         pub unsafe fn usesApplicationAudioSession(&self) -> bool;
 
         /// Setter for [`usesApplicationAudioSession`][Self::usesApplicationAudioSession].
         #[method(setUsesApplicationAudioSession:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUsesApplicationAudioSession(&self, uses_application_audio_session: bool);
 
         #[method(mixToTelephonyUplink)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mixToTelephonyUplink(&self) -> bool;
 
         /// Setter for [`mixToTelephonyUplink`][Self::mixToTelephonyUplink].
         #[method(setMixToTelephonyUplink:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMixToTelephonyUplink(&self, mix_to_telephony_uplink: bool);
 
         #[cfg(feature = "block2")]
@@ -550,6 +580,7 @@ extern_methods!(
         ///
         /// When your app's authorization status is PersonalVoiceAuthorizationStatus.notDetermined, this method causes the system to prompt the user to grant or deny permission for your app to use personal voices. The user's response is saved so that future calls to this method do not prompt the user again.
         #[method(requestPersonalVoiceAuthorizationWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestPersonalVoiceAuthorizationWithCompletionHandler(
             handler: &block2::Block<dyn Fn(AVSpeechSynthesisPersonalVoiceAuthorizationStatus)>,
         );
@@ -562,6 +593,7 @@ extern_methods!(
         ///
         /// Returns: The app's current authorization status value. For a list of values, see AVSpeechSynthesisPersonalVoiceAuthorizationStatus.
         #[method(personalVoiceAuthorizationStatus)]
+        #[unsafe(method_family = none)]
         pub unsafe fn personalVoiceAuthorizationStatus(
         ) -> AVSpeechSynthesisPersonalVoiceAuthorizationStatus;
     }
@@ -570,11 +602,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVSpeechSynthesizer {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -587,6 +619,7 @@ extern_protocol!(
     pub unsafe trait AVSpeechSynthesizerDelegate: NSObjectProtocol {
         #[optional]
         #[method(speechSynthesizer:didStartSpeechUtterance:)]
+        #[unsafe(method_family = none)]
         unsafe fn speechSynthesizer_didStartSpeechUtterance(
             &self,
             synthesizer: &AVSpeechSynthesizer,
@@ -595,6 +628,7 @@ extern_protocol!(
 
         #[optional]
         #[method(speechSynthesizer:didFinishSpeechUtterance:)]
+        #[unsafe(method_family = none)]
         unsafe fn speechSynthesizer_didFinishSpeechUtterance(
             &self,
             synthesizer: &AVSpeechSynthesizer,
@@ -603,6 +637,7 @@ extern_protocol!(
 
         #[optional]
         #[method(speechSynthesizer:didPauseSpeechUtterance:)]
+        #[unsafe(method_family = none)]
         unsafe fn speechSynthesizer_didPauseSpeechUtterance(
             &self,
             synthesizer: &AVSpeechSynthesizer,
@@ -611,6 +646,7 @@ extern_protocol!(
 
         #[optional]
         #[method(speechSynthesizer:didContinueSpeechUtterance:)]
+        #[unsafe(method_family = none)]
         unsafe fn speechSynthesizer_didContinueSpeechUtterance(
             &self,
             synthesizer: &AVSpeechSynthesizer,
@@ -619,6 +655,7 @@ extern_protocol!(
 
         #[optional]
         #[method(speechSynthesizer:didCancelSpeechUtterance:)]
+        #[unsafe(method_family = none)]
         unsafe fn speechSynthesizer_didCancelSpeechUtterance(
             &self,
             synthesizer: &AVSpeechSynthesizer,
@@ -627,6 +664,7 @@ extern_protocol!(
 
         #[optional]
         #[method(speechSynthesizer:willSpeakRangeOfSpeechString:utterance:)]
+        #[unsafe(method_family = none)]
         unsafe fn speechSynthesizer_willSpeakRangeOfSpeechString_utterance(
             &self,
             synthesizer: &AVSpeechSynthesizer,
@@ -636,6 +674,7 @@ extern_protocol!(
 
         #[optional]
         #[method(speechSynthesizer:willSpeakMarker:utterance:)]
+        #[unsafe(method_family = none)]
         unsafe fn speechSynthesizer_willSpeakMarker_utterance(
             &self,
             synthesizer: &AVSpeechSynthesizer,
@@ -671,45 +710,53 @@ unsafe impl NSSecureCoding for AVSpeechSynthesisMarker {}
 extern_methods!(
     unsafe impl AVSpeechSynthesisMarker {
         #[method(mark)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mark(&self) -> AVSpeechSynthesisMarkerMark;
 
         /// Setter for [`mark`][Self::mark].
         #[method(setMark:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMark(&self, mark: AVSpeechSynthesisMarkerMark);
 
         /// Byte offset into the associated audio buffer
         #[method(byteSampleOffset)]
+        #[unsafe(method_family = none)]
         pub unsafe fn byteSampleOffset(&self) -> NSUInteger;
 
         /// Setter for [`byteSampleOffset`][Self::byteSampleOffset].
         #[method(setByteSampleOffset:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setByteSampleOffset(&self, byte_sample_offset: NSUInteger);
 
         /// The location and length of the pertaining speech request's SSML text. This marker applies to the range of characters represented by the NSString.
         #[method(textRange)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textRange(&self) -> NSRange;
 
         /// Setter for [`textRange`][Self::textRange].
         #[method(setTextRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTextRange(&self, text_range: NSRange);
 
-        #[method_id(bookmarkName)]
+        #[method(bookmarkName)]
         #[unsafe(method_family = none)]
         pub unsafe fn bookmarkName(&self) -> Retained<NSString>;
 
         /// Setter for [`bookmarkName`][Self::bookmarkName].
         #[method(setBookmarkName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBookmarkName(&self, bookmark_name: &NSString);
 
-        #[method_id(phoneme)]
+        #[method(phoneme)]
         #[unsafe(method_family = none)]
         pub unsafe fn phoneme(&self) -> Retained<NSString>;
 
         /// Setter for [`phoneme`][Self::phoneme].
         #[method(setPhoneme:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPhoneme(&self, phoneme: &NSString);
 
-        #[method_id(initWithMarkerType:forTextRange:atByteSampleOffset:)]
+        #[method(initWithMarkerType:forTextRange:atByteSampleOffset:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMarkerType_forTextRange_atByteSampleOffset(
             this: Allocated<Self>,
@@ -718,7 +765,7 @@ extern_methods!(
             byte_sample_offset: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(initWithWordRange:atByteSampleOffset:)]
+        #[method(initWithWordRange:atByteSampleOffset:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithWordRange_atByteSampleOffset(
             this: Allocated<Self>,
@@ -726,7 +773,7 @@ extern_methods!(
             byte_sample_offset: NSInteger,
         ) -> Retained<Self>;
 
-        #[method_id(initWithSentenceRange:atByteSampleOffset:)]
+        #[method(initWithSentenceRange:atByteSampleOffset:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSentenceRange_atByteSampleOffset(
             this: Allocated<Self>,
@@ -734,7 +781,7 @@ extern_methods!(
             byte_sample_offset: NSInteger,
         ) -> Retained<Self>;
 
-        #[method_id(initWithParagraphRange:atByteSampleOffset:)]
+        #[method(initWithParagraphRange:atByteSampleOffset:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithParagraphRange_atByteSampleOffset(
             this: Allocated<Self>,
@@ -742,7 +789,7 @@ extern_methods!(
             byte_sample_offset: NSInteger,
         ) -> Retained<Self>;
 
-        #[method_id(initWithPhonemeString:atByteSampleOffset:)]
+        #[method(initWithPhonemeString:atByteSampleOffset:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPhonemeString_atByteSampleOffset(
             this: Allocated<Self>,
@@ -750,7 +797,7 @@ extern_methods!(
             byte_sample_offset: NSInteger,
         ) -> Retained<Self>;
 
-        #[method_id(initWithBookmarkName:atByteSampleOffset:)]
+        #[method(initWithBookmarkName:atByteSampleOffset:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBookmarkName_atByteSampleOffset(
             this: Allocated<Self>,
@@ -763,11 +810,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVSpeechSynthesisMarker {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -11,10 +11,12 @@ extern_protocol!(
         NSObjectProtocol + MainThreadOnly
     {
         #[method(adjustsImageSizeForAccessibilityContentSizeCategory)]
+        #[unsafe(method_family = none)]
         unsafe fn adjustsImageSizeForAccessibilityContentSizeCategory(&self) -> bool;
 
         /// Setter for [`adjustsImageSizeForAccessibilityContentSizeCategory`][Self::adjustsImageSizeForAccessibilityContentSizeCategory].
         #[method(setAdjustsImageSizeForAccessibilityContentSizeCategory:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAdjustsImageSizeForAccessibilityContentSizeCategory(
             &self,
             adjusts_image_size_for_accessibility_content_size_category: bool,

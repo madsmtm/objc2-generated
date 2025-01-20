@@ -227,6 +227,7 @@ extern_methods!(
         ///
         /// Returns: YES if the policy can be evaluated, NO otherwise.
         #[method(canEvaluatePolicy:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn canEvaluatePolicy_error(
             &self,
             policy: LAPolicy,
@@ -289,6 +290,7 @@ extern_methods!(
         ///
         /// LAErrorSystemCancel if some system event interrupted the evaluation (e.g. Home button pressed).
         #[method(evaluatePolicy:localizedReason:reply:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn evaluatePolicy_localizedReason_reply(
             &self,
             policy: LAPolicy,
@@ -308,6 +310,7 @@ extern_methods!(
         ///
         /// Invalidating a context that has been already invalidated has no effect.
         #[method(invalidate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn invalidate(&self);
 
         /// Sets a credential to this context.
@@ -326,6 +329,7 @@ extern_methods!(
         ///
         /// Returns: YES if the credential was set successfully, NO otherwise.
         #[method(setCredential:type:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCredential_type(
             &self,
             credential: Option<&NSData>,
@@ -340,6 +344,7 @@ extern_methods!(
         ///
         /// Returns: YES on success, NO otherwise.
         #[method(isCredentialSet:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isCredentialSet(&self, r#type: LACredentialType) -> bool;
 
         #[cfg(all(feature = "block2", feature = "objc2-security"))]
@@ -393,6 +398,7 @@ extern_methods!(
         /// Warning: localizedReason parameter is mandatory and the call will throw NSInvalidArgumentException if
         /// nil or empty string is specified.
         #[method(evaluateAccessControl:operation:localizedReason:reply:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn evaluateAccessControl_operation_localizedReason_reply(
             &self,
             access_control: &SecAccessControl,
@@ -405,35 +411,38 @@ extern_methods!(
         ///
         /// Allows fallback button title customization. If set to empty string, the button will be hidden.
         /// A default title "Use Password…" is used when this property is left nil.
-        #[method_id(localizedFallbackTitle)]
+        #[method(localizedFallbackTitle)]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedFallbackTitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`localizedFallbackTitle`][Self::localizedFallbackTitle].
         #[method(setLocalizedFallbackTitle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLocalizedFallbackTitle(&self, localized_fallback_title: Option<&NSString>);
 
         /// This property is deprecated and setting it has no effect.
         #[deprecated = "No longer supported"]
-        #[method_id(maxBiometryFailures)]
+        #[method(maxBiometryFailures)]
         #[unsafe(method_family = none)]
         pub unsafe fn maxBiometryFailures(&self) -> Option<Retained<NSNumber>>;
 
         /// Setter for [`maxBiometryFailures`][Self::maxBiometryFailures].
         #[deprecated = "No longer supported"]
         #[method(setMaxBiometryFailures:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMaxBiometryFailures(&self, max_biometry_failures: Option<&NSNumber>);
 
         /// Cancel button title.
         ///
         /// Allows cancel button title customization. A default title "Cancel" is used when
         /// this property is left nil or is set to empty string.
-        #[method_id(localizedCancelTitle)]
+        #[method(localizedCancelTitle)]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedCancelTitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`localizedCancelTitle`][Self::localizedCancelTitle].
         #[method(setLocalizedCancelTitle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLocalizedCancelTitle(&self, localized_cancel_title: Option<&NSString>);
 
         /// Time interval for accepting a successful Touch ID or Face ID device unlock (on the lock screen) from the past.
@@ -454,10 +463,12 @@ extern_methods!(
         ///
         /// See: LATouchIDAuthenticationMaximumAllowableReuseDuration
         #[method(touchIDAuthenticationAllowableReuseDuration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn touchIDAuthenticationAllowableReuseDuration(&self) -> NSTimeInterval;
 
         /// Setter for [`touchIDAuthenticationAllowableReuseDuration`][Self::touchIDAuthenticationAllowableReuseDuration].
         #[method(setTouchIDAuthenticationAllowableReuseDuration:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTouchIDAuthenticationAllowableReuseDuration(
             &self,
             touch_id_authentication_allowable_reuse_duration: NSTimeInterval,
@@ -469,12 +480,13 @@ extern_methods!(
         /// A localized string from this property is displayed in the authentication UI if the caller didn't specify
         /// its own authentication reason (e.g. a keychain operation with kSecUseAuthenticationContext). This property
         /// is ignored if the authentication reason was provided by caller.
-        #[method_id(localizedReason)]
+        #[method(localizedReason)]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedReason(&self) -> Retained<NSString>;
 
         /// Setter for [`localizedReason`][Self::localizedReason].
         #[method(setLocalizedReason:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLocalizedReason(&self, localized_reason: &NSString);
 
         /// Allows running authentication in non-interactive mode.
@@ -488,15 +500,18 @@ extern_methods!(
         /// If this property is used with a LocalAuthentication evaluation, it will eventually fail with
         /// LAErrorNotInteractive instead of displaying the authentication UI.
         #[method(interactionNotAllowed)]
+        #[unsafe(method_family = none)]
         pub unsafe fn interactionNotAllowed(&self) -> bool;
 
         /// Setter for [`interactionNotAllowed`][Self::interactionNotAllowed].
         #[method(setInteractionNotAllowed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setInteractionNotAllowed(&self, interaction_not_allowed: bool);
 
         #[cfg(feature = "LABiometryType")]
         /// Indicates the type of the biometry supported by the device.
         #[method(biometryType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn biometryType(&self) -> LABiometryType;
 
         /// Contains policy domain state.
@@ -514,13 +529,13 @@ extern_methods!(
         /// Warning: Please note that the value returned by this property can change exceptionally between major OS versions even if
         /// the state of biometry has not changed.
         #[deprecated]
-        #[method_id(evaluatedPolicyDomainState)]
+        #[method(evaluatedPolicyDomainState)]
         #[unsafe(method_family = none)]
         pub unsafe fn evaluatedPolicyDomainState(&self) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "LADomainState")]
         /// Contains authentication domain state.
-        #[method_id(domainState)]
+        #[method(domainState)]
         #[unsafe(method_family = none)]
         pub unsafe fn domainState(&self) -> Retained<LADomainState>;
     }
@@ -529,11 +544,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl LAContext {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

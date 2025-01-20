@@ -68,7 +68,7 @@ unsafe impl NSObjectProtocol for NSPickerTouchBarItem {}
 extern_methods!(
     #[cfg(feature = "NSTouchBarItem")]
     unsafe impl NSPickerTouchBarItem {
-        #[method_id(pickerTouchBarItemWithIdentifier:labels:selectionMode:target:action:)]
+        #[method(pickerTouchBarItemWithIdentifier:labels:selectionMode:target:action:)]
         #[unsafe(method_family = none)]
         pub unsafe fn pickerTouchBarItemWithIdentifier_labels_selectionMode_target_action(
             identifier: &NSTouchBarItemIdentifier,
@@ -80,7 +80,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
-        #[method_id(pickerTouchBarItemWithIdentifier:images:selectionMode:target:action:)]
+        #[method(pickerTouchBarItemWithIdentifier:images:selectionMode:target:action:)]
         #[unsafe(method_family = none)]
         pub unsafe fn pickerTouchBarItemWithIdentifier_images_selectionMode_target_action(
             identifier: &NSTouchBarItemIdentifier,
@@ -92,122 +92,143 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[method(controlRepresentation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn controlRepresentation(&self) -> NSPickerTouchBarItemControlRepresentation;
 
         /// Setter for [`controlRepresentation`][Self::controlRepresentation].
         #[method(setControlRepresentation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setControlRepresentation(
             &self,
             control_representation: NSPickerTouchBarItemControlRepresentation,
         );
 
-        #[method_id(collapsedRepresentationLabel)]
+        #[method(collapsedRepresentationLabel)]
         #[unsafe(method_family = none)]
         pub unsafe fn collapsedRepresentationLabel(&self) -> Retained<NSString>;
 
         /// Setter for [`collapsedRepresentationLabel`][Self::collapsedRepresentationLabel].
         #[method(setCollapsedRepresentationLabel:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCollapsedRepresentationLabel(
             &self,
             collapsed_representation_label: &NSString,
         );
 
         #[cfg(feature = "NSImage")]
-        #[method_id(collapsedRepresentationImage)]
+        #[method(collapsedRepresentationImage)]
         #[unsafe(method_family = none)]
         pub unsafe fn collapsedRepresentationImage(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
         /// Setter for [`collapsedRepresentationImage`][Self::collapsedRepresentationImage].
         #[method(setCollapsedRepresentationImage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCollapsedRepresentationImage(
             &self,
             collapsed_representation_image: Option<&NSImage>,
         );
 
         #[method(selectedIndex)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectedIndex(&self) -> NSInteger;
 
         /// Setter for [`selectedIndex`][Self::selectedIndex].
         #[method(setSelectedIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSelectedIndex(&self, selected_index: NSInteger);
 
         #[cfg(feature = "NSColor")]
-        #[method_id(selectionColor)]
+        #[method(selectionColor)]
         #[unsafe(method_family = none)]
         pub unsafe fn selectionColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`selectionColor`][Self::selectionColor].
         #[method(setSelectionColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSelectionColor(&self, selection_color: Option<&NSColor>);
 
         #[method(selectionMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectionMode(&self) -> NSPickerTouchBarItemSelectionMode;
 
         /// Setter for [`selectionMode`][Self::selectionMode].
         #[method(setSelectionMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSelectionMode(&self, selection_mode: NSPickerTouchBarItemSelectionMode);
 
         #[method(numberOfOptions)]
+        #[unsafe(method_family = none)]
         pub unsafe fn numberOfOptions(&self) -> NSInteger;
 
         /// Setter for [`numberOfOptions`][Self::numberOfOptions].
         #[method(setNumberOfOptions:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setNumberOfOptions(&self, number_of_options: NSInteger);
 
         #[cfg(feature = "NSImage")]
         #[method(setImage:atIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setImage_atIndex(&self, image: Option<&NSImage>, index: NSInteger);
 
         #[cfg(feature = "NSImage")]
-        #[method_id(imageAtIndex:)]
+        #[method(imageAtIndex:)]
         #[unsafe(method_family = none)]
         pub unsafe fn imageAtIndex(&self, index: NSInteger) -> Option<Retained<NSImage>>;
 
         #[method(setLabel:atIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLabel_atIndex(&self, label: &NSString, index: NSInteger);
 
-        #[method_id(labelAtIndex:)]
+        #[method(labelAtIndex:)]
         #[unsafe(method_family = none)]
         pub unsafe fn labelAtIndex(&self, index: NSInteger) -> Option<Retained<NSString>>;
 
-        #[method_id(target)]
+        #[method(target)]
         #[unsafe(method_family = none)]
         pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`target`][Self::target].
         #[method(setTarget:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
 
         #[method(action)]
+        #[unsafe(method_family = none)]
         pub unsafe fn action(&self) -> Option<Sel>;
 
         /// Setter for [`action`][Self::action].
         #[method(setAction:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAction(&self, action: Option<Sel>);
 
         #[method(isEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isEnabled(&self) -> bool;
 
         /// Setter for [`isEnabled`][Self::isEnabled].
         #[method(setEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
         #[method(setEnabled:atIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setEnabled_atIndex(&self, enabled: bool, index: NSInteger);
 
         #[method(isEnabledAtIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isEnabledAtIndex(&self, index: NSInteger) -> bool;
 
         /// The localized string labelling this item during user customization. The default value is empty string.
-        #[method_id(customizationLabel)]
+        #[method(customizationLabel)]
         #[unsafe(method_family = none)]
         pub unsafe fn customizationLabel(&self) -> Retained<NSString>;
 
         /// Setter for [`customizationLabel`][Self::customizationLabel].
         #[method(setCustomizationLabel:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCustomizationLabel(&self, customization_label: Option<&NSString>);
     }
 );
@@ -216,21 +237,21 @@ extern_methods!(
     /// Methods declared on superclass `NSTouchBarItem`
     #[cfg(feature = "NSTouchBarItem")]
     unsafe impl NSPickerTouchBarItem {
-        #[method_id(initWithIdentifier:)]
+        #[method(initWithIdentifier:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,
             identifier: &NSTouchBarItemIdentifier,
         ) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -240,7 +261,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSTouchBarItem")]
     unsafe impl NSPickerTouchBarItem {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

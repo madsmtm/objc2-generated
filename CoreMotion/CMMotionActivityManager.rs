@@ -36,10 +36,12 @@ unsafe impl NSObjectProtocol for CMMotionActivityManager {}
 extern_methods!(
     unsafe impl CMMotionActivityManager {
         #[method(isActivityAvailable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isActivityAvailable() -> bool;
 
         #[cfg(feature = "CMAuthorization")]
         #[method(authorizationStatus)]
+        #[unsafe(method_family = none)]
         pub unsafe fn authorizationStatus() -> CMAuthorizationStatus;
 
         #[cfg(all(
@@ -48,6 +50,7 @@ extern_methods!(
             feature = "block2"
         ))]
         #[method(queryActivityStartingFromDate:toDate:toQueue:withHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn queryActivityStartingFromDate_toDate_toQueue_withHandler(
             &self,
             start: &NSDate,
@@ -62,6 +65,7 @@ extern_methods!(
             feature = "block2"
         ))]
         #[method(startActivityUpdatesToQueue:withHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn startActivityUpdatesToQueue_withHandler(
             &self,
             queue: &NSOperationQueue,
@@ -69,6 +73,7 @@ extern_methods!(
         );
 
         #[method(stopActivityUpdates)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stopActivityUpdates(&self);
     }
 );
@@ -76,11 +81,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CMMotionActivityManager {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

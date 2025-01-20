@@ -94,44 +94,53 @@ extern_methods!(
     unsafe impl MPSNNNeuronDescriptor {
         #[cfg(feature = "MPSCNNNeuronType")]
         #[method(neuronType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn neuronType(&self) -> MPSCNNNeuronType;
 
         #[cfg(feature = "MPSCNNNeuronType")]
         /// Setter for [`neuronType`][Self::neuronType].
         #[method(setNeuronType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setNeuronType(&self, neuron_type: MPSCNNNeuronType);
 
         #[method(a)]
+        #[unsafe(method_family = none)]
         pub unsafe fn a(&self) -> c_float;
 
         /// Setter for [`a`][Self::a].
         #[method(setA:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setA(&self, a: c_float);
 
         #[method(b)]
+        #[unsafe(method_family = none)]
         pub unsafe fn b(&self) -> c_float;
 
         /// Setter for [`b`][Self::b].
         #[method(setB:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setB(&self, b: c_float);
 
         #[method(c)]
+        #[unsafe(method_family = none)]
         pub unsafe fn c(&self) -> c_float;
 
         /// Setter for [`c`][Self::c].
         #[method(setC:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setC(&self, c: c_float);
 
-        #[method_id(data)]
+        #[method(data)]
         #[unsafe(method_family = none)]
         pub unsafe fn data(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`data`][Self::data].
         #[method(setData:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setData(&self, data: Option<&NSData>);
 
         /// You must use one of the interfaces below instead.
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -141,7 +150,7 @@ extern_methods!(
         /// Parameter `neuronType`: The type of a neuron filter.
         ///
         /// Returns: A valid MPSNNNeuronDescriptor object or nil, if failure.
-        #[method_id(cnnNeuronDescriptorWithType:)]
+        #[method(cnnNeuronDescriptorWithType:)]
         #[unsafe(method_family = none)]
         pub unsafe fn cnnNeuronDescriptorWithType(
             neuron_type: MPSCNNNeuronType,
@@ -155,7 +164,7 @@ extern_methods!(
         /// Parameter `a`: Parameter "a".
         ///
         /// Returns: A valid MPSNNNeuronDescriptor object or nil, if failure.
-        #[method_id(cnnNeuronDescriptorWithType:a:)]
+        #[method(cnnNeuronDescriptorWithType:a:)]
         #[unsafe(method_family = none)]
         pub unsafe fn cnnNeuronDescriptorWithType_a(
             neuron_type: MPSCNNNeuronType,
@@ -172,7 +181,7 @@ extern_methods!(
         /// Parameter `b`: Parameter "b".
         ///
         /// Returns: A valid MPSNNNeuronDescriptor object or nil, if failure.
-        #[method_id(cnnNeuronDescriptorWithType:a:b:)]
+        #[method(cnnNeuronDescriptorWithType:a:b:)]
         #[unsafe(method_family = none)]
         pub unsafe fn cnnNeuronDescriptorWithType_a_b(
             neuron_type: MPSCNNNeuronType,
@@ -192,7 +201,7 @@ extern_methods!(
         /// Parameter `c`: Parameter "c".
         ///
         /// Returns: A valid MPSNNNeuronDescriptor object or nil, if failure.
-        #[method_id(cnnNeuronDescriptorWithType:a:b:c:)]
+        #[method(cnnNeuronDescriptorWithType:a:b:c:)]
         #[unsafe(method_family = none)]
         pub unsafe fn cnnNeuronDescriptorWithType_a_b_c(
             neuron_type: MPSCNNNeuronType,
@@ -217,7 +226,7 @@ extern_methods!(
         /// MTLBuffer.
         ///
         /// Returns: A valid MPSNNNeuronDescriptor object for a neuron of type MPSCNNNeuronTypePReLU or nil, if failure
-        #[method_id(cnnNeuronPReLUDescriptorWithData:noCopy:)]
+        #[method(cnnNeuronPReLUDescriptorWithData:noCopy:)]
         #[unsafe(method_family = none)]
         pub unsafe fn cnnNeuronPReLUDescriptorWithData_noCopy(
             data: &NSData,
@@ -229,7 +238,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNNeuronDescriptor {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -320,22 +329,26 @@ extern_methods!(
     unsafe impl MPSCNNNeuron {
         #[cfg(feature = "MPSCNNNeuronType")]
         #[method(neuronType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn neuronType(&self) -> MPSCNNNeuronType;
 
         #[method(a)]
+        #[unsafe(method_family = none)]
         pub unsafe fn a(&self) -> c_float;
 
         #[method(b)]
+        #[unsafe(method_family = none)]
         pub unsafe fn b(&self) -> c_float;
 
         #[method(c)]
+        #[unsafe(method_family = none)]
         pub unsafe fn c(&self) -> c_float;
 
-        #[method_id(data)]
+        #[method(data)]
         #[unsafe(method_family = none)]
         pub unsafe fn data(&self) -> Option<Retained<NSData>>;
 
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -353,7 +366,7 @@ extern_methods!(
         /// case, the MPSCNNNeuron retains the NSData object.
         ///
         /// Returns: A valid MPSCNNNeuron object or nil, if failure.
-        #[method_id(initWithDevice:neuronDescriptor:)]
+        #[method(initWithDevice:neuronDescriptor:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_neuronDescriptor(
             this: Allocated<Self>,
@@ -374,7 +387,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -396,7 +409,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -409,11 +422,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuron {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -524,22 +537,26 @@ extern_methods!(
     unsafe impl MPSCNNNeuronGradient {
         #[cfg(feature = "MPSCNNNeuronType")]
         #[method(neuronType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn neuronType(&self) -> MPSCNNNeuronType;
 
         #[method(a)]
+        #[unsafe(method_family = none)]
         pub unsafe fn a(&self) -> c_float;
 
         #[method(b)]
+        #[unsafe(method_family = none)]
         pub unsafe fn b(&self) -> c_float;
 
         #[method(c)]
+        #[unsafe(method_family = none)]
         pub unsafe fn c(&self) -> c_float;
 
-        #[method_id(data)]
+        #[method(data)]
         #[unsafe(method_family = none)]
         pub unsafe fn data(&self) -> Option<Retained<NSData>>;
 
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -557,7 +574,7 @@ extern_methods!(
         /// case, the MPSCNNNeuronGradient retains the NSData object.
         ///
         /// Returns: A valid MPSCNNNeuronGradient object or nil, if failure.
-        #[method_id(initWithDevice:neuronDescriptor:)]
+        #[method(initWithDevice:neuronDescriptor:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_neuronDescriptor(
             this: Allocated<Self>,
@@ -578,7 +595,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -600,7 +617,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -613,11 +630,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronGradient {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -665,7 +682,7 @@ extern_methods!(
         ///
         /// Returns: A valid MPSCNNNeuronLinear object or nil, if failure.
         #[deprecated]
-        #[method_id(initWithDevice:a:b:)]
+        #[method(initWithDevice:a:b:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_a_b(
             this: Allocated<Self>,
@@ -674,7 +691,7 @@ extern_methods!(
             b: c_float,
         ) -> Retained<Self>;
 
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -698,7 +715,7 @@ extern_methods!(
         /// case, the MPSCNNNeuron retains the NSData object.
         ///
         /// Returns: A valid MPSCNNNeuron object or nil, if failure.
-        #[method_id(initWithDevice:neuronDescriptor:)]
+        #[method(initWithDevice:neuronDescriptor:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_neuronDescriptor(
             this: Allocated<Self>,
@@ -719,7 +736,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -741,7 +758,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -754,11 +771,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronLinear {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -810,7 +827,7 @@ extern_methods!(
         ///
         /// Returns: A valid MPSCNNNeuronReLU object or nil, if failure.
         #[deprecated]
-        #[method_id(initWithDevice:a:)]
+        #[method(initWithDevice:a:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_a(
             this: Allocated<Self>,
@@ -818,7 +835,7 @@ extern_methods!(
             a: c_float,
         ) -> Retained<Self>;
 
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -842,7 +859,7 @@ extern_methods!(
         /// case, the MPSCNNNeuron retains the NSData object.
         ///
         /// Returns: A valid MPSCNNNeuron object or nil, if failure.
-        #[method_id(initWithDevice:neuronDescriptor:)]
+        #[method(initWithDevice:neuronDescriptor:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_neuronDescriptor(
             this: Allocated<Self>,
@@ -863,7 +880,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -885,7 +902,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -898,11 +915,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronReLU {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -959,7 +976,7 @@ extern_methods!(
         ///
         /// Returns: A valid MPSCNNNeuronPReLU object or nil, if failure.
         #[deprecated]
-        #[method_id(initWithDevice:a:count:)]
+        #[method(initWithDevice:a:count:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_a_count(
             this: Allocated<Self>,
@@ -968,7 +985,7 @@ extern_methods!(
             count: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -992,7 +1009,7 @@ extern_methods!(
         /// case, the MPSCNNNeuron retains the NSData object.
         ///
         /// Returns: A valid MPSCNNNeuron object or nil, if failure.
-        #[method_id(initWithDevice:neuronDescriptor:)]
+        #[method(initWithDevice:neuronDescriptor:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_neuronDescriptor(
             this: Allocated<Self>,
@@ -1013,7 +1030,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -1035,7 +1052,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -1048,11 +1065,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronPReLU {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1096,7 +1113,7 @@ extern_methods!(
         ///
         /// Returns: A valid MPSCNNNeuronSigmoid object or nil, if failure.
         #[deprecated]
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -1120,7 +1137,7 @@ extern_methods!(
         /// case, the MPSCNNNeuron retains the NSData object.
         ///
         /// Returns: A valid MPSCNNNeuron object or nil, if failure.
-        #[method_id(initWithDevice:neuronDescriptor:)]
+        #[method(initWithDevice:neuronDescriptor:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_neuronDescriptor(
             this: Allocated<Self>,
@@ -1141,7 +1158,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -1163,7 +1180,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -1176,11 +1193,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronSigmoid {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1228,7 +1245,7 @@ extern_methods!(
         ///
         /// Returns: A valid MPSCNNNeuronHardSigmoid object or nil, if failure.
         #[deprecated]
-        #[method_id(initWithDevice:a:b:)]
+        #[method(initWithDevice:a:b:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_a_b(
             this: Allocated<Self>,
@@ -1237,7 +1254,7 @@ extern_methods!(
             b: c_float,
         ) -> Retained<Self>;
 
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -1261,7 +1278,7 @@ extern_methods!(
         /// case, the MPSCNNNeuron retains the NSData object.
         ///
         /// Returns: A valid MPSCNNNeuron object or nil, if failure.
-        #[method_id(initWithDevice:neuronDescriptor:)]
+        #[method(initWithDevice:neuronDescriptor:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_neuronDescriptor(
             this: Allocated<Self>,
@@ -1282,7 +1299,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -1304,7 +1321,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -1317,11 +1334,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronHardSigmoid {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1370,7 +1387,7 @@ extern_methods!(
         ///
         /// Returns: A valid MPSCNNNeuronTanH object or nil, if failure.
         #[deprecated]
-        #[method_id(initWithDevice:a:b:)]
+        #[method(initWithDevice:a:b:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_a_b(
             this: Allocated<Self>,
@@ -1379,7 +1396,7 @@ extern_methods!(
             b: c_float,
         ) -> Retained<Self>;
 
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -1403,7 +1420,7 @@ extern_methods!(
         /// case, the MPSCNNNeuron retains the NSData object.
         ///
         /// Returns: A valid MPSCNNNeuron object or nil, if failure.
-        #[method_id(initWithDevice:neuronDescriptor:)]
+        #[method(initWithDevice:neuronDescriptor:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_neuronDescriptor(
             this: Allocated<Self>,
@@ -1424,7 +1441,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -1446,7 +1463,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -1459,11 +1476,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronTanH {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1507,7 +1524,7 @@ extern_methods!(
         ///
         /// Returns: A valid MPSCNNNeuronAbsolute object or nil, if failure.
         #[deprecated]
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -1531,7 +1548,7 @@ extern_methods!(
         /// case, the MPSCNNNeuron retains the NSData object.
         ///
         /// Returns: A valid MPSCNNNeuron object or nil, if failure.
-        #[method_id(initWithDevice:neuronDescriptor:)]
+        #[method(initWithDevice:neuronDescriptor:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_neuronDescriptor(
             this: Allocated<Self>,
@@ -1552,7 +1569,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -1574,7 +1591,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -1587,11 +1604,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronAbsolute {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1640,7 +1657,7 @@ extern_methods!(
         ///
         /// Returns: A valid MPSCNNNeuronSoftPlus object or nil, if failure.
         #[deprecated]
-        #[method_id(initWithDevice:a:b:)]
+        #[method(initWithDevice:a:b:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_a_b(
             this: Allocated<Self>,
@@ -1649,7 +1666,7 @@ extern_methods!(
             b: c_float,
         ) -> Retained<Self>;
 
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -1673,7 +1690,7 @@ extern_methods!(
         /// case, the MPSCNNNeuron retains the NSData object.
         ///
         /// Returns: A valid MPSCNNNeuron object or nil, if failure.
-        #[method_id(initWithDevice:neuronDescriptor:)]
+        #[method(initWithDevice:neuronDescriptor:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_neuronDescriptor(
             this: Allocated<Self>,
@@ -1694,7 +1711,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -1716,7 +1733,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -1729,11 +1746,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronSoftPlus {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1778,7 +1795,7 @@ extern_methods!(
         ///
         /// Returns: A valid MPSCNNNeuronSoftSign object or nil, if failure.
         #[deprecated]
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -1802,7 +1819,7 @@ extern_methods!(
         /// case, the MPSCNNNeuron retains the NSData object.
         ///
         /// Returns: A valid MPSCNNNeuron object or nil, if failure.
-        #[method_id(initWithDevice:neuronDescriptor:)]
+        #[method(initWithDevice:neuronDescriptor:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_neuronDescriptor(
             this: Allocated<Self>,
@@ -1823,7 +1840,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -1845,7 +1862,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -1858,11 +1875,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronSoftSign {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1912,7 +1929,7 @@ extern_methods!(
         ///
         /// Returns: A valid MPSCNNNeuronELU object or nil, if failure.
         #[deprecated]
-        #[method_id(initWithDevice:a:)]
+        #[method(initWithDevice:a:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_a(
             this: Allocated<Self>,
@@ -1920,7 +1937,7 @@ extern_methods!(
             a: c_float,
         ) -> Retained<Self>;
 
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -1944,7 +1961,7 @@ extern_methods!(
         /// case, the MPSCNNNeuron retains the NSData object.
         ///
         /// Returns: A valid MPSCNNNeuron object or nil, if failure.
-        #[method_id(initWithDevice:neuronDescriptor:)]
+        #[method(initWithDevice:neuronDescriptor:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_neuronDescriptor(
             this: Allocated<Self>,
@@ -1965,7 +1982,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -1987,7 +2004,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -2000,11 +2017,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronELU {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -2060,7 +2077,7 @@ extern_methods!(
         ///
         /// Returns: A valid MPSCNNNeuronReLUN object or nil, if failure.
         #[deprecated]
-        #[method_id(initWithDevice:a:b:)]
+        #[method(initWithDevice:a:b:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_a_b(
             this: Allocated<Self>,
@@ -2069,7 +2086,7 @@ extern_methods!(
             b: c_float,
         ) -> Retained<Self>;
 
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -2093,7 +2110,7 @@ extern_methods!(
         /// case, the MPSCNNNeuron retains the NSData object.
         ///
         /// Returns: A valid MPSCNNNeuron object or nil, if failure.
-        #[method_id(initWithDevice:neuronDescriptor:)]
+        #[method(initWithDevice:neuronDescriptor:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_neuronDescriptor(
             this: Allocated<Self>,
@@ -2114,7 +2131,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -2136,7 +2153,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -2149,11 +2166,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronReLUN {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -2204,7 +2221,7 @@ extern_methods!(
         ///
         /// Returns: A valid MPSCNNNeuronPower object or nil, if failure.
         #[deprecated]
-        #[method_id(initWithDevice:a:b:c:)]
+        #[method(initWithDevice:a:b:c:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_a_b_c(
             this: Allocated<Self>,
@@ -2214,7 +2231,7 @@ extern_methods!(
             c: c_float,
         ) -> Retained<Self>;
 
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -2238,7 +2255,7 @@ extern_methods!(
         /// case, the MPSCNNNeuron retains the NSData object.
         ///
         /// Returns: A valid MPSCNNNeuron object or nil, if failure.
-        #[method_id(initWithDevice:neuronDescriptor:)]
+        #[method(initWithDevice:neuronDescriptor:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_neuronDescriptor(
             this: Allocated<Self>,
@@ -2259,7 +2276,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -2281,7 +2298,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -2294,11 +2311,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronPower {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -2351,7 +2368,7 @@ extern_methods!(
         ///
         /// Returns: A valid MPSCNNNeuronExponential object or nil, if failure.
         #[deprecated]
-        #[method_id(initWithDevice:a:b:c:)]
+        #[method(initWithDevice:a:b:c:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_a_b_c(
             this: Allocated<Self>,
@@ -2361,7 +2378,7 @@ extern_methods!(
             c: c_float,
         ) -> Retained<Self>;
 
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -2385,7 +2402,7 @@ extern_methods!(
         /// case, the MPSCNNNeuron retains the NSData object.
         ///
         /// Returns: A valid MPSCNNNeuron object or nil, if failure.
-        #[method_id(initWithDevice:neuronDescriptor:)]
+        #[method(initWithDevice:neuronDescriptor:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_neuronDescriptor(
             this: Allocated<Self>,
@@ -2406,7 +2423,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -2428,7 +2445,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -2441,11 +2458,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronExponential {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -2498,7 +2515,7 @@ extern_methods!(
         ///
         /// Returns: A valid MPSCNNNeuronLogarithm object or nil, if failure.
         #[deprecated]
-        #[method_id(initWithDevice:a:b:c:)]
+        #[method(initWithDevice:a:b:c:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_a_b_c(
             this: Allocated<Self>,
@@ -2508,7 +2525,7 @@ extern_methods!(
             c: c_float,
         ) -> Retained<Self>;
 
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -2532,7 +2549,7 @@ extern_methods!(
         /// case, the MPSCNNNeuron retains the NSData object.
         ///
         /// Returns: A valid MPSCNNNeuron object or nil, if failure.
-        #[method_id(initWithDevice:neuronDescriptor:)]
+        #[method(initWithDevice:neuronDescriptor:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_neuronDescriptor(
             this: Allocated<Self>,
@@ -2553,7 +2570,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -2575,7 +2592,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -2588,11 +2605,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNNeuronLogarithm {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

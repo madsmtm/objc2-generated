@@ -41,26 +41,31 @@ extern_protocol!(
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
         #[method(willPresentSearchController:)]
+        #[unsafe(method_family = none)]
         unsafe fn willPresentSearchController(&self, search_controller: &UISearchController);
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
         #[method(didPresentSearchController:)]
+        #[unsafe(method_family = none)]
         unsafe fn didPresentSearchController(&self, search_controller: &UISearchController);
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
         #[method(willDismissSearchController:)]
+        #[unsafe(method_family = none)]
         unsafe fn willDismissSearchController(&self, search_controller: &UISearchController);
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
         #[method(didDismissSearchController:)]
+        #[unsafe(method_family = none)]
         unsafe fn didDismissSearchController(&self, search_controller: &UISearchController);
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
         #[method(presentSearchController:)]
+        #[unsafe(method_family = none)]
         unsafe fn presentSearchController(&self, search_controller: &UISearchController);
 
         #[cfg(all(
@@ -70,6 +75,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(searchController:willChangeToSearchBarPlacement:)]
+        #[unsafe(method_family = none)]
         unsafe fn searchController_willChangeToSearchBarPlacement(
             &self,
             search_controller: &UISearchController,
@@ -83,6 +89,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(searchController:didChangeFromSearchBarPlacement:)]
+        #[unsafe(method_family = none)]
         unsafe fn searchController_didChangeFromSearchBarPlacement(
             &self,
             search_controller: &UISearchController,
@@ -96,6 +103,7 @@ extern_protocol!(
     pub unsafe trait UISearchResultsUpdating: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[method(updateSearchResultsForSearchController:)]
+        #[unsafe(method_family = none)]
         unsafe fn updateSearchResultsForSearchController(
             &self,
             search_controller: &UISearchController,
@@ -108,6 +116,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(updateSearchResultsForSearchController:selectingSearchSuggestion:)]
+        #[unsafe(method_family = none)]
         unsafe fn updateSearchResultsForSearchController_selectingSearchSuggestion(
             &self,
             search_controller: &UISearchController,
@@ -175,14 +184,14 @@ unsafe impl UIViewControllerTransitioningDelegate for UISearchController {}
 extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UISearchController {
-        #[method_id(initWithSearchResultsController:)]
+        #[method(initWithSearchResultsController:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSearchResultsController(
             this: Allocated<Self>,
             search_results_controller: Option<&UIViewController>,
         ) -> Retained<Self>;
 
-        #[method_id(initWithNibName:bundle:)]
+        #[method(initWithNibName:bundle:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -190,14 +199,14 @@ extern_methods!(
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(searchResultsUpdater)]
+        #[method(searchResultsUpdater)]
         #[unsafe(method_family = none)]
         pub unsafe fn searchResultsUpdater(
             &self,
@@ -206,19 +215,22 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`searchResultsUpdater`][Self::searchResultsUpdater].
         #[method(setSearchResultsUpdater:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSearchResultsUpdater(
             &self,
             search_results_updater: Option<&ProtocolObject<dyn UISearchResultsUpdating>>,
         );
 
         #[method(isActive)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isActive(&self) -> bool;
 
         /// Setter for [`isActive`][Self::isActive].
         #[method(setActive:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setActive(&self, active: bool);
 
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -227,6 +239,7 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn UISearchControllerDelegate>>,
@@ -234,71 +247,84 @@ extern_methods!(
 
         #[deprecated]
         #[method(dimsBackgroundDuringPresentation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dimsBackgroundDuringPresentation(&self) -> bool;
 
         /// Setter for [`dimsBackgroundDuringPresentation`][Self::dimsBackgroundDuringPresentation].
         #[deprecated]
         #[method(setDimsBackgroundDuringPresentation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDimsBackgroundDuringPresentation(
             &self,
             dims_background_during_presentation: bool,
         );
 
         #[method(obscuresBackgroundDuringPresentation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn obscuresBackgroundDuringPresentation(&self) -> bool;
 
         /// Setter for [`obscuresBackgroundDuringPresentation`][Self::obscuresBackgroundDuringPresentation].
         #[method(setObscuresBackgroundDuringPresentation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setObscuresBackgroundDuringPresentation(
             &self,
             obscures_background_during_presentation: bool,
         );
 
         #[method(hidesNavigationBarDuringPresentation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hidesNavigationBarDuringPresentation(&self) -> bool;
 
         /// Setter for [`hidesNavigationBarDuringPresentation`][Self::hidesNavigationBarDuringPresentation].
         #[method(setHidesNavigationBarDuringPresentation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setHidesNavigationBarDuringPresentation(
             &self,
             hides_navigation_bar_during_presentation: bool,
         );
 
-        #[method_id(searchResultsController)]
+        #[method(searchResultsController)]
         #[unsafe(method_family = none)]
         pub unsafe fn searchResultsController(&self) -> Option<Retained<UIViewController>>;
 
         #[cfg(all(feature = "UISearchBar", feature = "UIView"))]
-        #[method_id(searchBar)]
+        #[method(searchBar)]
         #[unsafe(method_family = none)]
         pub unsafe fn searchBar(&self) -> Retained<UISearchBar>;
 
         #[cfg(feature = "UINavigationItem")]
         #[method(searchBarPlacement)]
+        #[unsafe(method_family = none)]
         pub unsafe fn searchBarPlacement(&self) -> UINavigationItemSearchBarPlacement;
 
         #[method(automaticallyShowsSearchResultsController)]
+        #[unsafe(method_family = none)]
         pub unsafe fn automaticallyShowsSearchResultsController(&self) -> bool;
 
         /// Setter for [`automaticallyShowsSearchResultsController`][Self::automaticallyShowsSearchResultsController].
         #[method(setAutomaticallyShowsSearchResultsController:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAutomaticallyShowsSearchResultsController(
             &self,
             automatically_shows_search_results_controller: bool,
         );
 
         #[method(showsSearchResultsController)]
+        #[unsafe(method_family = none)]
         pub unsafe fn showsSearchResultsController(&self) -> bool;
 
         /// Setter for [`showsSearchResultsController`][Self::showsSearchResultsController].
         #[method(setShowsSearchResultsController:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShowsSearchResultsController(&self, shows_search_results_controller: bool);
 
         #[method(automaticallyShowsCancelButton)]
+        #[unsafe(method_family = none)]
         pub unsafe fn automaticallyShowsCancelButton(&self) -> bool;
 
         /// Setter for [`automaticallyShowsCancelButton`][Self::automaticallyShowsCancelButton].
         #[method(setAutomaticallyShowsCancelButton:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAutomaticallyShowsCancelButton(
             &self,
             automatically_shows_cancel_button: bool,
@@ -306,11 +332,13 @@ extern_methods!(
 
         #[deprecated = "Use scopeBarActivation instead"]
         #[method(automaticallyShowsScopeBar)]
+        #[unsafe(method_family = none)]
         pub unsafe fn automaticallyShowsScopeBar(&self) -> bool;
 
         /// Setter for [`automaticallyShowsScopeBar`][Self::automaticallyShowsScopeBar].
         #[deprecated = "Use scopeBarActivation instead"]
         #[method(setAutomaticallyShowsScopeBar:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAutomaticallyShowsScopeBar(&self, automatically_shows_scope_bar: bool);
 
         /// Controls if and when the UISearchController shows and hides the scope bar
@@ -321,10 +349,12 @@ extern_methods!(
         /// Similar to the behavior of `automaticallyShowsScopeBar`, setting the `showsScopeBar` property on the `searchController`'s `searchBar`
         /// will change `scopeBarActivation` to `UISearchControllerScopeBarActivationManual`
         #[method(scopeBarActivation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scopeBarActivation(&self) -> UISearchControllerScopeBarActivation;
 
         /// Setter for [`scopeBarActivation`][Self::scopeBarActivation].
         #[method(setScopeBarActivation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setScopeBarActivation(
             &self,
             scope_bar_activation: UISearchControllerScopeBarActivation,
@@ -338,7 +368,7 @@ extern_methods!(
         /// searchSuggestions is set to nil when user interaction selects a suggestion,
         /// or when the user otherwise interacts with search (e.g., typing in the search field, choosing a different search scope, canceling search)
         /// after dismissing the menu by tapping outside
-        #[method_id(searchSuggestions)]
+        #[method(searchSuggestions)]
         #[unsafe(method_family = none)]
         pub unsafe fn searchSuggestions(
             &self,
@@ -347,6 +377,7 @@ extern_methods!(
         #[cfg(feature = "UISearchSuggestion")]
         /// Setter for [`searchSuggestions`][Self::searchSuggestions].
         #[method(setSearchSuggestions:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSearchSuggestions(
             &self,
             search_suggestions: Option<&NSArray<ProtocolObject<dyn UISearchSuggestion>>>,
@@ -357,10 +388,12 @@ extern_methods!(
         /// This property is intended to be set at the time that the search controller is initialized.
         /// If set after that point, the internal view controller will not be destroyed, but its view will be hidden and remain so.
         #[method(ignoresSearchSuggestionsForSearchBarPlacementStacked)]
+        #[unsafe(method_family = none)]
         pub unsafe fn ignoresSearchSuggestionsForSearchBarPlacementStacked(&self) -> bool;
 
         /// Setter for [`ignoresSearchSuggestionsForSearchBarPlacementStacked`][Self::ignoresSearchSuggestionsForSearchBarPlacementStacked].
         #[method(setIgnoresSearchSuggestionsForSearchBarPlacementStacked:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIgnoresSearchSuggestionsForSearchBarPlacementStacked(
             &self,
             ignores_search_suggestions_for_search_bar_placement_stacked: bool,
@@ -368,7 +401,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIScrollView", feature = "UIView"))]
         #[deprecated = "Use -[UIViewController setContentScrollView:forEdge:] on the searchResultsController instead."]
-        #[method_id(searchControllerObservedScrollView)]
+        #[method(searchControllerObservedScrollView)]
         #[unsafe(method_family = none)]
         pub unsafe fn searchControllerObservedScrollView(&self) -> Option<Retained<UIScrollView>>;
 
@@ -376,6 +409,7 @@ extern_methods!(
         /// Setter for [`searchControllerObservedScrollView`][Self::searchControllerObservedScrollView].
         #[deprecated = "Use -[UIViewController setContentScrollView:forEdge:] on the searchResultsController instead."]
         #[method(setSearchControllerObservedScrollView:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSearchControllerObservedScrollView(
             &self,
             search_controller_observed_scroll_view: Option<&UIScrollView>,
@@ -387,11 +421,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UISearchController {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

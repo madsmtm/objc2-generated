@@ -51,7 +51,7 @@ extern_methods!(
         /// - Parameters:
         /// - specificationData: Contents of .mlmodel as a data blob.
         /// - error: When the model asset creation fails error is populated with the reason for failure.
-        #[method_id(modelAssetWithSpecificationData:error:_)]
+        #[method(modelAssetWithSpecificationData:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn modelAssetWithSpecificationData_error(
             specification_data: &NSData,
@@ -68,7 +68,7 @@ extern_methods!(
         /// - specification: Contents of .mlmodel as a data blob.
         /// - blobMapping: A dictionary with blob URL as the key and blob data as the value.
         /// - error: When the model asset creation fails error is populated with the reason for failure.
-        #[method_id(modelAssetWithSpecificationData:blobMapping:error:_)]
+        #[method(modelAssetWithSpecificationData:blobMapping:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn modelAssetWithSpecificationData_blobMapping_error(
             specification_data: &NSData,
@@ -82,7 +82,7 @@ extern_methods!(
         /// - error: Errors if the model asset is not loadable.
         ///
         /// - Returns: a model asset or nil if there is an error.
-        #[method_id(modelAssetWithURL:error:_)]
+        #[method(modelAssetWithURL:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn modelAssetWithURL_error(
             compiled_model_url: &NSURL,
@@ -101,6 +101,7 @@ extern_methods!(
         /// print(modelDescription)
         /// ```
         #[method(modelDescriptionWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn modelDescriptionWithCompletionHandler(
             &self,
             handler: &block2::Block<dyn Fn(*mut MLModelDescription, *mut NSError)>,
@@ -117,6 +118,7 @@ extern_methods!(
         /// print(modelDescription)
         /// ```
         #[method(modelDescriptionOfFunctionNamed:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn modelDescriptionOfFunctionNamed_completionHandler(
             &self,
             function_name: &NSString,
@@ -136,16 +138,17 @@ extern_methods!(
         /// print(functionNames) // For example, ["my_function1", "my_function2"];
         /// ```
         #[method(functionNamesWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn functionNamesWithCompletionHandler(
             &self,
             handler: &block2::Block<dyn Fn(*mut NSArray<NSString>, *mut NSError)>,
         );
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

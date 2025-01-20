@@ -35,7 +35,7 @@ extern_methods!(
         /// This metric only applies to UIScrollViews.
         ///
         /// Dimensionless.
-        #[method_id(scrollHitchTimeRatio)]
+        #[method(scrollHitchTimeRatio)]
         #[unsafe(method_family = none)]
         pub unsafe fn scrollHitchTimeRatio(&self) -> Retained<NSMeasurement<NSUnit>>;
     }
@@ -45,11 +45,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MXMetric")]
     unsafe impl MXAnimationMetric {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

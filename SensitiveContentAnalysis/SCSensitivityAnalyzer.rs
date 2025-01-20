@@ -55,12 +55,13 @@ unsafe impl NSObjectProtocol for SCSensitivityAnalyzer {}
 
 extern_methods!(
     unsafe impl SCSensitivityAnalyzer {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Current SCSensitivityAnalysisPolicy set on device. Can be used to determine whether analysis is available or not
         #[method(analysisPolicy)]
+        #[unsafe(method_family = none)]
         pub unsafe fn analysisPolicy(&self) -> SCSensitivityAnalysisPolicy;
 
         #[cfg(all(feature = "SCSensitivityAnalysis", feature = "block2"))]
@@ -70,6 +71,7 @@ extern_methods!(
         ///
         /// Parameter `completionHandler`: Block to be called on completion (callback is called on unspecified queue)
         #[method(analyzeImageFile:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn analyzeImageFile_completionHandler(
             &self,
             file_url: &NSURL,
@@ -87,6 +89,7 @@ extern_methods!(
         ///
         /// Parameter `completionHandler`: Block to be called on completion (callback is called on unspecified queue)
         #[method(analyzeCGImage:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn analyzeCGImage_completionHandler(
             &self,
             image: &CGImage,
@@ -101,7 +104,7 @@ extern_methods!(
         /// Parameter `completionHandler`: Block to be called on completion (callback is called on unspecified queue)
         ///
         /// Returns: An NSProgress instance for tracking video file analysis progress
-        #[method_id(analyzeVideoFile:completionHandler:)]
+        #[method(analyzeVideoFile:completionHandler:)]
         #[unsafe(method_family = none)]
         pub unsafe fn analyzeVideoFile_completionHandler(
             &self,
@@ -114,7 +117,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCSensitivityAnalyzer {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

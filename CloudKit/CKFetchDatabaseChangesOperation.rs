@@ -35,12 +35,12 @@ unsafe impl NSObjectProtocol for CKFetchDatabaseChangesOperation {}
 extern_methods!(
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchDatabaseChangesOperation {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "CKServerChangeToken")]
-        #[method_id(initWithPreviousServerChangeToken:)]
+        #[method(initWithPreviousServerChangeToken:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPreviousServerChangeToken(
             this: Allocated<Self>,
@@ -48,23 +48,26 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKServerChangeToken")]
-        #[method_id(previousServerChangeToken)]
+        #[method(previousServerChangeToken)]
         #[unsafe(method_family = none)]
         pub unsafe fn previousServerChangeToken(&self) -> Option<Retained<CKServerChangeToken>>;
 
         #[cfg(feature = "CKServerChangeToken")]
         /// Setter for [`previousServerChangeToken`][Self::previousServerChangeToken].
         #[method(setPreviousServerChangeToken:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreviousServerChangeToken(
             &self,
             previous_server_change_token: Option<&CKServerChangeToken>,
         );
 
         #[method(resultsLimit)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resultsLimit(&self) -> NSUInteger;
 
         /// Setter for [`resultsLimit`][Self::resultsLimit].
         #[method(setResultsLimit:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setResultsLimit(&self, results_limit: NSUInteger);
 
         /// When set to YES, this operation will send repeated requests to the server until all record zone changes have been fetched.
@@ -79,10 +82,12 @@ extern_methods!(
         /// Blocks assigned to this operation may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(fetchAllChanges)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fetchAllChanges(&self) -> bool;
 
         /// Setter for [`fetchAllChanges`][Self::fetchAllChanges].
         #[method(setFetchAllChanges:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFetchAllChanges(&self, fetch_all_changes: bool);
 
         #[cfg(all(feature = "CKRecordZoneID", feature = "block2"))]
@@ -91,6 +96,7 @@ extern_methods!(
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(recordZoneWithIDChangedBlock)]
+        #[unsafe(method_family = none)]
         pub unsafe fn recordZoneWithIDChangedBlock(
             &self,
         ) -> *mut block2::Block<dyn Fn(NonNull<CKRecordZoneID>)>;
@@ -98,6 +104,7 @@ extern_methods!(
         #[cfg(all(feature = "CKRecordZoneID", feature = "block2"))]
         /// Setter for [`recordZoneWithIDChangedBlock`][Self::recordZoneWithIDChangedBlock].
         #[method(setRecordZoneWithIDChangedBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRecordZoneWithIDChangedBlock(
             &self,
             record_zone_with_id_changed_block: Option<
@@ -111,6 +118,7 @@ extern_methods!(
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(recordZoneWithIDWasDeletedBlock)]
+        #[unsafe(method_family = none)]
         pub unsafe fn recordZoneWithIDWasDeletedBlock(
             &self,
         ) -> *mut block2::Block<dyn Fn(NonNull<CKRecordZoneID>)>;
@@ -118,6 +126,7 @@ extern_methods!(
         #[cfg(all(feature = "CKRecordZoneID", feature = "block2"))]
         /// Setter for [`recordZoneWithIDWasDeletedBlock`][Self::recordZoneWithIDWasDeletedBlock].
         #[method(setRecordZoneWithIDWasDeletedBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRecordZoneWithIDWasDeletedBlock(
             &self,
             record_zone_with_id_was_deleted_block: Option<
@@ -136,6 +145,7 @@ extern_methods!(
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(recordZoneWithIDWasPurgedBlock)]
+        #[unsafe(method_family = none)]
         pub unsafe fn recordZoneWithIDWasPurgedBlock(
             &self,
         ) -> *mut block2::Block<dyn Fn(NonNull<CKRecordZoneID>)>;
@@ -143,6 +153,7 @@ extern_methods!(
         #[cfg(all(feature = "CKRecordZoneID", feature = "block2"))]
         /// Setter for [`recordZoneWithIDWasPurgedBlock`][Self::recordZoneWithIDWasPurgedBlock].
         #[method(setRecordZoneWithIDWasPurgedBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRecordZoneWithIDWasPurgedBlock(
             &self,
             record_zone_with_id_was_purged_block: Option<
@@ -161,6 +172,7 @@ extern_methods!(
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock)]
+        #[unsafe(method_family = none)]
         pub unsafe fn recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock(
             &self,
         ) -> *mut block2::Block<dyn Fn(NonNull<CKRecordZoneID>)>;
@@ -168,6 +180,7 @@ extern_methods!(
         #[cfg(all(feature = "CKRecordZoneID", feature = "block2"))]
         /// Setter for [`recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock`][Self::recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock].
         #[method(setRecordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRecordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock(
             &self,
             record_zone_with_id_was_deleted_due_to_user_encrypted_data_reset_block: Option<
@@ -181,6 +194,7 @@ extern_methods!(
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(changeTokenUpdatedBlock)]
+        #[unsafe(method_family = none)]
         pub unsafe fn changeTokenUpdatedBlock(
             &self,
         ) -> *mut block2::Block<dyn Fn(NonNull<CKServerChangeToken>)>;
@@ -188,6 +202,7 @@ extern_methods!(
         #[cfg(all(feature = "CKServerChangeToken", feature = "block2"))]
         /// Setter for [`changeTokenUpdatedBlock`][Self::changeTokenUpdatedBlock].
         #[method(setChangeTokenUpdatedBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setChangeTokenUpdatedBlock(
             &self,
             change_token_updated_block: Option<
@@ -212,6 +227,7 @@ extern_methods!(
         /// This block may share mutable state with other blocks assigned to this operation, but any such mutable state
         /// should not be concurrently used outside of blocks assigned to this operation.
         #[method(fetchDatabaseChangesCompletionBlock)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fetchDatabaseChangesCompletionBlock(
             &self,
         ) -> *mut block2::Block<dyn Fn(*mut CKServerChangeToken, Bool, *mut NSError)>;
@@ -219,6 +235,7 @@ extern_methods!(
         #[cfg(all(feature = "CKServerChangeToken", feature = "block2"))]
         /// Setter for [`fetchDatabaseChangesCompletionBlock`][Self::fetchDatabaseChangesCompletionBlock].
         #[method(setFetchDatabaseChangesCompletionBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFetchDatabaseChangesCompletionBlock(
             &self,
             fetch_database_changes_completion_block: Option<
@@ -232,7 +249,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchDatabaseChangesOperation {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

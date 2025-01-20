@@ -69,50 +69,61 @@ extern_methods!(
     ))]
     unsafe impl DOMKeyboardEvent {
         #[deprecated]
-        #[method_id(keyIdentifier)]
+        #[method(keyIdentifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn keyIdentifier(&self) -> Retained<NSString>;
 
         #[method(location)]
+        #[unsafe(method_family = none)]
         pub unsafe fn location(&self) -> c_uint;
 
         #[deprecated]
         #[method(keyLocation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn keyLocation(&self) -> c_uint;
 
         #[deprecated]
         #[method(ctrlKey)]
+        #[unsafe(method_family = none)]
         pub unsafe fn ctrlKey(&self) -> bool;
 
         #[deprecated]
         #[method(shiftKey)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shiftKey(&self) -> bool;
 
         #[deprecated]
         #[method(altKey)]
+        #[unsafe(method_family = none)]
         pub unsafe fn altKey(&self) -> bool;
 
         #[deprecated]
         #[method(metaKey)]
+        #[unsafe(method_family = none)]
         pub unsafe fn metaKey(&self) -> bool;
 
         #[method(altGraphKey)]
+        #[unsafe(method_family = none)]
         pub unsafe fn altGraphKey(&self) -> bool;
 
         #[deprecated]
         #[method(keyCode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn keyCode(&self) -> c_int;
 
         #[deprecated]
         #[method(charCode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn charCode(&self) -> c_int;
 
         #[deprecated]
         #[method(getModifierState:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getModifierState(&self, key_identifier_arg: Option<&NSString>) -> bool;
 
         #[cfg(feature = "DOMAbstractView")]
         #[method(initKeyboardEvent:canBubble:cancelable:view:keyIdentifier:location:ctrlKey:altKey:shiftKey:metaKey:altGraphKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn initKeyboardEvent_canBubble_cancelable_view_keyIdentifier_location_ctrlKey_altKey_shiftKey_metaKey_altGraphKey(
             &self,
             r#type: Option<&NSString>,
@@ -130,6 +141,7 @@ extern_methods!(
 
         #[cfg(feature = "DOMAbstractView")]
         #[method(initKeyboardEvent:canBubble:cancelable:view:keyIdentifier:location:ctrlKey:altKey:shiftKey:metaKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn initKeyboardEvent_canBubble_cancelable_view_keyIdentifier_location_ctrlKey_altKey_shiftKey_metaKey(
             &self,
             r#type: Option<&NSString>,
@@ -147,6 +159,7 @@ extern_methods!(
         #[cfg(feature = "DOMAbstractView")]
         #[deprecated]
         #[method(initKeyboardEvent:canBubble:cancelable:view:keyIdentifier:keyLocation:ctrlKey:altKey:shiftKey:metaKey:altGraphKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn initKeyboardEvent_canBubble_cancelable_view_keyIdentifier_keyLocation_ctrlKey_altKey_shiftKey_metaKey_altGraphKey(
             &self,
             r#type: Option<&NSString>,
@@ -165,6 +178,7 @@ extern_methods!(
         #[cfg(feature = "DOMAbstractView")]
         #[deprecated]
         #[method(initKeyboardEvent:canBubble:cancelable:view:keyIdentifier:keyLocation:ctrlKey:altKey:shiftKey:metaKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn initKeyboardEvent_canBubble_cancelable_view_keyIdentifier_keyLocation_ctrlKey_altKey_shiftKey_metaKey(
             &self,
             r#type: Option<&NSString>,
@@ -191,7 +205,7 @@ extern_methods!(
     ))]
     unsafe impl DOMKeyboardEvent {
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -206,7 +220,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMKeyboardEvent {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

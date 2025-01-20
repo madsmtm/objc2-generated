@@ -12,6 +12,7 @@ extern_protocol!(
     pub unsafe trait CMWaterSubmersionManagerDelegate: NSObjectProtocol {
         #[cfg(feature = "CMWaterSubmersionData")]
         #[method(manager:didUpdateEvent:)]
+        #[unsafe(method_family = none)]
         unsafe fn manager_didUpdateEvent(
             &self,
             manager: &CMWaterSubmersionManager,
@@ -20,6 +21,7 @@ extern_protocol!(
 
         #[cfg(feature = "CMWaterSubmersionData")]
         #[method(manager:didUpdateMeasurement:)]
+        #[unsafe(method_family = none)]
         unsafe fn manager_didUpdateMeasurement(
             &self,
             manager: &CMWaterSubmersionManager,
@@ -28,6 +30,7 @@ extern_protocol!(
 
         #[cfg(feature = "CMWaterSubmersionData")]
         #[method(manager:didUpdateTemperature:)]
+        #[unsafe(method_family = none)]
         unsafe fn manager_didUpdateTemperature(
             &self,
             manager: &CMWaterSubmersionManager,
@@ -35,6 +38,7 @@ extern_protocol!(
         );
 
         #[method(manager:errorOccurred:)]
+        #[unsafe(method_family = none)]
         unsafe fn manager_errorOccurred(&self, manager: &CMWaterSubmersionManager, error: &NSError);
     }
 );
@@ -50,7 +54,7 @@ unsafe impl NSObjectProtocol for CMWaterSubmersionManager {}
 
 extern_methods!(
     unsafe impl CMWaterSubmersionManager {
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -59,19 +63,22 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn CMWaterSubmersionManagerDelegate>>,
         );
 
         #[method(waterSubmersionAvailable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn waterSubmersionAvailable() -> bool;
 
         #[cfg(feature = "CMAuthorization")]
         #[method(authorizationStatus)]
+        #[unsafe(method_family = none)]
         pub unsafe fn authorizationStatus() -> CMAuthorizationStatus;
 
-        #[method_id(maximumDepth)]
+        #[method(maximumDepth)]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumDepth(&self) -> Option<Retained<NSMeasurement<NSUnitLength>>>;
     }
@@ -80,11 +87,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CMWaterSubmersionManager {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

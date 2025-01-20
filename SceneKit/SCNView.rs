@@ -43,53 +43,65 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scncameracontrolconfiguration?language=objc)
     pub unsafe trait SCNCameraControlConfiguration: NSObjectProtocol {
         #[method(autoSwitchToFreeCamera)]
+        #[unsafe(method_family = none)]
         unsafe fn autoSwitchToFreeCamera(&self) -> bool;
 
         /// Setter for [`autoSwitchToFreeCamera`][Self::autoSwitchToFreeCamera].
         #[method(setAutoSwitchToFreeCamera:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAutoSwitchToFreeCamera(&self, auto_switch_to_free_camera: bool);
 
         #[method(allowsTranslation)]
+        #[unsafe(method_family = none)]
         unsafe fn allowsTranslation(&self) -> bool;
 
         /// Setter for [`allowsTranslation`][Self::allowsTranslation].
         #[method(setAllowsTranslation:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAllowsTranslation(&self, allows_translation: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(flyModeVelocity)]
+        #[unsafe(method_family = none)]
         unsafe fn flyModeVelocity(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`flyModeVelocity`][Self::flyModeVelocity].
         #[method(setFlyModeVelocity:)]
+        #[unsafe(method_family = none)]
         unsafe fn setFlyModeVelocity(&self, fly_mode_velocity: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(panSensitivity)]
+        #[unsafe(method_family = none)]
         unsafe fn panSensitivity(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`panSensitivity`][Self::panSensitivity].
         #[method(setPanSensitivity:)]
+        #[unsafe(method_family = none)]
         unsafe fn setPanSensitivity(&self, pan_sensitivity: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(truckSensitivity)]
+        #[unsafe(method_family = none)]
         unsafe fn truckSensitivity(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`truckSensitivity`][Self::truckSensitivity].
         #[method(setTruckSensitivity:)]
+        #[unsafe(method_family = none)]
         unsafe fn setTruckSensitivity(&self, truck_sensitivity: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(rotationSensitivity)]
+        #[unsafe(method_family = none)]
         unsafe fn rotationSensitivity(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`rotationSensitivity`][Self::rotationSensitivity].
         #[method(setRotationSensitivity:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRotationSensitivity(&self, rotation_sensitivity: CGFloat);
     }
 );
@@ -154,7 +166,7 @@ extern_methods!(
         /// Parameter `frame`: The frame rectangle for the created view object.
         ///
         /// Parameter `options`: An optional dictionary. See "View initialization options" above.
-        #[method_id(initWithFrame:options:)]
+        #[method(initWithFrame:options:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame_options(
             this: Allocated<Self>,
@@ -164,30 +176,34 @@ extern_methods!(
 
         #[cfg(feature = "SCNScene")]
         /// Specifies the scene of the receiver
-        #[method_id(scene)]
+        #[method(scene)]
         #[unsafe(method_family = none)]
         pub unsafe fn scene(&self) -> Option<Retained<SCNScene>>;
 
         #[cfg(feature = "SCNScene")]
         /// Setter for [`scene`][Self::scene].
         #[method(setScene:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setScene(&self, scene: Option<&SCNScene>);
 
         /// When set to YES, the view continously redraw at the display link frame rate. When set to NO the view will only redraw when something change or animates in the receiver's scene. Defaults to NO.
         #[method(rendersContinuously)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rendersContinuously(&self) -> bool;
 
         /// Setter for [`rendersContinuously`][Self::rendersContinuously].
         #[method(setRendersContinuously:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRendersContinuously(&self, renders_continuously: bool);
 
         /// Specifies the background color of the receiver. Defaults to opaque white.
-        #[method_id(backgroundColor)]
+        #[method(backgroundColor)]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundColor(&self) -> Retained<NSColor>;
 
         /// Setter for [`backgroundColor`][Self::backgroundColor].
         #[method(setBackgroundColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColor(&self, background_color: &NSColor);
 
         /// A Boolean value that determines whether the user can manipulate the point of view used to render the scene.
@@ -204,16 +220,18 @@ extern_methods!(
         /// - pinch gesture (trackpad only) move the camera forward/backward
         /// - alt + pinch gesture (trackpad only) to zoom-in / zoom-out (change the field of view of the camera)
         #[method(allowsCameraControl)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowsCameraControl(&self) -> bool;
 
         /// Setter for [`allowsCameraControl`][Self::allowsCameraControl].
         #[method(setAllowsCameraControl:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAllowsCameraControl(&self, allows_camera_control: bool);
 
         /// An object describing the current configuration of the event handler which pilot the default camera controller.
         ///
         /// This object will be used to configure the event handler when allowCameraControl is set to YES.
-        #[method_id(cameraControlConfiguration)]
+        #[method(cameraControlConfiguration)]
         #[unsafe(method_family = none)]
         pub unsafe fn cameraControlConfiguration(
             &self,
@@ -221,14 +239,14 @@ extern_methods!(
 
         #[cfg(feature = "SCNCameraController")]
         /// Returns the default SCNCameraController used to drive the current point of view when allowCameraController is set to YES.
-        #[method_id(defaultCameraController)]
+        #[method(defaultCameraController)]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultCameraController(&self) -> Retained<SCNCameraController>;
 
         /// Draws the contents of the view and returns them as a new image object
         ///
         /// This method is thread-safe and may be called at any time.
-        #[method_id(snapshot)]
+        #[method(snapshot)]
         #[unsafe(method_family = none)]
         pub unsafe fn snapshot(&self) -> Retained<NSImage>;
 
@@ -238,6 +256,7 @@ extern_methods!(
         ///
         /// This method does not do anything if the scene is already playing.
         #[method(play:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn play(&self, sender: Option<&AnyObject>);
 
         /// This action method pauses the scene playback.
@@ -246,12 +265,14 @@ extern_methods!(
         ///
         /// This method does not do anything if the scene is already paused.
         #[method(pause:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pause(&self, sender: Option<&AnyObject>);
 
         /// This action method stops the scene playback and resets the current time to the start time of the scene.
         ///
         /// Parameter `sender`: The object (such as a button or menu item) sending the message to stop playing the scene.
         #[method(stop:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stop(&self, sender: Option<&AnyObject>);
 
         /// The rate you want the view to redraw its contents.
@@ -259,20 +280,24 @@ extern_methods!(
         /// When your application sets its preferred frame rate, the view chooses a frame rate as close to that as possible based on the capabilities of the screen the view is displayed on. The actual frame rate chosen is usually a factor of the maximum refresh rate of the screen to provide a consistent frame rate. For example, if the maximum refresh rate of the screen is 60 frames per second, that is also the highest frame rate the view sets as the actual frame rate. However, if you ask for a lower frame rate, it might choose 30, 20, 15 or some other factor to be the actual frame rate. Your application should choose a frame rate that it can consistently maintain.
         /// The default value is 0 which means the display link will fire at the native cadence of the display hardware.
         #[method(preferredFramesPerSecond)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preferredFramesPerSecond(&self) -> NSInteger;
 
         /// Setter for [`preferredFramesPerSecond`][Self::preferredFramesPerSecond].
         #[method(setPreferredFramesPerSecond:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreferredFramesPerSecond(&self, preferred_frames_per_second: NSInteger);
 
         /// Specifies whether the drawable is resized asynchonously during a live resize operation. Defaults to YES.
         ///
         /// If set to YES, the actual viewport size during a live resize can be retrieved using currentViewport (see SCNSceneRenderer.h)
         #[method(drawableResizesAsynchronously)]
+        #[unsafe(method_family = none)]
         pub unsafe fn drawableResizesAsynchronously(&self) -> bool;
 
         /// Setter for [`drawableResizesAsynchronously`][Self::drawableResizesAsynchronously].
         #[method(setDrawableResizesAsynchronously:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDrawableResizesAsynchronously(
             &self,
             drawable_resizes_asynchronously: bool,
@@ -281,11 +306,13 @@ extern_methods!(
         #[cfg(feature = "SCNSceneRenderer")]
         /// Defaults to SCNAntialiasingModeMultisampling4X on macOS and SCNAntialiasingModeNone on iOS.
         #[method(antialiasingMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn antialiasingMode(&self) -> SCNAntialiasingMode;
 
         #[cfg(feature = "SCNSceneRenderer")]
         /// Setter for [`antialiasingMode`][Self::antialiasingMode].
         #[method(setAntialiasingMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAntialiasingMode(&self, antialiasing_mode: SCNAntialiasingMode);
     }
 );
@@ -295,11 +322,11 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl SCNView {
-        #[method_id(initWithFrame:)]
+        #[method(initWithFrame:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -313,7 +340,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl SCNView {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -324,7 +351,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl SCNView {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

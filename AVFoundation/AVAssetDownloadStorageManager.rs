@@ -46,7 +46,7 @@ unsafe impl NSObjectProtocol for AVAssetDownloadStorageManager {}
 extern_methods!(
     unsafe impl AVAssetDownloadStorageManager {
         /// returns singleton instance.
-        #[method_id(sharedDownloadStorageManager)]
+        #[method(sharedDownloadStorageManager)]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedDownloadStorageManager() -> Retained<AVAssetDownloadStorageManager>;
 
@@ -54,6 +54,7 @@ extern_methods!(
         ///
         /// Parameter `downloadStorageURL`: The location of downloaded asset.
         #[method(setStorageManagementPolicy:forURL:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setStorageManagementPolicy_forURL(
             &self,
             storage_management_policy: &AVAssetDownloadStorageManagementPolicy,
@@ -64,7 +65,7 @@ extern_methods!(
         /// This may be nil if a storageManagementPolicy was never set on the downloaded asset.
         ///
         /// Parameter `downloadStorageURL`: The location of downloaded asset.
-        #[method_id(storageManagementPolicyForURL:)]
+        #[method(storageManagementPolicyForURL:)]
         #[unsafe(method_family = none)]
         pub unsafe fn storageManagementPolicyForURL(
             &self,
@@ -76,11 +77,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAssetDownloadStorageManager {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -109,11 +110,11 @@ unsafe impl NSObjectProtocol for AVAssetDownloadStorageManagementPolicy {}
 
 extern_methods!(
     unsafe impl AVAssetDownloadStorageManagementPolicy {
-        #[method_id(priority)]
+        #[method(priority)]
         #[unsafe(method_family = none)]
         pub unsafe fn priority(&self) -> Retained<AVAssetDownloadedAssetEvictionPriority>;
 
-        #[method_id(expirationDate)]
+        #[method(expirationDate)]
         #[unsafe(method_family = none)]
         pub unsafe fn expirationDate(&self) -> Retained<NSDate>;
     }
@@ -122,11 +123,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAssetDownloadStorageManagementPolicy {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -160,20 +161,22 @@ unsafe impl NSObjectProtocol for AVMutableAssetDownloadStorageManagementPolicy {
 
 extern_methods!(
     unsafe impl AVMutableAssetDownloadStorageManagementPolicy {
-        #[method_id(priority)]
+        #[method(priority)]
         #[unsafe(method_family = none)]
         pub unsafe fn priority(&self) -> Retained<AVAssetDownloadedAssetEvictionPriority>;
 
         /// Setter for [`priority`][Self::priority].
         #[method(setPriority:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPriority(&self, priority: &AVAssetDownloadedAssetEvictionPriority);
 
-        #[method_id(expirationDate)]
+        #[method(expirationDate)]
         #[unsafe(method_family = none)]
         pub unsafe fn expirationDate(&self) -> Retained<NSDate>;
 
         /// Setter for [`expirationDate`][Self::expirationDate].
         #[method(setExpirationDate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setExpirationDate(&self, expiration_date: &NSDate);
     }
 );
@@ -181,11 +184,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVMutableAssetDownloadStorageManagementPolicy {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -31,11 +31,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNPhysicsBehavior {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -63,7 +63,7 @@ extern_methods!(
             feature = "SceneKitTypes",
             feature = "objc2-core-foundation"
         ))]
-        #[method_id(jointWithBodyA:axisA:anchorA:bodyB:axisB:anchorB:)]
+        #[method(jointWithBodyA:axisA:anchorA:bodyB:axisB:anchorB:)]
         #[unsafe(method_family = none)]
         pub unsafe fn jointWithBodyA_axisA_anchorA_bodyB_axisB_anchorB(
             body_a: &SCNPhysicsBody,
@@ -79,7 +79,7 @@ extern_methods!(
             feature = "SceneKitTypes",
             feature = "objc2-core-foundation"
         ))]
-        #[method_id(jointWithBody:axis:anchor:)]
+        #[method(jointWithBody:axis:anchor:)]
         #[unsafe(method_family = none)]
         pub unsafe fn jointWithBody_axis_anchor(
             body: &SCNPhysicsBody,
@@ -88,49 +88,57 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "SCNPhysicsBody")]
-        #[method_id(bodyA)]
+        #[method(bodyA)]
         #[unsafe(method_family = none)]
         pub unsafe fn bodyA(&self) -> Retained<SCNPhysicsBody>;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         #[method(axisA)]
+        #[unsafe(method_family = none)]
         pub unsafe fn axisA(&self) -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Setter for [`axisA`][Self::axisA].
         #[method(setAxisA:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAxisA(&self, axis_a: SCNVector3);
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         #[method(anchorA)]
+        #[unsafe(method_family = none)]
         pub unsafe fn anchorA(&self) -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Setter for [`anchorA`][Self::anchorA].
         #[method(setAnchorA:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAnchorA(&self, anchor_a: SCNVector3);
 
         #[cfg(feature = "SCNPhysicsBody")]
-        #[method_id(bodyB)]
+        #[method(bodyB)]
         #[unsafe(method_family = none)]
         pub unsafe fn bodyB(&self) -> Option<Retained<SCNPhysicsBody>>;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         #[method(axisB)]
+        #[unsafe(method_family = none)]
         pub unsafe fn axisB(&self) -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Setter for [`axisB`][Self::axisB].
         #[method(setAxisB:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAxisB(&self, axis_b: SCNVector3);
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         #[method(anchorB)]
+        #[unsafe(method_family = none)]
         pub unsafe fn anchorB(&self) -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Setter for [`anchorB`][Self::anchorB].
         #[method(setAnchorB:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAnchorB(&self, anchor_b: SCNVector3);
     }
 );
@@ -138,11 +146,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNPhysicsHingeJoint {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -170,7 +178,7 @@ extern_methods!(
             feature = "SceneKitTypes",
             feature = "objc2-core-foundation"
         ))]
-        #[method_id(jointWithBodyA:anchorA:bodyB:anchorB:)]
+        #[method(jointWithBodyA:anchorA:bodyB:anchorB:)]
         #[unsafe(method_family = none)]
         pub unsafe fn jointWithBodyA_anchorA_bodyB_anchorB(
             body_a: &SCNPhysicsBody,
@@ -184,7 +192,7 @@ extern_methods!(
             feature = "SceneKitTypes",
             feature = "objc2-core-foundation"
         ))]
-        #[method_id(jointWithBody:anchor:)]
+        #[method(jointWithBody:anchor:)]
         #[unsafe(method_family = none)]
         pub unsafe fn jointWithBody_anchor(
             body: &SCNPhysicsBody,
@@ -192,31 +200,35 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "SCNPhysicsBody")]
-        #[method_id(bodyA)]
+        #[method(bodyA)]
         #[unsafe(method_family = none)]
         pub unsafe fn bodyA(&self) -> Retained<SCNPhysicsBody>;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         #[method(anchorA)]
+        #[unsafe(method_family = none)]
         pub unsafe fn anchorA(&self) -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Setter for [`anchorA`][Self::anchorA].
         #[method(setAnchorA:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAnchorA(&self, anchor_a: SCNVector3);
 
         #[cfg(feature = "SCNPhysicsBody")]
-        #[method_id(bodyB)]
+        #[method(bodyB)]
         #[unsafe(method_family = none)]
         pub unsafe fn bodyB(&self) -> Option<Retained<SCNPhysicsBody>>;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         #[method(anchorB)]
+        #[unsafe(method_family = none)]
         pub unsafe fn anchorB(&self) -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Setter for [`anchorB`][Self::anchorB].
         #[method(setAnchorB:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAnchorB(&self, anchor_b: SCNVector3);
     }
 );
@@ -224,11 +236,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNPhysicsBallSocketJoint {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -256,7 +268,7 @@ extern_methods!(
             feature = "SceneKitTypes",
             feature = "objc2-core-foundation"
         ))]
-        #[method_id(jointWithBodyA:axisA:anchorA:bodyB:axisB:anchorB:)]
+        #[method(jointWithBodyA:axisA:anchorA:bodyB:axisB:anchorB:)]
         #[unsafe(method_family = none)]
         pub unsafe fn jointWithBodyA_axisA_anchorA_bodyB_axisB_anchorB(
             body_a: &SCNPhysicsBody,
@@ -272,7 +284,7 @@ extern_methods!(
             feature = "SceneKitTypes",
             feature = "objc2-core-foundation"
         ))]
-        #[method_id(jointWithBody:axis:anchor:)]
+        #[method(jointWithBody:axis:anchor:)]
         #[unsafe(method_family = none)]
         pub unsafe fn jointWithBody_axis_anchor(
             body: &SCNPhysicsBody,
@@ -281,121 +293,145 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "SCNPhysicsBody")]
-        #[method_id(bodyA)]
+        #[method(bodyA)]
         #[unsafe(method_family = none)]
         pub unsafe fn bodyA(&self) -> Retained<SCNPhysicsBody>;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         #[method(axisA)]
+        #[unsafe(method_family = none)]
         pub unsafe fn axisA(&self) -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Setter for [`axisA`][Self::axisA].
         #[method(setAxisA:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAxisA(&self, axis_a: SCNVector3);
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         #[method(anchorA)]
+        #[unsafe(method_family = none)]
         pub unsafe fn anchorA(&self) -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Setter for [`anchorA`][Self::anchorA].
         #[method(setAnchorA:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAnchorA(&self, anchor_a: SCNVector3);
 
         #[cfg(feature = "SCNPhysicsBody")]
-        #[method_id(bodyB)]
+        #[method(bodyB)]
         #[unsafe(method_family = none)]
         pub unsafe fn bodyB(&self) -> Option<Retained<SCNPhysicsBody>>;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         #[method(axisB)]
+        #[unsafe(method_family = none)]
         pub unsafe fn axisB(&self) -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Setter for [`axisB`][Self::axisB].
         #[method(setAxisB:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAxisB(&self, axis_b: SCNVector3);
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         #[method(anchorB)]
+        #[unsafe(method_family = none)]
         pub unsafe fn anchorB(&self) -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Setter for [`anchorB`][Self::anchorB].
         #[method(setAnchorB:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAnchorB(&self, anchor_b: SCNVector3);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(minimumLinearLimit)]
+        #[unsafe(method_family = none)]
         pub unsafe fn minimumLinearLimit(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`minimumLinearLimit`][Self::minimumLinearLimit].
         #[method(setMinimumLinearLimit:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMinimumLinearLimit(&self, minimum_linear_limit: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(maximumLinearLimit)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maximumLinearLimit(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`maximumLinearLimit`][Self::maximumLinearLimit].
         #[method(setMaximumLinearLimit:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMaximumLinearLimit(&self, maximum_linear_limit: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(minimumAngularLimit)]
+        #[unsafe(method_family = none)]
         pub unsafe fn minimumAngularLimit(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`minimumAngularLimit`][Self::minimumAngularLimit].
         #[method(setMinimumAngularLimit:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMinimumAngularLimit(&self, minimum_angular_limit: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(maximumAngularLimit)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maximumAngularLimit(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`maximumAngularLimit`][Self::maximumAngularLimit].
         #[method(setMaximumAngularLimit:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMaximumAngularLimit(&self, maximum_angular_limit: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(motorTargetLinearVelocity)]
+        #[unsafe(method_family = none)]
         pub unsafe fn motorTargetLinearVelocity(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`motorTargetLinearVelocity`][Self::motorTargetLinearVelocity].
         #[method(setMotorTargetLinearVelocity:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMotorTargetLinearVelocity(&self, motor_target_linear_velocity: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(motorMaximumForce)]
+        #[unsafe(method_family = none)]
         pub unsafe fn motorMaximumForce(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`motorMaximumForce`][Self::motorMaximumForce].
         #[method(setMotorMaximumForce:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMotorMaximumForce(&self, motor_maximum_force: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(motorTargetAngularVelocity)]
+        #[unsafe(method_family = none)]
         pub unsafe fn motorTargetAngularVelocity(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`motorTargetAngularVelocity`][Self::motorTargetAngularVelocity].
         #[method(setMotorTargetAngularVelocity:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMotorTargetAngularVelocity(&self, motor_target_angular_velocity: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(motorMaximumTorque)]
+        #[unsafe(method_family = none)]
         pub unsafe fn motorMaximumTorque(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`motorMaximumTorque`][Self::motorMaximumTorque].
         #[method(setMotorMaximumTorque:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMotorMaximumTorque(&self, motor_maximum_torque: CGFloat);
     }
 );
@@ -403,11 +439,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNPhysicsSliderJoint {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -434,7 +470,7 @@ extern_methods!(
             feature = "objc2-quartz-core"
         ))]
         #[cfg(not(target_os = "watchos"))]
-        #[method_id(jointWithBodyA:frameA:bodyB:frameB:)]
+        #[method(jointWithBodyA:frameA:bodyB:frameB:)]
         #[unsafe(method_family = none)]
         pub unsafe fn jointWithBodyA_frameA_bodyB_frameB(
             body_a: &SCNPhysicsBody,
@@ -449,7 +485,7 @@ extern_methods!(
             feature = "objc2-quartz-core"
         ))]
         #[cfg(not(target_os = "watchos"))]
-        #[method_id(jointWithBody:frame:)]
+        #[method(jointWithBody:frame:)]
         #[unsafe(method_family = none)]
         pub unsafe fn jointWithBody_frame(
             body: &SCNPhysicsBody,
@@ -457,62 +493,72 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "SCNPhysicsBody")]
-        #[method_id(bodyA)]
+        #[method(bodyA)]
         #[unsafe(method_family = none)]
         pub unsafe fn bodyA(&self) -> Retained<SCNPhysicsBody>;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-quartz-core"))]
         #[cfg(not(target_os = "watchos"))]
         #[method(frameA)]
+        #[unsafe(method_family = none)]
         pub unsafe fn frameA(&self) -> SCNMatrix4;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-quartz-core"))]
         #[cfg(not(target_os = "watchos"))]
         /// Setter for [`frameA`][Self::frameA].
         #[method(setFrameA:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFrameA(&self, frame_a: SCNMatrix4);
 
         #[cfg(feature = "SCNPhysicsBody")]
-        #[method_id(bodyB)]
+        #[method(bodyB)]
         #[unsafe(method_family = none)]
         pub unsafe fn bodyB(&self) -> Option<Retained<SCNPhysicsBody>>;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-quartz-core"))]
         #[cfg(not(target_os = "watchos"))]
         #[method(frameB)]
+        #[unsafe(method_family = none)]
         pub unsafe fn frameB(&self) -> SCNMatrix4;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-quartz-core"))]
         #[cfg(not(target_os = "watchos"))]
         /// Setter for [`frameB`][Self::frameB].
         #[method(setFrameB:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFrameB(&self, frame_b: SCNMatrix4);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(maximumAngularLimit1)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maximumAngularLimit1(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`maximumAngularLimit1`][Self::maximumAngularLimit1].
         #[method(setMaximumAngularLimit1:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMaximumAngularLimit1(&self, maximum_angular_limit1: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(maximumAngularLimit2)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maximumAngularLimit2(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`maximumAngularLimit2`][Self::maximumAngularLimit2].
         #[method(setMaximumAngularLimit2:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMaximumAngularLimit2(&self, maximum_angular_limit2: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(maximumTwistAngle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maximumTwistAngle(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`maximumTwistAngle`][Self::maximumTwistAngle].
         #[method(setMaximumTwistAngle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMaximumTwistAngle(&self, maximum_twist_angle: CGFloat);
     }
 );
@@ -520,11 +566,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNPhysicsConeTwistJoint {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -554,112 +600,134 @@ unsafe impl NSSecureCoding for SCNPhysicsVehicleWheel {}
 extern_methods!(
     unsafe impl SCNPhysicsVehicleWheel {
         #[cfg(feature = "SCNNode")]
-        #[method_id(wheelWithNode:)]
+        #[method(wheelWithNode:)]
         #[unsafe(method_family = none)]
         pub unsafe fn wheelWithNode(node: &SCNNode) -> Retained<Self>;
 
         #[cfg(feature = "SCNNode")]
-        #[method_id(node)]
+        #[method(node)]
         #[unsafe(method_family = none)]
         pub unsafe fn node(&self) -> Retained<SCNNode>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(suspensionStiffness)]
+        #[unsafe(method_family = none)]
         pub unsafe fn suspensionStiffness(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`suspensionStiffness`][Self::suspensionStiffness].
         #[method(setSuspensionStiffness:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSuspensionStiffness(&self, suspension_stiffness: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(suspensionCompression)]
+        #[unsafe(method_family = none)]
         pub unsafe fn suspensionCompression(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`suspensionCompression`][Self::suspensionCompression].
         #[method(setSuspensionCompression:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSuspensionCompression(&self, suspension_compression: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(suspensionDamping)]
+        #[unsafe(method_family = none)]
         pub unsafe fn suspensionDamping(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`suspensionDamping`][Self::suspensionDamping].
         #[method(setSuspensionDamping:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSuspensionDamping(&self, suspension_damping: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(maximumSuspensionTravel)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maximumSuspensionTravel(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`maximumSuspensionTravel`][Self::maximumSuspensionTravel].
         #[method(setMaximumSuspensionTravel:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMaximumSuspensionTravel(&self, maximum_suspension_travel: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(frictionSlip)]
+        #[unsafe(method_family = none)]
         pub unsafe fn frictionSlip(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`frictionSlip`][Self::frictionSlip].
         #[method(setFrictionSlip:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFrictionSlip(&self, friction_slip: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(maximumSuspensionForce)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maximumSuspensionForce(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`maximumSuspensionForce`][Self::maximumSuspensionForce].
         #[method(setMaximumSuspensionForce:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMaximumSuspensionForce(&self, maximum_suspension_force: CGFloat);
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         #[method(connectionPosition)]
+        #[unsafe(method_family = none)]
         pub unsafe fn connectionPosition(&self) -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Setter for [`connectionPosition`][Self::connectionPosition].
         #[method(setConnectionPosition:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setConnectionPosition(&self, connection_position: SCNVector3);
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         #[method(steeringAxis)]
+        #[unsafe(method_family = none)]
         pub unsafe fn steeringAxis(&self) -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Setter for [`steeringAxis`][Self::steeringAxis].
         #[method(setSteeringAxis:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSteeringAxis(&self, steering_axis: SCNVector3);
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         #[method(axle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn axle(&self) -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Setter for [`axle`][Self::axle].
         #[method(setAxle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAxle(&self, axle: SCNVector3);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(radius)]
+        #[unsafe(method_family = none)]
         pub unsafe fn radius(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`radius`][Self::radius].
         #[method(setRadius:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRadius(&self, radius: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(suspensionRestLength)]
+        #[unsafe(method_family = none)]
         pub unsafe fn suspensionRestLength(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`suspensionRestLength`][Self::suspensionRestLength].
         #[method(setSuspensionRestLength:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSuspensionRestLength(&self, suspension_rest_length: CGFloat);
     }
 );
@@ -667,11 +735,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNPhysicsVehicleWheel {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -695,7 +763,7 @@ unsafe impl NSSecureCoding for SCNPhysicsVehicle {}
 extern_methods!(
     unsafe impl SCNPhysicsVehicle {
         #[cfg(feature = "SCNPhysicsBody")]
-        #[method_id(vehicleWithChassisBody:wheels:)]
+        #[method(vehicleWithChassisBody:wheels:)]
         #[unsafe(method_family = none)]
         pub unsafe fn vehicleWithChassisBody_wheels(
             chassis_body: &SCNPhysicsBody,
@@ -704,27 +772,31 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(speedInKilometersPerHour)]
+        #[unsafe(method_family = none)]
         pub unsafe fn speedInKilometersPerHour(&self) -> CGFloat;
 
-        #[method_id(wheels)]
+        #[method(wheels)]
         #[unsafe(method_family = none)]
         pub unsafe fn wheels(&self) -> Retained<NSArray<SCNPhysicsVehicleWheel>>;
 
         #[cfg(feature = "SCNPhysicsBody")]
-        #[method_id(chassisBody)]
+        #[method(chassisBody)]
         #[unsafe(method_family = none)]
         pub unsafe fn chassisBody(&self) -> Retained<SCNPhysicsBody>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(applyEngineForce:forWheelAtIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn applyEngineForce_forWheelAtIndex(&self, value: CGFloat, index: NSInteger);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(setSteeringAngle:forWheelAtIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSteeringAngle_forWheelAtIndex(&self, value: CGFloat, index: NSInteger);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(applyBrakingForce:forWheelAtIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn applyBrakingForce_forWheelAtIndex(&self, value: CGFloat, index: NSInteger);
     }
 );
@@ -732,11 +804,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNPhysicsVehicle {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

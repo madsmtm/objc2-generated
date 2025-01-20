@@ -19,7 +19,7 @@ unsafe impl NSObjectProtocol for ASAuthorizationProviderExtensionAuthorizationRe
 extern_methods!(
     unsafe impl ASAuthorizationProviderExtensionAuthorizationResult {
         /// Authorization succeeded with an authorization tokens stored in HTTP headers.
-        #[method_id(initWithHTTPAuthorizationHeaders:)]
+        #[method(initWithHTTPAuthorizationHeaders:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithHTTPAuthorizationHeaders(
             this: Allocated<Self>,
@@ -27,7 +27,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Authorization succeeded with a HTTP response.
-        #[method_id(initWithHTTPResponse:httpBody:)]
+        #[method(initWithHTTPResponse:httpBody:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithHTTPResponse_httpBody(
             this: Allocated<Self>,
@@ -36,7 +36,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// HTTP extra headers for addition with credentials.
-        #[method_id(httpAuthorizationHeaders)]
+        #[method(httpAuthorizationHeaders)]
         #[unsafe(method_family = none)]
         pub unsafe fn httpAuthorizationHeaders(
             &self,
@@ -44,36 +44,40 @@ extern_methods!(
 
         /// Setter for [`httpAuthorizationHeaders`][Self::httpAuthorizationHeaders].
         #[method(setHttpAuthorizationHeaders:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setHttpAuthorizationHeaders(
             &self,
             http_authorization_headers: Option<&NSDictionary<NSString, NSString>>,
         );
 
         /// HTTP response for OAUth and SAML based authentications.
-        #[method_id(httpResponse)]
+        #[method(httpResponse)]
         #[unsafe(method_family = none)]
         pub unsafe fn httpResponse(&self) -> Option<Retained<NSHTTPURLResponse>>;
 
         /// Setter for [`httpResponse`][Self::httpResponse].
         #[method(setHttpResponse:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setHttpResponse(&self, http_response: Option<&NSHTTPURLResponse>);
 
         /// HTTP response body for OAUth and SAML based authentications.
-        #[method_id(httpBody)]
+        #[method(httpBody)]
         #[unsafe(method_family = none)]
         pub unsafe fn httpBody(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`httpBody`][Self::httpBody].
         #[method(setHttpBody:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setHttpBody(&self, http_body: Option<&NSData>);
 
         /// Private SecKeys.
-        #[method_id(privateKeys)]
+        #[method(privateKeys)]
         #[unsafe(method_family = none)]
         pub unsafe fn privateKeys(&self) -> Retained<NSArray>;
 
         /// Setter for [`privateKeys`][Self::privateKeys].
         #[method(setPrivateKeys:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPrivateKeys(&self, private_keys: &NSArray);
     }
 );
@@ -81,11 +85,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASAuthorizationProviderExtensionAuthorizationResult {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

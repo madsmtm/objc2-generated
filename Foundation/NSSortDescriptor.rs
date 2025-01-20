@@ -32,7 +32,7 @@ unsafe impl NSSecureCoding for NSSortDescriptor {}
 extern_methods!(
     unsafe impl NSSortDescriptor {
         #[cfg(feature = "NSString")]
-        #[method_id(sortDescriptorWithKey:ascending:)]
+        #[method(sortDescriptorWithKey:ascending:)]
         #[unsafe(method_family = none)]
         pub unsafe fn sortDescriptorWithKey_ascending(
             key: Option<&NSString>,
@@ -40,7 +40,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(sortDescriptorWithKey:ascending:selector:)]
+        #[method(sortDescriptorWithKey:ascending:selector:)]
         #[unsafe(method_family = none)]
         pub unsafe fn sortDescriptorWithKey_ascending_selector(
             key: Option<&NSString>,
@@ -49,7 +49,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(initWithKey:ascending:)]
+        #[method(initWithKey:ascending:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithKey_ascending(
             this: Allocated<Self>,
@@ -58,7 +58,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(initWithKey:ascending:selector:)]
+        #[method(initWithKey:ascending:selector:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithKey_ascending_selector(
             this: Allocated<Self>,
@@ -68,7 +68,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -76,21 +76,24 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(key)]
+        #[method(key)]
         #[unsafe(method_family = none)]
         pub unsafe fn key(&self) -> Option<Retained<NSString>>;
 
         #[method(ascending)]
+        #[unsafe(method_family = none)]
         pub unsafe fn ascending(&self) -> bool;
 
         #[method(selector)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selector(&self) -> Option<Sel>;
 
         #[method(allowEvaluation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowEvaluation(&self);
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSString", feature = "block2"))]
-        #[method_id(sortDescriptorWithKey:ascending:comparator:)]
+        #[method(sortDescriptorWithKey:ascending:comparator:)]
         #[unsafe(method_family = none)]
         pub unsafe fn sortDescriptorWithKey_ascending_comparator(
             key: Option<&NSString>,
@@ -99,7 +102,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSString", feature = "block2"))]
-        #[method_id(initWithKey:ascending:comparator:)]
+        #[method(initWithKey:ascending:comparator:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithKey_ascending_comparator(
             this: Allocated<Self>,
@@ -110,17 +113,19 @@ extern_methods!(
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "block2"))]
         #[method(comparator)]
+        #[unsafe(method_family = none)]
         pub unsafe fn comparator(&self) -> NSComparator;
 
         #[cfg(feature = "NSObjCRuntime")]
         #[method(compareObject:toObject:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn compareObject_toObject(
             &self,
             object1: &AnyObject,
             object2: &AnyObject,
         ) -> NSComparisonResult;
 
-        #[method_id(reversedSortDescriptor)]
+        #[method(reversedSortDescriptor)]
         #[unsafe(method_family = none)]
         pub unsafe fn reversedSortDescriptor(&self) -> Retained<AnyObject>;
     }
@@ -129,11 +134,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSSortDescriptor {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -144,7 +149,7 @@ extern_methods!(
     #[cfg(feature = "NSSet")]
     unsafe impl<ObjectType: Message> NSSet<ObjectType> {
         #[cfg(feature = "NSArray")]
-        #[method_id(sortedArrayUsingDescriptors:)]
+        #[method(sortedArrayUsingDescriptors:)]
         #[unsafe(method_family = none)]
         pub unsafe fn sortedArrayUsingDescriptors(
             &self,
@@ -157,7 +162,7 @@ extern_methods!(
     /// NSSortDescriptorSorting
     #[cfg(feature = "NSArray")]
     unsafe impl<ObjectType: Message> NSArray<ObjectType> {
-        #[method_id(sortedArrayUsingDescriptors:)]
+        #[method(sortedArrayUsingDescriptors:)]
         #[unsafe(method_family = none)]
         pub unsafe fn sortedArrayUsingDescriptors(
             &self,
@@ -171,6 +176,7 @@ extern_methods!(
     #[cfg(feature = "NSArray")]
     unsafe impl<ObjectType: Message> NSMutableArray<ObjectType> {
         #[method(sortUsingDescriptors:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sortUsingDescriptors(&self, sort_descriptors: &NSArray<NSSortDescriptor>);
     }
 );
@@ -180,7 +186,7 @@ extern_methods!(
     #[cfg(feature = "NSOrderedSet")]
     unsafe impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         #[cfg(feature = "NSArray")]
-        #[method_id(sortedArrayUsingDescriptors:)]
+        #[method(sortedArrayUsingDescriptors:)]
         #[unsafe(method_family = none)]
         pub unsafe fn sortedArrayUsingDescriptors(
             &self,
@@ -195,6 +201,7 @@ extern_methods!(
     unsafe impl<ObjectType: Message> NSMutableOrderedSet<ObjectType> {
         #[cfg(feature = "NSArray")]
         #[method(sortUsingDescriptors:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sortUsingDescriptors(&self, sort_descriptors: &NSArray<NSSortDescriptor>);
     }
 );

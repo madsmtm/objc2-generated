@@ -32,23 +32,23 @@ unsafe impl NSSecureCoding for CNSocialProfile {}
 
 extern_methods!(
     unsafe impl CNSocialProfile {
-        #[method_id(urlString)]
+        #[method(urlString)]
         #[unsafe(method_family = none)]
         pub unsafe fn urlString(&self) -> Retained<NSString>;
 
-        #[method_id(username)]
+        #[method(username)]
         #[unsafe(method_family = none)]
         pub unsafe fn username(&self) -> Retained<NSString>;
 
-        #[method_id(userIdentifier)]
+        #[method(userIdentifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn userIdentifier(&self) -> Retained<NSString>;
 
-        #[method_id(service)]
+        #[method(service)]
         #[unsafe(method_family = none)]
         pub unsafe fn service(&self) -> Retained<NSString>;
 
-        #[method_id(initWithUrlString:username:userIdentifier:service:)]
+        #[method(initWithUrlString:username:userIdentifier:service:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithUrlString_username_userIdentifier_service(
             this: Allocated<Self>,
@@ -59,12 +59,12 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Returns a user displayable property name.
-        #[method_id(localizedStringForKey:)]
+        #[method(localizedStringForKey:)]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedStringForKey(key: &NSString) -> Retained<NSString>;
 
         /// Returns a user displayable service name.
-        #[method_id(localizedStringForService:)]
+        #[method(localizedStringForService:)]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedStringForService(service: &NSString) -> Retained<NSString>;
     }
@@ -73,11 +73,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CNSocialProfile {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -17,36 +17,43 @@ unsafe impl NSObjectProtocol for WKCrownSequencer {}
 
 extern_methods!(
     unsafe impl WKCrownSequencer {
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn WKCrownDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn WKCrownDelegate>>);
 
         #[method(rotationsPerSecond)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rotationsPerSecond(&self) -> c_double;
 
         #[method(isIdle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isIdle(&self) -> bool;
 
         #[method(isHapticFeedbackEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isHapticFeedbackEnabled(&self) -> bool;
 
         /// Setter for [`isHapticFeedbackEnabled`][Self::isHapticFeedbackEnabled].
         #[method(setHapticFeedbackEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setHapticFeedbackEnabled(&self, haptic_feedback_enabled: bool);
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(focus)]
+        #[unsafe(method_family = none)]
         pub unsafe fn focus(&self);
 
         #[method(resignFocus)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resignFocus(&self);
     }
 );
@@ -54,7 +61,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKCrownSequencer {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -65,6 +72,7 @@ extern_protocol!(
     pub unsafe trait WKCrownDelegate: NSObjectProtocol {
         #[optional]
         #[method(crownDidRotate:rotationalDelta:)]
+        #[unsafe(method_family = none)]
         unsafe fn crownDidRotate_rotationalDelta(
             &self,
             crown_sequencer: Option<&WKCrownSequencer>,
@@ -73,6 +81,7 @@ extern_protocol!(
 
         #[optional]
         #[method(crownDidBecomeIdle:)]
+        #[unsafe(method_family = none)]
         unsafe fn crownDidBecomeIdle(&self, crown_sequencer: Option<&WKCrownSequencer>);
     }
 );

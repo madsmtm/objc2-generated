@@ -34,29 +34,36 @@ extern_methods!(
     unsafe impl CATiledLayer {
         #[cfg(feature = "objc2-core-foundation")]
         #[method(fadeDuration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fadeDuration() -> CFTimeInterval;
 
         #[method(levelsOfDetail)]
+        #[unsafe(method_family = none)]
         pub unsafe fn levelsOfDetail(&self) -> usize;
 
         /// Setter for [`levelsOfDetail`][Self::levelsOfDetail].
         #[method(setLevelsOfDetail:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLevelsOfDetail(&self, levels_of_detail: usize);
 
         #[method(levelsOfDetailBias)]
+        #[unsafe(method_family = none)]
         pub unsafe fn levelsOfDetailBias(&self) -> usize;
 
         /// Setter for [`levelsOfDetailBias`][Self::levelsOfDetailBias].
         #[method(setLevelsOfDetailBias:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLevelsOfDetailBias(&self, levels_of_detail_bias: usize);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(tileSize)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tileSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`tileSize`][Self::tileSize].
         #[method(setTileSize:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTileSize(&self, tile_size: CGSize);
     }
 );
@@ -66,15 +73,15 @@ extern_methods!(
     #[cfg(feature = "CALayer")]
     unsafe impl CATiledLayer {
         /// Layer creation and initialization. *
-        #[method_id(layer)]
+        #[method(layer)]
         #[unsafe(method_family = none)]
         pub unsafe fn layer() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(initWithLayer:)]
+        #[method(initWithLayer:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
     }
@@ -84,7 +91,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CALayer")]
     unsafe impl CATiledLayer {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

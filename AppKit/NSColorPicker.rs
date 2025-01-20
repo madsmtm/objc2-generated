@@ -28,7 +28,7 @@ extern_methods!(
             feature = "NSResponder",
             feature = "NSWindow"
         ))]
-        #[method_id(initWithPickerMask:colorPanel:)]
+        #[method(initWithPickerMask:colorPanel:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPickerMask_colorPanel(
             this: Allocated<Self>,
@@ -42,12 +42,12 @@ extern_methods!(
             feature = "NSResponder",
             feature = "NSWindow"
         ))]
-        #[method_id(colorPanel)]
+        #[method(colorPanel)]
         #[unsafe(method_family = none)]
         pub unsafe fn colorPanel(&self) -> Retained<NSColorPanel>;
 
         #[cfg(feature = "NSImage")]
-        #[method_id(provideNewButtonImage)]
+        #[method(provideNewButtonImage)]
         #[unsafe(method_family = none)]
         pub unsafe fn provideNewButtonImage(&self) -> Retained<NSImage>;
 
@@ -58,6 +58,7 @@ extern_methods!(
             feature = "NSImage"
         ))]
         #[method(insertNewButtonImage:in:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn insertNewButtonImage_in(
             &self,
             new_button_image: &NSImage,
@@ -65,25 +66,30 @@ extern_methods!(
         );
 
         #[method(viewSizeChanged:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn viewSizeChanged(&self, sender: Option<&AnyObject>);
 
         #[cfg(feature = "NSColorList")]
         #[method(attachColorList:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn attachColorList(&self, color_list: &NSColorList);
 
         #[cfg(feature = "NSColorList")]
         #[method(detachColorList:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn detachColorList(&self, color_list: &NSColorList);
 
         #[cfg(feature = "NSColorPanel")]
         #[method(setMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMode(&self, mode: NSColorPanelMode);
 
-        #[method_id(buttonToolTip)]
+        #[method(buttonToolTip)]
         #[unsafe(method_family = none)]
         pub unsafe fn buttonToolTip(&self) -> Retained<NSString>;
 
         #[method(minContentSize)]
+        #[unsafe(method_family = none)]
         pub unsafe fn minContentSize(&self) -> NSSize;
     }
 );
@@ -91,11 +97,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSColorPicker {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

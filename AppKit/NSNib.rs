@@ -22,7 +22,7 @@ unsafe impl NSObjectProtocol for NSNib {}
 
 extern_methods!(
     unsafe impl NSNib {
-        #[method_id(initWithNibNamed:bundle:)]
+        #[method(initWithNibNamed:bundle:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibNamed_bundle(
             this: Allocated<Self>,
@@ -30,7 +30,7 @@ extern_methods!(
             bundle: Option<&NSBundle>,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(initWithNibData:bundle:)]
+        #[method(initWithNibData:bundle:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibData_bundle(
             this: Allocated<Self>,
@@ -43,11 +43,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSNib {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -57,7 +57,7 @@ extern_methods!(
     /// NSDeprecated
     unsafe impl NSNib {
         #[deprecated]
-        #[method_id(initWithContentsOfURL:)]
+        #[method(initWithContentsOfURL:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfURL(
             this: Allocated<Self>,
@@ -66,6 +66,7 @@ extern_methods!(
 
         #[deprecated]
         #[method(instantiateNibWithExternalNameTable:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn instantiateNibWithExternalNameTable(
             &self,
             external_name_table: Option<&NSDictionary>,
@@ -73,6 +74,7 @@ extern_methods!(
 
         #[deprecated]
         #[method(instantiateNibWithOwner:topLevelObjects:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn instantiateNibWithOwner_topLevelObjects(
             &self,
             owner: Option<&AnyObject>,

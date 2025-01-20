@@ -24,11 +24,12 @@ extern_methods!(
         /// sets the RNG seed. The seed should be of type long int.
         #[deprecated]
         #[method(setRNGSeedTo:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRNGSeedTo(seed: &NSNumber);
 
         /// gets the RNG seed value. If the value is not set it would return nil
         #[deprecated]
-        #[method_id(getRNGseed)]
+        #[method(getRNGseed)]
         #[unsafe(method_family = none)]
         pub unsafe fn getRNGseed() -> Option<Retained<NSNumber>>;
     }
@@ -37,11 +38,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MLCPlatform {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

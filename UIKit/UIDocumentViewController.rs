@@ -52,7 +52,7 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIDocumentViewController {
         #[cfg(feature = "UIDocument")]
-        #[method_id(initWithDocument:)]
+        #[method(initWithDocument:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDocument(
             this: Allocated<Self>,
@@ -60,24 +60,26 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "UIDocument")]
-        #[method_id(document)]
+        #[method(document)]
         #[unsafe(method_family = none)]
         pub unsafe fn document(&self) -> Option<Retained<UIDocument>>;
 
         #[cfg(feature = "UIDocument")]
         /// Setter for [`document`][Self::document].
         #[method(setDocument:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDocument(&self, document: Option<&UIDocument>);
 
         #[cfg(feature = "UIDocumentViewControllerLaunchOptions")]
         /// Properties to configure the view controller when no document is open.
-        #[method_id(launchOptions)]
+        #[method(launchOptions)]
         #[unsafe(method_family = none)]
         pub unsafe fn launchOptions(&self) -> Retained<UIDocumentViewControllerLaunchOptions>;
 
         #[cfg(feature = "UIDocumentViewControllerLaunchOptions")]
         /// Setter for [`launchOptions`][Self::launchOptions].
         #[method(setLaunchOptions:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLaunchOptions(
             &self,
             launch_options: &UIDocumentViewControllerLaunchOptions,
@@ -85,6 +87,7 @@ extern_methods!(
 
         /// When this view controller updates its navigation item, this method will be called, allowing subclasses to apply any kind of customization you might want.
         #[method(navigationItemDidUpdate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn navigationItemDidUpdate(&self);
 
         #[cfg(feature = "block2")]
@@ -92,6 +95,7 @@ extern_methods!(
         /// This method is optional. If the document is not opened by the time the view controller becomes visible, the view controller will take care of opening the document.
         /// If the document is already opened, the completion handler will be called as if opening the document succeeded.
         #[method(openDocumentWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn openDocumentWithCompletionHandler(
             &self,
             completion_handler: &block2::Block<dyn Fn(Bool)>,
@@ -100,11 +104,12 @@ extern_methods!(
         /// Notifies subclasses that the specified document was opened. This method will be called by the system after
         /// opening the document initially or after the presented document was changed.
         #[method(documentDidOpen)]
+        #[unsafe(method_family = none)]
         pub unsafe fn documentDidOpen(&self);
 
         #[cfg(feature = "UIBarButtonItemGroup")]
         /// MARK: Custom Navigation Items
-        #[method_id(undoRedoItemGroup)]
+        #[method(undoRedoItemGroup)]
         #[unsafe(method_family = none)]
         pub unsafe fn undoRedoItemGroup(&self) -> Retained<UIBarButtonItemGroup>;
     }
@@ -114,7 +119,7 @@ extern_methods!(
     /// Methods declared on superclass `UIViewController`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIDocumentViewController {
-        #[method_id(initWithNibName:bundle:)]
+        #[method(initWithNibName:bundle:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -122,7 +127,7 @@ extern_methods!(
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -135,11 +140,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIDocumentViewController {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

@@ -28,39 +28,39 @@ unsafe impl NSSecureCoding for CMPedometerData {}
 
 extern_methods!(
     unsafe impl CMPedometerData {
-        #[method_id(startDate)]
+        #[method(startDate)]
         #[unsafe(method_family = none)]
         pub unsafe fn startDate(&self) -> Retained<NSDate>;
 
-        #[method_id(endDate)]
+        #[method(endDate)]
         #[unsafe(method_family = none)]
         pub unsafe fn endDate(&self) -> Retained<NSDate>;
 
-        #[method_id(numberOfSteps)]
+        #[method(numberOfSteps)]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfSteps(&self) -> Retained<NSNumber>;
 
-        #[method_id(distance)]
+        #[method(distance)]
         #[unsafe(method_family = none)]
         pub unsafe fn distance(&self) -> Option<Retained<NSNumber>>;
 
-        #[method_id(floorsAscended)]
+        #[method(floorsAscended)]
         #[unsafe(method_family = none)]
         pub unsafe fn floorsAscended(&self) -> Option<Retained<NSNumber>>;
 
-        #[method_id(floorsDescended)]
+        #[method(floorsDescended)]
         #[unsafe(method_family = none)]
         pub unsafe fn floorsDescended(&self) -> Option<Retained<NSNumber>>;
 
-        #[method_id(currentPace)]
+        #[method(currentPace)]
         #[unsafe(method_family = none)]
         pub unsafe fn currentPace(&self) -> Option<Retained<NSNumber>>;
 
-        #[method_id(currentCadence)]
+        #[method(currentCadence)]
         #[unsafe(method_family = none)]
         pub unsafe fn currentCadence(&self) -> Option<Retained<NSNumber>>;
 
-        #[method_id(averageActivePace)]
+        #[method(averageActivePace)]
         #[unsafe(method_family = none)]
         pub unsafe fn averageActivePace(&self) -> Option<Retained<NSNumber>>;
     }
@@ -69,11 +69,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CMPedometerData {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -120,11 +120,12 @@ unsafe impl NSSecureCoding for CMPedometerEvent {}
 
 extern_methods!(
     unsafe impl CMPedometerEvent {
-        #[method_id(date)]
+        #[method(date)]
         #[unsafe(method_family = none)]
         pub unsafe fn date(&self) -> Retained<NSDate>;
 
         #[method(type)]
+        #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> CMPedometerEventType;
     }
 );
@@ -132,11 +133,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CMPedometerEvent {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -162,29 +163,37 @@ unsafe impl NSObjectProtocol for CMPedometer {}
 extern_methods!(
     unsafe impl CMPedometer {
         #[method(isStepCountingAvailable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isStepCountingAvailable() -> bool;
 
         #[method(isDistanceAvailable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isDistanceAvailable() -> bool;
 
         #[method(isFloorCountingAvailable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isFloorCountingAvailable() -> bool;
 
         #[method(isPaceAvailable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isPaceAvailable() -> bool;
 
         #[method(isCadenceAvailable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isCadenceAvailable() -> bool;
 
         #[method(isPedometerEventTrackingAvailable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isPedometerEventTrackingAvailable() -> bool;
 
         #[cfg(feature = "CMAuthorization")]
         #[method(authorizationStatus)]
+        #[unsafe(method_family = none)]
         pub unsafe fn authorizationStatus() -> CMAuthorizationStatus;
 
         #[cfg(feature = "block2")]
         #[method(queryPedometerDataFromDate:toDate:withHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn queryPedometerDataFromDate_toDate_withHandler(
             &self,
             start: &NSDate,
@@ -194,6 +203,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[method(startPedometerUpdatesFromDate:withHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn startPedometerUpdatesFromDate_withHandler(
             &self,
             start: &NSDate,
@@ -201,16 +211,19 @@ extern_methods!(
         );
 
         #[method(stopPedometerUpdates)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stopPedometerUpdates(&self);
 
         #[cfg(feature = "block2")]
         #[method(startPedometerEventUpdatesWithHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn startPedometerEventUpdatesWithHandler(
             &self,
             handler: CMPedometerEventHandler,
         );
 
         #[method(stopPedometerEventUpdates)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stopPedometerEventUpdates(&self);
     }
 );
@@ -218,11 +231,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CMPedometer {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

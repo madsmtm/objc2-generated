@@ -33,7 +33,7 @@ unsafe impl NSSecureCoding for ASOneTimeCodeCredentialIdentity {}
 
 extern_methods!(
     unsafe impl ASOneTimeCodeCredentialIdentity {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -45,7 +45,7 @@ extern_methods!(
         /// Parameter `label`: A user-provided label to identify the one time code.
         ///
         /// Parameter `recordIdentifier`: An optional string to uniquely identify this record in your local database.
-        #[method_id(initWithServiceIdentifier:label:recordIdentifier:)]
+        #[method(initWithServiceIdentifier:label:recordIdentifier:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithServiceIdentifier_label_recordIdentifier(
             this: Allocated<Self>,
@@ -56,7 +56,7 @@ extern_methods!(
 
         /// A label to identify the one time code, typically supplied by the user.
         /// This string will be shown in the AutoFill suggestion for this one time code credential.
-        #[method_id(label)]
+        #[method(label)]
         #[unsafe(method_family = none)]
         pub unsafe fn label(&self) -> Retained<NSString>;
     }
@@ -65,7 +65,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASOneTimeCodeCredentialIdentity {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -58,17 +58,17 @@ extern_methods!(
     ))]
     unsafe impl DOMEntity {
         #[deprecated]
-        #[method_id(publicId)]
+        #[method(publicId)]
         #[unsafe(method_family = none)]
         pub unsafe fn publicId(&self) -> Retained<NSString>;
 
         #[deprecated]
-        #[method_id(systemId)]
+        #[method(systemId)]
         #[unsafe(method_family = none)]
         pub unsafe fn systemId(&self) -> Retained<NSString>;
 
         #[deprecated]
-        #[method_id(notationName)]
+        #[method(notationName)]
         #[unsafe(method_family = none)]
         pub unsafe fn notationName(&self) -> Retained<NSString>;
     }
@@ -83,7 +83,7 @@ extern_methods!(
     ))]
     unsafe impl DOMEntity {
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -97,7 +97,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMEntity {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

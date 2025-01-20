@@ -151,7 +151,7 @@ extern_methods!(
         /// Create a tile set with the specified tile groups.
         ///
         /// Parameter `tileGroups`: the tile groups that will be available for use with this set
-        #[method_id(tileSetWithTileGroups:)]
+        #[method(tileSetWithTileGroups:)]
         #[unsafe(method_family = none)]
         pub unsafe fn tileSetWithTileGroups(tile_groups: &NSArray<SKTileGroup>) -> Retained<Self>;
 
@@ -160,7 +160,7 @@ extern_methods!(
         /// Parameter `tileGroups`: the tile groups that will be available for use with this set
         ///
         /// Parameter `tileSetType`: the type of tile set this will be
-        #[method_id(tileSetWithTileGroups:tileSetType:)]
+        #[method(tileSetWithTileGroups:tileSetType:)]
         #[unsafe(method_family = none)]
         pub unsafe fn tileSetWithTileGroups_tileSetType(
             tile_groups: &NSArray<SKTileGroup>,
@@ -170,7 +170,7 @@ extern_methods!(
         /// Initilize a tile set with the specified tile groups.
         ///
         /// Parameter `tileGroups`: the tile groups that will be available for use with this set
-        #[method_id(initWithTileGroups:)]
+        #[method(initWithTileGroups:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTileGroups(
             this: Allocated<Self>,
@@ -182,7 +182,7 @@ extern_methods!(
         /// Parameter `tileGroups`: the tile groups that will be available for use with this set
         ///
         /// Parameter `tileSetType`: the type of tile set this will be
-        #[method_id(initWithTileGroups:tileSetType:)]
+        #[method(initWithTileGroups:tileSetType:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTileGroups_tileSetType(
             this: Allocated<Self>,
@@ -193,59 +193,66 @@ extern_methods!(
         /// Gets the tile set with the specified name from the SpriteKit resource bundle. Returns nil if a tile set with a matching name cannot be found.
         ///
         /// Parameter `name`: the name of the tile set to search for
-        #[method_id(tileSetNamed:)]
+        #[method(tileSetNamed:)]
         #[unsafe(method_family = none)]
         pub unsafe fn tileSetNamed(name: &NSString) -> Option<Retained<Self>>;
 
         /// Creates a tile set from the specified tile set file. Returns nil if the URL doesn't point to a valid tile set file.
         ///
         /// Parameter `url`: the URL of the tile set file
-        #[method_id(tileSetFromURL:)]
+        #[method(tileSetFromURL:)]
         #[unsafe(method_family = none)]
         pub unsafe fn tileSetFromURL(url: &NSURL) -> Option<Retained<Self>>;
 
         /// The tile groups that this set provides for use.
-        #[method_id(tileGroups)]
+        #[method(tileGroups)]
         #[unsafe(method_family = none)]
         pub unsafe fn tileGroups(&self) -> Retained<NSArray<SKTileGroup>>;
 
         /// Setter for [`tileGroups`][Self::tileGroups].
         #[method(setTileGroups:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTileGroups(&self, tile_groups: &NSArray<SKTileGroup>);
 
         /// Client-assignable name for the tile set. Defaults to nil.
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
         #[method(setName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
         /// The tile set type specifies how the tiles in the set will be arranged when placed in a tile map. Defaults to SKTileSetTypeGrid.
         #[method(type)]
+        #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> SKTileSetType;
 
         /// Setter for [`type`][Self::type].
         #[method(setType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setType(&self, r#type: SKTileSetType);
 
-        #[method_id(defaultTileGroup)]
+        #[method(defaultTileGroup)]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultTileGroup(&self) -> Option<Retained<SKTileGroup>>;
 
         /// Setter for [`defaultTileGroup`][Self::defaultTileGroup].
         #[method(setDefaultTileGroup:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDefaultTileGroup(&self, default_tile_group: Option<&SKTileGroup>);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The default tile size is the value an SKTileMapNode will use for it's tiles when the tile set is assigned to it.
         #[method(defaultTileSize)]
+        #[unsafe(method_family = none)]
         pub unsafe fn defaultTileSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`defaultTileSize`][Self::defaultTileSize].
         #[method(setDefaultTileSize:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDefaultTileSize(&self, default_tile_size: CGSize);
     }
 );
@@ -253,11 +260,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKTileSet {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -290,7 +297,7 @@ extern_methods!(
         /// Create a simple tile group for a single tile definition. This creates and initializes the SKTileGroupRule necessary to place the provided tile definition in a tile map.
         ///
         /// Parameter `tileDefinition`: the tile definition we wish to place in a tile map
-        #[method_id(tileGroupWithTileDefinition:)]
+        #[method(tileGroupWithTileDefinition:)]
         #[unsafe(method_family = none)]
         pub unsafe fn tileGroupWithTileDefinition(
             tile_definition: &SKTileDefinition,
@@ -299,12 +306,12 @@ extern_methods!(
         /// Create a tile group with the specified rules.
         ///
         /// Parameter `rules`: the rules the group will use to determine tile placement
-        #[method_id(tileGroupWithRules:)]
+        #[method(tileGroupWithRules:)]
         #[unsafe(method_family = none)]
         pub unsafe fn tileGroupWithRules(rules: &NSArray<SKTileGroupRule>) -> Retained<Self>;
 
         /// Create an empty tile group. Placing this in a tile map will erase the existing tile at that location.
-        #[method_id(emptyTileGroup)]
+        #[method(emptyTileGroup)]
         #[unsafe(method_family = none)]
         pub unsafe fn emptyTileGroup() -> Retained<Self>;
 
@@ -312,7 +319,7 @@ extern_methods!(
         /// Initilize a simple tile group for a single tile definition. This creates and initializes the SKTileGroupRule necessary to place the provided tile definition in a tile map.
         ///
         /// Parameter `tileDefinition`: tile definition we wish to place in a tile map
-        #[method_id(initWithTileDefinition:)]
+        #[method(initWithTileDefinition:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTileDefinition(
             this: Allocated<Self>,
@@ -322,7 +329,7 @@ extern_methods!(
         /// Initilize a tile group with the specified rules.
         ///
         /// Parameter `rules`: the rules the group will use to determine tile placement
-        #[method_id(initWithRules:)]
+        #[method(initWithRules:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRules(
             this: Allocated<Self>,
@@ -330,21 +337,23 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The rules that govern which tiles are placed when this group is used, and where in the map they'll be placed.
-        #[method_id(rules)]
+        #[method(rules)]
         #[unsafe(method_family = none)]
         pub unsafe fn rules(&self) -> Retained<NSArray<SKTileGroupRule>>;
 
         /// Setter for [`rules`][Self::rules].
         #[method(setRules:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRules(&self, rules: &NSArray<SKTileGroupRule>);
 
         /// Client-assignable name for the tile group. Defaults to nil.
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
         #[method(setName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
     }
 );
@@ -352,11 +361,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKTileGroup {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -391,7 +400,7 @@ extern_methods!(
         /// Parameter `adjacency`: the adjacency requirements for this rule; use the mask that covers the adjacent spaces that must be filled with tiles belonging to the same group; tiles not masked out must be empty
         ///
         /// Parameter `tileDefinitions`: the tile definitions used for this rule
-        #[method_id(tileGroupRuleWithAdjacency:tileDefinitions:)]
+        #[method(tileGroupRuleWithAdjacency:tileDefinitions:)]
         #[unsafe(method_family = none)]
         pub unsafe fn tileGroupRuleWithAdjacency_tileDefinitions(
             adjacency: SKTileAdjacencyMask,
@@ -404,7 +413,7 @@ extern_methods!(
         /// Parameter `adjacency`: the adjacency requirements for this rule; use the mask that covers the adjacent spaces that must be filled with tiles belonging to the same group; tiles not masked out must be empty
         ///
         /// Parameter `tileDefinitions`: the tile definitions used for this rule
-        #[method_id(initWithAdjacency:tileDefinitions:)]
+        #[method(initWithAdjacency:tileDefinitions:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAdjacency_tileDefinitions(
             this: Allocated<Self>,
@@ -414,30 +423,34 @@ extern_methods!(
 
         /// The adjacency mask used by this rule. Set this to the mask that covers the adjacent spaces that must be filled with tiles belonging to the same group for this rule met.
         #[method(adjacency)]
+        #[unsafe(method_family = none)]
         pub unsafe fn adjacency(&self) -> SKTileAdjacencyMask;
 
         /// Setter for [`adjacency`][Self::adjacency].
         #[method(setAdjacency:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAdjacency(&self, adjacency: SKTileAdjacencyMask);
 
         #[cfg(feature = "SKTileDefinition")]
         /// The tile definitions used by this rule. If the rule is evaluated and its conditions are met, one of the tile definitions within this array will be randomly selected for placement within the tile map. Each tile definitions' placement weight is taken into consideration to determine how likely each is to be selected; tile definitions with higher placement weights will be selected more frequently than those with lower placement weights.
-        #[method_id(tileDefinitions)]
+        #[method(tileDefinitions)]
         #[unsafe(method_family = none)]
         pub unsafe fn tileDefinitions(&self) -> Retained<NSArray<SKTileDefinition>>;
 
         #[cfg(feature = "SKTileDefinition")]
         /// Setter for [`tileDefinitions`][Self::tileDefinitions].
         #[method(setTileDefinitions:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTileDefinitions(&self, tile_definitions: &NSArray<SKTileDefinition>);
 
         /// Client-assignable name for the tile group rule. Defaults to nil.
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
         #[method(setName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
     }
 );
@@ -445,11 +458,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKTileGroupRule {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

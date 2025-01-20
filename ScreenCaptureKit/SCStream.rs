@@ -185,45 +185,51 @@ extern_methods!(
         /// streamType type of stream
         #[deprecated = "Use style instead"]
         #[method(streamType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn streamType(&self) -> SCStreamType;
 
         #[cfg(feature = "SCShareableContent")]
         /// style of stream
         #[method(style)]
+        #[unsafe(method_family = none)]
         pub unsafe fn style(&self) -> SCShareableContentStyle;
 
         /// Pixel to points scaling factor
         #[method(pointPixelScale)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pointPixelScale(&self) -> c_float;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Size and location of content in points
         #[method(contentRect)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contentRect(&self) -> CGRect;
 
         /// To include menu bar as part of the capture. This property has no effect for the desktop independent window filter. For content filters created with initWithDisplay:excluding, the default value is YES. Display excluding content filters contains the desktop and dock. For content filters created with initWithDisplay:including, the default value is NO. Display including content filters do not contain the desktop and dock
         #[method(includeMenuBar)]
+        #[unsafe(method_family = none)]
         pub unsafe fn includeMenuBar(&self) -> bool;
 
         /// Setter for [`includeMenuBar`][Self::includeMenuBar].
         #[method(setIncludeMenuBar:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIncludeMenuBar(&self, include_menu_bar: bool);
 
         #[cfg(feature = "SCShareableContent")]
         /// SCDisplays that are included in the content filter
-        #[method_id(includedDisplays)]
+        #[method(includedDisplays)]
         #[unsafe(method_family = none)]
         pub unsafe fn includedDisplays(&self) -> Retained<NSArray<SCDisplay>>;
 
         #[cfg(feature = "SCShareableContent")]
         /// Applications that are included in the content filter
-        #[method_id(includedApplications)]
+        #[method(includedApplications)]
         #[unsafe(method_family = none)]
         pub unsafe fn includedApplications(&self) -> Retained<NSArray<SCRunningApplication>>;
 
         #[cfg(feature = "SCShareableContent")]
         /// Windows that are included in the content filter
-        #[method_id(includedWindows)]
+        #[method(includedWindows)]
         #[unsafe(method_family = none)]
         pub unsafe fn includedWindows(&self) -> Retained<NSArray<SCWindow>>;
 
@@ -233,7 +239,7 @@ extern_methods!(
         /// Parameter `window`: the independent SCWindow you wish to capture
         ///
         /// this method will create a SCContentFilter that captures just the independent window passed in.
-        #[method_id(initWithDesktopIndependentWindow:)]
+        #[method(initWithDesktopIndependentWindow:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDesktopIndependentWindow(
             this: Allocated<Self>,
@@ -248,7 +254,7 @@ extern_methods!(
         /// Parameter `excluded`: the SCWindow(s) you wish to exclude from the passed in SCDisplay
         ///
         /// This method will create a SCContentFilter that captures the SCDisplay, excluding the passed in excluded SCWindow(s). The desktop background and dock will be included with this content filter.
-        #[method_id(initWithDisplay:excludingWindows:)]
+        #[method(initWithDisplay:excludingWindows:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDisplay_excludingWindows(
             this: Allocated<Self>,
@@ -264,7 +270,7 @@ extern_methods!(
         /// Parameter `includedWindows`: a set of SCWindows you wish to capture
         ///
         /// This method will create a SCContentFilter that captures a group of SCWindows. The desktop background and dock will be excluded with this content filter.
-        #[method_id(initWithDisplay:includingWindows:)]
+        #[method(initWithDisplay:includingWindows:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDisplay_includingWindows(
             this: Allocated<Self>,
@@ -282,7 +288,7 @@ extern_methods!(
         /// Parameter `exceptingWindows`: the NSSet of SCWindows that you wish to be an exception to the filter
         ///
         /// This method creates a SCContentFilter that captures all windows owned by the passed in SCRunningApplications. Any windows that are an exception to the filter will not be shown if their owning application is in the provided list and will be shown otherwise. The desktop background and dock will be excluded with this content filter.
-        #[method_id(initWithDisplay:includingApplications:exceptingWindows:)]
+        #[method(initWithDisplay:includingApplications:exceptingWindows:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDisplay_includingApplications_exceptingWindows(
             this: Allocated<Self>,
@@ -301,7 +307,7 @@ extern_methods!(
         /// Parameter `exceptingWindows`: the NSSet of SCWindows that you wish to be an exception to the filter
         ///
         /// This method creates a SCContentFilter that captures all windows not owned by the passed in SCRunningApplications. Any windows that are an exception to the filter will be shown if their owning application is in the provided list and will not be shown otherwise. The desktop background and dock will be included with this content filter.
-        #[method_id(initWithDisplay:excludingApplications:exceptingWindows:)]
+        #[method(initWithDisplay:excludingApplications:exceptingWindows:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDisplay_excludingApplications_exceptingWindows(
             this: Allocated<Self>,
@@ -315,11 +321,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCContentFilter {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -368,28 +374,34 @@ extern_methods!(
     unsafe impl SCStreamConfiguration {
         /// SCStreamProperty for output width as measured in pixels. Default is set to 1920.
         #[method(width)]
+        #[unsafe(method_family = none)]
         pub unsafe fn width(&self) -> usize;
 
         /// Setter for [`width`][Self::width].
         #[method(setWidth:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWidth(&self, width: usize);
 
         /// SCStreamProperty for output height as measured in pixels. Default is set to 1080.
         #[method(height)]
+        #[unsafe(method_family = none)]
         pub unsafe fn height(&self) -> usize;
 
         /// Setter for [`height`][Self::height].
         #[method(setHeight:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setHeight(&self, height: usize);
 
         #[cfg(feature = "objc2-core-media")]
         /// SCStreamProperty that specifies the desired minimum time in seconds between frame updates, allowing you to throttle the rate at which updates are received. The default value is 1/60, meaning that updates are coming in at or up to 60fps. Set this to kCMTimeZero to capture at display's native refresh rate.
         #[method(minimumFrameInterval)]
+        #[unsafe(method_family = none)]
         pub unsafe fn minimumFrameInterval(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`minimumFrameInterval`][Self::minimumFrameInterval].
         #[method(setMinimumFrameInterval:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMinimumFrameInterval(&self, minimum_frame_interval: CMTime);
 
         /// SCStreamProperty for output pixel format. Supported pixel formats are:
@@ -401,201 +413,243 @@ extern_methods!(
         /// 'RGhA': 64 bit RGBA IEEE half-precision float, 16-bit little-endian
         /// See https://developer.apple.com/documentation/coregraphics/1455170-cgdisplaystreamcreate
         #[method(pixelFormat)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pixelFormat(&self) -> OSType;
 
         /// Setter for [`pixelFormat`][Self::pixelFormat].
         #[method(setPixelFormat:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPixelFormat(&self, pixel_format: OSType);
 
         /// SCStreamProperty for output to be always scaled to fit into the provided width and height. For use for independent window capture. When true, the output scales up and down. When false, the output only scales down.
         #[method(scalesToFit)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scalesToFit(&self) -> bool;
 
         /// Setter for [`scalesToFit`][Self::scalesToFit].
         #[method(setScalesToFit:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setScalesToFit(&self, scales_to_fit: bool);
 
         /// SCStreamProperty that specifies whether the  stream preserves the aspect ratio of the source pixel data. By default the aspect ratio is preserved.
         #[method(preservesAspectRatio)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preservesAspectRatio(&self) -> bool;
 
         /// Setter for [`preservesAspectRatio`][Self::preservesAspectRatio].
         #[method(setPreservesAspectRatio:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreservesAspectRatio(&self, preserves_aspect_ratio: bool);
 
         /// SCStreamProperty the name of the stream
-        #[method_id(streamName)]
+        #[method(streamName)]
         #[unsafe(method_family = none)]
         pub unsafe fn streamName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`streamName`][Self::streamName].
         #[method(setStreamName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setStreamName(&self, stream_name: Option<&NSString>);
 
         /// SCStreamProperty that specifies whether the cursor should appear in the stream.  By default the cursor is visible.
         #[method(showsCursor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn showsCursor(&self) -> bool;
 
         /// Setter for [`showsCursor`][Self::showsCursor].
         #[method(setShowsCursor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShowsCursor(&self, shows_cursor: bool);
 
         /// SCStreamProperty that specifies whether to draw a circle around the cursor click, default is NO. This property will not be affected by showsCursor. This property currently applies when pixelFormat is set to BGRA.
         #[method(showMouseClicks)]
+        #[unsafe(method_family = none)]
         pub unsafe fn showMouseClicks(&self) -> bool;
 
         /// Setter for [`showMouseClicks`][Self::showMouseClicks].
         #[method(setShowMouseClicks:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShowMouseClicks(&self, show_mouse_clicks: bool);
 
         #[cfg(feature = "objc2-core-graphics")]
         /// SCStreamProperty for background color. By default the background color is clear.
-        #[method_id(backgroundColor)]
+        #[method(backgroundColor)]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundColor(&self) -> Retained<CGColor>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`backgroundColor`][Self::backgroundColor].
         #[method(setBackgroundColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColor(&self, background_color: &CGColor);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// SCStreamProperty that specifies that the stream only samples a subset of the frame input. For display streams, if not set, then the entire display is streamed. For independent window streams, if not set, then the entire window is streamed. The rectangle is specified in points in the display’s logical coordinate system.
         #[method(sourceRect)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sourceRect(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`sourceRect`][Self::sourceRect].
         #[method(setSourceRect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSourceRect(&self, source_rect: CGRect);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// SCStreamProperty that specifies that the stream outputs the frame data into a subset of the output IOSurface object. For both display streams and independent window streams, if not set, then the entire output surface is used. The rectangle is specified in pixels in the display's coordinate system.
         #[method(destinationRect)]
+        #[unsafe(method_family = none)]
         pub unsafe fn destinationRect(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`destinationRect`][Self::destinationRect].
         #[method(setDestinationRect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDestinationRect(&self, destination_rect: CGRect);
 
         /// SCStreamProperty that specifies the number of frames to keep in the queue.  If not set the default value is 8 frames.  Specifying more frames uses more memory, but may allow you to process frame data without stalling the display stream and should not exceed 8 frames.
         #[method(queueDepth)]
+        #[unsafe(method_family = none)]
         pub unsafe fn queueDepth(&self) -> NSInteger;
 
         /// Setter for [`queueDepth`][Self::queueDepth].
         #[method(setQueueDepth:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setQueueDepth(&self, queue_depth: NSInteger);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// SCStreamProperty that specifies the YCbCr matrix applied to the output surface.  The value must be one of the strings specified in https://developer.apple.com/documentation/coregraphics/quartz_display_services/display_stream_ycbcr_to_rgb_conversion_matrix_options. Should only be used if your pixel format is 420v or 420f.
-        #[method_id(colorMatrix)]
+        #[method(colorMatrix)]
         #[unsafe(method_family = none)]
         pub unsafe fn colorMatrix(&self) -> Retained<CFString>;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`colorMatrix`][Self::colorMatrix].
         #[method(setColorMatrix:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setColorMatrix(&self, color_matrix: &CFString);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// SCStreamProperty that specifies the color space of the output buffer.  If not set the output buffer uses the same color space as the display. The value must be one of the strings specified in
         /// https://developer.apple.com/documentation/coregraphics/cgcolorspace/color_space_names.
-        #[method_id(colorSpaceName)]
+        #[method(colorSpaceName)]
         #[unsafe(method_family = none)]
         pub unsafe fn colorSpaceName(&self) -> Retained<CFString>;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`colorSpaceName`][Self::colorSpaceName].
         #[method(setColorSpaceName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setColorSpaceName(&self, color_space_name: &CFString);
 
         /// SCStreamProperty that specifies whether the audio will be captured.  By default audio is not captured.
         #[method(capturesAudio)]
+        #[unsafe(method_family = none)]
         pub unsafe fn capturesAudio(&self) -> bool;
 
         /// Setter for [`capturesAudio`][Self::capturesAudio].
         #[method(setCapturesAudio:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCapturesAudio(&self, captures_audio: bool);
 
         /// SCStreamProperty to specify the sample rate for audio. Default is set to 48000.
         #[method(sampleRate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sampleRate(&self) -> NSInteger;
 
         /// Setter for [`sampleRate`][Self::sampleRate].
         #[method(setSampleRate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSampleRate(&self, sample_rate: NSInteger);
 
         /// SCStreamProperty to specify channel count. Default is set to two.
         #[method(channelCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn channelCount(&self) -> NSInteger;
 
         /// Setter for [`channelCount`][Self::channelCount].
         #[method(setChannelCount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setChannelCount(&self, channel_count: NSInteger);
 
         /// SCAudioProperty whether to exclude audio from current process. Default is set to NO.
         #[method(excludesCurrentProcessAudio)]
+        #[unsafe(method_family = none)]
         pub unsafe fn excludesCurrentProcessAudio(&self) -> bool;
 
         /// Setter for [`excludesCurrentProcessAudio`][Self::excludesCurrentProcessAudio].
         #[method(setExcludesCurrentProcessAudio:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setExcludesCurrentProcessAudio(&self, excludes_current_process_audio: bool);
 
         /// SCStreamProperty to ignore framing on windows in the display sharing case (will ignore shadows).
         #[method(ignoreShadowsDisplay)]
+        #[unsafe(method_family = none)]
         pub unsafe fn ignoreShadowsDisplay(&self) -> bool;
 
         /// Setter for [`ignoreShadowsDisplay`][Self::ignoreShadowsDisplay].
         #[method(setIgnoreShadowsDisplay:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIgnoreShadowsDisplay(&self, ignore_shadows_display: bool);
 
         /// SCStreamProperty to ignore framing on windows in the single window sharing case (will ignore shadows).
         #[method(ignoreShadowsSingleWindow)]
+        #[unsafe(method_family = none)]
         pub unsafe fn ignoreShadowsSingleWindow(&self) -> bool;
 
         /// Setter for [`ignoreShadowsSingleWindow`][Self::ignoreShadowsSingleWindow].
         #[method(setIgnoreShadowsSingleWindow:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIgnoreShadowsSingleWindow(&self, ignore_shadows_single_window: bool);
 
         /// captureResolution Choose between automatic, best, and nominal.
         #[method(captureResolution)]
+        #[unsafe(method_family = none)]
         pub unsafe fn captureResolution(&self) -> SCCaptureResolutionType;
 
         /// Setter for [`captureResolution`][Self::captureResolution].
         #[method(setCaptureResolution:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCaptureResolution(&self, capture_resolution: SCCaptureResolutionType);
 
         /// SCStreamProperty to capture only the shadows of windows.
         #[method(capturesShadowsOnly)]
+        #[unsafe(method_family = none)]
         pub unsafe fn capturesShadowsOnly(&self) -> bool;
 
         /// Setter for [`capturesShadowsOnly`][Self::capturesShadowsOnly].
         #[method(setCapturesShadowsOnly:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCapturesShadowsOnly(&self, captures_shadows_only: bool);
 
         /// SCStreamProperty to ensure partially transparent areas on windows are backed by a solid white color so that the resulting image is fully opaque.
         #[method(shouldBeOpaque)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shouldBeOpaque(&self) -> bool;
 
         /// Setter for [`shouldBeOpaque`][Self::shouldBeOpaque].
         #[method(setShouldBeOpaque:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShouldBeOpaque(&self, should_be_opaque: bool);
 
         /// SCStreamProperty to ignore framing on windows in the display sharing case (will ignore shadows).
         #[method(ignoreGlobalClipDisplay)]
+        #[unsafe(method_family = none)]
         pub unsafe fn ignoreGlobalClipDisplay(&self) -> bool;
 
         /// Setter for [`ignoreGlobalClipDisplay`][Self::ignoreGlobalClipDisplay].
         #[method(setIgnoreGlobalClipDisplay:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIgnoreGlobalClipDisplay(&self, ignore_global_clip_display: bool);
 
         /// SCStreamProperty to ignore global clipping when on single window share. When set to true, single window captures that are partially off the screen will not be clipped. (will ignore window placement in display context).
         #[method(ignoreGlobalClipSingleWindow)]
+        #[unsafe(method_family = none)]
         pub unsafe fn ignoreGlobalClipSingleWindow(&self) -> bool;
 
         /// Setter for [`ignoreGlobalClipSingleWindow`][Self::ignoreGlobalClipSingleWindow].
         #[method(setIgnoreGlobalClipSingleWindow:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIgnoreGlobalClipSingleWindow(
             &self,
             ignore_global_clip_single_window: bool,
@@ -603,10 +657,12 @@ extern_methods!(
 
         /// SCStreamProperty that informs the system if a privacy alert should be shown when using presenter overlay for a stream. Defaults to SCPresenterOverlayAlertSettingSystem;
         #[method(presenterOverlayPrivacyAlertSetting)]
+        #[unsafe(method_family = none)]
         pub unsafe fn presenterOverlayPrivacyAlertSetting(&self) -> SCPresenterOverlayAlertSetting;
 
         /// Setter for [`presenterOverlayPrivacyAlertSetting`][Self::presenterOverlayPrivacyAlertSetting].
         #[method(setPresenterOverlayPrivacyAlertSetting:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPresenterOverlayPrivacyAlertSetting(
             &self,
             presenter_overlay_privacy_alert_setting: SCPresenterOverlayAlertSetting,
@@ -614,27 +670,32 @@ extern_methods!(
 
         /// SCStreamProperty to show the child windows in display bound windows and applications sharing.  Child windows are included by default.
         #[method(includeChildWindows)]
+        #[unsafe(method_family = none)]
         pub unsafe fn includeChildWindows(&self) -> bool;
 
         /// Setter for [`includeChildWindows`][Self::includeChildWindows].
         #[method(setIncludeChildWindows:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIncludeChildWindows(&self, include_child_windows: bool);
 
         /// SCStreamProperty that specifies whether the microphone audio will be captured.  By default microphone is not captured.
         #[method(captureMicrophone)]
+        #[unsafe(method_family = none)]
         pub unsafe fn captureMicrophone(&self) -> bool;
 
         /// Setter for [`captureMicrophone`][Self::captureMicrophone].
         #[method(setCaptureMicrophone:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCaptureMicrophone(&self, capture_microphone: bool);
 
         /// SCStreamProperty that specifies which microphone device to capture. This deviceID is the uniqueID from AVCaptureDevice for the microphone. System Default Microphone will be used if not specified by client. For Mac Catalyst apps, the System Default Microphone will be captured.
-        #[method_id(microphoneCaptureDeviceID)]
+        #[method(microphoneCaptureDeviceID)]
         #[unsafe(method_family = none)]
         pub unsafe fn microphoneCaptureDeviceID(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`microphoneCaptureDeviceID`][Self::microphoneCaptureDeviceID].
         #[method(setMicrophoneCaptureDeviceID:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMicrophoneCaptureDeviceID(
             &self,
             microphone_capture_device_id: Option<&NSString>,
@@ -642,10 +703,12 @@ extern_methods!(
 
         /// SCStreamProperty client will choose captureDynamicRange between SCCaptureDynamicRangeSDR, SCCaptureDynamicRangeHDRLocalDisplay,  SCCaptureDynamicRangeHDRCanonicalDisplay. By default, the stream is capturing with SCCaptureDynamicRangeSDR. HDR capture is only supported with Apple Silicon Mac, setting this property on Intel Mac will have no effect. HDR recording is not support yet, adding a recording output to a stream with SCCaptureDynamicRangeHDR set will fail.
         #[method(captureDynamicRange)]
+        #[unsafe(method_family = none)]
         pub unsafe fn captureDynamicRange(&self) -> SCCaptureDynamicRange;
 
         /// Setter for [`captureDynamicRange`][Self::captureDynamicRange].
         #[method(setCaptureDynamicRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCaptureDynamicRange(&self, capture_dynamic_range: SCCaptureDynamicRange);
 
         /// Returns an instance of SCStreamConfiguration corresponding to the given preset
@@ -653,7 +716,7 @@ extern_methods!(
         /// Parameter `preset`: The enum identifier for the desired preset
         ///
         /// The SCStreamConfiguration of the returned object can be used as a guide for creating and configuring an SCStream. If all the suggested properties are respected in creating the SCStream, the resulting capture result will conform to the criteria implied by the preset.
-        #[method_id(streamConfigurationWithPreset:)]
+        #[method(streamConfigurationWithPreset:)]
         #[unsafe(method_family = none)]
         pub unsafe fn streamConfigurationWithPreset(
             preset: SCStreamConfigurationPreset,
@@ -664,11 +727,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCStreamConfiguration {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -773,15 +836,15 @@ extern_methods!(
     unsafe impl SCStream {
         #[cfg(feature = "objc2-core-media")]
         /// Synchronization clock used for media capture.
-        #[method_id(synchronizationClock)]
+        #[method(synchronizationClock)]
         #[unsafe(method_family = none)]
         pub unsafe fn synchronizationClock(&self) -> Option<Retained<CMClock>>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -794,7 +857,7 @@ extern_methods!(
         /// Parameter `delegate`: the SCStream delegate object
         ///
         /// this method create a SCStream object that has the particular output settings for the content stream
-        #[method_id(initWithFilter:configuration:delegate:)]
+        #[method(initWithFilter:configuration:delegate:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFilter_configuration_delegate(
             this: Allocated<Self>,
@@ -813,6 +876,7 @@ extern_methods!(
         ///
         /// An SCStreamOutput protocol object instance can only be removed to a session using -addStreamOutput: Returns a BOOL denoting if the remove was successful
         #[method(removeStreamOutput:type:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeStreamOutput_type_error(
             &self,
             output: &ProtocolObject<dyn SCStreamOutput>,
@@ -828,6 +892,7 @@ extern_methods!(
         ///
         /// this method will update the content filter for a content stream. A completion handler will be called when the update is complete with an error denoting if the update has failed.
         #[method(updateContentFilter:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updateContentFilter_completionHandler(
             &self,
             content_filter: &SCContentFilter,
@@ -843,6 +908,7 @@ extern_methods!(
         ///
         /// this method will update the stream configuration for a content stream. A completion handler will be called when the update is complete with an error denoting if the update has failed.
         #[method(updateConfiguration:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updateConfiguration_completionHandler(
             &self,
             stream_config: &SCStreamConfiguration,
@@ -856,6 +922,7 @@ extern_methods!(
         ///
         /// this method starts the content stream. The handler will be called when the content stream start has completed with an error denoting if the start has failed.
         #[method(startCaptureWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn startCaptureWithCompletionHandler(
             &self,
             completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
@@ -868,6 +935,7 @@ extern_methods!(
         ///
         /// this method stops the content stream. The handler will be called when the content stream stop has completed with an error denoting if the stop has failed.
         #[method(stopCaptureWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stopCaptureWithCompletionHandler(
             &self,
             completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
@@ -882,6 +950,7 @@ extern_methods!(
         ///
         /// Returns a BOOL denoting if the add was successful. Currently only support one recordingOutput on a stream. To guarantee the first sample captured in the stream to be written into the recording file, client need to add recordingOutput before startCapture. Delegate for recordingDidStart will be notified in SCRecordingOutput or recordingDidFinishWithError will be notified with an error associated if recording failed to start.
         #[method(addRecordingOutput:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addRecordingOutput_error(
             &self,
             recording_output: &SCRecordingOutput,
@@ -896,6 +965,7 @@ extern_methods!(
         ///
         /// Returns a BOOL denoting if the remove was successful. Delegate for recordingDidFinishWithError will be notified in SCRecordingOutput, associate with an error code if recording failed to finish written to the file. If stopCapture is called without removing recordingOutput, recording will be stopped and finish writting into the file. In case client update the stream configuration during recording, recording will be stopped as well.
         #[method(removeRecordingOutput:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeRecordingOutput_error(
             &self,
             recording_output: &SCRecordingOutput,
@@ -916,6 +986,7 @@ extern_protocol!(
         /// protocol method for passing back screen sample buffers
         #[optional]
         #[method(stream:didOutputSampleBuffer:ofType:)]
+        #[unsafe(method_family = none)]
         unsafe fn stream_didOutputSampleBuffer_ofType(
             &self,
             stream: &SCStream,
@@ -941,6 +1012,7 @@ extern_protocol!(
         /// notifies the delegate that the stream has stopped and the error associated with it
         #[optional]
         #[method(stream:didStopWithError:)]
+        #[unsafe(method_family = none)]
         unsafe fn stream_didStopWithError(&self, stream: &SCStream, error: &NSError);
 
         /// outputVideoEffectDidStartForStream:
@@ -950,6 +1022,7 @@ extern_protocol!(
         /// notifies the delegate that the stream's overlay video effect has started.
         #[optional]
         #[method(outputVideoEffectDidStartForStream:)]
+        #[unsafe(method_family = none)]
         unsafe fn outputVideoEffectDidStartForStream(&self, stream: &SCStream);
 
         /// stream:outputVideoEffectDidStart:
@@ -959,6 +1032,7 @@ extern_protocol!(
         /// notifies the delegate that the stream's overlay video  effect has stopped.
         #[optional]
         #[method(outputVideoEffectDidStopForStream:)]
+        #[unsafe(method_family = none)]
         unsafe fn outputVideoEffectDidStopForStream(&self, stream: &SCStream);
 
         /// streamDidBecomeActive:
@@ -968,6 +1042,7 @@ extern_protocol!(
         /// notifies the delegate the first time any window that was being shared in the stream is re-opened after all the windows being shared are closed.  When all the windows being shared are closed, the client will receive streamDidBecomeInactive:.
         #[optional]
         #[method(streamDidBecomeActive:)]
+        #[unsafe(method_family = none)]
         unsafe fn streamDidBecomeActive(&self, stream: &SCStream);
 
         /// streamDidBecomeInactive:
@@ -977,6 +1052,7 @@ extern_protocol!(
         /// notifies the delegate that all the windows that are currently being shared are exited. This callback occurs for all content filter types.
         #[optional]
         #[method(streamDidBecomeInactive:)]
+        #[unsafe(method_family = none)]
         unsafe fn streamDidBecomeInactive(&self, stream: &SCStream);
     }
 );

@@ -33,23 +33,24 @@ extern_methods!(
         /// A Boolean value indicating whether the frame is the main frame
         /// or a subframe.
         #[method(isMainFrame)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isMainFrame(&self) -> bool;
 
         /// The frame's current request.
-        #[method_id(request)]
+        #[method(request)]
         #[unsafe(method_family = none)]
         pub unsafe fn request(&self) -> Retained<NSURLRequest>;
 
         #[cfg(feature = "WKSecurityOrigin")]
         /// The frame's current security origin.
-        #[method_id(securityOrigin)]
+        #[method(securityOrigin)]
         #[unsafe(method_family = none)]
         pub unsafe fn securityOrigin(&self) -> Retained<WKSecurityOrigin>;
 
         #[cfg(all(feature = "WKWebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         /// The web view of the webpage that contains this frame.
-        #[method_id(webView)]
+        #[method(webView)]
         #[unsafe(method_family = none)]
         pub unsafe fn webView(&self) -> Option<Retained<WKWebView>>;
     }
@@ -58,11 +59,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKFrameInfo {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

@@ -94,6 +94,7 @@ extern_protocol!(
         /// this method.
         #[deprecated]
         #[method(use)]
+        #[unsafe(method_family = none)]
         unsafe fn r#use(&self);
 
         /// Download the resource instead of displaying it.
@@ -104,6 +105,7 @@ extern_protocol!(
         /// load.
         #[deprecated]
         #[method(download)]
+        #[unsafe(method_family = none)]
         unsafe fn download(&self);
 
         /// Do nothing (but the client may choose to handle the request itself)
@@ -115,6 +117,7 @@ extern_protocol!(
         /// external app, revealing the location in Finder if a file URL, etc.
         #[deprecated]
         #[method(ignore)]
+        #[unsafe(method_family = none)]
         unsafe fn ignore(&self);
     }
 );
@@ -165,6 +168,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:decidePolicyForNavigationAction:request:frame:decisionListener:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_decidePolicyForNavigationAction_request_frame_decisionListener(
             &self,
             web_view: Option<&WebView>,
@@ -198,6 +202,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:decidePolicyForNewWindowAction:request:newFrameName:decisionListener:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_decidePolicyForNewWindowAction_request_newFrameName_decisionListener(
             &self,
             web_view: Option<&WebView>,
@@ -222,6 +227,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:decidePolicyForMIMEType:request:frame:decisionListener:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_decidePolicyForMIMEType_request_frame_decisionListener(
             &self,
             web_view: Option<&WebView>,
@@ -241,6 +247,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:unableToImplementPolicyWithError:frame:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_unableToImplementPolicyWithError_frame(
             &self,
             web_view: Option<&WebView>,

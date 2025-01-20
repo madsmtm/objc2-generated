@@ -43,30 +43,35 @@ extern_methods!(
     unsafe impl ARPlaneGeometry {
         /// The number of mesh vertices of the geometry.
         #[method(vertexCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn vertexCount(&self) -> NSUInteger;
 
         /// The number of texture coordinates of the geometry.
         #[method(textureCoordinateCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureCoordinateCount(&self) -> NSUInteger;
 
         /// The number of triangles of the geometry.
         #[method(triangleCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn triangleCount(&self) -> NSUInteger;
 
         /// The triangle indices of the geometry.
         #[method(triangleIndices)]
+        #[unsafe(method_family = none)]
         pub unsafe fn triangleIndices(&self) -> NonNull<i16>;
 
         /// The number of boundary vertices of the geometry.
         #[method(boundaryVertexCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn boundaryVertexCount(&self) -> NSUInteger;
 
         /// Unavailable
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

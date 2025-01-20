@@ -60,46 +60,49 @@ unsafe impl NSObjectProtocol for ASAuthorizationProviderExtensionLoginManager {}
 
 extern_methods!(
     unsafe impl ASAuthorizationProviderExtensionLoginManager {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Returns YES if the current device completed registration.
         #[method(isDeviceRegistered)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isDeviceRegistered(&self) -> bool;
 
         /// Returns YES if current user completed registration.
         #[method(isUserRegistered)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isUserRegistered(&self) -> bool;
 
         /// Returns the device registration token from the MDM profile.
-        #[method_id(registrationToken)]
+        #[method(registrationToken)]
         #[unsafe(method_family = none)]
         pub unsafe fn registrationToken(&self) -> Option<Retained<NSString>>;
 
         /// Returns the extension data from the MDM profile.
-        #[method_id(extensionData)]
+        #[method(extensionData)]
         #[unsafe(method_family = none)]
         pub unsafe fn extensionData(&self) -> Retained<NSDictionary>;
 
         /// The user name to use when authenticating with the identity provider.
         #[deprecated]
-        #[method_id(loginUserName)]
+        #[method(loginUserName)]
         #[unsafe(method_family = none)]
         pub unsafe fn loginUserName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`loginUserName`][Self::loginUserName].
         #[deprecated]
         #[method(setLoginUserName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLoginUserName(&self, login_user_name: Option<&NSString>);
 
         #[cfg(feature = "ASAuthorizationProviderExtensionUserLoginConfiguration")]
         /// Retrieves the current user login configuration for the extension.
-        #[method_id(userLoginConfiguration)]
+        #[method(userLoginConfiguration)]
         #[unsafe(method_family = none)]
         pub unsafe fn userLoginConfiguration(
             &self,
@@ -112,23 +115,25 @@ extern_methods!(
         ///
         /// Parameter `error`: The error when there are validation errors or nil.
         #[method(saveUserLoginConfiguration:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn saveUserLoginConfiguration_error(
             &self,
             user_login_configuration: &ASAuthorizationProviderExtensionUserLoginConfiguration,
         ) -> Result<(), Retained<NSError>>;
 
         /// Retrieves or sets the current SSO tokens response for the current user and extension.
-        #[method_id(ssoTokens)]
+        #[method(ssoTokens)]
         #[unsafe(method_family = none)]
         pub unsafe fn ssoTokens(&self) -> Option<Retained<NSDictionary>>;
 
         /// Setter for [`ssoTokens`][Self::ssoTokens].
         #[method(setSsoTokens:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSsoTokens(&self, sso_tokens: Option<&NSDictionary>);
 
         #[cfg(feature = "ASAuthorizationProviderExtensionLoginConfiguration")]
         /// Retrieves or sets the current login configuration for the extension.
-        #[method_id(loginConfiguration)]
+        #[method(loginConfiguration)]
         #[unsafe(method_family = none)]
         pub unsafe fn loginConfiguration(
             &self,
@@ -141,6 +146,7 @@ extern_methods!(
         ///
         /// Parameter `error`: The error when there are validation errors or nil.
         #[method(saveLoginConfiguration:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn saveLoginConfiguration_error(
             &self,
             login_configuration: &ASAuthorizationProviderExtensionLoginConfiguration,
@@ -153,6 +159,7 @@ extern_methods!(
         ///
         /// Parameter `keyType`: The key type for the certificate.
         #[method(saveCertificate:keyType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn saveCertificate_keyType(
             &self,
             certificate: &SecCertificate,
@@ -163,7 +170,7 @@ extern_methods!(
         /// Retrieves the key for the specified platform SSO key type.
         ///
         /// Parameter `keyType`: The key type to retrieve.
-        #[method_id(copyKeyForKeyType:)]
+        #[method(copyKeyForKeyType:)]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyKeyForKeyType(
             &self,
@@ -174,7 +181,7 @@ extern_methods!(
         /// Retrieves the identity for the specified platform SSO key type.
         ///
         /// Parameter `keyType`: The key type to retrieve.
-        #[method_id(copyIdentityForKeyType:)]
+        #[method(copyIdentityForKeyType:)]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyIdentityForKeyType(
             &self,
@@ -185,7 +192,7 @@ extern_methods!(
         /// Generates a new key for the specified platform SSO key type using the strongest supported key strength returning the new key.  Nil is returned if there is an error generating the new key.
         ///
         /// Parameter `keyType`: The key type to retrieve.
-        #[method_id(beginKeyRotationForKeyType:)]
+        #[method(beginKeyRotationForKeyType:)]
         #[unsafe(method_family = none)]
         pub unsafe fn beginKeyRotationForKeyType(
             &self,
@@ -196,6 +203,7 @@ extern_methods!(
         ///
         /// Parameter `keyType`: The key type to retrieve.
         #[method(completeKeyRotationForKeyType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn completeKeyRotationForKeyType(
             &self,
             key_type: ASAuthorizationProviderExtensionKeyType,
@@ -204,6 +212,7 @@ extern_methods!(
         #[cfg(feature = "block2")]
         /// Requests AppSSOAgent reauthenticate the current user for the current extension.  This is used when the tokens are revoked, or expired and need to be requested again.
         #[method(userNeedsReauthenticationWithCompletion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn userNeedsReauthenticationWithCompletion(
             &self,
             completion: &block2::Block<dyn Fn(*mut NSError)>,
@@ -211,31 +220,38 @@ extern_methods!(
 
         /// Requests that the device registration be run again to repair it.
         #[method(deviceRegistrationsNeedsRepair)]
+        #[unsafe(method_family = none)]
         pub unsafe fn deviceRegistrationsNeedsRepair(&self);
 
         /// Requests that user registration be run again for the current user to repair it.
         #[method(userRegistrationsNeedsRepair)]
+        #[unsafe(method_family = none)]
         pub unsafe fn userRegistrationsNeedsRepair(&self);
 
         /// Requests that the decryption keys are repaired.
         #[method(decryptionKeysNeedRepair)]
+        #[unsafe(method_family = none)]
         pub unsafe fn decryptionKeysNeedRepair(&self);
 
         /// Creates new Encryption, Signing, and Secure Enclave keys for the user.  The old keys will be destroyed.
         #[method(resetKeys)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resetKeys(&self);
 
         /// Creates new Encryption, and Signing keys for the device or user.  The old keys will be destroyed.
         #[method(resetDeviceKeys)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resetDeviceKeys(&self);
 
         /// Creates new Encryption, Signing, and Secure Enclave keys for the user.  The old keys will be destroyed.
         #[method(resetUserSecureEnclaveKey)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resetUserSecureEnclaveKey(&self);
 
         #[cfg(feature = "block2")]
         /// Asks authorization service to show extension view controller for registration. If the controller cannot be shown an error is returned.  This is only valid during registration.
         #[method(presentRegistrationViewControllerWithCompletion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn presentRegistrationViewControllerWithCompletion(
             &self,
             completion: &block2::Block<dyn Fn(*mut NSError)>,

@@ -25,7 +25,7 @@ extern_methods!(
         #[cfg(feature = "LAPublicKey")]
         /// Offers the public key counterpart of a
         /// `LAPrivateKey`instance
-        #[method_id(publicKey)]
+        #[method(publicKey)]
         #[unsafe(method_family = none)]
         pub unsafe fn publicKey(&self) -> Retained<LAPublicKey>;
 
@@ -39,6 +39,7 @@ extern_methods!(
         /// `kSecKeyAlgorithmECDSASignatureMessageX962SHA256`
         /// Parameter `handler`: Completion handler with the signature of given data or an error on failure.
         #[method(signData:secKeyAlgorithm:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn signData_secKeyAlgorithm_completion(
             &self,
             data: &NSData,
@@ -53,6 +54,7 @@ extern_methods!(
         ///
         /// Returns: `YES`in case the key supports the provided algorithm with the specified operation.
         #[method(canSignUsingSecKeyAlgorithm:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn canSignUsingSecKeyAlgorithm(&self, algorithm: &SecKeyAlgorithm) -> bool;
 
         #[cfg(all(feature = "block2", feature = "objc2-security"))]
@@ -66,6 +68,7 @@ extern_methods!(
         /// `kSecKeyAlgorithmECIESEncryptionStandardVariableIVX963SHA256AESGCM`
         /// Parameter `handler`: Completion handler with plaintext or an error on failure.
         #[method(decryptData:secKeyAlgorithm:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn decryptData_secKeyAlgorithm_completion(
             &self,
             data: &NSData,
@@ -80,6 +83,7 @@ extern_methods!(
         ///
         /// Returns: `YES`in case the key supports the provided algorithm with the specified operation.
         #[method(canDecryptUsingSecKeyAlgorithm:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn canDecryptUsingSecKeyAlgorithm(&self, algorithm: &SecKeyAlgorithm) -> bool;
 
         #[cfg(all(feature = "block2", feature = "objc2-security"))]
@@ -95,6 +99,7 @@ extern_methods!(
         ///
         /// Parameter `handler`: Completion handler with the result of the key exchange or an error on failure.
         #[method(exchangeKeysWithPublicKey:secKeyAlgorithm:secKeyParameters:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn exchangeKeysWithPublicKey_secKeyAlgorithm_secKeyParameters_completion(
             &self,
             public_key: &NSData,
@@ -110,6 +115,7 @@ extern_methods!(
         ///
         /// Returns: `YES`in case the key supports the provided algorithm with the specified operation.
         #[method(canExchangeKeysUsingSecKeyAlgorithm:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn canExchangeKeysUsingSecKeyAlgorithm(
             &self,
             algorithm: &SecKeyAlgorithm,
@@ -118,14 +124,14 @@ extern_methods!(
         /// Clients cannot create
         /// `LAPrivateKey`instances directly. They typically obtain them from a
         /// `LAPersistedRight`instance.
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Clients cannot create
         /// `LAPrivateKey`instances directly. They typically obtain them from a
         /// `LAPersistedRight`instance.
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

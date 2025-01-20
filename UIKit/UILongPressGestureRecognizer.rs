@@ -25,33 +25,41 @@ extern_methods!(
     #[cfg(feature = "UIGestureRecognizer")]
     unsafe impl UILongPressGestureRecognizer {
         #[method(numberOfTapsRequired)]
+        #[unsafe(method_family = none)]
         pub unsafe fn numberOfTapsRequired(&self) -> NSUInteger;
 
         /// Setter for [`numberOfTapsRequired`][Self::numberOfTapsRequired].
         #[method(setNumberOfTapsRequired:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setNumberOfTapsRequired(&self, number_of_taps_required: NSUInteger);
 
         #[method(numberOfTouchesRequired)]
+        #[unsafe(method_family = none)]
         pub unsafe fn numberOfTouchesRequired(&self) -> NSUInteger;
 
         /// Setter for [`numberOfTouchesRequired`][Self::numberOfTouchesRequired].
         #[method(setNumberOfTouchesRequired:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setNumberOfTouchesRequired(&self, number_of_touches_required: NSUInteger);
 
         #[method(minimumPressDuration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn minimumPressDuration(&self) -> NSTimeInterval;
 
         /// Setter for [`minimumPressDuration`][Self::minimumPressDuration].
         #[method(setMinimumPressDuration:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMinimumPressDuration(&self, minimum_press_duration: NSTimeInterval);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(allowableMovement)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowableMovement(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`allowableMovement`][Self::allowableMovement].
         #[method(setAllowableMovement:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAllowableMovement(&self, allowable_movement: CGFloat);
     }
 );
@@ -60,7 +68,7 @@ extern_methods!(
     /// Methods declared on superclass `UIGestureRecognizer`
     #[cfg(feature = "UIGestureRecognizer")]
     unsafe impl UILongPressGestureRecognizer {
-        #[method_id(initWithTarget:action:)]
+        #[method(initWithTarget:action:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTarget_action(
             this: Allocated<Self>,
@@ -68,11 +76,11 @@ extern_methods!(
             action: Option<Sel>,
         ) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -85,7 +93,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UIGestureRecognizer")]
     unsafe impl UILongPressGestureRecognizer {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

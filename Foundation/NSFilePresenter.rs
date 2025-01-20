@@ -10,24 +10,25 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilepresenter?language=objc)
     pub unsafe trait NSFilePresenter: NSObjectProtocol {
         #[cfg(feature = "NSURL")]
-        #[method_id(presentedItemURL)]
+        #[method(presentedItemURL)]
         #[unsafe(method_family = none)]
         unsafe fn presentedItemURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSOperation")]
-        #[method_id(presentedItemOperationQueue)]
+        #[method(presentedItemOperationQueue)]
         #[unsafe(method_family = none)]
         unsafe fn presentedItemOperationQueue(&self) -> Retained<NSOperationQueue>;
 
         #[cfg(feature = "NSURL")]
         #[optional]
-        #[method_id(primaryPresentedItemURL)]
+        #[method(primaryPresentedItemURL)]
         #[unsafe(method_family = none)]
         unsafe fn primaryPresentedItemURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "block2")]
         #[optional]
         #[method(relinquishPresentedItemToReader:)]
+        #[unsafe(method_family = none)]
         unsafe fn relinquishPresentedItemToReader(
             &self,
             reader: &block2::Block<dyn Fn(*mut block2::Block<dyn Fn()>)>,
@@ -36,6 +37,7 @@ extern_protocol!(
         #[cfg(feature = "block2")]
         #[optional]
         #[method(relinquishPresentedItemToWriter:)]
+        #[unsafe(method_family = none)]
         unsafe fn relinquishPresentedItemToWriter(
             &self,
             writer: &block2::Block<dyn Fn(*mut block2::Block<dyn Fn()>)>,
@@ -44,6 +46,7 @@ extern_protocol!(
         #[cfg(all(feature = "NSError", feature = "block2"))]
         #[optional]
         #[method(savePresentedItemChangesWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn savePresentedItemChangesWithCompletionHandler(
             &self,
             completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
@@ -52,6 +55,7 @@ extern_protocol!(
         #[cfg(all(feature = "NSError", feature = "block2"))]
         #[optional]
         #[method(accommodatePresentedItemDeletionWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn accommodatePresentedItemDeletionWithCompletionHandler(
             &self,
             completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
@@ -60,6 +64,7 @@ extern_protocol!(
         #[cfg(all(feature = "NSError", feature = "block2"))]
         #[optional]
         #[method(accommodatePresentedItemEvictionWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn accommodatePresentedItemEvictionWithCompletionHandler(
             &self,
             completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
@@ -68,15 +73,18 @@ extern_protocol!(
         #[cfg(feature = "NSURL")]
         #[optional]
         #[method(presentedItemDidMoveToURL:)]
+        #[unsafe(method_family = none)]
         unsafe fn presentedItemDidMoveToURL(&self, new_url: &NSURL);
 
         #[optional]
         #[method(presentedItemDidChange)]
+        #[unsafe(method_family = none)]
         unsafe fn presentedItemDidChange(&self);
 
         #[cfg(all(feature = "NSSet", feature = "NSString", feature = "NSURL"))]
         #[optional]
         #[method(presentedItemDidChangeUbiquityAttributes:)]
+        #[unsafe(method_family = none)]
         unsafe fn presentedItemDidChangeUbiquityAttributes(
             &self,
             attributes: &NSSet<NSURLResourceKey>,
@@ -84,7 +92,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSSet", feature = "NSString", feature = "NSURL"))]
         #[optional]
-        #[method_id(observedPresentedItemUbiquityAttributes)]
+        #[method(observedPresentedItemUbiquityAttributes)]
         #[unsafe(method_family = none)]
         unsafe fn observedPresentedItemUbiquityAttributes(
             &self,
@@ -93,21 +101,25 @@ extern_protocol!(
         #[cfg(feature = "NSFileVersion")]
         #[optional]
         #[method(presentedItemDidGainVersion:)]
+        #[unsafe(method_family = none)]
         unsafe fn presentedItemDidGainVersion(&self, version: &NSFileVersion);
 
         #[cfg(feature = "NSFileVersion")]
         #[optional]
         #[method(presentedItemDidLoseVersion:)]
+        #[unsafe(method_family = none)]
         unsafe fn presentedItemDidLoseVersion(&self, version: &NSFileVersion);
 
         #[cfg(feature = "NSFileVersion")]
         #[optional]
         #[method(presentedItemDidResolveConflictVersion:)]
+        #[unsafe(method_family = none)]
         unsafe fn presentedItemDidResolveConflictVersion(&self, version: &NSFileVersion);
 
         #[cfg(all(feature = "NSError", feature = "NSURL", feature = "block2"))]
         #[optional]
         #[method(accommodatePresentedSubitemDeletionAtURL:completionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn accommodatePresentedSubitemDeletionAtURL_completionHandler(
             &self,
             url: &NSURL,
@@ -117,31 +129,37 @@ extern_protocol!(
         #[cfg(feature = "NSURL")]
         #[optional]
         #[method(presentedSubitemDidAppearAtURL:)]
+        #[unsafe(method_family = none)]
         unsafe fn presentedSubitemDidAppearAtURL(&self, url: &NSURL);
 
         #[cfg(feature = "NSURL")]
         #[optional]
         #[method(presentedSubitemAtURL:didMoveToURL:)]
+        #[unsafe(method_family = none)]
         unsafe fn presentedSubitemAtURL_didMoveToURL(&self, old_url: &NSURL, new_url: &NSURL);
 
         #[cfg(feature = "NSURL")]
         #[optional]
         #[method(presentedSubitemDidChangeAtURL:)]
+        #[unsafe(method_family = none)]
         unsafe fn presentedSubitemDidChangeAtURL(&self, url: &NSURL);
 
         #[cfg(all(feature = "NSFileVersion", feature = "NSURL"))]
         #[optional]
         #[method(presentedSubitemAtURL:didGainVersion:)]
+        #[unsafe(method_family = none)]
         unsafe fn presentedSubitemAtURL_didGainVersion(&self, url: &NSURL, version: &NSFileVersion);
 
         #[cfg(all(feature = "NSFileVersion", feature = "NSURL"))]
         #[optional]
         #[method(presentedSubitemAtURL:didLoseVersion:)]
+        #[unsafe(method_family = none)]
         unsafe fn presentedSubitemAtURL_didLoseVersion(&self, url: &NSURL, version: &NSFileVersion);
 
         #[cfg(all(feature = "NSFileVersion", feature = "NSURL"))]
         #[optional]
         #[method(presentedSubitemAtURL:didResolveConflictVersion:)]
+        #[unsafe(method_family = none)]
         unsafe fn presentedSubitemAtURL_didResolveConflictVersion(
             &self,
             url: &NSURL,

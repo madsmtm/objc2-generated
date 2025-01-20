@@ -63,6 +63,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarpositioning?language=objc)
     pub unsafe trait UIBarPositioning: NSObjectProtocol + MainThreadOnly {
         #[method(barPosition)]
+        #[unsafe(method_family = none)]
         unsafe fn barPosition(&self) -> UIBarPosition;
     }
 );
@@ -72,6 +73,7 @@ extern_protocol!(
     pub unsafe trait UIBarPositioningDelegate: NSObjectProtocol + MainThreadOnly {
         #[optional]
         #[method(positionForBar:)]
+        #[unsafe(method_family = none)]
         unsafe fn positionForBar(
             &self,
             bar: &ProtocolObject<dyn UIBarPositioning>,

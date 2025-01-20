@@ -20,28 +20,29 @@ unsafe impl NSObjectProtocol for EKSource {}
 extern_methods!(
     #[cfg(feature = "EKObject")]
     unsafe impl EKSource {
-        #[method_id(sourceIdentifier)]
+        #[method(sourceIdentifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceIdentifier(&self) -> Retained<NSString>;
 
         #[cfg(feature = "EKTypes")]
         #[method(sourceType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sourceType(&self) -> EKSourceType;
 
-        #[method_id(title)]
+        #[method(title)]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         #[cfg(feature = "EKCalendar")]
         /// This is now deprecated in favor of -[EKSource calendarsForEntityType:]
-        #[method_id(calendars)]
+        #[method(calendars)]
         #[unsafe(method_family = none)]
         pub unsafe fn calendars(&self) -> Retained<NSSet<EKCalendar>>;
 
         #[cfg(all(feature = "EKCalendar", feature = "EKTypes"))]
         /// Returns the calendars that belong to this source that
         /// support a given entity type (reminders, events)
-        #[method_id(calendarsForEntityType:)]
+        #[method(calendarsForEntityType:)]
         #[unsafe(method_family = none)]
         pub unsafe fn calendarsForEntityType(
             &self,
@@ -50,6 +51,7 @@ extern_methods!(
 
         /// Returns YES if this EKSource represents an account delegated by another user.
         #[method(isDelegate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isDelegate(&self) -> bool;
     }
 );
@@ -58,11 +60,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "EKObject")]
     unsafe impl EKSource {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -229,7 +229,7 @@ extern_methods!(
         /// Parameter `toFormat`: The output format.
         ///
         /// Returns nil if the format conversion is not possible.
-        #[method_id(initFromFormat:toFormat:)]
+        #[method(initFromFormat:toFormat:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initFromFormat_toFormat(
             this: Allocated<Self>,
@@ -239,17 +239,18 @@ extern_methods!(
 
         /// Resets the converter so that a new stream may be converted.
         #[method(reset)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reset(&self);
 
         #[cfg(feature = "AVAudioFormat")]
         /// The format of the input audio stream. (NB. AVAudioFormat includes the channel layout)
-        #[method_id(inputFormat)]
+        #[method(inputFormat)]
         #[unsafe(method_family = none)]
         pub unsafe fn inputFormat(&self) -> Retained<AVAudioFormat>;
 
         #[cfg(feature = "AVAudioFormat")]
         /// The format of the output audio stream. (NB. AVAudioFormat includes the channel layout)
-        #[method_id(outputFormat)]
+        #[method(outputFormat)]
         #[unsafe(method_family = none)]
         pub unsafe fn outputFormat(&self) -> Retained<AVAudioFormat>;
 
@@ -260,60 +261,69 @@ extern_methods!(
         /// means that the output channel will have no source and will be silent. Setting a channel map
         /// overrides channel mapping due to any channel layouts in the input and output formats that
         /// may have been supplied.
-        #[method_id(channelMap)]
+        #[method(channelMap)]
         #[unsafe(method_family = none)]
         pub unsafe fn channelMap(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Setter for [`channelMap`][Self::channelMap].
         #[method(setChannelMap:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setChannelMap(&self, channel_map: &NSArray<NSNumber>);
 
         /// Decoders require some data in the form of a magicCookie in order to decode properly.
         /// Encoders will produce a magicCookie.
-        #[method_id(magicCookie)]
+        #[method(magicCookie)]
         #[unsafe(method_family = none)]
         pub unsafe fn magicCookie(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`magicCookie`][Self::magicCookie].
         #[method(setMagicCookie:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMagicCookie(&self, magic_cookie: Option<&NSData>);
 
         /// If YES and channel remapping is necessary, then channels will be mixed as
         /// appropriate instead of remapped. Default value is NO.
         #[method(downmix)]
+        #[unsafe(method_family = none)]
         pub unsafe fn downmix(&self) -> bool;
 
         /// Setter for [`downmix`][Self::downmix].
         #[method(setDownmix:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDownmix(&self, downmix: bool);
 
         /// Setting YES will turn on dither, if dither makes sense in given the current formats
         /// and settings. Default value is NO.
         #[method(dither)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dither(&self) -> bool;
 
         /// Setter for [`dither`][Self::dither].
         #[method(setDither:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDither(&self, dither: bool);
 
         /// An AVAudioQuality value as defined in AVAudioSettings.h.
         #[method(sampleRateConverterQuality)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sampleRateConverterQuality(&self) -> NSInteger;
 
         /// Setter for [`sampleRateConverterQuality`][Self::sampleRateConverterQuality].
         #[method(setSampleRateConverterQuality:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSampleRateConverterQuality(
             &self,
             sample_rate_converter_quality: NSInteger,
         );
 
         /// An AVSampleRateConverterAlgorithmKey value as defined in AVAudioSettings.h.
-        #[method_id(sampleRateConverterAlgorithm)]
+        #[method(sampleRateConverterAlgorithm)]
         #[unsafe(method_family = none)]
         pub unsafe fn sampleRateConverterAlgorithm(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`sampleRateConverterAlgorithm`][Self::sampleRateConverterAlgorithm].
         #[method(setSampleRateConverterAlgorithm:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSampleRateConverterAlgorithm(
             &self,
             sample_rate_converter_algorithm: Option<&NSString>,
@@ -321,20 +331,24 @@ extern_methods!(
 
         /// Indicates the priming method to be used by the sample rate converter or decoder.
         #[method(primeMethod)]
+        #[unsafe(method_family = none)]
         pub unsafe fn primeMethod(&self) -> AVAudioConverterPrimeMethod;
 
         /// Setter for [`primeMethod`][Self::primeMethod].
         #[method(setPrimeMethod:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPrimeMethod(&self, prime_method: AVAudioConverterPrimeMethod);
 
         #[cfg(feature = "AVAudioTypes")]
         /// Indicates the the number of priming frames.
         #[method(primeInfo)]
+        #[unsafe(method_family = none)]
         pub unsafe fn primeInfo(&self) -> AVAudioConverterPrimeInfo;
 
         #[cfg(feature = "AVAudioTypes")]
         /// Setter for [`primeInfo`][Self::primeInfo].
         #[method(setPrimeInfo:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPrimeInfo(&self, prime_info: AVAudioConverterPrimeInfo);
 
         #[cfg(feature = "AVAudioBuffer")]
@@ -352,6 +366,7 @@ extern_methods!(
         /// If the conversion involves a codec or sample rate conversion, you instead must use
         /// convertToBuffer:error:withInputFromBlock:.
         #[method(convertToBuffer:fromBuffer:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn convertToBuffer_fromBuffer_error(
             &self,
             output_buffer: &AVAudioPCMBuffer,
@@ -376,6 +391,7 @@ extern_methods!(
         /// It attempts to fill the buffer to its capacity. On return, the buffer's length indicates the number of
         /// sample frames successfully converted.
         #[method(convertToBuffer:error:withInputFromBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn convertToBuffer_error_withInputFromBlock(
             &self,
             output_buffer: &AVAudioBuffer,
@@ -388,11 +404,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAudioConverter {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -403,49 +419,53 @@ extern_methods!(
     unsafe impl AVAudioConverter {
         /// bitRate in bits per second. Only applies when encoding.
         #[method(bitRate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn bitRate(&self) -> NSInteger;
 
         /// Setter for [`bitRate`][Self::bitRate].
         #[method(setBitRate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBitRate(&self, bit_rate: NSInteger);
 
         /// When encoding, an AVEncoderBitRateStrategyKey value constant as defined in AVAudioSettings.h. Returns nil if not encoding.
-        #[method_id(bitRateStrategy)]
+        #[method(bitRateStrategy)]
         #[unsafe(method_family = none)]
         pub unsafe fn bitRateStrategy(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`bitRateStrategy`][Self::bitRateStrategy].
         #[method(setBitRateStrategy:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBitRateStrategy(&self, bit_rate_strategy: Option<&NSString>);
 
         /// The maximum size of an output packet, in bytes.
         ///
         /// When encoding it is useful to know how large a packet can be in order to allocate a buffer to receive the output.
         #[method(maximumOutputPacketSize)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maximumOutputPacketSize(&self) -> NSInteger;
 
         /// When encoding, an NSArray of NSNumber of all bit rates provided by the codec. Returns nil if not encoding.
-        #[method_id(availableEncodeBitRates)]
+        #[method(availableEncodeBitRates)]
         #[unsafe(method_family = none)]
         pub unsafe fn availableEncodeBitRates(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         /// When encoding, an NSArray of NSNumber of bit rates that can be applied based on the current formats and settings. Returns nil if not encoding.
-        #[method_id(applicableEncodeBitRates)]
+        #[method(applicableEncodeBitRates)]
         #[unsafe(method_family = none)]
         pub unsafe fn applicableEncodeBitRates(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         /// When encoding, an NSArray of NSNumber of all output sample rates provided by the codec. Returns nil if not encoding.
-        #[method_id(availableEncodeSampleRates)]
+        #[method(availableEncodeSampleRates)]
         #[unsafe(method_family = none)]
         pub unsafe fn availableEncodeSampleRates(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         /// When encoding, an NSArray of NSNumber of output sample rates that can be applied based on the current formats and settings. Returns nil if not encoding.
-        #[method_id(applicableEncodeSampleRates)]
+        #[method(applicableEncodeSampleRates)]
         #[unsafe(method_family = none)]
         pub unsafe fn applicableEncodeSampleRates(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         /// When encoding, an NSArray of NSNumber of all output channel layout tags provided by the codec. Returns nil if not encoding.
-        #[method_id(availableEncodeChannelLayoutTags)]
+        #[method(availableEncodeChannelLayoutTags)]
         #[unsafe(method_family = none)]
         pub unsafe fn availableEncodeChannelLayoutTags(
             &self,

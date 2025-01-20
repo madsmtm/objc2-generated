@@ -22,7 +22,7 @@ unsafe impl NSObjectProtocol for NSUserActivity {}
 extern_methods!(
     unsafe impl NSUserActivity {
         #[cfg(feature = "NSString")]
-        #[method_id(initWithActivityType:)]
+        #[method(initWithActivityType:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithActivityType(
             this: Allocated<Self>,
@@ -30,107 +30,119 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[deprecated = "Use initWithActivityType: with a specific activity type string"]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(activityType)]
+        #[method(activityType)]
         #[unsafe(method_family = none)]
         pub unsafe fn activityType(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(title)]
+        #[method(title)]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
         #[cfg(feature = "NSDictionary")]
-        #[method_id(userInfo)]
+        #[method(userInfo)]
         #[unsafe(method_family = none)]
         pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary>>;
 
         #[cfg(feature = "NSDictionary")]
         /// Setter for [`userInfo`][Self::userInfo].
         #[method(setUserInfo:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary>);
 
         #[cfg(feature = "NSDictionary")]
         #[method(addUserInfoEntriesFromDictionary:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addUserInfoEntriesFromDictionary(&self, other_dictionary: &NSDictionary);
 
         #[cfg(all(feature = "NSSet", feature = "NSString"))]
-        #[method_id(requiredUserInfoKeys)]
+        #[method(requiredUserInfoKeys)]
         #[unsafe(method_family = none)]
         pub unsafe fn requiredUserInfoKeys(&self) -> Option<Retained<NSSet<NSString>>>;
 
         #[cfg(all(feature = "NSSet", feature = "NSString"))]
         /// Setter for [`requiredUserInfoKeys`][Self::requiredUserInfoKeys].
         #[method(setRequiredUserInfoKeys:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRequiredUserInfoKeys(
             &self,
             required_user_info_keys: Option<&NSSet<NSString>>,
         );
 
         #[method(needsSave)]
+        #[unsafe(method_family = none)]
         pub unsafe fn needsSave(&self) -> bool;
 
         /// Setter for [`needsSave`][Self::needsSave].
         #[method(setNeedsSave:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setNeedsSave(&self, needs_save: bool);
 
         #[cfg(feature = "NSURL")]
-        #[method_id(webpageURL)]
+        #[method(webpageURL)]
         #[unsafe(method_family = none)]
         pub unsafe fn webpageURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSURL")]
         /// Setter for [`webpageURL`][Self::webpageURL].
         #[method(setWebpageURL:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWebpageURL(&self, webpage_url: Option<&NSURL>);
 
         #[cfg(feature = "NSURL")]
-        #[method_id(referrerURL)]
+        #[method(referrerURL)]
         #[unsafe(method_family = none)]
         pub unsafe fn referrerURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSURL")]
         /// Setter for [`referrerURL`][Self::referrerURL].
         #[method(setReferrerURL:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setReferrerURL(&self, referrer_url: Option<&NSURL>);
 
         #[cfg(feature = "NSDate")]
-        #[method_id(expirationDate)]
+        #[method(expirationDate)]
         #[unsafe(method_family = none)]
         pub unsafe fn expirationDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSDate")]
         /// Setter for [`expirationDate`][Self::expirationDate].
         #[method(setExpirationDate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setExpirationDate(&self, expiration_date: Option<&NSDate>);
 
         #[cfg(all(feature = "NSSet", feature = "NSString"))]
-        #[method_id(keywords)]
+        #[method(keywords)]
         #[unsafe(method_family = none)]
         pub unsafe fn keywords(&self) -> Retained<NSSet<NSString>>;
 
         #[cfg(all(feature = "NSSet", feature = "NSString"))]
         /// Setter for [`keywords`][Self::keywords].
         #[method(setKeywords:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setKeywords(&self, keywords: &NSSet<NSString>);
 
         #[method(supportsContinuationStreams)]
+        #[unsafe(method_family = none)]
         pub unsafe fn supportsContinuationStreams(&self) -> bool;
 
         /// Setter for [`supportsContinuationStreams`][Self::supportsContinuationStreams].
         #[method(setSupportsContinuationStreams:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSupportsContinuationStreams(&self, supports_continuation_streams: bool);
 
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -139,35 +151,41 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn NSUserActivityDelegate>>,
         );
 
         #[cfg(feature = "NSString")]
-        #[method_id(targetContentIdentifier)]
+        #[method(targetContentIdentifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn targetContentIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`targetContentIdentifier`][Self::targetContentIdentifier].
         #[method(setTargetContentIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTargetContentIdentifier(
             &self,
             target_content_identifier: Option<&NSString>,
         );
 
         #[method(becomeCurrent)]
+        #[unsafe(method_family = none)]
         pub unsafe fn becomeCurrent(&self);
 
         #[method(resignCurrent)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resignCurrent(&self);
 
         #[method(invalidate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn invalidate(&self);
 
         #[cfg(all(feature = "NSError", feature = "NSStream", feature = "block2"))]
         #[method(getContinuationStreamsWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getContinuationStreamsWithCompletionHandler(
             &self,
             completion_handler: &block2::Block<
@@ -176,35 +194,43 @@ extern_methods!(
         );
 
         #[method(isEligibleForHandoff)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isEligibleForHandoff(&self) -> bool;
 
         /// Setter for [`isEligibleForHandoff`][Self::isEligibleForHandoff].
         #[method(setEligibleForHandoff:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setEligibleForHandoff(&self, eligible_for_handoff: bool);
 
         #[method(isEligibleForSearch)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isEligibleForSearch(&self) -> bool;
 
         /// Setter for [`isEligibleForSearch`][Self::isEligibleForSearch].
         #[method(setEligibleForSearch:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setEligibleForSearch(&self, eligible_for_search: bool);
 
         #[method(isEligibleForPublicIndexing)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isEligibleForPublicIndexing(&self) -> bool;
 
         /// Setter for [`isEligibleForPublicIndexing`][Self::isEligibleForPublicIndexing].
         #[method(setEligibleForPublicIndexing:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setEligibleForPublicIndexing(&self, eligible_for_public_indexing: bool);
 
         #[method(isEligibleForPrediction)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isEligibleForPrediction(&self) -> bool;
 
         /// Setter for [`isEligibleForPrediction`][Self::isEligibleForPrediction].
         #[method(setEligibleForPrediction:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setEligibleForPrediction(&self, eligible_for_prediction: bool);
 
         #[cfg(feature = "NSString")]
-        #[method_id(persistentIdentifier)]
+        #[method(persistentIdentifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn persistentIdentifier(
             &self,
@@ -213,6 +239,7 @@ extern_methods!(
         #[cfg(feature = "NSString")]
         /// Setter for [`persistentIdentifier`][Self::persistentIdentifier].
         #[method(setPersistentIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPersistentIdentifier(
             &self,
             persistent_identifier: Option<&NSUserActivityPersistentIdentifier>,
@@ -220,6 +247,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSArray", feature = "NSString", feature = "block2"))]
         #[method(deleteSavedUserActivitiesWithPersistentIdentifiers:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn deleteSavedUserActivitiesWithPersistentIdentifiers_completionHandler(
             persistent_identifiers: &NSArray<NSUserActivityPersistentIdentifier>,
             handler: &block2::Block<dyn Fn()>,
@@ -227,6 +255,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[method(deleteAllSavedUserActivitiesWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn deleteAllSavedUserActivitiesWithCompletionHandler(
             handler: &block2::Block<dyn Fn()>,
         );
@@ -236,7 +265,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSUserActivity {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -253,15 +282,18 @@ extern_protocol!(
     pub unsafe trait NSUserActivityDelegate: NSObjectProtocol {
         #[optional]
         #[method(userActivityWillSave:)]
+        #[unsafe(method_family = none)]
         unsafe fn userActivityWillSave(&self, user_activity: &NSUserActivity);
 
         #[optional]
         #[method(userActivityWasContinued:)]
+        #[unsafe(method_family = none)]
         unsafe fn userActivityWasContinued(&self, user_activity: &NSUserActivity);
 
         #[cfg(feature = "NSStream")]
         #[optional]
         #[method(userActivity:didReceiveInputStream:outputStream:)]
+        #[unsafe(method_family = none)]
         unsafe fn userActivity_didReceiveInputStream_outputStream(
             &self,
             user_activity: &NSUserActivity,

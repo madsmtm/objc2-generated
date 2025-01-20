@@ -46,30 +46,35 @@ extern_methods!(
     unsafe impl NSTextStorage {
         #[cfg(feature = "NSLayoutManager")]
         /// ************************** Layout manager ***************************
-        #[method_id(layoutManagers)]
+        #[method(layoutManagers)]
         #[unsafe(method_family = none)]
         pub unsafe fn layoutManagers(&self) -> Retained<NSArray<NSLayoutManager>>;
 
         #[cfg(feature = "NSLayoutManager")]
         #[method(addLayoutManager:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addLayoutManager(&self, a_layout_manager: &NSLayoutManager);
 
         #[cfg(feature = "NSLayoutManager")]
         #[method(removeLayoutManager:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeLayoutManager(&self, a_layout_manager: &NSLayoutManager);
 
         /// ************************** Pending edit info ***************************
         #[method(editedMask)]
+        #[unsafe(method_family = none)]
         pub unsafe fn editedMask(&self) -> NSTextStorageEditActions;
 
         #[method(editedRange)]
+        #[unsafe(method_family = none)]
         pub unsafe fn editedRange(&self) -> NSRange;
 
         #[method(changeInLength)]
+        #[unsafe(method_family = none)]
         pub unsafe fn changeInLength(&self) -> NSInteger;
 
         /// ************************** Delegate ***************************
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -78,6 +83,7 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn NSTextStorageDelegate>>,
@@ -85,6 +91,7 @@ extern_methods!(
 
         /// ************************** Edit management ***************************
         #[method(edited:range:changeInLength:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn edited_range_changeInLength(
             &self,
             edited_mask: NSTextStorageEditActions,
@@ -93,20 +100,24 @@ extern_methods!(
         );
 
         #[method(processEditing)]
+        #[unsafe(method_family = none)]
         pub unsafe fn processEditing(&self);
 
         /// ************************** Attribute fixing ***************************
         #[method(fixesAttributesLazily)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fixesAttributesLazily(&self) -> bool;
 
         #[method(invalidateAttributesInRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn invalidateAttributesInRange(&self, range: NSRange);
 
         #[method(ensureAttributesAreFixedInRange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn ensureAttributesAreFixedInRange(&self, range: NSRange);
 
         /// ************************** NSTextStorageObserving ***************************
-        #[method_id(textStorageObserver)]
+        #[method(textStorageObserver)]
         #[unsafe(method_family = none)]
         pub unsafe fn textStorageObserver(
             &self,
@@ -115,6 +126,7 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`textStorageObserver`][Self::textStorageObserver].
         #[method(setTextStorageObserver:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTextStorageObserver(
             &self,
             text_storage_observer: Option<&ProtocolObject<dyn NSTextStorageObserving>>,
@@ -125,11 +137,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextStorage {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -142,6 +154,7 @@ extern_protocol!(
     pub unsafe trait NSTextStorageDelegate: NSObjectProtocol {
         #[optional]
         #[method(textStorage:willProcessEditing:range:changeInLength:)]
+        #[unsafe(method_family = none)]
         unsafe fn textStorage_willProcessEditing_range_changeInLength(
             &self,
             text_storage: &NSTextStorage,
@@ -152,6 +165,7 @@ extern_protocol!(
 
         #[optional]
         #[method(textStorage:didProcessEditing:range:changeInLength:)]
+        #[unsafe(method_family = none)]
         unsafe fn textStorage_didProcessEditing_range_changeInLength(
             &self,
             text_storage: &NSTextStorage,
@@ -177,15 +191,17 @@ extern "C" {
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextstorageobserving?language=objc)
     pub unsafe trait NSTextStorageObserving: NSObjectProtocol {
-        #[method_id(textStorage)]
+        #[method(textStorage)]
         #[unsafe(method_family = none)]
         unsafe fn textStorage(&self) -> Option<Retained<NSTextStorage>>;
 
         /// Setter for [`textStorage`][Self::textStorage].
         #[method(setTextStorage:)]
+        #[unsafe(method_family = none)]
         unsafe fn setTextStorage(&self, text_storage: Option<&NSTextStorage>);
 
         #[method(processEditingForTextStorage:edited:range:changeInLength:invalidatedRange:)]
+        #[unsafe(method_family = none)]
         unsafe fn processEditingForTextStorage_edited_range_changeInLength_invalidatedRange(
             &self,
             text_storage: &NSTextStorage,
@@ -197,6 +213,7 @@ extern_protocol!(
 
         #[cfg(feature = "block2")]
         #[method(performEditingTransactionForTextStorage:usingBlock:)]
+        #[unsafe(method_family = none)]
         unsafe fn performEditingTransactionForTextStorage_usingBlock(
             &self,
             text_storage: &NSTextStorage,

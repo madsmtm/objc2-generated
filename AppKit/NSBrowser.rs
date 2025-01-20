@@ -128,138 +128,170 @@ extern_methods!(
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSBrowser {
         #[method(cellClass)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cellClass(mtm: MainThreadMarker) -> &'static AnyClass;
 
         #[method(loadColumnZero)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loadColumnZero(&self);
 
         #[method(isLoaded)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isLoaded(&self) -> bool;
 
         #[method(doubleAction)]
+        #[unsafe(method_family = none)]
         pub unsafe fn doubleAction(&self) -> Option<Sel>;
 
         /// Setter for [`doubleAction`][Self::doubleAction].
         #[method(setDoubleAction:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDoubleAction(&self, double_action: Option<Sel>);
 
         #[method(setCellClass:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCellClass(&self, factory_id: &AnyClass);
 
-        #[method_id(cellPrototype)]
+        #[method(cellPrototype)]
         #[unsafe(method_family = none)]
         pub unsafe fn cellPrototype(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`cellPrototype`][Self::cellPrototype].
         #[method(setCellPrototype:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCellPrototype(&self, cell_prototype: Option<&AnyObject>);
 
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSBrowserDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSBrowserDelegate>>);
 
         #[method(reusesColumns)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reusesColumns(&self) -> bool;
 
         /// Setter for [`reusesColumns`][Self::reusesColumns].
         #[method(setReusesColumns:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setReusesColumns(&self, reuses_columns: bool);
 
         #[method(hasHorizontalScroller)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hasHorizontalScroller(&self) -> bool;
 
         /// Setter for [`hasHorizontalScroller`][Self::hasHorizontalScroller].
         #[method(setHasHorizontalScroller:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setHasHorizontalScroller(&self, has_horizontal_scroller: bool);
 
         #[method(autohidesScroller)]
+        #[unsafe(method_family = none)]
         pub unsafe fn autohidesScroller(&self) -> bool;
 
         /// Setter for [`autohidesScroller`][Self::autohidesScroller].
         #[method(setAutohidesScroller:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAutohidesScroller(&self, autohides_scroller: bool);
 
         #[method(separatesColumns)]
+        #[unsafe(method_family = none)]
         pub unsafe fn separatesColumns(&self) -> bool;
 
         /// Setter for [`separatesColumns`][Self::separatesColumns].
         #[method(setSeparatesColumns:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSeparatesColumns(&self, separates_columns: bool);
 
         #[method(isTitled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isTitled(&self) -> bool;
 
         /// Setter for [`isTitled`][Self::isTitled].
         #[method(setTitled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTitled(&self, titled: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(minColumnWidth)]
+        #[unsafe(method_family = none)]
         pub unsafe fn minColumnWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`minColumnWidth`][Self::minColumnWidth].
         #[method(setMinColumnWidth:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMinColumnWidth(&self, min_column_width: CGFloat);
 
         #[method(maxVisibleColumns)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maxVisibleColumns(&self) -> NSInteger;
 
         /// Setter for [`maxVisibleColumns`][Self::maxVisibleColumns].
         #[method(setMaxVisibleColumns:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMaxVisibleColumns(&self, max_visible_columns: NSInteger);
 
         #[method(allowsMultipleSelection)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowsMultipleSelection(&self) -> bool;
 
         /// Setter for [`allowsMultipleSelection`][Self::allowsMultipleSelection].
         #[method(setAllowsMultipleSelection:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAllowsMultipleSelection(&self, allows_multiple_selection: bool);
 
         #[method(allowsBranchSelection)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowsBranchSelection(&self) -> bool;
 
         /// Setter for [`allowsBranchSelection`][Self::allowsBranchSelection].
         #[method(setAllowsBranchSelection:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAllowsBranchSelection(&self, allows_branch_selection: bool);
 
         #[method(allowsEmptySelection)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowsEmptySelection(&self) -> bool;
 
         /// Setter for [`allowsEmptySelection`][Self::allowsEmptySelection].
         #[method(setAllowsEmptySelection:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAllowsEmptySelection(&self, allows_empty_selection: bool);
 
         #[method(takesTitleFromPreviousColumn)]
+        #[unsafe(method_family = none)]
         pub unsafe fn takesTitleFromPreviousColumn(&self) -> bool;
 
         /// Setter for [`takesTitleFromPreviousColumn`][Self::takesTitleFromPreviousColumn].
         #[method(setTakesTitleFromPreviousColumn:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTakesTitleFromPreviousColumn(
             &self,
             takes_title_from_previous_column: bool,
         );
 
         #[method(sendsActionOnArrowKeys)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sendsActionOnArrowKeys(&self) -> bool;
 
         /// Setter for [`sendsActionOnArrowKeys`][Self::sendsActionOnArrowKeys].
         #[method(setSendsActionOnArrowKeys:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSendsActionOnArrowKeys(&self, sends_action_on_arrow_keys: bool);
 
-        #[method_id(itemAtIndexPath:)]
+        #[method(itemAtIndexPath:)]
         #[unsafe(method_family = none)]
         pub unsafe fn itemAtIndexPath(
             &self,
             index_path: &NSIndexPath,
         ) -> Option<Retained<AnyObject>>;
 
-        #[method_id(itemAtRow:inColumn:)]
+        #[method(itemAtRow:inColumn:)]
         #[unsafe(method_family = none)]
         pub unsafe fn itemAtRow_inColumn(
             &self,
@@ -267,21 +299,23 @@ extern_methods!(
             column: NSInteger,
         ) -> Option<Retained<AnyObject>>;
 
-        #[method_id(indexPathForColumn:)]
+        #[method(indexPathForColumn:)]
         #[unsafe(method_family = none)]
         pub unsafe fn indexPathForColumn(&self, column: NSInteger) -> Retained<NSIndexPath>;
 
         #[method(isLeafItem:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isLeafItem(&self, item: Option<&AnyObject>) -> bool;
 
         #[method(reloadDataForRowIndexes:inColumn:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reloadDataForRowIndexes_inColumn(
             &self,
             row_indexes: &NSIndexSet,
             column: NSInteger,
         );
 
-        #[method_id(parentForItemsInColumn:)]
+        #[method(parentForItemsInColumn:)]
         #[unsafe(method_family = none)]
         pub unsafe fn parentForItemsInColumn(
             &self,
@@ -289,83 +323,95 @@ extern_methods!(
         ) -> Option<Retained<AnyObject>>;
 
         #[method(scrollRowToVisible:inColumn:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scrollRowToVisible_inColumn(&self, row: NSInteger, column: NSInteger);
 
         #[method(setTitle:ofColumn:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTitle_ofColumn(&self, string: &NSString, column: NSInteger);
 
-        #[method_id(titleOfColumn:)]
+        #[method(titleOfColumn:)]
         #[unsafe(method_family = none)]
         pub unsafe fn titleOfColumn(&self, column: NSInteger) -> Option<Retained<NSString>>;
 
-        #[method_id(pathSeparator)]
+        #[method(pathSeparator)]
         #[unsafe(method_family = none)]
         pub unsafe fn pathSeparator(&self) -> Retained<NSString>;
 
         /// Setter for [`pathSeparator`][Self::pathSeparator].
         #[method(setPathSeparator:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPathSeparator(&self, path_separator: &NSString);
 
         #[method(setPath:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPath(&self, path: &NSString) -> bool;
 
-        #[method_id(path)]
+        #[method(path)]
         #[unsafe(method_family = none)]
         pub unsafe fn path(&self) -> Retained<NSString>;
 
-        #[method_id(pathToColumn:)]
+        #[method(pathToColumn:)]
         #[unsafe(method_family = none)]
         pub unsafe fn pathToColumn(&self, column: NSInteger) -> Retained<NSString>;
 
         #[method(clickedColumn)]
+        #[unsafe(method_family = none)]
         pub unsafe fn clickedColumn(&self) -> NSInteger;
 
         #[method(clickedRow)]
+        #[unsafe(method_family = none)]
         pub unsafe fn clickedRow(&self) -> NSInteger;
 
         #[method(selectedColumn)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectedColumn(&self) -> NSInteger;
 
-        #[method_id(selectedCell)]
+        #[method(selectedCell)]
         #[unsafe(method_family = none)]
         pub unsafe fn selectedCell(&self) -> Option<Retained<AnyObject>>;
 
-        #[method_id(selectedCellInColumn:)]
+        #[method(selectedCellInColumn:)]
         #[unsafe(method_family = none)]
         pub unsafe fn selectedCellInColumn(&self, column: NSInteger)
             -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSCell")]
-        #[method_id(selectedCells)]
+        #[method(selectedCells)]
         #[unsafe(method_family = none)]
         pub unsafe fn selectedCells(&self) -> Option<Retained<NSArray<NSCell>>>;
 
         #[method(selectRow:inColumn:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectRow_inColumn(&self, row: NSInteger, column: NSInteger);
 
         #[method(selectedRowInColumn:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectedRowInColumn(&self, column: NSInteger) -> NSInteger;
 
-        #[method_id(selectionIndexPath)]
+        #[method(selectionIndexPath)]
         #[unsafe(method_family = none)]
         pub unsafe fn selectionIndexPath(&self) -> Option<Retained<NSIndexPath>>;
 
         /// Setter for [`selectionIndexPath`][Self::selectionIndexPath].
         #[method(setSelectionIndexPath:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSelectionIndexPath(&self, selection_index_path: Option<&NSIndexPath>);
 
-        #[method_id(selectionIndexPaths)]
+        #[method(selectionIndexPaths)]
         #[unsafe(method_family = none)]
         pub unsafe fn selectionIndexPaths(&self) -> Retained<NSArray<NSIndexPath>>;
 
         /// Setter for [`selectionIndexPaths`][Self::selectionIndexPaths].
         #[method(setSelectionIndexPaths:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSelectionIndexPaths(&self, selection_index_paths: &NSArray<NSIndexPath>);
 
         #[method(selectRowIndexes:inColumn:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectRowIndexes_inColumn(&self, indexes: &NSIndexSet, column: NSInteger);
 
-        #[method_id(selectedRowIndexesInColumn:)]
+        #[method(selectedRowIndexesInColumn:)]
         #[unsafe(method_family = none)]
         pub unsafe fn selectedRowIndexesInColumn(
             &self,
@@ -373,40 +419,51 @@ extern_methods!(
         ) -> Option<Retained<NSIndexSet>>;
 
         #[method(reloadColumn:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reloadColumn(&self, column: NSInteger);
 
         #[method(validateVisibleColumns)]
+        #[unsafe(method_family = none)]
         pub unsafe fn validateVisibleColumns(&self);
 
         #[method(scrollColumnsRightBy:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scrollColumnsRightBy(&self, shift_amount: NSInteger);
 
         #[method(scrollColumnsLeftBy:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scrollColumnsLeftBy(&self, shift_amount: NSInteger);
 
         #[method(scrollColumnToVisible:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scrollColumnToVisible(&self, column: NSInteger);
 
         #[method(lastColumn)]
+        #[unsafe(method_family = none)]
         pub unsafe fn lastColumn(&self) -> NSInteger;
 
         /// Setter for [`lastColumn`][Self::lastColumn].
         #[method(setLastColumn:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLastColumn(&self, last_column: NSInteger);
 
         #[method(addColumn)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addColumn(&self);
 
         #[method(numberOfVisibleColumns)]
+        #[unsafe(method_family = none)]
         pub unsafe fn numberOfVisibleColumns(&self) -> NSInteger;
 
         #[method(firstVisibleColumn)]
+        #[unsafe(method_family = none)]
         pub unsafe fn firstVisibleColumn(&self) -> NSInteger;
 
         #[method(lastVisibleColumn)]
+        #[unsafe(method_family = none)]
         pub unsafe fn lastVisibleColumn(&self) -> NSInteger;
 
-        #[method_id(loadedCellAtRow:column:)]
+        #[method(loadedCellAtRow:column:)]
         #[unsafe(method_family = none)]
         pub unsafe fn loadedCellAtRow_column(
             &self,
@@ -415,40 +472,52 @@ extern_methods!(
         ) -> Option<Retained<AnyObject>>;
 
         #[method(selectAll:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectAll(&self, sender: Option<&AnyObject>);
 
         #[method(tile)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tile(&self);
 
         #[method(doClick:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn doClick(&self, sender: Option<&AnyObject>);
 
         #[method(doDoubleClick:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn doDoubleClick(&self, sender: Option<&AnyObject>);
 
         #[method(sendAction)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sendAction(&self) -> bool;
 
         #[method(titleFrameOfColumn:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn titleFrameOfColumn(&self, column: NSInteger) -> NSRect;
 
         #[method(drawTitleOfColumn:inRect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn drawTitleOfColumn_inRect(&self, column: NSInteger, rect: NSRect);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(titleHeight)]
+        #[unsafe(method_family = none)]
         pub unsafe fn titleHeight(&self) -> CGFloat;
 
         #[method(frameOfColumn:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn frameOfColumn(&self, column: NSInteger) -> NSRect;
 
         #[method(frameOfInsideOfColumn:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn frameOfInsideOfColumn(&self, column: NSInteger) -> NSRect;
 
         #[method(frameOfRow:inColumn:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn frameOfRow_inColumn(&self, row: NSInteger, column: NSInteger) -> NSRect;
 
         #[method(getRow:column:forPoint:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getRow_column_forPoint(
             &self,
             row: *mut NSInteger,
@@ -458,6 +527,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(columnWidthForColumnContentWidth:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn columnWidthForColumnContentWidth(
             &self,
             column_content_width: CGFloat,
@@ -465,23 +535,28 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(columnContentWidthForColumnWidth:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn columnContentWidthForColumnWidth(&self, column_width: CGFloat) -> CGFloat;
 
         #[method(columnResizingType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn columnResizingType(&self) -> NSBrowserColumnResizingType;
 
         /// Setter for [`columnResizingType`][Self::columnResizingType].
         #[method(setColumnResizingType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setColumnResizingType(
             &self,
             column_resizing_type: NSBrowserColumnResizingType,
         );
 
         #[method(prefersAllColumnUserResizing)]
+        #[unsafe(method_family = none)]
         pub unsafe fn prefersAllColumnUserResizing(&self) -> bool;
 
         /// Setter for [`prefersAllColumnUserResizing`][Self::prefersAllColumnUserResizing].
         #[method(setPrefersAllColumnUserResizing:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPrefersAllColumnUserResizing(
             &self,
             prefers_all_column_user_resizing: bool,
@@ -489,22 +564,27 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(setWidth:ofColumn:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWidth_ofColumn(&self, column_width: CGFloat, column_index: NSInteger);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(widthOfColumn:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn widthOfColumn(&self, column: NSInteger) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(rowHeight)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rowHeight(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`rowHeight`][Self::rowHeight].
         #[method(setRowHeight:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRowHeight(&self, row_height: CGFloat);
 
         #[method(noteHeightOfRowsWithIndexesChanged:inColumn:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn noteHeightOfRowsWithIndexesChanged_inColumn(
             &self,
             index_set: &NSIndexSet,
@@ -513,24 +593,28 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(setDefaultColumnWidth:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDefaultColumnWidth(&self, column_width: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(defaultColumnWidth)]
+        #[unsafe(method_family = none)]
         pub unsafe fn defaultColumnWidth(&self) -> CGFloat;
 
-        #[method_id(columnsAutosaveName)]
+        #[method(columnsAutosaveName)]
         #[unsafe(method_family = none)]
         pub unsafe fn columnsAutosaveName(&self) -> Retained<NSBrowserColumnsAutosaveName>;
 
         /// Setter for [`columnsAutosaveName`][Self::columnsAutosaveName].
         #[method(setColumnsAutosaveName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setColumnsAutosaveName(
             &self,
             columns_autosave_name: &NSBrowserColumnsAutosaveName,
         );
 
         #[method(removeSavedColumnsWithAutosaveName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeSavedColumnsWithAutosaveName(
             name: &NSBrowserColumnsAutosaveName,
             mtm: MainThreadMarker,
@@ -538,6 +622,7 @@ extern_methods!(
 
         #[cfg(feature = "NSEvent")]
         #[method(canDragRowsWithIndexes:inColumn:withEvent:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn canDragRowsWithIndexes_inColumn_withEvent(
             &self,
             row_indexes: &NSIndexSet,
@@ -546,7 +631,7 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(all(feature = "NSEvent", feature = "NSImage"))]
-        #[method_id(draggingImageForRowsWithIndexes:inColumn:withEvent:offset:)]
+        #[method(draggingImageForRowsWithIndexes:inColumn:withEvent:offset:)]
         #[unsafe(method_family = none)]
         pub unsafe fn draggingImageForRowsWithIndexes_inColumn_withEvent_offset(
             &self,
@@ -558,6 +643,7 @@ extern_methods!(
 
         #[cfg(feature = "NSDragging")]
         #[method(setDraggingSourceOperationMask:forLocal:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDraggingSourceOperationMask_forLocal(
             &self,
             mask: NSDragOperation,
@@ -565,24 +651,28 @@ extern_methods!(
         );
 
         #[method(allowsTypeSelect)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowsTypeSelect(&self) -> bool;
 
         /// Setter for [`allowsTypeSelect`][Self::allowsTypeSelect].
         #[method(setAllowsTypeSelect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAllowsTypeSelect(&self, allows_type_select: bool);
 
         #[cfg(feature = "NSColor")]
-        #[method_id(backgroundColor)]
+        #[method(backgroundColor)]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundColor(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`backgroundColor`][Self::backgroundColor].
         #[method(setBackgroundColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColor(&self, background_color: &NSColor);
 
         #[cfg(feature = "NSEvent")]
         #[method(editItemAtIndexPath:withEvent:select:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn editItemAtIndexPath_withEvent_select(
             &self,
             index_path: &NSIndexPath,
@@ -596,11 +686,11 @@ extern_methods!(
     /// Methods declared on superclass `NSControl`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSBrowser {
-        #[method_id(initWithFrame:)]
+        #[method(initWithFrame:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -613,7 +703,7 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSBrowser {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -623,7 +713,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSBrowser {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -640,6 +730,7 @@ extern_protocol!(
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(browser:numberOfRowsInColumn:)]
+        #[unsafe(method_family = none)]
         unsafe fn browser_numberOfRowsInColumn(
             &self,
             sender: &NSBrowser,
@@ -654,6 +745,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(browser:createRowsForColumn:inMatrix:)]
+        #[unsafe(method_family = none)]
         unsafe fn browser_createRowsForColumn_inMatrix(
             &self,
             sender: &NSBrowser,
@@ -664,6 +756,7 @@ extern_protocol!(
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(browser:numberOfChildrenOfItem:)]
+        #[unsafe(method_family = none)]
         unsafe fn browser_numberOfChildrenOfItem(
             &self,
             browser: &NSBrowser,
@@ -672,7 +765,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
-        #[method_id(browser:child:ofItem:)]
+        #[method(browser:child:ofItem:)]
         #[unsafe(method_family = none)]
         unsafe fn browser_child_ofItem(
             &self,
@@ -684,11 +777,12 @@ extern_protocol!(
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(browser:isLeafItem:)]
+        #[unsafe(method_family = none)]
         unsafe fn browser_isLeafItem(&self, browser: &NSBrowser, item: Option<&AnyObject>) -> bool;
 
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
-        #[method_id(browser:objectValueForItem:)]
+        #[method(browser:objectValueForItem:)]
         #[unsafe(method_family = none)]
         unsafe fn browser_objectValueForItem(
             &self,
@@ -704,6 +798,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(browser:heightOfRow:inColumn:)]
+        #[unsafe(method_family = none)]
         unsafe fn browser_heightOfRow_inColumn(
             &self,
             browser: &NSBrowser,
@@ -713,13 +808,14 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
-        #[method_id(rootItemForBrowser:)]
+        #[method(rootItemForBrowser:)]
         #[unsafe(method_family = none)]
         unsafe fn rootItemForBrowser(&self, browser: &NSBrowser) -> Option<Retained<AnyObject>>;
 
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(browser:setObjectValue:forItem:)]
+        #[unsafe(method_family = none)]
         unsafe fn browser_setObjectValue_forItem(
             &self,
             browser: &NSBrowser,
@@ -730,6 +826,7 @@ extern_protocol!(
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(browser:shouldEditItem:)]
+        #[unsafe(method_family = none)]
         unsafe fn browser_shouldEditItem(
             &self,
             browser: &NSBrowser,
@@ -739,6 +836,7 @@ extern_protocol!(
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(browser:willDisplayCell:atRow:column:)]
+        #[unsafe(method_family = none)]
         unsafe fn browser_willDisplayCell_atRow_column(
             &self,
             sender: &NSBrowser,
@@ -749,7 +847,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
-        #[method_id(browser:titleOfColumn:)]
+        #[method(browser:titleOfColumn:)]
         #[unsafe(method_family = none)]
         unsafe fn browser_titleOfColumn(
             &self,
@@ -760,6 +858,7 @@ extern_protocol!(
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(browser:selectCellWithString:inColumn:)]
+        #[unsafe(method_family = none)]
         unsafe fn browser_selectCellWithString_inColumn(
             &self,
             sender: &NSBrowser,
@@ -770,6 +869,7 @@ extern_protocol!(
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(browser:selectRow:inColumn:)]
+        #[unsafe(method_family = none)]
         unsafe fn browser_selectRow_inColumn(
             &self,
             sender: &NSBrowser,
@@ -780,16 +880,19 @@ extern_protocol!(
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(browser:isColumnValid:)]
+        #[unsafe(method_family = none)]
         unsafe fn browser_isColumnValid(&self, sender: &NSBrowser, column: NSInteger) -> bool;
 
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(browserWillScroll:)]
+        #[unsafe(method_family = none)]
         unsafe fn browserWillScroll(&self, sender: &NSBrowser);
 
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(browserDidScroll:)]
+        #[unsafe(method_family = none)]
         unsafe fn browserDidScroll(&self, sender: &NSBrowser);
 
         #[cfg(all(
@@ -800,6 +903,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(browser:shouldSizeColumn:forUserResize:toWidth:)]
+        #[unsafe(method_family = none)]
         unsafe fn browser_shouldSizeColumn_forUserResize_toWidth(
             &self,
             browser: &NSBrowser,
@@ -816,6 +920,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(browser:sizeToFitWidthOfColumn:)]
+        #[unsafe(method_family = none)]
         unsafe fn browser_sizeToFitWidthOfColumn(
             &self,
             browser: &NSBrowser,
@@ -824,11 +929,13 @@ extern_protocol!(
 
         #[optional]
         #[method(browserColumnConfigurationDidChange:)]
+        #[unsafe(method_family = none)]
         unsafe fn browserColumnConfigurationDidChange(&self, notification: &NSNotification);
 
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(browser:shouldShowCellExpansionForRow:column:)]
+        #[unsafe(method_family = none)]
         unsafe fn browser_shouldShowCellExpansionForRow_column(
             &self,
             browser: &NSBrowser,
@@ -844,6 +951,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(browser:writeRowsWithIndexes:inColumn:toPasteboard:)]
+        #[unsafe(method_family = none)]
         unsafe fn browser_writeRowsWithIndexes_inColumn_toPasteboard(
             &self,
             browser: &NSBrowser,
@@ -855,7 +963,7 @@ extern_protocol!(
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[deprecated = "Use NSFilePromiseReceiver objects instead"]
         #[optional]
-        #[method_id(browser:namesOfPromisedFilesDroppedAtDestination:forDraggedRowsWithIndexes:inColumn:)]
+        #[method(browser:namesOfPromisedFilesDroppedAtDestination:forDraggedRowsWithIndexes:inColumn:)]
         #[unsafe(method_family = none)]
         unsafe fn browser_namesOfPromisedFilesDroppedAtDestination_forDraggedRowsWithIndexes_inColumn(
             &self,
@@ -873,6 +981,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(browser:canDragRowsWithIndexes:inColumn:withEvent:)]
+        #[unsafe(method_family = none)]
         unsafe fn browser_canDragRowsWithIndexes_inColumn_withEvent(
             &self,
             browser: &NSBrowser,
@@ -889,7 +998,7 @@ extern_protocol!(
             feature = "NSView"
         ))]
         #[optional]
-        #[method_id(browser:draggingImageForRowsWithIndexes:inColumn:withEvent:offset:)]
+        #[method(browser:draggingImageForRowsWithIndexes:inColumn:withEvent:offset:)]
         #[unsafe(method_family = none)]
         unsafe fn browser_draggingImageForRowsWithIndexes_inColumn_withEvent_offset(
             &self,
@@ -908,6 +1017,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(browser:validateDrop:proposedRow:column:dropOperation:)]
+        #[unsafe(method_family = none)]
         unsafe fn browser_validateDrop_proposedRow_column_dropOperation(
             &self,
             browser: &NSBrowser,
@@ -925,6 +1035,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(browser:acceptDrop:atRow:column:dropOperation:)]
+        #[unsafe(method_family = none)]
         unsafe fn browser_acceptDrop_atRow_column_dropOperation(
             &self,
             browser: &NSBrowser,
@@ -936,7 +1047,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
-        #[method_id(browser:typeSelectStringForRow:inColumn:)]
+        #[method(browser:typeSelectStringForRow:inColumn:)]
         #[unsafe(method_family = none)]
         unsafe fn browser_typeSelectStringForRow_inColumn(
             &self,
@@ -953,6 +1064,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(browser:shouldTypeSelectForEvent:withCurrentSearchString:)]
+        #[unsafe(method_family = none)]
         unsafe fn browser_shouldTypeSelectForEvent_withCurrentSearchString(
             &self,
             browser: &NSBrowser,
@@ -963,6 +1075,7 @@ extern_protocol!(
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(browser:nextTypeSelectMatchFromRow:toRow:inColumn:forString:)]
+        #[unsafe(method_family = none)]
         unsafe fn browser_nextTypeSelectMatchFromRow_toRow_inColumn_forString(
             &self,
             browser: &NSBrowser,
@@ -979,7 +1092,7 @@ extern_protocol!(
             feature = "NSViewController"
         ))]
         #[optional]
-        #[method_id(browser:previewViewControllerForLeafItem:)]
+        #[method(browser:previewViewControllerForLeafItem:)]
         #[unsafe(method_family = none)]
         unsafe fn browser_previewViewControllerForLeafItem(
             &self,
@@ -994,7 +1107,7 @@ extern_protocol!(
             feature = "NSViewController"
         ))]
         #[optional]
-        #[method_id(browser:headerViewControllerForItem:)]
+        #[method(browser:headerViewControllerForItem:)]
         #[unsafe(method_family = none)]
         unsafe fn browser_headerViewControllerForItem(
             &self,
@@ -1005,6 +1118,7 @@ extern_protocol!(
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(browser:didChangeLastColumn:toColumn:)]
+        #[unsafe(method_family = none)]
         unsafe fn browser_didChangeLastColumn_toColumn(
             &self,
             browser: &NSBrowser,
@@ -1014,7 +1128,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]
-        #[method_id(browser:selectionIndexesForProposedSelection:inColumn:)]
+        #[method(browser:selectionIndexesForProposedSelection:inColumn:)]
         #[unsafe(method_family = none)]
         unsafe fn browser_selectionIndexesForProposedSelection_inColumn(
             &self,
@@ -1031,45 +1145,54 @@ extern_methods!(
     unsafe impl NSBrowser {
         #[deprecated]
         #[method(setAcceptsArrowKeys:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAcceptsArrowKeys(&self, flag: bool);
 
         #[deprecated]
         #[method(acceptsArrowKeys)]
+        #[unsafe(method_family = none)]
         pub unsafe fn acceptsArrowKeys(&self) -> bool;
 
         #[deprecated]
         #[method(displayColumn:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn displayColumn(&self, column: NSInteger);
 
         #[deprecated]
         #[method(displayAllColumns)]
+        #[unsafe(method_family = none)]
         pub unsafe fn displayAllColumns(&self);
 
         #[cfg(feature = "NSScroller")]
         #[deprecated]
         #[method(scrollViaScroller:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scrollViaScroller(&self, sender: Option<&NSScroller>);
 
         #[deprecated]
         #[method(updateScroller)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updateScroller(&self);
 
         #[deprecated = "Use the item based NSBrowser instead"]
         #[method(setMatrixClass:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMatrixClass(&self, factory_id: &AnyClass);
 
         #[deprecated = "Use the item based NSBrowser instead"]
         #[method(matrixClass)]
+        #[unsafe(method_family = none)]
         pub unsafe fn matrixClass(&self) -> &'static AnyClass;
 
         #[cfg(feature = "NSMatrix")]
         #[deprecated = "Use the item based NSBrowser instead"]
         #[method(columnOfMatrix:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn columnOfMatrix(&self, matrix: &NSMatrix) -> NSInteger;
 
         #[cfg(feature = "NSMatrix")]
         #[deprecated = "Use the item based NSBrowser instead"]
-        #[method_id(matrixInColumn:)]
+        #[method(matrixInColumn:)]
         #[unsafe(method_family = none)]
         pub unsafe fn matrixInColumn(&self, column: NSInteger) -> Option<Retained<NSMatrix>>;
     }

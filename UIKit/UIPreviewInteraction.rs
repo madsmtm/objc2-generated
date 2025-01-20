@@ -21,20 +21,20 @@ unsafe impl NSObjectProtocol for UIPreviewInteraction {}
 extern_methods!(
     unsafe impl UIPreviewInteraction {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[method_id(initWithView:)]
+        #[method(initWithView:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithView(this: Allocated<Self>, view: &UIView) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[method_id(view)]
+        #[method(view)]
         #[unsafe(method_family = none)]
         pub unsafe fn view(&self) -> Option<Retained<UIView>>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -43,6 +43,7 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn UIPreviewInteractionDelegate>>,
@@ -50,12 +51,14 @@ extern_methods!(
 
         #[cfg(all(feature = "UIView", feature = "objc2-core-foundation"))]
         #[method(locationInCoordinateSpace:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn locationInCoordinateSpace(
             &self,
             coordinate_space: Option<&ProtocolObject<dyn UICoordinateSpace>>,
         ) -> CGPoint;
 
         #[method(cancelInteraction)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cancelInteraction(&self);
     }
 );
@@ -63,7 +66,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIPreviewInteraction {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -76,6 +79,7 @@ extern_protocol!(
     {
         #[cfg(feature = "objc2-core-foundation")]
         #[method(previewInteraction:didUpdatePreviewTransition:ended:)]
+        #[unsafe(method_family = none)]
         unsafe fn previewInteraction_didUpdatePreviewTransition_ended(
             &self,
             preview_interaction: &UIPreviewInteraction,
@@ -84,10 +88,12 @@ extern_protocol!(
         );
 
         #[method(previewInteractionDidCancel:)]
+        #[unsafe(method_family = none)]
         unsafe fn previewInteractionDidCancel(&self, preview_interaction: &UIPreviewInteraction);
 
         #[optional]
         #[method(previewInteractionShouldBegin:)]
+        #[unsafe(method_family = none)]
         unsafe fn previewInteractionShouldBegin(
             &self,
             preview_interaction: &UIPreviewInteraction,
@@ -96,6 +102,7 @@ extern_protocol!(
         #[cfg(feature = "objc2-core-foundation")]
         #[optional]
         #[method(previewInteraction:didUpdateCommitTransition:ended:)]
+        #[unsafe(method_family = none)]
         unsafe fn previewInteraction_didUpdateCommitTransition_ended(
             &self,
             preview_interaction: &UIPreviewInteraction,

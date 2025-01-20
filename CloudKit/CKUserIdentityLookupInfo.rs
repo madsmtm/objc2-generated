@@ -27,22 +27,22 @@ unsafe impl NSSecureCoding for CKUserIdentityLookupInfo {}
 
 extern_methods!(
     unsafe impl CKUserIdentityLookupInfo {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(initWithEmailAddress:)]
+        #[method(initWithEmailAddress:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithEmailAddress(
             this: Allocated<Self>,
             email_address: &NSString,
         ) -> Retained<Self>;
 
-        #[method_id(initWithPhoneNumber:)]
+        #[method(initWithPhoneNumber:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPhoneNumber(
             this: Allocated<Self>,
@@ -50,42 +50,42 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordID")]
-        #[method_id(initWithUserRecordID:)]
+        #[method(initWithUserRecordID:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithUserRecordID(
             this: Allocated<Self>,
             user_record_id: &CKRecordID,
         ) -> Retained<Self>;
 
-        #[method_id(lookupInfosWithEmails:)]
+        #[method(lookupInfosWithEmails:)]
         #[unsafe(method_family = none)]
         pub unsafe fn lookupInfosWithEmails(
             emails: &NSArray<NSString>,
         ) -> Retained<NSArray<CKUserIdentityLookupInfo>>;
 
-        #[method_id(lookupInfosWithPhoneNumbers:)]
+        #[method(lookupInfosWithPhoneNumbers:)]
         #[unsafe(method_family = none)]
         pub unsafe fn lookupInfosWithPhoneNumbers(
             phone_numbers: &NSArray<NSString>,
         ) -> Retained<NSArray<CKUserIdentityLookupInfo>>;
 
         #[cfg(feature = "CKRecordID")]
-        #[method_id(lookupInfosWithRecordIDs:)]
+        #[method(lookupInfosWithRecordIDs:)]
         #[unsafe(method_family = none)]
         pub unsafe fn lookupInfosWithRecordIDs(
             record_i_ds: &NSArray<CKRecordID>,
         ) -> Retained<NSArray<CKUserIdentityLookupInfo>>;
 
-        #[method_id(emailAddress)]
+        #[method(emailAddress)]
         #[unsafe(method_family = none)]
         pub unsafe fn emailAddress(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(phoneNumber)]
+        #[method(phoneNumber)]
         #[unsafe(method_family = none)]
         pub unsafe fn phoneNumber(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "CKRecordID")]
-        #[method_id(userRecordID)]
+        #[method(userRecordID)]
         #[unsafe(method_family = none)]
         pub unsafe fn userRecordID(&self) -> Option<Retained<CKRecordID>>;
     }

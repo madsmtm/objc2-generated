@@ -26,33 +26,36 @@ extern_methods!(
     unsafe impl ILClassificationResponse {
         #[cfg(feature = "ILClassificationActions")]
         #[method(action)]
+        #[unsafe(method_family = none)]
         pub unsafe fn action(&self) -> ILClassificationAction;
 
-        #[method_id(userString)]
+        #[method(userString)]
         #[unsafe(method_family = none)]
         pub unsafe fn userString(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`userString`][Self::userString].
         #[method(setUserString:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUserString(&self, user_string: Option<&NSString>);
 
-        #[method_id(userInfo)]
+        #[method(userInfo)]
         #[unsafe(method_family = none)]
         pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         /// Setter for [`userInfo`][Self::userInfo].
         #[method(setUserInfo:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&NSDictionary<NSString, AnyObject>>);
 
         #[cfg(feature = "ILClassificationActions")]
-        #[method_id(initWithClassificationAction:)]
+        #[method(initWithClassificationAction:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithClassificationAction(
             this: Allocated<Self>,
             action: ILClassificationAction,
         ) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -61,7 +64,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ILClassificationResponse {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

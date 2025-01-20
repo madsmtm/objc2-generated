@@ -33,7 +33,7 @@ extern_methods!(
     #[cfg(feature = "MLFeatureValue")]
     unsafe impl MLFeatureValue {
         /// Construct image feature value from an image on disk. Orientation is read from Exif if avaiable
-        #[method_id(featureValueWithImageAtURL:pixelsWide:pixelsHigh:pixelFormatType:options:error:_)]
+        #[method(featureValueWithImageAtURL:pixelsWide:pixelsHigh:pixelFormatType:options:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn featureValueWithImageAtURL_pixelsWide_pixelsHigh_pixelFormatType_options_error(
             url: &NSURL,
@@ -45,7 +45,7 @@ extern_methods!(
 
         #[cfg(feature = "MLImageConstraint")]
         /// Construct image feature value from an image on disk, using a model specified image constraint. Orientation is read from Exif if avaiable
-        #[method_id(featureValueWithImageAtURL:constraint:options:error:_)]
+        #[method(featureValueWithImageAtURL:constraint:options:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn featureValueWithImageAtURL_constraint_options_error(
             url: &NSURL,
@@ -55,7 +55,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Construct image feature value from CGImage (orientation is assumed to be kCGImagePropertyOrientationUp)
-        #[method_id(featureValueWithCGImage:pixelsWide:pixelsHigh:pixelFormatType:options:error:_)]
+        #[method(featureValueWithCGImage:pixelsWide:pixelsHigh:pixelFormatType:options:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn featureValueWithCGImage_pixelsWide_pixelsHigh_pixelFormatType_options_error(
             cg_image: &CGImage,
@@ -67,7 +67,7 @@ extern_methods!(
 
         #[cfg(all(feature = "MLImageConstraint", feature = "objc2-core-graphics"))]
         /// Construct image feature value from CGImage, using the size and type information required by feature description (orientation is assumed to be kCGImagePropertyOrientationUp)
-        #[method_id(featureValueWithCGImage:constraint:options:error:_)]
+        #[method(featureValueWithCGImage:constraint:options:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn featureValueWithCGImage_constraint_options_error(
             cg_image: &CGImage,

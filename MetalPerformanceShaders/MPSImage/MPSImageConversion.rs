@@ -49,6 +49,7 @@ extern_methods!(
         /// be unpremultiplied prior to application of these transforms.
         /// Default: MPSPixelAlpha_AlphaIsOne
         #[method(sourceAlpha)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sourceAlpha(&self) -> MPSAlphaType;
 
         #[cfg(feature = "MPSImageTypes")]
@@ -59,6 +60,7 @@ extern_methods!(
         /// If MPSPixelAlpha_AlphaIsOne is used, the alpha channel will be set to 1.
         /// Default: MPSPixelAlpha_AlphaIsOne
         #[method(destinationAlpha)]
+        #[unsafe(method_family = none)]
         pub unsafe fn destinationAlpha(&self) -> MPSAlphaType;
 
         #[cfg(all(
@@ -86,7 +88,7 @@ extern_methods!(
         ///
         ///
         /// Returns: An initialized MPSImageConversion object.
-        #[method_id(initWithDevice:srcAlpha:destAlpha:backgroundColor:conversionInfo:)]
+        #[method(initWithDevice:srcAlpha:destAlpha:backgroundColor:conversionInfo:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_srcAlpha_destAlpha_backgroundColor_conversionInfo(
             this: Allocated<Self>,
@@ -110,7 +112,7 @@ extern_methods!(
         /// Returns: a pointer to the newly initialized object. This will fail, returning
         /// nil if the device is not supported. Devices must be
         /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -130,7 +132,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -152,7 +154,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -165,11 +167,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageConversion {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -36,26 +36,31 @@ extern_methods!(
         ///
         /// Route detection significantly increases power consumption and must be turned off when it's no longer needed.
         #[method(isRouteDetectionEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isRouteDetectionEnabled(&self) -> bool;
 
         /// Setter for [`isRouteDetectionEnabled`][Self::isRouteDetectionEnabled].
         #[method(setRouteDetectionEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRouteDetectionEnabled(&self, route_detection_enabled: bool);
 
         /// This property is YES if, in addition to the local playback route, at least one more playback route has been detected.
         ///
         /// If multiple route have been detected, AVKit's AVRoutePickerView can be used to allow users to pick from the set of available routes. When the values of this property changes AVRouteDetectorMultipleRoutesDetectedDidChangeNotification is posted.
         #[method(multipleRoutesDetected)]
+        #[unsafe(method_family = none)]
         pub unsafe fn multipleRoutesDetected(&self) -> bool;
 
         /// Whether or not route detection will include custom routes. The default value is NO.
         ///
         /// Only set this to YES if also using AVCustomRoutingController.
         #[method(detectsCustomRoutes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn detectsCustomRoutes(&self) -> bool;
 
         /// Setter for [`detectsCustomRoutes`][Self::detectsCustomRoutes].
         #[method(setDetectsCustomRoutes:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDetectsCustomRoutes(&self, detects_custom_routes: bool);
     }
 );
@@ -63,11 +68,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVRouteDetector {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

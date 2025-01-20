@@ -28,60 +28,68 @@ unsafe impl NSObjectProtocol for MKMapSnapshotOptions {}
 extern_methods!(
     unsafe impl MKMapSnapshotOptions {
         #[cfg(feature = "MKMapConfiguration")]
-        #[method_id(preferredConfiguration)]
+        #[method(preferredConfiguration)]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredConfiguration(&self) -> Retained<MKMapConfiguration>;
 
         #[cfg(feature = "MKMapConfiguration")]
         /// Setter for [`preferredConfiguration`][Self::preferredConfiguration].
         #[method(setPreferredConfiguration:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreferredConfiguration(
             &self,
             preferred_configuration: &MKMapConfiguration,
         );
 
         #[cfg(feature = "MKMapCamera")]
-        #[method_id(camera)]
+        #[method(camera)]
         #[unsafe(method_family = none)]
         pub unsafe fn camera(&self) -> Retained<MKMapCamera>;
 
         #[cfg(feature = "MKMapCamera")]
         /// Setter for [`camera`][Self::camera].
         #[method(setCamera:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCamera(&self, camera: &MKMapCamera);
 
         #[cfg(feature = "MKGeometry")]
         #[method(mapRect)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mapRect(&self) -> MKMapRect;
 
         #[cfg(feature = "MKGeometry")]
         /// Setter for [`mapRect`][Self::mapRect].
         #[method(setMapRect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMapRect(&self, map_rect: MKMapRect);
 
         #[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
         #[method(region)]
+        #[unsafe(method_family = none)]
         pub unsafe fn region(&self) -> MKCoordinateRegion;
 
         #[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
         /// Setter for [`region`][Self::region].
         #[method(setRegion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRegion(&self, region: MKCoordinateRegion);
 
         #[cfg(feature = "MKTypes")]
         #[deprecated = "Use preferredConfiguration"]
         #[method(mapType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mapType(&self) -> MKMapType;
 
         #[cfg(feature = "MKTypes")]
         /// Setter for [`mapType`][Self::mapType].
         #[deprecated = "Use preferredConfiguration"]
         #[method(setMapType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMapType(&self, map_type: MKMapType);
 
         #[cfg(feature = "MKPointOfInterestFilter")]
         #[deprecated = "Use preferredConfiguration"]
-        #[method_id(pointOfInterestFilter)]
+        #[method(pointOfInterestFilter)]
         #[unsafe(method_family = none)]
         pub unsafe fn pointOfInterestFilter(&self) -> Option<Retained<MKPointOfInterestFilter>>;
 
@@ -89,6 +97,7 @@ extern_methods!(
         /// Setter for [`pointOfInterestFilter`][Self::pointOfInterestFilter].
         #[deprecated = "Use preferredConfiguration"]
         #[method(setPointOfInterestFilter:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPointOfInterestFilter(
             &self,
             point_of_interest_filter: Option<&MKPointOfInterestFilter>,
@@ -96,32 +105,38 @@ extern_methods!(
 
         #[deprecated = "Use preferredConfiguration"]
         #[method(showsPointsOfInterest)]
+        #[unsafe(method_family = none)]
         pub unsafe fn showsPointsOfInterest(&self) -> bool;
 
         /// Setter for [`showsPointsOfInterest`][Self::showsPointsOfInterest].
         #[deprecated = "Use preferredConfiguration"]
         #[method(setShowsPointsOfInterest:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShowsPointsOfInterest(&self, shows_points_of_interest: bool);
 
         #[deprecated = "No longer supported."]
         #[method(showsBuildings)]
+        #[unsafe(method_family = none)]
         pub unsafe fn showsBuildings(&self) -> bool;
 
         /// Setter for [`showsBuildings`][Self::showsBuildings].
         #[deprecated = "No longer supported."]
         #[method(setShowsBuildings:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShowsBuildings(&self, shows_buildings: bool);
 
         #[method(size)]
+        #[unsafe(method_family = none)]
         pub unsafe fn size(&self) -> NSSize;
 
         /// Setter for [`size`][Self::size].
         #[method(setSize:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSize(&self, size: NSSize);
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
-        #[method_id(appearance)]
+        #[method(appearance)]
         #[unsafe(method_family = none)]
         pub unsafe fn appearance(&self) -> Option<Retained<NSAppearance>>;
 
@@ -129,6 +144,7 @@ extern_methods!(
         #[cfg(target_os = "macos")]
         /// Setter for [`appearance`][Self::appearance].
         #[method(setAppearance:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAppearance(&self, appearance: Option<&NSAppearance>);
     }
 );
@@ -136,11 +152,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKMapSnapshotOptions {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -41,7 +41,7 @@ extern_methods!(
         ///
         ///
         /// Suitable when your picked values don't need titles.
-        #[method_id(initWithLocalizedTitle:symbolName:numberOfIndexes:)]
+        #[method(initWithLocalizedTitle:symbolName:numberOfIndexes:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLocalizedTitle_symbolName_numberOfIndexes(
             this: Allocated<Self>,
@@ -66,7 +66,7 @@ extern_methods!(
         ///
         ///
         /// Suitable when you want to provide a title for each picked value lazily.
-        #[method_id(initWithLocalizedTitle:symbolName:numberOfIndexes:localizedTitleTransform:)]
+        #[method(initWithLocalizedTitle:symbolName:numberOfIndexes:localizedTitleTransform:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLocalizedTitle_symbolName_numberOfIndexes_localizedTitleTransform(
             this: Allocated<Self>,
@@ -89,7 +89,7 @@ extern_methods!(
         ///
         ///
         /// Suitable when you already have an array containing a title for each picked value.
-        #[method_id(initWithLocalizedTitle:symbolName:localizedIndexTitles:)]
+        #[method(initWithLocalizedTitle:symbolName:localizedIndexTitles:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLocalizedTitle_symbolName_localizedIndexTitles(
             this: Allocated<Self>,
@@ -104,38 +104,42 @@ extern_methods!(
         /// Because the camera system may be independent from the main thread or `
         /// MainThreadOnly`, `selectedIndex` must be changed on `actionQueue` – the queue provided to `setActionQueue:action:`. The default value is 0. An index may only be set if it is greater than 0 or less than `numberOfIndexes`, otherwise an `NSInvalidArgumentException` is thrown.
         #[method(selectedIndex)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectedIndex(&self) -> NSInteger;
 
         /// Setter for [`selectedIndex`][Self::selectedIndex].
         #[method(setSelectedIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSelectedIndex(&self, selected_index: NSInteger);
 
         /// A localized string that describes the picker's `action`.
-        #[method_id(localizedTitle)]
+        #[method(localizedTitle)]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedTitle(&self) -> Retained<NSString>;
 
         /// The name of a symbol to represent the picker.
-        #[method_id(symbolName)]
+        #[method(symbolName)]
         #[unsafe(method_family = none)]
         pub unsafe fn symbolName(&self) -> Retained<NSString>;
 
         /// The number of indexes to pick between.
         #[method(numberOfIndexes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn numberOfIndexes(&self) -> NSInteger;
 
         /// The titles used for each index.
-        #[method_id(localizedIndexTitles)]
+        #[method(localizedIndexTitles)]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedIndexTitles(&self) -> Retained<NSArray<NSString>>;
 
         /// A string that identifies the picker.
-        #[method_id(accessibilityIdentifier)]
+        #[method(accessibilityIdentifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn accessibilityIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityIdentifier`][Self::accessibilityIdentifier].
         #[method(setAccessibilityIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAccessibilityIdentifier(
             &self,
             accessibility_identifier: Option<&NSString>,
@@ -147,11 +151,11 @@ extern_methods!(
     /// Methods declared on superclass `AVCaptureControl`
     #[cfg(feature = "AVCaptureControl")]
     unsafe impl AVCaptureIndexPicker {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

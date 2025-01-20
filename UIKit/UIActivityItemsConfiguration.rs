@@ -24,16 +24,17 @@ unsafe impl UIActivityItemsConfigurationReading for UIActivityItemsConfiguration
 
 extern_methods!(
     unsafe impl UIActivityItemsConfiguration {
-        #[method_id(localObject)]
+        #[method(localObject)]
         #[unsafe(method_family = none)]
         pub unsafe fn localObject(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`localObject`][Self::localObject].
         #[method(setLocalObject:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLocalObject(&self, local_object: Option<&AnyObject>);
 
         #[cfg(feature = "UIActivityItemsConfigurationReading")]
-        #[method_id(supportedInteractions)]
+        #[method(supportedInteractions)]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedInteractions(
             &self,
@@ -42,6 +43,7 @@ extern_methods!(
         #[cfg(feature = "UIActivityItemsConfigurationReading")]
         /// Setter for [`supportedInteractions`][Self::supportedInteractions].
         #[method(setSupportedInteractions:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSupportedInteractions(
             &self,
             supported_interactions: &NSArray<UIActivityItemsConfigurationInteraction>,
@@ -49,6 +51,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIActivityItemsConfigurationReading", feature = "block2"))]
         #[method(metadataProvider)]
+        #[unsafe(method_family = none)]
         pub unsafe fn metadataProvider(
             &self,
         ) -> *mut block2::Block<
@@ -58,6 +61,7 @@ extern_methods!(
         #[cfg(all(feature = "UIActivityItemsConfigurationReading", feature = "block2"))]
         /// Setter for [`metadataProvider`][Self::metadataProvider].
         #[method(setMetadataProvider:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMetadataProvider(
             &self,
             metadata_provider: Option<
@@ -69,6 +73,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIActivityItemsConfigurationReading", feature = "block2"))]
         #[method(perItemMetadataProvider)]
+        #[unsafe(method_family = none)]
         pub unsafe fn perItemMetadataProvider(
             &self,
         ) -> *mut block2::Block<
@@ -78,6 +83,7 @@ extern_methods!(
         #[cfg(all(feature = "UIActivityItemsConfigurationReading", feature = "block2"))]
         /// Setter for [`perItemMetadataProvider`][Self::perItemMetadataProvider].
         #[method(setPerItemMetadataProvider:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPerItemMetadataProvider(
             &self,
             per_item_metadata_provider: Option<
@@ -96,6 +102,7 @@ extern_methods!(
             feature = "objc2-core-foundation"
         ))]
         #[method(previewProvider)]
+        #[unsafe(method_family = none)]
         pub unsafe fn previewProvider(
             &self,
         ) -> *mut block2::Block<
@@ -113,6 +120,7 @@ extern_methods!(
         ))]
         /// Setter for [`previewProvider`][Self::previewProvider].
         #[method(setPreviewProvider:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreviewProvider(
             &self,
             preview_provider: Option<
@@ -128,6 +136,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIActivity", feature = "block2"))]
         #[method(applicationActivitiesProvider)]
+        #[unsafe(method_family = none)]
         pub unsafe fn applicationActivitiesProvider(
             &self,
         ) -> *mut block2::Block<dyn Fn() -> NonNull<NSArray<UIActivity>>>;
@@ -135,6 +144,7 @@ extern_methods!(
         #[cfg(all(feature = "UIActivity", feature = "block2"))]
         /// Setter for [`applicationActivitiesProvider`][Self::applicationActivitiesProvider].
         #[method(setApplicationActivitiesProvider:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setApplicationActivitiesProvider(
             &self,
             application_activities_provider: Option<
@@ -142,39 +152,39 @@ extern_methods!(
             >,
         );
 
-        #[method_id(activityItemsConfigurationWithObjects:)]
+        #[method(activityItemsConfigurationWithObjects:)]
         #[unsafe(method_family = none)]
         pub unsafe fn activityItemsConfigurationWithObjects(
             objects: &NSArray<ProtocolObject<dyn NSItemProviderWriting>>,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[method_id(activityItemsConfigurationWithItemProviders:)]
+        #[method(activityItemsConfigurationWithItemProviders:)]
         #[unsafe(method_family = none)]
         pub unsafe fn activityItemsConfigurationWithItemProviders(
             item_providers: &NSArray<NSItemProvider>,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[method_id(initWithObjects:)]
+        #[method(initWithObjects:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithObjects(
             this: Allocated<Self>,
             objects: &NSArray<ProtocolObject<dyn NSItemProviderWriting>>,
         ) -> Retained<Self>;
 
-        #[method_id(initWithItemProviders:)]
+        #[method(initWithItemProviders:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithItemProviders(
             this: Allocated<Self>,
             item_providers: &NSArray<NSItemProvider>,
         ) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

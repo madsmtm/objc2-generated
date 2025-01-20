@@ -19,7 +19,7 @@ unsafe impl NSObjectProtocol for UIWindowSceneActivationConfiguration {}
 extern_methods!(
     unsafe impl UIWindowSceneActivationConfiguration {
         /// The user activity that will be used to request a scene
-        #[method_id(userActivity)]
+        #[method(userActivity)]
         #[unsafe(method_family = none)]
         pub unsafe fn userActivity(&self) -> Retained<NSUserActivity>;
 
@@ -28,7 +28,7 @@ extern_methods!(
             feature = "UIWindowSceneActivationRequestOptions"
         ))]
         /// Options for customizing the scene request. If omitted default options are used.
-        #[method_id(options)]
+        #[method(options)]
         #[unsafe(method_family = none)]
         pub unsafe fn options(
             &self,
@@ -41,31 +41,33 @@ extern_methods!(
         ))]
         /// Setter for [`options`][Self::options].
         #[method(setOptions:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setOptions(&self, options: Option<&UIWindowSceneActivationRequestOptions>);
 
         #[cfg(feature = "UITargetedPreview")]
         /// An optional preview used to define the visual "source" of the newly activated scene for use in system animations.
-        #[method_id(preview)]
+        #[method(preview)]
         #[unsafe(method_family = none)]
         pub unsafe fn preview(&self, mtm: MainThreadMarker) -> Option<Retained<UITargetedPreview>>;
 
         #[cfg(feature = "UITargetedPreview")]
         /// Setter for [`preview`][Self::preview].
         #[method(setPreview:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreview(&self, preview: Option<&UITargetedPreview>);
 
-        #[method_id(initWithUserActivity:)]
+        #[method(initWithUserActivity:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithUserActivity(
             this: Allocated<Self>,
             user_activity: &NSUserActivity,
         ) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

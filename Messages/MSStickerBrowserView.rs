@@ -93,7 +93,7 @@ extern_methods!(
     unsafe impl MSStickerBrowserView {
         #[cfg(feature = "objc2-core-foundation")]
         /// Initializes a MSStickerBrowserView with a frame using the regular size class.
-        #[method_id(initWithFrame:)]
+        #[method(initWithFrame:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
@@ -106,7 +106,7 @@ extern_methods!(
         /// vary based on the device. Sticker images will be scaled down to fit in the grid cell. If the
         /// sticker image is smaller than the cell size measured in pixels then it will be  centered
         /// in the grid cell.
-        #[method_id(initWithFrame:stickerSize:)]
+        #[method(initWithFrame:stickerSize:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame_stickerSize(
             this: Allocated<Self>,
@@ -116,11 +116,12 @@ extern_methods!(
 
         /// The sticker size class.
         #[method(stickerSize)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stickerSize(&self) -> MSStickerSize;
 
         #[cfg(feature = "MSStickerBrowserViewDataSource")]
         /// The Sticker Browser View data source.
-        #[method_id(dataSource)]
+        #[method(dataSource)]
         #[unsafe(method_family = none)]
         pub unsafe fn dataSource(
             &self,
@@ -130,6 +131,7 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`dataSource`][Self::dataSource].
         #[method(setDataSource:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDataSource(
             &self,
             data_source: Option<&ProtocolObject<dyn MSStickerBrowserViewDataSource>>,
@@ -138,28 +140,34 @@ extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// The Sticker Browser View content offset.
         #[method(contentOffset)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contentOffset(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`contentOffset`][Self::contentOffset].
         #[method(setContentOffset:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setContentOffset(&self, content_offset: CGPoint);
 
         /// The Sticker Browser View content inset.
         #[method(contentInset)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contentInset(&self) -> UIEdgeInsets;
 
         /// Setter for [`contentInset`][Self::contentInset].
         #[method(setContentInset:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setContentInset(&self, content_inset: UIEdgeInsets);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// animate Sticker Browser View at constant velocity to new offset.
         #[method(setContentOffset:animated:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setContentOffset_animated(&self, content_offset: CGPoint, animated: bool);
 
         /// Asks the Sticker Browser View to reload its data from its data source.
         #[method(reloadData)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reloadData(&self);
     }
 );
@@ -168,7 +176,7 @@ extern_methods!(
     /// Methods declared on superclass `UIView`
     #[cfg(feature = "objc2-ui-kit")]
     unsafe impl MSStickerBrowserView {
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -181,11 +189,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2-ui-kit")]
     unsafe impl MSStickerBrowserView {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

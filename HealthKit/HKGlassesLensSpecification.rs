@@ -44,27 +44,27 @@ extern_methods!(
     unsafe impl HKGlassesLensSpecification {
         #[cfg(feature = "HKQuantity")]
         /// The distance between the back of the eyeglass lens and the eye (measured in mm)
-        #[method_id(vertexDistance)]
+        #[method(vertexDistance)]
         #[unsafe(method_family = none)]
         pub unsafe fn vertexDistance(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKVisionPrism")]
         /// The object encapsulating the prism fields
-        #[method_id(prism)]
+        #[method(prism)]
         #[unsafe(method_family = none)]
         pub unsafe fn prism(&self) -> Option<Retained<HKVisionPrism>>;
 
         #[cfg(feature = "HKQuantity")]
         /// The distance from each pupil to the center of the nose (measured in mm) when looking at a far target.
         /// Can be described as combined or individual value. For distance prescriptions, the pupillary distance will be a far value.
-        #[method_id(farPupillaryDistance)]
+        #[method(farPupillaryDistance)]
         #[unsafe(method_family = none)]
         pub unsafe fn farPupillaryDistance(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKQuantity")]
         /// The distance from each pupil to the center of the nose (measured in mm) when looking at a near target.
         /// Can be described as combined or individual value. For near prescriptions, the pupillary distance will be a near value.
-        #[method_id(nearPupillaryDistance)]
+        #[method(nearPupillaryDistance)]
         #[unsafe(method_family = none)]
         pub unsafe fn nearPupillaryDistance(&self) -> Option<Retained<HKQuantity>>;
 
@@ -86,7 +86,7 @@ extern_methods!(
         ///
         /// Parameter `nearPupillaryDistance`: The distance from each pupil to the center of the nose (measured in mm) when looking at a near target.
         /// Can be described as combined or individual value. For near prescriptions, the pupillary distance will be a near value.
-        #[method_id(initWithSphere:cylinder:axis:addPower:vertexDistance:prism:farPupillaryDistance:nearPupillaryDistance:)]
+        #[method(initWithSphere:cylinder:axis:addPower:vertexDistance:prism:farPupillaryDistance:nearPupillaryDistance:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSphere_cylinder_axis_addPower_vertexDistance_prism_farPupillaryDistance_nearPupillaryDistance(
             this: Allocated<Self>,
@@ -100,11 +100,11 @@ extern_methods!(
             near_pupillary_distance: Option<&HKQuantity>,
         ) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

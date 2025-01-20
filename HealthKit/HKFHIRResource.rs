@@ -99,7 +99,7 @@ extern_methods!(
     unsafe impl HKFHIRResource {
         #[cfg(feature = "HKFHIRVersion")]
         /// The FHIR version of the resource data.
-        #[method_id(FHIRVersion)]
+        #[method(FHIRVersion)]
         #[unsafe(method_family = none)]
         pub unsafe fn FHIRVersion(&self) -> Retained<HKFHIRVersion>;
 
@@ -107,21 +107,21 @@ extern_methods!(
         ///
         /// May be one of 8 FHIR resource types supported within HealthKit: AllergyIntolerance, Condition,
         /// Immunization, MedicationDispense, MedicationOrder, MedicationStatement, Observation, and Procedure.
-        #[method_id(resourceType)]
+        #[method(resourceType)]
         #[unsafe(method_family = none)]
         pub unsafe fn resourceType(&self) -> Retained<HKFHIRResourceType>;
 
         /// The identifier of the resource, corresponding to the 'id' field in the resource's JSON representation.
         ///
         /// Unique within a given resource type and FHIR end-point, as represented by an HKSource.
-        #[method_id(identifier)]
+        #[method(identifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         /// The JSON representation of the FHIR resource.
         ///
         /// Conforms to the HL7 Argonaut Project resource type definitions.
-        #[method_id(data)]
+        #[method(data)]
         #[unsafe(method_family = none)]
         pub unsafe fn data(&self) -> Retained<NSData>;
 
@@ -129,11 +129,11 @@ extern_methods!(
         ///
         /// This URL can be used to help determine the provenance of the resource. Direct access is protected by
         /// OAuth: querying without suitable authorization will result in an authorization error.
-        #[method_id(sourceURL)]
+        #[method(sourceURL)]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceURL(&self) -> Option<Retained<NSURL>>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -142,7 +142,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKFHIRResource {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

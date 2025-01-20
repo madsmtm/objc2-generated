@@ -14,6 +14,7 @@ extern_protocol!(
     pub unsafe trait UIFocusAnimationContext: NSObjectProtocol + MainThreadOnly {
         /// The duration of the main animations in seconds.
         #[method(duration)]
+        #[unsafe(method_family = none)]
         unsafe fn duration(&self) -> NSTimeInterval;
     }
 );
@@ -40,6 +41,7 @@ extern_methods!(
         ///
         /// It is perfectly legitimate to only specify a completion block.
         #[method(addCoordinatedAnimations:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addCoordinatedAnimations_completion(
             &self,
             animations: Option<&block2::Block<dyn Fn()>>,
@@ -55,6 +57,7 @@ extern_methods!(
         ///
         /// A context object is provided in the animation block with details of the UIKit-defined animations being run for the focusing item.
         #[method(addCoordinatedFocusingAnimations:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addCoordinatedFocusingAnimations_completion(
             &self,
             animations: Option<
@@ -72,6 +75,7 @@ extern_methods!(
         ///
         /// A context object is provided in the animation block with details of the UIKit-defined animations being run for the un-focusing item.
         #[method(addCoordinatedUnfocusingAnimations:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addCoordinatedUnfocusingAnimations_completion(
             &self,
             animations: Option<
@@ -85,11 +89,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIFocusAnimationCoordinator {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

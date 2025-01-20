@@ -190,18 +190,18 @@ unsafe impl NSObjectProtocol for MTKTextureLoader {}
 extern_methods!(
     unsafe impl MTKTextureLoader {
         /// Metal device with which to create Metal textures
-        #[method_id(device)]
+        #[method(device)]
         #[unsafe(method_family = none)]
         pub unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Initialize the loader
         ///
         /// Parameter `device`: Metal device with which to create Metal textures
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -217,6 +217,7 @@ extern_methods!(
         ///
         /// Parameter `completionHandler`: Block called when the texture has been loaded and fully initialized
         #[method(newTextureWithContentsOfURL:options:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn newTextureWithContentsOfURL_options_completionHandler(
             &self,
             url: &NSURL,
@@ -250,6 +251,7 @@ extern_methods!(
         /// with the name given does not exist, it will attempt to create a texture from an
         /// image asset with the given name
         #[method(newTextureWithName:scaleFactor:bundle:options:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn newTextureWithName_scaleFactor_bundle_options_completionHandler(
             &self,
             name: &NSString,
@@ -296,6 +298,7 @@ extern_methods!(
         /// This method can be used on macOS to choose between sRGB and P3 versions of a texture
         /// asset depending on the gamut of the display rendered to.
         #[method(newTextureWithName:scaleFactor:displayGamut:bundle:options:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn newTextureWithName_scaleFactor_displayGamut_bundle_options_completionHandler(
             &self,
             name: &NSString,
@@ -315,6 +318,7 @@ extern_methods!(
         ///
         /// Parameter `completionHandler`: Block called when all of the textures have been loaded and fully initialized. The array of MTLTextures will be the same length and in the same order as the requested array of paths. If an error occurs while loading a texture, the corresponding array index will contain NSNull. The NSError will be null if all of the textures are loaded successfully, or will correspond to one of the textures which failed to load.
         #[method(newTexturesWithContentsOfURLs:options:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn newTexturesWithContentsOfURLs_options_completionHandler(
             &self,
             ur_ls: &NSArray<NSURL>,
@@ -352,6 +356,7 @@ extern_methods!(
         /// with the name given does not exist, it will attempt to create a texture from an
         /// image asset with the given name.
         #[method(newTexturesWithNames:scaleFactor:bundle:options:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn newTexturesWithNames_scaleFactor_bundle_options_completionHandler(
             &self,
             names: &NSArray<NSString>,
@@ -406,6 +411,7 @@ extern_methods!(
         /// to load a texture with a name, other names may succesfully be loaded.  Also, a set
         /// error does not necessarily mean all textures in the names array have failed to load.
         #[method(newTexturesWithNames:scaleFactor:displayGamut:bundle:options:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn newTexturesWithNames_scaleFactor_displayGamut_bundle_options_completionHandler(
             &self,
             names: &NSArray<NSString>,
@@ -425,6 +431,7 @@ extern_methods!(
         ///
         /// Parameter `completionHandler`: Block called when texture has been loaded and fully initialized
         #[method(newTextureWithData:options:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn newTextureWithData_options_completionHandler(
             &self,
             data: &NSData,
@@ -441,6 +448,7 @@ extern_methods!(
         ///
         /// Parameter `completionHandler`: Block called when texture has been loaded and fully initialized
         #[method(newTextureWithCGImage:options:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn newTextureWithCGImage_options_completionHandler(
             &self,
             cg_image: &CGImage,
@@ -457,6 +465,7 @@ extern_methods!(
         ///
         /// Parameter `completionHandler`: Block called when texture has been loaded and fully initialized
         #[method(newTextureWithMDLTexture:options:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn newTextureWithMDLTexture_options_completionHandler(
             &self,
             texture: &MDLTexture,
@@ -473,7 +482,7 @@ extern_methods!(
         /// Parameter `options`: Dictonary of MTKTextureLoaderOptions
         ///
         /// Parameter `error`: Pointer to an autoreleased NSError object which will be set if an error occurred
-        #[method_id(newTextureWithContentsOfURL:options:error:_)]
+        #[method(newTextureWithContentsOfURL:options:error:_)]
         #[unsafe(method_family = new)]
         pub unsafe fn newTextureWithContentsOfURL_options_error(
             &self,
@@ -490,7 +499,7 @@ extern_methods!(
         /// Parameter `options`: Dictonary of MTKTextureLoaderOptions
         ///
         /// Parameter `error`: Pointer to an autoreleased NSError object which will be set if an error occurred
-        #[method_id(newTextureWithData:options:error:_)]
+        #[method(newTextureWithData:options:error:_)]
         #[unsafe(method_family = new)]
         pub unsafe fn newTextureWithData_options_error(
             &self,
@@ -508,7 +517,7 @@ extern_methods!(
         /// Parameter `options`: Dictonary of MTKTextureLoaderOptions
         ///
         /// Parameter `error`: Pointer to an autoreleased NSError object which will be set if an error occurred
-        #[method_id(newTextureWithCGImage:options:error:_)]
+        #[method(newTextureWithCGImage:options:error:_)]
         #[unsafe(method_family = new)]
         pub unsafe fn newTextureWithCGImage_options_error(
             &self,
@@ -526,7 +535,7 @@ extern_methods!(
         /// Parameter `options`: Dictonary of MTKTextureLoaderOptions
         ///
         /// Parameter `error`: Pointer to an autoreleased NSError object which will be set if an error occurred
-        #[method_id(newTextureWithMDLTexture:options:error:_)]
+        #[method(newTextureWithMDLTexture:options:error:_)]
         #[unsafe(method_family = new)]
         pub unsafe fn newTextureWithMDLTexture_options_error(
             &self,
@@ -559,7 +568,7 @@ extern_methods!(
         /// This method attempts to load a texture asset with the name given.  If a texture asset
         /// with the name given does not exist, it will attempt to create a texture from an
         /// image asset with the given name.
-        #[method_id(newTextureWithName:scaleFactor:bundle:options:error:_)]
+        #[method(newTextureWithName:scaleFactor:bundle:options:error:_)]
         #[unsafe(method_family = new)]
         pub unsafe fn newTextureWithName_scaleFactor_bundle_options_error(
             &self,
@@ -603,7 +612,7 @@ extern_methods!(
         /// image asset with the given name.
         /// This method can be used on macOS to choose between sRGB and P3 versions of a texture
         /// asset depending on the gamut of the display rendered to.
-        #[method_id(newTextureWithName:scaleFactor:displayGamut:bundle:options:error:_)]
+        #[method(newTextureWithName:scaleFactor:displayGamut:bundle:options:error:_)]
         #[unsafe(method_family = new)]
         pub unsafe fn newTextureWithName_scaleFactor_displayGamut_bundle_options_error(
             &self,
@@ -619,7 +628,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTKTextureLoader {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

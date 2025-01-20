@@ -30,7 +30,7 @@ extern_methods!(
         ///
         /// Returns: A new layer for selecting elements between two tensors.
         #[deprecated]
-        #[method_id(layer)]
+        #[method(layer)]
         #[unsafe(method_family = none)]
         pub unsafe fn layer() -> Retained<Self>;
     }
@@ -41,12 +41,12 @@ extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCSelectionLayer {
         #[deprecated]
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

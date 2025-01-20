@@ -25,11 +25,11 @@ unsafe impl NSObjectProtocol for AVRenderedCaptionImage {}
 
 extern_methods!(
     unsafe impl AVRenderedCaptionImage {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -39,7 +39,7 @@ extern_methods!(
         /// If the client reads a pixelBuffer and wants to use it longer than AVRenderedCaptionImage, it must retain the pixelBuffer. The pixel buffer can be converted to MTLTexture using CVMetalTextureCache. The pixel format is fixed to kCVPixelFormatType_32BGRA defined in
         /// <CoreVideo
         /// /CVPixelBuffer.h>.
-        #[method_id(pixelBuffer)]
+        #[method(pixelBuffer)]
         #[unsafe(method_family = none)]
         pub unsafe fn pixelBuffer(&self) -> Retained<CVPixelBuffer>;
 
@@ -48,6 +48,7 @@ extern_methods!(
         ///
         /// To place the caption image correcly, the size of pixel buffer can be extracted from CVPixelBufferGetWidth and CVPixelBufferGetHeight. Origin is assumed at upper-left. So, a caption image is rendered to the right and bottom of the origin point.
         #[method(position)]
+        #[unsafe(method_family = none)]
         pub unsafe fn position(&self) -> CGPoint;
     }
 );

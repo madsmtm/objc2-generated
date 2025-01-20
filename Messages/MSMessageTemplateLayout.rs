@@ -35,39 +35,43 @@ extern_methods!(
     #[cfg(feature = "MSMessageLayout")]
     unsafe impl MSMessageTemplateLayout {
         /// Text to be used as a caption related to the message content.
-        #[method_id(caption)]
+        #[method(caption)]
         #[unsafe(method_family = none)]
         pub unsafe fn caption(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`caption`][Self::caption].
         #[method(setCaption:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCaption(&self, caption: Option<&NSString>);
 
         /// Text to be used as a subcaption related to the message content.
-        #[method_id(subcaption)]
+        #[method(subcaption)]
         #[unsafe(method_family = none)]
         pub unsafe fn subcaption(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`subcaption`][Self::subcaption].
         #[method(setSubcaption:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSubcaption(&self, subcaption: Option<&NSString>);
 
         /// Text to be drawn right aligned on the same line as the caption text.
-        #[method_id(trailingCaption)]
+        #[method(trailingCaption)]
         #[unsafe(method_family = none)]
         pub unsafe fn trailingCaption(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`trailingCaption`][Self::trailingCaption].
         #[method(setTrailingCaption:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTrailingCaption(&self, trailing_caption: Option<&NSString>);
 
         /// Text to be drawn right aligned on the same line as the subcaption text.
-        #[method_id(trailingSubcaption)]
+        #[method(trailingSubcaption)]
         #[unsafe(method_family = none)]
         pub unsafe fn trailingSubcaption(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`trailingSubcaption`][Self::trailingSubcaption].
         #[method(setTrailingSubcaption:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTrailingSubcaption(&self, trailing_subcaption: Option<&NSString>);
 
         #[cfg(feature = "objc2-ui-kit")]
@@ -75,13 +79,14 @@ extern_methods!(
         ///
         /// When this property and the mediaURL property are both set, the mediaURL
         /// property will be ignored.
-        #[method_id(image)]
+        #[method(image)]
         #[unsafe(method_family = none)]
         pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "objc2-ui-kit")]
         /// Setter for [`image`][Self::image].
         #[method(setImage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setImage(&self, image: Option<&UIImage>);
 
         /// The URL to a media file used to construct the message representation in the conversation transcript.
@@ -89,30 +94,33 @@ extern_methods!(
         /// This must be a file URL, the data contained in the file must conform to
         /// kUTTypeImage or kUTTypeMovie. When image property and
         /// this property are both set, then this property will be ignored.
-        #[method_id(mediaFileURL)]
+        #[method(mediaFileURL)]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaFileURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`mediaFileURL`][Self::mediaFileURL].
         #[method(setMediaFileURL:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMediaFileURL(&self, media_file_url: Option<&NSURL>);
 
         /// Title text associated with the image or media .
-        #[method_id(imageTitle)]
+        #[method(imageTitle)]
         #[unsafe(method_family = none)]
         pub unsafe fn imageTitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`imageTitle`][Self::imageTitle].
         #[method(setImageTitle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setImageTitle(&self, image_title: Option<&NSString>);
 
         /// Subtitle text associated with the image or media .
-        #[method_id(imageSubtitle)]
+        #[method(imageSubtitle)]
         #[unsafe(method_family = none)]
         pub unsafe fn imageSubtitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`imageSubtitle`][Self::imageSubtitle].
         #[method(setImageSubtitle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setImageSubtitle(&self, image_subtitle: Option<&NSString>);
     }
 );
@@ -121,11 +129,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MSMessageLayout")]
     unsafe impl MSMessageTemplateLayout {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

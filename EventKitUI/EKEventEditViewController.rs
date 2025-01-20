@@ -69,7 +69,7 @@ unsafe impl UITraitEnvironment for EKEventEditViewController {}
 extern_methods!(
     #[cfg(feature = "objc2-ui-kit")]
     unsafe impl EKEventEditViewController {
-        #[method_id(editViewDelegate)]
+        #[method(editViewDelegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn editViewDelegate(
             &self,
@@ -78,6 +78,7 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`editViewDelegate`][Self::editViewDelegate].
         #[method(setEditViewDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setEditViewDelegate(
             &self,
             edit_view_delegate: Option<&ProtocolObject<dyn EKEventEditViewDelegate>>,
@@ -87,13 +88,14 @@ extern_methods!(
         /// The event store to use to save events.
         ///
         /// You must set this before presenting the view controller.
-        #[method_id(eventStore)]
+        #[method(eventStore)]
         #[unsafe(method_family = none)]
         pub unsafe fn eventStore(&self) -> Option<Retained<EKEventStore>>;
 
         #[cfg(feature = "objc2-event-kit")]
         /// Setter for [`eventStore`][Self::eventStore].
         #[method(setEventStore:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setEventStore(&self, event_store: Option<&EKEventStore>);
 
         #[cfg(feature = "objc2-event-kit")]
@@ -103,13 +105,14 @@ extern_methods!(
         /// it set to nil and a new event will be created for you. If you pass an event
         /// here and it does not belong to the event store (if set) an exception will be
         /// raised.
-        #[method_id(event)]
+        #[method(event)]
         #[unsafe(method_family = none)]
         pub unsafe fn event(&self) -> Option<Retained<EKEvent>>;
 
         #[cfg(feature = "objc2-event-kit")]
         /// Setter for [`event`][Self::event].
         #[method(setEvent:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setEvent(&self, event: Option<&EKEvent>);
 
         /// Ends the editing session discarding any changes to the event.
@@ -118,6 +121,7 @@ extern_methods!(
         /// receive the eventEditViewController:didCompleteWithAction: message, so you are
         /// responsible for dismissing the controller after calling this method.
         #[method(cancelEditing)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cancelEditing(&self);
     }
 );
@@ -126,7 +130,7 @@ extern_methods!(
     /// Methods declared on superclass `UINavigationController`
     #[cfg(feature = "objc2-ui-kit")]
     unsafe impl EKEventEditViewController {
-        #[method_id(initWithNavigationBarClass:toolbarClass:)]
+        #[method(initWithNavigationBarClass:toolbarClass:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNavigationBarClass_toolbarClass(
             this: Allocated<Self>,
@@ -134,14 +138,14 @@ extern_methods!(
             toolbar_class: Option<&AnyClass>,
         ) -> Retained<Self>;
 
-        #[method_id(initWithRootViewController:)]
+        #[method(initWithRootViewController:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRootViewController(
             this: Allocated<Self>,
             root_view_controller: &UIViewController,
         ) -> Retained<Self>;
 
-        #[method_id(initWithNibName:bundle:)]
+        #[method(initWithNibName:bundle:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -149,7 +153,7 @@ extern_methods!(
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -162,11 +166,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2-ui-kit")]
     unsafe impl EKEventEditViewController {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -195,6 +199,7 @@ extern_protocol!(
         ///
         /// Parameter `action`: the action that is causing the dismissal
         #[method(eventEditViewController:didCompleteWithAction:)]
+        #[unsafe(method_family = none)]
         unsafe fn eventEditViewController_didCompleteWithAction(
             &self,
             controller: &EKEventEditViewController,
@@ -210,7 +215,7 @@ extern_protocol!(
         /// we set the calendar to a default. If this is not implemented by the delegate, the controller
         /// will use the store's defaultCalendarForNewEvents.
         #[optional]
-        #[method_id(eventEditViewControllerDefaultCalendarForNewEvents:)]
+        #[method(eventEditViewControllerDefaultCalendarForNewEvents:)]
         #[unsafe(method_family = none)]
         unsafe fn eventEditViewControllerDefaultCalendarForNewEvents(
             &self,

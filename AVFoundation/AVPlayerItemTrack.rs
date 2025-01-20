@@ -38,7 +38,7 @@ extern_methods!(
         /// This property is not observable.
         /// Clients must serialize their access to the resulting AVAssetTrack and related objects on the associated AVPlayer's
         /// notification queue.  By default, this queue is the main queue.
-        #[method_id(assetTrack)]
+        #[method(assetTrack)]
         #[unsafe(method_family = none)]
         pub unsafe fn assetTrack(&self) -> Option<Retained<AVAssetTrack>>;
 
@@ -46,10 +46,12 @@ extern_methods!(
         ///
         /// Before macOS 13, iOS 16, tvOS 16, and watchOS 9, this property must be accessed on the main thread/queue.
         #[method(isEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isEnabled(&self) -> bool;
 
         /// Setter for [`isEnabled`][Self::isEnabled].
         #[method(setEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
         /// If the media type of the assetTrack is AVMediaTypeVideo, indicates the current frame rate of the track as it plays, in units of frames per second. If the item is not playing, or if the media type of the track is not video, the value of this property is 0.
@@ -58,6 +60,7 @@ extern_methods!(
         ///
         /// Before macOS 13, iOS 16, tvOS 16, and watchOS 9, this property must be accessed on the main thread/queue.
         #[method(currentVideoFrameRate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn currentVideoFrameRate(&self) -> c_float;
 
         /// If the media type of the assetTrack is AVMediaTypeVideo, specifies the handling of video frames that contain multiple fields.
@@ -66,12 +69,13 @@ extern_methods!(
         /// You can test whether video being played has multiple fields by examining the underlying AVAssetTrack's format descriptions. See -[AVAssetTrack formatDescriptions] and, for video format descriptions, kCMFormatDescriptionExtension_FieldCount.
         ///
         /// Before macOS 13, iOS 16, tvOS 16, and watchOS 9, this property must be accessed on the main thread/queue.
-        #[method_id(videoFieldMode)]
+        #[method(videoFieldMode)]
         #[unsafe(method_family = none)]
         pub unsafe fn videoFieldMode(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`videoFieldMode`][Self::videoFieldMode].
         #[method(setVideoFieldMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setVideoFieldMode(&self, video_field_mode: Option<&NSString>);
     }
 );
@@ -79,11 +83,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVPlayerItemTrack {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

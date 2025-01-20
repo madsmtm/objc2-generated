@@ -62,18 +62,22 @@ extern_methods!(
     unsafe impl DOMOverflowEvent {
         #[deprecated]
         #[method(orient)]
+        #[unsafe(method_family = none)]
         pub unsafe fn orient(&self) -> c_ushort;
 
         #[deprecated]
         #[method(horizontalOverflow)]
+        #[unsafe(method_family = none)]
         pub unsafe fn horizontalOverflow(&self) -> bool;
 
         #[deprecated]
         #[method(verticalOverflow)]
+        #[unsafe(method_family = none)]
         pub unsafe fn verticalOverflow(&self) -> bool;
 
         #[deprecated]
         #[method(initOverflowEvent:horizontalOverflow:verticalOverflow:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn initOverflowEvent_horizontalOverflow_verticalOverflow(
             &self,
             orient: c_ushort,
@@ -92,7 +96,7 @@ extern_methods!(
     ))]
     unsafe impl DOMOverflowEvent {
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -106,7 +110,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMOverflowEvent {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

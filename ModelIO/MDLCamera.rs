@@ -250,33 +250,41 @@ extern_methods!(
     #[cfg(feature = "MDLObject")]
     unsafe impl MDLCamera {
         #[method(projection)]
+        #[unsafe(method_family = none)]
         pub unsafe fn projection(&self) -> MDLCameraProjection;
 
         /// Setter for [`projection`][Self::projection].
         #[method(setProjection:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setProjection(&self, projection: MDLCameraProjection);
 
         /// Bounding distance for visible objects
         #[method(nearVisibilityDistance)]
+        #[unsafe(method_family = none)]
         pub unsafe fn nearVisibilityDistance(&self) -> c_float;
 
         /// Setter for [`nearVisibilityDistance`][Self::nearVisibilityDistance].
         #[method(setNearVisibilityDistance:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setNearVisibilityDistance(&self, near_visibility_distance: c_float);
 
         #[method(farVisibilityDistance)]
+        #[unsafe(method_family = none)]
         pub unsafe fn farVisibilityDistance(&self) -> c_float;
 
         /// Setter for [`farVisibilityDistance`][Self::farVisibilityDistance].
         #[method(setFarVisibilityDistance:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFarVisibilityDistance(&self, far_visibility_distance: c_float);
 
         /// World to meters conversion scale. Required for certain calculations.
         #[method(worldToMetersConversionScale)]
+        #[unsafe(method_family = none)]
         pub unsafe fn worldToMetersConversionScale(&self) -> c_float;
 
         /// Setter for [`worldToMetersConversionScale`][Self::worldToMetersConversionScale].
         #[method(setWorldToMetersConversionScale:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWorldToMetersConversionScale(
             &self,
             world_to_meters_conversion_scale: c_float,
@@ -284,114 +292,140 @@ extern_methods!(
 
         /// Radial distortion of the lens, second order term
         #[method(barrelDistortion)]
+        #[unsafe(method_family = none)]
         pub unsafe fn barrelDistortion(&self) -> c_float;
 
         /// Setter for [`barrelDistortion`][Self::barrelDistortion].
         #[method(setBarrelDistortion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBarrelDistortion(&self, barrel_distortion: c_float);
 
         /// Radial distortion of the lens, fourth order term
         #[method(fisheyeDistortion)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fisheyeDistortion(&self) -> c_float;
 
         /// Setter for [`fisheyeDistortion`][Self::fisheyeDistortion].
         #[method(setFisheyeDistortion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFisheyeDistortion(&self, fisheye_distortion: c_float);
 
         /// Amount of optical vignetting, rom zero to one.
         #[method(opticalVignetting)]
+        #[unsafe(method_family = none)]
         pub unsafe fn opticalVignetting(&self) -> c_float;
 
         /// Setter for [`opticalVignetting`][Self::opticalVignetting].
         #[method(setOpticalVignetting:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setOpticalVignetting(&self, optical_vignetting: c_float);
 
         /// Amount of chromatic abberation, from zero to one.
         #[method(chromaticAberration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn chromaticAberration(&self) -> c_float;
 
         /// Setter for [`chromaticAberration`][Self::chromaticAberration].
         #[method(setChromaticAberration:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setChromaticAberration(&self, chromatic_aberration: c_float);
 
         /// Lens focal length in mm.
         ///
         /// See: fieldOfView
         #[method(focalLength)]
+        #[unsafe(method_family = none)]
         pub unsafe fn focalLength(&self) -> c_float;
 
         /// Setter for [`focalLength`][Self::focalLength].
         #[method(setFocalLength:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFocalLength(&self, focal_length: c_float);
 
         /// Focus distance
         #[method(focusDistance)]
+        #[unsafe(method_family = none)]
         pub unsafe fn focusDistance(&self) -> c_float;
 
         /// Setter for [`focusDistance`][Self::focusDistance].
         #[method(setFocusDistance:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFocusDistance(&self, focus_distance: c_float);
 
         /// The field of view, in degrees.
         ///
         /// See: focalLength
         #[method(fieldOfView)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fieldOfView(&self) -> c_float;
 
         /// Setter for [`fieldOfView`][Self::fieldOfView].
         #[method(setFieldOfView:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFieldOfView(&self, field_of_view: c_float);
 
         /// f-stop, default is 5.6
         #[method(fStop)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fStop(&self) -> c_float;
 
         /// Setter for [`fStop`][Self::fStop].
         #[method(setFStop:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFStop(&self, f_stop: c_float);
 
         /// Aperture blade count, where zero indicates a circle.
         #[method(apertureBladeCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn apertureBladeCount(&self) -> NSUInteger;
 
         /// Setter for [`apertureBladeCount`][Self::apertureBladeCount].
         #[method(setApertureBladeCount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setApertureBladeCount(&self, aperture_blade_count: NSUInteger);
 
         /// Maximum circle of confusion size in mm on the image plane
         #[method(maximumCircleOfConfusion)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maximumCircleOfConfusion(&self) -> c_float;
 
         /// Setter for [`maximumCircleOfConfusion`][Self::maximumCircleOfConfusion].
         #[method(setMaximumCircleOfConfusion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMaximumCircleOfConfusion(&self, maximum_circle_of_confusion: c_float);
 
         /// Shutter open interval, in seconds
         #[method(shutterOpenInterval)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shutterOpenInterval(&self) -> NSTimeInterval;
 
         /// Setter for [`shutterOpenInterval`][Self::shutterOpenInterval].
         #[method(setShutterOpenInterval:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShutterOpenInterval(&self, shutter_open_interval: NSTimeInterval);
 
         /// vertical aperture of the sensor or film gate, default is 24mm
         ///
         /// See: sensorAspect
         #[method(sensorVerticalAperture)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sensorVerticalAperture(&self) -> c_float;
 
         /// Setter for [`sensorVerticalAperture`][Self::sensorVerticalAperture].
         #[method(setSensorVerticalAperture:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSensorVerticalAperture(&self, sensor_vertical_aperture: c_float);
 
         /// Sensor or film gate aperture aspect ratio, default is 1.5
         ///
         /// See: sensorVerticalAperture
         #[method(sensorAspect)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sensorAspect(&self) -> c_float;
 
         /// Setter for [`sensorAspect`][Self::sensorAspect].
         #[method(setSensorAspect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSensorAspect(&self, sensor_aspect: c_float);
     }
 );
@@ -400,11 +434,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MDLObject")]
     unsafe impl MDLCamera {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -430,10 +464,12 @@ extern_methods!(
         /// Inter-pupillary distance in mm.
         /// Default is 63mm.
         #[method(interPupillaryDistance)]
+        #[unsafe(method_family = none)]
         pub unsafe fn interPupillaryDistance(&self) -> c_float;
 
         /// Setter for [`interPupillaryDistance`][Self::interPupillaryDistance].
         #[method(setInterPupillaryDistance:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setInterPupillaryDistance(&self, inter_pupillary_distance: c_float);
 
         /// Vergence in a stereoscopic camera can be controlled in two ways. A toed-in
@@ -448,27 +484,33 @@ extern_methods!(
         ///
         /// Vergence is measured in degrees towards center and is usually positive.
         #[method(leftVergence)]
+        #[unsafe(method_family = none)]
         pub unsafe fn leftVergence(&self) -> c_float;
 
         /// Setter for [`leftVergence`][Self::leftVergence].
         #[method(setLeftVergence:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLeftVergence(&self, left_vergence: c_float);
 
         #[method(rightVergence)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rightVergence(&self) -> c_float;
 
         /// Setter for [`rightVergence`][Self::rightVergence].
         #[method(setRightVergence:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRightVergence(&self, right_vergence: c_float);
 
         /// The amount, as a percentage of image width to offset an image towards the other
         /// camera. This value is used in a stereo grade to enhance or reduce the intensity
         /// of the stereoscopic effect
         #[method(overlap)]
+        #[unsafe(method_family = none)]
         pub unsafe fn overlap(&self) -> c_float;
 
         /// Setter for [`overlap`][Self::overlap].
         #[method(setOverlap:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setOverlap(&self, overlap: c_float);
     }
 );
@@ -477,11 +519,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MDLObject")]
     unsafe impl MDLStereoscopicCamera {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

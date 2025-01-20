@@ -33,6 +33,7 @@ extern_methods!(
         /// supported by device hardware. You should check
         /// `isUsable`property to see if it is available for use.
         #[method(biometryType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn biometryType(&self) -> LABiometryType;
 
         /// Whether the user has enrolled this biometry.
@@ -40,6 +41,7 @@ extern_methods!(
         /// Even if biometry is enrolled, it does not necessarily mean that it can be used. You should check
         /// `isUsable`property to see if it is available for use.
         #[method(isEnrolled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isEnrolled(&self) -> bool;
 
         /// Whether biometry is locked out.
@@ -48,6 +50,7 @@ extern_methods!(
         /// locked out after 5 failed match attempts in row. To recover from bio lockout, users need to enter their passcode
         /// (e.g. during device ulock).
         #[method(isLockedOut)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isLockedOut(&self) -> bool;
 
         /// The application specific state of the biometric enrollment as returned by
@@ -56,7 +59,7 @@ extern_methods!(
         /// It does not directly map to the enrolled templates, e.g. if a finger is added to Touch ID enrollement and then
         /// removed, the final state would be different.
         /// It also returns different values to different apps to prevent tracking of user identity.
-        #[method_id(stateHash)]
+        #[method(stateHash)]
         #[unsafe(method_family = none)]
         pub unsafe fn stateHash(&self) -> Retained<NSData>;
 
@@ -66,6 +69,7 @@ extern_methods!(
         /// if the MacBook lid is closed while connected to external monitor and keyboard, unless the external keyboard
         /// has Touch ID.
         #[method(builtInSensorInaccessible)]
+        #[unsafe(method_family = none)]
         pub unsafe fn builtInSensorInaccessible(&self) -> bool;
     }
 );
@@ -75,12 +79,12 @@ extern_methods!(
     #[cfg(feature = "LAEnvironmentMechanism")]
     unsafe impl LAEnvironmentMechanismBiometry {
         /// Clients should only consume environment mechanisms..
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// The Clients should only consume environment mechanisms..
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

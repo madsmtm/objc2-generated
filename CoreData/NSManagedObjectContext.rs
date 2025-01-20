@@ -131,16 +131,16 @@ unsafe impl NSObjectProtocol for NSManagedObjectContext {}
 extern_methods!(
     unsafe impl NSManagedObjectContext {
         #[deprecated = "Use -initWithConcurrencyType: instead"]
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated = "Use -initWithConcurrencyType: instead"]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(initWithConcurrencyType:)]
+        #[method(initWithConcurrencyType:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithConcurrencyType(
             this: Allocated<Self>,
@@ -149,14 +149,16 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[method(performBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn performBlock(&self, block: &block2::Block<dyn Fn()>);
 
         #[cfg(feature = "block2")]
         #[method(performBlockAndWait:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn performBlockAndWait(&self, block: &block2::Block<dyn Fn() + '_>);
 
         #[cfg(feature = "NSPersistentStoreCoordinator")]
-        #[method_id(persistentStoreCoordinator)]
+        #[method(persistentStoreCoordinator)]
         #[unsafe(method_family = none)]
         pub unsafe fn persistentStoreCoordinator(
             &self,
@@ -165,47 +167,53 @@ extern_methods!(
         #[cfg(feature = "NSPersistentStoreCoordinator")]
         /// Setter for [`persistentStoreCoordinator`][Self::persistentStoreCoordinator].
         #[method(setPersistentStoreCoordinator:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPersistentStoreCoordinator(
             &self,
             persistent_store_coordinator: Option<&NSPersistentStoreCoordinator>,
         );
 
-        #[method_id(parentContext)]
+        #[method(parentContext)]
         #[unsafe(method_family = none)]
         pub unsafe fn parentContext(&self) -> Option<Retained<NSManagedObjectContext>>;
 
         /// Setter for [`parentContext`][Self::parentContext].
         #[method(setParentContext:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setParentContext(&self, parent_context: Option<&NSManagedObjectContext>);
 
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
         #[method(setName:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
-        #[method_id(undoManager)]
+        #[method(undoManager)]
         #[unsafe(method_family = none)]
         pub unsafe fn undoManager(&self) -> Option<Retained<NSUndoManager>>;
 
         /// Setter for [`undoManager`][Self::undoManager].
         #[method(setUndoManager:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUndoManager(&self, undo_manager: Option<&NSUndoManager>);
 
         #[method(hasChanges)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hasChanges(&self) -> bool;
 
-        #[method_id(userInfo)]
+        #[method(userInfo)]
         #[unsafe(method_family = none)]
         pub unsafe fn userInfo(&self) -> Retained<NSMutableDictionary>;
 
         #[method(concurrencyType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn concurrencyType(&self) -> NSManagedObjectContextConcurrencyType;
 
         #[cfg(all(feature = "NSManagedObject", feature = "NSManagedObjectID"))]
-        #[method_id(objectRegisteredForID:)]
+        #[method(objectRegisteredForID:)]
         #[unsafe(method_family = none)]
         pub unsafe fn objectRegisteredForID(
             &self,
@@ -213,7 +221,7 @@ extern_methods!(
         ) -> Option<Retained<NSManagedObject>>;
 
         #[cfg(all(feature = "NSManagedObject", feature = "NSManagedObjectID"))]
-        #[method_id(objectWithID:)]
+        #[method(objectWithID:)]
         #[unsafe(method_family = none)]
         pub unsafe fn objectWithID(
             &self,
@@ -221,7 +229,7 @@ extern_methods!(
         ) -> Retained<NSManagedObject>;
 
         #[cfg(all(feature = "NSManagedObject", feature = "NSManagedObjectID"))]
-        #[method_id(existingObjectWithID:error:_)]
+        #[method(existingObjectWithID:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn existingObjectWithID_error(
             &self,
@@ -229,7 +237,7 @@ extern_methods!(
         ) -> Result<Retained<NSManagedObject>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSFetchRequest", feature = "NSPersistentStoreRequest"))]
-        #[method_id(executeFetchRequest:error:_)]
+        #[method(executeFetchRequest:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn executeFetchRequest_error(
             &self,
@@ -240,7 +248,7 @@ extern_methods!(
             feature = "NSPersistentStoreRequest",
             feature = "NSPersistentStoreResult"
         ))]
-        #[method_id(executeRequest:error:_)]
+        #[method(executeRequest:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn executeRequest_error(
             &self,
@@ -249,21 +257,26 @@ extern_methods!(
 
         #[cfg(feature = "NSManagedObject")]
         #[method(insertObject:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn insertObject(&self, object: &NSManagedObject);
 
         #[cfg(feature = "NSManagedObject")]
         #[method(deleteObject:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn deleteObject(&self, object: &NSManagedObject);
 
         #[cfg(feature = "NSManagedObject")]
         #[method(refreshObject:mergeChanges:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn refreshObject_mergeChanges(&self, object: &NSManagedObject, flag: bool);
 
         #[cfg(feature = "NSManagedObject")]
         #[method(detectConflictsForObject:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn detectConflictsForObject(&self, object: &NSManagedObject);
 
         #[method(observeValueForKeyPath:ofObject:change:context:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn observeValueForKeyPath_ofObject_change_context(
             &self,
             key_path: Option<&NSString>,
@@ -273,10 +286,12 @@ extern_methods!(
         );
 
         #[method(processPendingChanges)]
+        #[unsafe(method_family = none)]
         pub unsafe fn processPendingChanges(&self);
 
         #[cfg(feature = "NSPersistentStore")]
         #[method(assignObject:toPersistentStore:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn assignObject_toPersistentStore(
             &self,
             object: &AnyObject,
@@ -284,77 +299,92 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSManagedObject")]
-        #[method_id(insertedObjects)]
+        #[method(insertedObjects)]
         #[unsafe(method_family = none)]
         pub unsafe fn insertedObjects(&self) -> Retained<NSSet<NSManagedObject>>;
 
         #[cfg(feature = "NSManagedObject")]
-        #[method_id(updatedObjects)]
+        #[method(updatedObjects)]
         #[unsafe(method_family = none)]
         pub unsafe fn updatedObjects(&self) -> Retained<NSSet<NSManagedObject>>;
 
         #[cfg(feature = "NSManagedObject")]
-        #[method_id(deletedObjects)]
+        #[method(deletedObjects)]
         #[unsafe(method_family = none)]
         pub unsafe fn deletedObjects(&self) -> Retained<NSSet<NSManagedObject>>;
 
         #[cfg(feature = "NSManagedObject")]
-        #[method_id(registeredObjects)]
+        #[method(registeredObjects)]
         #[unsafe(method_family = none)]
         pub unsafe fn registeredObjects(&self) -> Retained<NSSet<NSManagedObject>>;
 
         #[method(undo)]
+        #[unsafe(method_family = none)]
         pub unsafe fn undo(&self);
 
         #[method(redo)]
+        #[unsafe(method_family = none)]
         pub unsafe fn redo(&self);
 
         #[method(reset)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reset(&self);
 
         #[method(rollback)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rollback(&self);
 
         #[method(save:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn save(&self) -> Result<(), Retained<NSError>>;
 
         #[method(refreshAllObjects)]
+        #[unsafe(method_family = none)]
         pub unsafe fn refreshAllObjects(&self);
 
         #[deprecated = "Use a queue style context and -performBlockAndWait: instead"]
         #[method(lock)]
+        #[unsafe(method_family = none)]
         pub unsafe fn lock(&self);
 
         #[deprecated = "Use a queue style context and -performBlockAndWait: instead"]
         #[method(unlock)]
+        #[unsafe(method_family = none)]
         pub unsafe fn unlock(&self);
 
         #[deprecated = "Use a queue style context and -performBlock: instead"]
         #[method(tryLock)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tryLock(&self) -> bool;
 
         #[method(propagatesDeletesAtEndOfEvent)]
+        #[unsafe(method_family = none)]
         pub unsafe fn propagatesDeletesAtEndOfEvent(&self) -> bool;
 
         /// Setter for [`propagatesDeletesAtEndOfEvent`][Self::propagatesDeletesAtEndOfEvent].
         #[method(setPropagatesDeletesAtEndOfEvent:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPropagatesDeletesAtEndOfEvent(
             &self,
             propagates_deletes_at_end_of_event: bool,
         );
 
         #[method(retainsRegisteredObjects)]
+        #[unsafe(method_family = none)]
         pub unsafe fn retainsRegisteredObjects(&self) -> bool;
 
         /// Setter for [`retainsRegisteredObjects`][Self::retainsRegisteredObjects].
         #[method(setRetainsRegisteredObjects:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRetainsRegisteredObjects(&self, retains_registered_objects: bool);
 
         #[method(shouldDeleteInaccessibleFaults)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shouldDeleteInaccessibleFaults(&self) -> bool;
 
         /// Setter for [`shouldDeleteInaccessibleFaults`][Self::shouldDeleteInaccessibleFaults].
         #[method(setShouldDeleteInaccessibleFaults:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShouldDeleteInaccessibleFaults(
             &self,
             should_delete_inaccessible_faults: bool,
@@ -366,6 +396,7 @@ extern_methods!(
             feature = "NSPropertyDescription"
         ))]
         #[method(shouldHandleInaccessibleFault:forObjectID:triggeredByProperty:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shouldHandleInaccessibleFault_forObjectID_triggeredByProperty(
             &self,
             fault: &NSManagedObject,
@@ -374,67 +405,77 @@ extern_methods!(
         ) -> bool;
 
         #[method(stalenessInterval)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stalenessInterval(&self) -> NSTimeInterval;
 
         /// Setter for [`stalenessInterval`][Self::stalenessInterval].
         #[method(setStalenessInterval:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setStalenessInterval(&self, staleness_interval: NSTimeInterval);
 
-        #[method_id(mergePolicy)]
+        #[method(mergePolicy)]
         #[unsafe(method_family = none)]
         pub unsafe fn mergePolicy(&self) -> Retained<AnyObject>;
 
         /// Setter for [`mergePolicy`][Self::mergePolicy].
         #[method(setMergePolicy:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMergePolicy(&self, merge_policy: &AnyObject);
 
         #[cfg(feature = "NSManagedObject")]
         #[method(obtainPermanentIDsForObjects:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn obtainPermanentIDsForObjects_error(
             &self,
             objects: &NSArray<NSManagedObject>,
         ) -> Result<(), Retained<NSError>>;
 
         #[method(mergeChangesFromContextDidSaveNotification:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mergeChangesFromContextDidSaveNotification(
             &self,
             notification: &NSNotification,
         );
 
         #[method(mergeChangesFromRemoteContextSave:intoContexts:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mergeChangesFromRemoteContextSave_intoContexts(
             change_notification_data: &NSDictionary,
             contexts: &NSArray<NSManagedObjectContext>,
         );
 
         #[cfg(feature = "NSQueryGenerationToken")]
-        #[method_id(queryGenerationToken)]
+        #[method(queryGenerationToken)]
         #[unsafe(method_family = none)]
         pub unsafe fn queryGenerationToken(&self) -> Option<Retained<NSQueryGenerationToken>>;
 
         #[cfg(feature = "NSQueryGenerationToken")]
         #[method(setQueryGenerationFromToken:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setQueryGenerationFromToken_error(
             &self,
             generation: Option<&NSQueryGenerationToken>,
         ) -> Result<(), Retained<NSError>>;
 
         #[method(automaticallyMergesChangesFromParent)]
+        #[unsafe(method_family = none)]
         pub unsafe fn automaticallyMergesChangesFromParent(&self) -> bool;
 
         /// Setter for [`automaticallyMergesChangesFromParent`][Self::automaticallyMergesChangesFromParent].
         #[method(setAutomaticallyMergesChangesFromParent:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAutomaticallyMergesChangesFromParent(
             &self,
             automatically_merges_changes_from_parent: bool,
         );
 
-        #[method_id(transactionAuthor)]
+        #[method(transactionAuthor)]
         #[unsafe(method_family = none)]
         pub unsafe fn transactionAuthor(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`transactionAuthor`][Self::transactionAuthor].
         #[method(setTransactionAuthor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTransactionAuthor(&self, transaction_author: Option<&NSString>);
     }
 );

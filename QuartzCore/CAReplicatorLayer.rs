@@ -35,73 +35,90 @@ extern_methods!(
     #[cfg(feature = "CALayer")]
     unsafe impl CAReplicatorLayer {
         #[method(instanceCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn instanceCount(&self) -> NSInteger;
 
         /// Setter for [`instanceCount`][Self::instanceCount].
         #[method(setInstanceCount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setInstanceCount(&self, instance_count: NSInteger);
 
         #[method(preservesDepth)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preservesDepth(&self) -> bool;
 
         /// Setter for [`preservesDepth`][Self::preservesDepth].
         #[method(setPreservesDepth:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreservesDepth(&self, preserves_depth: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(instanceDelay)]
+        #[unsafe(method_family = none)]
         pub unsafe fn instanceDelay(&self) -> CFTimeInterval;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`instanceDelay`][Self::instanceDelay].
         #[method(setInstanceDelay:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setInstanceDelay(&self, instance_delay: CFTimeInterval);
 
         #[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]
         #[method(instanceTransform)]
+        #[unsafe(method_family = none)]
         pub unsafe fn instanceTransform(&self) -> CATransform3D;
 
         #[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]
         /// Setter for [`instanceTransform`][Self::instanceTransform].
         #[method(setInstanceTransform:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setInstanceTransform(&self, instance_transform: CATransform3D);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(instanceColor)]
+        #[method(instanceColor)]
         #[unsafe(method_family = none)]
         pub unsafe fn instanceColor(&self) -> Option<Retained<CGColor>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`instanceColor`][Self::instanceColor].
         #[method(setInstanceColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setInstanceColor(&self, instance_color: Option<&CGColor>);
 
         #[method(instanceRedOffset)]
+        #[unsafe(method_family = none)]
         pub unsafe fn instanceRedOffset(&self) -> c_float;
 
         /// Setter for [`instanceRedOffset`][Self::instanceRedOffset].
         #[method(setInstanceRedOffset:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setInstanceRedOffset(&self, instance_red_offset: c_float);
 
         #[method(instanceGreenOffset)]
+        #[unsafe(method_family = none)]
         pub unsafe fn instanceGreenOffset(&self) -> c_float;
 
         /// Setter for [`instanceGreenOffset`][Self::instanceGreenOffset].
         #[method(setInstanceGreenOffset:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setInstanceGreenOffset(&self, instance_green_offset: c_float);
 
         #[method(instanceBlueOffset)]
+        #[unsafe(method_family = none)]
         pub unsafe fn instanceBlueOffset(&self) -> c_float;
 
         /// Setter for [`instanceBlueOffset`][Self::instanceBlueOffset].
         #[method(setInstanceBlueOffset:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setInstanceBlueOffset(&self, instance_blue_offset: c_float);
 
         #[method(instanceAlphaOffset)]
+        #[unsafe(method_family = none)]
         pub unsafe fn instanceAlphaOffset(&self) -> c_float;
 
         /// Setter for [`instanceAlphaOffset`][Self::instanceAlphaOffset].
         #[method(setInstanceAlphaOffset:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setInstanceAlphaOffset(&self, instance_alpha_offset: c_float);
     }
 );
@@ -111,15 +128,15 @@ extern_methods!(
     #[cfg(feature = "CALayer")]
     unsafe impl CAReplicatorLayer {
         /// Layer creation and initialization. *
-        #[method_id(layer)]
+        #[method(layer)]
         #[unsafe(method_family = none)]
         pub unsafe fn layer() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(initWithLayer:)]
+        #[method(initWithLayer:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
     }
@@ -129,7 +146,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CALayer")]
     unsafe impl CAReplicatorLayer {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

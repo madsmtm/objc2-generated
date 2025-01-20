@@ -64,7 +64,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `name`: the name or path of the image to load.
-        #[method_id(textureWithImageNamed:)]
+        #[method(textureWithImageNamed:)]
         #[unsafe(method_family = none)]
         pub unsafe fn textureWithImageNamed(name: &NSString) -> Retained<Self>;
 
@@ -75,7 +75,7 @@ extern_methods!(
         /// Parameter `rect`: the source rectangle to use in creating a logical copy of the given texture.
         ///
         /// Parameter `texture`: the existing texture to reference in the copy.
-        #[method_id(textureWithRect:inTexture:)]
+        #[method(textureWithRect:inTexture:)]
         #[unsafe(method_family = none)]
         pub unsafe fn textureWithRect_inTexture(
             rect: CGRect,
@@ -90,7 +90,7 @@ extern_methods!(
         /// Parameter `size`: the size of the resulting texture.
         ///
         /// Parameter `smoothness`: how similar neighboring pixels are. A value of zero is like static, one is smooth.
-        #[method_id(textureVectorNoiseWithSmoothness:size:)]
+        #[method(textureVectorNoiseWithSmoothness:size:)]
         #[unsafe(method_family = none)]
         pub unsafe fn textureVectorNoiseWithSmoothness_size(
             smoothness: CGFloat,
@@ -106,7 +106,7 @@ extern_methods!(
         /// Parameter `smoothness`: how similar neighboring pixels are. A value of zero is like static, one is smooth.
         ///
         /// Parameter `grayscale`: if YES, RGB and A will all be the same. If no, RGB and A will all be different. A is not pre-multiplied, because the intent is that if you read a texel in a shader, all four values will be exactly the same value if grayscale, or four different, uncorrelated values if not grayscale.
-        #[method_id(textureNoiseWithSmoothness:size:grayscale:)]
+        #[method(textureNoiseWithSmoothness:size:grayscale:)]
         #[unsafe(method_family = none)]
         pub unsafe fn textureNoiseWithSmoothness_size_grayscale(
             smoothness: CGFloat,
@@ -119,13 +119,13 @@ extern_methods!(
         ///
         ///
         /// Parameter `image`: the CGImageRef to create the texture from
-        #[method_id(textureWithCGImage:)]
+        #[method(textureWithCGImage:)]
         #[unsafe(method_family = none)]
         pub unsafe fn textureWithCGImage(image: &CGImage) -> Retained<Self>;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
-        #[method_id(textureWithImage:)]
+        #[method(textureWithImage:)]
         #[unsafe(method_family = none)]
         pub unsafe fn textureWithImage(image: &NSImage) -> Retained<Self>;
 
@@ -136,12 +136,12 @@ extern_methods!(
         /// Parameter `pixelData`: the pixelData to read in creating the texture.
         ///
         /// Parameter `size`: the dimensions of the pixelData given.
-        #[method_id(textureWithData:size:)]
+        #[method(textureWithData:size:)]
         #[unsafe(method_family = none)]
         pub unsafe fn textureWithData_size(pixel_data: &NSData, size: CGSize) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(textureWithData:size:flipped:)]
+        #[method(textureWithData:size:flipped:)]
         #[unsafe(method_family = none)]
         pub unsafe fn textureWithData_size_flipped(
             pixel_data: &NSData,
@@ -160,7 +160,7 @@ extern_methods!(
         /// Parameter `rowLength`: the length of each row in pixels (allows byte row pitches greater than the width for aligned data)
         ///
         /// Parameter `alignment`: the byte alignment of the data, provide 0 for tightly packed data.
-        #[method_id(textureWithData:size:rowLength:alignment:)]
+        #[method(textureWithData:size:rowLength:alignment:)]
         #[unsafe(method_family = none)]
         pub unsafe fn textureWithData_size_rowLength_alignment(
             pixel_data: &NSData,
@@ -175,12 +175,12 @@ extern_methods!(
         ///
         ///
         /// Parameter `filter`: the CI filter to apply in the copy.
-        #[method_id(textureByApplyingCIFilter:)]
+        #[method(textureByApplyingCIFilter:)]
         #[unsafe(method_family = none)]
         pub unsafe fn textureByApplyingCIFilter(&self, filter: &CIFilter) -> Retained<Self>;
 
         /// Create new texture by generating a normal map texture.
-        #[method_id(textureByGeneratingNormalMap)]
+        #[method(textureByGeneratingNormalMap)]
         #[unsafe(method_family = none)]
         pub unsafe fn textureByGeneratingNormalMap(&self) -> Retained<Self>;
 
@@ -191,7 +191,7 @@ extern_methods!(
         /// Parameter `smoothness`: the smooth level of the generated normal map.
         ///
         /// Parameter `contrast`: the scale applied to the generated normal map.
-        #[method_id(textureByGeneratingNormalMapWithSmoothness:contrast:)]
+        #[method(textureByGeneratingNormalMapWithSmoothness:contrast:)]
         #[unsafe(method_family = none)]
         pub unsafe fn textureByGeneratingNormalMapWithSmoothness_contrast(
             &self,
@@ -202,32 +202,38 @@ extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// Used to choose the area of the texture you want to display. The origin and size should both be in the range 0.0 - 1.0, values outside of this range produces unpredictable results. Defaults to the entire texture {(0,0) (1,1)}.
         #[method(textureRect)]
+        #[unsafe(method_family = none)]
         pub unsafe fn textureRect(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The size of the texture's bitmap data in points.
         #[method(size)]
+        #[unsafe(method_family = none)]
         pub unsafe fn size(&self) -> CGSize;
 
         /// The filtering mode the texture should use when not drawn at native size. Defaults to SKTextureFilteringLinear.
         #[method(filteringMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn filteringMode(&self) -> SKTextureFilteringMode;
 
         /// Setter for [`filteringMode`][Self::filteringMode].
         #[method(setFilteringMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFilteringMode(&self, filtering_mode: SKTextureFilteringMode);
 
         /// Request that the texture have mipmaps generated if possible. Only supported for power of 2 texture sizes.
         #[method(usesMipmaps)]
+        #[unsafe(method_family = none)]
         pub unsafe fn usesMipmaps(&self) -> bool;
 
         /// Setter for [`usesMipmaps`][Self::usesMipmaps].
         #[method(setUsesMipmaps:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUsesMipmaps(&self, uses_mipmaps: bool);
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Convert the current SKTexture into a CGImageRef object
-        #[method_id(CGImage)]
+        #[method(CGImage)]
         #[unsafe(method_family = none)]
         pub unsafe fn CGImage(&self) -> Retained<CGImage>;
 
@@ -239,6 +245,7 @@ extern_methods!(
         ///
         /// Parameter `completionHandler`: will be called upon the preload completion
         #[method(preloadTextures:withCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preloadTextures_withCompletionHandler(
             textures: &NSArray<SKTexture>,
             completion_handler: &block2::Block<dyn Fn()>,
@@ -247,6 +254,7 @@ extern_methods!(
         #[cfg(feature = "block2")]
         /// Request that this texture be loaded into vram on the next render update, with a callback handler.
         #[method(preloadWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preloadWithCompletionHandler(
             &self,
             completion_handler: &block2::Block<dyn Fn()>,
@@ -257,11 +265,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKTexture {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

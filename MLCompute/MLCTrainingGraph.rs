@@ -28,7 +28,7 @@ extern_methods!(
         #[cfg(feature = "MLCOptimizer")]
         /// The optimizer to be used with the training graph
         #[deprecated]
-        #[method_id(optimizer)]
+        #[method(optimizer)]
         #[unsafe(method_family = none)]
         pub unsafe fn optimizer(&self) -> Option<Retained<MLCOptimizer>>;
 
@@ -41,6 +41,7 @@ extern_methods!(
         /// Returns: A NSUInteger value
         #[deprecated]
         #[method(deviceMemorySize)]
+        #[unsafe(method_family = none)]
         pub unsafe fn deviceMemorySize(&self) -> NSUInteger;
 
         #[cfg(all(feature = "MLCLayer", feature = "MLCOptimizer"))]
@@ -55,7 +56,7 @@ extern_methods!(
         ///
         /// Returns: A new training graph object
         #[deprecated]
-        #[method_id(graphWithGraphObjects:lossLayer:optimizer:)]
+        #[method(graphWithGraphObjects:lossLayer:optimizer:)]
         #[unsafe(method_family = none)]
         pub unsafe fn graphWithGraphObjects_lossLayer_optimizer(
             graph_objects: &NSArray<MLCGraph>,
@@ -73,6 +74,7 @@ extern_methods!(
         /// Returns: A boolean indicating success or failure
         #[deprecated]
         #[method(addInputs:lossLabels:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addInputs_lossLabels(
             &self,
             inputs: &NSDictionary<NSString, MLCTensor>,
@@ -96,6 +98,7 @@ extern_methods!(
         /// Returns: A boolean indicating success or failure
         #[deprecated]
         #[method(addInputs:lossLabels:lossLabelWeights:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addInputs_lossLabels_lossLabelWeights(
             &self,
             inputs: &NSDictionary<NSString, MLCTensor>,
@@ -111,6 +114,7 @@ extern_methods!(
         /// Returns: A boolean indicating success or failure
         #[deprecated]
         #[method(addOutputs:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addOutputs(&self, outputs: &NSDictionary<NSString, MLCTensor>) -> bool;
 
         #[cfg(feature = "MLCTensor")]
@@ -121,6 +125,7 @@ extern_methods!(
         /// Returns: A boolean indicating success or failure
         #[deprecated]
         #[method(stopGradientForTensors:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stopGradientForTensors(&self, tensors: &NSArray<MLCTensor>) -> bool;
 
         #[cfg(all(feature = "MLCDevice", feature = "MLCTypes"))]
@@ -133,6 +138,7 @@ extern_methods!(
         /// Returns: A boolean indicating success or failure
         #[deprecated]
         #[method(compileWithOptions:device:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn compileWithOptions_device(
             &self,
             options: MLCGraphCompilationOptions,
@@ -159,6 +165,7 @@ extern_methods!(
         ///
         /// Returns: A boolean indicating success or failure
         #[method(compileWithOptions:device:inputTensors:inputTensorsData:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn compileWithOptions_device_inputTensors_inputTensorsData(
             &self,
             options: MLCGraphCompilationOptions,
@@ -180,6 +187,7 @@ extern_methods!(
         /// Returns: A boolean indicating success or failure
         #[deprecated]
         #[method(compileOptimizer:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn compileOptimizer(&self, optimizer: &MLCOptimizer) -> bool;
 
         /// Link mutiple training graphs
@@ -192,6 +200,7 @@ extern_methods!(
         /// Returns: A boolean indicating success or failure
         #[deprecated]
         #[method(linkWithGraphs:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn linkWithGraphs(&self, graphs: &NSArray<MLCTrainingGraph>) -> bool;
 
         #[cfg(feature = "MLCTensor")]
@@ -201,7 +210,7 @@ extern_methods!(
         ///
         /// Returns: The gradient tensor
         #[deprecated]
-        #[method_id(gradientTensorForInput:)]
+        #[method(gradientTensorForInput:)]
         #[unsafe(method_family = none)]
         pub unsafe fn gradientTensorForInput(
             &self,
@@ -215,7 +224,7 @@ extern_methods!(
         ///
         /// Returns: A list of tensors
         #[deprecated]
-        #[method_id(sourceGradientTensorsForLayer:)]
+        #[method(sourceGradientTensorsForLayer:)]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceGradientTensorsForLayer(
             &self,
@@ -229,7 +238,7 @@ extern_methods!(
         ///
         /// Returns: A list of tensors
         #[deprecated]
-        #[method_id(resultGradientTensorsForLayer:)]
+        #[method(resultGradientTensorsForLayer:)]
         #[unsafe(method_family = none)]
         pub unsafe fn resultGradientTensorsForLayer(
             &self,
@@ -257,7 +266,7 @@ extern_methods!(
         /// Returns: The gradient data.  Will return nil if the layer is marked as not trainable or if
         /// training graph is not executed with separate calls to forward and gradient passes.
         #[deprecated]
-        #[method_id(gradientDataForParameter:layer:)]
+        #[method(gradientDataForParameter:layer:)]
         #[unsafe(method_family = none)]
         pub unsafe fn gradientDataForParameter_layer(
             &self,
@@ -274,7 +283,7 @@ extern_methods!(
         ///
         /// Returns: A gradient tensor
         #[deprecated]
-        #[method_id(allocateUserGradientForTensor:)]
+        #[method(allocateUserGradientForTensor:)]
         #[unsafe(method_family = none)]
         pub unsafe fn allocateUserGradientForTensor(
             &self,
@@ -309,6 +318,7 @@ extern_methods!(
         /// Returns: A boolean indicating success or failure
         #[deprecated]
         #[method(executeWithInputsData:lossLabelsData:lossLabelWeightsData:batchSize:options:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn executeWithInputsData_lossLabelsData_lossLabelWeightsData_batchSize_options_completionHandler(
             &self,
             inputs_data: &NSDictionary<NSString, MLCTensorData>,
@@ -344,6 +354,7 @@ extern_methods!(
         /// Returns: A boolean indicating success or failure
         #[deprecated]
         #[method(executeWithInputsData:lossLabelsData:lossLabelWeightsData:outputsData:batchSize:options:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn executeWithInputsData_lossLabelsData_lossLabelWeightsData_outputsData_batchSize_options_completionHandler(
             &self,
             inputs_data: &NSDictionary<NSString, MLCTensorData>,
@@ -367,6 +378,7 @@ extern_methods!(
         /// Returns: A boolean indicating success or failure
         #[deprecated]
         #[method(executeForwardWithBatchSize:options:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn executeForwardWithBatchSize_options_completionHandler(
             &self,
             batch_size: NSUInteger,
@@ -393,6 +405,7 @@ extern_methods!(
         /// Returns: A boolean indicating success or failure
         #[deprecated]
         #[method(executeForwardWithBatchSize:options:outputsData:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn executeForwardWithBatchSize_options_outputsData_completionHandler(
             &self,
             batch_size: NSUInteger,
@@ -413,6 +426,7 @@ extern_methods!(
         /// Returns: A boolean indicating success or failure
         #[deprecated]
         #[method(executeGradientWithBatchSize:options:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn executeGradientWithBatchSize_options_completionHandler(
             &self,
             batch_size: NSUInteger,
@@ -439,6 +453,7 @@ extern_methods!(
         /// Returns: A boolean indicating success or failure
         #[deprecated]
         #[method(executeGradientWithBatchSize:options:outputsData:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn executeGradientWithBatchSize_options_outputsData_completionHandler(
             &self,
             batch_size: NSUInteger,
@@ -457,6 +472,7 @@ extern_methods!(
         /// Returns: A boolean indicating success or failure
         #[deprecated]
         #[method(executeOptimizerUpdateWithOptions:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn executeOptimizerUpdateWithOptions_completionHandler(
             &self,
             options: MLCExecutionOptions,
@@ -467,6 +483,7 @@ extern_methods!(
         /// from device memory to host memory.
         #[deprecated]
         #[method(synchronizeUpdates)]
+        #[unsafe(method_family = none)]
         pub unsafe fn synchronizeUpdates(&self);
 
         #[cfg(feature = "MLCTensorParameter")]
@@ -481,6 +498,7 @@ extern_methods!(
         /// Returns: A boolean indicating success or failure
         #[deprecated]
         #[method(setTrainingTensorParameters:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTrainingTensorParameters(
             &self,
             parameters: &NSArray<MLCTensorParameter>,
@@ -511,6 +529,7 @@ extern_methods!(
         /// Returns: A Boolean value indicating whether the data is successfully associated with the tensor .
         #[deprecated]
         #[method(bindOptimizerData:deviceData:withTensor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn bindOptimizerData_deviceData_withTensor(
             &self,
             data: &NSArray<MLCTensorData>,
@@ -528,7 +547,7 @@ extern_methods!(
         ///
         /// Returns: A new graph.
         #[deprecated]
-        #[method_id(graph)]
+        #[method(graph)]
         #[unsafe(method_family = none)]
         pub unsafe fn graph() -> Retained<Self>;
     }
@@ -538,11 +557,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MLCGraph")]
     unsafe impl MLCTrainingGraph {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

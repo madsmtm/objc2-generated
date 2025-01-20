@@ -124,27 +124,30 @@ extern_protocol!(
     pub unsafe trait SCNSceneRenderer: NSObjectProtocol {
         #[cfg(feature = "SCNScene")]
         /// Specifies the scene of the receiver.
-        #[method_id(scene)]
+        #[method(scene)]
         #[unsafe(method_family = none)]
         unsafe fn scene(&self) -> Option<Retained<SCNScene>>;
 
         #[cfg(feature = "SCNScene")]
         /// Setter for [`scene`][Self::scene].
         #[method(setScene:)]
+        #[unsafe(method_family = none)]
         unsafe fn setScene(&self, scene: Option<&SCNScene>);
 
         /// Specifies the current "scene time" to display the scene.
         ///
         /// The scene time only affect scene time based animations (see SCNAnimation.h "usesSceneTimeBase" and SCNSceneSource.h "SCNSceneSourceAnimationImportPolicyKey" for how to create scene time based animations). Scene time based animations and this property are typically used by tools and viewer to ease seeking in time while previewing a scene.
         #[method(sceneTime)]
+        #[unsafe(method_family = none)]
         unsafe fn sceneTime(&self) -> NSTimeInterval;
 
         /// Setter for [`sceneTime`][Self::sceneTime].
         #[method(setSceneTime:)]
+        #[unsafe(method_family = none)]
         unsafe fn setSceneTime(&self, scene_time: NSTimeInterval);
 
         /// Specifies the renderer delegate.
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         unsafe fn delegate(&self)
             -> Option<Retained<ProtocolObject<dyn SCNSceneRendererDelegate>>>;
@@ -152,6 +155,7 @@ extern_protocol!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn SCNSceneRendererDelegate>>,
@@ -163,7 +167,7 @@ extern_protocol!(
         /// Parameter `point`: A point in the coordinate system of the receiver.
         ///
         /// Parameter `options`: Optional parameters (see the "Hit test options" group for the available options).
-        #[method_id(hitTest:options:)]
+        #[method(hitTest:options:)]
         #[unsafe(method_family = none)]
         unsafe fn hitTest_options(
             &self,
@@ -180,6 +184,7 @@ extern_protocol!(
         ///
         /// Return YES if the node is inside or intersects the clipping planes of the point of view. This method doesn't test if 'node' is occluded by another node.
         #[method(isNodeInsideFrustum:withPointOfView:)]
+        #[unsafe(method_family = none)]
         unsafe fn isNodeInsideFrustum_withPointOfView(
             &self,
             node: &SCNNode,
@@ -192,7 +197,7 @@ extern_protocol!(
         /// Parameter `pointOfView`: The point of view used to test the visibility.
         ///
         /// Returns an array of all the nodes that are inside or intersects the clipping planes of the point of view. Starting in macOS10.13/iOS11 this method work with the presentation tree.
-        #[method_id(nodesInsideFrustumWithPointOfView:)]
+        #[method(nodesInsideFrustumWithPointOfView:)]
         #[unsafe(method_family = none)]
         unsafe fn nodesInsideFrustumWithPointOfView(
             &self,
@@ -206,6 +211,7 @@ extern_protocol!(
         ///
         /// A point projected from the near (resp. far) clip plane will have a z component of 0 (resp. 1). Starting in macOS 11.0, iOS 14, tvOS 14 and watchOS 7 the range of z component will be reversed (from 1 to 0) if the receiver uses 'reverseZ'.
         #[method(projectPoint:)]
+        #[unsafe(method_family = none)]
         unsafe fn projectPoint(&self, point: SCNVector3) -> SCNVector3;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
@@ -215,65 +221,77 @@ extern_protocol!(
         ///
         /// A point whose z component is 0 (resp. 1) is unprojected on the near (resp. far) clip plane. Starting in macOS 11.0, iOS 14, tvOS 14 and watchOS 7 the range of the z component will be reversed (from 1 to 0) if the receiver uses 'reverseZ'.
         #[method(unprojectPoint:)]
+        #[unsafe(method_family = none)]
         unsafe fn unprojectPoint(&self, point: SCNVector3) -> SCNVector3;
 
         /// Returns YES if the scene is playing, NO otherwise.
         #[method(isPlaying)]
+        #[unsafe(method_family = none)]
         unsafe fn isPlaying(&self) -> bool;
 
         /// Setter for [`isPlaying`][Self::isPlaying].
         #[method(setPlaying:)]
+        #[unsafe(method_family = none)]
         unsafe fn setPlaying(&self, playing: bool);
 
         /// Indicates whether the receiver restarts playback when it reaches the end of its content. Default: YES.
         ///
         /// YES when the receiver restarts playback when it finishes, NO otherwise.
         #[method(loops)]
+        #[unsafe(method_family = none)]
         unsafe fn loops(&self) -> bool;
 
         /// Setter for [`loops`][Self::loops].
         #[method(setLoops:)]
+        #[unsafe(method_family = none)]
         unsafe fn setLoops(&self, loops: bool);
 
         #[cfg(feature = "SCNNode")]
         /// Specifies the point of view used to render the scene.
         ///
         /// A point of view must have either a camera or a spot light attached.
-        #[method_id(pointOfView)]
+        #[method(pointOfView)]
         #[unsafe(method_family = none)]
         unsafe fn pointOfView(&self) -> Option<Retained<SCNNode>>;
 
         #[cfg(feature = "SCNNode")]
         /// Setter for [`pointOfView`][Self::pointOfView].
         #[method(setPointOfView:)]
+        #[unsafe(method_family = none)]
         unsafe fn setPointOfView(&self, point_of_view: Option<&SCNNode>);
 
         /// Specifies whether the receiver should automatically light up scenes that have no light source. The default is NO.
         ///
         /// When enabled, a diffuse light is automatically added and placed while rendering scenes that have no light or only ambient lights.
         #[method(autoenablesDefaultLighting)]
+        #[unsafe(method_family = none)]
         unsafe fn autoenablesDefaultLighting(&self) -> bool;
 
         /// Setter for [`autoenablesDefaultLighting`][Self::autoenablesDefaultLighting].
         #[method(setAutoenablesDefaultLighting:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAutoenablesDefaultLighting(&self, autoenables_default_lighting: bool);
 
         /// Specifies whether the receiver should jitter the rendered scene to reduce aliasing artifacts.
         ///
         /// When enabled, the jittering is performed asynchronously and automatically by SCNView and SCNLayer. It is done synchronously by SCNRenderer.
         #[method(isJitteringEnabled)]
+        #[unsafe(method_family = none)]
         unsafe fn isJitteringEnabled(&self) -> bool;
 
         /// Setter for [`isJitteringEnabled`][Self::isJitteringEnabled].
         #[method(setJitteringEnabled:)]
+        #[unsafe(method_family = none)]
         unsafe fn setJitteringEnabled(&self, jittering_enabled: bool);
 
         /// Specifies whether the receiver should reduce aliasing artifacts in real time based on temporal coherency. Defaults to NO.
         #[method(isTemporalAntialiasingEnabled)]
+        #[unsafe(method_family = none)]
         unsafe fn isTemporalAntialiasingEnabled(&self) -> bool;
 
         /// Setter for [`isTemporalAntialiasingEnabled`][Self::isTemporalAntialiasingEnabled].
         #[method(setTemporalAntialiasingEnabled:)]
+        #[unsafe(method_family = none)]
         unsafe fn setTemporalAntialiasingEnabled(&self, temporal_antialiasing_enabled: bool);
 
         #[cfg(feature = "block2")]
@@ -285,6 +303,7 @@ extern_protocol!(
         ///
         /// Returns YES if the object was prepared successfully, NO if it was canceled. This method may be triggered from a secondary thread. This method is observable using NSProgress.
         #[method(prepareObject:shouldAbortBlock:)]
+        #[unsafe(method_family = none)]
         unsafe fn prepareObject_shouldAbortBlock(
             &self,
             object: &AnyObject,
@@ -300,6 +319,7 @@ extern_protocol!(
         ///
         /// This method is observable using NSProgress.
         #[method(prepareObjects:withCompletionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn prepareObjects_withCompletionHandler(
             &self,
             objects: &NSArray,
@@ -310,42 +330,48 @@ extern_protocol!(
         ///
         /// When set to YES, statistics are displayed in a overlay on top of the rendered scene.
         #[method(showsStatistics)]
+        #[unsafe(method_family = none)]
         unsafe fn showsStatistics(&self) -> bool;
 
         /// Setter for [`showsStatistics`][Self::showsStatistics].
         #[method(setShowsStatistics:)]
+        #[unsafe(method_family = none)]
         unsafe fn setShowsStatistics(&self, shows_statistics: bool);
 
         /// Specifies the debug options of the receiver. Defaults to SCNDebugOptionNone.
         #[method(debugOptions)]
+        #[unsafe(method_family = none)]
         unsafe fn debugOptions(&self) -> SCNDebugOptions;
 
         /// Setter for [`debugOptions`][Self::debugOptions].
         #[method(setDebugOptions:)]
+        #[unsafe(method_family = none)]
         unsafe fn setDebugOptions(&self, debug_options: SCNDebugOptions);
 
         /// Specifies the rendering API associated to the receiver.
         ///
         /// This is the rendering API effectively used by the receiver. You can specify a preferred rendering API when initializing a view programmatically (see SCNPreferredRenderingAPI in SCNSceneRenderer.h) or using Interface Builder's SCNView inspector.
         #[method(renderingAPI)]
+        #[unsafe(method_family = none)]
         unsafe fn renderingAPI(&self) -> SCNRenderingAPI;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Specifies the color space used by the receiver for shading.
         ///
         /// SceneKit will automatically color match image and color objects (NSImage, NSColor, CGImageRef, CGColorRef, etc.). When you directly provide color components to shaders, use this property to color match them to the working color space.
-        #[method_id(workingColorSpace)]
+        #[method(workingColorSpace)]
         #[unsafe(method_family = none)]
         unsafe fn workingColorSpace(&self) -> Retained<CGColorSpace>;
 
         /// A Core OpenGL render context that is used as the render target (a CGLContextObj on macOS, an EAGLContext on iOS).
         #[method(context)]
+        #[unsafe(method_family = none)]
         unsafe fn context(&self) -> *mut c_void;
 
         #[cfg(feature = "objc2-metal")]
         #[cfg(not(target_os = "watchos"))]
         /// The current render command encoder if any. This property is only valid within the SCNSceneRendererDelegate methods and when rendering with Metal. Otherwise it is set to nil.
-        #[method_id(currentRenderCommandEncoder)]
+        #[method(currentRenderCommandEncoder)]
         #[unsafe(method_family = none)]
         unsafe fn currentRenderCommandEncoder(
             &self,
@@ -354,14 +380,14 @@ extern_protocol!(
         #[cfg(feature = "objc2-metal")]
         #[cfg(not(target_os = "watchos"))]
         /// The render pass descriptor of the receiver. This property is only valid within the SCNSceneRendererDelegate methods and when rendering with Metal. Otherwise it is set to nil.
-        #[method_id(currentRenderPassDescriptor)]
+        #[method(currentRenderPassDescriptor)]
         #[unsafe(method_family = none)]
         unsafe fn currentRenderPassDescriptor(&self) -> Retained<MTLRenderPassDescriptor>;
 
         #[cfg(feature = "objc2-metal")]
         #[cfg(not(target_os = "watchos"))]
         /// The metal device of the renderer. This property is only valid on a renderer created with a Metal device. Otherwise it is set to nil.
-        #[method_id(device)]
+        #[method(device)]
         #[unsafe(method_family = none)]
         unsafe fn device(&self) -> Option<Retained<ProtocolObject<dyn MTLDevice>>>;
 
@@ -369,24 +395,27 @@ extern_protocol!(
         #[cfg(not(target_os = "watchos"))]
         /// The pixel format of the color attachment 0 of the renderer. This property is only valid on a renderer created with a Metal device.
         #[method(colorPixelFormat)]
+        #[unsafe(method_family = none)]
         unsafe fn colorPixelFormat(&self) -> MTLPixelFormat;
 
         #[cfg(feature = "objc2-metal")]
         #[cfg(not(target_os = "watchos"))]
         /// The pixel format of the depth attachment of the renderer. This property is only valid on a renderer created with a Metal device.
         #[method(depthPixelFormat)]
+        #[unsafe(method_family = none)]
         unsafe fn depthPixelFormat(&self) -> MTLPixelFormat;
 
         #[cfg(feature = "objc2-metal")]
         #[cfg(not(target_os = "watchos"))]
         /// The pixel format of the stencil attachment of the renderer. This property is only valid on a renderer created with a Metal device.
         #[method(stencilPixelFormat)]
+        #[unsafe(method_family = none)]
         unsafe fn stencilPixelFormat(&self) -> MTLPixelFormat;
 
         #[cfg(feature = "objc2-metal")]
         #[cfg(not(target_os = "watchos"))]
         /// The command queue of the renderer. This property is only valid on a renderer created with a Metal device. Otherwise it is set to nil.
-        #[method_id(commandQueue)]
+        #[method(commandQueue)]
         #[unsafe(method_family = none)]
         unsafe fn commandQueue(&self) -> Option<Retained<ProtocolObject<dyn MTLCommandQueue>>>;
 
@@ -394,30 +423,32 @@ extern_protocol!(
         /// Contains the instance of audio engine used by the scene.
         ///
         /// The audio engine can be used to add custom nodes to the audio graph.
-        #[method_id(audioEngine)]
+        #[method(audioEngine)]
         #[unsafe(method_family = none)]
         unsafe fn audioEngine(&self) -> Retained<AVAudioEngine>;
 
         #[cfg(feature = "objc2-avf-audio")]
         /// Contains the instance of audio environment node used by the scene to spacialize sounds.
-        #[method_id(audioEnvironmentNode)]
+        #[method(audioEnvironmentNode)]
         #[unsafe(method_family = none)]
         unsafe fn audioEnvironmentNode(&self) -> Retained<AVAudioEnvironmentNode>;
 
         #[cfg(feature = "SCNNode")]
         /// Use this property to set the audio node to use as the listener position and orientation when rendering positional audio for this scene. The default is nil which means that the current point of view will be used dynamically.
-        #[method_id(audioListener)]
+        #[method(audioListener)]
         #[unsafe(method_family = none)]
         unsafe fn audioListener(&self) -> Option<Retained<SCNNode>>;
 
         #[cfg(feature = "SCNNode")]
         /// Setter for [`audioListener`][Self::audioListener].
         #[method(setAudioListener:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAudioListener(&self, audio_listener: Option<&SCNNode>);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Returns the current viewport for this renderer, can be used to get the actual viewport from within the delegate callback during a live resize.
         #[method(currentViewport)]
+        #[unsafe(method_family = none)]
         unsafe fn currentViewport(&self) -> CGRect;
 
         /// Specifies the current time to display the scene.
@@ -425,21 +456,25 @@ extern_protocol!(
         /// Deprecated, use "sceneTime" instead.
         #[deprecated]
         #[method(currentTime)]
+        #[unsafe(method_family = none)]
         unsafe fn currentTime(&self) -> NSTimeInterval;
 
         /// Setter for [`currentTime`][Self::currentTime].
         #[deprecated]
         #[method(setCurrentTime:)]
+        #[unsafe(method_family = none)]
         unsafe fn setCurrentTime(&self, current_time: NSTimeInterval);
 
         /// Specifies if the renderer should use the reverse Z technique. Defaults to YES.
         ///
         /// This property is only valid on a renderer created with a Metal device.
         #[method(usesReverseZ)]
+        #[unsafe(method_family = none)]
         unsafe fn usesReverseZ(&self) -> bool;
 
         /// Setter for [`usesReverseZ`][Self::usesReverseZ].
         #[method(setUsesReverseZ:)]
+        #[unsafe(method_family = none)]
         unsafe fn setUsesReverseZ(&self, uses_reverse_z: bool);
     }
 );
@@ -458,6 +493,7 @@ extern_protocol!(
         /// All modifications done within this method don't go through the transaction model, they are directly applied on the presentation tree.
         #[optional]
         #[method(renderer:updateAtTime:)]
+        #[unsafe(method_family = none)]
         unsafe fn renderer_updateAtTime(
             &self,
             renderer: &ProtocolObject<dyn SCNSceneRenderer>,
@@ -473,6 +509,7 @@ extern_protocol!(
         /// All modifications done within this method don't go through the transaction model, they are directly applied on the presentation tree.
         #[optional]
         #[method(renderer:didApplyAnimationsAtTime:)]
+        #[unsafe(method_family = none)]
         unsafe fn renderer_didApplyAnimationsAtTime(
             &self,
             renderer: &ProtocolObject<dyn SCNSceneRenderer>,
@@ -488,6 +525,7 @@ extern_protocol!(
         /// All modifications done within this method don't go through the transaction model, they are directly applied on the presentation tree.
         #[optional]
         #[method(renderer:didSimulatePhysicsAtTime:)]
+        #[unsafe(method_family = none)]
         unsafe fn renderer_didSimulatePhysicsAtTime(
             &self,
             renderer: &ProtocolObject<dyn SCNSceneRenderer>,
@@ -503,6 +541,7 @@ extern_protocol!(
         /// All modifications done within this method don't go through the transaction model, they are directly applied on the presentation tree.
         #[optional]
         #[method(renderer:didApplyConstraintsAtTime:)]
+        #[unsafe(method_family = none)]
         unsafe fn renderer_didApplyConstraintsAtTime(
             &self,
             renderer: &ProtocolObject<dyn SCNSceneRenderer>,
@@ -521,6 +560,7 @@ extern_protocol!(
         /// Starting in 10.10 all modifications done within this method don't go through the transaction model, they are directly applied on the presentation tree.
         #[optional]
         #[method(renderer:willRenderScene:atTime:)]
+        #[unsafe(method_family = none)]
         unsafe fn renderer_willRenderScene_atTime(
             &self,
             renderer: &ProtocolObject<dyn SCNSceneRenderer>,
@@ -540,6 +580,7 @@ extern_protocol!(
         /// Starting in 10.10 all modifications done within this method don't go through the transaction model, they are directly applied on the presentation tree.
         #[optional]
         #[method(renderer:didRenderScene:atTime:)]
+        #[unsafe(method_family = none)]
         unsafe fn renderer_didRenderScene_atTime(
             &self,
             renderer: &ProtocolObject<dyn SCNSceneRenderer>,

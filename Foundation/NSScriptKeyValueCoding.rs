@@ -17,7 +17,7 @@ extern_category!(
     #[doc(alias = "NSScriptKeyValueCoding")]
     pub unsafe trait NSObjectNSScriptKeyValueCoding {
         #[cfg(feature = "NSString")]
-        #[method_id(valueAtIndex:inPropertyWithKey:)]
+        #[method(valueAtIndex:inPropertyWithKey:)]
         #[unsafe(method_family = none)]
         unsafe fn valueAtIndex_inPropertyWithKey(
             &self,
@@ -26,7 +26,7 @@ extern_category!(
         ) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(valueWithName:inPropertyWithKey:)]
+        #[method(valueWithName:inPropertyWithKey:)]
         #[unsafe(method_family = none)]
         unsafe fn valueWithName_inPropertyWithKey(
             &self,
@@ -35,7 +35,7 @@ extern_category!(
         ) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(valueWithUniqueID:inPropertyWithKey:)]
+        #[method(valueWithUniqueID:inPropertyWithKey:)]
         #[unsafe(method_family = none)]
         unsafe fn valueWithUniqueID_inPropertyWithKey(
             &self,
@@ -45,6 +45,7 @@ extern_category!(
 
         #[cfg(feature = "NSString")]
         #[method(insertValue:atIndex:inPropertyWithKey:)]
+        #[unsafe(method_family = none)]
         unsafe fn insertValue_atIndex_inPropertyWithKey(
             &self,
             value: &AnyObject,
@@ -54,10 +55,12 @@ extern_category!(
 
         #[cfg(feature = "NSString")]
         #[method(removeValueAtIndex:fromPropertyWithKey:)]
+        #[unsafe(method_family = none)]
         unsafe fn removeValueAtIndex_fromPropertyWithKey(&self, index: NSUInteger, key: &NSString);
 
         #[cfg(feature = "NSString")]
         #[method(replaceValueAtIndex:inPropertyWithKey:withValue:)]
+        #[unsafe(method_family = none)]
         unsafe fn replaceValueAtIndex_inPropertyWithKey_withValue(
             &self,
             index: NSUInteger,
@@ -67,10 +70,11 @@ extern_category!(
 
         #[cfg(feature = "NSString")]
         #[method(insertValue:inPropertyWithKey:)]
+        #[unsafe(method_family = none)]
         unsafe fn insertValue_inPropertyWithKey(&self, value: &AnyObject, key: &NSString);
 
         #[cfg(feature = "NSString")]
-        #[method_id(coerceValue:forKey:)]
+        #[method(coerceValue:forKey:)]
         #[unsafe(method_family = none)]
         unsafe fn coerceValue_forKey(
             &self,

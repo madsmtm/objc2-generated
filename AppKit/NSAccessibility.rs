@@ -14,7 +14,7 @@ extern_category!(
     pub unsafe trait NSObjectNSAccessibility {
         #[cfg(feature = "NSAccessibilityConstants")]
         #[deprecated = "Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)"]
-        #[method_id(accessibilityAttributeNames)]
+        #[method(accessibilityAttributeNames)]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityAttributeNames(
             &self,
@@ -22,7 +22,7 @@ extern_category!(
 
         #[cfg(feature = "NSAccessibilityConstants")]
         #[deprecated = "Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)"]
-        #[method_id(accessibilityAttributeValue:)]
+        #[method(accessibilityAttributeValue:)]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityAttributeValue(
             &self,
@@ -32,6 +32,7 @@ extern_category!(
         #[cfg(feature = "NSAccessibilityConstants")]
         #[deprecated = "Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)"]
         #[method(accessibilityIsAttributeSettable:)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityIsAttributeSettable(
             &self,
             attribute: &NSAccessibilityAttributeName,
@@ -40,6 +41,7 @@ extern_category!(
         #[cfg(feature = "NSAccessibilityConstants")]
         #[deprecated = "Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)"]
         #[method(accessibilitySetValue:forAttribute:)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilitySetValue_forAttribute(
             &self,
             value: Option<&AnyObject>,
@@ -48,7 +50,7 @@ extern_category!(
 
         #[cfg(feature = "NSAccessibilityConstants")]
         #[deprecated = "Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)"]
-        #[method_id(accessibilityParameterizedAttributeNames)]
+        #[method(accessibilityParameterizedAttributeNames)]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityParameterizedAttributeNames(
             &self,
@@ -56,7 +58,7 @@ extern_category!(
 
         #[cfg(feature = "NSAccessibilityConstants")]
         #[deprecated = "Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)"]
-        #[method_id(accessibilityAttributeValue:forParameter:)]
+        #[method(accessibilityAttributeValue:forParameter:)]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityAttributeValue_forParameter(
             &self,
@@ -66,13 +68,13 @@ extern_category!(
 
         #[cfg(feature = "NSAccessibilityConstants")]
         #[deprecated = "Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)"]
-        #[method_id(accessibilityActionNames)]
+        #[method(accessibilityActionNames)]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityActionNames(&self) -> Retained<NSArray<NSAccessibilityActionName>>;
 
         #[cfg(feature = "NSAccessibilityConstants")]
         #[deprecated = "Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)"]
-        #[method_id(accessibilityActionDescription:)]
+        #[method(accessibilityActionDescription:)]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityActionDescription(
             &self,
@@ -82,32 +84,36 @@ extern_category!(
         #[cfg(feature = "NSAccessibilityConstants")]
         #[deprecated = "Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)"]
         #[method(accessibilityPerformAction:)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityPerformAction(&self, action: &NSAccessibilityActionName);
 
         #[deprecated = "Use isAccessibilityElement instead"]
         #[method(accessibilityIsIgnored)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityIsIgnored(&self) -> bool;
 
-        #[method_id(accessibilityHitTest:)]
+        #[method(accessibilityHitTest:)]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityHitTest(&self, point: NSPoint) -> Option<Retained<AnyObject>>;
 
-        #[method_id(accessibilityFocusedUIElement)]
+        #[method(accessibilityFocusedUIElement)]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityFocusedUIElement(&self) -> Option<Retained<AnyObject>>;
 
         #[method(accessibilityIndexOfChild:)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityIndexOfChild(&self, child: &AnyObject) -> NSUInteger;
 
         #[cfg(feature = "NSAccessibilityConstants")]
         #[method(accessibilityArrayAttributeCount:)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityArrayAttributeCount(
             &self,
             attribute: &NSAccessibilityAttributeName,
         ) -> NSUInteger;
 
         #[cfg(feature = "NSAccessibilityConstants")]
-        #[method_id(accessibilityArrayAttributeValues:index:maxCount:)]
+        #[method(accessibilityArrayAttributeValues:index:maxCount:)]
         #[unsafe(method_family = none)]
         unsafe fn accessibilityArrayAttributeValues_index_maxCount(
             &self,
@@ -117,6 +123,7 @@ extern_category!(
         ) -> Retained<NSArray>;
 
         #[method(accessibilityNotifiesWhenDestroyed)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityNotifiesWhenDestroyed(&self) -> bool;
     }
 
@@ -128,18 +135,23 @@ extern_methods!(
     #[cfg(feature = "NSWorkspace")]
     unsafe impl NSWorkspace {
         #[method(accessibilityDisplayShouldIncreaseContrast)]
+        #[unsafe(method_family = none)]
         pub unsafe fn accessibilityDisplayShouldIncreaseContrast(&self) -> bool;
 
         #[method(accessibilityDisplayShouldDifferentiateWithoutColor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn accessibilityDisplayShouldDifferentiateWithoutColor(&self) -> bool;
 
         #[method(accessibilityDisplayShouldReduceTransparency)]
+        #[unsafe(method_family = none)]
         pub unsafe fn accessibilityDisplayShouldReduceTransparency(&self) -> bool;
 
         #[method(accessibilityDisplayShouldReduceMotion)]
+        #[unsafe(method_family = none)]
         pub unsafe fn accessibilityDisplayShouldReduceMotion(&self) -> bool;
 
         #[method(accessibilityDisplayShouldInvertColors)]
+        #[unsafe(method_family = none)]
         pub unsafe fn accessibilityDisplayShouldInvertColors(&self) -> bool;
     }
 );
@@ -149,9 +161,11 @@ extern_methods!(
     #[cfg(feature = "NSWorkspace")]
     unsafe impl NSWorkspace {
         #[method(isVoiceOverEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isVoiceOverEnabled(&self) -> bool;
 
         #[method(isSwitchControlEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isSwitchControlEnabled(&self) -> bool;
     }
 );

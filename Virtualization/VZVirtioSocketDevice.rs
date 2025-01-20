@@ -32,11 +32,11 @@ unsafe impl NSObjectProtocol for VZVirtioSocketDevice {}
 extern_methods!(
     #[cfg(feature = "VZSocketDevice")]
     unsafe impl VZVirtioSocketDevice {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -51,6 +51,7 @@ extern_methods!(
         ///
         /// Parameter `port`: The port number to set the listener at.
         #[method(setSocketListener:forPort:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSocketListener_forPort(
             &self,
             listener: &VZVirtioSocketListener,
@@ -63,6 +64,7 @@ extern_methods!(
         ///
         /// Parameter `port`: The port number at which the listener is to be removed.
         #[method(removeSocketListenerForPort:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeSocketListenerForPort(&self, port: u32);
 
         #[cfg(all(feature = "VZVirtioSocketConnection", feature = "block2"))]
@@ -75,6 +77,7 @@ extern_methods!(
         /// Parameter `completionHandler`: Block called after the connection has been successfully established or on error.
         /// The error parameter passed to the block is nil if the connection was successful.
         #[method(connectToPort:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn connectToPort_completionHandler(
             &self,
             port: u32,

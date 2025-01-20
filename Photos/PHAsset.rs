@@ -38,72 +38,86 @@ extern_methods!(
     unsafe impl PHAsset {
         #[cfg(feature = "PhotosTypes")]
         #[method(playbackStyle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn playbackStyle(&self) -> PHAssetPlaybackStyle;
 
         #[cfg(feature = "PhotosTypes")]
         #[method(mediaType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mediaType(&self) -> PHAssetMediaType;
 
         #[cfg(feature = "PhotosTypes")]
         #[method(mediaSubtypes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mediaSubtypes(&self) -> PHAssetMediaSubtype;
 
         #[method(pixelWidth)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pixelWidth(&self) -> NSUInteger;
 
         #[method(pixelHeight)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pixelHeight(&self) -> NSUInteger;
 
-        #[method_id(creationDate)]
+        #[method(creationDate)]
         #[unsafe(method_family = none)]
         pub unsafe fn creationDate(&self) -> Option<Retained<NSDate>>;
 
-        #[method_id(modificationDate)]
+        #[method(modificationDate)]
         #[unsafe(method_family = none)]
         pub unsafe fn modificationDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "objc2-core-location")]
-        #[method_id(location)]
+        #[method(location)]
         #[unsafe(method_family = none)]
         pub unsafe fn location(&self) -> Option<Retained<CLLocation>>;
 
         #[method(duration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
         #[method(isHidden)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isHidden(&self) -> bool;
 
         #[method(isFavorite)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isFavorite(&self) -> bool;
 
         #[deprecated = "No longer supported"]
         #[method(isSyncFailureHidden)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isSyncFailureHidden(&self) -> bool;
 
-        #[method_id(burstIdentifier)]
+        #[method(burstIdentifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn burstIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "PhotosTypes")]
         #[method(burstSelectionTypes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn burstSelectionTypes(&self) -> PHAssetBurstSelectionType;
 
         #[method(representsBurst)]
+        #[unsafe(method_family = none)]
         pub unsafe fn representsBurst(&self) -> bool;
 
         #[cfg(feature = "PhotosTypes")]
         #[method(sourceType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sourceType(&self) -> PHAssetSourceType;
 
         #[method(hasAdjustments)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hasAdjustments(&self) -> bool;
 
-        #[method_id(adjustmentFormatIdentifier)]
+        #[method(adjustmentFormatIdentifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn adjustmentFormatIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "PhotosTypes")]
         #[method(canPerformEditOperation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn canPerformEditOperation(&self, edit_operation: PHAssetEditOperation) -> bool;
 
         #[cfg(all(
@@ -111,7 +125,7 @@ extern_methods!(
             feature = "PHFetchOptions",
             feature = "PHFetchResult"
         ))]
-        #[method_id(fetchAssetsInAssetCollection:options:)]
+        #[method(fetchAssetsInAssetCollection:options:)]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchAssetsInAssetCollection_options(
             asset_collection: &PHAssetCollection,
@@ -119,7 +133,7 @@ extern_methods!(
         ) -> Retained<PHFetchResult<PHAsset>>;
 
         #[cfg(all(feature = "PHFetchOptions", feature = "PHFetchResult"))]
-        #[method_id(fetchAssetsWithLocalIdentifiers:options:)]
+        #[method(fetchAssetsWithLocalIdentifiers:options:)]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchAssetsWithLocalIdentifiers_options(
             identifiers: &NSArray<NSString>,
@@ -131,7 +145,7 @@ extern_methods!(
             feature = "PHFetchOptions",
             feature = "PHFetchResult"
         ))]
-        #[method_id(fetchKeyAssetsInAssetCollection:options:)]
+        #[method(fetchKeyAssetsInAssetCollection:options:)]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchKeyAssetsInAssetCollection_options(
             asset_collection: &PHAssetCollection,
@@ -139,7 +153,7 @@ extern_methods!(
         ) -> Option<Retained<PHFetchResult<PHAsset>>>;
 
         #[cfg(all(feature = "PHFetchOptions", feature = "PHFetchResult"))]
-        #[method_id(fetchAssetsWithBurstIdentifier:options:)]
+        #[method(fetchAssetsWithBurstIdentifier:options:)]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchAssetsWithBurstIdentifier_options(
             burst_identifier: &NSString,
@@ -147,7 +161,7 @@ extern_methods!(
         ) -> Retained<PHFetchResult<PHAsset>>;
 
         #[cfg(all(feature = "PHFetchOptions", feature = "PHFetchResult"))]
-        #[method_id(fetchAssetsWithOptions:)]
+        #[method(fetchAssetsWithOptions:)]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchAssetsWithOptions(
             options: Option<&PHFetchOptions>,
@@ -158,7 +172,7 @@ extern_methods!(
             feature = "PHFetchResult",
             feature = "PhotosTypes"
         ))]
-        #[method_id(fetchAssetsWithMediaType:options:)]
+        #[method(fetchAssetsWithMediaType:options:)]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchAssetsWithMediaType_options(
             media_type: PHAssetMediaType,
@@ -167,7 +181,7 @@ extern_methods!(
 
         #[cfg(all(feature = "PHFetchOptions", feature = "PHFetchResult"))]
         #[deprecated = "Will be removed in a future release"]
-        #[method_id(fetchAssetsWithALAssetURLs:options:)]
+        #[method(fetchAssetsWithALAssetURLs:options:)]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchAssetsWithALAssetURLs_options(
             asset_ur_ls: &NSArray<NSURL>,
@@ -180,11 +194,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "PHObject")]
     unsafe impl PHAsset {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

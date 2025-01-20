@@ -32,14 +32,16 @@ unsafe impl<ItemIdentifierType: ?Sized> NSObjectProtocol
 
 extern_methods!(
     unsafe impl<ItemIdentifierType: Message> NSDiffableDataSourceSectionSnapshot<ItemIdentifierType> {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(appendItems:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn appendItems(&self, items: &NSArray<ItemIdentifierType>);
 
         #[method(appendItems:intoParentItem:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn appendItems_intoParentItem(
             &self,
             items: &NSArray<ItemIdentifierType>,
@@ -47,6 +49,7 @@ extern_methods!(
         );
 
         #[method(insertItems:beforeItem:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn insertItems_beforeItem(
             &self,
             items: &NSArray<ItemIdentifierType>,
@@ -54,6 +57,7 @@ extern_methods!(
         );
 
         #[method(insertItems:afterItem:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn insertItems_afterItem(
             &self,
             items: &NSArray<ItemIdentifierType>,
@@ -61,18 +65,23 @@ extern_methods!(
         );
 
         #[method(deleteItems:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn deleteItems(&self, items: &NSArray<ItemIdentifierType>);
 
         #[method(deleteAllItems)]
+        #[unsafe(method_family = none)]
         pub unsafe fn deleteAllItems(&self);
 
         #[method(expandItems:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn expandItems(&self, items: &NSArray<ItemIdentifierType>);
 
         #[method(collapseItems:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn collapseItems(&self, items: &NSArray<ItemIdentifierType>);
 
         #[method(replaceChildrenOfParentItem:withSnapshot:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn replaceChildrenOfParentItem_withSnapshot(
             &self,
             parent_item: &ItemIdentifierType,
@@ -80,13 +89,14 @@ extern_methods!(
         );
 
         #[method(insertSnapshot:beforeItem:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn insertSnapshot_beforeItem(
             &self,
             snapshot: &NSDiffableDataSourceSectionSnapshot<ItemIdentifierType>,
             item: &ItemIdentifierType,
         );
 
-        #[method_id(insertSnapshot:afterItem:)]
+        #[method(insertSnapshot:afterItem:)]
         #[unsafe(method_family = none)]
         pub unsafe fn insertSnapshot_afterItem(
             &self,
@@ -95,39 +105,44 @@ extern_methods!(
         ) -> Retained<ItemIdentifierType>;
 
         #[method(isExpanded:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isExpanded(&self, item: &ItemIdentifierType) -> bool;
 
         #[method(isVisible:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isVisible(&self, item: &ItemIdentifierType) -> bool;
 
         #[method(containsItem:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn containsItem(&self, item: &ItemIdentifierType) -> bool;
 
         #[method(levelOfItem:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn levelOfItem(&self, item: &ItemIdentifierType) -> NSInteger;
 
         #[method(indexOfItem:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indexOfItem(&self, item: &ItemIdentifierType) -> NSInteger;
 
-        #[method_id(expandedItems)]
+        #[method(expandedItems)]
         #[unsafe(method_family = none)]
         pub unsafe fn expandedItems(&self) -> Retained<NSArray<ItemIdentifierType>>;
 
-        #[method_id(parentOfChildItem:)]
+        #[method(parentOfChildItem:)]
         #[unsafe(method_family = none)]
         pub unsafe fn parentOfChildItem(
             &self,
             child_item: &ItemIdentifierType,
         ) -> Option<Retained<ItemIdentifierType>>;
 
-        #[method_id(snapshotOfParentItem:)]
+        #[method(snapshotOfParentItem:)]
         #[unsafe(method_family = none)]
         pub unsafe fn snapshotOfParentItem(
             &self,
             parent_item: &ItemIdentifierType,
         ) -> Retained<NSDiffableDataSourceSectionSnapshot<ItemIdentifierType>>;
 
-        #[method_id(snapshotOfParentItem:includingParentItem:)]
+        #[method(snapshotOfParentItem:includingParentItem:)]
         #[unsafe(method_family = none)]
         pub unsafe fn snapshotOfParentItem_includingParentItem(
             &self,
@@ -135,15 +150,15 @@ extern_methods!(
             including_parent_item: bool,
         ) -> Retained<NSDiffableDataSourceSectionSnapshot<ItemIdentifierType>>;
 
-        #[method_id(rootItems)]
+        #[method(rootItems)]
         #[unsafe(method_family = none)]
         pub unsafe fn rootItems(&self) -> Retained<NSArray<ItemIdentifierType>>;
 
-        #[method_id(visibleItems)]
+        #[method(visibleItems)]
         #[unsafe(method_family = none)]
         pub unsafe fn visibleItems(&self) -> Retained<NSArray<ItemIdentifierType>>;
 
-        #[method_id(visualDescription)]
+        #[method(visualDescription)]
         #[unsafe(method_family = none)]
         pub unsafe fn visualDescription(&self) -> Retained<NSString>;
     }
@@ -152,7 +167,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<ItemIdentifierType: Message> NSDiffableDataSourceSectionSnapshot<ItemIdentifierType> {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

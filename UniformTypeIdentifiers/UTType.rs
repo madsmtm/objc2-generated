@@ -48,11 +48,11 @@ unsafe impl NSSecureCoding for UTType {}
 
 extern_methods!(
     unsafe impl UTType {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -64,7 +64,7 @@ extern_methods!(
         ///
         /// Returns: A type, or
         /// `nil`if the type identifier is not known to the system.
-        #[method_id(typeWithIdentifier:)]
+        #[method(typeWithIdentifier:)]
         #[unsafe(method_family = none)]
         pub unsafe fn typeWithIdentifier(identifier: &NSString) -> Option<Retained<Self>>;
 
@@ -88,7 +88,7 @@ extern_methods!(
         /// `NSURLContentTypeKey`property.
         /// You should not attempt to derive the type of a file system object based
         /// solely on its path extension.
-        #[method_id(typeWithFilenameExtension:)]
+        #[method(typeWithFilenameExtension:)]
         #[unsafe(method_family = none)]
         pub unsafe fn typeWithFilenameExtension(
             filename_extension: &NSString,
@@ -118,7 +118,7 @@ extern_methods!(
         /// `NSURLContentTypeKey`property.
         /// You should not attempt to derive the type of a file system object based
         /// solely on its path extension.
-        #[method_id(typeWithFilenameExtension:conformingToType:)]
+        #[method(typeWithFilenameExtension:conformingToType:)]
         #[unsafe(method_family = none)]
         pub unsafe fn typeWithFilenameExtension_conformingToType(
             filename_extension: &NSString,
@@ -140,7 +140,7 @@ extern_methods!(
         /// ```text
         /// [UTType typeWithTag:mimeType tagClass:UTTagClassMIMEType conformingToType:UTTypeData]
         /// ```
-        #[method_id(typeWithMIMEType:)]
+        #[method(typeWithMIMEType:)]
         #[unsafe(method_family = none)]
         pub unsafe fn typeWithMIMEType(mime_type: &NSString) -> Option<Retained<Self>>;
 
@@ -162,7 +162,7 @@ extern_methods!(
         /// ```text
         /// [UTType typeWithTag:mimeType tagClass:UTTagClassMIMEType conformingToType:supertype]
         /// ```
-        #[method_id(typeWithMIMEType:conformingToType:)]
+        #[method(typeWithMIMEType:conformingToType:)]
         #[unsafe(method_family = none)]
         pub unsafe fn typeWithMIMEType_conformingToType(
             mime_type: &NSString,
@@ -179,7 +179,7 @@ extern_methods!(
         /// itself
         /// _has_a UTI, but is not itself the UTI. This terminology is not
         /// consistently used across Apple's documentation.
-        #[method_id(identifier)]
+        #[method(identifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
@@ -194,7 +194,7 @@ extern_methods!(
         /// ```text
         /// type.tags[UTTagClassFilenameExtension].firstObject
         /// ```
-        #[method_id(preferredFilenameExtension)]
+        #[method(preferredFilenameExtension)]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredFilenameExtension(&self) -> Option<Retained<NSString>>;
 
@@ -208,7 +208,7 @@ extern_methods!(
         /// ```text
         /// type.tags[UTTagClassMIMEType].firstObject
         /// ```
-        #[method_id(preferredMIMEType)]
+        #[method(preferredMIMEType)]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredMIMEType(&self) -> Option<Retained<NSString>>;
 
@@ -217,14 +217,14 @@ extern_methods!(
         /// If the type does not provide a description, the system may search its
         /// supertypes for one. Dynamic types never have localized descriptions even if
         /// their supertypes do.
-        #[method_id(localizedDescription)]
+        #[method(localizedDescription)]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedDescription(&self) -> Option<Retained<NSString>>;
 
         /// The type's version.
         ///
         /// Most types do not specify a version.
-        #[method_id(version)]
+        #[method(version)]
         #[unsafe(method_family = none)]
         pub unsafe fn version(&self) -> Option<Retained<NSNumber>>;
 
@@ -236,7 +236,7 @@ extern_methods!(
         ///
         /// Warning: This URL is not validated in any way by the system, nor is its
         /// scheme or structure guaranteed in any way.
-        #[method_id(referenceURL)]
+        #[method(referenceURL)]
         #[unsafe(method_family = none)]
         pub unsafe fn referenceURL(&self) -> Option<Retained<NSURL>>;
 
@@ -249,6 +249,7 @@ extern_methods!(
         /// A type cannot be both declared
         /// _and_dynamic.
         #[method(isDynamic)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isDynamic(&self) -> bool;
 
         /// Whether or not the receiver is a type known to the system.
@@ -256,6 +257,7 @@ extern_methods!(
         /// A type cannot be both declared
         /// _and_dynamic.
         #[method(isDeclared)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isDeclared(&self) -> bool;
 
         /// Whether or not the type is in the public domain.
@@ -265,6 +267,7 @@ extern_methods!(
         /// are generally defined by a standards body or by convention. They are never
         /// dynamic.
         #[method(isPublicType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isPublicType(&self) -> bool;
     }
 );
@@ -291,6 +294,7 @@ extern_methods!(
         ///
         /// See also: -isSubtypeOfType:
         #[method(conformsToType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn conformsToType(&self, r#type: &UTType) -> bool;
 
         /// Tests if the receiver is a supertype of another type.
@@ -309,6 +313,7 @@ extern_methods!(
         ///
         /// See also: -isSubtypeOfType:
         #[method(isSupertypeOfType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isSupertypeOfType(&self, r#type: &UTType) -> bool;
 
         /// Tests if the receiver is a subtype of another type.
@@ -327,6 +332,7 @@ extern_methods!(
         ///
         /// See also: -isSupertypeOfType:
         #[method(isSubtypeOfType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isSubtypeOfType(&self, r#type: &UTType) -> bool;
 
         /// The set of types to which the receiving type conforms, directly or
@@ -335,7 +341,7 @@ extern_methods!(
         /// If you are just interested in checking if one type conforms to another, it
         /// is more efficient to use
         /// `-conformsToType:`than this property.
-        #[method_id(supertypes)]
+        #[method(supertypes)]
         #[unsafe(method_family = none)]
         pub unsafe fn supertypes(&self) -> Retained<NSSet<UTType>>;
     }
@@ -359,7 +365,7 @@ extern_methods!(
         /// but the inputs were otherwise valid, a dynamic type may be provided. If
         /// the inputs were not valid, returns
         /// `nil.`
-        #[method_id(typeWithTag:tagClass:conformingToType:)]
+        #[method(typeWithTag:tagClass:conformingToType:)]
         #[unsafe(method_family = none)]
         pub unsafe fn typeWithTag_tagClass_conformingToType(
             tag: &NSString,
@@ -382,7 +388,7 @@ extern_methods!(
         /// Returns: An array of types, or the empty array if no such types were
         /// available. If no types are known to the system with the specified tag
         /// but the inputs were otherwise valid, a dynamic type may be provided.
-        #[method_id(typesWithTag:tagClass:conformingToType:)]
+        #[method(typesWithTag:tagClass:conformingToType:)]
         #[unsafe(method_family = none)]
         pub unsafe fn typesWithTag_tagClass_conformingToType(
             tag: &NSString,
@@ -416,7 +422,7 @@ extern_methods!(
         /// `preferredFilenameExtension`and
         /// `preferredMIMEType`properties
         /// respectively.
-        #[method_id(tags)]
+        #[method(tags)]
         #[unsafe(method_family = none)]
         pub unsafe fn tags(&self) -> Retained<NSDictionary<NSString, NSArray<NSString>>>;
     }
@@ -457,7 +463,7 @@ extern_methods!(
         ///     return result;
         /// }
         /// ```
-        #[method_id(exportedTypeWithIdentifier:)]
+        #[method(exportedTypeWithIdentifier:)]
         #[unsafe(method_family = none)]
         pub unsafe fn exportedTypeWithIdentifier(identifier: &NSString) -> Retained<UTType>;
 
@@ -492,7 +498,7 @@ extern_methods!(
         ///     return result;
         /// }
         /// ```
-        #[method_id(exportedTypeWithIdentifier:conformingToType:)]
+        #[method(exportedTypeWithIdentifier:conformingToType:)]
         #[unsafe(method_family = none)]
         pub unsafe fn exportedTypeWithIdentifier_conformingToType(
             identifier: &NSString,
@@ -535,7 +541,7 @@ extern_methods!(
         /// the preferred type for that extension, then that
         /// _other_type is
         /// substituted.
-        #[method_id(importedTypeWithIdentifier:)]
+        #[method(importedTypeWithIdentifier:)]
         #[unsafe(method_family = none)]
         pub unsafe fn importedTypeWithIdentifier(identifier: &NSString) -> Retained<UTType>;
 
@@ -574,7 +580,7 @@ extern_methods!(
         /// the preferred type for that extension, then that
         /// _other_type is
         /// substituted.
-        #[method_id(importedTypeWithIdentifier:conformingToType:)]
+        #[method(importedTypeWithIdentifier:conformingToType:)]
         #[unsafe(method_family = none)]
         pub unsafe fn importedTypeWithIdentifier_conformingToType(
             identifier: &NSString,

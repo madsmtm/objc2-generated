@@ -28,22 +28,23 @@ unsafe impl NSSecureCoding for GKLeaderboardSet {}
 extern_methods!(
     unsafe impl GKLeaderboardSet {
         /// Localized set title.
-        #[method_id(title)]
+        #[method(title)]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// set when leaderboardSets have been designated a game group; set when loadLeaderboardSetsWithCompletionHandler has been called for leaderboards that support game groups
-        #[method_id(groupIdentifier)]
+        #[method(groupIdentifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn groupIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// leaderboard set.
-        #[method_id(identifier)]
+        #[method(identifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`identifier`][Self::identifier].
         #[method(setIdentifier:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIdentifier(&self, identifier: Option<&NSString>);
 
         #[cfg(feature = "block2")]
@@ -53,6 +54,7 @@ extern_methods!(
         /// 2. Unauthenticated player
         /// 3. Set not present
         #[method(loadLeaderboardSetsWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loadLeaderboardSetsWithCompletionHandler(
             completion_handler: Option<
                 &block2::Block<dyn Fn(*mut NSArray<GKLeaderboardSet>, *mut NSError)>,
@@ -65,6 +67,7 @@ extern_methods!(
         /// 1. Communications problem
         /// 2. Unauthenticated player
         #[method(loadLeaderboardsWithHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loadLeaderboardsWithHandler(
             &self,
             handler: &block2::Block<dyn Fn(*mut NSArray<GKLeaderboard>, *mut NSError)>,
@@ -75,11 +78,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKLeaderboardSet {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -95,6 +98,7 @@ extern_methods!(
         /// 2. Unauthenticated player
         #[deprecated]
         #[method(loadLeaderboardsWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loadLeaderboardsWithCompletionHandler(
             &self,
             completion_handler: Option<
@@ -110,6 +114,7 @@ extern_methods!(
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         #[method(loadImageWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loadImageWithCompletionHandler(
             &self,
             completion_handler: Option<&block2::Block<dyn Fn(*mut NSImage, *mut NSError)>>,

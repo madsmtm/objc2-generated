@@ -25,6 +25,7 @@ extern_methods!(
         /// The dimension along which to index
         #[deprecated]
         #[method(dimension)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dimension(&self) -> NSUInteger;
 
         /// Create a gather layer
@@ -33,7 +34,7 @@ extern_methods!(
         ///
         /// Returns: A new gather layer
         #[deprecated]
-        #[method_id(layerWithDimension:)]
+        #[method(layerWithDimension:)]
         #[unsafe(method_family = none)]
         pub unsafe fn layerWithDimension(dimension: NSUInteger) -> Retained<Self>;
     }
@@ -44,12 +45,12 @@ extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCGatherLayer {
         #[deprecated]
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

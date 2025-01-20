@@ -24,16 +24,16 @@ unsafe impl NSObjectProtocol for HMAccessoryCategory {}
 extern_methods!(
     unsafe impl HMAccessoryCategory {
         /// A type identifier that represents the category.
-        #[method_id(categoryType)]
+        #[method(categoryType)]
         #[unsafe(method_family = none)]
         pub unsafe fn categoryType(&self) -> Retained<NSString>;
 
         /// The localized description of the category.
-        #[method_id(localizedDescription)]
+        #[method(localizedDescription)]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedDescription(&self) -> Retained<NSString>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -42,7 +42,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HMAccessoryCategory {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

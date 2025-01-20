@@ -17,32 +17,35 @@ unsafe impl NSObjectProtocol for NSScriptExecutionContext {}
 
 extern_methods!(
     unsafe impl NSScriptExecutionContext {
-        #[method_id(sharedScriptExecutionContext)]
+        #[method(sharedScriptExecutionContext)]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedScriptExecutionContext() -> Retained<NSScriptExecutionContext>;
 
-        #[method_id(topLevelObject)]
+        #[method(topLevelObject)]
         #[unsafe(method_family = none)]
         pub unsafe fn topLevelObject(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`topLevelObject`][Self::topLevelObject].
         #[method(setTopLevelObject:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTopLevelObject(&self, top_level_object: Option<&AnyObject>);
 
-        #[method_id(objectBeingTested)]
+        #[method(objectBeingTested)]
         #[unsafe(method_family = none)]
         pub unsafe fn objectBeingTested(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`objectBeingTested`][Self::objectBeingTested].
         #[method(setObjectBeingTested:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setObjectBeingTested(&self, object_being_tested: Option<&AnyObject>);
 
-        #[method_id(rangeContainerObject)]
+        #[method(rangeContainerObject)]
         #[unsafe(method_family = none)]
         pub unsafe fn rangeContainerObject(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`rangeContainerObject`][Self::rangeContainerObject].
         #[method(setRangeContainerObject:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRangeContainerObject(&self, range_container_object: Option<&AnyObject>);
     }
 );
@@ -50,11 +53,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSScriptExecutionContext {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -42,7 +42,7 @@ extern_methods!(
         /// Parameter `heightInPixels`: The height of the display, in pixels.
         ///
         /// Parameter `pixelsPerInch`: The pixel density as a number of pixels per inch.
-        #[method_id(initWithWidthInPixels:heightInPixels:pixelsPerInch:)]
+        #[method(initWithWidthInPixels:heightInPixels:pixelsPerInch:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithWidthInPixels_heightInPixels_pixelsPerInch(
             this: Allocated<Self>,
@@ -61,7 +61,7 @@ extern_methods!(
         /// The pixel dimensions and pixel density will be initialized based on the specified screen and
         /// size. Note: an instance of macOS running in the virtual machine may not necessarily provide
         /// a display mode with a backing scale factor matching the specified screen.
-        #[method_id(initForScreen:sizeInPoints:)]
+        #[method(initForScreen:sizeInPoints:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initForScreen_sizeInPoints(
             this: Allocated<Self>,
@@ -71,26 +71,32 @@ extern_methods!(
 
         /// The width of the display, in pixels.
         #[method(widthInPixels)]
+        #[unsafe(method_family = none)]
         pub unsafe fn widthInPixels(&self) -> NSInteger;
 
         /// Setter for [`widthInPixels`][Self::widthInPixels].
         #[method(setWidthInPixels:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWidthInPixels(&self, width_in_pixels: NSInteger);
 
         /// The height of the display, in pixels.
         #[method(heightInPixels)]
+        #[unsafe(method_family = none)]
         pub unsafe fn heightInPixels(&self) -> NSInteger;
 
         /// Setter for [`heightInPixels`][Self::heightInPixels].
         #[method(setHeightInPixels:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setHeightInPixels(&self, height_in_pixels: NSInteger);
 
         /// The pixel density as a number of pixels per inch.
         #[method(pixelsPerInch)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pixelsPerInch(&self) -> NSInteger;
 
         /// Setter for [`pixelsPerInch`][Self::pixelsPerInch].
         #[method(setPixelsPerInch:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPixelsPerInch(&self, pixels_per_inch: NSInteger);
     }
 );
@@ -99,11 +105,11 @@ extern_methods!(
     /// Methods declared on superclass `VZGraphicsDisplayConfiguration`
     #[cfg(feature = "VZGraphicsDisplayConfiguration")]
     unsafe impl VZMacGraphicsDisplayConfiguration {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

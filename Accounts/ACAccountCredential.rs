@@ -20,7 +20,7 @@ unsafe impl NSObjectProtocol for ACAccountCredential {}
 extern_methods!(
     unsafe impl ACAccountCredential {
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
-        #[method_id(initWithOAuthToken:tokenSecret:)]
+        #[method(initWithOAuthToken:tokenSecret:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithOAuthToken_tokenSecret(
             this: Allocated<Self>,
@@ -29,7 +29,7 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
-        #[method_id(initWithOAuth2Token:refreshToken:expiryDate:)]
+        #[method(initWithOAuth2Token:refreshToken:expiryDate:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithOAuth2Token_refreshToken_expiryDate(
             this: Allocated<Self>,
@@ -39,13 +39,14 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
-        #[method_id(oauthToken)]
+        #[method(oauthToken)]
         #[unsafe(method_family = none)]
         pub unsafe fn oauthToken(&self) -> Retained<NSString>;
 
         /// Setter for [`oauthToken`][Self::oauthToken].
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
         #[method(setOauthToken:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setOauthToken(&self, oauth_token: Option<&NSString>);
     }
 );
@@ -53,11 +54,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ACAccountCredential {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

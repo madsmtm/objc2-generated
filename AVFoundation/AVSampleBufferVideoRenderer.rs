@@ -47,12 +47,13 @@ extern_methods!(
         /// The value of this property is an AVQueuedSampleBufferRenderingStatus that indicates whether the receiver can be used for enqueueing and rendering sample buffers. When the value of this property is AVQueuedSampleBufferRenderingStatusFailed, clients can check the value of the error property to determine the failure. To resume rendering sample buffers using the video renderer after a failure, clients must first reset the status to AVQueuedSampleBufferRenderingStatusUnknown. This can be achieved by invoking -flush on the video renderer.
         /// This property is key value observable.
         #[method(status)]
+        #[unsafe(method_family = none)]
         pub unsafe fn status(&self) -> AVQueuedSampleBufferRenderingStatus;
 
         /// If the video renderer's status is AVQueuedSampleBufferRenderingStatusFailed, this describes the error that caused the failure.
         ///
         /// The value of this property is an NSError that describes what caused the video renderer to no longer be able to enqueue sample buffers. If the status is not AVQueuedSampleBufferRenderingStatusFailed, the value of this property is nil.
-        #[method_id(error)]
+        #[method(error)]
         #[unsafe(method_family = none)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
 
@@ -63,6 +64,7 @@ extern_methods!(
         /// Clients can track changes to this property via AVSampleBufferVideoRendererRequiresFlushToResumeDecodingDidChangeNotification.
         /// This property is not key value observable.
         #[method(requiresFlushToResumeDecoding)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requiresFlushToResumeDecoding(&self) -> bool;
 
         #[cfg(feature = "block2")]
@@ -74,6 +76,7 @@ extern_methods!(
         ///
         /// A flush resets decoder state. The next frame passed to enqueueSampleBuffer: should be an IDR frame (also known as a key frame or sync sample).
         #[method(flushWithRemovalOfDisplayedImage:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn flushWithRemovalOfDisplayedImage_completionHandler(
             &self,
             remove_displayed_image: bool,
@@ -85,11 +88,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVSampleBufferVideoRenderer {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -104,7 +107,7 @@ extern_methods!(
         /// This will return NULL if the rate is non-zero.  Clients must release the pixel buffer after use.
         ///
         /// Do not write to the returned CVPixelBuffer's attachments or pixel data.
-        #[method_id(copyDisplayedPixelBuffer)]
+        #[method(copyDisplayedPixelBuffer)]
         #[unsafe(method_family = copy)]
         pub unsafe fn copyDisplayedPixelBuffer(&self) -> Option<Retained<CVPixelBuffer>>;
     }
@@ -124,6 +127,7 @@ extern_methods!(
         ///
         /// Parameter `minimumUpcomingPresentationTime`: A lower bound on PTS values for buffers that will be passed to -enqueueSampleBuffer: in the future.
         #[method(expectMinimumUpcomingSampleBufferPresentationTime:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn expectMinimumUpcomingSampleBufferPresentationTime(
             &self,
             minimum_upcoming_presentation_time: CMTime,
@@ -135,6 +139,7 @@ extern_methods!(
         /// Sending this message and later calling -enqueueSampleBuffer: with a buffer with a lower PTS than any previously enqueued PTS has the potential to lead to dropped buffers.
         /// Messaging -flush resets such expectations.
         #[method(expectMonotonicallyIncreasingUpcomingSampleBufferPresentationTimes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn expectMonotonicallyIncreasingUpcomingSampleBufferPresentationTimes(&self);
 
         /// Resets previously-promised expectations about upcoming sample buffer PTSs.
@@ -142,6 +147,7 @@ extern_methods!(
         /// This undoes the state set by messaging -expectMinimumUpcomingSampleBufferPresentationTime: or -expectMonotonicallyIncreasingUpcomingSampleBufferPresentationTimes.
         /// If you didn't use either of those, you don't have to use this.
         #[method(resetUpcomingSampleBufferPresentationTimeExpectations)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resetUpcomingSampleBufferPresentationTimeExpectations(&self);
     }
 );
@@ -156,6 +162,7 @@ extern_methods!(
         ///
         /// If there are no performance metrics available, the completion handler will be called with nil videoPerformanceMetrics.
         #[method(loadVideoPerformanceMetricsWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loadVideoPerformanceMetricsWithCompletionHandler(
             &self,
             completion_handler: &block2::Block<dyn Fn(*mut AVVideoPerformanceMetrics)>,

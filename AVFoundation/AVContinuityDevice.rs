@@ -24,11 +24,11 @@ unsafe impl NSObjectProtocol for AVContinuityDevice {}
 
 extern_methods!(
     unsafe impl AVContinuityDevice {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -36,7 +36,7 @@ extern_methods!(
         ///
         ///
         /// This property can be used to uniquely identify a continuity device. Every available continuity device has a unique ID that regenerates across device connections and disconnections.
-        #[method_id(connectionID)]
+        #[method(connectionID)]
         #[unsafe(method_family = none)]
         pub unsafe fn connectionID(&self) -> Retained<NSUUID>;
 
@@ -45,17 +45,18 @@ extern_methods!(
         ///
         /// The value of this property is a BOOL indicating whether the continuity device represented by the receiver is connected and available for use. Clients can key value observe the value of this property to be notified when a continuity device is no longer available. When the value of this property becomes NO for a given instance, it will not become YES again. If the same physical continuity device again becomes available to the system, it will be represented using a new instance of AVContinuityDevice.
         #[method(isConnected)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isConnected(&self) -> bool;
 
         #[cfg(feature = "AVCaptureDevice")]
         /// The video capture devices available from the continuity device.
-        #[method_id(videoDevices)]
+        #[method(videoDevices)]
         #[unsafe(method_family = none)]
         pub unsafe fn videoDevices(&self) -> Retained<NSArray<AVCaptureDevice>>;
 
         #[cfg(feature = "objc2-avf-audio")]
         /// The audio session inputs available from the continuity device.
-        #[method_id(audioSessionInputs)]
+        #[method(audioSessionInputs)]
         #[unsafe(method_family = none)]
         pub unsafe fn audioSessionInputs(&self)
             -> Retained<NSArray<AVAudioSessionPortDescription>>;

@@ -30,32 +30,32 @@ unsafe impl NSSecureCoding for WKImage {}
 extern_methods!(
     unsafe impl WKImage {
         #[cfg(feature = "objc2-ui-kit")]
-        #[method_id(imageWithImage:)]
+        #[method(imageWithImage:)]
         #[unsafe(method_family = none)]
         pub unsafe fn imageWithImage(image: &UIImage) -> Retained<Self>;
 
-        #[method_id(imageWithImageData:)]
+        #[method(imageWithImageData:)]
         #[unsafe(method_family = none)]
         pub unsafe fn imageWithImageData(image_data: &NSData) -> Retained<Self>;
 
-        #[method_id(imageWithImageName:)]
+        #[method(imageWithImageName:)]
         #[unsafe(method_family = none)]
         pub unsafe fn imageWithImageName(image_name: &NSString) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-ui-kit")]
-        #[method_id(image)]
+        #[method(image)]
         #[unsafe(method_family = none)]
         pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
-        #[method_id(imageData)]
+        #[method(imageData)]
         #[unsafe(method_family = none)]
         pub unsafe fn imageData(&self) -> Option<Retained<NSData>>;
 
-        #[method_id(imageName)]
+        #[method(imageName)]
         #[unsafe(method_family = none)]
         pub unsafe fn imageName(&self) -> Option<Retained<NSString>>;
     }
@@ -64,7 +64,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKImage {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

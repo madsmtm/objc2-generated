@@ -100,60 +100,77 @@ extern_methods!(
     #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     unsafe impl NSSliderCell {
         #[method(prefersTrackingUntilMouseUp)]
+        #[unsafe(method_family = none)]
         pub unsafe fn prefersTrackingUntilMouseUp(mtm: MainThreadMarker) -> bool;
 
         #[method(minValue)]
+        #[unsafe(method_family = none)]
         pub unsafe fn minValue(&self) -> c_double;
 
         /// Setter for [`minValue`][Self::minValue].
         #[method(setMinValue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMinValue(&self, min_value: c_double);
 
         #[method(maxValue)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maxValue(&self) -> c_double;
 
         /// Setter for [`maxValue`][Self::maxValue].
         #[method(setMaxValue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMaxValue(&self, max_value: c_double);
 
         #[method(altIncrementValue)]
+        #[unsafe(method_family = none)]
         pub unsafe fn altIncrementValue(&self) -> c_double;
 
         /// Setter for [`altIncrementValue`][Self::altIncrementValue].
         #[method(setAltIncrementValue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAltIncrementValue(&self, alt_increment_value: c_double);
 
         #[method(sliderType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sliderType(&self) -> NSSliderType;
 
         /// Setter for [`sliderType`][Self::sliderType].
         #[method(setSliderType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSliderType(&self, slider_type: NSSliderType);
 
         /// Setter for [`isVertical`][Self::isVertical].
         #[method(setVertical:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setVertical(&self, vertical: bool);
 
         #[method(trackRect)]
+        #[unsafe(method_family = none)]
         pub unsafe fn trackRect(&self) -> NSRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(knobThickness)]
+        #[unsafe(method_family = none)]
         pub unsafe fn knobThickness(&self) -> CGFloat;
 
         #[method(knobRectFlipped:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn knobRectFlipped(&self, flipped: bool) -> NSRect;
 
         #[method(barRectFlipped:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn barRectFlipped(&self, flipped: bool) -> NSRect;
 
         #[method(drawKnob:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn drawKnob_(&self, knob_rect: NSRect);
 
         #[method(drawKnob)]
+        #[unsafe(method_family = none)]
         pub unsafe fn drawKnob(&self);
 
         #[method(drawBarInside:flipped:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn drawBarInside_flipped(&self, rect: NSRect, flipped: bool);
     }
 );
@@ -162,23 +179,23 @@ extern_methods!(
     /// Methods declared on superclass `NSCell`
     #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     unsafe impl NSSliderCell {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(initTextCell:)]
+        #[method(initTextCell:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
-        #[method_id(initImageCell:)]
+        #[method(initImageCell:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initImageCell(
             this: Allocated<Self>,
             image: Option<&NSImage>,
         ) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
     }
@@ -188,7 +205,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     unsafe impl NSSliderCell {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -205,39 +222,50 @@ extern_methods!(
     #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     unsafe impl NSSliderCell {
         #[method(numberOfTickMarks)]
+        #[unsafe(method_family = none)]
         pub unsafe fn numberOfTickMarks(&self) -> NSInteger;
 
         /// Setter for [`numberOfTickMarks`][Self::numberOfTickMarks].
         #[method(setNumberOfTickMarks:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setNumberOfTickMarks(&self, number_of_tick_marks: NSInteger);
 
         #[method(tickMarkPosition)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tickMarkPosition(&self) -> NSTickMarkPosition;
 
         /// Setter for [`tickMarkPosition`][Self::tickMarkPosition].
         #[method(setTickMarkPosition:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTickMarkPosition(&self, tick_mark_position: NSTickMarkPosition);
 
         #[method(allowsTickMarkValuesOnly)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowsTickMarkValuesOnly(&self) -> bool;
 
         /// Setter for [`allowsTickMarkValuesOnly`][Self::allowsTickMarkValuesOnly].
         #[method(setAllowsTickMarkValuesOnly:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAllowsTickMarkValuesOnly(&self, allows_tick_mark_values_only: bool);
 
         #[method(tickMarkValueAtIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn tickMarkValueAtIndex(&self, index: NSInteger) -> c_double;
 
         #[method(rectOfTickMarkAtIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rectOfTickMarkAtIndex(&self, index: NSInteger) -> NSRect;
 
         #[method(indexOfTickMarkAtPoint:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn indexOfTickMarkAtPoint(&self, point: NSPoint) -> NSInteger;
 
         #[method(closestTickMarkValueToValue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn closestTickMarkValueToValue(&self, value: c_double) -> c_double;
 
         #[method(drawTickMarks)]
+        #[unsafe(method_family = none)]
         pub unsafe fn drawTickMarks(&self);
     }
 );
@@ -248,57 +276,63 @@ extern_methods!(
     unsafe impl NSSliderCell {
         #[deprecated = "-setTitleCell: had no effect since 10.0"]
         #[method(setTitleCell:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTitleCell(&self, cell: Option<&NSCell>);
 
         #[deprecated = "-titleCell has returned nil since 10.0"]
-        #[method_id(titleCell)]
+        #[method(titleCell)]
         #[unsafe(method_family = none)]
         pub unsafe fn titleCell(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSColor")]
         #[deprecated = "-setTitleColor: had no effect since 10.0"]
         #[method(setTitleColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTitleColor(&self, new_color: Option<&NSColor>);
 
         #[cfg(feature = "NSColor")]
         #[deprecated = "-titleColor has returned nil since 10.0"]
-        #[method_id(titleColor)]
+        #[method(titleColor)]
         #[unsafe(method_family = none)]
         pub unsafe fn titleColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSFont")]
         #[deprecated = "-setTitleFont: had no effect since 10.0"]
         #[method(setTitleFont:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTitleFont(&self, font_obj: Option<&NSFont>);
 
         #[cfg(feature = "NSFont")]
         #[deprecated = "-titleFont has returned nil since 10.0"]
-        #[method_id(titleFont)]
+        #[method(titleFont)]
         #[unsafe(method_family = none)]
         pub unsafe fn titleFont(&self) -> Option<Retained<NSFont>>;
 
         #[deprecated = "-title has returned nil since 10.0"]
-        #[method_id(title)]
+        #[method(title)]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         #[deprecated = "-setTitle: had no effect since 10.0"]
         #[method(setTitle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, string: Option<&NSString>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[deprecated = "-knobThickness has returned 0 since 10.0"]
         #[method(setKnobThickness:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setKnobThickness(&self, thickness: CGFloat);
 
         #[cfg(feature = "NSImage")]
         #[deprecated = "-setImage: had no effect since 10.0"]
         #[method(setImage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setImage(&self, background_image: Option<&NSImage>);
 
         #[cfg(feature = "NSImage")]
         #[deprecated = "-image has returned nil since 10.0"]
-        #[method_id(image)]
+        #[method(image)]
         #[unsafe(method_family = none)]
         pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
     }

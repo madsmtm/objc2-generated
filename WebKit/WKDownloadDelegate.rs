@@ -52,6 +52,7 @@ extern_protocol!(
     pub unsafe trait WKDownloadDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "WKDownload", feature = "block2"))]
         #[method(download:decideDestinationUsingResponse:suggestedFilename:completionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn download_decideDestinationUsingResponse_suggestedFilename_completionHandler(
             &self,
             download: &WKDownload,
@@ -63,6 +64,7 @@ extern_protocol!(
         #[cfg(all(feature = "WKDownload", feature = "block2"))]
         #[optional]
         #[method(download:willPerformHTTPRedirection:newRequest:decisionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn download_willPerformHTTPRedirection_newRequest_decisionHandler(
             &self,
             download: &WKDownload,
@@ -74,6 +76,7 @@ extern_protocol!(
         #[cfg(all(feature = "WKDownload", feature = "block2"))]
         #[optional]
         #[method(download:didReceiveAuthenticationChallenge:completionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn download_didReceiveAuthenticationChallenge_completionHandler(
             &self,
             download: &WKDownload,
@@ -86,11 +89,13 @@ extern_protocol!(
         #[cfg(feature = "WKDownload")]
         #[optional]
         #[method(downloadDidFinish:)]
+        #[unsafe(method_family = none)]
         unsafe fn downloadDidFinish(&self, download: &WKDownload);
 
         #[cfg(feature = "WKDownload")]
         #[optional]
         #[method(download:didFailWithError:resumeData:)]
+        #[unsafe(method_family = none)]
         unsafe fn download_didFailWithError_resumeData(
             &self,
             download: &WKDownload,
@@ -101,6 +106,7 @@ extern_protocol!(
         #[cfg(all(feature = "WKDownload", feature = "block2"))]
         #[optional]
         #[method(download:decidePlaceholderPolicy:)]
+        #[unsafe(method_family = none)]
         unsafe fn download_decidePlaceholderPolicy(
             &self,
             download: &WKDownload,
@@ -110,6 +116,7 @@ extern_protocol!(
         #[cfg(all(feature = "WKDownload", feature = "block2"))]
         #[optional]
         #[method(download:didReceivePlaceholderURL:completionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn download_didReceivePlaceholderURL_completionHandler(
             &self,
             download: &WKDownload,
@@ -120,6 +127,7 @@ extern_protocol!(
         #[cfg(feature = "WKDownload")]
         #[optional]
         #[method(download:didReceiveFinalURL:)]
+        #[unsafe(method_family = none)]
         unsafe fn download_didReceiveFinalURL(&self, download: &WKDownload, url: &NSURL);
     }
 );

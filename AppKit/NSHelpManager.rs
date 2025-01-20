@@ -28,21 +28,24 @@ unsafe impl NSObjectProtocol for NSHelpManager {}
 
 extern_methods!(
     unsafe impl NSHelpManager {
-        #[method_id(sharedHelpManager)]
+        #[method(sharedHelpManager)]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedHelpManager(mtm: MainThreadMarker) -> Retained<NSHelpManager>;
 
         #[method(isContextHelpModeActive)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isContextHelpModeActive(mtm: MainThreadMarker) -> bool;
 
         /// Setter for [`isContextHelpModeActive`][Self::isContextHelpModeActive].
         #[method(setContextHelpModeActive:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setContextHelpModeActive(
             context_help_mode_active: bool,
             mtm: MainThreadMarker,
         );
 
         #[method(setContextHelp:forObject:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setContextHelp_forObject(
             &self,
             attr_string: &NSAttributedString,
@@ -50,9 +53,10 @@ extern_methods!(
         );
 
         #[method(removeContextHelpForObject:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeContextHelpForObject(&self, object: &AnyObject);
 
-        #[method_id(contextHelpForObject:)]
+        #[method(contextHelpForObject:)]
         #[unsafe(method_family = none)]
         pub unsafe fn contextHelpForObject(
             &self,
@@ -60,6 +64,7 @@ extern_methods!(
         ) -> Option<Retained<NSAttributedString>>;
 
         #[method(showContextHelpForObject:locationHint:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn showContextHelpForObject_locationHint(
             &self,
             object: &AnyObject,
@@ -67,6 +72,7 @@ extern_methods!(
         ) -> bool;
 
         #[method(openHelpAnchor:inBook:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn openHelpAnchor_inBook(
             &self,
             anchor: &NSHelpAnchorName,
@@ -74,9 +80,11 @@ extern_methods!(
         );
 
         #[method(findString:inBook:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn findString_inBook(&self, query: &NSString, book: Option<&NSHelpBookName>);
 
         #[method(registerBooksInBundle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn registerBooksInBundle(&self, bundle: &NSBundle) -> bool;
     }
 );
@@ -84,11 +92,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSHelpManager {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -107,7 +115,7 @@ extern "C" {
 extern_category!(
     /// Category on [`NSBundle`].
     pub unsafe trait NSBundleHelpExtension {
-        #[method_id(contextHelpForKey:)]
+        #[method(contextHelpForKey:)]
         #[unsafe(method_family = none)]
         unsafe fn contextHelpForKey(
             &self,
@@ -123,9 +131,11 @@ extern_methods!(
     #[cfg(all(feature = "NSApplication", feature = "NSResponder"))]
     unsafe impl NSApplication {
         #[method(activateContextHelpMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn activateContextHelpMode(&self, sender: Option<&AnyObject>);
 
         #[method(showHelp:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn showHelp(&self, sender: Option<&AnyObject>);
     }
 );

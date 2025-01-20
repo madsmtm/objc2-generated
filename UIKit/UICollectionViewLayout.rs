@@ -93,106 +93,126 @@ extern_methods!(
     unsafe impl UICollectionViewLayoutAttributes {
         #[cfg(feature = "objc2-core-foundation")]
         #[method(frame)]
+        #[unsafe(method_family = none)]
         pub unsafe fn frame(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`frame`][Self::frame].
         #[method(setFrame:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFrame(&self, frame: CGRect);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(center)]
+        #[unsafe(method_family = none)]
         pub unsafe fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCenter(&self, center: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(size)]
+        #[unsafe(method_family = none)]
         pub unsafe fn size(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`size`][Self::size].
         #[method(setSize:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSize(&self, size: CGSize);
 
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(not(target_os = "watchos"))]
         #[method(transform3D)]
+        #[unsafe(method_family = none)]
         pub unsafe fn transform3D(&self) -> CATransform3D;
 
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(not(target_os = "watchos"))]
         /// Setter for [`transform3D`][Self::transform3D].
         #[method(setTransform3D:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTransform3D(&self, transform3_d: CATransform3D);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(bounds)]
+        #[unsafe(method_family = none)]
         pub unsafe fn bounds(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`bounds`][Self::bounds].
         #[method(setBounds:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBounds(&self, bounds: CGRect);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(transform)]
+        #[unsafe(method_family = none)]
         pub unsafe fn transform(&self) -> CGAffineTransform;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`transform`][Self::transform].
         #[method(setTransform:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTransform(&self, transform: CGAffineTransform);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(alpha)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alpha(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`alpha`][Self::alpha].
         #[method(setAlpha:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAlpha(&self, alpha: CGFloat);
 
         #[method(zIndex)]
+        #[unsafe(method_family = none)]
         pub unsafe fn zIndex(&self) -> NSInteger;
 
         /// Setter for [`zIndex`][Self::zIndex].
         #[method(setZIndex:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setZIndex(&self, z_index: NSInteger);
 
         #[method(isHidden)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isHidden(&self) -> bool;
 
         /// Setter for [`isHidden`][Self::isHidden].
         #[method(setHidden:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setHidden(&self, hidden: bool);
 
-        #[method_id(indexPath)]
+        #[method(indexPath)]
         #[unsafe(method_family = none)]
         pub unsafe fn indexPath(&self) -> Retained<NSIndexPath>;
 
         /// Setter for [`indexPath`][Self::indexPath].
         #[method(setIndexPath:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIndexPath(&self, index_path: &NSIndexPath);
 
         #[method(representedElementCategory)]
+        #[unsafe(method_family = none)]
         pub unsafe fn representedElementCategory(&self) -> UICollectionElementCategory;
 
-        #[method_id(representedElementKind)]
+        #[method(representedElementKind)]
         #[unsafe(method_family = none)]
         pub unsafe fn representedElementKind(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(layoutAttributesForCellWithIndexPath:)]
+        #[method(layoutAttributesForCellWithIndexPath:)]
         #[unsafe(method_family = none)]
         pub unsafe fn layoutAttributesForCellWithIndexPath(
             index_path: &NSIndexPath,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[method_id(layoutAttributesForSupplementaryViewOfKind:withIndexPath:)]
+        #[method(layoutAttributesForSupplementaryViewOfKind:withIndexPath:)]
         #[unsafe(method_family = none)]
         pub unsafe fn layoutAttributesForSupplementaryViewOfKind_withIndexPath(
             element_kind: &NSString,
@@ -200,7 +220,7 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[method_id(layoutAttributesForDecorationViewOfKind:withIndexPath:)]
+        #[method(layoutAttributesForDecorationViewOfKind:withIndexPath:)]
         #[unsafe(method_family = none)]
         pub unsafe fn layoutAttributesForDecorationViewOfKind_withIndexPath(
             decoration_view_kind: &NSString,
@@ -213,11 +233,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UICollectionViewLayoutAttributes {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -236,15 +256,19 @@ unsafe impl NSObjectProtocol for UICollectionViewLayoutInvalidationContext {}
 extern_methods!(
     unsafe impl UICollectionViewLayoutInvalidationContext {
         #[method(invalidateEverything)]
+        #[unsafe(method_family = none)]
         pub unsafe fn invalidateEverything(&self) -> bool;
 
         #[method(invalidateDataSourceCounts)]
+        #[unsafe(method_family = none)]
         pub unsafe fn invalidateDataSourceCounts(&self) -> bool;
 
         #[method(invalidateItemsAtIndexPaths:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn invalidateItemsAtIndexPaths(&self, index_paths: &NSArray<NSIndexPath>);
 
         #[method(invalidateSupplementaryElementsOfKind:atIndexPaths:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn invalidateSupplementaryElementsOfKind_atIndexPaths(
             &self,
             element_kind: &NSString,
@@ -252,23 +276,24 @@ extern_methods!(
         );
 
         #[method(invalidateDecorationElementsOfKind:atIndexPaths:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn invalidateDecorationElementsOfKind_atIndexPaths(
             &self,
             element_kind: &NSString,
             index_paths: &NSArray<NSIndexPath>,
         );
 
-        #[method_id(invalidatedItemIndexPaths)]
+        #[method(invalidatedItemIndexPaths)]
         #[unsafe(method_family = none)]
         pub unsafe fn invalidatedItemIndexPaths(&self) -> Option<Retained<NSArray<NSIndexPath>>>;
 
-        #[method_id(invalidatedSupplementaryIndexPaths)]
+        #[method(invalidatedSupplementaryIndexPaths)]
         #[unsafe(method_family = none)]
         pub unsafe fn invalidatedSupplementaryIndexPaths(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, NSArray<NSIndexPath>>>>;
 
-        #[method_id(invalidatedDecorationIndexPaths)]
+        #[method(invalidatedDecorationIndexPaths)]
         #[unsafe(method_family = none)]
         pub unsafe fn invalidatedDecorationIndexPaths(
             &self,
@@ -276,29 +301,33 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(contentOffsetAdjustment)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contentOffsetAdjustment(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`contentOffsetAdjustment`][Self::contentOffsetAdjustment].
         #[method(setContentOffsetAdjustment:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setContentOffsetAdjustment(&self, content_offset_adjustment: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(contentSizeAdjustment)]
+        #[unsafe(method_family = none)]
         pub unsafe fn contentSizeAdjustment(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`contentSizeAdjustment`][Self::contentSizeAdjustment].
         #[method(setContentSizeAdjustment:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setContentSizeAdjustment(&self, content_size_adjustment: CGSize);
 
-        #[method_id(previousIndexPathsForInteractivelyMovingItems)]
+        #[method(previousIndexPathsForInteractivelyMovingItems)]
         #[unsafe(method_family = none)]
         pub unsafe fn previousIndexPathsForInteractivelyMovingItems(
             &self,
         ) -> Option<Retained<NSArray<NSIndexPath>>>;
 
-        #[method_id(targetIndexPathsForInteractivelyMovingItems)]
+        #[method(targetIndexPathsForInteractivelyMovingItems)]
         #[unsafe(method_family = none)]
         pub unsafe fn targetIndexPathsForInteractivelyMovingItems(
             &self,
@@ -306,6 +335,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(interactiveMovementTarget)]
+        #[unsafe(method_family = none)]
         pub unsafe fn interactiveMovementTarget(&self) -> CGPoint;
     }
 );
@@ -313,11 +343,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UICollectionViewLayoutInvalidationContext {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -337,11 +367,11 @@ unsafe impl NSObjectProtocol for UICollectionViewLayout {}
 
 extern_methods!(
     unsafe impl UICollectionViewLayout {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -354,20 +384,23 @@ extern_methods!(
             feature = "UIScrollView",
             feature = "UIView"
         ))]
-        #[method_id(collectionView)]
+        #[method(collectionView)]
         #[unsafe(method_family = none)]
         pub unsafe fn collectionView(&self) -> Option<Retained<UICollectionView>>;
 
         #[method(invalidateLayout)]
+        #[unsafe(method_family = none)]
         pub unsafe fn invalidateLayout(&self);
 
         #[method(invalidateLayoutWithContext:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn invalidateLayoutWithContext(
             &self,
             context: &UICollectionViewLayoutInvalidationContext,
         );
 
         #[method(registerClass:forDecorationViewOfKind:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn registerClass_forDecorationViewOfKind(
             &self,
             view_class: Option<&AnyClass>,
@@ -377,6 +410,7 @@ extern_methods!(
         #[cfg(feature = "UINib")]
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
         #[method(registerNib:forDecorationViewOfKind:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn registerNib_forDecorationViewOfKind(
             &self,
             nib: Option<&UINib>,
@@ -388,7 +422,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UICollectionViewLayout {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -398,30 +432,33 @@ extern_methods!(
     /// UISubclassingHooks
     unsafe impl UICollectionViewLayout {
         #[method(layoutAttributesClass)]
+        #[unsafe(method_family = none)]
         pub unsafe fn layoutAttributesClass(mtm: MainThreadMarker) -> &'static AnyClass;
 
         #[method(invalidationContextClass)]
+        #[unsafe(method_family = none)]
         pub unsafe fn invalidationContextClass(mtm: MainThreadMarker) -> &'static AnyClass;
 
         #[method(prepareLayout)]
+        #[unsafe(method_family = none)]
         pub unsafe fn prepareLayout(&self);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(layoutAttributesForElementsInRect:)]
+        #[method(layoutAttributesForElementsInRect:)]
         #[unsafe(method_family = none)]
         pub unsafe fn layoutAttributesForElementsInRect(
             &self,
             rect: CGRect,
         ) -> Option<Retained<NSArray<UICollectionViewLayoutAttributes>>>;
 
-        #[method_id(layoutAttributesForItemAtIndexPath:)]
+        #[method(layoutAttributesForItemAtIndexPath:)]
         #[unsafe(method_family = none)]
         pub unsafe fn layoutAttributesForItemAtIndexPath(
             &self,
             index_path: &NSIndexPath,
         ) -> Option<Retained<UICollectionViewLayoutAttributes>>;
 
-        #[method_id(layoutAttributesForSupplementaryViewOfKind:atIndexPath:)]
+        #[method(layoutAttributesForSupplementaryViewOfKind:atIndexPath:)]
         #[unsafe(method_family = none)]
         pub unsafe fn layoutAttributesForSupplementaryViewOfKind_atIndexPath(
             &self,
@@ -429,7 +466,7 @@ extern_methods!(
             index_path: &NSIndexPath,
         ) -> Option<Retained<UICollectionViewLayoutAttributes>>;
 
-        #[method_id(layoutAttributesForDecorationViewOfKind:atIndexPath:)]
+        #[method(layoutAttributesForDecorationViewOfKind:atIndexPath:)]
         #[unsafe(method_family = none)]
         pub unsafe fn layoutAttributesForDecorationViewOfKind_atIndexPath(
             &self,
@@ -439,10 +476,11 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(shouldInvalidateLayoutForBoundsChange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shouldInvalidateLayoutForBoundsChange(&self, new_bounds: CGRect) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(invalidationContextForBoundsChange:)]
+        #[method(invalidationContextForBoundsChange:)]
         #[unsafe(method_family = none)]
         pub unsafe fn invalidationContextForBoundsChange(
             &self,
@@ -450,13 +488,14 @@ extern_methods!(
         ) -> Retained<UICollectionViewLayoutInvalidationContext>;
 
         #[method(shouldInvalidateLayoutForPreferredLayoutAttributes:withOriginalAttributes:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shouldInvalidateLayoutForPreferredLayoutAttributes_withOriginalAttributes(
             &self,
             preferred_attributes: &UICollectionViewLayoutAttributes,
             original_attributes: &UICollectionViewLayoutAttributes,
         ) -> bool;
 
-        #[method_id(invalidationContextForPreferredLayoutAttributes:withOriginalAttributes:)]
+        #[method(invalidationContextForPreferredLayoutAttributes:withOriginalAttributes:)]
         #[unsafe(method_family = none)]
         pub unsafe fn invalidationContextForPreferredLayoutAttributes_withOriginalAttributes(
             &self,
@@ -466,6 +505,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(targetContentOffsetForProposedContentOffset:withScrollingVelocity:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn targetContentOffsetForProposedContentOffset_withScrollingVelocity(
             &self,
             proposed_content_offset: CGPoint,
@@ -474,6 +514,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(targetContentOffsetForProposedContentOffset:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn targetContentOffsetForProposedContentOffset(
             &self,
             proposed_content_offset: CGPoint,
@@ -481,13 +522,16 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(collectionViewContentSize)]
+        #[unsafe(method_family = none)]
         pub unsafe fn collectionViewContentSize(&self) -> CGSize;
 
         #[cfg(feature = "UIInterface")]
         #[method(developmentLayoutDirection)]
+        #[unsafe(method_family = none)]
         pub unsafe fn developmentLayoutDirection(&self) -> UIUserInterfaceLayoutDirection;
 
         #[method(flipsHorizontallyInOppositeLayoutDirection)]
+        #[unsafe(method_family = none)]
         pub unsafe fn flipsHorizontallyInOppositeLayoutDirection(&self) -> bool;
     }
 );
@@ -497,45 +541,52 @@ extern_methods!(
     unsafe impl UICollectionViewLayout {
         #[cfg(feature = "UICollectionViewUpdateItem")]
         #[method(prepareForCollectionViewUpdates:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn prepareForCollectionViewUpdates(
             &self,
             update_items: &NSArray<UICollectionViewUpdateItem>,
         );
 
         #[method(finalizeCollectionViewUpdates)]
+        #[unsafe(method_family = none)]
         pub unsafe fn finalizeCollectionViewUpdates(&self);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(prepareForAnimatedBoundsChange:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn prepareForAnimatedBoundsChange(&self, old_bounds: CGRect);
 
         #[method(finalizeAnimatedBoundsChange)]
+        #[unsafe(method_family = none)]
         pub unsafe fn finalizeAnimatedBoundsChange(&self);
 
         #[method(prepareForTransitionToLayout:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn prepareForTransitionToLayout(&self, new_layout: &UICollectionViewLayout);
 
         #[method(prepareForTransitionFromLayout:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn prepareForTransitionFromLayout(&self, old_layout: &UICollectionViewLayout);
 
         #[method(finalizeLayoutTransition)]
+        #[unsafe(method_family = none)]
         pub unsafe fn finalizeLayoutTransition(&self);
 
-        #[method_id(initialLayoutAttributesForAppearingItemAtIndexPath:)]
+        #[method(initialLayoutAttributesForAppearingItemAtIndexPath:)]
         #[unsafe(method_family = none)]
         pub unsafe fn initialLayoutAttributesForAppearingItemAtIndexPath(
             &self,
             item_index_path: &NSIndexPath,
         ) -> Option<Retained<UICollectionViewLayoutAttributes>>;
 
-        #[method_id(finalLayoutAttributesForDisappearingItemAtIndexPath:)]
+        #[method(finalLayoutAttributesForDisappearingItemAtIndexPath:)]
         #[unsafe(method_family = none)]
         pub unsafe fn finalLayoutAttributesForDisappearingItemAtIndexPath(
             &self,
             item_index_path: &NSIndexPath,
         ) -> Option<Retained<UICollectionViewLayoutAttributes>>;
 
-        #[method_id(initialLayoutAttributesForAppearingSupplementaryElementOfKind:atIndexPath:)]
+        #[method(initialLayoutAttributesForAppearingSupplementaryElementOfKind:atIndexPath:)]
         #[unsafe(method_family = none)]
         pub unsafe fn initialLayoutAttributesForAppearingSupplementaryElementOfKind_atIndexPath(
             &self,
@@ -543,7 +594,7 @@ extern_methods!(
             element_index_path: &NSIndexPath,
         ) -> Option<Retained<UICollectionViewLayoutAttributes>>;
 
-        #[method_id(finalLayoutAttributesForDisappearingSupplementaryElementOfKind:atIndexPath:)]
+        #[method(finalLayoutAttributesForDisappearingSupplementaryElementOfKind:atIndexPath:)]
         #[unsafe(method_family = none)]
         pub unsafe fn finalLayoutAttributesForDisappearingSupplementaryElementOfKind_atIndexPath(
             &self,
@@ -551,7 +602,7 @@ extern_methods!(
             element_index_path: &NSIndexPath,
         ) -> Option<Retained<UICollectionViewLayoutAttributes>>;
 
-        #[method_id(initialLayoutAttributesForAppearingDecorationElementOfKind:atIndexPath:)]
+        #[method(initialLayoutAttributesForAppearingDecorationElementOfKind:atIndexPath:)]
         #[unsafe(method_family = none)]
         pub unsafe fn initialLayoutAttributesForAppearingDecorationElementOfKind_atIndexPath(
             &self,
@@ -559,7 +610,7 @@ extern_methods!(
             decoration_index_path: &NSIndexPath,
         ) -> Option<Retained<UICollectionViewLayoutAttributes>>;
 
-        #[method_id(finalLayoutAttributesForDisappearingDecorationElementOfKind:atIndexPath:)]
+        #[method(finalLayoutAttributesForDisappearingDecorationElementOfKind:atIndexPath:)]
         #[unsafe(method_family = none)]
         pub unsafe fn finalLayoutAttributesForDisappearingDecorationElementOfKind_atIndexPath(
             &self,
@@ -567,28 +618,28 @@ extern_methods!(
             decoration_index_path: &NSIndexPath,
         ) -> Option<Retained<UICollectionViewLayoutAttributes>>;
 
-        #[method_id(indexPathsToDeleteForSupplementaryViewOfKind:)]
+        #[method(indexPathsToDeleteForSupplementaryViewOfKind:)]
         #[unsafe(method_family = none)]
         pub unsafe fn indexPathsToDeleteForSupplementaryViewOfKind(
             &self,
             element_kind: &NSString,
         ) -> Retained<NSArray<NSIndexPath>>;
 
-        #[method_id(indexPathsToDeleteForDecorationViewOfKind:)]
+        #[method(indexPathsToDeleteForDecorationViewOfKind:)]
         #[unsafe(method_family = none)]
         pub unsafe fn indexPathsToDeleteForDecorationViewOfKind(
             &self,
             element_kind: &NSString,
         ) -> Retained<NSArray<NSIndexPath>>;
 
-        #[method_id(indexPathsToInsertForSupplementaryViewOfKind:)]
+        #[method(indexPathsToInsertForSupplementaryViewOfKind:)]
         #[unsafe(method_family = none)]
         pub unsafe fn indexPathsToInsertForSupplementaryViewOfKind(
             &self,
             element_kind: &NSString,
         ) -> Retained<NSArray<NSIndexPath>>;
 
-        #[method_id(indexPathsToInsertForDecorationViewOfKind:)]
+        #[method(indexPathsToInsertForDecorationViewOfKind:)]
         #[unsafe(method_family = none)]
         pub unsafe fn indexPathsToInsertForDecorationViewOfKind(
             &self,
@@ -601,7 +652,7 @@ extern_methods!(
     /// UIReorderingSupportHooks
     unsafe impl UICollectionViewLayout {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(targetIndexPathForInteractivelyMovingItem:withPosition:)]
+        #[method(targetIndexPathForInteractivelyMovingItem:withPosition:)]
         #[unsafe(method_family = none)]
         pub unsafe fn targetIndexPathForInteractivelyMovingItem_withPosition(
             &self,
@@ -610,7 +661,7 @@ extern_methods!(
         ) -> Retained<NSIndexPath>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(layoutAttributesForInteractivelyMovingItemAtIndexPath:withTargetPosition:)]
+        #[method(layoutAttributesForInteractivelyMovingItemAtIndexPath:withTargetPosition:)]
         #[unsafe(method_family = none)]
         pub unsafe fn layoutAttributesForInteractivelyMovingItemAtIndexPath_withTargetPosition(
             &self,
@@ -619,7 +670,7 @@ extern_methods!(
         ) -> Retained<UICollectionViewLayoutAttributes>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(invalidationContextForInteractivelyMovingItems:withTargetPosition:previousIndexPaths:previousPosition:)]
+        #[method(invalidationContextForInteractivelyMovingItems:withTargetPosition:previousIndexPaths:previousPosition:)]
         #[unsafe(method_family = none)]
         pub unsafe fn invalidationContextForInteractivelyMovingItems_withTargetPosition_previousIndexPaths_previousPosition(
             &self,
@@ -629,7 +680,7 @@ extern_methods!(
             previous_position: CGPoint,
         ) -> Retained<UICollectionViewLayoutInvalidationContext>;
 
-        #[method_id(invalidationContextForEndingInteractiveMovementOfItemsToFinalIndexPaths:previousIndexPaths:movementCancelled:)]
+        #[method(invalidationContextForEndingInteractiveMovementOfItemsToFinalIndexPaths:previousIndexPaths:movementCancelled:)]
         #[unsafe(method_family = none)]
         pub unsafe fn invalidationContextForEndingInteractiveMovementOfItemsToFinalIndexPaths_previousIndexPaths_movementCancelled(
             &self,

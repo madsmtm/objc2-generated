@@ -15,6 +15,7 @@ extern_protocol!(
         /// Notifies the delegate when the user selects a contact. Only called when keysToDisplay is empty.
         #[optional]
         #[method(contactPicker:didSelectContact:)]
+        #[unsafe(method_family = none)]
         unsafe fn contactPicker_didSelectContact(
             &self,
             picker: &CNContactPicker,
@@ -25,6 +26,7 @@ extern_protocol!(
         /// Notifies the delegate when the user selects a particular value of contact. Only called when keysToDisplay is non-empty.
         #[optional]
         #[method(contactPicker:didSelectContactProperty:)]
+        #[unsafe(method_family = none)]
         unsafe fn contactPicker_didSelectContactProperty(
             &self,
             picker: &CNContactPicker,
@@ -35,12 +37,14 @@ extern_protocol!(
         /// Notifies the delegate when the contact picker's popover will close.
         #[optional]
         #[method(contactPickerWillClose:)]
+        #[unsafe(method_family = none)]
         unsafe fn contactPickerWillClose(&self, picker: &CNContactPicker);
 
         #[cfg(feature = "CNContactPicker")]
         /// Notifies the delegate when the contact picker's popover has closed.
         #[optional]
         #[method(contactPickerDidClose:)]
+        #[unsafe(method_family = none)]
         unsafe fn contactPickerDidClose(&self, picker: &CNContactPicker);
     }
 );

@@ -26,11 +26,11 @@ unsafe impl NSObjectProtocol for UISceneSystemProtectionManager {}
 
 extern_methods!(
     unsafe impl UISceneSystemProtectionManager {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
@@ -41,6 +41,7 @@ extern_methods!(
         /// _not_the instantaneous state of whether any system-provided shield is covering the UI at
         /// the moment, but whether protection is enabled in general.
         #[method(isUserAuthenticationEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isUserAuthenticationEnabled(&self) -> bool;
     }
 );
@@ -49,7 +50,7 @@ extern_methods!(
     /// SystemProtection
     #[cfg(all(feature = "UIResponder", feature = "UIScene"))]
     unsafe impl UIScene {
-        #[method_id(systemProtectionManager)]
+        #[method(systemProtectionManager)]
         #[unsafe(method_family = none)]
         pub unsafe fn systemProtectionManager(
             &self,

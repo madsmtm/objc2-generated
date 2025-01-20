@@ -56,13 +56,14 @@ unsafe impl NSSecureCoding for PHLivePhoto {}
 
 extern_methods!(
     unsafe impl PHLivePhoto {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The dimensions of the live photo measured in pixels.
         #[method(size)]
+        #[unsafe(method_family = none)]
         pub unsafe fn size(&self) -> CGSize;
 
         #[cfg(all(
@@ -73,6 +74,7 @@ extern_methods!(
         ))]
         #[cfg(target_os = "macos")]
         #[method(requestLivePhotoWithResourceFileURLs:placeholderImage:targetSize:contentMode:resultHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestLivePhotoWithResourceFileURLs_placeholderImage_targetSize_contentMode_resultHandler(
             file_ur_ls: &NSArray<NSURL>,
             image: Option<&NSImage>,
@@ -83,6 +85,7 @@ extern_methods!(
 
         /// Cancels the loading of a PHLivePhoto. The request's completion handler will be called.
         #[method(cancelLivePhotoRequestWithRequestID:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cancelLivePhotoRequestWithRequestID(request_id: PHLivePhotoRequestID);
     }
 );
@@ -90,7 +93,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHLivePhoto {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

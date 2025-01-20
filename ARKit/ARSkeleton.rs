@@ -38,12 +38,13 @@ extern_methods!(
     unsafe impl ARSkeleton {
         #[cfg(feature = "ARSkeletonDefinition")]
         /// Skeleton definition.
-        #[method_id(definition)]
+        #[method(definition)]
         #[unsafe(method_family = none)]
         pub unsafe fn definition(&self) -> Retained<ARSkeletonDefinition>;
 
         /// The number of joints.
         #[method(jointCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn jointCount(&self) -> NSUInteger;
 
         /// Tracking state for a given joint.
@@ -53,14 +54,15 @@ extern_methods!(
         ///
         /// Returns: True if the joint is tracked. False otherwise.
         #[method(isJointTracked:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isJointTracked(&self, joint_index: NSInteger) -> bool;
 
         /// Unavailable
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -91,11 +93,11 @@ extern_methods!(
     #[cfg(feature = "objc2")]
     unsafe impl ARSkeleton3D {
         /// Unavailable
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -126,11 +128,11 @@ extern_methods!(
     #[cfg(feature = "objc2")]
     unsafe impl ARSkeleton2D {
         /// Unavailable
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

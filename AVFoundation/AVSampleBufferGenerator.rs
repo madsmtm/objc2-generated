@@ -24,11 +24,11 @@ unsafe impl NSObjectProtocol for AVSampleBufferGenerator {}
 
 extern_methods!(
     unsafe impl AVSampleBufferGenerator {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -42,7 +42,7 @@ extern_methods!(
         /// Returns: An instance of AVSampleBufferGenerator.
         ///
         /// If the specified asset is an HTTP Live Streaming asset, the generator cannot create sample buffers.
-        #[method_id(initWithAsset:timebase:)]
+        #[method(initWithAsset:timebase:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAsset_timebase(
             this: Allocated<Self>,
@@ -52,7 +52,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-media")]
         #[deprecated = "Use -createSampleBufferForRequest: error:, passing NULL for the error if not required"]
-        #[method_id(createSampleBufferForRequest:)]
+        #[method(createSampleBufferForRequest:)]
         #[unsafe(method_family = none)]
         pub unsafe fn createSampleBufferForRequest(
             &self,
@@ -62,7 +62,7 @@ extern_methods!(
         /// Creates a batch to handle multiple sample buffers, allowing to asynchronously load sample data and optimize I/O when possible.
         ///
         /// Returns: An instance of an AVSampleBufferGeneratorBatch that can be used in calls to createSampleBufferForRequest:addingToBatch:error: of the same AVSampleBufferGenerator instance.
-        #[method_id(makeBatch)]
+        #[method(makeBatch)]
         #[unsafe(method_family = none)]
         pub unsafe fn makeBatch(&self) -> Retained<AVSampleBufferGeneratorBatch>;
 
@@ -71,6 +71,7 @@ extern_methods!(
         ///
         /// Parameter `completionHandler`: The completionHandler will be called, when the sample buffer data is ready, or as soon as an error has occurred.
         #[method(notifyOfDataReadyForSampleBuffer:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn notifyOfDataReadyForSampleBuffer_completionHandler(
             sbuf: &CMSampleBuffer,
             completion_handler: &block2::Block<dyn Fn(Bool, *mut NSError)>,
@@ -153,16 +154,16 @@ unsafe impl NSObjectProtocol for AVSampleBufferRequest {}
 
 extern_methods!(
     unsafe impl AVSampleBufferRequest {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "AVSampleCursor")]
-        #[method_id(initWithStartCursor:)]
+        #[method(initWithStartCursor:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithStartCursor(
             this: Allocated<Self>,
@@ -170,55 +171,66 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "AVSampleCursor")]
-        #[method_id(startCursor)]
+        #[method(startCursor)]
         #[unsafe(method_family = none)]
         pub unsafe fn startCursor(&self) -> Retained<AVSampleCursor>;
 
         #[method(direction)]
+        #[unsafe(method_family = none)]
         pub unsafe fn direction(&self) -> AVSampleBufferRequestDirection;
 
         /// Setter for [`direction`][Self::direction].
         #[method(setDirection:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDirection(&self, direction: AVSampleBufferRequestDirection);
 
         #[cfg(feature = "AVSampleCursor")]
-        #[method_id(limitCursor)]
+        #[method(limitCursor)]
         #[unsafe(method_family = none)]
         pub unsafe fn limitCursor(&self) -> Option<Retained<AVSampleCursor>>;
 
         #[cfg(feature = "AVSampleCursor")]
         /// Setter for [`limitCursor`][Self::limitCursor].
         #[method(setLimitCursor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLimitCursor(&self, limit_cursor: Option<&AVSampleCursor>);
 
         #[method(preferredMinSampleCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preferredMinSampleCount(&self) -> NSInteger;
 
         /// Setter for [`preferredMinSampleCount`][Self::preferredMinSampleCount].
         #[method(setPreferredMinSampleCount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPreferredMinSampleCount(&self, preferred_min_sample_count: NSInteger);
 
         #[method(maxSampleCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maxSampleCount(&self) -> NSInteger;
 
         /// Setter for [`maxSampleCount`][Self::maxSampleCount].
         #[method(setMaxSampleCount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMaxSampleCount(&self, max_sample_count: NSInteger);
 
         #[method(mode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mode(&self) -> AVSampleBufferRequestMode;
 
         /// Setter for [`mode`][Self::mode].
         #[method(setMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMode(&self, mode: AVSampleBufferRequestMode);
 
         #[cfg(feature = "objc2-core-media")]
         #[method(overrideTime)]
+        #[unsafe(method_family = none)]
         pub unsafe fn overrideTime(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`overrideTime`][Self::overrideTime].
         #[method(setOverrideTime:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setOverrideTime(&self, override_time: CMTime);
     }
 );
@@ -245,11 +257,11 @@ unsafe impl NSObjectProtocol for AVSampleBufferGeneratorBatch {}
 
 extern_methods!(
     unsafe impl AVSampleBufferGeneratorBatch {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -259,6 +271,7 @@ extern_methods!(
         ///
         /// Parameter `completionHandler`: The completionHandler is called once, when all CMSampleBuffers in the batch are data-ready, or as soon as an error has occurred.
         #[method(makeDataReadyWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn makeDataReadyWithCompletionHandler(
             &self,
             completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
@@ -266,6 +279,7 @@ extern_methods!(
 
         /// Attempt to cancel any I/O for this batch. The associated sample buffers will have their data ready handler invoked with an error.
         #[method(cancel)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cancel(&self);
     }
 );

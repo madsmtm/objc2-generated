@@ -20,11 +20,11 @@ unsafe impl NSObjectProtocol for WCSessionFile {}
 
 extern_methods!(
     unsafe impl WCSessionFile {
-        #[method_id(fileURL)]
+        #[method(fileURL)]
         #[unsafe(method_family = none)]
         pub unsafe fn fileURL(&self) -> Retained<NSURL>;
 
-        #[method_id(metadata)]
+        #[method(metadata)]
         #[unsafe(method_family = none)]
         pub unsafe fn metadata(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
     }
@@ -33,11 +33,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WCSessionFile {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -56,18 +56,20 @@ unsafe impl NSObjectProtocol for WCSessionFileTransfer {}
 
 extern_methods!(
     unsafe impl WCSessionFileTransfer {
-        #[method_id(file)]
+        #[method(file)]
         #[unsafe(method_family = none)]
         pub unsafe fn file(&self) -> Retained<WCSessionFile>;
 
-        #[method_id(progress)]
+        #[method(progress)]
         #[unsafe(method_family = none)]
         pub unsafe fn progress(&self) -> Retained<NSProgress>;
 
         #[method(isTransferring)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isTransferring(&self) -> bool;
 
         #[method(cancel)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cancel(&self);
     }
 );
@@ -75,11 +77,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WCSessionFileTransfer {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

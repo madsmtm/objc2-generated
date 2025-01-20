@@ -39,19 +39,19 @@ extern_methods!(
     unsafe impl NSCIImageRep {
         #[cfg(feature = "objc2-core-image")]
         #[cfg(target_vendor = "apple")]
-        #[method_id(imageRepWithCIImage:)]
+        #[method(imageRepWithCIImage:)]
         #[unsafe(method_family = none)]
         pub unsafe fn imageRepWithCIImage(image: &CIImage) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-image")]
         #[cfg(target_vendor = "apple")]
-        #[method_id(initWithCIImage:)]
+        #[method(initWithCIImage:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCIImage(this: Allocated<Self>, image: &CIImage) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-image")]
         #[cfg(target_vendor = "apple")]
-        #[method_id(CIImage)]
+        #[method(CIImage)]
         #[unsafe(method_family = none)]
         pub unsafe fn CIImage(&self) -> Retained<CIImage>;
     }
@@ -61,11 +61,11 @@ extern_methods!(
     /// Methods declared on superclass `NSImageRep`
     #[cfg(feature = "NSImageRep")]
     unsafe impl NSCIImageRep {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -78,7 +78,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSImageRep")]
     unsafe impl NSCIImageRep {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -89,7 +89,7 @@ extern_category!(
     #[doc(alias = "NSAppKitAdditions")]
     pub unsafe trait CIImageNSAppKitAdditions {
         #[cfg(all(feature = "NSBitmapImageRep", feature = "NSImageRep"))]
-        #[method_id(initWithBitmapImageRep:)]
+        #[method(initWithBitmapImageRep:)]
         #[unsafe(method_family = init)]
         unsafe fn initWithBitmapImageRep(
             this: Allocated<Self>,
@@ -98,6 +98,7 @@ extern_category!(
 
         #[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
         #[method(drawInRect:fromRect:operation:fraction:)]
+        #[unsafe(method_family = none)]
         unsafe fn drawInRect_fromRect_operation_fraction(
             &self,
             rect: NSRect,
@@ -108,6 +109,7 @@ extern_category!(
 
         #[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
         #[method(drawAtPoint:fromRect:operation:fraction:)]
+        #[unsafe(method_family = none)]
         unsafe fn drawAtPoint_fromRect_operation_fraction(
             &self,
             point: NSPoint,

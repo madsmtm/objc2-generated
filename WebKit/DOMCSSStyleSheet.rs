@@ -52,29 +52,32 @@ extern_methods!(
     unsafe impl DOMCSSStyleSheet {
         #[cfg(feature = "DOMCSSRule")]
         #[deprecated]
-        #[method_id(ownerRule)]
+        #[method(ownerRule)]
         #[unsafe(method_family = none)]
         pub unsafe fn ownerRule(&self) -> Option<Retained<DOMCSSRule>>;
 
         #[cfg(feature = "DOMCSSRuleList")]
         #[deprecated]
-        #[method_id(cssRules)]
+        #[method(cssRules)]
         #[unsafe(method_family = none)]
         pub unsafe fn cssRules(&self) -> Option<Retained<DOMCSSRuleList>>;
 
         #[cfg(feature = "DOMCSSRuleList")]
-        #[method_id(rules)]
+        #[method(rules)]
         #[unsafe(method_family = none)]
         pub unsafe fn rules(&self) -> Option<Retained<DOMCSSRuleList>>;
 
         #[method(insertRule:index:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn insertRule_index(&self, rule: Option<&NSString>, index: c_uint) -> c_uint;
 
         #[deprecated]
         #[method(deleteRule:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn deleteRule(&self, index: c_uint);
 
         #[method(addRule:style:index:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addRule_style_index(
             &self,
             selector: Option<&NSString>,
@@ -83,6 +86,7 @@ extern_methods!(
         ) -> c_int;
 
         #[method(removeRule:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeRule(&self, index: c_uint);
     }
 );
@@ -96,7 +100,7 @@ extern_methods!(
     ))]
     unsafe impl DOMCSSStyleSheet {
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -110,7 +114,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMCSSStyleSheet {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -126,6 +130,7 @@ extern_methods!(
     unsafe impl DOMCSSStyleSheet {
         #[deprecated]
         #[method(insertRule::)]
+        #[unsafe(method_family = none)]
         pub unsafe fn insertRule(&self, rule: Option<&NSString>, index: c_uint) -> c_uint;
     }
 );

@@ -17,6 +17,7 @@ extern_protocol!(
         ///
         /// Returns: The number of stickers.
         #[method(numberOfStickersInStickerBrowserView:)]
+        #[unsafe(method_family = none)]
         unsafe fn numberOfStickersInStickerBrowserView(
             &self,
             sticker_browser_view: &MSStickerBrowserView,
@@ -34,7 +35,7 @@ extern_protocol!(
         /// Parameter `index`: The index of the sticker to show.
         ///
         /// Returns: A MSSticker object.
-        #[method_id(stickerBrowserView:stickerAtIndex:)]
+        #[method(stickerBrowserView:stickerAtIndex:)]
         #[unsafe(method_family = none)]
         unsafe fn stickerBrowserView_stickerAtIndex(
             &self,

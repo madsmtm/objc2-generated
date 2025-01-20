@@ -61,7 +61,7 @@ extern_methods!(
         /// - perClassSuppression: When this is specified a box will only suppress another box if they have the same class.
         /// - coordinateMode: The coordinate mode the box coordinates are provided in.
         /// - name: The name for the operation.
-        #[method_id(nonMaximumSuppressionWithBoxesTensor:scoresTensor:IOUThreshold:scoreThreshold:perClassSuppression:coordinateMode:name:)]
+        #[method(nonMaximumSuppressionWithBoxesTensor:scoresTensor:IOUThreshold:scoreThreshold:perClassSuppression:coordinateMode:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn nonMaximumSuppressionWithBoxesTensor_scoresTensor_IOUThreshold_scoreThreshold_perClassSuppression_coordinateMode_name(
             &self,
@@ -85,7 +85,7 @@ extern_methods!(
         /// - perClassSuppression: When this is specified a box will only suppress another box if they have the same class.
         /// - coordinateMode: The coordinate mode the box coordinates are provided in.
         /// - name: The name for the operation.
-        #[method_id(nonMaximumSuppressionWithBoxesTensor:scoresTensor:classIndicesTensor:IOUThreshold:scoreThreshold:perClassSuppression:coordinateMode:name:)]
+        #[method(nonMaximumSuppressionWithBoxesTensor:scoresTensor:classIndicesTensor:IOUThreshold:scoreThreshold:perClassSuppression:coordinateMode:name:)]
         #[unsafe(method_family = none)]
         pub unsafe fn nonMaximumSuppressionWithBoxesTensor_scoresTensor_classIndicesTensor_IOUThreshold_scoreThreshold_perClassSuppression_coordinateMode_name(
             &self,

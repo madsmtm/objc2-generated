@@ -33,11 +33,13 @@ extern_methods!(
         /// This rect should be contained within WKWebView's bounds. If the rect is set to the
         /// null rect, the view's bounds will be used. The initial value is the null rect.
         #[method(rect)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rect(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`rect`][Self::rect].
         #[method(setRect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRect(&self, rect: CGRect);
 
         /// Specify a custom width to control the size of image you get back. The height will be
@@ -45,12 +47,13 @@ extern_methods!(
         ///
         /// snapshotWidth represents the width in points. If the snapshotWidth is nil, rect's
         /// width will be used.
-        #[method_id(snapshotWidth)]
+        #[method(snapshotWidth)]
         #[unsafe(method_family = none)]
         pub unsafe fn snapshotWidth(&self) -> Option<Retained<NSNumber>>;
 
         /// Setter for [`snapshotWidth`][Self::snapshotWidth].
         #[method(setSnapshotWidth:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSnapshotWidth(&self, snapshot_width: Option<&NSNumber>);
 
         /// A Boolean value that specifies whether the snapshot should be taken after recent
@@ -59,10 +62,12 @@ extern_methods!(
         ///
         /// The default value is YES.
         #[method(afterScreenUpdates)]
+        #[unsafe(method_family = none)]
         pub unsafe fn afterScreenUpdates(&self) -> bool;
 
         /// Setter for [`afterScreenUpdates`][Self::afterScreenUpdates].
         #[method(setAfterScreenUpdates:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAfterScreenUpdates(&self, after_screen_updates: bool);
     }
 );
@@ -70,11 +75,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKSnapshotConfiguration {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

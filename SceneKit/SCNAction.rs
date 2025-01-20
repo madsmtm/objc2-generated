@@ -22,11 +22,13 @@ extern_protocol!(
     pub unsafe trait SCNActionable: NSObjectProtocol {
         /// Adds an action to the list of actions executed by the node.
         #[method(runAction:)]
+        #[unsafe(method_family = none)]
         unsafe fn runAction(&self, action: &SCNAction);
 
         #[cfg(feature = "block2")]
         /// Adds an action to the list of actions executed by the node. Your block is called when the action completes.
         #[method(runAction:completionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn runAction_completionHandler(
             &self,
             action: &SCNAction,
@@ -35,11 +37,13 @@ extern_protocol!(
 
         /// Adds an identifiable action to the list of actions executed by the node.
         #[method(runAction:forKey:)]
+        #[unsafe(method_family = none)]
         unsafe fn runAction_forKey(&self, action: &SCNAction, key: Option<&NSString>);
 
         #[cfg(feature = "block2")]
         /// Adds an identifiable action to the list of actions executed by the node. Your block is called when the action completes.
         #[method(runAction:forKey:completionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn runAction_forKey_completionHandler(
             &self,
             action: &SCNAction,
@@ -49,23 +53,26 @@ extern_protocol!(
 
         /// Returns a Boolean value that indicates whether the node is executing actions.
         #[method(hasActions)]
+        #[unsafe(method_family = none)]
         unsafe fn hasActions(&self) -> bool;
 
         /// Returns an action associated with a specific key.
-        #[method_id(actionForKey:)]
+        #[method(actionForKey:)]
         #[unsafe(method_family = none)]
         unsafe fn actionForKey(&self, key: &NSString) -> Option<Retained<SCNAction>>;
 
         /// Removes an action associated with a specific key.
         #[method(removeActionForKey:)]
+        #[unsafe(method_family = none)]
         unsafe fn removeActionForKey(&self, key: &NSString);
 
         /// Ends and removes all actions from the node.
         #[method(removeAllActions)]
+        #[unsafe(method_family = none)]
         unsafe fn removeAllActions(&self);
 
         /// Returns an array containing the keys of all actions currently attached to the receiver.
-        #[method_id(actionKeys)]
+        #[method(actionKeys)]
         #[unsafe(method_family = none)]
         unsafe fn actionKeys(&self) -> Retained<NSArray<NSString>>;
     }
@@ -94,20 +101,24 @@ extern_methods!(
     unsafe impl SCNAction {
         /// This is the expected duration of an action’s animation. The actual time an action takes to complete is modified by the speed property of the action.
         #[method(duration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
         /// Setter for [`duration`][Self::duration].
         #[method(setDuration:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDuration(&self, duration: NSTimeInterval);
 
         #[cfg(feature = "SceneKitTypes")]
         /// The timing mode used to execute an action.
         #[method(timingMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn timingMode(&self) -> SCNActionTimingMode;
 
         #[cfg(feature = "SceneKitTypes")]
         /// Setter for [`timingMode`][Self::timingMode].
         #[method(setTimingMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTimingMode(&self, timing_mode: SCNActionTimingMode);
 
         #[cfg(feature = "block2")]
@@ -116,30 +127,34 @@ extern_methods!(
         ///
         /// See: SCNActionTimingFunction
         #[method(timingFunction)]
+        #[unsafe(method_family = none)]
         pub unsafe fn timingFunction(&self) -> SCNActionTimingFunction;
 
         #[cfg(feature = "block2")]
         /// Setter for [`timingFunction`][Self::timingFunction].
         #[method(setTimingFunction:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTimingFunction(&self, timing_function: SCNActionTimingFunction);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// A speed factor that modifies how fast an action runs. Defaults to 1.
         #[method(speed)]
+        #[unsafe(method_family = none)]
         pub unsafe fn speed(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`speed`][Self::speed].
         #[method(setSpeed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSpeed(&self, speed: CGFloat);
 
         /// Creates an action that reverses the behavior of another action.
-        #[method_id(reversedAction)]
+        #[method(reversedAction)]
         #[unsafe(method_family = none)]
         pub unsafe fn reversedAction(&self) -> Retained<SCNAction>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(moveByX:y:z:duration:)]
+        #[method(moveByX:y:z:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn moveByX_y_z_duration(
             delta_x: CGFloat,
@@ -149,7 +164,7 @@ extern_methods!(
         ) -> Retained<SCNAction>;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
-        #[method_id(moveBy:duration:)]
+        #[method(moveBy:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn moveBy_duration(
             delta: SCNVector3,
@@ -157,7 +172,7 @@ extern_methods!(
         ) -> Retained<SCNAction>;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
-        #[method_id(moveTo:duration:)]
+        #[method(moveTo:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn moveTo_duration(
             location: SCNVector3,
@@ -165,7 +180,7 @@ extern_methods!(
         ) -> Retained<SCNAction>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(rotateByX:y:z:duration:)]
+        #[method(rotateByX:y:z:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn rotateByX_y_z_duration(
             x_angle: CGFloat,
@@ -175,7 +190,7 @@ extern_methods!(
         ) -> Retained<SCNAction>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(rotateToX:y:z:duration:)]
+        #[method(rotateToX:y:z:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn rotateToX_y_z_duration(
             x_angle: CGFloat,
@@ -185,7 +200,7 @@ extern_methods!(
         ) -> Retained<SCNAction>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(rotateToX:y:z:duration:shortestUnitArc:)]
+        #[method(rotateToX:y:z:duration:shortestUnitArc:)]
         #[unsafe(method_family = none)]
         pub unsafe fn rotateToX_y_z_duration_shortestUnitArc(
             x_angle: CGFloat,
@@ -196,7 +211,7 @@ extern_methods!(
         ) -> Retained<SCNAction>;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
-        #[method_id(rotateByAngle:aroundAxis:duration:)]
+        #[method(rotateByAngle:aroundAxis:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn rotateByAngle_aroundAxis_duration(
             angle: CGFloat,
@@ -205,7 +220,7 @@ extern_methods!(
         ) -> Retained<SCNAction>;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
-        #[method_id(rotateToAxisAngle:duration:)]
+        #[method(rotateToAxisAngle:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn rotateToAxisAngle_duration(
             axis_angle: SCNVector4,
@@ -213,44 +228,44 @@ extern_methods!(
         ) -> Retained<SCNAction>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(scaleBy:duration:)]
+        #[method(scaleBy:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn scaleBy_duration(scale: CGFloat, sec: NSTimeInterval) -> Retained<SCNAction>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(scaleTo:duration:)]
+        #[method(scaleTo:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn scaleTo_duration(scale: CGFloat, sec: NSTimeInterval) -> Retained<SCNAction>;
 
-        #[method_id(sequence:)]
+        #[method(sequence:)]
         #[unsafe(method_family = none)]
         pub unsafe fn sequence(actions: &NSArray<SCNAction>) -> Retained<SCNAction>;
 
-        #[method_id(group:)]
+        #[method(group:)]
         #[unsafe(method_family = none)]
         pub unsafe fn group(actions: &NSArray<SCNAction>) -> Retained<SCNAction>;
 
-        #[method_id(repeatAction:count:)]
+        #[method(repeatAction:count:)]
         #[unsafe(method_family = none)]
         pub unsafe fn repeatAction_count(
             action: &SCNAction,
             count: NSUInteger,
         ) -> Retained<SCNAction>;
 
-        #[method_id(repeatActionForever:)]
+        #[method(repeatActionForever:)]
         #[unsafe(method_family = none)]
         pub unsafe fn repeatActionForever(action: &SCNAction) -> Retained<SCNAction>;
 
-        #[method_id(fadeInWithDuration:)]
+        #[method(fadeInWithDuration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn fadeInWithDuration(sec: NSTimeInterval) -> Retained<SCNAction>;
 
-        #[method_id(fadeOutWithDuration:)]
+        #[method(fadeOutWithDuration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn fadeOutWithDuration(sec: NSTimeInterval) -> Retained<SCNAction>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(fadeOpacityBy:duration:)]
+        #[method(fadeOpacityBy:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn fadeOpacityBy_duration(
             factor: CGFloat,
@@ -258,44 +273,44 @@ extern_methods!(
         ) -> Retained<SCNAction>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(fadeOpacityTo:duration:)]
+        #[method(fadeOpacityTo:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn fadeOpacityTo_duration(
             opacity: CGFloat,
             sec: NSTimeInterval,
         ) -> Retained<SCNAction>;
 
-        #[method_id(hide)]
+        #[method(hide)]
         #[unsafe(method_family = none)]
         pub unsafe fn hide() -> Retained<SCNAction>;
 
-        #[method_id(unhide)]
+        #[method(unhide)]
         #[unsafe(method_family = none)]
         pub unsafe fn unhide() -> Retained<SCNAction>;
 
-        #[method_id(waitForDuration:)]
+        #[method(waitForDuration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn waitForDuration(sec: NSTimeInterval) -> Retained<SCNAction>;
 
-        #[method_id(waitForDuration:withRange:)]
+        #[method(waitForDuration:withRange:)]
         #[unsafe(method_family = none)]
         pub unsafe fn waitForDuration_withRange(
             sec: NSTimeInterval,
             duration_range: NSTimeInterval,
         ) -> Retained<SCNAction>;
 
-        #[method_id(removeFromParentNode)]
+        #[method(removeFromParentNode)]
         #[unsafe(method_family = none)]
         pub unsafe fn removeFromParentNode() -> Retained<SCNAction>;
 
         #[cfg(all(feature = "SCNNode", feature = "block2"))]
-        #[method_id(runBlock:)]
+        #[method(runBlock:)]
         #[unsafe(method_family = none)]
         pub unsafe fn runBlock(
             block: &block2::Block<dyn Fn(NonNull<SCNNode>)>,
         ) -> Retained<SCNAction>;
 
-        #[method_id(javaScriptActionWithScript:duration:)]
+        #[method(javaScriptActionWithScript:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn javaScriptActionWithScript_duration(
             script: &NSString,
@@ -307,7 +322,7 @@ extern_methods!(
             feature = "block2",
             feature = "objc2-core-foundation"
         ))]
-        #[method_id(customActionWithDuration:actionBlock:)]
+        #[method(customActionWithDuration:actionBlock:)]
         #[unsafe(method_family = none)]
         pub unsafe fn customActionWithDuration_actionBlock(
             seconds: NSTimeInterval,
@@ -322,7 +337,7 @@ extern_methods!(
         /// Parameter `wait`: If YES, then the duration of this action is the same
         /// as the length of the audio playback. If NO, the action is considered
         /// to have completed immediately.
-        #[method_id(playAudioSource:waitForCompletion:)]
+        #[method(playAudioSource:waitForCompletion:)]
         #[unsafe(method_family = none)]
         pub unsafe fn playAudioSource_waitForCompletion(
             source: &SCNAudioSource,
@@ -334,11 +349,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNAction {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

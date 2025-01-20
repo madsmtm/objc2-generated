@@ -127,17 +127,20 @@ unsafe impl NSObjectProtocol for NSSpellChecker {}
 
 extern_methods!(
     unsafe impl NSSpellChecker {
-        #[method_id(sharedSpellChecker)]
+        #[method(sharedSpellChecker)]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedSpellChecker() -> Retained<NSSpellChecker>;
 
         #[method(sharedSpellCheckerExists)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sharedSpellCheckerExists() -> bool;
 
         #[method(uniqueSpellDocumentTag)]
+        #[unsafe(method_family = none)]
         pub unsafe fn uniqueSpellDocumentTag() -> NSInteger;
 
         #[method(checkSpellingOfString:startingAt:language:wrap:inSpellDocumentWithTag:wordCount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn checkSpellingOfString_startingAt_language_wrap_inSpellDocumentWithTag_wordCount(
             &self,
             string_to_check: &NSString,
@@ -149,6 +152,7 @@ extern_methods!(
         ) -> NSRange;
 
         #[method(checkSpellingOfString:startingAt:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn checkSpellingOfString_startingAt(
             &self,
             string_to_check: &NSString,
@@ -156,6 +160,7 @@ extern_methods!(
         ) -> NSRange;
 
         #[method(countWordsInString:language:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn countWordsInString_language(
             &self,
             string_to_count: &NSString,
@@ -163,6 +168,7 @@ extern_methods!(
         ) -> NSInteger;
 
         #[method(checkGrammarOfString:startingAt:language:wrap:inSpellDocumentWithTag:details:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn checkGrammarOfString_startingAt_language_wrap_inSpellDocumentWithTag_details(
             &self,
             string_to_check: &NSString,
@@ -173,7 +179,7 @@ extern_methods!(
             details: Option<&mut Option<Retained<NSArray<NSDictionary<NSString, AnyObject>>>>>,
         ) -> NSRange;
 
-        #[method_id(checkString:range:types:options:inSpellDocumentWithTag:orthography:wordCount:)]
+        #[method(checkString:range:types:options:inSpellDocumentWithTag:orthography:wordCount:)]
         #[unsafe(method_family = none)]
         pub unsafe fn checkString_range_types_options_inSpellDocumentWithTag_orthography_wordCount(
             &self,
@@ -188,6 +194,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[method(requestCheckingOfString:range:types:options:inSpellDocumentWithTag:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestCheckingOfString_range_types_options_inSpellDocumentWithTag_completionHandler(
             &self,
             string_to_check: &NSString,
@@ -209,6 +216,7 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[method(requestCandidatesForSelectedRange:inString:types:options:inSpellDocumentWithTag:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestCandidatesForSelectedRange_inString_types_options_inSpellDocumentWithTag_completionHandler(
             &self,
             selected_range: NSRange,
@@ -222,7 +230,7 @@ extern_methods!(
         ) -> NSInteger;
 
         #[cfg(all(feature = "NSMenu", feature = "NSResponder", feature = "NSView"))]
-        #[method_id(menuForResult:string:options:atLocation:inView:)]
+        #[method(menuForResult:string:options:atLocation:inView:)]
         #[unsafe(method_family = none)]
         pub unsafe fn menuForResult_string_options_atLocation_inView(
             &self,
@@ -233,23 +241,25 @@ extern_methods!(
             view: &NSView,
         ) -> Option<Retained<NSMenu>>;
 
-        #[method_id(userQuotesArrayForLanguage:)]
+        #[method(userQuotesArrayForLanguage:)]
         #[unsafe(method_family = none)]
         pub unsafe fn userQuotesArrayForLanguage(
             &self,
             language: &NSString,
         ) -> Retained<NSArray<NSString>>;
 
-        #[method_id(userReplacementsDictionary)]
+        #[method(userReplacementsDictionary)]
         #[unsafe(method_family = none)]
         pub unsafe fn userReplacementsDictionary(
             &self,
         ) -> Retained<NSDictionary<NSString, NSString>>;
 
         #[method(updateSpellingPanelWithMisspelledWord:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updateSpellingPanelWithMisspelledWord(&self, word: &NSString);
 
         #[method(updateSpellingPanelWithGrammarString:detail:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updateSpellingPanelWithGrammarString_detail(
             &self,
             string: &NSString,
@@ -257,27 +267,28 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
-        #[method_id(spellingPanel)]
+        #[method(spellingPanel)]
         #[unsafe(method_family = none)]
         pub unsafe fn spellingPanel(&self, mtm: MainThreadMarker) -> Retained<NSPanel>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-        #[method_id(accessoryView)]
+        #[method(accessoryView)]
         #[unsafe(method_family = none)]
         pub unsafe fn accessoryView(&self, mtm: MainThreadMarker) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         /// Setter for [`accessoryView`][Self::accessoryView].
         #[method(setAccessoryView:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAccessoryView(&self, accessory_view: Option<&NSView>);
 
         #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
-        #[method_id(substitutionsPanel)]
+        #[method(substitutionsPanel)]
         #[unsafe(method_family = none)]
         pub unsafe fn substitutionsPanel(&self, mtm: MainThreadMarker) -> Retained<NSPanel>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
-        #[method_id(substitutionsPanelAccessoryViewController)]
+        #[method(substitutionsPanelAccessoryViewController)]
         #[unsafe(method_family = none)]
         pub unsafe fn substitutionsPanelAccessoryViewController(
             &self,
@@ -287,22 +298,25 @@ extern_methods!(
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         /// Setter for [`substitutionsPanelAccessoryViewController`][Self::substitutionsPanelAccessoryViewController].
         #[method(setSubstitutionsPanelAccessoryViewController:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSubstitutionsPanelAccessoryViewController(
             &self,
             substitutions_panel_accessory_view_controller: Option<&NSViewController>,
         );
 
         #[method(updatePanels)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updatePanels(&self);
 
         #[method(ignoreWord:inSpellDocumentWithTag:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn ignoreWord_inSpellDocumentWithTag(
             &self,
             word_to_ignore: &NSString,
             tag: NSInteger,
         );
 
-        #[method_id(ignoredWordsInSpellDocumentWithTag:)]
+        #[method(ignoredWordsInSpellDocumentWithTag:)]
         #[unsafe(method_family = none)]
         pub unsafe fn ignoredWordsInSpellDocumentWithTag(
             &self,
@@ -310,13 +324,14 @@ extern_methods!(
         ) -> Option<Retained<NSArray<NSString>>>;
 
         #[method(setIgnoredWords:inSpellDocumentWithTag:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIgnoredWords_inSpellDocumentWithTag(
             &self,
             words: &NSArray<NSString>,
             tag: NSInteger,
         );
 
-        #[method_id(guessesForWordRange:inString:language:inSpellDocumentWithTag:)]
+        #[method(guessesForWordRange:inString:language:inSpellDocumentWithTag:)]
         #[unsafe(method_family = none)]
         pub unsafe fn guessesForWordRange_inString_language_inSpellDocumentWithTag(
             &self,
@@ -326,7 +341,7 @@ extern_methods!(
             tag: NSInteger,
         ) -> Option<Retained<NSArray<NSString>>>;
 
-        #[method_id(correctionForWordRange:inString:language:inSpellDocumentWithTag:)]
+        #[method(correctionForWordRange:inString:language:inSpellDocumentWithTag:)]
         #[unsafe(method_family = none)]
         pub unsafe fn correctionForWordRange_inString_language_inSpellDocumentWithTag(
             &self,
@@ -336,7 +351,7 @@ extern_methods!(
             tag: NSInteger,
         ) -> Option<Retained<NSString>>;
 
-        #[method_id(completionsForPartialWordRange:inString:language:inSpellDocumentWithTag:)]
+        #[method(completionsForPartialWordRange:inString:language:inSpellDocumentWithTag:)]
         #[unsafe(method_family = none)]
         pub unsafe fn completionsForPartialWordRange_inString_language_inSpellDocumentWithTag(
             &self,
@@ -346,7 +361,7 @@ extern_methods!(
             tag: NSInteger,
         ) -> Option<Retained<NSArray<NSString>>>;
 
-        #[method_id(languageForWordRange:inString:orthography:)]
+        #[method(languageForWordRange:inString:orthography:)]
         #[unsafe(method_family = none)]
         pub unsafe fn languageForWordRange_inString_orthography(
             &self,
@@ -356,9 +371,11 @@ extern_methods!(
         ) -> Option<Retained<NSString>>;
 
         #[method(closeSpellDocumentWithTag:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn closeSpellDocumentWithTag(&self, tag: NSInteger);
 
         #[method(recordResponse:toCorrection:forWord:language:inSpellDocumentWithTag:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn recordResponse_toCorrection_forWord_language_inSpellDocumentWithTag(
             &self,
             response: NSCorrectionResponse,
@@ -370,6 +387,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSView", feature = "block2"))]
         #[method(showCorrectionIndicatorOfType:primaryString:alternativeStrings:forStringInRect:view:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn showCorrectionIndicatorOfType_primaryString_alternativeStrings_forStringInRect_view_completionHandler(
             &self,
             r#type: NSCorrectionIndicatorType,
@@ -382,10 +400,12 @@ extern_methods!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(dismissCorrectionIndicatorForView:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dismissCorrectionIndicatorForView(&self, view: &NSView);
 
         #[cfg(feature = "NSTextInputClient")]
         #[method(showInlinePredictionForCandidates:client:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn showInlinePredictionForCandidates_client(
             &self,
             candidates: &NSArray<NSTextCheckingResult>,
@@ -393,6 +413,7 @@ extern_methods!(
         );
 
         #[method(preventsAutocorrectionBeforeString:language:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn preventsAutocorrectionBeforeString_language(
             &self,
             string: &NSString,
@@ -400,6 +421,7 @@ extern_methods!(
         ) -> bool;
 
         #[method(deletesAutospaceBetweenString:andString:language:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn deletesAutospaceBetweenString_andString_language(
             &self,
             preceding_string: &NSString,
@@ -407,65 +429,80 @@ extern_methods!(
             language: Option<&NSString>,
         ) -> bool;
 
-        #[method_id(availableLanguages)]
+        #[method(availableLanguages)]
         #[unsafe(method_family = none)]
         pub unsafe fn availableLanguages(&self) -> Retained<NSArray<NSString>>;
 
-        #[method_id(userPreferredLanguages)]
+        #[method(userPreferredLanguages)]
         #[unsafe(method_family = none)]
         pub unsafe fn userPreferredLanguages(&self) -> Retained<NSArray<NSString>>;
 
         #[method(automaticallyIdentifiesLanguages)]
+        #[unsafe(method_family = none)]
         pub unsafe fn automaticallyIdentifiesLanguages(&self) -> bool;
 
         /// Setter for [`automaticallyIdentifiesLanguages`][Self::automaticallyIdentifiesLanguages].
         #[method(setAutomaticallyIdentifiesLanguages:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAutomaticallyIdentifiesLanguages(
             &self,
             automatically_identifies_languages: bool,
         );
 
         #[method(setWordFieldStringValue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWordFieldStringValue(&self, string: &NSString);
 
         #[method(learnWord:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn learnWord(&self, word: &NSString);
 
         #[method(hasLearnedWord:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hasLearnedWord(&self, word: &NSString) -> bool;
 
         #[method(unlearnWord:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn unlearnWord(&self, word: &NSString);
 
         #[method(isAutomaticTextReplacementEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isAutomaticTextReplacementEnabled() -> bool;
 
         #[method(isAutomaticSpellingCorrectionEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isAutomaticSpellingCorrectionEnabled() -> bool;
 
         #[method(isAutomaticQuoteSubstitutionEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isAutomaticQuoteSubstitutionEnabled() -> bool;
 
         #[method(isAutomaticDashSubstitutionEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isAutomaticDashSubstitutionEnabled() -> bool;
 
         #[method(isAutomaticCapitalizationEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isAutomaticCapitalizationEnabled() -> bool;
 
         #[method(isAutomaticPeriodSubstitutionEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isAutomaticPeriodSubstitutionEnabled() -> bool;
 
         #[method(isAutomaticTextCompletionEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isAutomaticTextCompletionEnabled() -> bool;
 
         #[method(isAutomaticInlinePredictionEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isAutomaticInlinePredictionEnabled() -> bool;
 
-        #[method_id(language)]
+        #[method(language)]
         #[unsafe(method_family = none)]
         pub unsafe fn language(&self) -> Retained<NSString>;
 
         #[method(setLanguage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLanguage(&self, language: &NSString) -> bool;
     }
 );
@@ -473,11 +510,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSSpellChecker {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -535,12 +572,13 @@ extern_methods!(
     /// NSDeprecated
     unsafe impl NSSpellChecker {
         #[deprecated = "Use -guessesForWordRange:inString:language:inSpellDocumentWithTag instead"]
-        #[method_id(guessesForWord:)]
+        #[method(guessesForWord:)]
         #[unsafe(method_family = none)]
         pub unsafe fn guessesForWord(&self, word: Option<&NSString>) -> Option<Retained<NSArray>>;
 
         #[deprecated]
         #[method(forgetWord:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn forgetWord(&self, word: Option<&NSString>);
     }
 );

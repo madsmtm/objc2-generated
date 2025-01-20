@@ -60,11 +60,13 @@ extern_methods!(
     unsafe impl GCControllerButtonInput {
         #[cfg(feature = "block2")]
         #[method(valueChangedHandler)]
+        #[unsafe(method_family = none)]
         pub unsafe fn valueChangedHandler(&self) -> GCControllerButtonValueChangedHandler;
 
         #[cfg(feature = "block2")]
         /// Setter for [`valueChangedHandler`][Self::valueChangedHandler].
         #[method(setValueChangedHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setValueChangedHandler(
             &self,
             value_changed_handler: GCControllerButtonValueChangedHandler,
@@ -75,11 +77,13 @@ extern_methods!(
         /// will get called less often than the valueChangedHandler with the additional feature of the pressed state
         /// being different to the last time it was called.
         #[method(pressedChangedHandler)]
+        #[unsafe(method_family = none)]
         pub unsafe fn pressedChangedHandler(&self) -> GCControllerButtonValueChangedHandler;
 
         #[cfg(feature = "block2")]
         /// Setter for [`pressedChangedHandler`][Self::pressedChangedHandler].
         #[method(setPressedChangedHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPressedChangedHandler(
             &self,
             pressed_changed_handler: GCControllerButtonValueChangedHandler,
@@ -87,11 +91,13 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         #[method(touchedChangedHandler)]
+        #[unsafe(method_family = none)]
         pub unsafe fn touchedChangedHandler(&self) -> GCControllerButtonTouchedChangedHandler;
 
         #[cfg(feature = "block2")]
         /// Setter for [`touchedChangedHandler`][Self::touchedChangedHandler].
         #[method(setTouchedChangedHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTouchedChangedHandler(
             &self,
             touched_changed_handler: GCControllerButtonTouchedChangedHandler,
@@ -103,6 +109,7 @@ extern_methods!(
         ///
         /// See: pressed
         #[method(value)]
+        #[unsafe(method_family = none)]
         pub unsafe fn value(&self) -> c_float;
 
         /// Buttons are mostly used in a digital sense, thus we have a recommended method for checking for pressed state instead of
@@ -119,6 +126,7 @@ extern_methods!(
         ///
         /// See: value
         #[method(isPressed)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isPressed(&self) -> bool;
 
         /// Some buttons feature capacitive touch capabilities where the user can touch the button
@@ -131,6 +139,7 @@ extern_methods!(
         ///
         /// See: pressed
         #[method(isTouched)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isTouched(&self) -> bool;
 
         /// Sets the normalized value for the button input. Will update the pressed state of the button.
@@ -142,6 +151,7 @@ extern_methods!(
         ///
         /// See: value
         #[method(setValue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setValue(&self, value: c_float);
     }
 );
@@ -150,11 +160,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "GCControllerElement")]
     unsafe impl GCControllerButtonInput {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

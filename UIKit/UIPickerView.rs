@@ -73,7 +73,7 @@ unsafe impl UITraitEnvironment for UIPickerView {}
 extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIPickerView {
-        #[method_id(dataSource)]
+        #[method(dataSource)]
         #[unsafe(method_family = none)]
         pub unsafe fn dataSource(
             &self,
@@ -82,12 +82,13 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`dataSource`][Self::dataSource].
         #[method(setDataSource:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDataSource(
             &self,
             data_source: Option<&ProtocolObject<dyn UIPickerViewDataSource>>,
         );
 
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self)
             -> Option<Retained<ProtocolObject<dyn UIPickerViewDelegate>>>;
@@ -95,6 +96,7 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn UIPickerViewDelegate>>,
@@ -102,24 +104,29 @@ extern_methods!(
 
         #[deprecated = "This property has no effect on iOS 7 and later."]
         #[method(showsSelectionIndicator)]
+        #[unsafe(method_family = none)]
         pub unsafe fn showsSelectionIndicator(&self) -> bool;
 
         /// Setter for [`showsSelectionIndicator`][Self::showsSelectionIndicator].
         #[deprecated = "This property has no effect on iOS 7 and later."]
         #[method(setShowsSelectionIndicator:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShowsSelectionIndicator(&self, shows_selection_indicator: bool);
 
         #[method(numberOfComponents)]
+        #[unsafe(method_family = none)]
         pub unsafe fn numberOfComponents(&self) -> NSInteger;
 
         #[method(numberOfRowsInComponent:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn numberOfRowsInComponent(&self, component: NSInteger) -> NSInteger;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(rowSizeForComponent:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rowSizeForComponent(&self, component: NSInteger) -> CGSize;
 
-        #[method_id(viewForRow:forComponent:)]
+        #[method(viewForRow:forComponent:)]
         #[unsafe(method_family = none)]
         pub unsafe fn viewForRow_forComponent(
             &self,
@@ -128,12 +135,15 @@ extern_methods!(
         ) -> Option<Retained<UIView>>;
 
         #[method(reloadAllComponents)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reloadAllComponents(&self);
 
         #[method(reloadComponent:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reloadComponent(&self, component: NSInteger);
 
         #[method(selectRow:inComponent:animated:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectRow_inComponent_animated(
             &self,
             row: NSInteger,
@@ -142,6 +152,7 @@ extern_methods!(
         );
 
         #[method(selectedRowInComponent:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectedRowInComponent(&self, component: NSInteger) -> NSInteger;
     }
 );
@@ -151,11 +162,11 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIPickerView {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(initWithFrame:)]
+        #[method(initWithFrame:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -168,11 +179,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIPickerView {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -183,10 +194,12 @@ extern_protocol!(
     pub unsafe trait UIPickerViewDataSource: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method(numberOfComponentsInPickerView:)]
+        #[unsafe(method_family = none)]
         unsafe fn numberOfComponentsInPickerView(&self, picker_view: &UIPickerView) -> NSInteger;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[method(pickerView:numberOfRowsInComponent:)]
+        #[unsafe(method_family = none)]
         unsafe fn pickerView_numberOfRowsInComponent(
             &self,
             picker_view: &UIPickerView,
@@ -205,6 +218,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(pickerView:widthForComponent:)]
+        #[unsafe(method_family = none)]
         unsafe fn pickerView_widthForComponent(
             &self,
             picker_view: &UIPickerView,
@@ -218,6 +232,7 @@ extern_protocol!(
         ))]
         #[optional]
         #[method(pickerView:rowHeightForComponent:)]
+        #[unsafe(method_family = none)]
         unsafe fn pickerView_rowHeightForComponent(
             &self,
             picker_view: &UIPickerView,
@@ -226,7 +241,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[method_id(pickerView:titleForRow:forComponent:)]
+        #[method(pickerView:titleForRow:forComponent:)]
         #[unsafe(method_family = none)]
         unsafe fn pickerView_titleForRow_forComponent(
             &self,
@@ -237,7 +252,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[method_id(pickerView:attributedTitleForRow:forComponent:)]
+        #[method(pickerView:attributedTitleForRow:forComponent:)]
         #[unsafe(method_family = none)]
         unsafe fn pickerView_attributedTitleForRow_forComponent(
             &self,
@@ -248,7 +263,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[method_id(pickerView:viewForRow:forComponent:reusingView:)]
+        #[method(pickerView:viewForRow:forComponent:reusingView:)]
         #[unsafe(method_family = none)]
         unsafe fn pickerView_viewForRow_forComponent_reusingView(
             &self,
@@ -261,6 +276,7 @@ extern_protocol!(
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
         #[method(pickerView:didSelectRow:inComponent:)]
+        #[unsafe(method_family = none)]
         unsafe fn pickerView_didSelectRow_inComponent(
             &self,
             picker_view: &UIPickerView,

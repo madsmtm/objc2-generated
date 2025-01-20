@@ -13,7 +13,7 @@ extern_protocol!(
         #[cfg(all(feature = "UIFindSession", feature = "UIResponder", feature = "UIView"))]
         /// Called when a find session is requested to begin by the user. Return an instance of a UIFindSession implementation to allow the
         /// find session to begin, otherwise return nil to prevent the system find panel from appearing.
-        #[method_id(findInteraction:sessionForView:)]
+        #[method(findInteraction:sessionForView:)]
         #[unsafe(method_family = none)]
         unsafe fn findInteraction_sessionForView(
             &self,
@@ -27,6 +27,7 @@ extern_protocol!(
         /// System text elements will apply a dimming view around all non-highlighted search results, for instance.
         #[optional]
         #[method(findInteraction:didBeginFindSession:)]
+        #[unsafe(method_family = none)]
         unsafe fn findInteraction_didBeginFindSession(
             &self,
             interaction: &UIFindInteraction,
@@ -39,6 +40,7 @@ extern_protocol!(
         /// (such as a dimming view).
         #[optional]
         #[method(findInteraction:didEndFindSession:)]
+        #[unsafe(method_family = none)]
         unsafe fn findInteraction_didEndFindSession(
             &self,
             interaction: &UIFindInteraction,
@@ -64,30 +66,33 @@ extern_methods!(
     unsafe impl UIFindInteraction {
         /// Returns YES if the find navigator panel is currently visible.
         #[method(isFindNavigatorVisible)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isFindNavigatorVisible(&self) -> bool;
 
         #[cfg(feature = "UIFindSession")]
         /// If there's a currently active find session (implying isFindNavigatorVisible is true), returns the active find session.
-        #[method_id(activeFindSession)]
+        #[method(activeFindSession)]
         #[unsafe(method_family = none)]
         pub unsafe fn activeFindSession(&self) -> Option<Retained<UIFindSession>>;
 
         /// Assign this property to pre-populate the system find panel's search text field with a search query.
-        #[method_id(searchText)]
+        #[method(searchText)]
         #[unsafe(method_family = none)]
         pub unsafe fn searchText(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`searchText`][Self::searchText].
         #[method(setSearchText:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSearchText(&self, search_text: Option<&NSString>);
 
         /// If replacement is supported, assign this property to pre-populate the system find panel's replace text field with a replacement string.
-        #[method_id(replacementText)]
+        #[method(replacementText)]
         #[unsafe(method_family = none)]
         pub unsafe fn replacementText(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`replacementText`][Self::replacementText].
         #[method(setReplacementText:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setReplacementText(&self, replacement_text: Option<&NSString>);
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement", feature = "block2"))]
@@ -95,6 +100,7 @@ extern_methods!(
         /// available in
         /// `UITextSearchOptions,`which can be either modified, augmented, or omitted.
         #[method(optionsMenuProvider)]
+        #[unsafe(method_family = none)]
         pub unsafe fn optionsMenuProvider(
             &self,
         ) -> *mut block2::Block<dyn Fn(NonNull<NSArray<UIMenuElement>>) -> *mut UIMenu>;
@@ -102,6 +108,7 @@ extern_methods!(
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement", feature = "block2"))]
         /// Setter for [`optionsMenuProvider`][Self::optionsMenuProvider].
         #[method(setOptionsMenuProvider:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setOptionsMenuProvider(
             &self,
             options_menu_provider: Option<
@@ -110,14 +117,14 @@ extern_methods!(
         );
 
         /// See UIFindInteractionDelegate above.
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIFindInteractionDelegate>>>;
 
         /// Creates a find interaction object with the specified delegate.
-        #[method_id(initWithSessionDelegate:)]
+        #[method(initWithSessionDelegate:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSessionDelegate(
             this: Allocated<Self>,
@@ -130,29 +137,34 @@ extern_methods!(
         /// Parameter `replaceVisible`: If the delegate supports text replacement, will make the replace text field
         /// visible on first appearance.
         #[method(presentFindNavigatorShowingReplace:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn presentFindNavigatorShowingReplace(&self, showing_replace: bool);
 
         /// Dismisses the find navigator panel.
         #[method(dismissFindNavigator)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dismissFindNavigator(&self);
 
         /// Jump to the next found result in the document, relative to the currently highlighted result.
         #[method(findNext)]
+        #[unsafe(method_family = none)]
         pub unsafe fn findNext(&self);
 
         /// Jump to the previous found result in the document, relative to the currently highlighted result.
         #[method(findPrevious)]
+        #[unsafe(method_family = none)]
         pub unsafe fn findPrevious(&self);
 
         /// Calling this triggers an update of the UI to reflect changes to the currently shown result count or result index, as defined by UIFindSession.
         #[method(updateResultCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updateResultCount(&self);
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

@@ -56,13 +56,14 @@ extern_methods!(
     unsafe impl DCDevice {
         /// A representation of the device for which you want to query the two bits of
         /// data.
-        #[method_id(currentDevice)]
+        #[method(currentDevice)]
         #[unsafe(method_family = none)]
         pub unsafe fn currentDevice() -> Retained<DCDevice>;
 
         /// A Boolean value that indicates whether the device supports the DeviceCheck
         /// API.
         #[method(isSupported)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isSupported(&self) -> bool;
 
         #[cfg(feature = "block2")]
@@ -98,6 +99,7 @@ extern_methods!(
         /// - `token`:  An ephemeral token that identifies the current device.
         /// - `error`: The error that occurred, if any.
         #[method(generateTokenWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn generateTokenWithCompletionHandler(
             &self,
             completion: &block2::Block<dyn Fn(*mut NSData, *mut NSError)>,
@@ -108,11 +110,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl DCDevice {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

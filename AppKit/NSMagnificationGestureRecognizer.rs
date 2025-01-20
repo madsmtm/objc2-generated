@@ -28,11 +28,13 @@ extern_methods!(
     unsafe impl NSMagnificationGestureRecognizer {
         #[cfg(feature = "objc2-core-foundation")]
         #[method(magnification)]
+        #[unsafe(method_family = none)]
         pub unsafe fn magnification(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`magnification`][Self::magnification].
         #[method(setMagnification:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMagnification(&self, magnification: CGFloat);
     }
 );
@@ -41,7 +43,7 @@ extern_methods!(
     /// Methods declared on superclass `NSGestureRecognizer`
     #[cfg(feature = "NSGestureRecognizer")]
     unsafe impl NSMagnificationGestureRecognizer {
-        #[method_id(initWithTarget:action:)]
+        #[method(initWithTarget:action:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTarget_action(
             this: Allocated<Self>,
@@ -49,7 +51,7 @@ extern_methods!(
             action: Option<Sel>,
         ) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -62,11 +64,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSGestureRecognizer")]
     unsafe impl NSMagnificationGestureRecognizer {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

@@ -64,19 +64,20 @@ unsafe impl UITraitEnvironment for HMCameraView {}
 extern_methods!(
     #[cfg(feature = "objc2-ui-kit")]
     unsafe impl HMCameraView {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "HMCameraSource")]
         /// Represents the camera source.
-        #[method_id(cameraSource)]
+        #[method(cameraSource)]
         #[unsafe(method_family = none)]
         pub unsafe fn cameraSource(&self) -> Option<Retained<HMCameraSource>>;
 
         #[cfg(feature = "HMCameraSource")]
         /// Setter for [`cameraSource`][Self::cameraSource].
         #[method(setCameraSource:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCameraSource(&self, camera_source: Option<&HMCameraSource>);
     }
 );
@@ -86,11 +87,11 @@ extern_methods!(
     #[cfg(feature = "objc2-ui-kit")]
     unsafe impl HMCameraView {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(initWithFrame:)]
+        #[method(initWithFrame:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -103,7 +104,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2-ui-kit")]
     unsafe impl HMCameraView {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

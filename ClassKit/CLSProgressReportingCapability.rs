@@ -56,10 +56,11 @@ extern_methods!(
     unsafe impl CLSProgressReportingCapability {
         /// Returns the kind of progress reporting capability
         #[method(kind)]
+        #[unsafe(method_family = none)]
         pub unsafe fn kind(&self) -> CLSProgressReportingCapabilityKind;
 
         /// Returns progress reporting details
-        #[method_id(details)]
+        #[method(details)]
         #[unsafe(method_family = none)]
         pub unsafe fn details(&self) -> Option<Retained<NSString>>;
 
@@ -68,7 +69,7 @@ extern_methods!(
         /// Parameter `kind`: The kind of progress reporting capability
         ///
         /// Parameter `details`: An optional localized string describing the capability. For example: "Reports percentage of progress", "Reports overall score". Schoolwork will use an appropriate default string if one is not provided.
-        #[method_id(initWithKind:details:)]
+        #[method(initWithKind:details:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithKind_details(
             this: Allocated<Self>,
@@ -82,11 +83,11 @@ extern_methods!(
     /// Methods declared on superclass `CLSObject`
     #[cfg(feature = "CLSObject")]
     unsafe impl CLSProgressReportingCapability {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

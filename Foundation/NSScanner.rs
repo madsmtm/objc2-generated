@@ -26,47 +26,53 @@ unsafe impl NSObjectProtocol for NSScanner {}
 extern_methods!(
     unsafe impl NSScanner {
         #[cfg(feature = "NSString")]
-        #[method_id(string)]
+        #[method(string)]
         #[unsafe(method_family = none)]
         pub unsafe fn string(&self) -> Retained<NSString>;
 
         #[method(scanLocation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scanLocation(&self) -> NSUInteger;
 
         /// Setter for [`scanLocation`][Self::scanLocation].
         #[method(setScanLocation:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setScanLocation(&self, scan_location: NSUInteger);
 
         #[cfg(feature = "NSCharacterSet")]
-        #[method_id(charactersToBeSkipped)]
+        #[method(charactersToBeSkipped)]
         #[unsafe(method_family = none)]
         pub unsafe fn charactersToBeSkipped(&self) -> Option<Retained<NSCharacterSet>>;
 
         #[cfg(feature = "NSCharacterSet")]
         /// Setter for [`charactersToBeSkipped`][Self::charactersToBeSkipped].
         #[method(setCharactersToBeSkipped:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCharactersToBeSkipped(
             &self,
             characters_to_be_skipped: Option<&NSCharacterSet>,
         );
 
         #[method(caseSensitive)]
+        #[unsafe(method_family = none)]
         pub unsafe fn caseSensitive(&self) -> bool;
 
         /// Setter for [`caseSensitive`][Self::caseSensitive].
         #[method(setCaseSensitive:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCaseSensitive(&self, case_sensitive: bool);
 
-        #[method_id(locale)]
+        #[method(locale)]
         #[unsafe(method_family = none)]
         pub unsafe fn locale(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`locale`][Self::locale].
         #[method(setLocale:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLocale(&self, locale: Option<&AnyObject>);
 
         #[cfg(feature = "NSString")]
-        #[method_id(initWithString:)]
+        #[method(initWithString:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithString(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
     }
@@ -75,11 +81,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSScanner {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -89,37 +95,48 @@ extern_methods!(
     /// NSExtendedScanner
     unsafe impl NSScanner {
         #[method(scanInt:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scanInt(&self, result: *mut c_int) -> bool;
 
         #[method(scanInteger:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scanInteger(&self, result: *mut NSInteger) -> bool;
 
         #[method(scanLongLong:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scanLongLong(&self, result: *mut c_longlong) -> bool;
 
         #[method(scanUnsignedLongLong:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scanUnsignedLongLong(&self, result: *mut c_ulonglong) -> bool;
 
         #[method(scanFloat:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scanFloat(&self, result: *mut c_float) -> bool;
 
         #[method(scanDouble:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scanDouble(&self, result: *mut c_double) -> bool;
 
         #[method(scanHexInt:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scanHexInt(&self, result: *mut c_uint) -> bool;
 
         #[method(scanHexLongLong:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scanHexLongLong(&self, result: *mut c_ulonglong) -> bool;
 
         #[method(scanHexFloat:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scanHexFloat(&self, result: *mut c_float) -> bool;
 
         #[method(scanHexDouble:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scanHexDouble(&self, result: *mut c_double) -> bool;
 
         #[cfg(feature = "NSString")]
         #[method(scanString:intoString:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scanString_intoString(
             &self,
             string: &NSString,
@@ -128,6 +145,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSCharacterSet", feature = "NSString"))]
         #[method(scanCharactersFromSet:intoString:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scanCharactersFromSet_intoString(
             &self,
             set: &NSCharacterSet,
@@ -136,6 +154,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[method(scanUpToString:intoString:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scanUpToString_intoString(
             &self,
             string: &NSString,
@@ -144,6 +163,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSCharacterSet", feature = "NSString"))]
         #[method(scanUpToCharactersFromSet:intoString:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scanUpToCharactersFromSet_intoString(
             &self,
             set: &NSCharacterSet,
@@ -151,15 +171,16 @@ extern_methods!(
         ) -> bool;
 
         #[method(isAtEnd)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isAtEnd(&self) -> bool;
 
         #[cfg(feature = "NSString")]
-        #[method_id(scannerWithString:)]
+        #[method(scannerWithString:)]
         #[unsafe(method_family = none)]
         pub unsafe fn scannerWithString(string: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(localizedScannerWithString:)]
+        #[method(localizedScannerWithString:)]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedScannerWithString(string: &NSString) -> Retained<AnyObject>;
     }

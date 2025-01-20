@@ -98,7 +98,7 @@ extern_methods!(
     #[cfg(feature = "NSFormatter")]
     unsafe impl NSDateComponentsFormatter {
         #[cfg(feature = "NSString")]
-        #[method_id(stringForObjectValue:)]
+        #[method(stringForObjectValue:)]
         #[unsafe(method_family = none)]
         pub unsafe fn stringForObjectValue(
             &self,
@@ -106,7 +106,7 @@ extern_methods!(
         ) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSCalendar", feature = "NSString"))]
-        #[method_id(stringFromDateComponents:)]
+        #[method(stringFromDateComponents:)]
         #[unsafe(method_family = none)]
         pub unsafe fn stringFromDateComponents(
             &self,
@@ -114,7 +114,7 @@ extern_methods!(
         ) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSDate", feature = "NSString"))]
-        #[method_id(stringFromDate:toDate:)]
+        #[method(stringFromDate:toDate:)]
         #[unsafe(method_family = none)]
         pub unsafe fn stringFromDate_toDate(
             &self,
@@ -123,7 +123,7 @@ extern_methods!(
         ) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSDate", feature = "NSString"))]
-        #[method_id(stringFromTimeInterval:)]
+        #[method(stringFromTimeInterval:)]
         #[unsafe(method_family = none)]
         pub unsafe fn stringFromTimeInterval(
             &self,
@@ -131,7 +131,7 @@ extern_methods!(
         ) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSCalendar", feature = "NSString"))]
-        #[method_id(localizedStringFromDateComponents:unitsStyle:)]
+        #[method(localizedStringFromDateComponents:unitsStyle:)]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedStringFromDateComponents_unitsStyle(
             components: &NSDateComponents,
@@ -139,97 +139,118 @@ extern_methods!(
         ) -> Option<Retained<NSString>>;
 
         #[method(unitsStyle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn unitsStyle(&self) -> NSDateComponentsFormatterUnitsStyle;
 
         /// Setter for [`unitsStyle`][Self::unitsStyle].
         #[method(setUnitsStyle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUnitsStyle(&self, units_style: NSDateComponentsFormatterUnitsStyle);
 
         #[cfg(feature = "NSCalendar")]
         #[method(allowedUnits)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowedUnits(&self) -> NSCalendarUnit;
 
         #[cfg(feature = "NSCalendar")]
         /// Setter for [`allowedUnits`][Self::allowedUnits].
         #[method(setAllowedUnits:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAllowedUnits(&self, allowed_units: NSCalendarUnit);
 
         #[method(zeroFormattingBehavior)]
+        #[unsafe(method_family = none)]
         pub unsafe fn zeroFormattingBehavior(
             &self,
         ) -> NSDateComponentsFormatterZeroFormattingBehavior;
 
         /// Setter for [`zeroFormattingBehavior`][Self::zeroFormattingBehavior].
         #[method(setZeroFormattingBehavior:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setZeroFormattingBehavior(
             &self,
             zero_formatting_behavior: NSDateComponentsFormatterZeroFormattingBehavior,
         );
 
         #[cfg(feature = "NSCalendar")]
-        #[method_id(calendar)]
+        #[method(calendar)]
         #[unsafe(method_family = none)]
         pub unsafe fn calendar(&self) -> Option<Retained<NSCalendar>>;
 
         #[cfg(feature = "NSCalendar")]
         /// Setter for [`calendar`][Self::calendar].
         #[method(setCalendar:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCalendar(&self, calendar: Option<&NSCalendar>);
 
         #[cfg(feature = "NSDate")]
-        #[method_id(referenceDate)]
+        #[method(referenceDate)]
         #[unsafe(method_family = none)]
         pub unsafe fn referenceDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSDate")]
         /// Setter for [`referenceDate`][Self::referenceDate].
         #[method(setReferenceDate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setReferenceDate(&self, reference_date: Option<&NSDate>);
 
         #[method(allowsFractionalUnits)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowsFractionalUnits(&self) -> bool;
 
         /// Setter for [`allowsFractionalUnits`][Self::allowsFractionalUnits].
         #[method(setAllowsFractionalUnits:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAllowsFractionalUnits(&self, allows_fractional_units: bool);
 
         #[method(maximumUnitCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maximumUnitCount(&self) -> NSInteger;
 
         /// Setter for [`maximumUnitCount`][Self::maximumUnitCount].
         #[method(setMaximumUnitCount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMaximumUnitCount(&self, maximum_unit_count: NSInteger);
 
         #[method(collapsesLargestUnit)]
+        #[unsafe(method_family = none)]
         pub unsafe fn collapsesLargestUnit(&self) -> bool;
 
         /// Setter for [`collapsesLargestUnit`][Self::collapsesLargestUnit].
         #[method(setCollapsesLargestUnit:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCollapsesLargestUnit(&self, collapses_largest_unit: bool);
 
         #[method(includesApproximationPhrase)]
+        #[unsafe(method_family = none)]
         pub unsafe fn includesApproximationPhrase(&self) -> bool;
 
         /// Setter for [`includesApproximationPhrase`][Self::includesApproximationPhrase].
         #[method(setIncludesApproximationPhrase:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIncludesApproximationPhrase(&self, includes_approximation_phrase: bool);
 
         #[method(includesTimeRemainingPhrase)]
+        #[unsafe(method_family = none)]
         pub unsafe fn includesTimeRemainingPhrase(&self) -> bool;
 
         /// Setter for [`includesTimeRemainingPhrase`][Self::includesTimeRemainingPhrase].
         #[method(setIncludesTimeRemainingPhrase:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIncludesTimeRemainingPhrase(&self, includes_time_remaining_phrase: bool);
 
         #[method(formattingContext)]
+        #[unsafe(method_family = none)]
         pub unsafe fn formattingContext(&self) -> NSFormattingContext;
 
         /// Setter for [`formattingContext`][Self::formattingContext].
         #[method(setFormattingContext:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFormattingContext(&self, formatting_context: NSFormattingContext);
 
         #[cfg(feature = "NSString")]
         #[method(getObjectValue:forString:errorDescription:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getObjectValue_forString_errorDescription(
             &self,
             obj: Option<&mut Option<Retained<AnyObject>>>,
@@ -243,11 +264,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSFormatter")]
     unsafe impl NSDateComponentsFormatter {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

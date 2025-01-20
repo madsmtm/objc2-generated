@@ -86,40 +86,43 @@ extern_methods!(
     unsafe impl HKVisionPrism {
         #[cfg(feature = "HKQuantity")]
         /// The compensation in prism diopters to correct eye misalignment [polar coordinates]
-        #[method_id(amount)]
+        #[method(amount)]
         #[unsafe(method_family = none)]
         pub unsafe fn amount(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
         /// The direction of the prism base [polar coordinates]
-        #[method_id(angle)]
+        #[method(angle)]
         #[unsafe(method_family = none)]
         pub unsafe fn angle(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
         /// The vertical component of compensation in prism diopters [rectangular coordinates]
-        #[method_id(verticalAmount)]
+        #[method(verticalAmount)]
         #[unsafe(method_family = none)]
         pub unsafe fn verticalAmount(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
         /// The horizontal component of compensation in prism diopters [rectangular coordinates]
-        #[method_id(horizontalAmount)]
+        #[method(horizontalAmount)]
         #[unsafe(method_family = none)]
         pub unsafe fn horizontalAmount(&self) -> Retained<HKQuantity>;
 
         /// The direction of the prism base relative to the vertical axis of the lens;
         /// base up or base down. [rectangular coordinates]
         #[method(verticalBase)]
+        #[unsafe(method_family = none)]
         pub unsafe fn verticalBase(&self) -> HKPrismBase;
 
         /// The direction of the prism base relative to the horizontal axis of the lens;
         /// base in (toward the nose) or base out (away from the nose). [rectangular coordinates]
         #[method(horizontalBase)]
+        #[unsafe(method_family = none)]
         pub unsafe fn horizontalBase(&self) -> HKPrismBase;
 
         /// Which eye (left or right)
         #[method(eye)]
+        #[unsafe(method_family = none)]
         pub unsafe fn eye(&self) -> HKVisionEye;
 
         #[cfg(feature = "HKQuantity")]
@@ -128,7 +131,7 @@ extern_methods!(
         /// Parameter `angle`: The angle of the lens required to correct diplopia
         ///
         /// Parameter `eye`: The eye associated with the prism values
-        #[method_id(initWithAmount:angle:eye:)]
+        #[method(initWithAmount:angle:eye:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAmount_angle_eye(
             this: Allocated<Self>,
@@ -149,7 +152,7 @@ extern_methods!(
         /// base in (toward the nose) or base out (away from the nose).
         ///
         /// Parameter `eye`: The eye associated with the prism values
-        #[method_id(initWithVerticalAmount:verticalBase:horizontalAmount:horizontalBase:eye:)]
+        #[method(initWithVerticalAmount:verticalBase:horizontalAmount:horizontalBase:eye:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithVerticalAmount_verticalBase_horizontalAmount_horizontalBase_eye(
             this: Allocated<Self>,
@@ -160,11 +163,11 @@ extern_methods!(
             eye: HKVisionEye,
         ) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

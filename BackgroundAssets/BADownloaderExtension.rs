@@ -35,7 +35,7 @@ extern_protocol!(
         ///
         /// Warning: You cannot use `BADownloadManager` to manually schedule downloads using this method. All downloads to enqueue must be returned.
         #[optional]
-        #[method_id(downloadsForRequest:manifestURL:extensionInfo:)]
+        #[method(downloadsForRequest:manifestURL:extensionInfo:)]
         #[unsafe(method_family = none)]
         unsafe fn downloadsForRequest_manifestURL_extensionInfo(
             &self,
@@ -48,6 +48,7 @@ extern_protocol!(
         /// Download is about to begin but requires an authentication challenge to continue.
         #[optional]
         #[method(backgroundDownload:didReceiveChallenge:completionHandler:)]
+        #[unsafe(method_family = none)]
         unsafe fn backgroundDownload_didReceiveChallenge_completionHandler(
             &self,
             download: &BADownload,
@@ -68,6 +69,7 @@ extern_protocol!(
         /// Parameter `error`: The error that caused the failure.
         #[optional]
         #[method(backgroundDownload:failedWithError:)]
+        #[unsafe(method_family = none)]
         unsafe fn backgroundDownload_failedWithError(&self, download: &BADownload, error: &NSError);
 
         #[cfg(feature = "BADownload")]
@@ -85,6 +87,7 @@ extern_protocol!(
         /// the file, as this may remove the system's ability to delete the file.
         #[optional]
         #[method(backgroundDownload:finishedWithFileURL:)]
+        #[unsafe(method_family = none)]
         unsafe fn backgroundDownload_finishedWithFileURL(
             &self,
             download: &BADownload,
@@ -101,6 +104,7 @@ extern_protocol!(
         #[deprecated = "extensionWillTerminate will not be invoked in all applicable circumstances and should not be relied upon."]
         #[optional]
         #[method(extensionWillTerminate)]
+        #[unsafe(method_family = none)]
         unsafe fn extensionWillTerminate(&self);
     }
 );

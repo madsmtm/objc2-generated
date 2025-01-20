@@ -26,11 +26,11 @@ unsafe impl NSSecureCoding for UIImageAsset {}
 
 extern_methods!(
     unsafe impl UIImageAsset {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -38,7 +38,7 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "UIImage", feature = "UIImageConfiguration"))]
-        #[method_id(imageWithConfiguration:)]
+        #[method(imageWithConfiguration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn imageWithConfiguration(
             &self,
@@ -47,6 +47,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIImage", feature = "UIImageConfiguration"))]
         #[method(registerImage:withConfiguration:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn registerImage_withConfiguration(
             &self,
             image: &UIImage,
@@ -55,10 +56,11 @@ extern_methods!(
 
         #[cfg(feature = "UIImageConfiguration")]
         #[method(unregisterImageWithConfiguration:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn unregisterImageWithConfiguration(&self, configuration: &UIImageConfiguration);
 
         #[cfg(all(feature = "UIImage", feature = "UITraitCollection"))]
-        #[method_id(imageWithTraitCollection:)]
+        #[method(imageWithTraitCollection:)]
         #[unsafe(method_family = none)]
         pub unsafe fn imageWithTraitCollection(
             &self,
@@ -67,6 +69,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIImage", feature = "UITraitCollection"))]
         #[method(registerImage:withTraitCollection:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn registerImage_withTraitCollection(
             &self,
             image: &UIImage,
@@ -75,6 +78,7 @@ extern_methods!(
 
         #[cfg(feature = "UITraitCollection")]
         #[method(unregisterImageWithTraitCollection:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn unregisterImageWithTraitCollection(
             &self,
             trait_collection: &UITraitCollection,
@@ -85,7 +89,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIImageAsset {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

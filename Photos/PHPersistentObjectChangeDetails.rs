@@ -23,25 +23,26 @@ extern_methods!(
     unsafe impl PHPersistentObjectChangeDetails {
         #[cfg(feature = "PhotosTypes")]
         #[method(objectType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn objectType(&self) -> PHObjectType;
 
-        #[method_id(insertedLocalIdentifiers)]
+        #[method(insertedLocalIdentifiers)]
         #[unsafe(method_family = none)]
         pub unsafe fn insertedLocalIdentifiers(&self) -> Retained<NSSet<NSString>>;
 
-        #[method_id(updatedLocalIdentifiers)]
+        #[method(updatedLocalIdentifiers)]
         #[unsafe(method_family = none)]
         pub unsafe fn updatedLocalIdentifiers(&self) -> Retained<NSSet<NSString>>;
 
-        #[method_id(deletedLocalIdentifiers)]
+        #[method(deletedLocalIdentifiers)]
         #[unsafe(method_family = none)]
         pub unsafe fn deletedLocalIdentifiers(&self) -> Retained<NSSet<NSString>>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

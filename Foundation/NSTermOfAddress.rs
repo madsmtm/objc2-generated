@@ -33,28 +33,28 @@ extern_methods!(
         /// Term of address that uses gender-neutral pronouns (e.g. they/them/theirs in
         /// English), and an epicene grammatical gender when inflecting verbs and
         /// adjectives referring to the person
-        #[method_id(neutral)]
+        #[method(neutral)]
         #[unsafe(method_family = none)]
         pub unsafe fn neutral() -> Retained<Self>;
 
         /// Term of address that uses feminine pronouns (e.g. she/her/hers in English),
         /// and a feminine grammatical gender when inflecting verbs and adjectives
         /// referring to the person
-        #[method_id(feminine)]
+        #[method(feminine)]
         #[unsafe(method_family = none)]
         pub unsafe fn feminine() -> Retained<Self>;
 
         /// Term of address that uses masculine pronouns (e.g. he/him/his in English),
         /// and a masculine grammatical gender when inflecting verbs and adjectives
         /// referring to the person
-        #[method_id(masculine)]
+        #[method(masculine)]
         #[unsafe(method_family = none)]
         pub unsafe fn masculine() -> Retained<Self>;
 
         /// The term of address that should be used for addressing the user
         ///
         /// This term of address will only compare equal to another `+[NSTermOfAddress currentUser]`
-        #[method_id(currentUser)]
+        #[method(currentUser)]
         #[unsafe(method_family = none)]
         pub unsafe fn currentUser() -> Retained<Self>;
 
@@ -65,30 +65,30 @@ extern_methods!(
         ///
         /// Parameter `pronouns`: A list of pronouns in the target language that can be used to
         /// refer to the person.
-        #[method_id(localizedForLanguageIdentifier:withPronouns:)]
+        #[method(localizedForLanguageIdentifier:withPronouns:)]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedForLanguageIdentifier_withPronouns(
             language: &NSString,
             pronouns: &NSArray<NSMorphologyPronoun>,
         ) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         /// The ISO language code if this is a localized term of address
-        #[method_id(languageIdentifier)]
+        #[method(languageIdentifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn languageIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSMorphology"))]
         /// A list of pronouns for a localized term of address
-        #[method_id(pronouns)]
+        #[method(pronouns)]
         #[unsafe(method_family = none)]
         pub unsafe fn pronouns(&self) -> Option<Retained<NSArray<NSMorphologyPronoun>>>;
     }

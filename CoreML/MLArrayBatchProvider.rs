@@ -23,13 +23,13 @@ unsafe impl NSObjectProtocol for MLArrayBatchProvider {}
 extern_methods!(
     unsafe impl MLArrayBatchProvider {
         #[cfg(feature = "MLFeatureProvider")]
-        #[method_id(array)]
+        #[method(array)]
         #[unsafe(method_family = none)]
         pub unsafe fn array(&self) -> Retained<NSArray<ProtocolObject<dyn MLFeatureProvider>>>;
 
         #[cfg(feature = "MLFeatureProvider")]
         /// Initalize with an array of feature providers
-        #[method_id(initWithFeatureProviderArray:)]
+        #[method(initWithFeatureProviderArray:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFeatureProviderArray(
             this: Allocated<Self>,
@@ -39,7 +39,7 @@ extern_methods!(
         /// Initialize with a dictionary which maps feature names to an array of values [String : [Any]]
         /// Error is returned if all arrays do not have equal length or if array values
         /// for a specific feature name do not have the same type or not expressible as MLFeatureValue
-        #[method_id(initWithDictionary:error:_)]
+        #[method(initWithDictionary:error:_)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDictionary_error(
             this: Allocated<Self>,
@@ -51,11 +51,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MLArrayBatchProvider {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

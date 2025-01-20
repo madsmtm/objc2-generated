@@ -41,7 +41,7 @@ extern_protocol!(
         /// The identifier will be retained.
         #[deprecated]
         #[optional]
-        #[method_id(webView:identifierForInitialRequest:fromDataSource:)]
+        #[method(webView:identifierForInitialRequest:fromDataSource:)]
         #[unsafe(method_family = none)]
         unsafe fn webView_identifierForInitialRequest_fromDataSource(
             &self,
@@ -75,7 +75,7 @@ extern_protocol!(
         /// will be request.
         #[deprecated]
         #[optional]
-        #[method_id(webView:resource:willSendRequest:redirectResponse:fromDataSource:)]
+        #[method(webView:resource:willSendRequest:redirectResponse:fromDataSource:)]
         #[unsafe(method_family = none)]
         unsafe fn webView_resource_willSendRequest_redirectResponse_fromDataSource(
             &self,
@@ -104,6 +104,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:resource:didReceiveAuthenticationChallenge:fromDataSource:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_resource_didReceiveAuthenticationChallenge_fromDataSource(
             &self,
             sender: Option<&WebView>,
@@ -124,6 +125,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:resource:didCancelAuthenticationChallenge:fromDataSource:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_resource_didCancelAuthenticationChallenge_fromDataSource(
             &self,
             sender: Option<&WebView>,
@@ -156,6 +158,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:resource:didReceiveResponse:fromDataSource:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_resource_didReceiveResponse_fromDataSource(
             &self,
             sender: Option<&WebView>,
@@ -183,6 +186,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:resource:didReceiveContentLength:fromDataSource:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_resource_didReceiveContentLength_fromDataSource(
             &self,
             sender: Option<&WebView>,
@@ -208,6 +212,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:resource:didFinishLoadingFromDataSource:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_resource_didFinishLoadingFromDataSource(
             &self,
             sender: Option<&WebView>,
@@ -234,6 +239,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:resource:didFailLoadingWithError:fromDataSource:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_resource_didFailLoadingWithError_fromDataSource(
             &self,
             sender: Option<&WebView>,
@@ -263,6 +269,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:plugInFailedWithError:dataSource:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_plugInFailedWithError_dataSource(
             &self,
             sender: Option<&WebView>,

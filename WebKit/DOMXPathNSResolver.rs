@@ -10,7 +10,7 @@ extern_protocol!(
     #[deprecated]
     pub unsafe trait DOMXPathNSResolver: NSObjectProtocol {
         #[deprecated]
-        #[method_id(lookupNamespaceURI:)]
+        #[method(lookupNamespaceURI:)]
         #[unsafe(method_family = none)]
         unsafe fn lookupNamespaceURI(
             &self,

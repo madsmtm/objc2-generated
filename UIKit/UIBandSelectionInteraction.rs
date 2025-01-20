@@ -49,30 +49,36 @@ extern_methods!(
     unsafe impl UIBandSelectionInteraction {
         /// Indicates whether the interaction is enabled. Defaults to YES.
         #[method(isEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isEnabled(&self) -> bool;
 
         /// Setter for [`isEnabled`][Self::isEnabled].
         #[method(setEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
         /// The interaction's current state.
         #[method(state)]
+        #[unsafe(method_family = none)]
         pub unsafe fn state(&self) -> UIBandSelectionInteractionState;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The current selection rect. Returns CGRectNull when the interaction is inactive.
         #[method(selectionRect)]
+        #[unsafe(method_family = none)]
         pub unsafe fn selectionRect(&self) -> CGRect;
 
         #[cfg(feature = "UICommand")]
         /// Modifier keys held at the beginning of the interaction.
         #[method(initialModifierFlags)]
+        #[unsafe(method_family = none)]
         pub unsafe fn initialModifierFlags(&self) -> UIKeyModifierFlags;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
         /// Called when the interaction is about to begin.
         /// Return a boolean indicating whether the interaction should begin at the given location.
         #[method(shouldBeginHandler)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shouldBeginHandler(
             &self,
         ) -> *mut block2::Block<dyn Fn(NonNull<UIBandSelectionInteraction>, CGPoint) -> Bool>;
@@ -80,6 +86,7 @@ extern_methods!(
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
         /// Setter for [`shouldBeginHandler`][Self::shouldBeginHandler].
         #[method(setShouldBeginHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShouldBeginHandler(
             &self,
             should_begin_handler: Option<
@@ -92,18 +99,18 @@ extern_methods!(
         ///
         ///
         /// Parameter `selectionHandler`: Called when the interaction's state and/or selection rect change.
-        #[method_id(initWithSelectionHandler:)]
+        #[method(initWithSelectionHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSelectionHandler(
             this: Allocated<Self>,
             selection_handler: &block2::Block<dyn Fn(NonNull<UIBandSelectionInteraction>)>,
         ) -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

@@ -46,7 +46,7 @@ unsafe impl NSObjectProtocol for UIContextualAction {}
 extern_methods!(
     unsafe impl UIContextualAction {
         #[cfg(all(feature = "UIResponder", feature = "UIView", feature = "block2"))]
-        #[method_id(contextualActionWithStyle:title:handler:)]
+        #[method(contextualActionWithStyle:title:handler:)]
         #[unsafe(method_family = none)]
         pub unsafe fn contextualActionWithStyle_title_handler(
             style: UIContextualActionStyle,
@@ -56,38 +56,43 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[method(style)]
+        #[unsafe(method_family = none)]
         pub unsafe fn style(&self) -> UIContextualActionStyle;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView", feature = "block2"))]
         #[method(handler)]
+        #[unsafe(method_family = none)]
         pub unsafe fn handler(&self) -> UIContextualActionHandler;
 
-        #[method_id(title)]
+        #[method(title)]
         #[unsafe(method_family = none)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
         #[cfg(feature = "UIColor")]
-        #[method_id(backgroundColor)]
+        #[method(backgroundColor)]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundColor(&self) -> Retained<UIColor>;
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`backgroundColor`][Self::backgroundColor].
         #[method(setBackgroundColor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&UIColor>);
 
         #[cfg(feature = "UIImage")]
-        #[method_id(image)]
+        #[method(image)]
         #[unsafe(method_family = none)]
         pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         /// Setter for [`image`][Self::image].
         #[method(setImage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setImage(&self, image: Option<&UIImage>);
     }
 );
@@ -95,11 +100,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIContextualAction {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

@@ -149,14 +149,17 @@ extern_methods!(
     unsafe impl ARPlaneExtent {
         /// The rotation angle in radians of the extents around the y-axis in the anchor’s coordinate space.
         #[method(rotationOnYAxis)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rotationOnYAxis(&self) -> c_float;
 
         /// The width of the plane. Corresponds to the length of the plane along the x-axis prior to applying .rotationOnYAxis.
         #[method(width)]
+        #[unsafe(method_family = none)]
         pub unsafe fn width(&self) -> c_float;
 
         /// The height the plane. Corresponds to the length of the plane along the z-axis prior to applying .rotationOnYAxis.
         #[method(height)]
+        #[unsafe(method_family = none)]
         pub unsafe fn height(&self) -> c_float;
     }
 );
@@ -166,11 +169,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2")]
     unsafe impl ARPlaneExtent {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -221,29 +224,33 @@ extern_methods!(
     unsafe impl ARPlaneAnchor {
         /// Determines whether plane classification is supported on this device.
         #[method(isClassificationSupported)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isClassificationSupported() -> bool;
 
         /// The alignment of the plane.
         #[method(alignment)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alignment(&self) -> ARPlaneAnchorAlignment;
 
         /// The extent of the plane in the anchor’s coordinate space.
-        #[method_id(planeExtent)]
+        #[method(planeExtent)]
         #[unsafe(method_family = none)]
         pub unsafe fn planeExtent(&self) -> Retained<ARPlaneExtent>;
 
         #[cfg(feature = "ARPlaneGeometry")]
         /// Geometry of the plane in the anchor's coordinate space.
-        #[method_id(geometry)]
+        #[method(geometry)]
         #[unsafe(method_family = none)]
         pub unsafe fn geometry(&self) -> Retained<ARPlaneGeometry>;
 
         /// Classification status of the plane.
         #[method(classificationStatus)]
+        #[unsafe(method_family = none)]
         pub unsafe fn classificationStatus(&self) -> ARPlaneClassificationStatus;
 
         /// Classification of the plane.
         #[method(classification)]
+        #[unsafe(method_family = none)]
         pub unsafe fn classification(&self) -> ARPlaneClassification;
     }
 );
@@ -254,11 +261,11 @@ extern_methods!(
     #[cfg(all(feature = "ARAnchor", feature = "objc2"))]
     unsafe impl ARPlaneAnchor {
         /// Unavailable
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

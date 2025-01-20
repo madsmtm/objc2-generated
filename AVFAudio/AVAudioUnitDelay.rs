@@ -49,10 +49,12 @@ extern_methods!(
         /// Default:    1
         /// Unit:       Seconds
         #[method(delayTime)]
+        #[unsafe(method_family = none)]
         pub unsafe fn delayTime(&self) -> NSTimeInterval;
 
         /// Setter for [`delayTime`][Self::delayTime].
         #[method(setDelayTime:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelayTime(&self, delay_time: NSTimeInterval);
 
         /// Amount of the output signal fed back into the delay line
@@ -60,10 +62,12 @@ extern_methods!(
         /// Default:    50
         /// Unit:       Percent
         #[method(feedback)]
+        #[unsafe(method_family = none)]
         pub unsafe fn feedback(&self) -> c_float;
 
         /// Setter for [`feedback`][Self::feedback].
         #[method(setFeedback:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFeedback(&self, feedback: c_float);
 
         /// Cutoff frequency above which high frequency content is rolled off
@@ -71,10 +75,12 @@ extern_methods!(
         /// Default:    15000
         /// Unit:       Hertz
         #[method(lowPassCutoff)]
+        #[unsafe(method_family = none)]
         pub unsafe fn lowPassCutoff(&self) -> c_float;
 
         /// Setter for [`lowPassCutoff`][Self::lowPassCutoff].
         #[method(setLowPassCutoff:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLowPassCutoff(&self, low_pass_cutoff: c_float);
 
         /// Blend of the wet and dry signals
@@ -82,10 +88,12 @@ extern_methods!(
         /// Default:    100
         /// Unit:       Percent
         #[method(wetDryMix)]
+        #[unsafe(method_family = none)]
         pub unsafe fn wetDryMix(&self) -> c_float;
 
         /// Setter for [`wetDryMix`][Self::wetDryMix].
         #[method(setWetDryMix:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWetDryMix(&self, wet_dry_mix: c_float);
     }
 );
@@ -111,7 +119,7 @@ extern_methods!(
         /// kAudioUnitType_Panner
         /// kAudioUnitType_RemoteEffect
         /// kAudioUnitType_RemoteMusicEffect
-        #[method_id(initWithAudioComponentDescription:)]
+        #[method(initWithAudioComponentDescription:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAudioComponentDescription(
             this: Allocated<Self>,
@@ -128,11 +136,11 @@ extern_methods!(
         feature = "AVAudioUnitEffect"
     ))]
     unsafe impl AVAudioUnitDelay {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

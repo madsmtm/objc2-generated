@@ -78,13 +78,14 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLBRElement {
         #[deprecated]
-        #[method_id(clear)]
+        #[method(clear)]
         #[unsafe(method_family = none)]
         pub unsafe fn clear(&self) -> Retained<NSString>;
 
         /// Setter for [`clear`][Self::clear].
         #[deprecated]
         #[method(setClear:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setClear(&self, clear: Option<&NSString>);
     }
 );
@@ -100,7 +101,7 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLBRElement {
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -116,7 +117,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLBRElement {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

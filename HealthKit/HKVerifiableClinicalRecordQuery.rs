@@ -28,22 +28,22 @@ extern_methods!(
     #[cfg(feature = "HKQuery")]
     unsafe impl HKVerifiableClinicalRecordQuery {
         /// The record types that need to be present on desired records.
-        #[method_id(recordTypes)]
+        #[method(recordTypes)]
         #[unsafe(method_family = none)]
         pub unsafe fn recordTypes(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "HKVerifiableClinicalRecord")]
         /// The source type(s) of the records.
-        #[method_id(sourceTypes)]
+        #[method(sourceTypes)]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceTypes(&self)
             -> Retained<NSArray<HKVerifiableClinicalRecordSourceType>>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -61,7 +61,7 @@ extern_methods!(
         /// Parameter `predicate`: The predicate which records should match.
         ///
         /// Parameter `resultsHandler`: The block to invoke with the verifiable clinical records from the query.
-        #[method_id(initWithRecordTypes:predicate:resultsHandler:)]
+        #[method(initWithRecordTypes:predicate:resultsHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRecordTypes_predicate_resultsHandler(
             this: Allocated<Self>,
@@ -92,7 +92,7 @@ extern_methods!(
         /// Parameter `predicate`: The predicate which records should match.
         ///
         /// Parameter `resultsHandler`: The block to invoke with the verifiable clinical records from the query.
-        #[method_id(initWithRecordTypes:sourceTypes:predicate:resultsHandler:)]
+        #[method(initWithRecordTypes:sourceTypes:predicate:resultsHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRecordTypes_sourceTypes_predicate_resultsHandler(
             this: Allocated<Self>,

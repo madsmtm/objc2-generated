@@ -50,6 +50,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:shouldBeginEditingInDOMRange:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_shouldBeginEditingInDOMRange(
             &self,
             web_view: Option<&WebView>,
@@ -67,6 +68,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:shouldEndEditingInDOMRange:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_shouldEndEditingInDOMRange(
             &self,
             web_view: Option<&WebView>,
@@ -85,6 +87,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:shouldInsertNode:replacingDOMRange:givenAction:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_shouldInsertNode_replacingDOMRange_givenAction(
             &self,
             web_view: Option<&WebView>,
@@ -104,6 +107,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:shouldInsertText:replacingDOMRange:givenAction:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_shouldInsertText_replacingDOMRange_givenAction(
             &self,
             web_view: Option<&WebView>,
@@ -123,6 +127,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:shouldDeleteDOMRange:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_shouldDeleteDOMRange(
             &self,
             web_view: Option<&WebView>,
@@ -140,6 +145,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:shouldChangeSelectedDOMRange:toDOMRange:affinity:stillSelecting:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_shouldChangeSelectedDOMRange_toDOMRange_affinity_stillSelecting(
             &self,
             web_view: Option<&WebView>,
@@ -161,6 +167,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:shouldApplyStyle:toElementsInDOMRange:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_shouldApplyStyle_toElementsInDOMRange(
             &self,
             web_view: Option<&WebView>,
@@ -179,6 +186,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:shouldChangeTypingStyle:toStyle:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_shouldChangeTypingStyle_toStyle(
             &self,
             web_view: Option<&WebView>,
@@ -191,6 +199,7 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webView:doCommandBySelector:)]
+        #[unsafe(method_family = none)]
         unsafe fn webView_doCommandBySelector(
             &self,
             web_view: Option<&WebView>,
@@ -200,33 +209,38 @@ extern_protocol!(
         #[deprecated]
         #[optional]
         #[method(webViewDidBeginEditing:)]
+        #[unsafe(method_family = none)]
         unsafe fn webViewDidBeginEditing(&self, notification: Option<&NSNotification>);
 
         #[deprecated]
         #[optional]
         #[method(webViewDidChange:)]
+        #[unsafe(method_family = none)]
         unsafe fn webViewDidChange(&self, notification: Option<&NSNotification>);
 
         #[deprecated]
         #[optional]
         #[method(webViewDidEndEditing:)]
+        #[unsafe(method_family = none)]
         unsafe fn webViewDidEndEditing(&self, notification: Option<&NSNotification>);
 
         #[deprecated]
         #[optional]
         #[method(webViewDidChangeTypingStyle:)]
+        #[unsafe(method_family = none)]
         unsafe fn webViewDidChangeTypingStyle(&self, notification: Option<&NSNotification>);
 
         #[deprecated]
         #[optional]
         #[method(webViewDidChangeSelection:)]
+        #[unsafe(method_family = none)]
         unsafe fn webViewDidChangeSelection(&self, notification: Option<&NSNotification>);
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
-        #[method_id(undoManagerForWebView:)]
+        #[method(undoManagerForWebView:)]
         #[unsafe(method_family = none)]
         unsafe fn undoManagerForWebView(
             &self,

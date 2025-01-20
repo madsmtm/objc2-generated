@@ -27,66 +27,81 @@ extern_methods!(
     #[cfg(feature = "NSCollectionViewLayout")]
     unsafe impl NSCollectionViewGridLayout {
         #[method(margins)]
+        #[unsafe(method_family = none)]
         pub unsafe fn margins(&self) -> NSEdgeInsets;
 
         /// Setter for [`margins`][Self::margins].
         #[method(setMargins:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMargins(&self, margins: NSEdgeInsets);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(minimumInteritemSpacing)]
+        #[unsafe(method_family = none)]
         pub unsafe fn minimumInteritemSpacing(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`minimumInteritemSpacing`][Self::minimumInteritemSpacing].
         #[method(setMinimumInteritemSpacing:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMinimumInteritemSpacing(&self, minimum_interitem_spacing: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(minimumLineSpacing)]
+        #[unsafe(method_family = none)]
         pub unsafe fn minimumLineSpacing(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`minimumLineSpacing`][Self::minimumLineSpacing].
         #[method(setMinimumLineSpacing:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMinimumLineSpacing(&self, minimum_line_spacing: CGFloat);
 
         #[method(maximumNumberOfRows)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maximumNumberOfRows(&self) -> NSUInteger;
 
         /// Setter for [`maximumNumberOfRows`][Self::maximumNumberOfRows].
         #[method(setMaximumNumberOfRows:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMaximumNumberOfRows(&self, maximum_number_of_rows: NSUInteger);
 
         #[method(maximumNumberOfColumns)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maximumNumberOfColumns(&self) -> NSUInteger;
 
         /// Setter for [`maximumNumberOfColumns`][Self::maximumNumberOfColumns].
         #[method(setMaximumNumberOfColumns:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMaximumNumberOfColumns(&self, maximum_number_of_columns: NSUInteger);
 
         #[method(minimumItemSize)]
+        #[unsafe(method_family = none)]
         pub unsafe fn minimumItemSize(&self) -> NSSize;
 
         /// Setter for [`minimumItemSize`][Self::minimumItemSize].
         #[method(setMinimumItemSize:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMinimumItemSize(&self, minimum_item_size: NSSize);
 
         #[method(maximumItemSize)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maximumItemSize(&self) -> NSSize;
 
         /// Setter for [`maximumItemSize`][Self::maximumItemSize].
         #[method(setMaximumItemSize:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMaximumItemSize(&self, maximum_item_size: NSSize);
 
         #[cfg(feature = "NSColor")]
-        #[method_id(backgroundColors)]
+        #[method(backgroundColors)]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundColors(&self) -> Retained<NSArray<NSColor>>;
 
         #[cfg(feature = "NSColor")]
         /// Setter for [`backgroundColors`][Self::backgroundColors].
         #[method(setBackgroundColors:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColors(&self, background_colors: Option<&NSArray<NSColor>>);
     }
 );
@@ -95,11 +110,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSCollectionViewLayout")]
     unsafe impl NSCollectionViewGridLayout {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

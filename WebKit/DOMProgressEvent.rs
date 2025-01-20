@@ -52,14 +52,17 @@ extern_methods!(
     unsafe impl DOMProgressEvent {
         #[deprecated]
         #[method(lengthComputable)]
+        #[unsafe(method_family = none)]
         pub unsafe fn lengthComputable(&self) -> bool;
 
         #[deprecated]
         #[method(loaded)]
+        #[unsafe(method_family = none)]
         pub unsafe fn loaded(&self) -> c_ulonglong;
 
         #[deprecated]
         #[method(total)]
+        #[unsafe(method_family = none)]
         pub unsafe fn total(&self) -> c_ulonglong;
     }
 );
@@ -73,7 +76,7 @@ extern_methods!(
     ))]
     unsafe impl DOMProgressEvent {
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -87,7 +90,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMProgressEvent {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -13,13 +13,14 @@ extern_protocol!(
     pub unsafe trait VNFaceObservationAccepting: NSObjectProtocol {
         #[cfg(feature = "VNObservation")]
         /// The VNFaceObservation objects to be processed as part of the request.
-        #[method_id(inputFaceObservations)]
+        #[method(inputFaceObservations)]
         #[unsafe(method_family = none)]
         unsafe fn inputFaceObservations(&self) -> Option<Retained<NSArray<VNFaceObservation>>>;
 
         #[cfg(feature = "VNObservation")]
         /// Setter for [`inputFaceObservations`][Self::inputFaceObservations].
         #[method(setInputFaceObservations:)]
+        #[unsafe(method_family = none)]
         unsafe fn setInputFaceObservations(
             &self,
             input_face_observations: Option<&NSArray<VNFaceObservation>>,

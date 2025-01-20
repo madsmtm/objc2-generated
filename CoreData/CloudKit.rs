@@ -22,6 +22,7 @@ extern_methods!(
             feature = "objc2-cloud-kit"
         ))]
         #[method(acceptShareInvitationsFromMetadata:intoPersistentStore:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn acceptShareInvitationsFromMetadata_intoPersistentStore_completion(
             &self,
             metadata: &NSArray<CKShareMetadata>,
@@ -35,6 +36,7 @@ extern_methods!(
             feature = "objc2-cloud-kit"
         ))]
         #[method(purgeObjectsAndRecordsInZoneWithID:inPersistentStore:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn purgeObjectsAndRecordsInZoneWithID_inPersistentStore_completion(
             &self,
             zone_id: &CKRecordZoneID,
@@ -48,6 +50,7 @@ extern_methods!(
             feature = "objc2-cloud-kit"
         ))]
         #[method(persistUpdatedShare:inPersistentStore:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn persistUpdatedShare_inPersistentStore_completion(
             &self,
             share: &CKShare,
@@ -61,6 +64,7 @@ extern_methods!(
             feature = "objc2-cloud-kit"
         ))]
         #[method(fetchParticipantsMatchingLookupInfos:intoPersistentStore:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fetchParticipantsMatchingLookupInfos_intoPersistentStore_completion(
             &self,
             lookup_infos: &NSArray<CKUserIdentityLookupInfo>,
@@ -69,7 +73,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSManagedObjectID", feature = "objc2-cloud-kit"))]
-        #[method_id(fetchSharesMatchingObjectIDs:error:_)]
+        #[method(fetchSharesMatchingObjectIDs:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchSharesMatchingObjectIDs_error(
             &self,
@@ -77,7 +81,7 @@ extern_methods!(
         ) -> Result<Retained<NSDictionary<NSManagedObjectID, CKShare>>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSPersistentStore", feature = "objc2-cloud-kit"))]
-        #[method_id(fetchSharesInPersistentStore:error:_)]
+        #[method(fetchSharesInPersistentStore:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchSharesInPersistentStore_error(
             &self,
@@ -91,6 +95,7 @@ extern_methods!(
             feature = "objc2-cloud-kit"
         ))]
         #[method(shareManagedObjects:toShare:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shareManagedObjects_toShare_completion(
             &self,
             managed_objects: &NSArray<NSManagedObject>,

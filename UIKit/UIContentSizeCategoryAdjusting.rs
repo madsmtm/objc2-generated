@@ -11,10 +11,12 @@ extern_protocol!(
         NSObjectProtocol + MainThreadOnly
     {
         #[method(adjustsFontForContentSizeCategory)]
+        #[unsafe(method_family = none)]
         unsafe fn adjustsFontForContentSizeCategory(&self) -> bool;
 
         /// Setter for [`adjustsFontForContentSizeCategory`][Self::adjustsFontForContentSizeCategory].
         #[method(setAdjustsFontForContentSizeCategory:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAdjustsFontForContentSizeCategory(
             &self,
             adjusts_font_for_content_size_category: bool,

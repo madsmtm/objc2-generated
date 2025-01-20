@@ -18,67 +18,82 @@ extern_protocol!(
     pub unsafe trait CAMediaTiming {
         #[cfg(feature = "objc2-core-foundation")]
         #[method(beginTime)]
+        #[unsafe(method_family = none)]
         unsafe fn beginTime(&self) -> CFTimeInterval;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`beginTime`][Self::beginTime].
         #[method(setBeginTime:)]
+        #[unsafe(method_family = none)]
         unsafe fn setBeginTime(&self, begin_time: CFTimeInterval);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(duration)]
+        #[unsafe(method_family = none)]
         unsafe fn duration(&self) -> CFTimeInterval;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`duration`][Self::duration].
         #[method(setDuration:)]
+        #[unsafe(method_family = none)]
         unsafe fn setDuration(&self, duration: CFTimeInterval);
 
         #[method(speed)]
+        #[unsafe(method_family = none)]
         unsafe fn speed(&self) -> c_float;
 
         /// Setter for [`speed`][Self::speed].
         #[method(setSpeed:)]
+        #[unsafe(method_family = none)]
         unsafe fn setSpeed(&self, speed: c_float);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(timeOffset)]
+        #[unsafe(method_family = none)]
         unsafe fn timeOffset(&self) -> CFTimeInterval;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`timeOffset`][Self::timeOffset].
         #[method(setTimeOffset:)]
+        #[unsafe(method_family = none)]
         unsafe fn setTimeOffset(&self, time_offset: CFTimeInterval);
 
         #[method(repeatCount)]
+        #[unsafe(method_family = none)]
         unsafe fn repeatCount(&self) -> c_float;
 
         /// Setter for [`repeatCount`][Self::repeatCount].
         #[method(setRepeatCount:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRepeatCount(&self, repeat_count: c_float);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(repeatDuration)]
+        #[unsafe(method_family = none)]
         unsafe fn repeatDuration(&self) -> CFTimeInterval;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`repeatDuration`][Self::repeatDuration].
         #[method(setRepeatDuration:)]
+        #[unsafe(method_family = none)]
         unsafe fn setRepeatDuration(&self, repeat_duration: CFTimeInterval);
 
         #[method(autoreverses)]
+        #[unsafe(method_family = none)]
         unsafe fn autoreverses(&self) -> bool;
 
         /// Setter for [`autoreverses`][Self::autoreverses].
         #[method(setAutoreverses:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAutoreverses(&self, autoreverses: bool);
 
-        #[method_id(fillMode)]
+        #[method(fillMode)]
         #[unsafe(method_family = none)]
         unsafe fn fillMode(&self) -> Retained<CAMediaTimingFillMode>;
 
         /// Setter for [`fillMode`][Self::fillMode].
         #[method(setFillMode:)]
+        #[unsafe(method_family = none)]
         unsafe fn setFillMode(&self, fill_mode: &CAMediaTimingFillMode);
     }
 );

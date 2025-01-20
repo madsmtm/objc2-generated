@@ -47,12 +47,12 @@ extern_methods!(
     /// Methods declared on superclass `VNTargetedImageRequest`
     #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
     unsafe impl VNImageRegistrationRequest {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        #[method_id(initWithCompletionHandler:)]
+        #[method(initWithCompletionHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
@@ -66,7 +66,7 @@ extern_methods!(
         /// Parameter `pixelBuffer`: The pixel buffer containing the targeted image.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
-        #[method_id(initWithTargetedCVPixelBuffer:options:)]
+        #[method(initWithTargetedCVPixelBuffer:options:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCVPixelBuffer_options(
             this: Allocated<Self>,
@@ -87,7 +87,7 @@ extern_methods!(
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
-        #[method_id(initWithTargetedCVPixelBuffer:options:completionHandler:)]
+        #[method(initWithTargetedCVPixelBuffer:options:completionHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCVPixelBuffer_options_completionHandler(
             this: Allocated<Self>,
@@ -103,7 +103,7 @@ extern_methods!(
         /// Parameter `cgImage`: The CGImageRef of the targeted image.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
-        #[method_id(initWithTargetedCGImage:options:)]
+        #[method(initWithTargetedCGImage:options:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCGImage_options(
             this: Allocated<Self>,
@@ -124,7 +124,7 @@ extern_methods!(
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
-        #[method_id(initWithTargetedCGImage:options:completionHandler:)]
+        #[method(initWithTargetedCGImage:options:completionHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCGImage_options_completionHandler(
             this: Allocated<Self>,
@@ -140,7 +140,7 @@ extern_methods!(
         /// Parameter `ciImage`: The CIImage of the targeted image.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
-        #[method_id(initWithTargetedCIImage:options:)]
+        #[method(initWithTargetedCIImage:options:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCIImage_options(
             this: Allocated<Self>,
@@ -161,7 +161,7 @@ extern_methods!(
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
-        #[method_id(initWithTargetedCIImage:options:completionHandler:)]
+        #[method(initWithTargetedCIImage:options:completionHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCIImage_options_completionHandler(
             this: Allocated<Self>,
@@ -177,7 +177,7 @@ extern_methods!(
         /// Parameter `imageURL`: The URL of the targeted image.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
-        #[method_id(initWithTargetedImageURL:options:)]
+        #[method(initWithTargetedImageURL:options:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedImageURL_options(
             this: Allocated<Self>,
@@ -194,7 +194,7 @@ extern_methods!(
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
-        #[method_id(initWithTargetedImageURL:options:completionHandler:)]
+        #[method(initWithTargetedImageURL:options:completionHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedImageURL_options_completionHandler(
             this: Allocated<Self>,
@@ -210,7 +210,7 @@ extern_methods!(
         /// Parameter `imageData`: The data of the targeted image.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
-        #[method_id(initWithTargetedImageData:options:)]
+        #[method(initWithTargetedImageData:options:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedImageData_options(
             this: Allocated<Self>,
@@ -227,7 +227,7 @@ extern_methods!(
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
-        #[method_id(initWithTargetedImageData:options:completionHandler:)]
+        #[method(initWithTargetedImageData:options:completionHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedImageData_options_completionHandler(
             this: Allocated<Self>,
@@ -243,7 +243,7 @@ extern_methods!(
         /// Parameter `sampleBuffer`: The CMSampleBuffer containing the CVImageBuffer to be used by the request.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
-        #[method_id(initWithTargetedCMSampleBuffer:options:)]
+        #[method(initWithTargetedCMSampleBuffer:options:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCMSampleBuffer_options(
             this: Allocated<Self>,
@@ -264,7 +264,7 @@ extern_methods!(
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked after the request has been performed.
-        #[method_id(initWithTargetedCMSampleBuffer:options:completionHandler:)]
+        #[method(initWithTargetedCMSampleBuffer:options:completionHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCMSampleBuffer_options_completionHandler(
             this: Allocated<Self>,
@@ -279,7 +279,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
     unsafe impl VNImageRegistrationRequest {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -320,7 +320,7 @@ extern_methods!(
     unsafe impl VNTranslationalImageRegistrationRequest {
         #[cfg(feature = "VNObservation")]
         /// VNImageTranslationAlignmentObservation results.
-        #[method_id(results)]
+        #[method(results)]
         #[unsafe(method_family = none)]
         pub unsafe fn results(
             &self,
@@ -332,12 +332,12 @@ extern_methods!(
     /// Methods declared on superclass `VNTargetedImageRequest`
     #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
     unsafe impl VNTranslationalImageRegistrationRequest {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        #[method_id(initWithCompletionHandler:)]
+        #[method(initWithCompletionHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
@@ -351,7 +351,7 @@ extern_methods!(
         /// Parameter `pixelBuffer`: The pixel buffer containing the targeted image.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
-        #[method_id(initWithTargetedCVPixelBuffer:options:)]
+        #[method(initWithTargetedCVPixelBuffer:options:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCVPixelBuffer_options(
             this: Allocated<Self>,
@@ -372,7 +372,7 @@ extern_methods!(
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
-        #[method_id(initWithTargetedCVPixelBuffer:options:completionHandler:)]
+        #[method(initWithTargetedCVPixelBuffer:options:completionHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCVPixelBuffer_options_completionHandler(
             this: Allocated<Self>,
@@ -388,7 +388,7 @@ extern_methods!(
         /// Parameter `cgImage`: The CGImageRef of the targeted image.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
-        #[method_id(initWithTargetedCGImage:options:)]
+        #[method(initWithTargetedCGImage:options:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCGImage_options(
             this: Allocated<Self>,
@@ -409,7 +409,7 @@ extern_methods!(
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
-        #[method_id(initWithTargetedCGImage:options:completionHandler:)]
+        #[method(initWithTargetedCGImage:options:completionHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCGImage_options_completionHandler(
             this: Allocated<Self>,
@@ -425,7 +425,7 @@ extern_methods!(
         /// Parameter `ciImage`: The CIImage of the targeted image.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
-        #[method_id(initWithTargetedCIImage:options:)]
+        #[method(initWithTargetedCIImage:options:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCIImage_options(
             this: Allocated<Self>,
@@ -446,7 +446,7 @@ extern_methods!(
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
-        #[method_id(initWithTargetedCIImage:options:completionHandler:)]
+        #[method(initWithTargetedCIImage:options:completionHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCIImage_options_completionHandler(
             this: Allocated<Self>,
@@ -462,7 +462,7 @@ extern_methods!(
         /// Parameter `imageURL`: The URL of the targeted image.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
-        #[method_id(initWithTargetedImageURL:options:)]
+        #[method(initWithTargetedImageURL:options:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedImageURL_options(
             this: Allocated<Self>,
@@ -479,7 +479,7 @@ extern_methods!(
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
-        #[method_id(initWithTargetedImageURL:options:completionHandler:)]
+        #[method(initWithTargetedImageURL:options:completionHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedImageURL_options_completionHandler(
             this: Allocated<Self>,
@@ -495,7 +495,7 @@ extern_methods!(
         /// Parameter `imageData`: The data of the targeted image.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
-        #[method_id(initWithTargetedImageData:options:)]
+        #[method(initWithTargetedImageData:options:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedImageData_options(
             this: Allocated<Self>,
@@ -512,7 +512,7 @@ extern_methods!(
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
-        #[method_id(initWithTargetedImageData:options:completionHandler:)]
+        #[method(initWithTargetedImageData:options:completionHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedImageData_options_completionHandler(
             this: Allocated<Self>,
@@ -528,7 +528,7 @@ extern_methods!(
         /// Parameter `sampleBuffer`: The CMSampleBuffer containing the CVImageBuffer to be used by the request.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
-        #[method_id(initWithTargetedCMSampleBuffer:options:)]
+        #[method(initWithTargetedCMSampleBuffer:options:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCMSampleBuffer_options(
             this: Allocated<Self>,
@@ -549,7 +549,7 @@ extern_methods!(
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked after the request has been performed.
-        #[method_id(initWithTargetedCMSampleBuffer:options:completionHandler:)]
+        #[method(initWithTargetedCMSampleBuffer:options:completionHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCMSampleBuffer_options_completionHandler(
             this: Allocated<Self>,
@@ -564,7 +564,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
     unsafe impl VNTranslationalImageRegistrationRequest {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -609,7 +609,7 @@ extern_methods!(
     unsafe impl VNHomographicImageRegistrationRequest {
         #[cfg(feature = "VNObservation")]
         /// VNImageHomographicAlignmentObservation results.
-        #[method_id(results)]
+        #[method(results)]
         #[unsafe(method_family = none)]
         pub unsafe fn results(
             &self,
@@ -621,12 +621,12 @@ extern_methods!(
     /// Methods declared on superclass `VNTargetedImageRequest`
     #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
     unsafe impl VNHomographicImageRegistrationRequest {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        #[method_id(initWithCompletionHandler:)]
+        #[method(initWithCompletionHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
@@ -640,7 +640,7 @@ extern_methods!(
         /// Parameter `pixelBuffer`: The pixel buffer containing the targeted image.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
-        #[method_id(initWithTargetedCVPixelBuffer:options:)]
+        #[method(initWithTargetedCVPixelBuffer:options:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCVPixelBuffer_options(
             this: Allocated<Self>,
@@ -661,7 +661,7 @@ extern_methods!(
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
-        #[method_id(initWithTargetedCVPixelBuffer:options:completionHandler:)]
+        #[method(initWithTargetedCVPixelBuffer:options:completionHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCVPixelBuffer_options_completionHandler(
             this: Allocated<Self>,
@@ -677,7 +677,7 @@ extern_methods!(
         /// Parameter `cgImage`: The CGImageRef of the targeted image.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
-        #[method_id(initWithTargetedCGImage:options:)]
+        #[method(initWithTargetedCGImage:options:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCGImage_options(
             this: Allocated<Self>,
@@ -698,7 +698,7 @@ extern_methods!(
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
-        #[method_id(initWithTargetedCGImage:options:completionHandler:)]
+        #[method(initWithTargetedCGImage:options:completionHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCGImage_options_completionHandler(
             this: Allocated<Self>,
@@ -714,7 +714,7 @@ extern_methods!(
         /// Parameter `ciImage`: The CIImage of the targeted image.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
-        #[method_id(initWithTargetedCIImage:options:)]
+        #[method(initWithTargetedCIImage:options:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCIImage_options(
             this: Allocated<Self>,
@@ -735,7 +735,7 @@ extern_methods!(
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
-        #[method_id(initWithTargetedCIImage:options:completionHandler:)]
+        #[method(initWithTargetedCIImage:options:completionHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCIImage_options_completionHandler(
             this: Allocated<Self>,
@@ -751,7 +751,7 @@ extern_methods!(
         /// Parameter `imageURL`: The URL of the targeted image.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
-        #[method_id(initWithTargetedImageURL:options:)]
+        #[method(initWithTargetedImageURL:options:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedImageURL_options(
             this: Allocated<Self>,
@@ -768,7 +768,7 @@ extern_methods!(
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
-        #[method_id(initWithTargetedImageURL:options:completionHandler:)]
+        #[method(initWithTargetedImageURL:options:completionHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedImageURL_options_completionHandler(
             this: Allocated<Self>,
@@ -784,7 +784,7 @@ extern_methods!(
         /// Parameter `imageData`: The data of the targeted image.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
-        #[method_id(initWithTargetedImageData:options:)]
+        #[method(initWithTargetedImageData:options:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedImageData_options(
             this: Allocated<Self>,
@@ -801,7 +801,7 @@ extern_methods!(
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
-        #[method_id(initWithTargetedImageData:options:completionHandler:)]
+        #[method(initWithTargetedImageData:options:completionHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedImageData_options_completionHandler(
             this: Allocated<Self>,
@@ -817,7 +817,7 @@ extern_methods!(
         /// Parameter `sampleBuffer`: The CMSampleBuffer containing the CVImageBuffer to be used by the request.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
-        #[method_id(initWithTargetedCMSampleBuffer:options:)]
+        #[method(initWithTargetedCMSampleBuffer:options:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCMSampleBuffer_options(
             this: Allocated<Self>,
@@ -838,7 +838,7 @@ extern_methods!(
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the image.
         ///
         /// Parameter `completionHandler`: The block that is invoked after the request has been performed.
-        #[method_id(initWithTargetedCMSampleBuffer:options:completionHandler:)]
+        #[method(initWithTargetedCMSampleBuffer:options:completionHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCMSampleBuffer_options_completionHandler(
             this: Allocated<Self>,
@@ -853,7 +853,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
     unsafe impl VNHomographicImageRegistrationRequest {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -11,12 +11,15 @@ extern_category!(
     #[doc(alias = "NSItemSourceInfo")]
     pub unsafe trait NSItemProviderNSItemSourceInfo {
         #[method(sourceFrame)]
+        #[unsafe(method_family = none)]
         unsafe fn sourceFrame(&self) -> NSRect;
 
         #[method(containerFrame)]
+        #[unsafe(method_family = none)]
         unsafe fn containerFrame(&self) -> NSRect;
 
         #[method(preferredPresentationSize)]
+        #[unsafe(method_family = none)]
         unsafe fn preferredPresentationSize(&self) -> NSSize;
     }
 

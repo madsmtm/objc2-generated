@@ -39,7 +39,7 @@ extern_methods!(
         ///
         ///
         /// See also: CLLocationManager
-        #[method_id(ssid)]
+        #[method(ssid)]
         #[unsafe(method_family = none)]
         pub unsafe fn ssid(&self) -> Option<Retained<NSString>>;
 
@@ -53,7 +53,7 @@ extern_methods!(
         ///
         ///
         /// See also: CLLocationManager
-        #[method_id(ssidData)]
+        #[method(ssidData)]
         #[unsafe(method_family = none)]
         pub unsafe fn ssidData(&self) -> Option<Retained<NSData>>;
 
@@ -67,26 +67,28 @@ extern_methods!(
         ///
         ///
         /// See also: CLLocationManager
-        #[method_id(bssid)]
+        #[method(bssid)]
         #[unsafe(method_family = none)]
         pub unsafe fn bssid(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "CWChannel")]
         /// The operating channel of the Wi-Fi device.
-        #[method_id(wlanChannel)]
+        #[method(wlanChannel)]
         #[unsafe(method_family = none)]
         pub unsafe fn wlanChannel(&self) -> Option<Retained<CWChannel>>;
 
         /// Returns the received signal strength indication (RSSI) measurement (dBm) for the Wi-Fi device.
         #[method(rssiValue)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rssiValue(&self) -> NSInteger;
 
         /// Returns the noise measurement (dBm) for the Wi-Fi device.
         #[method(noiseMeasurement)]
+        #[unsafe(method_family = none)]
         pub unsafe fn noiseMeasurement(&self) -> NSInteger;
 
         /// Returns information element data included in beacon or probe response frames.
-        #[method_id(informationElementData)]
+        #[method(informationElementData)]
         #[unsafe(method_family = none)]
         pub unsafe fn informationElementData(&self) -> Option<Retained<NSData>>;
 
@@ -97,12 +99,13 @@ extern_methods!(
         ///
         ///
         /// See also: CLLocationManager
-        #[method_id(countryCode)]
+        #[method(countryCode)]
         #[unsafe(method_family = none)]
         pub unsafe fn countryCode(&self) -> Option<Retained<NSString>>;
 
         /// Returns the beacon interval (ms) for the Wi-Fi device.
         #[method(beaconInterval)]
+        #[unsafe(method_family = none)]
         pub unsafe fn beaconInterval(&self) -> NSInteger;
 
         /// Returns: YES if the Wi-Fi device is part of an IBSS network, NO otherwise.
@@ -110,6 +113,7 @@ extern_methods!(
         ///
         /// Indicates whether or not the Wi-Fi device is participating in an independent basic service set (IBSS), or ad-hoc Wi-Fi network.
         #[method(ibss)]
+        #[unsafe(method_family = none)]
         pub unsafe fn ibss(&self) -> bool;
 
         /// Parameter `network`: A CWNetwork object.
@@ -131,6 +135,7 @@ extern_methods!(
         /// </i>
         /// properties are equal.
         #[method(isEqualToNetwork:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isEqualToNetwork(&self, network: &CWNetwork) -> bool;
 
         #[cfg(feature = "CoreWLANTypes")]
@@ -149,6 +154,7 @@ extern_methods!(
         ///
         /// Determine which security types a Wi-Fi device supports.
         #[method(supportsSecurity:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn supportsSecurity(&self, security: CWSecurity) -> bool;
 
         #[cfg(feature = "CoreWLANTypes")]
@@ -160,6 +166,7 @@ extern_methods!(
         ///
         /// Determine which PHY modes a Wi-Fi device supports.
         #[method(supportsPHYMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn supportsPHYMode(&self, phy_mode: CWPHYMode) -> bool;
     }
 );
@@ -167,11 +174,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CWNetwork {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

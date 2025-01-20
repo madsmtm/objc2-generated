@@ -42,7 +42,7 @@ extern_methods!(
             feature = "objc2-foundation"
         ))]
         /// The Function Blocks associated with the UMP endpoint, if any.
-        #[method_id(mutableFunctionBlocks)]
+        #[method(mutableFunctionBlocks)]
         #[unsafe(method_family = none)]
         pub unsafe fn mutableFunctionBlocks(
             &self,
@@ -55,6 +55,7 @@ extern_methods!(
         ))]
         /// Setter for [`mutableFunctionBlocks`][Self::mutableFunctionBlocks].
         #[method(setMutableFunctionBlocks:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMutableFunctionBlocks(
             &self,
             mutable_function_blocks: &NSArray<MIDIUMPMutableFunctionBlock>,
@@ -62,6 +63,7 @@ extern_methods!(
 
         /// The enable state of the endpoint.
         #[method(isEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isEnabled(&self) -> bool;
 
         #[cfg(all(
@@ -87,7 +89,7 @@ extern_methods!(
         ///
         /// This operation will fail if the device ID information is malformed or if virtual MIDI endpoint creation
         /// is not allowed (for example, on iOS, if your app doesn't list 'audio' in UIBackgroundModes).
-        #[method_id(initWithName:deviceInfo:productInstanceID:MIDIProtocol:destinationCallback:)]
+        #[method(initWithName:deviceInfo:productInstanceID:MIDIProtocol:destinationCallback:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithName_deviceInfo_productInstanceID_MIDIProtocol_destinationCallback(
             this: Allocated<Self>,
@@ -112,6 +114,7 @@ extern_methods!(
         ///
         /// This operation will fail if the name could not be set.
         #[method(setName:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setName_error(&self, name: &NSString) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(
@@ -136,6 +139,7 @@ extern_methods!(
         /// MIDIUMPEndpoint Function Block configuration is static.
         /// Returns YES if the Function Block configuration was set successfully.
         #[method(registerFunctionBlocks:markAsStatic:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn registerFunctionBlocks_markAsStatic_error(
             &self,
             function_blocks: &NSArray<MIDIUMPMutableFunctionBlock>,
@@ -158,6 +162,7 @@ extern_methods!(
         /// Note that Function Blocks may only be registered to uncached MIDIUMPMutableEndpoint
         /// objects.
         #[method(setEnabled:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setEnabled_error(&self, is_enabled: bool) -> Result<(), Retained<NSError>>;
     }
 );
@@ -167,7 +172,7 @@ extern_methods!(
     /// Methods declared on superclass `MIDIUMPEndpoint`
     #[cfg(all(feature = "MIDIUMPEndpoint", feature = "objc2"))]
     unsafe impl MIDIUMPMutableEndpoint {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -178,7 +183,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MIDIUMPEndpoint", feature = "objc2"))]
     unsafe impl MIDIUMPMutableEndpoint {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

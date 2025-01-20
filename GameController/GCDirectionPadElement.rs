@@ -20,43 +20,43 @@ extern_protocol!(
     pub unsafe trait GCDirectionPadElement: GCPhysicalInputElement {
         #[cfg(feature = "GCAxis2DInput")]
         /// The x,y position of the dpad input.
-        #[method_id(xyAxes)]
+        #[method(xyAxes)]
         #[unsafe(method_family = none)]
         unsafe fn xyAxes(&self) -> Retained<ProtocolObject<dyn GCAxis2DInput>>;
 
         #[cfg(feature = "GCAxisInput")]
         /// The horizontal/x-component of the dpad input.
-        #[method_id(xAxis)]
+        #[method(xAxis)]
         #[unsafe(method_family = none)]
         unsafe fn xAxis(&self) -> Retained<ProtocolObject<dyn GCAxisInput>>;
 
         #[cfg(feature = "GCAxisInput")]
         /// The vertical/y-component of the dpad input.
-        #[method_id(yAxis)]
+        #[method(yAxis)]
         #[unsafe(method_family = none)]
         unsafe fn yAxis(&self) -> Retained<ProtocolObject<dyn GCAxisInput>>;
 
         #[cfg(all(feature = "GCLinearInput", feature = "GCPressedStateInput"))]
         /// The positive y-component of the dpad input.
-        #[method_id(up)]
+        #[method(up)]
         #[unsafe(method_family = none)]
         unsafe fn up(&self) -> Retained<AnyObject /* GCLinearInput+ GCPressedStateInput */>;
 
         #[cfg(all(feature = "GCLinearInput", feature = "GCPressedStateInput"))]
         /// The negative y-component of the dpad input.
-        #[method_id(down)]
+        #[method(down)]
         #[unsafe(method_family = none)]
         unsafe fn down(&self) -> Retained<AnyObject /* GCLinearInput+ GCPressedStateInput */>;
 
         #[cfg(all(feature = "GCLinearInput", feature = "GCPressedStateInput"))]
         /// The negative x-component of the dpad input.
-        #[method_id(left)]
+        #[method(left)]
         #[unsafe(method_family = none)]
         unsafe fn left(&self) -> Retained<AnyObject /* GCLinearInput+ GCPressedStateInput */>;
 
         #[cfg(all(feature = "GCLinearInput", feature = "GCPressedStateInput"))]
         /// The positive x-component of the dpad input.
-        #[method_id(right)]
+        #[method(right)]
         #[unsafe(method_family = none)]
         unsafe fn right(&self) -> Retained<AnyObject /* GCLinearInput+ GCPressedStateInput */>;
     }

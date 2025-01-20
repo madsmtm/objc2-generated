@@ -29,11 +29,11 @@ unsafe impl NSObjectProtocol for AVCaptureInput {}
 
 extern_methods!(
     unsafe impl AVCaptureInput {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -41,7 +41,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an array of AVCaptureInputPort objects, each exposing an interface to a single stream of media data provided by an input.
-        #[method_id(ports)]
+        #[method(ports)]
         #[unsafe(method_family = none)]
         pub unsafe fn ports(&self) -> Retained<NSArray<AVCaptureInputPort>>;
     }
@@ -74,11 +74,11 @@ unsafe impl NSObjectProtocol for AVCaptureInputPort {}
 
 extern_methods!(
     unsafe impl AVCaptureInputPort {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -86,7 +86,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an AVCaptureInput instance that owns the receiver.
-        #[method_id(input)]
+        #[method(input)]
         #[unsafe(method_family = none)]
         pub unsafe fn input(&self) -> Retained<AVCaptureInput>;
 
@@ -95,7 +95,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is a constant describing the type of media, such as AVMediaTypeVideo or AVMediaTypeAudio, provided by the receiver. Media type constants are defined in AVMediaFormat.h.
-        #[method_id(mediaType)]
+        #[method(mediaType)]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaType(&self) -> Retained<AVMediaType>;
 
@@ -104,7 +104,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is a CMFormatDescription that describes the format of the media data currently provided by the receiver. Clients can be notified of changes to the format by observing the AVCaptureInputPortFormatDescriptionDidChangeNotification.
-        #[method_id(formatDescription)]
+        #[method(formatDescription)]
         #[unsafe(method_family = none)]
         pub unsafe fn formatDescription(&self) -> Option<Retained<CMFormatDescription>>;
 
@@ -113,10 +113,12 @@ extern_methods!(
         ///
         /// The value of this property is a BOOL that determines whether the receiver should provide data to outputs when a session is running. Clients can set this property to fine tune which media streams from a given input will be used during capture. The default value is YES.
         #[method(isEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isEnabled(&self) -> bool;
 
         /// Setter for [`isEnabled`][Self::isEnabled].
         #[method(setEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
         #[cfg(feature = "objc2-core-media")]
@@ -124,7 +126,7 @@ extern_methods!(
         ///
         ///
         /// The clock is read-only.
-        #[method_id(clock)]
+        #[method(clock)]
         #[unsafe(method_family = none)]
         pub unsafe fn clock(&self) -> Option<Retained<CMClock>>;
 
@@ -133,7 +135,7 @@ extern_methods!(
         ///
         ///
         /// All AVCaptureInputPorts contained in an AVCaptureDeviceInput's ports array have the same sourceDeviceType, which is equal to deviceInput.device.deviceType. All of these ports are legal for use in an AVCaptureSession. When working with virtual devices such as the DualCamera in an AVCaptureMultiCamSession, it is possible to stream media from the virtual device's constituent device streams by discovering and connecting hidden ports. In the case of the DualCamera, its constituent devices are the WideAngle camera and the Telephoto camera. By calling -[AVCaptureDeviceInput portsWithMediaType:sourceDeviceType:sourceDevicePosition:], you may discover ports originating from one or more of the virtual device's constituent devices and then make connections using those ports. Constituent device ports are never present in their owning virtual device input's ports array. As an example, to find the video port originating from the DualCamera's Telephoto camera constituent device, you call [dualCameraDeviceInput portsWithMediaType:AVMediaTypeVideo sourceDeviceType:AVCaptureDeviceTypeBuiltInTelephotoCamera sourceDevicePosition:dualCamera.position] and use the first port in the resulting array.
-        #[method_id(sourceDeviceType)]
+        #[method(sourceDeviceType)]
         #[unsafe(method_family = none)]
         pub unsafe fn sourceDeviceType(&self) -> Option<Retained<AVCaptureDeviceType>>;
 
@@ -147,6 +149,7 @@ extern_methods!(
         /// To discover the audio port that captures front-facing audio, use [microphoneDeviceInput portsWithMediaType:AVMediaTypeAudio sourceDeviceType:AVCaptureDeviceTypeMicrophone sourceDevicePosition:AVCaptureDevicePositionFront].firstObject.
         /// To discover the audio port that captures back-facing audio, use [microphoneDeviceInput portsWithMediaType:AVMediaTypeAudio sourceDeviceType:AVCaptureDeviceTypeMicrophone sourceDevicePosition:AVCaptureDevicePositionBack].firstObject.
         #[method(sourceDevicePosition)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sourceDevicePosition(&self) -> AVCaptureDevicePosition;
     }
 );
@@ -210,7 +213,7 @@ extern_methods!(
         ///
         ///
         /// This method returns an instance of AVCaptureDeviceInput that can be used to capture data from an AVCaptureDevice in an AVCaptureSession. This method attempts to open the device for capture, taking exclusive control of it if necessary. If the device cannot be opened because it is no longer available or because it is in use, for example, this method returns nil, and the optional outError parameter points to an NSError describing the problem.
-        #[method_id(deviceInputWithDevice:error:_)]
+        #[method(deviceInputWithDevice:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn deviceInputWithDevice_error(
             device: &AVCaptureDevice,
@@ -228,7 +231,7 @@ extern_methods!(
         ///
         ///
         /// This method creates an instance of AVCaptureDeviceInput that can be used to capture data from an AVCaptureDevice in an AVCaptureSession. This method attempts to open the device for capture, taking exclusive control of it if necessary. If the device cannot be opened because it is no longer available or because it is in use, for example, this method returns nil, and the optional outError parameter points to an NSError describing the problem.
-        #[method_id(initWithDevice:error:_)]
+        #[method(initWithDevice:error:_)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_error(
             this: Allocated<Self>,
@@ -240,7 +243,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is the AVCaptureDevice instance that was used to create the receiver.
-        #[method_id(device)]
+        #[method(device)]
         #[unsafe(method_family = none)]
         pub unsafe fn device(&self) -> Retained<AVCaptureDevice>;
 
@@ -251,10 +254,12 @@ extern_methods!(
         ///
         /// Note that if you manually set the device's min frame rate, max frame rate, or max exposure duration, your custom values will override the device defaults regardless of whether you've set this property to YES.
         #[method(unifiedAutoExposureDefaultsEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn unifiedAutoExposureDefaultsEnabled(&self) -> bool;
 
         /// Setter for [`unifiedAutoExposureDefaultsEnabled`][Self::unifiedAutoExposureDefaultsEnabled].
         #[method(setUnifiedAutoExposureDefaultsEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUnifiedAutoExposureDefaultsEnabled(
             &self,
             unified_auto_exposure_defaults_enabled: bool,
@@ -284,7 +289,7 @@ extern_methods!(
         /// As of iOS 13, constituent device ports may not be connected to AVCapturePhotoOutput instances. Clients who wish to capture multiple photos from a virtual device should use AVCapturePhotoOutput's virtualDeviceConstituentPhotoDeliveryEnabled feature.
         ///
         /// When used in conjunction with an audio device, this method allows you to discover microphones in different AVCaptureDevicePositions. When you intend to work with an AVCaptureMultiCamSession, you may use these ports to make connections and simultaneously capture both front facing and back facing audio simultaneously to two different outputs. When used with an AVCaptureMultiCamSession, the audio device port whose sourceDevicePosition is AVCaptureDevicePositionUnspecified produces omnidirectional sound.
-        #[method_id(portsWithMediaType:sourceDeviceType:sourceDevicePosition:)]
+        #[method(portsWithMediaType:sourceDeviceType:sourceDevicePosition:)]
         #[unsafe(method_family = none)]
         pub unsafe fn portsWithMediaType_sourceDeviceType_sourceDevicePosition(
             &self,
@@ -301,11 +306,13 @@ extern_methods!(
         ///
         /// When a device input is added to a session, this property reverts back to the default of kCMTimeInvalid (no override).
         #[method(videoMinFrameDurationOverride)]
+        #[unsafe(method_family = none)]
         pub unsafe fn videoMinFrameDurationOverride(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`videoMinFrameDurationOverride`][Self::videoMinFrameDurationOverride].
         #[method(setVideoMinFrameDurationOverride:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setVideoMinFrameDurationOverride(
             &self,
             video_min_frame_duration_override: CMTime,
@@ -323,6 +330,7 @@ extern_methods!(
         ///
         /// Multichannel audio modes are not supported when used in conjunction with AVCaptureMultiCamSession.
         #[method(isMultichannelAudioModeSupported:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isMultichannelAudioModeSupported(
             &self,
             multichannel_audio_mode: AVCaptureMultichannelAudioMode,
@@ -335,10 +343,12 @@ extern_methods!(
         ///
         /// The default value is AVCaptureMultichannelAudioModeNone, in which case the default single channel audio recording is used.
         #[method(multichannelAudioMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn multichannelAudioMode(&self) -> AVCaptureMultichannelAudioMode;
 
         /// Setter for [`multichannelAudioMode`][Self::multichannelAudioMode].
         #[method(setMultichannelAudioMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMultichannelAudioMode(
             &self,
             multichannel_audio_mode: AVCaptureMultichannelAudioMode,
@@ -349,6 +359,7 @@ extern_methods!(
         ///
         /// YES if the device supports wind noise removal, NO otherwise.
         #[method(isWindNoiseRemovalSupported)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isWindNoiseRemovalSupported(&self) -> bool;
 
         /// Specifies whether or not wind noise is removed during audio capture.
@@ -356,10 +367,12 @@ extern_methods!(
         ///
         /// Wind noise removal is available when the AVCaptureDeviceInput multichannelAudioMode property is set to any value other than AVCaptureMultichannelAudioModeNone.
         #[method(isWindNoiseRemovalEnabled)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isWindNoiseRemovalEnabled(&self) -> bool;
 
         /// Setter for [`isWindNoiseRemovalEnabled`][Self::isWindNoiseRemovalEnabled].
         #[method(setWindNoiseRemovalEnabled:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setWindNoiseRemovalEnabled(&self, wind_noise_removal_enabled: bool);
     }
 );
@@ -367,11 +380,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `AVCaptureInput`
     unsafe impl AVCaptureDeviceInput {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -397,11 +410,11 @@ extern_methods!(
         ///
         ///
         /// This method creates an instance of AVCaptureScreenInput using the main display whose id is returned from CGMainDisplayID().
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
@@ -417,7 +430,7 @@ extern_methods!(
         ///
         ///
         /// This method creates an instance of AVCaptureScreenInput that can be used to capture data from a display in an AVCaptureSession. This method validates the displayID. If the display cannot be used because it is not available on the system, for example, this method returns nil.
-        #[method_id(initWithDisplayID:)]
+        #[method(initWithDisplayID:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDisplayID(
             this: Allocated<Self>,
@@ -430,11 +443,13 @@ extern_methods!(
         ///
         /// An AVCaptureScreenInput's minFrameDuration is the reciprocal of its maximum frame rate. This property may be used to request a maximum frame rate at which the input produces video frames. The requested rate may not be achievable due to overall bandwidth, so actual frame rates may be lower.
         #[method(minFrameDuration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn minFrameDuration(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`minFrameDuration`][Self::minFrameDuration].
         #[method(setMinFrameDuration:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMinFrameDuration(&self, min_frame_duration: CMTime);
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -443,11 +458,13 @@ extern_methods!(
         ///
         /// By default, AVCaptureScreenInput captures the entire area of the displayID with which it is associated. To limit the capture rectangle to a subsection of the screen, set the cropRect property, which defines a smaller section of the screen in the screen's coordinate system. The origin (0,0) is the bottom-left corner of the screen.
         #[method(cropRect)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cropRect(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`cropRect`][Self::cropRect].
         #[method(setCropRect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCropRect(&self, crop_rect: CGRect);
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -456,11 +473,13 @@ extern_methods!(
         ///
         /// By default, AVCaptureScreenInput captures the video buffers from the display at a scale factor of 1.0 (no scaling). Set this property to scale the buffers by a given factor. For instance, a 320x240 capture area with a scaleFactor of 2.0f produces video buffers at 640x480.
         #[method(scaleFactor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scaleFactor(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`scaleFactor`][Self::scaleFactor].
         #[method(setScaleFactor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setScaleFactor(&self, scale_factor: CGFloat);
 
         /// A property indicating whether mouse clicks should be highlighted in the captured output.
@@ -468,10 +487,12 @@ extern_methods!(
         ///
         /// By default, AVCaptureScreenInput does not highlight mouse clicks in its captured output. If this property is set to YES, mouse clicks are highlighted (a circle is drawn around the mouse for the duration of the click) in the captured output.
         #[method(capturesMouseClicks)]
+        #[unsafe(method_family = none)]
         pub unsafe fn capturesMouseClicks(&self) -> bool;
 
         /// Setter for [`capturesMouseClicks`][Self::capturesMouseClicks].
         #[method(setCapturesMouseClicks:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCapturesMouseClicks(&self, captures_mouse_clicks: bool);
 
         /// A property indicating whether the cursor should be rendered to the captured output.
@@ -481,10 +502,12 @@ extern_methods!(
         /// <CoreMediaIO
         /// /CMIOSampleBuffer.h>
         #[method(capturesCursor)]
+        #[unsafe(method_family = none)]
         pub unsafe fn capturesCursor(&self) -> bool;
 
         /// Setter for [`capturesCursor`][Self::capturesCursor].
         #[method(setCapturesCursor:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCapturesCursor(&self, captures_cursor: bool);
 
         /// A property indicating whether duplicate frames should be removed by the input.
@@ -495,11 +518,13 @@ extern_methods!(
         /// As of 10.10, this property has been deprecated and is ignored. Clients wishing to re-create this functionality can use an AVCaptureVideoDataOutput and compare frame contents in their own code. If they wish to write a movie file, they can then pass the unique frames to an AVAssetWriterInput.
         #[deprecated = "No longer supported."]
         #[method(removesDuplicateFrames)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removesDuplicateFrames(&self) -> bool;
 
         /// Setter for [`removesDuplicateFrames`][Self::removesDuplicateFrames].
         #[deprecated = "No longer supported."]
         #[method(setRemovesDuplicateFrames:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRemovesDuplicateFrames(&self, removes_duplicate_frames: bool);
     }
 );
@@ -532,7 +557,7 @@ extern_methods!(
         ///
         ///
         /// This method returns an instance of AVCaptureMetadataInput that can be used to capture AVTimedMetadataGroups supplied by the client to an AVCaptureSession.
-        #[method_id(metadataInputWithFormatDescription:clock:)]
+        #[method(metadataInputWithFormatDescription:clock:)]
         #[unsafe(method_family = none)]
         pub unsafe fn metadataInputWithFormatDescription_clock(
             desc: &CMMetadataFormatDescription,
@@ -551,7 +576,7 @@ extern_methods!(
         ///
         ///
         /// This method creates an instance of AVCaptureMetadataInput that can be used to capture AVTimedMetadataGroups supplied by the client to an AVCaptureSession.
-        #[method_id(initWithFormatDescription:clock:)]
+        #[method(initWithFormatDescription:clock:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFormatDescription_clock(
             this: Allocated<Self>,
@@ -568,6 +593,7 @@ extern_methods!(
         ///
         /// The provided AVTimedMetadataGroup will be provided to the AVCaptureSession. The group's presentation timestamp is expressed in the context of the clock supplied to the initializer. It is not required that the AVTimedMetadataGroup have a duration; an empty AVTimedMetadataGroup can be supplied to denote a period of no metadata.
         #[method(appendTimedMetadataGroup:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn appendTimedMetadataGroup_error(
             &self,
             metadata: &AVTimedMetadataGroup,
@@ -578,11 +604,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `AVCaptureInput`
     unsafe impl AVCaptureMetadataInput {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

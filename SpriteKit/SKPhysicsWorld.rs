@@ -15,11 +15,13 @@ extern_protocol!(
         #[cfg(feature = "SKPhysicsContact")]
         #[optional]
         #[method(didBeginContact:)]
+        #[unsafe(method_family = none)]
         unsafe fn didBeginContact(&self, contact: &SKPhysicsContact);
 
         #[cfg(feature = "SKPhysicsContact")]
         #[optional]
         #[method(didEndContact:)]
+        #[unsafe(method_family = none)]
         unsafe fn didEndContact(&self, contact: &SKPhysicsContact);
     }
 );
@@ -42,23 +44,27 @@ extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// A global 2D vector specifying the field force acceleration due to gravity. The unit is meters per second so standard earth gravity would be { 0.0, +/-9.8 }.
         #[method(gravity)]
+        #[unsafe(method_family = none)]
         pub unsafe fn gravity(&self) -> CGVector;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`gravity`][Self::gravity].
         #[method(setGravity:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setGravity(&self, gravity: CGVector);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(speed)]
+        #[unsafe(method_family = none)]
         pub unsafe fn speed(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`speed`][Self::speed].
         #[method(setSpeed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSpeed(&self, speed: CGFloat);
 
-        #[method_id(contactDelegate)]
+        #[method(contactDelegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn contactDelegate(
             &self,
@@ -66,6 +72,7 @@ extern_methods!(
 
         /// Setter for [`contactDelegate`][Self::contactDelegate].
         #[method(setContactDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setContactDelegate(
             &self,
             contact_delegate: Option<&ProtocolObject<dyn SKPhysicsContactDelegate>>,
@@ -73,27 +80,30 @@ extern_methods!(
 
         #[cfg(feature = "SKPhysicsJoint")]
         #[method(addJoint:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addJoint(&self, joint: &SKPhysicsJoint);
 
         #[cfg(feature = "SKPhysicsJoint")]
         #[method(removeJoint:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeJoint(&self, joint: &SKPhysicsJoint);
 
         #[method(removeAllJoints)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeAllJoints(&self);
 
         #[cfg(all(feature = "SKPhysicsBody", feature = "objc2-core-foundation"))]
-        #[method_id(bodyAtPoint:)]
+        #[method(bodyAtPoint:)]
         #[unsafe(method_family = none)]
         pub unsafe fn bodyAtPoint(&self, point: CGPoint) -> Option<Retained<SKPhysicsBody>>;
 
         #[cfg(all(feature = "SKPhysicsBody", feature = "objc2-core-foundation"))]
-        #[method_id(bodyInRect:)]
+        #[method(bodyInRect:)]
         #[unsafe(method_family = none)]
         pub unsafe fn bodyInRect(&self, rect: CGRect) -> Option<Retained<SKPhysicsBody>>;
 
         #[cfg(all(feature = "SKPhysicsBody", feature = "objc2-core-foundation"))]
-        #[method_id(bodyAlongRayStart:end:)]
+        #[method(bodyAlongRayStart:end:)]
         #[unsafe(method_family = none)]
         pub unsafe fn bodyAlongRayStart_end(
             &self,
@@ -107,6 +117,7 @@ extern_methods!(
             feature = "objc2-core-foundation"
         ))]
         #[method(enumerateBodiesAtPoint:usingBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn enumerateBodiesAtPoint_usingBlock(
             &self,
             point: CGPoint,
@@ -119,6 +130,7 @@ extern_methods!(
             feature = "objc2-core-foundation"
         ))]
         #[method(enumerateBodiesInRect:usingBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn enumerateBodiesInRect_usingBlock(
             &self,
             rect: CGRect,
@@ -131,6 +143,7 @@ extern_methods!(
             feature = "objc2-core-foundation"
         ))]
         #[method(enumerateBodiesAlongRayStart:end:usingBlock:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn enumerateBodiesAlongRayStart_end_usingBlock(
             &self,
             start: CGPoint,
@@ -143,11 +156,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKPhysicsWorld {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

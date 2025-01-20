@@ -23,6 +23,7 @@ extern_protocol!(
         ///
         /// the returned bounding box is in local space of the receiver.
         #[method(getBoundingBoxMin:max:)]
+        #[unsafe(method_family = none)]
         unsafe fn getBoundingBoxMin_max(&self, min: *mut SCNVector3, max: *mut SCNVector3) -> bool;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
@@ -34,6 +35,7 @@ extern_protocol!(
         ///
         /// Passing nil as arguments will recompute the original bounding box of the receiver.
         #[method(setBoundingBoxMin:max:)]
+        #[unsafe(method_family = none)]
         unsafe fn setBoundingBoxMin_max(&self, min: *mut SCNVector3, max: *mut SCNVector3);
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
@@ -45,6 +47,7 @@ extern_protocol!(
         ///
         /// the returned bounding sphere is in local space of the receiver.
         #[method(getBoundingSphereCenter:radius:)]
+        #[unsafe(method_family = none)]
         unsafe fn getBoundingSphereCenter_radius(
             &self,
             center: *mut SCNVector3,

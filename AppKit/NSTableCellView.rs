@@ -54,54 +54,61 @@ unsafe impl NSUserInterfaceItemIdentification for NSTableCellView {}
 extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSTableCellView {
-        #[method_id(objectValue)]
+        #[method(objectValue)]
         #[unsafe(method_family = none)]
         pub unsafe fn objectValue(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`objectValue`][Self::objectValue].
         #[method(setObjectValue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setObjectValue(&self, object_value: Option<&AnyObject>);
 
         #[cfg(all(feature = "NSControl", feature = "NSTextField"))]
-        #[method_id(textField)]
+        #[method(textField)]
         #[unsafe(method_family = none)]
         pub unsafe fn textField(&self) -> Option<Retained<NSTextField>>;
 
         #[cfg(all(feature = "NSControl", feature = "NSTextField"))]
         /// Setter for [`textField`][Self::textField].
         #[method(setTextField:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTextField(&self, text_field: Option<&NSTextField>);
 
         #[cfg(all(feature = "NSControl", feature = "NSImageView"))]
-        #[method_id(imageView)]
+        #[method(imageView)]
         #[unsafe(method_family = none)]
         pub unsafe fn imageView(&self) -> Option<Retained<NSImageView>>;
 
         #[cfg(all(feature = "NSControl", feature = "NSImageView"))]
         /// Setter for [`imageView`][Self::imageView].
         #[method(setImageView:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setImageView(&self, image_view: Option<&NSImageView>);
 
         #[cfg(feature = "NSCell")]
         #[method(backgroundStyle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn backgroundStyle(&self) -> NSBackgroundStyle;
 
         #[cfg(feature = "NSCell")]
         /// Setter for [`backgroundStyle`][Self::backgroundStyle].
         #[method(setBackgroundStyle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundStyle(&self, background_style: NSBackgroundStyle);
 
         #[cfg(feature = "NSTableView")]
         #[method(rowSizeStyle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rowSizeStyle(&self) -> NSTableViewRowSizeStyle;
 
         #[cfg(feature = "NSTableView")]
         /// Setter for [`rowSizeStyle`][Self::rowSizeStyle].
         #[method(setRowSizeStyle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRowSizeStyle(&self, row_size_style: NSTableViewRowSizeStyle);
 
         #[cfg(feature = "NSDraggingItem")]
-        #[method_id(draggingImageComponents)]
+        #[method(draggingImageComponents)]
         #[unsafe(method_family = none)]
         pub unsafe fn draggingImageComponents(&self)
             -> Retained<NSArray<NSDraggingImageComponent>>;
@@ -112,11 +119,11 @@ extern_methods!(
     /// Methods declared on superclass `NSView`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSTableCellView {
-        #[method_id(initWithFrame:)]
+        #[method(initWithFrame:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -129,7 +136,7 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSTableCellView {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -139,7 +146,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSTableCellView {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

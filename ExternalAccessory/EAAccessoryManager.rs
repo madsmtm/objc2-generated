@@ -71,12 +71,13 @@ unsafe impl NSObjectProtocol for EAAccessoryManager {}
 
 extern_methods!(
     unsafe impl EAAccessoryManager {
-        #[method_id(sharedAccessoryManager)]
+        #[method(sharedAccessoryManager)]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedAccessoryManager() -> Retained<EAAccessoryManager>;
 
         #[cfg(feature = "block2")]
         #[method(showBluetoothAccessoryPickerWithNameFilter:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn showBluetoothAccessoryPickerWithNameFilter_completion(
             &self,
             predicate: Option<&NSPredicate>,
@@ -84,13 +85,15 @@ extern_methods!(
         );
 
         #[method(registerForLocalNotifications)]
+        #[unsafe(method_family = none)]
         pub unsafe fn registerForLocalNotifications(&self);
 
         #[method(unregisterForLocalNotifications)]
+        #[unsafe(method_family = none)]
         pub unsafe fn unregisterForLocalNotifications(&self);
 
         #[cfg(feature = "EAAccessory")]
-        #[method_id(connectedAccessories)]
+        #[method(connectedAccessories)]
         #[unsafe(method_family = none)]
         pub unsafe fn connectedAccessories(&self) -> Retained<NSArray<EAAccessory>>;
     }
@@ -99,11 +102,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl EAAccessoryManager {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

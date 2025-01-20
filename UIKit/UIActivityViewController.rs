@@ -83,11 +83,11 @@ unsafe impl UITraitEnvironment for UIActivityViewController {}
 extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIActivityViewController {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(initWithNibName:bundle:)]
+        #[method(initWithNibName:bundle:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -95,7 +95,7 @@ extern_methods!(
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -103,7 +103,7 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "UIActivity")]
-        #[method_id(initWithActivityItems:applicationActivities:)]
+        #[method(initWithActivityItems:applicationActivities:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithActivityItems_applicationActivities(
             this: Allocated<Self>,
@@ -114,12 +114,14 @@ extern_methods!(
         #[cfg(all(feature = "UIActivity", feature = "block2"))]
         #[deprecated]
         #[method(completionHandler)]
+        #[unsafe(method_family = none)]
         pub unsafe fn completionHandler(&self) -> UIActivityViewControllerCompletionHandler;
 
         #[cfg(all(feature = "UIActivity", feature = "block2"))]
         /// Setter for [`completionHandler`][Self::completionHandler].
         #[deprecated]
         #[method(setCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCompletionHandler(
             &self,
             completion_handler: UIActivityViewControllerCompletionHandler,
@@ -127,6 +129,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIActivity", feature = "block2"))]
         #[method(completionWithItemsHandler)]
+        #[unsafe(method_family = none)]
         pub unsafe fn completionWithItemsHandler(
             &self,
         ) -> UIActivityViewControllerCompletionWithItemsHandler;
@@ -134,19 +137,21 @@ extern_methods!(
         #[cfg(all(feature = "UIActivity", feature = "block2"))]
         /// Setter for [`completionWithItemsHandler`][Self::completionWithItemsHandler].
         #[method(setCompletionWithItemsHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCompletionWithItemsHandler(
             &self,
             completion_with_items_handler: UIActivityViewControllerCompletionWithItemsHandler,
         );
 
         #[cfg(feature = "UIActivity")]
-        #[method_id(excludedActivityTypes)]
+        #[method(excludedActivityTypes)]
         #[unsafe(method_family = none)]
         pub unsafe fn excludedActivityTypes(&self) -> Option<Retained<NSArray<UIActivityType>>>;
 
         #[cfg(feature = "UIActivity")]
         /// Setter for [`excludedActivityTypes`][Self::excludedActivityTypes].
         #[method(setExcludedActivityTypes:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setExcludedActivityTypes(
             &self,
             excluded_activity_types: Option<&NSArray<UIActivityType>>,
@@ -154,10 +159,12 @@ extern_methods!(
 
         /// Hides some sections of the activity view controller. Default is none
         #[method(excludedActivitySectionTypes)]
+        #[unsafe(method_family = none)]
         pub unsafe fn excludedActivitySectionTypes(&self) -> UIActivitySectionTypes;
 
         /// Setter for [`excludedActivitySectionTypes`][Self::excludedActivitySectionTypes].
         #[method(setExcludedActivitySectionTypes:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setExcludedActivitySectionTypes(
             &self,
             excluded_activity_section_types: UIActivitySectionTypes,
@@ -167,10 +174,12 @@ extern_methods!(
         /// The prominent activity can only be chosen by the system.
         /// Defaults to YES.
         #[method(allowsProminentActivity)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowsProminentActivity(&self) -> bool;
 
         /// Setter for [`allowsProminentActivity`][Self::allowsProminentActivity].
         #[method(setAllowsProminentActivity:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAllowsProminentActivity(&self, allows_prominent_activity: bool);
     }
 );
@@ -179,7 +188,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIActivityViewController {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -190,7 +199,7 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIActivityViewController {
         #[cfg(feature = "UIActivityItemsConfigurationReading")]
-        #[method_id(initWithActivityItemsConfiguration:)]
+        #[method(initWithActivityItemsConfiguration:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithActivityItemsConfiguration(
             this: Allocated<Self>,

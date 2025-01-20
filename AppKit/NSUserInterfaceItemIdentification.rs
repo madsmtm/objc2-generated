@@ -13,12 +13,13 @@ pub type NSUserInterfaceItemIdentifier = NSString;
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsuserinterfaceitemidentification?language=objc)
     pub unsafe trait NSUserInterfaceItemIdentification {
-        #[method_id(identifier)]
+        #[method(identifier)]
         #[unsafe(method_family = none)]
         unsafe fn identifier(&self) -> Option<Retained<NSUserInterfaceItemIdentifier>>;
 
         /// Setter for [`identifier`][Self::identifier].
         #[method(setIdentifier:)]
+        #[unsafe(method_family = none)]
         unsafe fn setIdentifier(&self, identifier: Option<&NSUserInterfaceItemIdentifier>);
     }
 );

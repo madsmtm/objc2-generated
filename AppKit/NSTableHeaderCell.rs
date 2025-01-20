@@ -82,6 +82,7 @@ extern_methods!(
     unsafe impl NSTableHeaderCell {
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(drawSortIndicatorWithFrame:inView:ascending:priority:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn drawSortIndicatorWithFrame_inView_ascending_priority(
             &self,
             cell_frame: NSRect,
@@ -91,6 +92,7 @@ extern_methods!(
         );
 
         #[method(sortIndicatorRectForBounds:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sortIndicatorRectForBounds(&self, rect: NSRect) -> NSRect;
     }
 );
@@ -103,16 +105,16 @@ extern_methods!(
         feature = "NSTextFieldCell"
     ))]
     unsafe impl NSTableHeaderCell {
-        #[method_id(initTextCell:)]
+        #[method(initTextCell:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
-        #[method_id(initImageCell:)]
+        #[method(initImageCell:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initImageCell(
             this: Allocated<Self>,
@@ -129,7 +131,7 @@ extern_methods!(
         feature = "NSTextFieldCell"
     ))]
     unsafe impl NSTableHeaderCell {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -143,7 +145,7 @@ extern_methods!(
         feature = "NSTextFieldCell"
     ))]
     unsafe impl NSTableHeaderCell {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

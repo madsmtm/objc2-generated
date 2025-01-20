@@ -12,7 +12,7 @@ extern_protocol!(
         UIPasteConfigurationSupporting + MainThreadOnly
     {
         #[cfg(feature = "UITextPasteDelegate")]
-        #[method_id(pasteDelegate)]
+        #[method(pasteDelegate)]
         #[unsafe(method_family = none)]
         unsafe fn pasteDelegate(&self)
             -> Option<Retained<ProtocolObject<dyn UITextPasteDelegate>>>;
@@ -21,6 +21,7 @@ extern_protocol!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`pasteDelegate`][Self::pasteDelegate].
         #[method(setPasteDelegate:)]
+        #[unsafe(method_family = none)]
         unsafe fn setPasteDelegate(
             &self,
             paste_delegate: Option<&ProtocolObject<dyn UITextPasteDelegate>>,

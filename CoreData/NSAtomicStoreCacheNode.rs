@@ -19,7 +19,7 @@ unsafe impl NSObjectProtocol for NSAtomicStoreCacheNode {}
 extern_methods!(
     unsafe impl NSAtomicStoreCacheNode {
         #[cfg(feature = "NSManagedObjectID")]
-        #[method_id(initWithObjectID:)]
+        #[method(initWithObjectID:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithObjectID(
             this: Allocated<Self>,
@@ -27,11 +27,11 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSManagedObjectID")]
-        #[method_id(objectID)]
+        #[method(objectID)]
         #[unsafe(method_family = none)]
         pub unsafe fn objectID(&self) -> Retained<NSManagedObjectID>;
 
-        #[method_id(propertyCache)]
+        #[method(propertyCache)]
         #[unsafe(method_family = none)]
         pub unsafe fn propertyCache(
             &self,
@@ -39,16 +39,18 @@ extern_methods!(
 
         /// Setter for [`propertyCache`][Self::propertyCache].
         #[method(setPropertyCache:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPropertyCache(
             &self,
             property_cache: Option<&NSMutableDictionary<NSString, AnyObject>>,
         );
 
-        #[method_id(valueForKey:)]
+        #[method(valueForKey:)]
         #[unsafe(method_family = none)]
         pub unsafe fn valueForKey(&self, key: &NSString) -> Option<Retained<AnyObject>>;
 
         #[method(setValue:forKey:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setValue_forKey(&self, value: Option<&AnyObject>, key: &NSString);
     }
 );
@@ -56,11 +58,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSAtomicStoreCacheNode {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

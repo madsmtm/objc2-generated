@@ -37,6 +37,7 @@ extern_methods!(
         /// The default is 0.0.
         #[deprecated = "Use Metal Performance Shaders Graph or BNNS instead."]
         #[method(momentumScale)]
+        #[unsafe(method_family = none)]
         pub unsafe fn momentumScale(&self) -> c_float;
 
         /// The smoothing constant.
@@ -44,6 +45,7 @@ extern_methods!(
         /// The default is 0.99.
         #[deprecated = "Use Metal Performance Shaders Graph or BNNS instead."]
         #[method(alpha)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alpha(&self) -> c_float;
 
         /// A term added to improve numerical stability.
@@ -51,6 +53,7 @@ extern_methods!(
         /// The default is 1e-8.
         #[deprecated = "Use Metal Performance Shaders Graph or BNNS instead."]
         #[method(epsilon)]
+        #[unsafe(method_family = none)]
         pub unsafe fn epsilon(&self) -> c_float;
 
         /// If True, compute the centered RMSProp, the gradient is normalized by an estimation of its variance.
@@ -58,6 +61,7 @@ extern_methods!(
         /// The default is false.
         #[deprecated = "Use Metal Performance Shaders Graph or BNNS instead."]
         #[method(isCentered)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isCentered(&self) -> bool;
 
         #[cfg(feature = "MLCOptimizerDescriptor")]
@@ -65,7 +69,7 @@ extern_methods!(
         ///
         /// Returns: A new MLCRMSPropOptimizer object.
         #[deprecated = "Use Metal Performance Shaders Graph or BNNS instead."]
-        #[method_id(optimizerWithDescriptor:)]
+        #[method(optimizerWithDescriptor:)]
         #[unsafe(method_family = none)]
         pub unsafe fn optimizerWithDescriptor(
             optimizer_descriptor: &MLCOptimizerDescriptor,
@@ -86,7 +90,7 @@ extern_methods!(
         ///
         /// Returns: A new MLCRMSPropOptimizer object.
         #[deprecated = "Use Metal Performance Shaders Graph or BNNS instead."]
-        #[method_id(optimizerWithDescriptor:momentumScale:alpha:epsilon:isCentered:)]
+        #[method(optimizerWithDescriptor:momentumScale:alpha:epsilon:isCentered:)]
         #[unsafe(method_family = none)]
         pub unsafe fn optimizerWithDescriptor_momentumScale_alpha_epsilon_isCentered(
             optimizer_descriptor: &MLCOptimizerDescriptor,
@@ -103,12 +107,12 @@ extern_methods!(
     #[cfg(feature = "MLCOptimizer")]
     unsafe impl MLCRMSPropOptimizer {
         #[deprecated]
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

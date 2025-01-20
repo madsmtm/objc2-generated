@@ -50,7 +50,7 @@ extern_methods!(
         /// Parameter `captions`: The captions that will be included in the group. The array is coped.
         ///
         /// Returns: A newly-initialized caption group.
-        #[method_id(initWithCaptions:timeRange:)]
+        #[method(initWithCaptions:timeRange:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCaptions_timeRange(
             this: Allocated<Self>,
@@ -66,7 +66,7 @@ extern_methods!(
         /// Parameter `timeRange`: The time range for which there are no captions.
         ///
         /// Returns: A newly-initialized empty caption group.
-        #[method_id(initWithTimeRange:)]
+        #[method(initWithTimeRange:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTimeRange(
             this: Allocated<Self>,
@@ -78,13 +78,14 @@ extern_methods!(
         ///
         /// If there are no captions in the group (i.e. the value of the captions property is an empty array), then the value of this property represents the time range of a sequence where no captions are present.
         #[method(timeRange)]
+        #[unsafe(method_family = none)]
         pub unsafe fn timeRange(&self) -> CMTimeRange;
 
         #[cfg(feature = "AVCaption")]
         /// An array of AVCaption objects.
         ///
         /// If the value is an empty array, the caption group represents a region of the timeline in which there are no captions.
-        #[method_id(captions)]
+        #[method(captions)]
         #[unsafe(method_family = none)]
         pub unsafe fn captions(&self) -> Retained<NSArray<AVCaption>>;
     }
@@ -93,11 +94,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVCaptionGroup {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

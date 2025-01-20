@@ -57,69 +57,83 @@ extern_methods!(
         ///
         /// The default value is 0.001f
         #[method(learningRate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn learningRate(&self) -> c_float;
 
         /// Setter for [`learningRate`][Self::learningRate].
         #[method(setLearningRate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLearningRate(&self, learning_rate: c_float);
 
         /// The gradientRescale at which we apply to incoming gradient values
         ///
         /// The default value is 1.0
         #[method(gradientRescale)]
+        #[unsafe(method_family = none)]
         pub unsafe fn gradientRescale(&self) -> c_float;
 
         /// Setter for [`gradientRescale`][Self::gradientRescale].
         #[method(setGradientRescale:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setGradientRescale(&self, gradient_rescale: c_float);
 
         /// A bool which decides if gradient will be clipped
         ///
         /// The default value is NO
         #[method(applyGradientClipping)]
+        #[unsafe(method_family = none)]
         pub unsafe fn applyGradientClipping(&self) -> bool;
 
         /// Setter for [`applyGradientClipping`][Self::applyGradientClipping].
         #[method(setApplyGradientClipping:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setApplyGradientClipping(&self, apply_gradient_clipping: bool);
 
         /// The maximum value at which incoming gradient will be clipped before rescaling, applyGradientClipping must be true
         #[method(gradientClipMax)]
+        #[unsafe(method_family = none)]
         pub unsafe fn gradientClipMax(&self) -> c_float;
 
         /// Setter for [`gradientClipMax`][Self::gradientClipMax].
         #[method(setGradientClipMax:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setGradientClipMax(&self, gradient_clip_max: c_float);
 
         /// The minimum value at which incoming gradient will be clipped before rescaling, applyGradientClipping must be true
         #[method(gradientClipMin)]
+        #[unsafe(method_family = none)]
         pub unsafe fn gradientClipMin(&self) -> c_float;
 
         /// Setter for [`gradientClipMin`][Self::gradientClipMin].
         #[method(setGradientClipMin:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setGradientClipMin(&self, gradient_clip_min: c_float);
 
         /// The regularizationScale at which we apply L1 or L2 regularization, it gets ignored if regularization is None
         ///
         /// The default value is 0.0
         #[method(regularizationScale)]
+        #[unsafe(method_family = none)]
         pub unsafe fn regularizationScale(&self) -> c_float;
 
         /// Setter for [`regularizationScale`][Self::regularizationScale].
         #[method(setRegularizationScale:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRegularizationScale(&self, regularization_scale: c_float);
 
         /// The regularizationType which we apply.
         ///
         /// The default value is MPSRegularizationTypeNone
         #[method(regularizationType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn regularizationType(&self) -> MPSNNRegularizationType;
 
         /// Setter for [`regularizationType`][Self::regularizationType].
         #[method(setRegularizationType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRegularizationType(&self, regularization_type: MPSNNRegularizationType);
 
-        #[method_id(initWithLearningRate:gradientRescale:regularizationType:regularizationScale:)]
+        #[method(initWithLearningRate:gradientRescale:regularizationType:regularizationScale:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLearningRate_gradientRescale_regularizationType_regularizationScale(
             this: Allocated<Self>,
@@ -129,7 +143,7 @@ extern_methods!(
             regularization_scale: c_float,
         ) -> Retained<Self>;
 
-        #[method_id(initWithLearningRate:gradientRescale:applyGradientClipping:gradientClipMax:gradientClipMin:regularizationType:regularizationScale:)]
+        #[method(initWithLearningRate:gradientRescale:applyGradientClipping:gradientClipMax:gradientClipMin:regularizationType:regularizationScale:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLearningRate_gradientRescale_applyGradientClipping_gradientClipMax_gradientClipMin_regularizationType_regularizationScale(
             this: Allocated<Self>,
@@ -142,7 +156,7 @@ extern_methods!(
             regularization_scale: c_float,
         ) -> Retained<Self>;
 
-        #[method_id(optimizerDescriptorWithLearningRate:gradientRescale:regularizationType:regularizationScale:)]
+        #[method(optimizerDescriptorWithLearningRate:gradientRescale:regularizationType:regularizationScale:)]
         #[unsafe(method_family = none)]
         pub unsafe fn optimizerDescriptorWithLearningRate_gradientRescale_regularizationType_regularizationScale(
             learning_rate: c_float,
@@ -151,7 +165,7 @@ extern_methods!(
             regularization_scale: c_float,
         ) -> Retained<Self>;
 
-        #[method_id(optimizerDescriptorWithLearningRate:gradientRescale:applyGradientClipping:gradientClipMax:gradientClipMin:regularizationType:regularizationScale:)]
+        #[method(optimizerDescriptorWithLearningRate:gradientRescale:applyGradientClipping:gradientClipMax:gradientClipMin:regularizationType:regularizationScale:)]
         #[unsafe(method_family = none)]
         pub unsafe fn optimizerDescriptorWithLearningRate_gradientRescale_applyGradientClipping_gradientClipMax_gradientClipMin_regularizationType_regularizationScale(
             learning_rate: c_float,
@@ -168,11 +182,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNOptimizerDescriptor {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -216,45 +230,53 @@ extern_methods!(
         ///
         /// The default value is 1e-3
         #[method(learningRate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn learningRate(&self) -> c_float;
 
         /// The gradientRescale at which we apply to incoming gradient values
         ///
         /// The default value is 1.0
         #[method(gradientRescale)]
+        #[unsafe(method_family = none)]
         pub unsafe fn gradientRescale(&self) -> c_float;
 
         /// A bool which decides if gradient will be clipped
         ///
         /// The default value is NO
         #[method(applyGradientClipping)]
+        #[unsafe(method_family = none)]
         pub unsafe fn applyGradientClipping(&self) -> bool;
 
         /// Setter for [`applyGradientClipping`][Self::applyGradientClipping].
         #[method(setApplyGradientClipping:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setApplyGradientClipping(&self, apply_gradient_clipping: bool);
 
         /// The maximum value at which incoming gradient will be clipped before rescaling, applyGradientClipping must be true
         #[method(gradientClipMax)]
+        #[unsafe(method_family = none)]
         pub unsafe fn gradientClipMax(&self) -> c_float;
 
         /// The minimum value at which incoming gradient will be clipped before rescaling, applyGradientClipping must be true
         #[method(gradientClipMin)]
+        #[unsafe(method_family = none)]
         pub unsafe fn gradientClipMin(&self) -> c_float;
 
         /// The regularizationScale at which we apply L1 or L2 regularization, it gets ignored if regularization is None
         ///
         /// The default value is 0.0
         #[method(regularizationScale)]
+        #[unsafe(method_family = none)]
         pub unsafe fn regularizationScale(&self) -> c_float;
 
         /// The regularizationType which we apply.
         ///
         /// The default value is MPSRegularizationTypeNone
         #[method(regularizationType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn regularizationType(&self) -> MPSNNRegularizationType;
 
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -262,6 +284,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[method(setLearningRate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLearningRate(&self, new_learning_rate: c_float);
     }
 );
@@ -278,7 +301,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -298,7 +321,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -312,11 +335,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNNOptimizer {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -369,6 +392,7 @@ extern_methods!(
         ///
         /// Default value is 0.0
         #[method(momentumScale)]
+        #[unsafe(method_family = none)]
         pub unsafe fn momentumScale(&self) -> c_float;
 
         /// Nesterov momentum is considered an improvement on the usual momentum update
@@ -377,12 +401,14 @@ extern_methods!(
         ///
         /// Note: Maps to old useNestrovMomentum property
         #[method(useNesterovMomentum)]
+        #[unsafe(method_family = none)]
         pub unsafe fn useNesterovMomentum(&self) -> bool;
 
         #[method(useNestrovMomentum)]
+        #[unsafe(method_family = none)]
         pub unsafe fn useNestrovMomentum(&self) -> bool;
 
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -398,7 +424,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A valid MPSNNOptimizerStochasticGradientDescent object or nil, if failure.
-        #[method_id(initWithDevice:learningRate:)]
+        #[method(initWithDevice:learningRate:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_learningRate(
             this: Allocated<Self>,
@@ -419,7 +445,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A valid MPSNNOptimizerMomentum object or nil, if failure.
-        #[method_id(initWithDevice:momentumScale:useNesterovMomentum:optimizerDescriptor:)]
+        #[method(initWithDevice:momentumScale:useNesterovMomentum:optimizerDescriptor:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_momentumScale_useNesterovMomentum_optimizerDescriptor(
             this: Allocated<Self>,
@@ -429,7 +455,7 @@ extern_methods!(
             optimizer_descriptor: &MPSNNOptimizerDescriptor,
         ) -> Retained<Self>;
 
-        #[method_id(initWithDevice:momentumScale:useNestrovMomentum:optimizerDescriptor:)]
+        #[method(initWithDevice:momentumScale:useNestrovMomentum:optimizerDescriptor:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_momentumScale_useNestrovMomentum_optimizerDescriptor(
             this: Allocated<Self>,
@@ -473,6 +499,7 @@ extern_methods!(
         /// g    is gradient of error wrt variable
         /// m[t] is momentum of gradients it is a state we keep updating every update iteration
         #[method(encodeToCommandBuffer:inputGradientVector:inputValuesVector:inputMomentumVector:resultValuesVector:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_inputGradientVector_inputValuesVector_inputMomentumVector_resultValuesVector(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -484,6 +511,7 @@ extern_methods!(
 
         #[cfg(feature = "MPSMatrix")]
         #[method(encodeToCommandBuffer:inputGradientMatrix:inputValuesMatrix:inputMomentumMatrix:resultValuesMatrix:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_inputGradientMatrix_inputValuesMatrix_inputMomentumMatrix_resultValuesMatrix(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -533,6 +561,7 @@ extern_methods!(
         /// g    is gradient of error wrt variable
         /// m[t] is momentum of gradients it is a state we keep updating every update iteration
         #[method(encodeToCommandBuffer:convolutionGradientState:convolutionSourceState:inputMomentumVectors:resultState:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_convolutionGradientState_convolutionSourceState_inputMomentumVectors_resultState(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -581,6 +610,7 @@ extern_methods!(
         /// g    is gradient of error wrt variable
         /// m[t] is momentum of gradients it is a state we keep updating every update iteration
         #[method(encodeToCommandBuffer:batchNormalizationState:inputMomentumVectors:resultState:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_batchNormalizationState_inputMomentumVectors_resultState(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -630,6 +660,7 @@ extern_methods!(
         /// g    is gradient of error wrt variable
         /// m[t] is momentum of gradients it is a state we keep updating every update iteration
         #[method(encodeToCommandBuffer:batchNormalizationGradientState:batchNormalizationSourceState:inputMomentumVectors:resultState:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_batchNormalizationGradientState_batchNormalizationSourceState_inputMomentumVectors_resultState(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -653,7 +684,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -673,7 +704,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -687,11 +718,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNNOptimizerStochasticGradientDescent {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -739,15 +770,17 @@ extern_methods!(
         ///
         /// Default value is 0.9
         #[method(decay)]
+        #[unsafe(method_family = none)]
         pub unsafe fn decay(&self) -> c_double;
 
         /// The epsilon at which we update values
         ///
         /// This value is usually used to ensure to avoid divide by 0, default value is 1e-8
         #[method(epsilon)]
+        #[unsafe(method_family = none)]
         pub unsafe fn epsilon(&self) -> c_float;
 
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -763,7 +796,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A valid MPSNNOptimizerRMSProp object or nil, if failure.
-        #[method_id(initWithDevice:learningRate:)]
+        #[method(initWithDevice:learningRate:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_learningRate(
             this: Allocated<Self>,
@@ -784,7 +817,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A valid MPSNNOptimizerRMSProp object or nil, if failure.
-        #[method_id(initWithDevice:decay:epsilon:optimizerDescriptor:)]
+        #[method(initWithDevice:decay:epsilon:optimizerDescriptor:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_decay_epsilon_optimizerDescriptor(
             this: Allocated<Self>,
@@ -820,6 +853,7 @@ extern_methods!(
         /// g    is gradient of error wrt variable
         /// s[t] is weighted sum of squares of gradients
         #[method(encodeToCommandBuffer:inputGradientVector:inputValuesVector:inputSumOfSquaresVector:resultValuesVector:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_inputGradientVector_inputValuesVector_inputSumOfSquaresVector_resultValuesVector(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -831,6 +865,7 @@ extern_methods!(
 
         #[cfg(feature = "MPSMatrix")]
         #[method(encodeToCommandBuffer:inputGradientMatrix:inputValuesMatrix:inputSumOfSquaresMatrix:resultValuesMatrix:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_inputGradientMatrix_inputValuesMatrix_inputSumOfSquaresMatrix_resultValuesMatrix(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -872,6 +907,7 @@ extern_methods!(
         /// g    is gradient of error wrt variable
         /// s[t] is weighted sum of squares of gradients
         #[method(encodeToCommandBuffer:convolutionGradientState:convolutionSourceState:inputSumOfSquaresVectors:resultState:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_convolutionGradientState_convolutionSourceState_inputSumOfSquaresVectors_resultState(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -912,6 +948,7 @@ extern_methods!(
         /// g    is gradient of error wrt variable
         /// s[t] is weighted sum of squares of gradients
         #[method(encodeToCommandBuffer:batchNormalizationState:inputSumOfSquaresVectors:resultState:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_batchNormalizationState_inputSumOfSquaresVectors_resultState(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -953,6 +990,7 @@ extern_methods!(
         /// g    is gradient of error wrt variable
         /// s[t] is weighted sum of squares of gradients
         #[method(encodeToCommandBuffer:batchNormalizationGradientState:batchNormalizationSourceState:inputSumOfSquaresVectors:resultState:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_batchNormalizationGradientState_batchNormalizationSourceState_inputSumOfSquaresVectors_resultState(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -976,7 +1014,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -996,7 +1034,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -1010,11 +1048,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNNOptimizerRMSProp {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -1074,29 +1112,34 @@ extern_methods!(
         ///
         /// Default value is 0.9
         #[method(beta1)]
+        #[unsafe(method_family = none)]
         pub unsafe fn beta1(&self) -> c_double;
 
         /// The beta2 at which we update values
         ///
         /// Default value is 0.999
         #[method(beta2)]
+        #[unsafe(method_family = none)]
         pub unsafe fn beta2(&self) -> c_double;
 
         /// The epsilon at which we update values
         ///
         /// This value is usually used to ensure to avoid divide by 0, default value is 1e-8
         #[method(epsilon)]
+        #[unsafe(method_family = none)]
         pub unsafe fn epsilon(&self) -> c_float;
 
         /// Current timeStep for the update, number of times update has occurred
         #[method(timeStep)]
+        #[unsafe(method_family = none)]
         pub unsafe fn timeStep(&self) -> NSUInteger;
 
         /// Setter for [`timeStep`][Self::timeStep].
         #[method(setTimeStep:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTimeStep(&self, time_step: NSUInteger);
 
-        #[method_id(initWithDevice:)]
+        #[method(initWithDevice:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
@@ -1112,7 +1155,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A valid MPSNNOptimizerAdam object or nil, if failure.
-        #[method_id(initWithDevice:learningRate:)]
+        #[method(initWithDevice:learningRate:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_learningRate(
             this: Allocated<Self>,
@@ -1137,7 +1180,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A valid MPSNNOptimizerAdam object or nil, if failure.
-        #[method_id(initWithDevice:beta1:beta2:epsilon:timeStep:optimizerDescriptor:)]
+        #[method(initWithDevice:beta1:beta2:epsilon:timeStep:optimizerDescriptor:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDevice_beta1_beta2_epsilon_timeStep_optimizerDescriptor(
             this: Allocated<Self>,
@@ -1178,6 +1221,7 @@ extern_methods!(
         /// v[t]     = beta2 * v[t-1] + (1 - beta2) * (g ^ 2)
         /// variable = variable - lr[t] * m[t] / (sqrt(v[t]) + epsilon)
         #[method(encodeToCommandBuffer:inputGradientVector:inputValuesVector:inputMomentumVector:inputVelocityVector:resultValuesVector:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_inputGradientVector_inputValuesVector_inputMomentumVector_inputVelocityVector_resultValuesVector(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1190,6 +1234,7 @@ extern_methods!(
 
         #[cfg(feature = "MPSMatrix")]
         #[method(encodeToCommandBuffer:inputGradientMatrix:inputValuesMatrix:inputMomentumMatrix:inputVelocityMatrix:resultValuesMatrix:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_inputGradientMatrix_inputValuesMatrix_inputMomentumMatrix_inputVelocityMatrix_resultValuesMatrix(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1232,6 +1277,7 @@ extern_methods!(
         /// maxVel[t] = max(maxVel[t-1],v[t])
         /// variable = variable - lr[t] * m[t] / (sqrt(maxVel[t]) + epsilon)
         #[method(encodeToCommandBuffer:inputGradientVector:inputValuesVector:inputMomentumVector:inputVelocityVector:maximumVelocityVector:resultValuesVector:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_inputGradientVector_inputValuesVector_inputMomentumVector_inputVelocityVector_maximumVelocityVector_resultValuesVector(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1245,6 +1291,7 @@ extern_methods!(
 
         #[cfg(feature = "MPSMatrix")]
         #[method(encodeToCommandBuffer:inputGradientMatrix:inputValuesMatrix:inputMomentumMatrix:inputVelocityMatrix:maximumVelocityMatrix:resultValuesMatrix:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_inputGradientMatrix_inputValuesMatrix_inputMomentumMatrix_inputVelocityMatrix_maximumVelocityMatrix_resultValuesMatrix(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1292,6 +1339,7 @@ extern_methods!(
         /// v[t]     = beta2 * v[t-1] + (1 - beta2) * (g ^ 2)
         /// variable = variable - lr[t] * m[t] / (sqrt(v[t]) + epsilon)
         #[method(encodeToCommandBuffer:convolutionGradientState:convolutionSourceState:inputMomentumVectors:inputVelocityVectors:resultState:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_convolutionGradientState_convolutionSourceState_inputMomentumVectors_inputVelocityVectors_resultState(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1343,6 +1391,7 @@ extern_methods!(
         /// maxVel[t] = max(maxVel[t-1],v[t])
         /// variable = variable - lr[t] * m[t] / (sqrt(maxVel[t]) + epsilon)
         #[method(encodeToCommandBuffer:convolutionGradientState:convolutionSourceState:inputMomentumVectors:inputVelocityVectors:maximumVelocityVectors:resultState:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_convolutionGradientState_convolutionSourceState_inputMomentumVectors_inputVelocityVectors_maximumVelocityVectors_resultState(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1389,6 +1438,7 @@ extern_methods!(
         /// v[t]     = beta2 * v[t-1] + (1 - beta2) * (g ^ 2)
         /// variable = variable - lr[t] * m[t] / (sqrt(v[t]) + epsilon)
         #[method(encodeToCommandBuffer:batchNormalizationState:inputMomentumVectors:inputVelocityVectors:resultState:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_batchNormalizationState_inputMomentumVectors_inputVelocityVectors_resultState(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1438,6 +1488,7 @@ extern_methods!(
         /// maxVel[t] = max(maxVel[t-1],v[t])
         /// variable = variable - lr[t] * m[t] / (sqrt(maxVel[t]) + epsilon)
         #[method(encodeToCommandBuffer:batchNormalizationState:inputMomentumVectors:inputVelocityVectors:maximumVelocityVectors:resultState:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_batchNormalizationState_inputMomentumVectors_inputVelocityVectors_maximumVelocityVectors_resultState(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1485,6 +1536,7 @@ extern_methods!(
         /// v[t]     = beta2 * v[t-1] + (1 - beta2) * (g ^ 2)
         /// variable = variable - lr[t] * m[t] / (sqrt(v[t]) + epsilon)
         #[method(encodeToCommandBuffer:batchNormalizationGradientState:batchNormalizationSourceState:inputMomentumVectors:inputVelocityVectors:resultState:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_batchNormalizationGradientState_batchNormalizationSourceState_inputMomentumVectors_inputVelocityVectors_resultState(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1537,6 +1589,7 @@ extern_methods!(
         /// maxVel[t] = max(maxVel[t-1],v[t])
         /// variable = variable - lr[t] * m[t] / (sqrt(maxVel[t]) + epsilon)
         #[method(encodeToCommandBuffer:batchNormalizationGradientState:batchNormalizationSourceState:inputMomentumVectors:inputVelocityVectors:maximumVelocityVectors:resultState:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_batchNormalizationGradientState_batchNormalizationSourceState_inputMomentumVectors_inputVelocityVectors_maximumVelocityVectors_resultState(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1562,7 +1615,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -1582,7 +1635,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(initWithCoder:device:)]
+        #[method(initWithCoder:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
@@ -1596,11 +1649,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNNOptimizerAdam {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

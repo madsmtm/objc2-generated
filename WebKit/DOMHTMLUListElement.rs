@@ -79,21 +79,24 @@ extern_methods!(
     unsafe impl DOMHTMLUListElement {
         #[deprecated]
         #[method(compact)]
+        #[unsafe(method_family = none)]
         pub unsafe fn compact(&self) -> bool;
 
         /// Setter for [`compact`][Self::compact].
         #[deprecated]
         #[method(setCompact:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCompact(&self, compact: bool);
 
         #[deprecated]
-        #[method_id(type)]
+        #[method(type)]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> Retained<NSString>;
 
         /// Setter for [`type`][Self::type].
         #[deprecated]
         #[method(setType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setType(&self, r#type: Option<&NSString>);
     }
 );
@@ -109,7 +112,7 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLUListElement {
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -125,7 +128,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLUListElement {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

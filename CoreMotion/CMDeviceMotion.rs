@@ -107,30 +107,36 @@ extern_methods!(
     #[cfg(feature = "CMLogItem")]
     unsafe impl CMDeviceMotion {
         #[cfg(feature = "CMAttitude")]
-        #[method_id(attitude)]
+        #[method(attitude)]
         #[unsafe(method_family = none)]
         pub unsafe fn attitude(&self) -> Retained<CMAttitude>;
 
         #[cfg(feature = "CMGyro")]
         #[method(rotationRate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rotationRate(&self) -> CMRotationRate;
 
         #[cfg(feature = "CMAccelerometer")]
         #[method(gravity)]
+        #[unsafe(method_family = none)]
         pub unsafe fn gravity(&self) -> CMAcceleration;
 
         #[cfg(feature = "CMAccelerometer")]
         #[method(userAcceleration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn userAcceleration(&self) -> CMAcceleration;
 
         #[cfg(feature = "CMMagnetometer")]
         #[method(magneticField)]
+        #[unsafe(method_family = none)]
         pub unsafe fn magneticField(&self) -> CMCalibratedMagneticField;
 
         #[method(heading)]
+        #[unsafe(method_family = none)]
         pub unsafe fn heading(&self) -> c_double;
 
         #[method(sensorLocation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn sensorLocation(&self) -> CMDeviceMotionSensorLocation;
     }
 );
@@ -139,11 +145,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CMLogItem")]
     unsafe impl CMDeviceMotion {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

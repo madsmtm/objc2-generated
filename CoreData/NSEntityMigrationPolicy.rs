@@ -49,6 +49,7 @@ extern_methods!(
     unsafe impl NSEntityMigrationPolicy {
         #[cfg(all(feature = "NSEntityMapping", feature = "NSMigrationManager"))]
         #[method(beginEntityMapping:manager:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn beginEntityMapping_manager_error(
             &self,
             mapping: &NSEntityMapping,
@@ -61,6 +62,7 @@ extern_methods!(
             feature = "NSMigrationManager"
         ))]
         #[method(createDestinationInstancesForSourceInstance:entityMapping:manager:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn createDestinationInstancesForSourceInstance_entityMapping_manager_error(
             &self,
             s_instance: &NSManagedObject,
@@ -70,6 +72,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSEntityMapping", feature = "NSMigrationManager"))]
         #[method(endInstanceCreationForEntityMapping:manager:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn endInstanceCreationForEntityMapping_manager_error(
             &self,
             mapping: &NSEntityMapping,
@@ -82,6 +85,7 @@ extern_methods!(
             feature = "NSMigrationManager"
         ))]
         #[method(createRelationshipsForDestinationInstance:entityMapping:manager:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn createRelationshipsForDestinationInstance_entityMapping_manager_error(
             &self,
             d_instance: &NSManagedObject,
@@ -91,6 +95,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSEntityMapping", feature = "NSMigrationManager"))]
         #[method(endRelationshipCreationForEntityMapping:manager:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn endRelationshipCreationForEntityMapping_manager_error(
             &self,
             mapping: &NSEntityMapping,
@@ -99,6 +104,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSEntityMapping", feature = "NSMigrationManager"))]
         #[method(performCustomValidationForEntityMapping:manager:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn performCustomValidationForEntityMapping_manager_error(
             &self,
             mapping: &NSEntityMapping,
@@ -107,6 +113,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSEntityMapping", feature = "NSMigrationManager"))]
         #[method(endEntityMapping:manager:error:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn endEntityMapping_manager_error(
             &self,
             mapping: &NSEntityMapping,
@@ -118,11 +125,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSEntityMigrationPolicy {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

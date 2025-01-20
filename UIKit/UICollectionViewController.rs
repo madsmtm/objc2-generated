@@ -75,14 +75,14 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UICollectionViewController {
         #[cfg(feature = "UICollectionViewLayout")]
-        #[method_id(initWithCollectionViewLayout:)]
+        #[method(initWithCollectionViewLayout:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCollectionViewLayout(
             this: Allocated<Self>,
             layout: &UICollectionViewLayout,
         ) -> Retained<Self>;
 
-        #[method_id(initWithNibName:bundle:)]
+        #[method(initWithNibName:bundle:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
@@ -90,7 +90,7 @@ extern_methods!(
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
@@ -102,7 +102,7 @@ extern_methods!(
             feature = "UIScrollView",
             feature = "UIView"
         ))]
-        #[method_id(collectionView)]
+        #[method(collectionView)]
         #[unsafe(method_family = none)]
         pub unsafe fn collectionView(&self) -> Option<Retained<UICollectionView>>;
 
@@ -113,38 +113,45 @@ extern_methods!(
         ))]
         /// Setter for [`collectionView`][Self::collectionView].
         #[method(setCollectionView:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCollectionView(&self, collection_view: Option<&UICollectionView>);
 
         #[method(clearsSelectionOnViewWillAppear)]
+        #[unsafe(method_family = none)]
         pub unsafe fn clearsSelectionOnViewWillAppear(&self) -> bool;
 
         /// Setter for [`clearsSelectionOnViewWillAppear`][Self::clearsSelectionOnViewWillAppear].
         #[method(setClearsSelectionOnViewWillAppear:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setClearsSelectionOnViewWillAppear(
             &self,
             clears_selection_on_view_will_appear: bool,
         );
 
         #[method(useLayoutToLayoutNavigationTransitions)]
+        #[unsafe(method_family = none)]
         pub unsafe fn useLayoutToLayoutNavigationTransitions(&self) -> bool;
 
         /// Setter for [`useLayoutToLayoutNavigationTransitions`][Self::useLayoutToLayoutNavigationTransitions].
         #[method(setUseLayoutToLayoutNavigationTransitions:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUseLayoutToLayoutNavigationTransitions(
             &self,
             use_layout_to_layout_navigation_transitions: bool,
         );
 
         #[cfg(feature = "UICollectionViewLayout")]
-        #[method_id(collectionViewLayout)]
+        #[method(collectionViewLayout)]
         #[unsafe(method_family = none)]
         pub unsafe fn collectionViewLayout(&self) -> Retained<UICollectionViewLayout>;
 
         #[method(installsStandardGestureForInteractiveMovement)]
+        #[unsafe(method_family = none)]
         pub unsafe fn installsStandardGestureForInteractiveMovement(&self) -> bool;
 
         /// Setter for [`installsStandardGestureForInteractiveMovement`][Self::installsStandardGestureForInteractiveMovement].
         #[method(setInstallsStandardGestureForInteractiveMovement:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setInstallsStandardGestureForInteractiveMovement(
             &self,
             installs_standard_gesture_for_interactive_movement: bool,
@@ -156,11 +163,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UICollectionViewController {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

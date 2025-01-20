@@ -96,7 +96,7 @@ extern_methods!(
     #[cfg(feature = "NSFormatter")]
     unsafe impl NSByteCountFormatter {
         #[cfg(feature = "NSString")]
-        #[method_id(stringFromByteCount:countStyle:)]
+        #[method(stringFromByteCount:countStyle:)]
         #[unsafe(method_family = none)]
         pub unsafe fn stringFromByteCount_countStyle(
             byte_count: c_longlong,
@@ -104,12 +104,12 @@ extern_methods!(
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(stringFromByteCount:)]
+        #[method(stringFromByteCount:)]
         #[unsafe(method_family = none)]
         pub unsafe fn stringFromByteCount(&self, byte_count: c_longlong) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSMeasurement", feature = "NSString", feature = "NSUnit"))]
-        #[method_id(stringFromMeasurement:countStyle:)]
+        #[method(stringFromMeasurement:countStyle:)]
         #[unsafe(method_family = none)]
         pub unsafe fn stringFromMeasurement_countStyle(
             measurement: &NSMeasurement<NSUnitInformationStorage>,
@@ -117,7 +117,7 @@ extern_methods!(
         ) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSMeasurement", feature = "NSString", feature = "NSUnit"))]
-        #[method_id(stringFromMeasurement:)]
+        #[method(stringFromMeasurement:)]
         #[unsafe(method_family = none)]
         pub unsafe fn stringFromMeasurement(
             &self,
@@ -125,7 +125,7 @@ extern_methods!(
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(stringForObjectValue:)]
+        #[method(stringForObjectValue:)]
         #[unsafe(method_family = none)]
         pub unsafe fn stringForObjectValue(
             &self,
@@ -133,66 +133,84 @@ extern_methods!(
         ) -> Option<Retained<NSString>>;
 
         #[method(allowedUnits)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowedUnits(&self) -> NSByteCountFormatterUnits;
 
         /// Setter for [`allowedUnits`][Self::allowedUnits].
         #[method(setAllowedUnits:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAllowedUnits(&self, allowed_units: NSByteCountFormatterUnits);
 
         #[method(countStyle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn countStyle(&self) -> NSByteCountFormatterCountStyle;
 
         /// Setter for [`countStyle`][Self::countStyle].
         #[method(setCountStyle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setCountStyle(&self, count_style: NSByteCountFormatterCountStyle);
 
         #[method(allowsNonnumericFormatting)]
+        #[unsafe(method_family = none)]
         pub unsafe fn allowsNonnumericFormatting(&self) -> bool;
 
         /// Setter for [`allowsNonnumericFormatting`][Self::allowsNonnumericFormatting].
         #[method(setAllowsNonnumericFormatting:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAllowsNonnumericFormatting(&self, allows_nonnumeric_formatting: bool);
 
         #[method(includesUnit)]
+        #[unsafe(method_family = none)]
         pub unsafe fn includesUnit(&self) -> bool;
 
         /// Setter for [`includesUnit`][Self::includesUnit].
         #[method(setIncludesUnit:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIncludesUnit(&self, includes_unit: bool);
 
         #[method(includesCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn includesCount(&self) -> bool;
 
         /// Setter for [`includesCount`][Self::includesCount].
         #[method(setIncludesCount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIncludesCount(&self, includes_count: bool);
 
         #[method(includesActualByteCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn includesActualByteCount(&self) -> bool;
 
         /// Setter for [`includesActualByteCount`][Self::includesActualByteCount].
         #[method(setIncludesActualByteCount:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIncludesActualByteCount(&self, includes_actual_byte_count: bool);
 
         #[method(isAdaptive)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isAdaptive(&self) -> bool;
 
         /// Setter for [`isAdaptive`][Self::isAdaptive].
         #[method(setAdaptive:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAdaptive(&self, adaptive: bool);
 
         #[method(zeroPadsFractionDigits)]
+        #[unsafe(method_family = none)]
         pub unsafe fn zeroPadsFractionDigits(&self) -> bool;
 
         /// Setter for [`zeroPadsFractionDigits`][Self::zeroPadsFractionDigits].
         #[method(setZeroPadsFractionDigits:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setZeroPadsFractionDigits(&self, zero_pads_fraction_digits: bool);
 
         #[method(formattingContext)]
+        #[unsafe(method_family = none)]
         pub unsafe fn formattingContext(&self) -> NSFormattingContext;
 
         /// Setter for [`formattingContext`][Self::formattingContext].
         #[method(setFormattingContext:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFormattingContext(&self, formatting_context: NSFormattingContext);
     }
 );
@@ -201,11 +219,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSFormatter")]
     unsafe impl NSByteCountFormatter {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -52,7 +52,7 @@ unsafe impl NSObjectProtocol for GCRacingWheel {}
 
 extern_methods!(
     unsafe impl GCRacingWheel {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -62,7 +62,7 @@ extern_methods!(
         /// See: GCRacingWheelDidConnectNotification
         ///
         /// See: GCRacingWheelDidDisconnectNotification
-        #[method_id(connectedRacingWheels)]
+        #[method(connectedRacingWheels)]
         #[unsafe(method_family = none)]
         pub unsafe fn connectedRacingWheels() -> Retained<NSSet<GCRacingWheel>>;
 
@@ -70,21 +70,24 @@ extern_methods!(
         /// events from it.  Prior to acquisition, your application may only query the
         /// properties of the racing wheel.  Acquisition is exclusive and may fail.
         #[method(acquireDeviceWithError:_)]
+        #[unsafe(method_family = none)]
         pub unsafe fn acquireDeviceWithError(&self) -> Result<(), Retained<NSError>>;
 
         /// Releases a previous acquisition of the racing wheel.
         #[method(relinquishDevice)]
+        #[unsafe(method_family = none)]
         pub unsafe fn relinquishDevice(&self);
 
         /// Checks if the racing wheel has been acquired by the application.
         ///
         /// This property is observable.
         #[method(isAcquired)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isAcquired(&self) -> bool;
 
         #[cfg(feature = "GCRacingWheelInput")]
         /// Get the physical input profile for the racing wheel.
-        #[method_id(wheelInput)]
+        #[method(wheelInput)]
         #[unsafe(method_family = none)]
         pub unsafe fn wheelInput(&self) -> Retained<GCRacingWheelInput>;
 
@@ -94,6 +97,7 @@ extern_methods!(
         ///
         /// See: capture
         #[method(isSnapshot)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isSnapshot(&self) -> bool;
 
         /// Polls the state vector of the racing wheel and saves it to a new instance of
@@ -107,7 +111,7 @@ extern_methods!(
         /// See: snapshot
         ///
         /// Returns: A new racing wheel with the duplicated state vector of the receiver.
-        #[method_id(capture)]
+        #[method(capture)]
         #[unsafe(method_family = none)]
         pub unsafe fn capture(&self) -> Retained<GCRacingWheel>;
     }
@@ -116,7 +120,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GCRacingWheel {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

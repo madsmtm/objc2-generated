@@ -25,31 +25,35 @@ unsafe impl NSSecureCoding for SKPhysicsJoint {}
 extern_methods!(
     unsafe impl SKPhysicsJoint {
         #[cfg(feature = "SKPhysicsBody")]
-        #[method_id(bodyA)]
+        #[method(bodyA)]
         #[unsafe(method_family = none)]
         pub unsafe fn bodyA(&self) -> Retained<SKPhysicsBody>;
 
         #[cfg(feature = "SKPhysicsBody")]
         /// Setter for [`bodyA`][Self::bodyA].
         #[method(setBodyA:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBodyA(&self, body_a: &SKPhysicsBody);
 
         #[cfg(feature = "SKPhysicsBody")]
-        #[method_id(bodyB)]
+        #[method(bodyB)]
         #[unsafe(method_family = none)]
         pub unsafe fn bodyB(&self) -> Retained<SKPhysicsBody>;
 
         #[cfg(feature = "SKPhysicsBody")]
         /// Setter for [`bodyB`][Self::bodyB].
         #[method(setBodyB:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBodyB(&self, body_b: &SKPhysicsBody);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(reactionForce)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reactionForce(&self) -> CGVector;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(reactionTorque)]
+        #[unsafe(method_family = none)]
         pub unsafe fn reactionTorque(&self) -> CGFloat;
     }
 );
@@ -57,11 +61,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKPhysicsJoint {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -83,7 +87,7 @@ unsafe impl NSSecureCoding for SKPhysicsJointPin {}
 extern_methods!(
     unsafe impl SKPhysicsJointPin {
         #[cfg(all(feature = "SKPhysicsBody", feature = "objc2-core-foundation"))]
-        #[method_id(jointWithBodyA:bodyB:anchor:)]
+        #[method(jointWithBodyA:bodyB:anchor:)]
         #[unsafe(method_family = none)]
         pub unsafe fn jointWithBodyA_bodyB_anchor(
             body_a: &SKPhysicsBody,
@@ -92,46 +96,56 @@ extern_methods!(
         ) -> Retained<SKPhysicsJointPin>;
 
         #[method(shouldEnableLimits)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shouldEnableLimits(&self) -> bool;
 
         /// Setter for [`shouldEnableLimits`][Self::shouldEnableLimits].
         #[method(setShouldEnableLimits:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShouldEnableLimits(&self, should_enable_limits: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(lowerAngleLimit)]
+        #[unsafe(method_family = none)]
         pub unsafe fn lowerAngleLimit(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`lowerAngleLimit`][Self::lowerAngleLimit].
         #[method(setLowerAngleLimit:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLowerAngleLimit(&self, lower_angle_limit: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(upperAngleLimit)]
+        #[unsafe(method_family = none)]
         pub unsafe fn upperAngleLimit(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`upperAngleLimit`][Self::upperAngleLimit].
         #[method(setUpperAngleLimit:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUpperAngleLimit(&self, upper_angle_limit: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(frictionTorque)]
+        #[unsafe(method_family = none)]
         pub unsafe fn frictionTorque(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`frictionTorque`][Self::frictionTorque].
         #[method(setFrictionTorque:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFrictionTorque(&self, friction_torque: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(rotationSpeed)]
+        #[unsafe(method_family = none)]
         pub unsafe fn rotationSpeed(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`rotationSpeed`][Self::rotationSpeed].
         #[method(setRotationSpeed:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRotationSpeed(&self, rotation_speed: CGFloat);
     }
 );
@@ -139,11 +153,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKPhysicsJointPin {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -165,7 +179,7 @@ unsafe impl NSSecureCoding for SKPhysicsJointSpring {}
 extern_methods!(
     unsafe impl SKPhysicsJointSpring {
         #[cfg(all(feature = "SKPhysicsBody", feature = "objc2-core-foundation"))]
-        #[method_id(jointWithBodyA:bodyB:anchorA:anchorB:)]
+        #[method(jointWithBodyA:bodyB:anchorA:anchorB:)]
         #[unsafe(method_family = none)]
         pub unsafe fn jointWithBodyA_bodyB_anchorA_anchorB(
             body_a: &SKPhysicsBody,
@@ -176,20 +190,24 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(damping)]
+        #[unsafe(method_family = none)]
         pub unsafe fn damping(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`damping`][Self::damping].
         #[method(setDamping:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDamping(&self, damping: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(frequency)]
+        #[unsafe(method_family = none)]
         pub unsafe fn frequency(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`frequency`][Self::frequency].
         #[method(setFrequency:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFrequency(&self, frequency: CGFloat);
     }
 );
@@ -197,11 +215,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKPhysicsJointSpring {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -223,7 +241,7 @@ unsafe impl NSSecureCoding for SKPhysicsJointFixed {}
 extern_methods!(
     unsafe impl SKPhysicsJointFixed {
         #[cfg(all(feature = "SKPhysicsBody", feature = "objc2-core-foundation"))]
-        #[method_id(jointWithBodyA:bodyB:anchor:)]
+        #[method(jointWithBodyA:bodyB:anchor:)]
         #[unsafe(method_family = none)]
         pub unsafe fn jointWithBodyA_bodyB_anchor(
             body_a: &SKPhysicsBody,
@@ -236,11 +254,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKPhysicsJointFixed {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -262,7 +280,7 @@ unsafe impl NSSecureCoding for SKPhysicsJointSliding {}
 extern_methods!(
     unsafe impl SKPhysicsJointSliding {
         #[cfg(all(feature = "SKPhysicsBody", feature = "objc2-core-foundation"))]
-        #[method_id(jointWithBodyA:bodyB:anchor:axis:)]
+        #[method(jointWithBodyA:bodyB:anchor:axis:)]
         #[unsafe(method_family = none)]
         pub unsafe fn jointWithBodyA_bodyB_anchor_axis(
             body_a: &SKPhysicsBody,
@@ -272,28 +290,34 @@ extern_methods!(
         ) -> Retained<SKPhysicsJointSliding>;
 
         #[method(shouldEnableLimits)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shouldEnableLimits(&self) -> bool;
 
         /// Setter for [`shouldEnableLimits`][Self::shouldEnableLimits].
         #[method(setShouldEnableLimits:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShouldEnableLimits(&self, should_enable_limits: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(lowerDistanceLimit)]
+        #[unsafe(method_family = none)]
         pub unsafe fn lowerDistanceLimit(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`lowerDistanceLimit`][Self::lowerDistanceLimit].
         #[method(setLowerDistanceLimit:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLowerDistanceLimit(&self, lower_distance_limit: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(upperDistanceLimit)]
+        #[unsafe(method_family = none)]
         pub unsafe fn upperDistanceLimit(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`upperDistanceLimit`][Self::upperDistanceLimit].
         #[method(setUpperDistanceLimit:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUpperDistanceLimit(&self, upper_distance_limit: CGFloat);
     }
 );
@@ -301,11 +325,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKPhysicsJointSliding {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -328,15 +352,17 @@ extern_methods!(
     unsafe impl SKPhysicsJointLimit {
         #[cfg(feature = "objc2-core-foundation")]
         #[method(maxLength)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maxLength(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`maxLength`][Self::maxLength].
         #[method(setMaxLength:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMaxLength(&self, max_length: CGFloat);
 
         #[cfg(all(feature = "SKPhysicsBody", feature = "objc2-core-foundation"))]
-        #[method_id(jointWithBodyA:bodyB:anchorA:anchorB:)]
+        #[method(jointWithBodyA:bodyB:anchorA:anchorB:)]
         #[unsafe(method_family = none)]
         pub unsafe fn jointWithBodyA_bodyB_anchorA_anchorB(
             body_a: &SKPhysicsBody,
@@ -350,11 +376,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKPhysicsJointLimit {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

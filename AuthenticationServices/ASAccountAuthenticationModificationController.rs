@@ -15,6 +15,7 @@ extern_protocol!(
         #[cfg(feature = "ASAccountAuthenticationModificationRequest")]
         #[optional]
         #[method(accountAuthenticationModificationController:didSuccessfullyCompleteRequest:withUserInfo:)]
+        #[unsafe(method_family = none)]
         unsafe fn accountAuthenticationModificationController_didSuccessfullyCompleteRequest_withUserInfo(
             &self,
             controller: &ASAccountAuthenticationModificationController,
@@ -25,6 +26,7 @@ extern_protocol!(
         #[cfg(feature = "ASAccountAuthenticationModificationRequest")]
         #[optional]
         #[method(accountAuthenticationModificationController:didFailRequest:withError:)]
+        #[unsafe(method_family = none)]
         unsafe fn accountAuthenticationModificationController_didFailRequest_withError(
             &self,
             controller: &ASAccountAuthenticationModificationController,
@@ -42,7 +44,7 @@ extern_protocol!(
         #[cfg(feature = "ASFoundation")]
         #[cfg(target_os = "macos")]
         /// Return a view anchor that is most appropriate for authorization UI to be presented over.
-        #[method_id(presentationAnchorForAccountAuthenticationModificationController:)]
+        #[method(presentationAnchorForAccountAuthenticationModificationController:)]
         #[unsafe(method_family = none)]
         unsafe fn presentationAnchorForAccountAuthenticationModificationController(
             &self,
@@ -63,7 +65,7 @@ unsafe impl NSObjectProtocol for ASAccountAuthenticationModificationController {
 extern_methods!(
     unsafe impl ASAccountAuthenticationModificationController {
         /// This delegate will be notified upon completion of the upgrade to report success or failure.
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -74,6 +76,7 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<
@@ -82,7 +85,7 @@ extern_methods!(
         );
 
         /// This will be used to provide a presentation context to display authorization UI.
-        #[method_id(presentationContextProvider)]
+        #[method(presentationContextProvider)]
         #[unsafe(method_family = none)]
         pub unsafe fn presentationContextProvider(
             &self,
@@ -98,6 +101,7 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`presentationContextProvider`][Self::presentationContextProvider].
         #[method(setPresentationContextProvider:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setPresentationContextProvider(
             &self,
             presentation_context_provider: Option<
@@ -110,6 +114,7 @@ extern_methods!(
         #[cfg(feature = "ASAccountAuthenticationModificationRequest")]
         /// Perform an upgrade request, one at a time. Any requests initiated with a request already in progress will fail immediately.
         #[method(performRequest:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn performRequest(&self, request: &ASAccountAuthenticationModificationRequest);
     }
 );
@@ -117,11 +122,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASAccountAuthenticationModificationController {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

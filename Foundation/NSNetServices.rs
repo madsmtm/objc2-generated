@@ -88,7 +88,7 @@ extern_methods!(
     unsafe impl NSNetService {
         #[cfg(feature = "NSString")]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
-        #[method_id(initWithDomain:type:name:port:)]
+        #[method(initWithDomain:type:name:port:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDomain_type_name_port(
             this: Allocated<Self>,
@@ -100,7 +100,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
-        #[method_id(initWithDomain:type:name:)]
+        #[method(initWithDomain:type:name:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDomain_type_name(
             this: Allocated<Self>,
@@ -112,6 +112,7 @@ extern_methods!(
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSRunLoop", feature = "NSString"))]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method(scheduleInRunLoop:forMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scheduleInRunLoop_forMode(
             &self,
             a_run_loop: &NSRunLoop,
@@ -121,6 +122,7 @@ extern_methods!(
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSRunLoop", feature = "NSString"))]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method(removeFromRunLoop:forMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeFromRunLoop_forMode(
             &self,
             a_run_loop: &NSRunLoop,
@@ -128,7 +130,7 @@ extern_methods!(
         );
 
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self)
             -> Option<Retained<ProtocolObject<dyn NSNetServiceDelegate>>>;
@@ -136,69 +138,77 @@ extern_methods!(
         /// Setter for [`delegate`][Self::delegate].
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn NSNetServiceDelegate>>,
         );
 
         #[method(includesPeerToPeer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn includesPeerToPeer(&self) -> bool;
 
         /// Setter for [`includesPeerToPeer`][Self::includesPeerToPeer].
         #[method(setIncludesPeerToPeer:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIncludesPeerToPeer(&self, includes_peer_to_peer: bool);
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
-        #[method_id(name)]
+        #[method(name)]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
-        #[method_id(type)]
+        #[method(type)]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
-        #[method_id(domain)]
+        #[method(domain)]
         #[unsafe(method_family = none)]
         pub unsafe fn domain(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
-        #[method_id(hostName)]
+        #[method(hostName)]
         #[unsafe(method_family = none)]
         pub unsafe fn hostName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSData"))]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
-        #[method_id(addresses)]
+        #[method(addresses)]
         #[unsafe(method_family = none)]
         pub unsafe fn addresses(&self) -> Option<Retained<NSArray<NSData>>>;
 
         #[method(port)]
+        #[unsafe(method_family = none)]
         pub unsafe fn port(&self) -> NSInteger;
 
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method(publish)]
+        #[unsafe(method_family = none)]
         pub unsafe fn publish(&self);
 
         #[method(publishWithOptions:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn publishWithOptions(&self, options: NSNetServiceOptions);
 
         #[deprecated = "Not supported"]
         #[method(resolve)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resolve(&self);
 
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method(stop)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stop(&self);
 
         #[cfg(all(feature = "NSData", feature = "NSDictionary", feature = "NSString"))]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
-        #[method_id(dictionaryFromTXTRecordData:)]
+        #[method(dictionaryFromTXTRecordData:)]
         #[unsafe(method_family = none)]
         pub unsafe fn dictionaryFromTXTRecordData(
             txt_data: &NSData,
@@ -206,7 +216,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSData", feature = "NSDictionary", feature = "NSString"))]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
-        #[method_id(dataFromTXTRecordDictionary:)]
+        #[method(dataFromTXTRecordDictionary:)]
         #[unsafe(method_family = none)]
         pub unsafe fn dataFromTXTRecordDictionary(
             txt_dictionary: &NSDictionary<NSString, NSData>,
@@ -215,11 +225,13 @@ extern_methods!(
         #[cfg(feature = "NSDate")]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method(resolveWithTimeout:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resolveWithTimeout(&self, timeout: NSTimeInterval);
 
         #[cfg(feature = "NSStream")]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method(getInputStream:outputStream:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn getInputStream_outputStream(
             &self,
             input_stream: *mut *mut NSInputStream,
@@ -229,20 +241,23 @@ extern_methods!(
         #[cfg(feature = "NSData")]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method(setTXTRecordData:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTXTRecordData(&self, record_data: Option<&NSData>) -> bool;
 
         #[cfg(feature = "NSData")]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
-        #[method_id(TXTRecordData)]
+        #[method(TXTRecordData)]
         #[unsafe(method_family = none)]
         pub unsafe fn TXTRecordData(&self) -> Option<Retained<NSData>>;
 
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method(startMonitoring)]
+        #[unsafe(method_family = none)]
         pub unsafe fn startMonitoring(&self);
 
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method(stopMonitoring)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stopMonitoring(&self);
     }
 );
@@ -250,11 +265,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSNetService {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -273,12 +288,12 @@ unsafe impl NSObjectProtocol for NSNetServiceBrowser {}
 extern_methods!(
     unsafe impl NSNetServiceBrowser {
         #[deprecated = "Use nw_browser_t in Network framework instead"]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[deprecated = "Use nw_browser_t in Network framework instead"]
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -287,21 +302,25 @@ extern_methods!(
         /// Setter for [`delegate`][Self::delegate].
         #[deprecated = "Use nw_browser_t in Network framework instead"]
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn NSNetServiceBrowserDelegate>>,
         );
 
         #[method(includesPeerToPeer)]
+        #[unsafe(method_family = none)]
         pub unsafe fn includesPeerToPeer(&self) -> bool;
 
         /// Setter for [`includesPeerToPeer`][Self::includesPeerToPeer].
         #[method(setIncludesPeerToPeer:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIncludesPeerToPeer(&self, includes_peer_to_peer: bool);
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSRunLoop", feature = "NSString"))]
         #[deprecated = "Use nw_browser_t in Network framework instead"]
         #[method(scheduleInRunLoop:forMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scheduleInRunLoop_forMode(
             &self,
             a_run_loop: &NSRunLoop,
@@ -311,6 +330,7 @@ extern_methods!(
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSRunLoop", feature = "NSString"))]
         #[deprecated = "Use nw_browser_t in Network framework instead"]
         #[method(removeFromRunLoop:forMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeFromRunLoop_forMode(
             &self,
             a_run_loop: &NSRunLoop,
@@ -319,15 +339,18 @@ extern_methods!(
 
         #[deprecated = "Use nw_browser_t in Network framework instead"]
         #[method(searchForBrowsableDomains)]
+        #[unsafe(method_family = none)]
         pub unsafe fn searchForBrowsableDomains(&self);
 
         #[deprecated = "Use nw_browser_t in Network framework instead"]
         #[method(searchForRegistrationDomains)]
+        #[unsafe(method_family = none)]
         pub unsafe fn searchForRegistrationDomains(&self);
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use nw_browser_t in Network framework instead"]
         #[method(searchForServicesOfType:inDomain:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn searchForServicesOfType_inDomain(
             &self,
             r#type: &NSString,
@@ -336,6 +359,7 @@ extern_methods!(
 
         #[deprecated = "Use nw_browser_t in Network framework instead"]
         #[method(stop)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stop(&self);
     }
 );
@@ -343,7 +367,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSNetServiceBrowser {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -354,15 +378,18 @@ extern_protocol!(
     pub unsafe trait NSNetServiceDelegate: NSObjectProtocol {
         #[optional]
         #[method(netServiceWillPublish:)]
+        #[unsafe(method_family = none)]
         unsafe fn netServiceWillPublish(&self, sender: &NSNetService);
 
         #[optional]
         #[method(netServiceDidPublish:)]
+        #[unsafe(method_family = none)]
         unsafe fn netServiceDidPublish(&self, sender: &NSNetService);
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString", feature = "NSValue"))]
         #[optional]
         #[method(netService:didNotPublish:)]
+        #[unsafe(method_family = none)]
         unsafe fn netService_didNotPublish(
             &self,
             sender: &NSNetService,
@@ -371,15 +398,18 @@ extern_protocol!(
 
         #[optional]
         #[method(netServiceWillResolve:)]
+        #[unsafe(method_family = none)]
         unsafe fn netServiceWillResolve(&self, sender: &NSNetService);
 
         #[optional]
         #[method(netServiceDidResolveAddress:)]
+        #[unsafe(method_family = none)]
         unsafe fn netServiceDidResolveAddress(&self, sender: &NSNetService);
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString", feature = "NSValue"))]
         #[optional]
         #[method(netService:didNotResolve:)]
+        #[unsafe(method_family = none)]
         unsafe fn netService_didNotResolve(
             &self,
             sender: &NSNetService,
@@ -388,16 +418,19 @@ extern_protocol!(
 
         #[optional]
         #[method(netServiceDidStop:)]
+        #[unsafe(method_family = none)]
         unsafe fn netServiceDidStop(&self, sender: &NSNetService);
 
         #[cfg(feature = "NSData")]
         #[optional]
         #[method(netService:didUpdateTXTRecordData:)]
+        #[unsafe(method_family = none)]
         unsafe fn netService_didUpdateTXTRecordData(&self, sender: &NSNetService, data: &NSData);
 
         #[cfg(feature = "NSStream")]
         #[optional]
         #[method(netService:didAcceptConnectionWithInputStream:outputStream:)]
+        #[unsafe(method_family = none)]
         unsafe fn netService_didAcceptConnectionWithInputStream_outputStream(
             &self,
             sender: &NSNetService,
@@ -412,15 +445,18 @@ extern_protocol!(
     pub unsafe trait NSNetServiceBrowserDelegate: NSObjectProtocol {
         #[optional]
         #[method(netServiceBrowserWillSearch:)]
+        #[unsafe(method_family = none)]
         unsafe fn netServiceBrowserWillSearch(&self, browser: &NSNetServiceBrowser);
 
         #[optional]
         #[method(netServiceBrowserDidStopSearch:)]
+        #[unsafe(method_family = none)]
         unsafe fn netServiceBrowserDidStopSearch(&self, browser: &NSNetServiceBrowser);
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString", feature = "NSValue"))]
         #[optional]
         #[method(netServiceBrowser:didNotSearch:)]
+        #[unsafe(method_family = none)]
         unsafe fn netServiceBrowser_didNotSearch(
             &self,
             browser: &NSNetServiceBrowser,
@@ -430,6 +466,7 @@ extern_protocol!(
         #[cfg(feature = "NSString")]
         #[optional]
         #[method(netServiceBrowser:didFindDomain:moreComing:)]
+        #[unsafe(method_family = none)]
         unsafe fn netServiceBrowser_didFindDomain_moreComing(
             &self,
             browser: &NSNetServiceBrowser,
@@ -439,6 +476,7 @@ extern_protocol!(
 
         #[optional]
         #[method(netServiceBrowser:didFindService:moreComing:)]
+        #[unsafe(method_family = none)]
         unsafe fn netServiceBrowser_didFindService_moreComing(
             &self,
             browser: &NSNetServiceBrowser,
@@ -449,6 +487,7 @@ extern_protocol!(
         #[cfg(feature = "NSString")]
         #[optional]
         #[method(netServiceBrowser:didRemoveDomain:moreComing:)]
+        #[unsafe(method_family = none)]
         unsafe fn netServiceBrowser_didRemoveDomain_moreComing(
             &self,
             browser: &NSNetServiceBrowser,
@@ -458,6 +497,7 @@ extern_protocol!(
 
         #[optional]
         #[method(netServiceBrowser:didRemoveService:moreComing:)]
+        #[unsafe(method_family = none)]
         unsafe fn netServiceBrowser_didRemoveService_moreComing(
             &self,
             browser: &NSNetServiceBrowser,

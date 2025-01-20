@@ -34,25 +34,29 @@ extern_methods!(
     unsafe impl AXBrailleMap {
         #[cfg(feature = "objc2-core-foundation")]
         #[method(dimensions)]
+        #[unsafe(method_family = none)]
         pub unsafe fn dimensions(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(setHeight:atPoint:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setHeight_atPoint(&self, status: c_float, point: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(heightAtPoint:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn heightAtPoint(&self, point: CGPoint) -> c_float;
 
         #[cfg(feature = "objc2-core-graphics")]
         #[method(presentImage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn presentImage(&self, image: &CGImage);
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -64,12 +68,14 @@ extern_protocol!(
         #[cfg(feature = "objc2-core-foundation")]
         #[optional]
         #[method(accessibilityBrailleMapRenderRegion)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityBrailleMapRenderRegion(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`accessibilityBrailleMapRenderRegion`][Self::accessibilityBrailleMapRenderRegion].
         #[optional]
         #[method(setAccessibilityBrailleMapRenderRegion:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityBrailleMapRenderRegion(
             &self,
             accessibility_braille_map_render_region: CGRect,
@@ -78,6 +84,7 @@ extern_protocol!(
         #[cfg(feature = "block2")]
         #[optional]
         #[method(accessibilityBrailleMapRenderer)]
+        #[unsafe(method_family = none)]
         unsafe fn accessibilityBrailleMapRenderer(
             &self,
         ) -> NonNull<block2::Block<dyn Fn(NonNull<AXBrailleMap>)>>;
@@ -86,6 +93,7 @@ extern_protocol!(
         /// Setter for [`accessibilityBrailleMapRenderer`][Self::accessibilityBrailleMapRenderer].
         #[optional]
         #[method(setAccessibilityBrailleMapRenderer:)]
+        #[unsafe(method_family = none)]
         unsafe fn setAccessibilityBrailleMapRenderer(
             &self,
             accessibility_braille_map_renderer: &block2::Block<dyn Fn(NonNull<AXBrailleMap>)>,

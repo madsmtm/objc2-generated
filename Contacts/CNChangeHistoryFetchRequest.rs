@@ -42,12 +42,13 @@ extern_methods!(
         /// If nil, a
         /// `CNChangeHistoryDropEverythingEvent`will be returned, followed by an add event
         /// for every contact and group currently in the contacts database.
-        #[method_id(startingToken)]
+        #[method(startingToken)]
         #[unsafe(method_family = none)]
         pub unsafe fn startingToken(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`startingToken`][Self::startingToken].
         #[method(setStartingToken:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setStartingToken(&self, starting_token: Option<&NSData>);
 
         #[cfg(feature = "CNContact")]
@@ -61,7 +62,7 @@ extern_methods!(
         ///
         /// `CNContactIdentifierKey`will always be fetched, whether you
         /// request it or not.
-        #[method_id(additionalContactKeyDescriptors)]
+        #[method(additionalContactKeyDescriptors)]
         #[unsafe(method_family = none)]
         pub unsafe fn additionalContactKeyDescriptors(
             &self,
@@ -70,6 +71,7 @@ extern_methods!(
         #[cfg(feature = "CNContact")]
         /// Setter for [`additionalContactKeyDescriptors`][Self::additionalContactKeyDescriptors].
         #[method(setAdditionalContactKeyDescriptors:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAdditionalContactKeyDescriptors(
             &self,
             additional_contact_key_descriptors: Option<
@@ -87,10 +89,12 @@ extern_methods!(
         /// Note: A unified contact is the aggregation of properties from a set of linked individual contacts.
         /// If an individual contact is not linked then the unified contact is simply that individual contact.
         #[method(shouldUnifyResults)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shouldUnifyResults(&self) -> bool;
 
         /// Setter for [`shouldUnifyResults`][Self::shouldUnifyResults].
         #[method(setShouldUnifyResults:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShouldUnifyResults(&self, should_unify_results: bool);
 
         /// To return mutable contacts and groups.
@@ -100,20 +104,24 @@ extern_methods!(
         /// `YES`returns mutable contacts and groups. Default is
         /// `NO.`
         #[method(mutableObjects)]
+        #[unsafe(method_family = none)]
         pub unsafe fn mutableObjects(&self) -> bool;
 
         /// Setter for [`mutableObjects`][Self::mutableObjects].
         #[method(setMutableObjects:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMutableObjects(&self, mutable_objects: bool);
 
         /// Set to
         /// `YES`to also fetch group changes. Default is
         /// `NO.`
         #[method(includeGroupChanges)]
+        #[unsafe(method_family = none)]
         pub unsafe fn includeGroupChanges(&self) -> bool;
 
         /// Setter for [`includeGroupChanges`][Self::includeGroupChanges].
         #[method(setIncludeGroupChanges:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setIncludeGroupChanges(&self, include_group_changes: bool);
 
         /// Exclude changes made by certain authors.
@@ -122,12 +130,13 @@ extern_methods!(
         /// If set, transactions made by the specified authors will be excluded
         /// from the results. Use this, in conjunction with
         /// `CNSaveRequest.transactionAuthor,`to suppress processing of changes you already know about.
-        #[method_id(excludedTransactionAuthors)]
+        #[method(excludedTransactionAuthors)]
         #[unsafe(method_family = none)]
         pub unsafe fn excludedTransactionAuthors(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`excludedTransactionAuthors`][Self::excludedTransactionAuthors].
         #[method(setExcludedTransactionAuthors:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setExcludedTransactionAuthors(
             &self,
             excluded_transaction_authors: Option<&NSArray<NSString>>,
@@ -139,11 +148,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CNFetchRequest")]
     unsafe impl CNChangeHistoryFetchRequest {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

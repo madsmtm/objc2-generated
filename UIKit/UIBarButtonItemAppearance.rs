@@ -19,16 +19,16 @@ unsafe impl NSObjectProtocol for UIBarButtonItemStateAppearance {}
 
 extern_methods!(
     unsafe impl UIBarButtonItemStateAppearance {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// Text attributes to be used for rendering title text. If the font or color are unspecified, appropriate defaults are supplied.
-        #[method_id(titleTextAttributes)]
+        #[method(titleTextAttributes)]
         #[unsafe(method_family = none)]
         pub unsafe fn titleTextAttributes(
             &self,
@@ -36,6 +36,7 @@ extern_methods!(
 
         /// Setter for [`titleTextAttributes`][Self::titleTextAttributes].
         #[method(setTitleTextAttributes:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTitleTextAttributes(
             &self,
             title_text_attributes: &NSDictionary<NSAttributedStringKey, AnyObject>,
@@ -44,32 +45,37 @@ extern_methods!(
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         /// An offset to apply to the button's title position
         #[method(titlePositionAdjustment)]
+        #[unsafe(method_family = none)]
         pub unsafe fn titlePositionAdjustment(&self) -> UIOffset;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         /// Setter for [`titlePositionAdjustment`][Self::titlePositionAdjustment].
         #[method(setTitlePositionAdjustment:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setTitlePositionAdjustment(&self, title_position_adjustment: UIOffset);
 
         #[cfg(feature = "UIImage")]
         /// A background image to display around the button
-        #[method_id(backgroundImage)]
+        #[method(backgroundImage)]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         /// Setter for [`backgroundImage`][Self::backgroundImage].
         #[method(setBackgroundImage:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundImage(&self, background_image: Option<&UIImage>);
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         /// An offset to apply to the backgroundImage.
         #[method(backgroundImagePositionAdjustment)]
+        #[unsafe(method_family = none)]
         pub unsafe fn backgroundImagePositionAdjustment(&self) -> UIOffset;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         /// Setter for [`backgroundImagePositionAdjustment`][Self::backgroundImagePositionAdjustment].
         #[method(setBackgroundImagePositionAdjustment:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundImagePositionAdjustment(
             &self,
             background_image_position_adjustment: UIOffset,
@@ -100,49 +106,50 @@ unsafe impl NSSecureCoding for UIBarButtonItemAppearance {}
 extern_methods!(
     unsafe impl UIBarButtonItemAppearance {
         /// Construct an appearance for the UIBarButtonItemStylePlain style.
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "UIBarButtonItem")]
         /// Construct an appearance with default values for the given style.
-        #[method_id(initWithStyle:)]
+        #[method(initWithStyle:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithStyle(
             this: Allocated<Self>,
             style: UIBarButtonItemStyle,
         ) -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
-        #[method_id(copy)]
+        #[method(copy)]
         #[unsafe(method_family = copy)]
         pub unsafe fn copy(&self) -> Retained<Self>;
 
         #[cfg(feature = "UIBarButtonItem")]
         /// Reset this appearance to that of a given style.
         #[method(configureWithDefaultForStyle:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn configureWithDefaultForStyle(&self, style: UIBarButtonItemStyle);
 
         /// The appearance when the bar button item is in the normal control state.
-        #[method_id(normal)]
+        #[method(normal)]
         #[unsafe(method_family = none)]
         pub unsafe fn normal(&self) -> Retained<UIBarButtonItemStateAppearance>;
 
         /// The appearance when the bar button item is in the highlighted control state. If unspecified, then synthesized from the normal state.
-        #[method_id(highlighted)]
+        #[method(highlighted)]
         #[unsafe(method_family = none)]
         pub unsafe fn highlighted(&self) -> Retained<UIBarButtonItemStateAppearance>;
 
         /// The appearance when the bar button item is in the disabled control state. If unspecified, then synthesized from the normal state.
-        #[method_id(disabled)]
+        #[method(disabled)]
         #[unsafe(method_family = none)]
         pub unsafe fn disabled(&self) -> Retained<UIBarButtonItemStateAppearance>;
 
         /// The appearance when the bar button item is in the focused control state. If unspecified, then synthesized from the highlighted state.
-        #[method_id(focused)]
+        #[method(focused)]
         #[unsafe(method_family = none)]
         pub unsafe fn focused(&self) -> Retained<UIBarButtonItemStateAppearance>;
     }
@@ -151,7 +158,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIBarButtonItemAppearance {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

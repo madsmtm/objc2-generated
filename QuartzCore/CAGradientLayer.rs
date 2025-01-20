@@ -36,46 +36,53 @@ unsafe impl NSSecureCoding for CAGradientLayer {}
 extern_methods!(
     #[cfg(feature = "CALayer")]
     unsafe impl CAGradientLayer {
-        #[method_id(colors)]
+        #[method(colors)]
         #[unsafe(method_family = none)]
         pub unsafe fn colors(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`colors`][Self::colors].
         #[method(setColors:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setColors(&self, colors: Option<&NSArray>);
 
-        #[method_id(locations)]
+        #[method(locations)]
         #[unsafe(method_family = none)]
         pub unsafe fn locations(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         /// Setter for [`locations`][Self::locations].
         #[method(setLocations:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setLocations(&self, locations: Option<&NSArray<NSNumber>>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(startPoint)]
+        #[unsafe(method_family = none)]
         pub unsafe fn startPoint(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`startPoint`][Self::startPoint].
         #[method(setStartPoint:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setStartPoint(&self, start_point: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(endPoint)]
+        #[unsafe(method_family = none)]
         pub unsafe fn endPoint(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`endPoint`][Self::endPoint].
         #[method(setEndPoint:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setEndPoint(&self, end_point: CGPoint);
 
-        #[method_id(type)]
+        #[method(type)]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> Retained<CAGradientLayerType>;
 
         /// Setter for [`type`][Self::type].
         #[method(setType:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setType(&self, r#type: &CAGradientLayerType);
     }
 );
@@ -85,15 +92,15 @@ extern_methods!(
     #[cfg(feature = "CALayer")]
     unsafe impl CAGradientLayer {
         /// Layer creation and initialization. *
-        #[method_id(layer)]
+        #[method(layer)]
         #[unsafe(method_family = none)]
         pub unsafe fn layer() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(initWithLayer:)]
+        #[method(initWithLayer:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
     }
@@ -103,7 +110,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CALayer")]
     unsafe impl CAGradientLayer {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

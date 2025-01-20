@@ -29,32 +29,38 @@ extern_methods!(
     unsafe impl MXForegroundExitData {
         /// Cumulative number of times the application exited normally, or was gracefully terminated by the system.
         #[method(cumulativeNormalAppExitCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cumulativeNormalAppExitCount(&self) -> NSUInteger;
 
         /// Cumulative number of times the application was terminated for exceeding a memory consumption limit.
         #[method(cumulativeMemoryResourceLimitExitCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cumulativeMemoryResourceLimitExitCount(&self) -> NSUInteger;
 
         /// Cumulative number of times the application was terminated for attempting to access invalid memory, or attempting to access memory in a manner not allowed by the memory's protection level (e.g. writing to read-only memory).
         #[method(cumulativeBadAccessExitCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cumulativeBadAccessExitCount(&self) -> NSUInteger;
 
         /// Cumulative number of times the application exited abnormally.
         ///
         /// The most common causes of crashes with this exception type are uncaught Objective-C/C++ exceptions and calls to abort().
         #[method(cumulativeAbnormalExitCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cumulativeAbnormalExitCount(&self) -> NSUInteger;
 
         /// Cumulative number of times the application terminated for attempting to execute an illegal or undefined instruction.
         ///
         /// The process may have attempted to jump to an invalid address via a misconfigured function pointer.
         #[method(cumulativeIllegalInstructionExitCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cumulativeIllegalInstructionExitCount(&self) -> NSUInteger;
 
         /// Cumulative number of times the application was terminated because a watchdog timeout occured.
         ///
         /// These can occur when the application took too long to launch, terminate, or respond to system events.
         #[method(cumulativeAppWatchdogExitCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cumulativeAppWatchdogExitCount(&self) -> NSUInteger;
     }
 );
@@ -62,11 +68,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MXForegroundExitData {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -95,52 +101,62 @@ extern_methods!(
     unsafe impl MXBackgroundExitData {
         /// Cumulative number of times the application exited normally, or was gracefully terminated by the system.
         #[method(cumulativeNormalAppExitCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cumulativeNormalAppExitCount(&self) -> NSUInteger;
 
         /// Cumulative number of times the application was terminated for exceeding a memory consumption limit.
         #[method(cumulativeMemoryResourceLimitExitCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cumulativeMemoryResourceLimitExitCount(&self) -> NSUInteger;
 
         /// Cumulative number of times the application was terminated for exceeding a CPU consumption limit.
         #[method(cumulativeCPUResourceLimitExitCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cumulativeCPUResourceLimitExitCount(&self) -> NSUInteger;
 
         /// Cumulative number of times the application exited due to memory pressure on the system.
         #[method(cumulativeMemoryPressureExitCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cumulativeMemoryPressureExitCount(&self) -> NSUInteger;
 
         /// Cumulative number of times the application was terminated for attempting to access invalid memory, or attempting to access memory in a manner not allowed by the memory's protection level (e.g. writing to read-only memory).
         #[method(cumulativeBadAccessExitCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cumulativeBadAccessExitCount(&self) -> NSUInteger;
 
         /// Cumulative number of times the application exited abnormally.
         ///
         /// The most common causes of crashes with this exception type are uncaught Objective-C/C++ exceptions and calls to abort().
         #[method(cumulativeAbnormalExitCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cumulativeAbnormalExitCount(&self) -> NSUInteger;
 
         /// Cumulative number of times the application terminated for attempting to execute an illegal or undefined instruction.
         ///
         /// The process may have attempted to jump to an invalid address via a misconfigured function pointer.
         #[method(cumulativeIllegalInstructionExitCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cumulativeIllegalInstructionExitCount(&self) -> NSUInteger;
 
         /// Cumulative number of times the application was terminated because a watchdog timeout occured.
         ///
         /// These can occur when the application took too long to launch, terminate, or respond to system events.
         #[method(cumulativeAppWatchdogExitCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cumulativeAppWatchdogExitCount(&self) -> NSUInteger;
 
         /// Cumulative number of times the application was terminated because it became suspended while holding onto file locks or sqlite database locks.
         ///
         /// If your application is performing operations on a locked file or sqlite database at suspension time, it must request additional background execution time to complete those operations and relinquish the lock before suspending.
         #[method(cumulativeSuspendedWithLockedFileExitCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cumulativeSuspendedWithLockedFileExitCount(&self) -> NSUInteger;
 
         /// Cumulative number of times the application was terminated for exceeding the alotted time limit associated with a background tasks.
         ///
         /// If your application begins a background task, you must call endBackgroundTask() to signal completion of the task to prevent your application from being terminated. You can do this in the expiration handler of the task, but it must be done immediately.
         #[method(cumulativeBackgroundTaskAssertionTimeoutExitCount)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cumulativeBackgroundTaskAssertionTimeoutExitCount(&self) -> NSUInteger;
     }
 );
@@ -148,11 +164,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MXBackgroundExitData {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -187,14 +203,14 @@ extern_methods!(
         /// Cumulative foreground exit data.
         ///
         /// This includes application exit data when the application was on screen and visible to the user.
-        #[method_id(foregroundExitData)]
+        #[method(foregroundExitData)]
         #[unsafe(method_family = none)]
         pub unsafe fn foregroundExitData(&self) -> Retained<MXForegroundExitData>;
 
         /// Cumulative background exit data.
         ///
         /// This includes application exit data when the application was off screen and not visible to the user.
-        #[method_id(backgroundExitData)]
+        #[method(backgroundExitData)]
         #[unsafe(method_family = none)]
         pub unsafe fn backgroundExitData(&self) -> Retained<MXBackgroundExitData>;
     }
@@ -204,11 +220,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MXMetric")]
     unsafe impl MXAppExitMetric {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

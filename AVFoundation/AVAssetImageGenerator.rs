@@ -115,24 +115,26 @@ unsafe impl NSObjectProtocol for AVAssetImageGenerator {}
 
 extern_methods!(
     unsafe impl AVAssetImageGenerator {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "AVAsset")]
-        #[method_id(asset)]
+        #[method(asset)]
         #[unsafe(method_family = none)]
         pub unsafe fn asset(&self) -> Retained<AVAsset>;
 
         #[method(appliesPreferredTrackTransform)]
+        #[unsafe(method_family = none)]
         pub unsafe fn appliesPreferredTrackTransform(&self) -> bool;
 
         /// Setter for [`appliesPreferredTrackTransform`][Self::appliesPreferredTrackTransform].
         #[method(setAppliesPreferredTrackTransform:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setAppliesPreferredTrackTransform(
             &self,
             applies_preferred_track_transform: bool,
@@ -140,19 +142,22 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(maximumSize)]
+        #[unsafe(method_family = none)]
         pub unsafe fn maximumSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`maximumSize`][Self::maximumSize].
         #[method(setMaximumSize:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMaximumSize(&self, maximum_size: CGSize);
 
-        #[method_id(apertureMode)]
+        #[method(apertureMode)]
         #[unsafe(method_family = none)]
         pub unsafe fn apertureMode(&self) -> Option<Retained<AVAssetImageGeneratorApertureMode>>;
 
         /// Setter for [`apertureMode`][Self::apertureMode].
         #[method(setApertureMode:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setApertureMode(
             &self,
             aperture_mode: Option<&AVAssetImageGeneratorApertureMode>,
@@ -161,7 +166,7 @@ extern_methods!(
         /// Configures the video dynamic range for the output CGImage
         ///
         /// Default is AVAssetImageGeneratorDynamicRangePolicyForceSDR
-        #[method_id(dynamicRangePolicy)]
+        #[method(dynamicRangePolicy)]
         #[unsafe(method_family = none)]
         pub unsafe fn dynamicRangePolicy(
             &self,
@@ -169,6 +174,7 @@ extern_methods!(
 
         /// Setter for [`dynamicRangePolicy`][Self::dynamicRangePolicy].
         #[method(setDynamicRangePolicy:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDynamicRangePolicy(
             &self,
             dynamic_range_policy: &AVAssetImageGeneratorDynamicRangePolicy,
@@ -184,17 +190,18 @@ extern_methods!(
         /// - "renderSize" width or height is less than zero
         /// - "frameDuration" is invalid or less than or equal to zero
         /// - "sourceTrackIDForFrameTiming" is less than zero
-        #[method_id(videoComposition)]
+        #[method(videoComposition)]
         #[unsafe(method_family = none)]
         pub unsafe fn videoComposition(&self) -> Option<Retained<AVVideoComposition>>;
 
         #[cfg(feature = "AVVideoComposition")]
         /// Setter for [`videoComposition`][Self::videoComposition].
         #[method(setVideoComposition:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setVideoComposition(&self, video_composition: Option<&AVVideoComposition>);
 
         #[cfg(feature = "AVVideoCompositing")]
-        #[method_id(customVideoCompositor)]
+        #[method(customVideoCompositor)]
         #[unsafe(method_family = none)]
         pub unsafe fn customVideoCompositor(
             &self,
@@ -202,11 +209,13 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-media")]
         #[method(requestedTimeToleranceBefore)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestedTimeToleranceBefore(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`requestedTimeToleranceBefore`][Self::requestedTimeToleranceBefore].
         #[method(setRequestedTimeToleranceBefore:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRequestedTimeToleranceBefore(
             &self,
             requested_time_tolerance_before: CMTime,
@@ -214,11 +223,13 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-media")]
         #[method(requestedTimeToleranceAfter)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestedTimeToleranceAfter(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`requestedTimeToleranceAfter`][Self::requestedTimeToleranceAfter].
         #[method(setRequestedTimeToleranceAfter:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setRequestedTimeToleranceAfter(&self, requested_time_tolerance_after: CMTime);
 
         #[cfg(feature = "AVAsset")]
@@ -239,7 +250,7 @@ extern_methods!(
         /// are being generated.
         ///
         /// AVAssetImageGenerator will use the default enabled video track(s) to generate images.
-        #[method_id(assetImageGeneratorWithAsset:)]
+        #[method(assetImageGeneratorWithAsset:)]
         #[unsafe(method_family = none)]
         pub unsafe fn assetImageGeneratorWithAsset(asset: &AVAsset) -> Retained<Self>;
 
@@ -261,7 +272,7 @@ extern_methods!(
         /// are being generated.
         ///
         /// AVAssetImageGenerator will use the default enabled video track(s) to generate images.
-        #[method_id(initWithAsset:)]
+        #[method(initWithAsset:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAsset(this: Allocated<Self>, asset: &AVAsset) -> Retained<Self>;
 
@@ -281,6 +292,7 @@ extern_methods!(
         /// Changes to generator properties (snap behavior, maximum size, etc...) will not affect outstanding asynchronous image generation requests.
         /// The generated image is not retained.  Clients should retain the image if they wish it to persist after the completion handler returns.
         #[method(generateCGImagesAsynchronouslyForTimes:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn generateCGImagesAsynchronouslyForTimes_completionHandler(
             &self,
             requested_times: &NSArray<NSValue>,
@@ -303,6 +315,7 @@ extern_methods!(
         /// The generated image is not retained.  Clients should retain the image if they wish it to persist after the completion handler returns.
         /// If image generation succeeds, the `image` parameter to the completion handler will be non-NULL and the `error` parameter will be nil.  If image generation fails or was cancelled, the `image` parameter will be NULL and the `error` parameter will describe what went wrong.  For cancelled images, the returned error will be AVErrorOperationCancelled.
         #[method(generateCGImageAsynchronouslyForTime:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn generateCGImageAsynchronouslyForTime_completionHandler(
             &self,
             requested_time: CMTime,
@@ -314,6 +327,7 @@ extern_methods!(
         /// Calls the handler block with AVAssetImageGeneratorCancelled for each image time in every previous invocation of -generateCGImagesAsynchronouslyForTimes:completionHandler:
         /// for which images have not yet been supplied.
         #[method(cancelAllCGImageGeneration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cancelAllCGImageGeneration(&self);
     }
 );

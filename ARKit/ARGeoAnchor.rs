@@ -63,6 +63,7 @@ extern_methods!(
         ///
         /// The anchor's transform will be automatically updated by the session when ARGeoTrackingConfiguration is set.
         #[method(coordinate)]
+        #[unsafe(method_family = none)]
         pub unsafe fn coordinate(&self) -> CLLocationCoordinate2D;
 
         #[cfg(feature = "objc2-core-location")]
@@ -71,11 +72,13 @@ extern_methods!(
         ///
         /// Only valid when altitudeSource is not ARAltitudeSourceUnknown.
         #[method(altitude)]
+        #[unsafe(method_family = none)]
         pub unsafe fn altitude(&self) -> CLLocationDistance;
 
         #[cfg(feature = "ARGeoTrackingTypes")]
         /// The source of altitude information. If the user did not provide the altitude, ARKit populates this property to indicate the expected accuracy depending on the available altitude data.
         #[method(altitudeSource)]
+        #[unsafe(method_family = none)]
         pub unsafe fn altitudeSource(&self) -> ARAltitudeSource;
 
         #[cfg(feature = "objc2-core-location")]
@@ -85,7 +88,7 @@ extern_methods!(
         /// ARKit will query the ground level altitude during runtime, and populate the altitude as soon as that information becomes available.
         ///
         /// Parameter `coordinate`: Coordinates.
-        #[method_id(initWithCoordinate:)]
+        #[method(initWithCoordinate:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoordinate(
             this: Allocated<Self>,
@@ -99,7 +102,7 @@ extern_methods!(
         /// Parameter `coordinate`: Coordinates.
         ///
         /// Parameter `altitude`: Altitude in meters.
-        #[method_id(initWithCoordinate:altitude:)]
+        #[method(initWithCoordinate:altitude:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoordinate_altitude(
             this: Allocated<Self>,
@@ -116,7 +119,7 @@ extern_methods!(
         /// Parameter `name`: Name of the anchor.
         ///
         /// Parameter `coordinate`: Coordinates.
-        #[method_id(initWithName:coordinate:)]
+        #[method(initWithName:coordinate:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithName_coordinate(
             this: Allocated<Self>,
@@ -133,7 +136,7 @@ extern_methods!(
         /// Parameter `coordinate`: Coordinates.
         ///
         /// Parameter `altitude`: Altitude in meters.
-        #[method_id(initWithName:coordinate:altitude:)]
+        #[method(initWithName:coordinate:altitude:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithName_coordinate_altitude(
             this: Allocated<Self>,
@@ -150,11 +153,11 @@ extern_methods!(
     #[cfg(all(feature = "ARAnchor", feature = "objc2"))]
     unsafe impl ARGeoAnchor {
         /// Unavailable
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

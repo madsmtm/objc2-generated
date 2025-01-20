@@ -20,6 +20,7 @@ extern_protocol!(
         ///
         /// Parameter `collectedTypes`: The sample types that were added.
         #[method(workoutBuilder:didCollectDataOfTypes:)]
+        #[unsafe(method_family = none)]
         unsafe fn workoutBuilder_didCollectDataOfTypes(
             &self,
             workout_builder: &HKLiveWorkoutBuilder,
@@ -32,6 +33,7 @@ extern_protocol!(
         ///
         /// Parameter `workoutBuilder`: The workout builder to which an event was added.
         #[method(workoutBuilderDidCollectEvent:)]
+        #[unsafe(method_family = none)]
         unsafe fn workoutBuilderDidCollectEvent(&self, workout_builder: &HKLiveWorkoutBuilder);
 
         #[cfg(all(feature = "HKWorkoutActivity", feature = "HKWorkoutBuilder"))]
@@ -43,6 +45,7 @@ extern_protocol!(
         /// Parameter `workoutActivity`: The activity that was added.
         #[optional]
         #[method(workoutBuilder:didBeginActivity:)]
+        #[unsafe(method_family = none)]
         unsafe fn workoutBuilder_didBeginActivity(
             &self,
             workout_builder: &HKLiveWorkoutBuilder,
@@ -58,6 +61,7 @@ extern_protocol!(
         /// Parameter `workoutActivity`: The activity that was ended.
         #[optional]
         #[method(workoutBuilder:didEndActivity:)]
+        #[unsafe(method_family = none)]
         unsafe fn workoutBuilder_didEndActivity(
             &self,
             workout_builder: &HKLiveWorkoutBuilder,
@@ -91,7 +95,7 @@ extern_methods!(
             feature = "HKHealthStore",
             feature = "HKWorkoutConfiguration"
         ))]
-        #[method_id(initWithHealthStore:configuration:device:)]
+        #[method(initWithHealthStore:configuration:device:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithHealthStore_configuration_device(
             this: Allocated<Self>,
@@ -101,7 +105,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The delegate object which will be notified of changes to collected data and elapsed workout time.
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -110,6 +114,7 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn HKLiveWorkoutBuilderDelegate>>,
@@ -117,7 +122,7 @@ extern_methods!(
 
         #[cfg(feature = "HKWorkoutSession")]
         /// The workout session with which this builder is associated.
-        #[method_id(workoutSession)]
+        #[method(workoutSession)]
         #[unsafe(method_family = none)]
         pub unsafe fn workoutSession(&self) -> Option<Retained<HKWorkoutSession>>;
 
@@ -128,27 +133,31 @@ extern_methods!(
         /// ignored. Defaults to YES. The result of changing this value after a call to
         /// beginCollectionWithStartDate:completion: is undefined.
         #[method(shouldCollectWorkoutEvents)]
+        #[unsafe(method_family = none)]
         pub unsafe fn shouldCollectWorkoutEvents(&self) -> bool;
 
         /// Setter for [`shouldCollectWorkoutEvents`][Self::shouldCollectWorkoutEvents].
         #[method(setShouldCollectWorkoutEvents:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setShouldCollectWorkoutEvents(&self, should_collect_workout_events: bool);
 
         #[cfg(feature = "HKLiveWorkoutDataSource")]
         /// The data source that will provide data to this workout builder.
-        #[method_id(dataSource)]
+        #[method(dataSource)]
         #[unsafe(method_family = none)]
         pub unsafe fn dataSource(&self) -> Option<Retained<HKLiveWorkoutDataSource>>;
 
         #[cfg(feature = "HKLiveWorkoutDataSource")]
         /// Setter for [`dataSource`][Self::dataSource].
         #[method(setDataSource:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDataSource(&self, data_source: Option<&HKLiveWorkoutDataSource>);
 
         /// The elapsed duration of the workout as constructed thus far, considering paused time. When the builder
         /// is reading events from an active session, it is possible for this value to increase or decrease;
         /// when this occurs, the workoutBuilderDidCollectEvent: delegate method will be called.
         #[method(elapsedTime)]
+        #[unsafe(method_family = none)]
         pub unsafe fn elapsedTime(&self) -> NSTimeInterval;
 
         #[cfg(feature = "HKWorkoutActivity")]
@@ -156,7 +165,7 @@ extern_methods!(
         ///
         /// When an activity is in progress it will be returned by this property. The end date of this activity will always
         /// be nil. When the activity is ended, the property would be set to nil until a new activity begins.
-        #[method_id(currentWorkoutActivity)]
+        #[method(currentWorkoutActivity)]
         #[unsafe(method_family = none)]
         pub unsafe fn currentWorkoutActivity(&self) -> Option<Retained<HKWorkoutActivity>>;
     }
@@ -166,7 +175,7 @@ extern_methods!(
     /// Methods declared on superclass `HKWorkoutBuilder`
     #[cfg(feature = "HKWorkoutBuilder")]
     unsafe impl HKLiveWorkoutBuilder {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -176,7 +185,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "HKWorkoutBuilder")]
     unsafe impl HKLiveWorkoutBuilder {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

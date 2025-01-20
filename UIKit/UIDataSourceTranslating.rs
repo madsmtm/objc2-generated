@@ -11,25 +11,27 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidatasourcetranslating?language=objc)
     pub unsafe trait UIDataSourceTranslating: NSObjectProtocol + MainThreadOnly {
         #[method(presentationSectionIndexForDataSourceSectionIndex:)]
+        #[unsafe(method_family = none)]
         unsafe fn presentationSectionIndexForDataSourceSectionIndex(
             &self,
             data_source_section_index: NSInteger,
         ) -> NSInteger;
 
         #[method(dataSourceSectionIndexForPresentationSectionIndex:)]
+        #[unsafe(method_family = none)]
         unsafe fn dataSourceSectionIndexForPresentationSectionIndex(
             &self,
             presentation_section_index: NSInteger,
         ) -> NSInteger;
 
-        #[method_id(presentationIndexPathForDataSourceIndexPath:)]
+        #[method(presentationIndexPathForDataSourceIndexPath:)]
         #[unsafe(method_family = none)]
         unsafe fn presentationIndexPathForDataSourceIndexPath(
             &self,
             data_source_index_path: Option<&NSIndexPath>,
         ) -> Option<Retained<NSIndexPath>>;
 
-        #[method_id(dataSourceIndexPathForPresentationIndexPath:)]
+        #[method(dataSourceIndexPathForPresentationIndexPath:)]
         #[unsafe(method_family = none)]
         unsafe fn dataSourceIndexPathForPresentationIndexPath(
             &self,
@@ -38,6 +40,7 @@ extern_protocol!(
 
         #[cfg(feature = "block2")]
         #[method(performUsingPresentationValues:)]
+        #[unsafe(method_family = none)]
         unsafe fn performUsingPresentationValues(
             &self,
             actions_to_translate: &block2::Block<dyn Fn() + '_>,

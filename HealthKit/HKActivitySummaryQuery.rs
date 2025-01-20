@@ -33,6 +33,7 @@ extern_methods!(
         /// This property may not be modified once the query has been executed. If this property is nonnull, then
         /// the query must be manually stopped.
         #[method(updateHandler)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updateHandler(
             &self,
         ) -> *mut block2::Block<
@@ -42,6 +43,7 @@ extern_methods!(
         #[cfg(all(feature = "HKActivitySummary", feature = "block2"))]
         /// Setter for [`updateHandler`][Self::updateHandler].
         #[method(setUpdateHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setUpdateHandler(
             &self,
             update_handler: Option<
@@ -65,7 +67,7 @@ extern_methods!(
         /// Parameter `predicate`: The predicate which HKActivitySummaries should match.
         ///
         /// Parameter `handler`: The block to invoke with results when the query has finished.
-        #[method_id(initWithPredicate:resultsHandler:)]
+        #[method(initWithPredicate:resultsHandler:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPredicate_resultsHandler(
             this: Allocated<Self>,
@@ -85,7 +87,7 @@ extern_methods!(
     /// Methods declared on superclass `HKQuery`
     #[cfg(feature = "HKQuery")]
     unsafe impl HKActivitySummaryQuery {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -95,7 +97,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "HKQuery")]
     unsafe impl HKActivitySummaryQuery {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

@@ -60,13 +60,13 @@ unsafe impl NSObjectProtocol for ACAccountStore {}
 extern_methods!(
     unsafe impl ACAccountStore {
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
-        #[method_id(accounts)]
+        #[method(accounts)]
         #[unsafe(method_family = none)]
         pub unsafe fn accounts(&self) -> Option<Retained<NSArray>>;
 
         #[cfg(feature = "ACAccount")]
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
-        #[method_id(accountWithIdentifier:)]
+        #[method(accountWithIdentifier:)]
         #[unsafe(method_family = none)]
         pub unsafe fn accountWithIdentifier(
             &self,
@@ -75,7 +75,7 @@ extern_methods!(
 
         #[cfg(feature = "ACAccountType")]
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
-        #[method_id(accountTypeWithAccountTypeIdentifier:)]
+        #[method(accountTypeWithAccountTypeIdentifier:)]
         #[unsafe(method_family = none)]
         pub unsafe fn accountTypeWithAccountTypeIdentifier(
             &self,
@@ -84,7 +84,7 @@ extern_methods!(
 
         #[cfg(feature = "ACAccountType")]
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
-        #[method_id(accountsWithAccountType:)]
+        #[method(accountsWithAccountType:)]
         #[unsafe(method_family = none)]
         pub unsafe fn accountsWithAccountType(
             &self,
@@ -94,6 +94,7 @@ extern_methods!(
         #[cfg(all(feature = "ACAccount", feature = "block2"))]
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
         #[method(saveAccount:withCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn saveAccount_withCompletionHandler(
             &self,
             account: Option<&ACAccount>,
@@ -103,6 +104,7 @@ extern_methods!(
         #[cfg(all(feature = "ACAccountType", feature = "block2"))]
         #[deprecated]
         #[method(requestAccessToAccountsWithType:withCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestAccessToAccountsWithType_withCompletionHandler(
             &self,
             account_type: Option<&ACAccountType>,
@@ -112,6 +114,7 @@ extern_methods!(
         #[cfg(all(feature = "ACAccountType", feature = "block2"))]
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
         #[method(requestAccessToAccountsWithType:options:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn requestAccessToAccountsWithType_options_completion(
             &self,
             account_type: Option<&ACAccountType>,
@@ -122,6 +125,7 @@ extern_methods!(
         #[cfg(all(feature = "ACAccount", feature = "block2"))]
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
         #[method(renewCredentialsForAccount:completion:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn renewCredentialsForAccount_completion(
             &self,
             account: Option<&ACAccount>,
@@ -131,6 +135,7 @@ extern_methods!(
         #[cfg(all(feature = "ACAccount", feature = "block2"))]
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
         #[method(removeAccount:withCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeAccount_withCompletionHandler(
             &self,
             account: Option<&ACAccount>,
@@ -142,11 +147,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ACAccountStore {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

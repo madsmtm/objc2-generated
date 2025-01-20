@@ -107,12 +107,12 @@ unsafe impl NSSecureCoding for UIImage {}
 
 extern_methods!(
     unsafe impl UIImage {
-        #[method_id(systemImageNamed:)]
+        #[method(systemImageNamed:)]
         #[unsafe(method_family = none)]
         pub unsafe fn systemImageNamed(name: &NSString) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImageConfiguration")]
-        #[method_id(systemImageNamed:withConfiguration:)]
+        #[method(systemImageNamed:withConfiguration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn systemImageNamed_withConfiguration(
             name: &NSString,
@@ -120,7 +120,7 @@ extern_methods!(
         ) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UITraitCollection")]
-        #[method_id(systemImageNamed:compatibleWithTraitCollection:)]
+        #[method(systemImageNamed:compatibleWithTraitCollection:)]
         #[unsafe(method_family = none)]
         pub unsafe fn systemImageNamed_compatibleWithTraitCollection(
             name: &NSString,
@@ -135,7 +135,7 @@ extern_methods!(
         /// `+imageNamed:inBundle:variableValue:withConfiguration:.`
         /// Returns
         /// `nil`if an image with specified name doesn't exist.
-        #[method_id(systemImageNamed:variableValue:withConfiguration:)]
+        #[method(systemImageNamed:variableValue:withConfiguration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn systemImageNamed_variableValue_withConfiguration(
             name: &NSString,
@@ -143,12 +143,12 @@ extern_methods!(
             configuration: Option<&UIImageConfiguration>,
         ) -> Option<Retained<UIImage>>;
 
-        #[method_id(imageNamed:)]
+        #[method(imageNamed:)]
         #[unsafe(method_family = none)]
         pub unsafe fn imageNamed(name: &NSString) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImageConfiguration")]
-        #[method_id(imageNamed:inBundle:withConfiguration:)]
+        #[method(imageNamed:inBundle:withConfiguration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn imageNamed_inBundle_withConfiguration(
             name: &NSString,
@@ -157,7 +157,7 @@ extern_methods!(
         ) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UITraitCollection")]
-        #[method_id(imageNamed:inBundle:compatibleWithTraitCollection:)]
+        #[method(imageNamed:inBundle:compatibleWithTraitCollection:)]
         #[unsafe(method_family = none)]
         pub unsafe fn imageNamed_inBundle_compatibleWithTraitCollection(
             name: &NSString,
@@ -173,7 +173,7 @@ extern_methods!(
         /// `+systemImageNamed:variableValue:withConfiguration:.`
         /// Returns
         /// `nil`if an image with specified name doesn't exist.
-        #[method_id(imageNamed:inBundle:variableValue:withConfiguration:)]
+        #[method(imageNamed:inBundle:variableValue:withConfiguration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn imageNamed_inBundle_variableValue_withConfiguration(
             name: &NSString,
@@ -182,16 +182,16 @@ extern_methods!(
             configuration: Option<&UIImageConfiguration>,
         ) -> Option<Retained<UIImage>>;
 
-        #[method_id(imageWithContentsOfFile:)]
+        #[method(imageWithContentsOfFile:)]
         #[unsafe(method_family = none)]
         pub unsafe fn imageWithContentsOfFile(path: &NSString) -> Option<Retained<UIImage>>;
 
-        #[method_id(imageWithData:)]
+        #[method(imageWithData:)]
         #[unsafe(method_family = none)]
         pub unsafe fn imageWithData(data: &NSData) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(imageWithData:scale:)]
+        #[method(imageWithData:scale:)]
         #[unsafe(method_family = none)]
         pub unsafe fn imageWithData_scale(
             data: &NSData,
@@ -199,12 +199,12 @@ extern_methods!(
         ) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(imageWithCGImage:)]
+        #[method(imageWithCGImage:)]
         #[unsafe(method_family = none)]
         pub unsafe fn imageWithCGImage(cg_image: &CGImage) -> Retained<UIImage>;
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
-        #[method_id(imageWithCGImage:scale:orientation:)]
+        #[method(imageWithCGImage:scale:orientation:)]
         #[unsafe(method_family = none)]
         pub unsafe fn imageWithCGImage_scale_orientation(
             cg_image: &CGImage,
@@ -214,13 +214,13 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-image")]
         #[cfg(not(target_os = "watchos"))]
-        #[method_id(imageWithCIImage:)]
+        #[method(imageWithCIImage:)]
         #[unsafe(method_family = none)]
         pub unsafe fn imageWithCIImage(ci_image: &CIImage) -> Retained<UIImage>;
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-image"))]
         #[cfg(not(target_os = "watchos"))]
-        #[method_id(imageWithCIImage:scale:orientation:)]
+        #[method(imageWithCIImage:scale:orientation:)]
         #[unsafe(method_family = none)]
         pub unsafe fn imageWithCIImage_scale_orientation(
             ci_image: &CIImage,
@@ -228,19 +228,19 @@ extern_methods!(
             orientation: UIImageOrientation,
         ) -> Retained<UIImage>;
 
-        #[method_id(initWithContentsOfFile:)]
+        #[method(initWithContentsOfFile:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithContentsOfFile(
             this: Allocated<Self>,
             path: &NSString,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(initWithData:)]
+        #[method(initWithData:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithData(this: Allocated<Self>, data: &NSData) -> Option<Retained<Self>>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(initWithData:scale:)]
+        #[method(initWithData:scale:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithData_scale(
             this: Allocated<Self>,
@@ -249,12 +249,12 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(initWithCGImage:)]
+        #[method(initWithCGImage:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCGImage(this: Allocated<Self>, cg_image: &CGImage) -> Retained<Self>;
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
-        #[method_id(initWithCGImage:scale:orientation:)]
+        #[method(initWithCGImage:scale:orientation:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCGImage_scale_orientation(
             this: Allocated<Self>,
@@ -265,13 +265,13 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-image")]
         #[cfg(not(target_os = "watchos"))]
-        #[method_id(initWithCIImage:)]
+        #[method(initWithCIImage:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCIImage(this: Allocated<Self>, ci_image: &CIImage) -> Retained<Self>;
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-image"))]
         #[cfg(not(target_os = "watchos"))]
-        #[method_id(initWithCIImage:scale:orientation:)]
+        #[method(initWithCIImage:scale:orientation:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCIImage_scale_orientation(
             this: Allocated<Self>,
@@ -282,30 +282,34 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(size)]
+        #[unsafe(method_family = none)]
         pub unsafe fn size(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(CGImage)]
+        #[method(CGImage)]
         #[unsafe(method_family = none)]
         pub unsafe fn CGImage(&self) -> Option<Retained<CGImage>>;
 
         #[cfg(feature = "objc2-core-image")]
         #[cfg(not(target_os = "watchos"))]
-        #[method_id(CIImage)]
+        #[method(CIImage)]
         #[unsafe(method_family = none)]
         pub unsafe fn CIImage(&self) -> Option<Retained<CIImage>>;
 
         #[method(imageOrientation)]
+        #[unsafe(method_family = none)]
         pub unsafe fn imageOrientation(&self) -> UIImageOrientation;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(scale)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scale(&self) -> CGFloat;
 
         #[method(isSymbolImage)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isSymbolImage(&self) -> bool;
 
-        #[method_id(animatedImageNamed:duration:)]
+        #[method(animatedImageNamed:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn animatedImageNamed_duration(
             name: &NSString,
@@ -313,7 +317,7 @@ extern_methods!(
         ) -> Option<Retained<UIImage>>;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
-        #[method_id(animatedResizableImageNamed:capInsets:duration:)]
+        #[method(animatedResizableImageNamed:capInsets:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn animatedResizableImageNamed_capInsets_duration(
             name: &NSString,
@@ -322,7 +326,7 @@ extern_methods!(
         ) -> Option<Retained<UIImage>>;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
-        #[method_id(animatedResizableImageNamed:capInsets:resizingMode:duration:)]
+        #[method(animatedResizableImageNamed:capInsets:resizingMode:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn animatedResizableImageNamed_capInsets_resizingMode_duration(
             name: &NSString,
@@ -331,26 +335,29 @@ extern_methods!(
             duration: NSTimeInterval,
         ) -> Option<Retained<UIImage>>;
 
-        #[method_id(animatedImageWithImages:duration:)]
+        #[method(animatedImageWithImages:duration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn animatedImageWithImages_duration(
             images: &NSArray<UIImage>,
             duration: NSTimeInterval,
         ) -> Option<Retained<UIImage>>;
 
-        #[method_id(images)]
+        #[method(images)]
         #[unsafe(method_family = none)]
         pub unsafe fn images(&self) -> Option<Retained<NSArray<UIImage>>>;
 
         #[method(duration)]
+        #[unsafe(method_family = none)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(drawAtPoint:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn drawAtPoint(&self, point: CGPoint);
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
         #[method(drawAtPoint:blendMode:alpha:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn drawAtPoint_blendMode_alpha(
             &self,
             point: CGPoint,
@@ -360,10 +367,12 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(drawInRect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn drawInRect(&self, rect: CGRect);
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
         #[method(drawInRect:blendMode:alpha:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn drawInRect_blendMode_alpha(
             &self,
             rect: CGRect,
@@ -373,10 +382,11 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(drawAsPatternInRect:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn drawAsPatternInRect(&self, rect: CGRect);
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
-        #[method_id(resizableImageWithCapInsets:)]
+        #[method(resizableImageWithCapInsets:)]
         #[unsafe(method_family = none)]
         pub unsafe fn resizableImageWithCapInsets(
             &self,
@@ -384,7 +394,7 @@ extern_methods!(
         ) -> Retained<UIImage>;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
-        #[method_id(resizableImageWithCapInsets:resizingMode:)]
+        #[method(resizableImageWithCapInsets:resizingMode:)]
         #[unsafe(method_family = none)]
         pub unsafe fn resizableImageWithCapInsets_resizingMode(
             &self,
@@ -394,13 +404,15 @@ extern_methods!(
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         #[method(capInsets)]
+        #[unsafe(method_family = none)]
         pub unsafe fn capInsets(&self) -> UIEdgeInsets;
 
         #[method(resizingMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn resizingMode(&self) -> UIImageResizingMode;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
-        #[method_id(imageWithAlignmentRectInsets:)]
+        #[method(imageWithAlignmentRectInsets:)]
         #[unsafe(method_family = none)]
         pub unsafe fn imageWithAlignmentRectInsets(
             &self,
@@ -409,9 +421,10 @@ extern_methods!(
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         #[method(alignmentRectInsets)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alignmentRectInsets(&self) -> UIEdgeInsets;
 
-        #[method_id(imageWithRenderingMode:)]
+        #[method(imageWithRenderingMode:)]
         #[unsafe(method_family = none)]
         pub unsafe fn imageWithRenderingMode(
             &self,
@@ -419,60 +432,64 @@ extern_methods!(
         ) -> Retained<UIImage>;
 
         #[method(renderingMode)]
+        #[unsafe(method_family = none)]
         pub unsafe fn renderingMode(&self) -> UIImageRenderingMode;
 
         #[cfg(all(feature = "UIGraphicsImageRenderer", feature = "UIGraphicsRenderer"))]
-        #[method_id(imageRendererFormat)]
+        #[method(imageRendererFormat)]
         #[unsafe(method_family = none)]
         pub unsafe fn imageRendererFormat(&self) -> Retained<UIGraphicsImageRendererFormat>;
 
         #[cfg(feature = "UITraitCollection")]
-        #[method_id(traitCollection)]
+        #[method(traitCollection)]
         #[unsafe(method_family = none)]
         pub unsafe fn traitCollection(&self) -> Retained<UITraitCollection>;
 
         #[cfg(feature = "UIImageAsset")]
-        #[method_id(imageAsset)]
+        #[method(imageAsset)]
         #[unsafe(method_family = none)]
         pub unsafe fn imageAsset(&self) -> Option<Retained<UIImageAsset>>;
 
-        #[method_id(imageFlippedForRightToLeftLayoutDirection)]
+        #[method(imageFlippedForRightToLeftLayoutDirection)]
         #[unsafe(method_family = none)]
         pub unsafe fn imageFlippedForRightToLeftLayoutDirection(&self) -> Retained<UIImage>;
 
         #[method(flipsForRightToLeftLayoutDirection)]
+        #[unsafe(method_family = none)]
         pub unsafe fn flipsForRightToLeftLayoutDirection(&self) -> bool;
 
-        #[method_id(imageWithHorizontallyFlippedOrientation)]
+        #[method(imageWithHorizontallyFlippedOrientation)]
         #[unsafe(method_family = none)]
         pub unsafe fn imageWithHorizontallyFlippedOrientation(&self) -> Retained<UIImage>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(baselineOffsetFromBottom)]
+        #[unsafe(method_family = none)]
         pub unsafe fn baselineOffsetFromBottom(&self) -> CGFloat;
 
         #[method(hasBaseline)]
+        #[unsafe(method_family = none)]
         pub unsafe fn hasBaseline(&self) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(imageWithBaselineOffsetFromBottom:)]
+        #[method(imageWithBaselineOffsetFromBottom:)]
         #[unsafe(method_family = none)]
         pub unsafe fn imageWithBaselineOffsetFromBottom(
             &self,
             baseline_offset: CGFloat,
         ) -> Retained<UIImage>;
 
-        #[method_id(imageWithoutBaseline)]
+        #[method(imageWithoutBaseline)]
         #[unsafe(method_family = none)]
         pub unsafe fn imageWithoutBaseline(&self) -> Retained<UIImage>;
 
         #[cfg(feature = "UIImageConfiguration")]
-        #[method_id(configuration)]
+        #[method(configuration)]
         #[unsafe(method_family = none)]
         pub unsafe fn configuration(&self) -> Option<Retained<UIImageConfiguration>>;
 
         #[cfg(feature = "UIImageConfiguration")]
-        #[method_id(imageWithConfiguration:)]
+        #[method(imageWithConfiguration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn imageWithConfiguration(
             &self,
@@ -483,7 +500,7 @@ extern_methods!(
             feature = "UIImageConfiguration",
             feature = "UIImageSymbolConfiguration"
         ))]
-        #[method_id(symbolConfiguration)]
+        #[method(symbolConfiguration)]
         #[unsafe(method_family = none)]
         pub unsafe fn symbolConfiguration(&self) -> Option<Retained<UIImageSymbolConfiguration>>;
 
@@ -491,7 +508,7 @@ extern_methods!(
             feature = "UIImageConfiguration",
             feature = "UIImageSymbolConfiguration"
         ))]
-        #[method_id(imageByApplyingSymbolConfiguration:)]
+        #[method(imageByApplyingSymbolConfiguration:)]
         #[unsafe(method_family = none)]
         pub unsafe fn imageByApplyingSymbolConfiguration(
             &self,
@@ -499,12 +516,12 @@ extern_methods!(
         ) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIColor")]
-        #[method_id(imageWithTintColor:)]
+        #[method(imageWithTintColor:)]
         #[unsafe(method_family = none)]
         pub unsafe fn imageWithTintColor(&self, color: &UIColor) -> Retained<UIImage>;
 
         #[cfg(feature = "UIColor")]
-        #[method_id(imageWithTintColor:renderingMode:)]
+        #[method(imageWithTintColor:renderingMode:)]
         #[unsafe(method_family = none)]
         pub unsafe fn imageWithTintColor_renderingMode(
             &self,
@@ -519,7 +536,7 @@ extern_methods!(
         ///
         ///
         /// Note: The prepared `UIImage` is not related to the original image. If the properties of the screen (such as its resolution or color gamut) change, or if the image is displayed on a different screen that the one it was prepared for, it may not render correctly.
-        #[method_id(imageByPreparingForDisplay)]
+        #[method(imageByPreparingForDisplay)]
         #[unsafe(method_family = none)]
         pub unsafe fn imageByPreparingForDisplay(&self) -> Option<Retained<UIImage>>;
 
@@ -535,13 +552,14 @@ extern_methods!(
         ///
         /// Note: The prepared `UIImage` is not related to the original image. If the properties of the screen (such as its resolution or color gamut) change, or if the image is displayed on a different screen that the one it was prepared for, it may not render correctly.
         #[method(prepareForDisplayWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn prepareForDisplayWithCompletionHandler(
             &self,
             completion_handler: &block2::Block<dyn Fn(*mut UIImage)>,
         );
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(imageByPreparingThumbnailOfSize:)]
+        #[method(imageByPreparingThumbnailOfSize:)]
         #[unsafe(method_family = none)]
         pub unsafe fn imageByPreparingThumbnailOfSize(
             &self,
@@ -550,6 +568,7 @@ extern_methods!(
 
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
         #[method(prepareThumbnailOfSize:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn prepareThumbnailOfSize_completionHandler(
             &self,
             size: CGSize,
@@ -558,10 +577,11 @@ extern_methods!(
 
         /// Indicates that this image is tagged for display of high dynamic range content.
         #[method(isHighDynamicRange)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isHighDynamicRange(&self) -> bool;
 
         /// Returns a new image that will render within the standard range.
-        #[method_id(imageRestrictedToStandardDynamicRange)]
+        #[method(imageRestrictedToStandardDynamicRange)]
         #[unsafe(method_family = none)]
         pub unsafe fn imageRestrictedToStandardDynamicRange(&self) -> Retained<UIImage>;
     }
@@ -570,11 +590,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIImage {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -583,23 +603,23 @@ extern_methods!(
 extern_methods!(
     /// PreconfiguredSystemImages
     unsafe impl UIImage {
-        #[method_id(actionsImage)]
+        #[method(actionsImage)]
         #[unsafe(method_family = none)]
         pub unsafe fn actionsImage() -> Retained<UIImage>;
 
-        #[method_id(addImage)]
+        #[method(addImage)]
         #[unsafe(method_family = none)]
         pub unsafe fn addImage() -> Retained<UIImage>;
 
-        #[method_id(removeImage)]
+        #[method(removeImage)]
         #[unsafe(method_family = none)]
         pub unsafe fn removeImage() -> Retained<UIImage>;
 
-        #[method_id(checkmarkImage)]
+        #[method(checkmarkImage)]
         #[unsafe(method_family = none)]
         pub unsafe fn checkmarkImage() -> Retained<UIImage>;
 
-        #[method_id(strokedCheckmarkImage)]
+        #[method(strokedCheckmarkImage)]
         #[unsafe(method_family = none)]
         pub unsafe fn strokedCheckmarkImage() -> Retained<UIImage>;
     }
@@ -618,7 +638,7 @@ extern_methods!(
     /// UIImage
     #[cfg(feature = "NSTextAttachment")]
     unsafe impl NSTextAttachment {
-        #[method_id(textAttachmentWithImage:)]
+        #[method(textAttachmentWithImage:)]
         #[unsafe(method_family = none)]
         pub unsafe fn textAttachmentWithImage(image: &UIImage) -> Retained<NSTextAttachment>;
     }
@@ -627,7 +647,7 @@ extern_methods!(
 extern_methods!(
     /// UIImageDeprecated
     unsafe impl UIImage {
-        #[method_id(stretchableImageWithLeftCapWidth:topCapHeight:)]
+        #[method(stretchableImageWithLeftCapWidth:topCapHeight:)]
         #[unsafe(method_family = none)]
         pub unsafe fn stretchableImageWithLeftCapWidth_topCapHeight(
             &self,
@@ -636,9 +656,11 @@ extern_methods!(
         ) -> Retained<UIImage>;
 
         #[method(leftCapWidth)]
+        #[unsafe(method_family = none)]
         pub unsafe fn leftCapWidth(&self) -> NSInteger;
 
         #[method(topCapHeight)]
+        #[unsafe(method_family = none)]
         pub unsafe fn topCapHeight(&self) -> NSInteger;
     }
 );
@@ -647,13 +669,13 @@ extern_category!(
     /// Category "UIKitAdditions" on [`CIImage`].
     #[doc(alias = "UIKitAdditions")]
     pub unsafe trait CIImageUIKitAdditions {
-        #[method_id(initWithImage:)]
+        #[method(initWithImage:)]
         #[unsafe(method_family = init)]
         unsafe fn initWithImage(this: Allocated<Self>, image: &UIImage) -> Option<Retained<Self>>;
 
         #[cfg(feature = "objc2-core-image")]
         #[cfg(not(target_os = "watchos"))]
-        #[method_id(initWithImage:options:)]
+        #[method(initWithImage:options:)]
         #[unsafe(method_family = init)]
         unsafe fn initWithImage_options(
             this: Allocated<Self>,

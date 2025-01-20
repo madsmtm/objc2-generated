@@ -25,16 +25,19 @@ unsafe impl NSSecureCoding for WCSessionUserInfoTransfer {}
 extern_methods!(
     unsafe impl WCSessionUserInfoTransfer {
         #[method(isCurrentComplicationInfo)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isCurrentComplicationInfo(&self) -> bool;
 
-        #[method_id(userInfo)]
+        #[method(userInfo)]
         #[unsafe(method_family = none)]
         pub unsafe fn userInfo(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[method(isTransferring)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isTransferring(&self) -> bool;
 
         #[method(cancel)]
+        #[unsafe(method_family = none)]
         pub unsafe fn cancel(&self);
     }
 );
@@ -42,11 +45,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WCSessionUserInfoTransfer {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

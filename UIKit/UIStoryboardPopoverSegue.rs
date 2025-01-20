@@ -25,7 +25,7 @@ extern_methods!(
     unsafe impl UIStoryboardPopoverSegue {
         #[cfg(feature = "UIPopoverController")]
         #[deprecated = "Access destinationViewController.popoverPresentationController from your segue's performHandler or override of -perform"]
-        #[method_id(popoverController)]
+        #[method(popoverController)]
         #[unsafe(method_family = none)]
         pub unsafe fn popoverController(&self) -> Retained<UIPopoverController>;
     }
@@ -40,7 +40,7 @@ extern_methods!(
             feature = "UIViewController",
             feature = "block2"
         ))]
-        #[method_id(segueWithIdentifier:source:destination:performHandler:)]
+        #[method(segueWithIdentifier:source:destination:performHandler:)]
         #[unsafe(method_family = none)]
         pub unsafe fn segueWithIdentifier_source_destination_performHandler(
             identifier: Option<&NSString>,
@@ -51,7 +51,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
-        #[method_id(initWithIdentifier:source:destination:)]
+        #[method(initWithIdentifier:source:destination:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifier_source_destination(
             this: Allocated<Self>,
@@ -61,7 +61,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -71,7 +71,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UIStoryboardSegue")]
     unsafe impl UIStoryboardPopoverSegue {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }

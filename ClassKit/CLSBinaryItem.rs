@@ -55,16 +55,19 @@ extern_methods!(
     unsafe impl CLSBinaryItem {
         /// True or false value.
         #[method(value)]
+        #[unsafe(method_family = none)]
         pub unsafe fn value(&self) -> bool;
 
         /// Setter for [`value`][Self::value].
         #[method(setValue:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setValue(&self, value: bool);
 
         /// Value type of this CLSBinaryItem.
         ///
         /// The type that best describes this CLSBinaryItem value.
         #[method(valueType)]
+        #[unsafe(method_family = none)]
         pub unsafe fn valueType(&self) -> CLSBinaryValueType;
 
         /// Create an item that represents a binary value
@@ -74,7 +77,7 @@ extern_methods!(
         /// Parameter `identifier`: An identifier that is unique within its owning activity.
         ///
         /// Parameter `valueType`: The type of binary value. Ex. pass or fail.
-        #[method_id(initWithIdentifier:title:type:)]
+        #[method(initWithIdentifier:title:type:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifier_title_type(
             this: Allocated<Self>,
@@ -89,11 +92,11 @@ extern_methods!(
     /// Methods declared on superclass `CLSActivityItem`
     #[cfg(all(feature = "CLSActivityItem", feature = "CLSObject"))]
     unsafe impl CLSBinaryItem {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }

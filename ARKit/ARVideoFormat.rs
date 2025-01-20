@@ -39,37 +39,42 @@ extern_methods!(
         #[cfg(feature = "objc2-av-foundation")]
         /// Indicates the physical position of an AVCaptureDevice's hardware on the system.
         #[method(captureDevicePosition)]
+        #[unsafe(method_family = none)]
         pub unsafe fn captureDevicePosition(&self) -> AVCaptureDevicePosition;
 
         #[cfg(feature = "objc2-av-foundation")]
         /// Indicates the type of AVCaptureDevice.
-        #[method_id(captureDeviceType)]
+        #[method(captureDeviceType)]
         #[unsafe(method_family = none)]
         pub unsafe fn captureDeviceType(&self) -> Retained<AVCaptureDeviceType>;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Image resolution.
         #[method(imageResolution)]
+        #[unsafe(method_family = none)]
         pub unsafe fn imageResolution(&self) -> CGSize;
 
         /// Frame rate.
         #[method(framesPerSecond)]
+        #[unsafe(method_family = none)]
         pub unsafe fn framesPerSecond(&self) -> NSInteger;
 
         /// Indicates if the video format is recommended for capturing high resolution frames.
         #[method(isRecommendedForHighResolutionFrameCapturing)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isRecommendedForHighResolutionFrameCapturing(&self) -> bool;
 
         /// Indicates if the video format supports high dynamic range (HDR) streaming.
         #[method(isVideoHDRSupported)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isVideoHDRSupported(&self) -> bool;
 
         /// Unavailable
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

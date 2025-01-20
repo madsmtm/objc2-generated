@@ -33,13 +33,14 @@ extern_methods!(
     #[cfg(feature = "NSPropertyDescription")]
     unsafe impl NSFetchedPropertyDescription {
         #[cfg(all(feature = "NSFetchRequest", feature = "NSPersistentStoreRequest"))]
-        #[method_id(fetchRequest)]
+        #[method(fetchRequest)]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchRequest(&self) -> Option<Retained<NSFetchRequest>>;
 
         #[cfg(all(feature = "NSFetchRequest", feature = "NSPersistentStoreRequest"))]
         /// Setter for [`fetchRequest`][Self::fetchRequest].
         #[method(setFetchRequest:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setFetchRequest(&self, fetch_request: Option<&NSFetchRequest>);
     }
 );
@@ -48,11 +49,11 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSPropertyDescription")]
     unsafe impl NSFetchedPropertyDescription {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

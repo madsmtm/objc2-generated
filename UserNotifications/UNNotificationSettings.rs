@@ -120,51 +120,66 @@ unsafe impl NSSecureCoding for UNNotificationSettings {}
 extern_methods!(
     unsafe impl UNNotificationSettings {
         #[method(authorizationStatus)]
+        #[unsafe(method_family = none)]
         pub unsafe fn authorizationStatus(&self) -> UNAuthorizationStatus;
 
         #[method(soundSetting)]
+        #[unsafe(method_family = none)]
         pub unsafe fn soundSetting(&self) -> UNNotificationSetting;
 
         #[method(badgeSetting)]
+        #[unsafe(method_family = none)]
         pub unsafe fn badgeSetting(&self) -> UNNotificationSetting;
 
         #[method(alertSetting)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alertSetting(&self) -> UNNotificationSetting;
 
         #[method(notificationCenterSetting)]
+        #[unsafe(method_family = none)]
         pub unsafe fn notificationCenterSetting(&self) -> UNNotificationSetting;
 
         #[method(lockScreenSetting)]
+        #[unsafe(method_family = none)]
         pub unsafe fn lockScreenSetting(&self) -> UNNotificationSetting;
 
         #[method(carPlaySetting)]
+        #[unsafe(method_family = none)]
         pub unsafe fn carPlaySetting(&self) -> UNNotificationSetting;
 
         #[method(alertStyle)]
+        #[unsafe(method_family = none)]
         pub unsafe fn alertStyle(&self) -> UNAlertStyle;
 
         #[method(showPreviewsSetting)]
+        #[unsafe(method_family = none)]
         pub unsafe fn showPreviewsSetting(&self) -> UNShowPreviewsSetting;
 
         #[method(criticalAlertSetting)]
+        #[unsafe(method_family = none)]
         pub unsafe fn criticalAlertSetting(&self) -> UNNotificationSetting;
 
         #[method(providesAppNotificationSettings)]
+        #[unsafe(method_family = none)]
         pub unsafe fn providesAppNotificationSettings(&self) -> bool;
 
         #[method(announcementSetting)]
+        #[unsafe(method_family = none)]
         pub unsafe fn announcementSetting(&self) -> UNNotificationSetting;
 
         #[method(timeSensitiveSetting)]
+        #[unsafe(method_family = none)]
         pub unsafe fn timeSensitiveSetting(&self) -> UNNotificationSetting;
 
         #[method(scheduledDeliverySetting)]
+        #[unsafe(method_family = none)]
         pub unsafe fn scheduledDeliverySetting(&self) -> UNNotificationSetting;
 
         #[method(directMessagesSetting)]
+        #[unsafe(method_family = none)]
         pub unsafe fn directMessagesSetting(&self) -> UNNotificationSetting;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -173,7 +188,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UNNotificationSettings {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

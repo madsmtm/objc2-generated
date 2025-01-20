@@ -12,6 +12,7 @@ extern_protocol!(
     pub unsafe trait CLLocationPushServiceExtension: NSObjectProtocol {
         #[cfg(feature = "block2")]
         #[method(didReceiveLocationPushPayload:completion:)]
+        #[unsafe(method_family = none)]
         unsafe fn didReceiveLocationPushPayload_completion(
             &self,
             payload: &NSDictionary<NSString, AnyObject>,
@@ -20,6 +21,7 @@ extern_protocol!(
 
         #[optional]
         #[method(serviceExtensionWillTerminate)]
+        #[unsafe(method_family = none)]
         unsafe fn serviceExtensionWillTerminate(&self);
     }
 );

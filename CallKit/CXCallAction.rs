@@ -34,23 +34,23 @@ unsafe impl NSSecureCoding for CXCallAction {}
 extern_methods!(
     #[cfg(feature = "CXAction")]
     unsafe impl CXCallAction {
-        #[method_id(callUUID)]
+        #[method(callUUID)]
         #[unsafe(method_family = none)]
         pub unsafe fn callUUID(&self) -> Retained<NSUUID>;
 
-        #[method_id(initWithCallUUID:)]
+        #[method(initWithCallUUID:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCallUUID(this: Allocated<Self>, call_uuid: &NSUUID)
             -> Retained<Self>;
 
-        #[method_id(initWithCoder:)]
+        #[method(initWithCoder:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -60,7 +60,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CXAction")]
     unsafe impl CXCallAction {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

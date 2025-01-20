@@ -23,12 +23,13 @@ extern_methods!(
     #[cfg(feature = "UICalendarSelection")]
     unsafe impl UICalendarSelectionWeekOfYear {
         /// The currently selected week of year in the Calendar view. The components must include `[.yearForWeekOfYear, .weekOfYear]`.
-        #[method_id(selectedWeekOfYear)]
+        #[method(selectedWeekOfYear)]
         #[unsafe(method_family = none)]
         pub unsafe fn selectedWeekOfYear(&self) -> Option<Retained<NSDateComponents>>;
 
         /// Setter for [`selectedWeekOfYear`][Self::selectedWeekOfYear].
         #[method(setSelectedWeekOfYear:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSelectedWeekOfYear(
             &self,
             selected_week_of_year: Option<&NSDateComponents>,
@@ -36,6 +37,7 @@ extern_methods!(
 
         /// Sets the dates to display in the calendar, with an option to animate the setting.
         #[method(setSelectedWeekOfYear:animated:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setSelectedWeekOfYear_animated(
             &self,
             selected_week_of_year: Option<&NSDateComponents>,
@@ -43,14 +45,14 @@ extern_methods!(
         );
 
         /// The object that acts as the delegate of the calendar view selection
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UICalendarSelectionWeekOfYearDelegate>>>;
 
         /// Creates a new multi-date selection with the specified delegate.
-        #[method_id(initWithDelegate:)]
+        #[method(initWithDelegate:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDelegate(
             this: Allocated<Self>,
@@ -63,11 +65,11 @@ extern_methods!(
     /// Methods declared on superclass `UICalendarSelection`
     #[cfg(feature = "UICalendarSelection")]
     unsafe impl UICalendarSelectionWeekOfYear {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
@@ -84,6 +86,7 @@ extern_protocol!(
         /// `UICalendarSelectionWeekOfYear`
         /// Parameter `dateComponents`: The date that was selected by the user.
         #[method(weekOfYearSelection:didSelectWeekOfYear:)]
+        #[unsafe(method_family = none)]
         unsafe fn weekOfYearSelection_didSelectWeekOfYear(
             &self,
             selection: &UICalendarSelectionWeekOfYear,
@@ -102,6 +105,7 @@ extern_protocol!(
         /// Returns: YES if the date can be selected, NO otherwise.
         #[optional]
         #[method(weekOfYearSelection:canSelectWeekOfYear:)]
+        #[unsafe(method_family = none)]
         unsafe fn weekOfYearSelection_canSelectWeekOfYear(
             &self,
             selection: &UICalendarSelectionWeekOfYear,

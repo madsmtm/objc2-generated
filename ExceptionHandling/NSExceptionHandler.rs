@@ -69,26 +69,31 @@ unsafe impl NSObjectProtocol for NSExceptionHandler {}
 
 extern_methods!(
     unsafe impl NSExceptionHandler {
-        #[method_id(defaultExceptionHandler)]
+        #[method(defaultExceptionHandler)]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultExceptionHandler() -> Option<Retained<NSExceptionHandler>>;
 
         #[method(setExceptionHandlingMask:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setExceptionHandlingMask(&self, a_mask: NSUInteger);
 
         #[method(exceptionHandlingMask)]
+        #[unsafe(method_family = none)]
         pub unsafe fn exceptionHandlingMask(&self) -> NSUInteger;
 
         #[method(setExceptionHangingMask:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setExceptionHangingMask(&self, a_mask: NSUInteger);
 
         #[method(exceptionHangingMask)]
+        #[unsafe(method_family = none)]
         pub unsafe fn exceptionHangingMask(&self) -> NSUInteger;
 
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, an_object: Option<&AnyObject>);
 
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<AnyObject>>;
     }
@@ -97,11 +102,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSExceptionHandler {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -112,6 +117,7 @@ extern_category!(
     #[doc(alias = "NSExceptionHandlerDelegate")]
     pub unsafe trait NSObjectNSExceptionHandlerDelegate {
         #[method(exceptionHandler:shouldLogException:mask:)]
+        #[unsafe(method_family = none)]
         unsafe fn exceptionHandler_shouldLogException_mask(
             &self,
             sender: Option<&NSExceptionHandler>,
@@ -120,6 +126,7 @@ extern_category!(
         ) -> bool;
 
         #[method(exceptionHandler:shouldHandleException:mask:)]
+        #[unsafe(method_family = none)]
         unsafe fn exceptionHandler_shouldHandleException_mask(
             &self,
             sender: Option<&NSExceptionHandler>,

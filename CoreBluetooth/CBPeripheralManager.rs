@@ -143,7 +143,7 @@ extern_methods!(
     #[cfg(feature = "CBManager")]
     unsafe impl CBPeripheralManager {
         /// The delegate object that will receive peripheral events.
-        #[method_id(delegate)]
+        #[method(delegate)]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
@@ -152,6 +152,7 @@ extern_methods!(
         /// This is a [weak property][objc2::topics::weak_property].
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn CBPeripheralManagerDelegate>>,
@@ -159,6 +160,7 @@ extern_methods!(
 
         /// Whether or not the peripheral is currently advertising data.
         #[method(isAdvertising)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isAdvertising(&self) -> bool;
 
         /// This method does not prompt the user for access. You can use it to detect restricted access and simply hide UI instead of
@@ -176,9 +178,10 @@ extern_methods!(
         /// ```
         #[deprecated = "Use CBManagerAuthorization instead"]
         #[method(authorizationStatus)]
+        #[unsafe(method_family = none)]
         pub unsafe fn authorizationStatus() -> CBPeripheralManagerAuthorizationStatus;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
@@ -209,6 +212,7 @@ extern_methods!(
         ///
         /// See also: CBAdvertisementData.h
         #[method(startAdvertising:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn startAdvertising(
             &self,
             advertisement_data: Option<&NSDictionary<NSString, AnyObject>>,
@@ -216,6 +220,7 @@ extern_methods!(
 
         /// Stops advertising.
         #[method(stopAdvertising)]
+        #[unsafe(method_family = none)]
         pub unsafe fn stopAdvertising(&self);
 
         #[cfg(all(feature = "CBCentral", feature = "CBPeer"))]
@@ -239,6 +244,7 @@ extern_methods!(
         ///
         /// See: CBPeripheralManagerConnectionLatency
         #[method(setDesiredConnectionLatency:forCentral:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setDesiredConnectionLatency_forCentral(
             &self,
             latency: CBPeripheralManagerConnectionLatency,
@@ -255,6 +261,7 @@ extern_methods!(
         ///
         /// See: peripheralManager:didAddService:error:
         #[method(addService:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn addService(&self, service: &CBMutableService);
 
         #[cfg(all(feature = "CBAttribute", feature = "CBService"))]
@@ -264,10 +271,12 @@ extern_methods!(
         /// Removes a published service from the local database. If the service is included by other service(s), they must be removed
         /// first.
         #[method(removeService:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeService(&self, service: &CBMutableService);
 
         /// Removes all published services from the local database.
         #[method(removeAllServices)]
+        #[unsafe(method_family = none)]
         pub unsafe fn removeAllServices(&self);
 
         #[cfg(all(feature = "CBATTRequest", feature = "CBError"))]
@@ -299,6 +308,7 @@ extern_methods!(
         ///
         /// See: peripheralManager:didReceiveWriteRequests:
         #[method(respondToRequest:withResult:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn respondToRequest_withResult(
             &self,
             request: &CBATTRequest,
@@ -360,6 +370,7 @@ extern_methods!(
         ///
         /// See also: maximumUpdateValueLength
         #[method(updateValue:forCharacteristic:onSubscribedCentrals:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn updateValue_forCharacteristic_onSubscribedCentrals(
             &self,
             value: &NSData,
@@ -381,6 +392,7 @@ extern_methods!(
         /// .  L2CAP Channels are not discoverable by themselves, so it is the application's
         /// responsibility to handle PSM discovery on the client.
         #[method(publishL2CAPChannelWithEncryption:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn publishL2CAPChannelWithEncryption(&self, encryption_required: bool);
 
         #[cfg(feature = "CBL2CAPChannel")]
@@ -390,6 +402,7 @@ extern_methods!(
         /// Removes a published service from the local system.  No new connections for this PSM will be accepted, and any existing L2CAP channels
         /// using this PSM will be closed.
         #[method(unpublishL2CAPChannel:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn unpublishL2CAPChannel(&self, psm: CBL2CAPPSM);
     }
 );
@@ -398,7 +411,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CBManager")]
     unsafe impl CBPeripheralManager {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
@@ -443,6 +456,7 @@ extern_protocol!(
         ///
         /// See: state
         #[method(peripheralManagerDidUpdateState:)]
+        #[unsafe(method_family = none)]
         unsafe fn peripheralManagerDidUpdateState(&self, peripheral: &CBPeripheralManager);
 
         #[cfg(feature = "CBManager")]
@@ -465,6 +479,7 @@ extern_protocol!(
         /// See also: CBPeripheralManagerRestoredStateAdvertisementDataKey;
         #[optional]
         #[method(peripheralManager:willRestoreState:)]
+        #[unsafe(method_family = none)]
         unsafe fn peripheralManager_willRestoreState(
             &self,
             peripheral: &CBPeripheralManager,
@@ -491,6 +506,7 @@ extern_protocol!(
         /// parameter.
         #[optional]
         #[method(peripheralManagerDidStartAdvertising:error:)]
+        #[unsafe(method_family = none)]
         unsafe fn peripheralManagerDidStartAdvertising_error(
             &self,
             peripheral: &CBPeripheralManager,
@@ -519,6 +535,7 @@ extern_protocol!(
         /// parameter.
         #[optional]
         #[method(peripheralManager:didAddService:error:)]
+        #[unsafe(method_family = none)]
         unsafe fn peripheralManager_didAddService_error(
             &self,
             peripheral: &CBPeripheralManager,
@@ -548,6 +565,7 @@ extern_protocol!(
         /// It should be used as a cue to start sending updates as the characteristic value changes.
         #[optional]
         #[method(peripheralManager:central:didSubscribeToCharacteristic:)]
+        #[unsafe(method_family = none)]
         unsafe fn peripheralManager_central_didSubscribeToCharacteristic(
             &self,
             peripheral: &CBPeripheralManager,
@@ -576,6 +594,7 @@ extern_protocol!(
         /// .
         #[optional]
         #[method(peripheralManager:central:didUnsubscribeFromCharacteristic:)]
+        #[unsafe(method_family = none)]
         unsafe fn peripheralManager_central_didUnsubscribeFromCharacteristic(
             &self,
             peripheral: &CBPeripheralManager,
@@ -610,6 +629,7 @@ extern_protocol!(
         /// See: CBATTRequest
         #[optional]
         #[method(peripheralManager:didReceiveReadRequest:)]
+        #[unsafe(method_family = none)]
         unsafe fn peripheralManager_didReceiveReadRequest(
             &self,
             peripheral: &CBPeripheralManager,
@@ -653,6 +673,7 @@ extern_protocol!(
         /// See: CBATTRequest
         #[optional]
         #[method(peripheralManager:didReceiveWriteRequests:)]
+        #[unsafe(method_family = none)]
         unsafe fn peripheralManager_didReceiveWriteRequests(
             &self,
             peripheral: &CBPeripheralManager,
@@ -677,6 +698,7 @@ extern_protocol!(
         /// ready to send characteristic value updates.
         #[optional]
         #[method(peripheralManagerIsReadyToUpdateSubscribers:)]
+        #[unsafe(method_family = none)]
         unsafe fn peripheralManagerIsReadyToUpdateSubscribers(
             &self,
             peripheral: &CBPeripheralManager,
@@ -700,6 +722,7 @@ extern_protocol!(
         /// channel
         #[optional]
         #[method(peripheralManager:didPublishL2CAPChannel:error:)]
+        #[unsafe(method_family = none)]
         unsafe fn peripheralManager_didPublishL2CAPChannel_error(
             &self,
             peripheral: &CBPeripheralManager,
@@ -724,6 +747,7 @@ extern_protocol!(
         /// call.
         #[optional]
         #[method(peripheralManager:didUnpublishL2CAPChannel:error:)]
+        #[unsafe(method_family = none)]
         unsafe fn peripheralManager_didUnpublishL2CAPChannel_error(
             &self,
             peripheral: &CBPeripheralManager,
@@ -753,6 +777,7 @@ extern_protocol!(
         /// ```
         #[optional]
         #[method(peripheralManager:didOpenL2CAPChannel:error:)]
+        #[unsafe(method_family = none)]
         unsafe fn peripheralManager_didOpenL2CAPChannel_error(
             &self,
             peripheral: &CBPeripheralManager,

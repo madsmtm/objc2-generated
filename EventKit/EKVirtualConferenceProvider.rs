@@ -38,6 +38,7 @@ extern_methods!(
         /// a non-nil array and a non-nil NSError. This block must be called when your extension has
         /// finished its work.
         #[method(fetchAvailableRoomTypesWithCompletionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fetchAvailableRoomTypesWithCompletionHandler(
             &self,
             completion_handler: &block2::Block<
@@ -65,6 +66,7 @@ extern_methods!(
         /// EKVirtualConferenceDescriptor and a non-nil NSError.  This block must be called when your
         /// extension has finished its work.
         #[method(fetchVirtualConferenceForIdentifier:completionHandler:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn fetchVirtualConferenceForIdentifier_completionHandler(
             &self,
             identifier: &EKVirtualConferenceRoomTypeIdentifier,
@@ -78,11 +80,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl EKVirtualConferenceProvider {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

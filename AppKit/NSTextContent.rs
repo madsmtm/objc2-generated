@@ -229,12 +229,13 @@ extern "C" {
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontent?language=objc)
     pub unsafe trait NSTextContent {
-        #[method_id(contentType)]
+        #[method(contentType)]
         #[unsafe(method_family = none)]
         unsafe fn contentType(&self) -> Option<Retained<NSTextContentType>>;
 
         /// Setter for [`contentType`][Self::contentType].
         #[method(setContentType:)]
+        #[unsafe(method_family = none)]
         unsafe fn setContentType(&self, content_type: Option<&NSTextContentType>);
     }
 );

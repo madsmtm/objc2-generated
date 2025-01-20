@@ -20,7 +20,7 @@ unsafe impl NSObjectProtocol for ASAuthorizationSecurityKeyPublicKeyCredentialPr
 
 extern_methods!(
     unsafe impl ASAuthorizationSecurityKeyPublicKeyCredentialProvider {
-        #[method_id(initWithRelyingPartyIdentifier:)]
+        #[method(initWithRelyingPartyIdentifier:)]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRelyingPartyIdentifier(
             this: Allocated<Self>,
@@ -40,7 +40,7 @@ extern_methods!(
         /// Parameter `name`: The name for the new credential.
         ///
         /// Parameter `userID`: An identifier to be stored alongside the credential, which will be returned with the credential when it is used to authenticate.
-        #[method_id(createCredentialRegistrationRequestWithChallenge:displayName:name:userID:)]
+        #[method(createCredentialRegistrationRequestWithChallenge:displayName:name:userID:)]
         #[unsafe(method_family = none)]
         pub unsafe fn createCredentialRegistrationRequestWithChallenge_displayName_name_userID(
             &self,
@@ -57,7 +57,7 @@ extern_methods!(
         /// Create a request to authenticate using an existing credential.
         ///
         /// Parameter `challenge`: The challenge to sign.
-        #[method_id(createCredentialAssertionRequestWithChallenge:)]
+        #[method(createCredentialAssertionRequestWithChallenge:)]
         #[unsafe(method_family = none)]
         pub unsafe fn createCredentialAssertionRequestWithChallenge(
             &self,
@@ -65,15 +65,15 @@ extern_methods!(
         ) -> Retained<ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest>;
 
         /// The Relying Party identifier used for all requests created by this object.
-        #[method_id(relyingPartyIdentifier)]
+        #[method(relyingPartyIdentifier)]
         #[unsafe(method_family = none)]
         pub unsafe fn relyingPartyIdentifier(&self) -> Retained<NSString>;
 
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

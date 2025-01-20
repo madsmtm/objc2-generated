@@ -31,30 +31,34 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMMediaList {
         #[deprecated]
-        #[method_id(mediaText)]
+        #[method(mediaText)]
         #[unsafe(method_family = none)]
         pub unsafe fn mediaText(&self) -> Retained<NSString>;
 
         /// Setter for [`mediaText`][Self::mediaText].
         #[deprecated]
         #[method(setMediaText:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn setMediaText(&self, media_text: Option<&NSString>);
 
         #[deprecated]
         #[method(length)]
+        #[unsafe(method_family = none)]
         pub unsafe fn length(&self) -> c_uint;
 
         #[deprecated]
-        #[method_id(item:)]
+        #[method(item:)]
         #[unsafe(method_family = none)]
         pub unsafe fn item(&self, index: c_uint) -> Option<Retained<NSString>>;
 
         #[deprecated]
         #[method(deleteMedium:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn deleteMedium(&self, old_medium: Option<&NSString>);
 
         #[deprecated]
         #[method(appendMedium:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn appendMedium(&self, new_medium: Option<&NSString>);
     }
 );
@@ -64,7 +68,7 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMMediaList {
         #[deprecated]
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
@@ -74,7 +78,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMMediaList {
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }

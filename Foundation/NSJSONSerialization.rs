@@ -74,10 +74,11 @@ unsafe impl NSObjectProtocol for NSJSONSerialization {}
 extern_methods!(
     unsafe impl NSJSONSerialization {
         #[method(isValidJSONObject:)]
+        #[unsafe(method_family = none)]
         pub unsafe fn isValidJSONObject(obj: &AnyObject) -> bool;
 
         #[cfg(all(feature = "NSData", feature = "NSError"))]
-        #[method_id(dataWithJSONObject:options:error:_)]
+        #[method(dataWithJSONObject:options:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn dataWithJSONObject_options_error(
             obj: &AnyObject,
@@ -85,7 +86,7 @@ extern_methods!(
         ) -> Result<Retained<NSData>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSData", feature = "NSError"))]
-        #[method_id(JSONObjectWithData:options:error:_)]
+        #[method(JSONObjectWithData:options:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn JSONObjectWithData_options_error(
             data: &NSData,
@@ -93,7 +94,7 @@ extern_methods!(
         ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSStream"))]
-        #[method_id(JSONObjectWithStream:options:error:_)]
+        #[method(JSONObjectWithStream:options:error:_)]
         #[unsafe(method_family = none)]
         pub unsafe fn JSONObjectWithStream_options_error(
             stream: &NSInputStream,
@@ -105,11 +106,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSJSONSerialization {
-        #[method_id(init)]
+        #[method(init)]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(new)]
+        #[method(new)]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
     }
