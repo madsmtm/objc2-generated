@@ -47,7 +47,8 @@ extern_methods!(
     #[cfg(feature = "CALayer")]
     unsafe impl CAShapeLayer {
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(@__method_family Other path)]
+        #[unsafe(method_family(none))]
+        #[method_id(path)]
         pub unsafe fn path(&self) -> Option<Retained<CGPath>>;
 
         #[cfg(feature = "objc2-core-graphics")]
@@ -56,7 +57,8 @@ extern_methods!(
         pub unsafe fn setPath(&self, path: Option<&CGPath>);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(@__method_family Other fillColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(fillColor)]
         pub unsafe fn fillColor(&self) -> Option<Retained<CGColor>>;
 
         #[cfg(feature = "objc2-core-graphics")]
@@ -64,7 +66,8 @@ extern_methods!(
         #[method(setFillColor:)]
         pub unsafe fn setFillColor(&self, fill_color: Option<&CGColor>);
 
-        #[method_id(@__method_family Other fillRule)]
+        #[unsafe(method_family(none))]
+        #[method_id(fillRule)]
         pub unsafe fn fillRule(&self) -> Retained<CAShapeLayerFillRule>;
 
         /// Setter for [`fillRule`][Self::fillRule].
@@ -72,7 +75,8 @@ extern_methods!(
         pub unsafe fn setFillRule(&self, fill_rule: &CAShapeLayerFillRule);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(@__method_family Other strokeColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(strokeColor)]
         pub unsafe fn strokeColor(&self) -> Option<Retained<CGColor>>;
 
         #[cfg(feature = "objc2-core-graphics")]
@@ -116,14 +120,16 @@ extern_methods!(
         #[method(setMiterLimit:)]
         pub unsafe fn setMiterLimit(&self, miter_limit: CGFloat);
 
-        #[method_id(@__method_family Other lineCap)]
+        #[unsafe(method_family(none))]
+        #[method_id(lineCap)]
         pub unsafe fn lineCap(&self) -> Retained<CAShapeLayerLineCap>;
 
         /// Setter for [`lineCap`][Self::lineCap].
         #[method(setLineCap:)]
         pub unsafe fn setLineCap(&self, line_cap: &CAShapeLayerLineCap);
 
-        #[method_id(@__method_family Other lineJoin)]
+        #[unsafe(method_family(none))]
+        #[method_id(lineJoin)]
         pub unsafe fn lineJoin(&self) -> Retained<CAShapeLayerLineJoin>;
 
         /// Setter for [`lineJoin`][Self::lineJoin].
@@ -139,7 +145,8 @@ extern_methods!(
         #[method(setLineDashPhase:)]
         pub unsafe fn setLineDashPhase(&self, line_dash_phase: CGFloat);
 
-        #[method_id(@__method_family Other lineDashPattern)]
+        #[unsafe(method_family(none))]
+        #[method_id(lineDashPattern)]
         pub unsafe fn lineDashPattern(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         /// Setter for [`lineDashPattern`][Self::lineDashPattern].
@@ -153,13 +160,16 @@ extern_methods!(
     #[cfg(feature = "CALayer")]
     unsafe impl CAShapeLayer {
         /// Layer creation and initialization. *
-        #[method_id(@__method_family Other layer)]
+        #[unsafe(method_family(none))]
+        #[method_id(layer)]
         pub unsafe fn layer() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithLayer:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithLayer:)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
     }
 );
@@ -168,7 +178,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CALayer")]
     unsafe impl CAShapeLayer {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

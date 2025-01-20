@@ -70,10 +70,12 @@ unsafe impl NSObjectProtocol for AVAssetReader {}
 
 extern_methods!(
     unsafe impl AVAssetReader {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "AVAsset")]
@@ -87,7 +89,8 @@ extern_methods!(
         /// Returns: An instance of AVAssetReader.
         ///
         /// If the specified asset belongs to a mutable subclass of AVAsset, AVMutableComposition or AVMutableMovie, the results of any asset reading operation are undefined if you mutate the asset after invoking -startReading.
-        #[method_id(@__method_family Other assetReaderWithAsset:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(assetReaderWithAsset:error:_)]
         pub unsafe fn assetReaderWithAsset_error(
             asset: &AVAsset,
         ) -> Result<Retained<Self>, Retained<NSError>>;
@@ -103,7 +106,8 @@ extern_methods!(
         /// Returns: An instance of AVAssetReader.
         ///
         /// If the specified asset belongs to a mutable subclass of AVAsset, AVMutableComposition or AVMutableMovie, the results of any asset reading operation are undefined if you mutate the asset after invoking -startReading.
-        #[method_id(@__method_family Init initWithAsset:error:_)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithAsset:error:_)]
         pub unsafe fn initWithAsset_error(
             this: Allocated<Self>,
             asset: &AVAsset,
@@ -114,7 +118,8 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an AVAsset. Concrete instances of AVAssetReader that are created with specific AVAssetTrack instances must obtain those tracks from the asset returned by this property.
-        #[method_id(@__method_family Other asset)]
+        #[unsafe(method_family(none))]
+        #[method_id(asset)]
         pub unsafe fn asset(&self) -> Retained<AVAsset>;
 
         /// The status of reading sample buffers from the receiver's asset.
@@ -128,7 +133,8 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an NSError that describes what caused the receiver to no longer be able to read its asset. If the receiver's status is not AVAssetReaderStatusFailed, the value of this property is nil. This property is thread safe.
-        #[method_id(@__method_family Other error)]
+        #[unsafe(method_family(none))]
+        #[method_id(error)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
 
         #[cfg(feature = "objc2-core-media")]
@@ -151,7 +157,8 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an NSArray containing concrete instances of AVAssetReaderOutput. Outputs can be added to the receiver using the addOutput: method.
-        #[method_id(@__method_family Other outputs)]
+        #[unsafe(method_family(none))]
+        #[method_id(outputs)]
         pub unsafe fn outputs(&self) -> Retained<NSArray<AVAssetReaderOutput>>;
 
         #[cfg(feature = "AVAssetReaderOutput")]

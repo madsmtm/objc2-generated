@@ -74,7 +74,8 @@ extern_methods!(
         /// - Note: Not all ``UIHoverStyle``s may be supported by
         /// ``UIHoverEffectLayer``. If the provided style is not supported, a fallback
         /// style will be selected instead.
-        #[method_id(@__method_family Other hoverStyle)]
+        #[unsafe(method_family(none))]
+        #[method_id(hoverStyle)]
         pub unsafe fn hoverStyle(&self) -> Retained<UIHoverStyle>;
 
         #[cfg(feature = "UIHoverStyle")]
@@ -93,7 +94,8 @@ extern_methods!(
         /// to be the immediate parent of this layer. If the ``containerView`` is
         /// set to nil or is deallocated, some aspects of this layer's hover effect
         /// may no longer work correctly.
-        #[method_id(@__method_family Other containerView)]
+        #[unsafe(method_family(none))]
+        #[method_id(containerView)]
         pub unsafe fn containerView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
@@ -106,7 +108,8 @@ extern_methods!(
         /// Creates a ``UIHoverEffectLayer`` with the provided `containerView`
         /// and `style`. If a `nil` `style` is provided, the automatic style will
         /// be used instead.
-        #[method_id(@__method_family Init initWithContainerView:style:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithContainerView:style:)]
         pub unsafe fn initWithContainerView_style(
             this: Allocated<Self>,
             container_view: &UIView,
@@ -121,13 +124,16 @@ extern_methods!(
     #[cfg(not(target_os = "watchos"))]
     unsafe impl UIHoverEffectLayer {
         /// Layer creation and initialization. *
-        #[method_id(@__method_family Other layer)]
+        #[unsafe(method_family(none))]
+        #[method_id(layer)]
         pub unsafe fn layer(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithLayer:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithLayer:)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
     }
 );
@@ -137,7 +143,8 @@ extern_methods!(
     #[cfg(feature = "objc2-quartz-core")]
     #[cfg(not(target_os = "watchos"))]
     unsafe impl UIHoverEffectLayer {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

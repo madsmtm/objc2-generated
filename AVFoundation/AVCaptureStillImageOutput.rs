@@ -30,10 +30,12 @@ extern_methods!(
     #[cfg(feature = "AVCaptureOutputBase")]
     unsafe impl AVCaptureStillImageOutput {
         #[deprecated = "Use AVCapturePhotoOutput instead."]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Specifies the options the receiver uses to encode still images before they are delivered.
@@ -43,7 +45,8 @@ extern_methods!(
         ///
         /// On iOS, the only currently supported keys are AVVideoCodecKey and kCVPixelBufferPixelFormatTypeKey. Use -availableImageDataCVPixelFormatTypes and -availableImageDataCodecTypes to determine what codec keys and pixel formats are supported. AVVideoQualityKey is supported on iOS 6.0 and later and may only be used when AVVideoCodecKey is set to AVVideoCodecTypeJPEG.
         #[deprecated = "Use AVCapturePhotoOutput instead."]
-        #[method_id(@__method_family Other outputSettings)]
+        #[unsafe(method_family(none))]
+        #[method_id(outputSettings)]
         pub unsafe fn outputSettings(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         /// Setter for [`outputSettings`][Self::outputSettings].
@@ -56,7 +59,8 @@ extern_methods!(
         ///
         /// The value of this property is an NSArray of NSNumbers that can be used as values for the kCVPixelBufferPixelFormatTypeKey in the receiver's outputSettings property. The first format in the returned list is the most efficient output format.
         #[deprecated = "Use AVCapturePhotoOutput instead."]
-        #[method_id(@__method_family Other availableImageDataCVPixelFormatTypes)]
+        #[unsafe(method_family(none))]
+        #[method_id(availableImageDataCVPixelFormatTypes)]
         pub unsafe fn availableImageDataCVPixelFormatTypes(&self) -> Retained<NSArray<NSNumber>>;
 
         #[cfg(feature = "AVVideoSettings")]
@@ -65,7 +69,8 @@ extern_methods!(
         ///
         /// The value of this property is an NSArray of AVVideoCodecTypes that can be used as values for the AVVideoCodecKey in the receiver's outputSettings property.
         #[deprecated = "Use AVCapturePhotoOutput instead."]
-        #[method_id(@__method_family Other availableImageDataCodecTypes)]
+        #[unsafe(method_family(none))]
+        #[method_id(availableImageDataCodecTypes)]
         pub unsafe fn availableImageDataCodecTypes(&self) -> Retained<NSArray<AVVideoCodecType>>;
 
         /// Indicates whether the receiver supports still image stabilization.
@@ -158,7 +163,8 @@ extern_methods!(
         ///
         /// This method returns an NSData representation of a JPEG still image sample buffer, merging the image data and Exif metadata sample buffer attachments without recompressing the image. The returned NSData is suitable for writing to disk.
         #[deprecated = "Use AVCapturePhotoOutput instead."]
-        #[method_id(@__method_family Other jpegStillImageNSDataRepresentation:)]
+        #[unsafe(method_family(none))]
+        #[method_id(jpegStillImageNSDataRepresentation:)]
         pub unsafe fn jpegStillImageNSDataRepresentation(
             jpeg_sample_buffer: &CMSampleBuffer,
         ) -> Option<Retained<NSData>>;
@@ -181,10 +187,12 @@ unsafe impl NSObjectProtocol for AVCaptureBracketedStillImageSettings {}
 
 extern_methods!(
     unsafe impl AVCaptureBracketedStillImageSettings {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -214,7 +222,8 @@ extern_methods!(
         /// Parameter `ISO`: The ISO. Pass AVCaptureISOCurrent to leave the ISO unchanged for this bracketed image.
         ///
         /// Returns: An initialized AVCaptureManualExposureBracketedStillImageSettings instance.
-        #[method_id(@__method_family Other manualExposureSettingsWithExposureDuration:ISO:)]
+        #[unsafe(method_family(none))]
+        #[method_id(manualExposureSettingsWithExposureDuration:ISO:)]
         pub unsafe fn manualExposureSettingsWithExposureDuration_ISO(
             duration: CMTime,
             iso: c_float,
@@ -234,10 +243,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `AVCaptureBracketedStillImageSettings`
     unsafe impl AVCaptureManualExposureBracketedStillImageSettings {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -264,7 +275,8 @@ extern_methods!(
         /// Parameter `exposureTargetBias`: The exposure target bias. Pass AVCaptureExposureTargetBiasCurrent to leave the exposureTargetBias unchanged for this image.
         ///
         /// Returns: An initialized AVCaptureAutoExposureBracketedStillImageSettings instance.
-        #[method_id(@__method_family Other autoExposureSettingsWithExposureTargetBias:)]
+        #[unsafe(method_family(none))]
+        #[method_id(autoExposureSettingsWithExposureTargetBias:)]
         pub unsafe fn autoExposureSettingsWithExposureTargetBias(
             exposure_target_bias: c_float,
         ) -> Retained<Self>;
@@ -278,10 +290,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `AVCaptureBracketedStillImageSettings`
     unsafe impl AVCaptureAutoExposureBracketedStillImageSettings {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

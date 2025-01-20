@@ -425,7 +425,8 @@ extern_methods!(
         /// Returns: An initialized NSHTTPCookie, or nil if the set of
         /// dictionary keys is invalid, for example because a required key is
         /// missing, or a recognized key maps to an illegal value.
-        #[method_id(@__method_family Init initWithProperties:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithProperties:)]
         pub unsafe fn initWithProperties(
             this: Allocated<Self>,
             properties: &NSDictionary<NSHTTPCookiePropertyKey, AnyObject>,
@@ -448,7 +449,8 @@ extern_methods!(
         /// nil if the set of dictionary keys is invalid, for example because
         /// a required key is missing, or a recognized key maps to an illegal
         /// value.
-        #[method_id(@__method_family Other cookieWithProperties:)]
+        #[unsafe(method_family(none))]
+        #[method_id(cookieWithProperties:)]
         pub unsafe fn cookieWithProperties(
             properties: &NSDictionary<NSHTTPCookiePropertyKey, AnyObject>,
         ) -> Option<Retained<NSHTTPCookie>>;
@@ -461,7 +463,8 @@ extern_methods!(
         ///
         /// Returns: An NSDictionary where the keys are header field names, and the values
         /// are the corresponding header field values.
-        #[method_id(@__method_family Other requestHeaderFieldsWithCookies:)]
+        #[unsafe(method_family(none))]
+        #[method_id(requestHeaderFieldsWithCookies:)]
         pub unsafe fn requestHeaderFieldsWithCookies(
             cookies: &NSArray<NSHTTPCookie>,
         ) -> Retained<NSDictionary<NSString, NSString>>;
@@ -482,7 +485,8 @@ extern_methods!(
         ///
         /// This method will ignore irrelevant header fields so
         /// you can pass a dictionary containing data other than cookie data.
-        #[method_id(@__method_family Other cookiesWithResponseHeaderFields:forURL:)]
+        #[unsafe(method_family(none))]
+        #[method_id(cookiesWithResponseHeaderFields:forURL:)]
         pub unsafe fn cookiesWithResponseHeaderFields_forURL(
             header_fields: &NSDictionary<NSString, NSString>,
             url: &NSURL,
@@ -511,7 +515,8 @@ extern_methods!(
         /// for descriptions of the supported keys and values.
         ///
         /// Returns: The dictionary representation of the receiver.
-        #[method_id(@__method_family Other properties)]
+        #[unsafe(method_family(none))]
+        #[method_id(properties)]
         pub unsafe fn properties(
             &self,
         ) -> Option<Retained<NSDictionary<NSHTTPCookiePropertyKey, AnyObject>>>;
@@ -529,14 +534,16 @@ extern_methods!(
         /// Returns the name of the receiver.
         ///
         /// Returns: the name of the receiver.
-        #[method_id(@__method_family Other name)]
+        #[unsafe(method_family(none))]
+        #[method_id(name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         /// Returns the value of the receiver.
         ///
         /// Returns: the value of the receiver.
-        #[method_id(@__method_family Other value)]
+        #[unsafe(method_family(none))]
+        #[method_id(value)]
         pub unsafe fn value(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSDate")]
@@ -549,7 +556,8 @@ extern_methods!(
         /// date. This will be the case only for "session-only" cookies.
         ///
         /// Returns: The expires date of the receiver.
-        #[method_id(@__method_family Other expiresDate)]
+        #[unsafe(method_family(none))]
+        #[method_id(expiresDate)]
         pub unsafe fn expiresDate(&self) -> Option<Retained<NSDate>>;
 
         /// Returns whether the receiver is session-only.
@@ -569,7 +577,8 @@ extern_methods!(
         /// restrictions are valid. See RFC 2965 for more detail.
         ///
         /// Returns: The domain of the receiver.
-        #[method_id(@__method_family Other domain)]
+        #[unsafe(method_family(none))]
+        #[method_id(domain)]
         pub unsafe fn domain(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
@@ -580,7 +589,8 @@ extern_methods!(
         /// be sent for children of that path, so "/" is the most general.
         ///
         /// Returns: The path of the receiver.
-        #[method_id(@__method_family Other path)]
+        #[unsafe(method_family(none))]
+        #[method_id(path)]
         pub unsafe fn path(&self) -> Retained<NSString>;
 
         /// Returns whether the receiver should be sent only over
@@ -619,7 +629,8 @@ extern_methods!(
         ///
         /// Returns: The comment of the receiver, or nil if the receiver has no
         /// comment.
-        #[method_id(@__method_family Other comment)]
+        #[unsafe(method_family(none))]
+        #[method_id(comment)]
         pub unsafe fn comment(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSURL")]
@@ -631,7 +642,8 @@ extern_methods!(
         ///
         /// Returns: The comment URL of the receiver, or nil if the receiver
         /// has no comment URL.
-        #[method_id(@__method_family Other commentURL)]
+        #[unsafe(method_family(none))]
+        #[method_id(commentURL)]
         pub unsafe fn commentURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSValue"))]
@@ -645,7 +657,8 @@ extern_methods!(
         /// Returns: The list ports to which the receiver should be sent. The
         /// array may be nil, in which case this cookie can be sent to any
         /// port.
-        #[method_id(@__method_family Other portList)]
+        #[unsafe(method_family(none))]
+        #[method_id(portList)]
         pub unsafe fn portList(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         #[cfg(feature = "NSString")]
@@ -659,7 +672,8 @@ extern_methods!(
         ///
         /// Returns: strict or lax. The result could also be nil, in which case the
         /// cookie will be sent along with all cross-site requests.
-        #[method_id(@__method_family Other sameSitePolicy)]
+        #[unsafe(method_family(none))]
+        #[method_id(sameSitePolicy)]
         pub unsafe fn sameSitePolicy(&self) -> Option<Retained<NSHTTPCookieStringPolicy>>;
     }
 );
@@ -667,10 +681,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSHTTPCookie {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

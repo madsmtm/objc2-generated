@@ -45,17 +45,20 @@ unsafe impl NSSecureCoding for CLMonitoringEvent {}
 
 extern_methods!(
     unsafe impl CLMonitoringEvent {
-        #[method_id(@__method_family Other identifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         #[cfg(feature = "CLCondition")]
-        #[method_id(@__method_family Other refinement)]
+        #[unsafe(method_family(none))]
+        #[method_id(refinement)]
         pub unsafe fn refinement(&self) -> Option<Retained<CLCondition>>;
 
         #[method(state)]
         pub unsafe fn state(&self) -> CLMonitoringState;
 
-        #[method_id(@__method_family Other date)]
+        #[unsafe(method_family(none))]
+        #[method_id(date)]
         pub unsafe fn date(&self) -> Retained<NSDate>;
 
         #[method(authorizationDenied)]
@@ -88,10 +91,12 @@ extern_methods!(
         #[method(authorizationRequestInProgress)]
         pub unsafe fn authorizationRequestInProgress(&self) -> bool;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -34,27 +34,32 @@ extern_methods!(
     unsafe impl DOMRGBColor {
         #[cfg(all(feature = "DOMCSSPrimitiveValue", feature = "DOMCSSValue"))]
         #[deprecated]
-        #[method_id(@__method_family Other red)]
+        #[unsafe(method_family(none))]
+        #[method_id(red)]
         pub unsafe fn red(&self) -> Option<Retained<DOMCSSPrimitiveValue>>;
 
         #[cfg(all(feature = "DOMCSSPrimitiveValue", feature = "DOMCSSValue"))]
         #[deprecated]
-        #[method_id(@__method_family Other green)]
+        #[unsafe(method_family(none))]
+        #[method_id(green)]
         pub unsafe fn green(&self) -> Option<Retained<DOMCSSPrimitiveValue>>;
 
         #[cfg(all(feature = "DOMCSSPrimitiveValue", feature = "DOMCSSValue"))]
         #[deprecated]
-        #[method_id(@__method_family Other blue)]
+        #[unsafe(method_family(none))]
+        #[method_id(blue)]
         pub unsafe fn blue(&self) -> Option<Retained<DOMCSSPrimitiveValue>>;
 
         #[cfg(all(feature = "DOMCSSPrimitiveValue", feature = "DOMCSSValue"))]
         #[deprecated]
-        #[method_id(@__method_family Other alpha)]
+        #[unsafe(method_family(none))]
+        #[method_id(alpha)]
         pub unsafe fn alpha(&self) -> Option<Retained<DOMCSSPrimitiveValue>>;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
-        #[method_id(@__method_family Other color)]
+        #[unsafe(method_family(none))]
+        #[method_id(color)]
         pub unsafe fn color(&self) -> Retained<NSColor>;
     }
 );
@@ -64,7 +69,8 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMRGBColor {
         #[deprecated]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -73,7 +79,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMRGBColor {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -45,7 +45,8 @@ extern_methods!(
         ///
         /// Returns: the collection of classifications for the revision, or nil if an error was encountered.
         #[deprecated]
-        #[method_id(@__method_family Other knownClassificationsForRevision:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(knownClassificationsForRevision:error:_)]
         pub unsafe fn knownClassificationsForRevision_error(
             request_revision: NSUInteger,
         ) -> Result<Retained<NSArray<VNClassificationObservation>>, Retained<NSError>>;
@@ -59,14 +60,16 @@ extern_methods!(
         ///
         ///
         /// Returns: The collection of classification identifiers, or nil if a failure occurs.
-        #[method_id(@__method_family Other supportedIdentifiersAndReturnError:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(supportedIdentifiersAndReturnError:_)]
         pub unsafe fn supportedIdentifiersAndReturnError(
             &self,
         ) -> Result<Retained<NSArray<NSString>>, Retained<NSError>>;
 
         #[cfg(feature = "VNObservation")]
         /// VNClassificationObservation results.
-        #[method_id(@__method_family Other results)]
+        #[unsafe(method_family(none))]
+        #[method_id(results)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNClassificationObservation>>>;
     }
 );
@@ -76,7 +79,8 @@ extern_methods!(
     #[cfg(feature = "VNRequest")]
     unsafe impl VNClassifyImageRequest {
         /// Creates a new VNRequest with no completion handler.
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
@@ -84,7 +88,8 @@ extern_methods!(
         ///
         ///
         /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
-        #[method_id(@__method_family Init initWithCompletionHandler:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCompletionHandler:)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
             completion_handler: VNRequestCompletionHandler,
@@ -96,7 +101,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "VNRequest")]
     unsafe impl VNClassifyImageRequest {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

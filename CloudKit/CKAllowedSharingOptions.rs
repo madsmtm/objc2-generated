@@ -82,7 +82,8 @@ unsafe impl NSSecureCoding for CKAllowedSharingOptions {}
 
 extern_methods!(
     unsafe impl CKAllowedSharingOptions {
-        #[method_id(@__method_family Init initWithAllowedParticipantPermissionOptions:allowedParticipantAccessOptions:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithAllowedParticipantPermissionOptions:allowedParticipantAccessOptions:)]
         pub unsafe fn initWithAllowedParticipantPermissionOptions_allowedParticipantAccessOptions(
             this: Allocated<Self>,
             allowed_participant_permission_options: CKSharingParticipantPermissionOption,
@@ -116,7 +117,8 @@ extern_methods!(
         /// `CKSharingParticipantPermissionOptionAny`and
         /// `allowedParticipantAccessOptions`=
         /// `CKSharingParticipantAccessOptionAny`
-        #[method_id(@__method_family Other standardOptions)]
+        #[unsafe(method_family(none))]
+        #[method_id(standardOptions)]
         pub unsafe fn standardOptions() -> Retained<CKAllowedSharingOptions>;
     }
 );
@@ -124,10 +126,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CKAllowedSharingOptions {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

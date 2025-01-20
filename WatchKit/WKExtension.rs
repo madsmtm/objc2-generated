@@ -69,27 +69,33 @@ unsafe impl NSObjectProtocol for WKExtension {}
 
 extern_methods!(
     unsafe impl WKExtension {
-        #[method_id(@__method_family Other sharedExtension)]
+        #[unsafe(method_family(none))]
+        #[method_id(sharedExtension)]
         pub unsafe fn sharedExtension(mtm: MainThreadMarker) -> Retained<WKExtension>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(&self) -> Retained<Self>;
 
         #[method(openSystemURL:)]
         pub unsafe fn openSystemURL(&self, url: &NSURL);
 
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn WKExtensionDelegate>>>;
 
         #[cfg(feature = "WKInterfaceController")]
-        #[method_id(@__method_family Other rootInterfaceController)]
+        #[unsafe(method_family(none))]
+        #[method_id(rootInterfaceController)]
         pub unsafe fn rootInterfaceController(&self) -> Option<Retained<WKInterfaceController>>;
 
         #[cfg(feature = "WKInterfaceController")]
-        #[method_id(@__method_family Other visibleInterfaceController)]
+        #[unsafe(method_family(none))]
+        #[method_id(visibleInterfaceController)]
         pub unsafe fn visibleInterfaceController(&self) -> Option<Retained<WKInterfaceController>>;
 
         #[method(applicationState)]
@@ -131,7 +137,8 @@ extern_methods!(
         pub unsafe fn isRegisteredForRemoteNotifications(&self) -> bool;
 
         #[cfg(feature = "objc2-ui-kit")]
-        #[method_id(@__method_family Other globalTintColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(globalTintColor)]
         pub unsafe fn globalTintColor(&self) -> Retained<UIColor>;
     }
 );
@@ -139,7 +146,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKExtension {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new_class(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

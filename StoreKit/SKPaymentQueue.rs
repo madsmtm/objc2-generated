@@ -24,7 +24,8 @@ unsafe impl NSObjectProtocol for SKPaymentQueue {}
 extern_methods!(
     unsafe impl SKPaymentQueue {
         #[deprecated = "No longer supported"]
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn SKPaymentQueueDelegate>>>;
@@ -40,11 +41,13 @@ extern_methods!(
 
         #[cfg(feature = "SKStorefront")]
         #[deprecated = "Use Storefront.current"]
-        #[method_id(@__method_family Other storefront)]
+        #[unsafe(method_family(none))]
+        #[method_id(storefront)]
         pub unsafe fn storefront(&self) -> Option<Retained<SKStorefront>>;
 
         #[deprecated = "No longer supported"]
-        #[method_id(@__method_family Other defaultQueue)]
+        #[unsafe(method_family(none))]
+        #[method_id(defaultQueue)]
         pub unsafe fn defaultQueue() -> Retained<Self>;
 
         #[deprecated = "Use AppStore.canMakePayments"]
@@ -107,14 +110,16 @@ extern_methods!(
         );
 
         #[deprecated = "Use Transaction.updates or PurchaseResult from Product.purchase(confirmIn:options:)"]
-        #[method_id(@__method_family Other transactionObservers)]
+        #[unsafe(method_family(none))]
+        #[method_id(transactionObservers)]
         pub unsafe fn transactionObservers(
             &self,
         ) -> Retained<NSArray<ProtocolObject<dyn SKPaymentTransactionObserver>>>;
 
         #[cfg(feature = "SKPaymentTransaction")]
         #[deprecated = "Use Transaction.unfinished"]
-        #[method_id(@__method_family Other transactions)]
+        #[unsafe(method_family(none))]
+        #[method_id(transactions)]
         pub unsafe fn transactions(&self) -> Retained<NSArray<SKPaymentTransaction>>;
 
         #[deprecated = "Use Message.messages and Message.display(in:)"]
@@ -130,10 +135,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKPaymentQueue {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

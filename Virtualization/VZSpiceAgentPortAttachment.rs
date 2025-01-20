@@ -21,7 +21,8 @@ unsafe impl NSObjectProtocol for VZSpiceAgentPortAttachment {}
 extern_methods!(
     #[cfg(feature = "VZSerialPortAttachment")]
     unsafe impl VZSpiceAgentPortAttachment {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Enable the Spice agent clipboard sharing capability.
@@ -43,7 +44,8 @@ extern_methods!(
         ///
         /// VZConsolePortConfiguration.attachment must be set to VZSpiceAgentPortAttachment.
         /// VZVirtioConsolePortConfiguration.isConsole must remain false on a Spice agent port.
-        #[method_id(@__method_family Other spiceAgentPortName)]
+        #[unsafe(method_family(none))]
+        #[method_id(spiceAgentPortName)]
         pub unsafe fn spiceAgentPortName() -> Retained<NSString>;
     }
 );
@@ -52,7 +54,8 @@ extern_methods!(
     /// Methods declared on superclass `VZSerialPortAttachment`
     #[cfg(feature = "VZSerialPortAttachment")]
     unsafe impl VZSpiceAgentPortAttachment {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

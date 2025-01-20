@@ -39,7 +39,8 @@ extern_protocol!(
         unsafe fn conversationIdentifier(&self) -> NSInteger;
 
         #[deprecated]
-        #[method_id(@__method_family Other attributedSubstringFromRange:)]
+        #[unsafe(method_family(none))]
+        #[method_id(attributedSubstringFromRange:)]
         unsafe fn attributedSubstringFromRange(
             &self,
             range: NSRange,
@@ -62,7 +63,8 @@ extern_protocol!(
         unsafe fn characterIndexForPoint(&self, point: NSPoint) -> NSUInteger;
 
         #[deprecated]
-        #[method_id(@__method_family Other validAttributesForMarkedText)]
+        #[unsafe(method_family(none))]
+        #[method_id(validAttributesForMarkedText)]
         unsafe fn validAttributesForMarkedText(&self) -> Option<Retained<NSArray>>;
     }
 );
@@ -82,7 +84,8 @@ unsafe impl NSTextInput for NSInputManager {}
 extern_methods!(
     unsafe impl NSInputManager {
         #[deprecated]
-        #[method_id(@__method_family Other currentInputManager)]
+        #[unsafe(method_family(none))]
+        #[method_id(currentInputManager)]
         pub unsafe fn currentInputManager() -> Option<Retained<NSInputManager>>;
 
         #[deprecated]
@@ -94,7 +97,8 @@ extern_methods!(
         pub unsafe fn cycleToNextInputServerInLanguage(sender: Option<&AnyObject>);
 
         #[deprecated]
-        #[method_id(@__method_family Init initWithName:host:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithName:host:)]
         pub unsafe fn initWithName_host(
             this: Allocated<Self>,
             input_server_name: Option<&NSString>,
@@ -102,7 +106,8 @@ extern_methods!(
         ) -> Option<Retained<NSInputManager>>;
 
         #[deprecated]
-        #[method_id(@__method_family Other localizedInputManagerName)]
+        #[unsafe(method_family(none))]
+        #[method_id(localizedInputManagerName)]
         pub unsafe fn localizedInputManagerName(&self) -> Option<Retained<NSString>>;
 
         #[deprecated]
@@ -122,17 +127,20 @@ extern_methods!(
         pub unsafe fn wantsToInterpretAllKeystrokes(&self) -> bool;
 
         #[deprecated]
-        #[method_id(@__method_family Other language)]
+        #[unsafe(method_family(none))]
+        #[method_id(language)]
         pub unsafe fn language(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSImage")]
         #[deprecated]
-        #[method_id(@__method_family Other image)]
+        #[unsafe(method_family(none))]
+        #[method_id(image)]
         pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSInputServer")]
         #[deprecated]
-        #[method_id(@__method_family Other server)]
+        #[unsafe(method_family(none))]
+        #[method_id(server)]
         pub unsafe fn server(&self) -> Option<Retained<NSInputServer>>;
 
         #[deprecated]
@@ -153,10 +161,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSInputManager {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

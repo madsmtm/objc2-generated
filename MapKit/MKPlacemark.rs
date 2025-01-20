@@ -42,13 +42,15 @@ unsafe impl NSSecureCoding for MKPlacemark {}
 extern_methods!(
     #[cfg(feature = "objc2-core-location")]
     unsafe impl MKPlacemark {
-        #[method_id(@__method_family Init initWithCoordinate:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoordinate:)]
         pub unsafe fn initWithCoordinate(
             this: Allocated<Self>,
             coordinate: CLLocationCoordinate2D,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoordinate:addressDictionary:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoordinate:addressDictionary:)]
         pub unsafe fn initWithCoordinate_addressDictionary(
             this: Allocated<Self>,
             coordinate: CLLocationCoordinate2D,
@@ -57,14 +59,16 @@ extern_methods!(
 
         #[cfg(feature = "objc2-contacts")]
         #[cfg(not(target_os = "tvos"))]
-        #[method_id(@__method_family Init initWithCoordinate:postalAddress:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoordinate:postalAddress:)]
         pub unsafe fn initWithCoordinate_postalAddress(
             this: Allocated<Self>,
             coordinate: CLLocationCoordinate2D,
             postal_address: &CNPostalAddress,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Other countryCode)]
+        #[unsafe(method_family(none))]
+        #[method_id(countryCode)]
         pub unsafe fn countryCode(&self) -> Option<Retained<NSString>>;
     }
 );
@@ -73,13 +77,16 @@ extern_methods!(
     /// Methods declared on superclass `CLPlacemark`
     #[cfg(feature = "objc2-core-location")]
     unsafe impl MKPlacemark {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithPlacemark:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithPlacemark:)]
         pub unsafe fn initWithPlacemark(
             this: Allocated<Self>,
             placemark: &CLPlacemark,

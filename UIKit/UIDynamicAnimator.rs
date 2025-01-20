@@ -34,7 +34,8 @@ unsafe impl NSObjectProtocol for UIDynamicAnimator {}
 extern_methods!(
     unsafe impl UIDynamicAnimator {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[method_id(@__method_family Init initWithReferenceView:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithReferenceView:)]
         pub unsafe fn initWithReferenceView(this: Allocated<Self>, view: &UIView)
             -> Retained<Self>;
 
@@ -50,18 +51,21 @@ extern_methods!(
         pub unsafe fn removeAllBehaviors(&self);
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[method_id(@__method_family Other referenceView)]
+        #[unsafe(method_family(none))]
+        #[method_id(referenceView)]
         pub unsafe fn referenceView(&self, mtm: MainThreadMarker) -> Option<Retained<UIView>>;
 
         #[cfg(feature = "UIDynamicBehavior")]
-        #[method_id(@__method_family Other behaviors)]
+        #[unsafe(method_family(none))]
+        #[method_id(behaviors)]
         pub unsafe fn behaviors(
             &self,
             mtm: MainThreadMarker,
         ) -> Retained<NSArray<UIDynamicBehavior>>;
 
         #[cfg(all(feature = "UIDynamicBehavior", feature = "objc2-core-foundation"))]
-        #[method_id(@__method_family Other itemsInRect:)]
+        #[unsafe(method_family(none))]
+        #[method_id(itemsInRect:)]
         pub unsafe fn itemsInRect(
             &self,
             rect: CGRect,
@@ -78,7 +82,8 @@ extern_methods!(
         #[method(elapsedTime)]
         pub unsafe fn elapsedTime(&self) -> NSTimeInterval;
 
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(
             &self,
             mtm: MainThreadMarker,
@@ -97,10 +102,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIDynamicAnimator {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -109,14 +116,16 @@ extern_methods!(
     /// UICollectionViewAdditions
     unsafe impl UIDynamicAnimator {
         #[cfg(feature = "UICollectionViewLayout")]
-        #[method_id(@__method_family Init initWithCollectionViewLayout:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCollectionViewLayout:)]
         pub unsafe fn initWithCollectionViewLayout(
             this: Allocated<Self>,
             layout: &UICollectionViewLayout,
         ) -> Retained<Self>;
 
         #[cfg(feature = "UICollectionViewLayout")]
-        #[method_id(@__method_family Other layoutAttributesForCellAtIndexPath:)]
+        #[unsafe(method_family(none))]
+        #[method_id(layoutAttributesForCellAtIndexPath:)]
         pub unsafe fn layoutAttributesForCellAtIndexPath(
             &self,
             index_path: &NSIndexPath,
@@ -124,7 +133,8 @@ extern_methods!(
         ) -> Option<Retained<UICollectionViewLayoutAttributes>>;
 
         #[cfg(feature = "UICollectionViewLayout")]
-        #[method_id(@__method_family Other layoutAttributesForSupplementaryViewOfKind:atIndexPath:)]
+        #[unsafe(method_family(none))]
+        #[method_id(layoutAttributesForSupplementaryViewOfKind:atIndexPath:)]
         pub unsafe fn layoutAttributesForSupplementaryViewOfKind_atIndexPath(
             &self,
             kind: &NSString,
@@ -133,7 +143,8 @@ extern_methods!(
         ) -> Option<Retained<UICollectionViewLayoutAttributes>>;
 
         #[cfg(feature = "UICollectionViewLayout")]
-        #[method_id(@__method_family Other layoutAttributesForDecorationViewOfKind:atIndexPath:)]
+        #[unsafe(method_family(none))]
+        #[method_id(layoutAttributesForDecorationViewOfKind:atIndexPath:)]
         pub unsafe fn layoutAttributesForDecorationViewOfKind_atIndexPath(
             &self,
             decoration_view_kind: &NSString,

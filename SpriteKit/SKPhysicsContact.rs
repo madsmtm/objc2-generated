@@ -19,11 +19,13 @@ unsafe impl NSObjectProtocol for SKPhysicsContact {}
 extern_methods!(
     unsafe impl SKPhysicsContact {
         #[cfg(feature = "SKPhysicsBody")]
-        #[method_id(@__method_family Other bodyA)]
+        #[unsafe(method_family(none))]
+        #[method_id(bodyA)]
         pub unsafe fn bodyA(&self) -> Retained<SKPhysicsBody>;
 
         #[cfg(feature = "SKPhysicsBody")]
-        #[method_id(@__method_family Other bodyB)]
+        #[unsafe(method_family(none))]
+        #[method_id(bodyB)]
         pub unsafe fn bodyB(&self) -> Retained<SKPhysicsBody>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -43,10 +45,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKPhysicsContact {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

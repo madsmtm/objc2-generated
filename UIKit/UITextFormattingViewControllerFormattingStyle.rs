@@ -30,21 +30,25 @@ unsafe impl NSSecureCoding for UITextFormattingViewControllerFormattingStyle {}
 extern_methods!(
     unsafe impl UITextFormattingViewControllerFormattingStyle {
         /// Formatting style key.
-        #[method_id(@__method_family Other styleKey)]
+        #[unsafe(method_family(none))]
+        #[method_id(styleKey)]
         pub unsafe fn styleKey(&self) -> Retained<NSString>;
 
         /// Style title displayed in UI.
-        #[method_id(@__method_family Other title)]
+        #[unsafe(method_family(none))]
+        #[method_id(title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Attributes corresponding to this formatting style.
         ///
         /// Alongside `title`, these may be used to create a preview for this formatting style.
-        #[method_id(@__method_family Other attributes)]
+        #[unsafe(method_family(none))]
+        #[method_id(attributes)]
         pub unsafe fn attributes(&self)
             -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
-        #[method_id(@__method_family Init initWithStyleKey:title:attributes:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithStyleKey:title:attributes:)]
         pub unsafe fn initWithStyleKey_title_attributes(
             this: Allocated<Self>,
             style_key: &NSString,
@@ -57,10 +61,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITextFormattingViewControllerFormattingStyle {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

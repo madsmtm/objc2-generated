@@ -75,7 +75,8 @@ extern_methods!(
         /// Parameter `frameRect`: The frame rectangle for the created view object.
         ///
         /// Parameter `device`: The MTLDevice to be used by the view to create Metal objects
-        #[method_id(@__method_family Init initWithFrame:device:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithFrame:device:)]
         pub unsafe fn initWithFrame_device(
             this: Allocated<Self>,
             frame_rect: CGRect,
@@ -85,11 +86,13 @@ extern_methods!(
         /// Returns a view initalized from data in a given unarchiver
         ///
         /// Parameter `coder`: An unarchiver object
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         /// The delegate handling common view operations
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn MTKViewDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -100,7 +103,8 @@ extern_methods!(
         /// The MTLDevice used to create Metal objects
         ///
         /// This must be explicitly set by the application unless it was passed into the initializer. Defaults to nil
-        #[method_id(@__method_family Other device)]
+        #[unsafe(method_family(none))]
+        #[method_id(device)]
         pub unsafe fn device(&self) -> Option<Retained<ProtocolObject<dyn MTLDevice>>>;
 
         /// Setter for [`device`][Self::device].
@@ -111,7 +115,8 @@ extern_methods!(
         /// The drawable to be used for the current frame.
         ///
         /// currentDrawable is updated at the end -draw (i.e. after the delegate's drawInMTKView method is called)
-        #[method_id(@__method_family Other currentDrawable)]
+        #[unsafe(method_family(none))]
+        #[method_id(currentDrawable)]
         pub unsafe fn currentDrawable(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn CAMetalDrawable>>>;
@@ -229,7 +234,8 @@ extern_methods!(
         /// A packed depth and stencil texture to be attached to a MTLRenderPassDescriptor
         ///
         /// The view will generate the depth buffer using the specified depthPixelFormat.  This will be nil if depthStencilPixelFormat is MTLPixelFormatInvalid.
-        #[method_id(@__method_family Other depthStencilTexture)]
+        #[unsafe(method_family(none))]
+        #[method_id(depthStencilTexture)]
         pub unsafe fn depthStencilTexture(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
@@ -237,7 +243,8 @@ extern_methods!(
         /// A multisample color texture that will be resolved into the currentDrawable's texture
         ///
         /// The view will generate the multisample color buffer using the specified colorPixelFormat.  This will be nil if sampleCount is less than or equal to 1.
-        #[method_id(@__method_family Other multisampleColorTexture)]
+        #[unsafe(method_family(none))]
+        #[method_id(multisampleColorTexture)]
         pub unsafe fn multisampleColorTexture(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
@@ -251,7 +258,8 @@ extern_methods!(
         /// A render pass descriptor generated from the currentDrawable's texture and the view's depth, stencil, and sample buffers and clear values.
         ///
         /// This is a convience property.  The view does not use this descriptor and there is no requirement for an app to use this descriptor.
-        #[method_id(@__method_family Other currentRenderPassDescriptor)]
+        #[unsafe(method_family(none))]
+        #[method_id(currentRenderPassDescriptor)]
         pub unsafe fn currentRenderPassDescriptor(
             &self,
         ) -> Option<Retained<MTLRenderPassDescriptor>>;
@@ -308,7 +316,8 @@ extern_methods!(
         /// The preferred device is updated per-frame by the system in order to identify the most efficient GPU for presentation (e.g. the one being used for compositing).
         ///
         /// This value is determined by the underlying CAMetalLayer and this property is a convenience accessor for it.
-        #[method_id(@__method_family Other preferredDevice)]
+        #[unsafe(method_family(none))]
+        #[method_id(preferredDevice)]
         pub unsafe fn preferredDevice(&self) -> Option<Retained<ProtocolObject<dyn MTLDevice>>>;
 
         /// Controls whether the draw methods should countinue at preferredFramesPerSecond
@@ -325,7 +334,8 @@ extern_methods!(
         /// The colorspace of the rendered frames. '
         ///
         /// If nil, no colormatching occurs.  If non-nil, the rendered content will be colormatched to the colorspace of the context containing this layer (typically the display's colorspace).  This property aliases the olorspace property or the view's CAMetalLayer
-        #[method_id(@__method_family Other colorspace)]
+        #[unsafe(method_family(none))]
+        #[method_id(colorspace)]
         pub unsafe fn colorspace(&self) -> Option<Retained<CGColorSpace>>;
 
         #[cfg(feature = "objc2-core-graphics")]
@@ -346,7 +356,8 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl MTKView {
-        #[method_id(@__method_family Init initWithFrame:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
     }
 );
@@ -356,7 +367,8 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl MTKView {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -366,7 +378,8 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl MTKView {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

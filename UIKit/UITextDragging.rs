@@ -33,7 +33,8 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdraggable?language=objc)
     #[cfg(all(feature = "UITextInput", feature = "UITextInputTraits"))]
     pub unsafe trait UITextDraggable: UITextInput + MainThreadOnly {
-        #[method_id(@__method_family Other textDragDelegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(textDragDelegate)]
         unsafe fn textDragDelegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UITextDragDelegate>>>;
@@ -47,7 +48,8 @@ extern_protocol!(
         );
 
         #[cfg(feature = "UIDragInteraction")]
-        #[method_id(@__method_family Other textDragInteraction)]
+        #[unsafe(method_family(none))]
+        #[method_id(textDragInteraction)]
         unsafe fn textDragInteraction(&self) -> Option<Retained<UIDragInteraction>>;
 
         #[method(isTextDragActive)]
@@ -73,7 +75,8 @@ extern_protocol!(
             feature = "UIView"
         ))]
         #[optional]
-        #[method_id(@__method_family Other textDraggableView:itemsForDrag:)]
+        #[unsafe(method_family(none))]
+        #[method_id(textDraggableView:itemsForDrag:)]
         unsafe fn textDraggableView_itemsForDrag(
             &self,
             text_draggable_view: &UIView,
@@ -91,7 +94,8 @@ extern_protocol!(
             feature = "UIView"
         ))]
         #[optional]
-        #[method_id(@__method_family Other textDraggableView:dragPreviewForLiftingItem:session:)]
+        #[unsafe(method_family(none))]
+        #[method_id(textDraggableView:dragPreviewForLiftingItem:session:)]
         unsafe fn textDraggableView_dragPreviewForLiftingItem_session(
             &self,
             text_draggable_view: &UIView,
@@ -154,22 +158,26 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdragrequest?language=objc)
     pub unsafe trait UITextDragRequest: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UITextInput")]
-        #[method_id(@__method_family Other dragRange)]
+        #[unsafe(method_family(none))]
+        #[method_id(dragRange)]
         unsafe fn dragRange(&self) -> Retained<UITextRange>;
 
         #[cfg(feature = "UIDragItem")]
-        #[method_id(@__method_family Other suggestedItems)]
+        #[unsafe(method_family(none))]
+        #[method_id(suggestedItems)]
         unsafe fn suggestedItems(&self) -> Retained<NSArray<UIDragItem>>;
 
         #[cfg(feature = "UIDragItem")]
-        #[method_id(@__method_family Other existingItems)]
+        #[unsafe(method_family(none))]
+        #[method_id(existingItems)]
         unsafe fn existingItems(&self) -> Retained<NSArray<UIDragItem>>;
 
         #[method(isSelected)]
         unsafe fn isSelected(&self) -> bool;
 
         #[cfg(feature = "UIDragSession")]
-        #[method_id(@__method_family Other dragSession)]
+        #[unsafe(method_family(none))]
+        #[method_id(dragSession)]
         unsafe fn dragSession(&self) -> Retained<ProtocolObject<dyn UIDragSession>>;
     }
 );

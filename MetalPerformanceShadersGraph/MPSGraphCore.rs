@@ -29,10 +29,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSGraphObject {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -61,10 +63,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSGraphType {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -90,7 +94,8 @@ extern_methods!(
     unsafe impl MPSGraphShapedType {
         #[cfg(feature = "objc2-metal-performance-shaders")]
         /// The Shape of the shaped type.
-        #[method_id(@__method_family Other shape)]
+        #[unsafe(method_family(none))]
+        #[method_id(shape)]
         pub unsafe fn shape(&self) -> Option<Retained<MPSShape>>;
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
@@ -115,7 +120,8 @@ extern_methods!(
         /// - shape: The shape of the shaped type.
         /// - dataType: The dataType of the shaped type.
         /// - Returns: A valid MPSGraphShapedType, or nil if allocation failure.
-        #[method_id(@__method_family Init initWithShape:dataType:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithShape:dataType:)]
         pub unsafe fn initWithShape_dataType(
             this: Allocated<Self>,
             shape: Option<&MPSShape>,
@@ -135,10 +141,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSGraphShapedType {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -58,7 +58,8 @@ extern_methods!(
         /// The environment texture of the probe.
         ///
         /// The texture is provided as a cube using MTLTextureTypeCube.
-        #[method_id(@__method_family Other environmentTexture)]
+        #[unsafe(method_family(none))]
+        #[method_id(environmentTexture)]
         pub unsafe fn environmentTexture(&self)
             -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
     }
@@ -70,10 +71,12 @@ extern_methods!(
     #[cfg(all(feature = "ARAnchor", feature = "objc2"))]
     unsafe impl AREnvironmentProbeAnchor {
         /// Unavailable
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

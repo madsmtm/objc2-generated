@@ -45,14 +45,16 @@ unsafe impl NSObjectProtocol for WKAlertAction {}
 extern_methods!(
     unsafe impl WKAlertAction {
         #[cfg(feature = "block2")]
-        #[method_id(@__method_family Other actionWithTitle:style:handler:)]
+        #[unsafe(method_family(none))]
+        #[method_id(actionWithTitle:style:handler:)]
         pub unsafe fn actionWithTitle_style_handler(
             title: &NSString,
             style: WKAlertActionStyle,
             handler: WKAlertActionHandler,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -60,7 +62,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKAlertAction {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

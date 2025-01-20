@@ -47,7 +47,8 @@ extern_category!(
     /// Category "GCTypes" on [`NSValue`].
     #[doc(alias = "GCTypes")]
     pub unsafe trait NSValueGCTypes {
-        #[method_id(@__method_family Other valueWithGCPoint2:)]
+        #[unsafe(method_family(none))]
+        #[method_id(valueWithGCPoint2:)]
         unsafe fn valueWithGCPoint2(point: GCPoint2) -> Retained<Self>;
 
         #[method(GCPoint2Value)]

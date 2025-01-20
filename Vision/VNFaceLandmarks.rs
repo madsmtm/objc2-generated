@@ -34,10 +34,12 @@ unsafe impl VNRequestRevisionProviding for VNFaceLandmarkRegion {}
 
 extern_methods!(
     unsafe impl VNFaceLandmarkRegion {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// pointCount returns the amount of points in a given region. This can be zero if no points for a region could be found.
@@ -106,7 +108,8 @@ extern_methods!(
         ///
         ///
         /// Returns: NSArray object of NSNumber(s) initialized to floating point values.
-        #[method_id(@__method_family Other precisionEstimatesPerPoint)]
+        #[unsafe(method_family(none))]
+        #[method_id(precisionEstimatesPerPoint)]
         pub unsafe fn precisionEstimatesPerPoint(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         #[cfg(feature = "VNTypes")]
@@ -119,10 +122,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `VNFaceLandmarkRegion`
     unsafe impl VNFaceLandmarkRegion2D {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -153,7 +158,8 @@ unsafe impl VNRequestRevisionProviding for VNFaceLandmarks {}
 
 extern_methods!(
     unsafe impl VNFaceLandmarks {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VNTypes")]
@@ -166,7 +172,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNFaceLandmarks {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -198,57 +205,70 @@ unsafe impl VNRequestRevisionProviding for VNFaceLandmarks2D {}
 extern_methods!(
     unsafe impl VNFaceLandmarks2D {
         /// allPoints the region containing all face landmark points.
-        #[method_id(@__method_family Other allPoints)]
+        #[unsafe(method_family(none))]
+        #[method_id(allPoints)]
         pub unsafe fn allPoints(&self) -> Option<Retained<VNFaceLandmarkRegion2D>>;
 
         /// faceContour the region containing the points that describe the face contour from cheek over chin to cheek.
-        #[method_id(@__method_family Other faceContour)]
+        #[unsafe(method_family(none))]
+        #[method_id(faceContour)]
         pub unsafe fn faceContour(&self) -> Option<Retained<VNFaceLandmarkRegion2D>>;
 
         /// leftEye the region containing the points describing the outline of the left eye.
-        #[method_id(@__method_family Other leftEye)]
+        #[unsafe(method_family(none))]
+        #[method_id(leftEye)]
         pub unsafe fn leftEye(&self) -> Option<Retained<VNFaceLandmarkRegion2D>>;
 
         /// rightEye the region containing the points describing the outline of the right eye.
-        #[method_id(@__method_family Other rightEye)]
+        #[unsafe(method_family(none))]
+        #[method_id(rightEye)]
         pub unsafe fn rightEye(&self) -> Option<Retained<VNFaceLandmarkRegion2D>>;
 
         /// leftEyebrow the region containing the points describing the trace of the left eyebrow.
-        #[method_id(@__method_family Other leftEyebrow)]
+        #[unsafe(method_family(none))]
+        #[method_id(leftEyebrow)]
         pub unsafe fn leftEyebrow(&self) -> Option<Retained<VNFaceLandmarkRegion2D>>;
 
         /// rightEyebrow the region containing the points describing the trace of the right eyebrow.
-        #[method_id(@__method_family Other rightEyebrow)]
+        #[unsafe(method_family(none))]
+        #[method_id(rightEyebrow)]
         pub unsafe fn rightEyebrow(&self) -> Option<Retained<VNFaceLandmarkRegion2D>>;
 
         /// nose the region containing the points describing the outline of the nose.
-        #[method_id(@__method_family Other nose)]
+        #[unsafe(method_family(none))]
+        #[method_id(nose)]
         pub unsafe fn nose(&self) -> Option<Retained<VNFaceLandmarkRegion2D>>;
 
         /// noseCrest the region containing the points describing the trace of the center crest of the nose.
-        #[method_id(@__method_family Other noseCrest)]
+        #[unsafe(method_family(none))]
+        #[method_id(noseCrest)]
         pub unsafe fn noseCrest(&self) -> Option<Retained<VNFaceLandmarkRegion2D>>;
 
         /// medianLine the region containing the points describing the trace of the center line of the face.
-        #[method_id(@__method_family Other medianLine)]
+        #[unsafe(method_family(none))]
+        #[method_id(medianLine)]
         pub unsafe fn medianLine(&self) -> Option<Retained<VNFaceLandmarkRegion2D>>;
 
         /// outer lips the region containing the points describing the outline of the outside of the lips.
-        #[method_id(@__method_family Other outerLips)]
+        #[unsafe(method_family(none))]
+        #[method_id(outerLips)]
         pub unsafe fn outerLips(&self) -> Option<Retained<VNFaceLandmarkRegion2D>>;
 
         /// innerLips the region containing the points describing the outline of the space between the of the lips.
-        #[method_id(@__method_family Other innerLips)]
+        #[unsafe(method_family(none))]
+        #[method_id(innerLips)]
         pub unsafe fn innerLips(&self) -> Option<Retained<VNFaceLandmarkRegion2D>>;
 
         /// leftPupil the region containing the point where the left pupil is located.  This value may be inaccurate if
         /// the face isBlinking.
-        #[method_id(@__method_family Other leftPupil)]
+        #[unsafe(method_family(none))]
+        #[method_id(leftPupil)]
         pub unsafe fn leftPupil(&self) -> Option<Retained<VNFaceLandmarkRegion2D>>;
 
         /// rightPupil the region containing the point where the right pupil is located.  This value may be inaccurate if
         /// the face isBlinking.
-        #[method_id(@__method_family Other rightPupil)]
+        #[unsafe(method_family(none))]
+        #[method_id(rightPupil)]
         pub unsafe fn rightPupil(&self) -> Option<Retained<VNFaceLandmarkRegion2D>>;
     }
 );
@@ -256,7 +276,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `VNFaceLandmarks`
     unsafe impl VNFaceLandmarks2D {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -264,7 +285,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNFaceLandmarks2D {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

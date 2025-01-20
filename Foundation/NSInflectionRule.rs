@@ -30,10 +30,12 @@ unsafe impl NSSecureCoding for NSInflectionRule {}
 
 extern_methods!(
     unsafe impl NSInflectionRule {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family Other automaticRule)]
+        #[unsafe(method_family(none))]
+        #[method_id(automaticRule)]
         pub unsafe fn automaticRule() -> Retained<NSInflectionRule>;
     }
 );
@@ -41,7 +43,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSInflectionRule {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -72,14 +75,16 @@ unsafe impl NSSecureCoding for NSInflectionRuleExplicit {}
 extern_methods!(
     unsafe impl NSInflectionRuleExplicit {
         #[cfg(feature = "NSMorphology")]
-        #[method_id(@__method_family Init initWithMorphology:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithMorphology:)]
         pub unsafe fn initWithMorphology(
             this: Allocated<Self>,
             morphology: &NSMorphology,
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSMorphology")]
-        #[method_id(@__method_family Other morphology)]
+        #[unsafe(method_family(none))]
+        #[method_id(morphology)]
         pub unsafe fn morphology(&self) -> Retained<NSMorphology>;
     }
 );
@@ -87,7 +92,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSInflectionRule`
     unsafe impl NSInflectionRuleExplicit {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -95,7 +101,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSInflectionRuleExplicit {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

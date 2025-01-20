@@ -48,7 +48,8 @@ extern_category!(
         ///
         /// If the path component could not be appended, this method returns a copy of
         /// `self`.
-        #[method_id(@__method_family Other stringByAppendingPathComponent:conformingToType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(stringByAppendingPathComponent:conformingToType:)]
         unsafe fn stringByAppendingPathComponent_conformingToType(
             &self,
             partial_name: &NSString,
@@ -91,7 +92,8 @@ extern_category!(
         ///
         /// If the extension could not be appended, this method returns a copy of
         /// `self`.
-        #[method_id(@__method_family Other stringByAppendingPathExtensionForType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(stringByAppendingPathExtensionForType:)]
         unsafe fn stringByAppendingPathExtensionForType(
             &self,
             content_type: &UTType,
@@ -149,7 +151,8 @@ extern_category!(
         /// Note: The resulting URL has a directory path if
         /// `contentType`conforms to
         /// `UTTypeDirectory`.
-        #[method_id(@__method_family Other URLByAppendingPathComponent:conformingToType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(URLByAppendingPathComponent:conformingToType:)]
         unsafe fn URLByAppendingPathComponent_conformingToType(
             &self,
             partial_name: &NSString,
@@ -198,7 +201,8 @@ extern_category!(
         /// Note: The resulting URL has a directory path if
         /// `contentType`conforms to
         /// `UTTypeDirectory`.
-        #[method_id(@__method_family Other URLByAppendingPathExtensionForType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(URLByAppendingPathExtensionForType:)]
         unsafe fn URLByAppendingPathExtensionForType(
             &self,
             content_type: &UTType,

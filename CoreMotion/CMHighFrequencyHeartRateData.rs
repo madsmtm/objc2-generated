@@ -65,7 +65,8 @@ extern_methods!(
         #[method(confidence)]
         pub unsafe fn confidence(&self) -> CMHighFrequencyHeartRateDataConfidence;
 
-        #[method_id(@__method_family Other date)]
+        #[unsafe(method_family(none))]
+        #[method_id(date)]
         pub unsafe fn date(&self) -> Option<Retained<NSDate>>;
     }
 );
@@ -74,10 +75,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CMLogItem")]
     unsafe impl CMHighFrequencyHeartRateData {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

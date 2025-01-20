@@ -89,7 +89,8 @@ unsafe impl NSObjectProtocol for MPNowPlayingInfoLanguageOption {}
 
 extern_methods!(
     unsafe impl MPNowPlayingInfoLanguageOption {
-        #[method_id(@__method_family Init initWithType:languageTag:characteristics:displayName:identifier:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithType:languageTag:characteristics:displayName:identifier:)]
         pub unsafe fn initWithType_languageTag_characteristics_displayName_identifier(
             this: Allocated<Self>,
             language_option_type: MPNowPlayingInfoLanguageOptionType,
@@ -119,20 +120,24 @@ extern_methods!(
         /// A nil languageTag reprsents that this option should be disabled.
         /// A languageTag with the value of MPLangaugeOptionAutoLangaugeTag represents
         /// that the best langauge based on the system preferences should be used.
-        #[method_id(@__method_family Other languageTag)]
+        #[unsafe(method_family(none))]
+        #[method_id(languageTag)]
         pub unsafe fn languageTag(&self) -> Option<Retained<NSString>>;
 
         /// Characteristics describing the content of the language options.
         /// See the LanguageOptionCharacteristics for the most commonly used values.
-        #[method_id(@__method_family Other languageOptionCharacteristics)]
+        #[unsafe(method_family(none))]
+        #[method_id(languageOptionCharacteristics)]
         pub unsafe fn languageOptionCharacteristics(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// A user presentable display name for this option.
-        #[method_id(@__method_family Other displayName)]
+        #[unsafe(method_family(none))]
+        #[method_id(displayName)]
         pub unsafe fn displayName(&self) -> Option<Retained<NSString>>;
 
         /// A unique identifier representing this option.
-        #[method_id(@__method_family Other identifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(identifier)]
         pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
     }
 );
@@ -140,10 +145,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPNowPlayingInfoLanguageOption {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -159,7 +166,8 @@ unsafe impl NSObjectProtocol for MPNowPlayingInfoLanguageOptionGroup {}
 
 extern_methods!(
     unsafe impl MPNowPlayingInfoLanguageOptionGroup {
-        #[method_id(@__method_family Init initWithLanguageOptions:defaultLanguageOption:allowEmptySelection:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithLanguageOptions:defaultLanguageOption:allowEmptySelection:)]
         pub unsafe fn initWithLanguageOptions_defaultLanguageOption_allowEmptySelection(
             this: Allocated<Self>,
             language_options: &NSArray<MPNowPlayingInfoLanguageOption>,
@@ -168,11 +176,13 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The available language options within this group.
-        #[method_id(@__method_family Other languageOptions)]
+        #[unsafe(method_family(none))]
+        #[method_id(languageOptions)]
         pub unsafe fn languageOptions(&self) -> Retained<NSArray<MPNowPlayingInfoLanguageOption>>;
 
         /// The default language option, if any, within this group.
-        #[method_id(@__method_family Other defaultLanguageOption)]
+        #[unsafe(method_family(none))]
+        #[method_id(defaultLanguageOption)]
         pub unsafe fn defaultLanguageOption(
             &self,
         ) -> Option<Retained<MPNowPlayingInfoLanguageOption>>;
@@ -186,10 +196,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPNowPlayingInfoLanguageOptionGroup {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

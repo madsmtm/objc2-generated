@@ -78,7 +78,8 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLEmbedElement {
         #[deprecated]
-        #[method_id(@__method_family Other align)]
+        #[unsafe(method_family(none))]
+        #[method_id(align)]
         pub unsafe fn align(&self) -> Retained<NSString>;
 
         /// Setter for [`align`][Self::align].
@@ -96,7 +97,8 @@ extern_methods!(
         pub unsafe fn setHeight(&self, height: c_int);
 
         #[deprecated]
-        #[method_id(@__method_family Other name)]
+        #[unsafe(method_family(none))]
+        #[method_id(name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
@@ -105,7 +107,8 @@ extern_methods!(
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__method_family Other src)]
+        #[unsafe(method_family(none))]
+        #[method_id(src)]
         pub unsafe fn src(&self) -> Retained<NSString>;
 
         /// Setter for [`src`][Self::src].
@@ -114,7 +117,8 @@ extern_methods!(
         pub unsafe fn setSrc(&self, src: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__method_family Other type)]
+        #[unsafe(method_family(none))]
+        #[method_id(type)]
         pub unsafe fn r#type(&self) -> Retained<NSString>;
 
         /// Setter for [`type`][Self::type].
@@ -144,7 +148,8 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLEmbedElement {
         #[deprecated]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -159,7 +164,8 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLEmbedElement {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

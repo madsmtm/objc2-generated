@@ -69,7 +69,8 @@ unsafe impl NSObjectProtocol for AVAudioEnvironmentDistanceAttenuationParameters
 
 extern_methods!(
     unsafe impl AVAudioEnvironmentDistanceAttenuationParameters {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Type of distance attenuation model
@@ -129,7 +130,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAudioEnvironmentDistanceAttenuationParameters {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -159,7 +161,8 @@ unsafe impl NSObjectProtocol for AVAudioEnvironmentReverbParameters {}
 
 extern_methods!(
     unsafe impl AVAudioEnvironmentReverbParameters {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Turns on/off the reverb
@@ -185,7 +188,8 @@ extern_methods!(
 
         #[cfg(feature = "AVAudioUnitEQ")]
         /// filter that applies to the output of the reverb
-        #[method_id(@__method_family Other filterParameters)]
+        #[unsafe(method_family(none))]
+        #[method_id(filterParameters)]
         pub unsafe fn filterParameters(&self) -> Retained<AVAudioUnitEQFilterParameters>;
 
         #[cfg(feature = "AVAudioUnitReverb")]
@@ -203,7 +207,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAudioEnvironmentReverbParameters {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -294,7 +299,8 @@ unsafe impl NSObjectProtocol for AVAudioEnvironmentNode {}
 extern_methods!(
     #[cfg(feature = "AVAudioNode")]
     unsafe impl AVAudioEnvironmentNode {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Type of output hardware to be used with AVAudio3DMixingRenderingAlgorithmAuto
@@ -390,13 +396,15 @@ extern_methods!(
         );
 
         /// The distance attenuation parameters for the environment
-        #[method_id(@__method_family Other distanceAttenuationParameters)]
+        #[unsafe(method_family(none))]
+        #[method_id(distanceAttenuationParameters)]
         pub unsafe fn distanceAttenuationParameters(
             &self,
         ) -> Retained<AVAudioEnvironmentDistanceAttenuationParameters>;
 
         /// The reverb parameters for the environment
-        #[method_id(@__method_family Other reverbParameters)]
+        #[unsafe(method_family(none))]
+        #[method_id(reverbParameters)]
         pub unsafe fn reverbParameters(&self) -> Retained<AVAudioEnvironmentReverbParameters>;
 
         /// Returns an array of AVAudio3DMixingRenderingAlgorithm values based on the current output format
@@ -413,7 +421,8 @@ extern_methods!(
         ///
         /// This information should be retrieved after a successful connection to the destination node
         /// via the engine's connect method.
-        #[method_id(@__method_family Other applicableRenderingAlgorithms)]
+        #[unsafe(method_family(none))]
+        #[method_id(applicableRenderingAlgorithms)]
         pub unsafe fn applicableRenderingAlgorithms(&self) -> Retained<NSArray<NSNumber>>;
 
         /// On capable devices, listener orientation will be automatically rotated based on user's head-orientation if enabled.
@@ -430,7 +439,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "AVAudioNode")]
     unsafe impl AVAudioEnvironmentNode {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

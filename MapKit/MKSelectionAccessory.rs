@@ -19,13 +19,16 @@ unsafe impl NSObjectProtocol for MKSelectionAccessory {}
 
 extern_methods!(
     unsafe impl MKSelectionAccessory {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family Other mapItemDetailWithPresentationStyle:)]
+        #[unsafe(method_family(none))]
+        #[method_id(mapItemDetailWithPresentationStyle:)]
         pub unsafe fn mapItemDetailWithPresentationStyle(
             presentation_style: &MKMapItemDetailSelectionAccessoryPresentationStyle,
         ) -> Retained<MKSelectionAccessory>;
@@ -65,35 +68,42 @@ unsafe impl NSObjectProtocol for MKMapItemDetailSelectionAccessoryPresentationSt
 
 extern_methods!(
     unsafe impl MKMapItemDetailSelectionAccessoryPresentationStyle {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
-        #[method_id(@__method_family Other automaticWithPresentationViewController:)]
+        #[unsafe(method_family(none))]
+        #[method_id(automaticWithPresentationViewController:)]
         pub unsafe fn automaticWithPresentationViewController(
             presentation_view_controller: Option<&NSViewController>,
         ) -> Retained<MKMapItemDetailSelectionAccessoryPresentationStyle>;
 
-        #[method_id(@__method_family Other callout)]
+        #[unsafe(method_family(none))]
+        #[method_id(callout)]
         pub unsafe fn callout() -> Retained<MKMapItemDetailSelectionAccessoryPresentationStyle>;
 
-        #[method_id(@__method_family Other calloutWithCalloutStyle:)]
+        #[unsafe(method_family(none))]
+        #[method_id(calloutWithCalloutStyle:)]
         pub unsafe fn calloutWithCalloutStyle(
             style: MKMapItemDetailSelectionAccessoryCalloutStyle,
         ) -> Retained<MKMapItemDetailSelectionAccessoryPresentationStyle>;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
-        #[method_id(@__method_family Other sheetPresentedFromViewController:)]
+        #[unsafe(method_family(none))]
+        #[method_id(sheetPresentedFromViewController:)]
         pub unsafe fn sheetPresentedFromViewController(
             view_controller: &NSViewController,
         ) -> Retained<MKMapItemDetailSelectionAccessoryPresentationStyle>;
 
-        #[method_id(@__method_family Other openInMaps)]
+        #[unsafe(method_family(none))]
+        #[method_id(openInMaps)]
         pub unsafe fn openInMaps() -> Retained<MKMapItemDetailSelectionAccessoryPresentationStyle>;
     }
 );

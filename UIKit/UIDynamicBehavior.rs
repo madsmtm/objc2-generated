@@ -66,7 +66,8 @@ extern_protocol!(
         /// The path must represent a convex polygon with counter clockwise winding and no self intersection.
         /// The point (0,0) in the path corresponds to the dynamic item's center.
         #[optional]
-        #[method_id(@__method_family Other collisionBoundingPath)]
+        #[unsafe(method_family(none))]
+        #[method_id(collisionBoundingPath)]
         unsafe fn collisionBoundingPath(&self) -> Retained<UIBezierPath>;
     }
 );
@@ -85,13 +86,15 @@ unsafe impl UIDynamicItem for UIDynamicItemGroup {}
 
 extern_methods!(
     unsafe impl UIDynamicItemGroup {
-        #[method_id(@__method_family Init initWithItems:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithItems:)]
         pub unsafe fn initWithItems(
             this: Allocated<Self>,
             items: &NSArray<ProtocolObject<dyn UIDynamicItem>>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Other items)]
+        #[unsafe(method_family(none))]
+        #[method_id(items)]
         pub unsafe fn items(&self) -> Retained<NSArray<ProtocolObject<dyn UIDynamicItem>>>;
     }
 );
@@ -99,10 +102,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIDynamicItemGroup {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -125,7 +130,8 @@ extern_methods!(
         #[method(removeChildBehavior:)]
         pub unsafe fn removeChildBehavior(&self, behavior: &UIDynamicBehavior);
 
-        #[method_id(@__method_family Other childBehaviors)]
+        #[unsafe(method_family(none))]
+        #[method_id(childBehaviors)]
         pub unsafe fn childBehaviors(&self) -> Retained<NSArray<UIDynamicBehavior>>;
 
         #[cfg(feature = "block2")]
@@ -142,7 +148,8 @@ extern_methods!(
         pub unsafe fn willMoveToAnimator(&self, dynamic_animator: Option<&UIDynamicAnimator>);
 
         #[cfg(feature = "UIDynamicAnimator")]
-        #[method_id(@__method_family Other dynamicAnimator)]
+        #[unsafe(method_family(none))]
+        #[method_id(dynamicAnimator)]
         pub unsafe fn dynamicAnimator(&self) -> Option<Retained<UIDynamicAnimator>>;
     }
 );
@@ -150,10 +157,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIDynamicBehavior {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

@@ -18,7 +18,8 @@ extern_methods!(
         /// - axis: axis of reduction
         /// - name: name for the operation
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__method_family Other reductionSumWithTensor:axis:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(reductionSumWithTensor:axis:name:)]
         pub unsafe fn reductionSumWithTensor_axis_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -34,7 +35,8 @@ extern_methods!(
         /// - axes: axes of reduction
         /// - name: name for the operation
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__method_family Other reductionSumWithTensor:axes:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(reductionSumWithTensor:axes:name:)]
         pub unsafe fn reductionSumWithTensor_axes_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -50,7 +52,8 @@ extern_methods!(
         /// - axis: axis of reduction
         /// - name: name for the operation
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__method_family Other reductionMaximumWithTensor:axis:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(reductionMaximumWithTensor:axis:name:)]
         pub unsafe fn reductionMaximumWithTensor_axis_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -66,7 +69,8 @@ extern_methods!(
         /// - axes: axes of reduction
         /// - name: name for the operation
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__method_family Other reductionMaximumWithTensor:axes:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(reductionMaximumWithTensor:axes:name:)]
         pub unsafe fn reductionMaximumWithTensor_axes_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -82,7 +86,8 @@ extern_methods!(
         /// - axis: axis of reduction
         /// - name: name for the operation
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__method_family Other reductionMinimumWithTensor:axis:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(reductionMinimumWithTensor:axis:name:)]
         pub unsafe fn reductionMinimumWithTensor_axis_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -98,7 +103,8 @@ extern_methods!(
         /// - axes: axes of reduction
         /// - name: name for the operation
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__method_family Other reductionMinimumWithTensor:axes:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(reductionMinimumWithTensor:axes:name:)]
         pub unsafe fn reductionMinimumWithTensor_axes_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -114,7 +120,8 @@ extern_methods!(
         /// - axis: axis of reduction
         /// - name: name for the operation
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__method_family Other reductionMaximumPropagateNaNWithTensor:axis:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(reductionMaximumPropagateNaNWithTensor:axis:name:)]
         pub unsafe fn reductionMaximumPropagateNaNWithTensor_axis_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -130,7 +137,8 @@ extern_methods!(
         /// - axes: axes of reduction
         /// - name: name for the operation
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__method_family Other reductionMaximumPropagateNaNWithTensor:axes:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(reductionMaximumPropagateNaNWithTensor:axes:name:)]
         pub unsafe fn reductionMaximumPropagateNaNWithTensor_axes_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -146,7 +154,8 @@ extern_methods!(
         /// - axis: axis of reduction
         /// - name: name for the operation
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__method_family Other reductionMinimumPropagateNaNWithTensor:axis:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(reductionMinimumPropagateNaNWithTensor:axis:name:)]
         pub unsafe fn reductionMinimumPropagateNaNWithTensor_axis_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -162,7 +171,8 @@ extern_methods!(
         /// - axes: axes of reduction
         /// - name: name for the operation
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__method_family Other reductionMinimumPropagateNaNWithTensor:axes:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(reductionMinimumPropagateNaNWithTensor:axes:name:)]
         pub unsafe fn reductionMinimumPropagateNaNWithTensor_axes_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -178,7 +188,8 @@ extern_methods!(
         /// - axis: axis of reduction
         /// - name: name for the operation
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__method_family Other reductionProductWithTensor:axis:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(reductionProductWithTensor:axis:name:)]
         pub unsafe fn reductionProductWithTensor_axis_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -194,7 +205,8 @@ extern_methods!(
         /// - axes: axes of reduction
         /// - name: name for the operation
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__method_family Other reductionProductWithTensor:axes:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(reductionProductWithTensor:axes:name:)]
         pub unsafe fn reductionProductWithTensor_axes_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -210,7 +222,8 @@ extern_methods!(
         /// - axis: axis of reduction
         /// - name: name for the operation
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__method_family Other reductionArgMaximumWithTensor:axis:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(reductionArgMaximumWithTensor:axis:name:)]
         pub unsafe fn reductionArgMaximumWithTensor_axis_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -226,7 +239,8 @@ extern_methods!(
         /// - axis: axis of reduction
         /// - name: name for the operation
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__method_family Other reductionArgMinimumWithTensor:axis:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(reductionArgMinimumWithTensor:axis:name:)]
         pub unsafe fn reductionArgMinimumWithTensor_axis_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -242,7 +256,8 @@ extern_methods!(
         /// - axis: axis of reduction
         /// - name: name for the operation
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__method_family Other reductionAndWithTensor:axis:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(reductionAndWithTensor:axis:name:)]
         pub unsafe fn reductionAndWithTensor_axis_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -258,7 +273,8 @@ extern_methods!(
         /// - axes: axes of reduction
         /// - name: name for the operation
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__method_family Other reductionAndWithTensor:axes:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(reductionAndWithTensor:axes:name:)]
         pub unsafe fn reductionAndWithTensor_axes_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -274,7 +290,8 @@ extern_methods!(
         /// - axis: axis of reduction
         /// - name: name for the operation
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__method_family Other reductionOrWithTensor:axis:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(reductionOrWithTensor:axis:name:)]
         pub unsafe fn reductionOrWithTensor_axis_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -290,7 +307,8 @@ extern_methods!(
         /// - axes: axes of reduction
         /// - name: name for the operation
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__method_family Other reductionOrWithTensor:axes:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(reductionOrWithTensor:axes:name:)]
         pub unsafe fn reductionOrWithTensor_axes_name(
             &self,
             tensor: &MPSGraphTensor,

@@ -65,7 +65,8 @@ extern_methods!(
         /// Parameter `predicate`: The predicate which HKActivitySummaries should match.
         ///
         /// Parameter `handler`: The block to invoke with results when the query has finished.
-        #[method_id(@__method_family Init initWithPredicate:resultsHandler:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithPredicate:resultsHandler:)]
         pub unsafe fn initWithPredicate_resultsHandler(
             this: Allocated<Self>,
             predicate: Option<&NSPredicate>,
@@ -84,7 +85,8 @@ extern_methods!(
     /// Methods declared on superclass `HKQuery`
     #[cfg(feature = "HKQuery")]
     unsafe impl HKActivitySummaryQuery {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -93,7 +95,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "HKQuery")]
     unsafe impl HKActivitySummaryQuery {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

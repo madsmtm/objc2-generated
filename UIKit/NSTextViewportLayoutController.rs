@@ -54,19 +54,23 @@ unsafe impl NSObjectProtocol for NSTextViewportLayoutController {}
 extern_methods!(
     unsafe impl NSTextViewportLayoutController {
         #[cfg(feature = "NSTextLayoutManager")]
-        #[method_id(@__method_family Init initWithTextLayoutManager:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithTextLayoutManager:)]
         pub unsafe fn initWithTextLayoutManager(
             this: Allocated<Self>,
             text_layout_manager: &NSTextLayoutManager,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSTextViewportLayoutControllerDelegate>>>;
@@ -80,7 +84,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSTextLayoutManager")]
-        #[method_id(@__method_family Other textLayoutManager)]
+        #[unsafe(method_family(none))]
+        #[method_id(textLayoutManager)]
         pub unsafe fn textLayoutManager(&self) -> Option<Retained<NSTextLayoutManager>>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -88,7 +93,8 @@ extern_methods!(
         pub unsafe fn viewportBounds(&self) -> CGRect;
 
         #[cfg(feature = "NSTextRange")]
-        #[method_id(@__method_family Other viewportRange)]
+        #[unsafe(method_family(none))]
+        #[method_id(viewportRange)]
         pub unsafe fn viewportRange(&self) -> Option<Retained<NSTextRange>>;
 
         #[method(layoutViewport)]

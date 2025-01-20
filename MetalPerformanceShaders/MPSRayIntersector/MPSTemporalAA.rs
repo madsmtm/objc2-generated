@@ -63,20 +63,23 @@ extern_methods!(
         #[method(setBlendFactor:)]
         pub unsafe fn setBlendFactor(&self, blend_factor: c_float);
 
-        #[method_id(@__method_family Init initWithDevice:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:device:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__method_family Copy copyWithZone:device:)]
+        #[unsafe(method_family(copy))]
+        #[method_id(copyWithZone:device:)]
         pub unsafe fn copyWithZone_device(
             &self,
             zone: *mut NSZone,
@@ -139,7 +142,8 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -151,10 +155,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSTemporalAA {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -62,30 +62,36 @@ unsafe impl NSSecureCoding for CKRecordZone {}
 
 extern_methods!(
     unsafe impl CKRecordZone {
-        #[method_id(@__method_family Other defaultRecordZone)]
+        #[unsafe(method_family(none))]
+        #[method_id(defaultRecordZone)]
         pub unsafe fn defaultRecordZone() -> Retained<CKRecordZone>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithZoneName:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithZoneName:)]
         pub unsafe fn initWithZoneName(
             this: Allocated<Self>,
             zone_name: &NSString,
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordZoneID")]
-        #[method_id(@__method_family Init initWithZoneID:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithZoneID:)]
         pub unsafe fn initWithZoneID(
             this: Allocated<Self>,
             zone_id: &CKRecordZoneID,
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordZoneID")]
-        #[method_id(@__method_family Other zoneID)]
+        #[unsafe(method_family(none))]
+        #[method_id(zoneID)]
         pub unsafe fn zoneID(&self) -> Retained<CKRecordZoneID>;
 
         /// Capabilities on locally-created record zones are not valid until the record zone is saved. Capabilities on record zones fetched from the server are valid.
@@ -107,7 +113,8 @@ extern_methods!(
         /// Zone-wide sharing is only supported in zones with the
         /// `CKRecordZoneCapabilityZoneWideSharing`sharing capability.
         /// You cannot share a zone if it already contains shared records.
-        #[method_id(@__method_family Other share)]
+        #[unsafe(method_family(none))]
+        #[method_id(share)]
         pub unsafe fn share(&self) -> Option<Retained<CKReference>>;
     }
 );

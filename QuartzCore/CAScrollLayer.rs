@@ -44,7 +44,8 @@ extern_methods!(
         #[method(scrollToRect:)]
         pub unsafe fn scrollToRect(&self, r: CGRect);
 
-        #[method_id(@__method_family Other scrollMode)]
+        #[unsafe(method_family(none))]
+        #[method_id(scrollMode)]
         pub unsafe fn scrollMode(&self) -> Retained<CAScrollLayerScrollMode>;
 
         /// Setter for [`scrollMode`][Self::scrollMode].
@@ -58,13 +59,16 @@ extern_methods!(
     #[cfg(feature = "CALayer")]
     unsafe impl CAScrollLayer {
         /// Layer creation and initialization. *
-        #[method_id(@__method_family Other layer)]
+        #[unsafe(method_family(none))]
+        #[method_id(layer)]
         pub unsafe fn layer() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithLayer:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithLayer:)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
     }
 );
@@ -73,7 +77,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CALayer")]
     unsafe impl CAScrollLayer {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

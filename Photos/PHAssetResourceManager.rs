@@ -55,10 +55,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHAssetResourceRequestOptions {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -74,7 +76,8 @@ unsafe impl NSObjectProtocol for PHAssetResourceManager {}
 
 extern_methods!(
     unsafe impl PHAssetResourceManager {
-        #[method_id(@__method_family Other defaultManager)]
+        #[unsafe(method_family(none))]
+        #[method_id(defaultManager)]
         pub unsafe fn defaultManager() -> Retained<PHAssetResourceManager>;
 
         #[cfg(all(feature = "PHAssetResource", feature = "block2"))]
@@ -105,10 +108,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHAssetResourceManager {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

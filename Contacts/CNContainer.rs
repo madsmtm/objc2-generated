@@ -57,10 +57,12 @@ unsafe impl NSSecureCoding for CNContainer {}
 extern_methods!(
     unsafe impl CNContainer {
         /// The identifier is unique among containers on the device. It can be saved and used for fetching containers next application launch.
-        #[method_id(@__method_family Other identifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other name)]
+        #[unsafe(method_family(none))]
+        #[method_id(name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[method(type)]
@@ -71,10 +73,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CNContainer {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -31,7 +31,8 @@ extern_methods!(
         /// Cumulative amount of logical writes.
         ///
         /// Dimensioned as NSUnitInformationStorage.
-        #[method_id(@__method_family Other cumulativeLogicalWrites)]
+        #[unsafe(method_family(none))]
+        #[method_id(cumulativeLogicalWrites)]
         pub unsafe fn cumulativeLogicalWrites(
             &self,
         ) -> Retained<NSMeasurement<NSUnitInformationStorage>>;
@@ -42,10 +43,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MXMetric")]
     unsafe impl MXDiskIOMetric {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

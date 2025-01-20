@@ -34,17 +34,21 @@ unsafe impl NSSecureCoding for HKVerifiableClinicalRecordSubject {}
 extern_methods!(
     unsafe impl HKVerifiableClinicalRecordSubject {
         /// The subject's full name.
-        #[method_id(@__method_family Other fullName)]
+        #[unsafe(method_family(none))]
+        #[method_id(fullName)]
         pub unsafe fn fullName(&self) -> Retained<NSString>;
 
         /// The subject's date of birth components.
-        #[method_id(@__method_family Other dateOfBirthComponents)]
+        #[unsafe(method_family(none))]
+        #[method_id(dateOfBirthComponents)]
         pub unsafe fn dateOfBirthComponents(&self) -> Option<Retained<NSDateComponents>>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

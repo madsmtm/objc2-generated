@@ -48,12 +48,14 @@ unsafe impl NSObjectProtocol for VZMacPlatformConfiguration {}
 extern_methods!(
     #[cfg(feature = "VZPlatformConfiguration")]
     unsafe impl VZMacPlatformConfiguration {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZMacHardwareModel")]
         /// The Mac hardware model.
-        #[method_id(@__method_family Other hardwareModel)]
+        #[unsafe(method_family(none))]
+        #[method_id(hardwareModel)]
         pub unsafe fn hardwareModel(&self) -> Retained<VZMacHardwareModel>;
 
         #[cfg(feature = "VZMacHardwareModel")]
@@ -65,7 +67,8 @@ extern_methods!(
         /// The unique Mac machine identifier.
         ///
         /// Running two virtual machines concurrently with the same identifier results in undefined behavior in the guest operating system.
-        #[method_id(@__method_family Other machineIdentifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(machineIdentifier)]
         pub unsafe fn machineIdentifier(&self) -> Retained<VZMacMachineIdentifier>;
 
         #[cfg(feature = "VZMacMachineIdentifier")]
@@ -78,7 +81,8 @@ extern_methods!(
         ///
         /// When creating a virtual machine from scratch, the hardware model of the `auxiliaryStorage` must match the hardware model of
         /// the `hardwareModel` property.
-        #[method_id(@__method_family Other auxiliaryStorage)]
+        #[unsafe(method_family(none))]
+        #[method_id(auxiliaryStorage)]
         pub unsafe fn auxiliaryStorage(&self) -> Option<Retained<VZMacAuxiliaryStorage>>;
 
         #[cfg(feature = "VZMacAuxiliaryStorage")]
@@ -92,7 +96,8 @@ extern_methods!(
     /// Methods declared on superclass `VZPlatformConfiguration`
     #[cfg(feature = "VZPlatformConfiguration")]
     unsafe impl VZMacPlatformConfiguration {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

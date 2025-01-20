@@ -179,17 +179,20 @@ unsafe impl NSUserInterfaceItemIdentification for NSButtonCell {}
 extern_methods!(
     #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     unsafe impl NSButtonCell {
-        #[method_id(@__method_family Init initTextCell:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initTextCell:)]
         pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
-        #[method_id(@__method_family Init initImageCell:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initImageCell:)]
         pub unsafe fn initImageCell(
             this: Allocated<Self>,
             image: Option<&NSImage>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[method(bezelStyle)]
@@ -216,28 +219,32 @@ extern_methods!(
         #[method(setShowsStateBy:)]
         pub unsafe fn setShowsStateBy(&self, shows_state_by: NSCellStyleMask);
 
-        #[method_id(@__method_family Other title)]
+        #[unsafe(method_family(none))]
+        #[method_id(title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
-        #[method_id(@__method_family Other attributedTitle)]
+        #[unsafe(method_family(none))]
+        #[method_id(attributedTitle)]
         pub unsafe fn attributedTitle(&self) -> Retained<NSAttributedString>;
 
         /// Setter for [`attributedTitle`][Self::attributedTitle].
         #[method(setAttributedTitle:)]
         pub unsafe fn setAttributedTitle(&self, attributed_title: &NSAttributedString);
 
-        #[method_id(@__method_family Other alternateTitle)]
+        #[unsafe(method_family(none))]
+        #[method_id(alternateTitle)]
         pub unsafe fn alternateTitle(&self) -> Retained<NSString>;
 
         /// Setter for [`alternateTitle`][Self::alternateTitle].
         #[method(setAlternateTitle:)]
         pub unsafe fn setAlternateTitle(&self, alternate_title: &NSString);
 
-        #[method_id(@__method_family Other attributedAlternateTitle)]
+        #[unsafe(method_family(none))]
+        #[method_id(attributedAlternateTitle)]
         pub unsafe fn attributedAlternateTitle(&self) -> Retained<NSAttributedString>;
 
         /// Setter for [`attributedAlternateTitle`][Self::attributedAlternateTitle].
@@ -248,7 +255,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSImage")]
-        #[method_id(@__method_family Other alternateImage)]
+        #[unsafe(method_family(none))]
+        #[method_id(alternateImage)]
         pub unsafe fn alternateImage(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
@@ -270,7 +278,8 @@ extern_methods!(
         #[method(setImageScaling:)]
         pub unsafe fn setImageScaling(&self, image_scaling: NSImageScaling);
 
-        #[method_id(@__method_family Other keyEquivalent)]
+        #[unsafe(method_family(none))]
+        #[method_id(keyEquivalent)]
         pub unsafe fn keyEquivalent(&self) -> Retained<NSString>;
 
         /// Setter for [`keyEquivalent`][Self::keyEquivalent].
@@ -317,7 +326,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSSound")]
-        #[method_id(@__method_family Other sound)]
+        #[unsafe(method_family(none))]
+        #[method_id(sound)]
         pub unsafe fn sound(&self) -> Option<Retained<NSSound>>;
 
         #[cfg(feature = "NSSound")]
@@ -326,7 +336,8 @@ extern_methods!(
         pub unsafe fn setSound(&self, sound: Option<&NSSound>);
 
         #[cfg(feature = "NSColor")]
-        #[method_id(@__method_family Other backgroundColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(backgroundColor)]
         pub unsafe fn backgroundColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColor")]
@@ -383,7 +394,8 @@ extern_methods!(
     /// Methods declared on superclass `NSCell`
     #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     unsafe impl NSButtonCell {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -392,7 +404,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     unsafe impl NSButtonCell {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -544,12 +557,14 @@ extern_methods!(
         pub unsafe fn alternateMnemonicLocation(&self) -> NSUInteger;
 
         #[deprecated = "Mnemonics are not used on macOS. This property always returns an empty string."]
-        #[method_id(@__method_family Other alternateMnemonic)]
+        #[unsafe(method_family(none))]
+        #[method_id(alternateMnemonic)]
         pub unsafe fn alternateMnemonic(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSFont")]
         #[deprecated = "The keyEquivalentFont property is no longer used. It always returns the NSButtonCell's font, and setting it has no effect."]
-        #[method_id(@__method_family Other keyEquivalentFont)]
+        #[unsafe(method_family(none))]
+        #[method_id(keyEquivalentFont)]
         pub unsafe fn keyEquivalentFont(&self) -> Option<Retained<NSFont>>;
 
         #[cfg(feature = "NSFont")]

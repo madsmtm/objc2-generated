@@ -81,7 +81,8 @@ extern_methods!(
     ))]
     unsafe impl NSPathComponentCell {
         #[cfg(feature = "NSImage")]
-        #[method_id(@__method_family Other image)]
+        #[unsafe(method_family(none))]
+        #[method_id(image)]
         pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
@@ -89,7 +90,8 @@ extern_methods!(
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 
-        #[method_id(@__method_family Other URL)]
+        #[unsafe(method_family(none))]
+        #[method_id(URL)]
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`URL`][Self::URL].
@@ -106,14 +108,17 @@ extern_methods!(
         feature = "NSTextFieldCell"
     ))]
     unsafe impl NSPathComponentCell {
-        #[method_id(@__method_family Init initTextCell:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initTextCell:)]
         pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
-        #[method_id(@__method_family Init initImageCell:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initImageCell:)]
         pub unsafe fn initImageCell(
             this: Allocated<Self>,
             image: Option<&NSImage>,
@@ -129,7 +134,8 @@ extern_methods!(
         feature = "NSTextFieldCell"
     ))]
     unsafe impl NSPathComponentCell {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -142,7 +148,8 @@ extern_methods!(
         feature = "NSTextFieldCell"
     ))]
     unsafe impl NSPathComponentCell {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

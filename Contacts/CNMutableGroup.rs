@@ -48,7 +48,8 @@ unsafe impl NSSecureCoding for CNMutableGroup {}
 extern_methods!(
     #[cfg(feature = "CNGroup")]
     unsafe impl CNMutableGroup {
-        #[method_id(@__method_family Other name)]
+        #[unsafe(method_family(none))]
+        #[method_id(name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
@@ -61,10 +62,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CNGroup")]
     unsafe impl CNMutableGroup {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

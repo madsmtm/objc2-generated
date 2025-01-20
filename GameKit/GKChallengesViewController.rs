@@ -49,7 +49,8 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl GKChallengesViewController {
         #[deprecated]
-        #[method_id(@__method_family Other challengeDelegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(challengeDelegate)]
         pub unsafe fn challengeDelegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn GKChallengesViewControllerDelegate>>>;
@@ -70,14 +71,16 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl GKChallengesViewController {
-        #[method_id(@__method_family Init initWithNibName:bundle:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSNibName>,
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -90,7 +93,8 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl GKChallengesViewController {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -100,7 +104,8 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl GKChallengesViewController {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

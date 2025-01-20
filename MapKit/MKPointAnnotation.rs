@@ -26,18 +26,21 @@ unsafe impl NSObjectProtocol for MKPointAnnotation {}
 extern_methods!(
     #[cfg(feature = "MKShape")]
     unsafe impl MKPointAnnotation {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-location")]
-        #[method_id(@__method_family Init initWithCoordinate:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoordinate:)]
         pub unsafe fn initWithCoordinate(
             this: Allocated<Self>,
             coordinate: CLLocationCoordinate2D,
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-location")]
-        #[method_id(@__method_family Init initWithCoordinate:title:subtitle:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoordinate:title:subtitle:)]
         pub unsafe fn initWithCoordinate_title_subtitle(
             this: Allocated<Self>,
             coordinate: CLLocationCoordinate2D,
@@ -60,7 +63,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MKShape")]
     unsafe impl MKPointAnnotation {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -18,7 +18,8 @@ unsafe impl NSObjectProtocol for NSMigrationStage {}
 
 extern_methods!(
     unsafe impl NSMigrationStage {
-        #[method_id(@__method_family Other label)]
+        #[unsafe(method_family(none))]
+        #[method_id(label)]
         pub unsafe fn label(&self) -> Retained<NSString>;
 
         /// Setter for [`label`][Self::label].
@@ -30,10 +31,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSMigrationStage {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

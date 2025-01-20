@@ -49,7 +49,8 @@ extern_methods!(
     unsafe impl ARMeshAnchor {
         #[cfg(feature = "ARMeshGeometry")]
         /// Geometry of the mesh in anchor's coordinate system.
-        #[method_id(@__method_family Other geometry)]
+        #[unsafe(method_family(none))]
+        #[method_id(geometry)]
         pub unsafe fn geometry(&self) -> Retained<ARMeshGeometry>;
     }
 );
@@ -60,10 +61,12 @@ extern_methods!(
     #[cfg(all(feature = "ARAnchor", feature = "objc2"))]
     unsafe impl ARMeshAnchor {
         /// Unavailable
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

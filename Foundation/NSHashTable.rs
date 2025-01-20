@@ -63,7 +63,8 @@ unsafe impl<ObjectType: ?Sized + NSSecureCoding> NSSecureCoding for NSHashTable<
 extern_methods!(
     unsafe impl<ObjectType: Message> NSHashTable<ObjectType> {
         #[cfg(feature = "NSPointerFunctions")]
-        #[method_id(@__method_family Init initWithOptions:capacity:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithOptions:capacity:)]
         pub unsafe fn initWithOptions_capacity(
             this: Allocated<Self>,
             options: NSPointerFunctionsOptions,
@@ -71,7 +72,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSPointerFunctions")]
-        #[method_id(@__method_family Init initWithPointerFunctions:capacity:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithPointerFunctions:capacity:)]
         pub unsafe fn initWithPointerFunctions_capacity(
             this: Allocated<Self>,
             functions: &NSPointerFunctions,
@@ -79,30 +81,36 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSPointerFunctions")]
-        #[method_id(@__method_family Other hashTableWithOptions:)]
+        #[unsafe(method_family(none))]
+        #[method_id(hashTableWithOptions:)]
         pub unsafe fn hashTableWithOptions(
             options: NSPointerFunctionsOptions,
         ) -> Retained<NSHashTable<ObjectType>>;
 
         #[deprecated = "GC no longer supported"]
-        #[method_id(@__method_family Other hashTableWithWeakObjects)]
+        #[unsafe(method_family(none))]
+        #[method_id(hashTableWithWeakObjects)]
         pub unsafe fn hashTableWithWeakObjects() -> Retained<AnyObject>;
 
-        #[method_id(@__method_family Other weakObjectsHashTable)]
+        #[unsafe(method_family(none))]
+        #[method_id(weakObjectsHashTable)]
         pub unsafe fn weakObjectsHashTable() -> Retained<NSHashTable<ObjectType>>;
 
         #[cfg(feature = "NSPointerFunctions")]
-        #[method_id(@__method_family Other pointerFunctions)]
+        #[unsafe(method_family(none))]
+        #[method_id(pointerFunctions)]
         pub unsafe fn pointerFunctions(&self) -> Retained<NSPointerFunctions>;
 
         #[method(count)]
         pub unsafe fn count(&self) -> NSUInteger;
 
-        #[method_id(@__method_family Other member:)]
+        #[unsafe(method_family(none))]
+        #[method_id(member:)]
         pub unsafe fn member(&self, object: Option<&ObjectType>) -> Option<Retained<ObjectType>>;
 
         #[cfg(feature = "NSEnumerator")]
-        #[method_id(@__method_family Other objectEnumerator)]
+        #[unsafe(method_family(none))]
+        #[method_id(objectEnumerator)]
         pub unsafe fn objectEnumerator(&self) -> Retained<NSEnumerator<ObjectType>>;
 
         #[method(addObject:)]
@@ -115,10 +123,12 @@ extern_methods!(
         pub unsafe fn removeAllObjects(&self);
 
         #[cfg(feature = "NSArray")]
-        #[method_id(@__method_family Other allObjects)]
+        #[unsafe(method_family(none))]
+        #[method_id(allObjects)]
         pub unsafe fn allObjects(&self) -> Retained<NSArray<ObjectType>>;
 
-        #[method_id(@__method_family Other anyObject)]
+        #[unsafe(method_family(none))]
+        #[method_id(anyObject)]
         pub unsafe fn anyObject(&self) -> Option<Retained<ObjectType>>;
 
         #[method(containsObject:)]
@@ -143,7 +153,8 @@ extern_methods!(
         pub unsafe fn minusHashTable(&self, other: &NSHashTable<ObjectType>);
 
         #[cfg(feature = "NSSet")]
-        #[method_id(@__method_family Other setRepresentation)]
+        #[unsafe(method_family(none))]
+        #[method_id(setRepresentation)]
         pub unsafe fn setRepresentation(&self) -> Retained<NSSet<ObjectType>>;
     }
 );
@@ -151,10 +162,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<ObjectType: Message> NSHashTable<ObjectType> {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

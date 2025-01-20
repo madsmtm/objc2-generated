@@ -547,7 +547,8 @@ extern_protocol!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdeviceprovider?language=objc)
     pub unsafe trait MPSDeviceProvider {
         /// Return the device to use when making MPSKernel subclasses from the NSCoder
-        #[method_id(@__method_family Other mpsMTLDevice)]
+        #[unsafe(method_family(none))]
+        #[method_id(mpsMTLDevice)]
         unsafe fn mpsMTLDevice(&self) -> Option<Retained<ProtocolObject<dyn MTLDevice>>>;
     }
 );

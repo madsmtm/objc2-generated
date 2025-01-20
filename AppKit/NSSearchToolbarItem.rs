@@ -45,7 +45,8 @@ extern_methods!(
         /// The field should be configured before assigned.
         /// The width constraint for the field could be updated after assigned.
         /// When set to nil, will reset to a search field with the default configuration.
-        #[method_id(@__method_family Other searchField)]
+        #[unsafe(method_family(none))]
+        #[method_id(searchField)]
         pub unsafe fn searchField(&self) -> Retained<NSSearchField>;
 
         #[cfg(all(
@@ -61,7 +62,8 @@ extern_methods!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         /// The base view property is owned by the toolbar item and not available for customization.
-        #[method_id(@__method_family Other view)]
+        #[unsafe(method_family(none))]
+        #[method_id(view)]
         pub unsafe fn view(&self) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -115,7 +117,8 @@ extern_methods!(
     unsafe impl NSSearchToolbarItem {
         #[cfg(feature = "NSToolbar")]
         /// Initialize the toolbar item with an identifier which is a development language string used by the toolbar and its delegate for identification purposes.
-        #[method_id(@__method_family Init initWithItemIdentifier:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithItemIdentifier:)]
         pub unsafe fn initWithItemIdentifier(
             this: Allocated<Self>,
             item_identifier: &NSToolbarItemIdentifier,
@@ -127,10 +130,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSToolbarItem")]
     unsafe impl NSSearchToolbarItem {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

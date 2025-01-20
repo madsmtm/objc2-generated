@@ -47,7 +47,8 @@ extern_methods!(
         /// stopQuery: is called. The stopQuery call can be made within the dataHandler block. The number of
         /// objects returned in routeData per dataHandler call is unspecified. Once done is YES, or
         /// stopQuery called, the query is complete and no more calls to the handler will be made.
-        #[method_id(@__method_family Init initWithRoute:dataHandler:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithRoute:dataHandler:)]
         pub unsafe fn initWithRoute_dataHandler(
             this: Allocated<Self>,
             workout_route: &HKWorkoutRoute,
@@ -79,7 +80,8 @@ extern_methods!(
         /// stopQuery: is called. The stopQuery call can be made within the dataHandler block. The number of
         /// objects returned in routeData per dataHandler call is unspecified. Once done is YES, or
         /// stopQuery called, the query is complete and no more calls to the handler will be made.
-        #[method_id(@__method_family Init initWithRoute:dateInterval:dataHandler:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithRoute:dateInterval:dataHandler:)]
         pub unsafe fn initWithRoute_dateInterval_dataHandler(
             this: Allocated<Self>,
             workout_route: &HKWorkoutRoute,
@@ -95,7 +97,8 @@ extern_methods!(
     /// Methods declared on superclass `HKQuery`
     #[cfg(feature = "HKQuery")]
     unsafe impl HKWorkoutRouteQuery {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -104,7 +107,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "HKQuery")]
     unsafe impl HKWorkoutRouteQuery {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

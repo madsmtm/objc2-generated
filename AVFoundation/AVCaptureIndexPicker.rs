@@ -41,7 +41,8 @@ extern_methods!(
         ///
         ///
         /// Suitable when your picked values don't need titles.
-        #[method_id(@__method_family Init initWithLocalizedTitle:symbolName:numberOfIndexes:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithLocalizedTitle:symbolName:numberOfIndexes:)]
         pub unsafe fn initWithLocalizedTitle_symbolName_numberOfIndexes(
             this: Allocated<Self>,
             localized_title: &NSString,
@@ -65,7 +66,8 @@ extern_methods!(
         ///
         ///
         /// Suitable when you want to provide a title for each picked value lazily.
-        #[method_id(@__method_family Init initWithLocalizedTitle:symbolName:numberOfIndexes:localizedTitleTransform:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithLocalizedTitle:symbolName:numberOfIndexes:localizedTitleTransform:)]
         pub unsafe fn initWithLocalizedTitle_symbolName_numberOfIndexes_localizedTitleTransform(
             this: Allocated<Self>,
             localized_title: &NSString,
@@ -87,7 +89,8 @@ extern_methods!(
         ///
         ///
         /// Suitable when you already have an array containing a title for each picked value.
-        #[method_id(@__method_family Init initWithLocalizedTitle:symbolName:localizedIndexTitles:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithLocalizedTitle:symbolName:localizedIndexTitles:)]
         pub unsafe fn initWithLocalizedTitle_symbolName_localizedIndexTitles(
             this: Allocated<Self>,
             localized_title: &NSString,
@@ -108,11 +111,13 @@ extern_methods!(
         pub unsafe fn setSelectedIndex(&self, selected_index: NSInteger);
 
         /// A localized string that describes the picker's `action`.
-        #[method_id(@__method_family Other localizedTitle)]
+        #[unsafe(method_family(none))]
+        #[method_id(localizedTitle)]
         pub unsafe fn localizedTitle(&self) -> Retained<NSString>;
 
         /// The name of a symbol to represent the picker.
-        #[method_id(@__method_family Other symbolName)]
+        #[unsafe(method_family(none))]
+        #[method_id(symbolName)]
         pub unsafe fn symbolName(&self) -> Retained<NSString>;
 
         /// The number of indexes to pick between.
@@ -120,11 +125,13 @@ extern_methods!(
         pub unsafe fn numberOfIndexes(&self) -> NSInteger;
 
         /// The titles used for each index.
-        #[method_id(@__method_family Other localizedIndexTitles)]
+        #[unsafe(method_family(none))]
+        #[method_id(localizedIndexTitles)]
         pub unsafe fn localizedIndexTitles(&self) -> Retained<NSArray<NSString>>;
 
         /// A string that identifies the picker.
-        #[method_id(@__method_family Other accessibilityIdentifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(accessibilityIdentifier)]
         pub unsafe fn accessibilityIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityIdentifier`][Self::accessibilityIdentifier].
@@ -140,10 +147,12 @@ extern_methods!(
     /// Methods declared on superclass `AVCaptureControl`
     #[cfg(feature = "AVCaptureControl")]
     unsafe impl AVCaptureIndexPicker {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -36,23 +36,28 @@ extern_methods!(
             >,
         );
 
-        #[method_id(@__method_family Other identifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         /// The group identifier for the achievement, if one exists.
-        #[method_id(@__method_family Other groupIdentifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(groupIdentifier)]
         pub unsafe fn groupIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// The title of the achievement.
-        #[method_id(@__method_family Other title)]
+        #[unsafe(method_family(none))]
+        #[method_id(title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// The description for an unachieved achievement.
-        #[method_id(@__method_family Other achievedDescription)]
+        #[unsafe(method_family(none))]
+        #[method_id(achievedDescription)]
         pub unsafe fn achievedDescription(&self) -> Retained<NSString>;
 
         /// The description for an achieved achievement.
-        #[method_id(@__method_family Other unachievedDescription)]
+        #[unsafe(method_family(none))]
+        #[method_id(unachievedDescription)]
         pub unsafe fn unachievedDescription(&self) -> Retained<NSString>;
 
         /// Maximum points available for completing this achievement.
@@ -68,7 +73,8 @@ extern_methods!(
         pub unsafe fn isReplayable(&self) -> bool;
 
         /// If present, the rarity of the achievement expressed as a percentage of players that earned it. Null if not enough data is available to compute it.
-        #[method_id(@__method_family Other rarityPercent)]
+        #[unsafe(method_family(none))]
+        #[method_id(rarityPercent)]
         pub unsafe fn rarityPercent(&self) -> Option<Retained<NSNumber>>;
     }
 );
@@ -76,10 +82,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKAchievementDescription {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -90,7 +98,8 @@ extern_methods!(
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         #[deprecated]
-        #[method_id(@__method_family Other image)]
+        #[unsafe(method_family(none))]
+        #[method_id(image)]
         pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
@@ -103,12 +112,14 @@ extern_methods!(
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
-        #[method_id(@__method_family Other incompleteAchievementImage)]
+        #[unsafe(method_family(none))]
+        #[method_id(incompleteAchievementImage)]
         pub unsafe fn incompleteAchievementImage() -> Retained<NSImage>;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
-        #[method_id(@__method_family Other placeholderCompletedAchievementImage)]
+        #[unsafe(method_family(none))]
+        #[method_id(placeholderCompletedAchievementImage)]
         pub unsafe fn placeholderCompletedAchievementImage() -> Retained<NSImage>;
     }
 );

@@ -25,11 +25,13 @@ extern_methods!(
     #[cfg(feature = "PHChangeRequest")]
     unsafe impl PHProjectChangeRequest {
         #[cfg(all(feature = "PHCollection", feature = "PHObject", feature = "PHProject"))]
-        #[method_id(@__method_family Init initWithProject:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithProject:)]
         pub unsafe fn initWithProject(this: Allocated<Self>, project: &PHProject)
             -> Retained<Self>;
 
-        #[method_id(@__method_family Other title)]
+        #[unsafe(method_family(none))]
+        #[method_id(title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
@@ -40,7 +42,8 @@ extern_methods!(
         /// only. Do not include things like rasterized images that can be locally cached in this data. The
         /// total size of stored data is limited to 5 MB. Attempting to store more data than allowed will result
         /// in an error.
-        #[method_id(@__method_family Other projectExtensionData)]
+        #[unsafe(method_family(none))]
+        #[method_id(projectExtensionData)]
         pub unsafe fn projectExtensionData(&self) -> Retained<NSData>;
 
         /// Setter for [`projectExtensionData`][Self::projectExtensionData].
@@ -71,10 +74,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "PHChangeRequest")]
     unsafe impl PHProjectChangeRequest {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

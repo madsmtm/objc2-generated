@@ -13,7 +13,8 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidragdropsession?language=objc)
     pub unsafe trait UIDragDropSession: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UIDragItem")]
-        #[method_id(@__method_family Other items)]
+        #[unsafe(method_family(none))]
+        #[method_id(items)]
         unsafe fn items(&self) -> Retained<NSArray<UIDragItem>>;
 
         #[cfg(all(
@@ -44,7 +45,8 @@ extern_protocol!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidragsession?language=objc)
     pub unsafe trait UIDragSession: UIDragDropSession + MainThreadOnly {
-        #[method_id(@__method_family Other localContext)]
+        #[unsafe(method_family(none))]
+        #[method_id(localContext)]
         unsafe fn localContext(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`localContext`][Self::localContext].
@@ -78,7 +80,8 @@ extern_protocol!(
     pub unsafe trait UIDropSession:
         UIDragDropSession + NSProgressReporting + MainThreadOnly
     {
-        #[method_id(@__method_family Other localDragSession)]
+        #[unsafe(method_family(none))]
+        #[method_id(localDragSession)]
         unsafe fn localDragSession(&self) -> Option<Retained<ProtocolObject<dyn UIDragSession>>>;
 
         #[method(progressIndicatorStyle)]
@@ -92,7 +95,8 @@ extern_protocol!(
         );
 
         #[cfg(feature = "block2")]
-        #[method_id(@__method_family Other loadObjectsOfClass:completion:)]
+        #[unsafe(method_family(none))]
+        #[method_id(loadObjectsOfClass:completion:)]
         unsafe fn loadObjectsOfClass_completion(
             &self,
             a_class: &AnyClass,

@@ -41,13 +41,15 @@ extern_methods!(
             block: &block2::Block<dyn Fn(NonNull<NSString>, NonNull<AnyObject>, NonNull<Bool>)>,
         );
 
-        #[method_id(@__method_family Other objectForKeyedSubscript:)]
+        #[unsafe(method_family(none))]
+        #[method_id(objectForKeyedSubscript:)]
         pub unsafe fn objectForKeyedSubscript(
             &self,
             key: &AnyObject,
         ) -> Option<Retained<AnyObject>>;
 
-        #[method_id(@__method_family Other valueForProperty:)]
+        #[unsafe(method_family(none))]
+        #[method_id(valueForProperty:)]
         pub unsafe fn valueForProperty(&self, property: &NSString) -> Option<Retained<AnyObject>>;
 
         #[method(persistentID)]
@@ -58,10 +60,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPMediaEntity {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

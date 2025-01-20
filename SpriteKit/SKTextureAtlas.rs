@@ -22,16 +22,19 @@ unsafe impl NSSecureCoding for SKTextureAtlas {}
 
 extern_methods!(
     unsafe impl SKTextureAtlas {
-        #[method_id(@__method_family Other atlasNamed:)]
+        #[unsafe(method_family(none))]
+        #[method_id(atlasNamed:)]
         pub unsafe fn atlasNamed(name: &NSString) -> Retained<Self>;
 
-        #[method_id(@__method_family Other atlasWithDictionary:)]
+        #[unsafe(method_family(none))]
+        #[method_id(atlasWithDictionary:)]
         pub unsafe fn atlasWithDictionary(
             properties: &NSDictionary<NSString, AnyObject>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "SKTexture")]
-        #[method_id(@__method_family Other textureNamed:)]
+        #[unsafe(method_family(none))]
+        #[method_id(textureNamed:)]
         pub unsafe fn textureNamed(&self, name: &NSString) -> Retained<SKTexture>;
 
         #[cfg(feature = "block2")]
@@ -72,7 +75,8 @@ extern_methods!(
             completion_handler: &block2::Block<dyn Fn()>,
         );
 
-        #[method_id(@__method_family Other textureNames)]
+        #[unsafe(method_family(none))]
+        #[method_id(textureNames)]
         pub unsafe fn textureNames(&self) -> Retained<NSArray<NSString>>;
     }
 );
@@ -80,10 +84,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKTextureAtlas {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

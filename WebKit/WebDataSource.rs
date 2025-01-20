@@ -30,7 +30,8 @@ extern_methods!(
         ///
         /// Returns: Returns an initialized WebDataSource.
         #[deprecated]
-        #[method_id(@__method_family Init initWithRequest:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithRequest:)]
         pub unsafe fn initWithRequest(
             this: Allocated<Self>,
             request: Option<&NSURLRequest>,
@@ -41,7 +42,8 @@ extern_methods!(
         ///
         /// The data will be incomplete until the datasource has completely loaded.
         #[deprecated]
-        #[method_id(@__method_family Other data)]
+        #[unsafe(method_family(none))]
+        #[method_id(data)]
         pub unsafe fn data(&self) -> Retained<NSData>;
 
         #[cfg(feature = "WebDocument")]
@@ -53,7 +55,8 @@ extern_methods!(
         /// a MIME type to a class.  The representation is created once the MIME type
         /// of the datasource content has been determined.
         #[deprecated]
-        #[method_id(@__method_family Other representation)]
+        #[unsafe(method_family(none))]
+        #[method_id(representation)]
         pub unsafe fn representation(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn WebDocumentRepresentation>>>;
@@ -61,29 +64,34 @@ extern_methods!(
         #[cfg(feature = "WebFrame")]
         /// The frame that represents this data source.
         #[deprecated]
-        #[method_id(@__method_family Other webFrame)]
+        #[unsafe(method_family(none))]
+        #[method_id(webFrame)]
         pub unsafe fn webFrame(&self) -> Option<Retained<WebFrame>>;
 
         /// A reference to the original request that created the
         /// datasource.  This request will be unmodified by WebKit.
         #[deprecated]
-        #[method_id(@__method_family Other initialRequest)]
+        #[unsafe(method_family(none))]
+        #[method_id(initialRequest)]
         pub unsafe fn initialRequest(&self) -> Option<Retained<NSURLRequest>>;
 
         /// The request that was used to create this datasource.
         #[deprecated]
-        #[method_id(@__method_family Other request)]
+        #[unsafe(method_family(none))]
+        #[method_id(request)]
         pub unsafe fn request(&self) -> Option<Retained<NSMutableURLRequest>>;
 
         /// The NSURLResponse for the data source.
         #[deprecated]
-        #[method_id(@__method_family Other response)]
+        #[unsafe(method_family(none))]
+        #[method_id(response)]
         pub unsafe fn response(&self) -> Option<Retained<NSURLResponse>>;
 
         /// Returns either the override encoding, as set on the WebView for this
         /// dataSource or the encoding from the response.
         #[deprecated]
-        #[method_id(@__method_family Other textEncodingName)]
+        #[unsafe(method_family(none))]
+        #[method_id(textEncodingName)]
         pub unsafe fn textEncodingName(&self) -> Retained<NSString>;
 
         /// Returns YES if there are any pending loads.
@@ -93,7 +101,8 @@ extern_methods!(
 
         /// The page title or nil.
         #[deprecated]
-        #[method_id(@__method_family Other pageTitle)]
+        #[unsafe(method_family(none))]
+        #[method_id(pageTitle)]
         pub unsafe fn pageTitle(&self) -> Retained<NSString>;
 
         /// The unreachableURL for which this dataSource is showing alternate content, or nil.
@@ -101,7 +110,8 @@ extern_methods!(
         /// This will be non-nil only for dataSources created by calls to the
         /// WebFrame method loadAlternateHTMLString:baseURL:forUnreachableURL:.
         #[deprecated]
-        #[method_id(@__method_family Other unreachableURL)]
+        #[unsafe(method_family(none))]
+        #[method_id(unreachableURL)]
         pub unsafe fn unreachableURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "WebArchive")]
@@ -110,7 +120,8 @@ extern_methods!(
         /// In the case of HTML, if the current state of the document is preferred, webArchive should be
         /// called on the DOM document instead.
         #[deprecated]
-        #[method_id(@__method_family Other webArchive)]
+        #[unsafe(method_family(none))]
+        #[method_id(webArchive)]
         pub unsafe fn webArchive(&self) -> Option<Retained<WebArchive>>;
 
         #[cfg(feature = "WebResource")]
@@ -119,13 +130,15 @@ extern_methods!(
         /// This method can be used to construct a WebArchive in case the archive returned by
         /// WebDataSource's webArchive isn't sufficient.
         #[deprecated]
-        #[method_id(@__method_family Other mainResource)]
+        #[unsafe(method_family(none))]
+        #[method_id(mainResource)]
         pub unsafe fn mainResource(&self) -> Option<Retained<WebResource>>;
 
         /// All the subresources associated with the data source.
         /// The returned array only contains subresources that have fully downloaded.
         #[deprecated]
-        #[method_id(@__method_family Other subresources)]
+        #[unsafe(method_family(none))]
+        #[method_id(subresources)]
         pub unsafe fn subresources(&self) -> Retained<NSArray>;
 
         #[cfg(feature = "WebResource")]
@@ -136,7 +149,8 @@ extern_methods!(
         /// Parameter `URL`: The URL of the subresource.
         /// Returns non-nil if the data source has fully downloaded a subresource with the given URL.
         #[deprecated]
-        #[method_id(@__method_family Other subresourceForURL:)]
+        #[unsafe(method_family(none))]
+        #[method_id(subresourceForURL:)]
         pub unsafe fn subresourceForURL(
             &self,
             url: Option<&NSURL>,
@@ -161,10 +175,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WebDataSource {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

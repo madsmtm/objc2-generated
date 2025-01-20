@@ -115,58 +115,72 @@ extern_methods!(
         #[method(type)]
         pub unsafe fn r#type(&self) -> CKSyncEngineEventType;
 
-        #[method_id(@__method_family Other stateUpdateEvent)]
+        #[unsafe(method_family(none))]
+        #[method_id(stateUpdateEvent)]
         pub unsafe fn stateUpdateEvent(&self) -> Retained<CKSyncEngineStateUpdateEvent>;
 
-        #[method_id(@__method_family Other accountChangeEvent)]
+        #[unsafe(method_family(none))]
+        #[method_id(accountChangeEvent)]
         pub unsafe fn accountChangeEvent(&self) -> Retained<CKSyncEngineAccountChangeEvent>;
 
-        #[method_id(@__method_family Other fetchedDatabaseChangesEvent)]
+        #[unsafe(method_family(none))]
+        #[method_id(fetchedDatabaseChangesEvent)]
         pub unsafe fn fetchedDatabaseChangesEvent(
             &self,
         ) -> Retained<CKSyncEngineFetchedDatabaseChangesEvent>;
 
-        #[method_id(@__method_family Other fetchedRecordZoneChangesEvent)]
+        #[unsafe(method_family(none))]
+        #[method_id(fetchedRecordZoneChangesEvent)]
         pub unsafe fn fetchedRecordZoneChangesEvent(
             &self,
         ) -> Retained<CKSyncEngineFetchedRecordZoneChangesEvent>;
 
-        #[method_id(@__method_family Other sentDatabaseChangesEvent)]
+        #[unsafe(method_family(none))]
+        #[method_id(sentDatabaseChangesEvent)]
         pub unsafe fn sentDatabaseChangesEvent(
             &self,
         ) -> Retained<CKSyncEngineSentDatabaseChangesEvent>;
 
-        #[method_id(@__method_family Other sentRecordZoneChangesEvent)]
+        #[unsafe(method_family(none))]
+        #[method_id(sentRecordZoneChangesEvent)]
         pub unsafe fn sentRecordZoneChangesEvent(
             &self,
         ) -> Retained<CKSyncEngineSentRecordZoneChangesEvent>;
 
-        #[method_id(@__method_family Other willFetchChangesEvent)]
+        #[unsafe(method_family(none))]
+        #[method_id(willFetchChangesEvent)]
         pub unsafe fn willFetchChangesEvent(&self) -> Retained<CKSyncEngineWillFetchChangesEvent>;
 
-        #[method_id(@__method_family Other willFetchRecordZoneChangesEvent)]
+        #[unsafe(method_family(none))]
+        #[method_id(willFetchRecordZoneChangesEvent)]
         pub unsafe fn willFetchRecordZoneChangesEvent(
             &self,
         ) -> Retained<CKSyncEngineWillFetchRecordZoneChangesEvent>;
 
-        #[method_id(@__method_family Other didFetchRecordZoneChangesEvent)]
+        #[unsafe(method_family(none))]
+        #[method_id(didFetchRecordZoneChangesEvent)]
         pub unsafe fn didFetchRecordZoneChangesEvent(
             &self,
         ) -> Retained<CKSyncEngineDidFetchRecordZoneChangesEvent>;
 
-        #[method_id(@__method_family Other didFetchChangesEvent)]
+        #[unsafe(method_family(none))]
+        #[method_id(didFetchChangesEvent)]
         pub unsafe fn didFetchChangesEvent(&self) -> Retained<CKSyncEngineDidFetchChangesEvent>;
 
-        #[method_id(@__method_family Other willSendChangesEvent)]
+        #[unsafe(method_family(none))]
+        #[method_id(willSendChangesEvent)]
         pub unsafe fn willSendChangesEvent(&self) -> Retained<CKSyncEngineWillSendChangesEvent>;
 
-        #[method_id(@__method_family Other didSendChangesEvent)]
+        #[unsafe(method_family(none))]
+        #[method_id(didSendChangesEvent)]
         pub unsafe fn didSendChangesEvent(&self) -> Retained<CKSyncEngineDidSendChangesEvent>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -200,7 +214,8 @@ unsafe impl NSObjectProtocol for CKSyncEngineStateUpdateEvent {}
 extern_methods!(
     unsafe impl CKSyncEngineStateUpdateEvent {
         #[cfg(feature = "CKSyncEngineState")]
-        #[method_id(@__method_family Other stateSerialization)]
+        #[unsafe(method_family(none))]
+        #[method_id(stateSerialization)]
         pub unsafe fn stateSerialization(&self) -> Retained<CKSyncEngineStateSerialization>;
     }
 );
@@ -208,10 +223,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `CKSyncEngineEvent`
     unsafe impl CKSyncEngineStateUpdateEvent {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -288,7 +305,8 @@ extern_methods!(
         ///
         /// If the user just signed in, this will be `nil`.
         /// If the user signed out or switched accounts, this will be the old account.
-        #[method_id(@__method_family Other previousUser)]
+        #[unsafe(method_family(none))]
+        #[method_id(previousUser)]
         pub unsafe fn previousUser(&self) -> Option<Retained<CKRecordID>>;
 
         #[cfg(feature = "CKRecordID")]
@@ -296,7 +314,8 @@ extern_methods!(
         ///
         /// If the user just signed in or switched accounts, this will be the new user record ID.
         /// If the user signed out, this will be `nil`.
-        #[method_id(@__method_family Other currentUser)]
+        #[unsafe(method_family(none))]
+        #[method_id(currentUser)]
         pub unsafe fn currentUser(&self) -> Option<Retained<CKRecordID>>;
     }
 );
@@ -304,10 +323,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `CKSyncEngineEvent`
     unsafe impl CKSyncEngineAccountChangeEvent {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -334,10 +355,12 @@ unsafe impl NSObjectProtocol for CKSyncEngineFetchedDatabaseChangesEvent {}
 extern_methods!(
     unsafe impl CKSyncEngineFetchedDatabaseChangesEvent {
         #[cfg(feature = "CKRecordZone")]
-        #[method_id(@__method_family Other modifications)]
+        #[unsafe(method_family(none))]
+        #[method_id(modifications)]
         pub unsafe fn modifications(&self) -> Retained<NSArray<CKRecordZone>>;
 
-        #[method_id(@__method_family Other deletions)]
+        #[unsafe(method_family(none))]
+        #[method_id(deletions)]
         pub unsafe fn deletions(&self) -> Retained<NSArray<CKSyncEngineFetchedZoneDeletion>>;
     }
 );
@@ -345,10 +368,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `CKSyncEngineEvent`
     unsafe impl CKSyncEngineFetchedDatabaseChangesEvent {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -375,10 +400,12 @@ unsafe impl NSObjectProtocol for CKSyncEngineFetchedRecordZoneChangesEvent {}
 extern_methods!(
     unsafe impl CKSyncEngineFetchedRecordZoneChangesEvent {
         #[cfg(feature = "CKRecord")]
-        #[method_id(@__method_family Other modifications)]
+        #[unsafe(method_family(none))]
+        #[method_id(modifications)]
         pub unsafe fn modifications(&self) -> Retained<NSArray<CKRecord>>;
 
-        #[method_id(@__method_family Other deletions)]
+        #[unsafe(method_family(none))]
+        #[method_id(deletions)]
         pub unsafe fn deletions(&self) -> Retained<NSArray<CKSyncEngineFetchedRecordDeletion>>;
     }
 );
@@ -386,10 +413,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `CKSyncEngineEvent`
     unsafe impl CKSyncEngineFetchedRecordZoneChangesEvent {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -414,18 +443,22 @@ unsafe impl NSObjectProtocol for CKSyncEngineSentDatabaseChangesEvent {}
 extern_methods!(
     unsafe impl CKSyncEngineSentDatabaseChangesEvent {
         #[cfg(feature = "CKRecordZone")]
-        #[method_id(@__method_family Other savedZones)]
+        #[unsafe(method_family(none))]
+        #[method_id(savedZones)]
         pub unsafe fn savedZones(&self) -> Retained<NSArray<CKRecordZone>>;
 
-        #[method_id(@__method_family Other failedZoneSaves)]
+        #[unsafe(method_family(none))]
+        #[method_id(failedZoneSaves)]
         pub unsafe fn failedZoneSaves(&self) -> Retained<NSArray<CKSyncEngineFailedZoneSave>>;
 
         #[cfg(feature = "CKRecordZoneID")]
-        #[method_id(@__method_family Other deletedZoneIDs)]
+        #[unsafe(method_family(none))]
+        #[method_id(deletedZoneIDs)]
         pub unsafe fn deletedZoneIDs(&self) -> Retained<NSArray<CKRecordZoneID>>;
 
         #[cfg(feature = "CKRecordZoneID")]
-        #[method_id(@__method_family Other failedZoneDeletes)]
+        #[unsafe(method_family(none))]
+        #[method_id(failedZoneDeletes)]
         pub unsafe fn failedZoneDeletes(&self) -> Retained<NSDictionary<CKRecordZoneID, NSError>>;
     }
 );
@@ -433,10 +466,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `CKSyncEngineEvent`
     unsafe impl CKSyncEngineSentDatabaseChangesEvent {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -465,18 +500,22 @@ unsafe impl NSObjectProtocol for CKSyncEngineSentRecordZoneChangesEvent {}
 extern_methods!(
     unsafe impl CKSyncEngineSentRecordZoneChangesEvent {
         #[cfg(feature = "CKRecord")]
-        #[method_id(@__method_family Other savedRecords)]
+        #[unsafe(method_family(none))]
+        #[method_id(savedRecords)]
         pub unsafe fn savedRecords(&self) -> Retained<NSArray<CKRecord>>;
 
-        #[method_id(@__method_family Other failedRecordSaves)]
+        #[unsafe(method_family(none))]
+        #[method_id(failedRecordSaves)]
         pub unsafe fn failedRecordSaves(&self) -> Retained<NSArray<CKSyncEngineFailedRecordSave>>;
 
         #[cfg(feature = "CKRecordID")]
-        #[method_id(@__method_family Other deletedRecordIDs)]
+        #[unsafe(method_family(none))]
+        #[method_id(deletedRecordIDs)]
         pub unsafe fn deletedRecordIDs(&self) -> Retained<NSArray<CKRecordID>>;
 
         #[cfg(feature = "CKRecordID")]
-        #[method_id(@__method_family Other failedRecordDeletes)]
+        #[unsafe(method_family(none))]
+        #[method_id(failedRecordDeletes)]
         pub unsafe fn failedRecordDeletes(&self) -> Retained<NSDictionary<CKRecordID, NSError>>;
     }
 );
@@ -484,10 +523,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `CKSyncEngineEvent`
     unsafe impl CKSyncEngineSentRecordZoneChangesEvent {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -517,7 +558,8 @@ unsafe impl NSObjectProtocol for CKSyncEngineWillFetchChangesEvent {}
 extern_methods!(
     unsafe impl CKSyncEngineWillFetchChangesEvent {
         #[cfg(feature = "CKSyncEngine")]
-        #[method_id(@__method_family Other context)]
+        #[unsafe(method_family(none))]
+        #[method_id(context)]
         pub unsafe fn context(&self) -> Retained<CKSyncEngineFetchChangesContext>;
     }
 );
@@ -525,10 +567,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `CKSyncEngineEvent`
     unsafe impl CKSyncEngineWillFetchChangesEvent {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -553,7 +597,8 @@ unsafe impl NSObjectProtocol for CKSyncEngineWillFetchRecordZoneChangesEvent {}
 extern_methods!(
     unsafe impl CKSyncEngineWillFetchRecordZoneChangesEvent {
         #[cfg(feature = "CKRecordZoneID")]
-        #[method_id(@__method_family Other zoneID)]
+        #[unsafe(method_family(none))]
+        #[method_id(zoneID)]
         pub unsafe fn zoneID(&self) -> Retained<CKRecordZoneID>;
     }
 );
@@ -561,10 +606,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `CKSyncEngineEvent`
     unsafe impl CKSyncEngineWillFetchRecordZoneChangesEvent {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -591,10 +638,12 @@ unsafe impl NSObjectProtocol for CKSyncEngineDidFetchRecordZoneChangesEvent {}
 extern_methods!(
     unsafe impl CKSyncEngineDidFetchRecordZoneChangesEvent {
         #[cfg(feature = "CKRecordZoneID")]
-        #[method_id(@__method_family Other zoneID)]
+        #[unsafe(method_family(none))]
+        #[method_id(zoneID)]
         pub unsafe fn zoneID(&self) -> Retained<CKRecordZoneID>;
 
-        #[method_id(@__method_family Other error)]
+        #[unsafe(method_family(none))]
+        #[method_id(error)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
     }
 );
@@ -602,10 +651,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `CKSyncEngineEvent`
     unsafe impl CKSyncEngineDidFetchRecordZoneChangesEvent {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -632,7 +683,8 @@ unsafe impl NSObjectProtocol for CKSyncEngineDidFetchChangesEvent {}
 extern_methods!(
     unsafe impl CKSyncEngineDidFetchChangesEvent {
         #[cfg(feature = "CKSyncEngine")]
-        #[method_id(@__method_family Other context)]
+        #[unsafe(method_family(none))]
+        #[method_id(context)]
         pub unsafe fn context(&self) -> Retained<CKSyncEngineFetchChangesContext>;
     }
 );
@@ -640,10 +692,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `CKSyncEngineEvent`
     unsafe impl CKSyncEngineDidFetchChangesEvent {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -666,7 +720,8 @@ unsafe impl NSObjectProtocol for CKSyncEngineWillSendChangesEvent {}
 extern_methods!(
     unsafe impl CKSyncEngineWillSendChangesEvent {
         #[cfg(feature = "CKSyncEngine")]
-        #[method_id(@__method_family Other context)]
+        #[unsafe(method_family(none))]
+        #[method_id(context)]
         pub unsafe fn context(&self) -> Retained<CKSyncEngineSendChangesContext>;
     }
 );
@@ -674,10 +729,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `CKSyncEngineEvent`
     unsafe impl CKSyncEngineWillSendChangesEvent {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -702,7 +759,8 @@ unsafe impl NSObjectProtocol for CKSyncEngineDidSendChangesEvent {}
 extern_methods!(
     unsafe impl CKSyncEngineDidSendChangesEvent {
         #[cfg(feature = "CKSyncEngine")]
-        #[method_id(@__method_family Other context)]
+        #[unsafe(method_family(none))]
+        #[method_id(context)]
         pub unsafe fn context(&self) -> Retained<CKSyncEngineSendChangesContext>;
     }
 );
@@ -710,10 +768,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `CKSyncEngineEvent`
     unsafe impl CKSyncEngineDidSendChangesEvent {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -733,18 +793,22 @@ unsafe impl NSObjectProtocol for CKSyncEngineFetchedRecordDeletion {}
 
 extern_methods!(
     unsafe impl CKSyncEngineFetchedRecordDeletion {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "CKRecordID")]
-        #[method_id(@__method_family Other recordID)]
+        #[unsafe(method_family(none))]
+        #[method_id(recordID)]
         pub unsafe fn recordID(&self) -> Retained<CKRecordID>;
 
         #[cfg(feature = "CKRecord")]
-        #[method_id(@__method_family Other recordType)]
+        #[unsafe(method_family(none))]
+        #[method_id(recordType)]
         pub unsafe fn recordType(&self) -> Retained<CKRecordType>;
     }
 );
@@ -791,14 +855,17 @@ unsafe impl NSObjectProtocol for CKSyncEngineFetchedZoneDeletion {}
 
 extern_methods!(
     unsafe impl CKSyncEngineFetchedZoneDeletion {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "CKRecordZoneID")]
-        #[method_id(@__method_family Other zoneID)]
+        #[unsafe(method_family(none))]
+        #[method_id(zoneID)]
         pub unsafe fn zoneID(&self) -> Retained<CKRecordZoneID>;
 
         #[method(reason)]
@@ -821,17 +888,21 @@ unsafe impl NSObjectProtocol for CKSyncEngineFailedRecordSave {}
 
 extern_methods!(
     unsafe impl CKSyncEngineFailedRecordSave {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "CKRecord")]
-        #[method_id(@__method_family Other record)]
+        #[unsafe(method_family(none))]
+        #[method_id(record)]
         pub unsafe fn record(&self) -> Retained<CKRecord>;
 
-        #[method_id(@__method_family Other error)]
+        #[unsafe(method_family(none))]
+        #[method_id(error)]
         pub unsafe fn error(&self) -> Retained<NSError>;
     }
 );
@@ -851,17 +922,21 @@ unsafe impl NSObjectProtocol for CKSyncEngineFailedZoneSave {}
 
 extern_methods!(
     unsafe impl CKSyncEngineFailedZoneSave {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "CKRecordZone")]
-        #[method_id(@__method_family Other recordZone)]
+        #[unsafe(method_family(none))]
+        #[method_id(recordZone)]
         pub unsafe fn recordZone(&self) -> Retained<CKRecordZone>;
 
-        #[method_id(@__method_family Other error)]
+        #[unsafe(method_family(none))]
+        #[method_id(error)]
         pub unsafe fn error(&self) -> Retained<NSError>;
     }
 );

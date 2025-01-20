@@ -27,7 +27,8 @@ extern_methods!(
         ///
         /// The returned tensor's dimension i will correspond to dimensions[i].
         #[deprecated]
-        #[method_id(@__method_family Other dimensions)]
+        #[unsafe(method_family(none))]
+        #[method_id(dimensions)]
         pub unsafe fn dimensions(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Create a transpose layer
@@ -41,7 +42,8 @@ extern_methods!(
         ///
         /// Returns: A new transpose layer.
         #[deprecated]
-        #[method_id(@__method_family Other layerWithDimensions:)]
+        #[unsafe(method_family(none))]
+        #[method_id(layerWithDimensions:)]
         pub unsafe fn layerWithDimensions(dimensions: &NSArray<NSNumber>)
             -> Option<Retained<Self>>;
     }
@@ -52,11 +54,13 @@ extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCTransposeLayer {
         #[deprecated]
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

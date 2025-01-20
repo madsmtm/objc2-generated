@@ -73,34 +73,40 @@ unsafe impl NSSecureCoding for SCNPhysicsShape {}
 extern_methods!(
     unsafe impl SCNPhysicsShape {
         #[cfg(feature = "SCNGeometry")]
-        #[method_id(@__method_family Other shapeWithGeometry:options:)]
+        #[unsafe(method_family(none))]
+        #[method_id(shapeWithGeometry:options:)]
         pub unsafe fn shapeWithGeometry_options(
             geometry: &SCNGeometry,
             options: Option<&NSDictionary<SCNPhysicsShapeOption, AnyObject>>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "SCNNode")]
-        #[method_id(@__method_family Other shapeWithNode:options:)]
+        #[unsafe(method_family(none))]
+        #[method_id(shapeWithNode:options:)]
         pub unsafe fn shapeWithNode_options(
             node: &SCNNode,
             options: Option<&NSDictionary<SCNPhysicsShapeOption, AnyObject>>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Other shapeWithShapes:transforms:)]
+        #[unsafe(method_family(none))]
+        #[method_id(shapeWithShapes:transforms:)]
         pub unsafe fn shapeWithShapes_transforms(
             shapes: &NSArray<SCNPhysicsShape>,
             transforms: Option<&NSArray<NSValue>>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Other options)]
+        #[unsafe(method_family(none))]
+        #[method_id(options)]
         pub unsafe fn options(
             &self,
         ) -> Option<Retained<NSDictionary<SCNPhysicsShapeOption, AnyObject>>>;
 
-        #[method_id(@__method_family Other sourceObject)]
+        #[unsafe(method_family(none))]
+        #[method_id(sourceObject)]
         pub unsafe fn sourceObject(&self) -> Retained<AnyObject>;
 
-        #[method_id(@__method_family Other transforms)]
+        #[unsafe(method_family(none))]
+        #[method_id(transforms)]
         pub unsafe fn transforms(&self) -> Option<Retained<NSArray<NSValue>>>;
     }
 );
@@ -108,10 +114,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNPhysicsShape {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

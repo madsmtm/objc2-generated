@@ -84,7 +84,8 @@ extern_methods!(
     #[cfg(feature = "objc2-ui-kit")]
     unsafe impl EKCalendarChooser {
         #[cfg(feature = "objc2-event-kit")]
-        #[method_id(@__method_family Init initWithSelectionStyle:displayStyle:eventStore:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithSelectionStyle:displayStyle:eventStore:)]
         pub unsafe fn initWithSelectionStyle_displayStyle_eventStore(
             this: Allocated<Self>,
             selection_style: EKCalendarChooserSelectionStyle,
@@ -93,7 +94,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-event-kit")]
-        #[method_id(@__method_family Init initWithSelectionStyle:displayStyle:entityType:eventStore:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithSelectionStyle:displayStyle:entityType:eventStore:)]
         pub unsafe fn initWithSelectionStyle_displayStyle_entityType_eventStore(
             this: Allocated<Self>,
             style: EKCalendarChooserSelectionStyle,
@@ -105,7 +107,8 @@ extern_methods!(
         #[method(selectionStyle)]
         pub unsafe fn selectionStyle(&self) -> EKCalendarChooserSelectionStyle;
 
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn EKCalendarChooserDelegate>>>;
@@ -133,7 +136,8 @@ extern_methods!(
         pub unsafe fn setShowsCancelButton(&self, shows_cancel_button: bool);
 
         #[cfg(feature = "objc2-event-kit")]
-        #[method_id(@__method_family Other selectedCalendars)]
+        #[unsafe(method_family(none))]
+        #[method_id(selectedCalendars)]
         pub unsafe fn selectedCalendars(&self) -> Retained<NSSet<EKCalendar>>;
 
         #[cfg(feature = "objc2-event-kit")]
@@ -147,14 +151,16 @@ extern_methods!(
     /// Methods declared on superclass `UIViewController`
     #[cfg(feature = "objc2-ui-kit")]
     unsafe impl EKCalendarChooser {
-        #[method_id(@__method_family Init initWithNibName:bundle:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -166,10 +172,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2-ui-kit")]
     unsafe impl EKCalendarChooser {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

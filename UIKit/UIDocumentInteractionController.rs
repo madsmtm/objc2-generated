@@ -24,13 +24,15 @@ unsafe impl UIActionSheetDelegate for UIDocumentInteractionController {}
 
 extern_methods!(
     unsafe impl UIDocumentInteractionController {
-        #[method_id(@__method_family Other interactionControllerWithURL:)]
+        #[unsafe(method_family(none))]
+        #[method_id(interactionControllerWithURL:)]
         pub unsafe fn interactionControllerWithURL(
             url: &NSURL,
             mtm: MainThreadMarker,
         ) -> Retained<UIDocumentInteractionController>;
 
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIDocumentInteractionControllerDelegate>>>;
@@ -43,21 +45,24 @@ extern_methods!(
             delegate: Option<&ProtocolObject<dyn UIDocumentInteractionControllerDelegate>>,
         );
 
-        #[method_id(@__method_family Other URL)]
+        #[unsafe(method_family(none))]
+        #[method_id(URL)]
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`URL`][Self::URL].
         #[method(setURL:)]
         pub unsafe fn setURL(&self, url: Option<&NSURL>);
 
-        #[method_id(@__method_family Other UTI)]
+        #[unsafe(method_family(none))]
+        #[method_id(UTI)]
         pub unsafe fn UTI(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`UTI`][Self::UTI].
         #[method(setUTI:)]
         pub unsafe fn setUTI(&self, uti: Option<&NSString>);
 
-        #[method_id(@__method_family Other name)]
+        #[unsafe(method_family(none))]
+        #[method_id(name)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
@@ -65,10 +70,12 @@ extern_methods!(
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
         #[cfg(feature = "UIImage")]
-        #[method_id(@__method_family Other icons)]
+        #[unsafe(method_family(none))]
+        #[method_id(icons)]
         pub unsafe fn icons(&self) -> Retained<NSArray<UIImage>>;
 
-        #[method_id(@__method_family Other annotation)]
+        #[unsafe(method_family(none))]
+        #[method_id(annotation)]
         pub unsafe fn annotation(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`annotation`][Self::annotation].
@@ -127,7 +134,8 @@ extern_methods!(
         pub unsafe fn dismissMenuAnimated(&self, animated: bool);
 
         #[cfg(feature = "UIGestureRecognizer")]
-        #[method_id(@__method_family Other gestureRecognizers)]
+        #[unsafe(method_family(none))]
+        #[method_id(gestureRecognizers)]
         pub unsafe fn gestureRecognizers(&self) -> Retained<NSArray<UIGestureRecognizer>>;
     }
 );
@@ -135,10 +143,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIDocumentInteractionController {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -148,7 +158,8 @@ extern_protocol!(
     pub unsafe trait UIDocumentInteractionControllerDelegate: NSObjectProtocol {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
-        #[method_id(@__method_family Other documentInteractionControllerViewControllerForPreview:)]
+        #[unsafe(method_family(none))]
+        #[method_id(documentInteractionControllerViewControllerForPreview:)]
         unsafe fn documentInteractionControllerViewControllerForPreview(
             &self,
             controller: &UIDocumentInteractionController,
@@ -164,7 +175,8 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[method_id(@__method_family Other documentInteractionControllerViewForPreview:)]
+        #[unsafe(method_family(none))]
+        #[method_id(documentInteractionControllerViewForPreview:)]
         unsafe fn documentInteractionControllerViewForPreview(
             &self,
             controller: &UIDocumentInteractionController,

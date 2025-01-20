@@ -20,25 +20,29 @@ unsafe impl NSObjectProtocol for EKSource {}
 extern_methods!(
     #[cfg(feature = "EKObject")]
     unsafe impl EKSource {
-        #[method_id(@__method_family Other sourceIdentifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(sourceIdentifier)]
         pub unsafe fn sourceIdentifier(&self) -> Retained<NSString>;
 
         #[cfg(feature = "EKTypes")]
         #[method(sourceType)]
         pub unsafe fn sourceType(&self) -> EKSourceType;
 
-        #[method_id(@__method_family Other title)]
+        #[unsafe(method_family(none))]
+        #[method_id(title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         #[cfg(feature = "EKCalendar")]
         /// This is now deprecated in favor of -[EKSource calendarsForEntityType:]
-        #[method_id(@__method_family Other calendars)]
+        #[unsafe(method_family(none))]
+        #[method_id(calendars)]
         pub unsafe fn calendars(&self) -> Retained<NSSet<EKCalendar>>;
 
         #[cfg(all(feature = "EKCalendar", feature = "EKTypes"))]
         /// Returns the calendars that belong to this source that
         /// support a given entity type (reminders, events)
-        #[method_id(@__method_family Other calendarsForEntityType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(calendarsForEntityType:)]
         pub unsafe fn calendarsForEntityType(
             &self,
             entity_type: EKEntityType,
@@ -54,10 +58,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "EKObject")]
     unsafe impl EKSource {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -30,7 +30,8 @@ extern_protocol!(
         ///
         /// Returns: Node that will be mapped to the anchor or nil.
         #[optional]
-        #[method_id(@__method_family Other renderer:nodeForAnchor:)]
+        #[unsafe(method_family(none))]
+        #[method_id(renderer:nodeForAnchor:)]
         unsafe fn renderer_nodeForAnchor(
             &self,
             renderer: &ProtocolObject<dyn SCNSceneRenderer>,

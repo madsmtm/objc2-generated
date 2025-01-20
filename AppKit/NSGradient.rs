@@ -57,7 +57,8 @@ unsafe impl NSSecureCoding for NSGradient {}
 extern_methods!(
     unsafe impl NSGradient {
         #[cfg(feature = "NSColor")]
-        #[method_id(@__method_family Init initWithStartingColor:endingColor:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithStartingColor:endingColor:)]
         pub unsafe fn initWithStartingColor_endingColor(
             this: Allocated<Self>,
             starting_color: &NSColor,
@@ -65,7 +66,8 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSColor")]
-        #[method_id(@__method_family Init initWithColors:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithColors:)]
         pub unsafe fn initWithColors(
             this: Allocated<Self>,
             color_array: &NSArray<NSColor>,
@@ -76,7 +78,8 @@ extern_methods!(
             feature = "NSColorSpace",
             feature = "objc2-core-foundation"
         ))]
-        #[method_id(@__method_family Init initWithColors:atLocations:colorSpace:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithColors:atLocations:colorSpace:)]
         pub unsafe fn initWithColors_atLocations_colorSpace(
             this: Allocated<Self>,
             color_array: &NSArray<NSColor>,
@@ -84,7 +87,8 @@ extern_methods!(
             color_space: &NSColorSpace,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -133,7 +137,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSColorSpace")]
-        #[method_id(@__method_family Other colorSpace)]
+        #[unsafe(method_family(none))]
+        #[method_id(colorSpace)]
         pub unsafe fn colorSpace(&self) -> Retained<NSColorSpace>;
 
         #[method(numberOfColorStops)]
@@ -149,7 +154,8 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSColor", feature = "objc2-core-foundation"))]
-        #[method_id(@__method_family Other interpolatedColorAtLocation:)]
+        #[unsafe(method_family(none))]
+        #[method_id(interpolatedColorAtLocation:)]
         pub unsafe fn interpolatedColorAtLocation(&self, location: CGFloat) -> Retained<NSColor>;
     }
 );
@@ -157,10 +163,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSGradient {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

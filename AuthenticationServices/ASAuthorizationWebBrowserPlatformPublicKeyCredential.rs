@@ -17,34 +17,42 @@ unsafe impl NSObjectProtocol for ASAuthorizationWebBrowserPlatformPublicKeyCrede
 
 extern_methods!(
     unsafe impl ASAuthorizationWebBrowserPlatformPublicKeyCredential {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// The user name of the saved credential.
-        #[method_id(@__method_family Other name)]
+        #[unsafe(method_family(none))]
+        #[method_id(name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// A user-specified title for the credential.
-        #[method_id(@__method_family Other customTitle)]
+        #[unsafe(method_family(none))]
+        #[method_id(customTitle)]
         pub unsafe fn customTitle(&self) -> Option<Retained<NSString>>;
 
         /// The "relying party" (generally website) the credential was saved for.
-        #[method_id(@__method_family Other relyingParty)]
+        #[unsafe(method_family(none))]
+        #[method_id(relyingParty)]
         pub unsafe fn relyingParty(&self) -> Retained<NSString>;
 
         /// A unique identifier for this credential.
-        #[method_id(@__method_family Other credentialID)]
+        #[unsafe(method_family(none))]
+        #[method_id(credentialID)]
         pub unsafe fn credentialID(&self) -> Retained<NSData>;
 
         /// A unique identifier for the user account associated with this credential. One account may have multiple associated credentials.
-        #[method_id(@__method_family Other userHandle)]
+        #[unsafe(method_family(none))]
+        #[method_id(userHandle)]
         pub unsafe fn userHandle(&self) -> Retained<NSData>;
 
         /// The localized name of the credential provider that provided this passkey, either the name of a third party app or "iCloud Keychain".
-        #[method_id(@__method_family Other providerName)]
+        #[unsafe(method_family(none))]
+        #[method_id(providerName)]
         pub unsafe fn providerName(&self) -> Retained<NSString>;
     }
 );

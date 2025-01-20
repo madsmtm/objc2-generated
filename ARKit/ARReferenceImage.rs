@@ -37,7 +37,8 @@ extern_methods!(
     unsafe impl ARReferenceImage {
         #[cfg(feature = "objc2-foundation")]
         /// An optional name used to identify the image.
-        #[method_id(@__method_family Other name)]
+        #[unsafe(method_family(none))]
+        #[method_id(name)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "objc2-foundation")]
@@ -55,7 +56,8 @@ extern_methods!(
         ///
         /// If this image was loaded via an AR resource group in the Xcode asset catalogue this property will have the name of the resource group,
         /// else be set to nil.
-        #[method_id(@__method_family Other resourceGroupName)]
+        #[unsafe(method_family(none))]
+        #[method_id(resourceGroupName)]
         pub unsafe fn resourceGroupName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "block2", feature = "objc2-foundation"))]
@@ -81,17 +83,20 @@ extern_methods!(
         /// Parameter `bundle`: The bundle containing the image file or asset catalog. Specify nil to search the app’s main bundle.
         ///
         /// Returns: The set of reference images or nil on error.
-        #[method_id(@__method_family Other referenceImagesInGroupNamed:bundle:)]
+        #[unsafe(method_family(none))]
+        #[method_id(referenceImagesInGroupNamed:bundle:)]
         pub unsafe fn referenceImagesInGroupNamed_bundle(
             name: &NSString,
             bundle: Option<&NSBundle>,
         ) -> Option<Retained<NSSet<ARReferenceImage>>>;
 
         /// Unavailable
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -44,7 +44,8 @@ extern_methods!(
         pub fn setAnimationDuration(dur: CFTimeInterval);
 
         #[cfg(feature = "CAMediaTimingFunction")]
-        #[method_id(@__method_family Other animationTimingFunction)]
+        #[unsafe(method_family(none))]
+        #[method_id(animationTimingFunction)]
         pub fn animationTimingFunction() -> Option<Retained<CAMediaTimingFunction>>;
 
         #[cfg(feature = "CAMediaTimingFunction")]
@@ -65,7 +66,8 @@ extern_methods!(
         #[method(setCompletionBlock:)]
         pub unsafe fn setCompletionBlock(block: Option<&block2::Block<dyn Fn()>>);
 
-        #[method_id(@__method_family Other valueForKey:)]
+        #[unsafe(method_family(none))]
+        #[method_id(valueForKey:)]
         pub unsafe fn valueForKey(key: &NSString) -> Option<Retained<AnyObject>>;
 
         #[method(setValue:forKey:)]
@@ -76,10 +78,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CATransaction {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

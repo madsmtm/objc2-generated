@@ -20,7 +20,8 @@ unsafe impl NSObjectProtocol for ASAuthorizationSecurityKeyPublicKeyCredentialPr
 
 extern_methods!(
     unsafe impl ASAuthorizationSecurityKeyPublicKeyCredentialProvider {
-        #[method_id(@__method_family Init initWithRelyingPartyIdentifier:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithRelyingPartyIdentifier:)]
         pub unsafe fn initWithRelyingPartyIdentifier(
             this: Allocated<Self>,
             relying_party_identifier: &NSString,
@@ -39,7 +40,8 @@ extern_methods!(
         /// Parameter `name`: The name for the new credential.
         ///
         /// Parameter `userID`: An identifier to be stored alongside the credential, which will be returned with the credential when it is used to authenticate.
-        #[method_id(@__method_family Other createCredentialRegistrationRequestWithChallenge:displayName:name:userID:)]
+        #[unsafe(method_family(none))]
+        #[method_id(createCredentialRegistrationRequestWithChallenge:displayName:name:userID:)]
         pub unsafe fn createCredentialRegistrationRequestWithChallenge_displayName_name_userID(
             &self,
             challenge: &NSData,
@@ -55,20 +57,24 @@ extern_methods!(
         /// Create a request to authenticate using an existing credential.
         ///
         /// Parameter `challenge`: The challenge to sign.
-        #[method_id(@__method_family Other createCredentialAssertionRequestWithChallenge:)]
+        #[unsafe(method_family(none))]
+        #[method_id(createCredentialAssertionRequestWithChallenge:)]
         pub unsafe fn createCredentialAssertionRequestWithChallenge(
             &self,
             challenge: &NSData,
         ) -> Retained<ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest>;
 
         /// The Relying Party identifier used for all requests created by this object.
-        #[method_id(@__method_family Other relyingPartyIdentifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(relyingPartyIdentifier)]
         pub unsafe fn relyingPartyIdentifier(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -19,7 +19,8 @@ unsafe impl NSObjectProtocol for MCNearbyServiceAdvertiser {}
 extern_methods!(
     unsafe impl MCNearbyServiceAdvertiser {
         #[cfg(feature = "MCPeerID")]
-        #[method_id(@__method_family Init initWithPeer:discoveryInfo:serviceType:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithPeer:discoveryInfo:serviceType:)]
         pub unsafe fn initWithPeer_discoveryInfo_serviceType(
             this: Allocated<Self>,
             my_peer_id: &MCPeerID,
@@ -33,7 +34,8 @@ extern_methods!(
         #[method(stopAdvertisingPeer)]
         pub unsafe fn stopAdvertisingPeer(&self);
 
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MCNearbyServiceAdvertiserDelegate>>>;
@@ -47,13 +49,16 @@ extern_methods!(
         );
 
         #[cfg(feature = "MCPeerID")]
-        #[method_id(@__method_family Other myPeerID)]
+        #[unsafe(method_family(none))]
+        #[method_id(myPeerID)]
         pub unsafe fn myPeerID(&self) -> Retained<MCPeerID>;
 
-        #[method_id(@__method_family Other discoveryInfo)]
+        #[unsafe(method_family(none))]
+        #[method_id(discoveryInfo)]
         pub unsafe fn discoveryInfo(&self) -> Option<Retained<NSDictionary<NSString, NSString>>>;
 
-        #[method_id(@__method_family Other serviceType)]
+        #[unsafe(method_family(none))]
+        #[method_id(serviceType)]
         pub unsafe fn serviceType(&self) -> Retained<NSString>;
     }
 );
@@ -61,10 +66,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MCNearbyServiceAdvertiser {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

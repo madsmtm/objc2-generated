@@ -22,13 +22,15 @@ extern_protocol!(
             presentation_section_index: NSInteger,
         ) -> NSInteger;
 
-        #[method_id(@__method_family Other presentationIndexPathForDataSourceIndexPath:)]
+        #[unsafe(method_family(none))]
+        #[method_id(presentationIndexPathForDataSourceIndexPath:)]
         unsafe fn presentationIndexPathForDataSourceIndexPath(
             &self,
             data_source_index_path: Option<&NSIndexPath>,
         ) -> Option<Retained<NSIndexPath>>;
 
-        #[method_id(@__method_family Other dataSourceIndexPathForPresentationIndexPath:)]
+        #[unsafe(method_family(none))]
+        #[method_id(dataSourceIndexPathForPresentationIndexPath:)]
         unsafe fn dataSourceIndexPathForPresentationIndexPath(
             &self,
             presentation_index_path: Option<&NSIndexPath>,

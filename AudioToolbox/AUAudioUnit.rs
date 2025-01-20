@@ -385,7 +385,8 @@ unsafe impl NSObjectProtocol for AUAudioUnit {}
 
 extern_methods!(
     unsafe impl AUAudioUnit {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "AudioComponent")]
@@ -398,7 +399,8 @@ extern_methods!(
         /// Parameter `options`: Options for loading the unit in-process or out-of-process.
         ///
         /// Parameter `outError`: Returned in the event of failure.
-        #[method_id(@__method_family Init initWithComponentDescription:options:error:_)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithComponentDescription:options:error:_)]
         pub unsafe fn initWithComponentDescription_options_error(
             this: Allocated<Self>,
             component_description: AudioComponentDescription,
@@ -407,7 +409,8 @@ extern_methods!(
 
         #[cfg(feature = "AudioComponent")]
         /// Convenience initializer (omits options).
-        #[method_id(@__method_family Init initWithComponentDescription:error:_)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithComponentDescription:error:_)]
         pub unsafe fn initWithComponentDescription_error(
             this: Allocated<Self>,
             component_description: AudioComponentDescription,
@@ -452,15 +455,18 @@ extern_methods!(
         /// By convention, an audio unit's component name is its manufacturer's name, plus ": ",
         /// plus the audio unit's name. The audioUnitName and manufacturerName properties are derived
         /// from the component name.
-        #[method_id(@__method_family Other componentName)]
+        #[unsafe(method_family(none))]
+        #[method_id(componentName)]
         pub unsafe fn componentName(&self) -> Option<Retained<NSString>>;
 
         /// The audio unit's name.
-        #[method_id(@__method_family Other audioUnitName)]
+        #[unsafe(method_family(none))]
+        #[method_id(audioUnitName)]
         pub unsafe fn audioUnitName(&self) -> Option<Retained<NSString>>;
 
         /// The manufacturer's name.
-        #[method_id(@__method_family Other manufacturerName)]
+        #[unsafe(method_family(none))]
+        #[method_id(manufacturerName)]
         pub unsafe fn manufacturerName(&self) -> Option<Retained<NSString>>;
 
         /// A short name for the audio unit.
@@ -468,7 +474,8 @@ extern_methods!(
         /// Audio unit host applications can display this name in situations where the audioUnitName
         /// might be too long. The recommended length is up to 16 characters. Host applications may
         /// truncate it.
-        #[method_id(@__method_family Other audioUnitShortName)]
+        #[unsafe(method_family(none))]
+        #[method_id(audioUnitShortName)]
         pub unsafe fn audioUnitShortName(&self) -> Option<Retained<NSString>>;
 
         /// The unit's component's version.
@@ -513,14 +520,16 @@ extern_methods!(
         ///
         /// Subclassers must override this property's getter. The implementation should return the same
         /// object every time it is asked for it, since clients can install KVO observers on it.
-        #[method_id(@__method_family Other inputBusses)]
+        #[unsafe(method_family(none))]
+        #[method_id(inputBusses)]
         pub unsafe fn inputBusses(&self) -> Retained<AUAudioUnitBusArray>;
 
         /// An audio unit's audio output connection points.
         ///
         /// Subclassers must override this property's getter. The implementation should return the same
         /// object every time it is asked for it, since clients can install KVO observers on it.
-        #[method_id(@__method_family Other outputBusses)]
+        #[unsafe(method_family(none))]
+        #[method_id(outputBusses)]
         pub unsafe fn outputBusses(&self) -> Retained<AUAudioUnitBusArray>;
 
         #[cfg(all(
@@ -627,7 +636,8 @@ extern_methods!(
         /// kAudioUnitProperty_ParameterInfo.
         ///
         /// Note that it is not safe to modify this property in a real-time context.
-        #[method_id(@__method_family Other parameterTree)]
+        #[unsafe(method_family(none))]
+        #[method_id(parameterTree)]
         pub unsafe fn parameterTree(&self) -> Option<Retained<AUParameterTree>>;
 
         #[cfg(feature = "AUParameters")]
@@ -647,7 +657,8 @@ extern_methods!(
         ///
         /// Partially bridged to kAudioUnitProperty_ParametersForOverview (v2 hosts can use that
         /// property to access this v3 method of an audio unit).
-        #[method_id(@__method_family Other parametersForOverviewWithCount:)]
+        #[unsafe(method_family(none))]
+        #[method_id(parametersForOverviewWithCount:)]
         pub unsafe fn parametersForOverviewWithCount(
             &self,
             count: NSInteger,
@@ -698,7 +709,8 @@ extern_methods!(
         /// of the MIDI output at that index.
         ///
         /// This is bridged to the v2 API property kAudioUnitProperty_MIDIOutputCallbackInfo.
-        #[method_id(@__method_family Other MIDIOutputNames)]
+        #[unsafe(method_family(none))]
+        #[method_id(MIDIOutputNames)]
         pub unsafe fn MIDIOutputNames(&self) -> Retained<NSArray<NSString>>;
 
         /// Specifies whether an audio unit provides UI (normally in the form of a view controller).
@@ -792,7 +804,8 @@ extern_methods!(
         /// preorder traversal of the tree.
         ///
         /// Bridged to the v2 property kAudioUnitProperty_ClassInfo.
-        #[method_id(@__method_family Other fullState)]
+        #[unsafe(method_family(none))]
+        #[method_id(fullState)]
         pub unsafe fn fullState(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         /// Setter for [`fullState`][Self::fullState].
@@ -811,7 +824,8 @@ extern_methods!(
         /// the base class simply sets/gets fullState.
         ///
         /// Bridged to the v2 property kAudioUnitProperty_ClassInfoFromDocument.
-        #[method_id(@__method_family Other fullStateForDocument)]
+        #[unsafe(method_family(none))]
+        #[method_id(fullStateForDocument)]
         pub unsafe fn fullStateForDocument(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
@@ -829,7 +843,8 @@ extern_methods!(
         /// parameters provided by the developer. This property returns all of the available factory presets.
         ///
         /// Bridged to the v2 property kAudioUnitProperty_FactoryPresets.
-        #[method_id(@__method_family Other factoryPresets)]
+        #[unsafe(method_family(none))]
+        #[method_id(factoryPresets)]
         pub unsafe fn factoryPresets(&self) -> Option<Retained<NSArray<AUAudioUnitPreset>>>;
 
         /// A collection of presets saved by the user
@@ -845,7 +860,8 @@ extern_methods!(
         ///
         /// Audio Units are free to override this method to load their user presets via different means
         /// (e.g. from their iCloud container).
-        #[method_id(@__method_family Other userPresets)]
+        #[unsafe(method_family(none))]
+        #[method_id(userPresets)]
         pub unsafe fn userPresets(&self) -> Retained<NSArray<AUAudioUnitPreset>>;
 
         /// Persistently save the current state of the audio unit into a userPreset
@@ -950,7 +966,8 @@ extern_methods!(
         /// : NSString,
         /// : NSNumber,
         /// : NSData
-        #[method_id(@__method_family Other presetStateFor:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(presetStateFor:error:_)]
         pub unsafe fn presetStateFor_error(
             &self,
             user_preset: &AUAudioUnitPreset,
@@ -993,7 +1010,8 @@ extern_methods!(
         /// preset was selected.
         ///
         /// Bridged to the v2 property kAudioUnitProperty_PresentPreset.
-        #[method_id(@__method_family Other currentPreset)]
+        #[unsafe(method_family(none))]
+        #[method_id(currentPreset)]
         pub unsafe fn currentPreset(&self) -> Option<Retained<AUAudioUnitPreset>>;
 
         /// Setter for [`currentPreset`][Self::currentPreset].
@@ -1104,7 +1122,8 @@ extern_methods!(
         /// elements on that side.
         ///
         /// Bridged to the v2 property kAudioUnitProperty_SupportedNumChannels.
-        #[method_id(@__method_family Other channelCapabilities)]
+        #[unsafe(method_family(none))]
+        #[method_id(channelCapabilities)]
         pub unsafe fn channelCapabilities(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         #[cfg(feature = "block2")]
@@ -1152,7 +1171,8 @@ extern_methods!(
         /// then display to the user "My audio unit on track 3".
         ///
         /// Bridged to the v2 property kAudioUnitProperty_ContextName.
-        #[method_id(@__method_family Other contextName)]
+        #[unsafe(method_family(none))]
+        #[method_id(contextName)]
         pub unsafe fn contextName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`contextName`][Self::contextName].
@@ -1167,7 +1187,8 @@ extern_methods!(
         /// Can also be used to migrate from a v2 to a v3 Audio Unit.
         ///
         /// Bridged to the v2 property kAudioUnitMigrateProperty_FromPlugin.
-        #[method_id(@__method_family Other migrateFromPlugin)]
+        #[unsafe(method_family(none))]
+        #[method_id(migrateFromPlugin)]
         pub unsafe fn migrateFromPlugin(&self) -> Retained<NSArray>;
 
         /// Specifies whether an audio unit supports Multi-dimensional Polyphonic Expression.
@@ -1188,7 +1209,8 @@ extern_methods!(
         /// If the property value is nil, then the audio unit does not support this property.
         ///
         /// Bridged to the v2 property kAudioOutputUnitProperty_ChannelMap.
-        #[method_id(@__method_family Other channelMap)]
+        #[unsafe(method_family(none))]
+        #[method_id(channelMap)]
         pub unsafe fn channelMap(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         /// Setter for [`channelMap`][Self::channelMap].
@@ -1204,7 +1226,8 @@ extern_methods!(
         ///
         /// Returns: A MIDICIProfileState object containing all the supported MIDI-CI profiles for this channel
         /// on this cable.
-        #[method_id(@__method_family Other profileStateForCable:channel:)]
+        #[unsafe(method_family(none))]
+        #[method_id(profileStateForCable:channel:)]
         pub unsafe fn profileStateForCable_channel(
             &self,
             cable: u8,
@@ -1282,7 +1305,8 @@ extern_methods!(
         /// Parameter `channelName`: The name of the message channel to be returned by the Audio Unit if supported.
         ///
         /// Returns: An object that conforms to the `AUMessageChannel` protocol.
-        #[method_id(@__method_family Other messageChannelFor:)]
+        #[unsafe(method_family(none))]
+        #[method_id(messageChannelFor:)]
         pub unsafe fn messageChannelFor(
             &self,
             channel_name: &NSString,
@@ -1293,7 +1317,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AUAudioUnit {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -1479,11 +1504,13 @@ unsafe impl NSObjectProtocol for AUAudioUnitBusArray {}
 
 extern_methods!(
     unsafe impl AUAudioUnitBusArray {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Initializes by making a copy of the supplied bus array.
-        #[method_id(@__method_family Init initWithAudioUnit:busType:busses:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithAudioUnit:busType:busses:)]
         pub unsafe fn initWithAudioUnit_busType_busses(
             this: Allocated<Self>,
             owner: &AUAudioUnit,
@@ -1492,7 +1519,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Initializes an empty bus array.
-        #[method_id(@__method_family Init initWithAudioUnit:busType:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithAudioUnit:busType:)]
         pub unsafe fn initWithAudioUnit_busType(
             this: Allocated<Self>,
             owner: &AUAudioUnit,
@@ -1502,7 +1530,8 @@ extern_methods!(
         #[method(count)]
         pub unsafe fn count(&self) -> NSUInteger;
 
-        #[method_id(@__method_family Other objectAtIndexedSubscript:)]
+        #[unsafe(method_family(none))]
+        #[method_id(objectAtIndexedSubscript:)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             index: NSUInteger,
@@ -1538,7 +1567,8 @@ extern_methods!(
         );
 
         /// The audio unit that owns the bus.
-        #[method_id(@__method_family Other ownerAudioUnit)]
+        #[unsafe(method_family(none))]
+        #[method_id(ownerAudioUnit)]
         pub unsafe fn ownerAudioUnit(&self) -> Retained<AUAudioUnit>;
 
         /// Which bus array this is (input or output).
@@ -1550,7 +1580,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AUAudioUnitBusArray {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -1607,7 +1638,8 @@ extern_methods!(
         pub unsafe fn setEnabled(&self, enabled: bool);
 
         /// A name for the bus. Can be set by host.
-        #[method_id(@__method_family Other name)]
+        #[unsafe(method_family(none))]
+        #[method_id(name)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
@@ -1623,11 +1655,13 @@ extern_methods!(
         pub unsafe fn busType(&self) -> AUAudioUnitBusType;
 
         /// The audio unit that owns the bus.
-        #[method_id(@__method_family Other ownerAudioUnit)]
+        #[unsafe(method_family(none))]
+        #[method_id(ownerAudioUnit)]
         pub unsafe fn ownerAudioUnit(&self) -> Retained<AUAudioUnit>;
 
         /// This is an array of NSNumbers representing AudioChannelLayoutTag.
-        #[method_id(@__method_family Other supportedChannelLayoutTags)]
+        #[unsafe(method_family(none))]
+        #[method_id(supportedChannelLayoutTags)]
         pub unsafe fn supportedChannelLayoutTags(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         /// Information about latency in the audio unit's processing context.
@@ -1681,10 +1715,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AUAudioUnitBus {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -1716,7 +1752,8 @@ extern_methods!(
         pub unsafe fn setNumber(&self, number: NSInteger);
 
         /// The preset's name.
-        #[method_id(@__method_family Other name)]
+        #[unsafe(method_family(none))]
+        #[method_id(name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
@@ -1728,10 +1765,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AUAudioUnitPreset {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -1767,7 +1806,8 @@ extern_protocol!(
         /// Returns: An NSDictionary with custom data. The allowed classes for key and value types are
         /// NSArray, NSDictionary, NSOrderedSet, NSSet, NSString, NSData, NSNull, NSNumber, NSDate
         #[optional]
-        #[method_id(@__method_family Other callAudioUnit:)]
+        #[unsafe(method_family(none))]
+        #[method_id(callAudioUnit:)]
         unsafe fn callAudioUnit(&self, message: &NSDictionary) -> Retained<NSDictionary>;
 
         #[cfg(feature = "block2")]

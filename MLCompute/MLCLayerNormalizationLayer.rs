@@ -26,31 +26,36 @@ extern_methods!(
     unsafe impl MLCLayerNormalizationLayer {
         /// The shape of the axes over which normalization occurs, (W), (H,W) or (C,H,W)
         #[deprecated]
-        #[method_id(@__method_family Other normalizedShape)]
+        #[unsafe(method_family(none))]
+        #[method_id(normalizedShape)]
         pub unsafe fn normalizedShape(&self) -> Retained<NSArray<NSNumber>>;
 
         #[cfg(feature = "MLCTensor")]
         /// The beta tensor
         #[deprecated]
-        #[method_id(@__method_family Other beta)]
+        #[unsafe(method_family(none))]
+        #[method_id(beta)]
         pub unsafe fn beta(&self) -> Option<Retained<MLCTensor>>;
 
         #[cfg(feature = "MLCTensor")]
         /// The gamma tensor
         #[deprecated]
-        #[method_id(@__method_family Other gamma)]
+        #[unsafe(method_family(none))]
+        #[method_id(gamma)]
         pub unsafe fn gamma(&self) -> Option<Retained<MLCTensor>>;
 
         #[cfg(feature = "MLCTensorParameter")]
         /// The beta tensor parameter used for optimizer update
         #[deprecated]
-        #[method_id(@__method_family Other betaParameter)]
+        #[unsafe(method_family(none))]
+        #[method_id(betaParameter)]
         pub unsafe fn betaParameter(&self) -> Option<Retained<MLCTensorParameter>>;
 
         #[cfg(feature = "MLCTensorParameter")]
         /// The gamma tensor parameter used for optimizer update
         #[deprecated]
-        #[method_id(@__method_family Other gammaParameter)]
+        #[unsafe(method_family(none))]
+        #[method_id(gammaParameter)]
         pub unsafe fn gammaParameter(&self) -> Option<Retained<MLCTensorParameter>>;
 
         /// A value used for numerical stability
@@ -71,7 +76,8 @@ extern_methods!(
         ///
         /// Returns: A new layer normalization layer.
         #[deprecated]
-        #[method_id(@__method_family Other layerWithNormalizedShape:beta:gamma:varianceEpsilon:)]
+        #[unsafe(method_family(none))]
+        #[method_id(layerWithNormalizedShape:beta:gamma:varianceEpsilon:)]
         pub unsafe fn layerWithNormalizedShape_beta_gamma_varianceEpsilon(
             normalized_shape: &NSArray<NSNumber>,
             beta: Option<&MLCTensor>,
@@ -86,11 +92,13 @@ extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCLayerNormalizationLayer {
         #[deprecated]
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

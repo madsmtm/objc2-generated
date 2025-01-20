@@ -27,24 +27,28 @@ extern_methods!(
     #[cfg(feature = "MPMediaEntity")]
     unsafe impl MPMediaItemCollection {
         #[cfg(feature = "MPMediaItem")]
-        #[method_id(@__method_family Other collectionWithItems:)]
+        #[unsafe(method_family(none))]
+        #[method_id(collectionWithItems:)]
         pub unsafe fn collectionWithItems(
             items: &NSArray<MPMediaItem>,
         ) -> Retained<MPMediaItemCollection>;
 
         #[cfg(feature = "MPMediaItem")]
-        #[method_id(@__method_family Init initWithItems:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithItems:)]
         pub unsafe fn initWithItems(
             this: Allocated<Self>,
             items: &NSArray<MPMediaItem>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPMediaItem")]
-        #[method_id(@__method_family Other items)]
+        #[unsafe(method_family(none))]
+        #[method_id(items)]
         pub unsafe fn items(&self) -> Retained<NSArray<MPMediaItem>>;
 
         #[cfg(feature = "MPMediaItem")]
-        #[method_id(@__method_family Other representativeItem)]
+        #[unsafe(method_family(none))]
+        #[method_id(representativeItem)]
         pub unsafe fn representativeItem(&self) -> Option<Retained<MPMediaItem>>;
 
         #[method(count)]
@@ -60,10 +64,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MPMediaEntity")]
     unsafe impl MPMediaItemCollection {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -28,19 +28,23 @@ unsafe impl NSObjectProtocol for HMAccessorySetupResult {}
 extern_methods!(
     unsafe impl HMAccessorySetupResult {
         /// The -[HMHome uniqueIdentifier] that the accessories were added to
-        #[method_id(@__method_family Other homeUniqueIdentifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(homeUniqueIdentifier)]
         pub unsafe fn homeUniqueIdentifier(&self) -> Retained<NSUUID>;
 
         /// The -[HMAccessory uniqueIdentifier] values corresponding to the accessories that were set up.
         /// Usually only one accessory is set up at a time, but adding an accessory bridge can result in
         /// multiple accessories being set up at once
-        #[method_id(@__method_family Other accessoryUniqueIdentifiers)]
+        #[unsafe(method_family(none))]
+        #[method_id(accessoryUniqueIdentifiers)]
         pub unsafe fn accessoryUniqueIdentifiers(&self) -> Retained<NSArray<NSUUID>>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

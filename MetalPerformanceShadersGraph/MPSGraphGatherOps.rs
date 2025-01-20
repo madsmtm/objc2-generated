@@ -41,7 +41,8 @@ extern_methods!(
         /// - batchDimensions: The number of batch dimensions
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__method_family Other gatherNDWithUpdatesTensor:indicesTensor:batchDimensions:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(gatherNDWithUpdatesTensor:indicesTensor:batchDimensions:name:)]
         pub unsafe fn gatherNDWithUpdatesTensor_indicesTensor_batchDimensions_name(
             &self,
             updates_tensor: &MPSGraphTensor,
@@ -85,7 +86,8 @@ extern_methods!(
         /// - batchDimensions: The number of batch dimensions
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__method_family Other gatherWithUpdatesTensor:indicesTensor:axis:batchDimensions:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(gatherWithUpdatesTensor:indicesTensor:axis:batchDimensions:name:)]
         pub unsafe fn gatherWithUpdatesTensor_indicesTensor_axis_batchDimensions_name(
             &self,
             updates_tensor: &MPSGraphTensor,
@@ -115,7 +117,8 @@ extern_methods!(
         /// - indicesTensor: Int32 or Int64 tensor used to index `updatesTensor`
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__method_family Other gatherAlongAxis:withUpdatesTensor:indicesTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(gatherAlongAxis:withUpdatesTensor:indicesTensor:name:)]
         pub unsafe fn gatherAlongAxis_withUpdatesTensor_indicesTensor_name(
             &self,
             axis: NSInteger,
@@ -138,7 +141,8 @@ extern_methods!(
         /// - indicesTensor: Int32 or Int64 tensor used to index `updatesTensor`
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__method_family Other gatherAlongAxisTensor:withUpdatesTensor:indicesTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(gatherAlongAxisTensor:withUpdatesTensor:indicesTensor:name:)]
         pub unsafe fn gatherAlongAxisTensor_withUpdatesTensor_indicesTensor_name(
             &self,
             axis_tensor: &MPSGraphTensor,

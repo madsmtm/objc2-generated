@@ -104,7 +104,8 @@ extern_methods!(
         /// Title for the color picker.
         ///
         /// Should explain what kind of color to pick. Example values are "Stroke Color" or "Fill Color".
-        #[method_id(@__method_family Other title)]
+        #[unsafe(method_family(none))]
+        #[method_id(title)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`title`][Self::title].
@@ -124,7 +125,8 @@ extern_methods!(
         #[cfg(feature = "UIColor")]
         /// Sets the selected color on the color picker and is updated when the user changes the selection.
         /// Does support KVO and does send `UIControlEventValueChanged`.
-        #[method_id(@__method_family Other selectedColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(selectedColor)]
         pub unsafe fn selectedColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -139,10 +141,12 @@ extern_methods!(
     #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIColorWell {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Init initWithFrame:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -154,7 +158,8 @@ extern_methods!(
             feature = "objc2-core-foundation"
         ))]
         /// Initializes the control and adds primaryAction for the UIControlEventPrimaryActionTriggered control event. Subclasses of UIControl may alter or add behaviors around the usage of primaryAction, see subclass documentation of this initializer for additional information.
-        #[method_id(@__method_family Init initWithFrame:primaryAction:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithFrame:primaryAction:)]
         pub unsafe fn initWithFrame_primaryAction(
             this: Allocated<Self>,
             frame: CGRect,
@@ -167,10 +172,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIColorWell {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

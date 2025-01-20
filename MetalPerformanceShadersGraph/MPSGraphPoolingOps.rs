@@ -268,7 +268,8 @@ extern_methods!(
         /// - paddingStyle: See `paddingStyle` property.
         /// - dataLayout: See `dataLayout` property.
         /// - Returns: The descriptor on autoreleasepool.
-        #[method_id(@__method_family Other descriptorWithKernelWidth:kernelHeight:strideInX:strideInY:dilationRateInX:dilationRateInY:paddingLeft:paddingRight:paddingTop:paddingBottom:paddingStyle:dataLayout:)]
+        #[unsafe(method_family(none))]
+        #[method_id(descriptorWithKernelWidth:kernelHeight:strideInX:strideInY:dilationRateInX:dilationRateInY:paddingLeft:paddingRight:paddingTop:paddingBottom:paddingStyle:dataLayout:)]
         pub unsafe fn descriptorWithKernelWidth_kernelHeight_strideInX_strideInY_dilationRateInX_dilationRateInY_paddingLeft_paddingRight_paddingTop_paddingBottom_paddingStyle_dataLayout(
             kernel_width: NSUInteger,
             kernel_height: NSUInteger,
@@ -294,7 +295,8 @@ extern_methods!(
         /// - paddingStyle: See `paddingStyle` property.
         /// - dataLayout: See `dataLayout` property.
         /// - Returns: The descriptor on autoreleasepool.
-        #[method_id(@__method_family Other descriptorWithKernelWidth:kernelHeight:strideInX:strideInY:paddingStyle:dataLayout:)]
+        #[unsafe(method_family(none))]
+        #[method_id(descriptorWithKernelWidth:kernelHeight:strideInX:strideInY:paddingStyle:dataLayout:)]
         pub unsafe fn descriptorWithKernelWidth_kernelHeight_strideInX_strideInY_paddingStyle_dataLayout(
             kernel_width: NSUInteger,
             kernel_height: NSUInteger,
@@ -326,10 +328,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MPSGraphCore")]
     unsafe impl MPSGraphPooling2DOpDescriptor {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -372,7 +376,8 @@ extern_methods!(
         /// Defines the pooling window size.
         ///
         /// Must be four numbers, one for each spatial dimension, fastest running index last.
-        #[method_id(@__method_family Other kernelSizes)]
+        #[unsafe(method_family(none))]
+        #[method_id(kernelSizes)]
         pub unsafe fn kernelSizes(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Setter for [`kernelSizes`][Self::kernelSizes].
@@ -392,7 +397,8 @@ extern_methods!(
         /// 1,
         /// @
         /// 1 ]`
-        #[method_id(@__method_family Other strides)]
+        #[unsafe(method_family(none))]
+        #[method_id(strides)]
         pub unsafe fn strides(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Setter for [`strides`][Self::strides].
@@ -412,7 +418,8 @@ extern_methods!(
         /// 1,
         /// @
         /// 1 ]`
-        #[method_id(@__method_family Other dilationRates)]
+        #[unsafe(method_family(none))]
+        #[method_id(dilationRates)]
         pub unsafe fn dilationRates(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Setter for [`dilationRates`][Self::dilationRates].
@@ -444,7 +451,8 @@ extern_methods!(
         /// 0,
         /// @
         /// 0 ]`
-        #[method_id(@__method_family Other paddingValues)]
+        #[unsafe(method_family(none))]
+        #[method_id(paddingValues)]
         pub unsafe fn paddingValues(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Setter for [`paddingValues`][Self::paddingValues].
@@ -525,7 +533,8 @@ extern_methods!(
         /// - paddingValues: See `paddingValues` property.
         /// - paddingStyle: See `paddingStyle` property.
         /// - Returns: The descriptor on autoreleasepool.
-        #[method_id(@__method_family Other descriptorWithKernelSizes:strides:dilationRates:paddingValues:paddingStyle:)]
+        #[unsafe(method_family(none))]
+        #[method_id(descriptorWithKernelSizes:strides:dilationRates:paddingValues:paddingStyle:)]
         pub unsafe fn descriptorWithKernelSizes_strides_dilationRates_paddingValues_paddingStyle(
             kernel_sizes: &NSArray<NSNumber>,
             strides: &NSArray<NSNumber>,
@@ -540,7 +549,8 @@ extern_methods!(
         /// - kernelSizes: See `kernelSizes` property.
         /// - paddingStyle: See `paddingStyle` property.
         /// - Returns: The descriptor on autoreleasepool.
-        #[method_id(@__method_family Other descriptorWithKernelSizes:paddingStyle:)]
+        #[unsafe(method_family(none))]
+        #[method_id(descriptorWithKernelSizes:paddingStyle:)]
         pub unsafe fn descriptorWithKernelSizes_paddingStyle(
             kernel_sizes: &NSArray<NSNumber>,
             padding_style: MPSGraphPaddingStyle,
@@ -552,10 +562,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MPSGraphCore")]
     unsafe impl MPSGraphPooling4DOpDescriptor {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -572,7 +584,8 @@ extern_methods!(
         /// - descriptor: A pooling operation descriptor that specifies pooling window sizes, strides, dilation rates, paddings and layouts.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__method_family Other maxPooling2DWithSourceTensor:descriptor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(maxPooling2DWithSourceTensor:descriptor:name:)]
         pub unsafe fn maxPooling2DWithSourceTensor_descriptor_name(
             &self,
             source: &MPSGraphTensor,
@@ -593,7 +606,8 @@ extern_methods!(
         /// - descriptor: A pooling operation descriptor that specifies pooling window sizes, strides, dilation rates, paddings and layouts.
         /// - name: The name for the operation.
         /// - Returns: An array of two MPSGraphTensors. The first tensor holds the result of max pool and the second tensor holds the corresponding indices
-        #[method_id(@__method_family Other maxPooling2DReturnIndicesWithSourceTensor:descriptor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(maxPooling2DReturnIndicesWithSourceTensor:descriptor:name:)]
         pub unsafe fn maxPooling2DReturnIndicesWithSourceTensor_descriptor_name(
             &self,
             source: &MPSGraphTensor,
@@ -610,7 +624,8 @@ extern_methods!(
         /// - descriptor: A pooling operation descriptor that specifies pooling window sizes, strides, dilation rates, paddings and layouts.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__method_family Other maxPooling2DGradientWithGradientTensor:sourceTensor:descriptor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(maxPooling2DGradientWithGradientTensor:sourceTensor:descriptor:name:)]
         pub unsafe fn maxPooling2DGradientWithGradientTensor_sourceTensor_descriptor_name(
             &self,
             gradient: &MPSGraphTensor,
@@ -635,7 +650,8 @@ extern_methods!(
         /// - descriptor: A pooling operation descriptor that specifies pooling window sizes, strides, dilation rates, paddings and layouts.
         /// - name: The name for the operation.
         /// - Returns: Destination gradient tensor.
-        #[method_id(@__method_family Other maxPooling2DGradientWithGradientTensor:indicesTensor:outputShape:descriptor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(maxPooling2DGradientWithGradientTensor:indicesTensor:outputShape:descriptor:name:)]
         pub unsafe fn maxPooling2DGradientWithGradientTensor_indicesTensor_outputShape_descriptor_name(
             &self,
             gradient: &MPSGraphTensor,
@@ -658,7 +674,8 @@ extern_methods!(
         /// - descriptor: A pooling operation descriptor that specifies pooling window sizes, strides, dilation rates, paddings and layouts.
         /// - name: The name for the operation.
         /// - Returns: Destination gradient tensor.
-        #[method_id(@__method_family Other maxPooling2DGradientWithGradientTensor:indicesTensor:outputShapeTensor:descriptor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(maxPooling2DGradientWithGradientTensor:indicesTensor:outputShapeTensor:descriptor:name:)]
         pub unsafe fn maxPooling2DGradientWithGradientTensor_indicesTensor_outputShapeTensor_descriptor_name(
             &self,
             gradient: &MPSGraphTensor,
@@ -676,7 +693,8 @@ extern_methods!(
         /// - descriptor: A pooling operation descriptor that specifies pooling window sizes, strides, dilation rates, paddings and layouts.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__method_family Other avgPooling2DWithSourceTensor:descriptor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(avgPooling2DWithSourceTensor:descriptor:name:)]
         pub unsafe fn avgPooling2DWithSourceTensor_descriptor_name(
             &self,
             source: &MPSGraphTensor,
@@ -693,7 +711,8 @@ extern_methods!(
         /// - descriptor: A pooling operation descriptor that specifies pooling window sizes, strides, dilation rates, paddings and layouts.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__method_family Other avgPooling2DGradientWithGradientTensor:sourceTensor:descriptor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(avgPooling2DGradientWithGradientTensor:sourceTensor:descriptor:name:)]
         pub unsafe fn avgPooling2DGradientWithGradientTensor_sourceTensor_descriptor_name(
             &self,
             gradient: &MPSGraphTensor,
@@ -710,7 +729,8 @@ extern_methods!(
         /// - descriptor: A pooling operation descriptor that specifies pooling window sizes, strides, dilation rates and paddings.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__method_family Other maxPooling4DWithSourceTensor:descriptor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(maxPooling4DWithSourceTensor:descriptor:name:)]
         pub unsafe fn maxPooling4DWithSourceTensor_descriptor_name(
             &self,
             source: &MPSGraphTensor,
@@ -731,7 +751,8 @@ extern_methods!(
         /// - descriptor: A pooling operation descriptor that specifies pooling window sizes, strides, dilation rates and paddings.
         /// - name: The name for the operation.
         /// - Returns: An array of two MPSGraphTensors. The first tensor holds the result of max pool and the second tensor holds the corresponding indices.
-        #[method_id(@__method_family Other maxPooling4DReturnIndicesWithSourceTensor:descriptor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(maxPooling4DReturnIndicesWithSourceTensor:descriptor:name:)]
         pub unsafe fn maxPooling4DReturnIndicesWithSourceTensor_descriptor_name(
             &self,
             source: &MPSGraphTensor,
@@ -748,7 +769,8 @@ extern_methods!(
         /// - descriptor: A pooling operation descriptor that specifies pooling window sizes, strides, dilation rates and paddings.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__method_family Other maxPooling4DGradientWithGradientTensor:sourceTensor:descriptor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(maxPooling4DGradientWithGradientTensor:sourceTensor:descriptor:name:)]
         pub unsafe fn maxPooling4DGradientWithGradientTensor_sourceTensor_descriptor_name(
             &self,
             gradient: &MPSGraphTensor,
@@ -773,7 +795,8 @@ extern_methods!(
         /// - descriptor: A pooling operation descriptor that specifies pooling window sizes, strides, dilation rates, paddings and layouts.
         /// - name: The name for the operation.
         /// - Returns: Destination gradient tensor.
-        #[method_id(@__method_family Other maxPooling4DGradientWithGradientTensor:indicesTensor:outputShape:descriptor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(maxPooling4DGradientWithGradientTensor:indicesTensor:outputShape:descriptor:name:)]
         pub unsafe fn maxPooling4DGradientWithGradientTensor_indicesTensor_outputShape_descriptor_name(
             &self,
             gradient: &MPSGraphTensor,
@@ -796,7 +819,8 @@ extern_methods!(
         /// - descriptor: A pooling operation descriptor that specifies pooling window sizes, strides, dilation rates, paddings and layouts.
         /// - name: The name for the operation.
         /// - Returns: Destination gradient tensor.
-        #[method_id(@__method_family Other maxPooling4DGradientWithGradientTensor:indicesTensor:outputShapeTensor:descriptor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(maxPooling4DGradientWithGradientTensor:indicesTensor:outputShapeTensor:descriptor:name:)]
         pub unsafe fn maxPooling4DGradientWithGradientTensor_indicesTensor_outputShapeTensor_descriptor_name(
             &self,
             gradient: &MPSGraphTensor,
@@ -814,7 +838,8 @@ extern_methods!(
         /// - descriptor: A pooling operation descriptor that specifies pooling window sizes, strides, dilation rates and paddings.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__method_family Other avgPooling4DWithSourceTensor:descriptor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(avgPooling4DWithSourceTensor:descriptor:name:)]
         pub unsafe fn avgPooling4DWithSourceTensor_descriptor_name(
             &self,
             source: &MPSGraphTensor,
@@ -831,7 +856,8 @@ extern_methods!(
         /// - descriptor: A pooling operation descriptor that specifies pooling window sizes, strides, dilation rates and paddings.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__method_family Other avgPooling4DGradientWithGradientTensor:sourceTensor:descriptor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(avgPooling4DGradientWithGradientTensor:sourceTensor:descriptor:name:)]
         pub unsafe fn avgPooling4DGradientWithGradientTensor_sourceTensor_descriptor_name(
             &self,
             gradient: &MPSGraphTensor,
@@ -848,7 +874,8 @@ extern_methods!(
         /// - descriptor: A pooling operation descriptor that specifies pooling window sizes, strides, dilation rates and paddings.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__method_family Other L2NormPooling4DWithSourceTensor:descriptor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(L2NormPooling4DWithSourceTensor:descriptor:name:)]
         pub unsafe fn L2NormPooling4DWithSourceTensor_descriptor_name(
             &self,
             source: &MPSGraphTensor,
@@ -865,7 +892,8 @@ extern_methods!(
         /// - descriptor: A pooling operation descriptor that specifies pooling window sizes, strides, dilation rates and paddings.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__method_family Other L2NormPooling4DGradientWithGradientTensor:sourceTensor:descriptor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(L2NormPooling4DGradientWithGradientTensor:sourceTensor:descriptor:name:)]
         pub unsafe fn L2NormPooling4DGradientWithGradientTensor_sourceTensor_descriptor_name(
             &self,
             gradient: &MPSGraphTensor,

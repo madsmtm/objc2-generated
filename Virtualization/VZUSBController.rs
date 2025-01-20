@@ -28,10 +28,12 @@ unsafe impl NSObjectProtocol for VZUSBController {}
 
 extern_methods!(
     unsafe impl VZUSBController {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "VZUSBDevice", feature = "block2"))]
@@ -95,7 +97,8 @@ extern_methods!(
         /// See: VZUSBControllerConfiguration
         ///
         /// See: VZVirtualMachineConfiguration
-        #[method_id(@__method_family Other usbDevices)]
+        #[unsafe(method_family(none))]
+        #[method_id(usbDevices)]
         pub unsafe fn usbDevices(&self) -> Retained<NSArray<ProtocolObject<dyn VZUSBDevice>>>;
     }
 );

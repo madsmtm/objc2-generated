@@ -15,7 +15,8 @@ extern_protocol!(
     {
         #[cfg(feature = "objc2-local-authentication")]
         #[cfg(not(target_os = "tvos"))]
-        #[method_id(@__method_family Other authenticatedContext)]
+        #[unsafe(method_family(none))]
+        #[method_id(authenticatedContext)]
         unsafe fn authenticatedContext(&self) -> Option<Retained<LAContext>>;
 
         #[cfg(feature = "objc2-local-authentication")]

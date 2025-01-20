@@ -61,7 +61,8 @@ unsafe impl NSSecureCoding for MPSMatrixSum {}
 extern_methods!(
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSMatrixSum {
-        #[method_id(@__method_family Init initWithDevice:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -79,7 +80,8 @@ extern_methods!(
         ///
         /// Parameter `transpose`: If YES the result of the summation is to be transposed
         /// prior to applying the bias and activation.
-        #[method_id(@__method_family Init initWithDevice:count:rows:columns:transpose:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:count:rows:columns:transpose:)]
         pub unsafe fn initWithDevice_count_rows_columns_transpose(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -202,7 +204,8 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSMatrixSum object.
         ///
         /// Returns: A new MPSMatrixSum object, or nil if failure.
-        #[method_id(@__method_family Init initWithCoder:device:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -223,7 +226,8 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -235,10 +239,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSMatrixSum {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

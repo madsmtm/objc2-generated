@@ -49,7 +49,8 @@ extern_methods!(
     /// Methods declared on superclass `WKInterfaceObject`
     #[cfg(feature = "WKInterfaceObject")]
     unsafe impl WKInterfacePicker {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -58,7 +59,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "WKInterfaceObject")]
     unsafe impl WKInterfacePicker {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -78,14 +80,16 @@ unsafe impl NSSecureCoding for WKPickerItem {}
 
 extern_methods!(
     unsafe impl WKPickerItem {
-        #[method_id(@__method_family Other title)]
+        #[unsafe(method_family(none))]
+        #[method_id(title)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
-        #[method_id(@__method_family Other caption)]
+        #[unsafe(method_family(none))]
+        #[method_id(caption)]
         pub unsafe fn caption(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`caption`][Self::caption].
@@ -93,7 +97,8 @@ extern_methods!(
         pub unsafe fn setCaption(&self, caption: Option<&NSString>);
 
         #[cfg(feature = "WKImage")]
-        #[method_id(@__method_family Other accessoryImage)]
+        #[unsafe(method_family(none))]
+        #[method_id(accessoryImage)]
         pub unsafe fn accessoryImage(&self) -> Option<Retained<WKImage>>;
 
         #[cfg(feature = "WKImage")]
@@ -102,7 +107,8 @@ extern_methods!(
         pub unsafe fn setAccessoryImage(&self, accessory_image: Option<&WKImage>);
 
         #[cfg(feature = "WKImage")]
-        #[method_id(@__method_family Other contentImage)]
+        #[unsafe(method_family(none))]
+        #[method_id(contentImage)]
         pub unsafe fn contentImage(&self) -> Option<Retained<WKImage>>;
 
         #[cfg(feature = "WKImage")]
@@ -115,10 +121,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKPickerItem {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

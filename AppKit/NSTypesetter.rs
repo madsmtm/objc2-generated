@@ -53,7 +53,8 @@ extern_methods!(
         pub unsafe fn setLineFragmentPadding(&self, line_fragment_padding: CGFloat);
 
         #[cfg(feature = "NSFont")]
-        #[method_id(@__method_family Other substituteFontForFont:)]
+        #[unsafe(method_family(none))]
+        #[method_id(substituteFontForFont:)]
         pub unsafe fn substituteFontForFont(&self, original_font: &NSFont) -> Retained<NSFont>;
 
         #[cfg(all(
@@ -61,7 +62,8 @@ extern_methods!(
             feature = "NSText",
             feature = "objc2-core-foundation"
         ))]
-        #[method_id(@__method_family Other textTabForGlyphLocation:writingDirection:maxLocation:)]
+        #[unsafe(method_family(none))]
+        #[method_id(textTabForGlyphLocation:writingDirection:maxLocation:)]
         pub unsafe fn textTabForGlyphLocation_writingDirection_maxLocation(
             &self,
             glyph_location: CGFloat,
@@ -76,7 +78,8 @@ extern_methods!(
         #[method(setBidiProcessingEnabled:)]
         pub unsafe fn setBidiProcessingEnabled(&self, bidi_processing_enabled: bool);
 
-        #[method_id(@__method_family Other attributedString)]
+        #[unsafe(method_family(none))]
+        #[method_id(attributedString)]
         pub unsafe fn attributedString(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Setter for [`attributedString`][Self::attributedString].
@@ -153,25 +156,30 @@ extern_methods!(
             line_origin: NSPoint,
         );
 
-        #[method_id(@__method_family Other attributesForExtraLineFragment)]
+        #[unsafe(method_family(none))]
+        #[method_id(attributesForExtraLineFragment)]
         pub unsafe fn attributesForExtraLineFragment(
             &self,
         ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         #[cfg(feature = "NSLayoutManager")]
-        #[method_id(@__method_family Other layoutManager)]
+        #[unsafe(method_family(none))]
+        #[method_id(layoutManager)]
         pub unsafe fn layoutManager(&self) -> Option<Retained<NSLayoutManager>>;
 
         #[cfg(feature = "NSTextContainer")]
-        #[method_id(@__method_family Other textContainers)]
+        #[unsafe(method_family(none))]
+        #[method_id(textContainers)]
         pub unsafe fn textContainers(&self) -> Option<Retained<NSArray<NSTextContainer>>>;
 
         #[cfg(feature = "NSTextContainer")]
-        #[method_id(@__method_family Other currentTextContainer)]
+        #[unsafe(method_family(none))]
+        #[method_id(currentTextContainer)]
         pub unsafe fn currentTextContainer(&self) -> Option<Retained<NSTextContainer>>;
 
         #[cfg(feature = "NSParagraphStyle")]
-        #[method_id(@__method_family Other currentParagraphStyle)]
+        #[unsafe(method_family(none))]
+        #[method_id(currentParagraphStyle)]
         pub unsafe fn currentParagraphStyle(&self) -> Option<Retained<NSParagraphStyle>>;
 
         #[method(setHardInvalidation:forGlyphRange:)]
@@ -213,11 +221,13 @@ extern_methods!(
             glyph_index: NSUInteger,
         ) -> CGFloat;
 
-        #[method_id(@__method_family Other sharedSystemTypesetter)]
+        #[unsafe(method_family(none))]
+        #[method_id(sharedSystemTypesetter)]
         pub unsafe fn sharedSystemTypesetter() -> Retained<NSTypesetter>;
 
         #[cfg(feature = "NSLayoutManager")]
-        #[method_id(@__method_family Other sharedSystemTypesetterForBehavior:)]
+        #[unsafe(method_family(none))]
+        #[method_id(sharedSystemTypesetterForBehavior:)]
         pub unsafe fn sharedSystemTypesetterForBehavior(
             behavior: NSTypesetterBehavior,
         ) -> Retained<AnyObject>;
@@ -231,10 +241,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTypesetter {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

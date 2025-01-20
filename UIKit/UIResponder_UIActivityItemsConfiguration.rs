@@ -10,7 +10,8 @@ extern_methods!(
     #[cfg(feature = "UIResponder")]
     unsafe impl UIResponder {
         #[cfg(feature = "UIActivityItemsConfigurationReading")]
-        #[method_id(@__method_family Other activityItemsConfiguration)]
+        #[unsafe(method_family(none))]
+        #[method_id(activityItemsConfiguration)]
         pub unsafe fn activityItemsConfiguration(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIActivityItemsConfigurationReading>>>;

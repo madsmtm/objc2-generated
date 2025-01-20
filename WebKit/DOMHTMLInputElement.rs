@@ -78,7 +78,8 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLInputElement {
         #[deprecated]
-        #[method_id(@__method_family Other accept)]
+        #[unsafe(method_family(none))]
+        #[method_id(accept)]
         pub unsafe fn accept(&self) -> Retained<NSString>;
 
         /// Setter for [`accept`][Self::accept].
@@ -87,7 +88,8 @@ extern_methods!(
         pub unsafe fn setAccept(&self, accept: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__method_family Other alt)]
+        #[unsafe(method_family(none))]
+        #[method_id(alt)]
         pub unsafe fn alt(&self) -> Retained<NSString>;
 
         /// Setter for [`alt`][Self::alt].
@@ -131,11 +133,13 @@ extern_methods!(
 
         #[cfg(feature = "DOMHTMLFormElement")]
         #[deprecated]
-        #[method_id(@__method_family Other form)]
+        #[unsafe(method_family(none))]
+        #[method_id(form)]
         pub unsafe fn form(&self) -> Option<Retained<DOMHTMLFormElement>>;
 
         #[cfg(feature = "DOMFileList")]
-        #[method_id(@__method_family Other files)]
+        #[unsafe(method_family(none))]
+        #[method_id(files)]
         pub unsafe fn files(&self) -> Option<Retained<DOMFileList>>;
 
         #[cfg(feature = "DOMFileList")]
@@ -167,7 +171,8 @@ extern_methods!(
         pub unsafe fn setMultiple(&self, multiple: bool);
 
         #[deprecated]
-        #[method_id(@__method_family Other name)]
+        #[unsafe(method_family(none))]
+        #[method_id(name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
@@ -185,7 +190,8 @@ extern_methods!(
         pub unsafe fn setReadOnly(&self, read_only: bool);
 
         #[deprecated]
-        #[method_id(@__method_family Other size)]
+        #[unsafe(method_family(none))]
+        #[method_id(size)]
         pub unsafe fn size(&self) -> Retained<NSString>;
 
         /// Setter for [`size`][Self::size].
@@ -194,7 +200,8 @@ extern_methods!(
         pub unsafe fn setSize(&self, size: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__method_family Other src)]
+        #[unsafe(method_family(none))]
+        #[method_id(src)]
         pub unsafe fn src(&self) -> Retained<NSString>;
 
         /// Setter for [`src`][Self::src].
@@ -203,7 +210,8 @@ extern_methods!(
         pub unsafe fn setSrc(&self, src: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__method_family Other type)]
+        #[unsafe(method_family(none))]
+        #[method_id(type)]
         pub unsafe fn r#type(&self) -> Retained<NSString>;
 
         /// Setter for [`type`][Self::type].
@@ -212,7 +220,8 @@ extern_methods!(
         pub unsafe fn setType(&self, r#type: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__method_family Other defaultValue)]
+        #[unsafe(method_family(none))]
+        #[method_id(defaultValue)]
         pub unsafe fn defaultValue(&self) -> Retained<NSString>;
 
         /// Setter for [`defaultValue`][Self::defaultValue].
@@ -221,7 +230,8 @@ extern_methods!(
         pub unsafe fn setDefaultValue(&self, default_value: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__method_family Other value)]
+        #[unsafe(method_family(none))]
+        #[method_id(value)]
         pub unsafe fn value(&self) -> Retained<NSString>;
 
         /// Setter for [`value`][Self::value].
@@ -247,7 +257,8 @@ extern_methods!(
         pub unsafe fn setSelectionEnd(&self, selection_end: c_int);
 
         #[deprecated]
-        #[method_id(@__method_family Other align)]
+        #[unsafe(method_family(none))]
+        #[method_id(align)]
         pub unsafe fn align(&self) -> Retained<NSString>;
 
         /// Setter for [`align`][Self::align].
@@ -256,7 +267,8 @@ extern_methods!(
         pub unsafe fn setAlign(&self, align: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__method_family Other useMap)]
+        #[unsafe(method_family(none))]
+        #[method_id(useMap)]
         pub unsafe fn useMap(&self) -> Retained<NSString>;
 
         /// Setter for [`useMap`][Self::useMap].
@@ -265,7 +277,8 @@ extern_methods!(
         pub unsafe fn setUseMap(&self, use_map: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__method_family Other accessKey)]
+        #[unsafe(method_family(none))]
+        #[method_id(accessKey)]
         pub unsafe fn accessKey(&self) -> Retained<NSString>;
 
         /// Setter for [`accessKey`][Self::accessKey].
@@ -273,10 +286,12 @@ extern_methods!(
         #[method(setAccessKey:)]
         pub unsafe fn setAccessKey(&self, access_key: Option<&NSString>);
 
-        #[method_id(@__method_family Other altDisplayString)]
+        #[unsafe(method_family(none))]
+        #[method_id(altDisplayString)]
         pub unsafe fn altDisplayString(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other absoluteImageURL)]
+        #[unsafe(method_family(none))]
+        #[method_id(absoluteImageURL)]
         pub unsafe fn absoluteImageURL(&self) -> Retained<NSURL>;
 
         #[deprecated]
@@ -303,7 +318,8 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLInputElement {
         #[deprecated]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -318,7 +334,8 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLInputElement {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

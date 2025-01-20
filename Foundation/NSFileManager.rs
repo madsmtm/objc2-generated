@@ -165,11 +165,13 @@ unsafe impl NSObjectProtocol for NSFileManager {}
 
 extern_methods!(
     unsafe impl NSFileManager {
-        #[method_id(@__method_family Other defaultManager)]
+        #[unsafe(method_family(none))]
+        #[method_id(defaultManager)]
         pub unsafe fn defaultManager() -> Retained<NSFileManager>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString", feature = "NSURL"))]
-        #[method_id(@__method_family Other mountedVolumeURLsIncludingResourceValuesForKeys:options:)]
+        #[unsafe(method_family(none))]
+        #[method_id(mountedVolumeURLsIncludingResourceValuesForKeys:options:)]
         pub unsafe fn mountedVolumeURLsIncludingResourceValuesForKeys_options(
             &self,
             property_keys: Option<&NSArray<NSURLResourceKey>>,
@@ -191,7 +193,8 @@ extern_methods!(
             feature = "NSString",
             feature = "NSURL"
         ))]
-        #[method_id(@__method_family Other contentsOfDirectoryAtURL:includingPropertiesForKeys:options:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(contentsOfDirectoryAtURL:includingPropertiesForKeys:options:error:_)]
         pub unsafe fn contentsOfDirectoryAtURL_includingPropertiesForKeys_options_error(
             &self,
             url: &NSURL,
@@ -200,7 +203,8 @@ extern_methods!(
         ) -> Result<Retained<NSArray<NSURL>>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSPathUtilities", feature = "NSURL"))]
-        #[method_id(@__method_family Other URLsForDirectory:inDomains:)]
+        #[unsafe(method_family(none))]
+        #[method_id(URLsForDirectory:inDomains:)]
         pub unsafe fn URLsForDirectory_inDomains(
             &self,
             directory: NSSearchPathDirectory,
@@ -208,7 +212,8 @@ extern_methods!(
         ) -> Retained<NSArray<NSURL>>;
 
         #[cfg(all(feature = "NSError", feature = "NSPathUtilities", feature = "NSURL"))]
-        #[method_id(@__method_family Other URLForDirectory:inDomain:appropriateForURL:create:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(URLForDirectory:inDomain:appropriateForURL:create:error:_)]
         pub unsafe fn URLForDirectory_inDomain_appropriateForURL_create_error(
             &self,
             directory: NSSearchPathDirectory,
@@ -258,7 +263,8 @@ extern_methods!(
             dest_url: &NSURL,
         ) -> Result<(), Retained<NSError>>;
 
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSFileManagerDelegate>>>;
@@ -288,28 +294,32 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSError", feature = "NSString"))]
-        #[method_id(@__method_family Other contentsOfDirectoryAtPath:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(contentsOfDirectoryAtPath:error:_)]
         pub unsafe fn contentsOfDirectoryAtPath_error(
             &self,
             path: &NSString,
         ) -> Result<Retained<NSArray<NSString>>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSError", feature = "NSString"))]
-        #[method_id(@__method_family Other subpathsOfDirectoryAtPath:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(subpathsOfDirectoryAtPath:error:_)]
         pub unsafe fn subpathsOfDirectoryAtPath_error(
             &self,
             path: &NSString,
         ) -> Result<Retained<NSArray<NSString>>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSError", feature = "NSString"))]
-        #[method_id(@__method_family Other attributesOfItemAtPath:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(attributesOfItemAtPath:error:_)]
         pub unsafe fn attributesOfItemAtPath_error(
             &self,
             path: &NSString,
         ) -> Result<Retained<NSDictionary<NSFileAttributeKey, AnyObject>>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSError", feature = "NSString"))]
-        #[method_id(@__method_family Other attributesOfFileSystemForPath:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(attributesOfFileSystemForPath:error:_)]
         pub unsafe fn attributesOfFileSystemForPath_error(
             &self,
             path: &NSString,
@@ -324,7 +334,8 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSString"))]
-        #[method_id(@__method_family Other destinationOfSymbolicLinkAtPath:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(destinationOfSymbolicLinkAtPath:error:_)]
         pub unsafe fn destinationOfSymbolicLinkAtPath_error(
             &self,
             path: &NSString,
@@ -399,7 +410,8 @@ extern_methods!(
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[deprecated = "Use -attributesOfItemAtPath:error: instead"]
-        #[method_id(@__method_family Other fileAttributesAtPath:traverseLink:)]
+        #[unsafe(method_family(none))]
+        #[method_id(fileAttributesAtPath:traverseLink:)]
         pub unsafe fn fileAttributesAtPath_traverseLink(
             &self,
             path: &NSString,
@@ -417,12 +429,14 @@ extern_methods!(
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[deprecated = "Use -contentsOfDirectoryAtPath:error: instead"]
-        #[method_id(@__method_family Other directoryContentsAtPath:)]
+        #[unsafe(method_family(none))]
+        #[method_id(directoryContentsAtPath:)]
         pub unsafe fn directoryContentsAtPath(&self, path: &NSString) -> Option<Retained<NSArray>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[deprecated = "Use -attributesOfFileSystemForPath:error: instead"]
-        #[method_id(@__method_family Other fileSystemAttributesAtPath:)]
+        #[unsafe(method_family(none))]
+        #[method_id(fileSystemAttributesAtPath:)]
         pub unsafe fn fileSystemAttributesAtPath(
             &self,
             path: &NSString,
@@ -430,7 +444,8 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use -destinationOfSymbolicLinkAtPath:error:"]
-        #[method_id(@__method_family Other pathContentOfSymbolicLinkAtPath:)]
+        #[unsafe(method_family(none))]
+        #[method_id(pathContentOfSymbolicLinkAtPath:)]
         pub unsafe fn pathContentOfSymbolicLinkAtPath(
             &self,
             path: &NSString,
@@ -494,7 +509,8 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__method_family Other currentDirectoryPath)]
+        #[unsafe(method_family(none))]
+        #[method_id(currentDirectoryPath)]
         pub unsafe fn currentDirectoryPath(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
@@ -538,18 +554,21 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__method_family Other displayNameAtPath:)]
+        #[unsafe(method_family(none))]
+        #[method_id(displayNameAtPath:)]
         pub unsafe fn displayNameAtPath(&self, path: &NSString) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[method_id(@__method_family Other componentsToDisplayForPath:)]
+        #[unsafe(method_family(none))]
+        #[method_id(componentsToDisplayForPath:)]
         pub unsafe fn componentsToDisplayForPath(
             &self,
             path: &NSString,
         ) -> Option<Retained<NSArray<NSString>>>;
 
         #[cfg(all(feature = "NSEnumerator", feature = "NSString"))]
-        #[method_id(@__method_family Other enumeratorAtPath:)]
+        #[unsafe(method_family(none))]
+        #[method_id(enumeratorAtPath:)]
         pub unsafe fn enumeratorAtPath(
             &self,
             path: &NSString,
@@ -563,7 +582,8 @@ extern_methods!(
             feature = "NSURL",
             feature = "block2"
         ))]
-        #[method_id(@__method_family Other enumeratorAtURL:includingPropertiesForKeys:options:errorHandler:)]
+        #[unsafe(method_family(none))]
+        #[method_id(enumeratorAtURL:includingPropertiesForKeys:options:errorHandler:)]
         pub unsafe fn enumeratorAtURL_includingPropertiesForKeys_options_errorHandler(
             &self,
             url: &NSURL,
@@ -573,12 +593,14 @@ extern_methods!(
         ) -> Option<Retained<NSDirectoryEnumerator<NSURL>>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[method_id(@__method_family Other subpathsAtPath:)]
+        #[unsafe(method_family(none))]
+        #[method_id(subpathsAtPath:)]
         pub unsafe fn subpathsAtPath(&self, path: &NSString)
             -> Option<Retained<NSArray<NSString>>>;
 
         #[cfg(all(feature = "NSData", feature = "NSString"))]
-        #[method_id(@__method_family Other contentsAtPath:)]
+        #[unsafe(method_family(none))]
+        #[method_id(contentsAtPath:)]
         pub unsafe fn contentsAtPath(&self, path: &NSString) -> Option<Retained<NSData>>;
 
         #[cfg(all(feature = "NSData", feature = "NSDictionary", feature = "NSString"))]
@@ -595,7 +617,8 @@ extern_methods!(
         pub unsafe fn fileSystemRepresentationWithPath(&self, path: &NSString) -> NonNull<c_char>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__method_family Other stringWithFileSystemRepresentation:length:)]
+        #[unsafe(method_family(none))]
+        #[method_id(stringWithFileSystemRepresentation:length:)]
         pub unsafe fn stringWithFileSystemRepresentation_length(
             &self,
             str: NonNull<c_char>,
@@ -641,14 +664,16 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "NSString", feature = "NSURL"))]
-        #[method_id(@__method_family Other URLForUbiquityContainerIdentifier:)]
+        #[unsafe(method_family(none))]
+        #[method_id(URLForUbiquityContainerIdentifier:)]
         pub unsafe fn URLForUbiquityContainerIdentifier(
             &self,
             container_identifier: Option<&NSString>,
         ) -> Option<Retained<NSURL>>;
 
         #[cfg(all(feature = "NSDate", feature = "NSError", feature = "NSURL"))]
-        #[method_id(@__method_family Other URLForPublishingUbiquitousItemAtURL:expirationDate:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(URLForPublishingUbiquitousItemAtURL:expirationDate:error:_)]
         pub unsafe fn URLForPublishingUbiquitousItemAtURL_expirationDate_error(
             &self,
             url: &NSURL,
@@ -656,7 +681,8 @@ extern_methods!(
         ) -> Result<Retained<NSURL>, Retained<NSError>>;
 
         #[cfg(feature = "NSObject")]
-        #[method_id(@__method_family Other ubiquityIdentityToken)]
+        #[unsafe(method_family(none))]
+        #[method_id(ubiquityIdentityToken)]
         pub unsafe fn ubiquityIdentityToken(
             &self,
         ) -> Option<Retained<AnyObject /* NSObjectProtocol+ NSCopying+ NSCoding */>>;
@@ -681,7 +707,8 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSString", feature = "NSURL"))]
-        #[method_id(@__method_family Other containerURLForSecurityApplicationGroupIdentifier:)]
+        #[unsafe(method_family(none))]
+        #[method_id(containerURLForSecurityApplicationGroupIdentifier:)]
         pub unsafe fn containerURLForSecurityApplicationGroupIdentifier(
             &self,
             group_identifier: &NSString,
@@ -692,10 +719,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSFileManager {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -704,15 +733,18 @@ extern_methods!(
     /// NSUserInformation
     unsafe impl NSFileManager {
         #[cfg(feature = "NSURL")]
-        #[method_id(@__method_family Other homeDirectoryForCurrentUser)]
+        #[unsafe(method_family(none))]
+        #[method_id(homeDirectoryForCurrentUser)]
         pub unsafe fn homeDirectoryForCurrentUser(&self) -> Retained<NSURL>;
 
         #[cfg(feature = "NSURL")]
-        #[method_id(@__method_family Other temporaryDirectory)]
+        #[unsafe(method_family(none))]
+        #[method_id(temporaryDirectory)]
         pub unsafe fn temporaryDirectory(&self) -> Retained<NSURL>;
 
         #[cfg(all(feature = "NSString", feature = "NSURL"))]
-        #[method_id(@__method_family Other homeDirectoryForUser:)]
+        #[unsafe(method_family(none))]
+        #[method_id(homeDirectoryForUser:)]
         pub unsafe fn homeDirectoryForUser(&self, user_name: &NSString) -> Option<Retained<NSURL>>;
     }
 );
@@ -904,13 +936,15 @@ extern_methods!(
     #[cfg(feature = "NSEnumerator")]
     unsafe impl<ObjectType: Message> NSDirectoryEnumerator<ObjectType> {
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        #[method_id(@__method_family Other fileAttributes)]
+        #[unsafe(method_family(none))]
+        #[method_id(fileAttributes)]
         pub unsafe fn fileAttributes(
             &self,
         ) -> Option<Retained<NSDictionary<NSFileAttributeKey, AnyObject>>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        #[method_id(@__method_family Other directoryAttributes)]
+        #[unsafe(method_family(none))]
+        #[method_id(directoryAttributes)]
         pub unsafe fn directoryAttributes(
             &self,
         ) -> Option<Retained<NSDictionary<NSFileAttributeKey, AnyObject>>>;
@@ -933,10 +967,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSEnumerator")]
     unsafe impl<ObjectType: Message> NSDirectoryEnumerator<ObjectType> {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -960,7 +996,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__method_family Other name)]
+        #[unsafe(method_family(none))]
+        #[method_id(name)]
         pub unsafe fn name(&self) -> Retained<NSFileProviderServiceName>;
     }
 );
@@ -968,10 +1005,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSFileProviderService {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -1200,22 +1239,26 @@ extern_methods!(
         pub unsafe fn fileSize(&self) -> c_ulonglong;
 
         #[cfg(feature = "NSDate")]
-        #[method_id(@__method_family Other fileModificationDate)]
+        #[unsafe(method_family(none))]
+        #[method_id(fileModificationDate)]
         pub unsafe fn fileModificationDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__method_family Other fileType)]
+        #[unsafe(method_family(none))]
+        #[method_id(fileType)]
         pub unsafe fn fileType(&self) -> Option<Retained<NSString>>;
 
         #[method(filePosixPermissions)]
         pub unsafe fn filePosixPermissions(&self) -> NSUInteger;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__method_family Other fileOwnerAccountName)]
+        #[unsafe(method_family(none))]
+        #[method_id(fileOwnerAccountName)]
         pub unsafe fn fileOwnerAccountName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__method_family Other fileGroupOwnerAccountName)]
+        #[unsafe(method_family(none))]
+        #[method_id(fileGroupOwnerAccountName)]
         pub unsafe fn fileGroupOwnerAccountName(&self) -> Option<Retained<NSString>>;
 
         #[method(fileSystemNumber)]
@@ -1240,15 +1283,18 @@ extern_methods!(
         pub unsafe fn fileIsAppendOnly(&self) -> bool;
 
         #[cfg(feature = "NSDate")]
-        #[method_id(@__method_family Other fileCreationDate)]
+        #[unsafe(method_family(none))]
+        #[method_id(fileCreationDate)]
         pub unsafe fn fileCreationDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSValue")]
-        #[method_id(@__method_family Other fileOwnerAccountID)]
+        #[unsafe(method_family(none))]
+        #[method_id(fileOwnerAccountID)]
         pub unsafe fn fileOwnerAccountID(&self) -> Option<Retained<NSNumber>>;
 
         #[cfg(feature = "NSValue")]
-        #[method_id(@__method_family Other fileGroupOwnerAccountID)]
+        #[unsafe(method_family(none))]
+        #[method_id(fileGroupOwnerAccountID)]
         pub unsafe fn fileGroupOwnerAccountID(&self) -> Option<Retained<NSNumber>>;
     }
 );

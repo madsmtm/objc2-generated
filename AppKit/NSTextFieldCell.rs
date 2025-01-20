@@ -73,21 +73,25 @@ unsafe impl NSUserInterfaceItemIdentification for NSTextFieldCell {}
 extern_methods!(
     #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     unsafe impl NSTextFieldCell {
-        #[method_id(@__method_family Init initTextCell:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initTextCell:)]
         pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
-        #[method_id(@__method_family Init initImageCell:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initImageCell:)]
         pub unsafe fn initImageCell(
             this: Allocated<Self>,
             image: Option<&NSImage>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSColor")]
-        #[method_id(@__method_family Other backgroundColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(backgroundColor)]
         pub unsafe fn backgroundColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColor")]
@@ -103,7 +107,8 @@ extern_methods!(
         pub unsafe fn setDrawsBackground(&self, draws_background: bool);
 
         #[cfg(feature = "NSColor")]
-        #[method_id(@__method_family Other textColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(textColor)]
         pub unsafe fn textColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColor")]
@@ -112,7 +117,8 @@ extern_methods!(
         pub unsafe fn setTextColor(&self, text_color: Option<&NSColor>);
 
         #[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
-        #[method_id(@__method_family Other setUpFieldEditorAttributes:)]
+        #[unsafe(method_family(none))]
+        #[method_id(setUpFieldEditorAttributes:)]
         pub unsafe fn setUpFieldEditorAttributes(&self, text_obj: &NSText) -> Retained<NSText>;
 
         #[method(bezelStyle)]
@@ -122,14 +128,16 @@ extern_methods!(
         #[method(setBezelStyle:)]
         pub unsafe fn setBezelStyle(&self, bezel_style: NSTextFieldBezelStyle);
 
-        #[method_id(@__method_family Other placeholderString)]
+        #[unsafe(method_family(none))]
+        #[method_id(placeholderString)]
         pub unsafe fn placeholderString(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`placeholderString`][Self::placeholderString].
         #[method(setPlaceholderString:)]
         pub unsafe fn setPlaceholderString(&self, placeholder_string: Option<&NSString>);
 
-        #[method_id(@__method_family Other placeholderAttributedString)]
+        #[unsafe(method_family(none))]
+        #[method_id(placeholderAttributedString)]
         pub unsafe fn placeholderAttributedString(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Setter for [`placeholderAttributedString`][Self::placeholderAttributedString].
@@ -142,7 +150,8 @@ extern_methods!(
         #[method(setWantsNotificationForMarkedText:)]
         pub unsafe fn setWantsNotificationForMarkedText(&self, flag: bool);
 
-        #[method_id(@__method_family Other allowedInputSourceLocales)]
+        #[unsafe(method_family(none))]
+        #[method_id(allowedInputSourceLocales)]
         pub unsafe fn allowedInputSourceLocales(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`allowedInputSourceLocales`][Self::allowedInputSourceLocales].
@@ -158,7 +167,8 @@ extern_methods!(
     /// Methods declared on superclass `NSCell`
     #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     unsafe impl NSTextFieldCell {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -167,7 +177,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     unsafe impl NSTextFieldCell {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

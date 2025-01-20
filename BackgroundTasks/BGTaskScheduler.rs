@@ -90,14 +90,17 @@ unsafe impl NSObjectProtocol for BGTaskScheduler {}
 
 extern_methods!(
     unsafe impl BGTaskScheduler {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// The shared background task scheduler instance.
-        #[method_id(@__method_family Other sharedScheduler)]
+        #[unsafe(method_family(none))]
+        #[method_id(sharedScheduler)]
         pub unsafe fn sharedScheduler() -> Retained<BGTaskScheduler>;
 
         #[cfg(feature = "BGTaskRequest")]

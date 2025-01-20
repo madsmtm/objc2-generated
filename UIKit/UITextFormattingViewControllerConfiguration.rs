@@ -32,14 +32,16 @@ extern_methods!(
     unsafe impl UITextFormattingViewControllerConfiguration {
         #[cfg(feature = "UITextFormattingViewControllerComponent")]
         /// Component groups displayed by text formatting view.
-        #[method_id(@__method_family Other groups)]
+        #[unsafe(method_family(none))]
+        #[method_id(groups)]
         pub unsafe fn groups(
             &self,
         ) -> Retained<NSArray<UITextFormattingViewControllerComponentGroup>>;
 
         #[cfg(feature = "UITextFormattingViewControllerFormattingStyle")]
         /// Configurations of formatting styles available in text formatting view.
-        #[method_id(@__method_family Other formattingStyles)]
+        #[unsafe(method_family(none))]
+        #[method_id(formattingStyles)]
         pub unsafe fn formattingStyles(
             &self,
         ) -> Option<Retained<NSArray<UITextFormattingViewControllerFormattingStyle>>>;
@@ -54,7 +56,8 @@ extern_methods!(
 
         #[cfg(feature = "UIFontPickerViewControllerConfiguration")]
         /// Configuration object that will be used to customize `UIFontPickerViewController` if presented by `UITextFormattingViewController`.
-        #[method_id(@__method_family Other fontPickerConfiguration)]
+        #[unsafe(method_family(none))]
+        #[method_id(fontPickerConfiguration)]
         pub unsafe fn fontPickerConfiguration(
             &self,
             mtm: MainThreadMarker,
@@ -69,13 +72,15 @@ extern_methods!(
         );
 
         /// Creates a default configuration with most common text formatting options.
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "UITextFormattingViewControllerComponent")]
         /// Creates a configuration object with provided component groups.
         /// - Parameter groups: Component groups displayed in text formatting view.
-        #[method_id(@__method_family Init initWithGroups:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithGroups:)]
         pub unsafe fn initWithGroups(
             this: Allocated<Self>,
             groups: &NSArray<UITextFormattingViewControllerComponentGroup>,
@@ -86,7 +91,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITextFormattingViewControllerConfiguration {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

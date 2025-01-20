@@ -16,7 +16,8 @@ extern_protocol!(
             feature = "UIResponder",
             feature = "UIViewController"
         ))]
-        #[method_id(@__method_family Other activityViewControllerPlaceholderItem:)]
+        #[unsafe(method_family(none))]
+        #[method_id(activityViewControllerPlaceholderItem:)]
         unsafe fn activityViewControllerPlaceholderItem(
             &self,
             activity_view_controller: &UIActivityViewController,
@@ -28,7 +29,8 @@ extern_protocol!(
             feature = "UIResponder",
             feature = "UIViewController"
         ))]
-        #[method_id(@__method_family Other activityViewController:itemForActivityType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(activityViewController:itemForActivityType:)]
         unsafe fn activityViewController_itemForActivityType(
             &self,
             activity_view_controller: &UIActivityViewController,
@@ -42,7 +44,8 @@ extern_protocol!(
             feature = "UIViewController"
         ))]
         #[optional]
-        #[method_id(@__method_family Other activityViewController:subjectForActivityType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(activityViewController:subjectForActivityType:)]
         unsafe fn activityViewController_subjectForActivityType(
             &self,
             activity_view_controller: &UIActivityViewController,
@@ -56,7 +59,8 @@ extern_protocol!(
             feature = "UIViewController"
         ))]
         #[optional]
-        #[method_id(@__method_family Other activityViewController:dataTypeIdentifierForActivityType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(activityViewController:dataTypeIdentifierForActivityType:)]
         unsafe fn activityViewController_dataTypeIdentifierForActivityType(
             &self,
             activity_view_controller: &UIActivityViewController,
@@ -72,7 +76,8 @@ extern_protocol!(
             feature = "objc2-core-foundation"
         ))]
         #[optional]
-        #[method_id(@__method_family Other activityViewController:thumbnailImageForActivityType:suggestedSize:)]
+        #[unsafe(method_family(none))]
+        #[method_id(activityViewController:thumbnailImageForActivityType:suggestedSize:)]
         unsafe fn activityViewController_thumbnailImageForActivityType_suggestedSize(
             &self,
             activity_view_controller: &UIActivityViewController,
@@ -95,23 +100,28 @@ unsafe impl UIActivityItemSource for UIActivityItemProvider {}
 
 extern_methods!(
     unsafe impl UIActivityItemProvider {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithPlaceholderItem:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithPlaceholderItem:)]
         pub unsafe fn initWithPlaceholderItem(
             this: Allocated<Self>,
             placeholder_item: &AnyObject,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Other placeholderItem)]
+        #[unsafe(method_family(none))]
+        #[method_id(placeholderItem)]
         pub unsafe fn placeholderItem(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "UIActivity")]
-        #[method_id(@__method_family Other activityType)]
+        #[unsafe(method_family(none))]
+        #[method_id(activityType)]
         pub unsafe fn activityType(&self) -> Option<Retained<UIActivityType>>;
 
-        #[method_id(@__method_family Other item)]
+        #[unsafe(method_family(none))]
+        #[method_id(item)]
         pub unsafe fn item(&self) -> Retained<AnyObject>;
     }
 );
@@ -119,7 +129,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIActivityItemProvider {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -28,15 +28,18 @@ unsafe impl NSSecureCoding for GKLeaderboardSet {}
 extern_methods!(
     unsafe impl GKLeaderboardSet {
         /// Localized set title.
-        #[method_id(@__method_family Other title)]
+        #[unsafe(method_family(none))]
+        #[method_id(title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// set when leaderboardSets have been designated a game group; set when loadLeaderboardSetsWithCompletionHandler has been called for leaderboards that support game groups
-        #[method_id(@__method_family Other groupIdentifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(groupIdentifier)]
         pub unsafe fn groupIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// leaderboard set.
-        #[method_id(@__method_family Other identifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(identifier)]
         pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`identifier`][Self::identifier].
@@ -72,10 +75,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKLeaderboardSet {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

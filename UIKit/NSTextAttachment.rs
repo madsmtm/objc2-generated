@@ -21,7 +21,8 @@ extern_protocol!(
             feature = "UIImage",
             feature = "objc2-core-foundation"
         ))]
-        #[method_id(@__method_family Other imageForBounds:attributes:location:textContainer:)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageForBounds:attributes:location:textContainer:)]
         unsafe fn imageForBounds_attributes_location_textContainer(
             &self,
             bounds: CGRect,
@@ -51,7 +52,8 @@ extern_protocol!(
             feature = "UIResponder",
             feature = "UIView"
         ))]
-        #[method_id(@__method_family Other viewProviderForParentView:location:textContainer:)]
+        #[unsafe(method_family(none))]
+        #[method_id(viewProviderForParentView:location:textContainer:)]
         unsafe fn viewProviderForParentView_location_textContainer(
             &self,
             parent_view: Option<&UIView>,
@@ -79,7 +81,8 @@ unsafe impl NSTextAttachmentLayout for NSTextAttachment {}
 extern_methods!(
     unsafe impl NSTextAttachment {
         /// ************************** Initialization ***************************
-        #[method_id(@__method_family Init initWithData:ofType:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithData:ofType:)]
         pub unsafe fn initWithData_ofType(
             this: Allocated<Self>,
             content_data: Option<&NSData>,
@@ -87,14 +90,16 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// ************************** Content properties ***************************
-        #[method_id(@__method_family Other contents)]
+        #[unsafe(method_family(none))]
+        #[method_id(contents)]
         pub unsafe fn contents(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`contents`][Self::contents].
         #[method(setContents:)]
         pub unsafe fn setContents(&self, contents: Option<&NSData>);
 
-        #[method_id(@__method_family Other fileType)]
+        #[unsafe(method_family(none))]
+        #[method_id(fileType)]
         pub unsafe fn fileType(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`fileType`][Self::fileType].
@@ -103,7 +108,8 @@ extern_methods!(
 
         #[cfg(feature = "UIImage")]
         /// ************************** Rendering/layout properties ***************************
-        #[method_id(@__method_family Other image)]
+        #[unsafe(method_family(none))]
+        #[method_id(image)]
         pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
@@ -121,7 +127,8 @@ extern_methods!(
         pub unsafe fn setBounds(&self, bounds: CGRect);
 
         /// ************************** Non-image contents properties ***************************
-        #[method_id(@__method_family Other fileWrapper)]
+        #[unsafe(method_family(none))]
+        #[method_id(fileWrapper)]
         pub unsafe fn fileWrapper(&self) -> Option<Retained<NSFileWrapper>>;
 
         /// Setter for [`fileWrapper`][Self::fileWrapper].
@@ -163,10 +170,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextAttachment {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -174,12 +183,14 @@ extern_methods!(
 extern_category!(
     /// Category on [`NSAttributedString`].
     pub unsafe trait NSAttributedStringAttachmentConveniences {
-        #[method_id(@__method_family Other attributedStringWithAttachment:)]
+        #[unsafe(method_family(none))]
+        #[method_id(attributedStringWithAttachment:)]
         unsafe fn attributedStringWithAttachment(
             attachment: &NSTextAttachment,
         ) -> Retained<NSAttributedString>;
 
-        #[method_id(@__method_family Other attributedStringWithAttachment:attributes:)]
+        #[unsafe(method_family(none))]
+        #[method_id(attributedStringWithAttachment:attributes:)]
         unsafe fn attributedStringWithAttachment_attributes(
             attachment: &NSTextAttachment,
             attributes: &NSDictionary<NSAttributedStringKey, AnyObject>,
@@ -206,7 +217,8 @@ extern_methods!(
             feature = "UIResponder",
             feature = "UIView"
         ))]
-        #[method_id(@__method_family Init initWithTextAttachment:parentView:textLayoutManager:location:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithTextAttachment:parentView:textLayoutManager:location:)]
         pub unsafe fn initWithTextAttachment_parentView_textLayoutManager_location(
             this: Allocated<Self>,
             text_attachment: &NSTextAttachment,
@@ -215,25 +227,31 @@ extern_methods!(
             location: &ProtocolObject<dyn NSTextLocation>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Other textAttachment)]
+        #[unsafe(method_family(none))]
+        #[method_id(textAttachment)]
         pub unsafe fn textAttachment(&self) -> Option<Retained<NSTextAttachment>>;
 
         #[cfg(feature = "NSTextLayoutManager")]
-        #[method_id(@__method_family Other textLayoutManager)]
+        #[unsafe(method_family(none))]
+        #[method_id(textLayoutManager)]
         pub unsafe fn textLayoutManager(&self) -> Option<Retained<NSTextLayoutManager>>;
 
         #[cfg(feature = "NSTextRange")]
-        #[method_id(@__method_family Other location)]
+        #[unsafe(method_family(none))]
+        #[method_id(location)]
         pub unsafe fn location(&self) -> Retained<ProtocolObject<dyn NSTextLocation>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[method_id(@__method_family Other view)]
+        #[unsafe(method_family(none))]
+        #[method_id(view)]
         pub unsafe fn view(&self, mtm: MainThreadMarker) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
@@ -279,7 +297,8 @@ extern_protocol!(
             feature = "UIImage",
             feature = "objc2-core-foundation"
         ))]
-        #[method_id(@__method_family Other imageForBounds:textContainer:characterIndex:)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageForBounds:textContainer:characterIndex:)]
         unsafe fn imageForBounds_textContainer_characterIndex(
             &self,
             image_bounds: CGRect,

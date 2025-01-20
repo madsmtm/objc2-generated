@@ -35,7 +35,8 @@ extern_methods!(
         ///
         /// Returns: A new arithmetic layer
         #[deprecated]
-        #[method_id(@__method_family Other layerWithOperation:)]
+        #[unsafe(method_family(none))]
+        #[method_id(layerWithOperation:)]
         pub unsafe fn layerWithOperation(operation: MLCArithmeticOperation) -> Retained<Self>;
     }
 );
@@ -45,11 +46,13 @@ extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCArithmeticLayer {
         #[deprecated]
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

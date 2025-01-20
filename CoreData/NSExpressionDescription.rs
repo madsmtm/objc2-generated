@@ -32,7 +32,8 @@ unsafe impl NSObjectProtocol for NSExpressionDescription {}
 extern_methods!(
     #[cfg(feature = "NSPropertyDescription")]
     unsafe impl NSExpressionDescription {
-        #[method_id(@__method_family Other expression)]
+        #[unsafe(method_family(none))]
+        #[method_id(expression)]
         pub unsafe fn expression(&self) -> Option<Retained<NSExpression>>;
 
         /// Setter for [`expression`][Self::expression].
@@ -54,10 +55,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSPropertyDescription")]
     unsafe impl NSExpressionDescription {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

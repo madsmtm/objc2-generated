@@ -18,16 +18,19 @@ unsafe impl NSObjectProtocol for AVAssetResourceLoader {}
 
 extern_methods!(
     unsafe impl AVAssetResourceLoader {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// The receiver's delegate.
         ///
         /// The value of this property is an object conforming to the AVAssetResourceLoaderDelegate protocol. The delegate is set using the setDelegate:queue: method. The delegate is held using a zeroing-weak reference, so this property will have a value of nil after a delegate that was previously set has been deallocated.
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVAssetResourceLoaderDelegate>>>;
@@ -141,10 +144,12 @@ unsafe impl NSObjectProtocol for AVAssetResourceLoadingRequestor {}
 
 extern_methods!(
     unsafe impl AVAssetResourceLoadingRequestor {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Whether the requestor provides expired session reports (see AVContentKeySession)
@@ -164,14 +169,17 @@ unsafe impl NSObjectProtocol for AVAssetResourceLoadingRequest {}
 
 extern_methods!(
     unsafe impl AVAssetResourceLoadingRequest {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// An NSURLRequest for the requested resource.
-        #[method_id(@__method_family Other request)]
+        #[unsafe(method_family(none))]
+        #[method_id(request)]
         pub unsafe fn request(&self) -> Retained<NSURLRequest>;
 
         /// Indicates whether loading of the resource has been finished.
@@ -187,17 +195,20 @@ extern_methods!(
         pub unsafe fn isCancelled(&self) -> bool;
 
         /// An instance of AVAssetResourceLoadingContentInformationRequest that you must populate with information about the resource before responding to any AVAssetResourceLoadingDataRequests for the resource.  The value of this property will be nil if no such information is being requested.
-        #[method_id(@__method_family Other contentInformationRequest)]
+        #[unsafe(method_family(none))]
+        #[method_id(contentInformationRequest)]
         pub unsafe fn contentInformationRequest(
             &self,
         ) -> Option<Retained<AVAssetResourceLoadingContentInformationRequest>>;
 
         /// An instance of AVAssetResourceLoadingDataRequest that indicates the range of resource data that's being requested.  If an AVAssetResourceLoadingContentInformationRequest has been provided, you must set its properties appropriately before responding to any AVAssetResourceLoadingDataRequests.  The value of this property will be nil if no data is being requested.
-        #[method_id(@__method_family Other dataRequest)]
+        #[unsafe(method_family(none))]
+        #[method_id(dataRequest)]
         pub unsafe fn dataRequest(&self) -> Option<Retained<AVAssetResourceLoadingDataRequest>>;
 
         /// Set the value of this property to an instance of NSURLResponse indicating a response to the loading request. If no response is needed, leave the value of this property set to nil.
-        #[method_id(@__method_family Other response)]
+        #[unsafe(method_family(none))]
+        #[method_id(response)]
         pub unsafe fn response(&self) -> Option<Retained<NSURLResponse>>;
 
         /// Setter for [`response`][Self::response].
@@ -207,7 +218,8 @@ extern_methods!(
         /// Set the value of this property to an instance of NSURLRequest indicating a redirection of the loading request to another URL. If no redirection is needed, leave the value of this property set to nil.
         ///
         /// AVAssetResourceLoader supports redirects to HTTP URLs only. Redirects to other URLs will result in a loading failure.
-        #[method_id(@__method_family Other redirect)]
+        #[unsafe(method_family(none))]
+        #[method_id(redirect)]
         pub unsafe fn redirect(&self) -> Option<Retained<NSURLRequest>>;
 
         /// Setter for [`redirect`][Self::redirect].
@@ -215,7 +227,8 @@ extern_methods!(
         pub unsafe fn setRedirect(&self, redirect: Option<&NSURLRequest>);
 
         /// The AVAssetResourceLoadingRequestor that made this request
-        #[method_id(@__method_family Other requestor)]
+        #[unsafe(method_family(none))]
+        #[method_id(requestor)]
         pub unsafe fn requestor(&self) -> Retained<AVAssetResourceLoadingRequestor>;
 
         /// Causes the receiver to treat the processing of the request as complete.
@@ -253,10 +266,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `AVAssetResourceLoadingRequest`
     unsafe impl AVAssetResourceRenewalRequest {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -272,16 +287,19 @@ unsafe impl NSObjectProtocol for AVAssetResourceLoadingContentInformationRequest
 
 extern_methods!(
     unsafe impl AVAssetResourceLoadingContentInformationRequest {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// A UTI that indicates the type of data contained by the requested resource.
         ///
         /// Before you finish loading an AVAssetResourceLoadingRequest, if its contentInformationRequest is not nil, you should set the value of this property to a UTI indicating the type of data contained by the requested resource.
-        #[method_id(@__method_family Other contentType)]
+        #[unsafe(method_family(none))]
+        #[method_id(contentType)]
         pub unsafe fn contentType(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`contentType`][Self::contentType].
@@ -291,7 +309,8 @@ extern_methods!(
         /// An array showing the types of data which will be accepted as a valid response for the requested resource.
         ///
         /// If an AVAssetResourceLoadingRequest's contentInformationRequest is not nil, ensure that the value assigned to the contentType property is in this array. Otherwise, calling -finishLoading on the associated request will result in an exception.
-        #[method_id(@__method_family Other allowedContentTypes)]
+        #[unsafe(method_family(none))]
+        #[method_id(allowedContentTypes)]
         pub unsafe fn allowedContentTypes(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Indicates the length of the requested resource, in bytes.
@@ -317,7 +336,8 @@ extern_methods!(
         /// For resources that expire, the date at which a new AVAssetResourceLoadingRequest will be issued for a renewal of this resource, if the media system still requires it.
         ///
         /// Before you finish loading an AVAssetResourceLoadingRequest, if the resource is prone to expiry you should set the value of this property to the date at which a renewal should be triggered. This value should be set sufficiently early enough to allow an AVAssetResourceRenewalRequest, delivered to your delegate via -resourceLoader:shouldWaitForRenewalOfRequestedResource:, to finish before the actual expiry time. Otherwise media playback may fail.
-        #[method_id(@__method_family Other renewalDate)]
+        #[unsafe(method_family(none))]
+        #[method_id(renewalDate)]
         pub unsafe fn renewalDate(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`renewalDate`][Self::renewalDate].
@@ -350,10 +370,12 @@ unsafe impl NSObjectProtocol for AVAssetResourceLoadingDataRequest {}
 
 extern_methods!(
     unsafe impl AVAssetResourceLoadingDataRequest {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// The position within the resource of the first byte requested.
@@ -434,7 +456,8 @@ extern_methods!(
         ///
         /// Returns: The key request data that must be transmitted to the key vendor to obtain the content key.
         #[deprecated = "Use -[AVContentKeyRequest makeStreamingContentKeyRequestDataForApp:contentIdentifier:options:completionHandler:] instead"]
-        #[method_id(@__method_family Other streamingContentKeyRequestDataForApp:contentIdentifier:options:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(streamingContentKeyRequestDataForApp:contentIdentifier:options:error:_)]
         pub unsafe fn streamingContentKeyRequestDataForApp_contentIdentifier_options_error(
             &self,
             app_identifier: &NSData,
@@ -454,7 +477,8 @@ extern_methods!(
         ///
         /// The data returned from this method may be used to immediately satisfy an AVAssetResourceLoadingDataRequest, as well as any subsequent requests for the same key url. The value of AVAssetResourceLoadingContentInformationRequest.contentType must be set to AVStreamingKeyDeliveryPersistentContentKeyType when responding with data created with this method.
         #[deprecated = "Use -[AVPersistableContentKeyRequest persistableContentKeyFromKeyVendorResponse:options:error:] instead"]
-        #[method_id(@__method_family Other persistentContentKeyFromKeyVendorResponse:options:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(persistentContentKeyFromKeyVendorResponse:options:error:_)]
         pub unsafe fn persistentContentKeyFromKeyVendorResponse_options_error(
             &self,
             key_vendor_response: &NSData,

@@ -17,10 +17,12 @@ unsafe impl NSObjectProtocol for ASAuthorizationPublicKeyCredentialPRFAssertionO
 
 extern_methods!(
     unsafe impl ASAuthorizationPublicKeyCredentialPRFAssertionOutput {
-        #[method_id(@__method_family Other first)]
+        #[unsafe(method_family(none))]
+        #[method_id(first)]
         pub unsafe fn first(&self) -> Retained<NSData>;
 
-        #[method_id(@__method_family Other second)]
+        #[unsafe(method_family(none))]
+        #[method_id(second)]
         pub unsafe fn second(&self) -> Option<Retained<NSData>>;
     }
 );
@@ -28,10 +30,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASAuthorizationPublicKeyCredentialPRFAssertionOutput {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -110,37 +110,45 @@ extern_methods!(
         );
 
         /// Request URL with all components.
-        #[method_id(@__method_family Other url)]
+        #[unsafe(method_family(none))]
+        #[method_id(url)]
         pub unsafe fn url(&self) -> Retained<NSURL>;
 
         /// Operation to be executed by the extension.
-        #[method_id(@__method_family Other requestedOperation)]
+        #[unsafe(method_family(none))]
+        #[method_id(requestedOperation)]
         pub unsafe fn requestedOperation(
             &self,
         ) -> Retained<ASAuthorizationProviderAuthorizationOperation>;
 
         /// Request HTTP headers.
-        #[method_id(@__method_family Other httpHeaders)]
+        #[unsafe(method_family(none))]
+        #[method_id(httpHeaders)]
         pub unsafe fn httpHeaders(&self) -> Retained<NSDictionary<NSString, NSString>>;
 
         /// Request body.
-        #[method_id(@__method_family Other httpBody)]
+        #[unsafe(method_family(none))]
+        #[method_id(httpBody)]
         pub unsafe fn httpBody(&self) -> Retained<NSData>;
 
         /// Realm.
-        #[method_id(@__method_family Other realm)]
+        #[unsafe(method_family(none))]
+        #[method_id(realm)]
         pub unsafe fn realm(&self) -> Retained<NSString>;
 
         /// Extension data from extension configuration provided by MDM stored as a property-list.
-        #[method_id(@__method_family Other extensionData)]
+        #[unsafe(method_family(none))]
+        #[method_id(extensionData)]
         pub unsafe fn extensionData(&self) -> Retained<NSDictionary>;
 
         /// Identification of the calling application.
-        #[method_id(@__method_family Other callerBundleIdentifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(callerBundleIdentifier)]
         pub unsafe fn callerBundleIdentifier(&self) -> Retained<NSString>;
 
         /// Authorization options.
-        #[method_id(@__method_family Other authorizationOptions)]
+        #[unsafe(method_family(none))]
+        #[method_id(authorizationOptions)]
         pub unsafe fn authorizationOptions(&self) -> Retained<NSDictionary>;
 
         /// Indicates whether the calling application is managed.
@@ -148,15 +156,18 @@ extern_methods!(
         pub unsafe fn isCallerManaged(&self) -> bool;
 
         /// Team identifier of the calling application.
-        #[method_id(@__method_family Other callerTeamIdentifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(callerTeamIdentifier)]
         pub unsafe fn callerTeamIdentifier(&self) -> Retained<NSString>;
 
         /// Localized display name of the calling application.
-        #[method_id(@__method_family Other localizedCallerDisplayName)]
+        #[unsafe(method_family(none))]
+        #[method_id(localizedCallerDisplayName)]
         pub unsafe fn localizedCallerDisplayName(&self) -> Retained<NSString>;
 
         /// Audit token of the calling application.
-        #[method_id(@__method_family Other callerAuditToken)]
+        #[unsafe(method_family(none))]
+        #[method_id(callerAuditToken)]
         pub unsafe fn callerAuditToken(&self) -> Retained<NSData>;
 
         /// Indicates whether the authorization user interface is enabled.
@@ -171,7 +182,8 @@ extern_methods!(
 
         #[cfg(feature = "ASAuthorizationProviderExtensionLoginManager")]
         /// The login manager to interface with the Platform SSO configuration.
-        #[method_id(@__method_family Other loginManager)]
+        #[unsafe(method_family(none))]
+        #[method_id(loginManager)]
         pub unsafe fn loginManager(
             &self,
         ) -> Option<Retained<ASAuthorizationProviderExtensionLoginManager>>;
@@ -181,10 +193,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASAuthorizationProviderExtensionAuthorizationRequest {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

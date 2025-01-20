@@ -23,10 +23,12 @@ unsafe impl NSObjectProtocol for UIUpdateLink {}
 
 extern_methods!(
     unsafe impl UIUpdateLink {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(
@@ -34,13 +36,15 @@ extern_methods!(
             feature = "UIScene",
             feature = "UIWindowScene"
         ))]
-        #[method_id(@__method_family Other updateLinkForWindowScene:)]
+        #[unsafe(method_family(none))]
+        #[method_id(updateLinkForWindowScene:)]
         pub unsafe fn updateLinkForWindowScene(
             window_scene: &UIWindowScene,
         ) -> Retained<UIUpdateLink>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[method_id(@__method_family Other updateLinkForView:)]
+        #[unsafe(method_family(none))]
+        #[method_id(updateLinkForView:)]
         pub unsafe fn updateLinkForView(view: &UIView) -> Retained<UIUpdateLink>;
 
         #[cfg(all(
@@ -129,7 +133,8 @@ extern_methods!(
         #[cfg(feature = "UIUpdateInfo")]
         /// During UI update, returns `UIUpdateInfo` instance describing current UI update state. Returns `nil` outside of UI
         /// update.
-        #[method_id(@__method_family Other currentUpdateInfo)]
+        #[unsafe(method_family(none))]
+        #[method_id(currentUpdateInfo)]
         pub unsafe fn currentUpdateInfo(&self) -> Option<Retained<UIUpdateInfo>>;
     }
 );
@@ -157,7 +162,8 @@ extern_methods!(
             feature = "block2"
         ))]
         /// Adds action to `UIUpdateActionPhase.beforeCADisplayLinkDispatch` phase.
-        #[method_id(@__method_family Other updateLinkForWindowScene:actionHandler:)]
+        #[unsafe(method_family(none))]
+        #[method_id(updateLinkForWindowScene:actionHandler:)]
         pub unsafe fn updateLinkForWindowScene_actionHandler(
             window_scene: &UIWindowScene,
             handler: &block2::Block<dyn Fn(NonNull<UIUpdateLink>, NonNull<UIUpdateInfo>)>,
@@ -169,7 +175,8 @@ extern_methods!(
             feature = "UIWindowScene"
         ))]
         /// Adds action to `UIUpdateActionPhase.beforeCADisplayLinkDispatch` phase.
-        #[method_id(@__method_family Other updateLinkForWindowScene:actionTarget:selector:)]
+        #[unsafe(method_family(none))]
+        #[method_id(updateLinkForWindowScene:actionTarget:selector:)]
         pub unsafe fn updateLinkForWindowScene_actionTarget_selector(
             window_scene: &UIWindowScene,
             target: &AnyObject,
@@ -183,7 +190,8 @@ extern_methods!(
             feature = "block2"
         ))]
         /// Adds action to `UIUpdateActionPhase.beforeCADisplayLinkDispatch` phase.
-        #[method_id(@__method_family Other updateLinkForView:actionHandler:)]
+        #[unsafe(method_family(none))]
+        #[method_id(updateLinkForView:actionHandler:)]
         pub unsafe fn updateLinkForView_actionHandler(
             view: &UIView,
             handler: &block2::Block<dyn Fn(NonNull<UIUpdateLink>, NonNull<UIUpdateInfo>)>,
@@ -191,7 +199,8 @@ extern_methods!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// Adds action to `UIUpdateActionPhase.beforeCADisplayLinkDispatch` phase.
-        #[method_id(@__method_family Other updateLinkForView:actionTarget:selector:)]
+        #[unsafe(method_family(none))]
+        #[method_id(updateLinkForView:actionTarget:selector:)]
         pub unsafe fn updateLinkForView_actionTarget_selector(
             view: &UIView,
             target: &AnyObject,

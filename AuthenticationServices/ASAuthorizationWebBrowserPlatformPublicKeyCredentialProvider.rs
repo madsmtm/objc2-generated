@@ -14,7 +14,8 @@ extern_protocol!(
             feature = "ASAuthorizationRequest",
             feature = "ASPublicKeyCredentialClientData"
         ))]
-        #[method_id(@__method_family Other createCredentialRegistrationRequestWithClientData:name:userID:)]
+        #[unsafe(method_family(none))]
+        #[method_id(createCredentialRegistrationRequestWithClientData:name:userID:)]
         unsafe fn createCredentialRegistrationRequestWithClientData_name_userID(
             &self,
             client_data: &ASPublicKeyCredentialClientData,
@@ -27,7 +28,8 @@ extern_protocol!(
             feature = "ASAuthorizationRequest",
             feature = "ASPublicKeyCredentialClientData"
         ))]
-        #[method_id(@__method_family Other createCredentialRegistrationRequestWithClientData:name:userID:requestStyle:)]
+        #[unsafe(method_family(none))]
+        #[method_id(createCredentialRegistrationRequestWithClientData:name:userID:requestStyle:)]
         unsafe fn createCredentialRegistrationRequestWithClientData_name_userID_requestStyle(
             &self,
             client_data: &ASPublicKeyCredentialClientData,
@@ -41,7 +43,8 @@ extern_protocol!(
             feature = "ASAuthorizationRequest",
             feature = "ASPublicKeyCredentialClientData"
         ))]
-        #[method_id(@__method_family Other createCredentialAssertionRequestWithClientData:)]
+        #[unsafe(method_family(none))]
+        #[method_id(createCredentialAssertionRequestWithClientData:)]
         unsafe fn createCredentialAssertionRequestWithClientData(
             &self,
             client_data: &ASPublicKeyCredentialClientData,

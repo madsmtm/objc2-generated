@@ -41,12 +41,14 @@ extern_methods!(
         /// /name>
         /// </tt>
         /// .
-        #[method_id(@__method_family Init initWithName:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithName:)]
         pub unsafe fn initWithName(this: Allocated<Self>, name: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         /// Returns an element whose full QName is specified.
-        #[method_id(@__method_family Init initWithName:URI:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithName:URI:)]
         pub unsafe fn initWithName_URI(
             this: Allocated<Self>,
             name: &NSString,
@@ -62,7 +64,8 @@ extern_methods!(
         /// /name>
         /// </tt>
         /// .
-        #[method_id(@__method_family Init initWithName:stringValue:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithName:stringValue:)]
         pub unsafe fn initWithName_stringValue(
             this: Allocated<Self>,
             name: &NSString,
@@ -75,14 +78,16 @@ extern_methods!(
         /// error
         /// </tt>
         /// .
-        #[method_id(@__method_family Init initWithXMLString:error:_)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithXMLString:error:_)]
         pub unsafe fn initWithXMLString_error(
             this: Allocated<Self>,
             string: &NSString,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "NSXMLNodeOptions")]
-        #[method_id(@__method_family Init initWithKind:options:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithKind:options:)]
         pub unsafe fn initWithKind_options(
             this: Allocated<Self>,
             kind: NSXMLNodeKind,
@@ -91,12 +96,14 @@ extern_methods!(
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         /// Returns all of the child elements that match this name.
-        #[method_id(@__method_family Other elementsForName:)]
+        #[unsafe(method_family(none))]
+        #[method_id(elementsForName:)]
         pub unsafe fn elementsForName(&self, name: &NSString) -> Retained<NSArray<NSXMLElement>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         /// Returns all of the child elements that match this localname URI pair.
-        #[method_id(@__method_family Other elementsForLocalName:URI:)]
+        #[unsafe(method_family(none))]
+        #[method_id(elementsForLocalName:URI:)]
         pub unsafe fn elementsForLocalName_URI(
             &self,
             local_name: &NSString,
@@ -114,7 +121,8 @@ extern_methods!(
 
         #[cfg(feature = "NSArray")]
         /// Set the attributes. In the case of duplicate names, the first attribute with the name is used.
-        #[method_id(@__method_family Other attributes)]
+        #[unsafe(method_family(none))]
+        #[method_id(attributes)]
         pub unsafe fn attributes(&self) -> Option<Retained<NSArray<NSXMLNode>>>;
 
         #[cfg(feature = "NSArray")]
@@ -132,12 +140,14 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         /// Returns an attribute matching this name.
-        #[method_id(@__method_family Other attributeForName:)]
+        #[unsafe(method_family(none))]
+        #[method_id(attributeForName:)]
         pub unsafe fn attributeForName(&self, name: &NSString) -> Option<Retained<NSXMLNode>>;
 
         #[cfg(feature = "NSString")]
         /// Returns an attribute matching this localname URI pair.
-        #[method_id(@__method_family Other attributeForLocalName:URI:)]
+        #[unsafe(method_family(none))]
+        #[method_id(attributeForLocalName:URI:)]
         pub unsafe fn attributeForLocalName_URI(
             &self,
             local_name: &NSString,
@@ -155,7 +165,8 @@ extern_methods!(
 
         #[cfg(feature = "NSArray")]
         /// Set the namespaces. In the case of duplicate names, the first namespace with the name is used.
-        #[method_id(@__method_family Other namespaces)]
+        #[unsafe(method_family(none))]
+        #[method_id(namespaces)]
         pub unsafe fn namespaces(&self) -> Option<Retained<NSArray<NSXMLNode>>>;
 
         #[cfg(feature = "NSArray")]
@@ -165,12 +176,14 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         /// Returns the namespace matching this prefix.
-        #[method_id(@__method_family Other namespaceForPrefix:)]
+        #[unsafe(method_family(none))]
+        #[method_id(namespaceForPrefix:)]
         pub unsafe fn namespaceForPrefix(&self, name: &NSString) -> Option<Retained<NSXMLNode>>;
 
         #[cfg(feature = "NSString")]
         /// Returns the namespace who matches the prefix of the name given. Looks in the entire namespace chain.
-        #[method_id(@__method_family Other resolveNamespaceForName:)]
+        #[unsafe(method_family(none))]
+        #[method_id(resolveNamespaceForName:)]
         pub unsafe fn resolveNamespaceForName(
             &self,
             name: &NSString,
@@ -178,7 +191,8 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         /// Returns the URI of this prefix. Looks in the entire namespace chain.
-        #[method_id(@__method_family Other resolvePrefixForNamespaceURI:)]
+        #[unsafe(method_family(none))]
+        #[method_id(resolvePrefixForNamespaceURI:)]
         pub unsafe fn resolvePrefixForNamespaceURI(
             &self,
             namespace_uri: &NSString,
@@ -224,7 +238,8 @@ extern_methods!(
     /// Methods declared on superclass `NSXMLNode`
     #[cfg(feature = "NSXMLNode")]
     unsafe impl NSXMLElement {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Invokes
@@ -234,7 +249,8 @@ extern_methods!(
         /// ```
         ///
         /// with options set to NSXMLNodeOptionsNone
-        #[method_id(@__method_family Init initWithKind:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithKind:)]
         pub unsafe fn initWithKind(this: Allocated<Self>, kind: NSXMLNodeKind) -> Retained<Self>;
     }
 );
@@ -243,7 +259,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSXMLNode")]
     unsafe impl NSXMLElement {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

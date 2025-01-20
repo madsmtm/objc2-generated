@@ -73,29 +73,36 @@ unsafe impl NSObjectProtocol for UIDevice {}
 
 extern_methods!(
     unsafe impl UIDevice {
-        #[method_id(@__method_family Other currentDevice)]
+        #[unsafe(method_family(none))]
+        #[method_id(currentDevice)]
         pub fn currentDevice(mtm: MainThreadMarker) -> Retained<UIDevice>;
 
-        #[method_id(@__method_family Other name)]
+        #[unsafe(method_family(none))]
+        #[method_id(name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other model)]
+        #[unsafe(method_family(none))]
+        #[method_id(model)]
         pub unsafe fn model(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other localizedModel)]
+        #[unsafe(method_family(none))]
+        #[method_id(localizedModel)]
         pub unsafe fn localizedModel(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other systemName)]
+        #[unsafe(method_family(none))]
+        #[method_id(systemName)]
         pub unsafe fn systemName(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other systemVersion)]
+        #[unsafe(method_family(none))]
+        #[method_id(systemVersion)]
         pub unsafe fn systemVersion(&self) -> Retained<NSString>;
 
         #[cfg(feature = "UIOrientation")]
         #[method(orientation)]
         pub unsafe fn orientation(&self) -> UIDeviceOrientation;
 
-        #[method_id(@__method_family Other identifierForVendor)]
+        #[unsafe(method_family(none))]
+        #[method_id(identifierForVendor)]
         pub unsafe fn identifierForVendor(&self) -> Option<Retained<NSUUID>>;
 
         #[method(isGeneratingDeviceOrientationNotifications)]
@@ -144,10 +151,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIDevice {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

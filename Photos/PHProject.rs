@@ -34,7 +34,8 @@ unsafe impl NSObjectProtocol for PHProject {}
 extern_methods!(
     #[cfg(all(feature = "PHCollection", feature = "PHObject"))]
     unsafe impl PHProject {
-        #[method_id(@__method_family Other projectExtensionData)]
+        #[unsafe(method_family(none))]
+        #[method_id(projectExtensionData)]
         pub unsafe fn projectExtensionData(&self) -> Retained<NSData>;
 
         /// Property to determine if a project preview was previously set.
@@ -48,10 +49,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "PHCollection", feature = "PHObject"))]
     unsafe impl PHProject {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -81,7 +81,8 @@ extern_methods!(
     #[cfg(feature = "NSFormatter")]
     unsafe impl NSISO8601DateFormatter {
         #[cfg(feature = "NSTimeZone")]
-        #[method_id(@__method_family Other timeZone)]
+        #[unsafe(method_family(none))]
+        #[method_id(timeZone)]
         pub unsafe fn timeZone(&self) -> Retained<NSTimeZone>;
 
         #[cfg(feature = "NSTimeZone")]
@@ -96,19 +97,23 @@ extern_methods!(
         #[method(setFormatOptions:)]
         pub unsafe fn setFormatOptions(&self, format_options: NSISO8601DateFormatOptions);
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "NSDate", feature = "NSString"))]
-        #[method_id(@__method_family Other stringFromDate:)]
+        #[unsafe(method_family(none))]
+        #[method_id(stringFromDate:)]
         pub unsafe fn stringFromDate(&self, date: &NSDate) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSDate", feature = "NSString"))]
-        #[method_id(@__method_family Other dateFromString:)]
+        #[unsafe(method_family(none))]
+        #[method_id(dateFromString:)]
         pub unsafe fn dateFromString(&self, string: &NSString) -> Option<Retained<NSDate>>;
 
         #[cfg(all(feature = "NSDate", feature = "NSString", feature = "NSTimeZone"))]
-        #[method_id(@__method_family Other stringFromDate:timeZone:formatOptions:)]
+        #[unsafe(method_family(none))]
+        #[method_id(stringFromDate:timeZone:formatOptions:)]
         pub unsafe fn stringFromDate_timeZone_formatOptions(
             date: &NSDate,
             time_zone: &NSTimeZone,
@@ -121,7 +126,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSFormatter")]
     unsafe impl NSISO8601DateFormatter {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

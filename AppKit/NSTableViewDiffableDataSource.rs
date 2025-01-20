@@ -82,21 +82,25 @@ extern_methods!(
             feature = "NSView",
             feature = "block2"
         ))]
-        #[method_id(@__method_family Init initWithTableView:cellProvider:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithTableView:cellProvider:)]
         pub unsafe fn initWithTableView_cellProvider(
             this: Allocated<Self>,
             table_view: &NSTableView,
             cell_provider: NSTableViewDiffableDataSourceCellProvider,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSDiffableDataSource")]
-        #[method_id(@__method_family Other snapshot)]
+        #[unsafe(method_family(none))]
+        #[method_id(snapshot)]
         pub unsafe fn snapshot(
             &self,
         ) -> Retained<NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>>;
@@ -118,7 +122,8 @@ extern_methods!(
             completion: Option<&block2::Block<dyn Fn()>>,
         );
 
-        #[method_id(@__method_family Other itemIdentifierForRow:)]
+        #[unsafe(method_family(none))]
+        #[method_id(itemIdentifierForRow:)]
         pub unsafe fn itemIdentifierForRow(
             &self,
             row: NSInteger,
@@ -127,7 +132,8 @@ extern_methods!(
         #[method(rowForItemIdentifier:)]
         pub unsafe fn rowForItemIdentifier(&self, identifier: &ItemIdentifierType) -> NSInteger;
 
-        #[method_id(@__method_family Other sectionIdentifierForRow:)]
+        #[unsafe(method_family(none))]
+        #[method_id(sectionIdentifierForRow:)]
         pub unsafe fn sectionIdentifierForRow(
             &self,
             row: NSInteger,

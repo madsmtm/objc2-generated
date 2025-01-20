@@ -43,7 +43,8 @@ extern_methods!(
         ///
         /// Returns: A new scatter layer
         #[deprecated]
-        #[method_id(@__method_family Other layerWithDimension:reductionType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(layerWithDimension:reductionType:)]
         pub unsafe fn layerWithDimension_reductionType(
             dimension: NSUInteger,
             reduction_type: MLCReductionType,
@@ -56,11 +57,13 @@ extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCScatterLayer {
         #[deprecated]
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

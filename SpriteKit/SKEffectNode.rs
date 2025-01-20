@@ -62,7 +62,8 @@ extern_methods!(
         /// A CIFilter to be used as an effect
         ///
         /// Any CIFilter that requires only a single "inputImage" and produces an "outputImage" is allowed. The filter is applied to all children of the SKEffectNode. If the filter is nil, the children of this node is flattened before being drawn as long as the SKEffectNode is enabled.
-        #[method_id(@__method_family Other filter)]
+        #[unsafe(method_family(none))]
+        #[method_id(filter)]
         pub unsafe fn filter(&self) -> Option<Retained<CIFilter>>;
 
         #[cfg(feature = "objc2-core-image")]
@@ -108,7 +109,8 @@ extern_methods!(
         pub unsafe fn setBlendMode(&self, blend_mode: SKBlendMode);
 
         #[cfg(feature = "SKShader")]
-        #[method_id(@__method_family Other shader)]
+        #[unsafe(method_family(none))]
+        #[method_id(shader)]
         pub unsafe fn shader(&self) -> Option<Retained<SKShader>>;
 
         #[cfg(feature = "SKShader")]
@@ -119,7 +121,8 @@ extern_methods!(
         #[cfg(feature = "SKAttribute")]
         /// Optional dictionary of SKAttributeValues
         /// Attributes can be used with custom SKShaders.
-        #[method_id(@__method_family Other attributeValues)]
+        #[unsafe(method_family(none))]
+        #[method_id(attributeValues)]
         pub unsafe fn attributeValues(&self) -> Retained<NSDictionary<NSString, SKAttributeValue>>;
 
         #[cfg(feature = "SKAttribute")]
@@ -131,7 +134,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "SKAttribute")]
-        #[method_id(@__method_family Other valueForAttributeNamed:)]
+        #[unsafe(method_family(none))]
+        #[method_id(valueForAttributeNamed:)]
         pub unsafe fn valueForAttributeNamed(
             &self,
             key: &NSString,
@@ -148,26 +152,31 @@ extern_methods!(
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl SKEffectNode {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Support coding and decoding via NSKeyedArchiver.
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__method_family Other node)]
+        #[unsafe(method_family(none))]
+        #[method_id(node)]
         pub unsafe fn node(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__method_family Other nodeWithFileNamed:)]
+        #[unsafe(method_family(none))]
+        #[method_id(nodeWithFileNamed:)]
         pub unsafe fn nodeWithFileNamed(
             filename: &NSString,
             mtm: MainThreadMarker,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__method_family Other nodeWithFileNamed:securelyWithClasses:andError:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(nodeWithFileNamed:securelyWithClasses:andError:_)]
         pub unsafe fn nodeWithFileNamed_securelyWithClasses_andError(
             filename: &NSString,
             classes: &NSSet<AnyClass>,
@@ -181,7 +190,8 @@ extern_methods!(
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl SKEffectNode {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

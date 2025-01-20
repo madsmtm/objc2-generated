@@ -44,7 +44,8 @@ unsafe impl NSObjectProtocol for MTLVertexAttribute {}
 
 extern_methods!(
     unsafe impl MTLVertexAttribute {
-        #[method_id(@__method_family Other name)]
+        #[unsafe(method_family(none))]
+        #[method_id(name)]
         pub fn name(&self) -> Retained<NSString>;
 
         #[method(attributeIndex)]
@@ -68,10 +69,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLVertexAttribute {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -87,7 +90,8 @@ unsafe impl NSObjectProtocol for MTLAttribute {}
 
 extern_methods!(
     unsafe impl MTLAttribute {
-        #[method_id(@__method_family Other name)]
+        #[unsafe(method_family(none))]
+        #[method_id(name)]
         pub fn name(&self) -> Retained<NSString>;
 
         #[method(attributeIndex)]
@@ -111,10 +115,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLAttribute {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -175,7 +181,8 @@ unsafe impl NSObjectProtocol for MTLFunctionConstant {}
 
 extern_methods!(
     unsafe impl MTLFunctionConstant {
-        #[method_id(@__method_family Other name)]
+        #[unsafe(method_family(none))]
+        #[method_id(name)]
         pub fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "MTLArgument")]
@@ -193,10 +200,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLFunctionConstant {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -209,7 +218,8 @@ extern_protocol!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunction?language=objc)
     pub unsafe trait MTLFunction: NSObjectProtocol {
         /// A string to help identify this object.
-        #[method_id(@__method_family Other label)]
+        #[unsafe(method_family(none))]
+        #[method_id(label)]
         fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
@@ -218,7 +228,8 @@ extern_protocol!(
 
         #[cfg(feature = "MTLDevice")]
         /// The device this resource was created against.  This resource can only be used with this device.
-        #[method_id(@__method_family Other device)]
+        #[unsafe(method_family(none))]
+        #[method_id(device)]
         fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         /// The overall kind of entry point: compute, vertex, or fragment.
@@ -234,26 +245,31 @@ extern_protocol!(
         #[method(patchControlPointCount)]
         fn patchControlPointCount(&self) -> NSInteger;
 
-        #[method_id(@__method_family Other vertexAttributes)]
+        #[unsafe(method_family(none))]
+        #[method_id(vertexAttributes)]
         fn vertexAttributes(&self) -> Option<Retained<NSArray<MTLVertexAttribute>>>;
 
         /// Returns an array describing the attributes
-        #[method_id(@__method_family Other stageInputAttributes)]
+        #[unsafe(method_family(none))]
+        #[method_id(stageInputAttributes)]
         fn stageInputAttributes(&self) -> Option<Retained<NSArray<MTLAttribute>>>;
 
         /// The name of the function in the shading language.
-        #[method_id(@__method_family Other name)]
+        #[unsafe(method_family(none))]
+        #[method_id(name)]
         fn name(&self) -> Retained<NSString>;
 
         /// A dictionary containing information about all function contents, keyed by the constant names.
-        #[method_id(@__method_family Other functionConstantsDictionary)]
+        #[unsafe(method_family(none))]
+        #[method_id(functionConstantsDictionary)]
         fn functionConstantsDictionary(
             &self,
         ) -> Retained<NSDictionary<NSString, MTLFunctionConstant>>;
 
         #[cfg(feature = "MTLArgumentEncoder")]
         /// Creates an argument encoder which will encode arguments matching the layout of the argument buffer at the given bind point index.
-        #[method_id(@__method_family New newArgumentEncoderWithBufferIndex:)]
+        #[unsafe(method_family(new))]
+        #[method_id(newArgumentEncoderWithBufferIndex:)]
         unsafe fn newArgumentEncoderWithBufferIndex(
             &self,
             buffer_index: NSUInteger,
@@ -262,7 +278,8 @@ extern_protocol!(
         #[cfg(all(feature = "MTLArgument", feature = "MTLArgumentEncoder"))]
         /// Creates an argument encoder which will encode arguments matching the layout of the argument buffer at the given bind point index.
         #[deprecated = "Use MTLDevice's newArgumentEncoderWithBufferBinding: instead"]
-        #[method_id(@__method_family New newArgumentEncoderWithBufferIndex:reflection:)]
+        #[unsafe(method_family(new))]
+        #[method_id(newArgumentEncoderWithBufferIndex:reflection:)]
         unsafe fn newArgumentEncoderWithBufferIndex_reflection(
             &self,
             buffer_index: NSUInteger,
@@ -464,7 +481,8 @@ extern_methods!(
         /// List of preprocessor macros to consider to when compiling this program. Specified as key value pairs, using a NSDictionary. The keys must be NSString objects and values can be either NSString or NSNumber objects.
         ///
         /// The default value is nil.
-        #[method_id(@__method_family Other preprocessorMacros)]
+        #[unsafe(method_family(none))]
+        #[method_id(preprocessorMacros)]
         pub fn preprocessorMacros(&self) -> Option<Retained<NSDictionary<NSString, NSObject>>>;
 
         /// Setter for [`preprocessorMacros`][Self::preprocessorMacros].
@@ -544,7 +562,8 @@ extern_methods!(
         /// The others are appropriate when the MTLDynamicLibrary is installed as part of a bundle or app, where the absolute path is not known.
         /// This property is ignored when the type property is not set to MTLLibraryTypeDynamic.
         /// This propery should not be null if the property type is set to MTLLibraryTypeDynamic: the compilation will fail in that scenario.
-        #[method_id(@__method_family Other installName)]
+        #[unsafe(method_family(none))]
+        #[method_id(installName)]
         pub fn installName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`installName`][Self::installName].
@@ -556,7 +575,8 @@ extern_methods!(
         /// The installName of the provided MTLDynamicLibrary is embedded into the compilation result.
         /// When a function from the resulting MTLLibrary is used (either as an MTLFunction, or as an to create a pipeline state, the embedded install names are used to automatically load the MTLDynamicLibrary instances.
         /// This property can be null if no libraries should be automatically loaded, either because the MTLLibrary has no external dependencies, or because you will use preloadedLibraries to specify the libraries to use at pipeline creation time.
-        #[method_id(@__method_family Other libraries)]
+        #[unsafe(method_family(none))]
+        #[method_id(libraries)]
         pub fn libraries(&self)
             -> Option<Retained<NSArray<ProtocolObject<dyn MTLDynamicLibrary>>>>;
 
@@ -630,10 +650,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLCompileOptions {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub fn new() -> Retained<Self>;
     }
 );
@@ -686,7 +708,8 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllibrary?language=objc)
     pub unsafe trait MTLLibrary: NSObjectProtocol {
         /// A string to help identify this object.
-        #[method_id(@__method_family Other label)]
+        #[unsafe(method_family(none))]
+        #[method_id(label)]
         fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
@@ -695,11 +718,13 @@ extern_protocol!(
 
         #[cfg(feature = "MTLDevice")]
         /// The device this resource was created against.  This resource can only be used with this device.
-        #[method_id(@__method_family Other device)]
+        #[unsafe(method_family(none))]
+        #[method_id(device)]
         fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         /// Returns a pointer to a function object, return nil if the function is not found in the library.
-        #[method_id(@__method_family New newFunctionWithName:)]
+        #[unsafe(method_family(new))]
+        #[method_id(newFunctionWithName:)]
         fn newFunctionWithName(
             &self,
             function_name: &NSString,
@@ -710,7 +735,8 @@ extern_protocol!(
         ///
         /// This method will call the compiler. Use newFunctionWithName:constantValues:completionHandler: to
         /// avoid waiting on the compiler.
-        #[method_id(@__method_family New newFunctionWithName:constantValues:error:_)]
+        #[unsafe(method_family(new))]
+        #[method_id(newFunctionWithName:constantValues:error:_)]
         fn newFunctionWithName_constantValues_error(
             &self,
             name: &NSString,
@@ -744,7 +770,8 @@ extern_protocol!(
 
         #[cfg(feature = "MTLFunctionDescriptor")]
         /// Create  a new MTLFunction object synchronously.
-        #[method_id(@__method_family New newFunctionWithDescriptor:error:_)]
+        #[unsafe(method_family(new))]
+        #[method_id(newFunctionWithDescriptor:error:_)]
         fn newFunctionWithDescriptor_error(
             &self,
             descriptor: &MTLFunctionDescriptor,
@@ -763,14 +790,16 @@ extern_protocol!(
 
         #[cfg(feature = "MTLFunctionDescriptor")]
         /// Create  a new MTLFunction object synchronously.
-        #[method_id(@__method_family New newIntersectionFunctionWithDescriptor:error:_)]
+        #[unsafe(method_family(new))]
+        #[method_id(newIntersectionFunctionWithDescriptor:error:_)]
         fn newIntersectionFunctionWithDescriptor_error(
             &self,
             descriptor: &MTLIntersectionFunctionDescriptor,
         ) -> Result<Retained<ProtocolObject<dyn MTLFunction>>, Retained<NSError>>;
 
         /// The array contains NSString objects, with the name of each function in library.
-        #[method_id(@__method_family Other functionNames)]
+        #[unsafe(method_family(none))]
+        #[method_id(functionNames)]
         fn functionNames(&self) -> Retained<NSArray<NSString>>;
 
         /// The library type provided when this MTLLibrary was created.
@@ -786,7 +815,8 @@ extern_protocol!(
         /// Always nil if the type of the library is not MTLLibraryTypeDynamic.
         ///
         /// See: MTLCompileOptions
-        #[method_id(@__method_family Other installName)]
+        #[unsafe(method_family(none))]
+        #[method_id(installName)]
         fn installName(&self) -> Option<Retained<NSString>>;
     }
 );

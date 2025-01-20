@@ -29,7 +29,8 @@ extern_methods!(
         /// - constantValue: If paddingMode is MPSGraphPaddingModeConstant, then this constant is used for samples outside the input tensor.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__method_family Other sampleGridWithSourceTensor:coordinateTensor:layout:normalizeCoordinates:relativeCoordinates:alignCorners:paddingMode:samplingMode:constantValue:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(sampleGridWithSourceTensor:coordinateTensor:layout:normalizeCoordinates:relativeCoordinates:alignCorners:paddingMode:samplingMode:constantValue:name:)]
         pub unsafe fn sampleGridWithSourceTensor_coordinateTensor_layout_normalizeCoordinates_relativeCoordinates_alignCorners_paddingMode_samplingMode_constantValue_name(
             &self,
             source: &MPSGraphTensor,
@@ -62,7 +63,8 @@ extern_methods!(
         /// - constantValue: If paddingMode is MPSGraphPaddingModeConstant, then this constant is used for samples outside the input tensor.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__method_family Other sampleGridWithSourceTensor:coordinateTensor:layout:normalizeCoordinates:relativeCoordinates:alignCorners:paddingMode:nearestRoundingMode:constantValue:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(sampleGridWithSourceTensor:coordinateTensor:layout:normalizeCoordinates:relativeCoordinates:alignCorners:paddingMode:nearestRoundingMode:constantValue:name:)]
         pub unsafe fn sampleGridWithSourceTensor_coordinateTensor_layout_normalizeCoordinates_relativeCoordinates_alignCorners_paddingMode_nearestRoundingMode_constantValue_name(
             &self,
             source: &MPSGraphTensor,

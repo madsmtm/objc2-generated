@@ -33,29 +33,36 @@ unsafe impl NSSecureCoding for NSAdaptiveImageGlyph {}
 
 extern_methods!(
     unsafe impl NSAdaptiveImageGlyph {
-        #[method_id(@__method_family Init initWithImageContent:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithImageContent:)]
         pub unsafe fn initWithImageContent(
             this: Allocated<Self>,
             image_content: &NSData,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family Other imageContent)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageContent)]
         pub unsafe fn imageContent(&self) -> Retained<NSData>;
 
-        #[method_id(@__method_family Other contentIdentifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(contentIdentifier)]
         pub unsafe fn contentIdentifier(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other contentDescription)]
+        #[unsafe(method_family(none))]
+        #[method_id(contentDescription)]
         pub unsafe fn contentDescription(&self) -> Retained<NSString>;
 
         #[cfg(feature = "objc2-uniform-type-identifiers")]
-        #[method_id(@__method_family Other contentType)]
+        #[unsafe(method_family(none))]
+        #[method_id(contentType)]
         pub unsafe fn contentType() -> Retained<UTType>;
     }
 );
@@ -63,7 +70,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSAdaptiveImageGlyph {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -71,7 +79,8 @@ extern_methods!(
 extern_category!(
     /// Category on [`NSAttributedString`].
     pub unsafe trait NSAttributedStringAdaptiveImageGlyphConveniences {
-        #[method_id(@__method_family Other attributedStringWithAdaptiveImageGlyph:attributes:)]
+        #[unsafe(method_family(none))]
+        #[method_id(attributedStringWithAdaptiveImageGlyph:attributes:)]
         unsafe fn attributedStringWithAdaptiveImageGlyph_attributes(
             adaptive_image_glyph: &NSAdaptiveImageGlyph,
             attributes: &NSDictionary<NSAttributedStringKey, AnyObject>,

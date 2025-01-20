@@ -20,14 +20,16 @@ extern_methods!(
     #[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]
     unsafe impl MKMultiPolylineRenderer {
         #[cfg(all(feature = "MKMultiPolyline", feature = "MKShape"))]
-        #[method_id(@__method_family Init initWithMultiPolyline:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithMultiPolyline:)]
         pub unsafe fn initWithMultiPolyline(
             this: Allocated<Self>,
             multi_polyline: &MKMultiPolyline,
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MKMultiPolyline", feature = "MKShape"))]
-        #[method_id(@__method_family Other multiPolyline)]
+        #[unsafe(method_family(none))]
+        #[method_id(multiPolyline)]
         pub unsafe fn multiPolyline(&self) -> Retained<MKMultiPolyline>;
     }
 );
@@ -37,7 +39,8 @@ extern_methods!(
     #[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]
     unsafe impl MKMultiPolylineRenderer {
         #[cfg(all(feature = "MKAnnotation", feature = "MKOverlay"))]
-        #[method_id(@__method_family Init initWithOverlay:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithOverlay:)]
         pub unsafe fn initWithOverlay(
             this: Allocated<Self>,
             overlay: &ProtocolObject<dyn MKOverlay>,
@@ -49,10 +52,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]
     unsafe impl MKMultiPolylineRenderer {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

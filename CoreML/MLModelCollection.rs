@@ -25,18 +25,21 @@ extern_methods!(
     unsafe impl MLModelCollection {
         /// The identifier of the model collection you want to access, as configured in the Core ML Model Deployment dashboard.
         #[deprecated = "Use Background Assets or NSURLSession instead."]
-        #[method_id(@__method_family Other identifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         #[cfg(feature = "MLModelCollectionEntry")]
         /// Information about the models downloaded in the collection, or an empty dictionary if the collection has not been downloaded.
         #[deprecated = "Use Background Assets or NSURLSession instead."]
-        #[method_id(@__method_family Other entries)]
+        #[unsafe(method_family(none))]
+        #[method_id(entries)]
         pub unsafe fn entries(&self) -> Retained<NSDictionary<NSString, MLModelCollectionEntry>>;
 
         /// The identifier for the currently downloaded deployment, corresponding to a recent deployment on the Core ML Model Deployment dashboard.
         #[deprecated = "Use Background Assets or NSURLSession instead."]
-        #[method_id(@__method_family Other deploymentID)]
+        #[unsafe(method_family(none))]
+        #[method_id(deploymentID)]
         pub unsafe fn deploymentID(&self) -> Retained<NSString>;
 
         #[cfg(feature = "block2")]
@@ -54,7 +57,8 @@ extern_methods!(
         ///
         /// Returns: NSProgress for updates during setup and download of the model collection
         #[deprecated = "Use Background Assets or NSURLSession instead."]
-        #[method_id(@__method_family Other beginAccessingModelCollectionWithIdentifier:completionHandler:)]
+        #[unsafe(method_family(none))]
+        #[method_id(beginAccessingModelCollectionWithIdentifier:completionHandler:)]
         pub unsafe fn beginAccessingModelCollectionWithIdentifier_completionHandler(
             identifier: &NSString,
             completion_handler: &block2::Block<dyn Fn(*mut MLModelCollection, *mut NSError)>,
@@ -78,11 +82,13 @@ extern_methods!(
         );
 
         #[deprecated = "Use Background Assets or NSURLSession instead."]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[deprecated = "Use Background Assets or NSURLSession instead."]
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

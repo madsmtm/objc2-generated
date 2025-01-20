@@ -95,7 +95,8 @@ unsafe impl NSSecureCoding for LPLinkMetadata {}
 extern_methods!(
     unsafe impl LPLinkMetadata {
         /// The original URL of the metadata request.
-        #[method_id(@__method_family Other originalURL)]
+        #[unsafe(method_family(none))]
+        #[method_id(originalURL)]
         pub unsafe fn originalURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`originalURL`][Self::originalURL].
@@ -109,7 +110,8 @@ extern_methods!(
         /// ``LPLinkMetadata/originalURL`` to which you sent the metadata request. This
         /// can happen if the server redirects the request, for example, when a resource
         /// has moved, or when the original URL is a domain alias.
-        #[method_id(@__method_family Other URL)]
+        #[unsafe(method_family(none))]
+        #[method_id(URL)]
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`URL`][Self::URL].
@@ -117,7 +119,8 @@ extern_methods!(
         pub unsafe fn setURL(&self, url: Option<&NSURL>);
 
         /// A representative title for the URL.
-        #[method_id(@__method_family Other title)]
+        #[unsafe(method_family(none))]
+        #[method_id(title)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`title`][Self::title].
@@ -126,7 +129,8 @@ extern_methods!(
 
         /// An object that retrieves data corresponding to a representative icon for the
         /// URL.
-        #[method_id(@__method_family Other iconProvider)]
+        #[unsafe(method_family(none))]
+        #[method_id(iconProvider)]
         pub unsafe fn iconProvider(&self) -> Option<Retained<NSItemProvider>>;
 
         /// Setter for [`iconProvider`][Self::iconProvider].
@@ -135,7 +139,8 @@ extern_methods!(
 
         /// An object that retrieves data corresponding to a representative image for
         /// the URL.
-        #[method_id(@__method_family Other imageProvider)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageProvider)]
         pub unsafe fn imageProvider(&self) -> Option<Retained<NSItemProvider>>;
 
         /// Setter for [`imageProvider`][Self::imageProvider].
@@ -148,7 +153,8 @@ extern_methods!(
         /// The item provider returns a video that
         /// <doc
         /// ://com.apple.documentation/documentation/avfoundation> can play.
-        #[method_id(@__method_family Other videoProvider)]
+        #[unsafe(method_family(none))]
+        #[method_id(videoProvider)]
         pub unsafe fn videoProvider(&self) -> Option<Retained<NSItemProvider>>;
 
         /// Setter for [`videoProvider`][Self::videoProvider].
@@ -161,7 +167,8 @@ extern_methods!(
         /// <doc
         /// ://com.apple.documentation/documentation/avfoundation> can stream,
         /// or a YouTube video URL.
-        #[method_id(@__method_family Other remoteVideoURL)]
+        #[unsafe(method_family(none))]
+        #[method_id(remoteVideoURL)]
         pub unsafe fn remoteVideoURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`remoteVideoURL`][Self::remoteVideoURL].
@@ -173,10 +180,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl LPLinkMetadata {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -77,7 +77,8 @@ extern_protocol!(
         /// Returns: Return a UIMenu describing the desired menu hierarchy. Return
         /// `nil`to present the default system menu.
         #[optional]
-        #[method_id(@__method_family Other textView:editMenuForTextInRange:suggestedActions:)]
+        #[unsafe(method_family(none))]
+        #[method_id(textView:editMenuForTextInRange:suggestedActions:)]
         unsafe fn textView_editMenuForTextInRange_suggestedActions(
             &self,
             text_view: &UITextView,
@@ -144,7 +145,8 @@ extern_protocol!(
         /// Returns: Return a UIAction to be performed when the text item is interacted with. Return
         /// `nil`to prevent the action from being performed.
         #[optional]
-        #[method_id(@__method_family Other textView:primaryActionForTextItem:defaultAction:)]
+        #[unsafe(method_family(none))]
+        #[method_id(textView:primaryActionForTextItem:defaultAction:)]
         unsafe fn textView_primaryActionForTextItem_defaultAction(
             &self,
             text_view: &UITextView,
@@ -172,7 +174,8 @@ extern_protocol!(
         /// Returns: Return a menu configuration to be presented when the text item is interacted with. Return
         /// `nil`to prevent the menu from being presented.
         #[optional]
-        #[method_id(@__method_family Other textView:menuConfigurationForTextItem:defaultMenu:)]
+        #[unsafe(method_family(none))]
+        #[method_id(textView:menuConfigurationForTextItem:defaultMenu:)]
         unsafe fn textView_menuConfigurationForTextItem_defaultMenu(
             &self,
             text_view: &UITextView,
@@ -254,7 +257,8 @@ extern_protocol!(
         ///
         /// Returns: Return an array of ranges in the attributed substring of the textView storage with the enclosing range representing portions of text to be ignored by Writing Tools when evaluating the text for proofreading, summarization, rewrites, and so forth.
         #[optional]
-        #[method_id(@__method_family Other textView:writingToolsIgnoredRangesInEnclosingRange:)]
+        #[unsafe(method_family(none))]
+        #[method_id(textView:writingToolsIgnoredRangesInEnclosingRange:)]
         unsafe fn textView_writingToolsIgnoredRangesInEnclosingRange(
             &self,
             text_view: &UITextView,
@@ -557,7 +561,8 @@ unsafe impl UITraitEnvironment for UITextView {}
 extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
     unsafe impl UITextView {
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn UITextViewDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -565,7 +570,8 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn UITextViewDelegate>>);
 
-        #[method_id(@__method_family Other text)]
+        #[unsafe(method_family(none))]
+        #[method_id(text)]
         pub unsafe fn text(&self) -> Retained<NSString>;
 
         /// Setter for [`text`][Self::text].
@@ -573,7 +579,8 @@ extern_methods!(
         pub unsafe fn setText(&self, text: Option<&NSString>);
 
         #[cfg(feature = "UIFont")]
-        #[method_id(@__method_family Other font)]
+        #[unsafe(method_family(none))]
+        #[method_id(font)]
         pub unsafe fn font(&self) -> Option<Retained<UIFont>>;
 
         #[cfg(feature = "UIFont")]
@@ -582,7 +589,8 @@ extern_methods!(
         pub unsafe fn setFont(&self, font: Option<&UIFont>);
 
         #[cfg(feature = "UIColor")]
-        #[method_id(@__method_family Other textColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(textColor)]
         pub unsafe fn textColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -636,14 +644,16 @@ extern_methods!(
         #[method(setAllowsEditingTextAttributes:)]
         pub unsafe fn setAllowsEditingTextAttributes(&self, allows_editing_text_attributes: bool);
 
-        #[method_id(@__method_family Other attributedText)]
+        #[unsafe(method_family(none))]
+        #[method_id(attributedText)]
         pub unsafe fn attributedText(&self) -> Retained<NSAttributedString>;
 
         /// Setter for [`attributedText`][Self::attributedText].
         #[method(setAttributedText:)]
         pub unsafe fn setAttributedText(&self, attributed_text: Option<&NSAttributedString>);
 
-        #[method_id(@__method_family Other typingAttributes)]
+        #[unsafe(method_family(none))]
+        #[method_id(typingAttributes)]
         pub unsafe fn typingAttributes(
             &self,
         ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
@@ -658,14 +668,16 @@ extern_methods!(
         #[method(scrollRangeToVisible:)]
         pub unsafe fn scrollRangeToVisible(&self, range: NSRange);
 
-        #[method_id(@__method_family Other inputView)]
+        #[unsafe(method_family(none))]
+        #[method_id(inputView)]
         pub unsafe fn inputView(&self) -> Option<Retained<UIView>>;
 
         /// Setter for [`inputView`][Self::inputView].
         #[method(setInputView:)]
         pub unsafe fn setInputView(&self, input_view: Option<&UIView>);
 
-        #[method_id(@__method_family Other inputAccessoryView)]
+        #[unsafe(method_family(none))]
+        #[method_id(inputAccessoryView)]
         pub unsafe fn inputAccessoryView(&self) -> Option<Retained<UIView>>;
 
         /// Setter for [`inputAccessoryView`][Self::inputAccessoryView].
@@ -680,27 +692,31 @@ extern_methods!(
         pub unsafe fn setClearsOnInsertion(&self, clears_on_insertion: bool);
 
         #[cfg(all(feature = "NSTextContainer", feature = "objc2-core-foundation"))]
-        #[method_id(@__method_family Init initWithFrame:textContainer:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithFrame:textContainer:)]
         pub unsafe fn initWithFrame_textContainer(
             this: Allocated<Self>,
             frame: CGRect,
             text_container: Option<&NSTextContainer>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Other textViewUsingTextLayoutManager:)]
+        #[unsafe(method_family(none))]
+        #[method_id(textViewUsingTextLayoutManager:)]
         pub unsafe fn textViewUsingTextLayoutManager(
             using_text_layout_manager: bool,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSTextContainer")]
-        #[method_id(@__method_family Other textContainer)]
+        #[unsafe(method_family(none))]
+        #[method_id(textContainer)]
         pub unsafe fn textContainer(&self) -> Retained<NSTextContainer>;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
@@ -713,18 +729,22 @@ extern_methods!(
         pub unsafe fn setTextContainerInset(&self, text_container_inset: UIEdgeInsets);
 
         #[cfg(feature = "NSTextLayoutManager")]
-        #[method_id(@__method_family Other textLayoutManager)]
+        #[unsafe(method_family(none))]
+        #[method_id(textLayoutManager)]
         pub unsafe fn textLayoutManager(&self) -> Option<Retained<NSTextLayoutManager>>;
 
         #[cfg(feature = "NSLayoutManager")]
-        #[method_id(@__method_family Other layoutManager)]
+        #[unsafe(method_family(none))]
+        #[method_id(layoutManager)]
         pub unsafe fn layoutManager(&self) -> Retained<NSLayoutManager>;
 
         #[cfg(feature = "NSTextStorage")]
-        #[method_id(@__method_family Other textStorage)]
+        #[unsafe(method_family(none))]
+        #[method_id(textStorage)]
         pub unsafe fn textStorage(&self) -> Retained<NSTextStorage>;
 
-        #[method_id(@__method_family Other linkTextAttributes)]
+        #[unsafe(method_family(none))]
+        #[method_id(linkTextAttributes)]
         pub unsafe fn linkTextAttributes(
             &self,
         ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
@@ -745,7 +765,8 @@ extern_methods!(
 
         #[cfg(feature = "UIFindInteraction")]
         /// If `findInteractionEnabled` is set to true, returns this text view's built-in find interaction. Otherwise, nil.
-        #[method_id(@__method_family Other findInteraction)]
+        #[unsafe(method_family(none))]
+        #[method_id(findInteraction)]
         pub unsafe fn findInteraction(&self) -> Option<Retained<UIFindInteraction>>;
 
         /// Enables this text view's built-in find interaction.
@@ -764,7 +785,8 @@ extern_methods!(
         #[method(setBorderStyle:)]
         pub unsafe fn setBorderStyle(&self, border_style: UITextViewBorderStyle);
 
-        #[method_id(@__method_family Other textHighlightAttributes)]
+        #[unsafe(method_family(none))]
+        #[method_id(textHighlightAttributes)]
         pub unsafe fn textHighlightAttributes(
             &self,
         ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
@@ -819,7 +841,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIWritingToolsCoordinator")]
-        #[method_id(@__method_family Other writingToolsCoordinator)]
+        #[unsafe(method_family(none))]
+        #[method_id(writingToolsCoordinator)]
         pub unsafe fn writingToolsCoordinator(&self) -> Retained<UIWritingToolsCoordinator>;
 
         #[cfg(feature = "UITextFormattingViewControllerConfiguration")]
@@ -828,7 +851,8 @@ extern_methods!(
         /// when its presentation is requested.
         ///
         /// It has a non-nil default value.
-        #[method_id(@__method_family Other textFormattingConfiguration)]
+        #[unsafe(method_family(none))]
+        #[method_id(textFormattingConfiguration)]
         pub unsafe fn textFormattingConfiguration(
             &self,
         ) -> Option<Retained<UITextFormattingViewControllerConfiguration>>;
@@ -848,7 +872,8 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
     unsafe impl UITextView {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Init initWithFrame:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
     }
 );
@@ -857,10 +882,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
     unsafe impl UITextView {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -921,7 +948,8 @@ extern_methods!(
     /// UIInteractionStateRestorable
     #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
     unsafe impl UITextView {
-        #[method_id(@__method_family Other interactionState)]
+        #[unsafe(method_family(none))]
+        #[method_id(interactionState)]
         pub unsafe fn interactionState(&self) -> Retained<AnyObject>;
 
         /// Setter for [`interactionState`][Self::interactionState].

@@ -106,7 +106,8 @@ extern_methods!(
     unsafe impl UIPointerAccessory {
         #[cfg(feature = "UIPointerStyle")]
         /// This accessory's shape.
-        #[method_id(@__method_family Other shape)]
+        #[unsafe(method_family(none))]
+        #[method_id(shape)]
         pub unsafe fn shape(&self) -> Retained<UIPointerShape>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -130,7 +131,8 @@ extern_methods!(
         /// Parameter `shape`: The desired accessory shape.
         ///
         /// Parameter `position`: The desired accessory position.
-        #[method_id(@__method_family Other accessoryWithShape:position:)]
+        #[unsafe(method_family(none))]
+        #[method_id(accessoryWithShape:position:)]
         pub unsafe fn accessoryWithShape_position(
             shape: &UIPointerShape,
             position: UIPointerAccessoryPosition,
@@ -138,16 +140,19 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Returns an arrow shaped accessory with the given position.
-        #[method_id(@__method_family Other arrowAccessoryWithPosition:)]
+        #[unsafe(method_family(none))]
+        #[method_id(arrowAccessoryWithPosition:)]
         pub unsafe fn arrowAccessoryWithPosition(
             position: UIPointerAccessoryPosition,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

@@ -33,16 +33,19 @@ unsafe impl NSSecureCoding for HKWorkoutEffortRelationship {}
 extern_methods!(
     unsafe impl HKWorkoutEffortRelationship {
         #[cfg(all(feature = "HKObject", feature = "HKSample", feature = "HKWorkout"))]
-        #[method_id(@__method_family Other workout)]
+        #[unsafe(method_family(none))]
+        #[method_id(workout)]
         pub unsafe fn workout(&self) -> Retained<HKWorkout>;
 
         #[cfg(feature = "HKWorkoutActivity")]
-        #[method_id(@__method_family Other activity)]
+        #[unsafe(method_family(none))]
+        #[method_id(activity)]
         pub unsafe fn activity(&self) -> Option<Retained<HKWorkoutActivity>>;
 
         #[cfg(all(feature = "HKObject", feature = "HKSample"))]
         /// The samples related to the workout but not any sub-activities
-        #[method_id(@__method_family Other samples)]
+        #[unsafe(method_family(none))]
+        #[method_id(samples)]
         pub unsafe fn samples(&self) -> Option<Retained<NSArray<HKSample>>>;
     }
 );
@@ -50,10 +53,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKWorkoutEffortRelationship {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -119,7 +124,8 @@ extern_methods!(
         /// Parameter `options`: The options for the query, one of types from `HKWorkoutEffortRelationshipQueryOptions`
         ///
         /// Parameter `resultsHandler`: The block to invoke with related sample results
-        #[method_id(@__method_family Init initWithPredicate:anchor:options:resultsHandler:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithPredicate:anchor:options:resultsHandler:)]
         pub unsafe fn initWithPredicate_anchor_options_resultsHandler(
             this: Allocated<Self>,
             predicate: Option<&NSPredicate>,
@@ -141,7 +147,8 @@ extern_methods!(
     /// Methods declared on superclass `HKQuery`
     #[cfg(feature = "HKQuery")]
     unsafe impl HKWorkoutEffortRelationshipQuery {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -150,7 +157,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "HKQuery")]
     unsafe impl HKWorkoutEffortRelationshipQuery {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

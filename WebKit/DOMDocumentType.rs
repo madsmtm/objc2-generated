@@ -58,29 +58,35 @@ extern_methods!(
     ))]
     unsafe impl DOMDocumentType {
         #[deprecated]
-        #[method_id(@__method_family Other name)]
+        #[unsafe(method_family(none))]
+        #[method_id(name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "DOMNamedNodeMap")]
         #[deprecated]
-        #[method_id(@__method_family Other entities)]
+        #[unsafe(method_family(none))]
+        #[method_id(entities)]
         pub unsafe fn entities(&self) -> Option<Retained<DOMNamedNodeMap>>;
 
         #[cfg(feature = "DOMNamedNodeMap")]
         #[deprecated]
-        #[method_id(@__method_family Other notations)]
+        #[unsafe(method_family(none))]
+        #[method_id(notations)]
         pub unsafe fn notations(&self) -> Option<Retained<DOMNamedNodeMap>>;
 
         #[deprecated]
-        #[method_id(@__method_family Other publicId)]
+        #[unsafe(method_family(none))]
+        #[method_id(publicId)]
         pub unsafe fn publicId(&self) -> Retained<NSString>;
 
         #[deprecated]
-        #[method_id(@__method_family Other systemId)]
+        #[unsafe(method_family(none))]
+        #[method_id(systemId)]
         pub unsafe fn systemId(&self) -> Retained<NSString>;
 
         #[deprecated]
-        #[method_id(@__method_family Other internalSubset)]
+        #[unsafe(method_family(none))]
+        #[method_id(internalSubset)]
         pub unsafe fn internalSubset(&self) -> Retained<NSString>;
     }
 );
@@ -94,7 +100,8 @@ extern_methods!(
     ))]
     unsafe impl DOMDocumentType {
         #[deprecated]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -107,7 +114,8 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMDocumentType {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

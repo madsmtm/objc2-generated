@@ -26,7 +26,8 @@ unsafe impl NSObjectProtocol for NSPDFInfo {}
 
 extern_methods!(
     unsafe impl NSPDFInfo {
-        #[method_id(@__method_family Other URL)]
+        #[unsafe(method_family(none))]
+        #[method_id(URL)]
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`URL`][Self::URL].
@@ -40,7 +41,8 @@ extern_methods!(
         #[method(setFileExtensionHidden:)]
         pub unsafe fn setFileExtensionHidden(&self, file_extension_hidden: bool);
 
-        #[method_id(@__method_family Other tagNames)]
+        #[unsafe(method_family(none))]
+        #[method_id(tagNames)]
         pub unsafe fn tagNames(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`tagNames`][Self::tagNames].
@@ -64,7 +66,8 @@ extern_methods!(
         pub unsafe fn setPaperSize(&self, paper_size: NSSize);
 
         #[cfg(feature = "NSPrintInfo")]
-        #[method_id(@__method_family Other attributes)]
+        #[unsafe(method_family(none))]
+        #[method_id(attributes)]
         pub unsafe fn attributes(
             &self,
         ) -> Retained<NSMutableDictionary<NSPrintInfoAttributeKey, AnyObject>>;
@@ -74,10 +77,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPDFInfo {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

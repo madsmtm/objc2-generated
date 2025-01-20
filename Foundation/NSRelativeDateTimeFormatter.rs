@@ -97,7 +97,8 @@ extern_methods!(
         pub unsafe fn setFormattingContext(&self, formatting_context: NSFormattingContext);
 
         #[cfg(feature = "NSCalendar")]
-        #[method_id(@__method_family Other calendar)]
+        #[unsafe(method_family(none))]
+        #[method_id(calendar)]
         pub unsafe fn calendar(&self) -> Retained<NSCalendar>;
 
         #[cfg(feature = "NSCalendar")]
@@ -106,7 +107,8 @@ extern_methods!(
         pub unsafe fn setCalendar(&self, calendar: Option<&NSCalendar>);
 
         #[cfg(feature = "NSLocale")]
-        #[method_id(@__method_family Other locale)]
+        #[unsafe(method_family(none))]
+        #[method_id(locale)]
         pub unsafe fn locale(&self) -> Retained<NSLocale>;
 
         #[cfg(feature = "NSLocale")]
@@ -115,21 +117,24 @@ extern_methods!(
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
 
         #[cfg(all(feature = "NSCalendar", feature = "NSString"))]
-        #[method_id(@__method_family Other localizedStringFromDateComponents:)]
+        #[unsafe(method_family(none))]
+        #[method_id(localizedStringFromDateComponents:)]
         pub unsafe fn localizedStringFromDateComponents(
             &self,
             date_components: &NSDateComponents,
         ) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSDate", feature = "NSString"))]
-        #[method_id(@__method_family Other localizedStringFromTimeInterval:)]
+        #[unsafe(method_family(none))]
+        #[method_id(localizedStringFromTimeInterval:)]
         pub unsafe fn localizedStringFromTimeInterval(
             &self,
             time_interval: NSTimeInterval,
         ) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSDate", feature = "NSString"))]
-        #[method_id(@__method_family Other localizedStringForDate:relativeToDate:)]
+        #[unsafe(method_family(none))]
+        #[method_id(localizedStringForDate:relativeToDate:)]
         pub unsafe fn localizedStringForDate_relativeToDate(
             &self,
             date: &NSDate,
@@ -137,7 +142,8 @@ extern_methods!(
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__method_family Other stringForObjectValue:)]
+        #[unsafe(method_family(none))]
+        #[method_id(stringForObjectValue:)]
         pub unsafe fn stringForObjectValue(
             &self,
             obj: Option<&AnyObject>,
@@ -149,10 +155,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSFormatter")]
     unsafe impl NSRelativeDateTimeFormatter {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

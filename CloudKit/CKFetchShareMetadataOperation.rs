@@ -27,16 +27,19 @@ unsafe impl NSObjectProtocol for CKFetchShareMetadataOperation {}
 extern_methods!(
     #[cfg(feature = "CKOperation")]
     unsafe impl CKFetchShareMetadataOperation {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithShareURLs:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithShareURLs:)]
         pub unsafe fn initWithShareURLs(
             this: Allocated<Self>,
             share_ur_ls: &NSArray<NSURL>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Other shareURLs)]
+        #[unsafe(method_family(none))]
+        #[method_id(shareURLs)]
         pub unsafe fn shareURLs(&self) -> Option<Retained<NSArray<NSURL>>>;
 
         /// Setter for [`shareURLs`][Self::shareURLs].
@@ -68,7 +71,8 @@ extern_methods!(
         /// `YES.`If nil, declares the entire root record should be downloaded. If set to an empty array, declares that no user fields should be downloaded.
         /// Defaults to
         /// `nil.`
-        #[method_id(@__method_family Other rootRecordDesiredKeys)]
+        #[unsafe(method_family(none))]
+        #[method_id(rootRecordDesiredKeys)]
         pub unsafe fn rootRecordDesiredKeys(&self) -> Option<Retained<NSArray<CKRecordFieldKey>>>;
 
         #[cfg(feature = "CKRecord")]
@@ -140,7 +144,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CKOperation")]
     unsafe impl CKFetchShareMetadataOperation {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

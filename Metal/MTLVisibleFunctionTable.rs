@@ -25,7 +25,8 @@ unsafe impl NSObjectProtocol for MTLVisibleFunctionTableDescriptor {}
 extern_methods!(
     unsafe impl MTLVisibleFunctionTableDescriptor {
         /// Create an autoreleased visible function table descriptor
-        #[method_id(@__method_family Other visibleFunctionTableDescriptor)]
+        #[unsafe(method_family(none))]
+        #[method_id(visibleFunctionTableDescriptor)]
         pub unsafe fn visibleFunctionTableDescriptor() -> Retained<MTLVisibleFunctionTableDescriptor>;
 
         /// The number of functions in the table.
@@ -41,10 +42,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLVisibleFunctionTableDescriptor {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

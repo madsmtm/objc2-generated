@@ -40,10 +40,12 @@ unsafe impl NSObjectProtocol for AVMetadataObject {}
 
 extern_methods!(
     unsafe impl AVMetadataObject {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-media")]
@@ -74,7 +76,8 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an AVMetadataObjectType representing the type of the metadata object. Clients inspecting a collection of metadata objects can use this property to filter objects with a matching type.
-        #[method_id(@__method_family Other type)]
+        #[unsafe(method_family(none))]
+        #[method_id(type)]
         pub unsafe fn r#type(&self) -> Retained<AVMetadataObjectType>;
     }
 );
@@ -113,10 +116,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `AVMetadataObject`
     unsafe impl AVMetadataBodyObject {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -160,10 +165,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `AVMetadataObject`
     unsafe impl AVMetadataHumanBodyObject {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -207,10 +214,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `AVMetadataObject`
     unsafe impl AVMetadataHumanFullBodyObject {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -254,10 +263,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `AVMetadataObject`
     unsafe impl AVMetadataCatBodyObject {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -301,10 +312,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `AVMetadataObject`
     unsafe impl AVMetadataDogBodyObject {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -355,10 +368,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `AVMetadataObject`
     unsafe impl AVMetadataSalientObject {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -433,10 +448,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `AVMetadataObject`
     unsafe impl AVMetadataFaceObject {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -653,14 +670,16 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an NSArray of NSDictionaries, each of which has been created from a CGPoint using CGPointCreateDictionaryRepresentation(), representing the coordinates of the corners of the object with respect to the image in which it resides. If the metadata originates from video, the points may be expressed as scalar values from 0. - 1. The points in the corners differ from the bounds rectangle in that bounds is axis-aligned to orientation of the captured image, and the values of the corners reside within the bounds rectangle. The points are arranged in counter-clockwise order (clockwise if the code or image is mirrored), starting with the top-left of the code in its canonical orientation.
-        #[method_id(@__method_family Other corners)]
+        #[unsafe(method_family(none))]
+        #[method_id(corners)]
         pub unsafe fn corners(&self) -> Retained<NSArray<NSDictionary>>;
 
         /// Returns the receiver's errorCorrectedData decoded into a human-readable string.
         ///
         ///
         /// The value of this property is an NSString created by decoding the binary payload according to the format of the machine readable code. Returns nil if a string representation cannot be created from the payload.
-        #[method_id(@__method_family Other stringValue)]
+        #[unsafe(method_family(none))]
+        #[method_id(stringValue)]
         pub unsafe fn stringValue(&self) -> Option<Retained<NSString>>;
     }
 );
@@ -668,10 +687,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `AVMetadataObject`
     unsafe impl AVMetadataMachineReadableCodeObject {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -685,7 +706,8 @@ extern_methods!(
         ///
         ///
         /// The value may be nil if an abstract representation of a machine readable code object is not defined for the code type or could not be detected.
-        #[method_id(@__method_family Other descriptor)]
+        #[unsafe(method_family(none))]
+        #[method_id(descriptor)]
         pub unsafe fn descriptor(&self) -> Option<Retained<CIBarcodeDescriptor>>;
     }
 );

@@ -96,7 +96,8 @@ extern_methods!(
         pub unsafe fn setStart(&self, start: c_int);
 
         #[deprecated]
-        #[method_id(@__method_family Other type)]
+        #[unsafe(method_family(none))]
+        #[method_id(type)]
         pub unsafe fn r#type(&self) -> Retained<NSString>;
 
         /// Setter for [`type`][Self::type].
@@ -117,7 +118,8 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLOListElement {
         #[deprecated]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -132,7 +134,8 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLOListElement {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

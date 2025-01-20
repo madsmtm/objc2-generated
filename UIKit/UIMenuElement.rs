@@ -81,11 +81,13 @@ unsafe impl NSSecureCoding for UIMenuElement {}
 extern_methods!(
     unsafe impl UIMenuElement {
         /// The element's title.
-        #[method_id(@__method_family Other title)]
+        #[unsafe(method_family(none))]
+        #[method_id(title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// The element's subtitle.
-        #[method_id(@__method_family Other subtitle)]
+        #[unsafe(method_family(none))]
+        #[method_id(subtitle)]
         pub unsafe fn subtitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`subtitle`][Self::subtitle].
@@ -94,19 +96,23 @@ extern_methods!(
 
         #[cfg(feature = "UIImage")]
         /// Image to be displayed alongside the element's title.
-        #[method_id(@__method_family Other image)]
+        #[unsafe(method_family(none))]
+        #[method_id(image)]
         pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

@@ -23,19 +23,22 @@ extern_methods!(
     unsafe impl WKBackForwardList {
         #[cfg(feature = "WKBackForwardListItem")]
         /// The current item.
-        #[method_id(@__method_family Other currentItem)]
+        #[unsafe(method_family(none))]
+        #[method_id(currentItem)]
         pub unsafe fn currentItem(&self) -> Option<Retained<WKBackForwardListItem>>;
 
         #[cfg(feature = "WKBackForwardListItem")]
         /// The item immediately preceding the current item, or nil
         /// if there isn't one.
-        #[method_id(@__method_family Other backItem)]
+        #[unsafe(method_family(none))]
+        #[method_id(backItem)]
         pub unsafe fn backItem(&self) -> Option<Retained<WKBackForwardListItem>>;
 
         #[cfg(feature = "WKBackForwardListItem")]
         /// The item immediately following the current item, or nil
         /// if there isn't one.
-        #[method_id(@__method_family Other forwardItem)]
+        #[unsafe(method_family(none))]
+        #[method_id(forwardItem)]
         pub unsafe fn forwardItem(&self) -> Option<Retained<WKBackForwardListItem>>;
 
         #[cfg(feature = "WKBackForwardListItem")]
@@ -48,7 +51,8 @@ extern_methods!(
         ///
         /// Returns: The item at the specified distance from the current item, or nil
         /// if the index parameter exceeds the limits of the list.
-        #[method_id(@__method_family Other itemAtIndex:)]
+        #[unsafe(method_family(none))]
+        #[method_id(itemAtIndex:)]
         pub unsafe fn itemAtIndex(
             &self,
             index: NSInteger,
@@ -59,7 +63,8 @@ extern_methods!(
         ///
         /// The items are in the order in which they were originally
         /// visited.
-        #[method_id(@__method_family Other backList)]
+        #[unsafe(method_family(none))]
+        #[method_id(backList)]
         pub unsafe fn backList(&self) -> Retained<NSArray<WKBackForwardListItem>>;
 
         #[cfg(feature = "WKBackForwardListItem")]
@@ -67,7 +72,8 @@ extern_methods!(
         ///
         /// The items are in the order in which they were originally
         /// visited.
-        #[method_id(@__method_family Other forwardList)]
+        #[unsafe(method_family(none))]
+        #[method_id(forwardList)]
         pub unsafe fn forwardList(&self) -> Retained<NSArray<WKBackForwardListItem>>;
     }
 );
@@ -75,10 +81,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKBackForwardList {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

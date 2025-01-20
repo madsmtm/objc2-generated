@@ -15,17 +15,20 @@ extern_protocol!(
     pub unsafe trait ASCredentialIdentity: NSObjectProtocol {
         #[cfg(feature = "ASCredentialServiceIdentifier")]
         /// Get the service identifier.
-        #[method_id(@__method_family Other serviceIdentifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(serviceIdentifier)]
         unsafe fn serviceIdentifier(&self) -> Retained<ASCredentialServiceIdentifier>;
 
         /// Get the user.
-        #[method_id(@__method_family Other user)]
+        #[unsafe(method_family(none))]
+        #[method_id(user)]
         unsafe fn user(&self) -> Retained<NSString>;
 
         /// Get the record identifier.
         ///
         /// You can utilize the record identifier to uniquely identify the credential identity in your local database.
-        #[method_id(@__method_family Other recordIdentifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(recordIdentifier)]
         unsafe fn recordIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Get or set the rank of the credential identity object.

@@ -23,19 +23,23 @@ unsafe impl NSObjectProtocol for MLModelStructurePipeline {}
 
 extern_methods!(
     unsafe impl MLModelStructurePipeline {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// The names of the sub models in the pipeline.
-        #[method_id(@__method_family Other subModelNames)]
+        #[unsafe(method_family(none))]
+        #[method_id(subModelNames)]
         pub unsafe fn subModelNames(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "MLModelStructure")]
         /// The structure of the sub models in the pipeline.
-        #[method_id(@__method_family Other subModels)]
+        #[unsafe(method_family(none))]
+        #[method_id(subModels)]
         pub unsafe fn subModels(&self) -> Retained<NSArray<MLModelStructure>>;
     }
 );

@@ -18,7 +18,8 @@ unsafe impl NSObjectProtocol for CARemoteLayerClient {}
 extern_methods!(
     unsafe impl CARemoteLayerClient {
         #[cfg(feature = "libc")]
-        #[method_id(@__method_family Init initWithServerPort:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithServerPort:)]
         pub unsafe fn initWithServerPort(
             this: Allocated<Self>,
             port: libc::mach_port_t,
@@ -31,7 +32,8 @@ extern_methods!(
         pub unsafe fn clientId(&self) -> u32;
 
         #[cfg(feature = "CALayer")]
-        #[method_id(@__method_family Other layer)]
+        #[unsafe(method_family(none))]
+        #[method_id(layer)]
         pub unsafe fn layer(&self) -> Option<Retained<CALayer>>;
 
         #[cfg(feature = "CALayer")]
@@ -44,10 +46,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CARemoteLayerClient {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

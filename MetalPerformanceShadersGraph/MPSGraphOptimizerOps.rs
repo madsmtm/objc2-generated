@@ -23,7 +23,8 @@ extern_methods!(
         /// - gradientTensor: partial gradient of the trainable parameters with respect to loss
         /// - name: name for the operation
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__method_family Other stochasticGradientDescentWithLearningRateTensor:valuesTensor:gradientTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(stochasticGradientDescentWithLearningRateTensor:valuesTensor:gradientTensor:name:)]
         pub unsafe fn stochasticGradientDescentWithLearningRateTensor_valuesTensor_gradientTensor_name(
             &self,
             learning_rate_tensor: &MPSGraphTensor,
@@ -49,7 +50,8 @@ extern_methods!(
         /// - gradientTensor: partial gradient of the trainable parameters with respect to loss
         /// - name: name for the operation
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__method_family Other applyStochasticGradientDescentWithLearningRateTensor:variable:gradientTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(applyStochasticGradientDescentWithLearningRateTensor:variable:gradientTensor:name:)]
         pub unsafe fn applyStochasticGradientDescentWithLearningRateTensor_variable_gradientTensor_name(
             &self,
             learning_rate_tensor: &MPSGraphTensor,
@@ -83,7 +85,8 @@ extern_methods!(
         /// - gradientTensor: partial gradient of the trainable parameters with respect to loss
         /// - name: name for the operation
         /// - Returns: if maximumVelocity is nil array of 3 tensors (update, newMomentum, newVelocity) else array of 4 tensors (update, newMomentum, newVelocity, newMaximumVelocity)
-        #[method_id(@__method_family Other adamWithLearningRateTensor:beta1Tensor:beta2Tensor:epsilonTensor:beta1PowerTensor:beta2PowerTensor:valuesTensor:momentumTensor:velocityTensor:maximumVelocityTensor:gradientTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(adamWithLearningRateTensor:beta1Tensor:beta2Tensor:epsilonTensor:beta1PowerTensor:beta2PowerTensor:valuesTensor:momentumTensor:velocityTensor:maximumVelocityTensor:gradientTensor:name:)]
         pub unsafe fn adamWithLearningRateTensor_beta1Tensor_beta2Tensor_epsilonTensor_beta1PowerTensor_beta2PowerTensor_valuesTensor_momentumTensor_velocityTensor_maximumVelocityTensor_gradientTensor_name(
             &self,
             learning_rate_tensor: &MPSGraphTensor,
@@ -122,7 +125,8 @@ extern_methods!(
         /// - gradientTensor: partial gradient of the trainable parameters with respect to loss
         /// - name: name for the operation
         /// - Returns: if maximumVelocity is nil array of 3 tensors (update, newMomentum, newVelocity) else array of 4 tensors (update, newMomentum, newVelocity, newMaximumVelocity)
-        #[method_id(@__method_family Other adamWithCurrentLearningRateTensor:beta1Tensor:beta2Tensor:epsilonTensor:valuesTensor:momentumTensor:velocityTensor:maximumVelocityTensor:gradientTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(adamWithCurrentLearningRateTensor:beta1Tensor:beta2Tensor:epsilonTensor:valuesTensor:momentumTensor:velocityTensor:maximumVelocityTensor:gradientTensor:name:)]
         pub unsafe fn adamWithCurrentLearningRateTensor_beta1Tensor_beta2Tensor_epsilonTensor_valuesTensor_momentumTensor_velocityTensor_maximumVelocityTensor_gradientTensor_name(
             &self,
             current_learning_rate_tensor: &MPSGraphTensor,

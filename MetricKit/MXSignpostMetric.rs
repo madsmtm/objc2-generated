@@ -31,27 +31,31 @@ extern_methods!(
     unsafe impl MXSignpostIntervalData {
         #[cfg(feature = "MXHistogram")]
         /// A histogram of signpost intervals durations associated with the given signposts with signpostName and signpostCategory.
-        #[method_id(@__method_family Other histogrammedSignpostDuration)]
+        #[unsafe(method_family(none))]
+        #[method_id(histogrammedSignpostDuration)]
         pub unsafe fn histogrammedSignpostDuration(&self) -> Retained<MXHistogram<NSUnitDuration>>;
 
         /// Cumulative CPU time aggregated over the MXSignpost intervals.
         ///
         /// This property is null when signposts with the associated signpostName and signpostCategory contain no interval metric data.
-        #[method_id(@__method_family Other cumulativeCPUTime)]
+        #[unsafe(method_family(none))]
+        #[method_id(cumulativeCPUTime)]
         pub unsafe fn cumulativeCPUTime(&self) -> Option<Retained<NSMeasurement<NSUnitDuration>>>;
 
         #[cfg(feature = "MXAverage")]
         /// Average value of memory snapshots taken at beginning and end of MXSignpost intervals
         ///
         /// This property is null when signposts with the associated signpostName and signpostCategory contain no interval metric data.
-        #[method_id(@__method_family Other averageMemory)]
+        #[unsafe(method_family(none))]
+        #[method_id(averageMemory)]
         pub unsafe fn averageMemory(&self)
             -> Option<Retained<MXAverage<NSUnitInformationStorage>>>;
 
         /// Cumulative logical writes aggregated over the MXSignpost intervals.
         ///
         /// This property is null when signposts with the associated signpostName and signpostCategory contain no interval metric data.
-        #[method_id(@__method_family Other cumulativeLogicalWrites)]
+        #[unsafe(method_family(none))]
+        #[method_id(cumulativeLogicalWrites)]
         pub unsafe fn cumulativeLogicalWrites(
             &self,
         ) -> Option<Retained<NSMeasurement<NSUnitInformationStorage>>>;
@@ -59,7 +63,8 @@ extern_methods!(
         /// Cumulative hitch time ratio aggregated over the MXSignpostAnimation intervals.
         ///
         /// This property is null when signposts with the associated signpostName and signpostCategory contain no interval metric data.
-        #[method_id(@__method_family Other cumulativeHitchTimeRatio)]
+        #[unsafe(method_family(none))]
+        #[method_id(cumulativeHitchTimeRatio)]
         pub unsafe fn cumulativeHitchTimeRatio(&self) -> Option<Retained<NSMeasurement<NSUnit>>>;
     }
 );
@@ -67,10 +72,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MXSignpostIntervalData {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -100,17 +107,20 @@ extern_methods!(
     #[cfg(feature = "MXMetric")]
     unsafe impl MXSignpostMetric {
         /// The name associated with this aggregated signpost.
-        #[method_id(@__method_family Other signpostName)]
+        #[unsafe(method_family(none))]
+        #[method_id(signpostName)]
         pub unsafe fn signpostName(&self) -> Retained<NSString>;
 
         /// The category associated with this aggregated signpost.
-        #[method_id(@__method_family Other signpostCategory)]
+        #[unsafe(method_family(none))]
+        #[method_id(signpostCategory)]
         pub unsafe fn signpostCategory(&self) -> Retained<NSString>;
 
         /// A class that encapsulates metrics associated with app specific signpost intervals.
         ///
         /// This property is null when signposts with the associated signpostName and signpostCategory contain no intervals.
-        #[method_id(@__method_family Other signpostIntervalData)]
+        #[unsafe(method_family(none))]
+        #[method_id(signpostIntervalData)]
         pub unsafe fn signpostIntervalData(&self) -> Option<Retained<MXSignpostIntervalData>>;
 
         /// The total number of signposts emit with the given signpostName in the aggregation period of the parent payload.
@@ -123,10 +133,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MXMetric")]
     unsafe impl MXSignpostMetric {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -24,7 +24,8 @@ extern_methods!(
     #[cfg(feature = "UIDynamicBehavior")]
     unsafe impl UISnapBehavior {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Init initWithItem:snapToPoint:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithItem:snapToPoint:)]
         pub unsafe fn initWithItem_snapToPoint(
             this: Allocated<Self>,
             item: &ProtocolObject<dyn UIDynamicItem>,
@@ -55,10 +56,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UIDynamicBehavior")]
     unsafe impl UISnapBehavior {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

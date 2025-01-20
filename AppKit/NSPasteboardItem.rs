@@ -25,11 +25,13 @@ unsafe impl NSPasteboardWriting for NSPasteboardItem {}
 extern_methods!(
     unsafe impl NSPasteboardItem {
         #[cfg(feature = "NSPasteboard")]
-        #[method_id(@__method_family Other types)]
+        #[unsafe(method_family(none))]
+        #[method_id(types)]
         pub unsafe fn types(&self) -> Retained<NSArray<NSPasteboardType>>;
 
         #[cfg(feature = "NSPasteboard")]
-        #[method_id(@__method_family Other availableTypeFromArray:)]
+        #[unsafe(method_family(none))]
+        #[method_id(availableTypeFromArray:)]
         pub unsafe fn availableTypeFromArray(
             &self,
             types: &NSArray<NSPasteboardType>,
@@ -64,16 +66,19 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "NSPasteboard")]
-        #[method_id(@__method_family Other dataForType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(dataForType:)]
         pub unsafe fn dataForType(&self, r#type: &NSPasteboardType) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "NSPasteboard")]
-        #[method_id(@__method_family Other stringForType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(stringForType:)]
         pub unsafe fn stringForType(&self, r#type: &NSPasteboardType)
             -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSPasteboard")]
-        #[method_id(@__method_family Other propertyListForType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(propertyListForType:)]
         pub unsafe fn propertyListForType(
             &self,
             r#type: &NSPasteboardType,
@@ -84,10 +89,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPasteboardItem {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

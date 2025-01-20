@@ -52,16 +52,19 @@ extern_methods!(
     unsafe impl DOMCSSStyleSheet {
         #[cfg(feature = "DOMCSSRule")]
         #[deprecated]
-        #[method_id(@__method_family Other ownerRule)]
+        #[unsafe(method_family(none))]
+        #[method_id(ownerRule)]
         pub unsafe fn ownerRule(&self) -> Option<Retained<DOMCSSRule>>;
 
         #[cfg(feature = "DOMCSSRuleList")]
         #[deprecated]
-        #[method_id(@__method_family Other cssRules)]
+        #[unsafe(method_family(none))]
+        #[method_id(cssRules)]
         pub unsafe fn cssRules(&self) -> Option<Retained<DOMCSSRuleList>>;
 
         #[cfg(feature = "DOMCSSRuleList")]
-        #[method_id(@__method_family Other rules)]
+        #[unsafe(method_family(none))]
+        #[method_id(rules)]
         pub unsafe fn rules(&self) -> Option<Retained<DOMCSSRuleList>>;
 
         #[method(insertRule:index:)]
@@ -93,7 +96,8 @@ extern_methods!(
     ))]
     unsafe impl DOMCSSStyleSheet {
         #[deprecated]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -106,7 +110,8 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMCSSStyleSheet {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -35,18 +35,22 @@ extern_methods!(
     unsafe impl HKSource {
         /// The name of the source represented by the receiver.  If the source is an app, then the name is the
         /// localized name of the app.
-        #[method_id(@__method_family Other name)]
+        #[unsafe(method_family(none))]
+        #[method_id(name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// The bundle identifier of the source represented by the receiver.
-        #[method_id(@__method_family Other bundleIdentifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(bundleIdentifier)]
         pub unsafe fn bundleIdentifier(&self) -> Retained<NSString>;
 
         /// Returns the source representing the calling application.
-        #[method_id(@__method_family Other defaultSource)]
+        #[unsafe(method_family(none))]
+        #[method_id(defaultSource)]
         pub unsafe fn defaultSource() -> Retained<HKSource>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -54,7 +58,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKSource {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -35,7 +35,8 @@ extern_protocol!(
         ///
         /// Warning: You cannot use `BADownloadManager` to manually schedule downloads using this method. All downloads to enqueue must be returned.
         #[optional]
-        #[method_id(@__method_family Other downloadsForRequest:manifestURL:extensionInfo:)]
+        #[unsafe(method_family(none))]
+        #[method_id(downloadsForRequest:manifestURL:extensionInfo:)]
         unsafe fn downloadsForRequest_manifestURL_extensionInfo(
             &self,
             content_request: BAContentRequest,

@@ -16,12 +16,14 @@ unsafe impl NSObjectProtocol for CBAttribute {}
 
 extern_methods!(
     unsafe impl CBAttribute {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "CBUUID")]
         /// The Bluetooth UUID of the attribute.
-        #[method_id(@__method_family Other UUID)]
+        #[unsafe(method_family(none))]
+        #[method_id(UUID)]
         pub unsafe fn UUID(&self) -> Retained<CBUUID>;
     }
 );
@@ -29,7 +31,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CBAttribute {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

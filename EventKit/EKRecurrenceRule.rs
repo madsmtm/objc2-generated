@@ -44,7 +44,8 @@ extern_methods!(
         ///
         /// This is used to create a simple recurrence with a specific type, interval and end. If interval is
         /// 0, an exception is raised. The end parameter can be nil.
-        #[method_id(@__method_family Init initRecurrenceWithFrequency:interval:end:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initRecurrenceWithFrequency:interval:end:)]
         pub unsafe fn initRecurrenceWithFrequency_interval_end(
             this: Allocated<Self>,
             r#type: EKRecurrenceFrequency,
@@ -91,7 +92,8 @@ extern_methods!(
         /// daysOfTheYear is passed. Ignored otherwise. Corresponds to the BYSETPOS value in the iCalendar specification.
         ///
         /// Parameter `end`: The recurrence end, or nil.
-        #[method_id(@__method_family Init initRecurrenceWithFrequency:interval:daysOfTheWeek:daysOfTheMonth:monthsOfTheYear:weeksOfTheYear:daysOfTheYear:setPositions:end:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initRecurrenceWithFrequency:interval:daysOfTheWeek:daysOfTheMonth:monthsOfTheYear:weeksOfTheYear:daysOfTheYear:setPositions:end:)]
         pub unsafe fn initRecurrenceWithFrequency_interval_daysOfTheWeek_daysOfTheMonth_monthsOfTheYear_weeksOfTheYear_daysOfTheYear_setPositions_end(
             this: Allocated<Self>,
             r#type: EKRecurrenceFrequency,
@@ -106,13 +108,15 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Calendar used by this recurrence rule.
-        #[method_id(@__method_family Other calendarIdentifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(calendarIdentifier)]
         pub unsafe fn calendarIdentifier(&self) -> Retained<NSString>;
 
         #[cfg(feature = "EKRecurrenceEnd")]
         /// This property defines when the the repeating event is scheduled to end. The end date can be specified by a number of
         /// occurrences, or with an end date.
-        #[method_id(@__method_family Other recurrenceEnd)]
+        #[unsafe(method_family(none))]
+        #[method_id(recurrenceEnd)]
         pub unsafe fn recurrenceEnd(&self) -> Option<Retained<EKRecurrenceEnd>>;
 
         #[cfg(feature = "EKRecurrenceEnd")]
@@ -148,7 +152,8 @@ extern_methods!(
         /// EKRecurrenceFrequencyYearly. This property can be accessed as an array containing one or more EKRecurrenceDayOfWeek objects
         /// corresponding to the days of the week the event recurs. For all other EKRecurrenceRules, this property is nil.
         /// This property corresponds to BYDAY in the iCalendar specification.
-        #[method_id(@__method_family Other daysOfTheWeek)]
+        #[unsafe(method_family(none))]
+        #[method_id(daysOfTheWeek)]
         pub unsafe fn daysOfTheWeek(&self) -> Option<Retained<NSArray<EKRecurrenceDayOfWeek>>>;
 
         /// This property is valid for rules whose EKRecurrenceFrequency is EKRecurrenceFrequencyMonthly, and that were initialized
@@ -156,34 +161,39 @@ extern_methods!(
         /// accessed as an array containing one or more NSNumbers corresponding to the days of the month the event recurs.
         /// For all other EKRecurrenceRules, this property is nil. This property corresponds to BYMONTHDAY in the iCalendar
         /// specification.
-        #[method_id(@__method_family Other daysOfTheMonth)]
+        #[unsafe(method_family(none))]
+        #[method_id(daysOfTheMonth)]
         pub unsafe fn daysOfTheMonth(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         /// This property is valid for rules whose EKRecurrenceFrequency is EKRecurrenceFrequencyYearly. This property can be accessed
         /// as an array containing one or more NSNumbers corresponding to the days of the year the event recurs. For all other
         /// EKRecurrenceRules, this property is nil. This property corresponds to BYYEARDAY in the iCalendar specification. It should
         /// contain values between 1 to 366 or -366 to -1.
-        #[method_id(@__method_family Other daysOfTheYear)]
+        #[unsafe(method_family(none))]
+        #[method_id(daysOfTheYear)]
         pub unsafe fn daysOfTheYear(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         /// This property is valid for rules whose EKRecurrenceFrequency is EKRecurrenceFrequencyYearly. This property can be accessed
         /// as an array containing one or more NSNumbers corresponding to the weeks of the year the event recurs. For all other
         /// EKRecurrenceRules, this property is nil. This property corresponds to BYWEEK in the iCalendar specification. It should
         /// contain integers from 1 to 53 or -1 to -53.
-        #[method_id(@__method_family Other weeksOfTheYear)]
+        #[unsafe(method_family(none))]
+        #[method_id(weeksOfTheYear)]
         pub unsafe fn weeksOfTheYear(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         /// This property is valid for rules whose EKRecurrenceFrequency is EKRecurrenceFrequencyYearly. This property can be accessed
         /// as an array containing one or more NSNumbers corresponding to the months of the year the event recurs. For all other
         /// EKRecurrenceRules, this property is nil. This property corresponds to BYMONTH in the iCalendar specification.
-        #[method_id(@__method_family Other monthsOfTheYear)]
+        #[unsafe(method_family(none))]
+        #[method_id(monthsOfTheYear)]
         pub unsafe fn monthsOfTheYear(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         /// This property is valid for rules which have a valid daysOfTheWeek, daysOfTheMonth, weeksOfTheYear, or monthsOfTheYear property.
         /// It allows you to specify a set of ordinal numbers to help choose which objects out of the set of selected events should be
         /// included. For example, setting the daysOfTheWeek to Monday-Friday and including a value of -1 in the array would indicate
         /// the last weekday in the recurrence range (month, year, etc). This value corresponds to the iCalendar BYSETPOS property.
-        #[method_id(@__method_family Other setPositions)]
+        #[unsafe(method_family(none))]
+        #[method_id(setPositions)]
         pub unsafe fn setPositions(&self) -> Option<Retained<NSArray<NSNumber>>>;
     }
 );
@@ -192,10 +202,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "EKObject")]
     unsafe impl EKRecurrenceRule {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

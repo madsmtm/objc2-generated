@@ -60,21 +60,25 @@ extern_methods!(
     unsafe impl NSMenuItemBadge {
         /// Creates a badge with an integer count and a label representing
         /// the number of available updates.
-        #[method_id(@__method_family Other updatesWithCount:)]
+        #[unsafe(method_family(none))]
+        #[method_id(updatesWithCount:)]
         pub unsafe fn updatesWithCount(item_count: NSInteger) -> Retained<Self>;
 
         /// Creates a badge with an integer count and a label representing
         /// the number of new items.
-        #[method_id(@__method_family New newItemsWithCount:)]
+        #[unsafe(method_family(new))]
+        #[method_id(newItemsWithCount:)]
         pub unsafe fn newItemsWithCount(item_count: NSInteger) -> Retained<Self>;
 
         /// Creates a badge with an integer count and a label representing
         /// the number of alerts.
-        #[method_id(@__method_family Other alertsWithCount:)]
+        #[unsafe(method_family(none))]
+        #[method_id(alertsWithCount:)]
         pub unsafe fn alertsWithCount(item_count: NSInteger) -> Retained<Self>;
 
         /// Initializes the badge with a count and a pre-defined badge type.
-        #[method_id(@__method_family Init initWithCount:type:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCount:type:)]
         pub unsafe fn initWithCount_type(
             this: Allocated<Self>,
             item_count: NSInteger,
@@ -82,15 +86,18 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Initializes the badge with an integer count and an empty string.
-        #[method_id(@__method_family Init initWithCount:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCount:)]
         pub unsafe fn initWithCount(this: Allocated<Self>, item_count: NSInteger)
             -> Retained<Self>;
 
         /// Initializes the badge with the provided custom string.
-        #[method_id(@__method_family Init initWithString:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithString:)]
         pub unsafe fn initWithString(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// The count of items the badge displays. If a custom string was used
@@ -106,7 +113,8 @@ extern_methods!(
 
         /// The string representation of the badge as it would appear when the
         /// badge is displayed.
-        #[method_id(@__method_family Other stringValue)]
+        #[unsafe(method_family(none))]
+        #[method_id(stringValue)]
         pub unsafe fn stringValue(&self) -> Option<Retained<NSString>>;
     }
 );
@@ -114,7 +122,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSMenuItemBadge {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

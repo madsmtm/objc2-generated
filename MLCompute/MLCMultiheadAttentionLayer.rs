@@ -34,37 +34,43 @@ extern_methods!(
         #[cfg(feature = "MLCMultiheadAttentionDescriptor")]
         /// The multi-head attention descriptor
         #[deprecated]
-        #[method_id(@__method_family Other descriptor)]
+        #[unsafe(method_family(none))]
+        #[method_id(descriptor)]
         pub unsafe fn descriptor(&self) -> Retained<MLCMultiheadAttentionDescriptor>;
 
         #[cfg(feature = "MLCTensor")]
         /// The weights of query, key, value and output projections
         #[deprecated]
-        #[method_id(@__method_family Other weights)]
+        #[unsafe(method_family(none))]
+        #[method_id(weights)]
         pub unsafe fn weights(&self) -> Retained<NSArray<MLCTensor>>;
 
         #[cfg(feature = "MLCTensor")]
         /// The biases of query, key, value and output projections
         #[deprecated]
-        #[method_id(@__method_family Other biases)]
+        #[unsafe(method_family(none))]
+        #[method_id(biases)]
         pub unsafe fn biases(&self) -> Option<Retained<NSArray<MLCTensor>>>;
 
         #[cfg(feature = "MLCTensor")]
         /// The biases added to key and value
         #[deprecated]
-        #[method_id(@__method_family Other attentionBiases)]
+        #[unsafe(method_family(none))]
+        #[method_id(attentionBiases)]
         pub unsafe fn attentionBiases(&self) -> Option<Retained<NSArray<MLCTensor>>>;
 
         #[cfg(feature = "MLCTensorParameter")]
         /// The weights tensor parameters used for optimizer update
         #[deprecated]
-        #[method_id(@__method_family Other weightsParameters)]
+        #[unsafe(method_family(none))]
+        #[method_id(weightsParameters)]
         pub unsafe fn weightsParameters(&self) -> Retained<NSArray<MLCTensorParameter>>;
 
         #[cfg(feature = "MLCTensorParameter")]
         /// The biases tensor parameters used for optimizer update
         #[deprecated]
-        #[method_id(@__method_family Other biasesParameters)]
+        #[unsafe(method_family(none))]
+        #[method_id(biasesParameters)]
         pub unsafe fn biasesParameters(&self) -> Option<Retained<NSArray<MLCTensorParameter>>>;
 
         #[cfg(all(feature = "MLCMultiheadAttentionDescriptor", feature = "MLCTensor"))]
@@ -78,7 +84,8 @@ extern_methods!(
         ///
         /// Returns: A new MultiheadAttention layer
         #[deprecated]
-        #[method_id(@__method_family Other layerWithDescriptor:weights:biases:attentionBiases:)]
+        #[unsafe(method_family(none))]
+        #[method_id(layerWithDescriptor:weights:biases:attentionBiases:)]
         pub unsafe fn layerWithDescriptor_weights_biases_attentionBiases(
             descriptor: &MLCMultiheadAttentionDescriptor,
             weights: &NSArray<MLCTensor>,
@@ -93,11 +100,13 @@ extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCMultiheadAttentionLayer {
         #[deprecated]
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

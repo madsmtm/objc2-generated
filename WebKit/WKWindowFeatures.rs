@@ -21,35 +21,43 @@ unsafe impl NSObjectProtocol for WKWindowFeatures {}
 extern_methods!(
     unsafe impl WKWindowFeatures {
         /// BOOL. Whether the menu bar should be visible. nil if menu bar visibility was not specified.
-        #[method_id(@__method_family Other menuBarVisibility)]
+        #[unsafe(method_family(none))]
+        #[method_id(menuBarVisibility)]
         pub unsafe fn menuBarVisibility(&self) -> Option<Retained<NSNumber>>;
 
         /// BOOL. Whether the status bar should be visible. nil if status bar visibility was not specified.
-        #[method_id(@__method_family Other statusBarVisibility)]
+        #[unsafe(method_family(none))]
+        #[method_id(statusBarVisibility)]
         pub unsafe fn statusBarVisibility(&self) -> Option<Retained<NSNumber>>;
 
         /// BOOL. Whether toolbars should be visible. nil if toolbar visibility was not specified.
-        #[method_id(@__method_family Other toolbarsVisibility)]
+        #[unsafe(method_family(none))]
+        #[method_id(toolbarsVisibility)]
         pub unsafe fn toolbarsVisibility(&self) -> Option<Retained<NSNumber>>;
 
         /// BOOL. Whether the containing window should be resizable. nil if resizability was not specified.
-        #[method_id(@__method_family Other allowsResizing)]
+        #[unsafe(method_family(none))]
+        #[method_id(allowsResizing)]
         pub unsafe fn allowsResizing(&self) -> Option<Retained<NSNumber>>;
 
         /// CGFloat. The x coordinate of the containing window. nil if the x coordinate was not specified.
-        #[method_id(@__method_family Other x)]
+        #[unsafe(method_family(none))]
+        #[method_id(x)]
         pub unsafe fn x(&self) -> Option<Retained<NSNumber>>;
 
         /// CGFloat. The y coordinate of the containing window. nil if the y coordinate was not specified.
-        #[method_id(@__method_family Other y)]
+        #[unsafe(method_family(none))]
+        #[method_id(y)]
         pub unsafe fn y(&self) -> Option<Retained<NSNumber>>;
 
         /// CGFloat. The width coordinate of the containing window. nil if the width was not specified.
-        #[method_id(@__method_family Other width)]
+        #[unsafe(method_family(none))]
+        #[method_id(width)]
         pub unsafe fn width(&self) -> Option<Retained<NSNumber>>;
 
         /// CGFloat. The height coordinate of the containing window. nil if the height was not specified.
-        #[method_id(@__method_family Other height)]
+        #[unsafe(method_family(none))]
+        #[method_id(height)]
         pub unsafe fn height(&self) -> Option<Retained<NSNumber>>;
     }
 );
@@ -57,10 +65,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKWindowFeatures {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

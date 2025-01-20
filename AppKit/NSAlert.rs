@@ -70,12 +70,14 @@ extern_methods!(
         /// - Parameter error: Error information to display.
         /// - Returns: An initialized alert.
         /// - Note: The `NSAlert` class extracts the localized error description, recovery suggestion, and recovery options from the error parameter and uses them as the alert’s message text, informative text, and button titles, respectively.
-        #[method_id(@__method_family Other alertWithError:)]
+        #[unsafe(method_family(none))]
+        #[method_id(alertWithError:)]
         pub unsafe fn alertWithError(error: &NSError, mtm: MainThreadMarker) -> Retained<NSAlert>;
 
         /// The text that is displayed prominently in the alert.
         /// - Note: Use this string to get the user’s attention and communicate the reason for displaying the alert.
-        #[method_id(@__method_family Other messageText)]
+        #[unsafe(method_family(none))]
+        #[method_id(messageText)]
         pub unsafe fn messageText(&self) -> Retained<NSString>;
 
         /// Setter for [`messageText`][Self::messageText].
@@ -84,7 +86,8 @@ extern_methods!(
 
         /// The descriptive text that provides more details about the reason for the alert.
         /// - Note: The informative text string is displayed below the message text and is less prominent. Use this string to provide additional context about the reason for the alert or about the actions that the user might take.
-        #[method_id(@__method_family Other informativeText)]
+        #[unsafe(method_family(none))]
+        #[method_id(informativeText)]
         pub unsafe fn informativeText(&self) -> Retained<NSString>;
 
         /// Setter for [`informativeText`][Self::informativeText].
@@ -95,7 +98,8 @@ extern_methods!(
         /// The custom icon displayed in the alert.
         /// By default, the image used in an alert is the app icon (`NSApplicationIcon`). If this property’s value is set, the specified custom image is used in place of the app icon.
         /// If a custom alert icon had been set, it can be cleared by setting this property’s value to `nil`, which restores use of the app icon for the alert.
-        #[method_id(@__method_family Other icon)]
+        #[unsafe(method_family(none))]
+        #[method_id(icon)]
         pub unsafe fn icon(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
@@ -119,7 +123,8 @@ extern_methods!(
         ///
         /// - Parameter title: Title of the button to add to the alert.
         /// - Returns: The button that was added to the alert.
-        #[method_id(@__method_family Other addButtonWithTitle:)]
+        #[unsafe(method_family(none))]
+        #[method_id(addButtonWithTitle:)]
         pub unsafe fn addButtonWithTitle(&self, title: &NSString) -> Retained<NSButton>;
 
         #[cfg(all(
@@ -130,7 +135,8 @@ extern_methods!(
         ))]
         /// The array of response buttons for the alert.
         /// The buttons are in the order in which they were added, and do not necessarily reflect the order they are arranged visually. The array does not include the default “OK” button that is shown in an alert presented without any buttons added with `-addButtonWithTitle:`.
-        #[method_id(@__method_family Other buttons)]
+        #[unsafe(method_family(none))]
+        #[method_id(buttons)]
         pub unsafe fn buttons(&self) -> Retained<NSArray<NSButton>>;
 
         /// Indicates the alert’s severity level. See the `NSAlertStyle` enumeration for the list of alert style constants.
@@ -160,7 +166,8 @@ extern_methods!(
 
         #[cfg(feature = "NSHelpManager")]
         /// The alert’s HTML help anchor used when the user clicks the alert’s help button
-        #[method_id(@__method_family Other helpAnchor)]
+        #[unsafe(method_family(none))]
+        #[method_id(helpAnchor)]
         pub unsafe fn helpAnchor(&self) -> Option<Retained<NSHelpAnchorName>>;
 
         #[cfg(feature = "NSHelpManager")]
@@ -170,7 +177,8 @@ extern_methods!(
 
         /// The delegate of the receiver, currently only allows for custom help behavior of the alert.
         /// For apps linked against 10.12, this property has zeroing weak memory semantics. When linked against an older SDK this back to having `retain` semantics, matching legacy behavior.
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSAlertDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -180,7 +188,8 @@ extern_methods!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         /// The accessory view displayed in the alert, placed between the informative text or suppression checkbox (if present) and the response buttons. Before changing the location of the accessory view, first call the `-layout` method.
-        #[method_id(@__method_family Other accessoryView)]
+        #[unsafe(method_family(none))]
+        #[method_id(accessoryView)]
         pub unsafe fn accessoryView(&self) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -221,7 +230,8 @@ extern_methods!(
             feature = "NSView"
         ))]
         /// The alert’s suppression checkbox. The checkbox may be customized, including the title and the initial state. Additionally, use this method to get the state of the button after the alert is dismissed, which may be stored in user defaults and checked before showing the alert again. In order to show the suppression button in the alert panel, you must set `showsSuppressionButton` to `YES`.
-        #[method_id(@__method_family Other suppressionButton)]
+        #[unsafe(method_family(none))]
+        #[method_id(suppressionButton)]
         pub unsafe fn suppressionButton(&self) -> Option<Retained<NSButton>>;
 
         #[cfg(all(
@@ -246,7 +256,8 @@ extern_methods!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         /// The app-modal panel or document-modal sheet that corresponds to the alert
-        #[method_id(@__method_family Other window)]
+        #[unsafe(method_family(none))]
+        #[method_id(window)]
         pub unsafe fn window(&self) -> Retained<NSWindow>;
     }
 );
@@ -254,10 +265,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSAlert {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

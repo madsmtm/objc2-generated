@@ -33,18 +33,21 @@ unsafe impl NSSecureCoding for SCNAudioSource {}
 extern_methods!(
     unsafe impl SCNAudioSource {
         /// Convenience initializer that creates an AVAudioNode from the named audio asset in the main bundle.
-        #[method_id(@__method_family Init initWithFileNamed:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithFileNamed:)]
         pub unsafe fn initWithFileNamed(
             this: Allocated<Self>,
             name: &NSString,
         ) -> Option<Retained<Self>>;
 
         /// Convenience initializer that creates an AVAudioNode from the URL that contain a audio asset.
-        #[method_id(@__method_family Init initWithURL:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithURL:)]
         pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Option<Retained<Self>>;
 
         /// Convenience class initializer that caches audioSources.
-        #[method_id(@__method_family Other audioSourceNamed:)]
+        #[unsafe(method_family(none))]
+        #[method_id(audioSourceNamed:)]
         pub unsafe fn audioSourceNamed(file_name: &NSString) -> Option<Retained<Self>>;
 
         /// Marks the audio source as positional so that the audio mix considers relative position and velocity with regards to the SCNSceneRenderer's current listener node. Defaults to YES.
@@ -110,10 +113,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNAudioSource {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -129,11 +134,13 @@ unsafe impl NSObjectProtocol for SCNAudioPlayer {}
 
 extern_methods!(
     unsafe impl SCNAudioPlayer {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Init an audio player with a source. Most people should use audioPlayerWithSource as it permits to recycle previous players instead of creating new ones for each instance.
-        #[method_id(@__method_family Init initWithSource:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
             source: &SCNAudioSource,
@@ -141,19 +148,22 @@ extern_methods!(
 
         #[cfg(feature = "objc2-avf-audio")]
         /// Init an audio player with an AVAudioNode. Most people should use audioPlayerWithAVAudioNode as it permits to recycle previous players instead of creating new ones for each instance.
-        #[method_id(@__method_family Init initWithAVAudioNode:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithAVAudioNode:)]
         pub unsafe fn initWithAVAudioNode(
             this: Allocated<Self>,
             audio_node: &AVAudioNode,
         ) -> Retained<Self>;
 
         /// Create an audio player with a source.
-        #[method_id(@__method_family Other audioPlayerWithSource:)]
+        #[unsafe(method_family(none))]
+        #[method_id(audioPlayerWithSource:)]
         pub unsafe fn audioPlayerWithSource(source: &SCNAudioSource) -> Retained<Self>;
 
         #[cfg(feature = "objc2-avf-audio")]
         /// Create an audio player with a custom AVAudioNode instance.
-        #[method_id(@__method_family Other audioPlayerWithAVAudioNode:)]
+        #[unsafe(method_family(none))]
+        #[method_id(audioPlayerWithAVAudioNode:)]
         pub unsafe fn audioPlayerWithAVAudioNode(audio_node: &AVAudioNode) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
@@ -184,11 +194,13 @@ extern_methods!(
 
         #[cfg(feature = "objc2-avf-audio")]
         /// The audioNode. If this player was not initialised with a custom AVAudioNode this contains the internal audio player node used by scene kit internally.
-        #[method_id(@__method_family Other audioNode)]
+        #[unsafe(method_family(none))]
+        #[method_id(audioNode)]
         pub unsafe fn audioNode(&self) -> Option<Retained<AVAudioNode>>;
 
         /// The audioSource if there is one.
-        #[method_id(@__method_family Other audioSource)]
+        #[unsafe(method_family(none))]
+        #[method_id(audioSource)]
         pub unsafe fn audioSource(&self) -> Option<Retained<SCNAudioSource>>;
     }
 );
@@ -196,7 +208,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNAudioPlayer {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -218,7 +231,8 @@ extern_methods!(
         pub unsafe fn removeAudioPlayer(&self, player: &SCNAudioPlayer);
 
         /// Get an array with all the audio players connected and playing on this node.
-        #[method_id(@__method_family Other audioPlayers)]
+        #[unsafe(method_family(none))]
+        #[method_id(audioPlayers)]
         pub unsafe fn audioPlayers(&self) -> Retained<NSArray<SCNAudioPlayer>>;
     }
 );

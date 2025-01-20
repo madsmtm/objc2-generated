@@ -114,28 +114,34 @@ unsafe impl NSSecureCoding for UIImageSymbolConfiguration {}
 extern_methods!(
     #[cfg(feature = "UIImageConfiguration")]
     unsafe impl UIImageSymbolConfiguration {
-        #[method_id(@__method_family Other unspecifiedConfiguration)]
+        #[unsafe(method_family(none))]
+        #[method_id(unspecifiedConfiguration)]
         pub unsafe fn unspecifiedConfiguration() -> Retained<UIImageSymbolConfiguration>;
 
-        #[method_id(@__method_family Other configurationWithScale:)]
+        #[unsafe(method_family(none))]
+        #[method_id(configurationWithScale:)]
         pub unsafe fn configurationWithScale(scale: UIImageSymbolScale) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Other configurationWithPointSize:)]
+        #[unsafe(method_family(none))]
+        #[method_id(configurationWithPointSize:)]
         pub unsafe fn configurationWithPointSize(point_size: CGFloat) -> Retained<Self>;
 
-        #[method_id(@__method_family Other configurationWithWeight:)]
+        #[unsafe(method_family(none))]
+        #[method_id(configurationWithWeight:)]
         pub unsafe fn configurationWithWeight(weight: UIImageSymbolWeight) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Other configurationWithPointSize:weight:)]
+        #[unsafe(method_family(none))]
+        #[method_id(configurationWithPointSize:weight:)]
         pub unsafe fn configurationWithPointSize_weight(
             point_size: CGFloat,
             weight: UIImageSymbolWeight,
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Other configurationWithPointSize:weight:scale:)]
+        #[unsafe(method_family(none))]
+        #[method_id(configurationWithPointSize:weight:scale:)]
         pub unsafe fn configurationWithPointSize_weight_scale(
             point_size: CGFloat,
             weight: UIImageSymbolWeight,
@@ -143,55 +149,67 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "UIFontDescriptor")]
-        #[method_id(@__method_family Other configurationWithTextStyle:)]
+        #[unsafe(method_family(none))]
+        #[method_id(configurationWithTextStyle:)]
         pub unsafe fn configurationWithTextStyle(text_style: &UIFontTextStyle) -> Retained<Self>;
 
         #[cfg(feature = "UIFontDescriptor")]
-        #[method_id(@__method_family Other configurationWithTextStyle:scale:)]
+        #[unsafe(method_family(none))]
+        #[method_id(configurationWithTextStyle:scale:)]
         pub unsafe fn configurationWithTextStyle_scale(
             text_style: &UIFontTextStyle,
             scale: UIImageSymbolScale,
         ) -> Retained<Self>;
 
         #[cfg(feature = "UIFont")]
-        #[method_id(@__method_family Other configurationWithFont:)]
+        #[unsafe(method_family(none))]
+        #[method_id(configurationWithFont:)]
         pub unsafe fn configurationWithFont(font: &UIFont) -> Retained<Self>;
 
         #[cfg(feature = "UIFont")]
-        #[method_id(@__method_family Other configurationWithFont:scale:)]
+        #[unsafe(method_family(none))]
+        #[method_id(configurationWithFont:scale:)]
         pub unsafe fn configurationWithFont_scale(
             font: &UIFont,
             scale: UIImageSymbolScale,
         ) -> Retained<Self>;
 
         #[cfg(feature = "UIColor")]
-        #[method_id(@__method_family Other configurationWithHierarchicalColor:)]
+        #[unsafe(method_family(none))]
+        #[method_id(configurationWithHierarchicalColor:)]
         pub unsafe fn configurationWithHierarchicalColor(
             hierarchical_color: &UIColor,
         ) -> Retained<Self>;
 
         #[cfg(feature = "UIColor")]
-        #[method_id(@__method_family Other configurationWithPaletteColors:)]
+        #[unsafe(method_family(none))]
+        #[method_id(configurationWithPaletteColors:)]
         pub unsafe fn configurationWithPaletteColors(
             palette_colors: &NSArray<UIColor>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Other configurationPreferringMulticolor)]
+        #[unsafe(method_family(none))]
+        #[method_id(configurationPreferringMulticolor)]
         pub unsafe fn configurationPreferringMulticolor() -> Retained<Self>;
 
-        #[method_id(@__method_family Other configurationPreferringMonochrome)]
+        #[unsafe(method_family(none))]
+        #[method_id(configurationPreferringMonochrome)]
         pub unsafe fn configurationPreferringMonochrome() -> Retained<Self>;
 
-        #[method_id(@__method_family Other configurationWithoutTextStyle)]
+        #[unsafe(method_family(none))]
+        #[method_id(configurationWithoutTextStyle)]
         pub unsafe fn configurationWithoutTextStyle(&self) -> Retained<Self>;
 
-        #[method_id(@__method_family Other configurationWithoutScale)]
+        #[unsafe(method_family(none))]
+        #[method_id(configurationWithoutScale)]
         pub unsafe fn configurationWithoutScale(&self) -> Retained<Self>;
 
-        #[method_id(@__method_family Other configurationWithoutWeight)]
+        #[unsafe(method_family(none))]
+        #[method_id(configurationWithoutWeight)]
         pub unsafe fn configurationWithoutWeight(&self) -> Retained<Self>;
 
-        #[method_id(@__method_family Other configurationWithoutPointSizeAndWeight)]
+        #[unsafe(method_family(none))]
+        #[method_id(configurationWithoutPointSizeAndWeight)]
         pub unsafe fn configurationWithoutPointSizeAndWeight(&self) -> Retained<Self>;
 
         #[method(isEqualToConfiguration:)]
@@ -206,19 +224,23 @@ extern_methods!(
     /// Methods declared on superclass `UIImageConfiguration`
     #[cfg(feature = "UIImageConfiguration")]
     unsafe impl UIImageSymbolConfiguration {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "UITraitCollection")]
-        #[method_id(@__method_family Other configurationWithTraitCollection:)]
+        #[unsafe(method_family(none))]
+        #[method_id(configurationWithTraitCollection:)]
         pub unsafe fn configurationWithTraitCollection(
             trait_collection: Option<&UITraitCollection>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Other configurationWithLocale:)]
+        #[unsafe(method_family(none))]
+        #[method_id(configurationWithLocale:)]
         pub unsafe fn configurationWithLocale(locale: Option<&NSLocale>) -> Retained<Self>;
     }
 );

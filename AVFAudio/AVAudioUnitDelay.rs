@@ -111,7 +111,8 @@ extern_methods!(
         /// kAudioUnitType_Panner
         /// kAudioUnitType_RemoteEffect
         /// kAudioUnitType_RemoteMusicEffect
-        #[method_id(@__method_family Init initWithAudioComponentDescription:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithAudioComponentDescription:)]
         pub unsafe fn initWithAudioComponentDescription(
             this: Allocated<Self>,
             audio_component_description: AudioComponentDescription,
@@ -127,10 +128,12 @@ extern_methods!(
         feature = "AVAudioUnitEffect"
     ))]
     unsafe impl AVAudioUnitDelay {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

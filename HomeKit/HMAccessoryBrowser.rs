@@ -25,11 +25,13 @@ unsafe impl NSObjectProtocol for HMAccessoryBrowser {}
 
 extern_methods!(
     unsafe impl HMAccessoryBrowser {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Delegate that receives updates on the state of the accessories discovered.
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn HMAccessoryBrowserDelegate>>>;
@@ -46,7 +48,8 @@ extern_methods!(
         /// This is the array of HMAccessory objects that represents new
         /// accessories that were discovered as part of a search session.
         /// This array is not updated when a search session is not in progress.
-        #[method_id(@__method_family Other discoveredAccessories)]
+        #[unsafe(method_family(none))]
+        #[method_id(discoveredAccessories)]
         pub unsafe fn discoveredAccessories(&self) -> Retained<NSArray<HMAccessory>>;
 
         /// Starts searching for accessories that are not associated to any home.
@@ -80,7 +83,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HMAccessoryBrowser {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -30,7 +30,8 @@ extern_methods!(
         ///
         /// Autoreleased instance of an ODNode with a provided ODSession and ODNodeType.  outError is
         /// optional parameter, nil can be passed if error details are not needed.
-        #[method_id(@__method_family Other nodeWithSession:type:error:)]
+        #[unsafe(method_family(none))]
+        #[method_id(nodeWithSession:type:error:)]
         pub unsafe fn nodeWithSession_type_error(
             in_session: Option<&ODSession>,
             in_type: ODNodeType,
@@ -42,7 +43,8 @@ extern_methods!(
         ///
         /// autoreleased instance of an ODNode with a provided ODSession and node name.  outError is
         /// optional parameter, nil can be passed if error details are not needed.
-        #[method_id(@__method_family Other nodeWithSession:name:error:)]
+        #[unsafe(method_family(none))]
+        #[method_id(nodeWithSession:name:error:)]
         pub unsafe fn nodeWithSession_name_error(
             in_session: Option<&ODSession>,
             in_name: Option<&NSString>,
@@ -58,7 +60,8 @@ extern_methods!(
         ///
         /// initialize instance of an ODNode with a provided ODSession and ODNodeType.  outError is
         /// optional parameter, nil can be passed if error details are not needed.
-        #[method_id(@__method_family Init initWithSession:type:error:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithSession:type:error:)]
         pub unsafe fn initWithSession_type_error(
             this: Allocated<Self>,
             in_session: Option<&ODSession>,
@@ -71,7 +74,8 @@ extern_methods!(
         ///
         /// initialize instance of an ODNode with a provided ODSession and node name.  outError is optional
         /// parameter, nil can be passed if error details are not needed.
-        #[method_id(@__method_family Init initWithSession:name:error:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithSession:name:error:)]
         pub unsafe fn initWithSession_name_error(
             this: Allocated<Self>,
             in_session: Option<&ODSession>,
@@ -84,7 +88,8 @@ extern_methods!(
         /// Returns NSArray of node names for this node, which may contain sub-nodes or search policy nodes.
         /// Commonly used with Search policy nodes.  outError is optional parameter, nil can be passed if error
         /// details are not needed.
-        #[method_id(@__method_family Other subnodeNamesAndReturnError:)]
+        #[unsafe(method_family(none))]
+        #[method_id(subnodeNamesAndReturnError:)]
         pub unsafe fn subnodeNamesAndReturnError(
             &self,
             out_error: Option<&mut Option<Retained<NSError>>>,
@@ -95,7 +100,8 @@ extern_methods!(
         /// Will return NSArray of names of subnodes that are not currently reachable.  Commonly used with Search policy
         /// nodes to determine if any nodes are currently unreachable, but may also return other subnodes if the
         /// OpenDirectory plugin supports.  outError is optional parameter, nil can be passed if error details are not needed.
-        #[method_id(@__method_family Other unreachableSubnodeNamesAndReturnError:)]
+        #[unsafe(method_family(none))]
+        #[method_id(unreachableSubnodeNamesAndReturnError:)]
         pub unsafe fn unreachableSubnodeNamesAndReturnError(
             &self,
             out_error: Option<&mut Option<Retained<NSError>>>,
@@ -104,7 +110,8 @@ extern_methods!(
         /// The node name.
         ///
         /// The node name, corresponding to its path in OpenDirectory.
-        #[method_id(@__method_family Other nodeName)]
+        #[unsafe(method_family(none))]
+        #[method_id(nodeName)]
         pub unsafe fn nodeName(&self) -> Retained<NSString>;
 
         /// Returns a dictionary of information about the instance of ODNode
@@ -112,7 +119,8 @@ extern_methods!(
         /// Returns a dictionary of information about the instance of ODNode.  Details such as Trust information
         /// (kODAttributeTypeTrustInformation) or other Node details can be retrieved.  outError is optional parameter,
         /// nil can be passed if error details are not needed.
-        #[method_id(@__method_family Other nodeDetailsForKeys:error:)]
+        #[unsafe(method_family(none))]
+        #[method_id(nodeDetailsForKeys:error:)]
         pub unsafe fn nodeDetailsForKeys_error(
             &self,
             in_keys: Option<&NSArray>,
@@ -124,7 +132,8 @@ extern_methods!(
         /// Returns a NSArray of the record types supported by this node.  If node does not support the check
         /// then all possible types will be returned.  outError is optional parameter, nil can be passed if error details
         /// are not needed.
-        #[method_id(@__method_family Other supportedRecordTypesAndReturnError:)]
+        #[unsafe(method_family(none))]
+        #[method_id(supportedRecordTypesAndReturnError:)]
         pub unsafe fn supportedRecordTypesAndReturnError(
             &self,
             out_error: Option<&mut Option<Retained<NSError>>>,
@@ -136,7 +145,8 @@ extern_methods!(
         /// Will return a list of attribute types supported for that attribute if possible.  If no specific
         /// types are available, then all possible values will be returned instead.  outError is optional parameter,
         /// nil can be passed if error details are not needed.
-        #[method_id(@__method_family Other supportedAttributesForRecordType:error:)]
+        #[unsafe(method_family(none))]
+        #[method_id(supportedAttributesForRecordType:error:)]
         pub unsafe fn supportedAttributesForRecordType_error(
             &self,
             in_record_type: Option<&ODRecordType>,
@@ -197,7 +207,8 @@ extern_methods!(
         /// Takes all the provided attributes and type to create an entire record.  The function will assign a
         /// UUID to the record automatically.  This UUID can be overwritten by the client by passing with the
         /// other attributes.  inAttributes is optional, nil can be passed if no other attributes are to be set.
-        #[method_id(@__method_family Other createRecordWithRecordType:name:attributes:error:)]
+        #[unsafe(method_family(none))]
+        #[method_id(createRecordWithRecordType:name:attributes:error:)]
         pub unsafe fn createRecordWithRecordType_name_attributes_error(
             &self,
             in_record_type: Option<&ODRecordType>,
@@ -216,7 +227,8 @@ extern_methods!(
         /// Returns an ODRecord object that references the requested type and name.  The record will have cached the
         /// attributes requested.  Further attributes can be requested via ODRecord APIs.  For performance it is best
         /// to ask for as many attributes that are needed as possible up front.
-        #[method_id(@__method_family Other recordWithRecordType:name:attributes:error:)]
+        #[unsafe(method_family(none))]
+        #[method_id(recordWithRecordType:name:attributes:error:)]
         pub unsafe fn recordWithRecordType_name_attributes_error(
             &self,
             in_record_type: Option<&ODRecordType>,
@@ -229,7 +241,8 @@ extern_methods!(
         ///
         /// Sends a custom code to the node; input and output data formats are specific to the call.  outError is
         /// optional parameter, nil can be passed if error details are not needed.
-        #[method_id(@__method_family Other customCall:sendData:error:)]
+        #[unsafe(method_family(none))]
+        #[method_id(customCall:sendData:error:)]
         pub unsafe fn customCall_sendData_error(
             &self,
             in_custom_code: NSInteger,
@@ -242,7 +255,8 @@ extern_methods!(
         /// Sends a custom function call to the node; data is a type specific to the call.  'error' is an
         /// optional parameter therefore nil can be passed if error details are not needed.  Return type is
         /// defined by the custom function requested.
-        #[method_id(@__method_family Other customFunction:payload:error:)]
+        #[unsafe(method_family(none))]
+        #[method_id(customFunction:payload:error:)]
         pub unsafe fn customFunction_payload_error(
             &self,
             function: Option<&NSString>,
@@ -255,14 +269,16 @@ extern_methods!(
         ///
         ///
         /// Returns an ODConfiguration object for the node.
-        #[method_id(@__method_family Other configuration)]
+        #[unsafe(method_family(none))]
+        #[method_id(configuration)]
         pub unsafe fn configuration(&self) -> Option<Retained<ODConfiguration>>;
 
         /// This will copy any policies configured for the node.
         ///
         /// This will copy any policies configured for the node.
         #[deprecated = "use accountPoliciesAndReturnError:"]
-        #[method_id(@__method_family Other policiesAndReturnError:)]
+        #[unsafe(method_family(none))]
+        #[method_id(policiesAndReturnError:)]
         pub unsafe fn policiesAndReturnError(
             &self,
             error: Option<&mut Option<Retained<NSError>>>,
@@ -274,7 +290,8 @@ extern_methods!(
         /// for the policy in question.  For example, if password history is available, it will state how much history is
         /// supported.
         #[deprecated]
-        #[method_id(@__method_family Other supportedPoliciesAndReturnError:)]
+        #[unsafe(method_family(none))]
+        #[method_id(supportedPoliciesAndReturnError:)]
         pub unsafe fn supportedPoliciesAndReturnError(
             &self,
             error: Option<&mut Option<Retained<NSError>>>,
@@ -404,7 +421,8 @@ extern_methods!(
         /// Returns: an NSDictionary containing all currently set policies.  The
         /// format of the dictionary is the same as described in
         /// setAccountPolicies.
-        #[method_id(@__method_family Other accountPoliciesAndReturnError:)]
+        #[unsafe(method_family(none))]
+        #[method_id(accountPoliciesAndReturnError:)]
         pub unsafe fn accountPoliciesAndReturnError(
             &self,
             error: Option<&mut Option<Retained<NSError>>>,
@@ -443,10 +461,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ODNode {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

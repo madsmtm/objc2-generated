@@ -79,11 +79,13 @@ extern_methods!(
     unsafe impl DOMHTMLMapElement {
         #[cfg(feature = "DOMHTMLCollection")]
         #[deprecated]
-        #[method_id(@__method_family Other areas)]
+        #[unsafe(method_family(none))]
+        #[method_id(areas)]
         pub unsafe fn areas(&self) -> Option<Retained<DOMHTMLCollection>>;
 
         #[deprecated]
-        #[method_id(@__method_family Other name)]
+        #[unsafe(method_family(none))]
+        #[method_id(name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
@@ -104,7 +106,8 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLMapElement {
         #[deprecated]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -119,7 +122,8 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLMapElement {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -40,13 +40,16 @@ extern_methods!(
         ///
         /// In case of an existing plane target, an anchor will always be provided. In case of an estimated plane target,
         /// an anchor may be provided if the ray hit an existing plane.
-        #[method_id(@__method_family Other anchor)]
+        #[unsafe(method_family(none))]
+        #[method_id(anchor)]
         pub unsafe fn anchor(&self) -> Option<Retained<ARAnchor>>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(&self) -> Retained<Self>;
     }
 );
@@ -56,7 +59,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2")]
     unsafe impl ARRaycastResult {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new_class() -> Retained<Self>;
     }
 );

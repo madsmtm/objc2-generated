@@ -50,27 +50,33 @@ extern_methods!(
         );
 
         #[cfg(feature = "GCControllerAxisInput")]
-        #[method_id(@__method_family Other xAxis)]
+        #[unsafe(method_family(none))]
+        #[method_id(xAxis)]
         pub unsafe fn xAxis(&self) -> Retained<GCControllerAxisInput>;
 
         #[cfg(feature = "GCControllerAxisInput")]
-        #[method_id(@__method_family Other yAxis)]
+        #[unsafe(method_family(none))]
+        #[method_id(yAxis)]
         pub unsafe fn yAxis(&self) -> Retained<GCControllerAxisInput>;
 
         #[cfg(feature = "GCControllerButtonInput")]
-        #[method_id(@__method_family Other up)]
+        #[unsafe(method_family(none))]
+        #[method_id(up)]
         pub unsafe fn up(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(feature = "GCControllerButtonInput")]
-        #[method_id(@__method_family Other down)]
+        #[unsafe(method_family(none))]
+        #[method_id(down)]
         pub unsafe fn down(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(feature = "GCControllerButtonInput")]
-        #[method_id(@__method_family Other left)]
+        #[unsafe(method_family(none))]
+        #[method_id(left)]
         pub unsafe fn left(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(feature = "GCControllerButtonInput")]
-        #[method_id(@__method_family Other right)]
+        #[unsafe(method_family(none))]
+        #[method_id(right)]
         pub unsafe fn right(&self) -> Retained<GCControllerButtonInput>;
 
         /// Sets the normalized value for the direction pad's axis inputs. Will update the states of the direction pad's button inputs as well.
@@ -94,10 +100,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "GCControllerElement")]
     unsafe impl GCControllerDirectionPad {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

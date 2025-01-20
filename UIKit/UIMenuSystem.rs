@@ -21,17 +21,21 @@ unsafe impl NSObjectProtocol for UIMenuSystem {}
 extern_methods!(
     unsafe impl UIMenuSystem {
         /// The main command system.
-        #[method_id(@__method_family Other mainSystem)]
+        #[unsafe(method_family(none))]
+        #[method_id(mainSystem)]
         pub unsafe fn mainSystem(mtm: MainThreadMarker) -> Retained<UIMenuSystem>;
 
         /// The context command system.
-        #[method_id(@__method_family Other contextSystem)]
+        #[unsafe(method_family(none))]
+        #[method_id(contextSystem)]
         pub unsafe fn contextSystem(mtm: MainThreadMarker) -> Retained<UIMenuSystem>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Trigger a rebuild of this system at a suitable time.

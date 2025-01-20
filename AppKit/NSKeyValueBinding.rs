@@ -35,16 +35,20 @@ unsafe impl NSObjectProtocol for NSBindingSelectionMarker {}
 
 extern_methods!(
     unsafe impl NSBindingSelectionMarker {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family Other multipleValuesSelectionMarker)]
+        #[unsafe(method_family(none))]
+        #[method_id(multipleValuesSelectionMarker)]
         pub unsafe fn multipleValuesSelectionMarker() -> Retained<NSBindingSelectionMarker>;
 
-        #[method_id(@__method_family Other noSelectionMarker)]
+        #[unsafe(method_family(none))]
+        #[method_id(noSelectionMarker)]
         pub unsafe fn noSelectionMarker() -> Retained<NSBindingSelectionMarker>;
 
-        #[method_id(@__method_family Other notApplicableSelectionMarker)]
+        #[unsafe(method_family(none))]
+        #[method_id(notApplicableSelectionMarker)]
         pub unsafe fn notApplicableSelectionMarker() -> Retained<NSBindingSelectionMarker>;
 
         #[method(setDefaultPlaceholder:forMarker:onClass:withBinding:)]
@@ -55,7 +59,8 @@ extern_methods!(
             binding: &NSBindingName,
         );
 
-        #[method_id(@__method_family Other defaultPlaceholderForMarker:onClass:withBinding:)]
+        #[unsafe(method_family(none))]
+        #[method_id(defaultPlaceholderForMarker:onClass:withBinding:)]
         pub unsafe fn defaultPlaceholderForMarker_onClass_withBinding(
             marker: Option<&NSBindingSelectionMarker>,
             object_class: &AnyClass,
@@ -67,7 +72,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSBindingSelectionMarker {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -121,7 +127,8 @@ extern_category!(
         #[method(exposeBinding:)]
         unsafe fn exposeBinding(binding: &NSBindingName);
 
-        #[method_id(@__method_family Other exposedBindings)]
+        #[unsafe(method_family(none))]
+        #[method_id(exposedBindings)]
         unsafe fn exposedBindings(&self) -> Retained<NSArray<NSBindingName>>;
 
         #[method(valueClassForBinding:)]
@@ -140,7 +147,8 @@ extern_category!(
         #[method(unbind:)]
         unsafe fn unbind(&self, binding: &NSBindingName);
 
-        #[method_id(@__method_family Other infoForBinding:)]
+        #[unsafe(method_family(none))]
+        #[method_id(infoForBinding:)]
         unsafe fn infoForBinding(
             &self,
             binding: &NSBindingName,
@@ -148,7 +156,8 @@ extern_category!(
 
         #[cfg(feature = "objc2-core-data")]
         #[cfg(target_vendor = "apple")]
-        #[method_id(@__method_family Other optionDescriptionsForBinding:)]
+        #[unsafe(method_family(none))]
+        #[method_id(optionDescriptionsForBinding:)]
         unsafe fn optionDescriptionsForBinding(
             &self,
             binding: &NSBindingName,

@@ -28,7 +28,8 @@ extern_methods!(
         #[cfg(feature = "MLCOptimizer")]
         /// The optimizer to be used with the training graph
         #[deprecated]
-        #[method_id(@__method_family Other optimizer)]
+        #[unsafe(method_family(none))]
+        #[method_id(optimizer)]
         pub unsafe fn optimizer(&self) -> Option<Retained<MLCOptimizer>>;
 
         /// Returns the total size in bytes of device memory used for all intermediate tensors
@@ -54,7 +55,8 @@ extern_methods!(
         ///
         /// Returns: A new training graph object
         #[deprecated]
-        #[method_id(@__method_family Other graphWithGraphObjects:lossLayer:optimizer:)]
+        #[unsafe(method_family(none))]
+        #[method_id(graphWithGraphObjects:lossLayer:optimizer:)]
         pub unsafe fn graphWithGraphObjects_lossLayer_optimizer(
             graph_objects: &NSArray<MLCGraph>,
             loss_layer: Option<&MLCLayer>,
@@ -199,7 +201,8 @@ extern_methods!(
         ///
         /// Returns: The gradient tensor
         #[deprecated]
-        #[method_id(@__method_family Other gradientTensorForInput:)]
+        #[unsafe(method_family(none))]
+        #[method_id(gradientTensorForInput:)]
         pub unsafe fn gradientTensorForInput(
             &self,
             input: &MLCTensor,
@@ -212,7 +215,8 @@ extern_methods!(
         ///
         /// Returns: A list of tensors
         #[deprecated]
-        #[method_id(@__method_family Other sourceGradientTensorsForLayer:)]
+        #[unsafe(method_family(none))]
+        #[method_id(sourceGradientTensorsForLayer:)]
         pub unsafe fn sourceGradientTensorsForLayer(
             &self,
             layer: &MLCLayer,
@@ -225,7 +229,8 @@ extern_methods!(
         ///
         /// Returns: A list of tensors
         #[deprecated]
-        #[method_id(@__method_family Other resultGradientTensorsForLayer:)]
+        #[unsafe(method_family(none))]
+        #[method_id(resultGradientTensorsForLayer:)]
         pub unsafe fn resultGradientTensorsForLayer(
             &self,
             layer: &MLCLayer,
@@ -252,7 +257,8 @@ extern_methods!(
         /// Returns: The gradient data.  Will return nil if the layer is marked as not trainable or if
         /// training graph is not executed with separate calls to forward and gradient passes.
         #[deprecated]
-        #[method_id(@__method_family Other gradientDataForParameter:layer:)]
+        #[unsafe(method_family(none))]
+        #[method_id(gradientDataForParameter:layer:)]
         pub unsafe fn gradientDataForParameter_layer(
             &self,
             parameter: &MLCTensor,
@@ -268,7 +274,8 @@ extern_methods!(
         ///
         /// Returns: A gradient tensor
         #[deprecated]
-        #[method_id(@__method_family Other allocateUserGradientForTensor:)]
+        #[unsafe(method_family(none))]
+        #[method_id(allocateUserGradientForTensor:)]
         pub unsafe fn allocateUserGradientForTensor(
             &self,
             tensor: &MLCTensor,
@@ -521,7 +528,8 @@ extern_methods!(
         ///
         /// Returns: A new graph.
         #[deprecated]
-        #[method_id(@__method_family Other graph)]
+        #[unsafe(method_family(none))]
+        #[method_id(graph)]
         pub unsafe fn graph() -> Retained<Self>;
     }
 );
@@ -530,10 +538,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MLCGraph")]
     unsafe impl MLCTrainingGraph {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

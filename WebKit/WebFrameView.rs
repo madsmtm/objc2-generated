@@ -59,7 +59,8 @@ extern_methods!(
         #[cfg(feature = "WebFrame")]
         /// The WebFrame associated with this WebFrameView
         #[deprecated]
-        #[method_id(@__method_family Other webFrame)]
+        #[unsafe(method_family(none))]
+        #[method_id(webFrame)]
         pub unsafe fn webFrame(&self) -> Option<Retained<WebFrame>>;
 
         #[cfg(feature = "WebDocument")]
@@ -67,7 +68,8 @@ extern_methods!(
         ///
         /// The subview that renders the WebFrameView's contents
         #[deprecated]
-        #[method_id(@__method_family Other documentView)]
+        #[unsafe(method_family(none))]
+        #[method_id(documentView)]
         pub unsafe fn documentView(&self) -> Option<Retained<NSView>>;
 
         /// Whether the WebFrameView allows its document to be scrolled
@@ -89,7 +91,8 @@ extern_methods!(
         ///
         /// Returns: A newly created print operation object
         #[deprecated]
-        #[method_id(@__method_family Other printOperationWithPrintInfo:)]
+        #[unsafe(method_family(none))]
+        #[method_id(printOperationWithPrintInfo:)]
         pub unsafe fn printOperationWithPrintInfo(
             &self,
             print_info: Option<&NSPrintInfo>,
@@ -116,10 +119,12 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl WebFrameView {
-        #[method_id(@__method_family Init initWithFrame:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -132,7 +137,8 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl WebFrameView {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -142,7 +148,8 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl WebFrameView {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

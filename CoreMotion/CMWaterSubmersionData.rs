@@ -79,7 +79,8 @@ unsafe impl NSSecureCoding for CMWaterSubmersionEvent {}
 
 extern_methods!(
     unsafe impl CMWaterSubmersionEvent {
-        #[method_id(@__method_family Other date)]
+        #[unsafe(method_family(none))]
+        #[method_id(date)]
         pub unsafe fn date(&self) -> Retained<NSDate>;
 
         #[method(state)]
@@ -90,10 +91,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CMWaterSubmersionEvent {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -119,16 +122,20 @@ unsafe impl NSSecureCoding for CMWaterSubmersionMeasurement {}
 
 extern_methods!(
     unsafe impl CMWaterSubmersionMeasurement {
-        #[method_id(@__method_family Other date)]
+        #[unsafe(method_family(none))]
+        #[method_id(date)]
         pub unsafe fn date(&self) -> Retained<NSDate>;
 
-        #[method_id(@__method_family Other depth)]
+        #[unsafe(method_family(none))]
+        #[method_id(depth)]
         pub unsafe fn depth(&self) -> Option<Retained<NSMeasurement<NSUnitLength>>>;
 
-        #[method_id(@__method_family Other pressure)]
+        #[unsafe(method_family(none))]
+        #[method_id(pressure)]
         pub unsafe fn pressure(&self) -> Option<Retained<NSMeasurement<NSUnitPressure>>>;
 
-        #[method_id(@__method_family Other surfacePressure)]
+        #[unsafe(method_family(none))]
+        #[method_id(surfacePressure)]
         pub unsafe fn surfacePressure(&self) -> Retained<NSMeasurement<NSUnitPressure>>;
 
         #[method(submersionState)]
@@ -139,10 +146,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CMWaterSubmersionMeasurement {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -168,13 +177,16 @@ unsafe impl NSSecureCoding for CMWaterTemperature {}
 
 extern_methods!(
     unsafe impl CMWaterTemperature {
-        #[method_id(@__method_family Other date)]
+        #[unsafe(method_family(none))]
+        #[method_id(date)]
         pub unsafe fn date(&self) -> Retained<NSDate>;
 
-        #[method_id(@__method_family Other temperature)]
+        #[unsafe(method_family(none))]
+        #[method_id(temperature)]
         pub unsafe fn temperature(&self) -> Retained<NSMeasurement<NSUnitTemperature>>;
 
-        #[method_id(@__method_family Other temperatureUncertainty)]
+        #[unsafe(method_family(none))]
+        #[method_id(temperatureUncertainty)]
         pub unsafe fn temperatureUncertainty(&self) -> Retained<NSMeasurement<NSUnitTemperature>>;
     }
 );
@@ -182,10 +194,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CMWaterTemperature {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

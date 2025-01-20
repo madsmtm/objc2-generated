@@ -32,7 +32,8 @@ extern_methods!(
     unsafe impl AVAudioBuffer {
         #[cfg(feature = "AVAudioFormat")]
         /// The format of the audio in the buffer.
-        #[method_id(@__method_family Other format)]
+        #[unsafe(method_family(none))]
+        #[method_id(format)]
         pub unsafe fn format(&self) -> Retained<AVAudioFormat>;
 
         #[cfg(feature = "objc2-core-audio-types")]
@@ -62,10 +63,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAudioBuffer {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -105,7 +108,8 @@ extern_methods!(
         /// - if the format has zero bytes per frame (format.streamDescription->mBytesPerFrame == 0)
         /// - if the buffer byte capacity (frameCapacity * format.streamDescription->mBytesPerFrame)
         /// cannot be represented by an uint32_t
-        #[method_id(@__method_family Init initWithPCMFormat:frameCapacity:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithPCMFormat:frameCapacity:)]
         pub unsafe fn initWithPCMFormat_frameCapacity(
             this: Allocated<Self>,
             format: &AVAudioFormat,
@@ -141,7 +145,8 @@ extern_methods!(
         ///
         /// The AudioBufferList passed to the deallocator is identical to the one which was passed to the initializer,
         /// in terms of the buffer count, and each buffer's mData and mDataByteSize members.
-        #[method_id(@__method_family Init initWithPCMFormat:bufferListNoCopy:deallocator:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithPCMFormat:bufferListNoCopy:deallocator:)]
         pub unsafe fn initWithPCMFormat_bufferListNoCopy_deallocator(
             this: Allocated<Self>,
             format: &AVAudioFormat,
@@ -215,10 +220,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAudioPCMBuffer {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -253,7 +260,8 @@ extern_methods!(
         /// The maximum packet size can be obtained from the maximumOutputPacketSize property of an AVAudioConverter configured for encoding this format.
         ///
         /// An exception is raised if the format is PCM.
-        #[method_id(@__method_family Init initWithFormat:packetCapacity:maximumPacketSize:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithFormat:packetCapacity:maximumPacketSize:)]
         pub unsafe fn initWithFormat_packetCapacity_maximumPacketSize(
             this: Allocated<Self>,
             format: &AVAudioFormat,
@@ -269,7 +277,8 @@ extern_methods!(
         /// Parameter `packetCapacity`: The capacity of the buffer in packets.
         ///
         /// This fails if the format is PCM or if the format has variable bytes per packet (format.streamDescription->mBytesPerPacket == 0).
-        #[method_id(@__method_family Init initWithFormat:packetCapacity:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithFormat:packetCapacity:)]
         pub unsafe fn initWithFormat_packetCapacity(
             this: Allocated<Self>,
             format: &AVAudioFormat,
@@ -328,10 +337,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAudioCompressedBuffer {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

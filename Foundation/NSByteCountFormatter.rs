@@ -96,32 +96,37 @@ extern_methods!(
     #[cfg(feature = "NSFormatter")]
     unsafe impl NSByteCountFormatter {
         #[cfg(feature = "NSString")]
-        #[method_id(@__method_family Other stringFromByteCount:countStyle:)]
+        #[unsafe(method_family(none))]
+        #[method_id(stringFromByteCount:countStyle:)]
         pub unsafe fn stringFromByteCount_countStyle(
             byte_count: c_longlong,
             count_style: NSByteCountFormatterCountStyle,
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__method_family Other stringFromByteCount:)]
+        #[unsafe(method_family(none))]
+        #[method_id(stringFromByteCount:)]
         pub unsafe fn stringFromByteCount(&self, byte_count: c_longlong) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSMeasurement", feature = "NSString", feature = "NSUnit"))]
-        #[method_id(@__method_family Other stringFromMeasurement:countStyle:)]
+        #[unsafe(method_family(none))]
+        #[method_id(stringFromMeasurement:countStyle:)]
         pub unsafe fn stringFromMeasurement_countStyle(
             measurement: &NSMeasurement<NSUnitInformationStorage>,
             count_style: NSByteCountFormatterCountStyle,
         ) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSMeasurement", feature = "NSString", feature = "NSUnit"))]
-        #[method_id(@__method_family Other stringFromMeasurement:)]
+        #[unsafe(method_family(none))]
+        #[method_id(stringFromMeasurement:)]
         pub unsafe fn stringFromMeasurement(
             &self,
             measurement: &NSMeasurement<NSUnitInformationStorage>,
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__method_family Other stringForObjectValue:)]
+        #[unsafe(method_family(none))]
+        #[method_id(stringForObjectValue:)]
         pub unsafe fn stringForObjectValue(
             &self,
             obj: Option<&AnyObject>,
@@ -196,10 +201,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSFormatter")]
     unsafe impl NSByteCountFormatter {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

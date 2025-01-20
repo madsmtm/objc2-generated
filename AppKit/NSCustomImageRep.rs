@@ -32,7 +32,8 @@ extern_methods!(
     #[cfg(feature = "NSImageRep")]
     unsafe impl NSCustomImageRep {
         #[cfg(feature = "block2")]
-        #[method_id(@__method_family Init initWithSize:flipped:drawingHandler:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithSize:flipped:drawingHandler:)]
         pub unsafe fn initWithSize_flipped_drawingHandler(
             this: Allocated<Self>,
             size: NSSize,
@@ -44,7 +45,8 @@ extern_methods!(
         #[method(drawingHandler)]
         pub unsafe fn drawingHandler(&self) -> *mut block2::Block<dyn Fn(NSRect) -> Bool>;
 
-        #[method_id(@__method_family Init initWithDrawSelector:delegate:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDrawSelector:delegate:)]
         pub unsafe fn initWithDrawSelector_delegate(
             this: Allocated<Self>,
             selector: Sel,
@@ -54,7 +56,8 @@ extern_methods!(
         #[method(drawSelector)]
         pub unsafe fn drawSelector(&self) -> Option<Sel>;
 
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<AnyObject>>;
     }
 );
@@ -63,10 +66,12 @@ extern_methods!(
     /// Methods declared on superclass `NSImageRep`
     #[cfg(feature = "NSImageRep")]
     unsafe impl NSCustomImageRep {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -78,7 +83,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSImageRep")]
     unsafe impl NSCustomImageRep {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

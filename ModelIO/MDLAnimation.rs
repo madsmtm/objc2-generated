@@ -32,18 +32,22 @@ unsafe impl NSObjectProtocol for MDLSkeleton {}
 extern_methods!(
     #[cfg(feature = "MDLObject")]
     unsafe impl MDLSkeleton {
-        #[method_id(@__method_family Other jointPaths)]
+        #[unsafe(method_family(none))]
+        #[method_id(jointPaths)]
         pub unsafe fn jointPaths(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "MDLValueTypes")]
-        #[method_id(@__method_family Other jointBindTransforms)]
+        #[unsafe(method_family(none))]
+        #[method_id(jointBindTransforms)]
         pub unsafe fn jointBindTransforms(&self) -> Retained<MDLMatrix4x4Array>;
 
         #[cfg(feature = "MDLValueTypes")]
-        #[method_id(@__method_family Other jointRestTransforms)]
+        #[unsafe(method_family(none))]
+        #[method_id(jointRestTransforms)]
         pub unsafe fn jointRestTransforms(&self) -> Retained<MDLMatrix4x4Array>;
 
-        #[method_id(@__method_family Init initWithName:jointPaths:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithName:jointPaths:)]
         pub unsafe fn initWithName_jointPaths(
             this: Allocated<Self>,
             name: &NSString,
@@ -56,10 +60,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MDLObject")]
     unsafe impl MDLSkeleton {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -97,22 +103,27 @@ unsafe impl NSObjectProtocol for MDLPackedJointAnimation {}
 extern_methods!(
     #[cfg(feature = "MDLObject")]
     unsafe impl MDLPackedJointAnimation {
-        #[method_id(@__method_family Other jointPaths)]
+        #[unsafe(method_family(none))]
+        #[method_id(jointPaths)]
         pub unsafe fn jointPaths(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "MDLAnimatedValueTypes")]
-        #[method_id(@__method_family Other translations)]
+        #[unsafe(method_family(none))]
+        #[method_id(translations)]
         pub unsafe fn translations(&self) -> Retained<MDLAnimatedVector3Array>;
 
         #[cfg(feature = "MDLAnimatedValueTypes")]
-        #[method_id(@__method_family Other rotations)]
+        #[unsafe(method_family(none))]
+        #[method_id(rotations)]
         pub unsafe fn rotations(&self) -> Retained<MDLAnimatedQuaternionArray>;
 
         #[cfg(feature = "MDLAnimatedValueTypes")]
-        #[method_id(@__method_family Other scales)]
+        #[unsafe(method_family(none))]
+        #[method_id(scales)]
         pub unsafe fn scales(&self) -> Retained<MDLAnimatedVector3Array>;
 
-        #[method_id(@__method_family Init initWithName:jointPaths:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithName:jointPaths:)]
         pub unsafe fn initWithName_jointPaths(
             this: Allocated<Self>,
             name: &NSString,
@@ -125,10 +136,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MDLObject")]
     unsafe impl MDLPackedJointAnimation {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -154,7 +167,8 @@ unsafe impl NSObjectProtocol for MDLAnimationBindComponent {}
 extern_methods!(
     unsafe impl MDLAnimationBindComponent {
         #[cfg(feature = "MDLObject")]
-        #[method_id(@__method_family Other skeleton)]
+        #[unsafe(method_family(none))]
+        #[method_id(skeleton)]
         pub unsafe fn skeleton(&self) -> Option<Retained<MDLSkeleton>>;
 
         #[cfg(feature = "MDLObject")]
@@ -162,7 +176,8 @@ extern_methods!(
         #[method(setSkeleton:)]
         pub unsafe fn setSkeleton(&self, skeleton: Option<&MDLSkeleton>);
 
-        #[method_id(@__method_family Other jointAnimation)]
+        #[unsafe(method_family(none))]
+        #[method_id(jointAnimation)]
         pub unsafe fn jointAnimation(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MDLJointAnimation>>>;
@@ -174,7 +189,8 @@ extern_methods!(
             joint_animation: Option<&ProtocolObject<dyn MDLJointAnimation>>,
         );
 
-        #[method_id(@__method_family Other jointPaths)]
+        #[unsafe(method_family(none))]
+        #[method_id(jointPaths)]
         pub unsafe fn jointPaths(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`jointPaths`][Self::jointPaths].
@@ -186,10 +202,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLAnimationBindComponent {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

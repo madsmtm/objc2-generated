@@ -50,7 +50,8 @@ extern_methods!(
         /// Parameter `captions`: The captions that will be included in the group. The array is coped.
         ///
         /// Returns: A newly-initialized caption group.
-        #[method_id(@__method_family Init initWithCaptions:timeRange:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCaptions:timeRange:)]
         pub unsafe fn initWithCaptions_timeRange(
             this: Allocated<Self>,
             captions: &NSArray<AVCaption>,
@@ -65,7 +66,8 @@ extern_methods!(
         /// Parameter `timeRange`: The time range for which there are no captions.
         ///
         /// Returns: A newly-initialized empty caption group.
-        #[method_id(@__method_family Init initWithTimeRange:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithTimeRange:)]
         pub unsafe fn initWithTimeRange(
             this: Allocated<Self>,
             time_range: CMTimeRange,
@@ -82,7 +84,8 @@ extern_methods!(
         /// An array of AVCaption objects.
         ///
         /// If the value is an empty array, the caption group represents a region of the timeline in which there are no captions.
-        #[method_id(@__method_family Other captions)]
+        #[unsafe(method_family(none))]
+        #[method_id(captions)]
         pub unsafe fn captions(&self) -> Retained<NSArray<AVCaption>>;
     }
 );
@@ -90,10 +93,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVCaptionGroup {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

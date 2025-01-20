@@ -54,24 +54,29 @@ extern_methods!(
             feature = "GCDeviceCursor"
         ))]
         /// Scroll is a dpad with undefined range.
-        #[method_id(@__method_family Other scroll)]
+        #[unsafe(method_family(none))]
+        #[method_id(scroll)]
         pub unsafe fn scroll(&self) -> Retained<GCDeviceCursor>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         /// Mouse buttons that can be used only as digital inputs
-        #[method_id(@__method_family Other leftButton)]
+        #[unsafe(method_family(none))]
+        #[method_id(leftButton)]
         pub unsafe fn leftButton(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
-        #[method_id(@__method_family Other rightButton)]
+        #[unsafe(method_family(none))]
+        #[method_id(rightButton)]
         pub unsafe fn rightButton(&self) -> Option<Retained<GCControllerButtonInput>>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
-        #[method_id(@__method_family Other middleButton)]
+        #[unsafe(method_family(none))]
+        #[method_id(middleButton)]
         pub unsafe fn middleButton(&self) -> Option<Retained<GCControllerButtonInput>>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
-        #[method_id(@__method_family Other auxiliaryButtons)]
+        #[unsafe(method_family(none))]
+        #[method_id(auxiliaryButtons)]
         pub unsafe fn auxiliaryButtons(&self)
             -> Option<Retained<NSArray<GCControllerButtonInput>>>;
     }
@@ -81,10 +86,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "GCPhysicalInputProfile")]
     unsafe impl GCMouseInput {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

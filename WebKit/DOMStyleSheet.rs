@@ -31,7 +31,8 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMStyleSheet {
         #[deprecated]
-        #[method_id(@__method_family Other type)]
+        #[unsafe(method_family(none))]
+        #[method_id(type)]
         pub unsafe fn r#type(&self) -> Retained<NSString>;
 
         #[deprecated]
@@ -45,24 +46,29 @@ extern_methods!(
 
         #[cfg(feature = "DOMNode")]
         #[deprecated]
-        #[method_id(@__method_family Other ownerNode)]
+        #[unsafe(method_family(none))]
+        #[method_id(ownerNode)]
         pub unsafe fn ownerNode(&self) -> Option<Retained<DOMNode>>;
 
         #[deprecated]
-        #[method_id(@__method_family Other parentStyleSheet)]
+        #[unsafe(method_family(none))]
+        #[method_id(parentStyleSheet)]
         pub unsafe fn parentStyleSheet(&self) -> Option<Retained<DOMStyleSheet>>;
 
         #[deprecated]
-        #[method_id(@__method_family Other href)]
+        #[unsafe(method_family(none))]
+        #[method_id(href)]
         pub unsafe fn href(&self) -> Retained<NSString>;
 
         #[deprecated]
-        #[method_id(@__method_family Other title)]
+        #[unsafe(method_family(none))]
+        #[method_id(title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         #[cfg(feature = "DOMMediaList")]
         #[deprecated]
-        #[method_id(@__method_family Other media)]
+        #[unsafe(method_family(none))]
+        #[method_id(media)]
         pub unsafe fn media(&self) -> Option<Retained<DOMMediaList>>;
     }
 );
@@ -72,7 +78,8 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMStyleSheet {
         #[deprecated]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -81,7 +88,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMStyleSheet {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

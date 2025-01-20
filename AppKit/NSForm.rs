@@ -151,18 +151,21 @@ extern_methods!(
         #[method(setTextFont:)]
         pub unsafe fn setTextFont(&self, font_obj: &NSFont);
 
-        #[method_id(@__method_family Other cellAtIndex:)]
+        #[unsafe(method_family(none))]
+        #[method_id(cellAtIndex:)]
         pub unsafe fn cellAtIndex(&self, index: NSInteger) -> Option<Retained<AnyObject>>;
 
         #[method(drawCellAtIndex:)]
         pub unsafe fn drawCellAtIndex(&self, index: NSInteger);
 
         #[cfg(all(feature = "NSActionCell", feature = "NSCell", feature = "NSFormCell"))]
-        #[method_id(@__method_family Other addEntry:)]
+        #[unsafe(method_family(none))]
+        #[method_id(addEntry:)]
         pub unsafe fn addEntry(&self, title: &NSString) -> Retained<NSFormCell>;
 
         #[cfg(all(feature = "NSActionCell", feature = "NSCell", feature = "NSFormCell"))]
-        #[method_id(@__method_family Other insertEntry:atIndex:)]
+        #[unsafe(method_family(none))]
+        #[method_id(insertEntry:atIndex:)]
         pub unsafe fn insertEntry_atIndex(
             &self,
             title: &NSString,
@@ -208,11 +211,13 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSForm {
-        #[method_id(@__method_family Init initWithFrame:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
         #[cfg(feature = "NSCell")]
-        #[method_id(@__method_family Init initWithFrame:mode:prototype:numberOfRows:numberOfColumns:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithFrame:mode:prototype:numberOfRows:numberOfColumns:)]
         pub unsafe fn initWithFrame_mode_prototype_numberOfRows_numberOfColumns(
             this: Allocated<Self>,
             frame_rect: NSRect,
@@ -222,7 +227,8 @@ extern_methods!(
             cols_wide: NSInteger,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithFrame:mode:cellClass:numberOfRows:numberOfColumns:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithFrame:mode:cellClass:numberOfRows:numberOfColumns:)]
         pub unsafe fn initWithFrame_mode_cellClass_numberOfRows_numberOfColumns(
             this: Allocated<Self>,
             frame_rect: NSRect,
@@ -243,7 +249,8 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSForm {
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -260,7 +267,8 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSForm {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -274,7 +282,8 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSForm {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

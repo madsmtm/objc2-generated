@@ -33,22 +33,27 @@ unsafe impl NSObjectProtocol for VZBridgedNetworkInterface {}
 
 extern_methods!(
     unsafe impl VZBridgedNetworkInterface {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Return the list of network interfaces available for bridging.
-        #[method_id(@__method_family Other networkInterfaces)]
+        #[unsafe(method_family(none))]
+        #[method_id(networkInterfaces)]
         pub unsafe fn networkInterfaces() -> Retained<NSArray<VZBridgedNetworkInterface>>;
 
         /// Return the unique identifier for this interface. The identifier is the BSD name associated with the interface (e.g. "en0").
-        #[method_id(@__method_family Other identifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         /// Return a display name if available (e.g. "Ethernet").
-        #[method_id(@__method_family Other localizedDisplayName)]
+        #[unsafe(method_family(none))]
+        #[method_id(localizedDisplayName)]
         pub unsafe fn localizedDisplayName(&self) -> Option<Retained<NSString>>;
     }
 );

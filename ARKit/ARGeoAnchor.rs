@@ -85,7 +85,8 @@ extern_methods!(
         /// ARKit will query the ground level altitude during runtime, and populate the altitude as soon as that information becomes available.
         ///
         /// Parameter `coordinate`: Coordinates.
-        #[method_id(@__method_family Init initWithCoordinate:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoordinate:)]
         pub unsafe fn initWithCoordinate(
             this: Allocated<Self>,
             coordinate: CLLocationCoordinate2D,
@@ -98,7 +99,8 @@ extern_methods!(
         /// Parameter `coordinate`: Coordinates.
         ///
         /// Parameter `altitude`: Altitude in meters.
-        #[method_id(@__method_family Init initWithCoordinate:altitude:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoordinate:altitude:)]
         pub unsafe fn initWithCoordinate_altitude(
             this: Allocated<Self>,
             coordinate: CLLocationCoordinate2D,
@@ -114,7 +116,8 @@ extern_methods!(
         /// Parameter `name`: Name of the anchor.
         ///
         /// Parameter `coordinate`: Coordinates.
-        #[method_id(@__method_family Init initWithName:coordinate:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithName:coordinate:)]
         pub unsafe fn initWithName_coordinate(
             this: Allocated<Self>,
             name: &NSString,
@@ -130,7 +133,8 @@ extern_methods!(
         /// Parameter `coordinate`: Coordinates.
         ///
         /// Parameter `altitude`: Altitude in meters.
-        #[method_id(@__method_family Init initWithName:coordinate:altitude:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithName:coordinate:altitude:)]
         pub unsafe fn initWithName_coordinate_altitude(
             this: Allocated<Self>,
             name: &NSString,
@@ -146,10 +150,12 @@ extern_methods!(
     #[cfg(all(feature = "ARAnchor", feature = "objc2"))]
     unsafe impl ARGeoAnchor {
         /// Unavailable
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

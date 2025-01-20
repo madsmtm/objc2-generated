@@ -33,27 +33,32 @@ unsafe impl UIConfigurationState for UIContentUnavailableConfigurationState {}
 extern_methods!(
     unsafe impl UIContentUnavailableConfigurationState {
         #[cfg(feature = "UITraitCollection")]
-        #[method_id(@__method_family Init initWithTraitCollection:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithTraitCollection:)]
         pub unsafe fn initWithTraitCollection(
             this: Allocated<Self>,
             trait_collection: &UITraitCollection,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(feature = "UITraitCollection")]
         /// The trait collection.
-        #[method_id(@__method_family Other traitCollection)]
+        #[unsafe(method_family(none))]
+        #[method_id(traitCollection)]
         pub unsafe fn traitCollection(&self) -> Retained<UITraitCollection>;
 
         #[cfg(feature = "UITraitCollection")]
@@ -62,7 +67,8 @@ extern_methods!(
         pub unsafe fn setTraitCollection(&self, trait_collection: &UITraitCollection);
 
         /// The search text. Default is the search bar text of the view controller's search controller.
-        #[method_id(@__method_family Other searchText)]
+        #[unsafe(method_family(none))]
+        #[method_id(searchText)]
         pub unsafe fn searchText(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`searchText`][Self::searchText].

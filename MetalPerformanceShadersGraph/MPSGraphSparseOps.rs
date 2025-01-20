@@ -85,7 +85,8 @@ extern_methods!(
         /// - sparseStorageType: A sparseStorageType.
         /// - dataType: A dataType of the sparse tensor.
         /// - Returns: The descriptor.
-        #[method_id(@__method_family Other descriptorWithStorageType:dataType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(descriptorWithStorageType:dataType:)]
         pub unsafe fn descriptorWithStorageType_dataType(
             sparse_storage_type: MPSGraphSparseStorageType,
             data_type: MPSDataType,
@@ -97,10 +98,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MPSGraphCore")]
     unsafe impl MPSGraphCreateSparseOpDescriptor {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -129,7 +132,8 @@ extern_methods!(
         /// - dataType: The dataType of the sparse tensor.
         /// - name: A name for the operation.
         /// - Returns: A valid ``MPSGraphTensor`` object.
-        #[method_id(@__method_family Other sparseTensorWithType:tensors:shape:dataType:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(sparseTensorWithType:tensors:shape:dataType:name:)]
         pub unsafe fn sparseTensorWithType_tensors_shape_dataType_name(
             &self,
             sparse_storage_type: MPSGraphSparseStorageType,
@@ -158,7 +162,8 @@ extern_methods!(
         /// - shape: The shape of the sparse tensor.
         /// - name: A name for the operation.
         /// - Returns: A valid ``MPSGraphTensor`` object
-        #[method_id(@__method_family Other sparseTensorWithDescriptor:tensors:shape:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(sparseTensorWithDescriptor:tensors:shape:name:)]
         pub unsafe fn sparseTensorWithDescriptor_tensors_shape_name(
             &self,
             sparse_descriptor: &MPSGraphCreateSparseOpDescriptor,

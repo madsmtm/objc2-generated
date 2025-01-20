@@ -27,10 +27,12 @@ unsafe impl NSSecureCoding for CLVisit {}
 
 extern_methods!(
     unsafe impl CLVisit {
-        #[method_id(@__method_family Other arrivalDate)]
+        #[unsafe(method_family(none))]
+        #[method_id(arrivalDate)]
         pub unsafe fn arrivalDate(&self) -> Retained<NSDate>;
 
-        #[method_id(@__method_family Other departureDate)]
+        #[unsafe(method_family(none))]
+        #[method_id(departureDate)]
         pub unsafe fn departureDate(&self) -> Retained<NSDate>;
 
         #[cfg(feature = "CLLocation")]
@@ -46,10 +48,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CLVisit {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

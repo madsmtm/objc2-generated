@@ -41,29 +41,35 @@ unsafe impl NSUserInterfaceItemIdentification for NSBrowserCell {}
 extern_methods!(
     #[cfg(feature = "NSCell")]
     unsafe impl NSBrowserCell {
-        #[method_id(@__method_family Init initTextCell:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initTextCell:)]
         pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
-        #[method_id(@__method_family Init initImageCell:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initImageCell:)]
         pub unsafe fn initImageCell(
             this: Allocated<Self>,
             image: Option<&NSImage>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
-        #[method_id(@__method_family Other branchImage)]
+        #[unsafe(method_family(none))]
+        #[method_id(branchImage)]
         pub unsafe fn branchImage(mtm: MainThreadMarker) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
-        #[method_id(@__method_family Other highlightedBranchImage)]
+        #[unsafe(method_family(none))]
+        #[method_id(highlightedBranchImage)]
         pub unsafe fn highlightedBranchImage(mtm: MainThreadMarker) -> Option<Retained<NSImage>>;
 
         #[cfg(all(feature = "NSColor", feature = "NSResponder", feature = "NSView"))]
-        #[method_id(@__method_family Other highlightColorInView:)]
+        #[unsafe(method_family(none))]
+        #[method_id(highlightColorInView:)]
         pub unsafe fn highlightColorInView(
             &self,
             control_view: &NSView,
@@ -90,7 +96,8 @@ extern_methods!(
         pub unsafe fn set(&self);
 
         #[cfg(feature = "NSImage")]
-        #[method_id(@__method_family Other image)]
+        #[unsafe(method_family(none))]
+        #[method_id(image)]
         pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
@@ -99,7 +106,8 @@ extern_methods!(
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 
         #[cfg(feature = "NSImage")]
-        #[method_id(@__method_family Other alternateImage)]
+        #[unsafe(method_family(none))]
+        #[method_id(alternateImage)]
         pub unsafe fn alternateImage(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
@@ -113,7 +121,8 @@ extern_methods!(
     /// Methods declared on superclass `NSCell`
     #[cfg(feature = "NSCell")]
     unsafe impl NSBrowserCell {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -122,7 +131,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSCell")]
     unsafe impl NSBrowserCell {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

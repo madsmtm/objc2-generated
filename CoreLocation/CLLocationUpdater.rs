@@ -75,7 +75,8 @@ extern_methods!(
         pub unsafe fn authorizationRequestInProgress(&self) -> bool;
 
         #[cfg(feature = "CLLocation")]
-        #[method_id(@__method_family Other location)]
+        #[unsafe(method_family(none))]
+        #[method_id(location)]
         pub unsafe fn location(&self) -> Option<Retained<CLLocation>>;
     }
 );
@@ -83,10 +84,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CLUpdate {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -102,10 +105,12 @@ unsafe impl NSObjectProtocol for CLLocationUpdater {}
 
 extern_methods!(
     unsafe impl CLLocationUpdater {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[method(resume)]

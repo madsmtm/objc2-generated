@@ -297,11 +297,13 @@ unsafe impl NSSecureCoding for CIImage {}
 extern_methods!(
     unsafe impl CIImage {
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(@__method_family Other imageWithCGImage:)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageWithCGImage:)]
         pub unsafe fn imageWithCGImage(image: &CGImage) -> Retained<CIImage>;
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(@__method_family Other imageWithCGImage:options:)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageWithCGImage:options:)]
         pub unsafe fn imageWithCGImage_options(
             image: &CGImage,
             options: Option<&NSDictionary<CIImageOption, AnyObject>>,
@@ -309,19 +311,22 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-graphics")]
         #[deprecated]
-        #[method_id(@__method_family Other imageWithCGLayer:)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageWithCGLayer:)]
         pub unsafe fn imageWithCGLayer(layer: &CGLayer) -> Retained<CIImage>;
 
         #[cfg(feature = "objc2-core-graphics")]
         #[deprecated]
-        #[method_id(@__method_family Other imageWithCGLayer:options:)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageWithCGLayer:options:)]
         pub unsafe fn imageWithCGLayer_options(
             layer: &CGLayer,
             options: Option<&NSDictionary<CIImageOption, AnyObject>>,
         ) -> Retained<CIImage>;
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
-        #[method_id(@__method_family Other imageWithBitmapData:bytesPerRow:size:format:colorSpace:)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageWithBitmapData:bytesPerRow:size:format:colorSpace:)]
         pub unsafe fn imageWithBitmapData_bytesPerRow_size_format_colorSpace(
             data: &NSData,
             bytes_per_row: usize,
@@ -332,7 +337,8 @@ extern_methods!(
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
         #[deprecated = "Core Image OpenGL API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)"]
-        #[method_id(@__method_family Other imageWithTexture:size:flipped:colorSpace:)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageWithTexture:size:flipped:colorSpace:)]
         pub unsafe fn imageWithTexture_size_flipped_colorSpace(
             name: c_uint,
             size: CGSize,
@@ -342,7 +348,8 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         #[deprecated = "Core Image OpenGL API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)"]
-        #[method_id(@__method_family Other imageWithTexture:size:flipped:options:)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageWithTexture:size:flipped:options:)]
         pub unsafe fn imageWithTexture_size_flipped_options(
             name: c_uint,
             size: CGSize,
@@ -351,106 +358,131 @@ extern_methods!(
         ) -> Retained<CIImage>;
 
         #[cfg(feature = "objc2-metal")]
-        #[method_id(@__method_family Other imageWithMTLTexture:options:)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageWithMTLTexture:options:)]
         pub unsafe fn imageWithMTLTexture_options(
             texture: &ProtocolObject<dyn MTLTexture>,
             options: Option<&NSDictionary<CIImageOption, AnyObject>>,
         ) -> Option<Retained<CIImage>>;
 
-        #[method_id(@__method_family Other imageWithContentsOfURL:)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageWithContentsOfURL:)]
         pub unsafe fn imageWithContentsOfURL(url: &NSURL) -> Option<Retained<CIImage>>;
 
-        #[method_id(@__method_family Other imageWithContentsOfURL:options:)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageWithContentsOfURL:options:)]
         pub unsafe fn imageWithContentsOfURL_options(
             url: &NSURL,
             options: Option<&NSDictionary<CIImageOption, AnyObject>>,
         ) -> Option<Retained<CIImage>>;
 
-        #[method_id(@__method_family Other imageWithData:)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageWithData:)]
         pub unsafe fn imageWithData(data: &NSData) -> Option<Retained<CIImage>>;
 
-        #[method_id(@__method_family Other imageWithData:options:)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageWithData:options:)]
         pub unsafe fn imageWithData_options(
             data: &NSData,
             options: Option<&NSDictionary<CIImageOption, AnyObject>>,
         ) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "objc2-core-video")]
-        #[method_id(@__method_family Other imageWithCVImageBuffer:)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageWithCVImageBuffer:)]
         pub unsafe fn imageWithCVImageBuffer(image_buffer: &CVImageBuffer) -> Retained<CIImage>;
 
         #[cfg(feature = "objc2-core-video")]
-        #[method_id(@__method_family Other imageWithCVImageBuffer:options:)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageWithCVImageBuffer:options:)]
         pub unsafe fn imageWithCVImageBuffer_options(
             image_buffer: &CVImageBuffer,
             options: Option<&NSDictionary<CIImageOption, AnyObject>>,
         ) -> Retained<CIImage>;
 
         #[cfg(feature = "objc2-core-video")]
-        #[method_id(@__method_family Other imageWithCVPixelBuffer:)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageWithCVPixelBuffer:)]
         pub unsafe fn imageWithCVPixelBuffer(pixel_buffer: &CVPixelBuffer) -> Retained<CIImage>;
 
         #[cfg(feature = "objc2-core-video")]
-        #[method_id(@__method_family Other imageWithCVPixelBuffer:options:)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageWithCVPixelBuffer:options:)]
         pub unsafe fn imageWithCVPixelBuffer_options(
             pixel_buffer: &CVPixelBuffer,
             options: Option<&NSDictionary<CIImageOption, AnyObject>>,
         ) -> Retained<CIImage>;
 
         #[cfg(feature = "objc2-io-surface")]
-        #[method_id(@__method_family Other imageWithIOSurface:)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageWithIOSurface:)]
         pub unsafe fn imageWithIOSurface(surface: &IOSurfaceRef) -> Retained<CIImage>;
 
         #[cfg(feature = "objc2-io-surface")]
-        #[method_id(@__method_family Other imageWithIOSurface:options:)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageWithIOSurface:options:)]
         pub unsafe fn imageWithIOSurface_options(
             surface: &IOSurfaceRef,
             options: Option<&NSDictionary<CIImageOption, AnyObject>>,
         ) -> Retained<CIImage>;
 
         #[cfg(feature = "CIColor")]
-        #[method_id(@__method_family Other imageWithColor:)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageWithColor:)]
         pub unsafe fn imageWithColor(color: &CIColor) -> Retained<CIImage>;
 
-        #[method_id(@__method_family Other emptyImage)]
+        #[unsafe(method_family(none))]
+        #[method_id(emptyImage)]
         pub unsafe fn emptyImage() -> Retained<CIImage>;
 
-        #[method_id(@__method_family Other blackImage)]
+        #[unsafe(method_family(none))]
+        #[method_id(blackImage)]
         pub unsafe fn blackImage() -> Retained<CIImage>;
 
-        #[method_id(@__method_family Other whiteImage)]
+        #[unsafe(method_family(none))]
+        #[method_id(whiteImage)]
         pub unsafe fn whiteImage() -> Retained<CIImage>;
 
-        #[method_id(@__method_family Other grayImage)]
+        #[unsafe(method_family(none))]
+        #[method_id(grayImage)]
         pub unsafe fn grayImage() -> Retained<CIImage>;
 
-        #[method_id(@__method_family Other redImage)]
+        #[unsafe(method_family(none))]
+        #[method_id(redImage)]
         pub unsafe fn redImage() -> Retained<CIImage>;
 
-        #[method_id(@__method_family Other greenImage)]
+        #[unsafe(method_family(none))]
+        #[method_id(greenImage)]
         pub unsafe fn greenImage() -> Retained<CIImage>;
 
-        #[method_id(@__method_family Other blueImage)]
+        #[unsafe(method_family(none))]
+        #[method_id(blueImage)]
         pub unsafe fn blueImage() -> Retained<CIImage>;
 
-        #[method_id(@__method_family Other cyanImage)]
+        #[unsafe(method_family(none))]
+        #[method_id(cyanImage)]
         pub unsafe fn cyanImage() -> Retained<CIImage>;
 
-        #[method_id(@__method_family Other magentaImage)]
+        #[unsafe(method_family(none))]
+        #[method_id(magentaImage)]
         pub unsafe fn magentaImage() -> Retained<CIImage>;
 
-        #[method_id(@__method_family Other yellowImage)]
+        #[unsafe(method_family(none))]
+        #[method_id(yellowImage)]
         pub unsafe fn yellowImage() -> Retained<CIImage>;
 
-        #[method_id(@__method_family Other clearImage)]
+        #[unsafe(method_family(none))]
+        #[method_id(clearImage)]
         pub unsafe fn clearImage() -> Retained<CIImage>;
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(@__method_family Init initWithCGImage:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCGImage:)]
         pub unsafe fn initWithCGImage(this: Allocated<Self>, image: &CGImage) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(@__method_family Init initWithCGImage:options:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCGImage:options:)]
         pub unsafe fn initWithCGImage_options(
             this: Allocated<Self>,
             image: &CGImage,
@@ -459,22 +491,26 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-graphics")]
         #[deprecated = "Use initWithCGImage: instead."]
-        #[method_id(@__method_family Init initWithCGLayer:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCGLayer:)]
         pub unsafe fn initWithCGLayer(this: Allocated<Self>, layer: &CGLayer) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-graphics")]
         #[deprecated = "Use initWithCGImage:options instead."]
-        #[method_id(@__method_family Init initWithCGLayer:options:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCGLayer:options:)]
         pub unsafe fn initWithCGLayer_options(
             this: Allocated<Self>,
             layer: &CGLayer,
             options: Option<&NSDictionary<CIImageOption, AnyObject>>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithData:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithData:)]
         pub unsafe fn initWithData(this: Allocated<Self>, data: &NSData) -> Option<Retained<Self>>;
 
-        #[method_id(@__method_family Init initWithData:options:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithData:options:)]
         pub unsafe fn initWithData_options(
             this: Allocated<Self>,
             data: &NSData,
@@ -482,7 +518,8 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
-        #[method_id(@__method_family Init initWithBitmapData:bytesPerRow:size:format:colorSpace:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithBitmapData:bytesPerRow:size:format:colorSpace:)]
         pub unsafe fn initWithBitmapData_bytesPerRow_size_format_colorSpace(
             this: Allocated<Self>,
             data: &NSData,
@@ -494,7 +531,8 @@ extern_methods!(
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
         #[deprecated = "Core Image OpenGL API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)"]
-        #[method_id(@__method_family Init initWithTexture:size:flipped:colorSpace:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithTexture:size:flipped:colorSpace:)]
         pub unsafe fn initWithTexture_size_flipped_colorSpace(
             this: Allocated<Self>,
             name: c_uint,
@@ -505,7 +543,8 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         #[deprecated = "Core Image OpenGL API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)"]
-        #[method_id(@__method_family Init initWithTexture:size:flipped:options:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithTexture:size:flipped:options:)]
         pub unsafe fn initWithTexture_size_flipped_options(
             this: Allocated<Self>,
             name: c_uint,
@@ -515,20 +554,23 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-metal")]
-        #[method_id(@__method_family Init initWithMTLTexture:options:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithMTLTexture:options:)]
         pub unsafe fn initWithMTLTexture_options(
             this: Allocated<Self>,
             texture: &ProtocolObject<dyn MTLTexture>,
             options: Option<&NSDictionary<CIImageOption, AnyObject>>,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__method_family Init initWithContentsOfURL:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithContentsOfURL:)]
         pub unsafe fn initWithContentsOfURL(
             this: Allocated<Self>,
             url: &NSURL,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__method_family Init initWithContentsOfURL:options:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithContentsOfURL:options:)]
         pub unsafe fn initWithContentsOfURL_options(
             this: Allocated<Self>,
             url: &NSURL,
@@ -536,14 +578,16 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "objc2-io-surface")]
-        #[method_id(@__method_family Init initWithIOSurface:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithIOSurface:)]
         pub unsafe fn initWithIOSurface(
             this: Allocated<Self>,
             surface: &IOSurfaceRef,
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-io-surface")]
-        #[method_id(@__method_family Init initWithIOSurface:options:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithIOSurface:options:)]
         pub unsafe fn initWithIOSurface_options(
             this: Allocated<Self>,
             surface: &IOSurfaceRef,
@@ -552,7 +596,8 @@ extern_methods!(
 
         #[cfg(feature = "objc2-io-surface")]
         #[deprecated]
-        #[method_id(@__method_family Init initWithIOSurface:plane:format:options:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithIOSurface:plane:format:options:)]
         pub unsafe fn initWithIOSurface_plane_format_options(
             this: Allocated<Self>,
             surface: &IOSurfaceRef,
@@ -562,14 +607,16 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-video")]
-        #[method_id(@__method_family Init initWithCVImageBuffer:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCVImageBuffer:)]
         pub unsafe fn initWithCVImageBuffer(
             this: Allocated<Self>,
             image_buffer: &CVImageBuffer,
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-video")]
-        #[method_id(@__method_family Init initWithCVImageBuffer:options:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCVImageBuffer:options:)]
         pub unsafe fn initWithCVImageBuffer_options(
             this: Allocated<Self>,
             image_buffer: &CVImageBuffer,
@@ -577,14 +624,16 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-video")]
-        #[method_id(@__method_family Init initWithCVPixelBuffer:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCVPixelBuffer:)]
         pub unsafe fn initWithCVPixelBuffer(
             this: Allocated<Self>,
             pixel_buffer: &CVPixelBuffer,
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-video")]
-        #[method_id(@__method_family Init initWithCVPixelBuffer:options:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCVPixelBuffer:options:)]
         pub unsafe fn initWithCVPixelBuffer_options(
             this: Allocated<Self>,
             pixel_buffer: &CVPixelBuffer,
@@ -592,103 +641,126 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "CIColor")]
-        #[method_id(@__method_family Init initWithColor:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithColor:)]
         pub unsafe fn initWithColor(this: Allocated<Self>, color: &CIColor) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Other imageByApplyingTransform:)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageByApplyingTransform:)]
         pub unsafe fn imageByApplyingTransform(
             &self,
             matrix: CGAffineTransform,
         ) -> Retained<CIImage>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Other imageByApplyingTransform:highQualityDownsample:)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageByApplyingTransform:highQualityDownsample:)]
         pub unsafe fn imageByApplyingTransform_highQualityDownsample(
             &self,
             matrix: CGAffineTransform,
             high_quality_downsample: bool,
         ) -> Retained<CIImage>;
 
-        #[method_id(@__method_family Other imageByApplyingOrientation:)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageByApplyingOrientation:)]
         pub unsafe fn imageByApplyingOrientation(&self, orientation: c_int) -> Retained<CIImage>;
 
-        #[method_id(@__method_family Other imageByCompositingOverImage:)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageByCompositingOverImage:)]
         pub unsafe fn imageByCompositingOverImage(&self, dest: &CIImage) -> Retained<CIImage>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Other imageByCroppingToRect:)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageByCroppingToRect:)]
         pub unsafe fn imageByCroppingToRect(&self, rect: CGRect) -> Retained<CIImage>;
 
-        #[method_id(@__method_family Other imageByClampingToExtent)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageByClampingToExtent)]
         pub unsafe fn imageByClampingToExtent(&self) -> Retained<CIImage>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Other imageByClampingToRect:)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageByClampingToRect:)]
         pub unsafe fn imageByClampingToRect(&self, rect: CGRect) -> Retained<CIImage>;
 
-        #[method_id(@__method_family Other imageByApplyingFilter:withInputParameters:)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageByApplyingFilter:withInputParameters:)]
         pub unsafe fn imageByApplyingFilter_withInputParameters(
             &self,
             filter_name: &NSString,
             params: &NSDictionary<NSString, AnyObject>,
         ) -> Retained<CIImage>;
 
-        #[method_id(@__method_family Other imageByApplyingFilter:)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageByApplyingFilter:)]
         pub unsafe fn imageByApplyingFilter(&self, filter_name: &NSString) -> Retained<CIImage>;
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(@__method_family Other imageByColorMatchingColorSpaceToWorkingSpace:)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageByColorMatchingColorSpaceToWorkingSpace:)]
         pub unsafe fn imageByColorMatchingColorSpaceToWorkingSpace(
             &self,
             color_space: &CGColorSpace,
         ) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(@__method_family Other imageByColorMatchingWorkingSpaceToColorSpace:)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageByColorMatchingWorkingSpaceToColorSpace:)]
         pub unsafe fn imageByColorMatchingWorkingSpaceToColorSpace(
             &self,
             color_space: &CGColorSpace,
         ) -> Option<Retained<CIImage>>;
 
-        #[method_id(@__method_family Other imageByPremultiplyingAlpha)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageByPremultiplyingAlpha)]
         pub unsafe fn imageByPremultiplyingAlpha(&self) -> Retained<CIImage>;
 
-        #[method_id(@__method_family Other imageByUnpremultiplyingAlpha)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageByUnpremultiplyingAlpha)]
         pub unsafe fn imageByUnpremultiplyingAlpha(&self) -> Retained<CIImage>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Other imageBySettingAlphaOneInExtent:)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageBySettingAlphaOneInExtent:)]
         pub unsafe fn imageBySettingAlphaOneInExtent(&self, extent: CGRect) -> Retained<CIImage>;
 
-        #[method_id(@__method_family Other imageByApplyingGaussianBlurWithSigma:)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageByApplyingGaussianBlurWithSigma:)]
         pub unsafe fn imageByApplyingGaussianBlurWithSigma(
             &self,
             sigma: c_double,
         ) -> Retained<CIImage>;
 
-        #[method_id(@__method_family Other imageBySettingProperties:)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageBySettingProperties:)]
         pub unsafe fn imageBySettingProperties(
             &self,
             properties: &NSDictionary,
         ) -> Retained<CIImage>;
 
-        #[method_id(@__method_family Other imageBySamplingLinear)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageBySamplingLinear)]
         pub unsafe fn imageBySamplingLinear(&self) -> Retained<CIImage>;
 
-        #[method_id(@__method_family Other imageBySamplingNearest)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageBySamplingNearest)]
         pub unsafe fn imageBySamplingNearest(&self) -> Retained<CIImage>;
 
-        #[method_id(@__method_family Other imageByInsertingIntermediate)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageByInsertingIntermediate)]
         pub unsafe fn imageByInsertingIntermediate(&self) -> Retained<CIImage>;
 
-        #[method_id(@__method_family Other imageByInsertingIntermediate:)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageByInsertingIntermediate:)]
         pub unsafe fn imageByInsertingIntermediate_(&self, cache: bool) -> Retained<CIImage>;
 
-        #[method_id(@__method_family Other imageByApplyingGainMap:)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageByApplyingGainMap:)]
         pub unsafe fn imageByApplyingGainMap(&self, gainmap: &CIImage) -> Retained<CIImage>;
 
-        #[method_id(@__method_family Other imageByApplyingGainMap:headroom:)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageByApplyingGainMap:headroom:)]
         pub unsafe fn imageByApplyingGainMap_headroom(
             &self,
             gainmap: &CIImage,
@@ -702,29 +774,35 @@ extern_methods!(
         #[method(isOpaque)]
         pub unsafe fn isOpaque(&self) -> bool;
 
-        #[method_id(@__method_family Other properties)]
+        #[unsafe(method_family(none))]
+        #[method_id(properties)]
         pub unsafe fn properties(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[cfg(feature = "CIFilterShape")]
-        #[method_id(@__method_family Other definition)]
+        #[unsafe(method_family(none))]
+        #[method_id(definition)]
         pub unsafe fn definition(&self) -> Retained<CIFilterShape>;
 
-        #[method_id(@__method_family Other url)]
+        #[unsafe(method_family(none))]
+        #[method_id(url)]
         pub unsafe fn url(&self) -> Option<Retained<NSURL>>;
 
         #[method(contentHeadroom)]
         pub unsafe fn contentHeadroom(&self) -> c_float;
 
         #[cfg(feature = "objc2-core-video")]
-        #[method_id(@__method_family Other pixelBuffer)]
+        #[unsafe(method_family(none))]
+        #[method_id(pixelBuffer)]
         pub unsafe fn pixelBuffer(&self) -> Option<Retained<CVPixelBuffer>>;
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(@__method_family Other CGImage)]
+        #[unsafe(method_family(none))]
+        #[method_id(CGImage)]
         pub unsafe fn CGImage(&self) -> Option<Retained<CGImage>>;
 
         #[cfg(feature = "objc2-metal")]
-        #[method_id(@__method_family Other metalTexture)]
+        #[unsafe(method_family(none))]
+        #[method_id(metalTexture)]
         pub unsafe fn metalTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -740,10 +818,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIImage {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -781,11 +861,13 @@ extern_methods!(
     /// AutoAdjustment
     unsafe impl CIImage {
         #[cfg(feature = "CIFilter")]
-        #[method_id(@__method_family Other autoAdjustmentFilters)]
+        #[unsafe(method_family(none))]
+        #[method_id(autoAdjustmentFilters)]
         pub unsafe fn autoAdjustmentFilters(&self) -> Retained<NSArray<CIFilter>>;
 
         #[cfg(feature = "CIFilter")]
-        #[method_id(@__method_family Other autoAdjustmentFiltersWithOptions:)]
+        #[unsafe(method_family(none))]
+        #[method_id(autoAdjustmentFiltersWithOptions:)]
         pub unsafe fn autoAdjustmentFiltersWithOptions(
             &self,
             options: Option<&NSDictionary<CIImageAutoAdjustmentOption, AnyObject>>,
@@ -796,10 +878,12 @@ extern_methods!(
 extern_methods!(
     /// LabConversion
     unsafe impl CIImage {
-        #[method_id(@__method_family Other imageByConvertingWorkingSpaceToLab)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageByConvertingWorkingSpaceToLab)]
         pub unsafe fn imageByConvertingWorkingSpaceToLab(&self) -> Retained<CIImage>;
 
-        #[method_id(@__method_family Other imageByConvertingLabToWorkingSpace)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageByConvertingLabToWorkingSpace)]
         pub unsafe fn imageByConvertingLabToWorkingSpace(&self) -> Retained<CIImage>;
     }
 );

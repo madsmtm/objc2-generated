@@ -42,24 +42,28 @@ extern_methods!(
     ))]
     unsafe impl MPSCNNBatchNormalizationState {
         #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
-        #[method_id(@__method_family Other batchNormalization)]
+        #[unsafe(method_family(none))]
+        #[method_id(batchNormalization)]
         pub unsafe fn batchNormalization(&self) -> Retained<MPSCNNBatchNormalization>;
 
         /// Unavailable.  Use MPSCNNBatchNormalizationStatistics methods to initialize the state object.
-        #[method_id(@__method_family Init initWithResource:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithResource:)]
         pub unsafe fn initWithResource(
             this: Allocated<Self>,
             resource: Option<&ProtocolObject<dyn MTLResource>>,
         ) -> Retained<Self>;
 
         /// Unavailable.  Use MPSCNNBatchNormalizationStatistics methods to create the temporary state object.
-        #[method_id(@__method_family Other temporaryStateWithCommandBuffer:bufferSize:)]
+        #[unsafe(method_family(none))]
+        #[method_id(temporaryStateWithCommandBuffer:bufferSize:)]
         pub unsafe fn temporaryStateWithCommandBuffer_bufferSize(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
             buffer_size: usize,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Other temporaryStateWithCommandBuffer:textureDescriptor:)]
+        #[unsafe(method_family(none))]
+        #[method_id(temporaryStateWithCommandBuffer:textureDescriptor:)]
         pub unsafe fn temporaryStateWithCommandBuffer_textureDescriptor(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
             descriptor: &MTLTextureDescriptor,
@@ -70,31 +74,37 @@ extern_methods!(
         pub unsafe fn reset(&self);
 
         /// Return an MTLBuffer object with the state's current gamma values.
-        #[method_id(@__method_family Other gamma)]
+        #[unsafe(method_family(none))]
+        #[method_id(gamma)]
         pub unsafe fn gamma(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         /// Return an MTLBuffer object with the state's current beta values..
-        #[method_id(@__method_family Other beta)]
+        #[unsafe(method_family(none))]
+        #[method_id(beta)]
         pub unsafe fn beta(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         /// Return an MTLBuffer object with the most recently computed batch mean values.
-        #[method_id(@__method_family Other mean)]
+        #[unsafe(method_family(none))]
+        #[method_id(mean)]
         pub unsafe fn mean(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         /// Return an MTLBuffer object with the most recently computed batch variance values.
-        #[method_id(@__method_family Other variance)]
+        #[unsafe(method_family(none))]
+        #[method_id(variance)]
         pub unsafe fn variance(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         /// Return an MTLBuffer object containing the values of the gradient of the loss function
         /// with respect to the scale factors.  If a MPSCNNBatchNormalizationGradient kernel
         /// has not successfully generated these values nil will be returned.
-        #[method_id(@__method_family Other gradientForGamma)]
+        #[unsafe(method_family(none))]
+        #[method_id(gradientForGamma)]
         pub unsafe fn gradientForGamma(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         /// Return an MTLBuffer object containing the values of the gradient of the loss function
         /// with respect to the bias terms.  If a MPSCNNBatchNormalizationGradient kernel
         /// has not successfully generated these values nil will be returned.
-        #[method_id(@__method_family Other gradientForBeta)]
+        #[unsafe(method_family(none))]
+        #[method_id(gradientForBeta)]
         pub unsafe fn gradientForBeta(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
     }
 );
@@ -110,26 +120,30 @@ extern_methods!(
         /// Create a new autoreleased temporary state object without underlying resource
         ///
         /// Parameter `cmdBuf`: The command buffer with which the temporary resource is associated
-        #[method_id(@__method_family Other temporaryStateWithCommandBuffer:)]
+        #[unsafe(method_family(none))]
+        #[method_id(temporaryStateWithCommandBuffer:)]
         pub unsafe fn temporaryStateWithCommandBuffer(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithDevice:bufferSize:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:bufferSize:)]
         pub unsafe fn initWithDevice_bufferSize(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
             buffer_size: usize,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithDevice:textureDescriptor:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:textureDescriptor:)]
         pub unsafe fn initWithDevice_textureDescriptor(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
             descriptor: &MTLTextureDescriptor,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Option<Retained<Self>>;
 
         /// Initialize a non-temporary state to hold a number of textures and buffers
@@ -138,7 +152,8 @@ extern_methods!(
         /// This occurs when -resource or -resourceAtIndex: is called.
         ///
         /// Parameter `resourceList`: The list of resources to create.
-        #[method_id(@__method_family Init initWithDevice:resourceList:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:resourceList:)]
         pub unsafe fn initWithDevice_resourceList(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -148,7 +163,8 @@ extern_methods!(
         /// Initialize a temporary state to hold a number of textures and buffers
         ///
         /// The textures occur first in sequence
-        #[method_id(@__method_family Other temporaryStateWithCommandBuffer:resourceList:)]
+        #[unsafe(method_family(none))]
+        #[method_id(temporaryStateWithCommandBuffer:resourceList:)]
         pub unsafe fn temporaryStateWithCommandBuffer_resourceList(
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
             resource_list: &MPSStateResourceList,
@@ -160,7 +176,8 @@ extern_methods!(
         /// your application should use -initWithTextures:bufferSizes:bufferCount:
         /// whenever possible. This method is useful for cases when the
         /// MTLResources must be initialized by the CPU.
-        #[method_id(@__method_family Init initWithResources:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithResources:)]
         pub unsafe fn initWithResources(
             this: Allocated<Self>,
             resources: Option<&NSArray<ProtocolObject<dyn MTLResource>>>,
@@ -176,7 +193,8 @@ extern_methods!(
         feature = "MPSState"
     ))]
     unsafe impl MPSCNNBatchNormalizationState {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -199,11 +217,13 @@ extern_methods!(
     #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
     unsafe impl MPSCNNNormalizationMeanAndVarianceState {
         /// A MTLBuffer containing the mean terms.
-        #[method_id(@__method_family Other mean)]
+        #[unsafe(method_family(none))]
+        #[method_id(mean)]
         pub unsafe fn mean(&self) -> Retained<ProtocolObject<dyn MTLBuffer>>;
 
         /// A MTLBuffer containing the variance terms.
-        #[method_id(@__method_family Other variance)]
+        #[unsafe(method_family(none))]
+        #[method_id(variance)]
         pub unsafe fn variance(&self) -> Retained<ProtocolObject<dyn MTLBuffer>>;
 
         /// Initialize a MPSCNNNormalizationMeanAndVarianceState object using values
@@ -214,7 +234,8 @@ extern_methods!(
         ///
         ///
         /// Parameter `variance`: The MTLBuffer containing variance terms.
-        #[method_id(@__method_family Init initWithMean:variance:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithMean:variance:)]
         pub unsafe fn initWithMean_variance(
             this: Allocated<Self>,
             mean: &ProtocolObject<dyn MTLBuffer>,
@@ -232,7 +253,8 @@ extern_methods!(
         ///
         /// Parameter `numberOfFeatureChannels`: The number of feature channels used to size the
         /// state.
-        #[method_id(@__method_family Other temporaryStateWithCommandBuffer:numberOfFeatureChannels:)]
+        #[unsafe(method_family(none))]
+        #[method_id(temporaryStateWithCommandBuffer:numberOfFeatureChannels:)]
         pub unsafe fn temporaryStateWithCommandBuffer_numberOfFeatureChannels(
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
             number_of_feature_channels: NSUInteger,
@@ -249,7 +271,8 @@ extern_methods!(
         /// Parameter `cmdBuf`: The command buffer against which the temporary resource is allocated
         ///
         /// Parameter `bufferSize`: The size of the buffer in bytes
-        #[method_id(@__method_family Other temporaryStateWithCommandBuffer:bufferSize:)]
+        #[unsafe(method_family(none))]
+        #[method_id(temporaryStateWithCommandBuffer:bufferSize:)]
         pub unsafe fn temporaryStateWithCommandBuffer_bufferSize(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
             buffer_size: usize,
@@ -260,7 +283,8 @@ extern_methods!(
         /// Parameter `cmdBuf`: The command buffer against which the temporary resource is allocated
         ///
         /// Parameter `descriptor`: A descriptor for the new temporary texture
-        #[method_id(@__method_family Other temporaryStateWithCommandBuffer:textureDescriptor:)]
+        #[unsafe(method_family(none))]
+        #[method_id(temporaryStateWithCommandBuffer:textureDescriptor:)]
         pub unsafe fn temporaryStateWithCommandBuffer_textureDescriptor(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
             descriptor: &MTLTextureDescriptor,
@@ -269,19 +293,22 @@ extern_methods!(
         /// Create a new autoreleased temporary state object without underlying resource
         ///
         /// Parameter `cmdBuf`: The command buffer with which the temporary resource is associated
-        #[method_id(@__method_family Other temporaryStateWithCommandBuffer:)]
+        #[unsafe(method_family(none))]
+        #[method_id(temporaryStateWithCommandBuffer:)]
         pub unsafe fn temporaryStateWithCommandBuffer(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithDevice:bufferSize:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:bufferSize:)]
         pub unsafe fn initWithDevice_bufferSize(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
             buffer_size: usize,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithDevice:textureDescriptor:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:textureDescriptor:)]
         pub unsafe fn initWithDevice_textureDescriptor(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -291,13 +318,15 @@ extern_methods!(
         /// Create a MPSState with a non-temporary MTLResource
         ///
         /// Parameter `resource`: A MTLBuffer or MTLTexture. May be nil.
-        #[method_id(@__method_family Init initWithResource:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithResource:)]
         pub unsafe fn initWithResource(
             this: Allocated<Self>,
             resource: Option<&ProtocolObject<dyn MTLResource>>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Option<Retained<Self>>;
 
         /// Initialize a non-temporary state to hold a number of textures and buffers
@@ -306,7 +335,8 @@ extern_methods!(
         /// This occurs when -resource or -resourceAtIndex: is called.
         ///
         /// Parameter `resourceList`: The list of resources to create.
-        #[method_id(@__method_family Init initWithDevice:resourceList:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:resourceList:)]
         pub unsafe fn initWithDevice_resourceList(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -316,7 +346,8 @@ extern_methods!(
         /// Initialize a temporary state to hold a number of textures and buffers
         ///
         /// The textures occur first in sequence
-        #[method_id(@__method_family Other temporaryStateWithCommandBuffer:resourceList:)]
+        #[unsafe(method_family(none))]
+        #[method_id(temporaryStateWithCommandBuffer:resourceList:)]
         pub unsafe fn temporaryStateWithCommandBuffer_resourceList(
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
             resource_list: &MPSStateResourceList,
@@ -328,7 +359,8 @@ extern_methods!(
         /// your application should use -initWithTextures:bufferSizes:bufferCount:
         /// whenever possible. This method is useful for cases when the
         /// MTLResources must be initialized by the CPU.
-        #[method_id(@__method_family Init initWithResources:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithResources:)]
         pub unsafe fn initWithResources(
             this: Allocated<Self>,
             resources: Option<&NSArray<ProtocolObject<dyn MTLResource>>>,
@@ -340,7 +372,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
     unsafe impl MPSCNNNormalizationMeanAndVarianceState {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -400,7 +433,8 @@ extern_protocol!(
         /// A label that is transferred to the batch normalization filter at init time
         ///
         /// Overridden by a MPSCNNBatchNormalizationNode.label if it is non-nil.
-        #[method_id(@__method_family Other label)]
+        #[unsafe(method_family(none))]
+        #[method_id(label)]
         unsafe fn label(&self) -> Option<Retained<NSString>>;
 
         #[cfg(all(
@@ -425,7 +459,8 @@ extern_protocol!(
         /// Returns: A MPSCNNNormalizationMeanAndVarianceState object containing updated mean and variance values.  If NULL, the MPSNNGraph
         /// batch normalization filter gamma and beta values will remain unmodified.
         #[optional]
-        #[method_id(@__method_family Other updateGammaAndBetaWithCommandBuffer:batchNormalizationState:)]
+        #[unsafe(method_family(none))]
+        #[method_id(updateGammaAndBetaWithCommandBuffer:batchNormalizationState:)]
         unsafe fn updateGammaAndBetaWithCommandBuffer_batchNormalizationState(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -452,7 +487,8 @@ extern_protocol!(
         /// Returns: A MPSCNNNormalizationMeanAndVarianceState object containing updated mean and variance values.  If NULL, the MPSNNGraph
         /// batch normalization filter mean and variance values will remain unmodified.
         #[optional]
-        #[method_id(@__method_family Other updateMeanAndVarianceWithCommandBuffer:batchNormalizationState:)]
+        #[unsafe(method_family(none))]
+        #[method_id(updateMeanAndVarianceWithCommandBuffer:batchNormalizationState:)]
         unsafe fn updateMeanAndVarianceWithCommandBuffer_batchNormalizationState(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -515,7 +551,8 @@ extern_protocol!(
 
         /// NSSecureCoding compatibility.
         #[optional]
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -536,7 +573,8 @@ extern_protocol!(
         ///
         /// Returns: A pointer to a copy of this data source.
         #[optional]
-        #[method_id(@__method_family Copy copyWithZone:device:)]
+        #[unsafe(method_family(copy))]
+        #[method_id(copyWithZone:device:)]
         unsafe fn copyWithZone_device(
             &self,
             zone: *mut NSZone,
@@ -601,7 +639,8 @@ extern_methods!(
         pub unsafe fn setEpsilon(&self, epsilon: c_float);
 
         /// The data source the batch normalization was initialized with
-        #[method_id(@__method_family Other dataSource)]
+        #[unsafe(method_family(none))]
+        #[method_id(dataSource)]
         pub unsafe fn dataSource(
             &self,
         ) -> Retained<ProtocolObject<dyn MPSCNNBatchNormalizationDataSource>>;
@@ -616,7 +655,8 @@ extern_methods!(
         ///
         ///
         /// Returns: A valid MPSCNNBatchNormalization object or nil, if failure.
-        #[method_id(@__method_family Init initWithDevice:dataSource:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:dataSource:)]
         pub unsafe fn initWithDevice_dataSource(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -637,7 +677,8 @@ extern_methods!(
         ///
         ///
         /// Returns: A valid MPSCNNBatchNormalization object or nil, if failure.
-        #[method_id(@__method_family Init initWithDevice:dataSource:fusedNeuronDescriptor:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:dataSource:fusedNeuronDescriptor:)]
         pub unsafe fn initWithDevice_dataSource_fusedNeuronDescriptor(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -646,7 +687,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Use initWithDevice:dataSource instead
-        #[method_id(@__method_family Init initWithDevice:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -669,7 +711,8 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSCNNBatchNormalization object, or nil if failure.
-        #[method_id(@__method_family Init initWithCoder:device:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -744,7 +787,8 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "MPSImage", feature = "MPSState"))]
-        #[method_id(@__method_family Other encodeToCommandBuffer:sourceImage:destinationState:destinationStateIsTemporary:)]
+        #[unsafe(method_family(none))]
+        #[method_id(encodeToCommandBuffer:sourceImage:destinationState:destinationStateIsTemporary:)]
         pub unsafe fn encodeToCommandBuffer_sourceImage_destinationState_destinationStateIsTemporary(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -764,7 +808,8 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "MPSImage", feature = "MPSNDArray", feature = "MPSState"))]
-        #[method_id(@__method_family Other encodeBatchToCommandBuffer:sourceImages:destinationStates:destinationStateIsTemporary:)]
+        #[unsafe(method_family(none))]
+        #[method_id(encodeBatchToCommandBuffer:sourceImages:destinationStates:destinationStateIsTemporary:)]
         pub unsafe fn encodeBatchToCommandBuffer_sourceImages_destinationStates_destinationStateIsTemporary(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -779,7 +824,8 @@ extern_methods!(
             feature = "MPSState"
         ))]
         /// Return an MPSCNNBatchNormalizationState object which may be used with a MPSCNNBatchNormalization filter.
-        #[method_id(@__method_family Other resultStateForSourceImage:sourceStates:destinationImage:)]
+        #[unsafe(method_family(none))]
+        #[method_id(resultStateForSourceImage:sourceStates:destinationImage:)]
         pub unsafe fn resultStateForSourceImage_sourceStates_destinationImage(
             &self,
             source_image: &MPSImage,
@@ -794,7 +840,8 @@ extern_methods!(
         ))]
         /// Return a temporary MPSCNNBatchNormalizationState object which may be used with
         /// a MPSCNNBatchNormalization filter.
-        #[method_id(@__method_family Other temporaryResultStateForCommandBuffer:sourceImage:sourceStates:destinationImage:)]
+        #[unsafe(method_family(none))]
+        #[method_id(temporaryResultStateForCommandBuffer:sourceImage:sourceStates:destinationImage:)]
         pub unsafe fn temporaryResultStateForCommandBuffer_sourceImage_sourceStates_destinationImage(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -871,7 +918,8 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -883,10 +931,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNBatchNormalization {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -931,7 +981,8 @@ extern_methods!(
         ///
         ///
         /// Parameter `device`: The MTLDevice on which to initialize the kernel.
-        #[method_id(@__method_family Init initWithDevice:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -950,7 +1001,8 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSCNNBatchNormalizationStatistics object, or nil if failure.
-        #[method_id(@__method_family Init initWithCoder:device:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -998,7 +1050,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSImage")]
-        #[method_id(@__method_family Other encodeToCommandBuffer:sourceImage:)]
+        #[unsafe(method_family(none))]
+        #[method_id(encodeToCommandBuffer:sourceImage:)]
         pub unsafe fn encodeToCommandBuffer_sourceImage(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1006,7 +1059,8 @@ extern_methods!(
         ) -> Retained<MPSImage>;
 
         #[cfg(all(feature = "MPSImage", feature = "MPSNDArray"))]
-        #[method_id(@__method_family Other encodeBatchToCommandBuffer:sourceImages:)]
+        #[unsafe(method_family(none))]
+        #[method_id(encodeBatchToCommandBuffer:sourceImages:)]
         pub unsafe fn encodeBatchToCommandBuffer_sourceImages(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1027,7 +1081,8 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -1039,10 +1094,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNBatchNormalizationStatistics {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -1100,7 +1157,8 @@ extern_methods!(
         ///
         ///
         /// Returns: A valid MPSCNNBatchNormalizationGradient object or nil, if failure.
-        #[method_id(@__method_family Init initWithDevice:fusedNeuronDescriptor:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:fusedNeuronDescriptor:)]
         pub unsafe fn initWithDevice_fusedNeuronDescriptor(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -1124,7 +1182,8 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSCNNBatchNormalizationGradient object, or nil if failure.
-        #[method_id(@__method_family Init initWithCoder:device:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -1202,7 +1261,8 @@ extern_methods!(
         /// the result and return it.
         /// See encodeToCommandBuffer:sourceImage:sourceGradient:sourceImage:batchNormalizationState:destinationGradient
         /// for further details.
-        #[method_id(@__method_family Other encodeToCommandBuffer:sourceGradient:sourceImage:batchNormalizationState:)]
+        #[unsafe(method_family(none))]
+        #[method_id(encodeToCommandBuffer:sourceGradient:sourceImage:batchNormalizationState:)]
         pub unsafe fn encodeToCommandBuffer_sourceGradient_sourceImage_batchNormalizationState(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1221,7 +1281,8 @@ extern_methods!(
         /// the result and return it.
         /// See encodeBatchToCommandBuffer:sourceGradients:sourceImages:batchNormalizationState:destinationGradients
         /// for further details.
-        #[method_id(@__method_family Other encodeBatchToCommandBuffer:sourceGradients:sourceImages:batchNormalizationState:)]
+        #[unsafe(method_family(none))]
+        #[method_id(encodeBatchToCommandBuffer:sourceGradients:sourceImages:batchNormalizationState:)]
         pub unsafe fn encodeBatchToCommandBuffer_sourceGradients_sourceImages_batchNormalizationState(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1251,7 +1312,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSImage")]
-        #[method_id(@__method_family Other encodeToCommandBuffer:primaryImage:secondaryImage:)]
+        #[unsafe(method_family(none))]
+        #[method_id(encodeToCommandBuffer:primaryImage:secondaryImage:)]
         pub unsafe fn encodeToCommandBuffer_primaryImage_secondaryImage(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1260,7 +1322,8 @@ extern_methods!(
         ) -> Retained<MPSImage>;
 
         #[cfg(all(feature = "MPSImage", feature = "MPSNDArray"))]
-        #[method_id(@__method_family Other encodeBatchToCommandBuffer:primaryImages:secondaryImages:)]
+        #[unsafe(method_family(none))]
+        #[method_id(encodeBatchToCommandBuffer:primaryImages:secondaryImages:)]
         pub unsafe fn encodeBatchToCommandBuffer_primaryImages_secondaryImages(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1281,7 +1344,8 @@ extern_methods!(
         /// Returns: A pointer to the newly initialized object. This will fail, returning
         /// nil if the device is not supported. Devices must be
         /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
-        #[method_id(@__method_family Init initWithDevice:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -1301,7 +1365,8 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -1313,10 +1378,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNBatchNormalizationGradient {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -1367,7 +1434,8 @@ extern_methods!(
         ///
         ///
         /// Returns: A valid MPSCNNBatchNormalizationStatisticsGradient object or nil, if failure.
-        #[method_id(@__method_family Init initWithDevice:fusedNeuronDescriptor:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:fusedNeuronDescriptor:)]
         pub unsafe fn initWithDevice_fusedNeuronDescriptor(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -1391,7 +1459,8 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSCNNBatchNormalizationStatisticsGradient object, or nil if failure.
-        #[method_id(@__method_family Init initWithCoder:device:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -1434,7 +1503,8 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "MPSImage", feature = "MPSState"))]
-        #[method_id(@__method_family Other encodeToCommandBuffer:sourceGradient:sourceImage:gradientState:)]
+        #[unsafe(method_family(none))]
+        #[method_id(encodeToCommandBuffer:sourceGradient:sourceImage:gradientState:)]
         pub unsafe fn encodeToCommandBuffer_sourceGradient_sourceImage_gradientState(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1455,7 +1525,8 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "MPSImage", feature = "MPSNDArray", feature = "MPSState"))]
-        #[method_id(@__method_family Other encodeBatchToCommandBuffer:sourceGradients:sourceImages:gradientStates:)]
+        #[unsafe(method_family(none))]
+        #[method_id(encodeBatchToCommandBuffer:sourceGradients:sourceImages:gradientStates:)]
         pub unsafe fn encodeBatchToCommandBuffer_sourceGradients_sourceImages_gradientStates(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1488,7 +1559,8 @@ extern_methods!(
         /// Returns: A pointer to the newly initialized object. This will fail, returning
         /// nil if the device is not supported. Devices must be
         /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
-        #[method_id(@__method_family Init initWithDevice:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -1508,7 +1580,8 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -1520,10 +1593,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNBatchNormalizationStatisticsGradient {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

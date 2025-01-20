@@ -29,25 +29,30 @@ unsafe impl NSSecureCoding for CKLocationSortDescriptor {}
 
 extern_methods!(
     unsafe impl CKLocationSortDescriptor {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-location")]
-        #[method_id(@__method_family Init initWithKey:relativeLocation:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithKey:relativeLocation:)]
         pub unsafe fn initWithKey_relativeLocation(
             this: Allocated<Self>,
             key: &NSString,
             relative_location: &CLLocation,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-location")]
-        #[method_id(@__method_family Other relativeLocation)]
+        #[unsafe(method_family(none))]
+        #[method_id(relativeLocation)]
         pub unsafe fn relativeLocation(&self) -> Retained<CLLocation>;
     }
 );
@@ -55,27 +60,31 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSSortDescriptor`
     unsafe impl CKLocationSortDescriptor {
-        #[method_id(@__method_family Other sortDescriptorWithKey:ascending:)]
+        #[unsafe(method_family(none))]
+        #[method_id(sortDescriptorWithKey:ascending:)]
         pub unsafe fn sortDescriptorWithKey_ascending(
             key: Option<&NSString>,
             ascending: bool,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Other sortDescriptorWithKey:ascending:selector:)]
+        #[unsafe(method_family(none))]
+        #[method_id(sortDescriptorWithKey:ascending:selector:)]
         pub unsafe fn sortDescriptorWithKey_ascending_selector(
             key: Option<&NSString>,
             ascending: bool,
             selector: Option<Sel>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithKey:ascending:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithKey:ascending:)]
         pub unsafe fn initWithKey_ascending(
             this: Allocated<Self>,
             key: Option<&NSString>,
             ascending: bool,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithKey:ascending:selector:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithKey:ascending:selector:)]
         pub unsafe fn initWithKey_ascending_selector(
             this: Allocated<Self>,
             key: Option<&NSString>,
@@ -83,14 +92,16 @@ extern_methods!(
             selector: Option<Sel>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Other sortDescriptorWithKey:ascending:comparator:)]
+        #[unsafe(method_family(none))]
+        #[method_id(sortDescriptorWithKey:ascending:comparator:)]
         pub unsafe fn sortDescriptorWithKey_ascending_comparator(
             key: Option<&NSString>,
             ascending: bool,
             cmptr: NSComparator,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithKey:ascending:comparator:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithKey:ascending:comparator:)]
         pub unsafe fn initWithKey_ascending_comparator(
             this: Allocated<Self>,
             key: Option<&NSString>,

@@ -22,14 +22,16 @@ unsafe impl NSObjectProtocol for NSSliderAccessory {}
 extern_methods!(
     unsafe impl NSSliderAccessory {
         #[cfg(feature = "NSImage")]
-        #[method_id(@__method_family Other accessoryWithImage:)]
+        #[unsafe(method_family(none))]
+        #[method_id(accessoryWithImage:)]
         pub unsafe fn accessoryWithImage(
             image: &NSImage,
             mtm: MainThreadMarker,
         ) -> Retained<NSSliderAccessory>;
 
         /// The effect on interaction with the accessory. Defaults to `automaticBehavior`
-        #[method_id(@__method_family Other behavior)]
+        #[unsafe(method_family(none))]
+        #[method_id(behavior)]
         pub unsafe fn behavior(&self) -> Retained<NSSliderAccessoryBehavior>;
 
         /// Setter for [`behavior`][Self::behavior].
@@ -49,10 +51,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSSliderAccessory {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -88,25 +92,29 @@ unsafe impl NSObjectProtocol for NSSliderAccessoryBehavior {}
 extern_methods!(
     unsafe impl NSSliderAccessoryBehavior {
         /// The behavior is automatically picked to be the system standard for the slider's current context, e.g. NSTouchBarItems have `.valueStep` behavior.
-        #[method_id(@__method_family Other automaticBehavior)]
+        #[unsafe(method_family(none))]
+        #[method_id(automaticBehavior)]
         pub unsafe fn automaticBehavior(
             mtm: MainThreadMarker,
         ) -> Retained<NSSliderAccessoryBehavior>;
 
         /// The value of the slider moves towards the associated value for the accessory with by a delta of the slider's `altIncrementValue`.
-        #[method_id(@__method_family Other valueStepBehavior)]
+        #[unsafe(method_family(none))]
+        #[method_id(valueStepBehavior)]
         pub unsafe fn valueStepBehavior(
             mtm: MainThreadMarker,
         ) -> Retained<NSSliderAccessoryBehavior>;
 
         /// The value of the slider is reset to the associated value for the accessory.
-        #[method_id(@__method_family Other valueResetBehavior)]
+        #[unsafe(method_family(none))]
+        #[method_id(valueResetBehavior)]
         pub unsafe fn valueResetBehavior(
             mtm: MainThreadMarker,
         ) -> Retained<NSSliderAccessoryBehavior>;
 
         /// The action is sent to the target on interaction. The optional first parameter is an NSSliderAccessory.
-        #[method_id(@__method_family Other behaviorWithTarget:action:)]
+        #[unsafe(method_family(none))]
+        #[method_id(behaviorWithTarget:action:)]
         pub unsafe fn behaviorWithTarget_action(
             target: Option<&AnyObject>,
             action: Sel,
@@ -115,7 +123,8 @@ extern_methods!(
 
         #[cfg(feature = "block2")]
         /// The handler block is invoked on interaction. This variant is not codable and will assert in `-encodeWithCoder:`.
-        #[method_id(@__method_family Other behaviorWithHandler:)]
+        #[unsafe(method_family(none))]
+        #[method_id(behaviorWithHandler:)]
         pub unsafe fn behaviorWithHandler(
             handler: &block2::Block<dyn Fn(NonNull<NSSliderAccessory>)>,
             mtm: MainThreadMarker,
@@ -130,10 +139,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSSliderAccessoryBehavior {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

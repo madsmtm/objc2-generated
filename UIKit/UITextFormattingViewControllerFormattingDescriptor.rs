@@ -142,14 +142,16 @@ unsafe impl NSSecureCoding for UITextFormattingViewControllerFormattingDescripto
 extern_methods!(
     unsafe impl UITextFormattingViewControllerFormattingDescriptor {
         /// Initializes formatting descriptor with default property values.
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Initializes formatting descriptor with a string and selected range of string.
         /// - Parameters:
         /// - string: Attributed string for which we are creating formatting descriptor.
         /// - range: Range of string that is being represented by descriptor
-        #[method_id(@__method_family Init initWithString:range:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithString:range:)]
         pub unsafe fn initWithString_range(
             this: Allocated<Self>,
             string: &NSAttributedString,
@@ -158,14 +160,16 @@ extern_methods!(
 
         /// Initializes formatting descriptor with attribute dictionary.
         /// - Parameter attributes: Attribute dictionary that is being represented by descriptor.
-        #[method_id(@__method_family Init initWithAttributes:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithAttributes:)]
         pub unsafe fn initWithAttributes(
             this: Allocated<Self>,
             attributes: &NSDictionary<NSAttributedStringKey, AnyObject>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "UIFont")]
-        #[method_id(@__method_family Other fonts)]
+        #[unsafe(method_family(none))]
+        #[method_id(fonts)]
         pub unsafe fn fonts(&self) -> Option<Retained<NSArray<UIFont>>>;
 
         #[cfg(feature = "UIFont")]
@@ -174,7 +178,8 @@ extern_methods!(
         pub unsafe fn setFonts(&self, fonts: Option<&NSArray<UIFont>>);
 
         #[cfg(feature = "UIColor")]
-        #[method_id(@__method_family Other textColors)]
+        #[unsafe(method_family(none))]
+        #[method_id(textColors)]
         pub unsafe fn textColors(&self) -> Option<Retained<NSArray<UIColor>>>;
 
         #[cfg(feature = "UIColor")]
@@ -205,7 +210,8 @@ extern_methods!(
         #[method(setStrikethroughPresent:)]
         pub unsafe fn setStrikethroughPresent(&self, strikethrough_present: bool);
 
-        #[method_id(@__method_family Other textAlignments)]
+        #[unsafe(method_family(none))]
+        #[method_id(textAlignments)]
         pub unsafe fn textAlignments(
             &self,
         ) -> Retained<NSSet<UITextFormattingViewControllerTextAlignment>>;
@@ -217,7 +223,8 @@ extern_methods!(
             text_alignments: &NSSet<UITextFormattingViewControllerTextAlignment>,
         );
 
-        #[method_id(@__method_family Other textLists)]
+        #[unsafe(method_family(none))]
+        #[method_id(textLists)]
         pub unsafe fn textLists(&self) -> Retained<NSSet<UITextFormattingViewControllerTextList>>;
 
         /// Setter for [`textLists`][Self::textLists].
@@ -227,7 +234,8 @@ extern_methods!(
             text_lists: &NSSet<UITextFormattingViewControllerTextList>,
         );
 
-        #[method_id(@__method_family Other highlights)]
+        #[unsafe(method_family(none))]
+        #[method_id(highlights)]
         pub unsafe fn highlights(&self)
             -> Retained<NSSet<UITextFormattingViewControllerHighlight>>;
 
@@ -238,7 +246,8 @@ extern_methods!(
             highlights: &NSSet<UITextFormattingViewControllerHighlight>,
         );
 
-        #[method_id(@__method_family Other formattingStyleKey)]
+        #[unsafe(method_family(none))]
+        #[method_id(formattingStyleKey)]
         pub unsafe fn formattingStyleKey(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`formattingStyleKey`][Self::formattingStyleKey].
@@ -250,7 +259,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITextFormattingViewControllerFormattingDescriptor {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

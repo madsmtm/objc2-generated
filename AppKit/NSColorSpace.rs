@@ -61,16 +61,19 @@ unsafe impl NSSecureCoding for NSColorSpace {}
 
 extern_methods!(
     unsafe impl NSColorSpace {
-        #[method_id(@__method_family Init initWithICCProfileData:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithICCProfileData:)]
         pub unsafe fn initWithICCProfileData(
             this: Allocated<Self>,
             icc_data: &NSData,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__method_family Other ICCProfileData)]
+        #[unsafe(method_family(none))]
+        #[method_id(ICCProfileData)]
         pub unsafe fn ICCProfileData(&self) -> Option<Retained<NSData>>;
 
-        #[method_id(@__method_family Init initWithColorSyncProfile:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithColorSyncProfile:)]
         pub unsafe fn initWithColorSyncProfile(
             this: Allocated<Self>,
             prof: NonNull<c_void>,
@@ -81,7 +84,8 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-graphics")]
         #[cfg(target_vendor = "apple")]
-        #[method_id(@__method_family Init initWithCGColorSpace:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCGColorSpace:)]
         pub unsafe fn initWithCGColorSpace(
             this: Allocated<Self>,
             cg_color_space: &CGColorSpace,
@@ -89,7 +93,8 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-graphics")]
         #[cfg(target_vendor = "apple")]
-        #[method_id(@__method_family Other CGColorSpace)]
+        #[unsafe(method_family(none))]
+        #[method_id(CGColorSpace)]
         pub unsafe fn CGColorSpace(&self) -> Option<Retained<CGColorSpace>>;
 
         #[method(numberOfColorComponents)]
@@ -98,46 +103,60 @@ extern_methods!(
         #[method(colorSpaceModel)]
         pub unsafe fn colorSpaceModel(&self) -> NSColorSpaceModel;
 
-        #[method_id(@__method_family Other localizedName)]
+        #[unsafe(method_family(none))]
+        #[method_id(localizedName)]
         pub unsafe fn localizedName(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(@__method_family Other sRGBColorSpace)]
+        #[unsafe(method_family(none))]
+        #[method_id(sRGBColorSpace)]
         pub unsafe fn sRGBColorSpace() -> Retained<NSColorSpace>;
 
-        #[method_id(@__method_family Other genericGamma22GrayColorSpace)]
+        #[unsafe(method_family(none))]
+        #[method_id(genericGamma22GrayColorSpace)]
         pub unsafe fn genericGamma22GrayColorSpace() -> Retained<NSColorSpace>;
 
-        #[method_id(@__method_family Other extendedSRGBColorSpace)]
+        #[unsafe(method_family(none))]
+        #[method_id(extendedSRGBColorSpace)]
         pub unsafe fn extendedSRGBColorSpace() -> Retained<NSColorSpace>;
 
-        #[method_id(@__method_family Other extendedGenericGamma22GrayColorSpace)]
+        #[unsafe(method_family(none))]
+        #[method_id(extendedGenericGamma22GrayColorSpace)]
         pub unsafe fn extendedGenericGamma22GrayColorSpace() -> Retained<NSColorSpace>;
 
-        #[method_id(@__method_family Other displayP3ColorSpace)]
+        #[unsafe(method_family(none))]
+        #[method_id(displayP3ColorSpace)]
         pub unsafe fn displayP3ColorSpace() -> Retained<NSColorSpace>;
 
-        #[method_id(@__method_family Other adobeRGB1998ColorSpace)]
+        #[unsafe(method_family(none))]
+        #[method_id(adobeRGB1998ColorSpace)]
         pub unsafe fn adobeRGB1998ColorSpace() -> Retained<NSColorSpace>;
 
-        #[method_id(@__method_family Other genericRGBColorSpace)]
+        #[unsafe(method_family(none))]
+        #[method_id(genericRGBColorSpace)]
         pub unsafe fn genericRGBColorSpace() -> Retained<NSColorSpace>;
 
-        #[method_id(@__method_family Other genericGrayColorSpace)]
+        #[unsafe(method_family(none))]
+        #[method_id(genericGrayColorSpace)]
         pub unsafe fn genericGrayColorSpace() -> Retained<NSColorSpace>;
 
-        #[method_id(@__method_family Other genericCMYKColorSpace)]
+        #[unsafe(method_family(none))]
+        #[method_id(genericCMYKColorSpace)]
         pub unsafe fn genericCMYKColorSpace() -> Retained<NSColorSpace>;
 
-        #[method_id(@__method_family Other deviceRGBColorSpace)]
+        #[unsafe(method_family(none))]
+        #[method_id(deviceRGBColorSpace)]
         pub unsafe fn deviceRGBColorSpace() -> Retained<NSColorSpace>;
 
-        #[method_id(@__method_family Other deviceGrayColorSpace)]
+        #[unsafe(method_family(none))]
+        #[method_id(deviceGrayColorSpace)]
         pub unsafe fn deviceGrayColorSpace() -> Retained<NSColorSpace>;
 
-        #[method_id(@__method_family Other deviceCMYKColorSpace)]
+        #[unsafe(method_family(none))]
+        #[method_id(deviceCMYKColorSpace)]
         pub unsafe fn deviceCMYKColorSpace() -> Retained<NSColorSpace>;
 
-        #[method_id(@__method_family Other availableColorSpacesWithModel:)]
+        #[unsafe(method_family(none))]
+        #[method_id(availableColorSpacesWithModel:)]
         pub unsafe fn availableColorSpacesWithModel(
             model: NSColorSpaceModel,
         ) -> Retained<NSArray<NSColorSpace>>;
@@ -147,10 +166,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSColorSpace {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

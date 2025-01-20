@@ -36,12 +36,14 @@ extern_methods!(
     #[cfg(feature = "NSDate")]
     unsafe impl NSCalendarDate {
         #[deprecated = "Use NSCalendar instead"]
-        #[method_id(@__method_family Other calendarDate)]
+        #[unsafe(method_family(none))]
+        #[method_id(calendarDate)]
         pub unsafe fn calendarDate() -> Retained<AnyObject>;
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use NSDateFormatter instead"]
-        #[method_id(@__method_family Other dateWithString:calendarFormat:locale:)]
+        #[unsafe(method_family(none))]
+        #[method_id(dateWithString:calendarFormat:locale:)]
         pub unsafe fn dateWithString_calendarFormat_locale(
             description: &NSString,
             format: &NSString,
@@ -50,7 +52,8 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use NSDateFormatter instead"]
-        #[method_id(@__method_family Other dateWithString:calendarFormat:)]
+        #[unsafe(method_family(none))]
+        #[method_id(dateWithString:calendarFormat:)]
         pub unsafe fn dateWithString_calendarFormat(
             description: &NSString,
             format: &NSString,
@@ -58,7 +61,8 @@ extern_methods!(
 
         #[cfg(feature = "NSTimeZone")]
         #[deprecated = "Use NSCalendar and NSDateComponents instead"]
-        #[method_id(@__method_family Other dateWithYear:month:day:hour:minute:second:timeZone:)]
+        #[unsafe(method_family(none))]
+        #[method_id(dateWithYear:month:day:hour:minute:second:timeZone:)]
         pub unsafe fn dateWithYear_month_day_hour_minute_second_timeZone(
             year: NSInteger,
             month: NSUInteger,
@@ -70,7 +74,8 @@ extern_methods!(
         ) -> Retained<AnyObject>;
 
         #[deprecated = "Use NSCalendar instead"]
-        #[method_id(@__method_family Other dateByAddingYears:months:days:hours:minutes:seconds:)]
+        #[unsafe(method_family(none))]
+        #[method_id(dateByAddingYears:months:days:hours:minutes:seconds:)]
         pub unsafe fn dateByAddingYears_months_days_hours_minutes_seconds(
             &self,
             year: NSInteger,
@@ -119,12 +124,14 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[deprecated]
-        #[method_id(@__method_family Other calendarFormat)]
+        #[unsafe(method_family(none))]
+        #[method_id(calendarFormat)]
         pub unsafe fn calendarFormat(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[deprecated]
-        #[method_id(@__method_family Other descriptionWithCalendarFormat:locale:)]
+        #[unsafe(method_family(none))]
+        #[method_id(descriptionWithCalendarFormat:locale:)]
         pub unsafe fn descriptionWithCalendarFormat_locale(
             &self,
             format: &NSString,
@@ -133,13 +140,15 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[deprecated]
-        #[method_id(@__method_family Other descriptionWithCalendarFormat:)]
+        #[unsafe(method_family(none))]
+        #[method_id(descriptionWithCalendarFormat:)]
         pub unsafe fn descriptionWithCalendarFormat(&self, format: &NSString)
             -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[deprecated]
-        #[method_id(@__method_family Other descriptionWithLocale:)]
+        #[unsafe(method_family(none))]
+        #[method_id(descriptionWithLocale:)]
         pub unsafe fn descriptionWithLocale(
             &self,
             locale: Option<&AnyObject>,
@@ -147,12 +156,14 @@ extern_methods!(
 
         #[cfg(feature = "NSTimeZone")]
         #[deprecated]
-        #[method_id(@__method_family Other timeZone)]
+        #[unsafe(method_family(none))]
+        #[method_id(timeZone)]
         pub unsafe fn timeZone(&self) -> Retained<NSTimeZone>;
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use NSDateFormatter instead"]
-        #[method_id(@__method_family Init initWithString:calendarFormat:locale:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithString:calendarFormat:locale:)]
         pub unsafe fn initWithString_calendarFormat_locale(
             this: Allocated<Self>,
             description: &NSString,
@@ -162,7 +173,8 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use NSDateFormatter instead"]
-        #[method_id(@__method_family Init initWithString:calendarFormat:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithString:calendarFormat:)]
         pub unsafe fn initWithString_calendarFormat(
             this: Allocated<Self>,
             description: &NSString,
@@ -171,7 +183,8 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use NSDateFormatter instead"]
-        #[method_id(@__method_family Init initWithString:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithString:)]
         pub unsafe fn initWithString(
             this: Allocated<Self>,
             description: &NSString,
@@ -179,7 +192,8 @@ extern_methods!(
 
         #[cfg(feature = "NSTimeZone")]
         #[deprecated = "Use NSCalendar and NSDateComponents instead"]
-        #[method_id(@__method_family Init initWithYear:month:day:hour:minute:second:timeZone:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithYear:month:day:hour:minute:second:timeZone:)]
         pub unsafe fn initWithYear_month_day_hour_minute_second_timeZone(
             this: Allocated<Self>,
             year: NSInteger,
@@ -215,11 +229,13 @@ extern_methods!(
         );
 
         #[deprecated]
-        #[method_id(@__method_family Other distantFuture)]
+        #[unsafe(method_family(none))]
+        #[method_id(distantFuture)]
         pub unsafe fn distantFuture() -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(@__method_family Other distantPast)]
+        #[unsafe(method_family(none))]
+        #[method_id(distantPast)]
         pub unsafe fn distantPast() -> Retained<Self>;
     }
 );
@@ -228,17 +244,20 @@ extern_methods!(
     /// Methods declared on superclass `NSDate`
     #[cfg(feature = "NSDate")]
     unsafe impl NSCalendarDate {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithTimeIntervalSinceReferenceDate:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithTimeIntervalSinceReferenceDate:)]
         pub unsafe fn initWithTimeIntervalSinceReferenceDate(
             this: Allocated<Self>,
             ti: NSTimeInterval,
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -250,7 +269,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSDate")]
     unsafe impl NSCalendarDate {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -261,7 +281,8 @@ extern_methods!(
     unsafe impl NSDate {
         #[cfg(feature = "NSString")]
         #[deprecated = "Create an NSDateFormatter with `init` and set the dateFormat property instead."]
-        #[method_id(@__method_family Other dateWithNaturalLanguageString:locale:)]
+        #[unsafe(method_family(none))]
+        #[method_id(dateWithNaturalLanguageString:locale:)]
         pub unsafe fn dateWithNaturalLanguageString_locale(
             string: &NSString,
             locale: Option<&AnyObject>,
@@ -269,19 +290,22 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Create an NSDateFormatter with `init` and set the dateFormat property instead."]
-        #[method_id(@__method_family Other dateWithNaturalLanguageString:)]
+        #[unsafe(method_family(none))]
+        #[method_id(dateWithNaturalLanguageString:)]
         pub unsafe fn dateWithNaturalLanguageString(
             string: &NSString,
         ) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use NSDateFormatter instead"]
-        #[method_id(@__method_family Other dateWithString:)]
+        #[unsafe(method_family(none))]
+        #[method_id(dateWithString:)]
         pub unsafe fn dateWithString(a_string: &NSString) -> Retained<AnyObject>;
 
         #[cfg(all(feature = "NSString", feature = "NSTimeZone"))]
         #[deprecated]
-        #[method_id(@__method_family Other dateWithCalendarFormat:timeZone:)]
+        #[unsafe(method_family(none))]
+        #[method_id(dateWithCalendarFormat:timeZone:)]
         pub unsafe fn dateWithCalendarFormat_timeZone(
             &self,
             format: Option<&NSString>,
@@ -290,7 +314,8 @@ extern_methods!(
 
         #[cfg(all(feature = "NSString", feature = "NSTimeZone"))]
         #[deprecated]
-        #[method_id(@__method_family Other descriptionWithCalendarFormat:timeZone:locale:)]
+        #[unsafe(method_family(none))]
+        #[method_id(descriptionWithCalendarFormat:timeZone:locale:)]
         pub unsafe fn descriptionWithCalendarFormat_timeZone_locale(
             &self,
             format: Option<&NSString>,
@@ -300,7 +325,8 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use NSDateFormatter instead"]
-        #[method_id(@__method_family Init initWithString:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithString:)]
         pub unsafe fn initWithString(
             this: Allocated<Self>,
             description: &NSString,

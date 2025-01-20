@@ -27,10 +27,12 @@ unsafe impl NSObjectProtocol for AVPlayerVideoOutput {}
 
 extern_methods!(
     unsafe impl AVPlayerVideoOutput {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Creates an instance of AVPlayerVideoOutput, initialized with the specified video output specification.
@@ -45,7 +47,8 @@ extern_methods!(
         ///
         /// Output settings will be selected from the input AVVideoOutputSpecification based on the data channels selected for an item.
         /// If no output settings were set for the selected tag collection, then the default output settings from the AVVideoOutputSpecification will be used if those were set.
-        #[method_id(@__method_family Init initWithSpecification:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithSpecification:)]
         pub unsafe fn initWithSpecification(
             this: Allocated<Self>,
             specification: &AVVideoOutputSpecification,
@@ -64,7 +67,8 @@ extern_methods!(
         /// Returns: A tagged buffer group for the specified host time if a sample is available, and NULL otherwise.
         ///
         /// The client is responsible for releasing the returned CMTaggedBufferGroup.
-        #[method_id(@__method_family Copy copyTaggedBufferGroupForHostTime:presentationTimeStamp:activeConfiguration:)]
+        #[unsafe(method_family(copy))]
+        #[method_id(copyTaggedBufferGroupForHostTime:presentationTimeStamp:activeConfiguration:)]
         pub unsafe fn copyTaggedBufferGroupForHostTime_presentationTimeStamp_activeConfiguration(
             &self,
             host_time: CMTime,
@@ -145,10 +149,12 @@ unsafe impl NSObjectProtocol for AVVideoOutputSpecification {}
 
 extern_methods!(
     unsafe impl AVVideoOutputSpecification {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Creates an instance of AVVideoOutputSpecification initialized with the specified tag collections.
@@ -158,7 +164,8 @@ extern_methods!(
         /// This method throws an exception for the following reasons:
         /// - tagCollections is nil or has a count of 0.
         /// - tagCollections contains elements that are not of the type CMTagCollection.
-        #[method_id(@__method_family Init initWithTagCollections:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithTagCollections:)]
         pub unsafe fn initWithTagCollections(
             this: Allocated<Self>,
             tag_collections: &NSArray,
@@ -213,7 +220,8 @@ extern_methods!(
         /// Tag collections held by AVVideoOutputSpecification.
         ///
         /// Returns an array of CMTagCollections.
-        #[method_id(@__method_family Other preferredTagCollections)]
+        #[unsafe(method_family(none))]
+        #[method_id(preferredTagCollections)]
         pub unsafe fn preferredTagCollections(&self) -> Retained<NSArray>;
 
         /// The default client requirements for CVPixelBuffers related to all tag collections not explicitly set with setOutputPixelBufferAttributes:forTagCollection:, expressed using the constants in
@@ -226,7 +234,8 @@ extern_methods!(
         ///
         /// Note: Pixel buffer attributes are translated into output settings, therefore, the rules of defaultOutputSettings apply to defaultPixelBufferAttributes as well.  If defaultPixelBufferAttributes are set after setting defaultOutputSettings, the set output settings will be overridden and vice-versa.
         #[deprecated]
-        #[method_id(@__method_family Other defaultPixelBufferAttributes)]
+        #[unsafe(method_family(none))]
+        #[method_id(defaultPixelBufferAttributes)]
         pub unsafe fn defaultPixelBufferAttributes(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
@@ -255,7 +264,8 @@ extern_methods!(
         /// Note: The setter for this property throws an exception for any of the following reasons:
         /// - The settings will yield compressed output
         /// - The settings do not honor the requirements list above for outputSettings.
-        #[method_id(@__method_family Other defaultOutputSettings)]
+        #[unsafe(method_family(none))]
+        #[method_id(defaultOutputSettings)]
         pub unsafe fn defaultOutputSettings(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
@@ -282,17 +292,20 @@ unsafe impl NSObjectProtocol for AVPlayerVideoOutputConfiguration {}
 
 extern_methods!(
     unsafe impl AVPlayerVideoOutputConfiguration {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "AVPlayerItem")]
         /// The AVPlayerItem which is the source of this configuration.
         ///
         /// This AVPlayerItem can be seen as the source of all samples this configuration vended alongside.
-        #[method_id(@__method_family Other sourcePlayerItem)]
+        #[unsafe(method_family(none))]
+        #[method_id(sourcePlayerItem)]
         pub unsafe fn sourcePlayerItem(
             &self,
             mtm: MainThreadMarker,
@@ -301,7 +314,8 @@ extern_methods!(
         /// List of data channels, represented as CMTagCollections, selected for this configuration.
         ///
         /// Returns an Array of CMTagCollections
-        #[method_id(@__method_family Other dataChannelDescriptions)]
+        #[unsafe(method_family(none))]
+        #[method_id(dataChannelDescriptions)]
         pub unsafe fn dataChannelDescriptions(&self) -> Retained<NSArray>;
 
         #[cfg(feature = "objc2-core-foundation")]

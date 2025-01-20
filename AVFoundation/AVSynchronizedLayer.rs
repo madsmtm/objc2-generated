@@ -43,7 +43,8 @@ extern_methods!(
         /// Returns an instance of AVSynchronizedLayer with timing synchronized with the specified AVPlayerItem.
         ///
         /// Returns: An instance of AVSynchronizedLayer.
-        #[method_id(@__method_family Other synchronizedLayerWithPlayerItem:)]
+        #[unsafe(method_family(none))]
+        #[method_id(synchronizedLayerWithPlayerItem:)]
         pub unsafe fn synchronizedLayerWithPlayerItem(
             player_item: &AVPlayerItem,
         ) -> Retained<AVSynchronizedLayer>;
@@ -52,7 +53,8 @@ extern_methods!(
         /// Indicates the instance of AVPlayerItem to which the timing of the AVSynchronizedLayer is synchronized.
         ///
         /// Before macOS 13, iOS 16, tvOS 16, and watchOS 9, this property must be accessed on the main thread/queue.
-        #[method_id(@__method_family Other playerItem)]
+        #[unsafe(method_family(none))]
+        #[method_id(playerItem)]
         pub unsafe fn playerItem(&self, mtm: MainThreadMarker) -> Option<Retained<AVPlayerItem>>;
 
         #[cfg(feature = "AVPlayerItem")]
@@ -72,13 +74,16 @@ extern_methods!(
     #[cfg(not(target_os = "watchos"))]
     unsafe impl AVSynchronizedLayer {
         /// Layer creation and initialization. *
-        #[method_id(@__method_family Other layer)]
+        #[unsafe(method_family(none))]
+        #[method_id(layer)]
         pub unsafe fn layer() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithLayer:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithLayer:)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
     }
 );
@@ -88,7 +93,8 @@ extern_methods!(
     #[cfg(feature = "objc2-quartz-core")]
     #[cfg(not(target_os = "watchos"))]
     unsafe impl AVSynchronizedLayer {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

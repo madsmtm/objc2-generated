@@ -34,12 +34,14 @@ extern_methods!(
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchRecordChangesOperation {
         #[deprecated]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "CKRecordZoneID", feature = "CKServerChangeToken"))]
         #[deprecated]
-        #[method_id(@__method_family Init initWithRecordZoneID:previousServerChangeToken:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithRecordZoneID:previousServerChangeToken:)]
         pub unsafe fn initWithRecordZoneID_previousServerChangeToken(
             this: Allocated<Self>,
             record_zone_id: &CKRecordZoneID,
@@ -48,7 +50,8 @@ extern_methods!(
 
         #[cfg(feature = "CKRecordZoneID")]
         #[deprecated]
-        #[method_id(@__method_family Other recordZoneID)]
+        #[unsafe(method_family(none))]
+        #[method_id(recordZoneID)]
         pub unsafe fn recordZoneID(&self) -> Option<Retained<CKRecordZoneID>>;
 
         #[cfg(feature = "CKRecordZoneID")]
@@ -59,7 +62,8 @@ extern_methods!(
 
         #[cfg(feature = "CKServerChangeToken")]
         #[deprecated]
-        #[method_id(@__method_family Other previousServerChangeToken)]
+        #[unsafe(method_family(none))]
+        #[method_id(previousServerChangeToken)]
         pub unsafe fn previousServerChangeToken(&self) -> Option<Retained<CKServerChangeToken>>;
 
         #[cfg(feature = "CKServerChangeToken")]
@@ -88,7 +92,8 @@ extern_methods!(
         /// Defaults to
         /// `nil.`
         #[deprecated]
-        #[method_id(@__method_family Other desiredKeys)]
+        #[unsafe(method_family(none))]
+        #[method_id(desiredKeys)]
         pub unsafe fn desiredKeys(&self) -> Option<Retained<NSArray<CKRecordFieldKey>>>;
 
         #[cfg(feature = "CKRecord")]
@@ -183,7 +188,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchRecordChangesOperation {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

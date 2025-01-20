@@ -31,12 +31,14 @@ extern_methods!(
     #[cfg(feature = "UIWindowSceneGeometryPreferences")]
     unsafe impl UIWindowSceneGeometryPreferencesVision {
         /// Creates a geometry preference with no changes. Update the properties who's preference should change
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Creates a geometry preference with a specific size (specifying UIProposedSceneSizeNoPreference for any dimension of size, will specify no preference, keeping that dimension the same if possible)
-        #[method_id(@__method_family Init initWithSize:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithSize:)]
         pub unsafe fn initWithSize(this: Allocated<Self>, size: CGSize) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -91,7 +93,8 @@ extern_methods!(
     /// Methods declared on superclass `UIWindowSceneGeometryPreferences`
     #[cfg(feature = "UIWindowSceneGeometryPreferences")]
     unsafe impl UIWindowSceneGeometryPreferencesVision {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

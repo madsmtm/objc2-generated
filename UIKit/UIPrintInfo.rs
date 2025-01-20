@@ -93,29 +93,34 @@ unsafe impl NSObjectProtocol for UIPrintInfo {}
 
 extern_methods!(
     unsafe impl UIPrintInfo {
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__method_family Other printInfo)]
+        #[unsafe(method_family(none))]
+        #[method_id(printInfo)]
         pub unsafe fn printInfo(mtm: MainThreadMarker) -> Retained<UIPrintInfo>;
 
-        #[method_id(@__method_family Other printInfoWithDictionary:)]
+        #[unsafe(method_family(none))]
+        #[method_id(printInfoWithDictionary:)]
         pub unsafe fn printInfoWithDictionary(
             dictionary: Option<&NSDictionary>,
             mtm: MainThreadMarker,
         ) -> Retained<UIPrintInfo>;
 
-        #[method_id(@__method_family Other printerID)]
+        #[unsafe(method_family(none))]
+        #[method_id(printerID)]
         pub unsafe fn printerID(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`printerID`][Self::printerID].
         #[method(setPrinterID:)]
         pub unsafe fn setPrinterID(&self, printer_id: Option<&NSString>);
 
-        #[method_id(@__method_family Other jobName)]
+        #[unsafe(method_family(none))]
+        #[method_id(jobName)]
         pub unsafe fn jobName(&self) -> Retained<NSString>;
 
         /// Setter for [`jobName`][Self::jobName].
@@ -143,7 +148,8 @@ extern_methods!(
         #[method(setDuplex:)]
         pub unsafe fn setDuplex(&self, duplex: UIPrintInfoDuplex);
 
-        #[method_id(@__method_family Other dictionaryRepresentation)]
+        #[unsafe(method_family(none))]
+        #[method_id(dictionaryRepresentation)]
         pub unsafe fn dictionaryRepresentation(&self) -> Retained<NSDictionary>;
     }
 );
@@ -151,10 +157,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIPrintInfo {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

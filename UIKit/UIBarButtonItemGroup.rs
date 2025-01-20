@@ -23,14 +23,16 @@ extern_methods!(
     unsafe impl UIBarButtonItemGroup {
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         /// Create a new bar button item group with the given items. When bar button item layout is done, either the group's barButtonItems or its representativeItem is displayed (if it exists).
-        #[method_id(@__method_family Init initWithBarButtonItems:representativeItem:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithBarButtonItems:representativeItem:)]
         pub unsafe fn initWithBarButtonItems_representativeItem(
             this: Allocated<Self>,
             bar_button_items: &NSArray<UIBarButtonItem>,
             representative_item: Option<&UIBarButtonItem>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -38,7 +40,8 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         /// Construct a UIBarButtonItemGroup that cannot be moved or removed under UINavigationBar customization.
-        #[method_id(@__method_family Other fixedGroupWithRepresentativeItem:items:)]
+        #[unsafe(method_family(none))]
+        #[method_id(fixedGroupWithRepresentativeItem:items:)]
         pub unsafe fn fixedGroupWithRepresentativeItem_items(
             representative_item: Option<&UIBarButtonItem>,
             items: &NSArray<UIBarButtonItem>,
@@ -47,7 +50,8 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         /// Construct a UIBarButtonItemGroup that can be moved but cannot be removed under UINavigationBar customization.
-        #[method_id(@__method_family Other movableGroupWithCustomizationIdentifier:representativeItem:items:)]
+        #[unsafe(method_family(none))]
+        #[method_id(movableGroupWithCustomizationIdentifier:representativeItem:items:)]
         pub unsafe fn movableGroupWithCustomizationIdentifier_representativeItem_items(
             customization_identifier: &NSString,
             representative_item: Option<&UIBarButtonItem>,
@@ -57,7 +61,8 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         /// Construct a UIBarButtonItemGroup that can be moved or added/removed under UINavigationBar customization.
-        #[method_id(@__method_family Other optionalGroupWithCustomizationIdentifier:inDefaultCustomization:representativeItem:items:)]
+        #[unsafe(method_family(none))]
+        #[method_id(optionalGroupWithCustomizationIdentifier:inDefaultCustomization:representativeItem:items:)]
         pub unsafe fn optionalGroupWithCustomizationIdentifier_inDefaultCustomization_representativeItem_items(
             customization_identifier: &NSString,
             in_default_customization: bool,
@@ -68,7 +73,8 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         /// The bar button items associated with this group. Changing these items will affect the bar displaying these items without needing to re-set the groups that are in that bar. Any UIBarButtonItems that are already in group will be removed from that group.
-        #[method_id(@__method_family Other barButtonItems)]
+        #[unsafe(method_family(none))]
+        #[method_id(barButtonItems)]
         pub unsafe fn barButtonItems(&self) -> Retained<NSArray<UIBarButtonItem>>;
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
@@ -81,7 +87,8 @@ extern_methods!(
         /// A bar will only collapse groups that have a representativeItem set, but may still choose to use an alternate presentation of these items.
         /// A UIBarButtonItem may only be either the representativeItem or a member of the barButtonItems of a single UIBarButtonItemGroup and may only represent a single group.
         /// If the representativeItem has an action, then that action will be invoked, otherwise the bar will present a standard UI to allow selection of the barButtonItems in the representedItem's group.
-        #[method_id(@__method_family Other representativeItem)]
+        #[unsafe(method_family(none))]
+        #[method_id(representativeItem)]
         pub unsafe fn representativeItem(&self) -> Option<Retained<UIBarButtonItem>>;
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
@@ -103,7 +110,8 @@ extern_methods!(
 
         #[cfg(feature = "UIMenuElement")]
         /// A UIMenuElement that should substitute for the UIBarButtonItemGroup when displayed in a menu.
-        #[method_id(@__method_family Other menuRepresentation)]
+        #[unsafe(method_family(none))]
+        #[method_id(menuRepresentation)]
         pub unsafe fn menuRepresentation(&self) -> Option<Retained<UIMenuElement>>;
 
         #[cfg(feature = "UIMenuElement")]
@@ -124,10 +132,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIBarButtonItemGroup {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -137,7 +147,8 @@ extern_methods!(
     #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
     unsafe impl UIBarButtonItem {
         /// The group that the UIBarButtonItem is currently associated with, either as a member of the barButtonItems array or as that group's representativeItem.
-        #[method_id(@__method_family Other buttonGroup)]
+        #[unsafe(method_family(none))]
+        #[method_id(buttonGroup)]
         pub unsafe fn buttonGroup(&self) -> Option<Retained<UIBarButtonItemGroup>>;
     }
 );

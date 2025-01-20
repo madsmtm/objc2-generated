@@ -38,7 +38,8 @@ extern_methods!(
         /// The tag is a string identifying the device.
         ///
         /// The tag is presented as a label in the guest identifying this device for mounting.
-        #[method_id(@__method_family Other tag)]
+        #[unsafe(method_family(none))]
+        #[method_id(tag)]
         pub unsafe fn tag(&self) -> Retained<NSString>;
 
         #[cfg(feature = "VZDirectoryShare")]
@@ -49,7 +50,8 @@ extern_methods!(
         /// See: VZSingleDirectoryShare
         ///
         /// See: VZMultipleDirectoryShare
-        #[method_id(@__method_family Other share)]
+        #[unsafe(method_family(none))]
+        #[method_id(share)]
         pub unsafe fn share(&self) -> Option<Retained<VZDirectoryShare>>;
 
         #[cfg(feature = "VZDirectoryShare")]
@@ -63,10 +65,12 @@ extern_methods!(
     /// Methods declared on superclass `VZDirectorySharingDevice`
     #[cfg(feature = "VZDirectorySharingDevice")]
     unsafe impl VZVirtioFileSystemDevice {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

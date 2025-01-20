@@ -87,7 +87,8 @@ extern_methods!(
         /// MTLCommandQueue captures a single command queue.
         ///
         /// MTLCaptureScope captures between the next begin and end of the scope.
-        #[method_id(@__method_family Other captureObject)]
+        #[unsafe(method_family(none))]
+        #[method_id(captureObject)]
         pub unsafe fn captureObject(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`captureObject`][Self::captureObject].
@@ -104,7 +105,8 @@ extern_methods!(
 
         /// URL the GPU Trace document will be captured to.
         /// Must be specified when destiation is MTLCaptureDestinationGPUTraceDocument.
-        #[method_id(@__method_family Other outputURL)]
+        #[unsafe(method_family(none))]
+        #[method_id(outputURL)]
         pub fn outputURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`outputURL`][Self::outputURL].
@@ -116,10 +118,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLCaptureDescriptor {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub fn new() -> Retained<Self>;
     }
 );
@@ -147,21 +151,25 @@ extern_methods!(
         /// When a capture has been completed, it will be displayed in Xcode and the application will be paused.
         ///
         /// : only MTLCommandBuffers created after starting a capture and committed before stopping it are captured.
-        #[method_id(@__method_family Other sharedCaptureManager)]
+        #[unsafe(method_family(none))]
+        #[method_id(sharedCaptureManager)]
         pub unsafe fn sharedCaptureManager() -> Retained<MTLCaptureManager>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "MTLCaptureScope", feature = "MTLDevice"))]
-        #[method_id(@__method_family New newCaptureScopeWithDevice:)]
+        #[unsafe(method_family(new))]
+        #[method_id(newCaptureScopeWithDevice:)]
         pub fn newCaptureScopeWithDevice(
             &self,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<ProtocolObject<dyn MTLCaptureScope>>;
 
         #[cfg(all(feature = "MTLCaptureScope", feature = "MTLCommandQueue"))]
-        #[method_id(@__method_family New newCaptureScopeWithCommandQueue:)]
+        #[unsafe(method_family(new))]
+        #[method_id(newCaptureScopeWithCommandQueue:)]
         pub fn newCaptureScopeWithCommandQueue(
             &self,
             command_queue: &ProtocolObject<dyn MTLCommandQueue>,
@@ -207,7 +215,8 @@ extern_methods!(
         pub fn stopCapture(&self);
 
         #[cfg(feature = "MTLCaptureScope")]
-        #[method_id(@__method_family Other defaultCaptureScope)]
+        #[unsafe(method_family(none))]
+        #[method_id(defaultCaptureScope)]
         pub fn defaultCaptureScope(&self) -> Option<Retained<ProtocolObject<dyn MTLCaptureScope>>>;
 
         #[cfg(feature = "MTLCaptureScope")]
@@ -226,7 +235,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLCaptureManager {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

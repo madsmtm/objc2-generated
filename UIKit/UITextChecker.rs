@@ -29,7 +29,8 @@ extern_methods!(
             language: &NSString,
         ) -> NSRange;
 
-        #[method_id(@__method_family Other guessesForWordRange:inString:language:)]
+        #[unsafe(method_family(none))]
+        #[method_id(guessesForWordRange:inString:language:)]
         pub unsafe fn guessesForWordRange_inString_language(
             &self,
             range: NSRange,
@@ -37,7 +38,8 @@ extern_methods!(
             language: &NSString,
         ) -> Option<Retained<NSArray<NSString>>>;
 
-        #[method_id(@__method_family Other completionsForPartialWordRange:inString:language:)]
+        #[unsafe(method_family(none))]
+        #[method_id(completionsForPartialWordRange:inString:language:)]
         pub unsafe fn completionsForPartialWordRange_inString_language(
             &self,
             range: NSRange,
@@ -48,7 +50,8 @@ extern_methods!(
         #[method(ignoreWord:)]
         pub unsafe fn ignoreWord(&self, word_to_ignore: &NSString);
 
-        #[method_id(@__method_family Other ignoredWords)]
+        #[unsafe(method_family(none))]
+        #[method_id(ignoredWords)]
         pub unsafe fn ignoredWords(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`ignoredWords`][Self::ignoredWords].
@@ -64,7 +67,8 @@ extern_methods!(
         #[method(unlearnWord:)]
         pub unsafe fn unlearnWord(word: &NSString, mtm: MainThreadMarker);
 
-        #[method_id(@__method_family Other availableLanguages)]
+        #[unsafe(method_family(none))]
+        #[method_id(availableLanguages)]
         pub unsafe fn availableLanguages(mtm: MainThreadMarker) -> Retained<NSArray<NSString>>;
     }
 );
@@ -72,10 +76,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITextChecker {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

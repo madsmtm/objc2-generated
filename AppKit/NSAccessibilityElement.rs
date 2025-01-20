@@ -22,7 +22,8 @@ unsafe impl NSObjectProtocol for NSAccessibilityElement {}
 extern_methods!(
     unsafe impl NSAccessibilityElement {
         #[cfg(feature = "NSAccessibilityConstants")]
-        #[method_id(@__method_family Other accessibilityElementWithRole:frame:label:parent:)]
+        #[unsafe(method_family(none))]
+        #[method_id(accessibilityElementWithRole:frame:label:parent:)]
         pub unsafe fn accessibilityElementWithRole_frame_label_parent(
             role: &NSAccessibilityRole,
             frame: NSRect,
@@ -48,10 +49,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSAccessibilityElement {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

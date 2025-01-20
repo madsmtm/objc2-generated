@@ -25,17 +25,20 @@ unsafe impl NSObjectProtocol for AVExternalStorageDevice {}
 
 extern_methods!(
     unsafe impl AVExternalStorageDevice {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Display name of the external storage device.
         ///
         ///
         /// This property can be used for displaying the name of an external storage device in a user interface. Will return nil if we fail to extract information from external storage device.
-        #[method_id(@__method_family Other displayName)]
+        #[unsafe(method_family(none))]
+        #[method_id(displayName)]
         pub unsafe fn displayName(&self) -> Option<Retained<NSString>>;
 
         /// Current free size in bytes.
@@ -64,7 +67,8 @@ extern_methods!(
         ///
         /// This property can be used to select a specific external storage device with ImageCapture framework APIs to read media assets. Will return nil if we fail to extract information from external storage device.
         /// For example the string value of this property will match the value from [ICDevice UUIDString].
-        #[method_id(@__method_family Other uuid)]
+        #[unsafe(method_family(none))]
+        #[method_id(uuid)]
         pub unsafe fn uuid(&self) -> Option<Retained<NSUUID>>;
 
         /// Indicates whether the external storage device is not recommended for capture use.
@@ -94,7 +98,8 @@ extern_methods!(
         /// [nextAvailableURL stopAccessingSecurityScopedResource];
         ///
         /// Use the +requestAccessWithCompletionHandler: method to request access to external storage device before getting the next available URL array else an error will be thrown.
-        #[method_id(@__method_family Other nextAvailableURLsWithPathExtensions:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(nextAvailableURLsWithPathExtensions:error:_)]
         pub unsafe fn nextAvailableURLsWithPathExtensions_error(
             &self,
             extension_array: &NSArray<NSString>,
@@ -146,10 +151,12 @@ unsafe impl NSObjectProtocol for AVExternalStorageDeviceDiscoverySession {}
 
 extern_methods!(
     unsafe impl AVExternalStorageDeviceDiscoverySession {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// @
@@ -159,14 +166,16 @@ extern_methods!(
         ///
         ///
         /// There is only one external storage device discovery session for each host device which can be accessed using this method. Will return nil if the device doesn't support external storage devices.
-        #[method_id(@__method_family Other sharedSession)]
+        #[unsafe(method_family(none))]
+        #[method_id(sharedSession)]
         pub unsafe fn sharedSession() -> Option<Retained<AVExternalStorageDeviceDiscoverySession>>;
 
         /// An array of external storage devices connected to this device. Read only. Key-value observable.
         ///
         ///
         /// An array of AVExternalStorageDevice objects connected to this device. The list is updated when the external storage device detected status changes.
-        #[method_id(@__method_family Other externalStorageDevices)]
+        #[unsafe(method_family(none))]
+        #[method_id(externalStorageDevices)]
         pub unsafe fn externalStorageDevices(&self) -> Retained<NSArray<AVExternalStorageDevice>>;
 
         /// Whether the external storage devices are supported by this device.

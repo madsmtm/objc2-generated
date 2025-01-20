@@ -23,7 +23,8 @@ unsafe impl NSObjectProtocol for HMCameraControl {}
 extern_methods!(
     unsafe impl HMCameraControl {
         #[deprecated = "HMCameraControl is a base class for other types. Directly creating them is not supported."]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -31,7 +32,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HMCameraControl {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

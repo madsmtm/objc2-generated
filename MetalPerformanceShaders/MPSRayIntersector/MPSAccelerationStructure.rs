@@ -375,7 +375,8 @@ extern_methods!(
         #[cfg(feature = "MPSAccelerationStructureGroup")]
         /// The group this acceleration structure was created with
         #[deprecated]
-        #[method_id(@__method_family Other group)]
+        #[unsafe(method_family(none))]
+        #[method_id(group)]
         pub unsafe fn group(&self) -> Retained<MPSAccelerationStructureGroup>;
 
         /// Status indicating whether the acceleration structure has finished building
@@ -395,12 +396,14 @@ extern_methods!(
         pub unsafe fn setUsage(&self, usage: MPSAccelerationStructureUsage);
 
         #[deprecated]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Initialize the acceleration structure with a Metal device
         #[deprecated]
-        #[method_id(@__method_family Init initWithDevice:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -410,7 +413,8 @@ extern_methods!(
         /// properties such as the vertex buffer, instance buffer, etc. are set to nil. Encode and decode
         /// these buffers along with the acceleration structure instead.
         #[deprecated]
-        #[method_id(@__method_family Init initWithCoder:device:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -425,7 +429,8 @@ extern_methods!(
         /// The Metal device is determined from the acceleration structure group. All
         /// acceleration structures in the instance hierarchy must share the same group.
         #[deprecated]
-        #[method_id(@__method_family Init initWithGroup:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithGroup:)]
         pub unsafe fn initWithGroup(
             this: Allocated<Self>,
             group: &MPSAccelerationStructureGroup,
@@ -438,7 +443,8 @@ extern_methods!(
         /// vertex buffer, instance buffer, etc. are set to nil. Encode and decode these buffers along with
         /// the acceleration structure instead.
         #[deprecated]
-        #[method_id(@__method_family Init initWithCoder:group:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:group:)]
         pub unsafe fn initWithCoder_group(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -523,7 +529,8 @@ extern_methods!(
         ///
         /// Parameter `device`: New Metal device
         #[deprecated]
-        #[method_id(@__method_family Copy copyWithZone:device:)]
+        #[unsafe(method_family(copy))]
+        #[method_id(copyWithZone:device:)]
         pub unsafe fn copyWithZone_device(
             &self,
             zone: *mut NSZone,
@@ -545,7 +552,8 @@ extern_methods!(
         ///
         /// Parameter `group`: New acceleration structure group
         #[deprecated]
-        #[method_id(@__method_family Copy copyWithZone:group:)]
+        #[unsafe(method_family(copy))]
+        #[method_id(copyWithZone:group:)]
         pub unsafe fn copyWithZone_group(
             &self,
             zone: *mut NSZone,
@@ -579,7 +587,8 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -591,7 +600,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSAccelerationStructure {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

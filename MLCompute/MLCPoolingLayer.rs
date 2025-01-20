@@ -25,7 +25,8 @@ extern_methods!(
         #[cfg(feature = "MLCPoolingDescriptor")]
         /// The pooling descriptor
         #[deprecated]
-        #[method_id(@__method_family Other descriptor)]
+        #[unsafe(method_family(none))]
+        #[method_id(descriptor)]
         pub unsafe fn descriptor(&self) -> Retained<MLCPoolingDescriptor>;
 
         #[cfg(feature = "MLCPoolingDescriptor")]
@@ -35,7 +36,8 @@ extern_methods!(
         ///
         /// Returns: A new pooling layer
         #[deprecated]
-        #[method_id(@__method_family Other layerWithDescriptor:)]
+        #[unsafe(method_family(none))]
+        #[method_id(layerWithDescriptor:)]
         pub unsafe fn layerWithDescriptor(descriptor: &MLCPoolingDescriptor) -> Retained<Self>;
     }
 );
@@ -45,11 +47,13 @@ extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCPoolingLayer {
         #[deprecated]
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

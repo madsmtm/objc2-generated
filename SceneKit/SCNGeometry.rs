@@ -122,11 +122,13 @@ extern_methods!(
         /// Creates and returns an empty geometry object.
         ///
         /// An empty geometry may be used as the lowest level of detail of a geometry.
-        #[method_id(@__method_family Other geometry)]
+        #[unsafe(method_family(none))]
+        #[method_id(geometry)]
         pub unsafe fn geometry() -> Retained<Self>;
 
         /// Determines the name of the receiver.
-        #[method_id(@__method_family Other name)]
+        #[unsafe(method_family(none))]
+        #[method_id(name)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
@@ -137,7 +139,8 @@ extern_methods!(
         /// Specifies the receiver's materials array.
         ///
         /// Each geometry element can be rendered using a different material. The index of the material used for a geometry element is equal to the index of that element modulo the number of materials.
-        #[method_id(@__method_family Other materials)]
+        #[unsafe(method_family(none))]
+        #[method_id(materials)]
         pub unsafe fn materials(&self) -> Retained<NSArray<SCNMaterial>>;
 
         #[cfg(feature = "SCNMaterial")]
@@ -149,7 +152,8 @@ extern_methods!(
         /// Determines the first material of the geometry. Returns nil if the geometry has no material.
         ///
         /// This method is here for convenience. It is equivalent to the first object in the "materials" array above.
-        #[method_id(@__method_family Other firstMaterial)]
+        #[unsafe(method_family(none))]
+        #[method_id(firstMaterial)]
         pub unsafe fn firstMaterial(&self) -> Option<Retained<SCNMaterial>>;
 
         #[cfg(feature = "SCNMaterial")]
@@ -189,7 +193,8 @@ extern_methods!(
         /// Return the first material from the materials array of the receiver with the specified name.
         ///
         /// Parameter `name`: The name of the material to retrieve.
-        #[method_id(@__method_family Other materialWithName:)]
+        #[unsafe(method_family(none))]
+        #[method_id(materialWithName:)]
         pub unsafe fn materialWithName(&self, name: &NSString) -> Option<Retained<SCNMaterial>>;
 
         /// Creates and returns a new geometry built from geometry sources and geometry elements.
@@ -199,7 +204,8 @@ extern_methods!(
         /// Parameter `elements`: An array of geometry elements. The sort order in the array determines the mapping between materials and geometry elements.
         ///
         /// A geometry is made of geometry sources (at least `SCNGeometrySourceSemanticVertex`) and at least one geometry element. Multiple sources for texture coordinates are accepted. In that case the `mappingChannel` is implicitly set based on the order of the texture sources, starting at index 0.
-        #[method_id(@__method_family Other geometryWithSources:elements:)]
+        #[unsafe(method_family(none))]
+        #[method_id(geometryWithSources:elements:)]
         pub unsafe fn geometryWithSources_elements(
             sources: &NSArray<SCNGeometrySource>,
             elements: Option<&NSArray<SCNGeometryElement>>,
@@ -272,7 +278,8 @@ extern_methods!(
         /// @
         /// [0, 0]];                                                                                                                                               ┆
         /// ```
-        #[method_id(@__method_family Other geometryWithSources:elements:sourceChannels:)]
+        #[unsafe(method_family(none))]
+        #[method_id(geometryWithSources:elements:sourceChannels:)]
         pub unsafe fn geometryWithSources_elements_sourceChannels(
             sources: &NSArray<SCNGeometrySource>,
             elements: Option<&NSArray<SCNGeometryElement>>,
@@ -280,7 +287,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The array of geometry sources of the receiver.
-        #[method_id(@__method_family Other geometrySources)]
+        #[unsafe(method_family(none))]
+        #[method_id(geometrySources)]
         pub unsafe fn geometrySources(&self) -> Retained<NSArray<SCNGeometrySource>>;
 
         /// Returns the geometry sources for a given semantic.
@@ -288,14 +296,16 @@ extern_methods!(
         /// Parameter `semantic`: The semantic of the geometry sources that should be retrieved.
         ///
         /// Returns nil if no geometry source is found for the given semantic. May return more than one source, typically for multiple texture coordinate sources.
-        #[method_id(@__method_family Other geometrySourcesForSemantic:)]
+        #[unsafe(method_family(none))]
+        #[method_id(geometrySourcesForSemantic:)]
         pub unsafe fn geometrySourcesForSemantic(
             &self,
             semantic: &SCNGeometrySourceSemantic,
         ) -> Retained<NSArray<SCNGeometrySource>>;
 
         /// The array of geometry elements of the receiver.
-        #[method_id(@__method_family Other geometryElements)]
+        #[unsafe(method_family(none))]
+        #[method_id(geometryElements)]
         pub unsafe fn geometryElements(&self) -> Retained<NSArray<SCNGeometryElement>>;
 
         /// Returns the number of geometry elements owned by the geometry.
@@ -305,19 +315,22 @@ extern_methods!(
         /// Returns the geometry element at a given index.
         ///
         /// Parameter `elementIndex`: The index of the geometry element.
-        #[method_id(@__method_family Other geometryElementAtIndex:)]
+        #[unsafe(method_family(none))]
+        #[method_id(geometryElementAtIndex:)]
         pub unsafe fn geometryElementAtIndex(
             &self,
             element_index: NSInteger,
         ) -> Retained<SCNGeometryElement>;
 
         /// An array of indices that describes, for each geometry source, which channel of the geometry elements to use.
-        #[method_id(@__method_family Other geometrySourceChannels)]
+        #[unsafe(method_family(none))]
+        #[method_id(geometrySourceChannels)]
         pub unsafe fn geometrySourceChannels(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         #[cfg(feature = "SCNLevelOfDetail")]
         /// Determines the receiver's levels of detail. Defaults to nil.
-        #[method_id(@__method_family Other levelsOfDetail)]
+        #[unsafe(method_family(none))]
+        #[method_id(levelsOfDetail)]
         pub unsafe fn levelsOfDetail(&self) -> Option<Retained<NSArray<SCNLevelOfDetail>>>;
 
         #[cfg(feature = "SCNLevelOfDetail")]
@@ -328,7 +341,8 @@ extern_methods!(
             levels_of_detail: Option<&NSArray<SCNLevelOfDetail>>,
         );
 
-        #[method_id(@__method_family Other tessellator)]
+        #[unsafe(method_family(none))]
+        #[method_id(tessellator)]
         pub unsafe fn tessellator(&self) -> Option<Retained<SCNGeometryTessellator>>;
 
         /// Setter for [`tessellator`][Self::tessellator].
@@ -358,7 +372,8 @@ extern_methods!(
         /// Specifies the edges creases that control the subdivision. Defaults to nil.
         ///
         /// The primitive type of this geometry element must be SCNGeometryPrimitiveTypeLine. See subdivisionLevel above to control the level of subdivision. See edgeCreasesSource below to specify sharpness of the creases.
-        #[method_id(@__method_family Other edgeCreasesElement)]
+        #[unsafe(method_family(none))]
+        #[method_id(edgeCreasesElement)]
         pub unsafe fn edgeCreasesElement(&self) -> Option<Retained<SCNGeometryElement>>;
 
         /// Setter for [`edgeCreasesElement`][Self::edgeCreasesElement].
@@ -371,7 +386,8 @@ extern_methods!(
         /// Specifies the crease value of the edges specified by edgeCreasesElement. Defaults to nil.
         ///
         /// The semantic of this geometry source must be "SCNGeometrySourceSemanticEdgeCrease". The creases values are floating values between 0 and 10, where 0 means smooth and 10 means infinitely sharp. See subdivisionLevel above to control the level of subdivision. See edgeCreasesElement above to specify edges for edge creases.
-        #[method_id(@__method_family Other edgeCreasesSource)]
+        #[unsafe(method_family(none))]
+        #[method_id(edgeCreasesSource)]
         pub unsafe fn edgeCreasesSource(&self) -> Option<Retained<SCNGeometrySource>>;
 
         /// Setter for [`edgeCreasesSource`][Self::edgeCreasesSource].
@@ -383,10 +399,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNGeometry {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -425,7 +443,8 @@ extern_methods!(
         /// Parameter `offset`: The offset from the beginning of the data. In bytes.
         ///
         /// Parameter `stride`: The number of bytes from a vector to the next one in the data.
-        #[method_id(@__method_family Other geometrySourceWithData:semantic:vectorCount:floatComponents:componentsPerVector:bytesPerComponent:dataOffset:dataStride:)]
+        #[unsafe(method_family(none))]
+        #[method_id(geometrySourceWithData:semantic:vectorCount:floatComponents:componentsPerVector:bytesPerComponent:dataOffset:dataStride:)]
         pub unsafe fn geometrySourceWithData_semantic_vectorCount_floatComponents_componentsPerVector_bytesPerComponent_dataOffset_dataStride(
             data: &NSData,
             semantic: &SCNGeometrySourceSemantic,
@@ -445,7 +464,8 @@ extern_methods!(
         /// Parameter `count`: The number of vertices.
         ///
         /// Input vertices are copied to an optimized data format. The actual format is described by the properties of the resulting instance.
-        #[method_id(@__method_family Other geometrySourceWithVertices:count:)]
+        #[unsafe(method_family(none))]
+        #[method_id(geometrySourceWithVertices:count:)]
         pub unsafe fn geometrySourceWithVertices_count(
             vertices: NonNull<SCNVector3>,
             count: NSInteger,
@@ -459,7 +479,8 @@ extern_methods!(
         /// Parameter `count`: The number of normals.
         ///
         /// Input normals are copied to an optimized data format. The actual format is described by the properties of the resulting instance.
-        #[method_id(@__method_family Other geometrySourceWithNormals:count:)]
+        #[unsafe(method_family(none))]
+        #[method_id(geometrySourceWithNormals:count:)]
         pub unsafe fn geometrySourceWithNormals_count(
             normals: NonNull<SCNVector3>,
             count: NSInteger,
@@ -473,7 +494,8 @@ extern_methods!(
         /// Parameter `count`: The number of texture coordinate points.
         ///
         /// Input texture coordinates are copied to an optimized data format. The actual format is described by the properties of the resulting instance.
-        #[method_id(@__method_family Other geometrySourceWithTextureCoordinates:count:)]
+        #[unsafe(method_family(none))]
+        #[method_id(geometrySourceWithTextureCoordinates:count:)]
         pub unsafe fn geometrySourceWithTextureCoordinates_count(
             texcoord: NonNull<CGPoint>,
             count: NSInteger,
@@ -521,7 +543,8 @@ extern_methods!(
         ///
         /// [myCommandBuffer commit];
         /// }
-        #[method_id(@__method_family Other geometrySourceWithBuffer:vertexFormat:semantic:vertexCount:dataOffset:dataStride:)]
+        #[unsafe(method_family(none))]
+        #[method_id(geometrySourceWithBuffer:vertexFormat:semantic:vertexCount:dataOffset:dataStride:)]
         pub unsafe fn geometrySourceWithBuffer_vertexFormat_semantic_vertexCount_dataOffset_dataStride(
             buffer: &ProtocolObject<dyn MTLBuffer>,
             vertex_format: MTLVertexFormat,
@@ -532,11 +555,13 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The data for the geometry source
-        #[method_id(@__method_family Other data)]
+        #[unsafe(method_family(none))]
+        #[method_id(data)]
         pub unsafe fn data(&self) -> Retained<NSData>;
 
         /// The semantic of the geometry source
-        #[method_id(@__method_family Other semantic)]
+        #[unsafe(method_family(none))]
+        #[method_id(semantic)]
         pub unsafe fn semantic(&self) -> Retained<SCNGeometrySourceSemantic>;
 
         /// The number of vectors in the data.
@@ -568,10 +593,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNGeometrySource {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -602,7 +629,8 @@ extern_methods!(
         /// Parameter `primitiveCount`: The number of primitives in the data.
         ///
         /// Parameter `bytesPerIndex`: The number of bytes that represent a single index value in the data.
-        #[method_id(@__method_family Other geometryElementWithData:primitiveType:primitiveCount:bytesPerIndex:)]
+        #[unsafe(method_family(none))]
+        #[method_id(geometryElementWithData:primitiveType:primitiveCount:bytesPerIndex:)]
         pub unsafe fn geometryElementWithData_primitiveType_primitiveCount_bytesPerIndex(
             data: Option<&NSData>,
             primitive_type: SCNGeometryPrimitiveType,
@@ -621,7 +649,8 @@ extern_methods!(
         /// Parameter `interleavedIndicesChannels`: Whether the channels are interleaved.
         ///
         /// Parameter `bytesPerIndex`: The number of bytes that represent a single index value in the data.
-        #[method_id(@__method_family Other geometryElementWithData:primitiveType:primitiveCount:indicesChannelCount:interleavedIndicesChannels:bytesPerIndex:)]
+        #[unsafe(method_family(none))]
+        #[method_id(geometryElementWithData:primitiveType:primitiveCount:indicesChannelCount:interleavedIndicesChannels:bytesPerIndex:)]
         pub unsafe fn geometryElementWithData_primitiveType_primitiveCount_indicesChannelCount_interleavedIndicesChannels_bytesPerIndex(
             data: Option<&NSData>,
             primitive_type: SCNGeometryPrimitiveType,
@@ -642,7 +671,8 @@ extern_methods!(
         /// Parameter `primitiveCount`: The number of primitives in the data.
         ///
         /// Parameter `bytesPerIndex`: The number of bytes that represent a single index value in the data.
-        #[method_id(@__method_family Other geometryElementWithBuffer:primitiveType:primitiveCount:bytesPerIndex:)]
+        #[unsafe(method_family(none))]
+        #[method_id(geometryElementWithBuffer:primitiveType:primitiveCount:bytesPerIndex:)]
         pub unsafe fn geometryElementWithBuffer_primitiveType_primitiveCount_bytesPerIndex(
             buffer: &ProtocolObject<dyn MTLBuffer>,
             primitive_type: SCNGeometryPrimitiveType,
@@ -652,7 +682,8 @@ extern_methods!(
 
         #[cfg(feature = "objc2-metal")]
         #[cfg(not(target_os = "watchos"))]
-        #[method_id(@__method_family Other geometryElementWithBuffer:primitiveType:primitiveCount:indicesChannelCount:interleavedIndicesChannels:bytesPerIndex:)]
+        #[unsafe(method_family(none))]
+        #[method_id(geometryElementWithBuffer:primitiveType:primitiveCount:indicesChannelCount:interleavedIndicesChannels:bytesPerIndex:)]
         pub unsafe fn geometryElementWithBuffer_primitiveType_primitiveCount_indicesChannelCount_interleavedIndicesChannels_bytesPerIndex(
             buffer: &ProtocolObject<dyn MTLBuffer>,
             primitive_type: SCNGeometryPrimitiveType,
@@ -663,7 +694,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The data for the geometry element
-        #[method_id(@__method_family Other data)]
+        #[unsafe(method_family(none))]
+        #[method_id(data)]
         pub unsafe fn data(&self) -> Retained<NSData>;
 
         /// The type of the geometry element. Possible values are listed in the SCNGeometryPrimitiveType enumeration.
@@ -737,10 +769,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNGeometryElement {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -880,10 +914,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNGeometryTessellator {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

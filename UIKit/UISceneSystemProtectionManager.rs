@@ -26,10 +26,12 @@ unsafe impl NSObjectProtocol for UISceneSystemProtectionManager {}
 
 extern_methods!(
     unsafe impl UISceneSystemProtectionManager {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// `YES`if the system requires requires device owner authentication challenges to reveal the
@@ -47,7 +49,8 @@ extern_methods!(
     /// SystemProtection
     #[cfg(all(feature = "UIResponder", feature = "UIScene"))]
     unsafe impl UIScene {
-        #[method_id(@__method_family Other systemProtectionManager)]
+        #[unsafe(method_family(none))]
+        #[method_id(systemProtectionManager)]
         pub unsafe fn systemProtectionManager(
             &self,
         ) -> Option<Retained<UISceneSystemProtectionManager>>;

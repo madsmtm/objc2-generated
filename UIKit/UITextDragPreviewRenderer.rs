@@ -22,7 +22,8 @@ unsafe impl NSObjectProtocol for UITextDragPreviewRenderer {}
 extern_methods!(
     unsafe impl UITextDragPreviewRenderer {
         #[cfg(feature = "NSLayoutManager")]
-        #[method_id(@__method_family Init initWithLayoutManager:range:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithLayoutManager:range:)]
         pub unsafe fn initWithLayoutManager_range(
             this: Allocated<Self>,
             layout_manager: &NSLayoutManager,
@@ -30,7 +31,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSLayoutManager")]
-        #[method_id(@__method_family Init initWithLayoutManager:range:unifyRects:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithLayoutManager:range:unifyRects:)]
         pub unsafe fn initWithLayoutManager_range_unifyRects(
             this: Allocated<Self>,
             layout_manager: &NSLayoutManager,
@@ -38,18 +40,22 @@ extern_methods!(
             unify_rects: bool,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSLayoutManager")]
-        #[method_id(@__method_family Other layoutManager)]
+        #[unsafe(method_family(none))]
+        #[method_id(layoutManager)]
         pub unsafe fn layoutManager(&self) -> Retained<NSLayoutManager>;
 
         #[cfg(feature = "UIImage")]
-        #[method_id(@__method_family Other image)]
+        #[unsafe(method_family(none))]
+        #[method_id(image)]
         pub unsafe fn image(&self) -> Retained<UIImage>;
 
         #[cfg(feature = "objc2-core-foundation")]

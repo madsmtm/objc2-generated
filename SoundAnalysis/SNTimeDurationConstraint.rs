@@ -62,7 +62,8 @@ extern_methods!(
         /// - Returns: If the constraint type is enumerated, an array of CMTime structures (boxed in NSValue instances) representing the set of allowable time durations. The durations will always be provided sorted in order of ascending time. If the constraint type is not enumerated, an empty array will be returned.
         ///
         /// The `type` property should be queried before this property is accessed. This property will only yield meaningful values if the constraint type is considered to be 'enumerated'. The constraint type is considered to be 'enumerated' if the `type` property is equal to `SNTimeDurationConstraintTypeEnumerated`.
-        #[method_id(@__method_family Other enumeratedDurations)]
+        #[unsafe(method_family(none))]
+        #[method_id(enumeratedDurations)]
         pub unsafe fn enumeratedDurations(&self) -> Retained<NSArray<NSValue>>;
 
         #[cfg(feature = "objc2-core-media")]
@@ -79,7 +80,8 @@ extern_methods!(
         /// - Parameter enumeratedDurations: A discrete set of duration values (represented as CMTime values boxed in NSValue instances) permitted by this constraint.
         ///
         /// - Returns: An instance whose `type` is `SNTimeDurationConstraintTypeEnumerated`, and which constrains duration values to the provided set of discrete values.
-        #[method_id(@__method_family Init initWithEnumeratedDurations:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithEnumeratedDurations:)]
         pub unsafe fn initWithEnumeratedDurations(
             this: Allocated<Self>,
             enumerated_durations: &NSArray<NSValue>,
@@ -91,16 +93,19 @@ extern_methods!(
         /// - Parameter durationRange: A continuous range of duration values (represented as CMTime values) permitted by this constraint.
         ///
         /// - Returns: An instance whose `type` is `SNTimeDurationConstraintTypeRange`, and which constrains durations values to the provided range.
-        #[method_id(@__method_family Init initWithDurationRange:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDurationRange:)]
         pub unsafe fn initWithDurationRange(
             this: Allocated<Self>,
             duration_range: CMTimeRange,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

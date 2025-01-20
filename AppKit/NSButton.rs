@@ -108,7 +108,8 @@ extern_methods!(
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized button object.
-        #[method_id(@__method_family Other buttonWithTitle:image:target:action:)]
+        #[unsafe(method_family(none))]
+        #[method_id(buttonWithTitle:image:target:action:)]
         pub unsafe fn buttonWithTitle_image_target_action(
             title: &NSString,
             image: &NSImage,
@@ -126,7 +127,8 @@ extern_methods!(
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized button object.
-        #[method_id(@__method_family Other buttonWithTitle:target:action:)]
+        #[unsafe(method_family(none))]
+        #[method_id(buttonWithTitle:target:action:)]
         pub unsafe fn buttonWithTitle_target_action(
             title: &NSString,
             target: Option<&AnyObject>,
@@ -144,7 +146,8 @@ extern_methods!(
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized button object.
-        #[method_id(@__method_family Other buttonWithImage:target:action:)]
+        #[unsafe(method_family(none))]
+        #[method_id(buttonWithImage:target:action:)]
         pub unsafe fn buttonWithImage_target_action(
             image: &NSImage,
             target: Option<&AnyObject>,
@@ -161,7 +164,8 @@ extern_methods!(
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized button object.
-        #[method_id(@__method_family Other checkboxWithTitle:target:action:)]
+        #[unsafe(method_family(none))]
+        #[method_id(checkboxWithTitle:target:action:)]
         pub unsafe fn checkboxWithTitle_target_action(
             title: &NSString,
             target: Option<&AnyObject>,
@@ -178,7 +182,8 @@ extern_methods!(
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized button object.
-        #[method_id(@__method_family Other radioButtonWithTitle:target:action:)]
+        #[unsafe(method_family(none))]
+        #[method_id(radioButtonWithTitle:target:action:)]
         pub unsafe fn radioButtonWithTitle_target_action(
             title: &NSString,
             target: Option<&AnyObject>,
@@ -192,7 +197,8 @@ extern_methods!(
         pub unsafe fn setButtonType(&self, r#type: NSButtonType);
 
         /// The title displayed on the button when it’s in an off state, or an empty string if the button does not display a title. By default, a button's title is "Button".
-        #[method_id(@__method_family Other title)]
+        #[unsafe(method_family(none))]
+        #[method_id(title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
@@ -200,7 +206,8 @@ extern_methods!(
         pub unsafe fn setTitle(&self, title: &NSString);
 
         /// The button's title, expressed as an attributed string.
-        #[method_id(@__method_family Other attributedTitle)]
+        #[unsafe(method_family(none))]
+        #[method_id(attributedTitle)]
         pub unsafe fn attributedTitle(&self) -> Retained<NSAttributedString>;
 
         /// Setter for [`attributedTitle`][Self::attributedTitle].
@@ -208,7 +215,8 @@ extern_methods!(
         pub unsafe fn setAttributedTitle(&self, attributed_title: &NSAttributedString);
 
         /// The title that the button displays when the button is in an on state, or an empty string if there is no such title. Note that some button types do not display an alternate title.
-        #[method_id(@__method_family Other alternateTitle)]
+        #[unsafe(method_family(none))]
+        #[method_id(alternateTitle)]
         pub unsafe fn alternateTitle(&self) -> Retained<NSString>;
 
         /// Setter for [`alternateTitle`][Self::alternateTitle].
@@ -216,7 +224,8 @@ extern_methods!(
         pub unsafe fn setAlternateTitle(&self, alternate_title: &NSString);
 
         /// The alternate title, expressed as an attributed string.
-        #[method_id(@__method_family Other attributedAlternateTitle)]
+        #[unsafe(method_family(none))]
+        #[method_id(attributedAlternateTitle)]
         pub unsafe fn attributedAlternateTitle(&self) -> Retained<NSAttributedString>;
 
         /// Setter for [`attributedAlternateTitle`][Self::attributedAlternateTitle].
@@ -236,7 +245,8 @@ extern_methods!(
 
         #[cfg(feature = "NSSound")]
         /// The sound that plays when the user clicks the button, or nil if the button should not play a sound. The default value is nil.
-        #[method_id(@__method_family Other sound)]
+        #[unsafe(method_family(none))]
+        #[method_id(sound)]
         pub unsafe fn sound(&self) -> Option<Retained<NSSound>>;
 
         #[cfg(feature = "NSSound")]
@@ -310,7 +320,8 @@ extern_methods!(
 
         #[cfg(feature = "NSColor")]
         /// Applies a custom color to the button's bezel, in appearances that support it. A nil value indicates an unmodified button appearance. The default value is nil.
-        #[method_id(@__method_family Other bezelColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(bezelColor)]
         pub unsafe fn bezelColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColor")]
@@ -320,7 +331,8 @@ extern_methods!(
 
         #[cfg(feature = "NSColor")]
         /// Applies a tint color to template image and text content, in combination with other theme-appropriate effects. Only applicable to borderless buttons. A nil value indicates the standard set of effects without color modification. The default value is nil. Non-template images and attributed string values are not affected by the contentTintColor.
-        #[method_id(@__method_family Other contentTintColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(contentTintColor)]
         pub unsafe fn contentTintColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColor")]
@@ -330,7 +342,8 @@ extern_methods!(
 
         #[cfg(feature = "NSImage")]
         /// The image that appears on the button when it’s in an off state, or nil if there is no such image.
-        #[method_id(@__method_family Other image)]
+        #[unsafe(method_family(none))]
+        #[method_id(image)]
         pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
@@ -340,7 +353,8 @@ extern_methods!(
 
         #[cfg(feature = "NSImage")]
         /// An alternate image that appears on the button when the button is in an on state, or nil if there is no such image. Note that some button types do not display an alternate image.
-        #[method_id(@__method_family Other alternateImage)]
+        #[unsafe(method_family(none))]
+        #[method_id(alternateImage)]
         pub unsafe fn alternateImage(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
@@ -378,7 +392,8 @@ extern_methods!(
 
         #[cfg(feature = "NSImage")]
         /// Specifies a combination of point size, weight, and scale to use when sizing and displaying symbol images. If a symbol configuration isn't provided, the symbol is matched to the button's `font` property. The default value is nil.
-        #[method_id(@__method_family Other symbolConfiguration)]
+        #[unsafe(method_family(none))]
+        #[method_id(symbolConfiguration)]
         pub unsafe fn symbolConfiguration(&self) -> Option<Retained<NSImageSymbolConfiguration>>;
 
         #[cfg(feature = "NSImage")]
@@ -416,7 +431,8 @@ extern_methods!(
         pub unsafe fn highlight(&self, flag: bool);
 
         /// This property contains the button's key equivalent, or the empty string if no equivalent has been defined. Buttons don’t have a default key equivalent. Setting the key equivalent to the Return character causes it to act as the default button for its window.
-        #[method_id(@__method_family Other keyEquivalent)]
+        #[unsafe(method_family(none))]
+        #[method_id(keyEquivalent)]
         pub unsafe fn keyEquivalent(&self) -> Retained<NSString>;
 
         /// Setter for [`keyEquivalent`][Self::keyEquivalent].
@@ -456,7 +472,8 @@ extern_methods!(
         ) -> NSSize;
 
         #[cfg(feature = "NSUserInterfaceCompression")]
-        #[method_id(@__method_family Other activeCompressionOptions)]
+        #[unsafe(method_family(none))]
+        #[method_id(activeCompressionOptions)]
         pub unsafe fn activeCompressionOptions(
             &self,
         ) -> Retained<NSUserInterfaceCompressionOptions>;
@@ -467,10 +484,12 @@ extern_methods!(
     /// Methods declared on superclass `NSControl`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSButton {
-        #[method_id(@__method_family Init initWithFrame:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -482,7 +501,8 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSButton {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -491,7 +511,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSButton {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

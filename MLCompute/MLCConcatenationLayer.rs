@@ -33,7 +33,8 @@ extern_methods!(
         ///
         /// Returns: A new concatenation layer
         #[deprecated]
-        #[method_id(@__method_family Other layer)]
+        #[unsafe(method_family(none))]
+        #[method_id(layer)]
         pub unsafe fn layer() -> Retained<Self>;
 
         /// Create a concatenation layer
@@ -42,7 +43,8 @@ extern_methods!(
         ///
         /// Returns: A new concatenation layer
         #[deprecated]
-        #[method_id(@__method_family Other layerWithDimension:)]
+        #[unsafe(method_family(none))]
+        #[method_id(layerWithDimension:)]
         pub unsafe fn layerWithDimension(dimension: NSUInteger) -> Retained<Self>;
     }
 );
@@ -52,11 +54,13 @@ extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCConcatenationLayer {
         #[deprecated]
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

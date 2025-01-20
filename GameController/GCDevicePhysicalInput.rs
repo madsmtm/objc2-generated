@@ -17,7 +17,8 @@ extern_protocol!(
     pub unsafe trait GCDevicePhysicalInput: GCDevicePhysicalInputState {
         #[cfg(feature = "GCDevice")]
         /// The device that this profile is mapping input from.
-        #[method_id(@__method_family Other device)]
+        #[unsafe(method_family(none))]
+        #[method_id(device)]
         unsafe fn device(&self) -> Option<Retained<ProtocolObject<dyn GCDevice>>>;
 
         #[cfg(all(feature = "GCPhysicalInputElement", feature = "block2"))]
@@ -63,7 +64,8 @@ extern_protocol!(
         ///
         ///
         /// Returns: An input state with the duplicated state vector of the current input.
-        #[method_id(@__method_family Other capture)]
+        #[unsafe(method_family(none))]
+        #[method_id(capture)]
         unsafe fn capture(&self) -> Retained<ProtocolObject<dyn GCDevicePhysicalInputState>>;
 
         #[cfg(feature = "block2")]
@@ -143,7 +145,8 @@ extern_protocol!(
         #[cfg(feature = "GCDevicePhysicalInputStateDiff")]
         /// Pop the oldest pending input state from the queue.  This method returns
         /// `nil`when there are no more input states pending.
-        #[method_id(@__method_family Other nextInputState)]
+        #[unsafe(method_family(none))]
+        #[method_id(nextInputState)]
         unsafe fn nextInputState(
             &self,
         ) -> Option<

@@ -18,14 +18,17 @@ unsafe impl NSObjectProtocol for ASAuthorizationProviderExtensionUserLoginConfig
 
 extern_methods!(
     unsafe impl ASAuthorizationProviderExtensionUserLoginConfiguration {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// The user name to use when authenticating with the identity provider.
-        #[method_id(@__method_family Other loginUserName)]
+        #[unsafe(method_family(none))]
+        #[method_id(loginUserName)]
         pub unsafe fn loginUserName(&self) -> Retained<NSString>;
 
         /// Setter for [`loginUserName`][Self::loginUserName].
@@ -35,7 +38,8 @@ extern_methods!(
         /// Creates an instance with the required values.
         ///
         /// Parameter `loginUserName`: The login user name to use.
-        #[method_id(@__method_family Init initWithLoginUserName:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithLoginUserName:)]
         pub unsafe fn initWithLoginUserName(
             this: Allocated<Self>,
             login_user_name: &NSString,

@@ -33,17 +33,21 @@ extern_methods!(
     unsafe impl HKQueryDescriptor {
         #[cfg(feature = "HKObjectType")]
         /// The type of sample to retrieve in an HKQuery.
-        #[method_id(@__method_family Other sampleType)]
+        #[unsafe(method_family(none))]
+        #[method_id(sampleType)]
         pub unsafe fn sampleType(&self) -> Retained<HKSampleType>;
 
         /// The predicate which samples should match.
-        #[method_id(@__method_family Other predicate)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicate)]
         pub unsafe fn predicate(&self) -> Option<Retained<NSPredicate>>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "HKObjectType")]
@@ -53,7 +57,8 @@ extern_methods!(
         /// Parameter `sampleType`: The type of sample to retrieve.
         ///
         /// Parameter `predicate`: The predicate which samples should match.
-        #[method_id(@__method_family Init initWithSampleType:predicate:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithSampleType:predicate:)]
         pub unsafe fn initWithSampleType_predicate(
             this: Allocated<Self>,
             sample_type: &HKSampleType,

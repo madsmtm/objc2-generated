@@ -46,7 +46,8 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl EXHostViewController {
         /// The connection delegate.
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn EXHostViewControllerDelegate>>>;
@@ -60,7 +61,8 @@ extern_methods!(
         );
 
         /// A view that’s used when the view controller has no content to display.
-        #[method_id(@__method_family Other placeholderView)]
+        #[unsafe(method_family(none))]
+        #[method_id(placeholderView)]
         pub unsafe fn placeholderView(&self) -> Retained<NSView>;
 
         /// Setter for [`placeholderView`][Self::placeholderView].
@@ -70,7 +72,8 @@ extern_methods!(
         /// Attempts to connect to the extension over XPC.
         ///
         /// - Returns: An object representing the connection.
-        #[method_id(@__method_family Other makeXPCConnectionWithError:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(makeXPCConnectionWithError:_)]
         pub unsafe fn makeXPCConnectionWithError(
             &self,
         ) -> Result<Retained<NSXPCConnection>, Retained<NSError>>;
@@ -82,14 +85,16 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl EXHostViewController {
-        #[method_id(@__method_family Init initWithNibName:bundle:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSNibName>,
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -102,7 +107,8 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl EXHostViewController {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -112,7 +118,8 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl EXHostViewController {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

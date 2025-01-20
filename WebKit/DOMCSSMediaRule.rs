@@ -52,12 +52,14 @@ extern_methods!(
     unsafe impl DOMCSSMediaRule {
         #[cfg(feature = "DOMMediaList")]
         #[deprecated]
-        #[method_id(@__method_family Other media)]
+        #[unsafe(method_family(none))]
+        #[method_id(media)]
         pub unsafe fn media(&self) -> Option<Retained<DOMMediaList>>;
 
         #[cfg(feature = "DOMCSSRuleList")]
         #[deprecated]
-        #[method_id(@__method_family Other cssRules)]
+        #[unsafe(method_family(none))]
+        #[method_id(cssRules)]
         pub unsafe fn cssRules(&self) -> Option<Retained<DOMCSSRuleList>>;
 
         #[method(insertRule:index:)]
@@ -78,7 +80,8 @@ extern_methods!(
     ))]
     unsafe impl DOMCSSMediaRule {
         #[deprecated]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -91,7 +94,8 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMCSSMediaRule {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

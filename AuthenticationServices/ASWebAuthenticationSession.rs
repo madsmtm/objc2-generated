@@ -89,7 +89,8 @@ extern_methods!(
         ///
         /// Parameter `completionHandler`: the completion handler which is called when the session is completed successfully or canceled by user.
         #[deprecated = "Use initWithURL:callback:completionHandler: instead"]
-        #[method_id(@__method_family Init initWithURL:callbackURLScheme:completionHandler:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithURL:callbackURLScheme:completionHandler:)]
         pub unsafe fn initWithURL_callbackURLScheme_completionHandler(
             this: Allocated<Self>,
             url: &NSURL,
@@ -98,7 +99,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "ASWebAuthenticationSessionCallback", feature = "block2"))]
-        #[method_id(@__method_family Init initWithURL:callback:completionHandler:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithURL:callback:completionHandler:)]
         pub unsafe fn initWithURL_callback_completionHandler(
             this: Allocated<Self>,
             url: &NSURL,
@@ -109,7 +111,8 @@ extern_methods!(
         /// Provides context to target where in an application's UI the authorization view should be shown. A provider
         /// must be set prior to calling -start, otherwise the authorization view cannot be displayed. If deploying to iOS prior to
         /// 13.0, the desired window is inferred by the application's key window.
-        #[method_id(@__method_family Other presentationContextProvider)]
+        #[unsafe(method_family(none))]
+        #[method_id(presentationContextProvider)]
         pub unsafe fn presentationContextProvider(
             &self,
             mtm: MainThreadMarker,
@@ -141,7 +144,8 @@ extern_methods!(
 
         /// Any additional header fields to be set when loading the initial URL.
         /// All header field names must start with the "X-" prefix.
-        #[method_id(@__method_family Other additionalHeaderFields)]
+        #[unsafe(method_family(none))]
+        #[method_id(additionalHeaderFields)]
         pub unsafe fn additionalHeaderFields(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, NSString>>>;
@@ -172,10 +176,12 @@ extern_methods!(
         #[method(cancel)]
         pub unsafe fn cancel(&self);
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -195,7 +201,8 @@ extern_protocol!(
         /// Parameter `session`: The session requesting a presentation anchor.
         ///
         /// Returns: The ASPresentationAnchor most closely associated with the UI used to trigger authentication.
-        #[method_id(@__method_family Other presentationAnchorForWebAuthenticationSession:)]
+        #[unsafe(method_family(none))]
+        #[method_id(presentationAnchorForWebAuthenticationSession:)]
         unsafe fn presentationAnchorForWebAuthenticationSession(
             &self,
             session: &ASWebAuthenticationSession,

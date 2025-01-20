@@ -120,18 +120,21 @@ extern_methods!(
         feature = "NSMenuItemCell"
     ))]
     unsafe impl NSPopUpButtonCell {
-        #[method_id(@__method_family Init initTextCell:pullsDown:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initTextCell:pullsDown:)]
         pub unsafe fn initTextCell_pullsDown(
             this: Allocated<Self>,
             string_value: &NSString,
             pull_down: bool,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "NSMenu")]
-        #[method_id(@__method_family Other menu)]
+        #[unsafe(method_family(none))]
+        #[method_id(menu)]
         pub unsafe fn menu(&self) -> Option<Retained<NSMenu>>;
 
         #[cfg(feature = "NSMenu")]
@@ -193,7 +196,8 @@ extern_methods!(
         pub unsafe fn removeAllItems(&self);
 
         #[cfg(feature = "NSMenuItem")]
-        #[method_id(@__method_family Other itemArray)]
+        #[unsafe(method_family(none))]
+        #[method_id(itemArray)]
         pub unsafe fn itemArray(&self) -> Retained<NSArray<NSMenuItem>>;
 
         #[method(numberOfItems)]
@@ -221,15 +225,18 @@ extern_methods!(
         ) -> NSInteger;
 
         #[cfg(feature = "NSMenuItem")]
-        #[method_id(@__method_family Other itemAtIndex:)]
+        #[unsafe(method_family(none))]
+        #[method_id(itemAtIndex:)]
         pub unsafe fn itemAtIndex(&self, index: NSInteger) -> Option<Retained<NSMenuItem>>;
 
         #[cfg(feature = "NSMenuItem")]
-        #[method_id(@__method_family Other itemWithTitle:)]
+        #[unsafe(method_family(none))]
+        #[method_id(itemWithTitle:)]
         pub unsafe fn itemWithTitle(&self, title: &NSString) -> Option<Retained<NSMenuItem>>;
 
         #[cfg(feature = "NSMenuItem")]
-        #[method_id(@__method_family Other lastItem)]
+        #[unsafe(method_family(none))]
+        #[method_id(lastItem)]
         pub unsafe fn lastItem(&self) -> Option<Retained<NSMenuItem>>;
 
         #[cfg(feature = "NSMenuItem")]
@@ -249,7 +256,8 @@ extern_methods!(
         pub unsafe fn setTitle(&self, string: Option<&NSString>);
 
         #[cfg(feature = "NSMenuItem")]
-        #[method_id(@__method_family Other selectedItem)]
+        #[unsafe(method_family(none))]
+        #[method_id(selectedItem)]
         pub unsafe fn selectedItem(&self) -> Option<Retained<NSMenuItem>>;
 
         #[method(indexOfSelectedItem)]
@@ -258,13 +266,16 @@ extern_methods!(
         #[method(synchronizeTitleAndSelectedItem)]
         pub unsafe fn synchronizeTitleAndSelectedItem(&self);
 
-        #[method_id(@__method_family Other itemTitleAtIndex:)]
+        #[unsafe(method_family(none))]
+        #[method_id(itemTitleAtIndex:)]
         pub unsafe fn itemTitleAtIndex(&self, index: NSInteger) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other itemTitles)]
+        #[unsafe(method_family(none))]
+        #[method_id(itemTitles)]
         pub unsafe fn itemTitles(&self) -> Retained<NSArray<NSString>>;
 
-        #[method_id(@__method_family Other titleOfSelectedItem)]
+        #[unsafe(method_family(none))]
+        #[method_id(titleOfSelectedItem)]
         pub unsafe fn titleOfSelectedItem(&self) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -296,7 +307,8 @@ extern_methods!(
         feature = "NSMenuItemCell"
     ))]
     unsafe impl NSPopUpButtonCell {
-        #[method_id(@__method_family Init initTextCell:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initTextCell:)]
         pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
     }
 );
@@ -311,7 +323,8 @@ extern_methods!(
     ))]
     unsafe impl NSPopUpButtonCell {
         #[cfg(feature = "NSImage")]
-        #[method_id(@__method_family Init initImageCell:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initImageCell:)]
         pub unsafe fn initImageCell(
             this: Allocated<Self>,
             image: Option<&NSImage>,
@@ -328,7 +341,8 @@ extern_methods!(
         feature = "NSMenuItemCell"
     ))]
     unsafe impl NSPopUpButtonCell {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -342,7 +356,8 @@ extern_methods!(
         feature = "NSMenuItemCell"
     ))]
     unsafe impl NSPopUpButtonCell {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

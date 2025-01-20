@@ -16,11 +16,13 @@ unsafe impl NSObjectProtocol for ASAuthorizationPublicKeyCredentialPRFRegistrati
 
 extern_methods!(
     unsafe impl ASAuthorizationPublicKeyCredentialPRFRegistrationInput {
-        #[method_id(@__method_family Other checkForSupport)]
+        #[unsafe(method_family(none))]
+        #[method_id(checkForSupport)]
         pub unsafe fn checkForSupport() -> Retained<Self>;
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialPRFAssertionInput")]
-        #[method_id(@__method_family Init initWithInputValues:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithInputValues:)]
         pub unsafe fn initWithInputValues(
             this: Allocated<Self>,
             input_values: Option<&ASAuthorizationPublicKeyCredentialPRFAssertionInputValues>,
@@ -30,7 +32,8 @@ extern_methods!(
         pub unsafe fn shouldCheckForSupport(&self) -> bool;
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialPRFAssertionInput")]
-        #[method_id(@__method_family Other inputValues)]
+        #[unsafe(method_family(none))]
+        #[method_id(inputValues)]
         pub unsafe fn inputValues(
             &self,
         ) -> Option<Retained<ASAuthorizationPublicKeyCredentialPRFAssertionInputValues>>;
@@ -40,10 +43,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASAuthorizationPublicKeyCredentialPRFRegistrationInput {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

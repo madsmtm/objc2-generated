@@ -44,24 +44,28 @@ unsafe impl NSObjectProtocol for NSScriptCommand {}
 extern_methods!(
     unsafe impl NSScriptCommand {
         #[cfg(feature = "NSScriptCommandDescription")]
-        #[method_id(@__method_family Init initWithCommandDescription:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCommandDescription:)]
         pub unsafe fn initWithCommandDescription(
             this: Allocated<Self>,
             command_def: &NSScriptCommandDescription,
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             in_coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSScriptCommandDescription")]
-        #[method_id(@__method_family Other commandDescription)]
+        #[unsafe(method_family(none))]
+        #[method_id(commandDescription)]
         pub unsafe fn commandDescription(&self) -> Retained<NSScriptCommandDescription>;
 
-        #[method_id(@__method_family Other directParameter)]
+        #[unsafe(method_family(none))]
+        #[method_id(directParameter)]
         pub unsafe fn directParameter(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`directParameter`][Self::directParameter].
@@ -69,7 +73,8 @@ extern_methods!(
         pub unsafe fn setDirectParameter(&self, direct_parameter: Option<&AnyObject>);
 
         #[cfg(feature = "NSScriptObjectSpecifiers")]
-        #[method_id(@__method_family Other receiversSpecifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(receiversSpecifier)]
         pub unsafe fn receiversSpecifier(&self) -> Option<Retained<NSScriptObjectSpecifier>>;
 
         #[cfg(feature = "NSScriptObjectSpecifiers")]
@@ -80,11 +85,13 @@ extern_methods!(
             receivers_specifier: Option<&NSScriptObjectSpecifier>,
         );
 
-        #[method_id(@__method_family Other evaluatedReceivers)]
+        #[unsafe(method_family(none))]
+        #[method_id(evaluatedReceivers)]
         pub unsafe fn evaluatedReceivers(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        #[method_id(@__method_family Other arguments)]
+        #[unsafe(method_family(none))]
+        #[method_id(arguments)]
         pub unsafe fn arguments(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
@@ -93,7 +100,8 @@ extern_methods!(
         pub unsafe fn setArguments(&self, arguments: Option<&NSDictionary<NSString, AnyObject>>);
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        #[method_id(@__method_family Other evaluatedArguments)]
+        #[unsafe(method_family(none))]
+        #[method_id(evaluatedArguments)]
         pub unsafe fn evaluatedArguments(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
@@ -101,10 +109,12 @@ extern_methods!(
         #[method(isWellFormed)]
         pub unsafe fn isWellFormed(&self) -> bool;
 
-        #[method_id(@__method_family Other performDefaultImplementation)]
+        #[unsafe(method_family(none))]
+        #[method_id(performDefaultImplementation)]
         pub unsafe fn performDefaultImplementation(&self) -> Option<Retained<AnyObject>>;
 
-        #[method_id(@__method_family Other executeCommand)]
+        #[unsafe(method_family(none))]
+        #[method_id(executeCommand)]
         pub unsafe fn executeCommand(&self) -> Option<Retained<AnyObject>>;
 
         #[method(scriptErrorNumber)]
@@ -115,7 +125,8 @@ extern_methods!(
         pub unsafe fn setScriptErrorNumber(&self, script_error_number: NSInteger);
 
         #[cfg(feature = "NSAppleEventDescriptor")]
-        #[method_id(@__method_family Other scriptErrorOffendingObjectDescriptor)]
+        #[unsafe(method_family(none))]
+        #[method_id(scriptErrorOffendingObjectDescriptor)]
         pub unsafe fn scriptErrorOffendingObjectDescriptor(
             &self,
         ) -> Option<Retained<NSAppleEventDescriptor>>;
@@ -129,7 +140,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSAppleEventDescriptor")]
-        #[method_id(@__method_family Other scriptErrorExpectedTypeDescriptor)]
+        #[unsafe(method_family(none))]
+        #[method_id(scriptErrorExpectedTypeDescriptor)]
         pub unsafe fn scriptErrorExpectedTypeDescriptor(
             &self,
         ) -> Option<Retained<NSAppleEventDescriptor>>;
@@ -143,7 +155,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__method_family Other scriptErrorString)]
+        #[unsafe(method_family(none))]
+        #[method_id(scriptErrorString)]
         pub unsafe fn scriptErrorString(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
@@ -151,11 +164,13 @@ extern_methods!(
         #[method(setScriptErrorString:)]
         pub unsafe fn setScriptErrorString(&self, script_error_string: Option<&NSString>);
 
-        #[method_id(@__method_family Other currentCommand)]
+        #[unsafe(method_family(none))]
+        #[method_id(currentCommand)]
         pub unsafe fn currentCommand() -> Option<Retained<NSScriptCommand>>;
 
         #[cfg(feature = "NSAppleEventDescriptor")]
-        #[method_id(@__method_family Other appleEvent)]
+        #[unsafe(method_family(none))]
+        #[method_id(appleEvent)]
         pub unsafe fn appleEvent(&self) -> Option<Retained<NSAppleEventDescriptor>>;
 
         #[method(suspendExecution)]
@@ -169,10 +184,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSScriptCommand {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

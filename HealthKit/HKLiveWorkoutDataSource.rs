@@ -24,12 +24,14 @@ unsafe impl NSObjectProtocol for HKLiveWorkoutDataSource {}
 
 extern_methods!(
     unsafe impl HKLiveWorkoutDataSource {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "HKObjectType")]
         /// The quantity types the receiver is collecting.
-        #[method_id(@__method_family Other typesToCollect)]
+        #[unsafe(method_family(none))]
+        #[method_id(typesToCollect)]
         pub unsafe fn typesToCollect(&self) -> Retained<NSSet<HKQuantityType>>;
 
         #[cfg(all(feature = "HKHealthStore", feature = "HKWorkoutConfiguration"))]
@@ -41,7 +43,8 @@ extern_methods!(
         ///
         /// Parameter `configuration`: An optional workout configuration. typesToCollect will be populated with default
         /// types for the workout configuration
-        #[method_id(@__method_family Init initWithHealthStore:workoutConfiguration:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithHealthStore:workoutConfiguration:)]
         pub unsafe fn initWithHealthStore_workoutConfiguration(
             this: Allocated<Self>,
             health_store: &HKHealthStore,
@@ -77,7 +80,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKLiveWorkoutDataSource {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

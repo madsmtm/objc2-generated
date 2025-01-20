@@ -27,36 +27,44 @@ unsafe impl NSObjectProtocol for CIFilterShape {}
 extern_methods!(
     unsafe impl CIFilterShape {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Other shapeWithRect:)]
+        #[unsafe(method_family(none))]
+        #[method_id(shapeWithRect:)]
         pub unsafe fn shapeWithRect(r: CGRect) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Init initWithRect:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithRect:)]
         pub unsafe fn initWithRect(this: Allocated<Self>, r: CGRect) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Other transformBy:interior:)]
+        #[unsafe(method_family(none))]
+        #[method_id(transformBy:interior:)]
         pub unsafe fn transformBy_interior(
             &self,
             m: CGAffineTransform,
             flag: bool,
         ) -> Retained<CIFilterShape>;
 
-        #[method_id(@__method_family Other insetByX:Y:)]
+        #[unsafe(method_family(none))]
+        #[method_id(insetByX:Y:)]
         pub unsafe fn insetByX_Y(&self, dx: c_int, dy: c_int) -> Retained<CIFilterShape>;
 
-        #[method_id(@__method_family Other unionWith:)]
+        #[unsafe(method_family(none))]
+        #[method_id(unionWith:)]
         pub unsafe fn unionWith(&self, s2: &CIFilterShape) -> Retained<CIFilterShape>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Other unionWithRect:)]
+        #[unsafe(method_family(none))]
+        #[method_id(unionWithRect:)]
         pub unsafe fn unionWithRect(&self, r: CGRect) -> Retained<CIFilterShape>;
 
-        #[method_id(@__method_family Other intersectWith:)]
+        #[unsafe(method_family(none))]
+        #[method_id(intersectWith:)]
         pub unsafe fn intersectWith(&self, s2: &CIFilterShape) -> Retained<CIFilterShape>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Other intersectWithRect:)]
+        #[unsafe(method_family(none))]
+        #[method_id(intersectWithRect:)]
         pub unsafe fn intersectWithRect(&self, r: CGRect) -> Retained<CIFilterShape>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -68,10 +76,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIFilterShape {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

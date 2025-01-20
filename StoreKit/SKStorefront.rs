@@ -23,11 +23,13 @@ unsafe impl NSObjectProtocol for SKStorefront {}
 extern_methods!(
     unsafe impl SKStorefront {
         #[deprecated = "Use 'Storefront.countryCode'"]
-        #[method_id(@__method_family Other countryCode)]
+        #[unsafe(method_family(none))]
+        #[method_id(countryCode)]
         pub unsafe fn countryCode(&self) -> Retained<NSString>;
 
         #[deprecated = "Use 'Storefront.id'"]
-        #[method_id(@__method_family Other identifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
     }
 );
@@ -35,10 +37,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKStorefront {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

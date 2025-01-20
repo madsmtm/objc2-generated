@@ -38,7 +38,8 @@ extern_methods!(
         /// Application hang times that exceeds 9 seconds of wall clock time are reported in the final bucket of the histogram.
         ///
         /// Dimensioned as NSUnitDuration.
-        #[method_id(@__method_family Other histogrammedApplicationHangTime)]
+        #[unsafe(method_family(none))]
+        #[method_id(histogrammedApplicationHangTime)]
         pub unsafe fn histogrammedApplicationHangTime(
             &self,
         ) -> Retained<MXHistogram<NSUnitDuration>>;
@@ -49,10 +50,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MXMetric")]
     unsafe impl MXAppResponsivenessMetric {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

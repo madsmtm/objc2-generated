@@ -57,7 +57,8 @@ extern_methods!(
     ))]
     unsafe impl ASAuthorizationSingleSignOnRequest {
         /// Parameters required by the specific Authorization Server which should be used by the selected Authorization Services extension for authorization.
-        #[method_id(@__method_family Other authorizationOptions)]
+        #[unsafe(method_family(none))]
+        #[method_id(authorizationOptions)]
         pub unsafe fn authorizationOptions(&self) -> Retained<NSArray<NSURLQueryItem>>;
 
         /// Setter for [`authorizationOptions`][Self::authorizationOptions].
@@ -88,10 +89,12 @@ extern_methods!(
         feature = "ASAuthorizationRequest"
     ))]
     unsafe impl ASAuthorizationSingleSignOnRequest {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

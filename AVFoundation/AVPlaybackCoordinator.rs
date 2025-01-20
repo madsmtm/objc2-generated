@@ -80,18 +80,22 @@ unsafe impl NSObjectProtocol for AVCoordinatedPlaybackSuspension {}
 
 extern_methods!(
     unsafe impl AVCoordinatedPlaybackSuspension {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// The reason for the suspension. This will be communicated to other participants while coordination is suspended.
-        #[method_id(@__method_family Other reason)]
+        #[unsafe(method_family(none))]
+        #[method_id(reason)]
         pub unsafe fn reason(&self) -> Retained<AVCoordinatedPlaybackSuspensionReason>;
 
         /// The begin time of the suspension.
-        #[method_id(@__method_family Other beginDate)]
+        #[unsafe(method_family(none))]
+        #[method_id(beginDate)]
         pub unsafe fn beginDate(&self) -> Retained<NSDate>;
 
         /// Ends the suspension.
@@ -145,10 +149,12 @@ unsafe impl NSObjectProtocol for AVPlaybackCoordinator {}
 
 extern_methods!(
     unsafe impl AVPlaybackCoordinator {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// The playback states of the other participants in the group.
@@ -156,7 +162,8 @@ extern_methods!(
         /// Use this property to create UI informing the local user about the state of other participants in the group.
         ///
         /// Note: The coordinator posts AVPlaybackCoordinatorOtherParticipantsDidChangeNotification when the contents of the array changes.
-        #[method_id(@__method_family Other otherParticipants)]
+        #[unsafe(method_family(none))]
+        #[method_id(otherParticipants)]
         pub unsafe fn otherParticipants(
             &self,
         ) -> Retained<NSArray<AVCoordinatedPlaybackParticipant>>;
@@ -164,7 +171,8 @@ extern_methods!(
         /// Describes why the coordinator is currently not able to participate in group playback.
         ///
         /// If the list of reasons is non-empty, the coordinator will not react to any changes of group playback state.
-        #[method_id(@__method_family Other suspensionReasons)]
+        #[unsafe(method_family(none))]
+        #[method_id(suspensionReasons)]
         pub unsafe fn suspensionReasons(
             &self,
         ) -> Retained<NSArray<AVCoordinatedPlaybackSuspensionReason>>;
@@ -178,7 +186,8 @@ extern_methods!(
         /// Note: See the description of AVPlaybackCoordinator subclasses for suspensions automatically begun on behalf of their playback objects, if any.
         ///
         /// Parameter `suspensionReason`: Indicates the reason for the suspension that is shared with other participants. Can be a system-defined reason (see AVCoordinatedPlaybackSuspensionReason*) or a custom string.
-        #[method_id(@__method_family Other beginSuspensionForReason:)]
+        #[unsafe(method_family(none))]
+        #[method_id(beginSuspensionForReason:)]
         pub unsafe fn beginSuspensionForReason(
             &self,
             suspension_reason: &AVCoordinatedPlaybackSuspensionReason,
@@ -213,7 +222,8 @@ unsafe impl NSObjectProtocol for AVCoordinatedPlaybackParticipant {}
 extern_methods!(
     unsafe impl AVCoordinatedPlaybackParticipant {
         /// The reason, if any, this participant is currently not participating in coordinated playback.
-        #[method_id(@__method_family Other suspensionReasons)]
+        #[unsafe(method_family(none))]
+        #[method_id(suspensionReasons)]
         pub unsafe fn suspensionReasons(
             &self,
         ) -> Retained<NSArray<AVCoordinatedPlaybackSuspensionReason>>;
@@ -225,7 +235,8 @@ extern_methods!(
         /// A unique id for the participant.
         ///
         /// Use this identifier to distinguish participants.
-        #[method_id(@__method_family Other identifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSUUID>;
     }
 );
@@ -233,10 +244,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVCoordinatedPlaybackParticipant {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -264,7 +277,8 @@ extern_methods!(
         ) -> NSInteger;
 
         /// If the coordinator decides to delay playback to wait for others, it will wait out these reasons, but not others.
-        #[method_id(@__method_family Other suspensionReasonsThatTriggerWaiting)]
+        #[unsafe(method_family(none))]
+        #[method_id(suspensionReasonsThatTriggerWaiting)]
         pub unsafe fn suspensionReasonsThatTriggerWaiting(
             &self,
         ) -> Retained<NSArray<AVCoordinatedPlaybackSuspensionReason>>;
@@ -312,19 +326,23 @@ unsafe impl NSObjectProtocol for AVPlayerPlaybackCoordinator {}
 
 extern_methods!(
     unsafe impl AVPlayerPlaybackCoordinator {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "AVPlayer")]
         /// The AVPlayer this coordinator is controlling.
-        #[method_id(@__method_family Other player)]
+        #[unsafe(method_family(none))]
+        #[method_id(player)]
         pub unsafe fn player(&self, mtm: MainThreadMarker) -> Option<Retained<AVPlayer>>;
 
         /// An object implementing the AVPlaybackCoordinatorDelegate protocol.
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVPlayerPlaybackCoordinatorDelegate>>>;
@@ -350,7 +368,8 @@ extern_protocol!(
         /// Implementing this method allows the coordinator to establish identity of two items created from different URLs, e.g., because one participant is using a local cache and the other a remote URL.
         /// If the method is not implemented, the coordinator will derive the identifier from the item's asset.
         #[optional]
-        #[method_id(@__method_family Other playbackCoordinator:identifierForPlayerItem:)]
+        #[unsafe(method_family(none))]
+        #[method_id(playbackCoordinator:identifierForPlayerItem:)]
         unsafe fn playbackCoordinator_identifierForPlayerItem(
             &self,
             coordinator: &AVPlayerPlaybackCoordinator,
@@ -368,7 +387,8 @@ extern_protocol!(
         /// This delegate method is expected to return an array of NSValues with each value containing a CMTimeRange that represents the interstitial.
         /// If the method is not implemented, the coordinator would assume that the entire item corresponds to the primary content.
         #[optional]
-        #[method_id(@__method_family Other playbackCoordinator:interstitialTimeRangesForPlayerItem:)]
+        #[unsafe(method_family(none))]
+        #[method_id(playbackCoordinator:interstitialTimeRangesForPlayerItem:)]
         unsafe fn playbackCoordinator_interstitialTimeRangesForPlayerItem(
             &self,
             coordinator: &AVPlayerPlaybackCoordinator,
@@ -450,7 +470,8 @@ extern_methods!(
         /// The coordinator will only hold a weak reference to its delegate.
         ///
         /// Note: See AVPlayer's playbackCoordinator property to get an AVPlaybackCoordinator for an AVPlayer.
-        #[method_id(@__method_family Init initWithPlaybackControlDelegate:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithPlaybackControlDelegate:)]
         pub unsafe fn initWithPlaybackControlDelegate(
             this: Allocated<Self>,
             playback_control_delegate: &ProtocolObject<
@@ -459,7 +480,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The custom player implementation controlled by the coordinator.
-        #[method_id(@__method_family Other playbackControlDelegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(playbackControlDelegate)]
         pub unsafe fn playbackControlDelegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVPlaybackCoordinatorPlaybackControlDelegate>>>;
@@ -525,7 +547,8 @@ extern_methods!(
         );
 
         /// The item identifier of the current item. Previously set by a call to transitionToItemWithIdentifier:proposingInitialTimingBasedOnTimebase:
-        #[method_id(@__method_family Other currentItemIdentifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(currentItemIdentifier)]
         pub unsafe fn currentItemIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Instructs the coordinator to re-issue commands to synchronize the current item back to the state of the other participants.
@@ -539,10 +562,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `AVPlaybackCoordinator`
     unsafe impl AVDelegatingPlaybackCoordinator {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -657,10 +682,12 @@ unsafe impl NSObjectProtocol for AVDelegatingPlaybackCoordinatorPlaybackControlC
 
 extern_methods!(
     unsafe impl AVDelegatingPlaybackCoordinatorPlaybackControlCommand {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// The participant causing this command to be issued.
@@ -669,14 +696,16 @@ extern_methods!(
         /// Commands caused by local requests, e.g., requests to coordinate a rate change, will not contain an originator.
         /// Similarly, re-application of older commands, e.g., in response to a call to [AVDelegatingPlaybackCoordinator reapplyCurrentItemStateToPlaybackControlDelegate], will not contain an originator.
         /// If the originator is non-nil, it may be appropriate to show UI indicating someone else's action.
-        #[method_id(@__method_family Other originator)]
+        #[unsafe(method_family(none))]
+        #[method_id(originator)]
         pub unsafe fn originator(&self) -> Option<Retained<AVCoordinatedPlaybackParticipant>>;
 
         /// Indicates the item this command was issued for.
         ///
         /// Commands are always meant for the current item. A command handler should verify that the identifier of its current item matches this identifier.
         /// If it doesn't this command is obsolete and should be ignored. Note that any completion handler of the delegate method issuing the command must still be invoked.
-        #[method_id(@__method_family Other expectedCurrentItemIdentifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(expectedCurrentItemIdentifier)]
         pub unsafe fn expectedCurrentItemIdentifier(&self) -> Retained<NSString>;
     }
 );
@@ -700,10 +729,12 @@ unsafe impl NSObjectProtocol for AVDelegatingPlaybackCoordinatorPlayCommand {}
 
 extern_methods!(
     unsafe impl AVDelegatingPlaybackCoordinatorPlayCommand {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Playback rate. Will always be non-zero.
@@ -749,10 +780,12 @@ unsafe impl NSObjectProtocol for AVDelegatingPlaybackCoordinatorBufferingCommand
 
 extern_methods!(
     unsafe impl AVDelegatingPlaybackCoordinatorBufferingCommand {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// The rate to prepare playback for.
@@ -767,7 +800,8 @@ extern_methods!(
         /// has not yet buffered enough data to be considered ready to play by the due date. The receiver should then decide to either complete the command as is
         /// to try and keep up with the group, or alternatively begin a stall recovery suspension to communicate the situation to the other participants.
         /// Completing the command after this date means that the coordinator will likely send a play command for a later time than the receiver buffered for.
-        #[method_id(@__method_family Other completionDueDate)]
+        #[unsafe(method_family(none))]
+        #[method_id(completionDueDate)]
         pub unsafe fn completionDueDate(&self) -> Option<Retained<NSDate>>;
     }
 );
@@ -791,10 +825,12 @@ unsafe impl NSObjectProtocol for AVDelegatingPlaybackCoordinatorPauseCommand {}
 
 extern_methods!(
     unsafe impl AVDelegatingPlaybackCoordinatorPauseCommand {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Indicates that playback is anticipated and the player should begin buffering if necessary.
@@ -832,10 +868,12 @@ unsafe impl NSObjectProtocol for AVDelegatingPlaybackCoordinatorSeekCommand {}
 
 extern_methods!(
     unsafe impl AVDelegatingPlaybackCoordinatorSeekCommand {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-media")]
@@ -864,7 +902,8 @@ extern_methods!(
         /// The receiver should then decide to either complete the command as is to try and keep up with the group, or alternatively begin a stall recovery
         /// suspension to communicate the situation to the other participants.
         /// Completing the command after this date means that the coordinator will likely send a play command for a later time than the receiver buffered for.
-        #[method_id(@__method_family Other completionDueDate)]
+        #[unsafe(method_family(none))]
+        #[method_id(completionDueDate)]
         pub unsafe fn completionDueDate(&self) -> Option<Retained<NSDate>>;
     }
 );

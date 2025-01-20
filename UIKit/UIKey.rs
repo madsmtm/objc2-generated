@@ -31,7 +31,8 @@ extern_methods!(
         /// if a modifier key is held, this property will contain the modified characters according
         /// the rules for that particular modifier key (i.e., if shift is held on a Latin keyboard, this will
         /// contain capital letters).
-        #[method_id(@__method_family Other characters)]
+        #[unsafe(method_family(none))]
+        #[method_id(characters)]
         pub unsafe fn characters(&self) -> Retained<NSString>;
 
         /// Returns: a string representing which characters would be inserted into a text field when this key is
@@ -39,7 +40,8 @@ extern_methods!(
         ///
         /// for Latin based languages, expect this to be always in lowercase (unmodified meaning not
         /// taking shift key into account). If only a modifier key was pressed, this property will contain an empty string.
-        #[method_id(@__method_family Other charactersIgnoringModifiers)]
+        #[unsafe(method_family(none))]
+        #[method_id(charactersIgnoringModifiers)]
         pub unsafe fn charactersIgnoringModifiers(&self) -> Retained<NSString>;
 
         #[cfg(feature = "UICommand")]
@@ -57,10 +59,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIKey {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

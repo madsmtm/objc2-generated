@@ -23,14 +23,16 @@ unsafe impl NSObjectProtocol for MPSKeyedUnarchiver {}
 
 extern_methods!(
     unsafe impl MPSKeyedUnarchiver {
-        #[method_id(@__method_family Other unarchivedObjectOfClasses:fromData:device:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(unarchivedObjectOfClasses:fromData:device:error:_)]
         pub unsafe fn unarchivedObjectOfClasses_fromData_device_error(
             classes: &NSSet<AnyClass>,
             data: &NSData,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
-        #[method_id(@__method_family Other unarchivedObjectOfClass:fromData:device:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(unarchivedObjectOfClass:fromData:device:error:_)]
         pub unsafe fn unarchivedObjectOfClass_fromData_device_error(
             cls: &AnyClass,
             data: &NSData,
@@ -38,71 +40,84 @@ extern_methods!(
         ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
         /// Reports which device to use for unarchiving MPSKernels
-        #[method_id(@__method_family Other mpsMTLDevice)]
+        #[unsafe(method_family(none))]
+        #[method_id(mpsMTLDevice)]
         pub unsafe fn mpsMTLDevice(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
-        #[method_id(@__method_family Other unarchivedObjectOfClasses:fromData:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(unarchivedObjectOfClasses:fromData:error:_)]
         pub unsafe fn unarchivedObjectOfClasses_fromData_error(
             classes: &NSSet<AnyClass>,
             data: &NSData,
         ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
-        #[method_id(@__method_family Other unarchivedObjectOfClass:fromData:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(unarchivedObjectOfClass:fromData:error:_)]
         pub unsafe fn unarchivedObjectOfClass_fromData_error(
             cls: &AnyClass,
             data: &NSData,
         ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family Other unarchiveObjectWithData:)]
+        #[unsafe(method_family(none))]
+        #[method_id(unarchiveObjectWithData:)]
         pub unsafe fn unarchiveObjectWithData(data: &NSData) -> Option<Retained<AnyObject>>;
 
         #[deprecated]
-        #[method_id(@__method_family Other unarchiveObjectWithData:device:)]
+        #[unsafe(method_family(none))]
+        #[method_id(unarchiveObjectWithData:device:)]
         pub unsafe fn unarchiveObjectWithData_device(
             data: &NSData,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<AnyObject>>;
 
-        #[method_id(@__method_family Other unarchiveTopLevelObjectWithData:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(unarchiveTopLevelObjectWithData:error:_)]
         pub unsafe fn unarchiveTopLevelObjectWithData_error(
             data: &NSData,
         ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
         #[deprecated]
-        #[method_id(@__method_family Other unarchiveTopLevelObjectWithData:device:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(unarchiveTopLevelObjectWithData:device:error:_)]
         pub unsafe fn unarchiveTopLevelObjectWithData_device_error(
             data: &NSData,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
-        #[method_id(@__method_family Other unarchiveObjectWithFile:)]
+        #[unsafe(method_family(none))]
+        #[method_id(unarchiveObjectWithFile:)]
         pub unsafe fn unarchiveObjectWithFile(path: &NSString) -> Option<Retained<AnyObject>>;
 
-        #[method_id(@__method_family Init initForReadingWithData:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initForReadingWithData:)]
         pub unsafe fn initForReadingWithData(
             this: Allocated<Self>,
             data: &NSData,
         ) -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(@__method_family Other unarchiveObjectWithFile:device:)]
+        #[unsafe(method_family(none))]
+        #[method_id(unarchiveObjectWithFile:device:)]
         pub unsafe fn unarchiveObjectWithFile_device(
             path: &NSString,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<AnyObject>>;
 
         #[deprecated]
-        #[method_id(@__method_family Init initWithDevice:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
 
         #[deprecated]
-        #[method_id(@__method_family Init initForReadingWithData:device:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initForReadingWithData:device:)]
         pub unsafe fn initForReadingWithData_device(
             this: Allocated<Self>,
             data: &NSData,
@@ -114,7 +129,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSKeyedUnarchiver {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

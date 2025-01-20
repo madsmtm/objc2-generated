@@ -60,7 +60,8 @@ extern_protocol!(
         ///
         /// Calling this on an AVAudioMixingDestination instance returns self if the specified
         /// mixer/input bus matches its connection point, otherwise, it returns nil.
-        #[method_id(@__method_family Other destinationForMixer:bus:)]
+        #[unsafe(method_family(none))]
+        #[method_id(destinationForMixer:bus:)]
         unsafe fn destinationForMixer_bus(
             &self,
             mixer: &AVAudioNode,
@@ -415,12 +416,14 @@ unsafe impl NSObjectProtocol for AVAudioMixingDestination {}
 
 extern_methods!(
     unsafe impl AVAudioMixingDestination {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "AVAudioConnectionPoint")]
         /// Returns the underlying mixer connection point
-        #[method_id(@__method_family Other connectionPoint)]
+        #[unsafe(method_family(none))]
+        #[method_id(connectionPoint)]
         pub unsafe fn connectionPoint(&self) -> Retained<AVAudioConnectionPoint>;
     }
 );
@@ -428,7 +431,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAudioMixingDestination {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

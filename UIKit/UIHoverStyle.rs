@@ -31,7 +31,8 @@ extern_methods!(
         #[cfg(feature = "UIHoverEffect")]
         /// The effect to apply to the view with this style. Use `UIHoverAutomaticEffect`
         /// to apply a system-default effect to the view.
-        #[method_id(@__method_family Other effect)]
+        #[unsafe(method_family(none))]
+        #[method_id(effect)]
         pub unsafe fn effect(&self) -> Retained<ProtocolObject<dyn UIHoverEffect>>;
 
         #[cfg(feature = "UIHoverEffect")]
@@ -42,7 +43,8 @@ extern_methods!(
         #[cfg(feature = "UIShape")]
         /// The shape to use for the hover effect. If a `nil` shape is used, a
         /// system-default shape will be chosen based on the view.
-        #[method_id(@__method_family Other shape)]
+        #[unsafe(method_family(none))]
+        #[method_id(shape)]
         pub unsafe fn shape(&self) -> Option<Retained<UIShape>>;
 
         #[cfg(feature = "UIShape")]
@@ -62,7 +64,8 @@ extern_methods!(
 
         #[cfg(all(feature = "UIHoverEffect", feature = "UIShape"))]
         /// Creates a hover style with the provided effect and shape.
-        #[method_id(@__method_family Other styleWithEffect:shape:)]
+        #[unsafe(method_family(none))]
+        #[method_id(styleWithEffect:shape:)]
         pub unsafe fn styleWithEffect_shape(
             effect: &ProtocolObject<dyn UIHoverEffect>,
             shape: Option<&UIShape>,
@@ -70,20 +73,24 @@ extern_methods!(
 
         #[cfg(feature = "UIShape")]
         /// Creates a hover style with the provided shape and a `UIHoverAutomaticEffect`.
-        #[method_id(@__method_family Other styleWithShape:)]
+        #[unsafe(method_family(none))]
+        #[method_id(styleWithShape:)]
         pub unsafe fn styleWithShape(
             shape: Option<&UIShape>,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
         /// Creates a hover style with the default shape and a `UIHoverAutomaticEffect`.
-        #[method_id(@__method_family Other automaticStyle)]
+        #[unsafe(method_family(none))]
+        #[method_id(automaticStyle)]
         pub unsafe fn automaticStyle(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -95,7 +102,8 @@ extern_methods!(
         /// The hover style associated with this view. Defaults to `nil`,
         /// indicating that this view should not have any hover effect.
         /// Subclasses may configure this style to use a different default value.
-        #[method_id(@__method_family Other hoverStyle)]
+        #[unsafe(method_family(none))]
+        #[method_id(hoverStyle)]
         pub unsafe fn hoverStyle(&self) -> Option<Retained<UIHoverStyle>>;
 
         /// Setter for [`hoverStyle`][Self::hoverStyle].

@@ -40,26 +40,32 @@ unsafe impl NSSecureCoding for CLBeaconIdentityCondition {}
 extern_methods!(
     #[cfg(feature = "CLCondition")]
     unsafe impl CLBeaconIdentityCondition {
-        #[method_id(@__method_family Other UUID)]
+        #[unsafe(method_family(none))]
+        #[method_id(UUID)]
         pub unsafe fn UUID(&self) -> Retained<NSUUID>;
 
-        #[method_id(@__method_family Other major)]
+        #[unsafe(method_family(none))]
+        #[method_id(major)]
         pub unsafe fn major(&self) -> Option<Retained<NSNumber>>;
 
-        #[method_id(@__method_family Other minor)]
+        #[unsafe(method_family(none))]
+        #[method_id(minor)]
         pub unsafe fn minor(&self) -> Option<Retained<NSNumber>>;
 
-        #[method_id(@__method_family Init initWithUUID:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithUUID:)]
         pub unsafe fn initWithUUID(this: Allocated<Self>, uuid: &NSUUID) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithUUID:major:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithUUID:major:)]
         pub unsafe fn initWithUUID_major(
             this: Allocated<Self>,
             uuid: &NSUUID,
             major: CLBeaconMajorValue,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithUUID:major:minor:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithUUID:major:minor:)]
         pub unsafe fn initWithUUID_major_minor(
             this: Allocated<Self>,
             uuid: &NSUUID,
@@ -73,10 +79,12 @@ extern_methods!(
     /// Methods declared on superclass `CLCondition`
     #[cfg(feature = "CLCondition")]
     unsafe impl CLBeaconIdentityCondition {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

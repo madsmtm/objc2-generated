@@ -25,16 +25,19 @@ unsafe impl NSObjectProtocol for HMCharacteristic {}
 extern_methods!(
     unsafe impl HMCharacteristic {
         /// The type of the characteristic, e.g. HMCharacteristicTypePowerState.
-        #[method_id(@__method_family Other characteristicType)]
+        #[unsafe(method_family(none))]
+        #[method_id(characteristicType)]
         pub unsafe fn characteristicType(&self) -> Retained<NSString>;
 
         /// The localized description of the characteristic.
-        #[method_id(@__method_family Other localizedDescription)]
+        #[unsafe(method_family(none))]
+        #[method_id(localizedDescription)]
         pub unsafe fn localizedDescription(&self) -> Retained<NSString>;
 
         #[cfg(feature = "HMService")]
         /// Service that contains this characteristic.
-        #[method_id(@__method_family Other service)]
+        #[unsafe(method_family(none))]
+        #[method_id(service)]
         pub unsafe fn service(&self) -> Option<Retained<HMService>>;
 
         /// Array that describes the properties of the characteristic.
@@ -42,12 +45,14 @@ extern_methods!(
         ///
         /// This value corresponds to the properties associated with this characteristic.
         /// The contents of the array are one or more HMCharacteristicProperty constants.
-        #[method_id(@__method_family Other properties)]
+        #[unsafe(method_family(none))]
+        #[method_id(properties)]
         pub unsafe fn properties(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "HMCharacteristicMetadata")]
         /// Meta data associated with the characteristic.
-        #[method_id(@__method_family Other metadata)]
+        #[unsafe(method_family(none))]
+        #[method_id(metadata)]
         pub unsafe fn metadata(&self) -> Option<Retained<HMCharacteristicMetadata>>;
 
         /// The value of the characteristic.
@@ -55,7 +60,8 @@ extern_methods!(
         ///
         /// The value is a cached value that may have been updated as a result of prior
         /// interaction with the accessory.
-        #[method_id(@__method_family Other value)]
+        #[unsafe(method_family(none))]
+        #[method_id(value)]
         pub unsafe fn value(&self) -> Option<Retained<AnyObject>>;
 
         /// Specifies whether the characteristic has been enabled to send notifications.
@@ -66,7 +72,8 @@ extern_methods!(
         pub unsafe fn isNotificationEnabled(&self) -> bool;
 
         /// A unique identifier for the characteristic.
-        #[method_id(@__method_family Other uniqueIdentifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(uniqueIdentifier)]
         pub unsafe fn uniqueIdentifier(&self) -> Retained<NSUUID>;
 
         #[cfg(feature = "block2")]
@@ -141,7 +148,8 @@ extern_methods!(
         );
 
         #[deprecated = "HMCharacteristic objects are created by their parent container objects. Directly creating them is not supported."]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -149,7 +157,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HMCharacteristic {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

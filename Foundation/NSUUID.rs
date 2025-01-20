@@ -34,14 +34,17 @@ unsafe impl NSSecureCoding for NSUUID {}
 
 extern_methods!(
     unsafe impl NSUUID {
-        #[method_id(@__method_family Other UUID)]
+        #[unsafe(method_family(none))]
+        #[method_id(UUID)]
         pub fn UUID() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__method_family Init initWithUUIDString:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithUUIDString:)]
         pub fn initWithUUIDString(
             this: Allocated<Self>,
             string: &NSString,
@@ -52,7 +55,8 @@ extern_methods!(
         pub unsafe fn compare(&self, other_uuid: &NSUUID) -> NSComparisonResult;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__method_family Other UUIDString)]
+        #[unsafe(method_family(none))]
+        #[method_id(UUIDString)]
         pub fn UUIDString(&self) -> Retained<NSString>;
     }
 );
@@ -60,7 +64,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSUUID {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub fn new() -> Retained<Self>;
     }
 );

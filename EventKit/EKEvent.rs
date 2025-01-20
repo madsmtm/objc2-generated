@@ -75,7 +75,8 @@ extern_methods!(
     unsafe impl EKEvent {
         #[cfg(feature = "EKEventStore")]
         /// Creates a new autoreleased event object.
-        #[method_id(@__method_family Other eventWithEventStore:)]
+        #[unsafe(method_family(none))]
+        #[method_id(eventWithEventStore:)]
         pub unsafe fn eventWithEventStore(event_store: &EKEventStore) -> Retained<EKEvent>;
 
         /// A unique identifier for this event.
@@ -92,7 +93,8 @@ extern_methods!(
         /// completely new event here.
         ///
         /// This may be nil for events that have not been saved.
-        #[method_id(@__method_family Other eventIdentifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(eventIdentifier)]
         pub unsafe fn eventIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Indicates this event is an 'all day' event.
@@ -110,7 +112,8 @@ extern_methods!(
         /// ([NSTimeZone defaultTimeZone])
         ///
         /// This will be nil for new events until you set it.
-        #[method_id(@__method_family Other startDate)]
+        #[unsafe(method_family(none))]
+        #[method_id(startDate)]
         pub unsafe fn startDate(&self) -> Retained<NSDate>;
 
         /// Setter for [`startDate`][Self::startDate].
@@ -120,7 +123,8 @@ extern_methods!(
         /// The end date for the event.
         ///
         /// This will be nil for new events until you set it.
-        #[method_id(@__method_family Other endDate)]
+        #[unsafe(method_family(none))]
+        #[method_id(endDate)]
         pub unsafe fn endDate(&self) -> Retained<NSDate>;
 
         /// Setter for [`endDate`][Self::endDate].
@@ -132,7 +136,8 @@ extern_methods!(
         /// event. The getter for EKEvent’s location property just returns the structured location’s title.
         /// The setter for EKEvent’s location property is equivalent to
         /// [event setStructuredLocation:[EKStructuredLocation locationWithTitle:…]].
-        #[method_id(@__method_family Other structuredLocation)]
+        #[unsafe(method_family(none))]
+        #[method_id(structuredLocation)]
         pub unsafe fn structuredLocation(&self) -> Option<Retained<EKStructuredLocation>>;
 
         #[cfg(feature = "EKStructuredLocation")]
@@ -149,7 +154,8 @@ extern_methods!(
 
         #[cfg(feature = "EKParticipant")]
         /// The organizer of this event, or nil.
-        #[method_id(@__method_family Other organizer)]
+        #[unsafe(method_family(none))]
+        #[method_id(organizer)]
         pub unsafe fn organizer(&self) -> Option<Retained<EKParticipant>>;
 
         /// The availability setting for this event.
@@ -193,7 +199,8 @@ extern_methods!(
         /// in the default time zone. ([NSTimeZone defaultTimeZone])
         ///
         /// This will be nil for new events until you set startDate.
-        #[method_id(@__method_family Other occurrenceDate)]
+        #[unsafe(method_family(none))]
+        #[method_id(occurrenceDate)]
         pub unsafe fn occurrenceDate(&self) -> Option<Retained<NSDate>>;
 
         /// Refreshes an event object to ensure it's still valid.
@@ -218,7 +225,8 @@ extern_methods!(
         /// This property is only valid for events in the built-in Birthdays calendar. It specifies
         /// the contact identifier (for use with the Contacts framework) of the person this event was
         /// created for. For any other type of event, this property returns nil.
-        #[method_id(@__method_family Other birthdayContactIdentifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(birthdayContactIdentifier)]
         pub unsafe fn birthdayContactIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Specifies the address book ID of the person this event was created for.
@@ -235,7 +243,8 @@ extern_methods!(
         /// the Address Book unique ID of the person this event was created for. For any other type of event,
         /// this property returns nil.
         #[deprecated = "Use birthdayContactIdentifier instead"]
-        #[method_id(@__method_family Other birthdayPersonUniqueID)]
+        #[unsafe(method_family(none))]
+        #[method_id(birthdayPersonUniqueID)]
         pub unsafe fn birthdayPersonUniqueID(&self) -> Option<Retained<NSString>>;
     }
 );
@@ -244,10 +253,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "EKCalendarItem", feature = "EKObject"))]
     unsafe impl EKEvent {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

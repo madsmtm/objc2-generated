@@ -35,33 +35,38 @@ unsafe impl NSSecureCoding for NSPointerArray {}
 extern_methods!(
     unsafe impl NSPointerArray {
         #[cfg(feature = "NSPointerFunctions")]
-        #[method_id(@__method_family Init initWithOptions:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithOptions:)]
         pub unsafe fn initWithOptions(
             this: Allocated<Self>,
             options: NSPointerFunctionsOptions,
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSPointerFunctions")]
-        #[method_id(@__method_family Init initWithPointerFunctions:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithPointerFunctions:)]
         pub unsafe fn initWithPointerFunctions(
             this: Allocated<Self>,
             functions: &NSPointerFunctions,
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSPointerFunctions")]
-        #[method_id(@__method_family Other pointerArrayWithOptions:)]
+        #[unsafe(method_family(none))]
+        #[method_id(pointerArrayWithOptions:)]
         pub unsafe fn pointerArrayWithOptions(
             options: NSPointerFunctionsOptions,
         ) -> Retained<NSPointerArray>;
 
         #[cfg(feature = "NSPointerFunctions")]
-        #[method_id(@__method_family Other pointerArrayWithPointerFunctions:)]
+        #[unsafe(method_family(none))]
+        #[method_id(pointerArrayWithPointerFunctions:)]
         pub unsafe fn pointerArrayWithPointerFunctions(
             functions: &NSPointerFunctions,
         ) -> Retained<NSPointerArray>;
 
         #[cfg(feature = "NSPointerFunctions")]
-        #[method_id(@__method_family Other pointerFunctions)]
+        #[unsafe(method_family(none))]
+        #[method_id(pointerFunctions)]
         pub unsafe fn pointerFunctions(&self) -> Retained<NSPointerFunctions>;
 
         #[method(pointerAtIndex:)]
@@ -98,10 +103,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPointerArray {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -110,21 +117,26 @@ extern_methods!(
     /// NSPointerArrayConveniences
     unsafe impl NSPointerArray {
         #[deprecated = "GC no longer supported"]
-        #[method_id(@__method_family Other pointerArrayWithStrongObjects)]
+        #[unsafe(method_family(none))]
+        #[method_id(pointerArrayWithStrongObjects)]
         pub unsafe fn pointerArrayWithStrongObjects() -> Retained<AnyObject>;
 
         #[deprecated = "GC no longer supported"]
-        #[method_id(@__method_family Other pointerArrayWithWeakObjects)]
+        #[unsafe(method_family(none))]
+        #[method_id(pointerArrayWithWeakObjects)]
         pub unsafe fn pointerArrayWithWeakObjects() -> Retained<AnyObject>;
 
-        #[method_id(@__method_family Other strongObjectsPointerArray)]
+        #[unsafe(method_family(none))]
+        #[method_id(strongObjectsPointerArray)]
         pub unsafe fn strongObjectsPointerArray() -> Retained<NSPointerArray>;
 
-        #[method_id(@__method_family Other weakObjectsPointerArray)]
+        #[unsafe(method_family(none))]
+        #[method_id(weakObjectsPointerArray)]
         pub unsafe fn weakObjectsPointerArray() -> Retained<NSPointerArray>;
 
         #[cfg(feature = "NSArray")]
-        #[method_id(@__method_family Other allObjects)]
+        #[unsafe(method_family(none))]
+        #[method_id(allObjects)]
         pub unsafe fn allObjects(&self) -> Retained<NSArray>;
     }
 );

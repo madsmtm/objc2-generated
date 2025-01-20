@@ -36,16 +36,19 @@ extern_methods!(
 
         #[cfg(feature = "DOMNode")]
         #[deprecated]
-        #[method_id(@__method_family Other item:)]
+        #[unsafe(method_family(none))]
+        #[method_id(item:)]
         pub unsafe fn item(&self, index: c_uint) -> Option<Retained<DOMNode>>;
 
         #[cfg(feature = "DOMNode")]
         #[deprecated]
-        #[method_id(@__method_family Other namedItem:)]
+        #[unsafe(method_family(none))]
+        #[method_id(namedItem:)]
         pub unsafe fn namedItem(&self, name: Option<&NSString>) -> Option<Retained<DOMNode>>;
 
         #[cfg(feature = "DOMNodeList")]
-        #[method_id(@__method_family Other tags:)]
+        #[unsafe(method_family(none))]
+        #[method_id(tags:)]
         pub unsafe fn tags(&self, name: Option<&NSString>) -> Option<Retained<DOMNodeList>>;
     }
 );
@@ -55,7 +58,8 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMHTMLCollection {
         #[deprecated]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -64,7 +68,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMHTMLCollection {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

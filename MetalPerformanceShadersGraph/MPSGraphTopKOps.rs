@@ -23,7 +23,8 @@ extern_methods!(
         /// - k: The number of largest values to return
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor array of size 2
-        #[method_id(@__method_family Other topKWithSourceTensor:k:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(topKWithSourceTensor:k:name:)]
         pub unsafe fn topKWithSourceTensor_k_name(
             &self,
             source: &MPSGraphTensor,
@@ -44,7 +45,8 @@ extern_methods!(
         /// - kTensor: Tensor of the number of largest values to return.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor array of size 2.
-        #[method_id(@__method_family Other topKWithSourceTensor:kTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(topKWithSourceTensor:kTensor:name:)]
         pub unsafe fn topKWithSourceTensor_kTensor_name(
             &self,
             source: &MPSGraphTensor,
@@ -66,7 +68,8 @@ extern_methods!(
         /// - k: The number of largest values to return.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor array of size 2.
-        #[method_id(@__method_family Other topKWithSourceTensor:axis:k:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(topKWithSourceTensor:axis:k:name:)]
         pub unsafe fn topKWithSourceTensor_axis_k_name(
             &self,
             source: &MPSGraphTensor,
@@ -89,7 +92,8 @@ extern_methods!(
         /// - k: The number of largest values to return.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor array of size 2.
-        #[method_id(@__method_family Other bottomKWithSourceTensor:axis:k:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(bottomKWithSourceTensor:axis:k:name:)]
         pub unsafe fn bottomKWithSourceTensor_axis_k_name(
             &self,
             source: &MPSGraphTensor,
@@ -112,7 +116,8 @@ extern_methods!(
         /// - kTensor: Tensor of the number of largest values to return.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor array of size 2.
-        #[method_id(@__method_family Other topKWithSourceTensor:axisTensor:kTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(topKWithSourceTensor:axisTensor:kTensor:name:)]
         pub unsafe fn topKWithSourceTensor_axisTensor_kTensor_name(
             &self,
             source: &MPSGraphTensor,
@@ -135,7 +140,8 @@ extern_methods!(
         /// - kTensor: Tensor of the number of largest values to return.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor array of size 2.
-        #[method_id(@__method_family Other bottomKWithSourceTensor:axisTensor:kTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(bottomKWithSourceTensor:axisTensor:kTensor:name:)]
         pub unsafe fn bottomKWithSourceTensor_axisTensor_kTensor_name(
             &self,
             source: &MPSGraphTensor,
@@ -162,7 +168,8 @@ extern_methods!(
         /// - k: The number of largest values to return.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__method_family Other topKWithGradientTensor:source:k:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(topKWithGradientTensor:source:k:name:)]
         pub unsafe fn topKWithGradientTensor_source_k_name(
             &self,
             gradient: &MPSGraphTensor,
@@ -184,7 +191,8 @@ extern_methods!(
         /// - k: The number of largest values to return.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__method_family Other topKWithGradientTensor:source:axis:k:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(topKWithGradientTensor:source:axis:k:name:)]
         pub unsafe fn topKWithGradientTensor_source_axis_k_name(
             &self,
             gradient: &MPSGraphTensor,
@@ -207,7 +215,8 @@ extern_methods!(
         /// - k: The number of largest values to return.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__method_family Other bottomKWithGradientTensor:source:axis:k:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(bottomKWithGradientTensor:source:axis:k:name:)]
         pub unsafe fn bottomKWithGradientTensor_source_axis_k_name(
             &self,
             gradient: &MPSGraphTensor,
@@ -229,7 +238,8 @@ extern_methods!(
         /// - kTensor: Tensor of the number of largest values to return.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__method_family Other topKWithGradientTensor:source:kTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(topKWithGradientTensor:source:kTensor:name:)]
         pub unsafe fn topKWithGradientTensor_source_kTensor_name(
             &self,
             gradient: &MPSGraphTensor,
@@ -251,7 +261,8 @@ extern_methods!(
         /// - kTensor: Tensor of the number of largest values to return.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__method_family Other topKWithGradientTensor:source:axisTensor:kTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(topKWithGradientTensor:source:axisTensor:kTensor:name:)]
         pub unsafe fn topKWithGradientTensor_source_axisTensor_kTensor_name(
             &self,
             gradient: &MPSGraphTensor,
@@ -274,7 +285,8 @@ extern_methods!(
         /// - kTensor: Tensor of the number of largest values to return.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__method_family Other bottomKWithGradientTensor:source:axisTensor:kTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(bottomKWithGradientTensor:source:axisTensor:kTensor:name:)]
         pub unsafe fn bottomKWithGradientTensor_source_axisTensor_kTensor_name(
             &self,
             gradient: &MPSGraphTensor,

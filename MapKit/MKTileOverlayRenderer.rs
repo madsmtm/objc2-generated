@@ -21,7 +21,8 @@ extern_methods!(
     #[cfg(feature = "MKOverlayRenderer")]
     unsafe impl MKTileOverlayRenderer {
         #[cfg(feature = "MKTileOverlay")]
-        #[method_id(@__method_family Init initWithTileOverlay:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithTileOverlay:)]
         pub unsafe fn initWithTileOverlay(
             this: Allocated<Self>,
             overlay: &MKTileOverlay,
@@ -37,7 +38,8 @@ extern_methods!(
     #[cfg(feature = "MKOverlayRenderer")]
     unsafe impl MKTileOverlayRenderer {
         #[cfg(all(feature = "MKAnnotation", feature = "MKOverlay"))]
-        #[method_id(@__method_family Init initWithOverlay:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithOverlay:)]
         pub unsafe fn initWithOverlay(
             this: Allocated<Self>,
             overlay: &ProtocolObject<dyn MKOverlay>,
@@ -49,10 +51,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MKOverlayRenderer")]
     unsafe impl MKTileOverlayRenderer {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

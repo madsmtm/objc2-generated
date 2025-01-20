@@ -105,7 +105,8 @@ extern_methods!(
         feature = "MPSNDArrayMatrixMultiplication"
     ))]
     unsafe impl MPSNDArrayQuantizedMatrixMultiplication {
-        #[method_id(@__method_family Init initWithDevice:sourceCount:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:sourceCount:)]
         pub unsafe fn initWithDevice_sourceCount(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -120,7 +121,8 @@ extern_methods!(
         /// Parameter `rightQuantizationDescriptor`: The quantization definition for the RHS input.
         ///
         /// Returns: A new valid quantized matrix multiplication kernel.
-        #[method_id(@__method_family Init initWithDevice:leftQuantizationDescriptor:rightQuantizationDescriptor:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:leftQuantizationDescriptor:rightQuantizationDescriptor:)]
         pub unsafe fn initWithDevice_leftQuantizationDescriptor_rightQuantizationDescriptor(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -139,7 +141,8 @@ extern_methods!(
         feature = "MPSNDArrayMatrixMultiplication"
     ))]
     unsafe impl MPSNDArrayQuantizedMatrixMultiplication {
-        #[method_id(@__method_family Init initWithCoder:device:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -157,7 +160,8 @@ extern_methods!(
         feature = "MPSNDArrayMatrixMultiplication"
     ))]
     unsafe impl MPSNDArrayQuantizedMatrixMultiplication {
-        #[method_id(@__method_family Init initWithDevice:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -182,7 +186,8 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -199,10 +204,12 @@ extern_methods!(
         feature = "MPSNDArrayMatrixMultiplication"
     ))]
     unsafe impl MPSNDArrayQuantizedMatrixMultiplication {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -269,13 +276,15 @@ extern_methods!(
         feature = "MPSNDArrayKernel"
     ))]
     unsafe impl MPSNDArrayLUTDequantize {
-        #[method_id(@__method_family Init initWithDevice:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithDevice:sourceCount:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:sourceCount:)]
         pub unsafe fn initWithDevice_sourceCount(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -292,7 +301,8 @@ extern_methods!(
         feature = "MPSNDArrayKernel"
     ))]
     unsafe impl MPSNDArrayLUTDequantize {
-        #[method_id(@__method_family Init initWithCoder:device:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -317,7 +327,8 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -333,10 +344,12 @@ extern_methods!(
         feature = "MPSNDArrayKernel"
     ))]
     unsafe impl MPSNDArrayLUTDequantize {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -418,14 +431,16 @@ extern_methods!(
         /// Parameter `axis`: The vector axis in the output.
         ///
         /// Returns: A new vector LUT dequantization kernel.
-        #[method_id(@__method_family Init initWithDevice:axis:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:axis:)]
         pub unsafe fn initWithDevice_axis(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
             axis: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithDevice:sourceCount:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:sourceCount:)]
         pub unsafe fn initWithDevice_sourceCount(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -442,7 +457,8 @@ extern_methods!(
         feature = "MPSNDArrayKernel"
     ))]
     unsafe impl MPSNDArrayVectorLUTDequantize {
-        #[method_id(@__method_family Init initWithCoder:device:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -459,7 +475,8 @@ extern_methods!(
         feature = "MPSNDArrayKernel"
     ))]
     unsafe impl MPSNDArrayVectorLUTDequantize {
-        #[method_id(@__method_family Init initWithDevice:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -483,7 +500,8 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -499,10 +517,12 @@ extern_methods!(
         feature = "MPSNDArrayKernel"
     ))]
     unsafe impl MPSNDArrayVectorLUTDequantize {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -569,7 +589,8 @@ extern_methods!(
         feature = "MPSNDArrayKernel"
     ))]
     unsafe impl MPSNDArrayAffineInt4Dequantize {
-        #[method_id(@__method_family Init initWithDevice:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -583,14 +604,16 @@ extern_methods!(
         /// Parameter `quantizationDescriptor`: Describes the quantization scheme.
         ///
         /// Returns: A new vector LUT dequantization kernel.
-        #[method_id(@__method_family Init initWithDevice:quantizationDescriptor:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:quantizationDescriptor:)]
         pub unsafe fn initWithDevice_quantizationDescriptor(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
             quantization_descriptor: &MPSNDArrayAffineQuantizationDescriptor,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithDevice:sourceCount:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:sourceCount:)]
         pub unsafe fn initWithDevice_sourceCount(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -607,7 +630,8 @@ extern_methods!(
         feature = "MPSNDArrayKernel"
     ))]
     unsafe impl MPSNDArrayAffineInt4Dequantize {
-        #[method_id(@__method_family Init initWithCoder:device:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -632,7 +656,8 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -648,10 +673,12 @@ extern_methods!(
         feature = "MPSNDArrayKernel"
     ))]
     unsafe impl MPSNDArrayAffineInt4Dequantize {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

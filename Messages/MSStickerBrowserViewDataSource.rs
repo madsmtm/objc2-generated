@@ -34,7 +34,8 @@ extern_protocol!(
         /// Parameter `index`: The index of the sticker to show.
         ///
         /// Returns: A MSSticker object.
-        #[method_id(@__method_family Other stickerBrowserView:stickerAtIndex:)]
+        #[unsafe(method_family(none))]
+        #[method_id(stickerBrowserView:stickerAtIndex:)]
         unsafe fn stickerBrowserView_stickerAtIndex(
             &self,
             sticker_browser_view: &MSStickerBrowserView,

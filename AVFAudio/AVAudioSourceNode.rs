@@ -75,7 +75,8 @@ unsafe impl NSObjectProtocol for AVAudioSourceNode {}
 extern_methods!(
     #[cfg(feature = "AVAudioNode")]
     unsafe impl AVAudioSourceNode {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(
@@ -95,7 +96,8 @@ extern_methods!(
         ///
         /// The audio format for the block will be set to the node's output format. If node is
         /// reconnected with a different output format, the audio format for the block will also change.
-        #[method_id(@__method_family Init initWithRenderBlock:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithRenderBlock:)]
         pub unsafe fn initWithRenderBlock(
             this: Allocated<Self>,
             block: AVAudioSourceNodeRenderBlock,
@@ -121,7 +123,8 @@ extern_methods!(
         ///
         /// AVAudioSourceNode supports different audio formats for the block and output, but only
         /// Linear PCM conversions are supported (sample rate, bit depth, interleaving).
-        #[method_id(@__method_family Init initWithFormat:renderBlock:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithFormat:renderBlock:)]
         pub unsafe fn initWithFormat_renderBlock(
             this: Allocated<Self>,
             format: &AVAudioFormat,
@@ -134,7 +137,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "AVAudioNode")]
     unsafe impl AVAudioSourceNode {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

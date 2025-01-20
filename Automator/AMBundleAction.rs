@@ -44,13 +44,16 @@ extern_methods!(
         pub unsafe fn hasView(&self) -> bool;
 
         #[cfg(feature = "objc2-app-kit")]
-        #[method_id(@__method_family Other view)]
+        #[unsafe(method_family(none))]
+        #[method_id(view)]
         pub unsafe fn view(&self, mtm: MainThreadMarker) -> Option<Retained<NSView>>;
 
-        #[method_id(@__method_family Other bundle)]
+        #[unsafe(method_family(none))]
+        #[method_id(bundle)]
         pub unsafe fn bundle(&self) -> Retained<NSBundle>;
 
-        #[method_id(@__method_family Other parameters)]
+        #[unsafe(method_family(none))]
+        #[method_id(parameters)]
         pub unsafe fn parameters(
             &self,
         ) -> Option<Retained<NSMutableDictionary<NSString, AnyObject>>>;
@@ -68,14 +71,16 @@ extern_methods!(
     /// Methods declared on superclass `AMAction`
     #[cfg(feature = "AMAction")]
     unsafe impl AMBundleAction {
-        #[method_id(@__method_family Init initWithDefinition:fromArchive:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDefinition:fromArchive:)]
         pub unsafe fn initWithDefinition_fromArchive(
             this: Allocated<Self>,
             dict: Option<&NSDictionary<NSString, AnyObject>>,
             archived: bool,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__method_family Init initWithContentsOfURL:error:_)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithContentsOfURL:error:_)]
         pub unsafe fn initWithContentsOfURL_error(
             this: Allocated<Self>,
             file_url: &NSURL,
@@ -87,10 +92,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "AMAction")]
     unsafe impl AMBundleAction {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

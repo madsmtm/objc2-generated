@@ -34,19 +34,22 @@ extern_methods!(
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         /// System default Picture in Picture start template image for use in client's Picture in Picture button.
-        #[method_id(@__method_family Other pictureInPictureButtonStartImage)]
+        #[unsafe(method_family(none))]
+        #[method_id(pictureInPictureButtonStartImage)]
         pub unsafe fn pictureInPictureButtonStartImage() -> Retained<NSImage>;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         /// System default Picture in Picture stop template image for use in client's Picture in Picture button.
-        #[method_id(@__method_family Other pictureInPictureButtonStopImage)]
+        #[unsafe(method_family(none))]
+        #[method_id(pictureInPictureButtonStopImage)]
         pub unsafe fn pictureInPictureButtonStopImage() -> Retained<NSImage>;
 
         /// Parameter `contentSource`: The content source to be shown in Picture in Picture.
         ///
         /// Use this initializer for content that may be a sample buffer display layer or a player layer.
-        #[method_id(@__method_family Init initWithContentSource:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithContentSource:)]
         pub unsafe fn initWithContentSource(
             this: Allocated<Self>,
             content_source: &AVPictureInPictureControllerContentSource,
@@ -57,14 +60,16 @@ extern_methods!(
         /// Parameter `playerLayer`: The player layer from which to source the media content for the Picture in Picture controller.
         ///
         /// Initialize the picture in picture controller with a player layer.
-        #[method_id(@__method_family Init initWithPlayerLayer:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithPlayerLayer:)]
         pub unsafe fn initWithPlayerLayer(
             this: Allocated<Self>,
             player_layer: &AVPlayerLayer,
         ) -> Option<Retained<Self>>;
 
         /// The receiver's content source. Can be changed while Picture in Picture is active, but the new content source must be ready for display (in the case of AVPlayerLayer, that means AVPlayerLayer.isReadyForDisplay must return YES), otherwise Picture in Picture will stop.
-        #[method_id(@__method_family Other contentSource)]
+        #[unsafe(method_family(none))]
+        #[method_id(contentSource)]
         pub unsafe fn contentSource(
             &self,
         ) -> Option<Retained<AVPictureInPictureControllerContentSource>>;
@@ -79,11 +84,13 @@ extern_methods!(
         #[cfg(feature = "objc2-av-foundation")]
         #[cfg(not(target_os = "watchos"))]
         /// The receiver's player layer.
-        #[method_id(@__method_family Other playerLayer)]
+        #[unsafe(method_family(none))]
+        #[method_id(playerLayer)]
         pub unsafe fn playerLayer(&self) -> Retained<AVPlayerLayer>;
 
         /// The receiver's delegate.
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVPictureInPictureControllerDelegate>>>;
@@ -154,10 +161,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVPictureInPictureController {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -177,10 +186,12 @@ unsafe impl NSObjectProtocol for AVPictureInPictureControllerContentSource {}
 
 extern_methods!(
     unsafe impl AVPictureInPictureControllerContentSource {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "objc2-av-foundation")]
@@ -188,7 +199,8 @@ extern_methods!(
         /// Parameter `playerLayer`: The player layer to be shown in Picture in Picture.
         ///
         /// Use this initializer for a content source with a player layer.
-        #[method_id(@__method_family Init initWithPlayerLayer:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithPlayerLayer:)]
         pub unsafe fn initWithPlayerLayer(
             this: Allocated<Self>,
             player_layer: &AVPlayerLayer,
@@ -197,7 +209,8 @@ extern_methods!(
         #[cfg(feature = "objc2-av-foundation")]
         #[cfg(not(target_os = "watchos"))]
         /// The receiver's player layer.
-        #[method_id(@__method_family Other playerLayer)]
+        #[unsafe(method_family(none))]
+        #[method_id(playerLayer)]
         pub unsafe fn playerLayer(&self) -> Option<Retained<AVPlayerLayer>>;
     }
 );

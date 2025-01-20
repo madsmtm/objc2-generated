@@ -36,7 +36,8 @@ unsafe impl NSObjectProtocol for UIGraphicsPDFRendererFormat {}
 extern_methods!(
     #[cfg(feature = "UIGraphicsRenderer")]
     unsafe impl UIGraphicsPDFRendererFormat {
-        #[method_id(@__method_family Other documentInfo)]
+        #[unsafe(method_family(none))]
+        #[method_id(documentInfo)]
         pub unsafe fn documentInfo(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         /// Setter for [`documentInfo`][Self::documentInfo].
@@ -50,10 +51,12 @@ extern_methods!(
     #[cfg(feature = "UIGraphicsRenderer")]
     unsafe impl UIGraphicsPDFRendererFormat {
         #[deprecated]
-        #[method_id(@__method_family Other defaultFormat)]
+        #[unsafe(method_family(none))]
+        #[method_id(defaultFormat)]
         pub unsafe fn defaultFormat() -> Retained<Self>;
 
-        #[method_id(@__method_family Other preferredFormat)]
+        #[unsafe(method_family(none))]
+        #[method_id(preferredFormat)]
         pub unsafe fn preferredFormat() -> Retained<Self>;
     }
 );
@@ -62,10 +65,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UIGraphicsRenderer")]
     unsafe impl UIGraphicsPDFRendererFormat {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -117,10 +122,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UIGraphicsRenderer")]
     unsafe impl UIGraphicsPDFRendererContext {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -140,7 +147,8 @@ extern_methods!(
     #[cfg(feature = "UIGraphicsRenderer")]
     unsafe impl UIGraphicsPDFRenderer {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Init initWithBounds:format:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithBounds:format:)]
         pub unsafe fn initWithBounds_format(
             this: Allocated<Self>,
             bounds: CGRect,
@@ -156,7 +164,8 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "block2")]
-        #[method_id(@__method_family Other PDFDataWithActions:)]
+        #[unsafe(method_family(none))]
+        #[method_id(PDFDataWithActions:)]
         pub unsafe fn PDFDataWithActions(
             &self,
             actions: UIGraphicsPDFDrawingActions,
@@ -169,7 +178,8 @@ extern_methods!(
     #[cfg(feature = "UIGraphicsRenderer")]
     unsafe impl UIGraphicsPDFRenderer {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Init initWithBounds:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithBounds:)]
         pub unsafe fn initWithBounds(this: Allocated<Self>, bounds: CGRect) -> Retained<Self>;
     }
 );
@@ -178,10 +188,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UIGraphicsRenderer")]
     unsafe impl UIGraphicsPDFRenderer {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -22,17 +22,21 @@ unsafe impl NSSecureCoding for CLMonitoringRecord {}
 extern_methods!(
     unsafe impl CLMonitoringRecord {
         #[cfg(feature = "CLCondition")]
-        #[method_id(@__method_family Other condition)]
+        #[unsafe(method_family(none))]
+        #[method_id(condition)]
         pub unsafe fn condition(&self) -> Retained<CLCondition>;
 
         #[cfg(feature = "CLMonitoringEvent")]
-        #[method_id(@__method_family Other lastEvent)]
+        #[unsafe(method_family(none))]
+        #[method_id(lastEvent)]
         pub unsafe fn lastEvent(&self) -> Retained<CLMonitoringEvent>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -85,7 +85,8 @@ unsafe impl SCNAnimatable for SCNMaterialProperty {}
 extern_methods!(
     unsafe impl SCNMaterialProperty {
         /// Creates and initialize a property instance with the specified contents.
-        #[method_id(@__method_family Other materialPropertyWithContents:)]
+        #[unsafe(method_family(none))]
+        #[method_id(materialPropertyWithContents:)]
         pub unsafe fn materialPropertyWithContents(contents: &AnyObject) -> Retained<Self>;
 
         /// Specifies the receiver's contents. This can be a color (NSColor, UIColor, CGColorRef), an image (NSImage, UIImage, CGImageRef), a layer (CALayer), a path (NSString or NSURL), a SpriteKit scene (SKScene), a texture (SKTexture, id
@@ -98,7 +99,8 @@ extern_methods!(
         /// 2. A vertical strip image                            where `    image.height == 6 * image.width`
         /// 3. A spherical projection image (latitude/longitude) where `2 * image.height ==     image.width`
         /// 4. A NSArray of 6 images. This array must contain images of the exact same dimensions, in the following order, in a left-handed coordinate system: +X, -X, +Y, -Y, +Z, -Z (or Right, Left, Top, Bottom, Front, Back).
-        #[method_id(@__method_family Other contents)]
+        #[unsafe(method_family(none))]
+        #[method_id(contents)]
         pub unsafe fn contents(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`contents`][Self::contents].
@@ -210,13 +212,15 @@ extern_methods!(
         pub unsafe fn setMaxAnisotropy(&self, max_anisotropy: CGFloat);
 
         /// Returns an object suitable for a scene's `lightingEnvironment.contents` and initialized with data that was previously created by `+precomputedLightingEnvironmentDataForContents:device:error:`.
-        #[method_id(@__method_family Other precomputedLightingEnvironmentContentsWithURL:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(precomputedLightingEnvironmentContentsWithURL:error:_)]
         pub unsafe fn precomputedLightingEnvironmentContentsWithURL_error(
             url: &NSURL,
         ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
         /// Returns an object suitable for a scene's `lightingEnvironment.contents` and initialized with data that was previously created by `+precomputedLightingEnvironmentDataForContents:device:error:`.
-        #[method_id(@__method_family Other precomputedLightingEnvironmentContentsWithData:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(precomputedLightingEnvironmentContentsWithData:error:_)]
         pub unsafe fn precomputedLightingEnvironmentContentsWithData_error(
             data: &NSData,
         ) -> Result<Retained<AnyObject>, Retained<NSError>>;
@@ -226,7 +230,8 @@ extern_methods!(
         /// Returns an `NSData` instance containing the result of CPU and GPU-intensive operations that is suitable for caching.
         ///
         /// This method can be leveraged in a custom offline asset pipeline, or at run time at a convenient time before the scene is presented to the user.
-        #[method_id(@__method_family Other precomputedLightingEnvironmentDataForContents:device:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(precomputedLightingEnvironmentDataForContents:device:error:_)]
         pub unsafe fn precomputedLightingEnvironmentDataForContents_device_error(
             contents: &AnyObject,
             device: Option<&ProtocolObject<dyn MTLDevice>>,
@@ -237,10 +242,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNMaterialProperty {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

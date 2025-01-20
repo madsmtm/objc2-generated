@@ -29,11 +29,13 @@ extern_methods!(
     #[cfg(feature = "HMCameraSource")]
     unsafe impl HMCameraSnapshot {
         /// Time corresponding to the snapshot request.
-        #[method_id(@__method_family Other captureDate)]
+        #[unsafe(method_family(none))]
+        #[method_id(captureDate)]
         pub unsafe fn captureDate(&self) -> Retained<NSDate>;
 
         #[deprecated = "HMCameraSnapshot objects are created by their parent container objects. Directly creating them is not supported."]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -42,7 +44,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "HMCameraSource")]
     unsafe impl HMCameraSnapshot {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

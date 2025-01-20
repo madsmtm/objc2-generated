@@ -29,12 +29,14 @@ unsafe impl NSObjectProtocol for MTLLinkedFunctions {}
 extern_methods!(
     unsafe impl MTLLinkedFunctions {
         /// Create an autoreleased MTLLinkedFunctions object.
-        #[method_id(@__method_family Other linkedFunctions)]
+        #[unsafe(method_family(none))]
+        #[method_id(linkedFunctions)]
         pub fn linkedFunctions() -> Retained<MTLLinkedFunctions>;
 
         #[cfg(feature = "MTLLibrary")]
         /// The array of functions to be AIR linked.
-        #[method_id(@__method_family Other functions)]
+        #[unsafe(method_family(none))]
+        #[method_id(functions)]
         pub fn functions(&self) -> Option<Retained<NSArray<ProtocolObject<dyn MTLFunction>>>>;
 
         #[cfg(feature = "MTLLibrary")]
@@ -44,7 +46,8 @@ extern_methods!(
 
         #[cfg(feature = "MTLLibrary")]
         /// The array of functions compiled to binary to be linked.
-        #[method_id(@__method_family Other binaryFunctions)]
+        #[unsafe(method_family(none))]
+        #[method_id(binaryFunctions)]
         pub fn binaryFunctions(&self)
             -> Option<Retained<NSArray<ProtocolObject<dyn MTLFunction>>>>;
 
@@ -58,7 +61,8 @@ extern_methods!(
 
         #[cfg(feature = "MTLLibrary")]
         /// Groups of functions, grouped to match callsites in the shader code.
-        #[method_id(@__method_family Other groups)]
+        #[unsafe(method_family(none))]
+        #[method_id(groups)]
         pub fn groups(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, NSArray<ProtocolObject<dyn MTLFunction>>>>>;
@@ -76,7 +80,8 @@ extern_methods!(
         ///
         /// These functions are not exported by the pipeline state as MTLFunctionHandle objects.
         /// Function pointer support is not required to link private functions.
-        #[method_id(@__method_family Other privateFunctions)]
+        #[unsafe(method_family(none))]
+        #[method_id(privateFunctions)]
         pub fn privateFunctions(
             &self,
         ) -> Option<Retained<NSArray<ProtocolObject<dyn MTLFunction>>>>;
@@ -94,10 +99,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLLinkedFunctions {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub fn new() -> Retained<Self>;
     }
 );

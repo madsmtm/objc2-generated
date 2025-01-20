@@ -47,7 +47,8 @@ unsafe impl NSObjectProtocol for NSFetchIndexElementDescription {}
 extern_methods!(
     unsafe impl NSFetchIndexElementDescription {
         #[cfg(feature = "NSPropertyDescription")]
-        #[method_id(@__method_family Init initWithProperty:collationType:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithProperty:collationType:)]
         pub unsafe fn initWithProperty_collationType(
             this: Allocated<Self>,
             property: &NSPropertyDescription,
@@ -55,10 +56,12 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSPropertyDescription")]
-        #[method_id(@__method_family Other property)]
+        #[unsafe(method_family(none))]
+        #[method_id(property)]
         pub unsafe fn property(&self) -> Option<Retained<NSPropertyDescription>>;
 
-        #[method_id(@__method_family Other propertyName)]
+        #[unsafe(method_family(none))]
+        #[method_id(propertyName)]
         pub unsafe fn propertyName(&self) -> Option<Retained<NSString>>;
 
         #[method(collationType)]
@@ -76,7 +79,8 @@ extern_methods!(
         pub unsafe fn setAscending(&self, ascending: bool);
 
         #[cfg(feature = "NSFetchIndexDescription")]
-        #[method_id(@__method_family Other indexDescription)]
+        #[unsafe(method_family(none))]
+        #[method_id(indexDescription)]
         pub unsafe fn indexDescription(&self) -> Option<Retained<NSFetchIndexDescription>>;
     }
 );
@@ -84,10 +88,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSFetchIndexElementDescription {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

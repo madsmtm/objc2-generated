@@ -46,7 +46,8 @@ unsafe impl VNRequestRevisionProviding for VNObservation {}
 extern_methods!(
     unsafe impl VNObservation {
         /// The unique identifier assigned to an observation.
-        #[method_id(@__method_family Other uuid)]
+        #[unsafe(method_family(none))]
+        #[method_id(uuid)]
         pub unsafe fn uuid(&self) -> Retained<NSUUID>;
 
         #[cfg(feature = "VNTypes")]
@@ -68,10 +69,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNObservation {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -106,11 +109,13 @@ extern_methods!(
     unsafe impl VNDetectedObjectObservation {
         #[cfg(feature = "objc2-core-foundation")]
         /// create a new VNDetectedObjectObservation with a normalized bounding box and a confidence of 1.0.
-        #[method_id(@__method_family Other observationWithBoundingBox:)]
+        #[unsafe(method_family(none))]
+        #[method_id(observationWithBoundingBox:)]
         pub unsafe fn observationWithBoundingBox(bounding_box: CGRect) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Other observationWithRequestRevision:boundingBox:)]
+        #[unsafe(method_family(none))]
+        #[method_id(observationWithRequestRevision:boundingBox:)]
         pub unsafe fn observationWithRequestRevision_boundingBox(
             request_revision: NSUInteger,
             bounding_box: CGRect,
@@ -122,7 +127,8 @@ extern_methods!(
         pub unsafe fn boundingBox(&self) -> CGRect;
 
         /// The resulting CVPixelBuffer from requests that generate a segmentation mask for the entire image.
-        #[method_id(@__method_family Other globalSegmentationMask)]
+        #[unsafe(method_family(none))]
+        #[method_id(globalSegmentationMask)]
         pub unsafe fn globalSegmentationMask(&self) -> Option<Retained<VNPixelBufferObservation>>;
     }
 );
@@ -130,10 +136,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNDetectedObjectObservation {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -177,7 +185,8 @@ extern_methods!(
         ///
         /// Parameter `pitch`: The pitch angle of the face, reported in radians.  A positive angle corresponds to nodding head down direction, range [-Pi/2, Pi/2]. If no pitch information is available, this parameter should be nil.
         #[deprecated]
-        #[method_id(@__method_family Other faceObservationWithRequestRevision:boundingBox:roll:yaw:)]
+        #[unsafe(method_family(none))]
+        #[method_id(faceObservationWithRequestRevision:boundingBox:roll:yaw:)]
         pub unsafe fn faceObservationWithRequestRevision_boundingBox_roll_yaw(
             request_revision: NSUInteger,
             bounding_box: CGRect,
@@ -186,7 +195,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Other faceObservationWithRequestRevision:boundingBox:roll:yaw:pitch:)]
+        #[unsafe(method_family(none))]
+        #[method_id(faceObservationWithRequestRevision:boundingBox:roll:yaw:pitch:)]
         pub unsafe fn faceObservationWithRequestRevision_boundingBox_roll_yaw_pitch(
             request_revision: NSUInteger,
             bounding_box: CGRect,
@@ -197,23 +207,28 @@ extern_methods!(
 
         #[cfg(feature = "VNFaceLandmarks")]
         /// The face landmarks populated by the VNDetectFaceLandmarksRequest. This is set to nil if only a VNDetectFaceRectanglesRequest was performed.
-        #[method_id(@__method_family Other landmarks)]
+        #[unsafe(method_family(none))]
+        #[method_id(landmarks)]
         pub unsafe fn landmarks(&self) -> Option<Retained<VNFaceLandmarks2D>>;
 
         /// The capture quality of the face as a normalized value between 0.0 and 1.0 that can be used to compare the quality of the face in terms of it capture attributes (lighting, blur, position). This score can be used to compare the capture quality of a face against other captures of the same face in a given set.
-        #[method_id(@__method_family Other faceCaptureQuality)]
+        #[unsafe(method_family(none))]
+        #[method_id(faceCaptureQuality)]
         pub unsafe fn faceCaptureQuality(&self) -> Option<Retained<NSNumber>>;
 
         /// Face roll angle populated by VNDetectFaceRectanglesRequest. The roll is reported in radians, positive angle corresponds to counterclockwise direction, range [-Pi, Pi). nil value indicates that the roll angle hasn't been computed
-        #[method_id(@__method_family Other roll)]
+        #[unsafe(method_family(none))]
+        #[method_id(roll)]
         pub unsafe fn roll(&self) -> Option<Retained<NSNumber>>;
 
         /// Face yaw angle populated by VNDetectFaceRectanglesRequest. The yaw is reported in radians, positive angle corresponds to counterclockwise direction, range [-Pi/2, Pi/2]. nil value indicates that the yaw angle hasn't been computed
-        #[method_id(@__method_family Other yaw)]
+        #[unsafe(method_family(none))]
+        #[method_id(yaw)]
         pub unsafe fn yaw(&self) -> Option<Retained<NSNumber>>;
 
         /// Face pitch angle populated by VNDetectFaceRectanglesRequest. The pitch is reported in radians, positive angle corresponds to nodding head down direction, range [-Pi/2, Pi/2]. nil value indicates that the pitch angle hasn't been computed
-        #[method_id(@__method_family Other pitch)]
+        #[unsafe(method_family(none))]
+        #[method_id(pitch)]
         pub unsafe fn pitch(&self) -> Option<Retained<NSNumber>>;
     }
 );
@@ -223,11 +238,13 @@ extern_methods!(
     unsafe impl VNFaceObservation {
         #[cfg(feature = "objc2-core-foundation")]
         /// create a new VNDetectedObjectObservation with a normalized bounding box and a confidence of 1.0.
-        #[method_id(@__method_family Other observationWithBoundingBox:)]
+        #[unsafe(method_family(none))]
+        #[method_id(observationWithBoundingBox:)]
         pub unsafe fn observationWithBoundingBox(bounding_box: CGRect) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Other observationWithRequestRevision:boundingBox:)]
+        #[unsafe(method_family(none))]
+        #[method_id(observationWithRequestRevision:boundingBox:)]
         pub unsafe fn observationWithRequestRevision_boundingBox(
             request_revision: NSUInteger,
             bounding_box: CGRect,
@@ -238,10 +255,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNFaceObservation {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -275,7 +294,8 @@ unsafe impl VNRequestRevisionProviding for VNClassificationObservation {}
 extern_methods!(
     unsafe impl VNClassificationObservation {
         /// The is the label or identifier of a classification request. An example classification could be a string like 'cat' or 'hotdog'. The string is defined in the model that was used for the classification. Usually these are technical labels that are not localized and not meant to be used directly to be presented to an end user in the UI.
-        #[method_id(@__method_family Other identifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
     }
 );
@@ -283,10 +303,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNClassificationObservation {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -365,7 +387,8 @@ unsafe impl VNRequestRevisionProviding for VNRecognizedObjectObservation {}
 
 extern_methods!(
     unsafe impl VNRecognizedObjectObservation {
-        #[method_id(@__method_family Other labels)]
+        #[unsafe(method_family(none))]
+        #[method_id(labels)]
         pub unsafe fn labels(&self) -> Retained<NSArray<VNClassificationObservation>>;
     }
 );
@@ -375,11 +398,13 @@ extern_methods!(
     unsafe impl VNRecognizedObjectObservation {
         #[cfg(feature = "objc2-core-foundation")]
         /// create a new VNDetectedObjectObservation with a normalized bounding box and a confidence of 1.0.
-        #[method_id(@__method_family Other observationWithBoundingBox:)]
+        #[unsafe(method_family(none))]
+        #[method_id(observationWithBoundingBox:)]
         pub unsafe fn observationWithBoundingBox(bounding_box: CGRect) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Other observationWithRequestRevision:boundingBox:)]
+        #[unsafe(method_family(none))]
+        #[method_id(observationWithRequestRevision:boundingBox:)]
         pub unsafe fn observationWithRequestRevision_boundingBox(
             request_revision: NSUInteger,
             bounding_box: CGRect,
@@ -390,10 +415,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNRecognizedObjectObservation {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -428,11 +455,13 @@ extern_methods!(
     unsafe impl VNCoreMLFeatureValueObservation {
         #[cfg(feature = "objc2-core-ml")]
         /// The result VNCoreMLRequest where the model produces an MLFeatureValue that is neither a classification or image. Refer to the Core ML documentation and the model itself for the handling of the content of the featureValue.
-        #[method_id(@__method_family Other featureValue)]
+        #[unsafe(method_family(none))]
+        #[method_id(featureValue)]
         pub unsafe fn featureValue(&self) -> Retained<MLFeatureValue>;
 
         /// The name used in the model description of the CoreML model that produced this observation allowing to correlate the observation back to the output of the model.
-        #[method_id(@__method_family Other featureName)]
+        #[unsafe(method_family(none))]
+        #[method_id(featureName)]
         pub unsafe fn featureName(&self) -> Retained<NSString>;
     }
 );
@@ -440,10 +469,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNCoreMLFeatureValueObservation {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -478,11 +509,13 @@ extern_methods!(
     unsafe impl VNPixelBufferObservation {
         #[cfg(feature = "objc2-core-video")]
         /// The resulting image from a request like VNCoreMLRequest where the model produces an image as an output.
-        #[method_id(@__method_family Other pixelBuffer)]
+        #[unsafe(method_family(none))]
+        #[method_id(pixelBuffer)]
         pub unsafe fn pixelBuffer(&self) -> Retained<CVPixelBuffer>;
 
         /// The name used in the model description of the CoreML model that produced this observation allowing to correlate the observation back to the output of the model. This can be nil if the observation is not the result of a VNCoreMLRequest operation.
-        #[method_id(@__method_family Other featureName)]
+        #[unsafe(method_family(none))]
+        #[method_id(featureName)]
         pub unsafe fn featureName(&self) -> Option<Retained<NSString>>;
     }
 );
@@ -490,10 +523,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNPixelBufferObservation {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -542,7 +577,8 @@ extern_methods!(
         ///
         /// Parameter `topRight`: The top-right corner of the rectangle in normalized coordinate space.
         #[deprecated]
-        #[method_id(@__method_family Other rectangleObservationWithRequestRevision:topLeft:bottomLeft:bottomRight:topRight:)]
+        #[unsafe(method_family(none))]
+        #[method_id(rectangleObservationWithRequestRevision:topLeft:bottomLeft:bottomRight:topRight:)]
         pub unsafe fn rectangleObservationWithRequestRevision_topLeft_bottomLeft_bottomRight_topRight(
             request_revision: NSUInteger,
             top_left: CGPoint,
@@ -564,7 +600,8 @@ extern_methods!(
         /// Parameter `bottomRight`: The bottom-right corner of the rectangle in normalized coordinate space.
         ///
         /// Parameter `bottomLeft`: The bottom-left corner of the rectangle in normalized coordinate space.
-        #[method_id(@__method_family Other rectangleObservationWithRequestRevision:topLeft:topRight:bottomRight:bottomLeft:)]
+        #[unsafe(method_family(none))]
+        #[method_id(rectangleObservationWithRequestRevision:topLeft:topRight:bottomRight:bottomLeft:)]
         pub unsafe fn rectangleObservationWithRequestRevision_topLeft_topRight_bottomRight_bottomLeft(
             request_revision: NSUInteger,
             top_left: CGPoint,
@@ -596,11 +633,13 @@ extern_methods!(
     unsafe impl VNRectangleObservation {
         #[cfg(feature = "objc2-core-foundation")]
         /// create a new VNDetectedObjectObservation with a normalized bounding box and a confidence of 1.0.
-        #[method_id(@__method_family Other observationWithBoundingBox:)]
+        #[unsafe(method_family(none))]
+        #[method_id(observationWithBoundingBox:)]
         pub unsafe fn observationWithBoundingBox(bounding_box: CGRect) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Other observationWithRequestRevision:boundingBox:)]
+        #[unsafe(method_family(none))]
+        #[method_id(observationWithRequestRevision:boundingBox:)]
         pub unsafe fn observationWithRequestRevision_boundingBox(
             request_revision: NSUInteger,
             bounding_box: CGRect,
@@ -611,10 +650,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNRectangleObservation {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -649,14 +690,16 @@ extern_methods!(
         /// The centroids of the contour being detected along the trajectory.
         ///
         /// These are the unprocessed centroid points of the detected contour that is tracked on the trajectory. The points may be slightly off the ideal trajectory as these are the measured points that fall within the allowed tolerance. The maximum number or past points is limited by the maximum trajectory length set in the request.
-        #[method_id(@__method_family Other detectedPoints)]
+        #[unsafe(method_family(none))]
+        #[method_id(detectedPoints)]
         pub unsafe fn detectedPoints(&self) -> Retained<NSArray<VNPoint>>;
 
         #[cfg(feature = "VNGeometry")]
         /// The centroids of  the calculated trajectory from the detected points.
         ///
         /// These are the calculated centroid points along the ideal trajectory described by the parabolic equation. The equation and the projected points of the detected trajectory get refined over time. The maximum number of cached points is limited by the maximum points needed to describe the trajectory together with the parabolic equation.
-        #[method_id(@__method_family Other projectedPoints)]
+        #[unsafe(method_family(none))]
+        #[method_id(projectedPoints)]
         pub unsafe fn projectedPoints(&self) -> Retained<NSArray<VNPoint>>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -671,10 +714,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNTrajectoryObservation {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -714,7 +759,8 @@ extern_methods!(
         ///
         /// If the associated request indicated that it is interested in character boxes by setting the VNDetectTextRectanglesRequest reportCharacterBoxes property to
         /// `true`, this property will be non-nil (but may still be empty, depending on the detection results).
-        #[method_id(@__method_family Other characterBoxes)]
+        #[unsafe(method_family(none))]
+        #[method_id(characterBoxes)]
         pub unsafe fn characterBoxes(&self) -> Option<Retained<NSArray<VNRectangleObservation>>>;
     }
 );
@@ -738,7 +784,8 @@ extern_methods!(
         ///
         /// Parameter `topRight`: The top-right corner of the rectangle in normalized coordinate space.
         #[deprecated]
-        #[method_id(@__method_family Other rectangleObservationWithRequestRevision:topLeft:bottomLeft:bottomRight:topRight:)]
+        #[unsafe(method_family(none))]
+        #[method_id(rectangleObservationWithRequestRevision:topLeft:bottomLeft:bottomRight:topRight:)]
         pub unsafe fn rectangleObservationWithRequestRevision_topLeft_bottomLeft_bottomRight_topRight(
             request_revision: NSUInteger,
             top_left: CGPoint,
@@ -760,7 +807,8 @@ extern_methods!(
         /// Parameter `bottomRight`: The bottom-right corner of the rectangle in normalized coordinate space.
         ///
         /// Parameter `bottomLeft`: The bottom-left corner of the rectangle in normalized coordinate space.
-        #[method_id(@__method_family Other rectangleObservationWithRequestRevision:topLeft:topRight:bottomRight:bottomLeft:)]
+        #[unsafe(method_family(none))]
+        #[method_id(rectangleObservationWithRequestRevision:topLeft:topRight:bottomRight:bottomLeft:)]
         pub unsafe fn rectangleObservationWithRequestRevision_topLeft_topRight_bottomRight_bottomLeft(
             request_revision: NSUInteger,
             top_left: CGPoint,
@@ -776,11 +824,13 @@ extern_methods!(
     unsafe impl VNTextObservation {
         #[cfg(feature = "objc2-core-foundation")]
         /// create a new VNDetectedObjectObservation with a normalized bounding box and a confidence of 1.0.
-        #[method_id(@__method_family Other observationWithBoundingBox:)]
+        #[unsafe(method_family(none))]
+        #[method_id(observationWithBoundingBox:)]
         pub unsafe fn observationWithBoundingBox(bounding_box: CGRect) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Other observationWithRequestRevision:boundingBox:)]
+        #[unsafe(method_family(none))]
+        #[method_id(observationWithRequestRevision:boundingBox:)]
         pub unsafe fn observationWithRequestRevision_boundingBox(
             request_revision: NSUInteger,
             bounding_box: CGRect,
@@ -791,10 +841,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNTextObservation {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -828,7 +880,8 @@ extern_methods!(
         /// Field that contains recognized text.
         ///
         /// This is the top candidate of the recognized text.
-        #[method_id(@__method_family Other string)]
+        #[unsafe(method_family(none))]
+        #[method_id(string)]
         pub fn string(&self) -> Retained<NSString>;
 
         #[cfg(feature = "VNTypes")]
@@ -841,10 +894,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNRecognizedText {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -883,7 +938,8 @@ extern_methods!(
         /// Returns the top N candidates sorted by decreasing confidence score
         ///
         /// This will return no more than N but can be less than N candidates. The maximum number of candidates returned cannot exceed 10 candidates.
-        #[method_id(@__method_family Other topCandidates:)]
+        #[unsafe(method_family(none))]
+        #[method_id(topCandidates:)]
         pub fn topCandidates(
             &self,
             max_candidate_count: NSUInteger,
@@ -910,7 +966,8 @@ extern_methods!(
         ///
         /// Parameter `topRight`: The top-right corner of the rectangle in normalized coordinate space.
         #[deprecated]
-        #[method_id(@__method_family Other rectangleObservationWithRequestRevision:topLeft:bottomLeft:bottomRight:topRight:)]
+        #[unsafe(method_family(none))]
+        #[method_id(rectangleObservationWithRequestRevision:topLeft:bottomLeft:bottomRight:topRight:)]
         pub unsafe fn rectangleObservationWithRequestRevision_topLeft_bottomLeft_bottomRight_topRight(
             request_revision: NSUInteger,
             top_left: CGPoint,
@@ -932,7 +989,8 @@ extern_methods!(
         /// Parameter `bottomRight`: The bottom-right corner of the rectangle in normalized coordinate space.
         ///
         /// Parameter `bottomLeft`: The bottom-left corner of the rectangle in normalized coordinate space.
-        #[method_id(@__method_family Other rectangleObservationWithRequestRevision:topLeft:topRight:bottomRight:bottomLeft:)]
+        #[unsafe(method_family(none))]
+        #[method_id(rectangleObservationWithRequestRevision:topLeft:topRight:bottomRight:bottomLeft:)]
         pub unsafe fn rectangleObservationWithRequestRevision_topLeft_topRight_bottomRight_bottomLeft(
             request_revision: NSUInteger,
             top_left: CGPoint,
@@ -948,11 +1006,13 @@ extern_methods!(
     unsafe impl VNRecognizedTextObservation {
         #[cfg(feature = "objc2-core-foundation")]
         /// create a new VNDetectedObjectObservation with a normalized bounding box and a confidence of 1.0.
-        #[method_id(@__method_family Other observationWithBoundingBox:)]
+        #[unsafe(method_family(none))]
+        #[method_id(observationWithBoundingBox:)]
         pub unsafe fn observationWithBoundingBox(bounding_box: CGRect) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Other observationWithRequestRevision:boundingBox:)]
+        #[unsafe(method_family(none))]
+        #[method_id(observationWithRequestRevision:boundingBox:)]
         pub unsafe fn observationWithRequestRevision_boundingBox(
             request_revision: NSUInteger,
             bounding_box: CGRect,
@@ -963,10 +1023,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNRecognizedTextObservation {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -1004,20 +1066,24 @@ extern_methods!(
     unsafe impl VNBarcodeObservation {
         #[cfg(feature = "VNTypes")]
         /// The symbology of the detected barcode.
-        #[method_id(@__method_family Other symbology)]
+        #[unsafe(method_family(none))]
+        #[method_id(symbology)]
         pub unsafe fn symbology(&self) -> Retained<VNBarcodeSymbology>;
 
         #[cfg(feature = "objc2-core-image")]
         /// An object that provides symbology-specific data for the barcode.
-        #[method_id(@__method_family Other barcodeDescriptor)]
+        #[unsafe(method_family(none))]
+        #[method_id(barcodeDescriptor)]
         pub unsafe fn barcodeDescriptor(&self) -> Option<Retained<CIBarcodeDescriptor>>;
 
         /// The string representation of the barcode's payload.  Depending on the symbology of the barcode and/or the payload data itself, a string representation of the payload may not be available.
-        #[method_id(@__method_family Other payloadStringValue)]
+        #[unsafe(method_family(none))]
+        #[method_id(payloadStringValue)]
         pub unsafe fn payloadStringValue(&self) -> Option<Retained<NSString>>;
 
         /// The raw data representation of the barcode's payload if available.
-        #[method_id(@__method_family Other payloadData)]
+        #[unsafe(method_family(none))]
+        #[method_id(payloadData)]
         pub unsafe fn payloadData(&self) -> Option<Retained<NSData>>;
 
         /// Boolean indicating if the barcode carries any GS1 application specific data
@@ -1036,12 +1102,14 @@ extern_methods!(
 
         /// Decode the supplemental code in the descriptor as a string value. Note: this property might be expensive the first time it is accessed
         /// When non-NULL, and if the descriptor has supplemental raw payload data, the pointee will be set to the decoded supplemental payload string value.
-        #[method_id(@__method_family Other supplementalPayloadString)]
+        #[unsafe(method_family(none))]
+        #[method_id(supplementalPayloadString)]
         pub unsafe fn supplementalPayloadString(&self) -> Option<Retained<NSString>>;
 
         /// Decode the supplemental code in the descriptor as a string value. Note: this property might be expensive the first time it is accessed
         /// When non-NULL, and if the descriptor has supplemental raw payload data, the pointee will be set to the decoded supplemental payload raw data value.
-        #[method_id(@__method_family Other supplementalPayloadData)]
+        #[unsafe(method_family(none))]
+        #[method_id(supplementalPayloadData)]
         pub unsafe fn supplementalPayloadData(&self) -> Option<Retained<NSData>>;
     }
 );
@@ -1065,7 +1133,8 @@ extern_methods!(
         ///
         /// Parameter `topRight`: The top-right corner of the rectangle in normalized coordinate space.
         #[deprecated]
-        #[method_id(@__method_family Other rectangleObservationWithRequestRevision:topLeft:bottomLeft:bottomRight:topRight:)]
+        #[unsafe(method_family(none))]
+        #[method_id(rectangleObservationWithRequestRevision:topLeft:bottomLeft:bottomRight:topRight:)]
         pub unsafe fn rectangleObservationWithRequestRevision_topLeft_bottomLeft_bottomRight_topRight(
             request_revision: NSUInteger,
             top_left: CGPoint,
@@ -1087,7 +1156,8 @@ extern_methods!(
         /// Parameter `bottomRight`: The bottom-right corner of the rectangle in normalized coordinate space.
         ///
         /// Parameter `bottomLeft`: The bottom-left corner of the rectangle in normalized coordinate space.
-        #[method_id(@__method_family Other rectangleObservationWithRequestRevision:topLeft:topRight:bottomRight:bottomLeft:)]
+        #[unsafe(method_family(none))]
+        #[method_id(rectangleObservationWithRequestRevision:topLeft:topRight:bottomRight:bottomLeft:)]
         pub unsafe fn rectangleObservationWithRequestRevision_topLeft_topRight_bottomRight_bottomLeft(
             request_revision: NSUInteger,
             top_left: CGPoint,
@@ -1103,11 +1173,13 @@ extern_methods!(
     unsafe impl VNBarcodeObservation {
         #[cfg(feature = "objc2-core-foundation")]
         /// create a new VNDetectedObjectObservation with a normalized bounding box and a confidence of 1.0.
-        #[method_id(@__method_family Other observationWithBoundingBox:)]
+        #[unsafe(method_family(none))]
+        #[method_id(observationWithBoundingBox:)]
         pub unsafe fn observationWithBoundingBox(bounding_box: CGRect) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Other observationWithRequestRevision:boundingBox:)]
+        #[unsafe(method_family(none))]
+        #[method_id(observationWithRequestRevision:boundingBox:)]
         pub unsafe fn observationWithRequestRevision_boundingBox(
             request_revision: NSUInteger,
             bounding_box: CGRect,
@@ -1118,10 +1190,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNBarcodeObservation {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -1180,10 +1254,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNHorizonObservation {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -1219,10 +1295,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNImageAlignmentObservation {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -1262,10 +1340,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNImageTranslationAlignmentObservation {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -1301,10 +1381,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNImageHomographicAlignmentObservation {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -1338,7 +1420,8 @@ unsafe impl VNRequestRevisionProviding for VNSaliencyImageObservation {}
 extern_methods!(
     unsafe impl VNSaliencyImageObservation {
         /// An array of bounds of salient objects within the image. Each box represents a distinct mode of the heat map.
-        #[method_id(@__method_family Other salientObjects)]
+        #[unsafe(method_family(none))]
+        #[method_id(salientObjects)]
         pub unsafe fn salientObjects(&self) -> Option<Retained<NSArray<VNRectangleObservation>>>;
     }
 );
@@ -1346,10 +1429,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNSaliencyImageObservation {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -1388,7 +1473,8 @@ extern_methods!(
         pub unsafe fn elementCount(&self) -> NSUInteger;
 
         /// The feature print data.
-        #[method_id(@__method_family Other data)]
+        #[unsafe(method_family(none))]
+        #[method_id(data)]
         pub unsafe fn data(&self) -> Retained<NSData>;
 
         /// Computes the distance between two observations.
@@ -1406,10 +1492,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNFeaturePrintObservation {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -1450,7 +1538,8 @@ extern_methods!(
         /// Parameter `error`: The error returned if the index path is out of range.
         ///
         /// Returns: The detected VNContour at the specified index without regard to hierarchy.
-        #[method_id(@__method_family Other contourAtIndex:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(contourAtIndex:error:_)]
         pub unsafe fn contourAtIndex_error(
             &self,
             contour_index: NSInteger,
@@ -1466,7 +1555,8 @@ extern_methods!(
         /// This array constitutes the top of the contour hierarchy. Each contour object can be further iterated to determine its children.
         ///
         /// See: VNContour for more information.
-        #[method_id(@__method_family Other topLevelContours)]
+        #[unsafe(method_family(none))]
+        #[method_id(topLevelContours)]
         pub unsafe fn topLevelContours(&self) -> Retained<NSArray<VNContour>>;
 
         #[cfg(feature = "VNGeometry")]
@@ -1479,7 +1569,8 @@ extern_methods!(
         /// Parameter `error`: The error returned if the index path is out of range.
         ///
         /// Returns: The VNContour object at the specified index path.
-        #[method_id(@__method_family Other contourAtIndexPath:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(contourAtIndexPath:error:_)]
         pub unsafe fn contourAtIndexPath_error(
             &self,
             index_path: &NSIndexPath,
@@ -1489,7 +1580,8 @@ extern_methods!(
         /// Obtain all of the contours represented as a CGPath in normalized coordinates.
         ///
         /// The path is owned by the observation and therefore will be alive as long as the the observation is alive.
-        #[method_id(@__method_family Other normalizedPath)]
+        #[unsafe(method_family(none))]
+        #[method_id(normalizedPath)]
         pub unsafe fn normalizedPath(&self) -> Retained<CGPath>;
     }
 );
@@ -1497,10 +1589,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNContoursObservation {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -1537,20 +1631,24 @@ unsafe impl VNRequestRevisionProviding for VNRecognizedPointsObservation {}
 
 extern_methods!(
     unsafe impl VNRecognizedPointsObservation {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VNTypes")]
         /// Returns all of the point group keys available in the observation.
-        #[method_id(@__method_family Other availableKeys)]
+        #[unsafe(method_family(none))]
+        #[method_id(availableKeys)]
         pub unsafe fn availableKeys(&self) -> Retained<NSArray<VNRecognizedPointKey>>;
 
         #[cfg(feature = "VNTypes")]
         /// The availableGroupKeys property returns all of the point group labels usable with the observation.
-        #[method_id(@__method_family Other availableGroupKeys)]
+        #[unsafe(method_family(none))]
+        #[method_id(availableGroupKeys)]
         pub unsafe fn availableGroupKeys(&self) -> Retained<NSArray<VNRecognizedPointGroupKey>>;
 
         #[cfg(all(
@@ -1568,7 +1666,8 @@ extern_methods!(
         ///
         ///
         /// Returns: the recognized point, or nil if the specific point is not defined.
-        #[method_id(@__method_family Other recognizedPointForKey:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(recognizedPointForKey:error:_)]
         pub unsafe fn recognizedPointForKey_error(
             &self,
             point_key: &VNRecognizedPointKey,
@@ -1590,7 +1689,8 @@ extern_methods!(
         /// Parameter `error`: The address of a variable that will be populated with the error that describes the failure.  If the caller does not require this information, NULL can be passed.
         ///
         /// Returns: the dictionary of recognized points in the group, or nil if an error was encountered.
-        #[method_id(@__method_family Other recognizedPointsForGroupKey:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(recognizedPointsForGroupKey:error:_)]
         pub unsafe fn recognizedPointsForGroupKey_error(
             &self,
             group_key: &VNRecognizedPointGroupKey,
@@ -1611,7 +1711,8 @@ extern_methods!(
         ///
         ///
         /// Returns: the MLMultiArray representation of the points, or nil if an error was encountered.
-        #[method_id(@__method_family Other keypointsMultiArrayAndReturnError:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(keypointsMultiArrayAndReturnError:_)]
         pub unsafe fn keypointsMultiArrayAndReturnError(
             &self,
         ) -> Result<Retained<MLMultiArray>, Retained<NSError>>;
@@ -1655,11 +1756,13 @@ extern_methods!(
     unsafe impl VNHumanObservation {
         #[cfg(feature = "objc2-core-foundation")]
         /// create a new VNDetectedObjectObservation with a normalized bounding box and a confidence of 1.0.
-        #[method_id(@__method_family Other observationWithBoundingBox:)]
+        #[unsafe(method_family(none))]
+        #[method_id(observationWithBoundingBox:)]
         pub unsafe fn observationWithBoundingBox(bounding_box: CGRect) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Other observationWithRequestRevision:boundingBox:)]
+        #[unsafe(method_family(none))]
+        #[method_id(observationWithRequestRevision:boundingBox:)]
         pub unsafe fn observationWithRequestRevision_boundingBox(
             request_revision: NSUInteger,
             bounding_box: CGRect,
@@ -1670,10 +1773,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNHumanObservation {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -1707,11 +1812,13 @@ extern_methods!(
         #[cfg(feature = "objc2-core-video")]
         /// The resulting mask represents all instances in a mask image where 0 represents the background and all other values represent the indices of the instances identified.
         /// Note that a pixel can only correspond to one instance and not multiple instances.
-        #[method_id(@__method_family Other instanceMask)]
+        #[unsafe(method_family(none))]
+        #[method_id(instanceMask)]
         pub unsafe fn instanceMask(&self) -> Retained<CVPixelBuffer>;
 
         /// *The IndexSet that encompases all instances except the background
-        #[method_id(@__method_family Other allInstances)]
+        #[unsafe(method_family(none))]
+        #[method_id(allInstances)]
         pub unsafe fn allInstances(&self) -> Retained<NSIndexSet>;
     }
 );
@@ -1719,10 +1826,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNInstanceMaskObservation {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -1753,14 +1862,16 @@ extern_methods!(
     unsafe impl VNAnimalBodyPoseObservation {
         #[cfg(feature = "VNTypes")]
         /// All animal joint names available in the observation.
-        #[method_id(@__method_family Other availableJointNames)]
+        #[unsafe(method_family(none))]
+        #[method_id(availableJointNames)]
         pub unsafe fn availableJointNames(
             &self,
         ) -> Retained<NSArray<VNAnimalBodyPoseObservationJointName>>;
 
         #[cfg(feature = "VNTypes")]
         /// All animal joints group names available in the observation.
-        #[method_id(@__method_family Other availableJointGroupNames)]
+        #[unsafe(method_family(none))]
+        #[method_id(availableJointGroupNames)]
         pub unsafe fn availableJointGroupNames(
             &self,
         ) -> Retained<NSArray<VNAnimalBodyPoseObservationJointsGroupName>>;
@@ -1778,7 +1889,8 @@ extern_methods!(
         /// Parameter `error`: The address of a variable that will be populated with the error that describes the failure.  If the caller does not require this information, NULL can be passed.
         ///
         /// Returns: the recognized point, or nil if the point could not be obtained.
-        #[method_id(@__method_family Other recognizedPointForJointName:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(recognizedPointForJointName:error:_)]
         pub unsafe fn recognizedPointForJointName_error(
             &self,
             joint_name: &VNAnimalBodyPoseObservationJointName,
@@ -1800,7 +1912,8 @@ extern_methods!(
         /// Parameter `error`: The address of a variable that will be populated with the error that describes the failure.  If the caller does not require this information, NULL can be passed.
         ///
         /// Returns: a dictionary of recognized points in the group, or nil if an error was encountered.
-        #[method_id(@__method_family Other recognizedPointsForJointsGroupName:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(recognizedPointsForJointsGroupName:error:_)]
         pub unsafe fn recognizedPointsForJointsGroupName_error(
             &self,
             joints_group_name: &VNAnimalBodyPoseObservationJointsGroupName,
@@ -1814,10 +1927,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `VNRecognizedPointsObservation`
     unsafe impl VNAnimalBodyPoseObservation {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -1856,20 +1971,24 @@ unsafe impl VNRequestRevisionProviding for VNRecognizedPoints3DObservation {}
 
 extern_methods!(
     unsafe impl VNRecognizedPoints3DObservation {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VNTypes")]
         /// Returns all of the point group keys available in the observation.
-        #[method_id(@__method_family Other availableKeys)]
+        #[unsafe(method_family(none))]
+        #[method_id(availableKeys)]
         pub unsafe fn availableKeys(&self) -> Retained<NSArray<VNRecognizedPointKey>>;
 
         #[cfg(feature = "VNTypes")]
         /// The availableGroupKeys property returns all of the point group labels usable with the observation.
-        #[method_id(@__method_family Other availableGroupKeys)]
+        #[unsafe(method_family(none))]
+        #[method_id(availableGroupKeys)]
         pub unsafe fn availableGroupKeys(&self) -> Retained<NSArray<VNRecognizedPointGroupKey>>;
 
         #[cfg(all(
@@ -1884,7 +2003,8 @@ extern_methods!(
         /// Parameter `error`: The address of a variable that will be populated with the error that describes the failure.  If the caller does not require this information, NULL can be passed.
         ///
         /// Returns: the recognized point, or nil if the specific point is not defined.
-        #[method_id(@__method_family Other recognizedPointForKey:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(recognizedPointForKey:error:_)]
         pub unsafe fn recognizedPointForKey_error(
             &self,
             point_key: &VNRecognizedPointKey,
@@ -1904,7 +2024,8 @@ extern_methods!(
         /// Parameter `error`: The address of a variable that will be populated with the error that describes the failure.  If the caller does not require this information, NULL can be passed.
         ///
         /// Returns: the dictionary of recognized points in the group, or nil if an error was encountered.
-        #[method_id(@__method_family Other recognizedPointsForGroupKey:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(recognizedPointsForGroupKey:error:_)]
         pub unsafe fn recognizedPointsForGroupKey_error(
             &self,
             group_key: &VNRecognizedPointGroupKey,
@@ -1972,14 +2093,16 @@ extern_methods!(
 
         #[cfg(feature = "VNTypes")]
         /// All of the joints group names available in the observation.
-        #[method_id(@__method_family Other availableJointsGroupNames)]
+        #[unsafe(method_family(none))]
+        #[method_id(availableJointsGroupNames)]
         pub unsafe fn availableJointsGroupNames(
             &self,
         ) -> Retained<NSArray<VNHumanBodyPose3DObservationJointsGroupName>>;
 
         #[cfg(feature = "VNTypes")]
         /// All of the joint names available in the observation.
-        #[method_id(@__method_family Other availableJointNames)]
+        #[unsafe(method_family(none))]
+        #[method_id(availableJointNames)]
         pub unsafe fn availableJointNames(
             &self,
         ) -> Retained<NSArray<VNHumanBodyPose3DObservationJointName>>;
@@ -2005,7 +2128,8 @@ extern_methods!(
         /// Parameter `error`: The address of a variable that will be populated with the error that describes the failure.  If the caller does not require this information, NULL can be passed.
         ///
         /// Returns: a dictionary of recognized points in the group, or nil if an error was encountered.
-        #[method_id(@__method_family Other recognizedPointsForJointsGroupName:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(recognizedPointsForJointsGroupName:error:_)]
         pub unsafe fn recognizedPointsForJointsGroupName_error(
             &self,
             joints_group_name: &VNHumanBodyPose3DObservationJointsGroupName,
@@ -2032,7 +2156,8 @@ extern_methods!(
         /// Parameter `error`: The address of a variable that will be populated with the error that describes the failure.  If the caller does not require this information, NULL can be passed.
         ///
         /// Returns: The recognized point, or nil if the point could not be obtained.
-        #[method_id(@__method_family Other recognizedPointForJointName:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(recognizedPointForJointName:error:_)]
         pub unsafe fn recognizedPointForJointName_error(
             &self,
             joint_name: &VNHumanBodyPose3DObservationJointName,
@@ -2044,7 +2169,8 @@ extern_methods!(
         /// Parameter `jointName`: The name of the human body joint
         ///
         /// Returns: A projection of the determined 3D position onto the original 2D image in normalized, lower left origin coordinates
-        #[method_id(@__method_family Other pointInImageForJointName:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(pointInImageForJointName:error:_)]
         pub unsafe fn pointInImageForJointName_error(
             &self,
             joint_name: &VNHumanBodyPose3DObservationJointName,
@@ -2056,7 +2182,8 @@ extern_methods!(
         /// Parameter `jointName`: The name of the human body joint
         ///
         /// Returns: The name of the parent joint
-        #[method_id(@__method_family Other parentJointNameForJointName:)]
+        #[unsafe(method_family(none))]
+        #[method_id(parentJointNameForJointName:)]
         pub unsafe fn parentJointNameForJointName(
             &self,
             joint_name: &VNHumanBodyPose3DObservationJointName,
@@ -2067,10 +2194,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `VNRecognizedPoints3DObservation`
     unsafe impl VNHumanBodyPose3DObservation {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -2101,7 +2230,8 @@ unsafe impl VNRequestRevisionProviding for VNImageAestheticsScoresObservation {}
 
 extern_methods!(
     unsafe impl VNImageAestheticsScoresObservation {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// `isUtility` represents images that are not necessarily of poor image quality but may not have memorable or exciting content. `isUtility` can be true or false.
@@ -2117,7 +2247,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNImageAestheticsScoresObservation {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

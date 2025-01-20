@@ -30,17 +30,20 @@ unsafe impl NSSecureCoding for NSSymbolEffectOptionsRepeatBehavior {}
 
 extern_methods!(
     unsafe impl NSSymbolEffectOptionsRepeatBehavior {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Creates and returns a repeat behavior that prefers to repeat indefinitely using periodic animations.
         /// Periodic animations play the effect at regular intervals starting and stopping each time.
         ///
         /// - Returns: A new behavior that prefers to repeat indefinitely using periodic animations.
-        #[method_id(@__method_family Other behaviorPeriodic)]
+        #[unsafe(method_family(none))]
+        #[method_id(behaviorPeriodic)]
         pub unsafe fn behaviorPeriodic() -> Retained<Self>;
 
         /// Creates and returns a repeat behavior with a preferred play count using periodic animations.
@@ -52,7 +55,8 @@ extern_methods!(
         ///
         /// - Returns: A new behavior with the preferred
         /// play count using periodic animations.
-        #[method_id(@__method_family Other behaviorPeriodicWithCount:)]
+        #[unsafe(method_family(none))]
+        #[method_id(behaviorPeriodicWithCount:)]
         pub unsafe fn behaviorPeriodicWithCount(count: NSInteger) -> Retained<Self>;
 
         /// Creates and returns a repeat behavior with a preferred repeat delay using periodic animations.
@@ -63,7 +67,8 @@ extern_methods!(
         ///
         /// - Returns: A new behavior that prefers to repeat indefinitely
         /// with a specified delay using periodic animations.
-        #[method_id(@__method_family Other behaviorPeriodicWithDelay:)]
+        #[unsafe(method_family(none))]
+        #[method_id(behaviorPeriodicWithDelay:)]
         pub unsafe fn behaviorPeriodicWithDelay(delay: c_double) -> Retained<Self>;
 
         /// Creates and returns a repeat behavior with a preferred play count and delay using periodic animations.
@@ -78,7 +83,8 @@ extern_methods!(
         ///
         /// - Returns: A new behavior with the preferred
         /// play count and delay using periodic animations.
-        #[method_id(@__method_family Other behaviorPeriodicWithCount:delay:)]
+        #[unsafe(method_family(none))]
+        #[method_id(behaviorPeriodicWithCount:delay:)]
         pub unsafe fn behaviorPeriodicWithCount_delay(
             count: NSInteger,
             delay: c_double,
@@ -90,7 +96,8 @@ extern_methods!(
         /// If available these animations provide a smoother animation when an effect repeats indefinitely.
         ///
         /// - Returns: A new behavior that prefers to repeat indefinitely with continuous animations.
-        #[method_id(@__method_family Other behaviorContinuous)]
+        #[unsafe(method_family(none))]
+        #[method_id(behaviorContinuous)]
         pub unsafe fn behaviorContinuous() -> Retained<Self>;
     }
 );
@@ -118,32 +125,39 @@ unsafe impl NSSecureCoding for NSSymbolEffectOptions {}
 
 extern_methods!(
     unsafe impl NSSymbolEffectOptions {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// The default options.
-        #[method_id(@__method_family Other options)]
+        #[unsafe(method_family(none))]
+        #[method_id(options)]
         pub unsafe fn options() -> Retained<Self>;
 
         /// Convenience initializer that prefers to repeat indefinitely.
         #[deprecated]
-        #[method_id(@__method_family Other optionsWithRepeating)]
+        #[unsafe(method_family(none))]
+        #[method_id(optionsWithRepeating)]
         pub unsafe fn optionsWithRepeating_class() -> Retained<Self>;
 
         /// Return a copy of the options that prefers to repeat indefinitely.
         #[deprecated]
-        #[method_id(@__method_family Other optionsWithRepeating)]
+        #[unsafe(method_family(none))]
+        #[method_id(optionsWithRepeating)]
         pub unsafe fn optionsWithRepeating(&self) -> Retained<Self>;
 
         /// Convenience initializer that prefers not to repeat.
-        #[method_id(@__method_family Other optionsWithNonRepeating)]
+        #[unsafe(method_family(none))]
+        #[method_id(optionsWithNonRepeating)]
         pub unsafe fn optionsWithNonRepeating_class() -> Retained<Self>;
 
         /// Return a copy of the options that prefers not to repeat.
-        #[method_id(@__method_family Other optionsWithNonRepeating)]
+        #[unsafe(method_family(none))]
+        #[method_id(optionsWithNonRepeating)]
         pub unsafe fn optionsWithNonRepeating(&self) -> Retained<Self>;
 
         /// Convenience initializer setting a preferred repeat count.
@@ -153,7 +167,8 @@ extern_methods!(
         ///
         /// - Returns: A new options object with the preferred repeat count.
         #[deprecated]
-        #[method_id(@__method_family Other optionsWithRepeatCount:)]
+        #[unsafe(method_family(none))]
+        #[method_id(optionsWithRepeatCount:)]
         pub unsafe fn optionsWithRepeatCount_class(count: NSInteger) -> Retained<Self>;
 
         /// Return a copy of the options setting a preferred repeat count.
@@ -163,7 +178,8 @@ extern_methods!(
         ///
         /// - Returns: A new options object with the preferred repeat count.
         #[deprecated]
-        #[method_id(@__method_family Other optionsWithRepeatCount:)]
+        #[unsafe(method_family(none))]
+        #[method_id(optionsWithRepeatCount:)]
         pub unsafe fn optionsWithRepeatCount(&self, count: NSInteger) -> Retained<Self>;
 
         /// Convenience initializer setting the preferred speed multiplier.
@@ -173,7 +189,8 @@ extern_methods!(
         /// be clamped.
         ///
         /// - Returns: A new instance with the preferred speed multiplier.
-        #[method_id(@__method_family Other optionsWithSpeed:)]
+        #[unsafe(method_family(none))]
+        #[method_id(optionsWithSpeed:)]
         pub unsafe fn optionsWithSpeed_class(speed: c_double) -> Retained<Self>;
 
         /// Return a copy of the options setting the preferred speed multiplier.
@@ -183,7 +200,8 @@ extern_methods!(
         /// be clamped.
         ///
         /// - Returns: A new instance with the preferred speed multiplier.
-        #[method_id(@__method_family Other optionsWithSpeed:)]
+        #[unsafe(method_family(none))]
+        #[method_id(optionsWithSpeed:)]
         pub unsafe fn optionsWithSpeed(&self, speed: c_double) -> Retained<Self>;
 
         /// Convenience initializer setting a preferred repeat behavior.
@@ -191,7 +209,8 @@ extern_methods!(
         /// - Parameter behavior: The preferred behavior when the effect is repeated.
         ///
         /// - Returns: A new options object with the preferred repeat behavior.
-        #[method_id(@__method_family Other optionsWithRepeatBehavior:)]
+        #[unsafe(method_family(none))]
+        #[method_id(optionsWithRepeatBehavior:)]
         pub unsafe fn optionsWithRepeatBehavior_class(
             behavior: &NSSymbolEffectOptionsRepeatBehavior,
         ) -> Retained<Self>;
@@ -201,7 +220,8 @@ extern_methods!(
         /// - Parameter behavior: The preferred behavior when the effect is repeated.
         ///
         /// - Returns: A new options object with the preferred repeat behavior.
-        #[method_id(@__method_family Other optionsWithRepeatBehavior:)]
+        #[unsafe(method_family(none))]
+        #[method_id(optionsWithRepeatBehavior:)]
         pub unsafe fn optionsWithRepeatBehavior(
             &self,
             behavior: &NSSymbolEffectOptionsRepeatBehavior,
@@ -234,10 +254,12 @@ unsafe impl NSSecureCoding for NSSymbolEffect {}
 
 extern_methods!(
     unsafe impl NSSymbolEffect {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -270,15 +292,18 @@ unsafe impl NSSecureCoding for NSSymbolPulseEffect {}
 extern_methods!(
     unsafe impl NSSymbolPulseEffect {
         /// The default pulse effect, determined by the system.
-        #[method_id(@__method_family Other effect)]
+        #[unsafe(method_family(none))]
+        #[method_id(effect)]
         pub unsafe fn effect() -> Retained<Self>;
 
         /// Returns a copy of the effect that only animates annotated pulse layers.
-        #[method_id(@__method_family Other effectWithByLayer)]
+        #[unsafe(method_family(none))]
+        #[method_id(effectWithByLayer)]
         pub unsafe fn effectWithByLayer(&self) -> Retained<Self>;
 
         /// Returns a copy of the effect that animates all layers of the symbol simultaneously.
-        #[method_id(@__method_family Other effectWithWholeSymbol)]
+        #[unsafe(method_family(none))]
+        #[method_id(effectWithWholeSymbol)]
         pub unsafe fn effectWithWholeSymbol(&self) -> Retained<Self>;
     }
 );
@@ -286,10 +311,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSSymbolEffect`
     unsafe impl NSSymbolPulseEffect {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -321,23 +348,28 @@ unsafe impl NSSecureCoding for NSSymbolBounceEffect {}
 extern_methods!(
     unsafe impl NSSymbolBounceEffect {
         /// The default bounce effect, determined by the system.
-        #[method_id(@__method_family Other effect)]
+        #[unsafe(method_family(none))]
+        #[method_id(effect)]
         pub unsafe fn effect() -> Retained<Self>;
 
         /// Convenience initializer for a bounce effect that bounces up.
-        #[method_id(@__method_family Other bounceUpEffect)]
+        #[unsafe(method_family(none))]
+        #[method_id(bounceUpEffect)]
         pub unsafe fn bounceUpEffect() -> Retained<Self>;
 
         /// Convenience initializer for a bounce effect that bounces down.
-        #[method_id(@__method_family Other bounceDownEffect)]
+        #[unsafe(method_family(none))]
+        #[method_id(bounceDownEffect)]
         pub unsafe fn bounceDownEffect() -> Retained<Self>;
 
         /// Returns a copy of the effect that animates incrementally, by layer.
-        #[method_id(@__method_family Other effectWithByLayer)]
+        #[unsafe(method_family(none))]
+        #[method_id(effectWithByLayer)]
         pub unsafe fn effectWithByLayer(&self) -> Retained<Self>;
 
         /// Returns a copy of the effect that animates all layers of the symbol simultaneously.
-        #[method_id(@__method_family Other effectWithWholeSymbol)]
+        #[unsafe(method_family(none))]
+        #[method_id(effectWithWholeSymbol)]
         pub unsafe fn effectWithWholeSymbol(&self) -> Retained<Self>;
     }
 );
@@ -345,10 +377,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSSymbolEffect`
     unsafe impl NSSymbolBounceEffect {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -383,32 +417,39 @@ unsafe impl NSSecureCoding for NSSymbolVariableColorEffect {}
 extern_methods!(
     unsafe impl NSSymbolVariableColorEffect {
         /// The default variable color effect, determined by the system.
-        #[method_id(@__method_family Other effect)]
+        #[unsafe(method_family(none))]
+        #[method_id(effect)]
         pub unsafe fn effect() -> Retained<Self>;
 
         /// Returns a copy of the effect that activates one layer at a time. This cancels the cumulative variant.
-        #[method_id(@__method_family Other effectWithIterative)]
+        #[unsafe(method_family(none))]
+        #[method_id(effectWithIterative)]
         pub unsafe fn effectWithIterative(&self) -> Retained<Self>;
 
         /// Returns a copy of the effect that activates each layer until all layers are active. This cancels the iterative variant.
-        #[method_id(@__method_family Other effectWithCumulative)]
+        #[unsafe(method_family(none))]
+        #[method_id(effectWithCumulative)]
         pub unsafe fn effectWithCumulative(&self) -> Retained<Self>;
 
         /// Returns a copy of the effect that animates in reverse after fully executing. This cancels the nonReversing variant.
-        #[method_id(@__method_family Other effectWithReversing)]
+        #[unsafe(method_family(none))]
+        #[method_id(effectWithReversing)]
         pub unsafe fn effectWithReversing(&self) -> Retained<Self>;
 
         /// Returns a copy of the effect that only animates forwards before restarting. This cancels the reversing variant.
-        #[method_id(@__method_family Other effectWithNonReversing)]
+        #[unsafe(method_family(none))]
+        #[method_id(effectWithNonReversing)]
         pub unsafe fn effectWithNonReversing(&self) -> Retained<Self>;
 
         /// Returns a copy of the effect that hides layers when they are inactive.
-        #[method_id(@__method_family Other effectWithHideInactiveLayers)]
+        #[unsafe(method_family(none))]
+        #[method_id(effectWithHideInactiveLayers)]
         pub unsafe fn effectWithHideInactiveLayers(&self) -> Retained<Self>;
 
         /// Returns a copy of the effect that draws layers with reduced (but non-zero)
         /// opacity when they are inactive.
-        #[method_id(@__method_family Other effectWithDimInactiveLayers)]
+        #[unsafe(method_family(none))]
+        #[method_id(effectWithDimInactiveLayers)]
         pub unsafe fn effectWithDimInactiveLayers(&self) -> Retained<Self>;
     }
 );
@@ -416,10 +457,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSSymbolEffect`
     unsafe impl NSSymbolVariableColorEffect {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -448,23 +491,28 @@ unsafe impl NSSecureCoding for NSSymbolScaleEffect {}
 extern_methods!(
     unsafe impl NSSymbolScaleEffect {
         /// The default scaling effect, determined by the system.
-        #[method_id(@__method_family Other effect)]
+        #[unsafe(method_family(none))]
+        #[method_id(effect)]
         pub unsafe fn effect() -> Retained<Self>;
 
         /// Convenience initializer to create a scale effect with a scale up level.
-        #[method_id(@__method_family Other scaleUpEffect)]
+        #[unsafe(method_family(none))]
+        #[method_id(scaleUpEffect)]
         pub unsafe fn scaleUpEffect() -> Retained<Self>;
 
         /// Convenience initializer to create a scale effect with a scale down level.
-        #[method_id(@__method_family Other scaleDownEffect)]
+        #[unsafe(method_family(none))]
+        #[method_id(scaleDownEffect)]
         pub unsafe fn scaleDownEffect() -> Retained<Self>;
 
         /// Returns a copy of the effect that animates incrementally, by layer.
-        #[method_id(@__method_family Other effectWithByLayer)]
+        #[unsafe(method_family(none))]
+        #[method_id(effectWithByLayer)]
         pub unsafe fn effectWithByLayer(&self) -> Retained<Self>;
 
         /// Returns a copy of the effect that animates all layers of the symbol simultaneously.
-        #[method_id(@__method_family Other effectWithWholeSymbol)]
+        #[unsafe(method_family(none))]
+        #[method_id(effectWithWholeSymbol)]
         pub unsafe fn effectWithWholeSymbol(&self) -> Retained<Self>;
     }
 );
@@ -472,10 +520,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSSymbolEffect`
     unsafe impl NSSymbolScaleEffect {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -508,23 +558,28 @@ unsafe impl NSSecureCoding for NSSymbolAppearEffect {}
 extern_methods!(
     unsafe impl NSSymbolAppearEffect {
         /// The default appear effect, determined by the system.
-        #[method_id(@__method_family Other effect)]
+        #[unsafe(method_family(none))]
+        #[method_id(effect)]
         pub unsafe fn effect() -> Retained<Self>;
 
         /// Convenience initializer for an appear effect that appears scaling up.
-        #[method_id(@__method_family Other appearUpEffect)]
+        #[unsafe(method_family(none))]
+        #[method_id(appearUpEffect)]
         pub unsafe fn appearUpEffect() -> Retained<Self>;
 
         /// Convenience initializer for an appear effect that appears scaling down.
-        #[method_id(@__method_family Other appearDownEffect)]
+        #[unsafe(method_family(none))]
+        #[method_id(appearDownEffect)]
         pub unsafe fn appearDownEffect() -> Retained<Self>;
 
         /// Returns a copy of the effect that animates incrementally, by layer.
-        #[method_id(@__method_family Other effectWithByLayer)]
+        #[unsafe(method_family(none))]
+        #[method_id(effectWithByLayer)]
         pub unsafe fn effectWithByLayer(&self) -> Retained<Self>;
 
         /// Returns a copy of the effect that animates all layers of the symbol simultaneously.
-        #[method_id(@__method_family Other effectWithWholeSymbol)]
+        #[unsafe(method_family(none))]
+        #[method_id(effectWithWholeSymbol)]
         pub unsafe fn effectWithWholeSymbol(&self) -> Retained<Self>;
     }
 );
@@ -532,10 +587,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSSymbolEffect`
     unsafe impl NSSymbolAppearEffect {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -568,23 +625,28 @@ unsafe impl NSSecureCoding for NSSymbolDisappearEffect {}
 extern_methods!(
     unsafe impl NSSymbolDisappearEffect {
         /// The default disappear effect, determined by the system.
-        #[method_id(@__method_family Other effect)]
+        #[unsafe(method_family(none))]
+        #[method_id(effect)]
         pub unsafe fn effect() -> Retained<Self>;
 
         /// Convenience initializer for a disappear effect that disappears scaling up.
-        #[method_id(@__method_family Other disappearUpEffect)]
+        #[unsafe(method_family(none))]
+        #[method_id(disappearUpEffect)]
         pub unsafe fn disappearUpEffect() -> Retained<Self>;
 
         /// Convenience initializer for a disappear effect that disappears scaling down.
-        #[method_id(@__method_family Other disappearDownEffect)]
+        #[unsafe(method_family(none))]
+        #[method_id(disappearDownEffect)]
         pub unsafe fn disappearDownEffect() -> Retained<Self>;
 
         /// Returns a copy of the effect that animates incrementally, by layer.
-        #[method_id(@__method_family Other effectWithByLayer)]
+        #[unsafe(method_family(none))]
+        #[method_id(effectWithByLayer)]
         pub unsafe fn effectWithByLayer(&self) -> Retained<Self>;
 
         /// Returns a copy of the effect that animates all layers of the symbol simultaneously.
-        #[method_id(@__method_family Other effectWithWholeSymbol)]
+        #[unsafe(method_family(none))]
+        #[method_id(effectWithWholeSymbol)]
         pub unsafe fn effectWithWholeSymbol(&self) -> Retained<Self>;
     }
 );
@@ -592,10 +654,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSSymbolEffect`
     unsafe impl NSSymbolDisappearEffect {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -627,62 +691,74 @@ unsafe impl NSSecureCoding for NSSymbolWiggleEffect {}
 extern_methods!(
     unsafe impl NSSymbolWiggleEffect {
         /// The default wiggle effect, determined by the system.
-        #[method_id(@__method_family Other effect)]
+        #[unsafe(method_family(none))]
+        #[method_id(effect)]
         pub unsafe fn effect() -> Retained<Self>;
 
         /// Convenience initializer for a wiggle effect that
         /// rotates back and forth, starting by rotating clockwise.
-        #[method_id(@__method_family Other wiggleClockwiseEffect)]
+        #[unsafe(method_family(none))]
+        #[method_id(wiggleClockwiseEffect)]
         pub unsafe fn wiggleClockwiseEffect() -> Retained<Self>;
 
         /// Convenience initializer for a wiggle effect that
         /// rotates back and forth, starting by rotating counter-clockwise.
-        #[method_id(@__method_family Other wiggleCounterClockwiseEffect)]
+        #[unsafe(method_family(none))]
+        #[method_id(wiggleCounterClockwiseEffect)]
         pub unsafe fn wiggleCounterClockwiseEffect() -> Retained<Self>;
 
         /// Convenience initializer for a wiggle effect that
         /// moves back and forth horizontally, starting by moving left.
-        #[method_id(@__method_family Other wiggleLeftEffect)]
+        #[unsafe(method_family(none))]
+        #[method_id(wiggleLeftEffect)]
         pub unsafe fn wiggleLeftEffect() -> Retained<Self>;
 
         /// Convenience initializer for a wiggle effect that
         /// moves back and forth horizontally, starting by moving right.
-        #[method_id(@__method_family Other wiggleRightEffect)]
+        #[unsafe(method_family(none))]
+        #[method_id(wiggleRightEffect)]
         pub unsafe fn wiggleRightEffect() -> Retained<Self>;
 
         /// Convenience initializer for a wiggle effect that
         /// moves back and forth vertically, starting by moving up.
-        #[method_id(@__method_family Other wiggleUpEffect)]
+        #[unsafe(method_family(none))]
+        #[method_id(wiggleUpEffect)]
         pub unsafe fn wiggleUpEffect() -> Retained<Self>;
 
         /// Convenience initializer for a wiggle effect that
         /// moves back and forth vertically, starting by moving down.
-        #[method_id(@__method_family Other wiggleDownEffect)]
+        #[unsafe(method_family(none))]
+        #[method_id(wiggleDownEffect)]
         pub unsafe fn wiggleDownEffect() -> Retained<Self>;
 
         /// Convenience initializer for a wiggle effect that moves back and forth
         /// horizontally based on the current locale, starting by moving forward.
-        #[method_id(@__method_family Other wiggleForwardEffect)]
+        #[unsafe(method_family(none))]
+        #[method_id(wiggleForwardEffect)]
         pub unsafe fn wiggleForwardEffect() -> Retained<Self>;
 
         /// Convenience initializer for a wiggle effect that moves back and forth
         /// horizontally based on the current locale, starting by moving backward.
-        #[method_id(@__method_family Other wiggleBackwardEffect)]
+        #[unsafe(method_family(none))]
+        #[method_id(wiggleBackwardEffect)]
         pub unsafe fn wiggleBackwardEffect() -> Retained<Self>;
 
         /// Convenience initializer for a wiggle effect that moves back and forth
         /// along an axis, starting by moving toward a custom angle.
         ///
         /// The angle is in degrees moving clockwise from the positive x-axis.
-        #[method_id(@__method_family Other wiggleCustomAngleEffect:)]
+        #[unsafe(method_family(none))]
+        #[method_id(wiggleCustomAngleEffect:)]
         pub unsafe fn wiggleCustomAngleEffect(angle: c_double) -> Retained<Self>;
 
         /// Returns a copy of the effect that animates incrementally, by layer.
-        #[method_id(@__method_family Other effectWithByLayer)]
+        #[unsafe(method_family(none))]
+        #[method_id(effectWithByLayer)]
         pub unsafe fn effectWithByLayer(&self) -> Retained<Self>;
 
         /// Returns a copy of the effect that animates all layers of the symbol simultaneously.
-        #[method_id(@__method_family Other effectWithWholeSymbol)]
+        #[unsafe(method_family(none))]
+        #[method_id(effectWithWholeSymbol)]
         pub unsafe fn effectWithWholeSymbol(&self) -> Retained<Self>;
     }
 );
@@ -690,10 +766,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSSymbolEffect`
     unsafe impl NSSymbolWiggleEffect {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -726,23 +804,28 @@ unsafe impl NSSecureCoding for NSSymbolRotateEffect {}
 extern_methods!(
     unsafe impl NSSymbolRotateEffect {
         /// The default rotate effect, determined by the system.
-        #[method_id(@__method_family Other effect)]
+        #[unsafe(method_family(none))]
+        #[method_id(effect)]
         pub unsafe fn effect() -> Retained<Self>;
 
         /// Convenience initializer for a rotate effect that rotates clockwise.
-        #[method_id(@__method_family Other rotateClockwiseEffect)]
+        #[unsafe(method_family(none))]
+        #[method_id(rotateClockwiseEffect)]
         pub unsafe fn rotateClockwiseEffect() -> Retained<Self>;
 
         /// Convenience initializer for a rotate effect that rotates counter-clockwise.
-        #[method_id(@__method_family Other rotateCounterClockwiseEffect)]
+        #[unsafe(method_family(none))]
+        #[method_id(rotateCounterClockwiseEffect)]
         pub unsafe fn rotateCounterClockwiseEffect() -> Retained<Self>;
 
         /// Returns a copy of the effect that animates incrementally, by layer.
-        #[method_id(@__method_family Other effectWithByLayer)]
+        #[unsafe(method_family(none))]
+        #[method_id(effectWithByLayer)]
         pub unsafe fn effectWithByLayer(&self) -> Retained<Self>;
 
         /// Returns a copy of the effect that animates all layers of the symbol simultaneously.
-        #[method_id(@__method_family Other effectWithWholeSymbol)]
+        #[unsafe(method_family(none))]
+        #[method_id(effectWithWholeSymbol)]
         pub unsafe fn effectWithWholeSymbol(&self) -> Retained<Self>;
     }
 );
@@ -750,10 +833,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSSymbolEffect`
     unsafe impl NSSymbolRotateEffect {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -785,25 +870,30 @@ unsafe impl NSSecureCoding for NSSymbolBreatheEffect {}
 extern_methods!(
     unsafe impl NSSymbolBreatheEffect {
         /// The default breathe effect, determined by the system.
-        #[method_id(@__method_family Other effect)]
+        #[unsafe(method_family(none))]
+        #[method_id(effect)]
         pub unsafe fn effect() -> Retained<Self>;
 
         /// Convenience initializer for a breathe effect that
         /// pulses layers as they breathe.
-        #[method_id(@__method_family Other breathePulseEffect)]
+        #[unsafe(method_family(none))]
+        #[method_id(breathePulseEffect)]
         pub unsafe fn breathePulseEffect() -> Retained<Self>;
 
         /// Convenience initializer for a breathe effect that makes
         /// the symbol breathe with no other styling.
-        #[method_id(@__method_family Other breathePlainEffect)]
+        #[unsafe(method_family(none))]
+        #[method_id(breathePlainEffect)]
         pub unsafe fn breathePlainEffect() -> Retained<Self>;
 
         /// Returns a copy of the effect that animates incrementally, by layer.
-        #[method_id(@__method_family Other effectWithByLayer)]
+        #[unsafe(method_family(none))]
+        #[method_id(effectWithByLayer)]
         pub unsafe fn effectWithByLayer(&self) -> Retained<Self>;
 
         /// Returns a copy of the effect that animates all layers of the symbol simultaneously.
-        #[method_id(@__method_family Other effectWithWholeSymbol)]
+        #[unsafe(method_family(none))]
+        #[method_id(effectWithWholeSymbol)]
         pub unsafe fn effectWithWholeSymbol(&self) -> Retained<Self>;
     }
 );
@@ -811,10 +901,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSSymbolEffect`
     unsafe impl NSSymbolBreatheEffect {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -845,10 +937,12 @@ unsafe impl NSSecureCoding for NSSymbolContentTransition {}
 
 extern_methods!(
     unsafe impl NSSymbolContentTransition {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -885,10 +979,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSSymbolContentTransition`
     unsafe impl NSSymbolMagicReplaceContentTransition {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -918,34 +1014,41 @@ unsafe impl NSSecureCoding for NSSymbolReplaceContentTransition {}
 extern_methods!(
     unsafe impl NSSymbolReplaceContentTransition {
         /// The default replace transition, determined by the system.
-        #[method_id(@__method_family Other transition)]
+        #[unsafe(method_family(none))]
+        #[method_id(transition)]
         pub unsafe fn transition() -> Retained<Self>;
 
         /// Convenience initializer for a replace content transition where the initial symbol
         /// scales down as it is removed, and the new symbol scales up as it is added.
-        #[method_id(@__method_family Other replaceDownUpTransition)]
+        #[unsafe(method_family(none))]
+        #[method_id(replaceDownUpTransition)]
         pub unsafe fn replaceDownUpTransition() -> Retained<Self>;
 
         /// Convenience initializer for a replace content transition where the initial symbol
         /// scales up as it is removed, and the new symbol scales up as it is added.
-        #[method_id(@__method_family Other replaceUpUpTransition)]
+        #[unsafe(method_family(none))]
+        #[method_id(replaceUpUpTransition)]
         pub unsafe fn replaceUpUpTransition() -> Retained<Self>;
 
         /// Convenience initializer for a replace content transition where the initial symbol
         /// is removed with no animation, and the new symbol scales up as it is added.
-        #[method_id(@__method_family Other replaceOffUpTransition)]
+        #[unsafe(method_family(none))]
+        #[method_id(replaceOffUpTransition)]
         pub unsafe fn replaceOffUpTransition() -> Retained<Self>;
 
         /// Returns a copy of the content transition that animates incrementally, by layer.
-        #[method_id(@__method_family Other transitionWithByLayer)]
+        #[unsafe(method_family(none))]
+        #[method_id(transitionWithByLayer)]
         pub unsafe fn transitionWithByLayer(&self) -> Retained<Self>;
 
         /// Returns a copy of the content transition that animates all layers of the symbol simultaneously.
-        #[method_id(@__method_family Other transitionWithWholeSymbol)]
+        #[unsafe(method_family(none))]
+        #[method_id(transitionWithWholeSymbol)]
         pub unsafe fn transitionWithWholeSymbol(&self) -> Retained<Self>;
 
         /// Convenience initializer for a MagicReplace content transition with a configured Replace fallback.
-        #[method_id(@__method_family Other magicTransitionWithFallback:)]
+        #[unsafe(method_family(none))]
+        #[method_id(magicTransitionWithFallback:)]
         pub unsafe fn magicTransitionWithFallback(
             fallback: &NSSymbolReplaceContentTransition,
         ) -> Retained<NSSymbolMagicReplaceContentTransition>;
@@ -955,10 +1058,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSSymbolContentTransition`
     unsafe impl NSSymbolReplaceContentTransition {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -988,7 +1093,8 @@ unsafe impl NSSecureCoding for NSSymbolAutomaticContentTransition {}
 extern_methods!(
     unsafe impl NSSymbolAutomaticContentTransition {
         /// The default automatic transition, determined by the system.
-        #[method_id(@__method_family Other transition)]
+        #[unsafe(method_family(none))]
+        #[method_id(transition)]
         pub unsafe fn transition() -> Retained<Self>;
     }
 );
@@ -996,10 +1102,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSSymbolContentTransition`
     unsafe impl NSSymbolAutomaticContentTransition {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

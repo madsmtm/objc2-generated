@@ -26,7 +26,8 @@ extern_methods!(
         /// Create a IMKServer from information in the bundle's Info.plist.
         ///
         /// This method will look into the info.plist for a controller class and delegate class.  The class names will be loaded, no classes will be instantiated.  Additionally, an NSConnection will be allocated and registered with the name parameter.
-        #[method_id(@__method_family Init initWithName:bundleIdentifier:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithName:bundleIdentifier:)]
         pub unsafe fn initWithName_bundleIdentifier(
             this: Allocated<Self>,
             name: Option<&NSString>,
@@ -36,7 +37,8 @@ extern_methods!(
         /// Creates an IMKServer using the parameters.
         ///
         /// This method creates an IMKServer object without attempting to examine the bundle instead the class names provided as parameters are used to create input controller objects and delegate objects.
-        #[method_id(@__method_family Init initWithName:controllerClass:delegateClass:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithName:controllerClass:delegateClass:)]
         pub unsafe fn initWithName_controllerClass_delegateClass(
             this: Allocated<Self>,
             name: Option<&NSString>,
@@ -47,7 +49,8 @@ extern_methods!(
         /// Returns an NSBundle for the input method.
         ///
         /// If the IMKServer contains a bundle identifier the NSBundle is created from that.  Otherwise, the bundle  is created for the main bundle.  The returned NSBundle is an autoreleased object.
-        #[method_id(@__method_family Other bundle)]
+        #[unsafe(method_family(none))]
+        #[method_id(bundle)]
         pub unsafe fn bundle(&self) -> Option<Retained<NSBundle>>;
 
         /// Call this before terminating a palette IM.
@@ -69,10 +72,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl IMKServer {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

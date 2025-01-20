@@ -26,18 +26,21 @@ unsafe impl NSObjectProtocol for NSDataAsset {}
 
 extern_methods!(
     unsafe impl NSDataAsset {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Equivalent to -initWithName:name bundle:[NSBundle mainBundle];
-        #[method_id(@__method_family Init initWithName:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithName:)]
         pub unsafe fn initWithName(
             this: Allocated<Self>,
             name: &NSDataAssetName,
         ) -> Option<Retained<Self>>;
 
         /// Create a data asset with the given name from the given bundle. Returns nil if the asset was not found.
-        #[method_id(@__method_family Init initWithName:bundle:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithName:bundle:)]
         pub unsafe fn initWithName_bundle(
             this: Allocated<Self>,
             name: &NSDataAssetName,
@@ -45,15 +48,18 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         /// The name used to reference the data asset
-        #[method_id(@__method_family Other name)]
+        #[unsafe(method_family(none))]
+        #[method_id(name)]
         pub unsafe fn name(&self) -> Retained<NSDataAssetName>;
 
         /// The data for this asset, as stored in the asset catalog
-        #[method_id(@__method_family Other data)]
+        #[unsafe(method_family(none))]
+        #[method_id(data)]
         pub unsafe fn data(&self) -> Retained<NSData>;
 
         /// The Uniform Type Identifier for this data object.
-        #[method_id(@__method_family Other typeIdentifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(typeIdentifier)]
         pub unsafe fn typeIdentifier(&self) -> Retained<NSString>;
     }
 );
@@ -61,7 +67,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSDataAsset {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

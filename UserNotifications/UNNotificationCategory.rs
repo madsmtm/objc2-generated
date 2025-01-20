@@ -60,20 +60,24 @@ unsafe impl NSSecureCoding for UNNotificationCategory {}
 
 extern_methods!(
     unsafe impl UNNotificationCategory {
-        #[method_id(@__method_family Other identifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         #[cfg(feature = "UNNotificationAction")]
-        #[method_id(@__method_family Other actions)]
+        #[unsafe(method_family(none))]
+        #[method_id(actions)]
         pub unsafe fn actions(&self) -> Retained<NSArray<UNNotificationAction>>;
 
-        #[method_id(@__method_family Other intentIdentifiers)]
+        #[unsafe(method_family(none))]
+        #[method_id(intentIdentifiers)]
         pub unsafe fn intentIdentifiers(&self) -> Retained<NSArray<NSString>>;
 
         #[method(options)]
         pub unsafe fn options(&self) -> UNNotificationCategoryOptions;
 
-        #[method_id(@__method_family Other hiddenPreviewsBodyPlaceholder)]
+        #[unsafe(method_family(none))]
+        #[method_id(hiddenPreviewsBodyPlaceholder)]
         pub unsafe fn hiddenPreviewsBodyPlaceholder(&self) -> Retained<NSString>;
 
         /// A format string for a summary description when notifications from this category are grouped together.
@@ -82,11 +86,13 @@ extern_methods!(
         /// of notifications and the list created by joining the argument in each grouped notification.
         /// For example: "%u new messages from %@".
         /// The arguments list is optional, "%u new messages" is also accepted.
-        #[method_id(@__method_family Other categorySummaryFormat)]
+        #[unsafe(method_family(none))]
+        #[method_id(categorySummaryFormat)]
         pub unsafe fn categorySummaryFormat(&self) -> Retained<NSString>;
 
         #[cfg(feature = "UNNotificationAction")]
-        #[method_id(@__method_family Other categoryWithIdentifier:actions:intentIdentifiers:options:)]
+        #[unsafe(method_family(none))]
+        #[method_id(categoryWithIdentifier:actions:intentIdentifiers:options:)]
         pub unsafe fn categoryWithIdentifier_actions_intentIdentifiers_options(
             identifier: &NSString,
             actions: &NSArray<UNNotificationAction>,
@@ -95,7 +101,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "UNNotificationAction")]
-        #[method_id(@__method_family Other categoryWithIdentifier:actions:intentIdentifiers:hiddenPreviewsBodyPlaceholder:options:)]
+        #[unsafe(method_family(none))]
+        #[method_id(categoryWithIdentifier:actions:intentIdentifiers:hiddenPreviewsBodyPlaceholder:options:)]
         pub unsafe fn categoryWithIdentifier_actions_intentIdentifiers_hiddenPreviewsBodyPlaceholder_options(
             identifier: &NSString,
             actions: &NSArray<UNNotificationAction>,
@@ -105,7 +112,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "UNNotificationAction")]
-        #[method_id(@__method_family Other categoryWithIdentifier:actions:intentIdentifiers:hiddenPreviewsBodyPlaceholder:categorySummaryFormat:options:)]
+        #[unsafe(method_family(none))]
+        #[method_id(categoryWithIdentifier:actions:intentIdentifiers:hiddenPreviewsBodyPlaceholder:categorySummaryFormat:options:)]
         pub unsafe fn categoryWithIdentifier_actions_intentIdentifiers_hiddenPreviewsBodyPlaceholder_categorySummaryFormat_options(
             identifier: &NSString,
             actions: &NSArray<UNNotificationAction>,
@@ -115,7 +123,8 @@ extern_methods!(
             options: UNNotificationCategoryOptions,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -123,7 +132,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UNNotificationCategory {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

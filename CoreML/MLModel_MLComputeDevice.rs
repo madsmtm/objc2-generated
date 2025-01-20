@@ -20,7 +20,8 @@ extern_methods!(
         ///
         /// Some compute devices on the hardware are exclusive to the domain ML frameworks such as Vision and SoundAnalysis and
         /// not available to CoreML. See also `MLComputeDevice.allComputeDevices`.
-        #[method_id(@__method_family Other availableComputeDevices)]
+        #[unsafe(method_family(none))]
+        #[method_id(availableComputeDevices)]
         pub unsafe fn availableComputeDevices(
         ) -> Retained<NSArray<ProtocolObject<dyn MLComputeDeviceProtocol>>>;
     }

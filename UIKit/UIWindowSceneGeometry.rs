@@ -54,10 +54,12 @@ unsafe impl NSObjectProtocol for UIWindowSceneGeometry {}
 extern_methods!(
     unsafe impl UIWindowSceneGeometry {
         /// Geometry objects are readonly and should only be created by the framework. To set a window scene's geometry, see UIWindowSceneGeometryPreferences and -[UIWindowScene requestGeometryUpdateWithPreferences:].
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]

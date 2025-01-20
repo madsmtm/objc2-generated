@@ -152,7 +152,8 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIWebView {
         #[deprecated = "No longer supported; please adopt WKWebView."]
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn UIWebViewDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
@@ -161,7 +162,8 @@ extern_methods!(
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn UIWebViewDelegate>>);
 
         #[cfg(feature = "UIScrollView")]
-        #[method_id(@__method_family Other scrollView)]
+        #[unsafe(method_family(none))]
+        #[method_id(scrollView)]
         pub unsafe fn scrollView(&self) -> Retained<UIScrollView>;
 
         #[deprecated = "No longer supported; please adopt WKWebView."]
@@ -183,7 +185,8 @@ extern_methods!(
         );
 
         #[deprecated = "No longer supported; please adopt WKWebView."]
-        #[method_id(@__method_family Other request)]
+        #[unsafe(method_family(none))]
+        #[method_id(request)]
         pub unsafe fn request(&self) -> Option<Retained<NSURLRequest>>;
 
         #[deprecated = "No longer supported; please adopt WKWebView."]
@@ -215,7 +218,8 @@ extern_methods!(
         pub unsafe fn isLoading(&self) -> bool;
 
         #[deprecated = "No longer supported; please adopt WKWebView."]
-        #[method_id(@__method_family Other stringByEvaluatingJavaScriptFromString:)]
+        #[unsafe(method_family(none))]
+        #[method_id(stringByEvaluatingJavaScriptFromString:)]
         pub unsafe fn stringByEvaluatingJavaScriptFromString(
             &self,
             script: &NSString,
@@ -354,10 +358,12 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIWebView {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Init initWithFrame:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -369,10 +375,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIWebView {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

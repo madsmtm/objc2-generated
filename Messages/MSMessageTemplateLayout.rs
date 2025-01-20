@@ -35,7 +35,8 @@ extern_methods!(
     #[cfg(feature = "MSMessageLayout")]
     unsafe impl MSMessageTemplateLayout {
         /// Text to be used as a caption related to the message content.
-        #[method_id(@__method_family Other caption)]
+        #[unsafe(method_family(none))]
+        #[method_id(caption)]
         pub unsafe fn caption(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`caption`][Self::caption].
@@ -43,7 +44,8 @@ extern_methods!(
         pub unsafe fn setCaption(&self, caption: Option<&NSString>);
 
         /// Text to be used as a subcaption related to the message content.
-        #[method_id(@__method_family Other subcaption)]
+        #[unsafe(method_family(none))]
+        #[method_id(subcaption)]
         pub unsafe fn subcaption(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`subcaption`][Self::subcaption].
@@ -51,7 +53,8 @@ extern_methods!(
         pub unsafe fn setSubcaption(&self, subcaption: Option<&NSString>);
 
         /// Text to be drawn right aligned on the same line as the caption text.
-        #[method_id(@__method_family Other trailingCaption)]
+        #[unsafe(method_family(none))]
+        #[method_id(trailingCaption)]
         pub unsafe fn trailingCaption(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`trailingCaption`][Self::trailingCaption].
@@ -59,7 +62,8 @@ extern_methods!(
         pub unsafe fn setTrailingCaption(&self, trailing_caption: Option<&NSString>);
 
         /// Text to be drawn right aligned on the same line as the subcaption text.
-        #[method_id(@__method_family Other trailingSubcaption)]
+        #[unsafe(method_family(none))]
+        #[method_id(trailingSubcaption)]
         pub unsafe fn trailingSubcaption(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`trailingSubcaption`][Self::trailingSubcaption].
@@ -71,7 +75,8 @@ extern_methods!(
         ///
         /// When this property and the mediaURL property are both set, the mediaURL
         /// property will be ignored.
-        #[method_id(@__method_family Other image)]
+        #[unsafe(method_family(none))]
+        #[method_id(image)]
         pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "objc2-ui-kit")]
@@ -84,7 +89,8 @@ extern_methods!(
         /// This must be a file URL, the data contained in the file must conform to
         /// kUTTypeImage or kUTTypeMovie. When image property and
         /// this property are both set, then this property will be ignored.
-        #[method_id(@__method_family Other mediaFileURL)]
+        #[unsafe(method_family(none))]
+        #[method_id(mediaFileURL)]
         pub unsafe fn mediaFileURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`mediaFileURL`][Self::mediaFileURL].
@@ -92,7 +98,8 @@ extern_methods!(
         pub unsafe fn setMediaFileURL(&self, media_file_url: Option<&NSURL>);
 
         /// Title text associated with the image or media .
-        #[method_id(@__method_family Other imageTitle)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageTitle)]
         pub unsafe fn imageTitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`imageTitle`][Self::imageTitle].
@@ -100,7 +107,8 @@ extern_methods!(
         pub unsafe fn setImageTitle(&self, image_title: Option<&NSString>);
 
         /// Subtitle text associated with the image or media .
-        #[method_id(@__method_family Other imageSubtitle)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageSubtitle)]
         pub unsafe fn imageSubtitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`imageSubtitle`][Self::imageSubtitle].
@@ -113,10 +121,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MSMessageLayout")]
     unsafe impl MSMessageTemplateLayout {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

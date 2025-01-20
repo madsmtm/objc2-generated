@@ -58,11 +58,13 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl SKShapeNode {
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(@__method_family Other shapeNodeWithPath:)]
+        #[unsafe(method_family(none))]
+        #[method_id(shapeNodeWithPath:)]
         pub unsafe fn shapeNodeWithPath(path: &CGPath, mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(@__method_family Other shapeNodeWithPath:centered:)]
+        #[unsafe(method_family(none))]
+        #[method_id(shapeNodeWithPath:centered:)]
         pub unsafe fn shapeNodeWithPath_centered(
             path: &CGPath,
             centered: bool,
@@ -70,18 +72,21 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Other shapeNodeWithRect:)]
+        #[unsafe(method_family(none))]
+        #[method_id(shapeNodeWithRect:)]
         pub unsafe fn shapeNodeWithRect(rect: CGRect, mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Other shapeNodeWithRectOfSize:)]
+        #[unsafe(method_family(none))]
+        #[method_id(shapeNodeWithRectOfSize:)]
         pub unsafe fn shapeNodeWithRectOfSize(
             size: CGSize,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Other shapeNodeWithRect:cornerRadius:)]
+        #[unsafe(method_family(none))]
+        #[method_id(shapeNodeWithRect:cornerRadius:)]
         pub unsafe fn shapeNodeWithRect_cornerRadius(
             rect: CGRect,
             corner_radius: CGFloat,
@@ -89,7 +94,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Other shapeNodeWithRectOfSize:cornerRadius:)]
+        #[unsafe(method_family(none))]
+        #[method_id(shapeNodeWithRectOfSize:cornerRadius:)]
         pub unsafe fn shapeNodeWithRectOfSize_cornerRadius(
             size: CGSize,
             corner_radius: CGFloat,
@@ -97,28 +103,32 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Other shapeNodeWithCircleOfRadius:)]
+        #[unsafe(method_family(none))]
+        #[method_id(shapeNodeWithCircleOfRadius:)]
         pub unsafe fn shapeNodeWithCircleOfRadius(
             radius: CGFloat,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Other shapeNodeWithEllipseInRect:)]
+        #[unsafe(method_family(none))]
+        #[method_id(shapeNodeWithEllipseInRect:)]
         pub unsafe fn shapeNodeWithEllipseInRect(
             rect: CGRect,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Other shapeNodeWithEllipseOfSize:)]
+        #[unsafe(method_family(none))]
+        #[method_id(shapeNodeWithEllipseOfSize:)]
         pub unsafe fn shapeNodeWithEllipseOfSize(
             size: CGSize,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Other shapeNodeWithPoints:count:)]
+        #[unsafe(method_family(none))]
+        #[method_id(shapeNodeWithPoints:count:)]
         pub unsafe fn shapeNodeWithPoints_count(
             points: NonNull<CGPoint>,
             num_points: usize,
@@ -126,7 +136,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Other shapeNodeWithSplinePoints:count:)]
+        #[unsafe(method_family(none))]
+        #[method_id(shapeNodeWithSplinePoints:count:)]
         pub unsafe fn shapeNodeWithSplinePoints_count(
             points: NonNull<CGPoint>,
             num_points: usize,
@@ -135,7 +146,8 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-graphics")]
         /// The CGPath to be drawn (in the Node's coordinate space)
-        #[method_id(@__method_family Other path)]
+        #[unsafe(method_family(none))]
+        #[method_id(path)]
         pub unsafe fn path(&self) -> Option<Retained<CGPath>>;
 
         #[cfg(feature = "objc2-core-graphics")]
@@ -144,7 +156,8 @@ extern_methods!(
         pub unsafe fn setPath(&self, path: Option<&CGPath>);
 
         /// The color to draw the path with. (for no stroke use [SKColor clearColor]). Defaults to [SKColor whiteColor].
-        #[method_id(@__method_family Other strokeColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(strokeColor)]
         pub unsafe fn strokeColor(&self) -> Retained<NSColor>;
 
         /// Setter for [`strokeColor`][Self::strokeColor].
@@ -152,7 +165,8 @@ extern_methods!(
         pub unsafe fn setStrokeColor(&self, stroke_color: &NSColor);
 
         /// The color to fill the path with. Defaults to [SKColor clearColor] (no fill).
-        #[method_id(@__method_family Other fillColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(fillColor)]
         pub unsafe fn fillColor(&self) -> Retained<NSColor>;
 
         /// Setter for [`fillColor`][Self::fillColor].
@@ -233,7 +247,8 @@ extern_methods!(
         pub unsafe fn lineLength(&self) -> CGFloat;
 
         #[cfg(feature = "SKTexture")]
-        #[method_id(@__method_family Other fillTexture)]
+        #[unsafe(method_family(none))]
+        #[method_id(fillTexture)]
         pub unsafe fn fillTexture(&self) -> Option<Retained<SKTexture>>;
 
         #[cfg(feature = "SKTexture")]
@@ -242,7 +257,8 @@ extern_methods!(
         pub unsafe fn setFillTexture(&self, fill_texture: Option<&SKTexture>);
 
         #[cfg(feature = "SKShader")]
-        #[method_id(@__method_family Other fillShader)]
+        #[unsafe(method_family(none))]
+        #[method_id(fillShader)]
         pub unsafe fn fillShader(&self) -> Option<Retained<SKShader>>;
 
         #[cfg(feature = "SKShader")]
@@ -251,7 +267,8 @@ extern_methods!(
         pub unsafe fn setFillShader(&self, fill_shader: Option<&SKShader>);
 
         #[cfg(feature = "SKTexture")]
-        #[method_id(@__method_family Other strokeTexture)]
+        #[unsafe(method_family(none))]
+        #[method_id(strokeTexture)]
         pub unsafe fn strokeTexture(&self) -> Option<Retained<SKTexture>>;
 
         #[cfg(feature = "SKTexture")]
@@ -260,7 +277,8 @@ extern_methods!(
         pub unsafe fn setStrokeTexture(&self, stroke_texture: Option<&SKTexture>);
 
         #[cfg(feature = "SKShader")]
-        #[method_id(@__method_family Other strokeShader)]
+        #[unsafe(method_family(none))]
+        #[method_id(strokeShader)]
         pub unsafe fn strokeShader(&self) -> Option<Retained<SKShader>>;
 
         #[cfg(feature = "SKShader")]
@@ -271,7 +289,8 @@ extern_methods!(
         #[cfg(feature = "SKAttribute")]
         /// Optional dictionary of SKAttributeValues
         /// Attributes can be used with custom SKShaders.
-        #[method_id(@__method_family Other attributeValues)]
+        #[unsafe(method_family(none))]
+        #[method_id(attributeValues)]
         pub unsafe fn attributeValues(&self) -> Retained<NSDictionary<NSString, SKAttributeValue>>;
 
         #[cfg(feature = "SKAttribute")]
@@ -283,7 +302,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "SKAttribute")]
-        #[method_id(@__method_family Other valueForAttributeNamed:)]
+        #[unsafe(method_family(none))]
+        #[method_id(valueForAttributeNamed:)]
         pub unsafe fn valueForAttributeNamed(
             &self,
             key: &NSString,
@@ -300,26 +320,31 @@ extern_methods!(
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl SKShapeNode {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Support coding and decoding via NSKeyedArchiver.
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__method_family Other node)]
+        #[unsafe(method_family(none))]
+        #[method_id(node)]
         pub unsafe fn node(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__method_family Other nodeWithFileNamed:)]
+        #[unsafe(method_family(none))]
+        #[method_id(nodeWithFileNamed:)]
         pub unsafe fn nodeWithFileNamed(
             filename: &NSString,
             mtm: MainThreadMarker,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__method_family Other nodeWithFileNamed:securelyWithClasses:andError:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(nodeWithFileNamed:securelyWithClasses:andError:_)]
         pub unsafe fn nodeWithFileNamed_securelyWithClasses_andError(
             filename: &NSString,
             classes: &NSSet<AnyClass>,
@@ -333,7 +358,8 @@ extern_methods!(
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl SKShapeNode {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

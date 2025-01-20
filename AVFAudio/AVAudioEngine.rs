@@ -210,7 +210,8 @@ extern_methods!(
         /// On creation, the engine is by default connected to an audio device and automatically renders
         /// in realtime. It can be configured to operate in manual rendering mode through
         /// `enableManualRenderingMode:format:maximumFrameCount:error:`.
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "AVAudioNode")]
@@ -451,7 +452,8 @@ extern_methods!(
         /// Connections are always one-to-one or one-to-many, never many-to-one.
         ///
         /// Returns nil if there is no connection on the node's specified input bus.
-        #[method_id(@__method_family Other inputConnectionPointForNode:inputBus:)]
+        #[unsafe(method_family(none))]
+        #[method_id(inputConnectionPointForNode:inputBus:)]
         pub unsafe fn inputConnectionPointForNode_inputBus(
             &self,
             node: &AVAudioNode,
@@ -475,7 +477,8 @@ extern_methods!(
         /// Connections are always one-to-one or one-to-many, never many-to-one.
         ///
         /// Returns an empty array if there are no connections on the node's specified output bus.
-        #[method_id(@__method_family Other outputConnectionPointsForNode:outputBus:)]
+        #[unsafe(method_family(none))]
+        #[method_id(outputConnectionPointsForNode:outputBus:)]
         pub unsafe fn outputConnectionPointsForNode_outputBus(
             &self,
             node: &AVAudioNode,
@@ -511,7 +514,8 @@ extern_methods!(
         /// In manual rendering mode, the output format of the output node will determine the
         /// render format of the engine. It can be changed through
         /// `enableManualRenderingMode:format:maximumFrameCount:error:`.
-        #[method_id(@__method_family Other outputNode)]
+        #[unsafe(method_family(none))]
+        #[method_id(outputNode)]
         pub unsafe fn outputNode(&self) -> Retained<AVAudioOutputNode>;
 
         #[cfg(all(feature = "AVAudioIONode", feature = "AVAudioNode"))]
@@ -536,7 +540,8 @@ extern_methods!(
         /// In manual rendering mode, the input node can be used to synchronously supply data to
         /// the engine while it is rendering (see
         /// `AVAudioInputNode(setManualRenderingInputPCMFormat:inputBlock:)`.
-        #[method_id(@__method_family Other inputNode)]
+        #[unsafe(method_family(none))]
+        #[method_id(inputNode)]
         pub unsafe fn inputNode(&self) -> Retained<AVAudioInputNode>;
 
         #[cfg(all(feature = "AVAudioMixerNode", feature = "AVAudioNode"))]
@@ -553,7 +558,8 @@ extern_methods!(
         ///
         /// By default, the mixer's output format (sample rate and channel count) will track the format
         /// of the output node. You may however make the connection explicitly with a different format.
-        #[method_id(@__method_family Other mainMixerNode)]
+        #[unsafe(method_family(none))]
+        #[method_id(mainMixerNode)]
         pub unsafe fn mainMixerNode(&self) -> Retained<AVAudioMixerNode>;
 
         /// The engine's running state.
@@ -585,7 +591,8 @@ extern_methods!(
 
         #[cfg(feature = "AVAudioNode")]
         /// Set of all nodes attached to the engine.
-        #[method_id(@__method_family Other attachedNodes)]
+        #[unsafe(method_family(none))]
+        #[method_id(attachedNodes)]
         pub unsafe fn attachedNodes(&self) -> Retained<NSSet<AVAudioNode>>;
 
         #[cfg(all(feature = "AVAudioFormat", feature = "AVAudioTypes"))]
@@ -688,7 +695,8 @@ extern_methods!(
         ///
         /// Querying this property when the engine is not in manual rendering mode will return an
         /// invalid format, with zero sample rate and channel count.
-        #[method_id(@__method_family Other manualRenderingFormat)]
+        #[unsafe(method_family(none))]
+        #[method_id(manualRenderingFormat)]
         pub unsafe fn manualRenderingFormat(&self) -> Retained<AVAudioFormat>;
 
         #[cfg(feature = "AVAudioTypes")]
@@ -849,7 +857,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAudioEngine {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -54,10 +54,12 @@ unsafe impl NSObjectProtocol for AVPlayerItemSegment {}
 
 extern_methods!(
     unsafe impl AVPlayerItemSegment {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// The type of content this segment represents.
@@ -74,20 +76,23 @@ extern_methods!(
         /// This property provides a collection of time ranges for the segment if media data is readily available. The ranges provided might be discontinuous.
         ///
         /// Returns an NSArray of NSValues containing CMTimeRanges. Loaded time ranges will be within the timeMapping's target timeRange. Loaded time ranges will be empty for interstitial events that occupy a single point in time.
-        #[method_id(@__method_family Other loadedTimeRanges)]
+        #[unsafe(method_family(none))]
+        #[method_id(loadedTimeRanges)]
         pub unsafe fn loadedTimeRanges(&self) -> Retained<NSArray<NSValue>>;
 
         /// The date this segment starts at.
         ///
         /// The date this segment starts at. This value will be nil if the primary item does not contain dates.
-        #[method_id(@__method_family Other startDate)]
+        #[unsafe(method_family(none))]
+        #[method_id(startDate)]
         pub unsafe fn startDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "AVPlayerInterstitialEventController")]
         /// The associated interstitial event for this segment.
         ///
         /// The associated interstitial event for this segment. This value will be nil for segments representing playback of the primary itme.
-        #[method_id(@__method_family Other interstitialEvent)]
+        #[unsafe(method_family(none))]
+        #[method_id(interstitialEvent)]
         pub unsafe fn interstitialEvent(&self) -> Option<Retained<AVPlayerInterstitialEvent>>;
     }
 );
@@ -113,10 +118,12 @@ unsafe impl NSObjectProtocol for AVPlayerItemIntegratedTimelineSnapshot {}
 
 extern_methods!(
     unsafe impl AVPlayerItemIntegratedTimelineSnapshot {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-media")]
@@ -128,13 +135,15 @@ extern_methods!(
         pub unsafe fn duration(&self) -> CMTime;
 
         /// Returns the current AVPlayerItemSegment playback is traversing.
-        #[method_id(@__method_family Other currentSegment)]
+        #[unsafe(method_family(none))]
+        #[method_id(currentSegment)]
         pub unsafe fn currentSegment(&self) -> Option<Retained<AVPlayerItemSegment>>;
 
         /// Returns an array of AVPlayerItemSegment for the snapshot.
         ///
         /// Returns an array of AVPlayerItemSegment. The segments are presented in chronological order, contiguous from the previous element, and non-overlapping.
-        #[method_id(@__method_family Other segments)]
+        #[unsafe(method_family(none))]
+        #[method_id(segments)]
         pub unsafe fn segments(&self) -> Retained<NSArray<AVPlayerItemSegment>>;
 
         #[cfg(feature = "objc2-core-media")]
@@ -145,7 +154,8 @@ extern_methods!(
         pub unsafe fn currentTime(&self) -> CMTime;
 
         /// Returns the  current date when the snapshot was taken, or nil if playback is not mapped to any date.
-        #[method_id(@__method_family Other currentDate)]
+        #[unsafe(method_family(none))]
+        #[method_id(currentDate)]
         pub unsafe fn currentDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "objc2-core-media")]
@@ -188,16 +198,19 @@ unsafe impl NSObjectProtocol for AVPlayerItemIntegratedTimeline {}
 
 extern_methods!(
     unsafe impl AVPlayerItemIntegratedTimeline {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// This property provides an immutable representation of the timeline state at time of request.
         ///
         /// Returns an immutable representation of the timeline state at time of request. A timeline snapshot provides accessors for obtaining inspectable details of the timeline.  Because a snapshot is immutable, the snapshot's properties will not update as playback continues.
-        #[method_id(@__method_family Other currentSnapshot)]
+        #[unsafe(method_family(none))]
+        #[method_id(currentSnapshot)]
         pub unsafe fn currentSnapshot(&self) -> Retained<AVPlayerItemIntegratedTimelineSnapshot>;
 
         #[cfg(feature = "objc2-core-media")]
@@ -208,7 +221,8 @@ extern_methods!(
         pub unsafe fn currentTime(&self) -> CMTime;
 
         /// Returns the date of current playback, or nil if playback is not mapped to any date.
-        #[method_id(@__method_family Other currentDate)]
+        #[unsafe(method_family(none))]
+        #[method_id(currentDate)]
         pub unsafe fn currentDate(&self) -> Option<Retained<NSDate>>;
     }
 );
@@ -317,7 +331,8 @@ extern_methods!(
     #[cfg(feature = "AVPlayerItem")]
     unsafe impl AVPlayerItem {
         /// Obtain an instance of AVPlayerItemIntegratedTimeline representing the timing and control of playback of the item with its scheduled AVPlayerInterstitialEvents. This value will return nil for AVPlayerItems in an interstitial player.
-        #[method_id(@__method_family Other integratedTimeline)]
+        #[unsafe(method_family(none))]
+        #[method_id(integratedTimeline)]
         pub unsafe fn integratedTimeline(&self) -> Retained<AVPlayerItemIntegratedTimeline>;
     }
 );

@@ -70,7 +70,8 @@ extern_methods!(
         /// Parameter `texture`: the texture to reference for size and content
         ///
         /// Parameter `size`: the size of the sprite in points
-        #[method_id(@__method_family Other spriteNodeWithTexture:size:)]
+        #[unsafe(method_family(none))]
+        #[method_id(spriteNodeWithTexture:size:)]
         pub unsafe fn spriteNodeWithTexture_size(
             texture: Option<&SKTexture>,
             size: CGSize,
@@ -81,14 +82,16 @@ extern_methods!(
         /// Create a sprite with an SKTexture and set its size to the SKTexture's pixel width/height.
         ///
         /// Parameter `texture`: the texture to reference for size and content
-        #[method_id(@__method_family Other spriteNodeWithTexture:)]
+        #[unsafe(method_family(none))]
+        #[method_id(spriteNodeWithTexture:)]
         pub unsafe fn spriteNodeWithTexture(
             texture: Option<&SKTexture>,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
         #[cfg(feature = "SKTexture")]
-        #[method_id(@__method_family Other spriteNodeWithTexture:normalMap:)]
+        #[unsafe(method_family(none))]
+        #[method_id(spriteNodeWithTexture:normalMap:)]
         pub unsafe fn spriteNodeWithTexture_normalMap(
             texture: Option<&SKTexture>,
             normal_map: Option<&SKTexture>,
@@ -100,13 +103,15 @@ extern_methods!(
         /// Thus the sprite has the texture centered about the position. If you wish to have the texture anchored at a different offset set the anchorPoint to another pair of values in the interval from 0.0 up to and including 1.0.
         ///
         /// Parameter `name`: is the name of an image file stored in the app bundle.
-        #[method_id(@__method_family Other spriteNodeWithImageNamed:)]
+        #[unsafe(method_family(none))]
+        #[method_id(spriteNodeWithImageNamed:)]
         pub unsafe fn spriteNodeWithImageNamed(
             name: &NSString,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Other spriteNodeWithImageNamed:normalMapped:)]
+        #[unsafe(method_family(none))]
+        #[method_id(spriteNodeWithImageNamed:normalMapped:)]
         pub unsafe fn spriteNodeWithImageNamed_normalMapped(
             name: &NSString,
             generate_normal_map: bool,
@@ -119,7 +124,8 @@ extern_methods!(
         /// Parameter `color`: the color to use for tinting the sprite.
         ///
         /// Parameter `size`: the size of the sprite in points
-        #[method_id(@__method_family Other spriteNodeWithColor:size:)]
+        #[unsafe(method_family(none))]
+        #[method_id(spriteNodeWithColor:size:)]
         pub unsafe fn spriteNodeWithColor_size(
             color: &NSColor,
             size: CGSize,
@@ -135,7 +141,8 @@ extern_methods!(
         /// Parameter `color`: the color to use for tinting the sprite.
         ///
         /// Parameter `size`: the size of the sprite in points
-        #[method_id(@__method_family Init initWithTexture:color:size:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithTexture:color:size:)]
         pub unsafe fn initWithTexture_color_size(
             this: Allocated<Self>,
             texture: Option<&SKTexture>,
@@ -147,7 +154,8 @@ extern_methods!(
         /// Initialize a sprite with an SKTexture and set its size to the SKTexture's width/height.
         ///
         /// Parameter `texture`: the texture to reference for size and content
-        #[method_id(@__method_family Init initWithTexture:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithTexture:)]
         pub unsafe fn initWithTexture(
             this: Allocated<Self>,
             texture: Option<&SKTexture>,
@@ -158,7 +166,8 @@ extern_methods!(
         /// Thus the sprite has the texture centered about the position. If you wish to have the texture anchored at a different offset set the anchorPoint to another pair of values in the interval from 0.0 up to and including 1.0.
         ///
         /// Parameter `name`: the name or path of the image to load.
-        #[method_id(@__method_family Init initWithImageNamed:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithImageNamed:)]
         pub unsafe fn initWithImageNamed(this: Allocated<Self>, name: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -167,7 +176,8 @@ extern_methods!(
         /// Parameter `color`: the color to use for tinting the sprite.
         ///
         /// Parameter `size`: the size of the sprite in points
-        #[method_id(@__method_family Init initWithColor:size:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithColor:size:)]
         pub unsafe fn initWithColor_size(
             this: Allocated<Self>,
             color: &NSColor,
@@ -175,7 +185,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Support coding and decoding via NSKeyedArchiver.
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -183,7 +194,8 @@ extern_methods!(
 
         #[cfg(feature = "SKTexture")]
         /// Texture to be drawn (is stretched to fill the sprite)
-        #[method_id(@__method_family Other texture)]
+        #[unsafe(method_family(none))]
+        #[method_id(texture)]
         pub unsafe fn texture(&self) -> Option<Retained<SKTexture>>;
 
         #[cfg(feature = "SKTexture")]
@@ -200,7 +212,8 @@ extern_methods!(
         /// See: SKLightNode
         ///
         /// See: lightingBitMask
-        #[method_id(@__method_family Other normalTexture)]
+        #[unsafe(method_family(none))]
+        #[method_id(normalTexture)]
         pub unsafe fn normalTexture(&self) -> Option<Retained<SKTexture>>;
 
         #[cfg(feature = "SKTexture")]
@@ -258,7 +271,8 @@ extern_methods!(
         pub unsafe fn setColorBlendFactor(&self, color_blend_factor: CGFloat);
 
         /// Base color for the sprite (If no texture is present, the color still is drawn)
-        #[method_id(@__method_family Other color)]
+        #[unsafe(method_family(none))]
+        #[method_id(color)]
         pub unsafe fn color(&self) -> Retained<NSColor>;
 
         /// Setter for [`color`][Self::color].
@@ -303,7 +317,8 @@ extern_methods!(
         pub unsafe fn scaleToSize(&self, size: CGSize);
 
         #[cfg(feature = "SKShader")]
-        #[method_id(@__method_family Other shader)]
+        #[unsafe(method_family(none))]
+        #[method_id(shader)]
         pub unsafe fn shader(&self) -> Option<Retained<SKShader>>;
 
         #[cfg(feature = "SKShader")]
@@ -314,7 +329,8 @@ extern_methods!(
         #[cfg(feature = "SKAttribute")]
         /// Optional dictionary of SKAttributeValues
         /// Attributes can be used with custom SKShaders.
-        #[method_id(@__method_family Other attributeValues)]
+        #[unsafe(method_family(none))]
+        #[method_id(attributeValues)]
         pub unsafe fn attributeValues(&self) -> Retained<NSDictionary<NSString, SKAttributeValue>>;
 
         #[cfg(feature = "SKAttribute")]
@@ -326,7 +342,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "SKAttribute")]
-        #[method_id(@__method_family Other valueForAttributeNamed:)]
+        #[unsafe(method_family(none))]
+        #[method_id(valueForAttributeNamed:)]
         pub unsafe fn valueForAttributeNamed(
             &self,
             key: &NSString,
@@ -343,19 +360,23 @@ extern_methods!(
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl SKSpriteNode {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family Other node)]
+        #[unsafe(method_family(none))]
+        #[method_id(node)]
         pub unsafe fn node(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__method_family Other nodeWithFileNamed:)]
+        #[unsafe(method_family(none))]
+        #[method_id(nodeWithFileNamed:)]
         pub unsafe fn nodeWithFileNamed(
             filename: &NSString,
             mtm: MainThreadMarker,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__method_family Other nodeWithFileNamed:securelyWithClasses:andError:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(nodeWithFileNamed:securelyWithClasses:andError:_)]
         pub unsafe fn nodeWithFileNamed_securelyWithClasses_andError(
             filename: &NSString,
             classes: &NSSet<AnyClass>,
@@ -369,7 +390,8 @@ extern_methods!(
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl SKSpriteNode {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

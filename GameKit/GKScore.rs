@@ -27,7 +27,8 @@ extern_methods!(
     unsafe impl GKScore {
         /// Initialize the score with the local player and current date.
         #[deprecated]
-        #[method_id(@__method_family Init initWithLeaderboardIdentifier:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithLeaderboardIdentifier:)]
         pub unsafe fn initWithLeaderboardIdentifier(
             this: Allocated<Self>,
             identifier: &NSString,
@@ -35,7 +36,8 @@ extern_methods!(
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         /// Initialize the achievement for a specific player. Use to submit participant scores when ending a turn-based match.
-        #[method_id(@__method_family Init initWithLeaderboardIdentifier:player:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithLeaderboardIdentifier:player:)]
         pub unsafe fn initWithLeaderboardIdentifier_player(
             this: Allocated<Self>,
             identifier: &NSString,
@@ -54,11 +56,13 @@ extern_methods!(
 
         /// The score formatted as a string, localized with a label
         #[deprecated]
-        #[method_id(@__method_family Other formattedValue)]
+        #[unsafe(method_family(none))]
+        #[method_id(formattedValue)]
         pub unsafe fn formattedValue(&self) -> Option<Retained<NSString>>;
 
         /// leaderboard identifier (required)
-        #[method_id(@__method_family Other leaderboardIdentifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(leaderboardIdentifier)]
         pub unsafe fn leaderboardIdentifier(&self) -> Retained<NSString>;
 
         /// Setter for [`leaderboardIdentifier`][Self::leaderboardIdentifier].
@@ -75,12 +79,14 @@ extern_methods!(
 
         /// The date this score was recorded. A newly initialized, unsubmitted GKScore records the current date at init time.
         #[deprecated]
-        #[method_id(@__method_family Other date)]
+        #[unsafe(method_family(none))]
+        #[method_id(date)]
         pub unsafe fn date(&self) -> Retained<NSDate>;
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         /// The player that recorded the score.
-        #[method_id(@__method_family Other player)]
+        #[unsafe(method_family(none))]
+        #[method_id(player)]
         pub unsafe fn player(&self) -> Option<Retained<GKPlayer>>;
 
         /// The rank of the player within the leaderboard, only valid when returned from GKLeaderboard
@@ -114,10 +120,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKScore {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -134,14 +142,16 @@ extern_methods!(
         );
 
         #[deprecated]
-        #[method_id(@__method_family Init initWithCategory:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCategory:)]
         pub unsafe fn initWithCategory(
             this: Allocated<Self>,
             category: Option<&NSString>,
         ) -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(@__method_family Other category)]
+        #[unsafe(method_family(none))]
+        #[method_id(category)]
         pub unsafe fn category(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`category`][Self::category].
@@ -156,7 +166,8 @@ extern_methods!(
     unsafe impl GKScore {
         /// * This method is obsolete. Calling this initialiser does nothing and will return nil **
         #[deprecated]
-        #[method_id(@__method_family Init initWithLeaderboardIdentifier:forPlayer:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithLeaderboardIdentifier:forPlayer:)]
         pub unsafe fn initWithLeaderboardIdentifier_forPlayer(
             this: Allocated<Self>,
             identifier: &NSString,
@@ -165,7 +176,8 @@ extern_methods!(
 
         /// * This property is obsolete. **
         #[deprecated]
-        #[method_id(@__method_family Other playerID)]
+        #[unsafe(method_family(none))]
+        #[method_id(playerID)]
         pub unsafe fn playerID(&self) -> Option<Retained<NSString>>;
     }
 );

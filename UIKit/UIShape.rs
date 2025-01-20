@@ -42,7 +42,8 @@ extern_protocol!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uishapeprovider?language=objc)
     pub unsafe trait UIShapeProvider: NSObjectProtocol {
         /// Resolves this shape in the provided `context`.
-        #[method_id(@__method_family Other resolvedShapeInContext:)]
+        #[unsafe(method_family(none))]
+        #[method_id(resolvedShapeInContext:)]
         unsafe fn resolvedShapeInContext(
             &self,
             context: &UIShapeResolutionContext,
@@ -81,29 +82,34 @@ unsafe impl UIShapeProvider for UIShape {}
 extern_methods!(
     unsafe impl UIShape {
         /// A rectangular shape.
-        #[method_id(@__method_family Other rectShape)]
+        #[unsafe(method_family(none))]
+        #[method_id(rectShape)]
         pub unsafe fn rectShape() -> Retained<UIShape>;
 
         /// A capsule shape, equivalent to a rounded rectangle where the corner
         /// radius is chosen as half the length of the rectangle’s smallest edge.
-        #[method_id(@__method_family Other capsuleShape)]
+        #[unsafe(method_family(none))]
+        #[method_id(capsuleShape)]
         pub unsafe fn capsuleShape() -> Retained<UIShape>;
 
         /// A circular shape, with a radius equals half the length of the frame
         /// rectangle’s smallest edge.
-        #[method_id(@__method_family Other circleShape)]
+        #[unsafe(method_family(none))]
+        #[method_id(circleShape)]
         pub unsafe fn circleShape() -> Retained<UIShape>;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// A rectangular shape with rounded corners, aligned inside the frame of
         /// in which it is contained.
-        #[method_id(@__method_family Other rectShapeWithCornerRadius:)]
+        #[unsafe(method_family(none))]
+        #[method_id(rectShapeWithCornerRadius:)]
         pub unsafe fn rectShapeWithCornerRadius(corner_radius: CGFloat) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// A rectangular shape with rounded corners, aligned inside the frame of
         /// in which it is contained.
-        #[method_id(@__method_family Other rectShapeWithCornerRadius:cornerCurve:)]
+        #[unsafe(method_family(none))]
+        #[method_id(rectShapeWithCornerRadius:cornerCurve:)]
         pub unsafe fn rectShapeWithCornerRadius_cornerCurve(
             corner_radius: CGFloat,
             corner_curve: UICornerCurve,
@@ -112,7 +118,8 @@ extern_methods!(
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         /// A rectangular shape with rounded corners, aligned inside the frame of
         /// in which it is contained.
-        #[method_id(@__method_family Other rectShapeWithCornerRadius:cornerCurve:maskedCorners:)]
+        #[unsafe(method_family(none))]
+        #[method_id(rectShapeWithCornerRadius:cornerCurve:maskedCorners:)]
         pub unsafe fn rectShapeWithCornerRadius_cornerCurve_maskedCorners(
             corner_radius: CGFloat,
             corner_curve: UICornerCurve,
@@ -122,13 +129,15 @@ extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// A fixed rectangle shape using `rect` as its shape, regardless of the
         /// frame in which it is contained.
-        #[method_id(@__method_family Other fixedRectShapeWithRect:)]
+        #[unsafe(method_family(none))]
+        #[method_id(fixedRectShapeWithRect:)]
         pub unsafe fn fixedRectShapeWithRect(rect: CGRect) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// A fixed rectangle shape using `rect` as its shape, regardless of the
         /// frame in which it is contained, with rounded corners using `cornerRadius`.
-        #[method_id(@__method_family Other fixedRectShapeWithRect:cornerRadius:)]
+        #[unsafe(method_family(none))]
+        #[method_id(fixedRectShapeWithRect:cornerRadius:)]
         pub unsafe fn fixedRectShapeWithRect_cornerRadius(
             rect: CGRect,
             corner_radius: CGFloat,
@@ -137,7 +146,8 @@ extern_methods!(
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         /// A fixed rectangle shape using `rect` as its shape, regardless of the
         /// frame in which it is contained, with rounded corners using `cornerRadius`.
-        #[method_id(@__method_family Other fixedRectShapeWithRect:cornerRadius:cornerCurve:maskedCorners:)]
+        #[unsafe(method_family(none))]
+        #[method_id(fixedRectShapeWithRect:cornerRadius:cornerCurve:maskedCorners:)]
         pub unsafe fn fixedRectShapeWithRect_cornerRadius_cornerCurve_maskedCorners(
             rect: CGRect,
             corner_radius: CGFloat,
@@ -147,12 +157,14 @@ extern_methods!(
 
         #[cfg(feature = "UIBezierPath")]
         /// A shape with a custom bezier path.
-        #[method_id(@__method_family Other shapeWithBezierPath:)]
+        #[unsafe(method_family(none))]
+        #[method_id(shapeWithBezierPath:)]
         pub unsafe fn shapeWithBezierPath(path: &UIBezierPath) -> Retained<Self>;
 
         /// Creates a dynamic shape that can be resolved using the provided
         /// `UIShapeProvider` based on context like its containing rect.
-        #[method_id(@__method_family Other shapeWithProvider:)]
+        #[unsafe(method_family(none))]
+        #[method_id(shapeWithProvider:)]
         pub unsafe fn shapeWithProvider(
             provider: &ProtocolObject<dyn UIShapeProvider>,
         ) -> Retained<Self>;
@@ -166,7 +178,8 @@ extern_methods!(
         /// effect. For some shapes like rounded rectangles, this can also modify
         /// the corner radii of the shape to ensure the resulting corners are
         /// concentric.
-        #[method_id(@__method_family Other shapeByApplyingInsets:)]
+        #[unsafe(method_family(none))]
+        #[method_id(shapeByApplyingInsets:)]
         pub unsafe fn shapeByApplyingInsets(&self, insets: UIEdgeInsets) -> Retained<UIShape>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -178,20 +191,24 @@ extern_methods!(
         /// effect. For some shapes like rounded rectangles, this can also modify
         /// the corner radii of the shape to ensure the resulting corners are
         /// concentric.
-        #[method_id(@__method_family Other shapeByApplyingInset:)]
+        #[unsafe(method_family(none))]
+        #[method_id(shapeByApplyingInset:)]
         pub unsafe fn shapeByApplyingInset(&self, inset: CGFloat) -> Retained<UIShape>;
 
         /// Resolves this shape in the provided `context`.
-        #[method_id(@__method_family Other resolvedShapeInContext:)]
+        #[unsafe(method_family(none))]
+        #[method_id(resolvedShapeInContext:)]
         pub unsafe fn resolvedShapeInContext(
             &self,
             context: &UIShapeResolutionContext,
         ) -> Retained<UIResolvedShape>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -216,7 +233,8 @@ unsafe impl NSObjectProtocol for UIResolvedShape {}
 extern_methods!(
     unsafe impl UIResolvedShape {
         /// The abstract shape that produced this resolved shape.
-        #[method_id(@__method_family Other shape)]
+        #[unsafe(method_family(none))]
+        #[method_id(shape)]
         pub unsafe fn shape(&self) -> Retained<UIShape>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -226,7 +244,8 @@ extern_methods!(
 
         #[cfg(feature = "UIBezierPath")]
         /// The bezier path representing this shape.
-        #[method_id(@__method_family Other path)]
+        #[unsafe(method_family(none))]
+        #[method_id(path)]
         pub unsafe fn path(&self) -> Retained<UIBezierPath>;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
@@ -238,7 +257,8 @@ extern_methods!(
         /// effect. For some shapes like rounded rectangles, this can also modify
         /// the corner radii of the shape to ensure the resulting corners are
         /// concentric.
-        #[method_id(@__method_family Other shapeByApplyingInsets:)]
+        #[unsafe(method_family(none))]
+        #[method_id(shapeByApplyingInsets:)]
         pub unsafe fn shapeByApplyingInsets(
             &self,
             insets: UIEdgeInsets,
@@ -253,13 +273,16 @@ extern_methods!(
         /// effect. For some shapes like rounded rectangles, this can also modify
         /// the corner radii of the shape to ensure the resulting corners are
         /// concentric.
-        #[method_id(@__method_family Other shapeByApplyingInset:)]
+        #[unsafe(method_family(none))]
+        #[method_id(shapeByApplyingInset:)]
         pub unsafe fn shapeByApplyingInset(&self, inset: CGFloat) -> Retained<UIResolvedShape>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -282,13 +305,16 @@ extern_methods!(
         /// to a button, the `contentShape` could represent the bounding shape
         /// of that button's background. You should typically size a dynamic
         /// shape relative to the bounding `rect` of the `contentShape`.
-        #[method_id(@__method_family Other contentShape)]
+        #[unsafe(method_family(none))]
+        #[method_id(contentShape)]
         pub unsafe fn contentShape(&self) -> Retained<UIResolvedShape>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

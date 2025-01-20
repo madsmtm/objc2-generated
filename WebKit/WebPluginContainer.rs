@@ -40,14 +40,16 @@ extern_category!(
         #[cfg(target_os = "macos")]
         /// The color that should be used for any special drawing when
         /// plug-in is selected.
-        #[method_id(@__method_family Other webPlugInContainerSelectionColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(webPlugInContainerSelectionColor)]
         unsafe fn webPlugInContainerSelectionColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "WebFrame")]
         /// Allows the plug-in to access the WebFrame that
         /// contains the plug-in.  This method will not be implemented by containers that
         /// are not WebKit based.
-        #[method_id(@__method_family Other webFrame)]
+        #[unsafe(method_family(none))]
+        #[method_id(webFrame)]
         unsafe fn webFrame(&self) -> Option<Retained<WebFrame>>;
     }
 

@@ -209,7 +209,8 @@ extern_methods!(
         #[method(setNeuronToPReLUWithParametersA:)]
         pub unsafe fn setNeuronToPReLUWithParametersA(&self, a: &NSData);
 
-        #[method_id(@__method_family Init initWithDevice:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -257,7 +258,8 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSMatrixNeuron object.
         ///
         /// Returns: A new MPSMatrixNeuron object, or nil if failure.
-        #[method_id(@__method_family Init initWithCoder:device:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -276,7 +278,8 @@ extern_methods!(
         /// Returns: A pointer to a copy of this MPSKernel. This will fail, returning
         /// nil if the device is not supported. Devices must be
         /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
-        #[method_id(@__method_family Copy copyWithZone:device:)]
+        #[unsafe(method_family(copy))]
+        #[method_id(copyWithZone:device:)]
         pub unsafe fn copyWithZone_device(
             &self,
             zone: *mut NSZone,
@@ -302,7 +305,8 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -319,10 +323,12 @@ extern_methods!(
         feature = "MPSMatrixTypes"
     ))]
     unsafe impl MPSMatrixNeuron {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -502,7 +508,8 @@ extern_methods!(
         #[method(setNeuronToPReLUWithParametersA:)]
         pub unsafe fn setNeuronToPReLUWithParametersA(&self, a: &NSData);
 
-        #[method_id(@__method_family Init initWithDevice:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -552,7 +559,8 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSMatrixNeuronGradient object.
         ///
         /// Returns: A new MPSMatrixNeuronGradient object, or nil if failure.
-        #[method_id(@__method_family Init initWithCoder:device:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -571,7 +579,8 @@ extern_methods!(
         /// Returns: A pointer to a copy of this MPSKernel. This will fail, returning
         /// nil if the device is not supported. Devices must be
         /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
-        #[method_id(@__method_family Copy copyWithZone:device:)]
+        #[unsafe(method_family(copy))]
+        #[method_id(copyWithZone:device:)]
         pub unsafe fn copyWithZone_device(
             &self,
             zone: *mut NSZone,
@@ -597,7 +606,8 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -614,10 +624,12 @@ extern_methods!(
         feature = "MPSMatrixTypes"
     ))]
     unsafe impl MPSMatrixNeuronGradient {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

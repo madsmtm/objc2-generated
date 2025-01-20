@@ -143,7 +143,8 @@ extern_methods!(
     #[cfg(feature = "CBManager")]
     unsafe impl CBPeripheralManager {
         /// The delegate object that will receive peripheral events.
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn CBPeripheralManagerDelegate>>>;
@@ -177,7 +178,8 @@ extern_methods!(
         #[method(authorizationStatus)]
         pub unsafe fn authorizationStatus() -> CBPeripheralManagerAuthorizationStatus;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Parameter `advertisementData`: An optional dictionary containing the data to be advertised.
@@ -396,7 +398,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CBManager")]
     unsafe impl CBPeripheralManager {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

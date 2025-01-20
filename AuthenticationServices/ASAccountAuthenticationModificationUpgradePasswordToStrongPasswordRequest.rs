@@ -36,7 +36,8 @@ extern_methods!(
         /// will receive an empty password for the credential to upgrade. It should check that it is authorized to perform
         /// the upgrade. The authorization check should ideally be done with information in userInfo, but may involve
         /// communicating with a backend server or using a shared data container between the app and extension.
-        #[method_id(@__method_family Init initWithUser:serviceIdentifier:userInfo:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithUser:serviceIdentifier:userInfo:)]
         pub unsafe fn initWithUser_serviceIdentifier_userInfo(
             this: Allocated<Self>,
             user: &NSString,
@@ -44,14 +45,17 @@ extern_methods!(
             user_info: Option<&NSDictionary>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Other user)]
+        #[unsafe(method_family(none))]
+        #[method_id(user)]
         pub unsafe fn user(&self) -> Retained<NSString>;
 
         #[cfg(feature = "ASCredentialServiceIdentifier")]
-        #[method_id(@__method_family Other serviceIdentifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(serviceIdentifier)]
         pub unsafe fn serviceIdentifier(&self) -> Retained<ASCredentialServiceIdentifier>;
 
-        #[method_id(@__method_family Other userInfo)]
+        #[unsafe(method_family(none))]
+        #[method_id(userInfo)]
         pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary>>;
     }
 );
@@ -60,10 +64,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "ASAccountAuthenticationModificationRequest")]
     unsafe impl ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

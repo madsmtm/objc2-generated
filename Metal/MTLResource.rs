@@ -195,7 +195,8 @@ extern_protocol!(
     #[cfg(feature = "MTLAllocation")]
     pub unsafe trait MTLResource: MTLAllocation {
         /// A string to help identify this object.
-        #[method_id(@__method_family Other label)]
+        #[unsafe(method_family(none))]
+        #[method_id(label)]
         fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
@@ -204,7 +205,8 @@ extern_protocol!(
 
         #[cfg(feature = "MTLDevice")]
         /// The device this resource was created against.  This resource can only be used with this device.
-        #[method_id(@__method_family Other device)]
+        #[unsafe(method_family(none))]
+        #[method_id(device)]
         fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         /// The cache mode used for the CPU mapping for this resource
@@ -237,7 +239,8 @@ extern_protocol!(
         /// The heap from which this resouce was created.
         ///
         /// Nil when this resource is not backed by a heap.
-        #[method_id(@__method_family Other heap)]
+        #[unsafe(method_family(none))]
+        #[method_id(heap)]
         fn heap(&self) -> Option<Retained<ProtocolObject<dyn MTLHeap>>>;
 
         /// The offset inside the heap at which this resource was created.

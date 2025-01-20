@@ -30,7 +30,8 @@ extern_methods!(
     unsafe impl MKOverlayPathRenderer {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
-        #[method_id(@__method_family Other fillColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(fillColor)]
         pub unsafe fn fillColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "objc2-app-kit")]
@@ -41,7 +42,8 @@ extern_methods!(
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
-        #[method_id(@__method_family Other strokeColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(strokeColor)]
         pub unsafe fn strokeColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "objc2-app-kit")]
@@ -95,7 +97,8 @@ extern_methods!(
         #[method(setLineDashPhase:)]
         pub unsafe fn setLineDashPhase(&self, line_dash_phase: CGFloat);
 
-        #[method_id(@__method_family Other lineDashPattern)]
+        #[unsafe(method_family(none))]
+        #[method_id(lineDashPattern)]
         pub unsafe fn lineDashPattern(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         /// Setter for [`lineDashPattern`][Self::lineDashPattern].
@@ -113,7 +116,8 @@ extern_methods!(
         pub unsafe fn createPath(&self);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(@__method_family Other path)]
+        #[unsafe(method_family(none))]
+        #[method_id(path)]
         pub unsafe fn path(&self) -> Option<Retained<CGPath>>;
 
         #[cfg(feature = "objc2-core-graphics")]
@@ -163,7 +167,8 @@ extern_methods!(
     #[cfg(feature = "MKOverlayRenderer")]
     unsafe impl MKOverlayPathRenderer {
         #[cfg(all(feature = "MKAnnotation", feature = "MKOverlay"))]
-        #[method_id(@__method_family Init initWithOverlay:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithOverlay:)]
         pub unsafe fn initWithOverlay(
             this: Allocated<Self>,
             overlay: &ProtocolObject<dyn MKOverlay>,
@@ -175,10 +180,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MKOverlayRenderer")]
     unsafe impl MKOverlayPathRenderer {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -58,7 +58,8 @@ extern_methods!(
         ///
         /// Returns the attribute for the specified key. The valid keys are described in the "Light Attributes" constants.
         #[deprecated = "Use SCNLight properties instead"]
-        #[method_id(@__method_family Other attributeForKey:)]
+        #[unsafe(method_family(none))]
+        #[method_id(attributeForKey:)]
         pub unsafe fn attributeForKey(&self, key: &NSString) -> Option<Retained<AnyObject>>;
 
         /// Parameter `attribute`: The attribute for the property identified by key.
@@ -182,7 +183,8 @@ extern_methods!(
         ///
         /// The border color is ignored on iOS and is always considered as clear color (0,0,0,0) when the texture has an alpha channel and opaque back (0,0,0,1) otherwise.
         #[deprecated = "Deprecated"]
-        #[method_id(@__method_family Other borderColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(borderColor)]
         pub unsafe fn borderColor(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`borderColor`][Self::borderColor].

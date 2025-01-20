@@ -22,7 +22,8 @@ extern_methods!(
     #[cfg(feature = "NSPersistentStore")]
     unsafe impl NSAtomicStore {
         #[cfg(feature = "NSPersistentStoreCoordinator")]
-        #[method_id(@__method_family Init initWithPersistentStoreCoordinator:configurationName:URL:options:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithPersistentStoreCoordinator:configurationName:URL:options:)]
         pub unsafe fn initWithPersistentStoreCoordinator_configurationName_URL_options(
             this: Allocated<Self>,
             coordinator: Option<&NSPersistentStoreCoordinator>,
@@ -38,7 +39,8 @@ extern_methods!(
         pub unsafe fn save(&self) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "NSAtomicStoreCacheNode", feature = "NSManagedObject"))]
-        #[method_id(@__method_family New newCacheNodeForManagedObject:)]
+        #[unsafe(method_family(new))]
+        #[method_id(newCacheNodeForManagedObject:)]
         pub unsafe fn newCacheNodeForManagedObject(
             &self,
             managed_object: &NSManagedObject,
@@ -53,7 +55,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSAtomicStoreCacheNode")]
-        #[method_id(@__method_family Other cacheNodes)]
+        #[unsafe(method_family(none))]
+        #[method_id(cacheNodes)]
         pub unsafe fn cacheNodes(&self) -> Retained<NSSet<NSAtomicStoreCacheNode>>;
 
         #[cfg(feature = "NSAtomicStoreCacheNode")]
@@ -65,14 +68,16 @@ extern_methods!(
         pub unsafe fn willRemoveCacheNodes(&self, cache_nodes: &NSSet<NSAtomicStoreCacheNode>);
 
         #[cfg(all(feature = "NSAtomicStoreCacheNode", feature = "NSManagedObjectID"))]
-        #[method_id(@__method_family Other cacheNodeForObjectID:)]
+        #[unsafe(method_family(none))]
+        #[method_id(cacheNodeForObjectID:)]
         pub unsafe fn cacheNodeForObjectID(
             &self,
             object_id: &NSManagedObjectID,
         ) -> Option<Retained<NSAtomicStoreCacheNode>>;
 
         #[cfg(all(feature = "NSEntityDescription", feature = "NSManagedObjectID"))]
-        #[method_id(@__method_family Other objectIDForEntity:referenceObject:)]
+        #[unsafe(method_family(none))]
+        #[method_id(objectIDForEntity:referenceObject:)]
         pub unsafe fn objectIDForEntity_referenceObject(
             &self,
             entity: &NSEntityDescription,
@@ -80,14 +85,16 @@ extern_methods!(
         ) -> Retained<NSManagedObjectID>;
 
         #[cfg(feature = "NSManagedObject")]
-        #[method_id(@__method_family New newReferenceObjectForManagedObject:)]
+        #[unsafe(method_family(new))]
+        #[method_id(newReferenceObjectForManagedObject:)]
         pub unsafe fn newReferenceObjectForManagedObject(
             &self,
             managed_object: &NSManagedObject,
         ) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSManagedObjectID")]
-        #[method_id(@__method_family Other referenceObjectForObjectID:)]
+        #[unsafe(method_family(none))]
+        #[method_id(referenceObjectForObjectID:)]
         pub unsafe fn referenceObjectForObjectID(
             &self,
             object_id: &NSManagedObjectID,
@@ -99,7 +106,8 @@ extern_methods!(
     /// Methods declared on superclass `NSPersistentStore`
     #[cfg(feature = "NSPersistentStore")]
     unsafe impl NSAtomicStore {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -108,7 +116,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSPersistentStore")]
     unsafe impl NSAtomicStore {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

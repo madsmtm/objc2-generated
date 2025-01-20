@@ -140,22 +140,26 @@ extern_methods!(
     unsafe impl UICellConfigurationState {
         #[cfg(feature = "UITraitCollection")]
         /// Returns a new instance with the specified trait collection.
-        #[method_id(@__method_family Init initWithTraitCollection:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithTraitCollection:)]
         pub unsafe fn initWithTraitCollection(
             this: Allocated<Self>,
             trait_collection: &UITraitCollection,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

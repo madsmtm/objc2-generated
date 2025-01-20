@@ -18,13 +18,15 @@ unsafe impl NSObjectProtocol for NSInvocation {}
 extern_methods!(
     unsafe impl NSInvocation {
         #[cfg(feature = "NSMethodSignature")]
-        #[method_id(@__method_family Other invocationWithMethodSignature:)]
+        #[unsafe(method_family(none))]
+        #[method_id(invocationWithMethodSignature:)]
         pub unsafe fn invocationWithMethodSignature(
             sig: &NSMethodSignature,
         ) -> Retained<NSInvocation>;
 
         #[cfg(feature = "NSMethodSignature")]
-        #[method_id(@__method_family Other methodSignature)]
+        #[unsafe(method_family(none))]
+        #[method_id(methodSignature)]
         pub unsafe fn methodSignature(&self) -> Retained<NSMethodSignature>;
 
         #[method(retainArguments)]
@@ -33,7 +35,8 @@ extern_methods!(
         #[method(argumentsRetained)]
         pub unsafe fn argumentsRetained(&self) -> bool;
 
-        #[method_id(@__method_family Other target)]
+        #[unsafe(method_family(none))]
+        #[method_id(target)]
         pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`target`][Self::target].
@@ -81,10 +84,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSInvocation {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

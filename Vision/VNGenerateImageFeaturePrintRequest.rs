@@ -52,7 +52,8 @@ extern_methods!(
 
         #[cfg(feature = "VNObservation")]
         /// `VNFeaturePrintObservation` results.
-        #[method_id(@__method_family Other results)]
+        #[unsafe(method_family(none))]
+        #[method_id(results)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNFeaturePrintObservation>>>;
     }
 );
@@ -62,7 +63,8 @@ extern_methods!(
     #[cfg(feature = "VNRequest")]
     unsafe impl VNGenerateImageFeaturePrintRequest {
         /// Creates a new VNRequest with no completion handler.
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
@@ -70,7 +72,8 @@ extern_methods!(
         ///
         ///
         /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
-        #[method_id(@__method_family Init initWithCompletionHandler:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCompletionHandler:)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
             completion_handler: VNRequestCompletionHandler,
@@ -82,7 +85,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "VNRequest")]
     unsafe impl VNGenerateImageFeaturePrintRequest {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -85,23 +85,28 @@ unsafe impl<ResultType: ?Sized> NSObjectProtocol for NSFetchRequest<ResultType> 
 extern_methods!(
     #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl<ResultType: Message> NSFetchRequest<ResultType> {
-        #[method_id(@__method_family Other fetchRequestWithEntityName:)]
+        #[unsafe(method_family(none))]
+        #[method_id(fetchRequestWithEntityName:)]
         pub unsafe fn fetchRequestWithEntityName(entity_name: &NSString) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithEntityName:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithEntityName:)]
         pub unsafe fn initWithEntityName(
             this: Allocated<Self>,
             entity_name: &NSString,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Other execute:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(execute:_)]
         pub unsafe fn execute(&self) -> Result<Retained<NSArray<ResultType>>, Retained<NSError>>;
 
         #[cfg(feature = "NSEntityDescription")]
-        #[method_id(@__method_family Other entity)]
+        #[unsafe(method_family(none))]
+        #[method_id(entity)]
         pub unsafe fn entity(&self) -> Option<Retained<NSEntityDescription>>;
 
         #[cfg(feature = "NSEntityDescription")]
@@ -109,17 +114,20 @@ extern_methods!(
         #[method(setEntity:)]
         pub unsafe fn setEntity(&self, entity: Option<&NSEntityDescription>);
 
-        #[method_id(@__method_family Other entityName)]
+        #[unsafe(method_family(none))]
+        #[method_id(entityName)]
         pub unsafe fn entityName(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(@__method_family Other predicate)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicate)]
         pub unsafe fn predicate(&self) -> Option<Retained<NSPredicate>>;
 
         /// Setter for [`predicate`][Self::predicate].
         #[method(setPredicate:)]
         pub unsafe fn setPredicate(&self, predicate: Option<&NSPredicate>);
 
-        #[method_id(@__method_family Other sortDescriptors)]
+        #[unsafe(method_family(none))]
+        #[method_id(sortDescriptors)]
         pub unsafe fn sortDescriptors(&self) -> Option<Retained<NSArray<NSSortDescriptor>>>;
 
         /// Setter for [`sortDescriptors`][Self::sortDescriptors].
@@ -137,7 +145,8 @@ extern_methods!(
         pub unsafe fn setFetchLimit(&self, fetch_limit: NSUInteger);
 
         #[cfg(feature = "NSPersistentStore")]
-        #[method_id(@__method_family Other affectedStores)]
+        #[unsafe(method_family(none))]
+        #[method_id(affectedStores)]
         pub unsafe fn affectedStores(&self) -> Option<Retained<NSArray<NSPersistentStore>>>;
 
         #[cfg(feature = "NSPersistentStore")]
@@ -176,7 +185,8 @@ extern_methods!(
         #[method(setReturnsObjectsAsFaults:)]
         pub unsafe fn setReturnsObjectsAsFaults(&self, returns_objects_as_faults: bool);
 
-        #[method_id(@__method_family Other relationshipKeyPathsForPrefetching)]
+        #[unsafe(method_family(none))]
+        #[method_id(relationshipKeyPathsForPrefetching)]
         pub unsafe fn relationshipKeyPathsForPrefetching(
             &self,
         ) -> Option<Retained<NSArray<NSString>>>;
@@ -202,7 +212,8 @@ extern_methods!(
         #[method(setReturnsDistinctResults:)]
         pub unsafe fn setReturnsDistinctResults(&self, returns_distinct_results: bool);
 
-        #[method_id(@__method_family Other propertiesToFetch)]
+        #[unsafe(method_family(none))]
+        #[method_id(propertiesToFetch)]
         pub unsafe fn propertiesToFetch(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`propertiesToFetch`][Self::propertiesToFetch].
@@ -233,14 +244,16 @@ extern_methods!(
             should_refresh_refetched_objects: bool,
         );
 
-        #[method_id(@__method_family Other propertiesToGroupBy)]
+        #[unsafe(method_family(none))]
+        #[method_id(propertiesToGroupBy)]
         pub unsafe fn propertiesToGroupBy(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`propertiesToGroupBy`][Self::propertiesToGroupBy].
         #[method(setPropertiesToGroupBy:)]
         pub unsafe fn setPropertiesToGroupBy(&self, properties_to_group_by: Option<&NSArray>);
 
-        #[method_id(@__method_family Other havingPredicate)]
+        #[unsafe(method_family(none))]
+        #[method_id(havingPredicate)]
         pub unsafe fn havingPredicate(&self) -> Option<Retained<NSPredicate>>;
 
         /// Setter for [`havingPredicate`][Self::havingPredicate].
@@ -253,7 +266,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl<ResultType: Message> NSFetchRequest<ResultType> {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -285,7 +299,8 @@ unsafe impl<ResultType: ?Sized> NSObjectProtocol for NSAsynchronousFetchRequest<
 extern_methods!(
     #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl<ResultType: Message> NSAsynchronousFetchRequest<ResultType> {
-        #[method_id(@__method_family Other fetchRequest)]
+        #[unsafe(method_family(none))]
+        #[method_id(fetchRequest)]
         pub unsafe fn fetchRequest(&self) -> Retained<NSFetchRequest<ResultType>>;
 
         #[cfg(all(feature = "NSPersistentStoreResult", feature = "block2"))]
@@ -302,7 +317,8 @@ extern_methods!(
         pub unsafe fn setEstimatedResultCount(&self, estimated_result_count: NSInteger);
 
         #[cfg(all(feature = "NSPersistentStoreResult", feature = "block2"))]
-        #[method_id(@__method_family Init initWithFetchRequest:completionBlock:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithFetchRequest:completionBlock:)]
         pub unsafe fn initWithFetchRequest_completionBlock(
             this: Allocated<Self>,
             request: &NSFetchRequest<ResultType>,
@@ -315,10 +331,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl<ResultType: Message> NSAsynchronousFetchRequest<ResultType> {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

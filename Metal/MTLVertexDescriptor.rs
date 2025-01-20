@@ -209,10 +209,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLVertexBufferLayoutDescriptor {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub fn new() -> Retained<Self>;
     }
 );
@@ -235,7 +237,8 @@ unsafe impl NSObjectProtocol for MTLVertexBufferLayoutDescriptorArray {}
 
 extern_methods!(
     unsafe impl MTLVertexBufferLayoutDescriptorArray {
-        #[method_id(@__method_family Other objectAtIndexedSubscript:)]
+        #[unsafe(method_family(none))]
+        #[method_id(objectAtIndexedSubscript:)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             index: NSUInteger,
@@ -253,10 +256,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLVertexBufferLayoutDescriptorArray {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -304,10 +309,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLVertexAttributeDescriptor {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub fn new() -> Retained<Self>;
     }
 );
@@ -330,7 +337,8 @@ unsafe impl NSObjectProtocol for MTLVertexAttributeDescriptorArray {}
 
 extern_methods!(
     unsafe impl MTLVertexAttributeDescriptorArray {
-        #[method_id(@__method_family Other objectAtIndexedSubscript:)]
+        #[unsafe(method_family(none))]
+        #[method_id(objectAtIndexedSubscript:)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             index: NSUInteger,
@@ -348,10 +356,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLVertexAttributeDescriptorArray {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -373,13 +383,16 @@ unsafe impl NSObjectProtocol for MTLVertexDescriptor {}
 
 extern_methods!(
     unsafe impl MTLVertexDescriptor {
-        #[method_id(@__method_family Other vertexDescriptor)]
+        #[unsafe(method_family(none))]
+        #[method_id(vertexDescriptor)]
         pub fn vertexDescriptor() -> Retained<MTLVertexDescriptor>;
 
-        #[method_id(@__method_family Other layouts)]
+        #[unsafe(method_family(none))]
+        #[method_id(layouts)]
         pub fn layouts(&self) -> Retained<MTLVertexBufferLayoutDescriptorArray>;
 
-        #[method_id(@__method_family Other attributes)]
+        #[unsafe(method_family(none))]
+        #[method_id(attributes)]
         pub fn attributes(&self) -> Retained<MTLVertexAttributeDescriptorArray>;
 
         #[method(reset)]
@@ -390,10 +403,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLVertexDescriptor {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -64,40 +64,51 @@ unsafe impl NSSecureCoding for UNNotificationContent {}
 extern_methods!(
     unsafe impl UNNotificationContent {
         #[cfg(feature = "UNNotificationAttachment")]
-        #[method_id(@__method_family Other attachments)]
+        #[unsafe(method_family(none))]
+        #[method_id(attachments)]
         pub unsafe fn attachments(&self) -> Retained<NSArray<UNNotificationAttachment>>;
 
-        #[method_id(@__method_family Other badge)]
+        #[unsafe(method_family(none))]
+        #[method_id(badge)]
         pub unsafe fn badge(&self) -> Option<Retained<NSNumber>>;
 
-        #[method_id(@__method_family Other body)]
+        #[unsafe(method_family(none))]
+        #[method_id(body)]
         pub unsafe fn body(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other categoryIdentifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(categoryIdentifier)]
         pub unsafe fn categoryIdentifier(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other launchImageName)]
+        #[unsafe(method_family(none))]
+        #[method_id(launchImageName)]
         pub unsafe fn launchImageName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "UNNotificationSound")]
-        #[method_id(@__method_family Other sound)]
+        #[unsafe(method_family(none))]
+        #[method_id(sound)]
         pub unsafe fn sound(&self) -> Option<Retained<UNNotificationSound>>;
 
-        #[method_id(@__method_family Other subtitle)]
+        #[unsafe(method_family(none))]
+        #[method_id(subtitle)]
         pub unsafe fn subtitle(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other threadIdentifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(threadIdentifier)]
         pub unsafe fn threadIdentifier(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other title)]
+        #[unsafe(method_family(none))]
+        #[method_id(title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other userInfo)]
+        #[unsafe(method_family(none))]
+        #[method_id(userInfo)]
         pub unsafe fn userInfo(&self) -> Retained<NSDictionary>;
 
         /// The argument to be inserted in the summary for this notification.
         #[deprecated = "summaryArgument is ignored"]
-        #[method_id(@__method_family Other summaryArgument)]
+        #[unsafe(method_family(none))]
+        #[method_id(summaryArgument)]
         pub unsafe fn summaryArgument(&self) -> Retained<NSString>;
 
         /// A number that indicates how many items in the summary are represented in the summary.
@@ -108,7 +119,8 @@ extern_methods!(
         #[method(summaryArgumentCount)]
         pub unsafe fn summaryArgumentCount(&self) -> NSUInteger;
 
-        #[method_id(@__method_family Other targetContentIdentifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(targetContentIdentifier)]
         pub unsafe fn targetContentIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[method(interruptionLevel)]
@@ -117,7 +129,8 @@ extern_methods!(
         #[method(relevanceScore)]
         pub unsafe fn relevanceScore(&self) -> c_double;
 
-        #[method_id(@__method_family Other filterCriteria)]
+        #[unsafe(method_family(none))]
+        #[method_id(filterCriteria)]
         pub unsafe fn filterCriteria(&self) -> Option<Retained<NSString>>;
 
         /// Contextualizes your UNNotificationContent object with other Apple SDK objects conforming to UNNotificationContentProviding. This will specialize the notification and decorate its look and behavior accordingly. For example, the notification will be treated as a message with an avatar and be promoted to the top of notification center if the object passed in is a valid INSendMessageIntent
@@ -125,7 +138,8 @@ extern_methods!(
         /// >. This throws an error with a UNErrorCode found in UNError.h if the UNNotificationContentProviding object is invalid. A valid UNNotificationContent result should not be mutated and be passed directly to UNUserNotificationCenter.
         ///
         /// This should be called in the UNNotificationServiceExtension in didReceiveNotificationRequest:withContentHandler: and the returned UNNotificationContent should be passed to the contentHandler for incoming push notifications.
-        #[method_id(@__method_family Other contentByUpdatingWithProvider:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(contentByUpdatingWithProvider:error:_)]
         pub unsafe fn contentByUpdatingWithProvider_error(
             &self,
             provider: &ProtocolObject<dyn UNNotificationContentProviding>,
@@ -136,10 +150,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UNNotificationContent {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -172,7 +188,8 @@ unsafe impl NSSecureCoding for UNMutableNotificationContent {}
 extern_methods!(
     unsafe impl UNMutableNotificationContent {
         #[cfg(feature = "UNNotificationAttachment")]
-        #[method_id(@__method_family Other attachments)]
+        #[unsafe(method_family(none))]
+        #[method_id(attachments)]
         pub unsafe fn attachments(&self) -> Retained<NSArray<UNNotificationAttachment>>;
 
         #[cfg(feature = "UNNotificationAttachment")]
@@ -180,28 +197,32 @@ extern_methods!(
         #[method(setAttachments:)]
         pub unsafe fn setAttachments(&self, attachments: &NSArray<UNNotificationAttachment>);
 
-        #[method_id(@__method_family Other badge)]
+        #[unsafe(method_family(none))]
+        #[method_id(badge)]
         pub unsafe fn badge(&self) -> Option<Retained<NSNumber>>;
 
         /// Setter for [`badge`][Self::badge].
         #[method(setBadge:)]
         pub unsafe fn setBadge(&self, badge: Option<&NSNumber>);
 
-        #[method_id(@__method_family Other body)]
+        #[unsafe(method_family(none))]
+        #[method_id(body)]
         pub unsafe fn body(&self) -> Retained<NSString>;
 
         /// Setter for [`body`][Self::body].
         #[method(setBody:)]
         pub unsafe fn setBody(&self, body: &NSString);
 
-        #[method_id(@__method_family Other categoryIdentifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(categoryIdentifier)]
         pub unsafe fn categoryIdentifier(&self) -> Retained<NSString>;
 
         /// Setter for [`categoryIdentifier`][Self::categoryIdentifier].
         #[method(setCategoryIdentifier:)]
         pub unsafe fn setCategoryIdentifier(&self, category_identifier: &NSString);
 
-        #[method_id(@__method_family Other launchImageName)]
+        #[unsafe(method_family(none))]
+        #[method_id(launchImageName)]
         pub unsafe fn launchImageName(&self) -> Retained<NSString>;
 
         /// Setter for [`launchImageName`][Self::launchImageName].
@@ -209,7 +230,8 @@ extern_methods!(
         pub unsafe fn setLaunchImageName(&self, launch_image_name: &NSString);
 
         #[cfg(feature = "UNNotificationSound")]
-        #[method_id(@__method_family Other sound)]
+        #[unsafe(method_family(none))]
+        #[method_id(sound)]
         pub unsafe fn sound(&self) -> Option<Retained<UNNotificationSound>>;
 
         #[cfg(feature = "UNNotificationSound")]
@@ -217,28 +239,32 @@ extern_methods!(
         #[method(setSound:)]
         pub unsafe fn setSound(&self, sound: Option<&UNNotificationSound>);
 
-        #[method_id(@__method_family Other subtitle)]
+        #[unsafe(method_family(none))]
+        #[method_id(subtitle)]
         pub unsafe fn subtitle(&self) -> Retained<NSString>;
 
         /// Setter for [`subtitle`][Self::subtitle].
         #[method(setSubtitle:)]
         pub unsafe fn setSubtitle(&self, subtitle: &NSString);
 
-        #[method_id(@__method_family Other threadIdentifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(threadIdentifier)]
         pub unsafe fn threadIdentifier(&self) -> Retained<NSString>;
 
         /// Setter for [`threadIdentifier`][Self::threadIdentifier].
         #[method(setThreadIdentifier:)]
         pub unsafe fn setThreadIdentifier(&self, thread_identifier: &NSString);
 
-        #[method_id(@__method_family Other title)]
+        #[unsafe(method_family(none))]
+        #[method_id(title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
-        #[method_id(@__method_family Other userInfo)]
+        #[unsafe(method_family(none))]
+        #[method_id(userInfo)]
         pub unsafe fn userInfo(&self) -> Retained<NSDictionary>;
 
         /// Setter for [`userInfo`][Self::userInfo].
@@ -247,7 +273,8 @@ extern_methods!(
 
         /// The argument to be inserted in the summary for this notification.
         #[deprecated = "summaryArgument is ignored"]
-        #[method_id(@__method_family Other summaryArgument)]
+        #[unsafe(method_family(none))]
+        #[method_id(summaryArgument)]
         pub unsafe fn summaryArgument(&self) -> Retained<NSString>;
 
         /// Setter for [`summaryArgument`][Self::summaryArgument].
@@ -268,7 +295,8 @@ extern_methods!(
         #[method(setSummaryArgumentCount:)]
         pub unsafe fn setSummaryArgumentCount(&self, summary_argument_count: NSUInteger);
 
-        #[method_id(@__method_family Other targetContentIdentifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(targetContentIdentifier)]
         pub unsafe fn targetContentIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`targetContentIdentifier`][Self::targetContentIdentifier].
@@ -295,7 +323,8 @@ extern_methods!(
         #[method(setRelevanceScore:)]
         pub unsafe fn setRelevanceScore(&self, relevance_score: c_double);
 
-        #[method_id(@__method_family Other filterCriteria)]
+        #[unsafe(method_family(none))]
+        #[method_id(filterCriteria)]
         pub unsafe fn filterCriteria(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`filterCriteria`][Self::filterCriteria].
@@ -307,10 +336,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UNMutableNotificationContent {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -82,7 +82,8 @@ extern_methods!(
         /// read-only is advertised by the NBD server during the handshake phase of the protocol. Setting `forcedReadOnly`
         /// to YES will force the NBD client to show up as read-only to the guest regardless of whether or not the NBD
         /// server advertises itself as read-only.
-        #[method_id(@__method_family Init initWithURL:timeout:forcedReadOnly:synchronizationMode:error:_)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithURL:timeout:forcedReadOnly:synchronizationMode:error:_)]
         pub unsafe fn initWithURL_timeout_forcedReadOnly_synchronizationMode_error(
             this: Allocated<Self>,
             url: &NSURL,
@@ -101,7 +102,8 @@ extern_methods!(
         ///
         /// This initializer automatically assigns optimized default values for the `timeout`,
         /// `forcedReadOnly`, and `synchronizationMode` properties.
-        #[method_id(@__method_family Init initWithURL:error:_)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithURL:error:_)]
         pub unsafe fn initWithURL_error(
             this: Allocated<Self>,
             url: &NSURL,
@@ -121,7 +123,8 @@ extern_methods!(
         pub unsafe fn validateURL_error(url: &NSURL) -> Result<(), Retained<NSError>>;
 
         /// URL referring to the NBD server to which the NBD client is to be connected.
-        #[method_id(@__method_family Other URL)]
+        #[unsafe(method_family(none))]
+        #[method_id(URL)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
 
         /// The timeout value in seconds for the connection between the client and server. When the timeout expires, an attempt to reconnect with the server will take place.
@@ -144,7 +147,8 @@ extern_methods!(
         pub unsafe fn synchronizationMode(&self) -> VZDiskSynchronizationMode;
 
         /// The attachment's delegate.
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn VZNetworkBlockDeviceStorageDeviceAttachmentDelegate>>>;
@@ -165,10 +169,12 @@ extern_methods!(
     /// Methods declared on superclass `VZStorageDeviceAttachment`
     #[cfg(feature = "VZStorageDeviceAttachment")]
     unsafe impl VZNetworkBlockDeviceStorageDeviceAttachment {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

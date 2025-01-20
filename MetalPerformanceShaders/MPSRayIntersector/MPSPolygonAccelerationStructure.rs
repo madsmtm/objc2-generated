@@ -156,7 +156,8 @@ extern_methods!(
         /// to use this property, or the polygonBuffers property must be nil, in which case an
         /// MPSPolygonBuffer will be created automatically.
         #[deprecated]
-        #[method_id(@__method_family Other vertexBuffer)]
+        #[unsafe(method_family(none))]
+        #[method_id(vertexBuffer)]
         pub unsafe fn vertexBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         /// Setter for [`vertexBuffer`][Self::vertexBuffer].
@@ -186,7 +187,8 @@ extern_methods!(
         /// to use this property, or the polygonBuffers property must be nil, in which case an
         /// MPSPolygonBuffer will be created automatically.
         #[deprecated]
-        #[method_id(@__method_family Other indexBuffer)]
+        #[unsafe(method_family(none))]
+        #[method_id(indexBuffer)]
         pub unsafe fn indexBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         /// Setter for [`indexBuffer`][Self::indexBuffer].
@@ -217,7 +219,8 @@ extern_methods!(
         /// to use this property, or the polygonBuffers property must be nil, in which case an
         /// MPSPolygonBuffer will be created automatically.
         #[deprecated]
-        #[method_id(@__method_family Other maskBuffer)]
+        #[unsafe(method_family(none))]
+        #[method_id(maskBuffer)]
         pub unsafe fn maskBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         /// Setter for [`maskBuffer`][Self::maskBuffer].
@@ -271,7 +274,8 @@ extern_methods!(
         /// be exactly one MPSPolygonBuffer. Use the argumentBuffersSupport property of the MTLDevice to
         /// check for support.
         #[deprecated]
-        #[method_id(@__method_family Other polygonBuffers)]
+        #[unsafe(method_family(none))]
+        #[method_id(polygonBuffers)]
         pub unsafe fn polygonBuffers(&self) -> Option<Retained<NSArray<MPSPolygonBuffer>>>;
 
         #[cfg(feature = "MPSPolygonBuffer")]
@@ -291,12 +295,14 @@ extern_methods!(
     ))]
     unsafe impl MPSPolygonAccelerationStructure {
         #[deprecated]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Initialize the acceleration structure with a Metal device
         #[deprecated]
-        #[method_id(@__method_family Init initWithDevice:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -306,7 +312,8 @@ extern_methods!(
         /// properties such as the vertex buffer, instance buffer, etc. are set to nil. Encode and decode
         /// these buffers along with the acceleration structure instead.
         #[deprecated]
-        #[method_id(@__method_family Init initWithCoder:device:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -321,7 +328,8 @@ extern_methods!(
         /// The Metal device is determined from the acceleration structure group. All
         /// acceleration structures in the instance hierarchy must share the same group.
         #[deprecated]
-        #[method_id(@__method_family Init initWithGroup:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithGroup:)]
         pub unsafe fn initWithGroup(
             this: Allocated<Self>,
             group: &MPSAccelerationStructureGroup,
@@ -334,7 +342,8 @@ extern_methods!(
         /// vertex buffer, instance buffer, etc. are set to nil. Encode and decode these buffers along with
         /// the acceleration structure instead.
         #[deprecated]
-        #[method_id(@__method_family Init initWithCoder:group:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:group:)]
         pub unsafe fn initWithCoder_group(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -359,7 +368,8 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -375,7 +385,8 @@ extern_methods!(
         feature = "MPSKernel"
     ))]
     unsafe impl MPSPolygonAccelerationStructure {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

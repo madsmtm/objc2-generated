@@ -78,7 +78,8 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLBaseElement {
         #[deprecated]
-        #[method_id(@__method_family Other href)]
+        #[unsafe(method_family(none))]
+        #[method_id(href)]
         pub unsafe fn href(&self) -> Retained<NSString>;
 
         /// Setter for [`href`][Self::href].
@@ -87,7 +88,8 @@ extern_methods!(
         pub unsafe fn setHref(&self, href: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__method_family Other target)]
+        #[unsafe(method_family(none))]
+        #[method_id(target)]
         pub unsafe fn target(&self) -> Retained<NSString>;
 
         /// Setter for [`target`][Self::target].
@@ -108,7 +110,8 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLBaseElement {
         #[deprecated]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -123,7 +126,8 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLBaseElement {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

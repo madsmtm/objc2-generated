@@ -78,7 +78,8 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLMetaElement {
         #[deprecated]
-        #[method_id(@__method_family Other content)]
+        #[unsafe(method_family(none))]
+        #[method_id(content)]
         pub unsafe fn content(&self) -> Retained<NSString>;
 
         /// Setter for [`content`][Self::content].
@@ -87,7 +88,8 @@ extern_methods!(
         pub unsafe fn setContent(&self, content: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__method_family Other httpEquiv)]
+        #[unsafe(method_family(none))]
+        #[method_id(httpEquiv)]
         pub unsafe fn httpEquiv(&self) -> Retained<NSString>;
 
         /// Setter for [`httpEquiv`][Self::httpEquiv].
@@ -96,7 +98,8 @@ extern_methods!(
         pub unsafe fn setHttpEquiv(&self, http_equiv: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__method_family Other name)]
+        #[unsafe(method_family(none))]
+        #[method_id(name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
@@ -105,7 +108,8 @@ extern_methods!(
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__method_family Other scheme)]
+        #[unsafe(method_family(none))]
+        #[method_id(scheme)]
         pub unsafe fn scheme(&self) -> Retained<NSString>;
 
         /// Setter for [`scheme`][Self::scheme].
@@ -126,7 +130,8 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLMetaElement {
         #[deprecated]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -141,7 +146,8 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLMetaElement {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

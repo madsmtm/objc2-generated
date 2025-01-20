@@ -102,17 +102,20 @@ unsafe impl UITraitEnvironment for UIActivityIndicatorView {}
 extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIActivityIndicatorView {
-        #[method_id(@__method_family Init initWithActivityIndicatorStyle:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithActivityIndicatorStyle:)]
         pub unsafe fn initWithActivityIndicatorStyle(
             this: Allocated<Self>,
             style: UIActivityIndicatorViewStyle,
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Init initWithFrame:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[method(activityIndicatorViewStyle)]
@@ -133,7 +136,8 @@ extern_methods!(
         pub unsafe fn setHidesWhenStopped(&self, hides_when_stopped: bool);
 
         #[cfg(feature = "UIColor")]
-        #[method_id(@__method_family Other color)]
+        #[unsafe(method_family(none))]
+        #[method_id(color)]
         pub unsafe fn color(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -156,10 +160,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIActivityIndicatorView {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

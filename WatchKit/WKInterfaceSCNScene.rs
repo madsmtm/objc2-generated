@@ -28,12 +28,14 @@ extern_methods!(
     #[cfg(feature = "WKInterfaceObject")]
     unsafe impl WKInterfaceSCNScene {
         #[deprecated = "Use SceneKit.SceneView instead."]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-scene-kit")]
         /// Specifies the scene of the receiver
-        #[method_id(@__method_family Other scene)]
+        #[unsafe(method_family(none))]
+        #[method_id(scene)]
         pub unsafe fn scene(&self) -> Option<Retained<SCNScene>>;
 
         #[cfg(feature = "objc2-scene-kit")]
@@ -45,7 +47,8 @@ extern_methods!(
         /// Draws the contents of the view and returns them as a new image object
         ///
         /// This method is thread-safe and may be called at any time.
-        #[method_id(@__method_family Other snapshot)]
+        #[unsafe(method_family(none))]
+        #[method_id(snapshot)]
         pub unsafe fn snapshot(&self) -> Retained<UIImage>;
 
         /// The rate you want the view to redraw its contents.
@@ -75,7 +78,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "WKInterfaceObject")]
     unsafe impl WKInterfaceSCNScene {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

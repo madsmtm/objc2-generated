@@ -95,20 +95,23 @@ extern_methods!(
         feature = "MPSNDArrayKernel"
     ))]
     unsafe impl MPSNDArrayStridedSlice {
-        #[method_id(@__method_family Init initWithDevice:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithDevice:sourceCount:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:sourceCount:)]
         pub unsafe fn initWithDevice_sourceCount(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
             count: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:device:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -133,7 +136,8 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -149,10 +153,12 @@ extern_methods!(
         feature = "MPSNDArrayKernel"
     ))]
     unsafe impl MPSNDArrayStridedSlice {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -234,13 +240,15 @@ extern_methods!(
         feature = "MPSNDArrayKernel"
     ))]
     unsafe impl MPSNDArrayStridedSliceGradient {
-        #[method_id(@__method_family Init initWithDevice:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithDevice:sourceCount:sourceGradientIndex:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:sourceCount:sourceGradientIndex:)]
         pub unsafe fn initWithDevice_sourceCount_sourceGradientIndex(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -248,7 +256,8 @@ extern_methods!(
             source_gradient_index: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:device:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -265,7 +274,8 @@ extern_methods!(
         feature = "MPSNDArrayKernel"
     ))]
     unsafe impl MPSNDArrayStridedSliceGradient {
-        #[method_id(@__method_family Init initWithDevice:sourceCount:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:sourceCount:)]
         pub unsafe fn initWithDevice_sourceCount(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -290,7 +300,8 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -306,10 +317,12 @@ extern_methods!(
         feature = "MPSNDArrayKernel"
     ))]
     unsafe impl MPSNDArrayStridedSliceGradient {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

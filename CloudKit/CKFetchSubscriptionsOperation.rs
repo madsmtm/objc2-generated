@@ -21,21 +21,25 @@ unsafe impl NSObjectProtocol for CKFetchSubscriptionsOperation {}
 extern_methods!(
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchSubscriptionsOperation {
-        #[method_id(@__method_family Other fetchAllSubscriptionsOperation)]
+        #[unsafe(method_family(none))]
+        #[method_id(fetchAllSubscriptionsOperation)]
         pub unsafe fn fetchAllSubscriptionsOperation() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "CKSubscription")]
-        #[method_id(@__method_family Init initWithSubscriptionIDs:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithSubscriptionIDs:)]
         pub unsafe fn initWithSubscriptionIDs(
             this: Allocated<Self>,
             subscription_i_ds: &NSArray<CKSubscriptionID>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKSubscription")]
-        #[method_id(@__method_family Other subscriptionIDs)]
+        #[unsafe(method_family(none))]
+        #[method_id(subscriptionIDs)]
         pub unsafe fn subscriptionIDs(&self) -> Option<Retained<NSArray<CKSubscriptionID>>>;
 
         #[cfg(feature = "CKSubscription")]
@@ -116,7 +120,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchSubscriptionsOperation {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -66,7 +66,8 @@ extern_methods!(
         /// which may involve localization and privacy considerations.
         ///
         /// When the property is nil, CoreML framework provides a default.
-        #[method_id(@__method_family Other modelDisplayName)]
+        #[unsafe(method_family(none))]
+        #[method_id(modelDisplayName)]
         pub unsafe fn modelDisplayName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`modelDisplayName`][Self::modelDisplayName].
@@ -82,7 +83,8 @@ extern_methods!(
 
         #[cfg(feature = "MLOptimizationHints")]
         /// A group of hints for CoreML to optimize
-        #[method_id(@__method_family Other optimizationHints)]
+        #[unsafe(method_family(none))]
+        #[method_id(optimizationHints)]
         pub unsafe fn optimizationHints(&self) -> Retained<MLOptimizationHints>;
 
         #[cfg(feature = "MLOptimizationHints")]
@@ -95,10 +97,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MLModelConfiguration {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -121,7 +125,8 @@ extern_methods!(
         #[cfg(feature = "objc2-metal")]
         #[cfg(not(target_os = "watchos"))]
         /// Set to specify a preferred Metal device. Defaults to nil which indicates automatic selection
-        #[method_id(@__method_family Other preferredMetalDevice)]
+        #[unsafe(method_family(none))]
+        #[method_id(preferredMetalDevice)]
         pub unsafe fn preferredMetalDevice(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MTLDevice>>>;
@@ -142,7 +147,8 @@ extern_methods!(
     /// Allows app to set model or update parameters as a dictionary.
     unsafe impl MLModelConfiguration {
         #[cfg(all(feature = "MLKey", feature = "MLParameterKey"))]
-        #[method_id(@__method_family Other parameters)]
+        #[unsafe(method_family(none))]
+        #[method_id(parameters)]
         pub unsafe fn parameters(
             &self,
         ) -> Option<Retained<NSDictionary<MLParameterKey, AnyObject>>>;
@@ -170,7 +176,8 @@ extern_methods!(
         /// let configuration = MLModelConfiguration()
         /// configuration.functionName = "my_function"
         /// ```
-        #[method_id(@__method_family Other functionName)]
+        #[unsafe(method_family(none))]
+        #[method_id(functionName)]
         pub unsafe fn functionName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`functionName`][Self::functionName].

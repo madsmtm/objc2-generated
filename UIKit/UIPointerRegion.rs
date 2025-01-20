@@ -31,7 +31,8 @@ extern_methods!(
         #[method(rect)]
         pub unsafe fn rect(&self) -> CGRect;
 
-        #[method_id(@__method_family Other identifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(identifier)]
         pub unsafe fn identifier(&self) -> Option<Retained<ProtocolObject<dyn NSObjectProtocol>>>;
 
         #[cfg(feature = "UIGeometry")]
@@ -52,17 +53,20 @@ extern_methods!(
         /// Parameter `rect`: This region's rect. Must be in the pointer interaction's view's coordinate space.
         ///
         /// Parameter `identifier`: Optional identifier that may be used to identify this region in subsequent pointer interaction delegate calls.
-        #[method_id(@__method_family Other regionWithRect:identifier:)]
+        #[unsafe(method_family(none))]
+        #[method_id(regionWithRect:identifier:)]
         pub unsafe fn regionWithRect_identifier(
             rect: CGRect,
             identifier: Option<&ProtocolObject<dyn NSObjectProtocol>>,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

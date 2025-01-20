@@ -63,21 +63,25 @@ unsafe impl NSObjectProtocol for VNGeneratePersonSegmentationRequest {}
 extern_methods!(
     #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
     unsafe impl VNGeneratePersonSegmentationRequest {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        #[method_id(@__method_family Init initWithCompletionHandler:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCompletionHandler:)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
-        #[method_id(@__method_family Init initWithFrameAnalysisSpacing:completionHandler:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithFrameAnalysisSpacing:completionHandler:)]
         pub unsafe fn initWithFrameAnalysisSpacing_completionHandler(
             this: Allocated<Self>,
             frame_analysis_spacing: CMTime,
@@ -96,7 +100,8 @@ extern_methods!(
         );
 
         /// Obtain the collection of supported output pixel formats for the configured request.
-        #[method_id(@__method_family Other supportedOutputPixelFormatsAndReturnError:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(supportedOutputPixelFormatsAndReturnError:_)]
         pub unsafe fn supportedOutputPixelFormatsAndReturnError(
             &self,
         ) -> Result<Retained<NSArray<NSNumber>>, Retained<NSError>>;
@@ -110,7 +115,8 @@ extern_methods!(
         pub unsafe fn setOutputPixelFormat(&self, output_pixel_format: OSType);
 
         #[cfg(feature = "VNObservation")]
-        #[method_id(@__method_family Other results)]
+        #[unsafe(method_family(none))]
+        #[method_id(results)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNPixelBufferObservation>>>;
     }
 );

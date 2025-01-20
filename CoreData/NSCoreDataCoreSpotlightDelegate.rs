@@ -27,20 +27,24 @@ extern_methods!(
         #[method(isIndexingEnabled)]
         pub unsafe fn isIndexingEnabled(&self) -> bool;
 
-        #[method_id(@__method_family Other domainIdentifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(domainIdentifier)]
         pub unsafe fn domainIdentifier(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other indexName)]
+        #[unsafe(method_family(none))]
+        #[method_id(indexName)]
         pub unsafe fn indexName(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(
             feature = "NSPersistentStoreCoordinator",
             feature = "NSPersistentStoreDescription"
         ))]
-        #[method_id(@__method_family Init initForStoreWithDescription:coordinator:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initForStoreWithDescription:coordinator:)]
         pub unsafe fn initForStoreWithDescription_coordinator(
             this: Allocated<Self>,
             description: &NSPersistentStoreDescription,
@@ -52,7 +56,8 @@ extern_methods!(
             feature = "NSPersistentStoreDescription"
         ))]
         #[deprecated]
-        #[method_id(@__method_family Init initForStoreWithDescription:model:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initForStoreWithDescription:model:)]
         pub unsafe fn initForStoreWithDescription_model(
             this: Allocated<Self>,
             description: &NSPersistentStoreDescription,
@@ -77,7 +82,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSCoreDataCoreSpotlightDelegate {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

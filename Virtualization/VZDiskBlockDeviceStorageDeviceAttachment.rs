@@ -82,7 +82,8 @@ extern_methods!(
         /// The `readOnly` parameter affects how the disk is exposed to the guest operating system
         /// by the storage controller. If the disk is intended to be used read-only, it is also recommended
         /// to open the file handle as read-only.
-        #[method_id(@__method_family Init initWithFileHandle:readOnly:synchronizationMode:error:_)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithFileHandle:readOnly:synchronizationMode:error:_)]
         pub unsafe fn initWithFileHandle_readOnly_synchronizationMode_error(
             this: Allocated<Self>,
             file_handle: &NSFileHandle,
@@ -91,7 +92,8 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         /// File handle to the underlying disk used for storage by the attachment.
-        #[method_id(@__method_family Other fileHandle)]
+        #[unsafe(method_family(none))]
+        #[method_id(fileHandle)]
         pub unsafe fn fileHandle(&self) -> Retained<NSFileHandle>;
 
         /// Whether the underlying disk attachment is read-only.
@@ -109,10 +111,12 @@ extern_methods!(
     /// Methods declared on superclass `VZStorageDeviceAttachment`
     #[cfg(feature = "VZStorageDeviceAttachment")]
     unsafe impl VZDiskBlockDeviceStorageDeviceAttachment {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

@@ -40,7 +40,8 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
-        #[method_id(@__method_family Other presentationController:viewControllerForAdaptivePresentationStyle:)]
+        #[unsafe(method_family(none))]
+        #[method_id(presentationController:viewControllerForAdaptivePresentationStyle:)]
         unsafe fn presentationController_viewControllerForAdaptivePresentationStyle(
             &self,
             controller: &UIPresentationController,
@@ -117,11 +118,13 @@ unsafe impl UITraitEnvironment for UIPresentationController {}
 extern_methods!(
     unsafe impl UIPresentationController {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-        #[method_id(@__method_family Other presentingViewController)]
+        #[unsafe(method_family(none))]
+        #[method_id(presentingViewController)]
         pub unsafe fn presentingViewController(&self) -> Retained<UIViewController>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-        #[method_id(@__method_family Other presentedViewController)]
+        #[unsafe(method_family(none))]
+        #[method_id(presentedViewController)]
         pub unsafe fn presentedViewController(&self) -> Retained<UIViewController>;
 
         #[cfg(feature = "UIViewController")]
@@ -129,10 +132,12 @@ extern_methods!(
         pub unsafe fn presentationStyle(&self) -> UIModalPresentationStyle;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[method_id(@__method_family Other containerView)]
+        #[unsafe(method_family(none))]
+        #[method_id(containerView)]
         pub unsafe fn containerView(&self) -> Option<Retained<UIView>>;
 
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIAdaptivePresentationControllerDelegate>>>;
@@ -146,14 +151,16 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-        #[method_id(@__method_family Init initWithPresentedViewController:presentingViewController:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithPresentedViewController:presentingViewController:)]
         pub unsafe fn initWithPresentedViewController_presentingViewController(
             this: Allocated<Self>,
             presented_view_controller: &UIViewController,
             presenting_view_controller: Option<&UIViewController>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "UIViewController")]
@@ -174,7 +181,8 @@ extern_methods!(
         pub unsafe fn containerViewDidLayoutSubviews(&self);
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[method_id(@__method_family Other presentedView)]
+        #[unsafe(method_family(none))]
+        #[method_id(presentedView)]
         pub unsafe fn presentedView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -201,7 +209,8 @@ extern_methods!(
 
         #[cfg(feature = "UITraitCollection")]
         #[deprecated = "Use the traitOverrides property instead"]
-        #[method_id(@__method_family Other overrideTraitCollection)]
+        #[unsafe(method_family(none))]
+        #[method_id(overrideTraitCollection)]
         pub unsafe fn overrideTraitCollection(&self) -> Option<Retained<UITraitCollection>>;
 
         #[cfg(feature = "UITraitCollection")]
@@ -218,7 +227,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIPresentationController {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -226,7 +236,8 @@ extern_methods!(
 extern_methods!(
     unsafe impl UIPresentationController {
         #[cfg(feature = "UITraitCollection")]
-        #[method_id(@__method_family Other traitOverrides)]
+        #[unsafe(method_family(none))]
+        #[method_id(traitOverrides)]
         pub unsafe fn traitOverrides(&self) -> Retained<ProtocolObject<dyn UITraitOverrides>>;
     }
 );

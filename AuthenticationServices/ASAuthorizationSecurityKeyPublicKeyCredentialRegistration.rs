@@ -51,7 +51,8 @@ extern_methods!(
     unsafe impl ASAuthorizationSecurityKeyPublicKeyCredentialRegistration {
         #[cfg(feature = "ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor")]
         /// A list of transports that the authenticator is believed to support, if this could be determined.
-        #[method_id(@__method_family Other transports)]
+        #[unsafe(method_family(none))]
+        #[method_id(transports)]
         pub unsafe fn transports(
             &self,
         ) -> Retained<NSArray<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport>>;
@@ -61,10 +62,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASAuthorizationSecurityKeyPublicKeyCredentialRegistration {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

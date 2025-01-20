@@ -29,17 +29,20 @@ unsafe impl NSObjectProtocol for AVCaptureDepthDataOutput {}
 extern_methods!(
     #[cfg(feature = "AVCaptureOutputBase")]
     unsafe impl AVCaptureDepthDataOutput {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// The receiver's delegate.
         ///
         ///
         /// The value of this property is an object conforming to the AVCaptureDepthDataOutputDelegate protocol that receives depth data as it is captured. The delegate is set using the setDelegate:callbackQueue: method.
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVCaptureDepthDataOutputDelegate>>>;

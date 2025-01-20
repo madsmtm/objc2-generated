@@ -23,7 +23,8 @@ extern_methods!(
         /// The keypath in the response JSON that uses this set of mappings.
         ///
         /// If the response tokens from login contain this keypath, then the mapping in this class will be used to create a Kerberos ticket. The expected response is a JSON dictionary with the supplied key names.
-        #[method_id(@__method_family Other ticketKeyPath)]
+        #[unsafe(method_family(none))]
+        #[method_id(ticketKeyPath)]
         pub unsafe fn ticketKeyPath(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`ticketKeyPath`][Self::ticketKeyPath].
@@ -31,7 +32,8 @@ extern_methods!(
         pub unsafe fn setTicketKeyPath(&self, ticket_key_path: Option<&NSString>);
 
         /// The key name that contains the base64 encoded kerberos AS-REP string.
-        #[method_id(@__method_family Other messageBufferKeyName)]
+        #[unsafe(method_family(none))]
+        #[method_id(messageBufferKeyName)]
         pub unsafe fn messageBufferKeyName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`messageBufferKeyName`][Self::messageBufferKeyName].
@@ -39,7 +41,8 @@ extern_methods!(
         pub unsafe fn setMessageBufferKeyName(&self, message_buffer_key_name: Option<&NSString>);
 
         /// The key name that contains the Kerberos Realm string.
-        #[method_id(@__method_family Other realmKeyName)]
+        #[unsafe(method_family(none))]
+        #[method_id(realmKeyName)]
         pub unsafe fn realmKeyName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`realmKeyName`][Self::realmKeyName].
@@ -47,7 +50,8 @@ extern_methods!(
         pub unsafe fn setRealmKeyName(&self, realm_key_name: Option<&NSString>);
 
         /// The key name that contains the Kerberos service name string.
-        #[method_id(@__method_family Other serviceNameKeyName)]
+        #[unsafe(method_family(none))]
+        #[method_id(serviceNameKeyName)]
         pub unsafe fn serviceNameKeyName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`serviceNameKeyName`][Self::serviceNameKeyName].
@@ -55,7 +59,8 @@ extern_methods!(
         pub unsafe fn setServiceNameKeyName(&self, service_name_key_name: Option<&NSString>);
 
         /// The key name that contains the Kerberos client name string.
-        #[method_id(@__method_family Other clientNameKeyName)]
+        #[unsafe(method_family(none))]
+        #[method_id(clientNameKeyName)]
         pub unsafe fn clientNameKeyName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`clientNameKeyName`][Self::clientNameKeyName].
@@ -65,7 +70,8 @@ extern_methods!(
         /// The key name that contains the Kerberos session key type number.
         ///
         /// The value for this key should be the correct encryption type per RFC3962, section 7 for the session key.
-        #[method_id(@__method_family Other encryptionKeyTypeKeyName)]
+        #[unsafe(method_family(none))]
+        #[method_id(encryptionKeyTypeKeyName)]
         pub unsafe fn encryptionKeyTypeKeyName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`encryptionKeyTypeKeyName`][Self::encryptionKeyTypeKeyName].
@@ -76,7 +82,8 @@ extern_methods!(
         );
 
         /// The key name that contains the Kerberos session key.
-        #[method_id(@__method_family Other sessionKeyKeyName)]
+        #[unsafe(method_family(none))]
+        #[method_id(sessionKeyKeyName)]
         pub unsafe fn sessionKeyKeyName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`sessionKeyKeyName`][Self::sessionKeyKeyName].
@@ -88,10 +95,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASAuthorizationProviderExtensionKerberosMapping {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -219,10 +228,12 @@ unsafe impl NSObjectProtocol for ASAuthorizationProviderExtensionLoginConfigurat
 
 extern_methods!(
     unsafe impl ASAuthorizationProviderExtensionLoginConfiguration {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Initializes an ASAuthorizationProviderExtensionLoginConfiguration class with the required values.
@@ -238,7 +249,8 @@ extern_methods!(
         /// Parameter `audience`: The audience used for signed assertions.  This should be the tenent at the idP.
         ///
         /// Returns: An instance of a ASAuthorizationProviderExtensionLoginConfiguration.
-        #[method_id(@__method_family Init initWithClientID:issuer:tokenEndpointURL:jwksEndpointURL:audience:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithClientID:issuer:tokenEndpointURL:jwksEndpointURL:audience:)]
         pub unsafe fn initWithClientID_issuer_tokenEndpointURL_jwksEndpointURL_audience(
             this: Allocated<Self>,
             client_id: &NSString,
@@ -271,7 +283,8 @@ extern_methods!(
         /// Predicate string used to identify invalid credential errors.
         ///
         /// If there is an HTTP 400 or HTTP 401 error when authenticating, this predicate will be used on the response body JSON to determine if the error is due to an invalid password or something else.  If nil, then only an HTTP 401 will be used for an invalid credential.
-        #[method_id(@__method_family Other invalidCredentialPredicate)]
+        #[unsafe(method_family(none))]
+        #[method_id(invalidCredentialPredicate)]
         pub unsafe fn invalidCredentialPredicate(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`invalidCredentialPredicate`][Self::invalidCredentialPredicate].
@@ -282,7 +295,8 @@ extern_methods!(
         );
 
         /// The display name for the account.  Used for notifications and login prompts.
-        #[method_id(@__method_family Other accountDisplayName)]
+        #[unsafe(method_family(none))]
+        #[method_id(accountDisplayName)]
         pub unsafe fn accountDisplayName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accountDisplayName`][Self::accountDisplayName].
@@ -290,15 +304,18 @@ extern_methods!(
         pub unsafe fn setAccountDisplayName(&self, account_display_name: Option<&NSString>);
 
         /// The login client_id.
-        #[method_id(@__method_family Other clientID)]
+        #[unsafe(method_family(none))]
+        #[method_id(clientID)]
         pub unsafe fn clientID(&self) -> Retained<NSString>;
 
         /// The issuer for validation.
-        #[method_id(@__method_family Other issuer)]
+        #[unsafe(method_family(none))]
+        #[method_id(issuer)]
         pub unsafe fn issuer(&self) -> Retained<NSString>;
 
         /// The audience for validation and requests.
-        #[method_id(@__method_family Other audience)]
+        #[unsafe(method_family(none))]
+        #[method_id(audience)]
         pub unsafe fn audience(&self) -> Retained<NSString>;
 
         /// Setter for [`audience`][Self::audience].
@@ -306,7 +323,8 @@ extern_methods!(
         pub unsafe fn setAudience(&self, audience: &NSString);
 
         /// Token Endpoint URL for login request.
-        #[method_id(@__method_family Other tokenEndpointURL)]
+        #[unsafe(method_family(none))]
+        #[method_id(tokenEndpointURL)]
         pub unsafe fn tokenEndpointURL(&self) -> Retained<NSURL>;
 
         /// Setter for [`tokenEndpointURL`][Self::tokenEndpointURL].
@@ -314,7 +332,8 @@ extern_methods!(
         pub unsafe fn setTokenEndpointURL(&self, token_endpoint_url: &NSURL);
 
         /// JWKS Endpoint URL for keys.
-        #[method_id(@__method_family Other jwksEndpointURL)]
+        #[unsafe(method_family(none))]
+        #[method_id(jwksEndpointURL)]
         pub unsafe fn jwksEndpointURL(&self) -> Retained<NSURL>;
 
         /// Setter for [`jwksEndpointURL`][Self::jwksEndpointURL].
@@ -324,7 +343,8 @@ extern_methods!(
         /// The root certificates to use for trust evaluation of jwks keys.
         ///
         /// if set, certificates will be required in jwks responses and evaluated using the supplied certificates.  If the jwks certificates are missing or fail trust evaluation the login will fail.
-        #[method_id(@__method_family Other jwksTrustedRootCertificates)]
+        #[unsafe(method_family(none))]
+        #[method_id(jwksTrustedRootCertificates)]
         pub unsafe fn jwksTrustedRootCertificates(&self) -> Retained<NSArray>;
 
         /// Setter for [`jwksTrustedRootCertificates`][Self::jwksTrustedRootCertificates].
@@ -335,7 +355,8 @@ extern_methods!(
         );
 
         /// The device context for storing device meta data.
-        #[method_id(@__method_family Other deviceContext)]
+        #[unsafe(method_family(none))]
+        #[method_id(deviceContext)]
         pub unsafe fn deviceContext(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`deviceContext`][Self::deviceContext].
@@ -356,7 +377,8 @@ extern_methods!(
         );
 
         /// Nonce Endpoint URL, defaults to token tokenEndpointURL.
-        #[method_id(@__method_family Other nonceEndpointURL)]
+        #[unsafe(method_family(none))]
+        #[method_id(nonceEndpointURL)]
         pub unsafe fn nonceEndpointURL(&self) -> Retained<NSURL>;
 
         /// Setter for [`nonceEndpointURL`][Self::nonceEndpointURL].
@@ -364,7 +386,8 @@ extern_methods!(
         pub unsafe fn setNonceEndpointURL(&self, nonce_endpoint_url: &NSURL);
 
         /// The keypath in the nonce response that contains the nonce value.
-        #[method_id(@__method_family Other nonceResponseKeypath)]
+        #[unsafe(method_family(none))]
+        #[method_id(nonceResponseKeypath)]
         pub unsafe fn nonceResponseKeypath(&self) -> Retained<NSString>;
 
         /// Setter for [`nonceResponseKeypath`][Self::nonceResponseKeypath].
@@ -372,7 +395,8 @@ extern_methods!(
         pub unsafe fn setNonceResponseKeypath(&self, nonce_response_keypath: &NSString);
 
         /// The name of the server nonce claim when included in authentication requests.
-        #[method_id(@__method_family Other serverNonceClaimName)]
+        #[unsafe(method_family(none))]
+        #[method_id(serverNonceClaimName)]
         pub unsafe fn serverNonceClaimName(&self) -> Retained<NSString>;
 
         /// Setter for [`serverNonceClaimName`][Self::serverNonceClaimName].
@@ -380,7 +404,8 @@ extern_methods!(
         pub unsafe fn setServerNonceClaimName(&self, server_nonce_claim_name: &NSString);
 
         /// Custom values added to the server nonce POST request body.
-        #[method_id(@__method_family Other customNonceRequestValues)]
+        #[unsafe(method_family(none))]
+        #[method_id(customNonceRequestValues)]
         pub unsafe fn customNonceRequestValues(&self) -> Retained<NSArray<NSURLQueryItem>>;
 
         /// Setter for [`customNonceRequestValues`][Self::customNonceRequestValues].
@@ -417,7 +442,8 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         /// Additional login scopes.
-        #[method_id(@__method_family Other additionalScopes)]
+        #[unsafe(method_family(none))]
+        #[method_id(additionalScopes)]
         pub unsafe fn additionalScopes(&self) -> Retained<NSString>;
 
         /// Setter for [`additionalScopes`][Self::additionalScopes].
@@ -425,7 +451,8 @@ extern_methods!(
         pub unsafe fn setAdditionalScopes(&self, additional_scopes: &NSString);
 
         /// Additional authorization scopes.
-        #[method_id(@__method_family Other additionalAuthorizationScopes)]
+        #[unsafe(method_family(none))]
+        #[method_id(additionalAuthorizationScopes)]
         pub unsafe fn additionalAuthorizationScopes(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`additionalAuthorizationScopes`][Self::additionalAuthorizationScopes].
@@ -447,7 +474,8 @@ extern_methods!(
         );
 
         /// The claim name for the previous SSO token value in the login request.
-        #[method_id(@__method_family Other previousRefreshTokenClaimName)]
+        #[unsafe(method_family(none))]
+        #[method_id(previousRefreshTokenClaimName)]
         pub unsafe fn previousRefreshTokenClaimName(&self) -> Retained<NSString>;
 
         /// Setter for [`previousRefreshTokenClaimName`][Self::previousRefreshTokenClaimName].
@@ -458,7 +486,8 @@ extern_methods!(
         );
 
         /// The request parameter name for the JWT.  The default is "assertion".
-        #[method_id(@__method_family Other customRequestJWTParameterName)]
+        #[unsafe(method_family(none))]
+        #[method_id(customRequestJWTParameterName)]
         pub unsafe fn customRequestJWTParameterName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`customRequestJWTParameterName`][Self::customRequestJWTParameterName].
@@ -469,7 +498,8 @@ extern_methods!(
         );
 
         /// Custom values added to the login POST request body.
-        #[method_id(@__method_family Other customLoginRequestValues)]
+        #[unsafe(method_family(none))]
+        #[method_id(customLoginRequestValues)]
         pub unsafe fn customLoginRequestValues(&self) -> Retained<NSArray<NSURLQueryItem>>;
 
         /// Setter for [`customLoginRequestValues`][Self::customLoginRequestValues].
@@ -506,7 +536,8 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         /// The claim name for the user unique identifier in the id token. Defaults to "sub".
-        #[method_id(@__method_family Other uniqueIdentifierClaimName)]
+        #[unsafe(method_family(none))]
+        #[method_id(uniqueIdentifierClaimName)]
         pub unsafe fn uniqueIdentifierClaimName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`uniqueIdentifierClaimName`][Self::uniqueIdentifierClaimName].
@@ -517,7 +548,8 @@ extern_methods!(
         );
 
         /// The claim name for group membership request.
-        #[method_id(@__method_family Other groupRequestClaimName)]
+        #[unsafe(method_family(none))]
+        #[method_id(groupRequestClaimName)]
         pub unsafe fn groupRequestClaimName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`groupRequestClaimName`][Self::groupRequestClaimName].
@@ -525,7 +557,8 @@ extern_methods!(
         pub unsafe fn setGroupRequestClaimName(&self, group_request_claim_name: Option<&NSString>);
 
         /// The claim name for group responses in the id_token.
-        #[method_id(@__method_family Other groupResponseClaimName)]
+        #[unsafe(method_family(none))]
+        #[method_id(groupResponseClaimName)]
         pub unsafe fn groupResponseClaimName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`groupResponseClaimName`][Self::groupResponseClaimName].
@@ -536,7 +569,8 @@ extern_methods!(
         );
 
         /// The Kerberos ticket mappings to use.
-        #[method_id(@__method_family Other kerberosTicketMappings)]
+        #[unsafe(method_family(none))]
+        #[method_id(kerberosTicketMappings)]
         pub unsafe fn kerberosTicketMappings(
             &self,
         ) -> Retained<NSArray<ASAuthorizationProviderExtensionKerberosMapping>>;
@@ -549,7 +583,8 @@ extern_methods!(
         );
 
         /// Token Refresh Endpoint URL for login request.  Defaults to the tokenEndpointURL.
-        #[method_id(@__method_family Other refreshEndpointURL)]
+        #[unsafe(method_family(none))]
+        #[method_id(refreshEndpointURL)]
         pub unsafe fn refreshEndpointURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`refreshEndpointURL`][Self::refreshEndpointURL].
@@ -557,7 +592,8 @@ extern_methods!(
         pub unsafe fn setRefreshEndpointURL(&self, refresh_endpoint_url: Option<&NSURL>);
 
         /// Custom values added to the refresh POST request body.
-        #[method_id(@__method_family Other customRefreshRequestValues)]
+        #[unsafe(method_family(none))]
+        #[method_id(customRefreshRequestValues)]
         pub unsafe fn customRefreshRequestValues(&self) -> Retained<NSArray<NSURLQueryItem>>;
 
         /// Setter for [`customRefreshRequestValues`][Self::customRefreshRequestValues].
@@ -605,7 +641,8 @@ extern_methods!(
         );
 
         /// The URN to request when performing a federated login.
-        #[method_id(@__method_family Other federationRequestURN)]
+        #[unsafe(method_family(none))]
+        #[method_id(federationRequestURN)]
         pub unsafe fn federationRequestURN(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`federationRequestURN`][Self::federationRequestURN].
@@ -613,7 +650,8 @@ extern_methods!(
         pub unsafe fn setFederationRequestURN(&self, federation_request_urn: Option<&NSString>);
 
         /// The federation MEX URL to use.  This can be overwritten when using dynamic federation.
-        #[method_id(@__method_family Other federationMEXURL)]
+        #[unsafe(method_family(none))]
+        #[method_id(federationMEXURL)]
         pub unsafe fn federationMEXURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`federationMEXURL`][Self::federationMEXURL].
@@ -621,7 +659,8 @@ extern_methods!(
         pub unsafe fn setFederationMEXURL(&self, federation_mexurl: Option<&NSURL>);
 
         /// The URL to use when performing dynamic federation.
-        #[method_id(@__method_family Other federationUserPreauthenticationURL)]
+        #[unsafe(method_family(none))]
+        #[method_id(federationUserPreauthenticationURL)]
         pub unsafe fn federationUserPreauthenticationURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`federationUserPreauthenticationURL`][Self::federationUserPreauthenticationURL].
@@ -632,7 +671,8 @@ extern_methods!(
         );
 
         /// The claim in the preauthentication response that contains the MEX URL.
-        #[method_id(@__method_family Other federationMEXURLKeypath)]
+        #[unsafe(method_family(none))]
+        #[method_id(federationMEXURLKeypath)]
         pub unsafe fn federationMEXURLKeypath(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`federationMEXURLKeypath`][Self::federationMEXURLKeypath].
@@ -643,7 +683,8 @@ extern_methods!(
         );
 
         /// The predicate to apply to the preauthentication response to perform federation or not.
-        #[method_id(@__method_family Other federationPredicate)]
+        #[unsafe(method_family(none))]
+        #[method_id(federationPredicate)]
         pub unsafe fn federationPredicate(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`federationPredicate`][Self::federationPredicate].
@@ -651,7 +692,8 @@ extern_methods!(
         pub unsafe fn setFederationPredicate(&self, federation_predicate: Option<&NSString>);
 
         /// The custom query string values to add when making the preauthenticaion request.
-        #[method_id(@__method_family Other customFederationUserPreauthenticationRequestValues)]
+        #[unsafe(method_family(none))]
+        #[method_id(customFederationUserPreauthenticationRequestValues)]
         pub unsafe fn customFederationUserPreauthenticationRequestValues(
             &self,
         ) -> Retained<NSArray<NSURLQueryItem>>;
@@ -667,7 +709,8 @@ extern_methods!(
         /// The public key to use for encrypting the embedded login assertion.
         ///
         /// Only applies to password authentication.  If set, the password will encrypted in an embedded assertion instead of the login request itself.
-        #[method_id(@__method_family Other loginRequestEncryptionPublicKey)]
+        #[unsafe(method_family(none))]
+        #[method_id(loginRequestEncryptionPublicKey)]
         pub unsafe fn loginRequestEncryptionPublicKey(&self) -> Option<Retained<SecKey>>;
 
         #[cfg(feature = "objc2-security")]
@@ -679,7 +722,8 @@ extern_methods!(
         );
 
         /// The APV prefix used for encrypted embedded login assertions.
-        #[method_id(@__method_family Other loginRequestEncryptionAPVPrefix)]
+        #[unsafe(method_family(none))]
+        #[method_id(loginRequestEncryptionAPVPrefix)]
         pub unsafe fn loginRequestEncryptionAPVPrefix(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`loginRequestEncryptionAPVPrefix`][Self::loginRequestEncryptionAPVPrefix].
@@ -690,7 +734,8 @@ extern_methods!(
         );
 
         /// The encryption algorithm to use for the embedded login assertion.
-        #[method_id(@__method_family Other loginRequestEncryptionAlgorithm)]
+        #[unsafe(method_family(none))]
+        #[method_id(loginRequestEncryptionAlgorithm)]
         pub unsafe fn loginRequestEncryptionAlgorithm(
             &self,
         ) -> Retained<ASAuthorizationProviderExtensionEncryptionAlgorithm>;
@@ -703,7 +748,8 @@ extern_methods!(
         );
 
         /// The PreSharedKey to be used for HKPE for embedded login assertions. Setting this value will change the mode to PSK if the loginRequestHPKEPreSharedKeyID is also set. Must be at least 32 bytes.
-        #[method_id(@__method_family Other loginRequestHPKEPreSharedKey)]
+        #[unsafe(method_family(none))]
+        #[method_id(loginRequestHPKEPreSharedKey)]
         pub unsafe fn loginRequestHPKEPreSharedKey(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`loginRequestHPKEPreSharedKey`][Self::loginRequestHPKEPreSharedKey].
@@ -714,7 +760,8 @@ extern_methods!(
         );
 
         /// The PreSharedKey Id to be used for HPKE PSK for embedded login assertions.  This is required if the loginRequestHPKEPreSharedKey is set.
-        #[method_id(@__method_family Other loginRequestHPKEPreSharedKeyID)]
+        #[unsafe(method_family(none))]
+        #[method_id(loginRequestHPKEPreSharedKeyID)]
         pub unsafe fn loginRequestHPKEPreSharedKeyID(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`loginRequestHPKEPreSharedKeyID`][Self::loginRequestHPKEPreSharedKeyID].
@@ -725,7 +772,8 @@ extern_methods!(
         );
 
         /// The url endpoint for key service, defaults to token tokenEndpointURL.
-        #[method_id(@__method_family Other keyEndpointURL)]
+        #[unsafe(method_family(none))]
+        #[method_id(keyEndpointURL)]
         pub unsafe fn keyEndpointURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`keyEndpointURL`][Self::keyEndpointURL].
@@ -733,7 +781,8 @@ extern_methods!(
         pub unsafe fn setKeyEndpointURL(&self, key_endpoint_url: Option<&NSURL>);
 
         /// Custom values added to the key exchange POST request body.
-        #[method_id(@__method_family Other customKeyExchangeRequestValues)]
+        #[unsafe(method_family(none))]
+        #[method_id(customKeyExchangeRequestValues)]
         pub unsafe fn customKeyExchangeRequestValues(&self) -> Retained<NSArray<NSURLQueryItem>>;
 
         /// Setter for [`customKeyExchangeRequestValues`][Self::customKeyExchangeRequestValues].
@@ -770,7 +819,8 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         /// Custom values added to the key request POST request body.
-        #[method_id(@__method_family Other customKeyRequestValues)]
+        #[unsafe(method_family(none))]
+        #[method_id(customKeyRequestValues)]
         pub unsafe fn customKeyRequestValues(&self) -> Retained<NSArray<NSURLQueryItem>>;
 
         /// Setter for [`customKeyRequestValues`][Self::customKeyRequestValues].
@@ -807,7 +857,8 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         /// The PreSharedKey to be used for HKPE. Setting this value will change the mode to PSK or AuthPSK if the hpkeAuthPublicKey is also set. Must be at least 32 bytes.
-        #[method_id(@__method_family Other hpkePreSharedKey)]
+        #[unsafe(method_family(none))]
+        #[method_id(hpkePreSharedKey)]
         pub unsafe fn hpkePreSharedKey(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`hpkePreSharedKey`][Self::hpkePreSharedKey].
@@ -815,7 +866,8 @@ extern_methods!(
         pub unsafe fn setHpkePreSharedKey(&self, hpke_pre_shared_key: Option<&NSData>);
 
         /// The PreSharedKey Id to be used for HPKE PSK or AuthPSK mode.  This is requred if the hpkePreSharedKey is set.
-        #[method_id(@__method_family Other hpkePreSharedKeyID)]
+        #[unsafe(method_family(none))]
+        #[method_id(hpkePreSharedKeyID)]
         pub unsafe fn hpkePreSharedKeyID(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`hpkePreSharedKeyID`][Self::hpkePreSharedKeyID].
@@ -824,7 +876,8 @@ extern_methods!(
 
         #[cfg(feature = "objc2-security")]
         /// The Authentication public key to be used for HPKE.  Setting this value with changet the mode to Auth or AuthPSK if the hpkePreSharedKey is also set.  This public key is used to authenticate HPKE responses.
-        #[method_id(@__method_family Other hpkeAuthPublicKey)]
+        #[unsafe(method_family(none))]
+        #[method_id(hpkeAuthPublicKey)]
         pub unsafe fn hpkeAuthPublicKey(&self) -> Option<Retained<SecKey>>;
 
         #[cfg(feature = "objc2-security")]

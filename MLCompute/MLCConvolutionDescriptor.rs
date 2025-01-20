@@ -129,7 +129,8 @@ extern_methods!(
         ///
         /// Returns: A new convolution descriptor.
         #[deprecated]
-        #[method_id(@__method_family Other descriptorWithType:kernelSizes:inputFeatureChannelCount:outputFeatureChannelCount:groupCount:strides:dilationRates:paddingPolicy:paddingSizes:)]
+        #[unsafe(method_family(none))]
+        #[method_id(descriptorWithType:kernelSizes:inputFeatureChannelCount:outputFeatureChannelCount:groupCount:strides:dilationRates:paddingPolicy:paddingSizes:)]
         pub unsafe fn descriptorWithType_kernelSizes_inputFeatureChannelCount_outputFeatureChannelCount_groupCount_strides_dilationRates_paddingPolicy_paddingSizes(
             convolution_type: MLCConvolutionType,
             kernel_sizes: &NSArray<NSNumber>,
@@ -154,7 +155,8 @@ extern_methods!(
         ///
         /// Returns: A new MLCConvolutionDescriptor object.
         #[deprecated]
-        #[method_id(@__method_family Other descriptorWithKernelWidth:kernelHeight:inputFeatureChannelCount:outputFeatureChannelCount:)]
+        #[unsafe(method_family(none))]
+        #[method_id(descriptorWithKernelWidth:kernelHeight:inputFeatureChannelCount:outputFeatureChannelCount:)]
         pub unsafe fn descriptorWithKernelWidth_kernelHeight_inputFeatureChannelCount_outputFeatureChannelCount(
             kernel_width: NSUInteger,
             kernel_height: NSUInteger,
@@ -179,7 +181,8 @@ extern_methods!(
         ///
         /// Returns: A new MLCConvolutionDescriptor object.
         #[deprecated]
-        #[method_id(@__method_family Other descriptorWithKernelSizes:inputFeatureChannelCount:outputFeatureChannelCount:strides:paddingPolicy:paddingSizes:)]
+        #[unsafe(method_family(none))]
+        #[method_id(descriptorWithKernelSizes:inputFeatureChannelCount:outputFeatureChannelCount:strides:paddingPolicy:paddingSizes:)]
         pub unsafe fn descriptorWithKernelSizes_inputFeatureChannelCount_outputFeatureChannelCount_strides_paddingPolicy_paddingSizes(
             kernel_sizes: &NSArray<NSNumber>,
             input_feature_channel_count: NSUInteger,
@@ -210,7 +213,8 @@ extern_methods!(
         ///
         /// Returns: A new MLCConvolutionDescriptor object.
         #[deprecated]
-        #[method_id(@__method_family Other descriptorWithKernelSizes:inputFeatureChannelCount:outputFeatureChannelCount:groupCount:strides:dilationRates:paddingPolicy:paddingSizes:)]
+        #[unsafe(method_family(none))]
+        #[method_id(descriptorWithKernelSizes:inputFeatureChannelCount:outputFeatureChannelCount:groupCount:strides:dilationRates:paddingPolicy:paddingSizes:)]
         pub unsafe fn descriptorWithKernelSizes_inputFeatureChannelCount_outputFeatureChannelCount_groupCount_strides_dilationRates_paddingPolicy_paddingSizes(
             kernel_sizes: &NSArray<NSNumber>,
             input_feature_channel_count: NSUInteger,
@@ -234,7 +238,8 @@ extern_methods!(
         ///
         /// Returns: A new MLCConvolutionDescriptor object.
         #[deprecated]
-        #[method_id(@__method_family Other convolutionTransposeDescriptorWithKernelWidth:kernelHeight:inputFeatureChannelCount:outputFeatureChannelCount:)]
+        #[unsafe(method_family(none))]
+        #[method_id(convolutionTransposeDescriptorWithKernelWidth:kernelHeight:inputFeatureChannelCount:outputFeatureChannelCount:)]
         pub unsafe fn convolutionTransposeDescriptorWithKernelWidth_kernelHeight_inputFeatureChannelCount_outputFeatureChannelCount(
             kernel_width: NSUInteger,
             kernel_height: NSUInteger,
@@ -259,7 +264,8 @@ extern_methods!(
         ///
         /// Returns: A new MLCConvolutionDescriptor object.
         #[deprecated]
-        #[method_id(@__method_family Other convolutionTransposeDescriptorWithKernelSizes:inputFeatureChannelCount:outputFeatureChannelCount:strides:paddingPolicy:paddingSizes:)]
+        #[unsafe(method_family(none))]
+        #[method_id(convolutionTransposeDescriptorWithKernelSizes:inputFeatureChannelCount:outputFeatureChannelCount:strides:paddingPolicy:paddingSizes:)]
         pub unsafe fn convolutionTransposeDescriptorWithKernelSizes_inputFeatureChannelCount_outputFeatureChannelCount_strides_paddingPolicy_paddingSizes(
             kernel_sizes: &NSArray<NSNumber>,
             input_feature_channel_count: NSUInteger,
@@ -290,7 +296,8 @@ extern_methods!(
         ///
         /// Returns: A new MLCConvolutionDescriptor object.
         #[deprecated]
-        #[method_id(@__method_family Other convolutionTransposeDescriptorWithKernelSizes:inputFeatureChannelCount:outputFeatureChannelCount:groupCount:strides:dilationRates:paddingPolicy:paddingSizes:)]
+        #[unsafe(method_family(none))]
+        #[method_id(convolutionTransposeDescriptorWithKernelSizes:inputFeatureChannelCount:outputFeatureChannelCount:groupCount:strides:dilationRates:paddingPolicy:paddingSizes:)]
         pub unsafe fn convolutionTransposeDescriptorWithKernelSizes_inputFeatureChannelCount_outputFeatureChannelCount_groupCount_strides_dilationRates_paddingPolicy_paddingSizes(
             kernel_sizes: &NSArray<NSNumber>,
             input_feature_channel_count: NSUInteger,
@@ -314,7 +321,8 @@ extern_methods!(
         ///
         /// Returns: A new MLCConvolutionDescriptor object.
         #[deprecated]
-        #[method_id(@__method_family Other depthwiseConvolutionDescriptorWithKernelWidth:kernelHeight:inputFeatureChannelCount:channelMultiplier:)]
+        #[unsafe(method_family(none))]
+        #[method_id(depthwiseConvolutionDescriptorWithKernelWidth:kernelHeight:inputFeatureChannelCount:channelMultiplier:)]
         pub unsafe fn depthwiseConvolutionDescriptorWithKernelWidth_kernelHeight_inputFeatureChannelCount_channelMultiplier(
             kernel_width: NSUInteger,
             kernel_height: NSUInteger,
@@ -339,7 +347,8 @@ extern_methods!(
         ///
         /// Returns: A new MLCConvolutionDescriptor object.
         #[deprecated]
-        #[method_id(@__method_family Other depthwiseConvolutionDescriptorWithKernelSizes:inputFeatureChannelCount:channelMultiplier:strides:paddingPolicy:paddingSizes:)]
+        #[unsafe(method_family(none))]
+        #[method_id(depthwiseConvolutionDescriptorWithKernelSizes:inputFeatureChannelCount:channelMultiplier:strides:paddingPolicy:paddingSizes:)]
         pub unsafe fn depthwiseConvolutionDescriptorWithKernelSizes_inputFeatureChannelCount_channelMultiplier_strides_paddingPolicy_paddingSizes(
             kernel_sizes: &NSArray<NSNumber>,
             input_feature_channel_count: NSUInteger,
@@ -368,7 +377,8 @@ extern_methods!(
         ///
         /// Returns: A new MLCConvolutionDescriptor object.
         #[deprecated]
-        #[method_id(@__method_family Other depthwiseConvolutionDescriptorWithKernelSizes:inputFeatureChannelCount:channelMultiplier:strides:dilationRates:paddingPolicy:paddingSizes:)]
+        #[unsafe(method_family(none))]
+        #[method_id(depthwiseConvolutionDescriptorWithKernelSizes:inputFeatureChannelCount:channelMultiplier:strides:dilationRates:paddingPolicy:paddingSizes:)]
         pub unsafe fn depthwiseConvolutionDescriptorWithKernelSizes_inputFeatureChannelCount_channelMultiplier_strides_dilationRates_paddingPolicy_paddingSizes(
             kernel_sizes: &NSArray<NSNumber>,
             input_feature_channel_count: NSUInteger,
@@ -384,10 +394,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MLCConvolutionDescriptor {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

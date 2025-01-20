@@ -43,17 +43,20 @@ unsafe impl UIMenuLeaf for UIKeyCommand {}
 extern_methods!(
     #[cfg(all(feature = "UICommand", feature = "UIMenuElement"))]
     unsafe impl UIKeyCommand {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
         /// Short display title.
-        #[method_id(@__method_family Other title)]
+        #[unsafe(method_family(none))]
+        #[method_id(title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
@@ -62,7 +65,8 @@ extern_methods!(
 
         #[cfg(feature = "UIImage")]
         /// Image that can appear next to this command.
-        #[method_id(@__method_family Other image)]
+        #[unsafe(method_family(none))]
+        #[method_id(image)]
         pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
@@ -71,7 +75,8 @@ extern_methods!(
         pub unsafe fn setImage(&self, image: Option<&UIImage>);
 
         /// Elaborated title, if any.
-        #[method_id(@__method_family Other discoverabilityTitle)]
+        #[unsafe(method_family(none))]
+        #[method_id(discoverabilityTitle)]
         pub unsafe fn discoverabilityTitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`discoverabilityTitle`][Self::discoverabilityTitle].
@@ -82,14 +87,16 @@ extern_methods!(
         #[method(action)]
         pub unsafe fn action(&self) -> Option<Sel>;
 
-        #[method_id(@__method_family Other input)]
+        #[unsafe(method_family(none))]
+        #[method_id(input)]
         pub unsafe fn input(&self) -> Option<Retained<NSString>>;
 
         #[method(modifierFlags)]
         pub unsafe fn modifierFlags(&self) -> UIKeyModifierFlags;
 
         /// Property list object to distinguish commands, if needed.
-        #[method_id(@__method_family Other propertyList)]
+        #[unsafe(method_family(none))]
+        #[method_id(propertyList)]
         pub unsafe fn propertyList(&self) -> Option<Retained<AnyObject>>;
 
         /// Command attributes.
@@ -109,7 +116,8 @@ extern_methods!(
         pub unsafe fn setState(&self, state: UIMenuElementState);
 
         /// Alternates that differ in modifier flags, if any.
-        #[method_id(@__method_family Other alternates)]
+        #[unsafe(method_family(none))]
+        #[method_id(alternates)]
         pub unsafe fn alternates(&self) -> Retained<NSArray<UICommandAlternate>>;
 
         /// Indicates whether the key command should execute if it conflicts with focus or text-editing system commands, defaults to
@@ -159,7 +167,8 @@ extern_methods!(
         /// Parameter `propertyList`: Property list object to distinguish commands, if needed.
         ///
         /// Returns: A new key command.
-        #[method_id(@__method_family Other commandWithTitle:image:action:input:modifierFlags:propertyList:)]
+        #[unsafe(method_family(none))]
+        #[method_id(commandWithTitle:image:action:input:modifierFlags:propertyList:)]
         pub unsafe fn commandWithTitle_image_action_input_modifierFlags_propertyList(
             title: &NSString,
             image: Option<&UIImage>,
@@ -189,7 +198,8 @@ extern_methods!(
         /// Parameter `alternates`: Alternates that differ in modifier flags.
         ///
         /// Returns: A new key command.
-        #[method_id(@__method_family Other commandWithTitle:image:action:input:modifierFlags:propertyList:alternates:)]
+        #[unsafe(method_family(none))]
+        #[method_id(commandWithTitle:image:action:input:modifierFlags:propertyList:alternates:)]
         pub unsafe fn commandWithTitle_image_action_input_modifierFlags_propertyList_alternates(
             title: &NSString,
             image: Option<&UIImage>,
@@ -201,7 +211,8 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Other keyCommandWithInput:modifierFlags:action:)]
+        #[unsafe(method_family(none))]
+        #[method_id(keyCommandWithInput:modifierFlags:action:)]
         pub unsafe fn keyCommandWithInput_modifierFlags_action(
             input: &NSString,
             modifier_flags: UIKeyModifierFlags,
@@ -210,7 +221,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(@__method_family Other keyCommandWithInput:modifierFlags:action:discoverabilityTitle:)]
+        #[unsafe(method_family(none))]
+        #[method_id(keyCommandWithInput:modifierFlags:action:discoverabilityTitle:)]
         pub unsafe fn keyCommandWithInput_modifierFlags_action_discoverabilityTitle(
             input: &NSString,
             modifier_flags: UIKeyModifierFlags,
@@ -220,7 +232,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "UIImage")]
-        #[method_id(@__method_family Other commandWithTitle:image:action:propertyList:)]
+        #[unsafe(method_family(none))]
+        #[method_id(commandWithTitle:image:action:propertyList:)]
         pub unsafe fn commandWithTitle_image_action_propertyList(
             title: &NSString,
             image: Option<&UIImage>,
@@ -230,7 +243,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "UIImage")]
-        #[method_id(@__method_family Other commandWithTitle:image:action:propertyList:alternates:)]
+        #[unsafe(method_family(none))]
+        #[method_id(commandWithTitle:image:action:propertyList:alternates:)]
         pub unsafe fn commandWithTitle_image_action_propertyList_alternates(
             title: &NSString,
             image: Option<&UIImage>,
@@ -246,7 +260,8 @@ extern_methods!(
     /// Methods declared on superclass `UICommand`
     #[cfg(all(feature = "UICommand", feature = "UIMenuElement"))]
     unsafe impl UIKeyCommand {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

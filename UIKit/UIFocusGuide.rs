@@ -38,7 +38,8 @@ extern_methods!(
         #[cfg(feature = "UIFocus")]
         /// Setting preferredFocusEnvironments to a non-empty array marks this guide's layoutFrame as focusable. If empty, this guide is effectively disabled.
         /// If focused, the guide attempts to redirect focus to each environment in the array, in order, stopping when a focusable item in an environment has been found.
-        #[method_id(@__method_family Other preferredFocusEnvironments)]
+        #[unsafe(method_family(none))]
+        #[method_id(preferredFocusEnvironments)]
         pub unsafe fn preferredFocusEnvironments(
             &self,
         ) -> Retained<NSArray<ProtocolObject<dyn UIFocusEnvironment>>>;
@@ -54,7 +55,8 @@ extern_methods!(
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// Setting a preferred focused view marks this guide's layoutFrame as focusable, and if focused, redirects focus to its preferred focused view. If nil, this guide is effectively disabled.
         #[deprecated]
-        #[method_id(@__method_family Other preferredFocusedView)]
+        #[unsafe(method_family(none))]
+        #[method_id(preferredFocusedView)]
         pub unsafe fn preferredFocusedView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
@@ -70,10 +72,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UILayoutGuide")]
     unsafe impl UIFocusGuide {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

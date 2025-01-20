@@ -38,7 +38,8 @@ extern_methods!(
     unsafe impl NSPersistentDocument {
         #[cfg(feature = "objc2-core-data")]
         #[cfg(target_vendor = "apple")]
-        #[method_id(@__method_family Other managedObjectContext)]
+        #[unsafe(method_family(none))]
+        #[method_id(managedObjectContext)]
         pub unsafe fn managedObjectContext(&self) -> Option<Retained<NSManagedObjectContext>>;
 
         #[cfg(feature = "objc2-core-data")]
@@ -52,7 +53,8 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-data")]
         #[cfg(target_vendor = "apple")]
-        #[method_id(@__method_family Other managedObjectModel)]
+        #[unsafe(method_family(none))]
+        #[method_id(managedObjectModel)]
         pub unsafe fn managedObjectModel(&self) -> Option<Retained<NSManagedObjectModel>>;
 
         #[method(configurePersistentStoreCoordinatorForURL:ofType:modelConfiguration:storeOptions:error:_)]
@@ -64,7 +66,8 @@ extern_methods!(
             store_options: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Result<(), Retained<NSError>>;
 
-        #[method_id(@__method_family Other persistentStoreTypeForFileType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(persistentStoreTypeForFileType:)]
         pub unsafe fn persistentStoreTypeForFileType(
             &self,
             file_type: &NSString,
@@ -99,23 +102,27 @@ extern_methods!(
     /// Methods declared on superclass `NSDocument`
     #[cfg(feature = "NSDocument")]
     unsafe impl NSPersistentDocument {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithType:error:_)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithType:error:_)]
         pub unsafe fn initWithType_error(
             this: Allocated<Self>,
             type_name: &NSString,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[method_id(@__method_family Init initWithContentsOfURL:ofType:error:_)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithContentsOfURL:ofType:error:_)]
         pub unsafe fn initWithContentsOfURL_ofType_error(
             this: Allocated<Self>,
             url: &NSURL,
             type_name: &NSString,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[method_id(@__method_family Init initForURL:withContentsOfURL:ofType:error:_)]
+        #[unsafe(method_family(init))]
+        #[method_id(initForURL:withContentsOfURL:ofType:error:_)]
         pub unsafe fn initForURL_withContentsOfURL_ofType_error(
             this: Allocated<Self>,
             url_or_nil: Option<&NSURL>,
@@ -129,7 +136,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSDocument")]
     unsafe impl NSPersistentDocument {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

@@ -132,10 +132,12 @@ unsafe impl NSSecureCoding for CLSContext {}
 extern_methods!(
     #[cfg(feature = "CLSObject")]
     unsafe impl CLSContext {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Context identifier path of this context.
@@ -147,7 +149,8 @@ extern_methods!(
         /// ```
         ///
         /// to find `this' context.
-        #[method_id(@__method_family Other identifierPath)]
+        #[unsafe(method_family(none))]
+        #[method_id(identifierPath)]
         pub unsafe fn identifierPath(&self) -> Retained<NSArray<NSString>>;
 
         /// App-assigned identifier. This identifier should work across users and devices and be unique with regards to its siblings within its parent.
@@ -155,13 +158,15 @@ extern_methods!(
         /// The identifier could be used to embed information later used for deep linking. For example:
         /// _hydrogen-element,_or
         /// _chapter-1._
-        #[method_id(@__method_family Other identifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         /// Alternative deep link URL using universal links.
         ///
         /// If your app supports universal links, you can supply them here to link the content this context represents.
-        #[method_id(@__method_family Other universalLinkURL)]
+        #[unsafe(method_family(none))]
+        #[method_id(universalLinkURL)]
         pub unsafe fn universalLinkURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`universalLinkURL`][Self::universalLinkURL].
@@ -177,7 +182,8 @@ extern_methods!(
         /// An optional user-visible name for the context if its type is CLSContextTypeCustom.
         ///
         /// This property is relevant only if the type is CLSContextTypeCustom. This string should be localized. If this property is not set for a context of type CLSContextTypeCustom, Schoolwork app will use a default localized string ‘Custom’ as the name of the activity representing this context.
-        #[method_id(@__method_family Other customTypeName)]
+        #[unsafe(method_family(none))]
+        #[method_id(customTypeName)]
         pub unsafe fn customTypeName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`customTypeName`][Self::customTypeName].
@@ -189,7 +195,8 @@ extern_methods!(
         /// For example:
         /// _Level_1
         /// _._
-        #[method_id(@__method_family Other title)]
+        #[unsafe(method_family(none))]
+        #[method_id(title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
@@ -209,7 +216,8 @@ extern_methods!(
         /// Topic associated with this context.
         ///
         /// See above for valid, predefined topics.
-        #[method_id(@__method_family Other topic)]
+        #[unsafe(method_family(none))]
+        #[method_id(topic)]
         pub unsafe fn topic(&self) -> Option<Retained<CLSContextTopic>>;
 
         /// Setter for [`topic`][Self::topic].
@@ -258,7 +266,8 @@ extern_methods!(
         /// Specifies progress reporting capablities of the app for this context.
         ///
         /// This information is intended to help teachers as they choose activities for their students. By default a CLSContext will have one CLSProgressReportingCapability instance of kind CLSProgressReportingCapabilityKindDuration. More progress reporting capabilities can be specified via '-addProgressReportingCapabilities:' to customize this set.
-        #[method_id(@__method_family Other progressReportingCapabilities)]
+        #[unsafe(method_family(none))]
+        #[method_id(progressReportingCapabilities)]
         pub unsafe fn progressReportingCapabilities(
             &self,
         ) -> Retained<NSSet<CLSProgressReportingCapability>>;
@@ -266,7 +275,8 @@ extern_methods!(
         /// An optional user-visible summary describing the context limited to 4000 characters in length.
         ///
         /// This may be used to provide information about the types of activities available under a given context or the context itself. This string should be localized.
-        #[method_id(@__method_family Other summary)]
+        #[unsafe(method_family(none))]
+        #[method_id(summary)]
         pub unsafe fn summary(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`summary`][Self::summary].
@@ -277,7 +287,8 @@ extern_methods!(
         /// An optional thumbnail image associated with the context.
         ///
         /// The size of this image should be equal to or larger than 80x80 pixels and equal to or smaller than 330x330 pixels. Images larger than 330x330 pixels will be scaled down. Images with both dimensions smaller than 80x80 pixels will not be accepted.
-        #[method_id(@__method_family Other thumbnail)]
+        #[unsafe(method_family(none))]
+        #[method_id(thumbnail)]
         pub unsafe fn thumbnail(&self) -> Option<Retained<CGImage>>;
 
         #[cfg(feature = "objc2-core-graphics")]
@@ -292,7 +303,8 @@ extern_methods!(
         /// Parameter `type`: The type of content this context represents.
         ///
         /// Parameter `title`: Title for what this context represents. 256 characters max length.
-        #[method_id(@__method_family Init initWithType:identifier:title:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithType:identifier:title:)]
         pub unsafe fn initWithType_identifier_title(
             this: Allocated<Self>,
             r#type: CLSContextType,
@@ -347,7 +359,8 @@ extern_methods!(
     #[cfg(feature = "CLSObject")]
     unsafe impl CLSContext {
         /// Returns the parent of this context.
-        #[method_id(@__method_family Other parent)]
+        #[unsafe(method_family(none))]
+        #[method_id(parent)]
         pub unsafe fn parent(&self) -> Option<Retained<CLSContext>>;
 
         /// Removes this child context from its parent.
@@ -388,7 +401,8 @@ extern_methods!(
         /// ```text
         ///  -[CLSContext addNavigationChildContext:]
         /// ```
-        #[method_id(@__method_family Other navigationChildContexts)]
+        #[unsafe(method_family(none))]
+        #[method_id(navigationChildContexts)]
         pub unsafe fn navigationChildContexts(&self) -> Retained<NSArray<CLSContext>>;
 
         /// Adds a child context to specify the user can navigate to the child from this context.

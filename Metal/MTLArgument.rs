@@ -390,10 +390,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLType {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -409,7 +411,8 @@ unsafe impl NSObjectProtocol for MTLStructMember {}
 
 extern_methods!(
     unsafe impl MTLStructMember {
-        #[method_id(@__method_family Other name)]
+        #[unsafe(method_family(none))]
+        #[method_id(name)]
         pub fn name(&self) -> Retained<NSString>;
 
         #[method(offset)]
@@ -418,16 +421,20 @@ extern_methods!(
         #[method(dataType)]
         pub fn dataType(&self) -> MTLDataType;
 
-        #[method_id(@__method_family Other structType)]
+        #[unsafe(method_family(none))]
+        #[method_id(structType)]
         pub fn structType(&self) -> Option<Retained<MTLStructType>>;
 
-        #[method_id(@__method_family Other arrayType)]
+        #[unsafe(method_family(none))]
+        #[method_id(arrayType)]
         pub fn arrayType(&self) -> Option<Retained<MTLArrayType>>;
 
-        #[method_id(@__method_family Other textureReferenceType)]
+        #[unsafe(method_family(none))]
+        #[method_id(textureReferenceType)]
         pub unsafe fn textureReferenceType(&self) -> Option<Retained<MTLTextureReferenceType>>;
 
-        #[method_id(@__method_family Other pointerType)]
+        #[unsafe(method_family(none))]
+        #[method_id(pointerType)]
         pub unsafe fn pointerType(&self) -> Option<Retained<MTLPointerType>>;
 
         #[method(argumentIndex)]
@@ -438,10 +445,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLStructMember {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -457,10 +466,12 @@ unsafe impl NSObjectProtocol for MTLStructType {}
 
 extern_methods!(
     unsafe impl MTLStructType {
-        #[method_id(@__method_family Other members)]
+        #[unsafe(method_family(none))]
+        #[method_id(members)]
         pub fn members(&self) -> Retained<NSArray<MTLStructMember>>;
 
-        #[method_id(@__method_family Other memberByName:)]
+        #[unsafe(method_family(none))]
+        #[method_id(memberByName:)]
         pub fn memberByName(&self, name: &NSString) -> Option<Retained<MTLStructMember>>;
     }
 );
@@ -468,10 +479,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLStructType {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -499,18 +512,22 @@ extern_methods!(
         #[method(argumentIndexStride)]
         pub unsafe fn argumentIndexStride(&self) -> NSUInteger;
 
-        #[method_id(@__method_family Other elementStructType)]
+        #[unsafe(method_family(none))]
+        #[method_id(elementStructType)]
         pub fn elementStructType(&self) -> Option<Retained<MTLStructType>>;
 
-        #[method_id(@__method_family Other elementArrayType)]
+        #[unsafe(method_family(none))]
+        #[method_id(elementArrayType)]
         pub fn elementArrayType(&self) -> Option<Retained<MTLArrayType>>;
 
-        #[method_id(@__method_family Other elementTextureReferenceType)]
+        #[unsafe(method_family(none))]
+        #[method_id(elementTextureReferenceType)]
         pub unsafe fn elementTextureReferenceType(
             &self,
         ) -> Option<Retained<MTLTextureReferenceType>>;
 
-        #[method_id(@__method_family Other elementPointerType)]
+        #[unsafe(method_family(none))]
+        #[method_id(elementPointerType)]
         pub unsafe fn elementPointerType(&self) -> Option<Retained<MTLPointerType>>;
     }
 );
@@ -518,10 +535,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLArrayType {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -552,10 +571,12 @@ extern_methods!(
         #[method(elementIsArgumentBuffer)]
         pub unsafe fn elementIsArgumentBuffer(&self) -> bool;
 
-        #[method_id(@__method_family Other elementStructType)]
+        #[unsafe(method_family(none))]
+        #[method_id(elementStructType)]
         pub unsafe fn elementStructType(&self) -> Option<Retained<MTLStructType>>;
 
-        #[method_id(@__method_family Other elementArrayType)]
+        #[unsafe(method_family(none))]
+        #[method_id(elementArrayType)]
         pub unsafe fn elementArrayType(&self) -> Option<Retained<MTLArrayType>>;
     }
 );
@@ -563,10 +584,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLPointerType {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -600,10 +623,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLTextureReferenceType {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -623,7 +648,8 @@ unsafe impl NSObjectProtocol for MTLArgument {}
 extern_methods!(
     unsafe impl MTLArgument {
         #[deprecated]
-        #[method_id(@__method_family Other name)]
+        #[unsafe(method_family(none))]
+        #[method_id(name)]
         pub fn name(&self) -> Retained<NSString>;
 
         #[deprecated]
@@ -655,10 +681,12 @@ extern_methods!(
         pub fn bufferDataType(&self) -> MTLDataType;
 
         #[deprecated]
-        #[method_id(@__method_family Other bufferStructType)]
+        #[unsafe(method_family(none))]
+        #[method_id(bufferStructType)]
         pub fn bufferStructType(&self) -> Option<Retained<MTLStructType>>;
 
-        #[method_id(@__method_family Other bufferPointerType)]
+        #[unsafe(method_family(none))]
+        #[method_id(bufferPointerType)]
         pub unsafe fn bufferPointerType(&self) -> Option<Retained<MTLPointerType>>;
 
         #[deprecated]
@@ -689,10 +717,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLArgument {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -700,7 +730,8 @@ extern_methods!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbinding?language=objc)
     pub unsafe trait MTLBinding: NSObjectProtocol {
-        #[method_id(@__method_family Other name)]
+        #[unsafe(method_family(none))]
+        #[method_id(name)]
         unsafe fn name(&self) -> Retained<NSString>;
 
         #[method(type)]
@@ -732,10 +763,12 @@ extern_protocol!(
         #[method(bufferDataType)]
         unsafe fn bufferDataType(&self) -> MTLDataType;
 
-        #[method_id(@__method_family Other bufferStructType)]
+        #[unsafe(method_family(none))]
+        #[method_id(bufferStructType)]
         unsafe fn bufferStructType(&self) -> Option<Retained<MTLStructType>>;
 
-        #[method_id(@__method_family Other bufferPointerType)]
+        #[unsafe(method_family(none))]
+        #[method_id(bufferPointerType)]
         unsafe fn bufferPointerType(&self) -> Option<Retained<MTLPointerType>>;
     }
 );

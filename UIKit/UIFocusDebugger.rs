@@ -22,7 +22,8 @@ extern_methods!(
         /// Outputs an overview of all supported debugging utilities and other relevant information.
         /// - To use in Swift, enter `po UIFocusDebugger.help()` when paused in lldb.
         /// - To use in Objective-C, enter `po [UIFocusDebugger help]` when paused in lldb.
-        #[method_id(@__method_family Other help)]
+        #[unsafe(method_family(none))]
+        #[method_id(help)]
         pub unsafe fn help(
             mtm: MainThreadMarker,
         ) -> Retained<ProtocolObject<dyn UIFocusDebuggerOutput>>;
@@ -30,7 +31,8 @@ extern_methods!(
         /// Outputs information for the currently focused item.
         /// - To use in Swift, enter `po UIFocusDebugger.status()` when paused in lldb.
         /// - To use in Objective-C, enter `po [UIFocusDebugger status]` when paused in lldb.
-        #[method_id(@__method_family Other status)]
+        #[unsafe(method_family(none))]
+        #[method_id(status)]
         pub unsafe fn status(
             mtm: MainThreadMarker,
         ) -> Retained<ProtocolObject<dyn UIFocusDebuggerOutput>>;
@@ -43,7 +45,8 @@ extern_methods!(
         /// - To use in Objective-C, enter `po [UIFocusDebugger checkFocusabilityForItem:
         /// <item
         /// reference>]` when paused in lldb.
-        #[method_id(@__method_family Other checkFocusabilityForItem:)]
+        #[unsafe(method_family(none))]
+        #[method_id(checkFocusabilityForItem:)]
         pub unsafe fn checkFocusabilityForItem(
             item: &ProtocolObject<dyn UIFocusItem>,
         ) -> Retained<ProtocolObject<dyn UIFocusDebuggerOutput>>;
@@ -56,7 +59,8 @@ extern_methods!(
         /// - To use in Objective-C, enter `po [UIFocusDebugger simulateFocusUpdateRequestFromEnvironment:
         /// <environment
         /// reference>]` when paused in lldb.
-        #[method_id(@__method_family Other simulateFocusUpdateRequestFromEnvironment:)]
+        #[unsafe(method_family(none))]
+        #[method_id(simulateFocusUpdateRequestFromEnvironment:)]
         pub unsafe fn simulateFocusUpdateRequestFromEnvironment(
             environment: &ProtocolObject<dyn UIFocusEnvironment>,
         ) -> Retained<ProtocolObject<dyn UIFocusDebuggerOutput>>;
@@ -70,7 +74,8 @@ extern_methods!(
         /// - To use in Objective-C, enter `po [UIFocusDebugger focusGroupsForEnvironment:
         /// <environment
         /// reference>]` when paused in lldb.
-        #[method_id(@__method_family Other focusGroupsForEnvironment:)]
+        #[unsafe(method_family(none))]
+        #[method_id(focusGroupsForEnvironment:)]
         pub unsafe fn focusGroupsForEnvironment(
             environment: &ProtocolObject<dyn UIFocusEnvironment>,
         ) -> Retained<ProtocolObject<dyn UIFocusDebuggerOutput>>;
@@ -83,7 +88,8 @@ extern_methods!(
         /// - To use in Objective-C, enter `po [UIFocusDebugger preferredFocusEnvironmentsForEnvironment:
         /// <environment
         /// reference>]` when paused in lldb.
-        #[method_id(@__method_family Other preferredFocusEnvironmentsForEnvironment:)]
+        #[unsafe(method_family(none))]
+        #[method_id(preferredFocusEnvironmentsForEnvironment:)]
         pub unsafe fn preferredFocusEnvironmentsForEnvironment(
             environment: &ProtocolObject<dyn UIFocusEnvironment>,
         ) -> Retained<ProtocolObject<dyn UIFocusDebuggerOutput>>;
@@ -93,10 +99,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIFocusDebugger {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

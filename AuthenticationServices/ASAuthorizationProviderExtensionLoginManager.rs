@@ -60,10 +60,12 @@ unsafe impl NSObjectProtocol for ASAuthorizationProviderExtensionLoginManager {}
 
 extern_methods!(
     unsafe impl ASAuthorizationProviderExtensionLoginManager {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Returns YES if the current device completed registration.
@@ -75,16 +77,19 @@ extern_methods!(
         pub unsafe fn isUserRegistered(&self) -> bool;
 
         /// Returns the device registration token from the MDM profile.
-        #[method_id(@__method_family Other registrationToken)]
+        #[unsafe(method_family(none))]
+        #[method_id(registrationToken)]
         pub unsafe fn registrationToken(&self) -> Option<Retained<NSString>>;
 
         /// Returns the extension data from the MDM profile.
-        #[method_id(@__method_family Other extensionData)]
+        #[unsafe(method_family(none))]
+        #[method_id(extensionData)]
         pub unsafe fn extensionData(&self) -> Retained<NSDictionary>;
 
         /// The user name to use when authenticating with the identity provider.
         #[deprecated]
-        #[method_id(@__method_family Other loginUserName)]
+        #[unsafe(method_family(none))]
+        #[method_id(loginUserName)]
         pub unsafe fn loginUserName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`loginUserName`][Self::loginUserName].
@@ -94,7 +99,8 @@ extern_methods!(
 
         #[cfg(feature = "ASAuthorizationProviderExtensionUserLoginConfiguration")]
         /// Retrieves the current user login configuration for the extension.
-        #[method_id(@__method_family Other userLoginConfiguration)]
+        #[unsafe(method_family(none))]
+        #[method_id(userLoginConfiguration)]
         pub unsafe fn userLoginConfiguration(
             &self,
         ) -> Option<Retained<ASAuthorizationProviderExtensionUserLoginConfiguration>>;
@@ -112,7 +118,8 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         /// Retrieves or sets the current SSO tokens response for the current user and extension.
-        #[method_id(@__method_family Other ssoTokens)]
+        #[unsafe(method_family(none))]
+        #[method_id(ssoTokens)]
         pub unsafe fn ssoTokens(&self) -> Option<Retained<NSDictionary>>;
 
         /// Setter for [`ssoTokens`][Self::ssoTokens].
@@ -121,7 +128,8 @@ extern_methods!(
 
         #[cfg(feature = "ASAuthorizationProviderExtensionLoginConfiguration")]
         /// Retrieves or sets the current login configuration for the extension.
-        #[method_id(@__method_family Other loginConfiguration)]
+        #[unsafe(method_family(none))]
+        #[method_id(loginConfiguration)]
         pub unsafe fn loginConfiguration(
             &self,
         ) -> Option<Retained<ASAuthorizationProviderExtensionLoginConfiguration>>;
@@ -155,7 +163,8 @@ extern_methods!(
         /// Retrieves the key for the specified platform SSO key type.
         ///
         /// Parameter `keyType`: The key type to retrieve.
-        #[method_id(@__method_family Copy copyKeyForKeyType:)]
+        #[unsafe(method_family(copy))]
+        #[method_id(copyKeyForKeyType:)]
         pub unsafe fn copyKeyForKeyType(
             &self,
             key_type: ASAuthorizationProviderExtensionKeyType,
@@ -165,7 +174,8 @@ extern_methods!(
         /// Retrieves the identity for the specified platform SSO key type.
         ///
         /// Parameter `keyType`: The key type to retrieve.
-        #[method_id(@__method_family Copy copyIdentityForKeyType:)]
+        #[unsafe(method_family(copy))]
+        #[method_id(copyIdentityForKeyType:)]
         pub unsafe fn copyIdentityForKeyType(
             &self,
             key_type: ASAuthorizationProviderExtensionKeyType,
@@ -175,7 +185,8 @@ extern_methods!(
         /// Generates a new key for the specified platform SSO key type using the strongest supported key strength returning the new key.  Nil is returned if there is an error generating the new key.
         ///
         /// Parameter `keyType`: The key type to retrieve.
-        #[method_id(@__method_family Other beginKeyRotationForKeyType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(beginKeyRotationForKeyType:)]
         pub unsafe fn beginKeyRotationForKeyType(
             &self,
             key_type: ASAuthorizationProviderExtensionKeyType,

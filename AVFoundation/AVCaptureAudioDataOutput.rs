@@ -28,17 +28,20 @@ unsafe impl NSObjectProtocol for AVCaptureAudioDataOutput {}
 extern_methods!(
     #[cfg(feature = "AVCaptureOutputBase")]
     unsafe impl AVCaptureAudioDataOutput {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// The receiver's delegate.
         ///
         ///
         /// The value of this property is an object conforming to the AVCaptureAudioDataOutputSampleBufferDelegate protocol that will receive sample buffers after they are captured. The delegate is set using the setSampleBufferDelegate:queue: method.
-        #[method_id(@__method_family Other sampleBufferDelegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(sampleBufferDelegate)]
         pub unsafe fn sampleBufferDelegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVCaptureAudioDataOutputSampleBufferDelegate>>>;
@@ -47,7 +50,8 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an NSDictionary containing values for audio settings keys defined in AVAudioSettings.h. When audioSettings is set to nil, the AVCaptureAudioDataOutput vends samples in their device native format.
-        #[method_id(@__method_family Other audioSettings)]
+        #[unsafe(method_family(none))]
+        #[method_id(audioSettings)]
         pub unsafe fn audioSettings(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         /// Setter for [`audioSettings`][Self::audioSettings].
@@ -73,7 +77,8 @@ extern_methods!(
         /// The dictionary returned contains all necessary keys and values needed by AVAssetWriter (see AVAssetWriterInput.h, -initWithMediaType:outputSettings: for a more in depth discussion). For QuickTime movie and ISO files, the recommended audio settings will always produce output comparable to that of AVCaptureMovieFileOutput.
         ///
         /// Note that the dictionary of settings is dependent on the current configuration of the receiver's AVCaptureSession and its inputs. The settings dictionary may change if the session's configuration changes. As such, you should configure your session first, then query the recommended audio settings.
-        #[method_id(@__method_family Other recommendedAudioSettingsForAssetWriterWithOutputFileType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(recommendedAudioSettingsForAssetWriterWithOutputFileType:)]
         pub unsafe fn recommendedAudioSettingsForAssetWriterWithOutputFileType(
             &self,
             output_file_type: &AVFileType,

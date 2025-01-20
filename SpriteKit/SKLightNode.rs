@@ -81,7 +81,8 @@ extern_methods!(
         /// See: SKUniform
         ///
         /// See: falloff
-        #[method_id(@__method_family Other lightColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(lightColor)]
         pub unsafe fn lightColor(&self) -> Retained<NSColor>;
 
         /// Setter for [`lightColor`][Self::lightColor].
@@ -99,7 +100,8 @@ extern_methods!(
         ///
         ///
         /// See: lightColor
-        #[method_id(@__method_family Other ambientColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(ambientColor)]
         pub unsafe fn ambientColor(&self) -> Retained<NSColor>;
 
         /// Setter for [`ambientColor`][Self::ambientColor].
@@ -114,7 +116,8 @@ extern_methods!(
         /// See: SKSpriteNode.shadowCastBitMask
         ///
         /// See: SKSpriteNode.shadowedBitMask
-        #[method_id(@__method_family Other shadowColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(shadowColor)]
         pub unsafe fn shadowColor(&self) -> Retained<NSColor>;
 
         /// Setter for [`shadowColor`][Self::shadowColor].
@@ -159,26 +162,31 @@ extern_methods!(
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl SKLightNode {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Support coding and decoding via NSKeyedArchiver.
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__method_family Other node)]
+        #[unsafe(method_family(none))]
+        #[method_id(node)]
         pub unsafe fn node(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__method_family Other nodeWithFileNamed:)]
+        #[unsafe(method_family(none))]
+        #[method_id(nodeWithFileNamed:)]
         pub unsafe fn nodeWithFileNamed(
             filename: &NSString,
             mtm: MainThreadMarker,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__method_family Other nodeWithFileNamed:securelyWithClasses:andError:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(nodeWithFileNamed:securelyWithClasses:andError:_)]
         pub unsafe fn nodeWithFileNamed_securelyWithClasses_andError(
             filename: &NSString,
             classes: &NSSet<AnyClass>,
@@ -192,7 +200,8 @@ extern_methods!(
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl SKLightNode {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

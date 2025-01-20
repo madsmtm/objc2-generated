@@ -77,7 +77,8 @@ unsafe impl NSObjectProtocol for EAWiFiUnconfiguredAccessoryBrowser {}
 extern_methods!(
     unsafe impl EAWiFiUnconfiguredAccessoryBrowser {
         /// The delegate object that will receive the browser events.
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn EAWiFiUnconfiguredAccessoryBrowserDelegate>>>;
@@ -93,7 +94,8 @@ extern_methods!(
         #[cfg(feature = "EAWiFiUnconfiguredAccessory")]
         /// The set of discovered unconfigured accessories described by EAWiFiUnconfiguredAccessory objects.
         /// This snapshot will only include objects matching the filter predicate defined when starting the search.
-        #[method_id(@__method_family Other unconfiguredAccessories)]
+        #[unsafe(method_family(none))]
+        #[method_id(unconfiguredAccessories)]
         pub unsafe fn unconfiguredAccessories(
             &self,
         ) -> Retained<NSSet<EAWiFiUnconfiguredAccessory>>;
@@ -122,10 +124,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl EAWiFiUnconfiguredAccessoryBrowser {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

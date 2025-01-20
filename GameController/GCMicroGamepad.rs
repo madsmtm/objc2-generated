@@ -93,7 +93,8 @@ extern_methods!(
     #[cfg(feature = "GCPhysicalInputProfile")]
     unsafe impl GCMicroGamepad {
         #[cfg(feature = "GCController")]
-        #[method_id(@__method_family Other controller)]
+        #[unsafe(method_family(none))]
+        #[method_id(controller)]
         pub unsafe fn controller(&self) -> Option<Retained<GCController>>;
 
         #[cfg(all(feature = "GCControllerElement", feature = "block2"))]
@@ -119,19 +120,22 @@ extern_methods!(
         ///
         /// See: GCMicroGamepadSnapshot
         #[deprecated = "GCMicroGamepadSnapshot has been deprecated, use [GCController capture] instead"]
-        #[method_id(@__method_family Other saveSnapshot)]
+        #[unsafe(method_family(none))]
+        #[method_id(saveSnapshot)]
         pub unsafe fn saveSnapshot(&self) -> Retained<GCMicroGamepadSnapshot>;
 
         #[cfg(all(feature = "GCControllerDirectionPad", feature = "GCControllerElement"))]
         /// Optionally analog in the Micro profile. All the elements of this directional input are either analog or digital.
-        #[method_id(@__method_family Other dpad)]
+        #[unsafe(method_family(none))]
+        #[method_id(dpad)]
         pub unsafe fn dpad(&self) -> Retained<GCControllerDirectionPad>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         /// The Micro profile has two buttons that are optionally analog in the Micro profile.
         /// Button A is the primary action button, it indicates affirmative action and should be used to advance in menus
         /// or perform the primary action in gameplay.
-        #[method_id(@__method_family Other buttonA)]
+        #[unsafe(method_family(none))]
+        #[method_id(buttonA)]
         pub unsafe fn buttonA(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
@@ -142,12 +146,14 @@ extern_methods!(
         /// used to present menu content or to retreat in a menu flow.
         ///
         /// See: buttonA
-        #[method_id(@__method_family Other buttonX)]
+        #[unsafe(method_family(none))]
+        #[method_id(buttonX)]
         pub unsafe fn buttonX(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         /// Button menu is the primary menu button, and should be used to enter the main menu and pause the game.
-        #[method_id(@__method_family Other buttonMenu)]
+        #[unsafe(method_family(none))]
+        #[method_id(buttonMenu)]
         pub unsafe fn buttonMenu(&self) -> Retained<GCControllerButtonInput>;
 
         /// The Micro profile can use the raw position values of the touchpad on the remote as D-pad values, or it can create a virtual dpad centered around the first contact point with the surface.
@@ -189,10 +195,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "GCPhysicalInputProfile")]
     unsafe impl GCMicroGamepad {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

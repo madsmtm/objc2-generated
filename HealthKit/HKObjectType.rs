@@ -36,69 +36,84 @@ extern_methods!(
         /// A unique string identifying a type of health object.
         ///
         /// See HKTypeIdentifiers.h for possible values.
-        #[method_id(@__method_family Other identifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "HKTypeIdentifiers")]
-        #[method_id(@__method_family Other quantityTypeForIdentifier:)]
+        #[unsafe(method_family(none))]
+        #[method_id(quantityTypeForIdentifier:)]
         pub unsafe fn quantityTypeForIdentifier(
             identifier: &HKQuantityTypeIdentifier,
         ) -> Option<Retained<HKQuantityType>>;
 
         #[cfg(feature = "HKTypeIdentifiers")]
-        #[method_id(@__method_family Other categoryTypeForIdentifier:)]
+        #[unsafe(method_family(none))]
+        #[method_id(categoryTypeForIdentifier:)]
         pub unsafe fn categoryTypeForIdentifier(
             identifier: &HKCategoryTypeIdentifier,
         ) -> Option<Retained<HKCategoryType>>;
 
         #[cfg(feature = "HKTypeIdentifiers")]
-        #[method_id(@__method_family Other characteristicTypeForIdentifier:)]
+        #[unsafe(method_family(none))]
+        #[method_id(characteristicTypeForIdentifier:)]
         pub unsafe fn characteristicTypeForIdentifier(
             identifier: &HKCharacteristicTypeIdentifier,
         ) -> Option<Retained<HKCharacteristicType>>;
 
         #[cfg(feature = "HKTypeIdentifiers")]
-        #[method_id(@__method_family Other correlationTypeForIdentifier:)]
+        #[unsafe(method_family(none))]
+        #[method_id(correlationTypeForIdentifier:)]
         pub unsafe fn correlationTypeForIdentifier(
             identifier: &HKCorrelationTypeIdentifier,
         ) -> Option<Retained<HKCorrelationType>>;
 
         #[cfg(feature = "HKTypeIdentifiers")]
-        #[method_id(@__method_family Other documentTypeForIdentifier:)]
+        #[unsafe(method_family(none))]
+        #[method_id(documentTypeForIdentifier:)]
         pub unsafe fn documentTypeForIdentifier(
             identifier: &HKDocumentTypeIdentifier,
         ) -> Option<Retained<HKDocumentType>>;
 
         #[cfg(feature = "HKTypeIdentifiers")]
-        #[method_id(@__method_family Other scoredAssessmentTypeForIdentifier:)]
+        #[unsafe(method_family(none))]
+        #[method_id(scoredAssessmentTypeForIdentifier:)]
         pub unsafe fn scoredAssessmentTypeForIdentifier(
             identifier: &HKScoredAssessmentTypeIdentifier,
         ) -> Option<Retained<HKScoredAssessmentType>>;
 
-        #[method_id(@__method_family Other seriesTypeForIdentifier:)]
+        #[unsafe(method_family(none))]
+        #[method_id(seriesTypeForIdentifier:)]
         pub unsafe fn seriesTypeForIdentifier(
             identifier: &NSString,
         ) -> Option<Retained<HKSeriesType>>;
 
-        #[method_id(@__method_family Other workoutType)]
+        #[unsafe(method_family(none))]
+        #[method_id(workoutType)]
         pub unsafe fn workoutType() -> Retained<HKWorkoutType>;
 
-        #[method_id(@__method_family Other activitySummaryType)]
+        #[unsafe(method_family(none))]
+        #[method_id(activitySummaryType)]
         pub unsafe fn activitySummaryType() -> Retained<HKActivitySummaryType>;
 
-        #[method_id(@__method_family Other audiogramSampleType)]
+        #[unsafe(method_family(none))]
+        #[method_id(audiogramSampleType)]
         pub unsafe fn audiogramSampleType() -> Retained<HKAudiogramSampleType>;
 
-        #[method_id(@__method_family Other electrocardiogramType)]
+        #[unsafe(method_family(none))]
+        #[method_id(electrocardiogramType)]
         pub unsafe fn electrocardiogramType() -> Retained<HKElectrocardiogramType>;
 
-        #[method_id(@__method_family Other visionPrescriptionType)]
+        #[unsafe(method_family(none))]
+        #[method_id(visionPrescriptionType)]
         pub unsafe fn visionPrescriptionType() -> Retained<HKPrescriptionType>;
 
-        #[method_id(@__method_family Other stateOfMindType)]
+        #[unsafe(method_family(none))]
+        #[method_id(stateOfMindType)]
         pub unsafe fn stateOfMindType() -> Retained<HKStateOfMindType>;
 
         /// Returns YES if the authorization for the object type needs to be requested on per object basis.
@@ -110,7 +125,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKObjectType {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -147,7 +163,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `HKObjectType`
     unsafe impl HKCharacteristicType {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -155,7 +172,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKCharacteristicType {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -219,7 +237,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `HKObjectType`
     unsafe impl HKSampleType {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -227,7 +246,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKSampleType {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -264,7 +284,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `HKObjectType`
     unsafe impl HKCategoryType {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -272,7 +293,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKCategoryType {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -309,7 +331,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `HKObjectType`
     unsafe impl HKCorrelationType {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -317,7 +340,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKCorrelationType {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -354,7 +378,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `HKObjectType`
     unsafe impl HKDocumentType {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -362,7 +387,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKDocumentType {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -409,7 +435,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `HKObjectType`
     unsafe impl HKQuantityType {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -417,7 +444,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKQuantityType {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -454,7 +482,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `HKObjectType`
     unsafe impl HKWorkoutType {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -462,7 +491,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKWorkoutType {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -494,10 +524,12 @@ unsafe impl NSSecureCoding for HKSeriesType {}
 
 extern_methods!(
     unsafe impl HKSeriesType {
-        #[method_id(@__method_family Other workoutRouteType)]
+        #[unsafe(method_family(none))]
+        #[method_id(workoutRouteType)]
         pub unsafe fn workoutRouteType() -> Retained<Self>;
 
-        #[method_id(@__method_family Other heartbeatSeriesType)]
+        #[unsafe(method_family(none))]
+        #[method_id(heartbeatSeriesType)]
         pub unsafe fn heartbeatSeriesType() -> Retained<Self>;
     }
 );
@@ -505,7 +537,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `HKObjectType`
     unsafe impl HKSeriesType {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -513,7 +546,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKSeriesType {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -550,7 +584,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `HKObjectType`
     unsafe impl HKActivitySummaryType {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -558,7 +593,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKActivitySummaryType {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -595,7 +631,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `HKObjectType`
     unsafe impl HKAudiogramSampleType {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -603,7 +640,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKAudiogramSampleType {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -640,7 +678,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `HKObjectType`
     unsafe impl HKElectrocardiogramType {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -648,7 +687,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKElectrocardiogramType {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -685,7 +725,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `HKObjectType`
     unsafe impl HKPrescriptionType {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -693,7 +734,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKPrescriptionType {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -730,7 +772,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `HKObjectType`
     unsafe impl HKScoredAssessmentType {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -738,7 +781,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKScoredAssessmentType {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -775,7 +819,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `HKObjectType`
     unsafe impl HKStateOfMindType {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -783,7 +828,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKStateOfMindType {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

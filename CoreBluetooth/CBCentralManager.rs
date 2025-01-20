@@ -117,7 +117,8 @@ extern_methods!(
     #[cfg(feature = "CBManager")]
     unsafe impl CBCentralManager {
         /// The delegate object that will receive central events.
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn CBCentralManagerDelegate>>>;
@@ -141,7 +142,8 @@ extern_methods!(
         #[method(supportsFeatures:)]
         pub unsafe fn supportsFeatures(features: CBCentralManagerFeature) -> bool;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "CBPeer", feature = "CBPeripheral"))]
@@ -168,7 +170,8 @@ extern_methods!(
         /// CBPeripheral
         /// </code>
         /// objects.
-        #[method_id(@__method_family Other retrievePeripheralsWithIdentifiers:)]
+        #[unsafe(method_family(none))]
+        #[method_id(retrievePeripheralsWithIdentifiers:)]
         pub unsafe fn retrievePeripheralsWithIdentifiers(
             &self,
             identifiers: &NSArray<NSUUID>,
@@ -191,7 +194,8 @@ extern_methods!(
         ///  
         ///
         /// ```
-        #[method_id(@__method_family Other retrieveConnectedPeripheralsWithServices:)]
+        #[unsafe(method_family(none))]
+        #[method_id(retrieveConnectedPeripheralsWithServices:)]
         pub unsafe fn retrieveConnectedPeripheralsWithServices(
             &self,
             service_uui_ds: &NSArray<CBUUID>,
@@ -356,7 +360,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CBManager")]
     unsafe impl CBCentralManager {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

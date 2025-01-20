@@ -79,7 +79,8 @@ extern_methods!(
     unsafe impl DOMHTMLTableElement {
         #[cfg(feature = "DOMHTMLTableCaptionElement")]
         #[deprecated]
-        #[method_id(@__method_family Other caption)]
+        #[unsafe(method_family(none))]
+        #[method_id(caption)]
         pub unsafe fn caption(&self) -> Option<Retained<DOMHTMLTableCaptionElement>>;
 
         #[cfg(feature = "DOMHTMLTableCaptionElement")]
@@ -90,7 +91,8 @@ extern_methods!(
 
         #[cfg(feature = "DOMHTMLTableSectionElement")]
         #[deprecated]
-        #[method_id(@__method_family Other tHead)]
+        #[unsafe(method_family(none))]
+        #[method_id(tHead)]
         pub unsafe fn tHead(&self) -> Option<Retained<DOMHTMLTableSectionElement>>;
 
         #[cfg(feature = "DOMHTMLTableSectionElement")]
@@ -101,7 +103,8 @@ extern_methods!(
 
         #[cfg(feature = "DOMHTMLTableSectionElement")]
         #[deprecated]
-        #[method_id(@__method_family Other tFoot)]
+        #[unsafe(method_family(none))]
+        #[method_id(tFoot)]
         pub unsafe fn tFoot(&self) -> Option<Retained<DOMHTMLTableSectionElement>>;
 
         #[cfg(feature = "DOMHTMLTableSectionElement")]
@@ -112,16 +115,19 @@ extern_methods!(
 
         #[cfg(feature = "DOMHTMLCollection")]
         #[deprecated]
-        #[method_id(@__method_family Other rows)]
+        #[unsafe(method_family(none))]
+        #[method_id(rows)]
         pub unsafe fn rows(&self) -> Option<Retained<DOMHTMLCollection>>;
 
         #[cfg(feature = "DOMHTMLCollection")]
         #[deprecated]
-        #[method_id(@__method_family Other tBodies)]
+        #[unsafe(method_family(none))]
+        #[method_id(tBodies)]
         pub unsafe fn tBodies(&self) -> Option<Retained<DOMHTMLCollection>>;
 
         #[deprecated]
-        #[method_id(@__method_family Other align)]
+        #[unsafe(method_family(none))]
+        #[method_id(align)]
         pub unsafe fn align(&self) -> Retained<NSString>;
 
         /// Setter for [`align`][Self::align].
@@ -130,7 +136,8 @@ extern_methods!(
         pub unsafe fn setAlign(&self, align: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__method_family Other bgColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(bgColor)]
         pub unsafe fn bgColor(&self) -> Retained<NSString>;
 
         /// Setter for [`bgColor`][Self::bgColor].
@@ -139,7 +146,8 @@ extern_methods!(
         pub unsafe fn setBgColor(&self, bg_color: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__method_family Other border)]
+        #[unsafe(method_family(none))]
+        #[method_id(border)]
         pub unsafe fn border(&self) -> Retained<NSString>;
 
         /// Setter for [`border`][Self::border].
@@ -148,7 +156,8 @@ extern_methods!(
         pub unsafe fn setBorder(&self, border: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__method_family Other cellPadding)]
+        #[unsafe(method_family(none))]
+        #[method_id(cellPadding)]
         pub unsafe fn cellPadding(&self) -> Retained<NSString>;
 
         /// Setter for [`cellPadding`][Self::cellPadding].
@@ -157,7 +166,8 @@ extern_methods!(
         pub unsafe fn setCellPadding(&self, cell_padding: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__method_family Other cellSpacing)]
+        #[unsafe(method_family(none))]
+        #[method_id(cellSpacing)]
         pub unsafe fn cellSpacing(&self) -> Retained<NSString>;
 
         /// Setter for [`cellSpacing`][Self::cellSpacing].
@@ -166,7 +176,8 @@ extern_methods!(
         pub unsafe fn setCellSpacing(&self, cell_spacing: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__method_family Other frameBorders)]
+        #[unsafe(method_family(none))]
+        #[method_id(frameBorders)]
         pub unsafe fn frameBorders(&self) -> Retained<NSString>;
 
         /// Setter for [`frameBorders`][Self::frameBorders].
@@ -175,7 +186,8 @@ extern_methods!(
         pub unsafe fn setFrameBorders(&self, frame_borders: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__method_family Other rules)]
+        #[unsafe(method_family(none))]
+        #[method_id(rules)]
         pub unsafe fn rules(&self) -> Retained<NSString>;
 
         /// Setter for [`rules`][Self::rules].
@@ -184,7 +196,8 @@ extern_methods!(
         pub unsafe fn setRules(&self, rules: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__method_family Other summary)]
+        #[unsafe(method_family(none))]
+        #[method_id(summary)]
         pub unsafe fn summary(&self) -> Retained<NSString>;
 
         /// Setter for [`summary`][Self::summary].
@@ -193,7 +206,8 @@ extern_methods!(
         pub unsafe fn setSummary(&self, summary: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__method_family Other width)]
+        #[unsafe(method_family(none))]
+        #[method_id(width)]
         pub unsafe fn width(&self) -> Retained<NSString>;
 
         /// Setter for [`width`][Self::width].
@@ -202,7 +216,8 @@ extern_methods!(
         pub unsafe fn setWidth(&self, width: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__method_family Other createTHead)]
+        #[unsafe(method_family(none))]
+        #[method_id(createTHead)]
         pub unsafe fn createTHead(&self) -> Option<Retained<DOMHTMLElement>>;
 
         #[deprecated]
@@ -210,7 +225,8 @@ extern_methods!(
         pub unsafe fn deleteTHead(&self);
 
         #[deprecated]
-        #[method_id(@__method_family Other createTFoot)]
+        #[unsafe(method_family(none))]
+        #[method_id(createTFoot)]
         pub unsafe fn createTFoot(&self) -> Option<Retained<DOMHTMLElement>>;
 
         #[deprecated]
@@ -218,7 +234,8 @@ extern_methods!(
         pub unsafe fn deleteTFoot(&self);
 
         #[deprecated]
-        #[method_id(@__method_family Other createCaption)]
+        #[unsafe(method_family(none))]
+        #[method_id(createCaption)]
         pub unsafe fn createCaption(&self) -> Option<Retained<DOMHTMLElement>>;
 
         #[deprecated]
@@ -226,7 +243,8 @@ extern_methods!(
         pub unsafe fn deleteCaption(&self);
 
         #[deprecated]
-        #[method_id(@__method_family Other insertRow:)]
+        #[unsafe(method_family(none))]
+        #[method_id(insertRow:)]
         pub unsafe fn insertRow(&self, index: c_int) -> Option<Retained<DOMHTMLElement>>;
 
         #[deprecated]
@@ -246,7 +264,8 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLTableElement {
         #[deprecated]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -261,7 +280,8 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLTableElement {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

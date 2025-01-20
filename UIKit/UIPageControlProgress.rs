@@ -54,7 +54,8 @@ unsafe impl NSObjectProtocol for UIPageControlProgress {}
 extern_methods!(
     unsafe impl UIPageControlProgress {
         /// An object that defines the delegate of the page control progress.
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIPageControlProgressDelegate>>>;
@@ -86,10 +87,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIPageControlProgress {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -128,14 +131,16 @@ unsafe impl NSObjectProtocol for UIPageControlTimerProgress {}
 extern_methods!(
     unsafe impl UIPageControlTimerProgress {
         /// Creates a time interval progress with a specified preferred duration.
-        #[method_id(@__method_family Init initWithPreferredDuration:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithPreferredDuration:)]
         pub unsafe fn initWithPreferredDuration(
             this: Allocated<Self>,
             preferred_duration: NSTimeInterval,
         ) -> Retained<Self>;
 
         /// An object that defines the delegate of the page control progress.
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIPageControlTimerProgressDelegate>>>;
@@ -186,10 +191,12 @@ extern_methods!(
         #[method(durationForPage:)]
         pub unsafe fn durationForPage(&self, page: NSInteger) -> NSTimeInterval;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

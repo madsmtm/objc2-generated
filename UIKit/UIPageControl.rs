@@ -211,7 +211,8 @@ extern_methods!(
 
         #[cfg(feature = "UIPageControlProgress")]
         /// An object that defines the progress of the page control. Default is nil.
-        #[method_id(@__method_family Other progress)]
+        #[unsafe(method_family(none))]
+        #[method_id(progress)]
         pub unsafe fn progress(&self) -> Option<Retained<UIPageControlProgress>>;
 
         #[cfg(feature = "UIPageControlProgress")]
@@ -221,7 +222,8 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         /// The tint color for non-selected indicators. Default is nil.
-        #[method_id(@__method_family Other pageIndicatorTintColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(pageIndicatorTintColor)]
         pub unsafe fn pageIndicatorTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -231,7 +233,8 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         /// The tint color for the currently-selected indicators. Default is nil.
-        #[method_id(@__method_family Other currentPageIndicatorTintColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(currentPageIndicatorTintColor)]
         pub unsafe fn currentPageIndicatorTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -273,7 +276,8 @@ extern_methods!(
 
         #[cfg(feature = "UIImage")]
         /// The preferred image for indicators. Symbol images are recommended. Default is nil.
-        #[method_id(@__method_family Other preferredIndicatorImage)]
+        #[unsafe(method_family(none))]
+        #[method_id(preferredIndicatorImage)]
         pub unsafe fn preferredIndicatorImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
@@ -288,7 +292,8 @@ extern_methods!(
         /// Returns the override indicator image for the specific page, nil if no override image was set.
         ///
         /// Parameter `page`: Must be in the range of 0..numberOfPages
-        #[method_id(@__method_family Other indicatorImageForPage:)]
+        #[unsafe(method_family(none))]
+        #[method_id(indicatorImageForPage:)]
         pub unsafe fn indicatorImageForPage(&self, page: NSInteger) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
@@ -305,7 +310,8 @@ extern_methods!(
         /// If this value is nil, then UIPageControl will use
         /// `preferredPageIndicatorImage`(or its per-page variant) as
         /// the indicator image.
-        #[method_id(@__method_family Other preferredCurrentPageIndicatorImage)]
+        #[unsafe(method_family(none))]
+        #[method_id(preferredCurrentPageIndicatorImage)]
         pub unsafe fn preferredCurrentPageIndicatorImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
@@ -320,7 +326,8 @@ extern_methods!(
         /// Returns the override current page indicator image for the specific page, nil if no override image was set.
         ///
         /// Parameter `page`: Must be in the range of 0..numberOfPages
-        #[method_id(@__method_family Other currentPageIndicatorImageForPage:)]
+        #[unsafe(method_family(none))]
+        #[method_id(currentPageIndicatorImageForPage:)]
         pub unsafe fn currentPageIndicatorImageForPage(
             &self,
             page: NSInteger,
@@ -366,10 +373,12 @@ extern_methods!(
     #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIPageControl {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Init initWithFrame:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -381,7 +390,8 @@ extern_methods!(
             feature = "objc2-core-foundation"
         ))]
         /// Initializes the control and adds primaryAction for the UIControlEventPrimaryActionTriggered control event. Subclasses of UIControl may alter or add behaviors around the usage of primaryAction, see subclass documentation of this initializer for additional information.
-        #[method_id(@__method_family Init initWithFrame:primaryAction:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithFrame:primaryAction:)]
         pub unsafe fn initWithFrame_primaryAction(
             this: Allocated<Self>,
             frame: CGRect,
@@ -394,10 +404,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIPageControl {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

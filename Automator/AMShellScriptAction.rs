@@ -37,10 +37,12 @@ extern_methods!(
         #[method(remapLineEndings)]
         pub unsafe fn remapLineEndings(&self) -> bool;
 
-        #[method_id(@__method_family Other inputFieldSeparator)]
+        #[unsafe(method_family(none))]
+        #[method_id(inputFieldSeparator)]
         pub unsafe fn inputFieldSeparator(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other outputFieldSeparator)]
+        #[unsafe(method_family(none))]
+        #[method_id(outputFieldSeparator)]
         pub unsafe fn outputFieldSeparator(&self) -> Retained<NSString>;
     }
 );
@@ -49,14 +51,16 @@ extern_methods!(
     /// Methods declared on superclass `AMAction`
     #[cfg(all(feature = "AMAction", feature = "AMBundleAction"))]
     unsafe impl AMShellScriptAction {
-        #[method_id(@__method_family Init initWithDefinition:fromArchive:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDefinition:fromArchive:)]
         pub unsafe fn initWithDefinition_fromArchive(
             this: Allocated<Self>,
             dict: Option<&NSDictionary<NSString, AnyObject>>,
             archived: bool,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__method_family Init initWithContentsOfURL:error:_)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithContentsOfURL:error:_)]
         pub unsafe fn initWithContentsOfURL_error(
             this: Allocated<Self>,
             file_url: &NSURL,
@@ -68,10 +72,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "AMAction", feature = "AMBundleAction"))]
     unsafe impl AMShellScriptAction {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

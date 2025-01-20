@@ -53,59 +53,72 @@ extern_methods!(
         pub unsafe fn doubleValue(&self) -> c_double;
 
         /// Populated value if the type is MLFeatureTypeString
-        #[method_id(@__method_family Other stringValue)]
+        #[unsafe(method_family(none))]
+        #[method_id(stringValue)]
         pub unsafe fn stringValue(&self) -> Retained<NSString>;
 
         #[cfg(feature = "MLMultiArray")]
         /// Populated value if the type is MLFeatureTypeMultiArray
-        #[method_id(@__method_family Other multiArrayValue)]
+        #[unsafe(method_family(none))]
+        #[method_id(multiArrayValue)]
         pub unsafe fn multiArrayValue(&self) -> Option<Retained<MLMultiArray>>;
 
         /// Populated value if the type is MLFeatureTypeDictionary
-        #[method_id(@__method_family Other dictionaryValue)]
+        #[unsafe(method_family(none))]
+        #[method_id(dictionaryValue)]
         pub unsafe fn dictionaryValue(&self) -> Retained<NSDictionary<AnyObject, NSNumber>>;
 
         #[cfg(feature = "objc2-core-video")]
         /// Populated value if the type is MLFeatureTypeImage
-        #[method_id(@__method_family Other imageBufferValue)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageBufferValue)]
         pub unsafe fn imageBufferValue(&self) -> Option<Retained<CVPixelBuffer>>;
 
         #[cfg(feature = "MLSequence")]
         /// Populated value if the type is MLFeatureTypeSequence
-        #[method_id(@__method_family Other sequenceValue)]
+        #[unsafe(method_family(none))]
+        #[method_id(sequenceValue)]
         pub unsafe fn sequenceValue(&self) -> Option<Retained<MLSequence>>;
 
         /// Hold an object with the specified value
-        #[method_id(@__method_family Other featureValueWithInt64:)]
+        #[unsafe(method_family(none))]
+        #[method_id(featureValueWithInt64:)]
         pub unsafe fn featureValueWithInt64(value: i64) -> Retained<Self>;
 
-        #[method_id(@__method_family Other featureValueWithDouble:)]
+        #[unsafe(method_family(none))]
+        #[method_id(featureValueWithDouble:)]
         pub unsafe fn featureValueWithDouble(value: c_double) -> Retained<Self>;
 
-        #[method_id(@__method_family Other featureValueWithString:)]
+        #[unsafe(method_family(none))]
+        #[method_id(featureValueWithString:)]
         pub unsafe fn featureValueWithString(value: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "MLMultiArray")]
-        #[method_id(@__method_family Other featureValueWithMultiArray:)]
+        #[unsafe(method_family(none))]
+        #[method_id(featureValueWithMultiArray:)]
         pub unsafe fn featureValueWithMultiArray(value: &MLMultiArray) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-video")]
-        #[method_id(@__method_family Other featureValueWithPixelBuffer:)]
+        #[unsafe(method_family(none))]
+        #[method_id(featureValueWithPixelBuffer:)]
         pub unsafe fn featureValueWithPixelBuffer(value: &CVPixelBuffer) -> Retained<Self>;
 
         #[cfg(feature = "MLSequence")]
-        #[method_id(@__method_family Other featureValueWithSequence:)]
+        #[unsafe(method_family(none))]
+        #[method_id(featureValueWithSequence:)]
         pub unsafe fn featureValueWithSequence(sequence: &MLSequence) -> Retained<Self>;
 
         #[cfg(feature = "MLFeatureType")]
         /// Represent an undefined value of a specified type
-        #[method_id(@__method_family Other undefinedFeatureValueWithType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(undefinedFeatureValueWithType:)]
         pub unsafe fn undefinedFeatureValueWithType(r#type: MLFeatureType) -> Retained<Self>;
 
         /// For encoding a sparse feature set or for encoding probabilities. Input keys that are not
         /// NSNumber * or NSString * are rejected on construction and return a MLModelErrorFeatureTypeMismatch
         /// error. Further validation for consistency occurs on evaluation
-        #[method_id(@__method_family Other featureValueWithDictionary:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(featureValueWithDictionary:error:_)]
         pub unsafe fn featureValueWithDictionary_error(
             value: &NSDictionary<AnyObject, NSNumber>,
         ) -> Result<Retained<Self>, Retained<NSError>>;
@@ -129,10 +142,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MLFeatureValue {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

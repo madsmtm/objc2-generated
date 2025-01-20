@@ -47,7 +47,8 @@ extern_methods!(
         #[cfg(feature = "block2")]
         /// Called by implementor of MDLMeshBuffer protocol to create the map
         /// and arrange for unmapping on deallocation.
-        #[method_id(@__method_family Init initWithBytes:deallocator:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithBytes:deallocator:)]
         pub unsafe fn initWithBytes_deallocator(
             this: Allocated<Self>,
             bytes: NonNull<c_void>,
@@ -63,10 +64,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLMeshBufferMap {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -99,7 +102,8 @@ extern_protocol!(
         /// For instance,  if the implementing class maps an OpenGL buffer, that
         /// buffer may be  unavailable for rendering while mapped, and cause a
         /// draw failure.  Precautions must be taken in such cases.
-        #[method_id(@__method_family Other map)]
+        #[unsafe(method_family(none))]
+        #[method_id(map)]
         unsafe fn map(&self) -> Retained<MDLMeshBufferMap>;
 
         /// Size in bytes of the buffer allocation
@@ -110,7 +114,8 @@ extern_protocol!(
         ///
         /// This allcoator used for copy and relayout operations (such as when
         /// a new vertex descriptor is applied to a vertex buffer)
-        #[method_id(@__method_family Other allocator)]
+        #[unsafe(method_family(none))]
+        #[method_id(allocator)]
         unsafe fn allocator(&self) -> Retained<ProtocolObject<dyn MDLMeshBufferAllocator>>;
 
         /// Zone from which this buffer was created
@@ -118,7 +123,8 @@ extern_protocol!(
         /// This zone will be used for copy and relayout operations (such as
         /// when a new vertex descriptor is applied to a vertex buffer).  If
         /// the default zone is used this will be nil.
-        #[method_id(@__method_family Other zone)]
+        #[unsafe(method_family(none))]
+        #[method_id(zone)]
         unsafe fn zone(&self) -> Retained<ProtocolObject<dyn MDLMeshBufferZone>>;
 
         /// the intended type of the buffer
@@ -153,7 +159,8 @@ extern_methods!(
         /// Parameter `type`: the intended use of the buffer
         ///
         /// Parameter `length`: the size of buffer to allocate, in bytes
-        #[method_id(@__method_family Init initWithType:length:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithType:length:)]
         pub unsafe fn initWithType_length(
             this: Allocated<Self>,
             r#type: MDLMeshBufferType,
@@ -165,14 +172,16 @@ extern_methods!(
         /// Parameter `type`: the intended use of the buffer
         ///
         /// Parameter `data`: the data to be used as a mesh buffer. It will be copied.
-        #[method_id(@__method_family Init initWithType:data:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithType:data:)]
         pub unsafe fn initWithType_data(
             this: Allocated<Self>,
             r#type: MDLMeshBufferType,
             data: Option<&NSData>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Other data)]
+        #[unsafe(method_family(none))]
+        #[method_id(data)]
         pub unsafe fn data(&self) -> Retained<NSData>;
     }
 );
@@ -180,10 +189,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLMeshBufferData {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -199,7 +210,8 @@ extern_protocol!(
         unsafe fn capacity(&self) -> NSUInteger;
 
         /// Allocator used to create the zone
-        #[method_id(@__method_family Other allocator)]
+        #[unsafe(method_family(none))]
+        #[method_id(allocator)]
         unsafe fn allocator(&self) -> Retained<ProtocolObject<dyn MDLMeshBufferAllocator>>;
     }
 );
@@ -217,7 +229,8 @@ extern_protocol!(
         ///
         /// Parameter `capacity`: Total size in bytes of all buffers which can be created from
         /// this zone
-        #[method_id(@__method_family New newZone:)]
+        #[unsafe(method_family(new))]
+        #[method_id(newZone:)]
         unsafe fn newZone(
             &self,
             capacity: NSUInteger,
@@ -234,7 +247,8 @@ extern_protocol!(
         /// allocated.  This will allocate a zone with enough capacity
         /// for each of the buffers with sizes and types specified even taking
         /// into any alignment restrictions necessary to use these buffers.
-        #[method_id(@__method_family New newZoneForBuffersWithSize:andType:)]
+        #[unsafe(method_family(new))]
+        #[method_id(newZoneForBuffersWithSize:andType:)]
         unsafe fn newZoneForBuffersWithSize_andType(
             &self,
             sizes: &NSArray<NSNumber>,
@@ -246,7 +260,8 @@ extern_protocol!(
         /// Parameter `length`: Size of buffer to be created in bytes
         ///
         /// Parameter `type`: Type of data to be stored in this buffer
-        #[method_id(@__method_family New newBuffer:type:)]
+        #[unsafe(method_family(new))]
+        #[method_id(newBuffer:type:)]
         unsafe fn newBuffer_type(
             &self,
             length: NSUInteger,
@@ -259,7 +274,8 @@ extern_protocol!(
         /// Parameter `data`: Memory to fill the buffer with
         ///
         /// Parameter `type`: Type of data to be stored in this buffer
-        #[method_id(@__method_family New newBufferWithData:type:)]
+        #[unsafe(method_family(new))]
+        #[method_id(newBufferWithData:type:)]
         unsafe fn newBufferWithData_type(
             &self,
             data: &NSData,
@@ -279,7 +295,8 @@ extern_protocol!(
         /// of the zone if the buffer could not be allocated with the current
         /// zone size.  Alternatively the implementation may return nil if the
         /// buffer could not be allocated.
-        #[method_id(@__method_family New newBufferFromZone:length:type:)]
+        #[unsafe(method_family(new))]
+        #[method_id(newBufferFromZone:length:type:)]
         unsafe fn newBufferFromZone_length_type(
             &self,
             zone: Option<&ProtocolObject<dyn MDLMeshBufferZone>>,
@@ -303,7 +320,8 @@ extern_protocol!(
         /// of the zone if the buffer could not be allocated with the current
         /// zone size. Alternatively the implementation may return nil if the
         /// buffer could not be allocated.
-        #[method_id(@__method_family New newBufferFromZone:data:type:)]
+        #[unsafe(method_family(new))]
+        #[method_id(newBufferFromZone:data:type:)]
         unsafe fn newBufferFromZone_data_type(
             &self,
             zone: Option<&ProtocolObject<dyn MDLMeshBufferZone>>,
@@ -333,10 +351,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLMeshBufferDataAllocator {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -359,7 +379,8 @@ extern_methods!(
         #[method(capacity)]
         pub unsafe fn capacity(&self) -> NSUInteger;
 
-        #[method_id(@__method_family Other allocator)]
+        #[unsafe(method_family(none))]
+        #[method_id(allocator)]
         pub unsafe fn allocator(&self) -> Retained<ProtocolObject<dyn MDLMeshBufferAllocator>>;
     }
 );
@@ -367,10 +388,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLMeshBufferZoneDefault {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

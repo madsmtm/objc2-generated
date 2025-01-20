@@ -53,56 +53,64 @@ extern_methods!(
     unsafe impl CNMutablePostalAddress {
         /// multi-street address is delimited with carriage returns “
         /// \n”
-        #[method_id(@__method_family Other street)]
+        #[unsafe(method_family(none))]
+        #[method_id(street)]
         pub unsafe fn street(&self) -> Retained<NSString>;
 
         /// Setter for [`street`][Self::street].
         #[method(setStreet:)]
         pub unsafe fn setStreet(&self, street: &NSString);
 
-        #[method_id(@__method_family Other subLocality)]
+        #[unsafe(method_family(none))]
+        #[method_id(subLocality)]
         pub unsafe fn subLocality(&self) -> Retained<NSString>;
 
         /// Setter for [`subLocality`][Self::subLocality].
         #[method(setSubLocality:)]
         pub unsafe fn setSubLocality(&self, sub_locality: &NSString);
 
-        #[method_id(@__method_family Other city)]
+        #[unsafe(method_family(none))]
+        #[method_id(city)]
         pub unsafe fn city(&self) -> Retained<NSString>;
 
         /// Setter for [`city`][Self::city].
         #[method(setCity:)]
         pub unsafe fn setCity(&self, city: &NSString);
 
-        #[method_id(@__method_family Other subAdministrativeArea)]
+        #[unsafe(method_family(none))]
+        #[method_id(subAdministrativeArea)]
         pub unsafe fn subAdministrativeArea(&self) -> Retained<NSString>;
 
         /// Setter for [`subAdministrativeArea`][Self::subAdministrativeArea].
         #[method(setSubAdministrativeArea:)]
         pub unsafe fn setSubAdministrativeArea(&self, sub_administrative_area: &NSString);
 
-        #[method_id(@__method_family Other state)]
+        #[unsafe(method_family(none))]
+        #[method_id(state)]
         pub unsafe fn state(&self) -> Retained<NSString>;
 
         /// Setter for [`state`][Self::state].
         #[method(setState:)]
         pub unsafe fn setState(&self, state: &NSString);
 
-        #[method_id(@__method_family Other postalCode)]
+        #[unsafe(method_family(none))]
+        #[method_id(postalCode)]
         pub unsafe fn postalCode(&self) -> Retained<NSString>;
 
         /// Setter for [`postalCode`][Self::postalCode].
         #[method(setPostalCode:)]
         pub unsafe fn setPostalCode(&self, postal_code: &NSString);
 
-        #[method_id(@__method_family Other country)]
+        #[unsafe(method_family(none))]
+        #[method_id(country)]
         pub unsafe fn country(&self) -> Retained<NSString>;
 
         /// Setter for [`country`][Self::country].
         #[method(setCountry:)]
         pub unsafe fn setCountry(&self, country: &NSString);
 
-        #[method_id(@__method_family Other ISOCountryCode)]
+        #[unsafe(method_family(none))]
+        #[method_id(ISOCountryCode)]
         pub unsafe fn ISOCountryCode(&self) -> Retained<NSString>;
 
         /// Setter for [`ISOCountryCode`][Self::ISOCountryCode].
@@ -115,10 +123,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CNPostalAddress")]
     unsafe impl CNMutablePostalAddress {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

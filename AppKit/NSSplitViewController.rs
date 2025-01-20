@@ -83,7 +83,8 @@ extern_methods!(
         #[cfg(all(feature = "NSSplitView", feature = "NSView"))]
         /// The split view managed by the SplitViewController. This can be used to customize view properties such as the dividerStyle, vertical, and autosaveName. It is not guaranteed to be the same view as the receivers 'view' property. The default created splitView is vertical with a dividerStyle of
         /// `NSSplitViewDividerStyleThin.`To provide a custom NSSplitView, set the splitView property anytime before self.viewLoaded is YES.
-        #[method_id(@__method_family Other splitView)]
+        #[unsafe(method_family(none))]
+        #[method_id(splitView)]
         pub unsafe fn splitView(&self) -> Retained<NSSplitView>;
 
         #[cfg(all(feature = "NSSplitView", feature = "NSView"))]
@@ -95,7 +96,8 @@ extern_methods!(
         /// The array of SplitViewItems that correspond to the current child view controllers. After a child view controller is added to the receiving splitViewController, a NSSplitViewItem with the default values will be created for it. Once the child is removed, its corresponding splitViewItem will be removed from the splitViewItems array. Setting this will call through to
         /// `-insertSplitViewItem:atIndex`and
         /// `-removeSplitViewItem:`for items that are new or need removal.
-        #[method_id(@__method_family Other splitViewItems)]
+        #[unsafe(method_family(none))]
+        #[method_id(splitViewItems)]
         pub unsafe fn splitViewItems(&self) -> Retained<NSArray<NSSplitViewItem>>;
 
         #[cfg(feature = "NSSplitViewItem")]
@@ -147,7 +149,8 @@ extern_methods!(
         ///
         /// Returns: The corresponding SplitViewItem. Returns nil if
         /// `viewController`is not a child of the SplitViewController.
-        #[method_id(@__method_family Other splitViewItemForViewController:)]
+        #[unsafe(method_family(none))]
+        #[method_id(splitViewItemForViewController:)]
         pub unsafe fn splitViewItemForViewController(
             &self,
             view_controller: &NSViewController,
@@ -231,14 +234,16 @@ extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
     unsafe impl NSSplitViewController {
         #[cfg(feature = "NSNib")]
-        #[method_id(@__method_family Init initWithNibName:bundle:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSNibName>,
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -250,7 +255,8 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
     unsafe impl NSSplitViewController {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -259,7 +265,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
     unsafe impl NSSplitViewController {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

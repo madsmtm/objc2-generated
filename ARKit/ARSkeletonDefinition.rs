@@ -94,13 +94,15 @@ extern_methods!(
         /// Note: The default height of this skeleton, measured from lowest to highest joint in standing position, is defined to be 1.71 meters.
         ///
         /// See: ARSkeleton3D
-        #[method_id(@__method_family Other defaultBody3DSkeletonDefinition)]
+        #[unsafe(method_family(none))]
+        #[method_id(defaultBody3DSkeletonDefinition)]
         pub unsafe fn defaultBody3DSkeletonDefinition() -> Retained<ARSkeletonDefinition>;
 
         /// Default skeleton definition for bodies defined in 2D.
         ///
         /// See: ARBody2D
-        #[method_id(@__method_family Other defaultBody2DSkeletonDefinition)]
+        #[unsafe(method_family(none))]
+        #[method_id(defaultBody2DSkeletonDefinition)]
         pub unsafe fn defaultBody2DSkeletonDefinition() -> Retained<ARSkeletonDefinition>;
 
         /// The number of joints.
@@ -109,7 +111,8 @@ extern_methods!(
 
         #[cfg(feature = "objc2-foundation")]
         /// The joint names.
-        #[method_id(@__method_family Other jointNames)]
+        #[unsafe(method_family(none))]
+        #[method_id(jointNames)]
         pub unsafe fn jointNames(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "objc2-foundation")]
@@ -118,14 +121,16 @@ extern_methods!(
         /// This property may be used to identify the hierarchical dependency between joints. If a line is drawn for every joint and its parent joint
         /// the result is a visualization of the underlying skeleton. The joint with no parent is denoted as the root joint. The root joint's parent index has
         /// a value of -1.
-        #[method_id(@__method_family Other parentIndices)]
+        #[unsafe(method_family(none))]
+        #[method_id(parentIndices)]
         pub unsafe fn parentIndices(&self) -> Retained<NSArray<NSNumber>>;
 
         #[cfg(feature = "ARSkeleton")]
         /// The 3D skeleton in neutral pose.
         ///
         /// The neutral skeleton pose assumes a standardized size of the skeleton in meters. The neutral pose is defined as the skeleton's T-pose.
-        #[method_id(@__method_family Other neutralBodySkeleton3D)]
+        #[unsafe(method_family(none))]
+        #[method_id(neutralBodySkeleton3D)]
         pub unsafe fn neutralBodySkeleton3D(&self) -> Option<Retained<ARSkeleton3D>>;
 
         #[cfg(feature = "objc2-foundation")]
@@ -141,10 +146,12 @@ extern_methods!(
         pub unsafe fn indexForJointName(&self, joint_name: &ARSkeletonJointName) -> NSUInteger;
 
         /// Unavailable
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -48,7 +48,8 @@ extern_protocol!(
         #[cfg(feature = "ASFoundation")]
         #[cfg(target_os = "macos")]
         /// Return a view anchor that is most appropriate for athorization UI to be presented over.  This view will be used as a hint if a credential provider requires user interaction.
-        #[method_id(@__method_family Other presentationAnchorForAuthorizationController:)]
+        #[unsafe(method_family(none))]
+        #[method_id(presentationAnchorForAuthorizationController:)]
         unsafe fn presentationAnchorForAuthorizationController(
             &self,
             controller: &ASAuthorizationController,
@@ -90,12 +91,14 @@ extern_methods!(
     unsafe impl ASAuthorizationController {
         #[cfg(feature = "ASAuthorizationRequest")]
         /// Authorization requests that are being serviced by this controller
-        #[method_id(@__method_family Other authorizationRequests)]
+        #[unsafe(method_family(none))]
+        #[method_id(authorizationRequests)]
         pub unsafe fn authorizationRequests(&self) -> Retained<NSArray<ASAuthorizationRequest>>;
 
         /// This delegate will be invoked upon completion of the authorization indicating success or failure.
         /// Delegate is required to receive the results of authorization.
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(
             &self,
             mtm: MainThreadMarker,
@@ -110,7 +113,8 @@ extern_methods!(
         );
 
         /// This delegate will be invoked upon needing a presentation context to display authorization UI.
-        #[method_id(@__method_family Other presentationContextProvider)]
+        #[unsafe(method_family(none))]
+        #[method_id(presentationContextProvider)]
         pub unsafe fn presentationContextProvider(
             &self,
             mtm: MainThreadMarker,
@@ -134,7 +138,8 @@ extern_methods!(
         /// If the user selects one of these methods, instead of attempting to secure an authorization for the requests, the
         /// controller will call authorizationController:didCompleteWithCustomMethod: with the selected method, allowing
         /// the client to perform the requested authorization.
-        #[method_id(@__method_family Other customAuthorizationMethods)]
+        #[unsafe(method_family(none))]
+        #[method_id(customAuthorizationMethods)]
         pub unsafe fn customAuthorizationMethods(
             &self,
         ) -> Retained<NSArray<ASAuthorizationCustomMethod>>;
@@ -152,7 +157,8 @@ extern_methods!(
         ///
         ///
         /// Parameter `authorizationRequests`: At least one request should be provided. Requests of same type maybe honored in first in first out order
-        #[method_id(@__method_family Init initWithAuthorizationRequests:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithAuthorizationRequests:)]
         pub unsafe fn initWithAuthorizationRequests(
             this: Allocated<Self>,
             authorization_requests: &NSArray<ASAuthorizationRequest>,
@@ -194,10 +200,12 @@ extern_methods!(
         #[method(cancel)]
         pub unsafe fn cancel(&self);
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

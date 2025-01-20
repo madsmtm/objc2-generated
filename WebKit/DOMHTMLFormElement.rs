@@ -78,7 +78,8 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLFormElement {
         #[deprecated]
-        #[method_id(@__method_family Other acceptCharset)]
+        #[unsafe(method_family(none))]
+        #[method_id(acceptCharset)]
         pub unsafe fn acceptCharset(&self) -> Retained<NSString>;
 
         /// Setter for [`acceptCharset`][Self::acceptCharset].
@@ -87,7 +88,8 @@ extern_methods!(
         pub unsafe fn setAcceptCharset(&self, accept_charset: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__method_family Other action)]
+        #[unsafe(method_family(none))]
+        #[method_id(action)]
         pub unsafe fn action(&self) -> Retained<NSString>;
 
         /// Setter for [`action`][Self::action].
@@ -96,7 +98,8 @@ extern_methods!(
         pub unsafe fn setAction(&self, action: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__method_family Other enctype)]
+        #[unsafe(method_family(none))]
+        #[method_id(enctype)]
         pub unsafe fn enctype(&self) -> Retained<NSString>;
 
         /// Setter for [`enctype`][Self::enctype].
@@ -104,7 +107,8 @@ extern_methods!(
         #[method(setEnctype:)]
         pub unsafe fn setEnctype(&self, enctype: Option<&NSString>);
 
-        #[method_id(@__method_family Other encoding)]
+        #[unsafe(method_family(none))]
+        #[method_id(encoding)]
         pub unsafe fn encoding(&self) -> Retained<NSString>;
 
         /// Setter for [`encoding`][Self::encoding].
@@ -112,7 +116,8 @@ extern_methods!(
         pub unsafe fn setEncoding(&self, encoding: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__method_family Other method)]
+        #[unsafe(method_family(none))]
+        #[method_id(method)]
         pub unsafe fn method(&self) -> Retained<NSString>;
 
         /// Setter for [`method`][Self::method].
@@ -121,7 +126,8 @@ extern_methods!(
         pub unsafe fn setMethod(&self, method: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__method_family Other name)]
+        #[unsafe(method_family(none))]
+        #[method_id(name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
@@ -130,7 +136,8 @@ extern_methods!(
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__method_family Other target)]
+        #[unsafe(method_family(none))]
+        #[method_id(target)]
         pub unsafe fn target(&self) -> Retained<NSString>;
 
         /// Setter for [`target`][Self::target].
@@ -140,7 +147,8 @@ extern_methods!(
 
         #[cfg(feature = "DOMHTMLCollection")]
         #[deprecated]
-        #[method_id(@__method_family Other elements)]
+        #[unsafe(method_family(none))]
+        #[method_id(elements)]
         pub unsafe fn elements(&self) -> Option<Retained<DOMHTMLCollection>>;
 
         #[deprecated]
@@ -168,7 +176,8 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLFormElement {
         #[deprecated]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -183,7 +192,8 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLFormElement {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

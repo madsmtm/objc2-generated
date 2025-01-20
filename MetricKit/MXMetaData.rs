@@ -24,23 +24,28 @@ unsafe impl NSSecureCoding for MXMetaData {}
 extern_methods!(
     unsafe impl MXMetaData {
         /// An NSString designating the region format associated with the application.
-        #[method_id(@__method_family Other regionFormat)]
+        #[unsafe(method_family(none))]
+        #[method_id(regionFormat)]
         pub unsafe fn regionFormat(&self) -> Retained<NSString>;
 
         /// An NSString designating the OS version associated with the device.
-        #[method_id(@__method_family Other osVersion)]
+        #[unsafe(method_family(none))]
+        #[method_id(osVersion)]
         pub unsafe fn osVersion(&self) -> Retained<NSString>;
 
         /// An NSString designating the device type associated with this device.
-        #[method_id(@__method_family Other deviceType)]
+        #[unsafe(method_family(none))]
+        #[method_id(deviceType)]
         pub unsafe fn deviceType(&self) -> Retained<NSString>;
 
         /// An NSString designating the app build version.
-        #[method_id(@__method_family Other applicationBuildVersion)]
+        #[unsafe(method_family(none))]
+        #[method_id(applicationBuildVersion)]
         pub unsafe fn applicationBuildVersion(&self) -> Retained<NSString>;
 
         /// An NSString designating the current architecture.
-        #[method_id(@__method_family Other platformArchitecture)]
+        #[unsafe(method_family(none))]
+        #[method_id(platformArchitecture)]
         pub unsafe fn platformArchitecture(&self) -> Retained<NSString>;
 
         /// A boolean representing low power mode enablement on device
@@ -61,20 +66,23 @@ extern_methods!(
         /// Convenience method to return a JSON representation of this metadata.
         ///
         /// Returns: An NSData object containing the JSON representation
-        #[method_id(@__method_family Other JSONRepresentation)]
+        #[unsafe(method_family(none))]
+        #[method_id(JSONRepresentation)]
         pub unsafe fn JSONRepresentation(&self) -> Retained<NSData>;
 
         /// Convenience method to return a NSDictionary representation of this metadata.
         ///
         /// Returns: An NSDictionary object containing the dictionary representation
         #[deprecated]
-        #[method_id(@__method_family Other DictionaryRepresentation)]
+        #[unsafe(method_family(none))]
+        #[method_id(DictionaryRepresentation)]
         pub unsafe fn DictionaryRepresentation(&self) -> Retained<NSDictionary>;
 
         /// Convenience method to return a NSDictionary representation of this metadata.
         ///
         /// Returns: An NSDictionary object containing the dictionary representation
-        #[method_id(@__method_family Other dictionaryRepresentation)]
+        #[unsafe(method_family(none))]
+        #[method_id(dictionaryRepresentation)]
         pub unsafe fn dictionaryRepresentation(&self) -> Retained<NSDictionary>;
     }
 );
@@ -82,10 +90,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MXMetaData {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

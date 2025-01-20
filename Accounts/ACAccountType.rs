@@ -89,11 +89,13 @@ unsafe impl NSObjectProtocol for ACAccountType {}
 extern_methods!(
     unsafe impl ACAccountType {
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
-        #[method_id(@__method_family Other accountTypeDescription)]
+        #[unsafe(method_family(none))]
+        #[method_id(accountTypeDescription)]
         pub unsafe fn accountTypeDescription(&self) -> Option<Retained<NSString>>;
 
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
-        #[method_id(@__method_family Other identifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(identifier)]
         pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
 
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
@@ -105,10 +107,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ACAccountType {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

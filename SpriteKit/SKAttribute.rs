@@ -56,20 +56,23 @@ unsafe impl NSSecureCoding for SKAttribute {}
 
 extern_methods!(
     unsafe impl SKAttribute {
-        #[method_id(@__method_family Other attributeWithName:type:)]
+        #[unsafe(method_family(none))]
+        #[method_id(attributeWithName:type:)]
         pub unsafe fn attributeWithName_type(
             name: &NSString,
             r#type: SKAttributeType,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithName:type:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithName:type:)]
         pub unsafe fn initWithName_type(
             this: Allocated<Self>,
             name: &NSString,
             r#type: SKAttributeType,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Other name)]
+        #[unsafe(method_family(none))]
+        #[method_id(name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[method(type)]
@@ -80,10 +83,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKAttribute {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -103,10 +108,12 @@ unsafe impl NSSecureCoding for SKAttributeValue {}
 
 extern_methods!(
     unsafe impl SKAttributeValue {
-        #[method_id(@__method_family Other valueWithFloat:)]
+        #[unsafe(method_family(none))]
+        #[method_id(valueWithFloat:)]
         pub unsafe fn valueWithFloat(value: c_float) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(floatValue)]
@@ -121,7 +128,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKAttributeValue {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

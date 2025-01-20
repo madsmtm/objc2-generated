@@ -25,10 +25,12 @@ unsafe impl NSObjectProtocol for VZFileHandleSerialPortAttachment {}
 extern_methods!(
     #[cfg(feature = "VZSerialPortAttachment")]
     unsafe impl VZFileHandleSerialPortAttachment {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Initialize the VZFileHandleSerialPortAttachment from file handles.
@@ -38,7 +40,8 @@ extern_methods!(
         /// Parameter `fileHandleForWriting`: File handle for writing to the file.
         ///
         /// Each file handle must either be nil or have a valid file descriptor.
-        #[method_id(@__method_family Init initWithFileHandleForReading:fileHandleForWriting:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithFileHandleForReading:fileHandleForWriting:)]
         pub unsafe fn initWithFileHandleForReading_fileHandleForWriting(
             this: Allocated<Self>,
             file_handle_for_reading: Option<&NSFileHandle>,
@@ -48,13 +51,15 @@ extern_methods!(
         /// File handle for reading from the file.
         ///
         /// Data written to fileHandleForReading goes to the guest.
-        #[method_id(@__method_family Other fileHandleForReading)]
+        #[unsafe(method_family(none))]
+        #[method_id(fileHandleForReading)]
         pub unsafe fn fileHandleForReading(&self) -> Option<Retained<NSFileHandle>>;
 
         /// File handle for writing to the file.
         ///
         /// Data sent from the guest appears on fileHandleForWriting.
-        #[method_id(@__method_family Other fileHandleForWriting)]
+        #[unsafe(method_family(none))]
+        #[method_id(fileHandleForWriting)]
         pub unsafe fn fileHandleForWriting(&self) -> Option<Retained<NSFileHandle>>;
     }
 );

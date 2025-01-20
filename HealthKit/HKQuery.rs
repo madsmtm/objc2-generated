@@ -23,18 +23,22 @@ unsafe impl NSObjectProtocol for HKQuery {}
 extern_methods!(
     unsafe impl HKQuery {
         #[cfg(feature = "HKObjectType")]
-        #[method_id(@__method_family Other objectType)]
+        #[unsafe(method_family(none))]
+        #[method_id(objectType)]
         pub unsafe fn objectType(&self) -> Option<Retained<HKObjectType>>;
 
         #[cfg(feature = "HKObjectType")]
         #[deprecated]
-        #[method_id(@__method_family Other sampleType)]
+        #[unsafe(method_family(none))]
+        #[method_id(sampleType)]
         pub unsafe fn sampleType(&self) -> Option<Retained<HKSampleType>>;
 
-        #[method_id(@__method_family Other predicate)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicate)]
         pub unsafe fn predicate(&self) -> Option<Retained<NSPredicate>>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -42,7 +46,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKQuery {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -82,7 +87,8 @@ extern_methods!(
         ///
         ///
         /// Parameter `key`: The metadata key.
-        #[method_id(@__method_family Other predicateForObjectsWithMetadataKey:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForObjectsWithMetadataKey:)]
         pub unsafe fn predicateForObjectsWithMetadataKey(key: &NSString) -> Retained<NSPredicate>;
 
         /// Creates a predicate for use with HKQuery subclasses
@@ -94,7 +100,8 @@ extern_methods!(
         /// Parameter `key`: The metadata key.
         ///
         /// Parameter `allowedValues`: The list of values that the metadata value can be equal to.
-        #[method_id(@__method_family Other predicateForObjectsWithMetadataKey:allowedValues:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForObjectsWithMetadataKey:allowedValues:)]
         pub unsafe fn predicateForObjectsWithMetadataKey_allowedValues(
             key: &NSString,
             allowed_values: &NSArray,
@@ -111,7 +118,8 @@ extern_methods!(
         /// Parameter `operatorType`: The comparison operator type for the expression.
         ///
         /// Parameter `value`: The value to be compared against.
-        #[method_id(@__method_family Other predicateForObjectsWithMetadataKey:operatorType:value:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForObjectsWithMetadataKey:operatorType:value:)]
         pub unsafe fn predicateForObjectsWithMetadataKey_operatorType_value(
             key: &NSString,
             operator_type: NSPredicateOperatorType,
@@ -125,7 +133,8 @@ extern_methods!(
         ///
         ///
         /// Parameter `source`: The source.
-        #[method_id(@__method_family Other predicateForObjectsFromSource:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForObjectsFromSource:)]
         pub unsafe fn predicateForObjectsFromSource(source: &HKSource) -> Retained<NSPredicate>;
 
         #[cfg(feature = "HKSource")]
@@ -135,7 +144,8 @@ extern_methods!(
         ///
         ///
         /// Parameter `sources`: The list of sources.
-        #[method_id(@__method_family Other predicateForObjectsFromSources:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForObjectsFromSources:)]
         pub unsafe fn predicateForObjectsFromSources(
             sources: &NSSet<HKSource>,
         ) -> Retained<NSPredicate>;
@@ -147,7 +157,8 @@ extern_methods!(
         ///
         ///
         /// Parameter `sourceRevisions`: The list of source revisions.
-        #[method_id(@__method_family Other predicateForObjectsFromSourceRevisions:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForObjectsFromSourceRevisions:)]
         pub unsafe fn predicateForObjectsFromSourceRevisions(
             source_revisions: &NSSet<HKSourceRevision>,
         ) -> Retained<NSPredicate>;
@@ -161,7 +172,8 @@ extern_methods!(
         ///
         ///
         /// Parameter `devices`: The set of devices that generated data.
-        #[method_id(@__method_family Other predicateForObjectsFromDevices:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForObjectsFromDevices:)]
         pub unsafe fn predicateForObjectsFromDevices(
             devices: &NSSet<HKDevice>,
         ) -> Retained<NSPredicate>;
@@ -177,7 +189,8 @@ extern_methods!(
         ///
         /// Parameter `allowedValues`: The set of values for which the device property can match. An empty set will match all
         /// devices whose property value is nil.
-        #[method_id(@__method_family Other predicateForObjectsWithDeviceProperty:allowedValues:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForObjectsWithDeviceProperty:allowedValues:)]
         pub unsafe fn predicateForObjectsWithDeviceProperty_allowedValues(
             key: &NSString,
             allowed_values: &NSSet<NSString>,
@@ -189,7 +202,8 @@ extern_methods!(
         ///
         ///
         /// Parameter `UUID`: The UUID of the object.
-        #[method_id(@__method_family Other predicateForObjectWithUUID:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForObjectWithUUID:)]
         pub unsafe fn predicateForObjectWithUUID(uuid: &NSUUID) -> Retained<NSPredicate>;
 
         /// Creates a predicate for use with HKQuery subclasses.
@@ -198,14 +212,16 @@ extern_methods!(
         ///
         ///
         /// Parameter `UUIDs`: The set of NSUUIDs.
-        #[method_id(@__method_family Other predicateForObjectsWithUUIDs:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForObjectsWithUUIDs:)]
         pub unsafe fn predicateForObjectsWithUUIDs(uui_ds: &NSSet<NSUUID>)
             -> Retained<NSPredicate>;
 
         /// Creates a predicate for use with HKQuery subclasses.
         ///
         /// Creates a query predicate that matches the objects that are not associated with an HKCorrelation.
-        #[method_id(@__method_family Other predicateForObjectsWithNoCorrelation)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForObjectsWithNoCorrelation)]
         pub unsafe fn predicateForObjectsWithNoCorrelation() -> Retained<NSPredicate>;
 
         #[cfg(all(feature = "HKObject", feature = "HKSample", feature = "HKWorkout"))]
@@ -215,7 +231,8 @@ extern_methods!(
         ///
         ///
         /// Parameter `workout`: The HKWorkout that the object was added to.
-        #[method_id(@__method_family Other predicateForObjectsFromWorkout:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForObjectsFromWorkout:)]
         pub unsafe fn predicateForObjectsFromWorkout(workout: &HKWorkout) -> Retained<NSPredicate>;
 
         #[cfg(all(
@@ -229,7 +246,8 @@ extern_methods!(
         ///
         ///
         /// Parameter `electrocardiogram`: The HKElectrocardiogram that the object was added to.
-        #[method_id(@__method_family Other predicateForObjectsAssociatedWithElectrocardiogram:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForObjectsAssociatedWithElectrocardiogram:)]
         pub unsafe fn predicateForObjectsAssociatedWithElectrocardiogram(
             electrocardiogram: &HKElectrocardiogram,
         ) -> Retained<NSPredicate>;
@@ -248,7 +266,8 @@ extern_methods!(
         /// Parameter `workout`: The HKWorkout that the object is related to.
         ///
         /// Parameter `activity`: The HKWorkoutActivity that the object is related to.
-        #[method_id(@__method_family Other predicateForWorkoutEffortSamplesRelatedToWorkout:activity:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForWorkoutEffortSamplesRelatedToWorkout:activity:)]
         pub unsafe fn predicateForWorkoutEffortSamplesRelatedToWorkout_activity(
             workout: &HKWorkout,
             activity: Option<&HKWorkoutActivity>,
@@ -270,7 +289,8 @@ extern_methods!(
         /// Parameter `endDate`: The end date of the predicate's time interval.
         ///
         /// Parameter `options`: The rules for how a sample's time interval overlaps with the predicate's time interval.
-        #[method_id(@__method_family Other predicateForSamplesWithStartDate:endDate:options:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForSamplesWithStartDate:endDate:options:)]
         pub unsafe fn predicateForSamplesWithStartDate_endDate_options(
             start_date: Option<&NSDate>,
             end_date: Option<&NSDate>,
@@ -293,7 +313,8 @@ extern_methods!(
         ///
         /// Parameter `quantity`: The quantity that the sample's quantity is being compared to. It is the right hand side
         /// of the expression.
-        #[method_id(@__method_family Other predicateForQuantitySamplesWithOperatorType:quantity:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForQuantitySamplesWithOperatorType:quantity:)]
         pub unsafe fn predicateForQuantitySamplesWithOperatorType_quantity(
             operator_type: NSPredicateOperatorType,
             quantity: &HKQuantity,
@@ -304,7 +325,8 @@ extern_methods!(
 extern_methods!(
     /// HKCategorySamplePredicates
     unsafe impl HKQuery {
-        #[method_id(@__method_family Other predicateForCategorySamplesWithOperatorType:value:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForCategorySamplesWithOperatorType:value:)]
         pub unsafe fn predicateForCategorySamplesWithOperatorType_value(
             operator_type: NSPredicateOperatorType,
             value: NSInteger,
@@ -313,7 +335,8 @@ extern_methods!(
         /// Creates a predicate for use with HKQuery subclasses.
         ///
         /// Creates a query predicate that matches all specified category values.
-        #[method_id(@__method_family Other predicateForCategorySamplesEqualToValues:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForCategorySamplesEqualToValues:)]
         pub unsafe fn predicateForCategorySamplesEqualToValues(
             values: &NSSet<NSNumber>,
         ) -> Retained<NSPredicate>;
@@ -330,7 +353,8 @@ extern_methods!(
         ///
         ///
         /// Parameter `workoutActivityType`: The HKWorkoutActivity type of the workout
-        #[method_id(@__method_family Other predicateForWorkoutsWithWorkoutActivityType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForWorkoutsWithWorkoutActivityType:)]
         pub unsafe fn predicateForWorkoutsWithWorkoutActivityType(
             workout_activity_type: HKWorkoutActivityType,
         ) -> Retained<NSPredicate>;
@@ -344,7 +368,8 @@ extern_methods!(
         ///
         /// Parameter `duration`: The value that the workout's duration is being compared to. It is the right hand side of the
         /// expression.
-        #[method_id(@__method_family Other predicateForWorkoutsWithOperatorType:duration:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForWorkoutsWithOperatorType:duration:)]
         pub unsafe fn predicateForWorkoutsWithOperatorType_duration(
             operator_type: NSPredicateOperatorType,
             duration: NSTimeInterval,
@@ -361,7 +386,8 @@ extern_methods!(
         /// Parameter `totalEnergyBurned`: The value that the workout's totalEnergyBurned is being compared to. It is the right hand side of the
         /// expression. The unit for this value should be of type Energy.
         #[deprecated = "Use predicateForWorkoutsWithOperatorType:quantityType:sumQuantity: passing the HKQuantityType for HKQuantityTypeIdentifierActiveEnergyBurned"]
-        #[method_id(@__method_family Other predicateForWorkoutsWithOperatorType:totalEnergyBurned:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForWorkoutsWithOperatorType:totalEnergyBurned:)]
         pub unsafe fn predicateForWorkoutsWithOperatorType_totalEnergyBurned(
             operator_type: NSPredicateOperatorType,
             total_energy_burned: &HKQuantity,
@@ -378,7 +404,8 @@ extern_methods!(
         /// Parameter `totalDistance`: The value that the workout's totalEnergyBurned is being compared to. It is the right hand side of the
         /// expression. The unit for this value should be of type Distance.
         #[deprecated = "Use predicateForWorkoutsWithOperatorType:quantityType:sumQuantity: passing the HKQuantityType for the desired distance type"]
-        #[method_id(@__method_family Other predicateForWorkoutsWithOperatorType:totalDistance:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForWorkoutsWithOperatorType:totalDistance:)]
         pub unsafe fn predicateForWorkoutsWithOperatorType_totalDistance(
             operator_type: NSPredicateOperatorType,
             total_distance: &HKQuantity,
@@ -396,7 +423,8 @@ extern_methods!(
         /// It is the right hand side of the expression. The unit for this value should
         /// be of type Count.
         #[deprecated = "Use predicateForWorkoutsWithOperatorType:quantityType:sumQuantity: passing the HKQuantityType for HKQuantityTypeIdentifierSwimmingStrokeCount"]
-        #[method_id(@__method_family Other predicateForWorkoutsWithOperatorType:totalSwimmingStrokeCount:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForWorkoutsWithOperatorType:totalSwimmingStrokeCount:)]
         pub unsafe fn predicateForWorkoutsWithOperatorType_totalSwimmingStrokeCount(
             operator_type: NSPredicateOperatorType,
             total_swimming_stroke_count: &HKQuantity,
@@ -414,7 +442,8 @@ extern_methods!(
         /// It is the right hand side of the expression. The unit for this value should
         /// be of type Count.
         #[deprecated = "Use predicateForWorkoutsWithOperatorType:quantityType:sumQuantity: passing the HKQuantityType for HKQuantityTypeIdentifierFlightsClimbed"]
-        #[method_id(@__method_family Other predicateForWorkoutsWithOperatorType:totalFlightsClimbed:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForWorkoutsWithOperatorType:totalFlightsClimbed:)]
         pub unsafe fn predicateForWorkoutsWithOperatorType_totalFlightsClimbed(
             operator_type: NSPredicateOperatorType,
             total_flights_climbed: &HKQuantity,
@@ -433,7 +462,8 @@ extern_methods!(
         ///
         /// Parameter `sumQuantity`: The sum value that the workout statistics are being compared to. The unit for this value should
         /// match the allowed values for the quantityType.
-        #[method_id(@__method_family Other predicateForWorkoutsWithOperatorType:quantityType:sumQuantity:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForWorkoutsWithOperatorType:quantityType:sumQuantity:)]
         pub unsafe fn predicateForWorkoutsWithOperatorType_quantityType_sumQuantity(
             operator_type: NSPredicateOperatorType,
             quantity_type: &HKQuantityType,
@@ -453,7 +483,8 @@ extern_methods!(
         ///
         /// Parameter `minimumQuantity`: The minumum value that the workout statistics are being compared to. The unit for this value should
         /// match the allowed values for the quantityType.
-        #[method_id(@__method_family Other predicateForWorkoutsWithOperatorType:quantityType:minimumQuantity:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForWorkoutsWithOperatorType:quantityType:minimumQuantity:)]
         pub unsafe fn predicateForWorkoutsWithOperatorType_quantityType_minimumQuantity(
             operator_type: NSPredicateOperatorType,
             quantity_type: &HKQuantityType,
@@ -473,7 +504,8 @@ extern_methods!(
         ///
         /// Parameter `maximumQuantity`: The maximum value that the workout statistics are being compared to. The unit for this value should
         /// match the allowed values for the quantityType.
-        #[method_id(@__method_family Other predicateForWorkoutsWithOperatorType:quantityType:maximumQuantity:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForWorkoutsWithOperatorType:quantityType:maximumQuantity:)]
         pub unsafe fn predicateForWorkoutsWithOperatorType_quantityType_maximumQuantity(
             operator_type: NSPredicateOperatorType,
             quantity_type: &HKQuantityType,
@@ -493,7 +525,8 @@ extern_methods!(
         ///
         /// Parameter `averageQuantity`: The average value that the workout statistics are being compared to. The unit for this value should
         /// match the allowed values for the quantityType.
-        #[method_id(@__method_family Other predicateForWorkoutsWithOperatorType:quantityType:averageQuantity:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForWorkoutsWithOperatorType:quantityType:averageQuantity:)]
         pub unsafe fn predicateForWorkoutsWithOperatorType_quantityType_averageQuantity(
             operator_type: NSPredicateOperatorType,
             quantity_type: &HKQuantityType,
@@ -513,7 +546,8 @@ extern_methods!(
         ///
         ///
         /// Parameter `workoutActivityType`: The HKWorkoutActivity type of the workout
-        #[method_id(@__method_family Other predicateForWorkoutActivitiesWithWorkoutActivityType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForWorkoutActivitiesWithWorkoutActivityType:)]
         pub unsafe fn predicateForWorkoutActivitiesWithWorkoutActivityType(
             workout_activity_type: HKWorkoutActivityType,
         ) -> Retained<NSPredicate>;
@@ -528,7 +562,8 @@ extern_methods!(
         ///
         /// Parameter `duration`: The value that the workout's duration is being compared to. It is the right hand side of the
         /// expression.
-        #[method_id(@__method_family Other predicateForWorkoutActivitiesWithOperatorType:duration:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForWorkoutActivitiesWithOperatorType:duration:)]
         pub unsafe fn predicateForWorkoutActivitiesWithOperatorType_duration(
             operator_type: NSPredicateOperatorType,
             duration: NSTimeInterval,
@@ -546,7 +581,8 @@ extern_methods!(
         /// Parameter `endDate`: The end date of the predicate's time interval.
         ///
         /// Parameter `options`: The rules for how a activity's time interval overlaps with the predicate's time interval.
-        #[method_id(@__method_family Other predicateForWorkoutActivitiesWithStartDate:endDate:options:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForWorkoutActivitiesWithStartDate:endDate:options:)]
         pub unsafe fn predicateForWorkoutActivitiesWithStartDate_endDate_options(
             start_date: Option<&NSDate>,
             end_date: Option<&NSDate>,
@@ -567,7 +603,8 @@ extern_methods!(
         ///
         /// Parameter `sumQuantity`: The sum value that the activity statistics are being compared to. The unit for this value should
         /// match the allowed values for the quantityType.
-        #[method_id(@__method_family Other predicateForWorkoutActivitiesWithOperatorType:quantityType:sumQuantity:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForWorkoutActivitiesWithOperatorType:quantityType:sumQuantity:)]
         pub unsafe fn predicateForWorkoutActivitiesWithOperatorType_quantityType_sumQuantity(
             operator_type: NSPredicateOperatorType,
             quantity_type: &HKQuantityType,
@@ -588,7 +625,8 @@ extern_methods!(
         ///
         /// Parameter `minimumQuantity`: The minumum value that the activty statistics are being compared to. The unit for this value should
         /// match the allowed values for the quantityType.
-        #[method_id(@__method_family Other predicateForWorkoutActivitiesWithOperatorType:quantityType:minimumQuantity:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForWorkoutActivitiesWithOperatorType:quantityType:minimumQuantity:)]
         pub unsafe fn predicateForWorkoutActivitiesWithOperatorType_quantityType_minimumQuantity(
             operator_type: NSPredicateOperatorType,
             quantity_type: &HKQuantityType,
@@ -609,7 +647,8 @@ extern_methods!(
         ///
         /// Parameter `maximumQuantity`: The maximum value that the activity statistics are being compared to. The unit for this value should
         /// match the allowed values for the quantityType.
-        #[method_id(@__method_family Other predicateForWorkoutActivitiesWithOperatorType:quantityType:maximumQuantity:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForWorkoutActivitiesWithOperatorType:quantityType:maximumQuantity:)]
         pub unsafe fn predicateForWorkoutActivitiesWithOperatorType_quantityType_maximumQuantity(
             operator_type: NSPredicateOperatorType,
             quantity_type: &HKQuantityType,
@@ -630,7 +669,8 @@ extern_methods!(
         ///
         /// Parameter `averageQuantity`: The average value that the activity statistics are being compared to. The unit for this value should
         /// match the allowed values for the quantityType.
-        #[method_id(@__method_family Other predicateForWorkoutActivitiesWithOperatorType:quantityType:averageQuantity:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForWorkoutActivitiesWithOperatorType:quantityType:averageQuantity:)]
         pub unsafe fn predicateForWorkoutActivitiesWithOperatorType_quantityType_averageQuantity(
             operator_type: NSPredicateOperatorType,
             quantity_type: &HKQuantityType,
@@ -643,7 +683,8 @@ extern_methods!(
         ///
         ///
         /// Parameter `activityPredicate`: The predicate on the activities of the workout
-        #[method_id(@__method_family Other predicateForWorkoutsWithActivityPredicate:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForWorkoutsWithActivityPredicate:)]
         pub unsafe fn predicateForWorkoutsWithActivityPredicate(
             activity_predicate: &NSPredicate,
         ) -> Retained<NSPredicate>;
@@ -660,7 +701,8 @@ extern_methods!(
         ///
         /// Parameter `dateComponents`: The date components of the activity summary. These date components should contain era, year, month,
         /// and day components in the gregorian calendar.
-        #[method_id(@__method_family Other predicateForActivitySummaryWithDateComponents:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForActivitySummaryWithDateComponents:)]
         pub unsafe fn predicateForActivitySummaryWithDateComponents(
             date_components: &NSDateComponents,
         ) -> Retained<NSPredicate>;
@@ -676,7 +718,8 @@ extern_methods!(
         ///
         /// Parameter `endDateComponents`: The date components that define the end of the range. These date components should contain era,
         /// year, month, and day components in the gregorian calendar.
-        #[method_id(@__method_family Other predicateForActivitySummariesBetweenStartDateComponents:endDateComponents:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForActivitySummariesBetweenStartDateComponents:endDateComponents:)]
         pub unsafe fn predicateForActivitySummariesBetweenStartDateComponents_endDateComponents(
             start_date_components: &NSDateComponents,
             end_date_components: &NSDateComponents,
@@ -694,7 +737,8 @@ extern_methods!(
         ///
         ///
         /// Parameter `resourceType`: The FHIR resource type.
-        #[method_id(@__method_family Other predicateForClinicalRecordsWithFHIRResourceType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForClinicalRecordsWithFHIRResourceType:)]
         pub unsafe fn predicateForClinicalRecordsWithFHIRResourceType(
             resource_type: &HKFHIRResourceType,
         ) -> Retained<NSPredicate>;
@@ -710,7 +754,8 @@ extern_methods!(
         /// Parameter `resourceType`: The FHIR resource type.
         ///
         /// Parameter `identifier`: The FHIR identifier.
-        #[method_id(@__method_family Other predicateForClinicalRecordsFromSource:FHIRResourceType:identifier:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForClinicalRecordsFromSource:FHIRResourceType:identifier:)]
         pub unsafe fn predicateForClinicalRecordsFromSource_FHIRResourceType_identifier(
             source: &HKSource,
             resource_type: &HKFHIRResourceType,
@@ -729,7 +774,8 @@ extern_methods!(
         ///
         ///
         /// Parameter `classification`: The classification for the electrocardiogram.
-        #[method_id(@__method_family Other predicateForElectrocardiogramsWithClassification:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForElectrocardiogramsWithClassification:)]
         pub unsafe fn predicateForElectrocardiogramsWithClassification(
             classification: HKElectrocardiogramClassification,
         ) -> Retained<NSPredicate>;
@@ -741,7 +787,8 @@ extern_methods!(
         ///
         ///
         /// Parameter `symptomsStatus`: The symptoms status for the electrocardiogram.
-        #[method_id(@__method_family Other predicateForElectrocardiogramsWithSymptomsStatus:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForElectrocardiogramsWithSymptomsStatus:)]
         pub unsafe fn predicateForElectrocardiogramsWithSymptomsStatus(
             symptoms_status: HKElectrocardiogramSymptomsStatus,
         ) -> Retained<NSPredicate>;
@@ -757,7 +804,8 @@ extern_methods!(
         ///
         ///
         /// Parameter `dateInterval`: The date interval that the record's relevant date is in.
-        #[method_id(@__method_family Other predicateForVerifiableClinicalRecordsWithRelevantDateWithinDateInterval:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForVerifiableClinicalRecordsWithRelevantDateWithinDateInterval:)]
         pub unsafe fn predicateForVerifiableClinicalRecordsWithRelevantDateWithinDateInterval(
             date_interval: &NSDateInterval,
         ) -> Retained<NSPredicate>;
@@ -775,7 +823,8 @@ extern_methods!(
         /// Parameter `valence`: The value to be compared against.
         ///
         /// Parameter `operatorType`: The comparison operator type for the expression.
-        #[method_id(@__method_family Other predicateForStatesOfMindWithValence:operatorType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForStatesOfMindWithValence:operatorType:)]
         pub unsafe fn predicateForStatesOfMindWithValence_operatorType(
             valence: c_double,
             operator_type: NSPredicateOperatorType,
@@ -788,7 +837,8 @@ extern_methods!(
         ///
         ///
         /// Parameter `kind`: The kind of feeling type to be compared against.
-        #[method_id(@__method_family Other predicateForStatesOfMindWithKind:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForStatesOfMindWithKind:)]
         pub unsafe fn predicateForStatesOfMindWithKind(
             kind: HKStateOfMindKind,
         ) -> Retained<NSPredicate>;
@@ -800,7 +850,8 @@ extern_methods!(
         ///
         ///
         /// Parameter `label`: The label to be compared against.
-        #[method_id(@__method_family Other predicateForStatesOfMindWithLabel:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForStatesOfMindWithLabel:)]
         pub unsafe fn predicateForStatesOfMindWithLabel(
             label: HKStateOfMindLabel,
         ) -> Retained<NSPredicate>;
@@ -812,7 +863,8 @@ extern_methods!(
         ///
         ///
         /// Parameter `association`: The association to be compared against.
-        #[method_id(@__method_family Other predicateForStatesOfMindWithAssociation:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForStatesOfMindWithAssociation:)]
         pub unsafe fn predicateForStatesOfMindWithAssociation(
             association: HKStateOfMindAssociation,
         ) -> Retained<NSPredicate>;

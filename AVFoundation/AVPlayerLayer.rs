@@ -47,12 +47,14 @@ extern_methods!(
         /// Returns an instance of AVPlayerLayer to display the visual output of the specified AVPlayer.
         ///
         /// Returns: An instance of AVPlayerLayer.
-        #[method_id(@__method_family Other playerLayerWithPlayer:)]
+        #[unsafe(method_family(none))]
+        #[method_id(playerLayerWithPlayer:)]
         pub unsafe fn playerLayerWithPlayer(player: Option<&AVPlayer>) -> Retained<AVPlayerLayer>;
 
         #[cfg(feature = "AVPlayer")]
         /// Indicates the instance of AVPlayer for which the AVPlayerLayer displays visual output
-        #[method_id(@__method_family Other player)]
+        #[unsafe(method_family(none))]
+        #[method_id(player)]
         pub unsafe fn player(&self, mtm: MainThreadMarker) -> Option<Retained<AVPlayer>>;
 
         #[cfg(feature = "AVPlayer")]
@@ -68,7 +70,8 @@ extern_methods!(
         /// See
         /// <AVFoundation
         /// /AVAnimation.h> for a description of these options.
-        #[method_id(@__method_family Other videoGravity)]
+        #[unsafe(method_family(none))]
+        #[method_id(videoGravity)]
         pub unsafe fn videoGravity(&self) -> Retained<AVLayerVideoGravity>;
 
         #[cfg(feature = "AVAnimation")]
@@ -96,7 +99,8 @@ extern_methods!(
         /// <CoreVideo
         /// /CVPixelBuffer.h>
         /// This property is key-value observable.
-        #[method_id(@__method_family Other pixelBufferAttributes)]
+        #[unsafe(method_family(none))]
+        #[method_id(pixelBufferAttributes)]
         pub unsafe fn pixelBufferAttributes(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
@@ -114,7 +118,8 @@ extern_methods!(
         /// This will only return the current image while the media is paused, otherwise this will return nil. Clients must release the pixel buffer after use.
         ///
         /// Do not write to the returned CVPixelBuffer's attachments or pixel data.
-        #[method_id(@__method_family Copy copyDisplayedPixelBuffer)]
+        #[unsafe(method_family(copy))]
+        #[method_id(copyDisplayedPixelBuffer)]
         pub unsafe fn copyDisplayedPixelBuffer(&self) -> Option<Retained<CVPixelBuffer>>;
     }
 );
@@ -125,13 +130,16 @@ extern_methods!(
     #[cfg(not(target_os = "watchos"))]
     unsafe impl AVPlayerLayer {
         /// Layer creation and initialization. *
-        #[method_id(@__method_family Other layer)]
+        #[unsafe(method_family(none))]
+        #[method_id(layer)]
         pub unsafe fn layer() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithLayer:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithLayer:)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
     }
 );
@@ -141,7 +149,8 @@ extern_methods!(
     #[cfg(feature = "objc2-quartz-core")]
     #[cfg(not(target_os = "watchos"))]
     unsafe impl AVPlayerLayer {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

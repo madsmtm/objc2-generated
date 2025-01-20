@@ -87,7 +87,8 @@ extern_methods!(
         pub unsafe fn setDisabled(&self, disabled: bool);
 
         #[deprecated]
-        #[method_id(@__method_family Other charset)]
+        #[unsafe(method_family(none))]
+        #[method_id(charset)]
         pub unsafe fn charset(&self) -> Retained<NSString>;
 
         /// Setter for [`charset`][Self::charset].
@@ -96,7 +97,8 @@ extern_methods!(
         pub unsafe fn setCharset(&self, charset: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__method_family Other href)]
+        #[unsafe(method_family(none))]
+        #[method_id(href)]
         pub unsafe fn href(&self) -> Retained<NSString>;
 
         /// Setter for [`href`][Self::href].
@@ -105,7 +107,8 @@ extern_methods!(
         pub unsafe fn setHref(&self, href: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__method_family Other hreflang)]
+        #[unsafe(method_family(none))]
+        #[method_id(hreflang)]
         pub unsafe fn hreflang(&self) -> Retained<NSString>;
 
         /// Setter for [`hreflang`][Self::hreflang].
@@ -114,7 +117,8 @@ extern_methods!(
         pub unsafe fn setHreflang(&self, hreflang: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__method_family Other media)]
+        #[unsafe(method_family(none))]
+        #[method_id(media)]
         pub unsafe fn media(&self) -> Retained<NSString>;
 
         /// Setter for [`media`][Self::media].
@@ -123,7 +127,8 @@ extern_methods!(
         pub unsafe fn setMedia(&self, media: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__method_family Other rel)]
+        #[unsafe(method_family(none))]
+        #[method_id(rel)]
         pub unsafe fn rel(&self) -> Retained<NSString>;
 
         /// Setter for [`rel`][Self::rel].
@@ -132,7 +137,8 @@ extern_methods!(
         pub unsafe fn setRel(&self, rel: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__method_family Other rev)]
+        #[unsafe(method_family(none))]
+        #[method_id(rev)]
         pub unsafe fn rev(&self) -> Retained<NSString>;
 
         /// Setter for [`rev`][Self::rev].
@@ -141,7 +147,8 @@ extern_methods!(
         pub unsafe fn setRev(&self, rev: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__method_family Other target)]
+        #[unsafe(method_family(none))]
+        #[method_id(target)]
         pub unsafe fn target(&self) -> Retained<NSString>;
 
         /// Setter for [`target`][Self::target].
@@ -150,7 +157,8 @@ extern_methods!(
         pub unsafe fn setTarget(&self, target: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__method_family Other type)]
+        #[unsafe(method_family(none))]
+        #[method_id(type)]
         pub unsafe fn r#type(&self) -> Retained<NSString>;
 
         /// Setter for [`type`][Self::type].
@@ -159,10 +167,12 @@ extern_methods!(
         pub unsafe fn setType(&self, r#type: Option<&NSString>);
 
         #[cfg(feature = "DOMStyleSheet")]
-        #[method_id(@__method_family Other sheet)]
+        #[unsafe(method_family(none))]
+        #[method_id(sheet)]
         pub unsafe fn sheet(&self) -> Option<Retained<DOMStyleSheet>>;
 
-        #[method_id(@__method_family Other absoluteLinkURL)]
+        #[unsafe(method_family(none))]
+        #[method_id(absoluteLinkURL)]
         pub unsafe fn absoluteLinkURL(&self) -> Retained<NSURL>;
     }
 );
@@ -178,7 +188,8 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLLinkElement {
         #[deprecated]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -193,7 +204,8 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLLinkElement {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

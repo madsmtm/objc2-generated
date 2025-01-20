@@ -26,14 +26,17 @@ extern_methods!(
     unsafe impl NSTextContainer {
         #[cfg(feature = "objc2-core-foundation")]
         /// ************************** Initialization ***************************
-        #[method_id(@__method_family Init initWithSize:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithSize:)]
         pub unsafe fn initWithSize(this: Allocated<Self>, size: CGSize) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "NSTextLayoutManager")]
-        #[method_id(@__method_family Other textLayoutManager)]
+        #[unsafe(method_family(none))]
+        #[method_id(textLayoutManager)]
         pub unsafe fn textLayoutManager(&self) -> Option<Retained<NSTextLayoutManager>>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -106,10 +109,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextContainer {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -117,7 +122,8 @@ extern_methods!(
 extern_methods!(
     unsafe impl NSTextContainer {
         #[cfg(feature = "NSLayoutManager")]
-        #[method_id(@__method_family Other layoutManager)]
+        #[unsafe(method_family(none))]
+        #[method_id(layoutManager)]
         pub unsafe fn layoutManager(&self) -> Option<Retained<NSLayoutManager>>;
 
         #[cfg(feature = "NSLayoutManager")]
@@ -130,7 +136,8 @@ extern_methods!(
         pub unsafe fn replaceLayoutManager(&self, new_layout_manager: &NSLayoutManager);
 
         #[cfg(feature = "UIBezierPath")]
-        #[method_id(@__method_family Other exclusionPaths)]
+        #[unsafe(method_family(none))]
+        #[method_id(exclusionPaths)]
         pub unsafe fn exclusionPaths(&self) -> Retained<NSArray<UIBezierPath>>;
 
         #[cfg(feature = "UIBezierPath")]

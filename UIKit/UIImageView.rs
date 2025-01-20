@@ -76,14 +76,16 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIImageView {
         #[cfg(feature = "UIImage")]
-        #[method_id(@__method_family Init initWithImage:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithImage:)]
         pub unsafe fn initWithImage(
             this: Allocated<Self>,
             image: Option<&UIImage>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "UIImage")]
-        #[method_id(@__method_family Init initWithImage:highlightedImage:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithImage:highlightedImage:)]
         pub unsafe fn initWithImage_highlightedImage(
             this: Allocated<Self>,
             image: Option<&UIImage>,
@@ -91,7 +93,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "UIImage")]
-        #[method_id(@__method_family Other image)]
+        #[unsafe(method_family(none))]
+        #[method_id(image)]
         pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
@@ -100,7 +103,8 @@ extern_methods!(
         pub unsafe fn setImage(&self, image: Option<&UIImage>);
 
         #[cfg(feature = "UIImage")]
-        #[method_id(@__method_family Other highlightedImage)]
+        #[unsafe(method_family(none))]
+        #[method_id(highlightedImage)]
         pub unsafe fn highlightedImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
@@ -112,7 +116,8 @@ extern_methods!(
             feature = "UIImageConfiguration",
             feature = "UIImageSymbolConfiguration"
         ))]
-        #[method_id(@__method_family Other preferredSymbolConfiguration)]
+        #[unsafe(method_family(none))]
+        #[method_id(preferredSymbolConfiguration)]
         pub unsafe fn preferredSymbolConfiguration(
             &self,
         ) -> Option<Retained<UIImageSymbolConfiguration>>;
@@ -143,7 +148,8 @@ extern_methods!(
         pub unsafe fn setHighlighted(&self, highlighted: bool);
 
         #[cfg(feature = "UIImage")]
-        #[method_id(@__method_family Other animationImages)]
+        #[unsafe(method_family(none))]
+        #[method_id(animationImages)]
         pub unsafe fn animationImages(&self) -> Option<Retained<NSArray<UIImage>>>;
 
         #[cfg(feature = "UIImage")]
@@ -152,7 +158,8 @@ extern_methods!(
         pub unsafe fn setAnimationImages(&self, animation_images: Option<&NSArray<UIImage>>);
 
         #[cfg(feature = "UIImage")]
-        #[method_id(@__method_family Other highlightedAnimationImages)]
+        #[unsafe(method_family(none))]
+        #[method_id(highlightedAnimationImages)]
         pub unsafe fn highlightedAnimationImages(&self) -> Option<Retained<NSArray<UIImage>>>;
 
         #[cfg(feature = "UIImage")]
@@ -178,7 +185,8 @@ extern_methods!(
         pub unsafe fn setAnimationRepeatCount(&self, animation_repeat_count: NSInteger);
 
         #[cfg(feature = "UIColor")]
-        #[method_id(@__method_family Other tintColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(tintColor)]
         pub unsafe fn tintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -224,10 +232,12 @@ extern_methods!(
         );
 
         #[cfg(feature = "UILayoutGuide")]
-        #[method_id(@__method_family Other focusedFrameGuide)]
+        #[unsafe(method_family(none))]
+        #[method_id(focusedFrameGuide)]
         pub unsafe fn focusedFrameGuide(&self) -> Retained<UILayoutGuide>;
 
-        #[method_id(@__method_family Other overlayContentView)]
+        #[unsafe(method_family(none))]
+        #[method_id(overlayContentView)]
         pub unsafe fn overlayContentView(&self) -> Retained<UIView>;
 
         #[method(masksFocusEffectToContents)]
@@ -244,10 +254,12 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIImageView {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Init initWithFrame:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -259,10 +271,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIImageView {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

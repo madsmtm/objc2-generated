@@ -19,7 +19,8 @@ extern_methods!(
         /// - outputTypes: The expected return types of the executable being invoked.
         /// - name: name of operation.
         /// - Returns: An array of valid ``MPSGraphTensor`` objects representing the return tensors of the invoked executable.
-        #[method_id(@__method_family Other callSymbolName:inputTensors:outputTypes:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(callSymbolName:inputTensors:outputTypes:name:)]
         pub unsafe fn callSymbolName_inputTensors_outputTypes_name(
             &self,
             symbol_name: &NSString,

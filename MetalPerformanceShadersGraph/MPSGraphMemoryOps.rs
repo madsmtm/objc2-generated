@@ -35,7 +35,8 @@ extern_methods!(
     unsafe impl MPSGraphVariableOp {
         #[cfg(feature = "objc2-metal-performance-shaders")]
         /// The shape of the variable.
-        #[method_id(@__method_family Other shape)]
+        #[unsafe(method_family(none))]
+        #[method_id(shape)]
         pub unsafe fn shape(&self) -> Retained<MPSShape>;
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
@@ -50,7 +51,8 @@ extern_methods!(
     #[cfg(all(feature = "MPSGraphCore", feature = "MPSGraphOperation"))]
     unsafe impl MPSGraphVariableOp {
         /// Unavailable, please utilize graph methods to create and initialize operations.
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -59,7 +61,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSGraphCore", feature = "MPSGraphOperation"))]
     unsafe impl MPSGraphVariableOp {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -79,7 +82,8 @@ extern_methods!(
         /// - dataType: The dataType of the placeholder tensor.
         /// - name: The name for the placeholder operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__method_family Other placeholderWithShape:dataType:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(placeholderWithShape:dataType:name:)]
         pub unsafe fn placeholderWithShape_dataType_name(
             &self,
             shape: Option<&MPSShape>,
@@ -97,7 +101,8 @@ extern_methods!(
         /// - shape: The shape of the output tensor. A nil shape will result in an unranked tensor.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__method_family Other placeholderWithShape:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(placeholderWithShape:name:)]
         pub unsafe fn placeholderWithShape_name(
             &self,
             shape: Option<&MPSShape>,
@@ -115,7 +120,8 @@ extern_methods!(
         /// - shape: The shape of the output tensor. This has to be statically shaped.
         /// - dataType: The dataType of theconstant tensor.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__method_family Other constantWithData:shape:dataType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(constantWithData:shape:dataType:)]
         pub unsafe fn constantWithData_shape_dataType(
             &self,
             data: &NSData,
@@ -133,7 +139,8 @@ extern_methods!(
         /// - scalar: The scalar value to fill the entire tensor values with.
         /// - dataType: The dataType of the constant tensor.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__method_family Other constantWithScalar:dataType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(constantWithScalar:dataType:)]
         pub unsafe fn constantWithScalar_dataType(
             &self,
             scalar: c_double,
@@ -151,7 +158,8 @@ extern_methods!(
         /// - shape: The shape of the output tensor.
         /// - dataType: The dataType of the constant tensor.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__method_family Other constantWithScalar:shape:dataType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(constantWithScalar:shape:dataType:)]
         pub unsafe fn constantWithScalar_shape_dataType(
             &self,
             scalar: c_double,
@@ -167,7 +175,8 @@ extern_methods!(
         /// - imaginaryPart: The imaginary part of the complex scalar to fill the entire tensor values with.
         /// - dataType: The dataType of the constant tensor.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__method_family Other constantWithRealPart:imaginaryPart:)]
+        #[unsafe(method_family(none))]
+        #[method_id(constantWithRealPart:imaginaryPart:)]
         pub unsafe fn constantWithRealPart_imaginaryPart(
             &self,
             real_part: c_double,
@@ -185,7 +194,8 @@ extern_methods!(
         /// - imaginaryPart: The imaginary part of the complex scalar to fill the entire tensor values with.
         /// - dataType: The dataType of the constant tensor.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__method_family Other constantWithRealPart:imaginaryPart:dataType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(constantWithRealPart:imaginaryPart:dataType:)]
         pub unsafe fn constantWithRealPart_imaginaryPart_dataType(
             &self,
             real_part: c_double,
@@ -205,7 +215,8 @@ extern_methods!(
         /// - shape: The shape of the output tensor. This has to be statically shaped.
         /// - dataType: The dataType of the constant tensor.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__method_family Other constantWithRealPart:imaginaryPart:shape:dataType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(constantWithRealPart:imaginaryPart:shape:dataType:)]
         pub unsafe fn constantWithRealPart_imaginaryPart_shape_dataType(
             &self,
             real_part: c_double,
@@ -226,7 +237,8 @@ extern_methods!(
         /// - dataType: The dataType of the constant tensor.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__method_family Other variableWithData:shape:dataType:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(variableWithData:shape:dataType:name:)]
         pub unsafe fn variableWithData_shape_dataType_name(
             &self,
             data: &NSData,
@@ -242,7 +254,8 @@ extern_methods!(
         /// - tensor: The tensor from which to form the variable.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__method_family Other variableFromTensorWithTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(variableFromTensorWithTensor:name:)]
         pub unsafe fn variableFromTensorWithTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -256,7 +269,8 @@ extern_methods!(
         /// - variable: The variable resource tensor to read from.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__method_family Other readVariable:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(readVariable:name:)]
         pub unsafe fn readVariable_name(
             &self,
             variable: &MPSGraphTensor,
@@ -271,7 +285,8 @@ extern_methods!(
         /// - tensor: The tensor to assign to the variable.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__method_family Other assignVariable:withValueOfTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(assignVariable:withValueOfTensor:name:)]
         pub unsafe fn assignVariable_withValueOfTensor_name(
             &self,
             variable: &MPSGraphTensor,

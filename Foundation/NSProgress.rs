@@ -45,16 +45,20 @@ unsafe impl NSObjectProtocol for NSProgress {}
 
 extern_methods!(
     unsafe impl NSProgress {
-        #[method_id(@__method_family Other currentProgress)]
+        #[unsafe(method_family(none))]
+        #[method_id(currentProgress)]
         pub unsafe fn currentProgress() -> Option<Retained<NSProgress>>;
 
-        #[method_id(@__method_family Other progressWithTotalUnitCount:)]
+        #[unsafe(method_family(none))]
+        #[method_id(progressWithTotalUnitCount:)]
         pub unsafe fn progressWithTotalUnitCount(unit_count: i64) -> Retained<NSProgress>;
 
-        #[method_id(@__method_family Other discreteProgressWithTotalUnitCount:)]
+        #[unsafe(method_family(none))]
+        #[method_id(discreteProgressWithTotalUnitCount:)]
         pub unsafe fn discreteProgressWithTotalUnitCount(unit_count: i64) -> Retained<NSProgress>;
 
-        #[method_id(@__method_family Other progressWithTotalUnitCount:parent:pendingUnitCount:)]
+        #[unsafe(method_family(none))]
+        #[method_id(progressWithTotalUnitCount:parent:pendingUnitCount:)]
         pub unsafe fn progressWithTotalUnitCount_parent_pendingUnitCount(
             unit_count: i64,
             parent: &NSProgress,
@@ -62,7 +66,8 @@ extern_methods!(
         ) -> Retained<NSProgress>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        #[method_id(@__method_family Init initWithParent:userInfo:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithParent:userInfo:)]
         pub unsafe fn initWithParent_userInfo(
             this: Allocated<Self>,
             parent_progress_or_nil: Option<&NSProgress>,
@@ -101,7 +106,8 @@ extern_methods!(
         pub unsafe fn setCompletedUnitCount(&self, completed_unit_count: i64);
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__method_family Other localizedDescription)]
+        #[unsafe(method_family(none))]
+        #[method_id(localizedDescription)]
         pub unsafe fn localizedDescription(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
@@ -110,7 +116,8 @@ extern_methods!(
         pub unsafe fn setLocalizedDescription(&self, localized_description: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__method_family Other localizedAdditionalDescription)]
+        #[unsafe(method_family(none))]
+        #[method_id(localizedAdditionalDescription)]
         pub unsafe fn localizedAdditionalDescription(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
@@ -198,11 +205,13 @@ extern_methods!(
         pub unsafe fn resume(&self);
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        #[method_id(@__method_family Other userInfo)]
+        #[unsafe(method_family(none))]
+        #[method_id(userInfo)]
         pub unsafe fn userInfo(&self) -> Retained<NSDictionary<NSProgressUserInfoKey, AnyObject>>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__method_family Other kind)]
+        #[unsafe(method_family(none))]
+        #[method_id(kind)]
         pub unsafe fn kind(&self) -> Option<Retained<NSProgressKind>>;
 
         #[cfg(feature = "NSString")]
@@ -211,7 +220,8 @@ extern_methods!(
         pub unsafe fn setKind(&self, kind: Option<&NSProgressKind>);
 
         #[cfg(feature = "NSValue")]
-        #[method_id(@__method_family Other estimatedTimeRemaining)]
+        #[unsafe(method_family(none))]
+        #[method_id(estimatedTimeRemaining)]
         pub unsafe fn estimatedTimeRemaining(&self) -> Option<Retained<NSNumber>>;
 
         #[cfg(feature = "NSValue")]
@@ -220,7 +230,8 @@ extern_methods!(
         pub unsafe fn setEstimatedTimeRemaining(&self, estimated_time_remaining: Option<&NSNumber>);
 
         #[cfg(feature = "NSValue")]
-        #[method_id(@__method_family Other throughput)]
+        #[unsafe(method_family(none))]
+        #[method_id(throughput)]
         pub unsafe fn throughput(&self) -> Option<Retained<NSNumber>>;
 
         #[cfg(feature = "NSValue")]
@@ -229,7 +240,8 @@ extern_methods!(
         pub unsafe fn setThroughput(&self, throughput: Option<&NSNumber>);
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__method_family Other fileOperationKind)]
+        #[unsafe(method_family(none))]
+        #[method_id(fileOperationKind)]
         pub unsafe fn fileOperationKind(&self) -> Option<Retained<NSProgressFileOperationKind>>;
 
         #[cfg(feature = "NSString")]
@@ -241,7 +253,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSURL")]
-        #[method_id(@__method_family Other fileURL)]
+        #[unsafe(method_family(none))]
+        #[method_id(fileURL)]
         pub unsafe fn fileURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSURL")]
@@ -250,7 +263,8 @@ extern_methods!(
         pub unsafe fn setFileURL(&self, file_url: Option<&NSURL>);
 
         #[cfg(feature = "NSValue")]
-        #[method_id(@__method_family Other fileTotalCount)]
+        #[unsafe(method_family(none))]
+        #[method_id(fileTotalCount)]
         pub unsafe fn fileTotalCount(&self) -> Option<Retained<NSNumber>>;
 
         #[cfg(feature = "NSValue")]
@@ -259,7 +273,8 @@ extern_methods!(
         pub unsafe fn setFileTotalCount(&self, file_total_count: Option<&NSNumber>);
 
         #[cfg(feature = "NSValue")]
-        #[method_id(@__method_family Other fileCompletedCount)]
+        #[unsafe(method_family(none))]
+        #[method_id(fileCompletedCount)]
         pub unsafe fn fileCompletedCount(&self) -> Option<Retained<NSNumber>>;
 
         #[cfg(feature = "NSValue")]
@@ -274,7 +289,8 @@ extern_methods!(
         pub unsafe fn unpublish(&self);
 
         #[cfg(all(feature = "NSURL", feature = "block2"))]
-        #[method_id(@__method_family Other addSubscriberForFileURL:withPublishingHandler:)]
+        #[unsafe(method_family(none))]
+        #[method_id(addSubscriberForFileURL:withPublishingHandler:)]
         pub unsafe fn addSubscriberForFileURL_withPublishingHandler(
             url: &NSURL,
             publishing_handler: NSProgressPublishingHandler,
@@ -291,10 +307,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSProgress {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -302,7 +320,8 @@ extern_methods!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprogressreporting?language=objc)
     pub unsafe trait NSProgressReporting: NSObjectProtocol {
-        #[method_id(@__method_family Other progress)]
+        #[unsafe(method_family(none))]
+        #[method_id(progress)]
         unsafe fn progress(&self) -> Retained<NSProgress>;
     }
 );

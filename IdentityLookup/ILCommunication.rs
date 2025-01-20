@@ -24,16 +24,19 @@ unsafe impl NSSecureCoding for ILCommunication {}
 extern_methods!(
     unsafe impl ILCommunication {
         /// The phone number or e-mail address of the sender.  The value will be nil if the sender is unknown.
-        #[method_id(@__method_family Other sender)]
+        #[unsafe(method_family(none))]
+        #[method_id(sender)]
         pub unsafe fn sender(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(@__method_family Other dateReceived)]
+        #[unsafe(method_family(none))]
+        #[method_id(dateReceived)]
         pub unsafe fn dateReceived(&self) -> Retained<NSDate>;
 
         #[method(isEqualToCommunication:)]
         pub unsafe fn isEqualToCommunication(&self, communication: &ILCommunication) -> bool;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -41,7 +44,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ILCommunication {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

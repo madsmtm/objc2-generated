@@ -20,7 +20,8 @@ unsafe impl NSObjectProtocol for ACAccountCredential {}
 extern_methods!(
     unsafe impl ACAccountCredential {
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
-        #[method_id(@__method_family Init initWithOAuthToken:tokenSecret:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithOAuthToken:tokenSecret:)]
         pub unsafe fn initWithOAuthToken_tokenSecret(
             this: Allocated<Self>,
             token: Option<&NSString>,
@@ -28,7 +29,8 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
-        #[method_id(@__method_family Init initWithOAuth2Token:refreshToken:expiryDate:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithOAuth2Token:refreshToken:expiryDate:)]
         pub unsafe fn initWithOAuth2Token_refreshToken_expiryDate(
             this: Allocated<Self>,
             token: Option<&NSString>,
@@ -37,7 +39,8 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
-        #[method_id(@__method_family Other oauthToken)]
+        #[unsafe(method_family(none))]
+        #[method_id(oauthToken)]
         pub unsafe fn oauthToken(&self) -> Retained<NSString>;
 
         /// Setter for [`oauthToken`][Self::oauthToken].
@@ -50,10 +53,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ACAccountCredential {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

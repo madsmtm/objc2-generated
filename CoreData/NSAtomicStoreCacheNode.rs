@@ -19,17 +19,20 @@ unsafe impl NSObjectProtocol for NSAtomicStoreCacheNode {}
 extern_methods!(
     unsafe impl NSAtomicStoreCacheNode {
         #[cfg(feature = "NSManagedObjectID")]
-        #[method_id(@__method_family Init initWithObjectID:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithObjectID:)]
         pub unsafe fn initWithObjectID(
             this: Allocated<Self>,
             moid: &NSManagedObjectID,
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSManagedObjectID")]
-        #[method_id(@__method_family Other objectID)]
+        #[unsafe(method_family(none))]
+        #[method_id(objectID)]
         pub unsafe fn objectID(&self) -> Retained<NSManagedObjectID>;
 
-        #[method_id(@__method_family Other propertyCache)]
+        #[unsafe(method_family(none))]
+        #[method_id(propertyCache)]
         pub unsafe fn propertyCache(
             &self,
         ) -> Option<Retained<NSMutableDictionary<NSString, AnyObject>>>;
@@ -41,7 +44,8 @@ extern_methods!(
             property_cache: Option<&NSMutableDictionary<NSString, AnyObject>>,
         );
 
-        #[method_id(@__method_family Other valueForKey:)]
+        #[unsafe(method_family(none))]
+        #[method_id(valueForKey:)]
         pub unsafe fn valueForKey(&self, key: &NSString) -> Option<Retained<AnyObject>>;
 
         #[method(setValue:forKey:)]
@@ -52,10 +56,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSAtomicStoreCacheNode {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

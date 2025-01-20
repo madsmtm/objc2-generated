@@ -56,7 +56,8 @@ extern_methods!(
         ///
         /// Returns: A WebHistory object.
         #[deprecated]
-        #[method_id(@__method_family Other optionalSharedHistory)]
+        #[unsafe(method_family(none))]
+        #[method_id(optionalSharedHistory)]
         pub unsafe fn optionalSharedHistory() -> Option<Retained<WebHistory>>;
 
         /// Parameter `history`: The history to use for the global WebHistory.
@@ -83,11 +84,13 @@ extern_methods!(
         /// An array of NSCalendarDates, each one representing a unique day that contains one
         /// or more history items, ordered from most recent to oldest.
         #[deprecated]
-        #[method_id(@__method_family Other orderedLastVisitedDays)]
+        #[unsafe(method_family(none))]
+        #[method_id(orderedLastVisitedDays)]
         pub unsafe fn orderedLastVisitedDays(&self) -> Retained<NSArray>;
 
         #[deprecated]
-        #[method_id(@__method_family Other orderedItemsLastVisitedOnDay:)]
+        #[unsafe(method_family(none))]
+        #[method_id(orderedItemsLastVisitedOnDay:)]
         pub unsafe fn orderedItemsLastVisitedOnDay(
             &self,
             calendar_date: Option<&NSCalendarDate>,
@@ -100,7 +103,8 @@ extern_methods!(
         ///
         /// Returns: Returns an item matching the URL
         #[deprecated]
-        #[method_id(@__method_family Other itemForURL:)]
+        #[unsafe(method_family(none))]
+        #[method_id(itemForURL:)]
         pub unsafe fn itemForURL(&self, url: Option<&NSURL>) -> Option<Retained<WebHistoryItem>>;
 
         /// The maximum number of items that will be stored by the WebHistory.
@@ -128,10 +132,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WebHistory {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

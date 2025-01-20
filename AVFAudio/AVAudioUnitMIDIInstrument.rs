@@ -58,7 +58,8 @@ extern_methods!(
         ///
         /// Parameter `description`: audio component description structure that describes the audio component of type kAudioUnitType_MusicDevice
         /// or kAudioUnitType_RemoteInstrument.
-        #[method_id(@__method_family Init initWithAudioComponentDescription:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithAudioComponentDescription:)]
         pub unsafe fn initWithAudioComponentDescription(
             this: Allocated<Self>,
             description: AudioComponentDescription,
@@ -215,10 +216,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "AVAudioNode", feature = "AVAudioUnit"))]
     unsafe impl AVAudioUnitMIDIInstrument {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

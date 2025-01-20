@@ -134,13 +134,15 @@ unsafe impl NSUserInterfaceItemIdentification for NSStackView {}
 extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSStackView {
-        #[method_id(@__method_family Other stackViewWithViews:)]
+        #[unsafe(method_family(none))]
+        #[method_id(stackViewWithViews:)]
         pub unsafe fn stackViewWithViews(
             views: &NSArray<NSView>,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSStackViewDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -215,7 +217,8 @@ extern_methods!(
 
         /// The list of views that are arranged in a stack by the receiver. They are a subset of
         /// `-subviews,`with potential difference in ordering.
-        #[method_id(@__method_family Other arrangedSubviews)]
+        #[unsafe(method_family(none))]
+        #[method_id(arrangedSubviews)]
         pub unsafe fn arrangedSubviews(&self) -> Retained<NSArray<NSView>>;
 
         /// Adds a view to the end of the arrangedSubviews list. If the view is not a subview of the receiver, it will be added as one.
@@ -234,7 +237,8 @@ extern_methods!(
         pub unsafe fn removeArrangedSubview(&self, view: &NSView);
 
         /// The arrangedSubviews that are currently detached/hidden.
-        #[method_id(@__method_family Other detachedViews)]
+        #[unsafe(method_family(none))]
+        #[method_id(detachedViews)]
         pub unsafe fn detachedViews(&self) -> Retained<NSArray<NSView>>;
 
         #[method(setVisibilityPriority:forView:)]
@@ -286,10 +290,12 @@ extern_methods!(
     /// Methods declared on superclass `NSView`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSStackView {
-        #[method_id(@__method_family Init initWithFrame:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -301,7 +307,8 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSStackView {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -310,7 +317,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSStackView {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -356,7 +364,8 @@ extern_methods!(
         #[method(removeView:)]
         pub unsafe fn removeView(&self, view: &NSView);
 
-        #[method_id(@__method_family Other viewsInGravity:)]
+        #[unsafe(method_family(none))]
+        #[method_id(viewsInGravity:)]
         pub unsafe fn viewsInGravity(
             &self,
             gravity: NSStackViewGravity,
@@ -369,7 +378,8 @@ extern_methods!(
             gravity: NSStackViewGravity,
         );
 
-        #[method_id(@__method_family Other views)]
+        #[unsafe(method_family(none))]
+        #[method_id(views)]
         pub unsafe fn views(&self) -> Retained<NSArray<NSView>>;
     }
 );

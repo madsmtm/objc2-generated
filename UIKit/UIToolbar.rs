@@ -86,7 +86,8 @@ extern_methods!(
         pub unsafe fn setBarStyle(&self, bar_style: UIBarStyle);
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
-        #[method_id(@__method_family Other items)]
+        #[unsafe(method_family(none))]
+        #[method_id(items)]
         pub unsafe fn items(&self) -> Option<Retained<NSArray<UIBarButtonItem>>>;
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
@@ -110,7 +111,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIColor")]
-        #[method_id(@__method_family Other tintColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(tintColor)]
         pub unsafe fn tintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -119,7 +121,8 @@ extern_methods!(
         pub unsafe fn setTintColor(&self, tint_color: Option<&UIColor>);
 
         #[cfg(feature = "UIColor")]
-        #[method_id(@__method_family Other barTintColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(barTintColor)]
         pub unsafe fn barTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -137,7 +140,8 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIBarCommon", feature = "UIImage"))]
-        #[method_id(@__method_family Other backgroundImageForToolbarPosition:barMetrics:)]
+        #[unsafe(method_family(none))]
+        #[method_id(backgroundImageForToolbarPosition:barMetrics:)]
         pub unsafe fn backgroundImageForToolbarPosition_barMetrics(
             &self,
             top_or_bottom: UIBarPosition,
@@ -153,7 +157,8 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIBarCommon", feature = "UIImage"))]
-        #[method_id(@__method_family Other shadowImageForToolbarPosition:)]
+        #[unsafe(method_family(none))]
+        #[method_id(shadowImageForToolbarPosition:)]
         pub unsafe fn shadowImageForToolbarPosition(
             &self,
             top_or_bottom: UIBarPosition,
@@ -161,7 +166,8 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UIToolbarAppearance"))]
         /// Describes the appearance attributes for the toolbar to use when it is displayed with its standard height.
-        #[method_id(@__method_family Other standardAppearance)]
+        #[unsafe(method_family(none))]
+        #[method_id(standardAppearance)]
         pub unsafe fn standardAppearance(&self) -> Retained<UIToolbarAppearance>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UIToolbarAppearance"))]
@@ -171,7 +177,8 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UIToolbarAppearance"))]
         /// Describes the appearance attributes for the toolbar to use when it is displayed with its compact height. If not set, the standardAppearance will be used instead.
-        #[method_id(@__method_family Other compactAppearance)]
+        #[unsafe(method_family(none))]
+        #[method_id(compactAppearance)]
         pub unsafe fn compactAppearance(&self) -> Option<Retained<UIToolbarAppearance>>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UIToolbarAppearance"))]
@@ -181,7 +188,8 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UIToolbarAppearance"))]
         /// Describes the appearance attributes for the toolbar to use at standard height when an observable scroll view is scrolled to the bottom. If not set, standardAppearance will be used instead.
-        #[method_id(@__method_family Other scrollEdgeAppearance)]
+        #[unsafe(method_family(none))]
+        #[method_id(scrollEdgeAppearance)]
         pub unsafe fn scrollEdgeAppearance(&self) -> Option<Retained<UIToolbarAppearance>>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UIToolbarAppearance"))]
@@ -194,7 +202,8 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UIToolbarAppearance"))]
         /// Describes the appearance attributes for the toolbar to use at compact height when an observable scroll view is scrolled to the bottom. If not set, will fall back to scrollEdgeAppearance followed by compactAppearance and finally standardAppearance.
-        #[method_id(@__method_family Other compactScrollEdgeAppearance)]
+        #[unsafe(method_family(none))]
+        #[method_id(compactScrollEdgeAppearance)]
         pub unsafe fn compactScrollEdgeAppearance(&self) -> Option<Retained<UIToolbarAppearance>>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UIToolbarAppearance"))]
@@ -206,7 +215,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIBarCommon")]
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn UIToolbarDelegate>>>;
 
         #[cfg(feature = "UIBarCommon")]
@@ -222,10 +232,12 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIToolbar {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Init initWithFrame:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -237,10 +249,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIToolbar {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

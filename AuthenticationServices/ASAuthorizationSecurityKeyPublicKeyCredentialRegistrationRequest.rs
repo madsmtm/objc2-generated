@@ -46,7 +46,8 @@ extern_methods!(
     unsafe impl ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest {
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialParameters")]
         /// A list of parameters for the new credential which are supported by the Relying Party. The authenticator should choose from these parameters when creating the credential.
-        #[method_id(@__method_family Other credentialParameters)]
+        #[unsafe(method_family(none))]
+        #[method_id(credentialParameters)]
         pub unsafe fn credentialParameters(
             &self,
         ) -> Retained<NSArray<ASAuthorizationPublicKeyCredentialParameters>>;
@@ -61,7 +62,8 @@ extern_methods!(
 
         #[cfg(feature = "ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor")]
         /// A list of descriptors indicating credentials which must not already exist on the authenticator. If a credential already exists on the authenticator which matches one or more of these descriptors, a new credential will not be created and authentication will fail.
-        #[method_id(@__method_family Other excludedCredentials)]
+        #[unsafe(method_family(none))]
+        #[method_id(excludedCredentials)]
         pub unsafe fn excludedCredentials(
             &self,
         ) -> Retained<NSArray<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor>>;
@@ -76,7 +78,8 @@ extern_methods!(
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialConstants")]
         /// A preference whether the authenticator should store the private key of the newly created credential.
-        #[method_id(@__method_family Other residentKeyPreference)]
+        #[unsafe(method_family(none))]
+        #[method_id(residentKeyPreference)]
         pub unsafe fn residentKeyPreference(
             &self,
         ) -> Retained<ASAuthorizationPublicKeyCredentialResidentKeyPreference>;
@@ -89,10 +92,12 @@ extern_methods!(
             resident_key_preference: &ASAuthorizationPublicKeyCredentialResidentKeyPreference,
         );
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

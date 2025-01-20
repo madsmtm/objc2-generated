@@ -29,10 +29,12 @@ unsafe impl NSObjectProtocol for AVSampleCursor {}
 
 extern_methods!(
     unsafe impl AVSampleCursor {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Moves the cursor a given number of samples in decode order.
@@ -241,7 +243,8 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-media")]
         /// Provides the format description of the sample at the receiver's current position.
-        #[method_id(@__method_family Copy copyCurrentSampleFormatDescription)]
+        #[unsafe(method_family(copy))]
+        #[method_id(copyCurrentSampleFormatDescription)]
         pub unsafe fn copyCurrentSampleFormatDescription(&self) -> Retained<CMFormatDescription>;
 
         /// Provides information about the current sample for consideration when resynchronizing a decoder, as when scrubbing.
@@ -253,7 +256,8 @@ extern_methods!(
         pub unsafe fn currentSampleDependencyInfo(&self) -> AVSampleCursorDependencyInfo;
 
         /// Provides a dictionary containing dependency related sample buffer attachments, if known.  See kCMSampleAttachmentKey_... in CoreMedia/CMSampleBuffer.h.
-        #[method_id(@__method_family Other currentSampleDependencyAttachments)]
+        #[unsafe(method_family(none))]
+        #[method_id(currentSampleDependencyAttachments)]
         pub unsafe fn currentSampleDependencyAttachments(&self) -> Option<Retained<NSDictionary>>;
 
         /// Provides information about the independent decodability of an audio sample.
@@ -348,7 +352,8 @@ extern_methods!(
         /// The URL of the storage container of the current sample, as well as other samples that are intended to be loaded in the same operation as a "chunk".
         ///
         /// May be nil; if nil, the storage location of the chunk is the URL of the sample cursor's track's asset, if it has one.
-        #[method_id(@__method_family Other currentChunkStorageURL)]
+        #[unsafe(method_family(none))]
+        #[method_id(currentChunkStorageURL)]
         pub unsafe fn currentChunkStorageURL(&self) -> Option<Retained<NSURL>>;
 
         /// The offset and length of samples in currentChunkStorageURL that are intended to be loaded together with the current sample as a "chunk".

@@ -55,7 +55,8 @@ extern_methods!(
     unsafe impl MIDIUMPCIProfile {
         #[cfg(feature = "objc2-foundation")]
         /// The name of the MIDI-CI proifle.
-        #[method_id(@__method_family Other name)]
+        #[unsafe(method_family(none))]
+        #[method_id(name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(all(feature = "MIDIMessages", feature = "MIDIUMPCI"))]
@@ -95,7 +96,8 @@ extern_methods!(
         #[method(isEnabled)]
         pub unsafe fn isEnabled(&self) -> bool;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "MIDIMessages", feature = "objc2-foundation"))]
@@ -130,7 +132,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2")]
     unsafe impl MIDIUMPCIProfile {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

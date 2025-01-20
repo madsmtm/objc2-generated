@@ -91,11 +91,13 @@ unsafe impl NSObjectProtocol for WKWebsiteDataRecord {}
 extern_methods!(
     unsafe impl WKWebsiteDataRecord {
         /// The display name for the data record. This is usually the domain name.
-        #[method_id(@__method_family Other displayName)]
+        #[unsafe(method_family(none))]
+        #[method_id(displayName)]
         pub unsafe fn displayName(&self) -> Retained<NSString>;
 
         /// The various types of website data that exist for this data record.
-        #[method_id(@__method_family Other dataTypes)]
+        #[unsafe(method_family(none))]
+        #[method_id(dataTypes)]
         pub unsafe fn dataTypes(&self) -> Retained<NSSet<NSString>>;
     }
 );
@@ -103,10 +105,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKWebsiteDataRecord {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

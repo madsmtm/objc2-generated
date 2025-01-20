@@ -86,12 +86,14 @@ extern_methods!(
     #[cfg(feature = "NSNotification")]
     unsafe impl NSDistributedNotificationCenter {
         #[cfg(feature = "NSString")]
-        #[method_id(@__method_family Other notificationCenterForType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(notificationCenterForType:)]
         pub unsafe fn notificationCenterForType(
             notification_center_type: &NSDistributedNotificationCenterType,
         ) -> Retained<NSDistributedNotificationCenter>;
 
-        #[method_id(@__method_family Other defaultCenter)]
+        #[unsafe(method_family(none))]
+        #[method_id(defaultCenter)]
         pub unsafe fn defaultCenter() -> Retained<NSDistributedNotificationCenter>;
 
         #[cfg(feature = "NSString")]
@@ -174,10 +176,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSNotification")]
     unsafe impl NSDistributedNotificationCenter {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -39,7 +39,8 @@ unsafe impl NSObjectProtocol for MKDirectionsRequest {}
 extern_methods!(
     unsafe impl MKDirectionsRequest {
         #[cfg(feature = "MKMapItem")]
-        #[method_id(@__method_family Other source)]
+        #[unsafe(method_family(none))]
+        #[method_id(source)]
         pub unsafe fn source(&self) -> Option<Retained<MKMapItem>>;
 
         #[cfg(feature = "MKMapItem")]
@@ -48,7 +49,8 @@ extern_methods!(
         pub unsafe fn setSource(&self, source: Option<&MKMapItem>);
 
         #[cfg(feature = "MKMapItem")]
-        #[method_id(@__method_family Other destination)]
+        #[unsafe(method_family(none))]
+        #[method_id(destination)]
         pub unsafe fn destination(&self) -> Option<Retained<MKMapItem>>;
 
         #[cfg(feature = "MKMapItem")]
@@ -61,10 +63,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKDirectionsRequest {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -88,14 +92,16 @@ extern_methods!(
         #[method(setRequestsAlternateRoutes:)]
         pub unsafe fn setRequestsAlternateRoutes(&self, requests_alternate_routes: bool);
 
-        #[method_id(@__method_family Other departureDate)]
+        #[unsafe(method_family(none))]
+        #[method_id(departureDate)]
         pub unsafe fn departureDate(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`departureDate`][Self::departureDate].
         #[method(setDepartureDate:)]
         pub unsafe fn setDepartureDate(&self, departure_date: Option<&NSDate>);
 
-        #[method_id(@__method_family Other arrivalDate)]
+        #[unsafe(method_family(none))]
+        #[method_id(arrivalDate)]
         pub unsafe fn arrivalDate(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`arrivalDate`][Self::arrivalDate].
@@ -121,7 +127,8 @@ extern_methods!(
 extern_methods!(
     /// MKDirectionsURL
     unsafe impl MKDirectionsRequest {
-        #[method_id(@__method_family Init initWithContentsOfURL:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithContentsOfURL:)]
         pub unsafe fn initWithContentsOfURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
         #[method(isDirectionsRequestURL:)]

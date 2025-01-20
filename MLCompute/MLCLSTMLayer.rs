@@ -28,7 +28,8 @@ extern_methods!(
         #[cfg(feature = "MLCLSTMDescriptor")]
         /// The LSTM descriptor
         #[deprecated]
-        #[method_id(@__method_family Other descriptor)]
+        #[unsafe(method_family(none))]
+        #[method_id(descriptor)]
         pub unsafe fn descriptor(&self) -> Retained<MLCLSTMDescriptor>;
 
         #[cfg(feature = "MLCActivationDescriptor")]
@@ -36,55 +37,64 @@ extern_methods!(
         ///
         /// The default gate activations are: sigmoid, sigmoid, tanh, sigmoid
         #[deprecated]
-        #[method_id(@__method_family Other gateActivations)]
+        #[unsafe(method_family(none))]
+        #[method_id(gateActivations)]
         pub unsafe fn gateActivations(&self) -> Retained<NSArray<MLCActivationDescriptor>>;
 
         #[cfg(feature = "MLCActivationDescriptor")]
         /// The output activation descriptor
         #[deprecated]
-        #[method_id(@__method_family Other outputResultActivation)]
+        #[unsafe(method_family(none))]
+        #[method_id(outputResultActivation)]
         pub unsafe fn outputResultActivation(&self) -> Retained<MLCActivationDescriptor>;
 
         #[cfg(feature = "MLCTensor")]
         /// The array of tensors describing the input weights for the input, hidden, cell and output gates
         #[deprecated]
-        #[method_id(@__method_family Other inputWeights)]
+        #[unsafe(method_family(none))]
+        #[method_id(inputWeights)]
         pub unsafe fn inputWeights(&self) -> Retained<NSArray<MLCTensor>>;
 
         #[cfg(feature = "MLCTensor")]
         /// The array of tensors describing the hidden weights for the input, hidden, cell and output gates
         #[deprecated]
-        #[method_id(@__method_family Other hiddenWeights)]
+        #[unsafe(method_family(none))]
+        #[method_id(hiddenWeights)]
         pub unsafe fn hiddenWeights(&self) -> Retained<NSArray<MLCTensor>>;
 
         #[cfg(feature = "MLCTensor")]
         /// The array of tensors describing the peephole weights for the input, hidden, cell and output gates
         #[deprecated]
-        #[method_id(@__method_family Other peepholeWeights)]
+        #[unsafe(method_family(none))]
+        #[method_id(peepholeWeights)]
         pub unsafe fn peepholeWeights(&self) -> Option<Retained<NSArray<MLCTensor>>>;
 
         #[cfg(feature = "MLCTensor")]
         /// The array of tensors describing the bias terms for the input, hidden, cell and output gates
         #[deprecated]
-        #[method_id(@__method_family Other biases)]
+        #[unsafe(method_family(none))]
+        #[method_id(biases)]
         pub unsafe fn biases(&self) -> Option<Retained<NSArray<MLCTensor>>>;
 
         #[cfg(feature = "MLCTensorParameter")]
         /// The input weights tensor parameters used for optimizer update
         #[deprecated]
-        #[method_id(@__method_family Other inputWeightsParameters)]
+        #[unsafe(method_family(none))]
+        #[method_id(inputWeightsParameters)]
         pub unsafe fn inputWeightsParameters(&self) -> Retained<NSArray<MLCTensorParameter>>;
 
         #[cfg(feature = "MLCTensorParameter")]
         /// The hidden weights tensor parameters used for optimizer update
         #[deprecated]
-        #[method_id(@__method_family Other hiddenWeightsParameters)]
+        #[unsafe(method_family(none))]
+        #[method_id(hiddenWeightsParameters)]
         pub unsafe fn hiddenWeightsParameters(&self) -> Retained<NSArray<MLCTensorParameter>>;
 
         #[cfg(feature = "MLCTensorParameter")]
         /// The peephole weights tensor parameters used for optimizer update
         #[deprecated]
-        #[method_id(@__method_family Other peepholeWeightsParameters)]
+        #[unsafe(method_family(none))]
+        #[method_id(peepholeWeightsParameters)]
         pub unsafe fn peepholeWeightsParameters(
             &self,
         ) -> Option<Retained<NSArray<MLCTensorParameter>>>;
@@ -92,7 +102,8 @@ extern_methods!(
         #[cfg(feature = "MLCTensorParameter")]
         /// The bias tensor parameter used for optimizer update
         #[deprecated]
-        #[method_id(@__method_family Other biasesParameters)]
+        #[unsafe(method_family(none))]
+        #[method_id(biasesParameters)]
         pub unsafe fn biasesParameters(&self) -> Option<Retained<NSArray<MLCTensorParameter>>>;
 
         #[cfg(all(feature = "MLCLSTMDescriptor", feature = "MLCTensor"))]
@@ -108,7 +119,8 @@ extern_methods!(
         ///
         /// Returns: A new LSTM layer.
         #[deprecated]
-        #[method_id(@__method_family Other layerWithDescriptor:inputWeights:hiddenWeights:biases:)]
+        #[unsafe(method_family(none))]
+        #[method_id(layerWithDescriptor:inputWeights:hiddenWeights:biases:)]
         pub unsafe fn layerWithDescriptor_inputWeights_hiddenWeights_biases(
             descriptor: &MLCLSTMDescriptor,
             input_weights: &NSArray<MLCTensor>,
@@ -132,7 +144,8 @@ extern_methods!(
         ///
         /// Returns: A new LSTM layer.
         #[deprecated]
-        #[method_id(@__method_family Other layerWithDescriptor:inputWeights:hiddenWeights:peepholeWeights:biases:)]
+        #[unsafe(method_family(none))]
+        #[method_id(layerWithDescriptor:inputWeights:hiddenWeights:peepholeWeights:biases:)]
         pub unsafe fn layerWithDescriptor_inputWeights_hiddenWeights_peepholeWeights_biases(
             descriptor: &MLCLSTMDescriptor,
             input_weights: &NSArray<MLCTensor>,
@@ -171,7 +184,8 @@ extern_methods!(
         ///
         /// Returns: A new  LSTM layer.
         #[deprecated]
-        #[method_id(@__method_family Other layerWithDescriptor:inputWeights:hiddenWeights:peepholeWeights:biases:gateActivations:outputResultActivation:)]
+        #[unsafe(method_family(none))]
+        #[method_id(layerWithDescriptor:inputWeights:hiddenWeights:peepholeWeights:biases:gateActivations:outputResultActivation:)]
         pub unsafe fn layerWithDescriptor_inputWeights_hiddenWeights_peepholeWeights_biases_gateActivations_outputResultActivation(
             descriptor: &MLCLSTMDescriptor,
             input_weights: &NSArray<MLCTensor>,
@@ -189,11 +203,13 @@ extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCLSTMLayer {
         #[deprecated]
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

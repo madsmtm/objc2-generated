@@ -68,7 +68,8 @@ extern_methods!(
     unsafe impl GCControllerTouchpad {
         #[cfg(feature = "GCControllerButtonInput")]
         /// Button is the button built into the touch surface.
-        #[method_id(@__method_family Other button)]
+        #[unsafe(method_family(none))]
+        #[method_id(button)]
         pub unsafe fn button(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(feature = "block2")]
@@ -109,7 +110,8 @@ extern_methods!(
         ///
         ///
         /// See: touchState - Should be polled in conjunction with touchSurface to determine if values are valid
-        #[method_id(@__method_family Other touchSurface)]
+        #[unsafe(method_family(none))]
+        #[method_id(touchSurface)]
         pub unsafe fn touchSurface(&self) -> Retained<GCControllerDirectionPad>;
 
         /// Indicates the current state of the touch event on the touchpad.
@@ -156,10 +158,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "GCControllerElement")]
     unsafe impl GCControllerTouchpad {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -52,14 +52,17 @@ unsafe impl NSObjectProtocol for AVAssetTrack {}
 
 extern_methods!(
     unsafe impl AVAssetTrack {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "AVAsset")]
-        #[method_id(@__method_family Other asset)]
+        #[unsafe(method_family(none))]
+        #[method_id(asset)]
         pub unsafe fn asset(&self) -> Option<Retained<AVAsset>>;
 
         #[cfg(feature = "objc2-core-media")]
@@ -72,10 +75,12 @@ extern_methods!(
     /// AVAssetTrackBasicPropertiesAndCharacteristics
     unsafe impl AVAssetTrack {
         #[cfg(feature = "AVMediaFormat")]
-        #[method_id(@__method_family Other mediaType)]
+        #[unsafe(method_family(none))]
+        #[method_id(mediaType)]
         pub unsafe fn mediaType(&self) -> Retained<AVMediaType>;
 
-        #[method_id(@__method_family Other formatDescriptions)]
+        #[unsafe(method_family(none))]
+        #[method_id(formatDescriptions)]
         pub unsafe fn formatDescriptions(&self) -> Retained<NSArray>;
 
         #[method(isPlayable)]
@@ -127,10 +132,12 @@ extern_methods!(
 extern_methods!(
     /// AVAssetTrackLanguageProperties
     unsafe impl AVAssetTrack {
-        #[method_id(@__method_family Other languageCode)]
+        #[unsafe(method_family(none))]
+        #[method_id(languageCode)]
         pub unsafe fn languageCode(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(@__method_family Other extendedLanguageTag)]
+        #[unsafe(method_family(none))]
+        #[method_id(extendedLanguageTag)]
         pub unsafe fn extendedLanguageTag(&self) -> Option<Retained<NSString>>;
     }
 );
@@ -182,7 +189,8 @@ extern_methods!(
     /// AVAssetTrackSegments
     unsafe impl AVAssetTrack {
         #[cfg(feature = "AVAssetTrackSegment")]
-        #[method_id(@__method_family Other segments)]
+        #[unsafe(method_family(none))]
+        #[method_id(segments)]
         pub unsafe fn segments(&self) -> Retained<NSArray<AVAssetTrackSegment>>;
 
         #[cfg(all(feature = "AVAssetTrackSegment", feature = "objc2-core-media"))]
@@ -194,7 +202,8 @@ extern_methods!(
         ///
         /// If the trackTime does not map to a sample presentation time (e.g. it's outside the track's timeRange), the segment closest in time to the specified trackTime is returned.
         #[deprecated = "Use loadSegmentForTrackTime:completionHandler: instead"]
-        #[method_id(@__method_family Other segmentForTrackTime:)]
+        #[unsafe(method_family(none))]
+        #[method_id(segmentForTrackTime:)]
         pub unsafe fn segmentForTrackTime(
             &self,
             track_time: CMTime,
@@ -248,15 +257,18 @@ extern_methods!(
     /// AVAssetTrackMetadataReading
     unsafe impl AVAssetTrack {
         #[cfg(feature = "AVMetadataItem")]
-        #[method_id(@__method_family Other commonMetadata)]
+        #[unsafe(method_family(none))]
+        #[method_id(commonMetadata)]
         pub unsafe fn commonMetadata(&self) -> Retained<NSArray<AVMetadataItem>>;
 
         #[cfg(feature = "AVMetadataItem")]
-        #[method_id(@__method_family Other metadata)]
+        #[unsafe(method_family(none))]
+        #[method_id(metadata)]
         pub unsafe fn metadata(&self) -> Retained<NSArray<AVMetadataItem>>;
 
         #[cfg(feature = "AVMetadataFormat")]
-        #[method_id(@__method_family Other availableMetadataFormats)]
+        #[unsafe(method_family(none))]
+        #[method_id(availableMetadataFormats)]
         pub unsafe fn availableMetadataFormats(&self) -> Retained<NSArray<AVMetadataFormat>>;
 
         #[cfg(all(feature = "AVMetadataFormat", feature = "AVMetadataItem"))]
@@ -270,7 +282,8 @@ extern_methods!(
         /// "
         /// availableMetadataFormats" has been loaded
         #[deprecated = "Use loadMetadataForFormat:completionHandler: instead"]
-        #[method_id(@__method_family Other metadataForFormat:)]
+        #[unsafe(method_family(none))]
+        #[method_id(metadataForFormat:)]
         pub unsafe fn metadataForFormat(
             &self,
             format: &AVMetadataFormat,
@@ -334,7 +347,8 @@ extern "C" {
 extern_methods!(
     /// AVAssetTrackTrackAssociations
     unsafe impl AVAssetTrack {
-        #[method_id(@__method_family Other availableTrackAssociationTypes)]
+        #[unsafe(method_family(none))]
+        #[method_id(availableTrackAssociationTypes)]
         pub unsafe fn availableTrackAssociationTypes(
             &self,
         ) -> Retained<NSArray<AVTrackAssociationType>>;
@@ -349,7 +363,8 @@ extern_methods!(
         /// "
         /// availableTrackAssociationTypes" has been loaded.
         #[deprecated = "Use loadAssociatedTracksOfType:completionHandler: instead"]
-        #[method_id(@__method_family Other associatedTracksOfType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(associatedTracksOfType:)]
         pub unsafe fn associatedTracksOfType(
             &self,
             track_association_type: &AVTrackAssociationType,
@@ -387,7 +402,8 @@ extern_methods!(
         /// If the receiver's asset has a value of YES for providesPreciseDurationAndTiming, the sample cursor will be accurately positioned at the receiver's last media sample with presentation timestamp less than or equal to the desired timestamp, or, if there are no such samples, the first sample in presentation order.
         /// If the receiver's asset has a value of NO for providesPreciseDurationAndTiming, and it is prohibitively expensive to locate the precise sample at the desired timestamp, the sample cursor may be approximately positioned.
         /// This method will return nil if there are no samples in the track.
-        #[method_id(@__method_family Other makeSampleCursorWithPresentationTimeStamp:)]
+        #[unsafe(method_family(none))]
+        #[method_id(makeSampleCursorWithPresentationTimeStamp:)]
         pub unsafe fn makeSampleCursorWithPresentationTimeStamp(
             &self,
             presentation_time_stamp: CMTime,
@@ -399,7 +415,8 @@ extern_methods!(
         /// Returns: An instance of AVSampleCursor.
         ///
         /// This method will return nil if there are no samples in the track.
-        #[method_id(@__method_family Other makeSampleCursorAtFirstSampleInDecodeOrder)]
+        #[unsafe(method_family(none))]
+        #[method_id(makeSampleCursorAtFirstSampleInDecodeOrder)]
         pub unsafe fn makeSampleCursorAtFirstSampleInDecodeOrder(
             &self,
         ) -> Option<Retained<AVSampleCursor>>;
@@ -410,7 +427,8 @@ extern_methods!(
         /// Returns: An instance of AVSampleCursor.
         ///
         /// This method will return nil if there are no samples in the track.
-        #[method_id(@__method_family Other makeSampleCursorAtLastSampleInDecodeOrder)]
+        #[unsafe(method_family(none))]
+        #[method_id(makeSampleCursorAtLastSampleInDecodeOrder)]
         pub unsafe fn makeSampleCursorAtLastSampleInDecodeOrder(
             &self,
         ) -> Option<Retained<AVSampleCursor>>;
@@ -473,10 +491,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `AVAssetTrack`
     unsafe impl AVFragmentedAssetTrack {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

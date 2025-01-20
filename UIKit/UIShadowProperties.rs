@@ -33,7 +33,8 @@ extern_methods!(
     unsafe impl UIShadowProperties {
         #[cfg(feature = "UIColor")]
         /// The color to use when rendering the shadow. Defaults to `UIColor.blackColor`.
-        #[method_id(@__method_family Other color)]
+        #[unsafe(method_family(none))]
+        #[method_id(color)]
         pub unsafe fn color(&self) -> Retained<UIColor>;
 
         #[cfg(feature = "UIColor")]
@@ -75,7 +76,8 @@ extern_methods!(
         /// The path that is used to create the shadow. When `nil`, the shadow will be rendered to match
         /// the bounds of the view that it is applied to.
         /// Defaults to `nil`.
-        #[method_id(@__method_family Other path)]
+        #[unsafe(method_family(none))]
+        #[method_id(path)]
         pub unsafe fn path(&self) -> Option<Retained<UIBezierPath>>;
 
         #[cfg(feature = "UIBezierPath")]
@@ -88,10 +90,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIShadowProperties {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

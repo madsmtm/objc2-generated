@@ -251,14 +251,17 @@ extern_methods!(
         );
 
         #[cfg(feature = "UILayoutGuide")]
-        #[method_id(@__method_family Other contentLayoutGuide)]
+        #[unsafe(method_family(none))]
+        #[method_id(contentLayoutGuide)]
         pub unsafe fn contentLayoutGuide(&self) -> Retained<UILayoutGuide>;
 
         #[cfg(feature = "UILayoutGuide")]
-        #[method_id(@__method_family Other frameLayoutGuide)]
+        #[unsafe(method_family(none))]
+        #[method_id(frameLayoutGuide)]
         pub unsafe fn frameLayoutGuide(&self) -> Retained<UILayoutGuide>;
 
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(&self)
             -> Option<Retained<ProtocolObject<dyn UIScrollViewDelegate>>>;
 
@@ -537,16 +540,19 @@ extern_methods!(
         pub unsafe fn stopScrollingAndZooming(&self);
 
         #[cfg(all(feature = "UIGestureRecognizer", feature = "UIPanGestureRecognizer"))]
-        #[method_id(@__method_family Other panGestureRecognizer)]
+        #[unsafe(method_family(none))]
+        #[method_id(panGestureRecognizer)]
         pub unsafe fn panGestureRecognizer(&self) -> Retained<UIPanGestureRecognizer>;
 
         #[cfg(all(feature = "UIGestureRecognizer", feature = "UIPinchGestureRecognizer"))]
-        #[method_id(@__method_family Other pinchGestureRecognizer)]
+        #[unsafe(method_family(none))]
+        #[method_id(pinchGestureRecognizer)]
         pub unsafe fn pinchGestureRecognizer(&self) -> Option<Retained<UIPinchGestureRecognizer>>;
 
         #[cfg(feature = "UIGestureRecognizer")]
         #[deprecated = "Configuring the panGestureRecognizer for indirect scrolling automatically supports directional presses now, so this property is no longer useful."]
-        #[method_id(@__method_family Other directionalPressGestureRecognizer)]
+        #[unsafe(method_family(none))]
+        #[method_id(directionalPressGestureRecognizer)]
         pub unsafe fn directionalPressGestureRecognizer(&self) -> Retained<UIGestureRecognizer>;
 
         #[method(keyboardDismissMode)]
@@ -560,7 +566,8 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIControl", feature = "UIRefreshControl"))]
-        #[method_id(@__method_family Other refreshControl)]
+        #[unsafe(method_family(none))]
+        #[method_id(refreshControl)]
         pub unsafe fn refreshControl(&self) -> Option<Retained<UIRefreshControl>>;
 
         #[cfg(all(feature = "UIControl", feature = "UIRefreshControl"))]
@@ -584,10 +591,12 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIScrollView {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Init initWithFrame:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -599,10 +608,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIScrollView {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -665,7 +676,8 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[method_id(@__method_family Other viewForZoomingInScrollView:)]
+        #[unsafe(method_family(none))]
+        #[method_id(viewForZoomingInScrollView:)]
         unsafe fn viewForZoomingInScrollView(
             &self,
             scroll_view: &UIScrollView,

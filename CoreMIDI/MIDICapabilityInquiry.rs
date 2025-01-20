@@ -78,22 +78,26 @@ extern_methods!(
     unsafe impl MIDICIDeviceInfo {
         #[cfg(feature = "objc2-foundation")]
         #[deprecated = "No longer supported for CoreMIDI"]
-        #[method_id(@__method_family Other manufacturerID)]
+        #[unsafe(method_family(none))]
+        #[method_id(manufacturerID)]
         pub unsafe fn manufacturerID(&self) -> Retained<NSData>;
 
         #[cfg(feature = "objc2-foundation")]
         #[deprecated = "No longer supported for CoreMIDI"]
-        #[method_id(@__method_family Other family)]
+        #[unsafe(method_family(none))]
+        #[method_id(family)]
         pub unsafe fn family(&self) -> Retained<NSData>;
 
         #[cfg(feature = "objc2-foundation")]
         #[deprecated = "No longer supported for CoreMIDI"]
-        #[method_id(@__method_family Other modelNumber)]
+        #[unsafe(method_family(none))]
+        #[method_id(modelNumber)]
         pub unsafe fn modelNumber(&self) -> Retained<NSData>;
 
         #[cfg(feature = "objc2-foundation")]
         #[deprecated = "No longer supported for CoreMIDI"]
-        #[method_id(@__method_family Other revisionLevel)]
+        #[unsafe(method_family(none))]
+        #[method_id(revisionLevel)]
         pub unsafe fn revisionLevel(&self) -> Retained<NSData>;
 
         #[cfg(feature = "MIDIServices")]
@@ -102,12 +106,14 @@ extern_methods!(
         pub unsafe fn midiDestination(&self) -> MIDIEndpointRef;
 
         #[deprecated = "No longer supported for CoreMIDI"]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "MIDIServices", feature = "objc2-foundation"))]
         #[deprecated = "No longer supported for CoreMIDI"]
-        #[method_id(@__method_family Init initWithDestination:manufacturer:family:model:revision:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDestination:manufacturer:family:model:revision:)]
         pub unsafe fn initWithDestination_manufacturer_family_model_revision(
             this: Allocated<Self>,
             midi_destination: MIDIEntityRef,
@@ -124,7 +130,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2")]
     unsafe impl MIDICIDeviceInfo {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -158,7 +165,8 @@ extern_methods!(
         pub unsafe fn destination(&self) -> MIDIEntityRef;
 
         #[deprecated = "No longer supported for CoreMIDI"]
-        #[method_id(@__method_family Other deviceInfo)]
+        #[unsafe(method_family(none))]
+        #[method_id(deviceInfo)]
         pub unsafe fn deviceInfo(&self) -> Retained<MIDICIDeviceInfo>;
 
         #[deprecated = "No longer supported for CoreMIDI"]
@@ -171,11 +179,13 @@ extern_methods!(
 
         #[cfg(feature = "objc2-foundation")]
         #[deprecated = "No longer supported for CoreMIDI"]
-        #[method_id(@__method_family Other maximumSysExSize)]
+        #[unsafe(method_family(none))]
+        #[method_id(maximumSysExSize)]
         pub unsafe fn maximumSysExSize(&self) -> Retained<NSNumber>;
 
         #[deprecated = "No longer supported for CoreMIDI"]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -185,7 +195,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2")]
     unsafe impl MIDICIDiscoveredNode {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -225,23 +236,28 @@ extern_methods!(
     unsafe impl MIDICIProfile {
         #[cfg(feature = "objc2-foundation")]
         /// An NSString describing the profile.
-        #[method_id(@__method_family Other name)]
+        #[unsafe(method_family(none))]
+        #[method_id(name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "objc2-foundation")]
         /// The unique 5-byte profile identifier representing the profile.
-        #[method_id(@__method_family Other profileID)]
+        #[unsafe(method_family(none))]
+        #[method_id(profileID)]
         pub unsafe fn profileID(&self) -> Retained<NSData>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-foundation")]
-        #[method_id(@__method_family Init initWithData:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithData:)]
         pub unsafe fn initWithData(this: Allocated<Self>, data: &NSData) -> Retained<Self>;
 
         #[cfg(feature = "objc2-foundation")]
-        #[method_id(@__method_family Init initWithData:name:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithData:name:)]
         pub unsafe fn initWithData_name(
             this: Allocated<Self>,
             data: &NSData,
@@ -255,7 +271,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2")]
     unsafe impl MIDICIProfile {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -287,19 +304,23 @@ extern_methods!(
         pub unsafe fn midiChannel(&self) -> MIDIChannelNumber;
 
         #[cfg(feature = "objc2-foundation")]
-        #[method_id(@__method_family Other enabledProfiles)]
+        #[unsafe(method_family(none))]
+        #[method_id(enabledProfiles)]
         pub unsafe fn enabledProfiles(&self) -> Retained<NSArray<MIDICIProfile>>;
 
         #[cfg(feature = "objc2-foundation")]
-        #[method_id(@__method_family Other disabledProfiles)]
+        #[unsafe(method_family(none))]
+        #[method_id(disabledProfiles)]
         pub unsafe fn disabledProfiles(&self) -> Retained<NSArray<MIDICIProfile>>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "MIDIMessages", feature = "objc2-foundation"))]
         #[deprecated]
-        #[method_id(@__method_family Init initWithChannel:enabledProfiles:disabledProfiles:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithChannel:enabledProfiles:disabledProfiles:)]
         pub unsafe fn initWithChannel_enabledProfiles_disabledProfiles(
             this: Allocated<Self>,
             midi_channel_num: MIDIChannelNumber,
@@ -308,7 +329,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-foundation")]
-        #[method_id(@__method_family Init initWithEnabledProfiles:disabledProfiles:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithEnabledProfiles:disabledProfiles:)]
         pub unsafe fn initWithEnabledProfiles_disabledProfiles(
             this: Allocated<Self>,
             enabled: &NSArray<MIDICIProfile>,
@@ -322,7 +344,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2")]
     unsafe impl MIDICIProfileState {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -372,12 +395,14 @@ extern_methods!(
     #[cfg(feature = "objc2")]
     unsafe impl MIDICISession {
         #[deprecated = "No longer supported for CoreMIDI"]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "block2", feature = "objc2-foundation"))]
         #[deprecated = "No longer supported for CoreMIDI"]
-        #[method_id(@__method_family Init initWithDiscoveredNode:dataReadyHandler:disconnectHandler:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDiscoveredNode:dataReadyHandler:disconnectHandler:)]
         pub unsafe fn initWithDiscoveredNode_dataReadyHandler_disconnectHandler(
             this: Allocated<Self>,
             discovered_node: &MIDICIDiscoveredNode,
@@ -399,22 +424,26 @@ extern_methods!(
         pub unsafe fn supportsPropertyCapability(&self) -> bool;
 
         #[deprecated = "No longer supported for CoreMIDI"]
-        #[method_id(@__method_family Other deviceInfo)]
+        #[unsafe(method_family(none))]
+        #[method_id(deviceInfo)]
         pub unsafe fn deviceInfo(&self) -> Retained<MIDICIDeviceInfo>;
 
         #[cfg(feature = "objc2-foundation")]
         #[deprecated = "No longer supported for CoreMIDI"]
-        #[method_id(@__method_family Other maxSysExSize)]
+        #[unsafe(method_family(none))]
+        #[method_id(maxSysExSize)]
         pub unsafe fn maxSysExSize(&self) -> Retained<NSNumber>;
 
         #[cfg(feature = "objc2-foundation")]
         #[deprecated = "No longer supported for CoreMIDI"]
-        #[method_id(@__method_family Other maxPropertyRequests)]
+        #[unsafe(method_family(none))]
+        #[method_id(maxPropertyRequests)]
         pub unsafe fn maxPropertyRequests(&self) -> Retained<NSNumber>;
 
         #[cfg(feature = "MIDIMessages")]
         #[deprecated = "No longer supported for CoreMIDI"]
-        #[method_id(@__method_family Other profileStateForChannel:)]
+        #[unsafe(method_family(none))]
+        #[method_id(profileStateForChannel:)]
         pub unsafe fn profileStateForChannel(
             &self,
             channel: MIDIChannelNumber,
@@ -490,7 +519,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2")]
     unsafe impl MIDICISession {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -513,7 +543,8 @@ extern_methods!(
     #[cfg(feature = "objc2")]
     unsafe impl MIDICIDiscoveryManager {
         #[deprecated = "No longer supported for CoreMIDI"]
-        #[method_id(@__method_family Other sharedInstance)]
+        #[unsafe(method_family(none))]
+        #[method_id(sharedInstance)]
         pub unsafe fn sharedInstance() -> Retained<MIDICIDiscoveryManager>;
 
         #[cfg(all(feature = "block2", feature = "objc2-foundation"))]
@@ -528,10 +559,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2")]
     unsafe impl MIDICIDiscoveryManager {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -599,26 +632,31 @@ extern_methods!(
     unsafe impl MIDICIResponder {
         #[cfg(feature = "objc2-foundation")]
         #[deprecated = "No longer supported for CoreMIDI"]
-        #[method_id(@__method_family Other initiators)]
+        #[unsafe(method_family(none))]
+        #[method_id(initiators)]
         pub unsafe fn initiators(&self) -> Retained<NSArray<MIDICIInitiatiorMUID>>;
 
         #[deprecated = "No longer supported for CoreMIDI"]
-        #[method_id(@__method_family Other profileDelegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(profileDelegate)]
         pub unsafe fn profileDelegate(
             &self,
         ) -> Retained<ProtocolObject<dyn MIDICIProfileResponderDelegate>>;
 
         #[deprecated = "No longer supported for CoreMIDI"]
-        #[method_id(@__method_family Other deviceInfo)]
+        #[unsafe(method_family(none))]
+        #[method_id(deviceInfo)]
         pub unsafe fn deviceInfo(&self) -> Retained<MIDICIDeviceInfo>;
 
         #[deprecated = "No longer supported for CoreMIDI"]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-foundation")]
         #[deprecated = "No longer supported for CoreMIDI"]
-        #[method_id(@__method_family Init initWithDeviceInfo:profileDelegate:profileStates:supportProperties:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDeviceInfo:profileDelegate:profileStates:supportProperties:)]
         pub unsafe fn initWithDeviceInfo_profileDelegate_profileStates_supportProperties(
             this: Allocated<Self>,
             device_info: &MIDICIDeviceInfo,
@@ -662,7 +700,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2")]
     unsafe impl MIDICIResponder {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

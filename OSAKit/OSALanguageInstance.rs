@@ -19,28 +19,33 @@ unsafe impl NSObjectProtocol for OSALanguageInstance {}
 extern_methods!(
     unsafe impl OSALanguageInstance {
         #[cfg(feature = "OSALanguage")]
-        #[method_id(@__method_family Other languageInstanceWithLanguage:)]
+        #[unsafe(method_family(none))]
+        #[method_id(languageInstanceWithLanguage:)]
         pub unsafe fn languageInstanceWithLanguage(language: &OSALanguage) -> Retained<Self>;
 
         #[cfg(feature = "OSALanguage")]
-        #[method_id(@__method_family Init initWithLanguage:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithLanguage:)]
         pub unsafe fn initWithLanguage(
             this: Allocated<Self>,
             language: &OSALanguage,
         ) -> Retained<Self>;
 
         #[cfg(feature = "OSALanguage")]
-        #[method_id(@__method_family Other language)]
+        #[unsafe(method_family(none))]
+        #[method_id(language)]
         pub unsafe fn language(&self) -> Retained<OSALanguage>;
 
-        #[method_id(@__method_family Other defaultTarget)]
+        #[unsafe(method_family(none))]
+        #[method_id(defaultTarget)]
         pub unsafe fn defaultTarget(&self) -> Option<Retained<NSAppleEventDescriptor>>;
 
         /// Setter for [`defaultTarget`][Self::defaultTarget].
         #[method(setDefaultTarget:)]
         pub unsafe fn setDefaultTarget(&self, default_target: Option<&NSAppleEventDescriptor>);
 
-        #[method_id(@__method_family Other richTextFromDescriptor:)]
+        #[unsafe(method_family(none))]
+        #[method_id(richTextFromDescriptor:)]
         pub unsafe fn richTextFromDescriptor(
             &self,
             descriptor: &NSAppleEventDescriptor,
@@ -51,10 +56,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl OSALanguageInstance {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

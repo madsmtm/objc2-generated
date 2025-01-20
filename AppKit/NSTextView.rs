@@ -222,29 +222,34 @@ extern_methods!(
     unsafe impl NSTextView {
         #[cfg(feature = "NSTextContainer")]
         /// ************************** Initializing ***************************
-        #[method_id(@__method_family Init initWithFrame:textContainer:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithFrame:textContainer:)]
         pub unsafe fn initWithFrame_textContainer(
             this: Allocated<Self>,
             frame_rect: NSRect,
             container: Option<&NSTextContainer>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__method_family Init initWithFrame:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initUsingTextLayoutManager:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initUsingTextLayoutManager:)]
         pub unsafe fn initUsingTextLayoutManager(
             this: Allocated<Self>,
             using_text_layout_manager: bool,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Other textViewUsingTextLayoutManager:)]
+        #[unsafe(method_family(none))]
+        #[method_id(textViewUsingTextLayoutManager:)]
         pub unsafe fn textViewUsingTextLayoutManager(
             using_text_layout_manager: bool,
             mtm: MainThreadMarker,
@@ -252,7 +257,8 @@ extern_methods!(
 
         #[cfg(feature = "NSTextContainer")]
         /// *************** Get/Set the container and other stuff ****************
-        #[method_id(@__method_family Other textContainer)]
+        #[unsafe(method_family(none))]
+        #[method_id(textContainer)]
         pub unsafe fn textContainer(&self) -> Option<Retained<NSTextContainer>>;
 
         #[cfg(feature = "NSTextContainer")]
@@ -278,19 +284,23 @@ extern_methods!(
         pub unsafe fn invalidateTextContainerOrigin(&self);
 
         #[cfg(feature = "NSLayoutManager")]
-        #[method_id(@__method_family Other layoutManager)]
+        #[unsafe(method_family(none))]
+        #[method_id(layoutManager)]
         pub unsafe fn layoutManager(&self) -> Option<Retained<NSLayoutManager>>;
 
         #[cfg(feature = "NSTextStorage")]
-        #[method_id(@__method_family Other textStorage)]
+        #[unsafe(method_family(none))]
+        #[method_id(textStorage)]
         pub unsafe fn textStorage(&self) -> Option<Retained<NSTextStorage>>;
 
         #[cfg(feature = "NSTextLayoutManager")]
-        #[method_id(@__method_family Other textLayoutManager)]
+        #[unsafe(method_family(none))]
+        #[method_id(textLayoutManager)]
         pub unsafe fn textLayoutManager(&self) -> Option<Retained<NSTextLayoutManager>>;
 
         #[cfg(feature = "NSTextContentManager")]
-        #[method_id(@__method_family Other textContentStorage)]
+        #[unsafe(method_family(none))]
+        #[method_id(textContentStorage)]
         pub unsafe fn textContentStorage(&self) -> Option<Retained<NSTextContentStorage>>;
 
         /// *********************** Key binding entry-point ************************
@@ -528,7 +538,8 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
     unsafe impl NSTextView {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -537,7 +548,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
     unsafe impl NSTextView {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -553,7 +565,8 @@ extern_methods!(
         #[method(rangeForUserCompletion)]
         pub unsafe fn rangeForUserCompletion(&self) -> NSRange;
 
-        #[method_id(@__method_family Other completionsForPartialWordRange:indexOfSelectedItem:)]
+        #[unsafe(method_family(none))]
+        #[method_id(completionsForPartialWordRange:indexOfSelectedItem:)]
         pub unsafe fn completionsForPartialWordRange_indexOfSelectedItem(
             &self,
             char_range: NSRange,
@@ -577,7 +590,8 @@ extern_methods!(
     unsafe impl NSTextView {
         #[cfg(feature = "NSPasteboard")]
         /// ***************** Pasteboard support (mainly for subclassers) ******************
-        #[method_id(@__method_family Other writablePasteboardTypes)]
+        #[unsafe(method_family(none))]
+        #[method_id(writablePasteboardTypes)]
         pub unsafe fn writablePasteboardTypes(&self) -> Retained<NSArray<NSPasteboardType>>;
 
         #[cfg(feature = "NSPasteboard")]
@@ -597,11 +611,13 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "NSPasteboard")]
-        #[method_id(@__method_family Other readablePasteboardTypes)]
+        #[unsafe(method_family(none))]
+        #[method_id(readablePasteboardTypes)]
         pub unsafe fn readablePasteboardTypes(&self) -> Retained<NSArray<NSPasteboardType>>;
 
         #[cfg(feature = "NSPasteboard")]
-        #[method_id(@__method_family Other preferredPasteboardTypeFromArray:restrictedToTypesFromArray:)]
+        #[unsafe(method_family(none))]
+        #[method_id(preferredPasteboardTypeFromArray:restrictedToTypesFromArray:)]
         pub unsafe fn preferredPasteboardTypeFromArray_restrictedToTypesFromArray(
             &self,
             available_types: &NSArray<NSPasteboardType>,
@@ -624,7 +640,8 @@ extern_methods!(
         pub unsafe fn registerForServices(mtm: MainThreadMarker);
 
         #[cfg(feature = "NSPasteboard")]
-        #[method_id(@__method_family Other validRequestorForSendType:returnType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(validRequestorForSendType:returnType:)]
         pub unsafe fn validRequestorForSendType_returnType(
             &self,
             send_type: Option<&NSPasteboardType>,
@@ -653,7 +670,8 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(all(feature = "NSEvent", feature = "NSImage"))]
-        #[method_id(@__method_family Other dragImageForSelectionWithEvent:origin:)]
+        #[unsafe(method_family(none))]
+        #[method_id(dragImageForSelectionWithEvent:origin:)]
         pub unsafe fn dragImageForSelectionWithEvent_origin(
             &self,
             event: &NSEvent,
@@ -661,7 +679,8 @@ extern_methods!(
         ) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSPasteboard")]
-        #[method_id(@__method_family Other acceptableDragTypes)]
+        #[unsafe(method_family(none))]
+        #[method_id(acceptableDragTypes)]
         pub unsafe fn acceptableDragTypes(&self) -> Retained<NSArray<NSPasteboardType>>;
 
         #[cfg(all(feature = "NSDragging", feature = "NSPasteboard"))]
@@ -682,7 +701,8 @@ extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
     unsafe impl NSTextView {
         /// ************************* Selected/Marked range **************************
-        #[method_id(@__method_family Other selectedRanges)]
+        #[unsafe(method_family(none))]
+        #[method_id(selectedRanges)]
         pub unsafe fn selectedRanges(&self) -> Retained<NSArray<NSValue>>;
 
         /// Setter for [`selectedRanges`][Self::selectedRanges].
@@ -715,7 +735,8 @@ extern_methods!(
         #[method(setSelectionGranularity:)]
         pub unsafe fn setSelectionGranularity(&self, selection_granularity: NSSelectionGranularity);
 
-        #[method_id(@__method_family Other selectedTextAttributes)]
+        #[unsafe(method_family(none))]
+        #[method_id(selectedTextAttributes)]
         pub unsafe fn selectedTextAttributes(
             &self,
         ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
@@ -728,7 +749,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSColor")]
-        #[method_id(@__method_family Other insertionPointColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(insertionPointColor)]
         pub unsafe fn insertionPointColor(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
@@ -739,7 +761,8 @@ extern_methods!(
         #[method(updateInsertionPointStateAndRestartTimer:)]
         pub unsafe fn updateInsertionPointStateAndRestartTimer(&self, restart_flag: bool);
 
-        #[method_id(@__method_family Other markedTextAttributes)]
+        #[unsafe(method_family(none))]
+        #[method_id(markedTextAttributes)]
         pub unsafe fn markedTextAttributes(
             &self,
         ) -> Option<Retained<NSDictionary<NSAttributedStringKey, AnyObject>>>;
@@ -751,7 +774,8 @@ extern_methods!(
             marked_text_attributes: Option<&NSDictionary<NSAttributedStringKey, AnyObject>>,
         );
 
-        #[method_id(@__method_family Other linkTextAttributes)]
+        #[unsafe(method_family(none))]
+        #[method_id(linkTextAttributes)]
         pub unsafe fn linkTextAttributes(
             &self,
         ) -> Option<Retained<NSDictionary<NSAttributedStringKey, AnyObject>>>;
@@ -822,7 +846,8 @@ extern_methods!(
         #[method(setSpellingState:range:)]
         pub unsafe fn setSpellingState_range(&self, value: NSInteger, char_range: NSRange);
 
-        #[method_id(@__method_family Other typingAttributes)]
+        #[unsafe(method_family(none))]
+        #[method_id(typingAttributes)]
         pub unsafe fn typingAttributes(
             &self,
         ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
@@ -841,15 +866,18 @@ extern_methods!(
             replacement_strings: Option<&NSArray<NSString>>,
         ) -> bool;
 
-        #[method_id(@__method_family Other rangesForUserTextChange)]
+        #[unsafe(method_family(none))]
+        #[method_id(rangesForUserTextChange)]
         pub unsafe fn rangesForUserTextChange(&self) -> Option<Retained<NSArray<NSValue>>>;
 
-        #[method_id(@__method_family Other rangesForUserCharacterAttributeChange)]
+        #[unsafe(method_family(none))]
+        #[method_id(rangesForUserCharacterAttributeChange)]
         pub unsafe fn rangesForUserCharacterAttributeChange(
             &self,
         ) -> Option<Retained<NSArray<NSValue>>>;
 
-        #[method_id(@__method_family Other rangesForUserParagraphAttributeChange)]
+        #[unsafe(method_family(none))]
+        #[method_id(rangesForUserParagraphAttributeChange)]
         pub unsafe fn rangesForUserParagraphAttributeChange(
             &self,
         ) -> Option<Retained<NSArray<NSValue>>>;
@@ -884,7 +912,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSParagraphStyle")]
-        #[method_id(@__method_family Other defaultParagraphStyle)]
+        #[unsafe(method_family(none))]
+        #[method_id(defaultParagraphStyle)]
         pub unsafe fn defaultParagraphStyle(&self) -> Option<Retained<NSParagraphStyle>>;
 
         #[cfg(feature = "NSParagraphStyle")]
@@ -929,7 +958,8 @@ extern_methods!(
         );
 
         /// ************************* NSText methods **************************
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSTextViewDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -973,7 +1003,8 @@ extern_methods!(
         pub unsafe fn setDrawsBackground(&self, draws_background: bool);
 
         #[cfg(feature = "NSColor")]
-        #[method_id(@__method_family Other backgroundColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(backgroundColor)]
         pub unsafe fn backgroundColor(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
@@ -1006,7 +1037,8 @@ extern_methods!(
         pub unsafe fn setSelectedRange(&self, char_range: NSRange);
 
         /// ************************* Input Source support **************************
-        #[method_id(@__method_family Other allowedInputSourceLocales)]
+        #[unsafe(method_family(none))]
+        #[method_id(allowedInputSourceLocales)]
         pub unsafe fn allowedInputSourceLocales(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`allowedInputSourceLocales`][Self::allowedInputSourceLocales].
@@ -1075,14 +1107,16 @@ extern_methods!(
             after_string: Option<&mut Option<Retained<NSString>>>,
         );
 
-        #[method_id(@__method_family Other smartInsertBeforeStringForString:replacingRange:)]
+        #[unsafe(method_family(none))]
+        #[method_id(smartInsertBeforeStringForString:replacingRange:)]
         pub unsafe fn smartInsertBeforeStringForString_replacingRange(
             &self,
             paste_string: &NSString,
             char_range_to_replace: NSRange,
         ) -> Option<Retained<NSString>>;
 
-        #[method_id(@__method_family Other smartInsertAfterStringForString:replacingRange:)]
+        #[unsafe(method_family(none))]
+        #[method_id(smartInsertAfterStringForString:replacingRange:)]
         pub unsafe fn smartInsertAfterStringForString_replacingRange(
             &self,
             paste_string: &NSString,
@@ -1311,7 +1345,8 @@ extern_methods!(
         pub unsafe fn updateCandidates(&self);
 
         #[cfg(all(feature = "NSCandidateListTouchBarItem", feature = "NSTouchBarItem"))]
-        #[method_id(@__method_family Other candidateListTouchBarItem)]
+        #[unsafe(method_family(none))]
+        #[method_id(candidateListTouchBarItem)]
         pub unsafe fn candidateListTouchBarItem(
             &self,
         ) -> Option<Retained<NSCandidateListTouchBarItem>>;
@@ -1339,20 +1374,24 @@ extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
     unsafe impl NSTextView {
         #[cfg(feature = "NSScrollView")]
-        #[method_id(@__method_family Other scrollableTextView)]
+        #[unsafe(method_family(none))]
+        #[method_id(scrollableTextView)]
         pub unsafe fn scrollableTextView(mtm: MainThreadMarker) -> Retained<NSScrollView>;
 
-        #[method_id(@__method_family Other fieldEditor)]
+        #[unsafe(method_family(none))]
+        #[method_id(fieldEditor)]
         pub unsafe fn fieldEditor(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(feature = "NSScrollView")]
-        #[method_id(@__method_family Other scrollableDocumentContentTextView)]
+        #[unsafe(method_family(none))]
+        #[method_id(scrollableDocumentContentTextView)]
         pub unsafe fn scrollableDocumentContentTextView(
             mtm: MainThreadMarker,
         ) -> Retained<NSScrollView>;
 
         #[cfg(feature = "NSScrollView")]
-        #[method_id(@__method_family Other scrollablePlainDocumentContentTextView)]
+        #[unsafe(method_family(none))]
+        #[method_id(scrollablePlainDocumentContentTextView)]
         pub unsafe fn scrollablePlainDocumentContentTextView(
             mtm: MainThreadMarker,
         ) -> Retained<NSScrollView>;
@@ -1364,7 +1403,8 @@ extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
     unsafe impl NSTextView {
         /// ************************* Text Highlight  support **************************
-        #[method_id(@__method_family Other textHighlightAttributes)]
+        #[unsafe(method_family(none))]
+        #[method_id(textHighlightAttributes)]
         pub unsafe fn textHighlightAttributes(
             &self,
         ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
@@ -1469,7 +1509,8 @@ extern_protocol!(
             feature = "NSView"
         ))]
         #[optional]
-        #[method_id(@__method_family Other textView:writablePasteboardTypesForCell:atIndex:)]
+        #[unsafe(method_family(none))]
+        #[method_id(textView:writablePasteboardTypesForCell:atIndex:)]
         unsafe fn textView_writablePasteboardTypesForCell_atIndex(
             &self,
             view: &NSTextView,
@@ -1506,7 +1547,8 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
-        #[method_id(@__method_family Other textView:willChangeSelectionFromCharacterRanges:toCharacterRanges:)]
+        #[unsafe(method_family(none))]
+        #[method_id(textView:willChangeSelectionFromCharacterRanges:toCharacterRanges:)]
         unsafe fn textView_willChangeSelectionFromCharacterRanges_toCharacterRanges(
             &self,
             text_view: &NSTextView,
@@ -1526,7 +1568,8 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
-        #[method_id(@__method_family Other textView:shouldChangeTypingAttributes:toAttributes:)]
+        #[unsafe(method_family(none))]
+        #[method_id(textView:shouldChangeTypingAttributes:toAttributes:)]
         unsafe fn textView_shouldChangeTypingAttributes_toAttributes(
             &self,
             text_view: &NSTextView,
@@ -1544,7 +1587,8 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
-        #[method_id(@__method_family Other textView:willDisplayToolTip:forCharacterAtIndex:)]
+        #[unsafe(method_family(none))]
+        #[method_id(textView:willDisplayToolTip:forCharacterAtIndex:)]
         unsafe fn textView_willDisplayToolTip_forCharacterAtIndex(
             &self,
             text_view: &NSTextView,
@@ -1554,7 +1598,8 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
-        #[method_id(@__method_family Other textView:completions:forPartialWordRange:indexOfSelectedItem:)]
+        #[unsafe(method_family(none))]
+        #[method_id(textView:completions:forPartialWordRange:indexOfSelectedItem:)]
         unsafe fn textView_completions_forPartialWordRange_indexOfSelectedItem(
             &self,
             text_view: &NSTextView,
@@ -1599,7 +1644,8 @@ extern_protocol!(
             feature = "NSView"
         ))]
         #[optional]
-        #[method_id(@__method_family Other textView:menu:forEvent:atIndex:)]
+        #[unsafe(method_family(none))]
+        #[method_id(textView:menu:forEvent:atIndex:)]
         unsafe fn textView_menu_forEvent_atIndex(
             &self,
             view: &NSTextView,
@@ -1614,7 +1660,8 @@ extern_protocol!(
             feature = "NSView"
         ))]
         #[optional]
-        #[method_id(@__method_family Other textView:willCheckTextInRange:options:types:)]
+        #[unsafe(method_family(none))]
+        #[method_id(textView:willCheckTextInRange:options:types:)]
         unsafe fn textView_willCheckTextInRange_options_types(
             &self,
             view: &NSTextView,
@@ -1629,7 +1676,8 @@ extern_protocol!(
             feature = "NSView"
         ))]
         #[optional]
-        #[method_id(@__method_family Other textView:didCheckTextInRange:types:options:results:orthography:wordCount:)]
+        #[unsafe(method_family(none))]
+        #[method_id(textView:didCheckTextInRange:types:options:results:orthography:wordCount:)]
         unsafe fn textView_didCheckTextInRange_types_options_results_orthography_wordCount(
             &self,
             view: &NSTextView,
@@ -1647,7 +1695,8 @@ extern_protocol!(
             feature = "NSView"
         ))]
         #[optional]
-        #[method_id(@__method_family Other textView:URLForContentsOfTextAttachment:atIndex:)]
+        #[unsafe(method_family(none))]
+        #[method_id(textView:URLForContentsOfTextAttachment:atIndex:)]
         unsafe fn textView_URLForContentsOfTextAttachment_atIndex(
             &self,
             text_view: &NSTextView,
@@ -1661,7 +1710,8 @@ extern_protocol!(
             feature = "NSView"
         ))]
         #[optional]
-        #[method_id(@__method_family Other textView:willShowSharingServicePicker:forItems:)]
+        #[unsafe(method_family(none))]
+        #[method_id(textView:willShowSharingServicePicker:forItems:)]
         unsafe fn textView_willShowSharingServicePicker_forItems(
             &self,
             text_view: &NSTextView,
@@ -1671,7 +1721,8 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
-        #[method_id(@__method_family Other undoManagerForTextView:)]
+        #[unsafe(method_family(none))]
+        #[method_id(undoManagerForTextView:)]
         unsafe fn undoManagerForTextView(
             &self,
             view: &NSTextView,
@@ -1683,7 +1734,8 @@ extern_protocol!(
             feature = "NSView"
         ))]
         #[optional]
-        #[method_id(@__method_family Other textView:shouldUpdateTouchBarItemIdentifiers:)]
+        #[unsafe(method_family(none))]
+        #[method_id(textView:shouldUpdateTouchBarItemIdentifiers:)]
         unsafe fn textView_shouldUpdateTouchBarItemIdentifiers(
             &self,
             text_view: &NSTextView,
@@ -1692,7 +1744,8 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
-        #[method_id(@__method_family Other textView:candidatesForSelectedRange:)]
+        #[unsafe(method_family(none))]
+        #[method_id(textView:candidatesForSelectedRange:)]
         unsafe fn textView_candidatesForSelectedRange(
             &self,
             text_view: &NSTextView,
@@ -1701,7 +1754,8 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
-        #[method_id(@__method_family Other textView:candidates:forSelectedRange:)]
+        #[unsafe(method_family(none))]
+        #[method_id(textView:candidates:forSelectedRange:)]
         unsafe fn textView_candidates_forSelectedRange(
             &self,
             text_view: &NSTextView,
@@ -1730,7 +1784,8 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
-        #[method_id(@__method_family Other textView:writingToolsIgnoredRangesInEnclosingRange:)]
+        #[unsafe(method_family(none))]
+        #[method_id(textView:writingToolsIgnoredRangesInEnclosingRange:)]
         unsafe fn textView_writingToolsIgnoredRangesInEnclosingRange(
             &self,
             text_view: &NSTextView,

@@ -26,10 +26,12 @@ unsafe impl NSObjectProtocol for AVPortraitEffectsMatte {}
 
 extern_methods!(
     unsafe impl AVPortraitEffectsMatte {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Returns an AVPortraitEffectsMatte instance from auxiliary image information in an image file.
@@ -43,7 +45,8 @@ extern_methods!(
         ///
         ///
         /// When using ImageIO framework's CGImageSource API to read from a HEIF or JPEG file containing a portrait effects matte, AVPortraitEffectsMatte can be instantiated using the result of CGImageSourceCopyAuxiliaryDataInfoAtIndex, which returns a CFDictionary of primitive map information.
-        #[method_id(@__method_family Other portraitEffectsMatteFromDictionaryRepresentation:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(portraitEffectsMatteFromDictionaryRepresentation:error:_)]
         pub unsafe fn portraitEffectsMatteFromDictionaryRepresentation_error(
             image_source_aux_data_info_dictionary: &NSDictionary,
         ) -> Result<Retained<Self>, Retained<NSError>>;
@@ -60,7 +63,8 @@ extern_methods!(
         ///
         ///
         /// When applying complex edits to media containing a portrait effects matte, you may create a derivative matte with arbitrary transforms applied to it, then use this initializer to create a new AVPortraitEffectsMatte.
-        #[method_id(@__method_family Other portraitEffectsMatteByReplacingPortraitEffectsMatteWithPixelBuffer:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(portraitEffectsMatteByReplacingPortraitEffectsMatteWithPixelBuffer:error:_)]
         pub unsafe fn portraitEffectsMatteByReplacingPortraitEffectsMatteWithPixelBuffer_error(
             &self,
             pixel_buffer: &CVPixelBuffer,
@@ -75,7 +79,8 @@ extern_methods!(
         ///
         ///
         /// When using ImageIO framework's CGImageDestination API to write portrait effects matte information to a HEIF or JPEG file, you may use this method to generate a dictionary of primitive map information consumed by CGImageDestinationAddAuxiliaryDataInfo.
-        #[method_id(@__method_family Other dictionaryRepresentationForAuxiliaryDataType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(dictionaryRepresentationForAuxiliaryDataType:)]
         pub unsafe fn dictionaryRepresentationForAuxiliaryDataType(
             &self,
             out_aux_data_type: Option<&mut Option<Retained<NSString>>>,
@@ -93,7 +98,8 @@ extern_methods!(
         ///
         ///
         /// The pixel format can be queried using the pixelFormatType property.
-        #[method_id(@__method_family Other mattingImage)]
+        #[unsafe(method_family(none))]
+        #[method_id(mattingImage)]
         pub unsafe fn mattingImage(&self) -> Retained<CVPixelBuffer>;
     }
 );

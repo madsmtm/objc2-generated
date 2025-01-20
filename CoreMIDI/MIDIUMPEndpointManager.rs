@@ -106,12 +106,14 @@ extern_methods!(
         ///
         /// After first access to this property, the client process may begin observing notifications
         /// which are posted when the system-wide cache changes.
-        #[method_id(@__method_family Other sharedInstance)]
+        #[unsafe(method_family(none))]
+        #[method_id(sharedInstance)]
         pub unsafe fn sharedInstance() -> Retained<MIDIUMPEndpointManager>;
 
         #[cfg(all(feature = "MIDIUMPEndpoint", feature = "objc2-foundation"))]
         /// A  list of UMP endpoints discovered using UMP endpoint discovery.
-        #[method_id(@__method_family Other UMPEndpoints)]
+        #[unsafe(method_family(none))]
+        #[method_id(UMPEndpoints)]
         pub unsafe fn UMPEndpoints(&self) -> Retained<NSArray<MIDIUMPEndpoint>>;
     }
 );
@@ -121,10 +123,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2")]
     unsafe impl MIDIUMPEndpointManager {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

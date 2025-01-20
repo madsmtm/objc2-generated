@@ -33,13 +33,15 @@ extern_methods!(
         /// Clients cannot create
         /// `LASecret`instances directly. They typically obtain them from a
         /// `LAPersistedRight`instance.
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Clients cannot create
         /// `LASecret`instances directly. They typically obtain them from a
         /// `LAPersistedRight`instance.
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

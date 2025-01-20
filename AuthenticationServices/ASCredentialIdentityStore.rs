@@ -71,10 +71,12 @@ unsafe impl NSObjectProtocol for ASCredentialIdentityStore {}
 
 extern_methods!(
     unsafe impl ASCredentialIdentityStore {
-        #[method_id(@__method_family Other sharedStore)]
+        #[unsafe(method_family(none))]
+        #[method_id(sharedStore)]
         pub unsafe fn sharedStore() -> Retained<ASCredentialIdentityStore>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "ASCredentialIdentityStoreState", feature = "block2"))]
@@ -249,7 +251,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASCredentialIdentityStore {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

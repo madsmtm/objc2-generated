@@ -107,7 +107,8 @@ extern_protocol!(
         ///
         /// If you do not implement this method, the web view will cancel the navigation.
         #[optional]
-        #[method_id(@__method_family Other webView:createWebViewWithConfiguration:forNavigationAction:windowFeatures:)]
+        #[unsafe(method_family(none))]
+        #[method_id(webView:createWebViewWithConfiguration:forNavigationAction:windowFeatures:)]
         unsafe fn webView_createWebViewWithConfiguration_forNavigationAction_windowFeatures(
             &self,
             web_view: &WKWebView,

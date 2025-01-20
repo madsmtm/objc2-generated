@@ -18,7 +18,8 @@ extern_methods!(
         ///
         ///
         /// The name can contain any number of words.
-        #[method_id(@__method_family Other predicateForContactsMatchingName:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForContactsMatchingName:)]
         pub unsafe fn predicateForContactsMatchingName(name: &NSString) -> Retained<NSPredicate>;
 
         /// Fetch contacts matching an email address.
@@ -29,7 +30,8 @@ extern_methods!(
         ///
         ///
         /// Parameter `emailAddress`: The email address to search for. Do not include a scheme (e.g., "mailto:").
-        #[method_id(@__method_family Other predicateForContactsMatchingEmailAddress:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForContactsMatchingEmailAddress:)]
         pub unsafe fn predicateForContactsMatchingEmailAddress(
             email_address: &NSString,
         ) -> Retained<NSPredicate>;
@@ -46,23 +48,27 @@ extern_methods!(
         /// Parameter `phoneNumber`: A
         /// `CNPhoneNumber`representing the phone number to search for.
         /// Do not include a scheme (e.g., "tel:").
-        #[method_id(@__method_family Other predicateForContactsMatchingPhoneNumber:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForContactsMatchingPhoneNumber:)]
         pub unsafe fn predicateForContactsMatchingPhoneNumber(
             phone_number: &CNPhoneNumber,
         ) -> Retained<NSPredicate>;
 
         /// To fetch contacts matching contact identifiers.
-        #[method_id(@__method_family Other predicateForContactsWithIdentifiers:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForContactsWithIdentifiers:)]
         pub unsafe fn predicateForContactsWithIdentifiers(
             identifiers: &NSArray<NSString>,
         ) -> Retained<NSPredicate>;
 
-        #[method_id(@__method_family Other predicateForContactsInGroupWithIdentifier:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForContactsInGroupWithIdentifier:)]
         pub unsafe fn predicateForContactsInGroupWithIdentifier(
             group_identifier: &NSString,
         ) -> Retained<NSPredicate>;
 
-        #[method_id(@__method_family Other predicateForContactsInContainerWithIdentifier:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateForContactsInContainerWithIdentifier:)]
         pub unsafe fn predicateForContactsInContainerWithIdentifier(
             container_identifier: &NSString,
         ) -> Retained<NSPredicate>;

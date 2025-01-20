@@ -79,40 +79,48 @@ unsafe impl NSSecureCoding for NSTextLayoutFragment {}
 extern_methods!(
     unsafe impl NSTextLayoutFragment {
         #[cfg(all(feature = "NSTextElement", feature = "NSTextRange"))]
-        #[method_id(@__method_family Init initWithTextElement:range:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithTextElement:range:)]
         pub unsafe fn initWithTextElement_range(
             this: Allocated<Self>,
             text_element: &NSTextElement,
             range_in_element: Option<&NSTextRange>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSTextLayoutManager")]
-        #[method_id(@__method_family Other textLayoutManager)]
+        #[unsafe(method_family(none))]
+        #[method_id(textLayoutManager)]
         pub unsafe fn textLayoutManager(&self) -> Option<Retained<NSTextLayoutManager>>;
 
         #[cfg(feature = "NSTextElement")]
-        #[method_id(@__method_family Other textElement)]
+        #[unsafe(method_family(none))]
+        #[method_id(textElement)]
         pub unsafe fn textElement(&self) -> Option<Retained<NSTextElement>>;
 
         #[cfg(feature = "NSTextRange")]
-        #[method_id(@__method_family Other rangeInElement)]
+        #[unsafe(method_family(none))]
+        #[method_id(rangeInElement)]
         pub unsafe fn rangeInElement(&self) -> Retained<NSTextRange>;
 
         #[cfg(feature = "NSTextLineFragment")]
-        #[method_id(@__method_family Other textLineFragments)]
+        #[unsafe(method_family(none))]
+        #[method_id(textLineFragments)]
         pub unsafe fn textLineFragments(&self) -> Retained<NSArray<NSTextLineFragment>>;
 
         #[cfg(all(feature = "NSTextLineFragment", feature = "objc2-core-foundation"))]
-        #[method_id(@__method_family Other textLineFragmentForVerticalOffset:requiresExactMatch:)]
+        #[unsafe(method_family(none))]
+        #[method_id(textLineFragmentForVerticalOffset:requiresExactMatch:)]
         pub unsafe fn textLineFragmentForVerticalOffset_requiresExactMatch(
             &self,
             vertical_offset: CGFloat,
@@ -120,14 +128,16 @@ extern_methods!(
         ) -> Option<Retained<NSTextLineFragment>>;
 
         #[cfg(all(feature = "NSTextLineFragment", feature = "NSTextRange"))]
-        #[method_id(@__method_family Other textLineFragmentForTextLocation:isUpstreamAffinity:)]
+        #[unsafe(method_family(none))]
+        #[method_id(textLineFragmentForTextLocation:isUpstreamAffinity:)]
         pub unsafe fn textLineFragmentForTextLocation_isUpstreamAffinity(
             &self,
             text_location: &ProtocolObject<dyn NSTextLocation>,
             is_upstream_affinity: bool,
         ) -> Option<Retained<NSTextLineFragment>>;
 
-        #[method_id(@__method_family Other layoutQueue)]
+        #[unsafe(method_family(none))]
+        #[method_id(layoutQueue)]
         pub unsafe fn layoutQueue(&self) -> Option<Retained<NSOperationQueue>>;
 
         /// Setter for [`layoutQueue`][Self::layoutQueue].
@@ -169,7 +179,8 @@ extern_methods!(
         pub unsafe fn drawAtPoint_inContext(&self, point: CGPoint, context: &CGContext);
 
         #[cfg(feature = "NSTextAttachment")]
-        #[method_id(@__method_family Other textAttachmentViewProviders)]
+        #[unsafe(method_family(none))]
+        #[method_id(textAttachmentViewProviders)]
         pub unsafe fn textAttachmentViewProviders(
             &self,
         ) -> Retained<NSArray<NSTextAttachmentViewProvider>>;
@@ -186,7 +197,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextLayoutFragment {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -51,7 +51,8 @@ extern_methods!(
         /// - Parameters:
         /// - specificationData: Contents of .mlmodel as a data blob.
         /// - error: When the model asset creation fails error is populated with the reason for failure.
-        #[method_id(@__method_family Other modelAssetWithSpecificationData:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(modelAssetWithSpecificationData:error:_)]
         pub unsafe fn modelAssetWithSpecificationData_error(
             specification_data: &NSData,
         ) -> Result<Retained<Self>, Retained<NSError>>;
@@ -67,7 +68,8 @@ extern_methods!(
         /// - specification: Contents of .mlmodel as a data blob.
         /// - blobMapping: A dictionary with blob URL as the key and blob data as the value.
         /// - error: When the model asset creation fails error is populated with the reason for failure.
-        #[method_id(@__method_family Other modelAssetWithSpecificationData:blobMapping:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(modelAssetWithSpecificationData:blobMapping:error:_)]
         pub unsafe fn modelAssetWithSpecificationData_blobMapping_error(
             specification_data: &NSData,
             blob_mapping: &NSDictionary<NSURL, NSData>,
@@ -80,7 +82,8 @@ extern_methods!(
         /// - error: Errors if the model asset is not loadable.
         ///
         /// - Returns: a model asset or nil if there is an error.
-        #[method_id(@__method_family Other modelAssetWithURL:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(modelAssetWithURL:error:_)]
         pub unsafe fn modelAssetWithURL_error(
             compiled_model_url: &NSURL,
         ) -> Result<Retained<Self>, Retained<NSError>>;
@@ -138,10 +141,12 @@ extern_methods!(
             handler: &block2::Block<dyn Fn(*mut NSArray<NSString>, *mut NSError)>,
         );
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -46,7 +46,8 @@ extern_protocol!(
 
         #[cfg(feature = "MTLTexture")]
         /// Create a 2D texture or texture buffer that shares storage with this buffer.
-        #[method_id(@__method_family New newTextureWithDescriptor:offset:bytesPerRow:)]
+        #[unsafe(method_family(new))]
+        #[method_id(newTextureWithDescriptor:offset:bytesPerRow:)]
         fn newTextureWithDescriptor_offset_bytesPerRow(
             &self,
             descriptor: &MTLTextureDescriptor,
@@ -68,13 +69,15 @@ extern_protocol!(
         fn removeAllDebugMarkers(&self);
 
         /// For Metal buffer objects that are remote views, this returns the buffer associated with the storage on the originating device.
-        #[method_id(@__method_family Other remoteStorageBuffer)]
+        #[unsafe(method_family(none))]
+        #[method_id(remoteStorageBuffer)]
         fn remoteStorageBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         #[cfg(feature = "MTLDevice")]
         /// On Metal devices that support peer to peer transfers, this method is used to create a remote buffer view on another device
         /// within the peer group.  The receiver must use MTLStorageModePrivate or be backed by an IOSurface.
-        #[method_id(@__method_family New newRemoteBufferViewForDevice:)]
+        #[unsafe(method_family(new))]
+        #[method_id(newRemoteBufferViewForDevice:)]
         fn newRemoteBufferViewForDevice(
             &self,
             device: &ProtocolObject<dyn MTLDevice>,

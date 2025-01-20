@@ -49,7 +49,8 @@ extern_methods!(
     unsafe impl ARReferenceObject {
         #[cfg(feature = "objc2-foundation")]
         /// An optional name used to identify the object.
-        #[method_id(@__method_family Other name)]
+        #[unsafe(method_family(none))]
+        #[method_id(name)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "objc2-foundation")]
@@ -62,12 +63,14 @@ extern_methods!(
         ///
         /// If this object was loaded via an AR resource group in the Xcode asset catalogue this property will have the name of the resource group,
         /// else be set to nil.
-        #[method_id(@__method_family Other resourceGroupName)]
+        #[unsafe(method_family(none))]
+        #[method_id(resourceGroupName)]
         pub unsafe fn resourceGroupName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "ARPointCloud")]
         /// The feature points of the object.
-        #[method_id(@__method_family Other rawFeaturePoints)]
+        #[unsafe(method_family(none))]
+        #[method_id(rawFeaturePoints)]
         pub unsafe fn rawFeaturePoints(&self) -> Retained<ARPointCloud>;
 
         #[cfg(feature = "objc2-foundation")]
@@ -79,7 +82,8 @@ extern_methods!(
         /// Parameter `bundle`: The bundle containing the image file or asset catalog. Specify nil to search the app’s main bundle.
         ///
         /// Returns: The set of reference objects or nil on error.
-        #[method_id(@__method_family Other referenceObjectsInGroupNamed:bundle:)]
+        #[unsafe(method_family(none))]
+        #[method_id(referenceObjectsInGroupNamed:bundle:)]
         pub unsafe fn referenceObjectsInGroupNamed_bundle(
             name: &NSString,
             bundle: Option<&NSBundle>,
@@ -91,7 +95,8 @@ extern_methods!(
         /// Parameter `url`: The URL from which to read data (.arobject archive).
         ///
         /// Parameter `error`: The error to populate if the object could not be initialized.
-        #[method_id(@__method_family Init initWithArchiveURL:error:_)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithArchiveURL:error:_)]
         pub unsafe fn initWithArchiveURL_error(
             this: Allocated<Self>,
             url: &NSURL,
@@ -129,17 +134,20 @@ extern_methods!(
         /// Parameter `error`: The error to populate if the merge is not successful.
         ///
         /// Returns: A new reference object combining features of both scans or nil if the merge was not successful.
-        #[method_id(@__method_family Other referenceObjectByMergingObject:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(referenceObjectByMergingObject:error:_)]
         pub unsafe fn referenceObjectByMergingObject_error(
             &self,
             object: &ARReferenceObject,
         ) -> Result<Retained<ARReferenceObject>, Retained<NSError>>;
 
         /// Unavailable
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

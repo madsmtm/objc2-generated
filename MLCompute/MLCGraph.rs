@@ -23,20 +23,23 @@ extern_methods!(
         #[cfg(feature = "MLCDevice")]
         /// The device to be used when compiling and executing a graph
         #[deprecated]
-        #[method_id(@__method_family Other device)]
+        #[unsafe(method_family(none))]
+        #[method_id(device)]
         pub unsafe fn device(&self) -> Option<Retained<MLCDevice>>;
 
         #[cfg(feature = "MLCLayer")]
         /// Layers in the graph
         #[deprecated]
-        #[method_id(@__method_family Other layers)]
+        #[unsafe(method_family(none))]
+        #[method_id(layers)]
         pub unsafe fn layers(&self) -> Retained<NSArray<MLCLayer>>;
 
         /// Creates a new graph.
         ///
         /// Returns: A new graph.
         #[deprecated]
-        #[method_id(@__method_family Other graph)]
+        #[unsafe(method_family(none))]
+        #[method_id(graph)]
         pub unsafe fn graph() -> Retained<Self>;
 
         /// A DOT representation of the graph.
@@ -44,7 +47,8 @@ extern_methods!(
         /// For more info on the DOT language, refer to https://en.wikipedia.org/wiki/DOT_(graph_description_language).
         /// Edges that have a dashed lines are those that have stop gradients, while those with solid lines don't.
         #[deprecated]
-        #[method_id(@__method_family Other summarizedDOTDescription)]
+        #[unsafe(method_family(none))]
+        #[method_id(summarizedDOTDescription)]
         pub unsafe fn summarizedDOTDescription(&self) -> Retained<NSString>;
 
         #[cfg(all(feature = "MLCLayer", feature = "MLCTensor"))]
@@ -56,7 +60,8 @@ extern_methods!(
         ///
         /// Returns: A result tensor
         #[deprecated]
-        #[method_id(@__method_family Other nodeWithLayer:source:)]
+        #[unsafe(method_family(none))]
+        #[method_id(nodeWithLayer:source:)]
         pub unsafe fn nodeWithLayer_source(
             &self,
             layer: &MLCLayer,
@@ -74,7 +79,8 @@ extern_methods!(
         ///
         /// Returns: A result tensor
         #[deprecated]
-        #[method_id(@__method_family Other nodeWithLayer:sources:)]
+        #[unsafe(method_family(none))]
+        #[method_id(nodeWithLayer:sources:)]
         pub unsafe fn nodeWithLayer_sources(
             &self,
             layer: &MLCLayer,
@@ -94,7 +100,8 @@ extern_methods!(
         ///
         /// Returns: A result tensor
         #[deprecated]
-        #[method_id(@__method_family Other nodeWithLayer:sources:disableUpdate:)]
+        #[unsafe(method_family(none))]
+        #[method_id(nodeWithLayer:sources:disableUpdate:)]
         pub unsafe fn nodeWithLayer_sources_disableUpdate(
             &self,
             layer: &MLCLayer,
@@ -113,7 +120,8 @@ extern_methods!(
         ///
         /// Returns: A result tensor
         #[deprecated]
-        #[method_id(@__method_family Other nodeWithLayer:sources:lossLabels:)]
+        #[unsafe(method_family(none))]
+        #[method_id(nodeWithLayer:sources:lossLabels:)]
         pub unsafe fn nodeWithLayer_sources_lossLabels(
             &self,
             layer: &MLCLayer,
@@ -132,7 +140,8 @@ extern_methods!(
         ///
         /// Returns: A result tensor
         #[deprecated]
-        #[method_id(@__method_family Other splitWithSource:splitCount:dimension:)]
+        #[unsafe(method_family(none))]
+        #[method_id(splitWithSource:splitCount:dimension:)]
         pub unsafe fn splitWithSource_splitCount_dimension(
             &self,
             source: &MLCTensor,
@@ -151,7 +160,8 @@ extern_methods!(
         ///
         /// Returns: A result tensor
         #[deprecated]
-        #[method_id(@__method_family Other splitWithSource:splitSectionLengths:dimension:)]
+        #[unsafe(method_family(none))]
+        #[method_id(splitWithSource:splitSectionLengths:dimension:)]
         pub unsafe fn splitWithSource_splitSectionLengths_dimension(
             &self,
             source: &MLCTensor,
@@ -168,7 +178,8 @@ extern_methods!(
         ///
         /// Returns: A result tensor
         #[deprecated]
-        #[method_id(@__method_family Other concatenateWithSources:dimension:)]
+        #[unsafe(method_family(none))]
+        #[method_id(concatenateWithSources:dimension:)]
         pub unsafe fn concatenateWithSources_dimension(
             &self,
             sources: &NSArray<MLCTensor>,
@@ -184,7 +195,8 @@ extern_methods!(
         ///
         /// Returns: A result tensor
         #[deprecated]
-        #[method_id(@__method_family Other reshapeWithShape:source:)]
+        #[unsafe(method_family(none))]
+        #[method_id(reshapeWithShape:source:)]
         pub unsafe fn reshapeWithShape_source(
             &self,
             shape: &NSArray<NSNumber>,
@@ -203,7 +215,8 @@ extern_methods!(
         ///
         /// Returns: A result tensor
         #[deprecated]
-        #[method_id(@__method_family Other transposeWithDimensions:source:)]
+        #[unsafe(method_family(none))]
+        #[method_id(transposeWithDimensions:source:)]
         pub unsafe fn transposeWithDimensions_source(
             &self,
             dimensions: &NSArray<NSNumber>,
@@ -218,7 +231,8 @@ extern_methods!(
         /// Parameter `condition`: The condition mask
         ///
         /// Returns: A result tensor
-        #[method_id(@__method_family Other selectWithSources:condition:)]
+        #[unsafe(method_family(none))]
+        #[method_id(selectWithSources:condition:)]
         pub unsafe fn selectWithSources_condition(
             &self,
             sources: &NSArray<MLCTensor>,
@@ -240,7 +254,8 @@ extern_methods!(
         /// Must be: MLCReductionTypeNone or MLCReductionTypeSum.
         ///
         /// Returns: A result tensor
-        #[method_id(@__method_family Other scatterWithDimension:source:indices:copyFrom:reductionType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(scatterWithDimension:source:indices:copyFrom:reductionType:)]
         pub unsafe fn scatterWithDimension_source_indices_copyFrom_reductionType(
             &self,
             dimension: NSUInteger,
@@ -260,7 +275,8 @@ extern_methods!(
         /// Parameter `indices`: The index of elements to gather
         ///
         /// Returns: A result tensor
-        #[method_id(@__method_family Other gatherWithDimension:source:indices:)]
+        #[unsafe(method_family(none))]
+        #[method_id(gatherWithDimension:source:indices:)]
         pub unsafe fn gatherWithDimension_source_indices(
             &self,
             dimension: NSUInteger,
@@ -348,7 +364,8 @@ extern_methods!(
         ///
         /// Returns: A list of tensors
         #[deprecated]
-        #[method_id(@__method_family Other sourceTensorsForLayer:)]
+        #[unsafe(method_family(none))]
+        #[method_id(sourceTensorsForLayer:)]
         pub unsafe fn sourceTensorsForLayer(
             &self,
             layer: &MLCLayer,
@@ -361,7 +378,8 @@ extern_methods!(
         ///
         /// Returns: A list of tensors
         #[deprecated]
-        #[method_id(@__method_family Other resultTensorsForLayer:)]
+        #[unsafe(method_family(none))]
+        #[method_id(resultTensorsForLayer:)]
         pub unsafe fn resultTensorsForLayer(
             &self,
             layer: &MLCLayer,
@@ -372,10 +390,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MLCGraph {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

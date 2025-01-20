@@ -28,10 +28,12 @@ unsafe impl NSSecureCoding for CKQueryCursor {}
 
 extern_methods!(
     unsafe impl CKQueryCursor {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -59,21 +61,25 @@ extern_methods!(
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKQueryOperation {
         /// Queries invoked within a sharedCloudDatabase must specify a zoneID.  Cross-zone queries are not supported in a sharedCloudDatabase
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "CKQuery")]
-        #[method_id(@__method_family Init initWithQuery:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithQuery:)]
         pub unsafe fn initWithQuery(this: Allocated<Self>, query: &CKQuery) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCursor:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCursor:)]
         pub unsafe fn initWithCursor(
             this: Allocated<Self>,
             cursor: &CKQueryCursor,
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKQuery")]
-        #[method_id(@__method_family Other query)]
+        #[unsafe(method_family(none))]
+        #[method_id(query)]
         pub unsafe fn query(&self) -> Option<Retained<CKQuery>>;
 
         #[cfg(feature = "CKQuery")]
@@ -81,7 +87,8 @@ extern_methods!(
         #[method(setQuery:)]
         pub unsafe fn setQuery(&self, query: Option<&CKQuery>);
 
-        #[method_id(@__method_family Other cursor)]
+        #[unsafe(method_family(none))]
+        #[method_id(cursor)]
         pub unsafe fn cursor(&self) -> Option<Retained<CKQueryCursor>>;
 
         /// Setter for [`cursor`][Self::cursor].
@@ -95,7 +102,8 @@ extern_methods!(
         /// For query operations constructed using a cursor, this property is ignored and instead will be evaluated in the record zone in which the cursor was originally created.
         /// Queries that do not specify a
         /// `zoneID`will perform a query across all zones in the database.
-        #[method_id(@__method_family Other zoneID)]
+        #[unsafe(method_family(none))]
+        #[method_id(zoneID)]
         pub unsafe fn zoneID(&self) -> Option<Retained<CKRecordZoneID>>;
 
         #[cfg(feature = "CKRecordZoneID")]
@@ -125,7 +133,8 @@ extern_methods!(
         /// If nil, declares the entire record should be downloaded. If set to an empty array, declares that no user fields should be downloaded.
         /// Defaults to
         /// `nil.`
-        #[method_id(@__method_family Other desiredKeys)]
+        #[unsafe(method_family(none))]
+        #[method_id(desiredKeys)]
         pub unsafe fn desiredKeys(&self) -> Option<Retained<NSArray<CKRecordFieldKey>>>;
 
         #[cfg(feature = "CKRecord")]
@@ -222,7 +231,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKQueryOperation {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

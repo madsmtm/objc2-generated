@@ -52,7 +52,8 @@ extern_methods!(
         pub unsafe fn setEditable(&self, editable: bool);
 
         #[cfg(feature = "AMWorkflowController")]
-        #[method_id(@__method_family Other workflowController)]
+        #[unsafe(method_family(none))]
+        #[method_id(workflowController)]
         pub unsafe fn workflowController(&self) -> Option<Retained<AMWorkflowController>>;
 
         #[cfg(feature = "AMWorkflowController")]
@@ -70,10 +71,12 @@ extern_methods!(
     /// Methods declared on superclass `NSView`
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl AMWorkflowView {
-        #[method_id(@__method_family Init initWithFrame:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -85,7 +88,8 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl AMWorkflowView {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -94,7 +98,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl AMWorkflowView {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

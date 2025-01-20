@@ -23,7 +23,8 @@ unsafe impl NSObjectProtocol for SKPaymentDiscount {}
 extern_methods!(
     unsafe impl SKPaymentDiscount {
         #[deprecated = "Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)"]
-        #[method_id(@__method_family Init initWithIdentifier:keyIdentifier:nonce:signature:timestamp:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithIdentifier:keyIdentifier:nonce:signature:timestamp:)]
         pub unsafe fn initWithIdentifier_keyIdentifier_nonce_signature_timestamp(
             this: Allocated<Self>,
             identifier: &NSString,
@@ -34,23 +35,28 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[deprecated = "Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)"]
-        #[method_id(@__method_family Other identifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         #[deprecated = "Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)"]
-        #[method_id(@__method_family Other keyIdentifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(keyIdentifier)]
         pub unsafe fn keyIdentifier(&self) -> Retained<NSString>;
 
         #[deprecated = "Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)"]
-        #[method_id(@__method_family Other nonce)]
+        #[unsafe(method_family(none))]
+        #[method_id(nonce)]
         pub unsafe fn nonce(&self) -> Retained<NSUUID>;
 
         #[deprecated = "Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)"]
-        #[method_id(@__method_family Other signature)]
+        #[unsafe(method_family(none))]
+        #[method_id(signature)]
         pub unsafe fn signature(&self) -> Retained<NSString>;
 
         #[deprecated = "Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)"]
-        #[method_id(@__method_family Other timestamp)]
+        #[unsafe(method_family(none))]
+        #[method_id(timestamp)]
         pub unsafe fn timestamp(&self) -> Retained<NSNumber>;
     }
 );
@@ -58,10 +64,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKPaymentDiscount {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

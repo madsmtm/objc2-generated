@@ -28,18 +28,21 @@ unsafe impl NSSecureCoding for SFSpeechRecognitionResult {}
 extern_methods!(
     unsafe impl SFSpeechRecognitionResult {
         #[cfg(feature = "SFTranscription")]
-        #[method_id(@__method_family Other bestTranscription)]
+        #[unsafe(method_family(none))]
+        #[method_id(bestTranscription)]
         pub unsafe fn bestTranscription(&self) -> Retained<SFTranscription>;
 
         #[cfg(feature = "SFTranscription")]
-        #[method_id(@__method_family Other transcriptions)]
+        #[unsafe(method_family(none))]
+        #[method_id(transcriptions)]
         pub unsafe fn transcriptions(&self) -> Retained<NSArray<SFTranscription>>;
 
         #[method(isFinal)]
         pub unsafe fn isFinal(&self) -> bool;
 
         #[cfg(feature = "SFSpeechRecognitionMetadata")]
-        #[method_id(@__method_family Other speechRecognitionMetadata)]
+        #[unsafe(method_family(none))]
+        #[method_id(speechRecognitionMetadata)]
         pub unsafe fn speechRecognitionMetadata(
             &self,
         ) -> Option<Retained<SFSpeechRecognitionMetadata>>;
@@ -49,10 +52,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SFSpeechRecognitionResult {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

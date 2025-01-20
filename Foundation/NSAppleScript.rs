@@ -55,7 +55,8 @@ unsafe impl NSObjectProtocol for NSAppleScript {}
 extern_methods!(
     unsafe impl NSAppleScript {
         #[cfg(all(feature = "NSDictionary", feature = "NSString", feature = "NSURL"))]
-        #[method_id(@__method_family Init initWithContentsOfURL:error:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithContentsOfURL:error:)]
         pub unsafe fn initWithContentsOfURL_error(
             this: Allocated<Self>,
             url: &NSURL,
@@ -63,14 +64,16 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__method_family Init initWithSource:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
             source: &NSString,
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__method_family Other source)]
+        #[unsafe(method_family(none))]
+        #[method_id(source)]
         pub unsafe fn source(&self) -> Option<Retained<NSString>>;
 
         #[method(isCompiled)]
@@ -88,7 +91,8 @@ extern_methods!(
             feature = "NSDictionary",
             feature = "NSString"
         ))]
-        #[method_id(@__method_family Other executeAndReturnError:)]
+        #[unsafe(method_family(none))]
+        #[method_id(executeAndReturnError:)]
         pub unsafe fn executeAndReturnError(
             &self,
             error_info: Option<&mut Option<Retained<NSDictionary<NSString, AnyObject>>>>,
@@ -99,7 +103,8 @@ extern_methods!(
             feature = "NSDictionary",
             feature = "NSString"
         ))]
-        #[method_id(@__method_family Other executeAppleEvent:error:)]
+        #[unsafe(method_family(none))]
+        #[method_id(executeAppleEvent:error:)]
         pub unsafe fn executeAppleEvent_error(
             &self,
             event: &NSAppleEventDescriptor,
@@ -111,10 +116,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSAppleScript {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

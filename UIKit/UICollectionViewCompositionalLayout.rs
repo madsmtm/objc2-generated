@@ -74,7 +74,8 @@ extern_methods!(
         #[method(setInterSectionSpacing:)]
         pub unsafe fn setInterSectionSpacing(&self, inter_section_spacing: CGFloat);
 
-        #[method_id(@__method_family Other boundarySupplementaryItems)]
+        #[unsafe(method_family(none))]
+        #[method_id(boundarySupplementaryItems)]
         pub unsafe fn boundarySupplementaryItems(
             &self,
         ) -> Retained<NSArray<NSCollectionLayoutBoundarySupplementaryItem>>;
@@ -101,10 +102,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UICollectionViewCompositionalLayoutConfiguration {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -136,13 +139,15 @@ unsafe impl NSObjectProtocol for UICollectionViewCompositionalLayout {}
 extern_methods!(
     #[cfg(feature = "UICollectionViewLayout")]
     unsafe impl UICollectionViewCompositionalLayout {
-        #[method_id(@__method_family Init initWithSection:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithSection:)]
         pub unsafe fn initWithSection(
             this: Allocated<Self>,
             section: &NSCollectionLayoutSection,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithSection:configuration:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithSection:configuration:)]
         pub unsafe fn initWithSection_configuration(
             this: Allocated<Self>,
             section: &NSCollectionLayoutSection,
@@ -150,27 +155,32 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        #[method_id(@__method_family Init initWithSectionProvider:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithSectionProvider:)]
         pub unsafe fn initWithSectionProvider(
             this: Allocated<Self>,
             section_provider: UICollectionViewCompositionalLayoutSectionProvider,
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        #[method_id(@__method_family Init initWithSectionProvider:configuration:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithSectionProvider:configuration:)]
         pub unsafe fn initWithSectionProvider_configuration(
             this: Allocated<Self>,
             section_provider: UICollectionViewCompositionalLayoutSectionProvider,
             configuration: &UICollectionViewCompositionalLayoutConfiguration,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__method_family Other configuration)]
+        #[unsafe(method_family(none))]
+        #[method_id(configuration)]
         pub unsafe fn configuration(
             &self,
         ) -> Retained<UICollectionViewCompositionalLayoutConfiguration>;
@@ -188,7 +198,8 @@ extern_methods!(
     /// Methods declared on superclass `UICollectionViewLayout`
     #[cfg(feature = "UICollectionViewLayout")]
     unsafe impl UICollectionViewCompositionalLayout {
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -334,10 +345,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UICollectionLayoutSectionOrthogonalScrollingProperties {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -360,13 +373,16 @@ unsafe impl NSObjectProtocol for NSCollectionLayoutSection {}
 
 extern_methods!(
     unsafe impl NSCollectionLayoutSection {
-        #[method_id(@__method_family Other sectionWithGroup:)]
+        #[unsafe(method_family(none))]
+        #[method_id(sectionWithGroup:)]
         pub unsafe fn sectionWithGroup(group: &NSCollectionLayoutGroup) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
@@ -423,12 +439,14 @@ extern_methods!(
             orthogonal_scrolling_behavior: UICollectionLayoutSectionOrthogonalScrollingBehavior,
         );
 
-        #[method_id(@__method_family Other orthogonalScrollingProperties)]
+        #[unsafe(method_family(none))]
+        #[method_id(orthogonalScrollingProperties)]
         pub unsafe fn orthogonalScrollingProperties(
             &self,
         ) -> Retained<UICollectionLayoutSectionOrthogonalScrollingProperties>;
 
-        #[method_id(@__method_family Other boundarySupplementaryItems)]
+        #[unsafe(method_family(none))]
+        #[method_id(boundarySupplementaryItems)]
         pub unsafe fn boundarySupplementaryItems(
             &self,
         ) -> Retained<NSArray<NSCollectionLayoutBoundarySupplementaryItem>>;
@@ -462,7 +480,8 @@ extern_methods!(
             visible_items_invalidation_handler: NSCollectionLayoutSectionVisibleItemsInvalidationHandler,
         );
 
-        #[method_id(@__method_family Other decorationItems)]
+        #[unsafe(method_family(none))]
+        #[method_id(decorationItems)]
         pub unsafe fn decorationItems(&self)
             -> Retained<NSArray<NSCollectionLayoutDecorationItem>>;
 
@@ -493,19 +512,23 @@ unsafe impl NSObjectProtocol for NSCollectionLayoutItem {}
 
 extern_methods!(
     unsafe impl NSCollectionLayoutItem {
-        #[method_id(@__method_family Other itemWithLayoutSize:)]
+        #[unsafe(method_family(none))]
+        #[method_id(itemWithLayoutSize:)]
         pub unsafe fn itemWithLayoutSize(layout_size: &NSCollectionLayoutSize) -> Retained<Self>;
 
-        #[method_id(@__method_family Other itemWithLayoutSize:supplementaryItems:)]
+        #[unsafe(method_family(none))]
+        #[method_id(itemWithLayoutSize:supplementaryItems:)]
         pub unsafe fn itemWithLayoutSize_supplementaryItems(
             layout_size: &NSCollectionLayoutSize,
             supplementary_items: &NSArray<NSCollectionLayoutSupplementaryItem>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
@@ -517,17 +540,20 @@ extern_methods!(
         #[method(setContentInsets:)]
         pub unsafe fn setContentInsets(&self, content_insets: NSDirectionalEdgeInsets);
 
-        #[method_id(@__method_family Other edgeSpacing)]
+        #[unsafe(method_family(none))]
+        #[method_id(edgeSpacing)]
         pub unsafe fn edgeSpacing(&self) -> Option<Retained<NSCollectionLayoutEdgeSpacing>>;
 
         /// Setter for [`edgeSpacing`][Self::edgeSpacing].
         #[method(setEdgeSpacing:)]
         pub unsafe fn setEdgeSpacing(&self, edge_spacing: Option<&NSCollectionLayoutEdgeSpacing>);
 
-        #[method_id(@__method_family Other layoutSize)]
+        #[unsafe(method_family(none))]
+        #[method_id(layoutSize)]
         pub unsafe fn layoutSize(&self) -> Retained<NSCollectionLayoutSize>;
 
-        #[method_id(@__method_family Other supplementaryItems)]
+        #[unsafe(method_family(none))]
+        #[method_id(supplementaryItems)]
         pub unsafe fn supplementaryItems(
             &self,
         ) -> Retained<NSArray<NSCollectionLayoutSupplementaryItem>>;
@@ -553,21 +579,25 @@ unsafe impl NSObjectProtocol for NSCollectionLayoutGroupCustomItem {}
 extern_methods!(
     unsafe impl NSCollectionLayoutGroupCustomItem {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Other customItemWithFrame:)]
+        #[unsafe(method_family(none))]
+        #[method_id(customItemWithFrame:)]
         pub unsafe fn customItemWithFrame(frame: CGRect, mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Other customItemWithFrame:zIndex:)]
+        #[unsafe(method_family(none))]
+        #[method_id(customItemWithFrame:zIndex:)]
         pub unsafe fn customItemWithFrame_zIndex(
             frame: CGRect,
             z_index: NSInteger,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -614,14 +644,16 @@ extern_methods!(
         /// `count`repetitions of this item.
         ///
         /// Parameter `count`: The number of times to repeat the passed in subitem.
-        #[method_id(@__method_family Other horizontalGroupWithLayoutSize:repeatingSubitem:count:)]
+        #[unsafe(method_family(none))]
+        #[method_id(horizontalGroupWithLayoutSize:repeatingSubitem:count:)]
         pub unsafe fn horizontalGroupWithLayoutSize_repeatingSubitem_count(
             layout_size: &NSCollectionLayoutSize,
             subitem: &NSCollectionLayoutItem,
             count: NSInteger,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Other horizontalGroupWithLayoutSize:subitems:)]
+        #[unsafe(method_family(none))]
+        #[method_id(horizontalGroupWithLayoutSize:subitems:)]
         pub unsafe fn horizontalGroupWithLayoutSize_subitems(
             layout_size: &NSCollectionLayoutSize,
             subitems: &NSArray<NSCollectionLayoutItem>,
@@ -636,33 +668,39 @@ extern_methods!(
         /// `count`repetitions of this item.
         ///
         /// Parameter `count`: The number of times to repeat the passed in subitem.
-        #[method_id(@__method_family Other verticalGroupWithLayoutSize:repeatingSubitem:count:)]
+        #[unsafe(method_family(none))]
+        #[method_id(verticalGroupWithLayoutSize:repeatingSubitem:count:)]
         pub unsafe fn verticalGroupWithLayoutSize_repeatingSubitem_count(
             layout_size: &NSCollectionLayoutSize,
             subitem: &NSCollectionLayoutItem,
             count: NSInteger,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Other verticalGroupWithLayoutSize:subitems:)]
+        #[unsafe(method_family(none))]
+        #[method_id(verticalGroupWithLayoutSize:subitems:)]
         pub unsafe fn verticalGroupWithLayoutSize_subitems(
             layout_size: &NSCollectionLayoutSize,
             subitems: &NSArray<NSCollectionLayoutItem>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        #[method_id(@__method_family Other customGroupWithLayoutSize:itemProvider:)]
+        #[unsafe(method_family(none))]
+        #[method_id(customGroupWithLayoutSize:itemProvider:)]
         pub unsafe fn customGroupWithLayoutSize_itemProvider(
             layout_size: &NSCollectionLayoutSize,
             item_provider: NSCollectionLayoutGroupCustomItemProvider,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__method_family Other supplementaryItems)]
+        #[unsafe(method_family(none))]
+        #[method_id(supplementaryItems)]
         pub unsafe fn supplementaryItems(
             &self,
         ) -> Retained<NSArray<NSCollectionLayoutSupplementaryItem>>;
@@ -674,7 +712,8 @@ extern_methods!(
             supplementary_items: &NSArray<NSCollectionLayoutSupplementaryItem>,
         );
 
-        #[method_id(@__method_family Other interItemSpacing)]
+        #[unsafe(method_family(none))]
+        #[method_id(interItemSpacing)]
         pub unsafe fn interItemSpacing(&self) -> Option<Retained<NSCollectionLayoutSpacing>>;
 
         /// Setter for [`interItemSpacing`][Self::interItemSpacing].
@@ -684,10 +723,12 @@ extern_methods!(
             inter_item_spacing: Option<&NSCollectionLayoutSpacing>,
         );
 
-        #[method_id(@__method_family Other subitems)]
+        #[unsafe(method_family(none))]
+        #[method_id(subitems)]
         pub unsafe fn subitems(&self) -> Retained<NSArray<NSCollectionLayoutItem>>;
 
-        #[method_id(@__method_family Other visualDescription)]
+        #[unsafe(method_family(none))]
+        #[method_id(visualDescription)]
         pub unsafe fn visualDescription(&self) -> Retained<NSString>;
     }
 );
@@ -695,10 +736,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSCollectionLayoutItem`
     unsafe impl NSCollectionLayoutGroup {
-        #[method_id(@__method_family Other itemWithLayoutSize:)]
+        #[unsafe(method_family(none))]
+        #[method_id(itemWithLayoutSize:)]
         pub unsafe fn itemWithLayoutSize(layout_size: &NSCollectionLayoutSize) -> Retained<Self>;
 
-        #[method_id(@__method_family Other itemWithLayoutSize:supplementaryItems:)]
+        #[unsafe(method_family(none))]
+        #[method_id(itemWithLayoutSize:supplementaryItems:)]
         pub unsafe fn itemWithLayoutSize_supplementaryItems(
             layout_size: &NSCollectionLayoutSize,
             supplementary_items: &NSArray<NSCollectionLayoutSupplementaryItem>,
@@ -725,28 +768,32 @@ unsafe impl NSObjectProtocol for NSCollectionLayoutDimension {}
 extern_methods!(
     unsafe impl NSCollectionLayoutDimension {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Other fractionalWidthDimension:)]
+        #[unsafe(method_family(none))]
+        #[method_id(fractionalWidthDimension:)]
         pub unsafe fn fractionalWidthDimension(
             fractional_width: CGFloat,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Other fractionalHeightDimension:)]
+        #[unsafe(method_family(none))]
+        #[method_id(fractionalHeightDimension:)]
         pub unsafe fn fractionalHeightDimension(
             fractional_height: CGFloat,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Other absoluteDimension:)]
+        #[unsafe(method_family(none))]
+        #[method_id(absoluteDimension:)]
         pub unsafe fn absoluteDimension(
             absolute_dimension: CGFloat,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Other estimatedDimension:)]
+        #[unsafe(method_family(none))]
+        #[method_id(estimatedDimension:)]
         pub unsafe fn estimatedDimension(
             estimated_dimension: CGFloat,
             mtm: MainThreadMarker,
@@ -763,16 +810,19 @@ extern_methods!(
         /// When computing the size for a dimension of this type, the layout will need to retrieve preferred attributes for all siblings
         /// in its parent, which in `UICollectionView` means creating views for all dependent items. This can be very expensive, so `uniformAcrossSiblingsWithEstimate` should
         /// only be used in layouts where the number of dependent items is known to be relatively small.
-        #[method_id(@__method_family Other uniformAcrossSiblingsWithEstimate:)]
+        #[unsafe(method_family(none))]
+        #[method_id(uniformAcrossSiblingsWithEstimate:)]
         pub unsafe fn uniformAcrossSiblingsWithEstimate(
             estimated_dimension: CGFloat,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method(isFractionalWidth)]
@@ -815,22 +865,27 @@ unsafe impl NSObjectProtocol for NSCollectionLayoutSize {}
 
 extern_methods!(
     unsafe impl NSCollectionLayoutSize {
-        #[method_id(@__method_family Other sizeWithWidthDimension:heightDimension:)]
+        #[unsafe(method_family(none))]
+        #[method_id(sizeWithWidthDimension:heightDimension:)]
         pub unsafe fn sizeWithWidthDimension_heightDimension(
             width: &NSCollectionLayoutDimension,
             height: &NSCollectionLayoutDimension,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__method_family Other widthDimension)]
+        #[unsafe(method_family(none))]
+        #[method_id(widthDimension)]
         pub unsafe fn widthDimension(&self) -> Retained<NSCollectionLayoutDimension>;
 
-        #[method_id(@__method_family Other heightDimension)]
+        #[unsafe(method_family(none))]
+        #[method_id(heightDimension)]
         pub unsafe fn heightDimension(&self) -> Retained<NSCollectionLayoutDimension>;
     }
 );
@@ -854,21 +909,25 @@ unsafe impl NSObjectProtocol for NSCollectionLayoutSpacing {}
 extern_methods!(
     unsafe impl NSCollectionLayoutSpacing {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Other flexibleSpacing:)]
+        #[unsafe(method_family(none))]
+        #[method_id(flexibleSpacing:)]
         pub unsafe fn flexibleSpacing(
             flexible_spacing: CGFloat,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Other fixedSpacing:)]
+        #[unsafe(method_family(none))]
+        #[method_id(fixedSpacing:)]
         pub unsafe fn fixedSpacing(fixed_spacing: CGFloat, mtm: MainThreadMarker)
             -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -901,7 +960,8 @@ unsafe impl NSObjectProtocol for NSCollectionLayoutEdgeSpacing {}
 
 extern_methods!(
     unsafe impl NSCollectionLayoutEdgeSpacing {
-        #[method_id(@__method_family Other spacingForLeading:top:trailing:bottom:)]
+        #[unsafe(method_family(none))]
+        #[method_id(spacingForLeading:top:trailing:bottom:)]
         pub unsafe fn spacingForLeading_top_trailing_bottom(
             leading: Option<&NSCollectionLayoutSpacing>,
             top: Option<&NSCollectionLayoutSpacing>,
@@ -910,22 +970,28 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__method_family Other leading)]
+        #[unsafe(method_family(none))]
+        #[method_id(leading)]
         pub unsafe fn leading(&self) -> Option<Retained<NSCollectionLayoutSpacing>>;
 
-        #[method_id(@__method_family Other top)]
+        #[unsafe(method_family(none))]
+        #[method_id(top)]
         pub unsafe fn top(&self) -> Option<Retained<NSCollectionLayoutSpacing>>;
 
-        #[method_id(@__method_family Other trailing)]
+        #[unsafe(method_family(none))]
+        #[method_id(trailing)]
         pub unsafe fn trailing(&self) -> Option<Retained<NSCollectionLayoutSpacing>>;
 
-        #[method_id(@__method_family Other bottom)]
+        #[unsafe(method_family(none))]
+        #[method_id(bottom)]
         pub unsafe fn bottom(&self) -> Option<Retained<NSCollectionLayoutSpacing>>;
     }
 );
@@ -948,14 +1014,16 @@ unsafe impl NSObjectProtocol for NSCollectionLayoutSupplementaryItem {}
 
 extern_methods!(
     unsafe impl NSCollectionLayoutSupplementaryItem {
-        #[method_id(@__method_family Other supplementaryItemWithLayoutSize:elementKind:containerAnchor:)]
+        #[unsafe(method_family(none))]
+        #[method_id(supplementaryItemWithLayoutSize:elementKind:containerAnchor:)]
         pub unsafe fn supplementaryItemWithLayoutSize_elementKind_containerAnchor(
             layout_size: &NSCollectionLayoutSize,
             element_kind: &NSString,
             container_anchor: &NSCollectionLayoutAnchor,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Other supplementaryItemWithLayoutSize:elementKind:containerAnchor:itemAnchor:)]
+        #[unsafe(method_family(none))]
+        #[method_id(supplementaryItemWithLayoutSize:elementKind:containerAnchor:itemAnchor:)]
         pub unsafe fn supplementaryItemWithLayoutSize_elementKind_containerAnchor_itemAnchor(
             layout_size: &NSCollectionLayoutSize,
             element_kind: &NSString,
@@ -963,10 +1031,12 @@ extern_methods!(
             item_anchor: &NSCollectionLayoutAnchor,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method(zIndex)]
@@ -976,13 +1046,16 @@ extern_methods!(
         #[method(setZIndex:)]
         pub unsafe fn setZIndex(&self, z_index: NSInteger);
 
-        #[method_id(@__method_family Other elementKind)]
+        #[unsafe(method_family(none))]
+        #[method_id(elementKind)]
         pub unsafe fn elementKind(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other containerAnchor)]
+        #[unsafe(method_family(none))]
+        #[method_id(containerAnchor)]
         pub unsafe fn containerAnchor(&self) -> Retained<NSCollectionLayoutAnchor>;
 
-        #[method_id(@__method_family Other itemAnchor)]
+        #[unsafe(method_family(none))]
+        #[method_id(itemAnchor)]
         pub unsafe fn itemAnchor(&self) -> Option<Retained<NSCollectionLayoutAnchor>>;
     }
 );
@@ -990,10 +1063,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSCollectionLayoutItem`
     unsafe impl NSCollectionLayoutSupplementaryItem {
-        #[method_id(@__method_family Other itemWithLayoutSize:)]
+        #[unsafe(method_family(none))]
+        #[method_id(itemWithLayoutSize:)]
         pub unsafe fn itemWithLayoutSize(layout_size: &NSCollectionLayoutSize) -> Retained<Self>;
 
-        #[method_id(@__method_family Other itemWithLayoutSize:supplementaryItems:)]
+        #[unsafe(method_family(none))]
+        #[method_id(itemWithLayoutSize:supplementaryItems:)]
         pub unsafe fn itemWithLayoutSize_supplementaryItems(
             layout_size: &NSCollectionLayoutSize,
             supplementary_items: &NSArray<NSCollectionLayoutSupplementaryItem>,
@@ -1020,7 +1095,8 @@ unsafe impl NSObjectProtocol for NSCollectionLayoutBoundarySupplementaryItem {}
 extern_methods!(
     unsafe impl NSCollectionLayoutBoundarySupplementaryItem {
         #[cfg(feature = "UIGeometry")]
-        #[method_id(@__method_family Other boundarySupplementaryItemWithLayoutSize:elementKind:alignment:)]
+        #[unsafe(method_family(none))]
+        #[method_id(boundarySupplementaryItemWithLayoutSize:elementKind:alignment:)]
         pub unsafe fn boundarySupplementaryItemWithLayoutSize_elementKind_alignment(
             layout_size: &NSCollectionLayoutSize,
             element_kind: &NSString,
@@ -1028,7 +1104,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
-        #[method_id(@__method_family Other boundarySupplementaryItemWithLayoutSize:elementKind:alignment:absoluteOffset:)]
+        #[unsafe(method_family(none))]
+        #[method_id(boundarySupplementaryItemWithLayoutSize:elementKind:alignment:absoluteOffset:)]
         pub unsafe fn boundarySupplementaryItemWithLayoutSize_elementKind_alignment_absoluteOffset(
             layout_size: &NSCollectionLayoutSize,
             element_kind: &NSString,
@@ -1036,10 +1113,12 @@ extern_methods!(
             absolute_offset: CGPoint,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method(extendsBoundary)]
@@ -1069,14 +1148,16 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSCollectionLayoutSupplementaryItem`
     unsafe impl NSCollectionLayoutBoundarySupplementaryItem {
-        #[method_id(@__method_family Other supplementaryItemWithLayoutSize:elementKind:containerAnchor:)]
+        #[unsafe(method_family(none))]
+        #[method_id(supplementaryItemWithLayoutSize:elementKind:containerAnchor:)]
         pub unsafe fn supplementaryItemWithLayoutSize_elementKind_containerAnchor(
             layout_size: &NSCollectionLayoutSize,
             element_kind: &NSString,
             container_anchor: &NSCollectionLayoutAnchor,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Other supplementaryItemWithLayoutSize:elementKind:containerAnchor:itemAnchor:)]
+        #[unsafe(method_family(none))]
+        #[method_id(supplementaryItemWithLayoutSize:elementKind:containerAnchor:itemAnchor:)]
         pub unsafe fn supplementaryItemWithLayoutSize_elementKind_containerAnchor_itemAnchor(
             layout_size: &NSCollectionLayoutSize,
             element_kind: &NSString,
@@ -1089,10 +1170,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSCollectionLayoutItem`
     unsafe impl NSCollectionLayoutBoundarySupplementaryItem {
-        #[method_id(@__method_family Other itemWithLayoutSize:)]
+        #[unsafe(method_family(none))]
+        #[method_id(itemWithLayoutSize:)]
         pub unsafe fn itemWithLayoutSize(layout_size: &NSCollectionLayoutSize) -> Retained<Self>;
 
-        #[method_id(@__method_family Other itemWithLayoutSize:supplementaryItems:)]
+        #[unsafe(method_family(none))]
+        #[method_id(itemWithLayoutSize:supplementaryItems:)]
         pub unsafe fn itemWithLayoutSize_supplementaryItems(
             layout_size: &NSCollectionLayoutSize,
             supplementary_items: &NSArray<NSCollectionLayoutSupplementaryItem>,
@@ -1118,16 +1201,19 @@ unsafe impl NSObjectProtocol for NSCollectionLayoutDecorationItem {}
 
 extern_methods!(
     unsafe impl NSCollectionLayoutDecorationItem {
-        #[method_id(@__method_family Other backgroundDecorationItemWithElementKind:)]
+        #[unsafe(method_family(none))]
+        #[method_id(backgroundDecorationItemWithElementKind:)]
         pub unsafe fn backgroundDecorationItemWithElementKind(
             element_kind: &NSString,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method(zIndex)]
@@ -1137,7 +1223,8 @@ extern_methods!(
         #[method(setZIndex:)]
         pub unsafe fn setZIndex(&self, z_index: NSInteger);
 
-        #[method_id(@__method_family Other elementKind)]
+        #[unsafe(method_family(none))]
+        #[method_id(elementKind)]
         pub unsafe fn elementKind(&self) -> Retained<NSString>;
     }
 );
@@ -1145,10 +1232,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSCollectionLayoutItem`
     unsafe impl NSCollectionLayoutDecorationItem {
-        #[method_id(@__method_family Other itemWithLayoutSize:)]
+        #[unsafe(method_family(none))]
+        #[method_id(itemWithLayoutSize:)]
         pub unsafe fn itemWithLayoutSize(layout_size: &NSCollectionLayoutSize) -> Retained<Self>;
 
-        #[method_id(@__method_family Other itemWithLayoutSize:supplementaryItems:)]
+        #[unsafe(method_family(none))]
+        #[method_id(itemWithLayoutSize:supplementaryItems:)]
         pub unsafe fn itemWithLayoutSize_supplementaryItems(
             layout_size: &NSCollectionLayoutSize,
             supplementary_items: &NSArray<NSCollectionLayoutSupplementaryItem>,
@@ -1175,14 +1264,16 @@ unsafe impl NSObjectProtocol for NSCollectionLayoutAnchor {}
 extern_methods!(
     unsafe impl NSCollectionLayoutAnchor {
         #[cfg(feature = "UIGeometry")]
-        #[method_id(@__method_family Other layoutAnchorWithEdges:)]
+        #[unsafe(method_family(none))]
+        #[method_id(layoutAnchorWithEdges:)]
         pub unsafe fn layoutAnchorWithEdges(
             edges: NSDirectionalRectEdge,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
-        #[method_id(@__method_family Other layoutAnchorWithEdges:absoluteOffset:)]
+        #[unsafe(method_family(none))]
+        #[method_id(layoutAnchorWithEdges:absoluteOffset:)]
         pub unsafe fn layoutAnchorWithEdges_absoluteOffset(
             edges: NSDirectionalRectEdge,
             absolute_offset: CGPoint,
@@ -1190,17 +1281,20 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
-        #[method_id(@__method_family Other layoutAnchorWithEdges:fractionalOffset:)]
+        #[unsafe(method_family(none))]
+        #[method_id(layoutAnchorWithEdges:fractionalOffset:)]
         pub unsafe fn layoutAnchorWithEdges_fractionalOffset(
             edges: NSDirectionalRectEdge,
             fractional_offset: CGPoint,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(feature = "UIGeometry")]
@@ -1245,11 +1339,13 @@ extern_protocol!(
     pub unsafe trait NSCollectionLayoutEnvironment:
         NSObjectProtocol + MainThreadOnly
     {
-        #[method_id(@__method_family Other container)]
+        #[unsafe(method_family(none))]
+        #[method_id(container)]
         unsafe fn container(&self) -> Retained<ProtocolObject<dyn NSCollectionLayoutContainer>>;
 
         #[cfg(feature = "UITraitCollection")]
-        #[method_id(@__method_family Other traitCollection)]
+        #[unsafe(method_family(none))]
+        #[method_id(traitCollection)]
         unsafe fn traitCollection(&self) -> Retained<UITraitCollection>;
     }
 );
@@ -1312,10 +1408,12 @@ extern_protocol!(
         #[method(setTransform3D:)]
         unsafe fn setTransform3D(&self, transform3_d: CATransform3D);
 
-        #[method_id(@__method_family Other name)]
+        #[unsafe(method_family(none))]
+        #[method_id(name)]
         unsafe fn name(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other indexPath)]
+        #[unsafe(method_family(none))]
+        #[method_id(indexPath)]
         unsafe fn indexPath(&self) -> Retained<NSIndexPath>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -1330,7 +1428,8 @@ extern_protocol!(
         #[method(representedElementCategory)]
         unsafe fn representedElementCategory(&self) -> UICollectionElementCategory;
 
-        #[method_id(@__method_family Other representedElementKind)]
+        #[unsafe(method_family(none))]
+        #[method_id(representedElementKind)]
         unsafe fn representedElementKind(&self) -> Option<Retained<NSString>>;
     }
 );
@@ -1356,7 +1455,8 @@ extern_methods!(
     /// Deprecated
     unsafe impl NSCollectionLayoutGroup {
         #[deprecated]
-        #[method_id(@__method_family Other horizontalGroupWithLayoutSize:subitem:count:)]
+        #[unsafe(method_family(none))]
+        #[method_id(horizontalGroupWithLayoutSize:subitem:count:)]
         pub unsafe fn horizontalGroupWithLayoutSize_subitem_count(
             layout_size: &NSCollectionLayoutSize,
             subitem: &NSCollectionLayoutItem,
@@ -1364,7 +1464,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(@__method_family Other verticalGroupWithLayoutSize:subitem:count:)]
+        #[unsafe(method_family(none))]
+        #[method_id(verticalGroupWithLayoutSize:subitem:count:)]
         pub unsafe fn verticalGroupWithLayoutSize_subitem_count(
             layout_size: &NSCollectionLayoutSize,
             subitem: &NSCollectionLayoutItem,

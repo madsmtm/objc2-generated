@@ -36,7 +36,8 @@ extern_methods!(
             feature = "UIImageSymbolConfiguration"
         ))]
         /// The symbol configuration to use.
-        #[method_id(@__method_family Other preferredSymbolConfiguration)]
+        #[unsafe(method_family(none))]
+        #[method_id(preferredSymbolConfiguration)]
         pub unsafe fn preferredSymbolConfiguration(
             &self,
         ) -> Option<Retained<UIImageSymbolConfiguration>>;
@@ -54,7 +55,8 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         /// The tintColor to apply to the image view. Nil will use the image view's normal inherited tintColor.
-        #[method_id(@__method_family Other tintColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(tintColor)]
         pub unsafe fn tintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -85,7 +87,8 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         /// Returns the resolved image tint color for the specified tint color of the view, based on the `tintColor` and `tintColorTransformer`.
-        #[method_id(@__method_family Other resolvedTintColorForTintColor:)]
+        #[unsafe(method_family(none))]
+        #[method_id(resolvedTintColorForTintColor:)]
         pub unsafe fn resolvedTintColorForTintColor(
             &self,
             tint_color: &UIColor,
@@ -166,7 +169,8 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         /// Configures the color of the stroke. A nil value uses the view's tint color; use `clearColor` for no color (transparent).
-        #[method_id(@__method_family Other strokeColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(strokeColor)]
         pub unsafe fn strokeColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -197,7 +201,8 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         /// Returns the resolved stroke color for the specified tint color, based on the `strokeColor` and `strokeColorTransformer`.
-        #[method_id(@__method_family Other resolvedStrokeColorForTintColor:)]
+        #[unsafe(method_family(none))]
+        #[method_id(resolvedStrokeColorForTintColor:)]
         pub unsafe fn resolvedStrokeColorForTintColor(
             &self,
             tint_color: &UIColor,
@@ -208,10 +213,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIListContentImageProperties {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

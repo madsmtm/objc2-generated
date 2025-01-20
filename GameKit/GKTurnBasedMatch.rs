@@ -121,10 +121,12 @@ unsafe impl NSObjectProtocol for GKTurnBasedParticipant {}
 extern_methods!(
     unsafe impl GKTurnBasedParticipant {
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
-        #[method_id(@__method_family Other player)]
+        #[unsafe(method_family(none))]
+        #[method_id(player)]
         pub unsafe fn player(&self) -> Option<Retained<GKPlayer>>;
 
-        #[method_id(@__method_family Other lastTurnDate)]
+        #[unsafe(method_family(none))]
+        #[method_id(lastTurnDate)]
         pub unsafe fn lastTurnDate(&self) -> Option<Retained<NSDate>>;
 
         #[method(status)]
@@ -137,7 +139,8 @@ extern_methods!(
         #[method(setMatchOutcome:)]
         pub unsafe fn setMatchOutcome(&self, match_outcome: GKTurnBasedMatchOutcome);
 
-        #[method_id(@__method_family Other timeoutDate)]
+        #[unsafe(method_family(none))]
+        #[method_id(timeoutDate)]
         pub unsafe fn timeoutDate(&self) -> Option<Retained<NSDate>>;
     }
 );
@@ -145,10 +148,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKTurnBasedParticipant {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -158,7 +163,8 @@ extern_methods!(
     unsafe impl GKTurnBasedParticipant {
         /// * This property is obsolete. **
         #[deprecated]
-        #[method_id(@__method_family Other playerID)]
+        #[unsafe(method_family(none))]
+        #[method_id(playerID)]
         pub unsafe fn playerID(&self) -> Option<Retained<NSString>>;
     }
 );
@@ -273,22 +279,27 @@ unsafe impl NSObjectProtocol for GKTurnBasedMatch {}
 
 extern_methods!(
     unsafe impl GKTurnBasedMatch {
-        #[method_id(@__method_family Other matchID)]
+        #[unsafe(method_family(none))]
+        #[method_id(matchID)]
         pub unsafe fn matchID(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other creationDate)]
+        #[unsafe(method_family(none))]
+        #[method_id(creationDate)]
         pub unsafe fn creationDate(&self) -> Retained<NSDate>;
 
-        #[method_id(@__method_family Other participants)]
+        #[unsafe(method_family(none))]
+        #[method_id(participants)]
         pub unsafe fn participants(&self) -> Retained<NSArray<GKTurnBasedParticipant>>;
 
         #[method(status)]
         pub unsafe fn status(&self) -> GKTurnBasedMatchStatus;
 
-        #[method_id(@__method_family Other currentParticipant)]
+        #[unsafe(method_family(none))]
+        #[method_id(currentParticipant)]
         pub unsafe fn currentParticipant(&self) -> Option<Retained<GKTurnBasedParticipant>>;
 
-        #[method_id(@__method_family Other matchData)]
+        #[unsafe(method_family(none))]
+        #[method_id(matchData)]
         pub unsafe fn matchData(&self) -> Option<Retained<NSData>>;
 
         #[method(setLocalizableMessageWithKey:arguments:)]
@@ -298,7 +309,8 @@ extern_methods!(
             arguments: Option<&NSArray<NSString>>,
         );
 
-        #[method_id(@__method_family Other message)]
+        #[unsafe(method_family(none))]
+        #[method_id(message)]
         pub unsafe fn message(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`message`][Self::message].
@@ -308,13 +320,16 @@ extern_methods!(
         #[method(matchDataMaximumSize)]
         pub unsafe fn matchDataMaximumSize(&self) -> NSUInteger;
 
-        #[method_id(@__method_family Other exchanges)]
+        #[unsafe(method_family(none))]
+        #[method_id(exchanges)]
         pub unsafe fn exchanges(&self) -> Option<Retained<NSArray<GKTurnBasedExchange>>>;
 
-        #[method_id(@__method_family Other activeExchanges)]
+        #[unsafe(method_family(none))]
+        #[method_id(activeExchanges)]
         pub unsafe fn activeExchanges(&self) -> Option<Retained<NSArray<GKTurnBasedExchange>>>;
 
-        #[method_id(@__method_family Other completedExchanges)]
+        #[unsafe(method_family(none))]
+        #[method_id(completedExchanges)]
         pub unsafe fn completedExchanges(&self) -> Option<Retained<NSArray<GKTurnBasedExchange>>>;
 
         #[method(exchangeDataMaximumSize)]
@@ -505,10 +520,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKTurnBasedMatch {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -560,34 +577,43 @@ unsafe impl NSObjectProtocol for GKTurnBasedExchange {}
 
 extern_methods!(
     unsafe impl GKTurnBasedExchange {
-        #[method_id(@__method_family Other exchangeID)]
+        #[unsafe(method_family(none))]
+        #[method_id(exchangeID)]
         pub unsafe fn exchangeID(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other sender)]
+        #[unsafe(method_family(none))]
+        #[method_id(sender)]
         pub unsafe fn sender(&self) -> Retained<GKTurnBasedParticipant>;
 
-        #[method_id(@__method_family Other recipients)]
+        #[unsafe(method_family(none))]
+        #[method_id(recipients)]
         pub unsafe fn recipients(&self) -> Retained<NSArray<GKTurnBasedParticipant>>;
 
         #[method(status)]
         pub unsafe fn status(&self) -> GKTurnBasedExchangeStatus;
 
-        #[method_id(@__method_family Other message)]
+        #[unsafe(method_family(none))]
+        #[method_id(message)]
         pub unsafe fn message(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(@__method_family Other data)]
+        #[unsafe(method_family(none))]
+        #[method_id(data)]
         pub unsafe fn data(&self) -> Option<Retained<NSData>>;
 
-        #[method_id(@__method_family Other sendDate)]
+        #[unsafe(method_family(none))]
+        #[method_id(sendDate)]
         pub unsafe fn sendDate(&self) -> Retained<NSDate>;
 
-        #[method_id(@__method_family Other timeoutDate)]
+        #[unsafe(method_family(none))]
+        #[method_id(timeoutDate)]
         pub unsafe fn timeoutDate(&self) -> Option<Retained<NSDate>>;
 
-        #[method_id(@__method_family Other completionDate)]
+        #[unsafe(method_family(none))]
+        #[method_id(completionDate)]
         pub unsafe fn completionDate(&self) -> Option<Retained<NSDate>>;
 
-        #[method_id(@__method_family Other replies)]
+        #[unsafe(method_family(none))]
+        #[method_id(replies)]
         pub unsafe fn replies(&self) -> Option<Retained<NSArray<GKTurnBasedExchangeReply>>>;
 
         #[cfg(feature = "block2")]
@@ -614,10 +640,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKTurnBasedExchange {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -633,16 +661,20 @@ unsafe impl NSObjectProtocol for GKTurnBasedExchangeReply {}
 
 extern_methods!(
     unsafe impl GKTurnBasedExchangeReply {
-        #[method_id(@__method_family Other recipient)]
+        #[unsafe(method_family(none))]
+        #[method_id(recipient)]
         pub unsafe fn recipient(&self) -> Retained<GKTurnBasedParticipant>;
 
-        #[method_id(@__method_family Other message)]
+        #[unsafe(method_family(none))]
+        #[method_id(message)]
         pub unsafe fn message(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(@__method_family Other data)]
+        #[unsafe(method_family(none))]
+        #[method_id(data)]
         pub unsafe fn data(&self) -> Option<Retained<NSData>>;
 
-        #[method_id(@__method_family Other replyDate)]
+        #[unsafe(method_family(none))]
+        #[method_id(replyDate)]
         pub unsafe fn replyDate(&self) -> Option<Retained<NSDate>>;
     }
 );
@@ -650,10 +682,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKTurnBasedExchangeReply {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -699,11 +733,13 @@ unsafe impl NSObjectProtocol for GKTurnBasedEventHandler {}
 extern_methods!(
     unsafe impl GKTurnBasedEventHandler {
         #[deprecated]
-        #[method_id(@__method_family Other sharedTurnBasedEventHandler)]
+        #[unsafe(method_family(none))]
+        #[method_id(sharedTurnBasedEventHandler)]
         pub unsafe fn sharedTurnBasedEventHandler() -> Retained<GKTurnBasedEventHandler>;
 
         #[deprecated]
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<NSObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -717,10 +753,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKTurnBasedEventHandler {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

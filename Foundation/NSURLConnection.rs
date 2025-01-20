@@ -103,7 +103,8 @@ extern_methods!(
     unsafe impl NSURLConnection {
         #[cfg(feature = "NSURLRequest")]
         #[deprecated = "Use NSURLSession (see NSURLSession.h)"]
-        #[method_id(@__method_family Init initWithRequest:delegate:startImmediately:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithRequest:delegate:startImmediately:)]
         pub unsafe fn initWithRequest_delegate_startImmediately(
             this: Allocated<Self>,
             request: &NSURLRequest,
@@ -113,7 +114,8 @@ extern_methods!(
 
         #[cfg(feature = "NSURLRequest")]
         #[deprecated = "Use NSURLSession (see NSURLSession.h)"]
-        #[method_id(@__method_family Init initWithRequest:delegate:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithRequest:delegate:)]
         pub unsafe fn initWithRequest_delegate(
             this: Allocated<Self>,
             request: &NSURLRequest,
@@ -122,18 +124,21 @@ extern_methods!(
 
         #[cfg(feature = "NSURLRequest")]
         #[deprecated = "Use NSURLSession (see NSURLSession.h)"]
-        #[method_id(@__method_family Other connectionWithRequest:delegate:)]
+        #[unsafe(method_family(none))]
+        #[method_id(connectionWithRequest:delegate:)]
         pub unsafe fn connectionWithRequest_delegate(
             request: &NSURLRequest,
             delegate: Option<&AnyObject>,
         ) -> Option<Retained<NSURLConnection>>;
 
         #[cfg(feature = "NSURLRequest")]
-        #[method_id(@__method_family Other originalRequest)]
+        #[unsafe(method_family(none))]
+        #[method_id(originalRequest)]
         pub unsafe fn originalRequest(&self) -> Retained<NSURLRequest>;
 
         #[cfg(feature = "NSURLRequest")]
-        #[method_id(@__method_family Other currentRequest)]
+        #[unsafe(method_family(none))]
+        #[method_id(currentRequest)]
         pub unsafe fn currentRequest(&self) -> Retained<NSURLRequest>;
 
         #[method(start)]
@@ -192,10 +197,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSURLConnection {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -379,7 +386,8 @@ extern_protocol!(
     pub unsafe trait NSURLConnectionDataDelegate: NSURLConnectionDelegate {
         #[cfg(all(feature = "NSURLRequest", feature = "NSURLResponse"))]
         #[optional]
-        #[method_id(@__method_family Other connection:willSendRequest:redirectResponse:)]
+        #[unsafe(method_family(none))]
+        #[method_id(connection:willSendRequest:redirectResponse:)]
         unsafe fn connection_willSendRequest_redirectResponse(
             &self,
             connection: &NSURLConnection,
@@ -403,7 +411,8 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSStream", feature = "NSURLRequest"))]
         #[optional]
-        #[method_id(@__method_family Other connection:needNewBodyStream:)]
+        #[unsafe(method_family(none))]
+        #[method_id(connection:needNewBodyStream:)]
         unsafe fn connection_needNewBodyStream(
             &self,
             connection: &NSURLConnection,
@@ -422,7 +431,8 @@ extern_protocol!(
 
         #[cfg(feature = "NSURLCache")]
         #[optional]
-        #[method_id(@__method_family Other connection:willCacheResponse:)]
+        #[unsafe(method_family(none))]
+        #[method_id(connection:willCacheResponse:)]
         unsafe fn connection_willCacheResponse(
             &self,
             connection: &NSURLConnection,
@@ -546,7 +556,8 @@ extern_methods!(
         /// Returns: The content of the URL resulting from performing the load,
         /// or nil if the load failed.
         #[deprecated = "Use [NSURLSession dataTaskWithRequest:completionHandler:] (see NSURLSession.h"]
-        #[method_id(@__method_family Other sendSynchronousRequest:returningResponse:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(sendSynchronousRequest:returningResponse:error:_)]
         pub unsafe fn sendSynchronousRequest_returningResponse_error(
             request: &NSURLRequest,
             response: Option<&mut Option<Retained<NSURLResponse>>>,

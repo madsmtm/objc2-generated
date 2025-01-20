@@ -71,76 +71,94 @@ unsafe impl NSSecureCoding for NSAppleEventDescriptor {}
 
 extern_methods!(
     unsafe impl NSAppleEventDescriptor {
-        #[method_id(@__method_family Other nullDescriptor)]
+        #[unsafe(method_family(none))]
+        #[method_id(nullDescriptor)]
         pub unsafe fn nullDescriptor() -> Retained<NSAppleEventDescriptor>;
 
-        #[method_id(@__method_family Other descriptorWithBoolean:)]
+        #[unsafe(method_family(none))]
+        #[method_id(descriptorWithBoolean:)]
         pub unsafe fn descriptorWithBoolean(boolean: Boolean) -> Retained<NSAppleEventDescriptor>;
 
-        #[method_id(@__method_family Other descriptorWithEnumCode:)]
+        #[unsafe(method_family(none))]
+        #[method_id(descriptorWithEnumCode:)]
         pub unsafe fn descriptorWithEnumCode(
             enumerator: OSType,
         ) -> Retained<NSAppleEventDescriptor>;
 
-        #[method_id(@__method_family Other descriptorWithInt32:)]
+        #[unsafe(method_family(none))]
+        #[method_id(descriptorWithInt32:)]
         pub unsafe fn descriptorWithInt32(signed_int: i32) -> Retained<NSAppleEventDescriptor>;
 
-        #[method_id(@__method_family Other descriptorWithDouble:)]
+        #[unsafe(method_family(none))]
+        #[method_id(descriptorWithDouble:)]
         pub unsafe fn descriptorWithDouble(
             double_value: c_double,
         ) -> Retained<NSAppleEventDescriptor>;
 
-        #[method_id(@__method_family Other descriptorWithTypeCode:)]
+        #[unsafe(method_family(none))]
+        #[method_id(descriptorWithTypeCode:)]
         pub unsafe fn descriptorWithTypeCode(type_code: OSType)
             -> Retained<NSAppleEventDescriptor>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__method_family Other descriptorWithString:)]
+        #[unsafe(method_family(none))]
+        #[method_id(descriptorWithString:)]
         pub unsafe fn descriptorWithString(string: &NSString) -> Retained<NSAppleEventDescriptor>;
 
         #[cfg(feature = "NSDate")]
-        #[method_id(@__method_family Other descriptorWithDate:)]
+        #[unsafe(method_family(none))]
+        #[method_id(descriptorWithDate:)]
         pub unsafe fn descriptorWithDate(date: &NSDate) -> Retained<NSAppleEventDescriptor>;
 
         #[cfg(feature = "NSURL")]
-        #[method_id(@__method_family Other descriptorWithFileURL:)]
+        #[unsafe(method_family(none))]
+        #[method_id(descriptorWithFileURL:)]
         pub unsafe fn descriptorWithFileURL(file_url: &NSURL) -> Retained<NSAppleEventDescriptor>;
 
-        #[method_id(@__method_family Other listDescriptor)]
+        #[unsafe(method_family(none))]
+        #[method_id(listDescriptor)]
         pub unsafe fn listDescriptor() -> Retained<NSAppleEventDescriptor>;
 
-        #[method_id(@__method_family Other recordDescriptor)]
+        #[unsafe(method_family(none))]
+        #[method_id(recordDescriptor)]
         pub unsafe fn recordDescriptor() -> Retained<NSAppleEventDescriptor>;
 
-        #[method_id(@__method_family Other currentProcessDescriptor)]
+        #[unsafe(method_family(none))]
+        #[method_id(currentProcessDescriptor)]
         pub unsafe fn currentProcessDescriptor() -> Retained<NSAppleEventDescriptor>;
 
         #[cfg(feature = "libc")]
-        #[method_id(@__method_family Other descriptorWithProcessIdentifier:)]
+        #[unsafe(method_family(none))]
+        #[method_id(descriptorWithProcessIdentifier:)]
         pub unsafe fn descriptorWithProcessIdentifier(
             process_identifier: libc::pid_t,
         ) -> Retained<NSAppleEventDescriptor>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__method_family Other descriptorWithBundleIdentifier:)]
+        #[unsafe(method_family(none))]
+        #[method_id(descriptorWithBundleIdentifier:)]
         pub unsafe fn descriptorWithBundleIdentifier(
             bundle_identifier: &NSString,
         ) -> Retained<NSAppleEventDescriptor>;
 
         #[cfg(feature = "NSURL")]
-        #[method_id(@__method_family Other descriptorWithApplicationURL:)]
+        #[unsafe(method_family(none))]
+        #[method_id(descriptorWithApplicationURL:)]
         pub unsafe fn descriptorWithApplicationURL(
             application_url: &NSURL,
         ) -> Retained<NSAppleEventDescriptor>;
 
-        #[method_id(@__method_family Init initListDescriptor)]
+        #[unsafe(method_family(init))]
+        #[method_id(initListDescriptor)]
         pub unsafe fn initListDescriptor(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initRecordDescriptor)]
+        #[unsafe(method_family(init))]
+        #[method_id(initRecordDescriptor)]
         pub unsafe fn initRecordDescriptor(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSData")]
-        #[method_id(@__method_family Other data)]
+        #[unsafe(method_family(none))]
+        #[method_id(data)]
         pub unsafe fn data(&self) -> Retained<NSData>;
 
         #[method(booleanValue)]
@@ -159,15 +177,18 @@ extern_methods!(
         pub unsafe fn typeCodeValue(&self) -> OSType;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__method_family Other stringValue)]
+        #[unsafe(method_family(none))]
+        #[method_id(stringValue)]
         pub unsafe fn stringValue(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSDate")]
-        #[method_id(@__method_family Other dateValue)]
+        #[unsafe(method_family(none))]
+        #[method_id(dateValue)]
         pub unsafe fn dateValue(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSURL")]
-        #[method_id(@__method_family Other fileURLValue)]
+        #[unsafe(method_family(none))]
+        #[method_id(fileURLValue)]
         pub unsafe fn fileURLValue(&self) -> Option<Retained<NSURL>>;
 
         #[method(isRecordDescriptor)]
@@ -183,7 +204,8 @@ extern_methods!(
             index: NSInteger,
         );
 
-        #[method_id(@__method_family Other descriptorAtIndex:)]
+        #[unsafe(method_family(none))]
+        #[method_id(descriptorAtIndex:)]
         pub unsafe fn descriptorAtIndex(
             &self,
             index: NSInteger,
@@ -197,10 +219,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSAppleEventDescriptor {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

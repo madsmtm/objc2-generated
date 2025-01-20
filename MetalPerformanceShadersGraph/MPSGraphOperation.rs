@@ -35,29 +35,35 @@ extern_methods!(
     unsafe impl MPSGraphOperation {
         #[cfg(feature = "MPSGraphTensor")]
         /// The input tensors of the operation.
-        #[method_id(@__method_family Other inputTensors)]
+        #[unsafe(method_family(none))]
+        #[method_id(inputTensors)]
         pub unsafe fn inputTensors(&self) -> Retained<NSArray<MPSGraphTensor>>;
 
         #[cfg(feature = "MPSGraphTensor")]
         /// The output tensors of the operation.
-        #[method_id(@__method_family Other outputTensors)]
+        #[unsafe(method_family(none))]
+        #[method_id(outputTensors)]
         pub unsafe fn outputTensors(&self) -> Retained<NSArray<MPSGraphTensor>>;
 
         /// The set of operations guaranteed to execute before this operation.
-        #[method_id(@__method_family Other controlDependencies)]
+        #[unsafe(method_family(none))]
+        #[method_id(controlDependencies)]
         pub unsafe fn controlDependencies(&self) -> Retained<NSArray<MPSGraphOperation>>;
 
         #[cfg(feature = "MPSGraph")]
         /// The graph on which the operation is defined.
-        #[method_id(@__method_family Other graph)]
+        #[unsafe(method_family(none))]
+        #[method_id(graph)]
         pub unsafe fn graph(&self) -> Retained<MPSGraph>;
 
         /// Name of the operation.
-        #[method_id(@__method_family Other name)]
+        #[unsafe(method_family(none))]
+        #[method_id(name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Unavailable, please utilize graph methods to create and initialize operations.
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -66,7 +72,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MPSGraphCore")]
     unsafe impl MPSGraphOperation {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

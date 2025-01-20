@@ -75,10 +75,12 @@ unsafe impl NSObjectProtocol for AVDepthData {}
 
 extern_methods!(
     unsafe impl AVDepthData {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Returns an AVDepthData instance from depth information in an image file.
@@ -92,7 +94,8 @@ extern_methods!(
         ///
         ///
         /// When using ImageIO framework's CGImageSource API to read from a HEIF or JPEG file containing depth data, AVDepthData can be instantiated using the result of CGImageSourceCopyAuxiliaryDataInfoAtIndex, which returns a CFDictionary of primitive map information.
-        #[method_id(@__method_family Other depthDataFromDictionaryRepresentation:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(depthDataFromDictionaryRepresentation:error:_)]
         pub unsafe fn depthDataFromDictionaryRepresentation_error(
             image_source_aux_data_info_dictionary: &NSDictionary,
         ) -> Result<Retained<Self>, Retained<NSError>>;
@@ -106,7 +109,8 @@ extern_methods!(
         ///
         ///
         /// This method throws an NSInvalidArgumentException if you pass an unrecognized depthDataType. See
-        #[method_id(@__method_family Other depthDataByConvertingToDepthDataType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(depthDataByConvertingToDepthDataType:)]
         pub unsafe fn depthDataByConvertingToDepthDataType(
             &self,
             depth_data_type: OSType,
@@ -124,7 +128,8 @@ extern_methods!(
         ///
         ///
         /// When applying complex edits to media containing depth data, you may create a derivative map with arbitrary transforms applied to it, then use this initializer to create a new AVDepthData. Note that this new depth data object has no camera calibration data, so its cameraCalibrationData property always returns nil.
-        #[method_id(@__method_family Other depthDataByReplacingDepthDataMapWithPixelBuffer:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(depthDataByReplacingDepthDataMapWithPixelBuffer:error:_)]
         pub unsafe fn depthDataByReplacingDepthDataMapWithPixelBuffer_error(
             &self,
             pixel_buffer: &CVPixelBuffer,
@@ -134,7 +139,8 @@ extern_methods!(
         ///
         ///
         /// This property presents the available pixel format types as an array of NSNumbers, each wrapping an OSType (CV pixel format type).
-        #[method_id(@__method_family Other availableDepthDataTypes)]
+        #[unsafe(method_family(none))]
+        #[method_id(availableDepthDataTypes)]
         pub unsafe fn availableDepthDataTypes(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Returns a dictionary of primitive map information to be used when writing an image file with depth data.
@@ -146,7 +152,8 @@ extern_methods!(
         ///
         ///
         /// When using ImageIO framework's CGImageDestination API to write depth data to a HEIF or JPEG file, you may use this method to generate a dictionary of primitive map information consumed by CGImageDestinationAddAuxiliaryDataInfo.
-        #[method_id(@__method_family Other dictionaryRepresentationForAuxiliaryDataType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(dictionaryRepresentationForAuxiliaryDataType:)]
         pub unsafe fn dictionaryRepresentationForAuxiliaryDataType(
             &self,
             out_aux_data_type: Option<&mut Option<Retained<NSString>>>,
@@ -164,7 +171,8 @@ extern_methods!(
         ///
         ///
         /// The depth data map's pixel format can be queried using the depthDataType property.
-        #[method_id(@__method_family Other depthDataMap)]
+        #[unsafe(method_family(none))]
+        #[method_id(depthDataMap)]
         pub unsafe fn depthDataMap(&self) -> Retained<CVPixelBuffer>;
 
         /// Specifies the overall quality of the depth data map's values.
@@ -193,7 +201,8 @@ extern_methods!(
         ///
         ///
         /// See AVCameraCalibrationData for more information. This property may return nil if no camera calibration data is available for the depth data.
-        #[method_id(@__method_family Other cameraCalibrationData)]
+        #[unsafe(method_family(none))]
+        #[method_id(cameraCalibrationData)]
         pub unsafe fn cameraCalibrationData(&self) -> Option<Retained<AVCameraCalibrationData>>;
     }
 );

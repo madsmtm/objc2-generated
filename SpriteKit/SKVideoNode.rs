@@ -51,7 +51,8 @@ extern_methods!(
     unsafe impl SKVideoNode {
         #[cfg(feature = "objc2-av-foundation")]
         /// Create a video node from an AVPlayer. You can use the AVPlayer to control playback.
-        #[method_id(@__method_family Other videoNodeWithAVPlayer:)]
+        #[unsafe(method_family(none))]
+        #[method_id(videoNodeWithAVPlayer:)]
         pub unsafe fn videoNodeWithAVPlayer(
             player: &AVPlayer,
             mtm: MainThreadMarker,
@@ -59,13 +60,15 @@ extern_methods!(
 
         /// Create a video node from a file.
         #[deprecated]
-        #[method_id(@__method_family Other videoNodeWithVideoFileNamed:)]
+        #[unsafe(method_family(none))]
+        #[method_id(videoNodeWithVideoFileNamed:)]
         pub unsafe fn videoNodeWithVideoFileNamed(
             video_file: &NSString,
             mtm: MainThreadMarker,
         ) -> Retained<SKVideoNode>;
 
-        #[method_id(@__method_family Other videoNodeWithFileNamed:)]
+        #[unsafe(method_family(none))]
+        #[method_id(videoNodeWithFileNamed:)]
         pub unsafe fn videoNodeWithFileNamed(
             video_file: &NSString,
             mtm: MainThreadMarker,
@@ -73,13 +76,15 @@ extern_methods!(
 
         /// Create a video node from a URL.
         #[deprecated]
-        #[method_id(@__method_family Other videoNodeWithVideoURL:)]
+        #[unsafe(method_family(none))]
+        #[method_id(videoNodeWithVideoURL:)]
         pub unsafe fn videoNodeWithVideoURL(
             video_url: &NSURL,
             mtm: MainThreadMarker,
         ) -> Retained<SKVideoNode>;
 
-        #[method_id(@__method_family Other videoNodeWithURL:)]
+        #[unsafe(method_family(none))]
+        #[method_id(videoNodeWithURL:)]
         pub unsafe fn videoNodeWithURL(
             video_url: &NSURL,
             mtm: MainThreadMarker,
@@ -89,32 +94,38 @@ extern_methods!(
         /// Designated Initializer.
         ///
         /// Initialize a video node from an AVPlayer. You can use the AVPlayer to control playback.
-        #[method_id(@__method_family Init initWithAVPlayer:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithAVPlayer:)]
         pub unsafe fn initWithAVPlayer(this: Allocated<Self>, player: &AVPlayer) -> Retained<Self>;
 
         /// Initialize a video node from a file.
         #[deprecated]
-        #[method_id(@__method_family Init initWithVideoFileNamed:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithVideoFileNamed:)]
         pub unsafe fn initWithVideoFileNamed(
             this: Allocated<Self>,
             video_file: &NSString,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithFileNamed:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithFileNamed:)]
         pub unsafe fn initWithFileNamed(
             this: Allocated<Self>,
             video_file: &NSString,
         ) -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(@__method_family Init initWithVideoURL:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithVideoURL:)]
         pub unsafe fn initWithVideoURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithURL:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithURL:)]
         pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
         /// Support coding and decoding via NSKeyedArchiver.
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -153,19 +164,23 @@ extern_methods!(
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl SKVideoNode {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family Other node)]
+        #[unsafe(method_family(none))]
+        #[method_id(node)]
         pub unsafe fn node(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__method_family Other nodeWithFileNamed:)]
+        #[unsafe(method_family(none))]
+        #[method_id(nodeWithFileNamed:)]
         pub unsafe fn nodeWithFileNamed(
             filename: &NSString,
             mtm: MainThreadMarker,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__method_family Other nodeWithFileNamed:securelyWithClasses:andError:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(nodeWithFileNamed:securelyWithClasses:andError:_)]
         pub unsafe fn nodeWithFileNamed_securelyWithClasses_andError(
             filename: &NSString,
             classes: &NSSet<AnyClass>,
@@ -179,7 +194,8 @@ extern_methods!(
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl SKVideoNode {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

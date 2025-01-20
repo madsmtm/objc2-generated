@@ -41,18 +41,21 @@ extern_methods!(
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKCorrelation {
         #[cfg(feature = "HKObjectType")]
-        #[method_id(@__method_family Other correlationType)]
+        #[unsafe(method_family(none))]
+        #[method_id(correlationType)]
         pub unsafe fn correlationType(&self) -> Retained<HKCorrelationType>;
 
         /// A set of HKSamples containing all of the objects that were saved with the receiver.
-        #[method_id(@__method_family Other objects)]
+        #[unsafe(method_family(none))]
+        #[method_id(objects)]
         pub unsafe fn objects(&self) -> Retained<NSSet<HKSample>>;
 
         #[cfg(feature = "HKObjectType")]
         /// Creates a new HKCorrelation with the given type, start date, end date, and objects.
         ///
         /// objects must be a set of HKQuantitySamples and HKCategorySamples
-        #[method_id(@__method_family Other correlationWithType:startDate:endDate:objects:)]
+        #[unsafe(method_family(none))]
+        #[method_id(correlationWithType:startDate:endDate:objects:)]
         pub unsafe fn correlationWithType_startDate_endDate_objects(
             correlation_type: &HKCorrelationType,
             start_date: &NSDate,
@@ -64,7 +67,8 @@ extern_methods!(
         /// Creates a new HKCorrelation with the given type, start date, end date, objects, and metadata.
         ///
         /// objects must be a set of HKQuantitySamples and HKCategorySamples
-        #[method_id(@__method_family Other correlationWithType:startDate:endDate:objects:metadata:)]
+        #[unsafe(method_family(none))]
+        #[method_id(correlationWithType:startDate:endDate:objects:metadata:)]
         pub unsafe fn correlationWithType_startDate_endDate_objects_metadata(
             correlation_type: &HKCorrelationType,
             start_date: &NSDate,
@@ -87,7 +91,8 @@ extern_methods!(
         /// Parameter `metadata`: Metadata for the correlation (optional).
         ///
         /// objects must be a set of HKQuantitySamples and HKCategorySamples
-        #[method_id(@__method_family Other correlationWithType:startDate:endDate:objects:device:metadata:)]
+        #[unsafe(method_family(none))]
+        #[method_id(correlationWithType:startDate:endDate:objects:device:metadata:)]
         pub unsafe fn correlationWithType_startDate_endDate_objects_device_metadata(
             correlation_type: &HKCorrelationType,
             start_date: &NSDate,
@@ -99,7 +104,8 @@ extern_methods!(
 
         #[cfg(feature = "HKObjectType")]
         /// Returns the set of correlated objects with the specified type.
-        #[method_id(@__method_family Other objectsForType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(objectsForType:)]
         pub unsafe fn objectsForType(
             &self,
             object_type: &HKObjectType,
@@ -111,7 +117,8 @@ extern_methods!(
     /// Methods declared on superclass `HKObject`
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKCorrelation {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -120,7 +127,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKCorrelation {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

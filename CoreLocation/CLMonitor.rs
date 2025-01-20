@@ -29,10 +29,12 @@ extern_methods!(
             completion_handler: &block2::Block<dyn Fn(NonNull<CLMonitor>)>,
         );
 
-        #[method_id(@__method_family Other name)]
+        #[unsafe(method_family(none))]
+        #[method_id(name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other monitoredIdentifiers)]
+        #[unsafe(method_family(none))]
+        #[method_id(monitoredIdentifiers)]
         pub unsafe fn monitoredIdentifiers(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "CLCondition")]
@@ -56,16 +58,19 @@ extern_methods!(
         pub unsafe fn removeConditionFromMonitoringWithIdentifier(&self, identifier: &NSString);
 
         #[cfg(feature = "CLMonitoringRecord")]
-        #[method_id(@__method_family Other monitoringRecordForIdentifier:)]
+        #[unsafe(method_family(none))]
+        #[method_id(monitoringRecordForIdentifier:)]
         pub unsafe fn monitoringRecordForIdentifier(
             &self,
             identifier: &NSString,
         ) -> Option<Retained<CLMonitoringRecord>>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -79,14 +79,16 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIWindow {
         #[cfg(all(feature = "UIScene", feature = "UIWindowScene"))]
-        #[method_id(@__method_family Init initWithWindowScene:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithWindowScene:)]
         pub unsafe fn initWithWindowScene(
             this: Allocated<Self>,
             window_scene: &UIWindowScene,
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIScene", feature = "UIWindowScene"))]
-        #[method_id(@__method_family Other windowScene)]
+        #[unsafe(method_family(none))]
+        #[method_id(windowScene)]
         pub unsafe fn windowScene(&self) -> Option<Retained<UIWindowScene>>;
 
         #[cfg(all(feature = "UIScene", feature = "UIWindowScene"))]
@@ -103,7 +105,8 @@ extern_methods!(
         pub unsafe fn setCanResizeToFitContent(&self, can_resize_to_fit_content: bool);
 
         #[cfg(feature = "UIScreen")]
-        #[method_id(@__method_family Other screen)]
+        #[unsafe(method_family(none))]
+        #[method_id(screen)]
         pub fn screen(&self) -> Retained<UIScreen>;
 
         #[cfg(feature = "UIScreen")]
@@ -139,7 +142,8 @@ extern_methods!(
         pub fn makeKeyAndVisible(&self);
 
         #[cfg(feature = "UIViewController")]
-        #[method_id(@__method_family Other rootViewController)]
+        #[unsafe(method_family(none))]
+        #[method_id(rootViewController)]
         pub fn rootViewController(&self) -> Option<Retained<UIViewController>>;
 
         #[cfg(feature = "UIViewController")]
@@ -190,10 +194,12 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIWindow {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Init initWithFrame:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -205,10 +211,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIWindow {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -246,7 +254,8 @@ extern_methods!(
         /// that are direct subviews of, or very close descendants of, the guide's window. Creating constraints from this layout guide to views deeper in the view hierarchy or across
         /// views owned by child view controllers can significantly degrade performance and possibly raise an exception. Additionally, the safe area insets added by child view
         /// controllers will not be reflected in these cases. For anything other than full-screen/window media content, the standard `safeAreaLayoutGuide` on UIView should be used.
-        #[method_id(@__method_family Other safeAreaAspectFitLayoutGuide)]
+        #[unsafe(method_family(none))]
+        #[method_id(safeAreaAspectFitLayoutGuide)]
         pub unsafe fn safeAreaAspectFitLayoutGuide(&self) -> Retained<UILayoutGuide>;
     }
 );

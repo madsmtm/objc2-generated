@@ -58,7 +58,8 @@ extern_methods!(
         #[method(setSpeed:)]
         pub unsafe fn setSpeed(&self, speed: CGFloat);
 
-        #[method_id(@__method_family Other contactDelegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(contactDelegate)]
         pub unsafe fn contactDelegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn SKPhysicsContactDelegate>>>;
@@ -82,15 +83,18 @@ extern_methods!(
         pub unsafe fn removeAllJoints(&self);
 
         #[cfg(all(feature = "SKPhysicsBody", feature = "objc2-core-foundation"))]
-        #[method_id(@__method_family Other bodyAtPoint:)]
+        #[unsafe(method_family(none))]
+        #[method_id(bodyAtPoint:)]
         pub unsafe fn bodyAtPoint(&self, point: CGPoint) -> Option<Retained<SKPhysicsBody>>;
 
         #[cfg(all(feature = "SKPhysicsBody", feature = "objc2-core-foundation"))]
-        #[method_id(@__method_family Other bodyInRect:)]
+        #[unsafe(method_family(none))]
+        #[method_id(bodyInRect:)]
         pub unsafe fn bodyInRect(&self, rect: CGRect) -> Option<Retained<SKPhysicsBody>>;
 
         #[cfg(all(feature = "SKPhysicsBody", feature = "objc2-core-foundation"))]
-        #[method_id(@__method_family Other bodyAlongRayStart:end:)]
+        #[unsafe(method_family(none))]
+        #[method_id(bodyAlongRayStart:end:)]
         pub unsafe fn bodyAlongRayStart_end(
             &self,
             start: CGPoint,
@@ -139,10 +143,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKPhysicsWorld {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

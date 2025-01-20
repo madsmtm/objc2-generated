@@ -22,19 +22,23 @@ unsafe impl UIInteraction for UIDropInteraction {}
 
 extern_methods!(
     unsafe impl UIDropInteraction {
-        #[method_id(@__method_family Init initWithDelegate:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDelegate:)]
         pub unsafe fn initWithDelegate(
             this: Allocated<Self>,
             delegate: &ProtocolObject<dyn UIDropInteractionDelegate>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIDropInteractionDelegate>>>;
@@ -93,16 +97,19 @@ unsafe impl NSObjectProtocol for UIDropProposal {}
 
 extern_methods!(
     unsafe impl UIDropProposal {
-        #[method_id(@__method_family Init initWithDropOperation:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDropOperation:)]
         pub unsafe fn initWithDropOperation(
             this: Allocated<Self>,
             operation: UIDropOperation,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method(operation)]
@@ -147,7 +154,8 @@ extern_protocol!(
 
         #[cfg(feature = "UIDragSession")]
         #[optional]
-        #[method_id(@__method_family Other dropInteraction:sessionDidUpdate:)]
+        #[unsafe(method_family(none))]
+        #[method_id(dropInteraction:sessionDidUpdate:)]
         unsafe fn dropInteraction_sessionDidUpdate(
             &self,
             interaction: &UIDropInteraction,
@@ -196,7 +204,8 @@ extern_protocol!(
             feature = "UITargetedPreview"
         ))]
         #[optional]
-        #[method_id(@__method_family Other dropInteraction:previewForDroppingItem:withDefault:)]
+        #[unsafe(method_family(none))]
+        #[method_id(dropInteraction:previewForDroppingItem:withDefault:)]
         unsafe fn dropInteraction_previewForDroppingItem_withDefault(
             &self,
             interaction: &UIDropInteraction,

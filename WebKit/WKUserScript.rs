@@ -54,7 +54,8 @@ unsafe impl NSObjectProtocol for WKUserScript {}
 
 extern_methods!(
     unsafe impl WKUserScript {
-        #[method_id(@__method_family Other source)]
+        #[unsafe(method_family(none))]
+        #[method_id(source)]
         pub unsafe fn source(&self) -> Retained<NSString>;
 
         #[method(injectionTime)]
@@ -78,7 +79,8 @@ extern_methods!(
         /// Parameter `forMainFrameOnly`: Whether the script should be injected into all frames or just the main frame.
         ///
         /// Calling this method is the same as calling `initWithSource:injectionTime:forMainFrameOnly:inContentWorld:` with a `contentWorld` value of `WKContentWorld.pageWorld`
-        #[method_id(@__method_family Init initWithSource:injectionTime:forMainFrameOnly:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithSource:injectionTime:forMainFrameOnly:)]
         pub unsafe fn initWithSource_injectionTime_forMainFrameOnly(
             this: Allocated<Self>,
             source: &NSString,
@@ -102,7 +104,8 @@ extern_methods!(
         /// Parameter `forMainFrameOnly`: Whether the script should be injected into all frames or just the main frame.
         ///
         /// Parameter `contentWorld`: The WKContentWorld in which to inject the script.
-        #[method_id(@__method_family Init initWithSource:injectionTime:forMainFrameOnly:inContentWorld:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithSource:injectionTime:forMainFrameOnly:inContentWorld:)]
         pub unsafe fn initWithSource_injectionTime_forMainFrameOnly_inContentWorld(
             this: Allocated<Self>,
             source: &NSString,
@@ -116,10 +119,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKUserScript {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

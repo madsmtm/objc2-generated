@@ -31,7 +31,8 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMCSSStyleDeclaration {
         #[deprecated]
-        #[method_id(@__method_family Other cssText)]
+        #[unsafe(method_family(none))]
+        #[method_id(cssText)]
         pub unsafe fn cssText(&self) -> Retained<NSString>;
 
         /// Setter for [`cssText`][Self::cssText].
@@ -45,11 +46,13 @@ extern_methods!(
 
         #[cfg(feature = "DOMCSSRule")]
         #[deprecated]
-        #[method_id(@__method_family Other parentRule)]
+        #[unsafe(method_family(none))]
+        #[method_id(parentRule)]
         pub unsafe fn parentRule(&self) -> Option<Retained<DOMCSSRule>>;
 
         #[deprecated]
-        #[method_id(@__method_family Other getPropertyValue:)]
+        #[unsafe(method_family(none))]
+        #[method_id(getPropertyValue:)]
         pub unsafe fn getPropertyValue(
             &self,
             property_name: Option<&NSString>,
@@ -57,21 +60,24 @@ extern_methods!(
 
         #[cfg(feature = "DOMCSSValue")]
         #[deprecated]
-        #[method_id(@__method_family Other getPropertyCSSValue:)]
+        #[unsafe(method_family(none))]
+        #[method_id(getPropertyCSSValue:)]
         pub unsafe fn getPropertyCSSValue(
             &self,
             property_name: Option<&NSString>,
         ) -> Option<Retained<DOMCSSValue>>;
 
         #[deprecated]
-        #[method_id(@__method_family Other removeProperty:)]
+        #[unsafe(method_family(none))]
+        #[method_id(removeProperty:)]
         pub unsafe fn removeProperty(
             &self,
             property_name: Option<&NSString>,
         ) -> Option<Retained<NSString>>;
 
         #[deprecated]
-        #[method_id(@__method_family Other getPropertyPriority:)]
+        #[unsafe(method_family(none))]
+        #[method_id(getPropertyPriority:)]
         pub unsafe fn getPropertyPriority(
             &self,
             property_name: Option<&NSString>,
@@ -86,11 +92,13 @@ extern_methods!(
         );
 
         #[deprecated]
-        #[method_id(@__method_family Other item:)]
+        #[unsafe(method_family(none))]
+        #[method_id(item:)]
         pub unsafe fn item(&self, index: c_uint) -> Option<Retained<NSString>>;
 
         #[deprecated]
-        #[method_id(@__method_family Other getPropertyShorthand:)]
+        #[unsafe(method_family(none))]
+        #[method_id(getPropertyShorthand:)]
         pub unsafe fn getPropertyShorthand(
             &self,
             property_name: Option<&NSString>,
@@ -106,7 +114,8 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMCSSStyleDeclaration {
         #[deprecated]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -115,7 +124,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMCSSStyleDeclaration {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

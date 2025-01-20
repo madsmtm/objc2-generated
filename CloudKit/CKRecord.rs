@@ -97,21 +97,25 @@ unsafe impl NSSecureCoding for CKRecord {}
 
 extern_methods!(
     unsafe impl CKRecord {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// This creates the record in the default zone.
-        #[method_id(@__method_family Init initWithRecordType:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithRecordType:)]
         pub unsafe fn initWithRecordType(
             this: Allocated<Self>,
             record_type: &CKRecordType,
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordID")]
-        #[method_id(@__method_family Init initWithRecordType:recordID:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithRecordType:recordID:)]
         pub unsafe fn initWithRecordType_recordID(
             this: Allocated<Self>,
             record_type: &CKRecordType,
@@ -119,38 +123,46 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordZoneID")]
-        #[method_id(@__method_family Init initWithRecordType:zoneID:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithRecordType:zoneID:)]
         pub unsafe fn initWithRecordType_zoneID(
             this: Allocated<Self>,
             record_type: &CKRecordType,
             zone_id: &CKRecordZoneID,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Other recordType)]
+        #[unsafe(method_family(none))]
+        #[method_id(recordType)]
         pub unsafe fn recordType(&self) -> Retained<CKRecordType>;
 
         #[cfg(feature = "CKRecordID")]
-        #[method_id(@__method_family Other recordID)]
+        #[unsafe(method_family(none))]
+        #[method_id(recordID)]
         pub unsafe fn recordID(&self) -> Retained<CKRecordID>;
 
         /// Change tags are updated by the server to a unique value every time a record is modified.  A different change tag necessarily means that the contents of the record are different.
-        #[method_id(@__method_family Other recordChangeTag)]
+        #[unsafe(method_family(none))]
+        #[method_id(recordChangeTag)]
         pub unsafe fn recordChangeTag(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "CKRecordID")]
         /// This is a User Record recordID, identifying the user that created this record.
-        #[method_id(@__method_family Other creatorUserRecordID)]
+        #[unsafe(method_family(none))]
+        #[method_id(creatorUserRecordID)]
         pub unsafe fn creatorUserRecordID(&self) -> Option<Retained<CKRecordID>>;
 
-        #[method_id(@__method_family Other creationDate)]
+        #[unsafe(method_family(none))]
+        #[method_id(creationDate)]
         pub unsafe fn creationDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "CKRecordID")]
         /// This is a User Record recordID, identifying the user that last modified this record.
-        #[method_id(@__method_family Other lastModifiedUserRecordID)]
+        #[unsafe(method_family(none))]
+        #[method_id(lastModifiedUserRecordID)]
         pub unsafe fn lastModifiedUserRecordID(&self) -> Option<Retained<CKRecordID>>;
 
-        #[method_id(@__method_family Other modificationDate)]
+        #[unsafe(method_family(none))]
+        #[method_id(modificationDate)]
         pub unsafe fn modificationDate(&self) -> Option<Retained<NSDate>>;
 
         /// In addition to
@@ -181,7 +193,8 @@ extern_methods!(
         ///
         /// Key names roughly match C variable name restrictions. They must begin with an ASCII letter and can contain ASCII letters and numbers and the underscore character.
         /// The maximum key length is 255 characters.
-        #[method_id(@__method_family Other objectForKey:)]
+        #[unsafe(method_family(none))]
+        #[method_id(objectForKey:)]
         pub unsafe fn objectForKey(
             &self,
             key: &CKRecordFieldKey,
@@ -194,17 +207,20 @@ extern_methods!(
             key: &CKRecordFieldKey,
         );
 
-        #[method_id(@__method_family Other allKeys)]
+        #[unsafe(method_family(none))]
+        #[method_id(allKeys)]
         pub unsafe fn allKeys(&self) -> Retained<NSArray<CKRecordFieldKey>>;
 
         /// A special property that returns an array of token generated from all the string field values in the record.
         ///
         ///
         /// These tokens have been normalized for the current locale, so they are suitable for performing full-text searches.
-        #[method_id(@__method_family Other allTokens)]
+        #[unsafe(method_family(none))]
+        #[method_id(allTokens)]
         pub unsafe fn allTokens(&self) -> Retained<NSArray<NSString>>;
 
-        #[method_id(@__method_family Other objectForKeyedSubscript:)]
+        #[unsafe(method_family(none))]
+        #[method_id(objectForKeyedSubscript:)]
         pub unsafe fn objectForKeyedSubscript(
             &self,
             key: &CKRecordFieldKey,
@@ -218,7 +234,8 @@ extern_methods!(
         );
 
         /// A list of keys that have been modified on the local CKRecord instance
-        #[method_id(@__method_family Other changedKeys)]
+        #[unsafe(method_family(none))]
+        #[method_id(changedKeys)]
         pub unsafe fn changedKeys(&self) -> Retained<NSArray<CKRecordFieldKey>>;
 
         /// `CKRecord`supports
@@ -282,7 +299,8 @@ extern_methods!(
         /// -- This is not allowed because both Record B and Record C would then each be in two shares.
         ///
         /// Whenever possible, it is suggested that you construct your parent hierarchies such that you will only need to share the topmost record of that hierarchy.
-        #[method_id(@__method_family Other share)]
+        #[unsafe(method_family(none))]
+        #[method_id(share)]
         pub unsafe fn share(&self) -> Option<Retained<CKReference>>;
 
         #[cfg(feature = "CKReference")]
@@ -302,7 +320,8 @@ extern_methods!(
         /// `parent`relationships as part of normal record saves, even if you're not planning on sharing records at this time.
         /// This allows you to share and unshare a hierarchy of records at a later date by only modifying the "top level" record, setting or clearing its
         /// `share`reference.
-        #[method_id(@__method_family Other parent)]
+        #[unsafe(method_family(none))]
+        #[method_id(parent)]
         pub unsafe fn parent(&self) -> Option<Retained<CKReference>>;
 
         #[cfg(feature = "CKReference")]
@@ -362,7 +381,8 @@ extern_protocol!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordkeyvaluesetting?language=objc)
     pub unsafe trait CKRecordKeyValueSetting: NSObjectProtocol {
-        #[method_id(@__method_family Other objectForKey:)]
+        #[unsafe(method_family(none))]
+        #[method_id(objectForKey:)]
         unsafe fn objectForKey(
             &self,
             key: &CKRecordFieldKey,
@@ -375,7 +395,8 @@ extern_protocol!(
             key: &CKRecordFieldKey,
         );
 
-        #[method_id(@__method_family Other objectForKeyedSubscript:)]
+        #[unsafe(method_family(none))]
+        #[method_id(objectForKeyedSubscript:)]
         unsafe fn objectForKeyedSubscript(
             &self,
             key: &CKRecordFieldKey,
@@ -388,10 +409,12 @@ extern_protocol!(
             key: &CKRecordFieldKey,
         );
 
-        #[method_id(@__method_family Other allKeys)]
+        #[unsafe(method_family(none))]
+        #[method_id(allKeys)]
         unsafe fn allKeys(&self) -> Retained<NSArray<CKRecordFieldKey>>;
 
-        #[method_id(@__method_family Other changedKeys)]
+        #[unsafe(method_family(none))]
+        #[method_id(changedKeys)]
         unsafe fn changedKeys(&self) -> Retained<NSArray<CKRecordFieldKey>>;
     }
 );
@@ -402,7 +425,8 @@ extern_methods!(
         /// Any values set here will be locally encrypted before being saved to the server and locally decrypted when fetched from the server. Encryption and decryption is handled by the CloudKit framework.
         /// Key material necessary for decryption are available to the owner of the record, as well as any users that can access this record via a CKShare.
         /// All CKRecordValue types can be set here except CKAsset and CKReference.
-        #[method_id(@__method_family Other encryptedValues)]
+        #[unsafe(method_family(none))]
+        #[method_id(encryptedValues)]
         pub unsafe fn encryptedValues(
             &self,
         ) -> Retained<ProtocolObject<dyn CKRecordKeyValueSetting>>;

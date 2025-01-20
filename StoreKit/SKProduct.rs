@@ -64,10 +64,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKProductSubscriptionPeriod {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -89,23 +91,28 @@ unsafe impl NSObjectProtocol for SKProduct {}
 extern_methods!(
     unsafe impl SKProduct {
         #[deprecated = "Use Product.description"]
-        #[method_id(@__method_family Other localizedDescription)]
+        #[unsafe(method_family(none))]
+        #[method_id(localizedDescription)]
         pub unsafe fn localizedDescription(&self) -> Retained<NSString>;
 
         #[deprecated = "Use Product.displayName"]
-        #[method_id(@__method_family Other localizedTitle)]
+        #[unsafe(method_family(none))]
+        #[method_id(localizedTitle)]
         pub unsafe fn localizedTitle(&self) -> Retained<NSString>;
 
         #[deprecated = "Use Product.displayPrice"]
-        #[method_id(@__method_family Other price)]
+        #[unsafe(method_family(none))]
+        #[method_id(price)]
         pub unsafe fn price(&self) -> Retained<NSDecimalNumber>;
 
         #[deprecated = "Use Product.displayPrice"]
-        #[method_id(@__method_family Other priceLocale)]
+        #[unsafe(method_family(none))]
+        #[method_id(priceLocale)]
         pub unsafe fn priceLocale(&self) -> Retained<NSLocale>;
 
         #[deprecated = "Use Product.id"]
-        #[method_id(@__method_family Other productIdentifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(productIdentifier)]
         pub unsafe fn productIdentifier(&self) -> Retained<NSString>;
 
         #[deprecated = "Hosted content is no longer supported"]
@@ -121,37 +128,45 @@ extern_methods!(
         pub unsafe fn isFamilyShareable(&self) -> bool;
 
         #[deprecated]
-        #[method_id(@__method_family Other contentLengths)]
+        #[unsafe(method_family(none))]
+        #[method_id(contentLengths)]
         pub unsafe fn contentLengths(&self) -> Retained<NSArray<NSNumber>>;
 
         #[deprecated = "Hosted content is no longer supported"]
-        #[method_id(@__method_family Other downloadContentLengths)]
+        #[unsafe(method_family(none))]
+        #[method_id(downloadContentLengths)]
         pub unsafe fn downloadContentLengths(&self) -> Retained<NSArray<NSNumber>>;
 
         #[deprecated]
-        #[method_id(@__method_family Other contentVersion)]
+        #[unsafe(method_family(none))]
+        #[method_id(contentVersion)]
         pub unsafe fn contentVersion(&self) -> Retained<NSString>;
 
         #[deprecated = "Hosted content is no longer supported"]
-        #[method_id(@__method_family Other downloadContentVersion)]
+        #[unsafe(method_family(none))]
+        #[method_id(downloadContentVersion)]
         pub unsafe fn downloadContentVersion(&self) -> Retained<NSString>;
 
         #[deprecated = "Use Product.subscription.subscriptionPeriod"]
-        #[method_id(@__method_family Other subscriptionPeriod)]
+        #[unsafe(method_family(none))]
+        #[method_id(subscriptionPeriod)]
         pub unsafe fn subscriptionPeriod(&self) -> Option<Retained<SKProductSubscriptionPeriod>>;
 
         #[cfg(feature = "SKProductDiscount")]
         #[deprecated = "Use Product.subscription.introductionaryOffer"]
-        #[method_id(@__method_family Other introductoryPrice)]
+        #[unsafe(method_family(none))]
+        #[method_id(introductoryPrice)]
         pub unsafe fn introductoryPrice(&self) -> Option<Retained<SKProductDiscount>>;
 
         #[deprecated = "Use Product.subscription.subscriptionGroupID"]
-        #[method_id(@__method_family Other subscriptionGroupIdentifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(subscriptionGroupIdentifier)]
         pub unsafe fn subscriptionGroupIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "SKProductDiscount")]
         #[deprecated = "Use Product.subscription.promotionalOffers"]
-        #[method_id(@__method_family Other discounts)]
+        #[unsafe(method_family(none))]
+        #[method_id(discounts)]
         pub unsafe fn discounts(&self) -> Retained<NSArray<SKProductDiscount>>;
     }
 );
@@ -159,10 +174,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKProduct {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

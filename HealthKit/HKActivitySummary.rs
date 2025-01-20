@@ -33,7 +33,8 @@ extern_methods!(
         /// The date components representing the day for this particular HKActivitySummary.
         ///
         /// These date components will contain era, year, month, and day components in the provided calendar.
-        #[method_id(@__method_family Other dateComponentsForCalendar:)]
+        #[unsafe(method_family(none))]
+        #[method_id(dateComponentsForCalendar:)]
         pub unsafe fn dateComponentsForCalendar(
             &self,
             calendar: &NSCalendar,
@@ -65,7 +66,8 @@ extern_methods!(
         /// The amount of active energy that the user burned.
         ///
         /// This quantity is compatible with energy units.
-        #[method_id(@__method_family Other activeEnergyBurned)]
+        #[unsafe(method_family(none))]
+        #[method_id(activeEnergyBurned)]
         pub unsafe fn activeEnergyBurned(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
@@ -78,7 +80,8 @@ extern_methods!(
         ///
         /// This quantity is compatible with time units. The measurement criteria of
         /// move time time is defined by Apple.
-        #[method_id(@__method_family Other appleMoveTime)]
+        #[unsafe(method_family(none))]
+        #[method_id(appleMoveTime)]
         pub unsafe fn appleMoveTime(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
@@ -91,7 +94,8 @@ extern_methods!(
         ///
         /// This quantity is compatible with time units. The measurement criteria of
         /// exercise time is defined by Apple.
-        #[method_id(@__method_family Other appleExerciseTime)]
+        #[unsafe(method_family(none))]
+        #[method_id(appleExerciseTime)]
         pub unsafe fn appleExerciseTime(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
@@ -104,7 +108,8 @@ extern_methods!(
         ///
         /// This quantity is compatible with the count unit. The measurement criteria of
         /// stand hours is defined by Apple.
-        #[method_id(@__method_family Other appleStandHours)]
+        #[unsafe(method_family(none))]
+        #[method_id(appleStandHours)]
         pub unsafe fn appleStandHours(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
@@ -116,7 +121,8 @@ extern_methods!(
         /// The user's active energy goal for the day.
         ///
         /// This quantity is compatible with energy units.
-        #[method_id(@__method_family Other activeEnergyBurnedGoal)]
+        #[unsafe(method_family(none))]
+        #[method_id(activeEnergyBurnedGoal)]
         pub unsafe fn activeEnergyBurnedGoal(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
@@ -128,7 +134,8 @@ extern_methods!(
         /// The user's move time goal for the day.
         ///
         /// This quantity is compatible with time units.
-        #[method_id(@__method_family Other appleMoveTimeGoal)]
+        #[unsafe(method_family(none))]
+        #[method_id(appleMoveTimeGoal)]
         pub unsafe fn appleMoveTimeGoal(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
@@ -141,7 +148,8 @@ extern_methods!(
         ///
         /// This quantity is compatible with time units.
         #[deprecated]
-        #[method_id(@__method_family Other appleExerciseTimeGoal)]
+        #[unsafe(method_family(none))]
+        #[method_id(appleExerciseTimeGoal)]
         pub unsafe fn appleExerciseTimeGoal(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
@@ -154,7 +162,8 @@ extern_methods!(
         /// The user's exercise time goal for the day.
         ///
         /// This quantity is compatible with time units.
-        #[method_id(@__method_family Other exerciseTimeGoal)]
+        #[unsafe(method_family(none))]
+        #[method_id(exerciseTimeGoal)]
         pub unsafe fn exerciseTimeGoal(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKQuantity")]
@@ -167,7 +176,8 @@ extern_methods!(
         ///
         /// This quantity is compatible with the count unit.
         #[deprecated]
-        #[method_id(@__method_family Other appleStandHoursGoal)]
+        #[unsafe(method_family(none))]
+        #[method_id(appleStandHoursGoal)]
         pub unsafe fn appleStandHoursGoal(&self) -> Retained<HKQuantity>;
 
         #[cfg(feature = "HKQuantity")]
@@ -180,7 +190,8 @@ extern_methods!(
         /// The user's active stand hours goal for the day.
         ///
         /// This quantity is compatible with the count unit.
-        #[method_id(@__method_family Other standHoursGoal)]
+        #[unsafe(method_family(none))]
+        #[method_id(standHoursGoal)]
         pub unsafe fn standHoursGoal(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKQuantity")]
@@ -193,10 +204,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKActivitySummary {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -65,15 +65,18 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLDocument {
         #[cfg(feature = "DOMHTMLCollection")]
-        #[method_id(@__method_family Other embeds)]
+        #[unsafe(method_family(none))]
+        #[method_id(embeds)]
         pub unsafe fn embeds(&self) -> Option<Retained<DOMHTMLCollection>>;
 
         #[cfg(feature = "DOMHTMLCollection")]
-        #[method_id(@__method_family Other plugins)]
+        #[unsafe(method_family(none))]
+        #[method_id(plugins)]
         pub unsafe fn plugins(&self) -> Option<Retained<DOMHTMLCollection>>;
 
         #[cfg(feature = "DOMHTMLCollection")]
-        #[method_id(@__method_family Other scripts)]
+        #[unsafe(method_family(none))]
+        #[method_id(scripts)]
         pub unsafe fn scripts(&self) -> Option<Retained<DOMHTMLCollection>>;
 
         #[method(width)]
@@ -82,52 +85,60 @@ extern_methods!(
         #[method(height)]
         pub unsafe fn height(&self) -> c_int;
 
-        #[method_id(@__method_family Other dir)]
+        #[unsafe(method_family(none))]
+        #[method_id(dir)]
         pub unsafe fn dir(&self) -> Retained<NSString>;
 
         /// Setter for [`dir`][Self::dir].
         #[method(setDir:)]
         pub unsafe fn setDir(&self, dir: Option<&NSString>);
 
-        #[method_id(@__method_family Other designMode)]
+        #[unsafe(method_family(none))]
+        #[method_id(designMode)]
         pub unsafe fn designMode(&self) -> Retained<NSString>;
 
         /// Setter for [`designMode`][Self::designMode].
         #[method(setDesignMode:)]
         pub unsafe fn setDesignMode(&self, design_mode: Option<&NSString>);
 
-        #[method_id(@__method_family Other compatMode)]
+        #[unsafe(method_family(none))]
+        #[method_id(compatMode)]
         pub unsafe fn compatMode(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other bgColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(bgColor)]
         pub unsafe fn bgColor(&self) -> Retained<NSString>;
 
         /// Setter for [`bgColor`][Self::bgColor].
         #[method(setBgColor:)]
         pub unsafe fn setBgColor(&self, bg_color: Option<&NSString>);
 
-        #[method_id(@__method_family Other fgColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(fgColor)]
         pub unsafe fn fgColor(&self) -> Retained<NSString>;
 
         /// Setter for [`fgColor`][Self::fgColor].
         #[method(setFgColor:)]
         pub unsafe fn setFgColor(&self, fg_color: Option<&NSString>);
 
-        #[method_id(@__method_family Other alinkColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(alinkColor)]
         pub unsafe fn alinkColor(&self) -> Retained<NSString>;
 
         /// Setter for [`alinkColor`][Self::alinkColor].
         #[method(setAlinkColor:)]
         pub unsafe fn setAlinkColor(&self, alink_color: Option<&NSString>);
 
-        #[method_id(@__method_family Other linkColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(linkColor)]
         pub unsafe fn linkColor(&self) -> Retained<NSString>;
 
         /// Setter for [`linkColor`][Self::linkColor].
         #[method(setLinkColor:)]
         pub unsafe fn setLinkColor(&self, link_color: Option<&NSString>);
 
-        #[method_id(@__method_family Other vlinkColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(vlinkColor)]
         pub unsafe fn vlinkColor(&self) -> Retained<NSString>;
 
         /// Setter for [`vlinkColor`][Self::vlinkColor].
@@ -171,7 +182,8 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLDocument {
         #[deprecated]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -185,7 +197,8 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLDocument {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

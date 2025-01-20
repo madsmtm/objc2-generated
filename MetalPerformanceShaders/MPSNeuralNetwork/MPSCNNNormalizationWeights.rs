@@ -26,11 +26,13 @@ extern_methods!(
     #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
     unsafe impl MPSCNNNormalizationGammaAndBetaState {
         /// A MTLBuffer containing the gamma terms.
-        #[method_id(@__method_family Other gamma)]
+        #[unsafe(method_family(none))]
+        #[method_id(gamma)]
         pub unsafe fn gamma(&self) -> Retained<ProtocolObject<dyn MTLBuffer>>;
 
         /// A MTLBuffer containing the beta terms.
-        #[method_id(@__method_family Other beta)]
+        #[unsafe(method_family(none))]
+        #[method_id(beta)]
         pub unsafe fn beta(&self) -> Retained<ProtocolObject<dyn MTLBuffer>>;
 
         /// Initialize a MPSCNNNormalizationGammaAndBetaState object using values
@@ -41,7 +43,8 @@ extern_methods!(
         ///
         ///
         /// Parameter `beta`: The MTLBuffer containing beta terms.
-        #[method_id(@__method_family Init initWithGamma:beta:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithGamma:beta:)]
         pub unsafe fn initWithGamma_beta(
             this: Allocated<Self>,
             gamma: &ProtocolObject<dyn MTLBuffer>,
@@ -59,7 +62,8 @@ extern_methods!(
         ///
         /// Parameter `numberOfFeatureChannels`: The number of feature channels used to size the
         /// state.
-        #[method_id(@__method_family Other temporaryStateWithCommandBuffer:numberOfFeatureChannels:)]
+        #[unsafe(method_family(none))]
+        #[method_id(temporaryStateWithCommandBuffer:numberOfFeatureChannels:)]
         pub unsafe fn temporaryStateWithCommandBuffer_numberOfFeatureChannels(
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
             number_of_feature_channels: NSUInteger,
@@ -76,7 +80,8 @@ extern_methods!(
         /// Parameter `cmdBuf`: The command buffer against which the temporary resource is allocated
         ///
         /// Parameter `bufferSize`: The size of the buffer in bytes
-        #[method_id(@__method_family Other temporaryStateWithCommandBuffer:bufferSize:)]
+        #[unsafe(method_family(none))]
+        #[method_id(temporaryStateWithCommandBuffer:bufferSize:)]
         pub unsafe fn temporaryStateWithCommandBuffer_bufferSize(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
             buffer_size: usize,
@@ -87,7 +92,8 @@ extern_methods!(
         /// Parameter `cmdBuf`: The command buffer against which the temporary resource is allocated
         ///
         /// Parameter `descriptor`: A descriptor for the new temporary texture
-        #[method_id(@__method_family Other temporaryStateWithCommandBuffer:textureDescriptor:)]
+        #[unsafe(method_family(none))]
+        #[method_id(temporaryStateWithCommandBuffer:textureDescriptor:)]
         pub unsafe fn temporaryStateWithCommandBuffer_textureDescriptor(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
             descriptor: &MTLTextureDescriptor,
@@ -96,19 +102,22 @@ extern_methods!(
         /// Create a new autoreleased temporary state object without underlying resource
         ///
         /// Parameter `cmdBuf`: The command buffer with which the temporary resource is associated
-        #[method_id(@__method_family Other temporaryStateWithCommandBuffer:)]
+        #[unsafe(method_family(none))]
+        #[method_id(temporaryStateWithCommandBuffer:)]
         pub unsafe fn temporaryStateWithCommandBuffer(
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithDevice:bufferSize:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:bufferSize:)]
         pub unsafe fn initWithDevice_bufferSize(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
             buffer_size: usize,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithDevice:textureDescriptor:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:textureDescriptor:)]
         pub unsafe fn initWithDevice_textureDescriptor(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -118,13 +127,15 @@ extern_methods!(
         /// Create a MPSState with a non-temporary MTLResource
         ///
         /// Parameter `resource`: A MTLBuffer or MTLTexture. May be nil.
-        #[method_id(@__method_family Init initWithResource:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithResource:)]
         pub unsafe fn initWithResource(
             this: Allocated<Self>,
             resource: Option<&ProtocolObject<dyn MTLResource>>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Option<Retained<Self>>;
 
         /// Initialize a non-temporary state to hold a number of textures and buffers
@@ -133,7 +144,8 @@ extern_methods!(
         /// This occurs when -resource or -resourceAtIndex: is called.
         ///
         /// Parameter `resourceList`: The list of resources to create.
-        #[method_id(@__method_family Init initWithDevice:resourceList:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:resourceList:)]
         pub unsafe fn initWithDevice_resourceList(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -143,7 +155,8 @@ extern_methods!(
         /// Initialize a temporary state to hold a number of textures and buffers
         ///
         /// The textures occur first in sequence
-        #[method_id(@__method_family Other temporaryStateWithCommandBuffer:resourceList:)]
+        #[unsafe(method_family(none))]
+        #[method_id(temporaryStateWithCommandBuffer:resourceList:)]
         pub unsafe fn temporaryStateWithCommandBuffer_resourceList(
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
             resource_list: &MPSStateResourceList,
@@ -155,7 +168,8 @@ extern_methods!(
         /// your application should use -initWithTextures:bufferSizes:bufferCount:
         /// whenever possible. This method is useful for cases when the
         /// MTLResources must be initialized by the CPU.
-        #[method_id(@__method_family Init initWithResources:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithResources:)]
         pub unsafe fn initWithResources(
             this: Allocated<Self>,
             resources: Option<&NSArray<ProtocolObject<dyn MTLResource>>>,
@@ -167,7 +181,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
     unsafe impl MPSCNNNormalizationGammaAndBetaState {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

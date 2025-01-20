@@ -34,7 +34,8 @@ extern_methods!(
         ///
         /// Returns the accessory's name that is associated with HomeKit. The initial value is the name
         /// provided by the accessory information service of the accessory.
-        #[method_id(@__method_family Other name)]
+        #[unsafe(method_family(none))]
+        #[method_id(name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// A unique identifier for the accessory.
@@ -42,15 +43,18 @@ extern_methods!(
         ///
         /// Use uniqueIdentifier to obtain the identifier for this object.
         #[deprecated = "No longer supported."]
-        #[method_id(@__method_family Other identifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSUUID>;
 
         /// A unique identifier for the accessory.
-        #[method_id(@__method_family Other uniqueIdentifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(uniqueIdentifier)]
         pub unsafe fn uniqueIdentifier(&self) -> Retained<NSUUID>;
 
         /// Delegate object that receives updates on the state of the accessory.
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn HMAccessoryDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -79,7 +83,8 @@ extern_methods!(
         /// Use uniqueIdentifiersForBridgedAccessories to obtain the identifiers for the
         /// bridged accessories.
         #[deprecated = "No longer supported."]
-        #[method_id(@__method_family Other identifiersForBridgedAccessories)]
+        #[unsafe(method_family(none))]
+        #[method_id(identifiersForBridgedAccessories)]
         pub unsafe fn identifiersForBridgedAccessories(&self) -> Option<Retained<NSArray<NSUUID>>>;
 
         /// If this accessory is a bridge, this property is an array of NSUUID objects that,
@@ -93,29 +98,34 @@ extern_methods!(
         /// but have a non-empty 'uniqueIdentifiersForBridgedAccessories' property.
         /// - An accessory behind a bridge would have its 'bridged' property set to TRUE and
         /// its 'uniqueIdentifiersForBridgedAccessories' property set to nil.
-        #[method_id(@__method_family Other uniqueIdentifiersForBridgedAccessories)]
+        #[unsafe(method_family(none))]
+        #[method_id(uniqueIdentifiersForBridgedAccessories)]
         pub unsafe fn uniqueIdentifiersForBridgedAccessories(
             &self,
         ) -> Option<Retained<NSArray<NSUUID>>>;
 
         #[cfg(feature = "HMAccessoryCategory")]
         /// Category information for the accessory.
-        #[method_id(@__method_family Other category)]
+        #[unsafe(method_family(none))]
+        #[method_id(category)]
         pub unsafe fn category(&self) -> Retained<HMAccessoryCategory>;
 
         #[cfg(feature = "HMRoom")]
         /// Room containing the accessory.
-        #[method_id(@__method_family Other room)]
+        #[unsafe(method_family(none))]
+        #[method_id(room)]
         pub unsafe fn room(&self) -> Option<Retained<HMRoom>>;
 
         #[cfg(feature = "HMService")]
         /// Array of HMService objects that represent all the services provided by the accessory.
-        #[method_id(@__method_family Other services)]
+        #[unsafe(method_family(none))]
+        #[method_id(services)]
         pub unsafe fn services(&self) -> Retained<NSArray<HMService>>;
 
         #[cfg(feature = "HMAccessoryProfile")]
         /// Accessory profiles of the receiver.
-        #[method_id(@__method_family Other profiles)]
+        #[unsafe(method_family(none))]
+        #[method_id(profiles)]
         pub unsafe fn profiles(&self) -> Retained<NSArray<HMAccessoryProfile>>;
 
         /// TRUE if the accessory is blocked, FALSE otherwise.
@@ -123,15 +133,18 @@ extern_methods!(
         pub unsafe fn isBlocked(&self) -> bool;
 
         /// Model of the accessory.
-        #[method_id(@__method_family Other model)]
+        #[unsafe(method_family(none))]
+        #[method_id(model)]
         pub unsafe fn model(&self) -> Option<Retained<NSString>>;
 
         /// Manufacturer of the accessory.
-        #[method_id(@__method_family Other manufacturer)]
+        #[unsafe(method_family(none))]
+        #[method_id(manufacturer)]
         pub unsafe fn manufacturer(&self) -> Option<Retained<NSString>>;
 
         /// Accessory's firmware version.
-        #[method_id(@__method_family Other firmwareVersion)]
+        #[unsafe(method_family(none))]
+        #[method_id(firmwareVersion)]
         pub unsafe fn firmwareVersion(&self) -> Option<Retained<NSString>>;
 
         /// Indicates if the accessory supports the identify action.
@@ -139,7 +152,8 @@ extern_methods!(
         pub unsafe fn supportsIdentify(&self) -> bool;
 
         /// The node identifier used to identify the device on Apple’s Matter fabric.
-        #[method_id(@__method_family Other matterNodeID)]
+        #[unsafe(method_family(none))]
+        #[method_id(matterNodeID)]
         pub unsafe fn matterNodeID(&self) -> Option<Retained<NSNumber>>;
 
         #[cfg(feature = "block2")]
@@ -176,7 +190,8 @@ extern_methods!(
         );
 
         #[deprecated = "HMAccessory objects are created by their parent container objects. Directly creating them is not supported."]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -184,7 +199,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HMAccessory {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

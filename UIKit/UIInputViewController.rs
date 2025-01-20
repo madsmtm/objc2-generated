@@ -11,19 +11,24 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdocumentproxy?language=objc)
     #[cfg(all(feature = "UITextInput", feature = "UITextInputTraits"))]
     pub unsafe trait UITextDocumentProxy: UIKeyInput + MainThreadOnly {
-        #[method_id(@__method_family Other documentContextBeforeInput)]
+        #[unsafe(method_family(none))]
+        #[method_id(documentContextBeforeInput)]
         unsafe fn documentContextBeforeInput(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(@__method_family Other documentContextAfterInput)]
+        #[unsafe(method_family(none))]
+        #[method_id(documentContextAfterInput)]
         unsafe fn documentContextAfterInput(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(@__method_family Other selectedText)]
+        #[unsafe(method_family(none))]
+        #[method_id(selectedText)]
         unsafe fn selectedText(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(@__method_family Other documentInputMode)]
+        #[unsafe(method_family(none))]
+        #[method_id(documentInputMode)]
         unsafe fn documentInputMode(&self) -> Option<Retained<UITextInputMode>>;
 
-        #[method_id(@__method_family Other documentIdentifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(documentIdentifier)]
         unsafe fn documentIdentifier(&self) -> Retained<NSUUID>;
 
         #[method(adjustTextPositionByCharacterOffset:)]
@@ -94,7 +99,8 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIInputViewController {
         #[cfg(all(feature = "UIInputView", feature = "UIView"))]
-        #[method_id(@__method_family Other inputView)]
+        #[unsafe(method_family(none))]
+        #[method_id(inputView)]
         pub unsafe fn inputView(&self) -> Option<Retained<UIInputView>>;
 
         #[cfg(all(feature = "UIInputView", feature = "UIView"))]
@@ -103,11 +109,13 @@ extern_methods!(
         pub unsafe fn setInputView(&self, input_view: Option<&UIInputView>);
 
         #[cfg(all(feature = "UITextInput", feature = "UITextInputTraits"))]
-        #[method_id(@__method_family Other textDocumentProxy)]
+        #[unsafe(method_family(none))]
+        #[method_id(textDocumentProxy)]
         pub unsafe fn textDocumentProxy(&self)
             -> Retained<ProtocolObject<dyn UITextDocumentProxy>>;
 
-        #[method_id(@__method_family Other primaryLanguage)]
+        #[unsafe(method_family(none))]
+        #[method_id(primaryLanguage)]
         pub unsafe fn primaryLanguage(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`primaryLanguage`][Self::primaryLanguage].
@@ -150,14 +158,16 @@ extern_methods!(
     /// Methods declared on superclass `UIViewController`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIInputViewController {
-        #[method_id(@__method_family Init initWithNibName:bundle:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -169,10 +179,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIInputViewController {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

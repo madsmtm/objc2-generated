@@ -19,17 +19,20 @@ unsafe impl NSObjectProtocol for NSTextCheckingController {}
 extern_methods!(
     unsafe impl NSTextCheckingController {
         #[cfg(all(feature = "NSTextCheckingClient", feature = "NSTextInputClient"))]
-        #[method_id(@__method_family Init initWithClient:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithClient:)]
         pub unsafe fn initWithClient(
             this: Allocated<Self>,
             client: &ProtocolObject<dyn NSTextCheckingClient>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "NSTextCheckingClient", feature = "NSTextInputClient"))]
-        #[method_id(@__method_family Other client)]
+        #[unsafe(method_family(none))]
+        #[method_id(client)]
         pub unsafe fn client(&self) -> Retained<ProtocolObject<dyn NSTextCheckingClient>>;
 
         #[method(invalidate)]
@@ -80,11 +83,13 @@ extern_methods!(
         #[method(updateCandidates)]
         pub unsafe fn updateCandidates(&self);
 
-        #[method_id(@__method_family Other validAnnotations)]
+        #[unsafe(method_family(none))]
+        #[method_id(validAnnotations)]
         pub unsafe fn validAnnotations(&self) -> Retained<NSArray<NSAttributedStringKey>>;
 
         #[cfg(feature = "NSMenu")]
-        #[method_id(@__method_family Other menuAtIndex:clickedOnSelection:effectiveRange:)]
+        #[unsafe(method_family(none))]
+        #[method_id(menuAtIndex:clickedOnSelection:effectiveRange:)]
         pub unsafe fn menuAtIndex_clickedOnSelection_effectiveRange(
             &self,
             location: NSUInteger,
@@ -105,7 +110,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextCheckingController {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

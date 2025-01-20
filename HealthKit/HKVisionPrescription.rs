@@ -69,11 +69,13 @@ extern_methods!(
         pub unsafe fn prescriptionType(&self) -> HKVisionPrescriptionType;
 
         /// The date the prescription was issued
-        #[method_id(@__method_family Other dateIssued)]
+        #[unsafe(method_family(none))]
+        #[method_id(dateIssued)]
         pub unsafe fn dateIssued(&self) -> Retained<NSDate>;
 
         /// The date the prescription will expire
-        #[method_id(@__method_family Other expirationDate)]
+        #[unsafe(method_family(none))]
+        #[method_id(expirationDate)]
         pub unsafe fn expirationDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "HKDevice")]
@@ -86,7 +88,8 @@ extern_methods!(
         /// Parameter `device`: The device that generated the sample
         ///
         /// Parameter `metadata`: The metadata for the sample
-        #[method_id(@__method_family Other prescriptionWithType:dateIssued:expirationDate:device:metadata:)]
+        #[unsafe(method_family(none))]
+        #[method_id(prescriptionWithType:dateIssued:expirationDate:device:metadata:)]
         pub unsafe fn prescriptionWithType_dateIssued_expirationDate_device_metadata(
             r#type: HKVisionPrescriptionType,
             date_issued: &NSDate,
@@ -95,10 +98,12 @@ extern_methods!(
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -47,18 +47,21 @@ extern_methods!(
         /// `-viewController`property, which sets several of the tab view item’s other properties.
         ///
         /// Parameter `viewController`: The view controller to wrap, used to set the viewController property
-        #[method_id(@__method_family Other tabViewItemWithViewController:)]
+        #[unsafe(method_family(none))]
+        #[method_id(tabViewItemWithViewController:)]
         pub unsafe fn tabViewItemWithViewController(
             view_controller: &NSViewController,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithIdentifier:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,
             identifier: Option<&AnyObject>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Other identifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(identifier)]
         pub unsafe fn identifier(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`identifier`][Self::identifier].
@@ -66,7 +69,8 @@ extern_methods!(
         pub unsafe fn setIdentifier(&self, identifier: Option<&AnyObject>);
 
         #[cfg(feature = "NSColor")]
-        #[method_id(@__method_family Other color)]
+        #[unsafe(method_family(none))]
+        #[method_id(color)]
         pub unsafe fn color(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
@@ -74,7 +78,8 @@ extern_methods!(
         #[method(setColor:)]
         pub unsafe fn setColor(&self, color: &NSColor);
 
-        #[method_id(@__method_family Other label)]
+        #[unsafe(method_family(none))]
+        #[method_id(label)]
         pub unsafe fn label(&self) -> Retained<NSString>;
 
         /// Setter for [`label`][Self::label].
@@ -83,7 +88,8 @@ extern_methods!(
 
         #[cfg(feature = "NSImage")]
         /// Get and set the image for this tab view item. The image may only be used in certain tab view styles and options.  The default value is nil.
-        #[method_id(@__method_family Other image)]
+        #[unsafe(method_family(none))]
+        #[method_id(image)]
         pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
@@ -92,7 +98,8 @@ extern_methods!(
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-        #[method_id(@__method_family Other view)]
+        #[unsafe(method_family(none))]
+        #[method_id(view)]
         pub unsafe fn view(&self, mtm: MainThreadMarker) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -112,7 +119,8 @@ extern_methods!(
         /// As defined by: -[NSImage imageNamed:imageName], -[viewController.nibBundle imageForResource:imageName], -[[NSBundle bundleForClass:[viewController class]] imageForResource:imageName]. One pass with imageName as [NSStringFromClass([viewController class]) stringByAppendingString:
         /// "
         /// -TabViewItem"], followed by imageName as NSStringFromClass([viewController class]).
-        #[method_id(@__method_family Other viewController)]
+        #[unsafe(method_family(none))]
+        #[method_id(viewController)]
         pub unsafe fn viewController(
             &self,
             mtm: MainThreadMarker,
@@ -127,11 +135,13 @@ extern_methods!(
         pub unsafe fn tabState(&self) -> NSTabState;
 
         #[cfg(all(feature = "NSResponder", feature = "NSTabView", feature = "NSView"))]
-        #[method_id(@__method_family Other tabView)]
+        #[unsafe(method_family(none))]
+        #[method_id(tabView)]
         pub unsafe fn tabView(&self, mtm: MainThreadMarker) -> Option<Retained<NSTabView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-        #[method_id(@__method_family Other initialFirstResponder)]
+        #[unsafe(method_family(none))]
+        #[method_id(initialFirstResponder)]
         pub unsafe fn initialFirstResponder(
             &self,
             mtm: MainThreadMarker,
@@ -143,7 +153,8 @@ extern_methods!(
         #[method(setInitialFirstResponder:)]
         pub unsafe fn setInitialFirstResponder(&self, initial_first_responder: Option<&NSView>);
 
-        #[method_id(@__method_family Other toolTip)]
+        #[unsafe(method_family(none))]
+        #[method_id(toolTip)]
         pub unsafe fn toolTip(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`toolTip`][Self::toolTip].
@@ -161,10 +172,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTabViewItem {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

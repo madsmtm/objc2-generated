@@ -196,7 +196,8 @@ extern_methods!(
     /// Methods declared on superclass `WKInterfaceObject`
     #[cfg(feature = "WKInterfaceObject")]
     unsafe impl WKInterfaceTextField {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -205,7 +206,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "WKInterfaceObject")]
     unsafe impl WKInterfaceTextField {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

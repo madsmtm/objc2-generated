@@ -31,18 +31,22 @@ unsafe impl NSObjectProtocol for NSRunLoop {}
 
 extern_methods!(
     unsafe impl NSRunLoop {
-        #[method_id(@__method_family Other currentRunLoop)]
+        #[unsafe(method_family(none))]
+        #[method_id(currentRunLoop)]
         pub unsafe fn currentRunLoop() -> Retained<NSRunLoop>;
 
-        #[method_id(@__method_family Other mainRunLoop)]
+        #[unsafe(method_family(none))]
+        #[method_id(mainRunLoop)]
         pub unsafe fn mainRunLoop() -> Retained<NSRunLoop>;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
-        #[method_id(@__method_family Other currentMode)]
+        #[unsafe(method_family(none))]
+        #[method_id(currentMode)]
         pub unsafe fn currentMode(&self) -> Option<Retained<NSRunLoopMode>>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Other getCFRunLoop)]
+        #[unsafe(method_family(none))]
+        #[method_id(getCFRunLoop)]
         pub unsafe fn getCFRunLoop(&self) -> Retained<CFRunLoop>;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSString", feature = "NSTimer"))]
@@ -58,7 +62,8 @@ extern_methods!(
         pub unsafe fn removePort_forMode(&self, a_port: &NSPort, mode: &NSRunLoopMode);
 
         #[cfg(all(feature = "NSDate", feature = "NSObjCRuntime", feature = "NSString"))]
-        #[method_id(@__method_family Other limitDateForMode:)]
+        #[unsafe(method_family(none))]
+        #[method_id(limitDateForMode:)]
         pub unsafe fn limitDateForMode(&self, mode: &NSRunLoopMode) -> Option<Retained<NSDate>>;
 
         #[cfg(all(feature = "NSDate", feature = "NSObjCRuntime", feature = "NSString"))]
@@ -74,10 +79,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSRunLoop {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -29,10 +29,12 @@ extern_methods!(
         #[method(count)]
         pub unsafe fn count(&self) -> NSUInteger;
 
-        #[method_id(@__method_family Other objectAtIndex:)]
+        #[unsafe(method_family(none))]
+        #[method_id(objectAtIndex:)]
         pub unsafe fn objectAtIndex(&self, index: NSUInteger) -> Retained<ObjectType>;
 
-        #[method_id(@__method_family Other objectAtIndexedSubscript:)]
+        #[unsafe(method_family(none))]
+        #[method_id(objectAtIndexedSubscript:)]
         pub unsafe fn objectAtIndexedSubscript(&self, idx: NSUInteger) -> Retained<ObjectType>;
 
         #[method(containsObject:)]
@@ -48,13 +50,16 @@ extern_methods!(
             range: NSRange,
         ) -> NSUInteger;
 
-        #[method_id(@__method_family Other firstObject)]
+        #[unsafe(method_family(none))]
+        #[method_id(firstObject)]
         pub unsafe fn firstObject(&self) -> Option<Retained<ObjectType>>;
 
-        #[method_id(@__method_family Other lastObject)]
+        #[unsafe(method_family(none))]
+        #[method_id(lastObject)]
         pub unsafe fn lastObject(&self) -> Option<Retained<ObjectType>>;
 
-        #[method_id(@__method_family Other objectsAtIndexes:)]
+        #[unsafe(method_family(none))]
+        #[method_id(objectsAtIndexes:)]
         pub unsafe fn objectsAtIndexes(
             &self,
             indexes: &NSIndexSet,
@@ -94,10 +99,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<ObjectType: Message> PHFetchResult<ObjectType> {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

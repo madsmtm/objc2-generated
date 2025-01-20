@@ -24,14 +24,17 @@ unsafe impl NSSecureCoding for ILNetworkResponse {}
 extern_methods!(
     unsafe impl ILNetworkResponse {
         /// Represents the URL response itself. See documentation for NSHTTPURLResponse.
-        #[method_id(@__method_family Other urlResponse)]
+        #[unsafe(method_family(none))]
+        #[method_id(urlResponse)]
         pub unsafe fn urlResponse(&self) -> Retained<NSHTTPURLResponse>;
 
         /// Data returned in the HTTPS response.
-        #[method_id(@__method_family Other data)]
+        #[unsafe(method_family(none))]
+        #[method_id(data)]
         pub unsafe fn data(&self) -> Retained<NSData>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -39,7 +42,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ILNetworkResponse {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

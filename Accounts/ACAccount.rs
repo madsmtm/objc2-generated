@@ -21,19 +21,22 @@ extern_methods!(
     unsafe impl ACAccount {
         #[cfg(feature = "ACAccountType")]
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
-        #[method_id(@__method_family Init initWithAccountType:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithAccountType:)]
         pub unsafe fn initWithAccountType(
             this: Allocated<Self>,
             r#type: Option<&ACAccountType>,
         ) -> Option<Retained<Self>>;
 
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
-        #[method_id(@__method_family Other identifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(identifier)]
         pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "ACAccountType")]
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
-        #[method_id(@__method_family Other accountType)]
+        #[unsafe(method_family(none))]
+        #[method_id(accountType)]
         pub unsafe fn accountType(&self) -> Option<Retained<ACAccountType>>;
 
         #[cfg(feature = "ACAccountType")]
@@ -43,7 +46,8 @@ extern_methods!(
         pub unsafe fn setAccountType(&self, account_type: Option<&ACAccountType>);
 
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
-        #[method_id(@__method_family Other accountDescription)]
+        #[unsafe(method_family(none))]
+        #[method_id(accountDescription)]
         pub unsafe fn accountDescription(&self) -> Retained<NSString>;
 
         /// Setter for [`accountDescription`][Self::accountDescription].
@@ -52,7 +56,8 @@ extern_methods!(
         pub unsafe fn setAccountDescription(&self, account_description: Option<&NSString>);
 
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
-        #[method_id(@__method_family Other username)]
+        #[unsafe(method_family(none))]
+        #[method_id(username)]
         pub unsafe fn username(&self) -> Retained<NSString>;
 
         /// Setter for [`username`][Self::username].
@@ -60,12 +65,14 @@ extern_methods!(
         #[method(setUsername:)]
         pub unsafe fn setUsername(&self, username: Option<&NSString>);
 
-        #[method_id(@__method_family Other userFullName)]
+        #[unsafe(method_family(none))]
+        #[method_id(userFullName)]
         pub unsafe fn userFullName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "ACAccountCredential")]
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
-        #[method_id(@__method_family Other credential)]
+        #[unsafe(method_family(none))]
+        #[method_id(credential)]
         pub unsafe fn credential(&self) -> Option<Retained<ACAccountCredential>>;
 
         #[cfg(feature = "ACAccountCredential")]
@@ -79,10 +86,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ACAccount {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -58,7 +58,8 @@ extern_methods!(
         /// The preferred placement of the window scene to be activated. Scene placements influence how the
         /// system positions the activated scene. A `nil` value indicates that the system should determine
         /// the most appropriate placement to use.
-        #[method_id(@__method_family Other placement)]
+        #[unsafe(method_family(none))]
+        #[method_id(placement)]
         pub unsafe fn placement(&self) -> Option<Retained<UIWindowScenePlacement>>;
 
         #[cfg(feature = "UIWindowScenePlacement")]
@@ -72,10 +73,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UISceneOptions")]
     unsafe impl UIWindowSceneActivationRequestOptions {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

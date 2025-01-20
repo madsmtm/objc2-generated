@@ -82,11 +82,13 @@ extern_methods!(
         #[method(setAltitude:)]
         pub unsafe fn setAltitude(&self, altitude: CLLocationDistance);
 
-        #[method_id(@__method_family Other camera)]
+        #[unsafe(method_family(none))]
+        #[method_id(camera)]
         pub unsafe fn camera() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-location")]
-        #[method_id(@__method_family Other cameraLookingAtCenterCoordinate:fromEyeCoordinate:eyeAltitude:)]
+        #[unsafe(method_family(none))]
+        #[method_id(cameraLookingAtCenterCoordinate:fromEyeCoordinate:eyeAltitude:)]
         pub unsafe fn cameraLookingAtCenterCoordinate_fromEyeCoordinate_eyeAltitude(
             center_coordinate: CLLocationCoordinate2D,
             eye_coordinate: CLLocationCoordinate2D,
@@ -94,7 +96,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-location"))]
-        #[method_id(@__method_family Other cameraLookingAtCenterCoordinate:fromDistance:pitch:heading:)]
+        #[unsafe(method_family(none))]
+        #[method_id(cameraLookingAtCenterCoordinate:fromDistance:pitch:heading:)]
         pub unsafe fn cameraLookingAtCenterCoordinate_fromDistance_pitch_heading(
             center_coordinate: CLLocationCoordinate2D,
             distance: CLLocationDistance,
@@ -103,7 +106,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MKMapItem", feature = "objc2-core-foundation"))]
-        #[method_id(@__method_family Other cameraLookingAtMapItem:forViewSize:allowPitch:)]
+        #[unsafe(method_family(none))]
+        #[method_id(cameraLookingAtMapItem:forViewSize:allowPitch:)]
         pub unsafe fn cameraLookingAtMapItem_forViewSize_allowPitch(
             map_item: &MKMapItem,
             view_size: CGSize,
@@ -115,10 +119,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKMapCamera {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

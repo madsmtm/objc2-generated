@@ -112,14 +112,16 @@ extern_methods!(
         pub unsafe fn prefersHoverToolPreview(mtm: MainThreadMarker) -> bool;
 
         /// Initialize an interaction and set the provided delegate
-        #[method_id(@__method_family Init initWithDelegate:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDelegate:)]
         pub unsafe fn initWithDelegate(
             this: Allocated<Self>,
             delegate: &ProtocolObject<dyn UIPencilInteractionDelegate>,
         ) -> Retained<Self>;
 
         /// The interaction's delegate
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIPencilInteractionDelegate>>>;
@@ -145,10 +147,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIPencilInteraction {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -167,10 +171,12 @@ unsafe impl NSObjectProtocol for UIPencilHoverPose {}
 
 extern_methods!(
     unsafe impl UIPencilHoverPose {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -222,10 +228,12 @@ unsafe impl NSObjectProtocol for UIPencilInteractionTap {}
 
 extern_methods!(
     unsafe impl UIPencilInteractionTap {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// The time in seconds from system start up when this tap occured
@@ -233,7 +241,8 @@ extern_methods!(
         pub unsafe fn timestamp(&self) -> NSTimeInterval;
 
         /// The hover pose of the pencil while performing a tap. Returns `nil` if the pencil was not in hover range or if hover is not supported on the device.
-        #[method_id(@__method_family Other hoverPose)]
+        #[unsafe(method_family(none))]
+        #[method_id(hoverPose)]
         pub unsafe fn hoverPose(&self) -> Option<Retained<UIPencilHoverPose>>;
     }
 );
@@ -252,10 +261,12 @@ unsafe impl NSObjectProtocol for UIPencilInteractionSqueeze {}
 
 extern_methods!(
     unsafe impl UIPencilInteractionSqueeze {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// The time in seconds from system start up when this squeeze occured
@@ -267,7 +278,8 @@ extern_methods!(
         pub unsafe fn phase(&self) -> UIPencilInteractionPhase;
 
         /// The hover pose of the pencil while performing a squeeze. Returns `nil` if the pencil was not in hover range or if hover is not supported on the device.
-        #[method_id(@__method_family Other hoverPose)]
+        #[unsafe(method_family(none))]
+        #[method_id(hoverPose)]
         pub unsafe fn hoverPose(&self) -> Option<Retained<UIPencilHoverPose>>;
     }
 );

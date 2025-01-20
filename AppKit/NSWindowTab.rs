@@ -18,21 +18,24 @@ unsafe impl NSObjectProtocol for NSWindowTab {}
 
 extern_methods!(
     unsafe impl NSWindowTab {
-        #[method_id(@__method_family Other title)]
+        #[unsafe(method_family(none))]
+        #[method_id(title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
-        #[method_id(@__method_family Other attributedTitle)]
+        #[unsafe(method_family(none))]
+        #[method_id(attributedTitle)]
         pub unsafe fn attributedTitle(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Setter for [`attributedTitle`][Self::attributedTitle].
         #[method(setAttributedTitle:)]
         pub unsafe fn setAttributedTitle(&self, attributed_title: Option<&NSAttributedString>);
 
-        #[method_id(@__method_family Other toolTip)]
+        #[unsafe(method_family(none))]
+        #[method_id(toolTip)]
         pub unsafe fn toolTip(&self) -> Retained<NSString>;
 
         /// Setter for [`toolTip`][Self::toolTip].
@@ -40,7 +43,8 @@ extern_methods!(
         pub unsafe fn setToolTip(&self, tool_tip: Option<&NSString>);
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-        #[method_id(@__method_family Other accessoryView)]
+        #[unsafe(method_family(none))]
+        #[method_id(accessoryView)]
         pub unsafe fn accessoryView(&self, mtm: MainThreadMarker) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -53,10 +57,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSWindowTab {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

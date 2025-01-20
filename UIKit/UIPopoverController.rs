@@ -27,14 +27,16 @@ extern_methods!(
     unsafe impl UIPopoverController {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[deprecated = "UIPopoverController is deprecated. Popovers are now implemented as UIViewController presentations. Use a modal presentation style of UIModalPresentationPopover and UIPopoverPresentationController."]
-        #[method_id(@__method_family Init initWithContentViewController:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithContentViewController:)]
         pub unsafe fn initWithContentViewController(
             this: Allocated<Self>,
             view_controller: &UIViewController,
         ) -> Retained<Self>;
 
         #[deprecated = "UIPopoverController is deprecated. Popovers are now implemented as UIViewController presentations. Use a modal presentation style of UIModalPresentationPopover and UIPopoverPresentationController."]
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIPopoverControllerDelegate>>>;
@@ -50,7 +52,8 @@ extern_methods!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[deprecated = "UIPopoverController is deprecated. Popovers are now implemented as UIViewController presentations. Use a modal presentation style of UIModalPresentationPopover and UIPopoverPresentationController."]
-        #[method_id(@__method_family Other contentViewController)]
+        #[unsafe(method_family(none))]
+        #[method_id(contentViewController)]
         pub unsafe fn contentViewController(&self) -> Retained<UIViewController>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
@@ -95,7 +98,8 @@ extern_methods!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[deprecated = "UIPopoverController is deprecated. Popovers are now implemented as UIViewController presentations. Use a modal presentation style of UIModalPresentationPopover and UIPopoverPresentationController."]
-        #[method_id(@__method_family Other passthroughViews)]
+        #[unsafe(method_family(none))]
+        #[method_id(passthroughViews)]
         pub unsafe fn passthroughViews(&self) -> Option<Retained<NSArray<UIView>>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
@@ -139,7 +143,8 @@ extern_methods!(
         pub unsafe fn dismissPopoverAnimated(&self, animated: bool);
 
         #[cfg(feature = "UIColor")]
-        #[method_id(@__method_family Other backgroundColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(backgroundColor)]
         pub unsafe fn backgroundColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -171,10 +176,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIPopoverController {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

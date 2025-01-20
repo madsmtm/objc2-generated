@@ -17,7 +17,8 @@ unsafe impl NSObjectProtocol for PHAdjustmentData {}
 
 extern_methods!(
     unsafe impl PHAdjustmentData {
-        #[method_id(@__method_family Init initWithFormatIdentifier:formatVersion:data:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithFormatIdentifier:formatVersion:data:)]
         pub unsafe fn initWithFormatIdentifier_formatVersion_data(
             this: Allocated<Self>,
             format_identifier: &NSString,
@@ -25,13 +26,16 @@ extern_methods!(
             data: &NSData,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Other formatIdentifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(formatIdentifier)]
         pub unsafe fn formatIdentifier(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other formatVersion)]
+        #[unsafe(method_family(none))]
+        #[method_id(formatVersion)]
         pub unsafe fn formatVersion(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other data)]
+        #[unsafe(method_family(none))]
+        #[method_id(data)]
         pub unsafe fn data(&self) -> Retained<NSData>;
     }
 );
@@ -39,10 +43,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHAdjustmentData {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

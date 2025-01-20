@@ -39,30 +39,36 @@ unsafe impl NSSecureCoding for NSIndexSet {}
 
 extern_methods!(
     unsafe impl NSIndexSet {
-        #[method_id(@__method_family Other indexSet)]
+        #[unsafe(method_family(none))]
+        #[method_id(indexSet)]
         pub unsafe fn indexSet() -> Retained<Self>;
 
-        #[method_id(@__method_family Other indexSetWithIndex:)]
+        #[unsafe(method_family(none))]
+        #[method_id(indexSetWithIndex:)]
         pub unsafe fn indexSetWithIndex(value: NSUInteger) -> Retained<Self>;
 
         #[cfg(feature = "NSRange")]
-        #[method_id(@__method_family Other indexSetWithIndexesInRange:)]
+        #[unsafe(method_family(none))]
+        #[method_id(indexSetWithIndexesInRange:)]
         pub unsafe fn indexSetWithIndexesInRange(range: NSRange) -> Retained<Self>;
 
         #[cfg(feature = "NSRange")]
-        #[method_id(@__method_family Init initWithIndexesInRange:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithIndexesInRange:)]
         pub unsafe fn initWithIndexesInRange(
             this: Allocated<Self>,
             range: NSRange,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithIndexSet:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithIndexSet:)]
         pub unsafe fn initWithIndexSet(
             this: Allocated<Self>,
             index_set: &NSIndexSet,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithIndex:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithIndex:)]
         pub unsafe fn initWithIndex(this: Allocated<Self>, value: NSUInteger) -> Retained<Self>;
 
         #[method(isEqualToIndexSet:)]
@@ -165,14 +171,16 @@ extern_methods!(
         ) -> NSUInteger;
 
         #[cfg(feature = "block2")]
-        #[method_id(@__method_family Other indexesPassingTest:)]
+        #[unsafe(method_family(none))]
+        #[method_id(indexesPassingTest:)]
         pub unsafe fn indexesPassingTest(
             &self,
             predicate: &block2::Block<dyn Fn(NSUInteger, NonNull<Bool>) -> Bool + '_>,
         ) -> Retained<NSIndexSet>;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "block2"))]
-        #[method_id(@__method_family Other indexesWithOptions:passingTest:)]
+        #[unsafe(method_family(none))]
+        #[method_id(indexesWithOptions:passingTest:)]
         pub unsafe fn indexesWithOptions_passingTest(
             &self,
             opts: NSEnumerationOptions,
@@ -180,7 +188,8 @@ extern_methods!(
         ) -> Retained<NSIndexSet>;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSRange", feature = "block2"))]
-        #[method_id(@__method_family Other indexesInRange:options:passingTest:)]
+        #[unsafe(method_family(none))]
+        #[method_id(indexesInRange:options:passingTest:)]
         pub unsafe fn indexesInRange_options_passingTest(
             &self,
             range: NSRange,
@@ -217,10 +226,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSIndexSet {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -289,30 +300,36 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSIndexSet`
     unsafe impl NSMutableIndexSet {
-        #[method_id(@__method_family Other indexSet)]
+        #[unsafe(method_family(none))]
+        #[method_id(indexSet)]
         pub unsafe fn indexSet() -> Retained<Self>;
 
-        #[method_id(@__method_family Other indexSetWithIndex:)]
+        #[unsafe(method_family(none))]
+        #[method_id(indexSetWithIndex:)]
         pub unsafe fn indexSetWithIndex(value: NSUInteger) -> Retained<Self>;
 
         #[cfg(feature = "NSRange")]
-        #[method_id(@__method_family Other indexSetWithIndexesInRange:)]
+        #[unsafe(method_family(none))]
+        #[method_id(indexSetWithIndexesInRange:)]
         pub unsafe fn indexSetWithIndexesInRange(range: NSRange) -> Retained<Self>;
 
         #[cfg(feature = "NSRange")]
-        #[method_id(@__method_family Init initWithIndexesInRange:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithIndexesInRange:)]
         pub unsafe fn initWithIndexesInRange(
             this: Allocated<Self>,
             range: NSRange,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithIndexSet:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithIndexSet:)]
         pub unsafe fn initWithIndexSet(
             this: Allocated<Self>,
             index_set: &NSIndexSet,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithIndex:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithIndex:)]
         pub unsafe fn initWithIndex(this: Allocated<Self>, value: NSUInteger) -> Retained<Self>;
     }
 );
@@ -320,10 +337,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSMutableIndexSet {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

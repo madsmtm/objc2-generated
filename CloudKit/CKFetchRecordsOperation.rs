@@ -21,21 +21,25 @@ unsafe impl NSObjectProtocol for CKFetchRecordsOperation {}
 extern_methods!(
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchRecordsOperation {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordID")]
-        #[method_id(@__method_family Init initWithRecordIDs:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithRecordIDs:)]
         pub unsafe fn initWithRecordIDs(
             this: Allocated<Self>,
             record_i_ds: &NSArray<CKRecordID>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Other fetchCurrentUserRecordOperation)]
+        #[unsafe(method_family(none))]
+        #[method_id(fetchCurrentUserRecordOperation)]
         pub unsafe fn fetchCurrentUserRecordOperation() -> Retained<Self>;
 
         #[cfg(feature = "CKRecordID")]
-        #[method_id(@__method_family Other recordIDs)]
+        #[unsafe(method_family(none))]
+        #[method_id(recordIDs)]
         pub unsafe fn recordIDs(&self) -> Option<Retained<NSArray<CKRecordID>>>;
 
         #[cfg(feature = "CKRecordID")]
@@ -50,7 +54,8 @@ extern_methods!(
         /// If nil, declares the entire record should be downloaded. If set to an empty array, declares that no user fields should be downloaded.
         /// Defaults to
         /// `nil.`
-        #[method_id(@__method_family Other desiredKeys)]
+        #[unsafe(method_family(none))]
+        #[method_id(desiredKeys)]
         pub unsafe fn desiredKeys(&self) -> Option<Retained<NSArray<CKRecordFieldKey>>>;
 
         #[cfg(feature = "CKRecord")]
@@ -147,7 +152,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchRecordsOperation {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -24,7 +24,8 @@ unsafe impl NSSecureCoding for MLStateConstraint {}
 extern_methods!(
     unsafe impl MLStateConstraint {
         /// The shape of the state buffer.
-        #[method_id(@__method_family Other bufferShape)]
+        #[unsafe(method_family(none))]
+        #[method_id(bufferShape)]
         pub unsafe fn bufferShape(&self) -> Retained<NSArray<NSNumber>>;
 
         #[cfg(feature = "MLMultiArray")]
@@ -37,10 +38,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MLStateConstraint {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

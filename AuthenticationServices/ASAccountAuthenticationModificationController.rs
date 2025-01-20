@@ -42,7 +42,8 @@ extern_protocol!(
         #[cfg(feature = "ASFoundation")]
         #[cfg(target_os = "macos")]
         /// Return a view anchor that is most appropriate for authorization UI to be presented over.
-        #[method_id(@__method_family Other presentationAnchorForAccountAuthenticationModificationController:)]
+        #[unsafe(method_family(none))]
+        #[method_id(presentationAnchorForAccountAuthenticationModificationController:)]
         unsafe fn presentationAnchorForAccountAuthenticationModificationController(
             &self,
             controller: &ASAccountAuthenticationModificationController,
@@ -62,7 +63,8 @@ unsafe impl NSObjectProtocol for ASAccountAuthenticationModificationController {
 extern_methods!(
     unsafe impl ASAccountAuthenticationModificationController {
         /// This delegate will be notified upon completion of the upgrade to report success or failure.
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<
@@ -80,7 +82,8 @@ extern_methods!(
         );
 
         /// This will be used to provide a presentation context to display authorization UI.
-        #[method_id(@__method_family Other presentationContextProvider)]
+        #[unsafe(method_family(none))]
+        #[method_id(presentationContextProvider)]
         pub unsafe fn presentationContextProvider(
             &self,
             mtm: MainThreadMarker,
@@ -114,10 +117,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASAccountAuthenticationModificationController {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

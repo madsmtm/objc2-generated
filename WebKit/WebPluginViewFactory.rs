@@ -65,7 +65,8 @@ extern_protocol!(
         ///
         /// Returns: Returns an NSView object that conforms to the WebPlugIn informal protocol.
         #[deprecated]
-        #[method_id(@__method_family Other plugInViewWithArguments:)]
+        #[unsafe(method_family(none))]
+        #[method_id(plugInViewWithArguments:)]
         unsafe fn plugInViewWithArguments(
             arguments: Option<&NSDictionary>,
             mtm: MainThreadMarker,

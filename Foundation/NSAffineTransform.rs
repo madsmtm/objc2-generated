@@ -72,16 +72,19 @@ unsafe impl NSSecureCoding for NSAffineTransform {}
 
 extern_methods!(
     unsafe impl NSAffineTransform {
-        #[method_id(@__method_family Other transform)]
+        #[unsafe(method_family(none))]
+        #[method_id(transform)]
         pub unsafe fn transform() -> Retained<NSAffineTransform>;
 
-        #[method_id(@__method_family Init initWithTransform:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithTransform:)]
         pub unsafe fn initWithTransform(
             this: Allocated<Self>,
             transform: &NSAffineTransform,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -135,7 +138,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSAffineTransform {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

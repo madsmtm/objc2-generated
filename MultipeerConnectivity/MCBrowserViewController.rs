@@ -48,7 +48,8 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl MCBrowserViewController {
         #[cfg(feature = "MCSession")]
-        #[method_id(@__method_family Init initWithServiceType:session:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithServiceType:session:)]
         pub unsafe fn initWithServiceType_session(
             this: Allocated<Self>,
             service_type: &NSString,
@@ -56,14 +57,16 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MCNearbyServiceBrowser", feature = "MCSession"))]
-        #[method_id(@__method_family Init initWithBrowser:session:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithBrowser:session:)]
         pub unsafe fn initWithBrowser_session(
             this: Allocated<Self>,
             browser: &MCNearbyServiceBrowser,
             session: &MCSession,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MCBrowserViewControllerDelegate>>>;
@@ -77,11 +80,13 @@ extern_methods!(
         );
 
         #[cfg(feature = "MCNearbyServiceBrowser")]
-        #[method_id(@__method_family Other browser)]
+        #[unsafe(method_family(none))]
+        #[method_id(browser)]
         pub unsafe fn browser(&self) -> Retained<MCNearbyServiceBrowser>;
 
         #[cfg(feature = "MCSession")]
-        #[method_id(@__method_family Other session)]
+        #[unsafe(method_family(none))]
+        #[method_id(session)]
         pub unsafe fn session(&self) -> Retained<MCSession>;
 
         #[method(minimumNumberOfPeers)]
@@ -105,14 +110,16 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl MCBrowserViewController {
-        #[method_id(@__method_family Init initWithNibName:bundle:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSNibName>,
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -125,7 +132,8 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl MCBrowserViewController {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -135,7 +143,8 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl MCBrowserViewController {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

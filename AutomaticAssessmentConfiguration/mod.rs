@@ -45,10 +45,12 @@ unsafe impl NSObjectProtocol for AEAssessmentApplication {}
 
 extern_methods!(
     unsafe impl AEAssessmentApplication {
-        #[method_id(@__method_family Other bundleIdentifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(bundleIdentifier)]
         pub unsafe fn bundleIdentifier(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other teamIdentifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(teamIdentifier)]
         pub unsafe fn teamIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[method(requiresSignatureValidation)]
@@ -58,23 +60,27 @@ extern_methods!(
         #[method(setRequiresSignatureValidation:)]
         pub unsafe fn setRequiresSignatureValidation(&self, requires_signature_validation: bool);
 
-        #[method_id(@__method_family Init initWithBundleIdentifier:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithBundleIdentifier:)]
         pub unsafe fn initWithBundleIdentifier(
             this: Allocated<Self>,
             bundle_identifier: &NSString,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithBundleIdentifier:teamIdentifier:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithBundleIdentifier:teamIdentifier:)]
         pub unsafe fn initWithBundleIdentifier_teamIdentifier(
             this: Allocated<Self>,
             bundle_identifier: &NSString,
             team_identifier: Option<&NSString>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -183,12 +189,14 @@ extern_methods!(
         #[method(setAllowsContinuousPathKeyboard:)]
         pub unsafe fn setAllowsContinuousPathKeyboard(&self, allows_continuous_path_keyboard: bool);
 
-        #[method_id(@__method_family Other mainParticipantConfiguration)]
+        #[unsafe(method_family(none))]
+        #[method_id(mainParticipantConfiguration)]
         pub unsafe fn mainParticipantConfiguration(
             &self,
         ) -> Retained<AEAssessmentParticipantConfiguration>;
 
-        #[method_id(@__method_family Other configurationsByApplication)]
+        #[unsafe(method_family(none))]
+        #[method_id(configurationsByApplication)]
         pub unsafe fn configurationsByApplication(
             &self,
         ) -> Retained<NSDictionary<AEAssessmentApplication, AEAssessmentParticipantConfiguration>>;
@@ -208,10 +216,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AEAssessmentConfiguration {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -240,7 +250,8 @@ extern_methods!(
         #[method(setAllowsNetworkAccess:)]
         pub unsafe fn setAllowsNetworkAccess(&self, allows_network_access: bool);
 
-        #[method_id(@__method_family Other configurationInfo)]
+        #[unsafe(method_family(none))]
+        #[method_id(configurationInfo)]
         pub unsafe fn configurationInfo(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         /// Setter for [`configurationInfo`][Self::configurationInfo].
@@ -250,10 +261,12 @@ extern_methods!(
             configuration_info: &NSDictionary<NSString, AnyObject>,
         );
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -275,7 +288,8 @@ extern_methods!(
         #[method(supportsConfigurationUpdates)]
         pub unsafe fn supportsConfigurationUpdates() -> bool;
 
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AEAssessmentSessionDelegate>>>;
@@ -288,22 +302,26 @@ extern_methods!(
             delegate: Option<&ProtocolObject<dyn AEAssessmentSessionDelegate>>,
         );
 
-        #[method_id(@__method_family Other configuration)]
+        #[unsafe(method_family(none))]
+        #[method_id(configuration)]
         pub unsafe fn configuration(&self) -> Retained<AEAssessmentConfiguration>;
 
         #[method(isActive)]
         pub unsafe fn isActive(&self) -> bool;
 
-        #[method_id(@__method_family Init initWithConfiguration:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithConfiguration:)]
         pub unsafe fn initWithConfiguration(
             this: Allocated<Self>,
             configuration: &AEAssessmentConfiguration,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[method(begin)]

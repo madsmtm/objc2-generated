@@ -95,11 +95,13 @@ extern_methods!(
 
         #[cfg(feature = "DOMHTMLFormElement")]
         #[deprecated]
-        #[method_id(@__method_family Other form)]
+        #[unsafe(method_family(none))]
+        #[method_id(form)]
         pub unsafe fn form(&self) -> Option<Retained<DOMHTMLFormElement>>;
 
         #[deprecated]
-        #[method_id(@__method_family Other name)]
+        #[unsafe(method_family(none))]
+        #[method_id(name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
@@ -135,11 +137,13 @@ extern_methods!(
         pub unsafe fn setCols(&self, cols: c_int);
 
         #[deprecated]
-        #[method_id(@__method_family Other type)]
+        #[unsafe(method_family(none))]
+        #[method_id(type)]
         pub unsafe fn r#type(&self) -> Retained<NSString>;
 
         #[deprecated]
-        #[method_id(@__method_family Other defaultValue)]
+        #[unsafe(method_family(none))]
+        #[method_id(defaultValue)]
         pub unsafe fn defaultValue(&self) -> Retained<NSString>;
 
         /// Setter for [`defaultValue`][Self::defaultValue].
@@ -148,7 +152,8 @@ extern_methods!(
         pub unsafe fn setDefaultValue(&self, default_value: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__method_family Other value)]
+        #[unsafe(method_family(none))]
+        #[method_id(value)]
         pub unsafe fn value(&self) -> Retained<NSString>;
 
         /// Setter for [`value`][Self::value].
@@ -174,7 +179,8 @@ extern_methods!(
         pub unsafe fn setSelectionEnd(&self, selection_end: c_int);
 
         #[deprecated]
-        #[method_id(@__method_family Other accessKey)]
+        #[unsafe(method_family(none))]
+        #[method_id(accessKey)]
         pub unsafe fn accessKey(&self) -> Retained<NSString>;
 
         /// Setter for [`accessKey`][Self::accessKey].
@@ -202,7 +208,8 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLTextAreaElement {
         #[deprecated]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -217,7 +224,8 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLTextAreaElement {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

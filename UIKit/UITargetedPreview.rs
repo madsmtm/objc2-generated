@@ -31,7 +31,8 @@ extern_methods!(
             feature = "UIView",
             feature = "objc2-core-foundation"
         ))]
-        #[method_id(@__method_family Init initWithContainer:center:transform:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithContainer:center:transform:)]
         pub unsafe fn initWithContainer_center_transform(
             this: Allocated<Self>,
             container: &UIView,
@@ -44,21 +45,25 @@ extern_methods!(
             feature = "UIView",
             feature = "objc2-core-foundation"
         ))]
-        #[method_id(@__method_family Init initWithContainer:center:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithContainer:center:)]
         pub unsafe fn initWithContainer_center(
             this: Allocated<Self>,
             container: &UIView,
             center: CGPoint,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[method_id(@__method_family Other container)]
+        #[unsafe(method_family(none))]
+        #[method_id(container)]
         pub unsafe fn container(&self) -> Retained<UIView>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -94,7 +99,8 @@ extern_methods!(
             feature = "UIResponder",
             feature = "UIView"
         ))]
-        #[method_id(@__method_family Init initWithView:parameters:target:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithView:parameters:target:)]
         pub unsafe fn initWithView_parameters_target(
             this: Allocated<Self>,
             view: &UIView,
@@ -107,7 +113,8 @@ extern_methods!(
             feature = "UIResponder",
             feature = "UIView"
         ))]
-        #[method_id(@__method_family Init initWithView:parameters:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithView:parameters:)]
         pub unsafe fn initWithView_parameters(
             this: Allocated<Self>,
             view: &UIView,
@@ -115,31 +122,38 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[method_id(@__method_family Init initWithView:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithView:)]
         pub unsafe fn initWithView(this: Allocated<Self>, view: &UIView) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__method_family Other target)]
+        #[unsafe(method_family(none))]
+        #[method_id(target)]
         pub unsafe fn target(&self) -> Retained<UIPreviewTarget>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[method_id(@__method_family Other view)]
+        #[unsafe(method_family(none))]
+        #[method_id(view)]
         pub unsafe fn view(&self) -> Retained<UIView>;
 
         #[cfg(feature = "UIPreviewParameters")]
-        #[method_id(@__method_family Other parameters)]
+        #[unsafe(method_family(none))]
+        #[method_id(parameters)]
         pub unsafe fn parameters(&self) -> Retained<UIPreviewParameters>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(size)]
         pub unsafe fn size(&self) -> CGSize;
 
-        #[method_id(@__method_family Other retargetedPreviewWithTarget:)]
+        #[unsafe(method_family(none))]
+        #[method_id(retargetedPreviewWithTarget:)]
         pub unsafe fn retargetedPreviewWithTarget(
             &self,
             new_target: &UIPreviewTarget,

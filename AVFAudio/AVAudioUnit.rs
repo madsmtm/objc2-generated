@@ -97,15 +97,18 @@ extern_methods!(
         /// As with the audioUnit property, no operations that may conflict with state maintained by the
         /// engine should be performed directly on the audio unit. These include changing initialization
         /// state, stream formats, channel layouts or connections to other audio units.
-        #[method_id(@__method_family Other AUAudioUnit)]
+        #[unsafe(method_family(none))]
+        #[method_id(AUAudioUnit)]
         pub unsafe fn AUAudioUnit(&self) -> Retained<AUAudioUnit>;
 
         /// Name of the audio unit.
-        #[method_id(@__method_family Other name)]
+        #[unsafe(method_family(none))]
+        #[method_id(name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Manufacturer name of the audio unit.
-        #[method_id(@__method_family Other manufacturerName)]
+        #[unsafe(method_family(none))]
+        #[method_id(manufacturerName)]
         pub unsafe fn manufacturerName(&self) -> Retained<NSString>;
 
         /// Version number of the audio unit.
@@ -118,10 +121,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "AVAudioNode")]
     unsafe impl AVAudioUnit {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -23,7 +23,8 @@ unsafe impl NSObjectProtocol for CIFeature {}
 extern_methods!(
     unsafe impl CIFeature {
         /// The type of the feature.
-        #[method_id(@__method_family Other type)]
+        #[unsafe(method_family(none))]
+        #[method_id(type)]
         pub unsafe fn r#type(&self) -> Retained<NSString>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -36,10 +37,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIFeature {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -148,10 +151,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIFaceFeature {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -195,10 +200,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIRectangleFeature {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -244,11 +251,13 @@ extern_methods!(
         #[method(bottomRight)]
         pub unsafe fn bottomRight(&self) -> CGPoint;
 
-        #[method_id(@__method_family Other messageString)]
+        #[unsafe(method_family(none))]
+        #[method_id(messageString)]
         pub unsafe fn messageString(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "CIBarcodeDescriptor")]
-        #[method_id(@__method_family Other symbolDescriptor)]
+        #[unsafe(method_family(none))]
+        #[method_id(symbolDescriptor)]
         pub unsafe fn symbolDescriptor(&self) -> Option<Retained<CIQRCodeDescriptor>>;
     }
 );
@@ -256,10 +265,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIQRCodeFeature {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -295,7 +306,8 @@ extern_methods!(
         #[method(bottomRight)]
         pub unsafe fn bottomRight(&self) -> CGPoint;
 
-        #[method_id(@__method_family Other subFeatures)]
+        #[unsafe(method_family(none))]
+        #[method_id(subFeatures)]
         pub unsafe fn subFeatures(&self) -> Option<Retained<NSArray>>;
     }
 );
@@ -303,10 +315,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CITextFeature {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

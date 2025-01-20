@@ -34,7 +34,8 @@ extern_methods!(
     #[cfg(all(feature = "GCExtendedGamepad", feature = "GCPhysicalInputProfile"))]
     unsafe impl GCExtendedGamepadSnapshot {
         #[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
-        #[method_id(@__method_family Other snapshotData)]
+        #[unsafe(method_family(none))]
+        #[method_id(snapshotData)]
         pub unsafe fn snapshotData(&self) -> Retained<NSData>;
 
         /// Setter for [`snapshotData`][Self::snapshotData].
@@ -43,12 +44,14 @@ extern_methods!(
         pub unsafe fn setSnapshotData(&self, snapshot_data: &NSData);
 
         #[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
-        #[method_id(@__method_family Init initWithSnapshotData:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithSnapshotData:)]
         pub unsafe fn initWithSnapshotData(this: Allocated<Self>, data: &NSData) -> Retained<Self>;
 
         #[cfg(feature = "GCController")]
         #[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
-        #[method_id(@__method_family Init initWithController:snapshotData:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithController:snapshotData:)]
         pub unsafe fn initWithController_snapshotData(
             this: Allocated<Self>,
             controller: &GCController,
@@ -61,10 +64,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "GCExtendedGamepad", feature = "GCPhysicalInputProfile"))]
     unsafe impl GCExtendedGamepadSnapshot {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -266,31 +266,36 @@ extern_methods!(
         /// The top region for iTT format
         ///
         /// This region can be used in iTT format and it occupies the top 15% of the display area. The region uses LRTB, a line progresses left to right and the block extends from top to bottom. Each line is stacked with top justified.
-        #[method_id(@__method_family Other appleITTTopRegion)]
+        #[unsafe(method_family(none))]
+        #[method_id(appleITTTopRegion)]
         pub unsafe fn appleITTTopRegion() -> Retained<AVCaptionRegion>;
 
         /// The bottom region for iTT format
         ///
         /// This region can be used in iTT format and it occupies the bottom 15% of the display area. The region uses LRTB, a line progresses left to right and the block extends from top to bottom. Each line is stacked with bottom justified.
-        #[method_id(@__method_family Other appleITTBottomRegion)]
+        #[unsafe(method_family(none))]
+        #[method_id(appleITTBottomRegion)]
         pub unsafe fn appleITTBottomRegion() -> Retained<AVCaptionRegion>;
 
         /// The  left region for iTT format
         ///
         /// This region can be used in iTT format and it occupies the left 15% of the display area. The region uses TBRL, a line progresses top to bottom and the block extends from right to left. Each line is stacked with right justified.
-        #[method_id(@__method_family Other appleITTLeftRegion)]
+        #[unsafe(method_family(none))]
+        #[method_id(appleITTLeftRegion)]
         pub unsafe fn appleITTLeftRegion() -> Retained<AVCaptionRegion>;
 
         /// The right region for iTT format
         ///
         /// This region can be used in iTT format and it occupies the right 15% of the display area. The region uses TBRL, a line progresses top to bottom and the block extends from right to left. Each line is stacked with right justified.
-        #[method_id(@__method_family Other appleITTRightRegion)]
+        #[unsafe(method_family(none))]
+        #[method_id(appleITTRightRegion)]
         pub unsafe fn appleITTRightRegion() -> Retained<AVCaptionRegion>;
 
         /// The bottom region for SubRip Text (SRT) format
         ///
         /// This region can be used in SRT format and it occupies the entire video display area. The region uses LRTB, a line progresses left to right and the block extends from top to bottom. Each line is stacked with bottom justified.
-        #[method_id(@__method_family Other subRipTextBottomRegion)]
+        #[unsafe(method_family(none))]
+        #[method_id(subRipTextBottomRegion)]
         pub unsafe fn subRipTextBottomRegion() -> Retained<AVCaptionRegion>;
 
         /// Identifier for the region
@@ -301,7 +306,8 @@ extern_methods!(
         ///
         /// When regionIdentifier is not nil, two regions are same if and only if the region identifier is equal. It is a
         /// client's responsibility to ensure these AVCaptionRegion objects have the same properties.
-        #[method_id(@__method_family Other identifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(identifier)]
         pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -350,7 +356,8 @@ extern_methods!(
         /// NSMutableCopying protocol method override
         ///
         /// This method throws an exception if the caption region contains an identifier.
-        #[method_id(@__method_family MutableCopy mutableCopyWithZone:)]
+        #[unsafe(method_family(mutableCopy))]
+        #[method_id(mutableCopyWithZone:)]
         pub unsafe fn mutableCopyWithZone(&self, zone: *mut NSZone) -> Retained<AnyObject>;
     }
 );
@@ -358,10 +365,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVCaptionRegion {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -396,11 +405,13 @@ unsafe impl NSSecureCoding for AVMutableCaptionRegion {}
 extern_methods!(
     unsafe impl AVMutableCaptionRegion {
         /// Create a region object without any properties.
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Create a region object with the identifier.
-        #[method_id(@__method_family Init initWithIdentifier:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,
             identifier: &NSString,
@@ -458,7 +469,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVMutableCaptionRegion {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -516,10 +528,12 @@ unsafe impl NSSecureCoding for AVCaption {}
 
 extern_methods!(
     unsafe impl AVCaption {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-media")]
@@ -530,7 +544,8 @@ extern_methods!(
         /// Parameter `timeRange`: The time range for the new caption object.
         ///
         /// Returns: An instance of AVCaption that carries the given text and time range.
-        #[method_id(@__method_family Init initWithText:timeRange:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithText:timeRange:)]
         pub unsafe fn initWithText_timeRange(
             this: Allocated<Self>,
             text: &NSString,
@@ -564,7 +579,8 @@ extern_methods!(
         /// Characters: U+2501, U+2503, U+250F, U+2513, U+2517, U+251B, U+2588, U+266A
         ///
         /// CEA608 closed captions don't support the line breaking character sequences (LF, CR, or CF+LF).
-        #[method_id(@__method_family Other text)]
+        #[unsafe(method_family(none))]
+        #[method_id(text)]
         pub unsafe fn text(&self) -> Retained<NSString>;
 
         #[cfg(feature = "objc2-core-media")]
@@ -611,7 +627,8 @@ extern_methods!(
         /// The text content of the caption.
         ///
         /// All styling information is cleared on setting this property.
-        #[method_id(@__method_family Other text)]
+        #[unsafe(method_family(none))]
+        #[method_id(text)]
         pub unsafe fn text(&self) -> Retained<NSString>;
 
         /// Setter for [`text`][Self::text].
@@ -633,10 +650,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `AVCaption`
     unsafe impl AVMutableCaption {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-media")]
@@ -647,7 +666,8 @@ extern_methods!(
         /// Parameter `timeRange`: The time range for the new caption object.
         ///
         /// Returns: An instance of AVCaption that carries the given text and time range.
-        #[method_id(@__method_family Init initWithText:timeRange:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithText:timeRange:)]
         pub unsafe fn initWithText_timeRange(
             this: Allocated<Self>,
             text: &NSString,
@@ -840,7 +860,8 @@ extern_methods!(
         /// Cyan    (RGB:0.0, 1.0, 1.0)
         /// Magenta    (RGB:1.0, 0.0, 1.0)
         /// Black    (RGB:0.0, 0.0, 0.0)
-        #[method_id(@__method_family Other textColorAtIndex:range:)]
+        #[unsafe(method_family(none))]
+        #[method_id(textColorAtIndex:range:)]
         pub unsafe fn textColorAtIndex_range(
             &self,
             index: NSInteger,
@@ -863,7 +884,8 @@ extern_methods!(
         /// Cyan    (RGB:0.0, 1.0, 1.0)
         /// Magenta    (RGB:1.0, 0.0, 1.0)
         /// Black    (RGB:0.0, 0.0, 0.0)
-        #[method_id(@__method_family Other backgroundColorAtIndex:range:)]
+        #[unsafe(method_family(none))]
+        #[method_id(backgroundColorAtIndex:range:)]
         pub unsafe fn backgroundColorAtIndex_range(
             &self,
             index: NSInteger,
@@ -927,7 +949,8 @@ extern_methods!(
         /// It returns nil when the text doesn't have a ruby at the position.
         ///
         /// CEA608 closed captions ignore this property.
-        #[method_id(@__method_family Other rubyAtIndex:range:)]
+        #[unsafe(method_family(none))]
+        #[method_id(rubyAtIndex:range:)]
         pub unsafe fn rubyAtIndex_range(
             &self,
             index: NSInteger,
@@ -942,7 +965,8 @@ extern_methods!(
         /// The region where the caption is placed.
         ///
         /// It can be nil when the underlying caption format doesn't support or use regions.
-        #[method_id(@__method_family Other region)]
+        #[unsafe(method_family(none))]
+        #[method_id(region)]
         pub unsafe fn region(&self) -> Option<Retained<AVCaptionRegion>>;
 
         /// The text alignment within the containing region.
@@ -1067,7 +1091,8 @@ extern_methods!(
         ///
         /// It can be nil when the underlying caption format doesn't support or use regions.
         /// This property throws an exception if region has unrecognizeable units.
-        #[method_id(@__method_family Other region)]
+        #[unsafe(method_family(none))]
+        #[method_id(region)]
         pub unsafe fn region(&self) -> Retained<AVCaptionRegion>;
 
         /// Setter for [`region`][Self::region].
@@ -1199,16 +1224,20 @@ unsafe impl NSSecureCoding for AVCaptionRuby {}
 
 extern_methods!(
     unsafe impl AVCaptionRuby {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithText:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithText:)]
         pub unsafe fn initWithText(this: Allocated<Self>, text: &NSString) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithText:position:alignment:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithText:position:alignment:)]
         pub unsafe fn initWithText_position_alignment(
             this: Allocated<Self>,
             text: &NSString,
@@ -1217,7 +1246,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The ruby text
-        #[method_id(@__method_family Other text)]
+        #[unsafe(method_family(none))]
+        #[method_id(text)]
         pub unsafe fn text(&self) -> Retained<NSString>;
 
         /// The position of ruby text with respect to the ruby base.

@@ -106,13 +106,16 @@ unsafe impl NSUserInterfaceItemIdentification for NSMenu {}
 
 extern_methods!(
     unsafe impl NSMenu {
-        #[method_id(@__method_family Init initWithTitle:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithTitle:)]
         pub unsafe fn initWithTitle(this: Allocated<Self>, title: &NSString) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
-        #[method_id(@__method_family Other title)]
+        #[unsafe(method_family(none))]
+        #[method_id(title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
@@ -156,7 +159,8 @@ extern_methods!(
         #[method(menuBarVisible)]
         pub unsafe fn menuBarVisible(mtm: MainThreadMarker) -> bool;
 
-        #[method_id(@__method_family Other supermenu)]
+        #[unsafe(method_family(none))]
+        #[method_id(supermenu)]
         pub unsafe fn supermenu(&self) -> Option<Retained<NSMenu>>;
 
         /// Setter for [`supermenu`][Self::supermenu].
@@ -172,7 +176,8 @@ extern_methods!(
         pub fn addItem(&self, new_item: &NSMenuItem);
 
         #[cfg(feature = "NSMenuItem")]
-        #[method_id(@__method_family Other insertItemWithTitle:action:keyEquivalent:atIndex:)]
+        #[unsafe(method_family(none))]
+        #[method_id(insertItemWithTitle:action:keyEquivalent:atIndex:)]
         pub unsafe fn insertItemWithTitle_action_keyEquivalent_atIndex(
             &self,
             string: &NSString,
@@ -182,7 +187,8 @@ extern_methods!(
         ) -> Retained<NSMenuItem>;
 
         #[cfg(feature = "NSMenuItem")]
-        #[method_id(@__method_family Other addItemWithTitle:action:keyEquivalent:)]
+        #[unsafe(method_family(none))]
+        #[method_id(addItemWithTitle:action:keyEquivalent:)]
         pub unsafe fn addItemWithTitle_action_keyEquivalent(
             &self,
             string: &NSString,
@@ -205,7 +211,8 @@ extern_methods!(
         pub unsafe fn removeAllItems(&self);
 
         #[cfg(feature = "NSMenuItem")]
-        #[method_id(@__method_family Other itemArray)]
+        #[unsafe(method_family(none))]
+        #[method_id(itemArray)]
         pub unsafe fn itemArray(&self) -> Retained<NSArray<NSMenuItem>>;
 
         #[cfg(feature = "NSMenuItem")]
@@ -217,7 +224,8 @@ extern_methods!(
         pub unsafe fn numberOfItems(&self) -> NSInteger;
 
         #[cfg(feature = "NSMenuItem")]
-        #[method_id(@__method_family Other itemAtIndex:)]
+        #[unsafe(method_family(none))]
+        #[method_id(itemAtIndex:)]
         pub unsafe fn itemAtIndex(&self, index: NSInteger) -> Option<Retained<NSMenuItem>>;
 
         #[cfg(feature = "NSMenuItem")]
@@ -247,11 +255,13 @@ extern_methods!(
         ) -> NSInteger;
 
         #[cfg(feature = "NSMenuItem")]
-        #[method_id(@__method_family Other itemWithTitle:)]
+        #[unsafe(method_family(none))]
+        #[method_id(itemWithTitle:)]
         pub unsafe fn itemWithTitle(&self, title: &NSString) -> Option<Retained<NSMenuItem>>;
 
         #[cfg(feature = "NSMenuItem")]
-        #[method_id(@__method_family Other itemWithTag:)]
+        #[unsafe(method_family(none))]
+        #[method_id(itemWithTag:)]
         pub unsafe fn itemWithTag(&self, tag: NSInteger) -> Option<Retained<NSMenuItem>>;
 
         #[method(autoenablesItems)]
@@ -275,7 +285,8 @@ extern_methods!(
         #[method(performActionForItemAtIndex:)]
         pub unsafe fn performActionForItemAtIndex(&self, index: NSInteger);
 
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSMenuDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -294,7 +305,8 @@ extern_methods!(
         pub unsafe fn cancelTrackingWithoutAnimation(&self);
 
         #[cfg(feature = "NSMenuItem")]
-        #[method_id(@__method_family Other highlightedItem)]
+        #[unsafe(method_family(none))]
+        #[method_id(highlightedItem)]
         pub unsafe fn highlightedItem(&self) -> Option<Retained<NSMenuItem>>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -310,7 +322,8 @@ extern_methods!(
         pub unsafe fn size(&self) -> NSSize;
 
         #[cfg(feature = "NSFont")]
-        #[method_id(@__method_family Other font)]
+        #[unsafe(method_family(none))]
+        #[method_id(font)]
         pub unsafe fn font(&self) -> Option<Retained<NSFont>>;
 
         #[cfg(feature = "NSFont")]
@@ -359,10 +372,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSMenu {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -375,7 +390,8 @@ extern_methods!(
         /// tags using the provided array of colors and optional titles.
         ///
         /// Returns: An autoconfigured palette menu.
-        #[method_id(@__method_family Other paletteMenuWithColors:titles:selectionHandler:)]
+        #[unsafe(method_family(none))]
+        #[method_id(paletteMenuWithColors:titles:selectionHandler:)]
         pub unsafe fn paletteMenuWithColors_titles_selectionHandler(
             colors: &NSArray<NSColor>,
             item_titles: &NSArray<NSString>,
@@ -395,7 +411,8 @@ extern_methods!(
         ///
         ///
         /// Returns: An autoconfigured palette menu.
-        #[method_id(@__method_family Other paletteMenuWithColors:titles:templateImage:selectionHandler:)]
+        #[unsafe(method_family(none))]
+        #[method_id(paletteMenuWithColors:titles:templateImage:selectionHandler:)]
         pub unsafe fn paletteMenuWithColors_titles_templateImage_selectionHandler(
             colors: &NSArray<NSColor>,
             item_titles: &NSArray<NSString>,
@@ -437,7 +454,8 @@ extern_methods!(
         /// Note: This property is settable. Setting `selectedItems` will
         /// select any items that are contained in the provided array, and
         /// deselect any previously selected items that are not in the array.
-        #[method_id(@__method_family Other selectedItems)]
+        #[unsafe(method_family(none))]
+        #[method_id(selectedItems)]
         pub unsafe fn selectedItems(&self) -> Retained<NSArray<NSMenuItem>>;
 
         #[cfg(feature = "NSMenuItem")]
@@ -591,7 +609,8 @@ extern_methods!(
         pub unsafe fn setMenuRepresentation(&self, menu_rep: Option<&AnyObject>);
 
         #[deprecated]
-        #[method_id(@__method_family Other menuRepresentation)]
+        #[unsafe(method_family(none))]
+        #[method_id(menuRepresentation)]
         pub unsafe fn menuRepresentation(&self) -> Option<Retained<AnyObject>>;
 
         #[deprecated]
@@ -599,7 +618,8 @@ extern_methods!(
         pub unsafe fn setContextMenuRepresentation(&self, menu_rep: Option<&AnyObject>);
 
         #[deprecated]
-        #[method_id(@__method_family Other contextMenuRepresentation)]
+        #[unsafe(method_family(none))]
+        #[method_id(contextMenuRepresentation)]
         pub unsafe fn contextMenuRepresentation(&self) -> Option<Retained<AnyObject>>;
 
         #[deprecated]
@@ -607,7 +627,8 @@ extern_methods!(
         pub unsafe fn setTearOffMenuRepresentation(&self, menu_rep: Option<&AnyObject>);
 
         #[deprecated]
-        #[method_id(@__method_family Other tearOffMenuRepresentation)]
+        #[unsafe(method_family(none))]
+        #[method_id(tearOffMenuRepresentation)]
         pub unsafe fn tearOffMenuRepresentation(&self) -> Option<Retained<AnyObject>>;
 
         #[deprecated]
@@ -619,7 +640,8 @@ extern_methods!(
         pub unsafe fn setMenuZone(zone: *mut NSZone, mtm: MainThreadMarker);
 
         #[deprecated]
-        #[method_id(@__method_family Other attachedMenu)]
+        #[unsafe(method_family(none))]
+        #[method_id(attachedMenu)]
         pub unsafe fn attachedMenu(&self) -> Option<Retained<NSMenu>>;
 
         #[deprecated]

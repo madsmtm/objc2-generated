@@ -21,16 +21,19 @@ unsafe impl NSProgressReporting for WKDownload {}
 
 extern_methods!(
     unsafe impl WKDownload {
-        #[method_id(@__method_family Other originalRequest)]
+        #[unsafe(method_family(none))]
+        #[method_id(originalRequest)]
         pub unsafe fn originalRequest(&self) -> Option<Retained<NSURLRequest>>;
 
         #[cfg(all(feature = "WKWebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
-        #[method_id(@__method_family Other webView)]
+        #[unsafe(method_family(none))]
+        #[method_id(webView)]
         pub unsafe fn webView(&self) -> Option<Retained<WKWebView>>;
 
         #[cfg(feature = "WKDownloadDelegate")]
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn WKDownloadDelegate>>>;
 
         #[cfg(feature = "WKDownloadDelegate")]
@@ -43,7 +46,8 @@ extern_methods!(
         pub unsafe fn isUserInitiated(&self) -> bool;
 
         #[cfg(feature = "WKFrameInfo")]
-        #[method_id(@__method_family Other originatingFrame)]
+        #[unsafe(method_family(none))]
+        #[method_id(originatingFrame)]
         pub unsafe fn originatingFrame(&self) -> Retained<WKFrameInfo>;
 
         #[cfg(feature = "block2")]
@@ -58,10 +62,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKDownload {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

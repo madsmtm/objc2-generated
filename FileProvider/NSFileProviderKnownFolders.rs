@@ -26,7 +26,8 @@ extern_methods!(
         /// When replicating a known folder the system will reuse a folder located at the specified
         /// filename within the parent if one exists, or create a new item at this location if none
         /// exists yet.
-        #[method_id(@__method_family Init initWithParentItemIdentifier:filename:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithParentItemIdentifier:filename:)]
         pub unsafe fn initWithParentItemIdentifier_filename(
             this: Allocated<Self>,
             parent_item_identifier: &NSFileProviderItemIdentifier,
@@ -38,7 +39,8 @@ extern_methods!(
         ///
         /// If the known folder already exists on the server, the provider can specify the exact identifier
         /// of the item that needs to be used to back the known folder.
-        #[method_id(@__method_family Init initWithExistingItemIdentifier:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithExistingItemIdentifier:)]
         pub unsafe fn initWithExistingItemIdentifier(
             this: Allocated<Self>,
             existing_item_identifier: &NSFileProviderItemIdentifier,
@@ -49,10 +51,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSFileProviderKnownFolderLocation {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -92,7 +96,8 @@ extern_methods!(
         /// Candidate item for ~/Desktop
         ///
         /// For user experience reasons, it is strongly recommended to name the target folder "Desktop".
-        #[method_id(@__method_family Other desktopLocation)]
+        #[unsafe(method_family(none))]
+        #[method_id(desktopLocation)]
         pub unsafe fn desktopLocation(&self)
             -> Option<Retained<NSFileProviderKnownFolderLocation>>;
 
@@ -106,7 +111,8 @@ extern_methods!(
         /// Candidate item for ~/Documents
         ///
         /// For user experience reasons, it is strongly recommended to name the target folder "Documents".
-        #[method_id(@__method_family Other documentsLocation)]
+        #[unsafe(method_family(none))]
+        #[method_id(documentsLocation)]
         pub unsafe fn documentsLocation(
             &self,
         ) -> Option<Retained<NSFileProviderKnownFolderLocation>>;
@@ -118,7 +124,8 @@ extern_methods!(
             documents_location: Option<&NSFileProviderKnownFolderLocation>,
         );
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -126,7 +133,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSFileProviderKnownFolderLocations {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

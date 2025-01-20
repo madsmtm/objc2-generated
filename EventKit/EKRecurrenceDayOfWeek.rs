@@ -49,12 +49,14 @@ extern_methods!(
     unsafe impl EKRecurrenceDayOfWeek {
         #[cfg(feature = "EKTypes")]
         /// Creates an autoreleased object with a day of the week and week number of zero.
-        #[method_id(@__method_family Other dayOfWeek:)]
+        #[unsafe(method_family(none))]
+        #[method_id(dayOfWeek:)]
         pub unsafe fn dayOfWeek(day_of_the_week: EKWeekday) -> Retained<Self>;
 
         #[cfg(feature = "EKTypes")]
         /// Creates an autoreleased object with a specific day of week and week number.
-        #[method_id(@__method_family Other dayOfWeek:weekNumber:)]
+        #[unsafe(method_family(none))]
+        #[method_id(dayOfWeek:weekNumber:)]
         pub unsafe fn dayOfWeek_weekNumber(
             day_of_the_week: EKWeekday,
             week_number: NSInteger,
@@ -62,7 +64,8 @@ extern_methods!(
 
         #[cfg(feature = "EKTypes")]
         /// Creates an day-of-week object with a specific day of week and week number.
-        #[method_id(@__method_family Init initWithDayOfTheWeek:weekNumber:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDayOfTheWeek:weekNumber:)]
         pub unsafe fn initWithDayOfTheWeek_weekNumber(
             this: Allocated<Self>,
             day_of_the_week: EKWeekday,
@@ -83,10 +86,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl EKRecurrenceDayOfWeek {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

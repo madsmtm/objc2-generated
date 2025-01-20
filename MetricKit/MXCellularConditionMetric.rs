@@ -36,7 +36,8 @@ extern_methods!(
         /// In the event that no data for any buckets is available, the histogram data will be empty.
         ///
         /// Dimensioned as MXUnitSignalBars.
-        #[method_id(@__method_family Other histogrammedCellularConditionTime)]
+        #[unsafe(method_family(none))]
+        #[method_id(histogrammedCellularConditionTime)]
         pub unsafe fn histogrammedCellularConditionTime(
             &self,
         ) -> Retained<MXHistogram<MXUnitSignalBars>>;
@@ -47,10 +48,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MXMetric")]
     unsafe impl MXCellularConditionMetric {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

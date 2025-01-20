@@ -39,17 +39,20 @@ extern_methods!(
     unsafe impl NSCIImageRep {
         #[cfg(feature = "objc2-core-image")]
         #[cfg(target_vendor = "apple")]
-        #[method_id(@__method_family Other imageRepWithCIImage:)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageRepWithCIImage:)]
         pub unsafe fn imageRepWithCIImage(image: &CIImage) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-image")]
         #[cfg(target_vendor = "apple")]
-        #[method_id(@__method_family Init initWithCIImage:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCIImage:)]
         pub unsafe fn initWithCIImage(this: Allocated<Self>, image: &CIImage) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-image")]
         #[cfg(target_vendor = "apple")]
-        #[method_id(@__method_family Other CIImage)]
+        #[unsafe(method_family(none))]
+        #[method_id(CIImage)]
         pub unsafe fn CIImage(&self) -> Retained<CIImage>;
     }
 );
@@ -58,10 +61,12 @@ extern_methods!(
     /// Methods declared on superclass `NSImageRep`
     #[cfg(feature = "NSImageRep")]
     unsafe impl NSCIImageRep {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -73,7 +78,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSImageRep")]
     unsafe impl NSCIImageRep {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -83,7 +89,8 @@ extern_category!(
     #[doc(alias = "NSAppKitAdditions")]
     pub unsafe trait CIImageNSAppKitAdditions {
         #[cfg(all(feature = "NSBitmapImageRep", feature = "NSImageRep"))]
-        #[method_id(@__method_family Init initWithBitmapImageRep:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithBitmapImageRep:)]
         unsafe fn initWithBitmapImageRep(
             this: Allocated<Self>,
             bitmap_image_rep: &NSBitmapImageRep,

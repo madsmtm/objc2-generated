@@ -41,32 +41,41 @@ extern_methods!(
     unsafe impl CNPostalAddress {
         /// multi-street address is delimited with carriage returns “
         /// \n”
-        #[method_id(@__method_family Other street)]
+        #[unsafe(method_family(none))]
+        #[method_id(street)]
         pub unsafe fn street(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other subLocality)]
+        #[unsafe(method_family(none))]
+        #[method_id(subLocality)]
         pub unsafe fn subLocality(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other city)]
+        #[unsafe(method_family(none))]
+        #[method_id(city)]
         pub unsafe fn city(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other subAdministrativeArea)]
+        #[unsafe(method_family(none))]
+        #[method_id(subAdministrativeArea)]
         pub unsafe fn subAdministrativeArea(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other state)]
+        #[unsafe(method_family(none))]
+        #[method_id(state)]
         pub unsafe fn state(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other postalCode)]
+        #[unsafe(method_family(none))]
+        #[method_id(postalCode)]
         pub unsafe fn postalCode(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other country)]
+        #[unsafe(method_family(none))]
+        #[method_id(country)]
         pub unsafe fn country(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other ISOCountryCode)]
+        #[unsafe(method_family(none))]
+        #[method_id(ISOCountryCode)]
         pub unsafe fn ISOCountryCode(&self) -> Retained<NSString>;
 
         /// Returns a user displayable property name.
-        #[method_id(@__method_family Other localizedStringForKey:)]
+        #[unsafe(method_family(none))]
+        #[method_id(localizedStringForKey:)]
         pub unsafe fn localizedStringForKey(key: &NSString) -> Retained<NSString>;
     }
 );
@@ -74,10 +83,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CNPostalAddress {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

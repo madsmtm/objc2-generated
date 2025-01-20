@@ -91,10 +91,12 @@ unsafe impl NSUserInterfaceValidations for NSDocument {}
 
 extern_methods!(
     unsafe impl NSDocument {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithType:error:_)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithType:error:_)]
         pub unsafe fn initWithType_error(
             this: Allocated<Self>,
             type_name: &NSString,
@@ -106,14 +108,16 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> bool;
 
-        #[method_id(@__method_family Init initWithContentsOfURL:ofType:error:_)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithContentsOfURL:ofType:error:_)]
         pub unsafe fn initWithContentsOfURL_ofType_error(
             this: Allocated<Self>,
             url: &NSURL,
             type_name: &NSString,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[method_id(@__method_family Init initForURL:withContentsOfURL:ofType:error:_)]
+        #[unsafe(method_family(init))]
+        #[method_id(initForURL:withContentsOfURL:ofType:error:_)]
         pub unsafe fn initForURL_withContentsOfURL_ofType_error(
             this: Allocated<Self>,
             url_or_nil: Option<&NSURL>,
@@ -121,21 +125,24 @@ extern_methods!(
             type_name: &NSString,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[method_id(@__method_family Other fileType)]
+        #[unsafe(method_family(none))]
+        #[method_id(fileType)]
         pub unsafe fn fileType(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`fileType`][Self::fileType].
         #[method(setFileType:)]
         pub unsafe fn setFileType(&self, file_type: Option<&NSString>);
 
-        #[method_id(@__method_family Other fileURL)]
+        #[unsafe(method_family(none))]
+        #[method_id(fileURL)]
         pub unsafe fn fileURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`fileURL`][Self::fileURL].
         #[method(setFileURL:)]
         pub unsafe fn setFileURL(&self, file_url: Option<&NSURL>);
 
-        #[method_id(@__method_family Other fileModificationDate)]
+        #[unsafe(method_family(none))]
+        #[method_id(fileModificationDate)]
         pub unsafe fn fileModificationDate(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`fileModificationDate`][Self::fileModificationDate].
@@ -223,13 +230,15 @@ extern_methods!(
             type_name: &NSString,
         ) -> Result<(), Retained<NSError>>;
 
-        #[method_id(@__method_family Other fileWrapperOfType:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(fileWrapperOfType:error:_)]
         pub unsafe fn fileWrapperOfType_error(
             &self,
             type_name: &NSString,
         ) -> Result<Retained<NSFileWrapper>, Retained<NSError>>;
 
-        #[method_id(@__method_family Other dataOfType:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(dataOfType:error:_)]
         pub unsafe fn dataOfType_error(
             &self,
             type_name: &NSString,
@@ -258,7 +267,8 @@ extern_methods!(
             absolute_original_contents_url: Option<&NSURL>,
         ) -> Result<(), Retained<NSError>>;
 
-        #[method_id(@__method_family Other fileAttributesToWriteToURL:ofType:forSaveOperation:originalContentsURL:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(fileAttributesToWriteToURL:ofType:forSaveOperation:originalContentsURL:error:_)]
         pub unsafe fn fileAttributesToWriteToURL_ofType_forSaveOperation_originalContentsURL_error(
             &self,
             url: &NSURL,
@@ -270,7 +280,8 @@ extern_methods!(
         #[method(keepBackupFile)]
         pub unsafe fn keepBackupFile(&self) -> bool;
 
-        #[method_id(@__method_family Other backupFileURL)]
+        #[unsafe(method_family(none))]
+        #[method_id(backupFileURL)]
         pub unsafe fn backupFileURL(&self) -> Option<Retained<NSURL>>;
 
         #[method(saveDocument:)]
@@ -314,7 +325,8 @@ extern_methods!(
         #[method(fileNameExtensionWasHiddenInLastRunSavePanel)]
         pub unsafe fn fileNameExtensionWasHiddenInLastRunSavePanel(&self) -> bool;
 
-        #[method_id(@__method_family Other fileTypeFromLastRunSavePanel)]
+        #[unsafe(method_family(none))]
+        #[method_id(fileTypeFromLastRunSavePanel)]
         pub unsafe fn fileTypeFromLastRunSavePanel(&self) -> Option<Retained<NSString>>;
 
         #[method(saveToURL:ofType:forSaveOperation:delegate:didSaveSelector:contextInfo:)]
@@ -393,10 +405,12 @@ extern_methods!(
         #[method(autosavesDrafts)]
         pub unsafe fn autosavesDrafts(mtm: MainThreadMarker) -> bool;
 
-        #[method_id(@__method_family Other autosavingFileType)]
+        #[unsafe(method_family(none))]
+        #[method_id(autosavingFileType)]
         pub unsafe fn autosavingFileType(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(@__method_family Other autosavedContentsFileURL)]
+        #[unsafe(method_family(none))]
+        #[method_id(autosavedContentsFileURL)]
         pub unsafe fn autosavedContentsFileURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`autosavedContentsFileURL`][Self::autosavedContentsFileURL].
@@ -428,7 +442,8 @@ extern_methods!(
             context_info: *mut c_void,
         );
 
-        #[method_id(@__method_family Other duplicateAndReturnError:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(duplicateAndReturnError:_)]
         pub unsafe fn duplicateAndReturnError(
             &self,
         ) -> Result<Retained<NSDocument>, Retained<NSError>>;
@@ -516,7 +531,8 @@ extern_methods!(
         pub unsafe fn shouldChangePrintInfo(&self, new_print_info: &NSPrintInfo) -> bool;
 
         #[cfg(feature = "NSPrintInfo")]
-        #[method_id(@__method_family Other printInfo)]
+        #[unsafe(method_family(none))]
+        #[method_id(printInfo)]
         pub unsafe fn printInfo(&self) -> Retained<NSPrintInfo>;
 
         #[cfg(feature = "NSPrintInfo")]
@@ -539,7 +555,8 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSPrintInfo", feature = "NSPrintOperation"))]
-        #[method_id(@__method_family Other printOperationWithSettings:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(printOperationWithSettings:error:_)]
         pub unsafe fn printOperationWithSettings_error(
             &self,
             print_settings: &NSDictionary<NSPrintInfoAttributeKey, AnyObject>,
@@ -559,7 +576,8 @@ extern_methods!(
         pub unsafe fn saveDocumentToPDF(&self, sender: Option<&AnyObject>);
 
         #[cfg(feature = "NSPrintOperation")]
-        #[method_id(@__method_family Other PDFPrintOperation)]
+        #[unsafe(method_family(none))]
+        #[method_id(PDFPrintOperation)]
         pub unsafe fn PDFPrintOperation(&self) -> Retained<NSPrintOperation>;
 
         #[method(allowsDocumentSharing)]
@@ -581,7 +599,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSPreviewRepresentingActivityItem")]
-        #[method_id(@__method_family Other previewRepresentableActivityItems)]
+        #[unsafe(method_family(none))]
+        #[method_id(previewRepresentableActivityItems)]
         pub unsafe fn previewRepresentableActivityItems(
             &self,
         ) -> Option<Retained<NSArray<ProtocolObject<dyn NSPreviewRepresentableActivityItem>>>>;
@@ -605,7 +624,8 @@ extern_methods!(
         #[method(updateChangeCount:)]
         pub unsafe fn updateChangeCount(&self, change: NSDocumentChangeType);
 
-        #[method_id(@__method_family Other changeCountTokenForSaveOperation:)]
+        #[unsafe(method_family(none))]
+        #[method_id(changeCountTokenForSaveOperation:)]
         pub unsafe fn changeCountTokenForSaveOperation(
             &self,
             save_operation: NSSaveOperationType,
@@ -618,7 +638,8 @@ extern_methods!(
             save_operation: NSSaveOperationType,
         );
 
-        #[method_id(@__method_family Other undoManager)]
+        #[unsafe(method_family(none))]
+        #[method_id(undoManager)]
         pub unsafe fn undoManager(&self) -> Option<Retained<NSUndoManager>>;
 
         /// Setter for [`undoManager`][Self::undoManager].
@@ -646,7 +667,8 @@ extern_methods!(
         #[method(presentError:)]
         pub unsafe fn presentError(&self, error: &NSError) -> bool;
 
-        #[method_id(@__method_family Other willPresentError:)]
+        #[unsafe(method_family(none))]
+        #[method_id(willPresentError:)]
         pub unsafe fn willPresentError(&self, error: &NSError) -> Retained<NSError>;
 
         #[method(willNotPresentError:)]
@@ -656,7 +678,8 @@ extern_methods!(
         pub unsafe fn makeWindowControllers(&self);
 
         #[cfg(feature = "NSNib")]
-        #[method_id(@__method_family Other windowNibName)]
+        #[unsafe(method_family(none))]
+        #[method_id(windowNibName)]
         pub unsafe fn windowNibName(&self) -> Option<Retained<NSNibName>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSWindowController"))]
@@ -683,7 +706,8 @@ extern_methods!(
         pub unsafe fn showWindows(&self);
 
         #[cfg(all(feature = "NSResponder", feature = "NSWindowController"))]
-        #[method_id(@__method_family Other windowControllers)]
+        #[unsafe(method_family(none))]
+        #[method_id(windowControllers)]
         pub unsafe fn windowControllers(&self) -> Retained<NSArray<NSWindowController>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSWindowController"))]
@@ -696,32 +720,39 @@ extern_methods!(
             context_info: *mut c_void,
         );
 
-        #[method_id(@__method_family Other displayName)]
+        #[unsafe(method_family(none))]
+        #[method_id(displayName)]
         pub unsafe fn displayName(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other defaultDraftName)]
+        #[unsafe(method_family(none))]
+        #[method_id(defaultDraftName)]
         pub unsafe fn defaultDraftName(&self) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
-        #[method_id(@__method_family Other windowForSheet)]
+        #[unsafe(method_family(none))]
+        #[method_id(windowForSheet)]
         pub unsafe fn windowForSheet(&self) -> Option<Retained<NSWindow>>;
 
-        #[method_id(@__method_family Other readableTypes)]
+        #[unsafe(method_family(none))]
+        #[method_id(readableTypes)]
         pub unsafe fn readableTypes(mtm: MainThreadMarker) -> Retained<NSArray<NSString>>;
 
-        #[method_id(@__method_family Other writableTypes)]
+        #[unsafe(method_family(none))]
+        #[method_id(writableTypes)]
         pub unsafe fn writableTypes(mtm: MainThreadMarker) -> Retained<NSArray<NSString>>;
 
         #[method(isNativeType:)]
         pub unsafe fn isNativeType(r#type: &NSString, mtm: MainThreadMarker) -> bool;
 
-        #[method_id(@__method_family Other writableTypesForSaveOperation:)]
+        #[unsafe(method_family(none))]
+        #[method_id(writableTypesForSaveOperation:)]
         pub unsafe fn writableTypesForSaveOperation(
             &self,
             save_operation: NSSaveOperationType,
         ) -> Retained<NSArray<NSString>>;
 
-        #[method_id(@__method_family Other fileNameExtensionForType:saveOperation:)]
+        #[unsafe(method_family(none))]
+        #[method_id(fileNameExtensionForType:saveOperation:)]
         pub unsafe fn fileNameExtensionForType_saveOperation(
             &self,
             type_name: &NSString,
@@ -738,10 +769,12 @@ extern_methods!(
         #[method(usesUbiquitousStorage)]
         pub unsafe fn usesUbiquitousStorage(mtm: MainThreadMarker) -> bool;
 
-        #[method_id(@__method_family Other presentedItemURL)]
+        #[unsafe(method_family(none))]
+        #[method_id(presentedItemURL)]
         pub unsafe fn presentedItemURL(&self) -> Option<Retained<NSURL>>;
 
-        #[method_id(@__method_family Other observedPresentedItemUbiquityAttributes)]
+        #[unsafe(method_family(none))]
+        #[method_id(observedPresentedItemUbiquityAttributes)]
         pub unsafe fn observedPresentedItemUbiquityAttributes(
             &self,
         ) -> Retained<NSSet<NSURLResourceKey>>;
@@ -800,7 +833,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSDocument {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -822,14 +856,16 @@ extern_methods!(
         ) -> Result<(), Retained<NSError>>;
 
         #[deprecated]
-        #[method_id(@__method_family Other dataRepresentationOfType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(dataRepresentationOfType:)]
         pub unsafe fn dataRepresentationOfType(
             &self,
             r#type: &NSString,
         ) -> Option<Retained<NSData>>;
 
         #[deprecated]
-        #[method_id(@__method_family Other fileAttributesToWriteToFile:ofType:saveOperation:)]
+        #[unsafe(method_family(none))]
+        #[method_id(fileAttributesToWriteToFile:ofType:saveOperation:)]
         pub unsafe fn fileAttributesToWriteToFile_ofType_saveOperation(
             &self,
             full_document_path: &NSString,
@@ -838,18 +874,21 @@ extern_methods!(
         ) -> Option<Retained<NSDictionary>>;
 
         #[deprecated]
-        #[method_id(@__method_family Other fileName)]
+        #[unsafe(method_family(none))]
+        #[method_id(fileName)]
         pub unsafe fn fileName(&self) -> Option<Retained<NSString>>;
 
         #[deprecated]
-        #[method_id(@__method_family Other fileWrapperRepresentationOfType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(fileWrapperRepresentationOfType:)]
         pub unsafe fn fileWrapperRepresentationOfType(
             &self,
             r#type: &NSString,
         ) -> Option<Retained<NSFileWrapper>>;
 
         #[deprecated]
-        #[method_id(@__method_family Init initWithContentsOfFile:ofType:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithContentsOfFile:ofType:)]
         pub unsafe fn initWithContentsOfFile_ofType(
             this: Allocated<Self>,
             absolute_path: &NSString,
@@ -857,7 +896,8 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[deprecated]
-        #[method_id(@__method_family Init initWithContentsOfURL:ofType:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithContentsOfURL:ofType:)]
         pub unsafe fn initWithContentsOfURL_ofType(
             this: Allocated<Self>,
             url: &NSURL,

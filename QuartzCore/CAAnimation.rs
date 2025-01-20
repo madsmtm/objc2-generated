@@ -56,17 +56,20 @@ unsafe impl NSSecureCoding for CAAnimation {}
 
 extern_methods!(
     unsafe impl CAAnimation {
-        #[method_id(@__method_family Other animation)]
+        #[unsafe(method_family(none))]
+        #[method_id(animation)]
         pub unsafe fn animation() -> Retained<Self>;
 
-        #[method_id(@__method_family Other defaultValueForKey:)]
+        #[unsafe(method_family(none))]
+        #[method_id(defaultValueForKey:)]
         pub unsafe fn defaultValueForKey(key: &NSString) -> Option<Retained<AnyObject>>;
 
         #[method(shouldArchiveValueForKey:)]
         pub unsafe fn shouldArchiveValueForKey(&self, key: &NSString) -> bool;
 
         #[cfg(feature = "CAMediaTimingFunction")]
-        #[method_id(@__method_family Other timingFunction)]
+        #[unsafe(method_family(none))]
+        #[method_id(timingFunction)]
         pub unsafe fn timingFunction(&self) -> Option<Retained<CAMediaTimingFunction>>;
 
         #[cfg(feature = "CAMediaTimingFunction")]
@@ -74,7 +77,8 @@ extern_methods!(
         #[method(setTimingFunction:)]
         pub unsafe fn setTimingFunction(&self, timing_function: Option<&CAMediaTimingFunction>);
 
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn CAAnimationDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
@@ -108,10 +112,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CAAnimation {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -158,10 +164,12 @@ unsafe impl NSSecureCoding for CAPropertyAnimation {}
 
 extern_methods!(
     unsafe impl CAPropertyAnimation {
-        #[method_id(@__method_family Other animationWithKeyPath:)]
+        #[unsafe(method_family(none))]
+        #[method_id(animationWithKeyPath:)]
         pub unsafe fn animationWithKeyPath(path: Option<&NSString>) -> Retained<Self>;
 
-        #[method_id(@__method_family Other keyPath)]
+        #[unsafe(method_family(none))]
+        #[method_id(keyPath)]
         pub unsafe fn keyPath(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`keyPath`][Self::keyPath].
@@ -183,7 +191,8 @@ extern_methods!(
         pub unsafe fn setCumulative(&self, cumulative: bool);
 
         #[cfg(feature = "CAValueFunction")]
-        #[method_id(@__method_family Other valueFunction)]
+        #[unsafe(method_family(none))]
+        #[method_id(valueFunction)]
         pub unsafe fn valueFunction(&self) -> Option<Retained<CAValueFunction>>;
 
         #[cfg(feature = "CAValueFunction")]
@@ -196,7 +205,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `CAAnimation`
     unsafe impl CAPropertyAnimation {
-        #[method_id(@__method_family Other animation)]
+        #[unsafe(method_family(none))]
+        #[method_id(animation)]
         pub unsafe fn animation() -> Retained<Self>;
     }
 );
@@ -204,10 +214,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CAPropertyAnimation {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -241,21 +253,24 @@ unsafe impl NSSecureCoding for CABasicAnimation {}
 
 extern_methods!(
     unsafe impl CABasicAnimation {
-        #[method_id(@__method_family Other fromValue)]
+        #[unsafe(method_family(none))]
+        #[method_id(fromValue)]
         pub unsafe fn fromValue(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`fromValue`][Self::fromValue].
         #[method(setFromValue:)]
         pub unsafe fn setFromValue(&self, from_value: Option<&AnyObject>);
 
-        #[method_id(@__method_family Other toValue)]
+        #[unsafe(method_family(none))]
+        #[method_id(toValue)]
         pub unsafe fn toValue(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`toValue`][Self::toValue].
         #[method(setToValue:)]
         pub unsafe fn setToValue(&self, to_value: Option<&AnyObject>);
 
-        #[method_id(@__method_family Other byValue)]
+        #[unsafe(method_family(none))]
+        #[method_id(byValue)]
         pub unsafe fn byValue(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`byValue`][Self::byValue].
@@ -267,7 +282,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `CAPropertyAnimation`
     unsafe impl CABasicAnimation {
-        #[method_id(@__method_family Other animationWithKeyPath:)]
+        #[unsafe(method_family(none))]
+        #[method_id(animationWithKeyPath:)]
         pub unsafe fn animationWithKeyPath(path: Option<&NSString>) -> Retained<Self>;
     }
 );
@@ -275,7 +291,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `CAAnimation`
     unsafe impl CABasicAnimation {
-        #[method_id(@__method_family Other animation)]
+        #[unsafe(method_family(none))]
+        #[method_id(animation)]
         pub unsafe fn animation() -> Retained<Self>;
     }
 );
@@ -283,10 +300,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CABasicAnimation {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -320,7 +339,8 @@ unsafe impl NSSecureCoding for CAKeyframeAnimation {}
 
 extern_methods!(
     unsafe impl CAKeyframeAnimation {
-        #[method_id(@__method_family Other values)]
+        #[unsafe(method_family(none))]
+        #[method_id(values)]
         pub unsafe fn values(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`values`][Self::values].
@@ -328,7 +348,8 @@ extern_methods!(
         pub unsafe fn setValues(&self, values: Option<&NSArray>);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(@__method_family Other path)]
+        #[unsafe(method_family(none))]
+        #[method_id(path)]
         pub unsafe fn path(&self) -> Option<Retained<CGPath>>;
 
         #[cfg(feature = "objc2-core-graphics")]
@@ -336,7 +357,8 @@ extern_methods!(
         #[method(setPath:)]
         pub unsafe fn setPath(&self, path: Option<&CGPath>);
 
-        #[method_id(@__method_family Other keyTimes)]
+        #[unsafe(method_family(none))]
+        #[method_id(keyTimes)]
         pub unsafe fn keyTimes(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         /// Setter for [`keyTimes`][Self::keyTimes].
@@ -344,7 +366,8 @@ extern_methods!(
         pub unsafe fn setKeyTimes(&self, key_times: Option<&NSArray<NSNumber>>);
 
         #[cfg(feature = "CAMediaTimingFunction")]
-        #[method_id(@__method_family Other timingFunctions)]
+        #[unsafe(method_family(none))]
+        #[method_id(timingFunctions)]
         pub unsafe fn timingFunctions(&self) -> Option<Retained<NSArray<CAMediaTimingFunction>>>;
 
         #[cfg(feature = "CAMediaTimingFunction")]
@@ -355,35 +378,40 @@ extern_methods!(
             timing_functions: Option<&NSArray<CAMediaTimingFunction>>,
         );
 
-        #[method_id(@__method_family Other calculationMode)]
+        #[unsafe(method_family(none))]
+        #[method_id(calculationMode)]
         pub unsafe fn calculationMode(&self) -> Retained<CAAnimationCalculationMode>;
 
         /// Setter for [`calculationMode`][Self::calculationMode].
         #[method(setCalculationMode:)]
         pub unsafe fn setCalculationMode(&self, calculation_mode: &CAAnimationCalculationMode);
 
-        #[method_id(@__method_family Other tensionValues)]
+        #[unsafe(method_family(none))]
+        #[method_id(tensionValues)]
         pub unsafe fn tensionValues(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         /// Setter for [`tensionValues`][Self::tensionValues].
         #[method(setTensionValues:)]
         pub unsafe fn setTensionValues(&self, tension_values: Option<&NSArray<NSNumber>>);
 
-        #[method_id(@__method_family Other continuityValues)]
+        #[unsafe(method_family(none))]
+        #[method_id(continuityValues)]
         pub unsafe fn continuityValues(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         /// Setter for [`continuityValues`][Self::continuityValues].
         #[method(setContinuityValues:)]
         pub unsafe fn setContinuityValues(&self, continuity_values: Option<&NSArray<NSNumber>>);
 
-        #[method_id(@__method_family Other biasValues)]
+        #[unsafe(method_family(none))]
+        #[method_id(biasValues)]
         pub unsafe fn biasValues(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         /// Setter for [`biasValues`][Self::biasValues].
         #[method(setBiasValues:)]
         pub unsafe fn setBiasValues(&self, bias_values: Option<&NSArray<NSNumber>>);
 
-        #[method_id(@__method_family Other rotationMode)]
+        #[unsafe(method_family(none))]
+        #[method_id(rotationMode)]
         pub unsafe fn rotationMode(&self) -> Option<Retained<CAAnimationRotationMode>>;
 
         /// Setter for [`rotationMode`][Self::rotationMode].
@@ -395,7 +423,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `CAPropertyAnimation`
     unsafe impl CAKeyframeAnimation {
-        #[method_id(@__method_family Other animationWithKeyPath:)]
+        #[unsafe(method_family(none))]
+        #[method_id(animationWithKeyPath:)]
         pub unsafe fn animationWithKeyPath(path: Option<&NSString>) -> Retained<Self>;
     }
 );
@@ -403,7 +432,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `CAAnimation`
     unsafe impl CAKeyframeAnimation {
-        #[method_id(@__method_family Other animation)]
+        #[unsafe(method_family(none))]
+        #[method_id(animation)]
         pub unsafe fn animation() -> Retained<Self>;
     }
 );
@@ -411,10 +441,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CAKeyframeAnimation {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -531,7 +563,8 @@ extern_methods!(
         pub unsafe fn settlingDuration(&self) -> CFTimeInterval;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Init initWithPerceptualDuration:bounce:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithPerceptualDuration:bounce:)]
         pub unsafe fn initWithPerceptualDuration_bounce(
             this: Allocated<Self>,
             perceptual_duration: CFTimeInterval,
@@ -551,7 +584,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `CAPropertyAnimation`
     unsafe impl CASpringAnimation {
-        #[method_id(@__method_family Other animationWithKeyPath:)]
+        #[unsafe(method_family(none))]
+        #[method_id(animationWithKeyPath:)]
         pub unsafe fn animationWithKeyPath(path: Option<&NSString>) -> Retained<Self>;
     }
 );
@@ -559,7 +593,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `CAAnimation`
     unsafe impl CASpringAnimation {
-        #[method_id(@__method_family Other animation)]
+        #[unsafe(method_family(none))]
+        #[method_id(animation)]
         pub unsafe fn animation() -> Retained<Self>;
     }
 );
@@ -567,10 +602,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CASpringAnimation {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -604,14 +641,16 @@ unsafe impl NSSecureCoding for CATransition {}
 
 extern_methods!(
     unsafe impl CATransition {
-        #[method_id(@__method_family Other type)]
+        #[unsafe(method_family(none))]
+        #[method_id(type)]
         pub unsafe fn r#type(&self) -> Retained<CATransitionType>;
 
         /// Setter for [`type`][Self::type].
         #[method(setType:)]
         pub unsafe fn setType(&self, r#type: &CATransitionType);
 
-        #[method_id(@__method_family Other subtype)]
+        #[unsafe(method_family(none))]
+        #[method_id(subtype)]
         pub unsafe fn subtype(&self) -> Option<Retained<CATransitionSubtype>>;
 
         /// Setter for [`subtype`][Self::subtype].
@@ -632,7 +671,8 @@ extern_methods!(
         #[method(setEndProgress:)]
         pub unsafe fn setEndProgress(&self, end_progress: c_float);
 
-        #[method_id(@__method_family Other filter)]
+        #[unsafe(method_family(none))]
+        #[method_id(filter)]
         pub unsafe fn filter(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`filter`][Self::filter].
@@ -644,7 +684,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `CAAnimation`
     unsafe impl CATransition {
-        #[method_id(@__method_family Other animation)]
+        #[unsafe(method_family(none))]
+        #[method_id(animation)]
         pub unsafe fn animation() -> Retained<Self>;
     }
 );
@@ -652,10 +693,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CATransition {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -729,7 +772,8 @@ unsafe impl NSSecureCoding for CAAnimationGroup {}
 
 extern_methods!(
     unsafe impl CAAnimationGroup {
-        #[method_id(@__method_family Other animations)]
+        #[unsafe(method_family(none))]
+        #[method_id(animations)]
         pub unsafe fn animations(&self) -> Option<Retained<NSArray<CAAnimation>>>;
 
         /// Setter for [`animations`][Self::animations].
@@ -741,7 +785,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `CAAnimation`
     unsafe impl CAAnimationGroup {
-        #[method_id(@__method_family Other animation)]
+        #[unsafe(method_family(none))]
+        #[method_id(animation)]
         pub unsafe fn animation() -> Retained<Self>;
     }
 );
@@ -749,10 +794,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CAAnimationGroup {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -26,7 +26,8 @@ unsafe impl NSObjectProtocol for MKTileOverlay {}
 
 extern_methods!(
     unsafe impl MKTileOverlay {
-        #[method_id(@__method_family Init initWithURLTemplate:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithURLTemplate:)]
         pub unsafe fn initWithURLTemplate(
             this: Allocated<Self>,
             url_template: Option<&NSString>,
@@ -62,7 +63,8 @@ extern_methods!(
         #[method(setMaximumZ:)]
         pub unsafe fn setMaximumZ(&self, maximum_z: NSInteger);
 
-        #[method_id(@__method_family Other URLTemplate)]
+        #[unsafe(method_family(none))]
+        #[method_id(URLTemplate)]
         pub unsafe fn URLTemplate(&self) -> Option<Retained<NSString>>;
 
         #[method(canReplaceMapContent)]
@@ -77,10 +79,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKTileOverlay {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -118,7 +122,8 @@ extern_methods!(
     /// CustomLoading
     unsafe impl MKTileOverlay {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Other URLForTilePath:)]
+        #[unsafe(method_family(none))]
+        #[method_id(URLForTilePath:)]
         pub unsafe fn URLForTilePath(&self, path: MKTileOverlayPath) -> Retained<NSURL>;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]

@@ -73,7 +73,8 @@ extern_methods!(
         pub unsafe fn setUnitStyle(&self, unit_style: NSFormattingUnitStyle);
 
         #[cfg(feature = "NSLocale")]
-        #[method_id(@__method_family Other locale)]
+        #[unsafe(method_family(none))]
+        #[method_id(locale)]
         pub unsafe fn locale(&self) -> Retained<NSLocale>;
 
         #[cfg(feature = "NSLocale")]
@@ -82,7 +83,8 @@ extern_methods!(
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
 
         #[cfg(feature = "NSNumberFormatter")]
-        #[method_id(@__method_family Other numberFormatter)]
+        #[unsafe(method_family(none))]
+        #[method_id(numberFormatter)]
         pub unsafe fn numberFormatter(&self) -> Retained<NSNumberFormatter>;
 
         #[cfg(feature = "NSNumberFormatter")]
@@ -91,14 +93,16 @@ extern_methods!(
         pub unsafe fn setNumberFormatter(&self, number_formatter: Option<&NSNumberFormatter>);
 
         #[cfg(all(feature = "NSMeasurement", feature = "NSString"))]
-        #[method_id(@__method_family Other stringFromMeasurement:)]
+        #[unsafe(method_family(none))]
+        #[method_id(stringFromMeasurement:)]
         pub unsafe fn stringFromMeasurement(
             &self,
             measurement: &NSMeasurement,
         ) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSString", feature = "NSUnit"))]
-        #[method_id(@__method_family Other stringFromUnit:)]
+        #[unsafe(method_family(none))]
+        #[method_id(stringFromUnit:)]
         pub unsafe fn stringFromUnit(&self, unit: &NSUnit) -> Retained<NSString>;
     }
 );
@@ -107,10 +111,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSFormatter")]
     unsafe impl NSMeasurementFormatter {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

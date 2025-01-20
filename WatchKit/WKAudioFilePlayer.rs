@@ -46,12 +46,14 @@ unsafe impl NSObjectProtocol for WKAudioFilePlayer {}
 extern_methods!(
     unsafe impl WKAudioFilePlayer {
         #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "WKAudioFilePlayerItem")]
         #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
-        #[method_id(@__method_family Other playerWithPlayerItem:)]
+        #[unsafe(method_family(none))]
+        #[method_id(playerWithPlayerItem:)]
         pub unsafe fn playerWithPlayerItem(item: &WKAudioFilePlayerItem) -> Retained<Self>;
 
         #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
@@ -69,7 +71,8 @@ extern_methods!(
 
         #[cfg(feature = "WKAudioFilePlayerItem")]
         #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
-        #[method_id(@__method_family Other currentItem)]
+        #[unsafe(method_family(none))]
+        #[method_id(currentItem)]
         pub unsafe fn currentItem(&self) -> Option<Retained<WKAudioFilePlayerItem>>;
 
         #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
@@ -77,7 +80,8 @@ extern_methods!(
         pub unsafe fn status(&self) -> WKAudioFilePlayerStatus;
 
         #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
-        #[method_id(@__method_family Other error)]
+        #[unsafe(method_family(none))]
+        #[method_id(error)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
 
         #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
@@ -98,7 +102,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKAudioFilePlayer {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -122,7 +127,8 @@ extern_methods!(
     unsafe impl WKAudioFileQueuePlayer {
         #[cfg(feature = "WKAudioFilePlayerItem")]
         #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
-        #[method_id(@__method_family Other queuePlayerWithItems:)]
+        #[unsafe(method_family(none))]
+        #[method_id(queuePlayerWithItems:)]
         pub unsafe fn queuePlayerWithItems(
             items: &NSArray<WKAudioFilePlayerItem>,
         ) -> Retained<Self>;
@@ -147,7 +153,8 @@ extern_methods!(
 
         #[cfg(feature = "WKAudioFilePlayerItem")]
         #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
-        #[method_id(@__method_family Other items)]
+        #[unsafe(method_family(none))]
+        #[method_id(items)]
         pub unsafe fn items(&self) -> Retained<NSArray<WKAudioFilePlayerItem>>;
     }
 );
@@ -156,12 +163,14 @@ extern_methods!(
     /// Methods declared on superclass `WKAudioFilePlayer`
     unsafe impl WKAudioFileQueuePlayer {
         #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "WKAudioFilePlayerItem")]
         #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
-        #[method_id(@__method_family Other playerWithPlayerItem:)]
+        #[unsafe(method_family(none))]
+        #[method_id(playerWithPlayerItem:)]
         pub unsafe fn playerWithPlayerItem(item: &WKAudioFilePlayerItem) -> Retained<Self>;
     }
 );
@@ -169,7 +178,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKAudioFileQueuePlayer {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

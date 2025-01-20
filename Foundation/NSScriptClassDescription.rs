@@ -19,13 +19,15 @@ unsafe impl NSObjectProtocol for NSScriptClassDescription {}
 extern_methods!(
     #[cfg(feature = "NSClassDescription")]
     unsafe impl NSScriptClassDescription {
-        #[method_id(@__method_family Other classDescriptionForClass:)]
+        #[unsafe(method_family(none))]
+        #[method_id(classDescriptionForClass:)]
         pub unsafe fn classDescriptionForClass(
             a_class: &AnyClass,
         ) -> Option<Retained<NSScriptClassDescription>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        #[method_id(@__method_family Init initWithSuiteName:className:dictionary:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithSuiteName:className:dictionary:)]
         pub unsafe fn initWithSuiteName_className_dictionary(
             this: Allocated<Self>,
             suite_name: &NSString,
@@ -34,18 +36,22 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__method_family Other suiteName)]
+        #[unsafe(method_family(none))]
+        #[method_id(suiteName)]
         pub unsafe fn suiteName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__method_family Other className)]
+        #[unsafe(method_family(none))]
+        #[method_id(className)]
         pub unsafe fn className(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__method_family Other implementationClassName)]
+        #[unsafe(method_family(none))]
+        #[method_id(implementationClassName)]
         pub unsafe fn implementationClassName(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(@__method_family Other superclassDescription)]
+        #[unsafe(method_family(none))]
+        #[method_id(superclassDescription)]
         pub unsafe fn superclassDescription(&self) -> Option<Retained<NSScriptClassDescription>>;
 
         #[method(appleEventCode)]
@@ -69,11 +75,13 @@ extern_methods!(
         ) -> Option<Sel>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__method_family Other typeForKey:)]
+        #[unsafe(method_family(none))]
+        #[method_id(typeForKey:)]
         pub unsafe fn typeForKey(&self, key: &NSString) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__method_family Other classDescriptionForKey:)]
+        #[unsafe(method_family(none))]
+        #[method_id(classDescriptionForKey:)]
         pub unsafe fn classDescriptionForKey(
             &self,
             key: &NSString,
@@ -84,14 +92,16 @@ extern_methods!(
         pub unsafe fn appleEventCodeForKey(&self, key: &NSString) -> FourCharCode;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__method_family Other keyWithAppleEventCode:)]
+        #[unsafe(method_family(none))]
+        #[method_id(keyWithAppleEventCode:)]
         pub unsafe fn keyWithAppleEventCode(
             &self,
             apple_event_code: FourCharCode,
         ) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__method_family Other defaultSubcontainerAttributeKey)]
+        #[unsafe(method_family(none))]
+        #[method_id(defaultSubcontainerAttributeKey)]
         pub unsafe fn defaultSubcontainerAttributeKey(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
@@ -123,10 +133,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSClassDescription")]
     unsafe impl NSScriptClassDescription {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -150,7 +162,8 @@ extern_category!(
         unsafe fn classCode(&self) -> FourCharCode;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__method_family Other className)]
+        #[unsafe(method_family(none))]
+        #[method_id(className)]
         unsafe fn className(&self) -> Retained<NSString>;
     }
 

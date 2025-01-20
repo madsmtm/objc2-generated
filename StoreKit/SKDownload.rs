@@ -67,7 +67,8 @@ extern_methods!(
         pub unsafe fn downloadState(&self) -> SKDownloadState;
 
         #[deprecated]
-        #[method_id(@__method_family Other contentLength)]
+        #[unsafe(method_family(none))]
+        #[method_id(contentLength)]
         pub unsafe fn contentLength(&self) -> Retained<NSNumber>;
 
         #[deprecated = "Hosted content is no longer supported"]
@@ -75,19 +76,23 @@ extern_methods!(
         pub unsafe fn expectedContentLength(&self) -> c_longlong;
 
         #[deprecated = "Hosted content is no longer supported"]
-        #[method_id(@__method_family Other contentIdentifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(contentIdentifier)]
         pub unsafe fn contentIdentifier(&self) -> Retained<NSString>;
 
         #[deprecated = "Hosted content is no longer supported"]
-        #[method_id(@__method_family Other contentURL)]
+        #[unsafe(method_family(none))]
+        #[method_id(contentURL)]
         pub unsafe fn contentURL(&self) -> Option<Retained<NSURL>>;
 
         #[deprecated = "Hosted content is no longer supported"]
-        #[method_id(@__method_family Other contentVersion)]
+        #[unsafe(method_family(none))]
+        #[method_id(contentVersion)]
         pub unsafe fn contentVersion(&self) -> Retained<NSString>;
 
         #[deprecated = "Hosted content is no longer supported"]
-        #[method_id(@__method_family Other error)]
+        #[unsafe(method_family(none))]
+        #[method_id(error)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
 
         #[deprecated = "Hosted content is no longer supported"]
@@ -100,11 +105,13 @@ extern_methods!(
 
         #[cfg(feature = "SKPaymentTransaction")]
         #[deprecated = "Hosted content is no longer supported"]
-        #[method_id(@__method_family Other transaction)]
+        #[unsafe(method_family(none))]
+        #[method_id(transaction)]
         pub unsafe fn transaction(&self) -> Retained<SKPaymentTransaction>;
 
         #[deprecated = "Hosted content is no longer supported"]
-        #[method_id(@__method_family Other contentURLForProductID:)]
+        #[unsafe(method_family(none))]
+        #[method_id(contentURLForProductID:)]
         pub unsafe fn contentURLForProductID(product_id: &NSString) -> Option<Retained<NSURL>>;
 
         #[deprecated = "Hosted content is no longer supported"]
@@ -116,10 +123,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKDownload {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

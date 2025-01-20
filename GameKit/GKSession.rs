@@ -25,7 +25,8 @@ extern_methods!(
     unsafe impl GKSession {
         #[cfg(feature = "GKPublicConstants")]
         #[deprecated]
-        #[method_id(@__method_family Init initWithSessionID:displayName:sessionMode:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithSessionID:displayName:sessionMode:)]
         pub unsafe fn initWithSessionID_displayName_sessionMode(
             this: Allocated<Self>,
             session_id: Option<&NSString>,
@@ -35,7 +36,8 @@ extern_methods!(
 
         #[cfg(feature = "GKPublicProtocols")]
         #[deprecated]
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn GKSessionDelegate>>>;
 
         #[cfg(feature = "GKPublicProtocols")]
@@ -46,11 +48,13 @@ extern_methods!(
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn GKSessionDelegate>>);
 
         #[deprecated]
-        #[method_id(@__method_family Other sessionID)]
+        #[unsafe(method_family(none))]
+        #[method_id(sessionID)]
         pub unsafe fn sessionID(&self) -> Option<Retained<NSString>>;
 
         #[deprecated]
-        #[method_id(@__method_family Other displayName)]
+        #[unsafe(method_family(none))]
+        #[method_id(displayName)]
         pub unsafe fn displayName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "GKPublicConstants")]
@@ -59,7 +63,8 @@ extern_methods!(
         pub unsafe fn sessionMode(&self) -> GKSessionMode;
 
         #[deprecated]
-        #[method_id(@__method_family Other peerID)]
+        #[unsafe(method_family(none))]
+        #[method_id(peerID)]
         pub unsafe fn peerID(&self) -> Option<Retained<NSString>>;
 
         /// Toggle availability on the network based on session mode and search criteria.  Delegate will get a callback -session:didReceiveConnectionRequestFromPeer: when a peer attempts a connection.
@@ -84,7 +89,8 @@ extern_methods!(
 
         /// Return the application chosen name of a specific peer
         #[deprecated]
-        #[method_id(@__method_family Other displayNameForPeer:)]
+        #[unsafe(method_family(none))]
+        #[method_id(displayNameForPeer:)]
         pub unsafe fn displayNameForPeer(
             &self,
             peer_id: Option<&NSString>,
@@ -132,7 +138,8 @@ extern_methods!(
         #[cfg(feature = "GKPublicConstants")]
         /// Returns peers according to connection state
         #[deprecated]
-        #[method_id(@__method_family Other peersWithConnectionState:)]
+        #[unsafe(method_family(none))]
+        #[method_id(peersWithConnectionState:)]
         pub unsafe fn peersWithConnectionState(
             &self,
             state: GKPeerConnectionState,
@@ -143,10 +150,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKSession {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

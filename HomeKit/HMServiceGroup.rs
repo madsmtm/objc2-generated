@@ -29,20 +29,24 @@ unsafe impl NSObjectProtocol for HMServiceGroup {}
 
 extern_methods!(
     unsafe impl HMServiceGroup {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Name of the service group.
-        #[method_id(@__method_family Other name)]
+        #[unsafe(method_family(none))]
+        #[method_id(name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "HMService")]
         /// Array of HMService objects that correspond to the services contained in this group.
-        #[method_id(@__method_family Other services)]
+        #[unsafe(method_family(none))]
+        #[method_id(services)]
         pub unsafe fn services(&self) -> Retained<NSArray<HMService>>;
 
         /// A unique identifier for the service group.
-        #[method_id(@__method_family Other uniqueIdentifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(uniqueIdentifier)]
         pub unsafe fn uniqueIdentifier(&self) -> Retained<NSUUID>;
 
         #[cfg(feature = "block2")]
@@ -103,7 +107,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HMServiceGroup {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -28,7 +28,8 @@ unsafe impl NSObjectProtocol for VZVirtioSocketListener {}
 extern_methods!(
     unsafe impl VZVirtioSocketListener {
         /// Pointer to a delegate object for the listener.
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn VZVirtioSocketListenerDelegate>>>;
@@ -46,10 +47,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VZVirtioSocketListener {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

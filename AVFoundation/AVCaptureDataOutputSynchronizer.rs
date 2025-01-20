@@ -29,10 +29,12 @@ unsafe impl NSObjectProtocol for AVCaptureDataOutputSynchronizer {}
 
 extern_methods!(
     unsafe impl AVCaptureDataOutputSynchronizer {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "AVCaptureOutputBase")]
@@ -42,7 +44,8 @@ extern_methods!(
         /// Parameter `dataOutputs`: An array of capture data outputs where the first is the primary output.
         ///
         /// Returns: A newly initialized AVCaptureDataOutputSynchronizer instance.
-        #[method_id(@__method_family Init initWithDataOutputs:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDataOutputs:)]
         pub unsafe fn initWithDataOutputs(
             this: Allocated<Self>,
             data_outputs: &NSArray<AVCaptureOutput>,
@@ -50,14 +53,16 @@ extern_methods!(
 
         #[cfg(feature = "AVCaptureOutputBase")]
         /// The data outputs provided in the initializer method.
-        #[method_id(@__method_family Other dataOutputs)]
+        #[unsafe(method_family(none))]
+        #[method_id(dataOutputs)]
         pub unsafe fn dataOutputs(&self) -> Retained<NSArray<AVCaptureOutput>>;
 
         /// The receiver's delegate.
         ///
         ///
         /// The value of this property is an object conforming to the AVCaptureDataOutputSynchronizerDelegate protocol that will receive synchronized data output. The delegate is set using the -setDelegate:queue: method. This property is key-value observable.
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVCaptureDataOutputSynchronizerDelegate>>>;
@@ -103,10 +108,12 @@ unsafe impl NSObjectProtocol for AVCaptureSynchronizedDataCollection {}
 
 extern_methods!(
     unsafe impl AVCaptureSynchronizedDataCollection {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "AVCaptureOutputBase")]
@@ -116,7 +123,8 @@ extern_methods!(
         /// Parameter `captureOutput`: The data output whose synchronized data you'd like to inspect.
         ///
         /// Returns: The synchronized data object associated with the provided output, or nil, if there is none.
-        #[method_id(@__method_family Other synchronizedDataForCaptureOutput:)]
+        #[unsafe(method_family(none))]
+        #[method_id(synchronizedDataForCaptureOutput:)]
         pub unsafe fn synchronizedDataForCaptureOutput(
             &self,
             capture_output: &AVCaptureOutput,
@@ -133,7 +141,8 @@ extern_methods!(
         ///
         /// AVCaptureSynchronizedDataCollection supports object subscripting. If you'd like to find the synchronized data for a given data output, simply:
         /// AVCaptureSynchronizedData *synchronizedData = synchronizedDataCollection[dataOutput];
-        #[method_id(@__method_family Other objectForKeyedSubscript:)]
+        #[unsafe(method_family(none))]
+        #[method_id(objectForKeyedSubscript:)]
         pub unsafe fn objectForKeyedSubscript(
             &self,
             key: &AVCaptureOutput,
@@ -164,10 +173,12 @@ unsafe impl NSObjectProtocol for AVCaptureSynchronizedData {}
 
 extern_methods!(
     unsafe impl AVCaptureSynchronizedData {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-media")]
@@ -201,7 +212,8 @@ extern_methods!(
         ///
         ///
         /// If sampleBufferWasDropped is YES, the returned sampleBuffer was dropped before it could be delivered to you, and thus this sample buffer is a shell containing metadata and format information, but no actual pixel data. This property is never NULL. If a data output has no data to return, it is simply not present in the dictionary of synchronized data returned by AVCaptureDataOutputSynchronizer's -dataOutputSynchronizer:didOutputSynchronizedData: delegate callback.
-        #[method_id(@__method_family Other sampleBuffer)]
+        #[unsafe(method_family(none))]
+        #[method_id(sampleBuffer)]
         pub unsafe fn sampleBuffer(&self) -> Retained<CMSampleBuffer>;
 
         /// YES if the sample buffer was dropped.
@@ -224,10 +236,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `AVCaptureSynchronizedData`
     unsafe impl AVCaptureSynchronizedSampleBufferData {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -253,7 +267,8 @@ extern_methods!(
         ///
         ///
         /// -metadataObjects is never nil. If no metadata objects are present for a given time, an empty array is returned.
-        #[method_id(@__method_family Other metadataObjects)]
+        #[unsafe(method_family(none))]
+        #[method_id(metadataObjects)]
         pub unsafe fn metadataObjects(&self) -> Retained<NSArray<AVMetadataObject>>;
     }
 );
@@ -261,10 +276,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `AVCaptureSynchronizedData`
     unsafe impl AVCaptureSynchronizedMetadataObjectData {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -290,7 +307,8 @@ extern_methods!(
         ///
         ///
         /// If depthDataWasDropped is YES, the returned depthData was dropped before it could be delivered to you, and thus this AVDepthData is a shell containing format information and calibration data, but no actual pixel map data. This property is never nil. If a data output has no data to return, it is simply not present in the dictionary of synchronized data returned by AVCaptureDataOutputSynchronizer's -dataOutputSynchronizer:didOutputSynchronizedData: delegate callback.
-        #[method_id(@__method_family Other depthData)]
+        #[unsafe(method_family(none))]
+        #[method_id(depthData)]
         pub unsafe fn depthData(&self) -> Retained<AVDepthData>;
 
         /// YES if the depth data was dropped.
@@ -313,10 +331,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `AVCaptureSynchronizedData`
     unsafe impl AVCaptureSynchronizedDepthData {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

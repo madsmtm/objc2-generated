@@ -151,23 +151,29 @@ unsafe impl NSSecureCoding for CALayer {}
 extern_methods!(
     unsafe impl CALayer {
         /// Layer creation and initialization. *
-        #[method_id(@__method_family Other layer)]
+        #[unsafe(method_family(none))]
+        #[method_id(layer)]
         pub fn layer() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithLayer:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithLayer:)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
 
-        #[method_id(@__method_family Other presentationLayer)]
+        #[unsafe(method_family(none))]
+        #[method_id(presentationLayer)]
         pub unsafe fn presentationLayer(&self) -> Option<Retained<Self>>;
 
-        #[method_id(@__method_family Other modelLayer)]
+        #[unsafe(method_family(none))]
+        #[method_id(modelLayer)]
         pub unsafe fn modelLayer(&self) -> Retained<Self>;
 
         /// Property methods. *
-        #[method_id(@__method_family Other defaultValueForKey:)]
+        #[unsafe(method_family(none))]
+        #[method_id(defaultValueForKey:)]
         pub unsafe fn defaultValueForKey(key: &NSString) -> Option<Retained<AnyObject>>;
 
         #[method(needsDisplayForKey:)]
@@ -272,13 +278,15 @@ extern_methods!(
         #[method(contentsAreFlipped)]
         pub fn contentsAreFlipped(&self) -> bool;
 
-        #[method_id(@__method_family Other superlayer)]
+        #[unsafe(method_family(none))]
+        #[method_id(superlayer)]
         pub fn superlayer(&self) -> Option<Retained<CALayer>>;
 
         #[method(removeFromSuperlayer)]
         pub fn removeFromSuperlayer(&self);
 
-        #[method_id(@__method_family Other sublayers)]
+        #[unsafe(method_family(none))]
+        #[method_id(sublayers)]
         pub unsafe fn sublayers(&self) -> Option<Retained<NSArray<CALayer>>>;
 
         /// Setter for [`sublayers`][Self::sublayers].
@@ -309,7 +317,8 @@ extern_methods!(
         #[method(setSublayerTransform:)]
         pub fn setSublayerTransform(&self, sublayer_transform: CATransform3D);
 
-        #[method_id(@__method_family Other mask)]
+        #[unsafe(method_family(none))]
+        #[method_id(mask)]
         pub fn mask(&self) -> Option<Retained<CALayer>>;
 
         /// Setter for [`mask`][Self::mask].
@@ -355,7 +364,8 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Hit testing methods. *
-        #[method_id(@__method_family Other hitTest:)]
+        #[unsafe(method_family(none))]
+        #[method_id(hitTest:)]
         pub fn hitTest(&self, p: CGPoint) -> Option<Retained<CALayer>>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -363,7 +373,8 @@ extern_methods!(
         pub fn containsPoint(&self, p: CGPoint) -> bool;
 
         /// Layer content properties and methods. *
-        #[method_id(@__method_family Other contents)]
+        #[unsafe(method_family(none))]
+        #[method_id(contents)]
         pub unsafe fn contents(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`contents`][Self::contents].
@@ -379,7 +390,8 @@ extern_methods!(
         #[method(setContentsRect:)]
         pub fn setContentsRect(&self, contents_rect: CGRect);
 
-        #[method_id(@__method_family Other contentsGravity)]
+        #[unsafe(method_family(none))]
+        #[method_id(contentsGravity)]
         pub fn contentsGravity(&self) -> Retained<CALayerContentsGravity>;
 
         /// Setter for [`contentsGravity`][Self::contentsGravity].
@@ -404,7 +416,8 @@ extern_methods!(
         #[method(setContentsCenter:)]
         pub fn setContentsCenter(&self, contents_center: CGRect);
 
-        #[method_id(@__method_family Other contentsFormat)]
+        #[unsafe(method_family(none))]
+        #[method_id(contentsFormat)]
         pub fn contentsFormat(&self) -> Retained<CALayerContentsFormat>;
 
         /// Setter for [`contentsFormat`][Self::contentsFormat].
@@ -421,7 +434,8 @@ extern_methods!(
             wants_extended_dynamic_range_content: bool,
         );
 
-        #[method_id(@__method_family Other toneMapMode)]
+        #[unsafe(method_family(none))]
+        #[method_id(toneMapMode)]
         pub unsafe fn toneMapMode(&self) -> Retained<CAToneMapMode>;
 
         /// Setter for [`toneMapMode`][Self::toneMapMode].
@@ -435,14 +449,16 @@ extern_methods!(
         #[method(setWantsDynamicContentScaling:)]
         pub unsafe fn setWantsDynamicContentScaling(&self, wants_dynamic_content_scaling: bool);
 
-        #[method_id(@__method_family Other minificationFilter)]
+        #[unsafe(method_family(none))]
+        #[method_id(minificationFilter)]
         pub fn minificationFilter(&self) -> Retained<CALayerContentsFilter>;
 
         /// Setter for [`minificationFilter`][Self::minificationFilter].
         #[method(setMinificationFilter:)]
         pub fn setMinificationFilter(&self, minification_filter: &CALayerContentsFilter);
 
-        #[method_id(@__method_family Other magnificationFilter)]
+        #[unsafe(method_family(none))]
+        #[method_id(magnificationFilter)]
         pub fn magnificationFilter(&self) -> Retained<CALayerContentsFilter>;
 
         /// Setter for [`magnificationFilter`][Self::magnificationFilter].
@@ -517,7 +533,8 @@ extern_methods!(
         pub fn setAllowsEdgeAntialiasing(&self, allows_edge_antialiasing: bool);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(@__method_family Other backgroundColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(backgroundColor)]
         pub unsafe fn backgroundColor(&self) -> Option<Retained<CGColor>>;
 
         #[cfg(feature = "objc2-core-graphics")]
@@ -541,7 +558,8 @@ extern_methods!(
         #[method(setMaskedCorners:)]
         pub fn setMaskedCorners(&self, masked_corners: CACornerMask);
 
-        #[method_id(@__method_family Other cornerCurve)]
+        #[unsafe(method_family(none))]
+        #[method_id(cornerCurve)]
         pub fn cornerCurve(&self) -> Retained<CALayerCornerCurve>;
 
         /// Setter for [`cornerCurve`][Self::cornerCurve].
@@ -562,7 +580,8 @@ extern_methods!(
         pub fn setBorderWidth(&self, border_width: CGFloat);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(@__method_family Other borderColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(borderColor)]
         pub unsafe fn borderColor(&self) -> Option<Retained<CGColor>>;
 
         #[cfg(feature = "objc2-core-graphics")]
@@ -584,21 +603,24 @@ extern_methods!(
         #[method(setAllowsGroupOpacity:)]
         pub fn setAllowsGroupOpacity(&self, allows_group_opacity: bool);
 
-        #[method_id(@__method_family Other compositingFilter)]
+        #[unsafe(method_family(none))]
+        #[method_id(compositingFilter)]
         pub unsafe fn compositingFilter(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`compositingFilter`][Self::compositingFilter].
         #[method(setCompositingFilter:)]
         pub unsafe fn setCompositingFilter(&self, compositing_filter: Option<&AnyObject>);
 
-        #[method_id(@__method_family Other filters)]
+        #[unsafe(method_family(none))]
+        #[method_id(filters)]
         pub unsafe fn filters(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`filters`][Self::filters].
         #[method(setFilters:)]
         pub unsafe fn setFilters(&self, filters: Option<&NSArray>);
 
-        #[method_id(@__method_family Other backgroundFilters)]
+        #[unsafe(method_family(none))]
+        #[method_id(backgroundFilters)]
         pub unsafe fn backgroundFilters(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`backgroundFilters`][Self::backgroundFilters].
@@ -623,7 +645,8 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Shadow properties. *
-        #[method_id(@__method_family Other shadowColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(shadowColor)]
         pub unsafe fn shadowColor(&self) -> Option<Retained<CGColor>>;
 
         #[cfg(feature = "objc2-core-graphics")]
@@ -657,7 +680,8 @@ extern_methods!(
         pub fn setShadowRadius(&self, shadow_radius: CGFloat);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(@__method_family Other shadowPath)]
+        #[unsafe(method_family(none))]
+        #[method_id(shadowPath)]
         pub unsafe fn shadowPath(&self) -> Option<Retained<CGPath>>;
 
         #[cfg(feature = "objc2-core-graphics")]
@@ -673,7 +697,8 @@ extern_methods!(
         #[method(setAutoresizingMask:)]
         pub fn setAutoresizingMask(&self, autoresizing_mask: CAAutoresizingMask);
 
-        #[method_id(@__method_family Other layoutManager)]
+        #[unsafe(method_family(none))]
+        #[method_id(layoutManager)]
         pub fn layoutManager(&self) -> Option<Retained<ProtocolObject<dyn CALayoutManager>>>;
 
         /// Setter for [`layoutManager`][Self::layoutManager].
@@ -708,18 +733,21 @@ extern_methods!(
         pub fn resizeWithOldSuperlayerSize(&self, size: CGSize);
 
         /// Action methods. *
-        #[method_id(@__method_family Other defaultActionForKey:)]
+        #[unsafe(method_family(none))]
+        #[method_id(defaultActionForKey:)]
         pub fn defaultActionForKey(
             event: &NSString,
         ) -> Option<Retained<ProtocolObject<dyn CAAction>>>;
 
-        #[method_id(@__method_family Other actionForKey:)]
+        #[unsafe(method_family(none))]
+        #[method_id(actionForKey:)]
         pub fn actionForKey(
             &self,
             event: &NSString,
         ) -> Option<Retained<ProtocolObject<dyn CAAction>>>;
 
-        #[method_id(@__method_family Other actions)]
+        #[unsafe(method_family(none))]
+        #[method_id(actions)]
         pub fn actions(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, ProtocolObject<dyn CAAction>>>>;
@@ -742,22 +770,26 @@ extern_methods!(
         #[method(removeAnimationForKey:)]
         pub fn removeAnimationForKey(&self, key: &NSString);
 
-        #[method_id(@__method_family Other animationKeys)]
+        #[unsafe(method_family(none))]
+        #[method_id(animationKeys)]
         pub fn animationKeys(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[cfg(feature = "CAAnimation")]
-        #[method_id(@__method_family Other animationForKey:)]
+        #[unsafe(method_family(none))]
+        #[method_id(animationForKey:)]
         pub unsafe fn animationForKey(&self, key: &NSString) -> Option<Retained<CAAnimation>>;
 
         /// Miscellaneous properties. *
-        #[method_id(@__method_family Other name)]
+        #[unsafe(method_family(none))]
+        #[method_id(name)]
         pub fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
         #[method(setName:)]
         pub fn setName(&self, name: Option<&NSString>);
 
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub fn delegate(&self) -> Option<Retained<ProtocolObject<dyn CALayerDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -765,7 +797,8 @@ extern_methods!(
         #[method(setDelegate:)]
         pub fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn CALayerDelegate>>);
 
-        #[method_id(@__method_family Other style)]
+        #[unsafe(method_family(none))]
+        #[method_id(style)]
         pub unsafe fn style(&self) -> Option<Retained<NSDictionary>>;
 
         /// Setter for [`style`][Self::style].
@@ -777,7 +810,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CALayer {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub fn new() -> Retained<Self>;
     }
 );
@@ -849,7 +883,8 @@ extern_protocol!(
         unsafe fn layoutSublayersOfLayer(&self, layer: &CALayer);
 
         #[optional]
-        #[method_id(@__method_family Other actionForLayer:forKey:)]
+        #[unsafe(method_family(none))]
+        #[method_id(actionForLayer:forKey:)]
         unsafe fn actionForLayer_forKey(
             &self,
             layer: &CALayer,

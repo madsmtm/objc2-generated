@@ -35,7 +35,8 @@ extern_protocol!(
 
         /// An array of sample times for which a key has been stored
         /// If no animation data is present, the array will contain a single value of zero
-        #[method_id(@__method_family Other keyTimes)]
+        #[unsafe(method_family(none))]
+        #[method_id(keyTimes)]
         unsafe fn keyTimes(&self) -> Retained<NSArray<NSNumber>>;
     }
 );
@@ -75,22 +76,26 @@ unsafe impl NSObjectProtocol for MDLTransform {}
 extern_methods!(
     unsafe impl MDLTransform {
         /// Initialize an MDLTransform's matrices with identity
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(@__method_family Init initWithIdentity)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithIdentity)]
         pub unsafe fn initWithIdentity(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "MDLTypes")]
-        #[method_id(@__method_family Init initWithTransformComponent:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithTransformComponent:)]
         pub unsafe fn initWithTransformComponent(
             this: Allocated<Self>,
             component: &ProtocolObject<dyn MDLTransformComponent>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "MDLTypes")]
-        #[method_id(@__method_family Init initWithTransformComponent:resetsTransform:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithTransformComponent:resetsTransform:)]
         pub unsafe fn initWithTransformComponent_resetsTransform(
             this: Allocated<Self>,
             component: &ProtocolObject<dyn MDLTransformComponent>,
@@ -106,7 +111,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLTransform {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

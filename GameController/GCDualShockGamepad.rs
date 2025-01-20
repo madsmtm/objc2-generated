@@ -28,15 +28,18 @@ extern_methods!(
     unsafe impl GCDualShockGamepad {
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         /// DualShock controllers have a touchpad with a button and two-finger tracking.
-        #[method_id(@__method_family Other touchpadButton)]
+        #[unsafe(method_family(none))]
+        #[method_id(touchpadButton)]
         pub unsafe fn touchpadButton(&self) -> Option<Retained<GCControllerButtonInput>>;
 
         #[cfg(all(feature = "GCControllerDirectionPad", feature = "GCControllerElement"))]
-        #[method_id(@__method_family Other touchpadPrimary)]
+        #[unsafe(method_family(none))]
+        #[method_id(touchpadPrimary)]
         pub unsafe fn touchpadPrimary(&self) -> Option<Retained<GCControllerDirectionPad>>;
 
         #[cfg(all(feature = "GCControllerDirectionPad", feature = "GCControllerElement"))]
-        #[method_id(@__method_family Other touchpadSecondary)]
+        #[unsafe(method_family(none))]
+        #[method_id(touchpadSecondary)]
         pub unsafe fn touchpadSecondary(&self) -> Option<Retained<GCControllerDirectionPad>>;
     }
 );
@@ -45,10 +48,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "GCExtendedGamepad", feature = "GCPhysicalInputProfile"))]
     unsafe impl GCDualShockGamepad {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

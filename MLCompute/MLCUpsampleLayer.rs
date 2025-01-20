@@ -28,7 +28,8 @@ extern_methods!(
         /// *> representing just the width if number of entries in shape array is 1 or
         /// the height followed by width of result tensor if the number of entries in shape array is 2.
         #[deprecated]
-        #[method_id(@__method_family Other shape)]
+        #[unsafe(method_family(none))]
+        #[method_id(shape)]
         pub unsafe fn shape(&self) -> Retained<NSArray<NSNumber>>;
 
         #[cfg(feature = "MLCTypes")]
@@ -53,7 +54,8 @@ extern_methods!(
         ///
         /// Returns: A new upsample layer.
         #[deprecated]
-        #[method_id(@__method_family Other layerWithShape:)]
+        #[unsafe(method_family(none))]
+        #[method_id(layerWithShape:)]
         pub unsafe fn layerWithShape(shape: &NSArray<NSNumber>) -> Option<Retained<Self>>;
 
         #[cfg(feature = "MLCTypes")]
@@ -69,7 +71,8 @@ extern_methods!(
         ///
         /// Returns: A new upsample layer.
         #[deprecated]
-        #[method_id(@__method_family Other layerWithShape:sampleMode:alignsCorners:)]
+        #[unsafe(method_family(none))]
+        #[method_id(layerWithShape:sampleMode:alignsCorners:)]
         pub unsafe fn layerWithShape_sampleMode_alignsCorners(
             shape: &NSArray<NSNumber>,
             sample_mode: MLCSampleMode,
@@ -83,11 +86,13 @@ extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCUpsampleLayer {
         #[deprecated]
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

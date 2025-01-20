@@ -32,13 +32,16 @@ unsafe impl NSSecureCoding for CNInstantMessageAddress {}
 
 extern_methods!(
     unsafe impl CNInstantMessageAddress {
-        #[method_id(@__method_family Other username)]
+        #[unsafe(method_family(none))]
+        #[method_id(username)]
         pub unsafe fn username(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other service)]
+        #[unsafe(method_family(none))]
+        #[method_id(service)]
         pub unsafe fn service(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Init initWithUsername:service:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithUsername:service:)]
         pub unsafe fn initWithUsername_service(
             this: Allocated<Self>,
             username: &NSString,
@@ -46,11 +49,13 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Returns a user displayable property name.
-        #[method_id(@__method_family Other localizedStringForKey:)]
+        #[unsafe(method_family(none))]
+        #[method_id(localizedStringForKey:)]
         pub unsafe fn localizedStringForKey(key: &NSString) -> Retained<NSString>;
 
         /// Returns a user displayable service name.
-        #[method_id(@__method_family Other localizedStringForService:)]
+        #[unsafe(method_family(none))]
+        #[method_id(localizedStringForService:)]
         pub unsafe fn localizedStringForService(service: &NSString) -> Retained<NSString>;
     }
 );
@@ -58,10 +63,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CNInstantMessageAddress {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

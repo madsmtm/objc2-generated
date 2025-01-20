@@ -144,7 +144,8 @@ unsafe impl NSSecureCoding for NSTextBlock {}
 
 extern_methods!(
     unsafe impl NSTextBlock {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -219,7 +220,8 @@ extern_methods!(
         pub unsafe fn setVerticalAlignment(&self, vertical_alignment: NSTextBlockVerticalAlignment);
 
         #[cfg(feature = "NSColor")]
-        #[method_id(@__method_family Other backgroundColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(backgroundColor)]
         pub unsafe fn backgroundColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColor")]
@@ -236,7 +238,8 @@ extern_methods!(
         pub unsafe fn setBorderColor(&self, color: Option<&NSColor>);
 
         #[cfg(feature = "NSColor")]
-        #[method_id(@__method_family Other borderColorForEdge:)]
+        #[unsafe(method_family(none))]
+        #[method_id(borderColorForEdge:)]
         pub unsafe fn borderColorForEdge(&self, edge: NSRectEdge) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSTextContainer")]
@@ -278,7 +281,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextBlock {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -304,7 +308,8 @@ unsafe impl NSSecureCoding for NSTextTableBlock {}
 
 extern_methods!(
     unsafe impl NSTextTableBlock {
-        #[method_id(@__method_family Init initWithTable:startingRow:rowSpan:startingColumn:columnSpan:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithTable:startingRow:rowSpan:startingColumn:columnSpan:)]
         pub unsafe fn initWithTable_startingRow_rowSpan_startingColumn_columnSpan(
             this: Allocated<Self>,
             table: &NSTextTable,
@@ -314,7 +319,8 @@ extern_methods!(
             col_span: NSInteger,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Other table)]
+        #[unsafe(method_family(none))]
+        #[method_id(table)]
         pub unsafe fn table(&self) -> Retained<NSTextTable>;
 
         #[method(startingRow)]
@@ -334,7 +340,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSTextBlock`
     unsafe impl NSTextTableBlock {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -342,7 +349,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextTableBlock {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -438,7 +446,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSTextBlock`
     unsafe impl NSTextTable {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -446,7 +455,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextTable {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

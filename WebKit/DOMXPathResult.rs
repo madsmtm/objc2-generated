@@ -70,7 +70,8 @@ extern_methods!(
         pub unsafe fn numberValue(&self) -> c_double;
 
         #[deprecated]
-        #[method_id(@__method_family Other stringValue)]
+        #[unsafe(method_family(none))]
+        #[method_id(stringValue)]
         pub unsafe fn stringValue(&self) -> Retained<NSString>;
 
         #[deprecated]
@@ -79,7 +80,8 @@ extern_methods!(
 
         #[cfg(feature = "DOMNode")]
         #[deprecated]
-        #[method_id(@__method_family Other singleNodeValue)]
+        #[unsafe(method_family(none))]
+        #[method_id(singleNodeValue)]
         pub unsafe fn singleNodeValue(&self) -> Option<Retained<DOMNode>>;
 
         #[deprecated]
@@ -92,12 +94,14 @@ extern_methods!(
 
         #[cfg(feature = "DOMNode")]
         #[deprecated]
-        #[method_id(@__method_family Other iterateNext)]
+        #[unsafe(method_family(none))]
+        #[method_id(iterateNext)]
         pub unsafe fn iterateNext(&self) -> Option<Retained<DOMNode>>;
 
         #[cfg(feature = "DOMNode")]
         #[deprecated]
-        #[method_id(@__method_family Other snapshotItem:)]
+        #[unsafe(method_family(none))]
+        #[method_id(snapshotItem:)]
         pub unsafe fn snapshotItem(&self, index: c_uint) -> Option<Retained<DOMNode>>;
     }
 );
@@ -107,7 +111,8 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMXPathResult {
         #[deprecated]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -116,7 +121,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMXPathResult {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -27,7 +27,8 @@ extern_methods!(
             feature = "block2"
         ))]
         /// Creates a search tab with a system localized title and image.
-        #[method_id(@__method_family Init initWithViewControllerProvider:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithViewControllerProvider:)]
         pub unsafe fn initWithViewControllerProvider(
             this: Allocated<Self>,
             view_controller_provider: Option<
@@ -50,7 +51,8 @@ extern_methods!(
         /// Creates a tab with the specified identifier, title, image, and view controller provider.
         /// The view controller provider is called when a view controller is requested and is currently nil.
         /// For root level tabs on `UITabBarController`, the resolved view controller must be non-nil.
-        #[method_id(@__method_family Init initWithTitle:image:identifier:viewControllerProvider:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithTitle:image:identifier:viewControllerProvider:)]
         pub unsafe fn initWithTitle_image_identifier_viewControllerProvider(
             this: Allocated<Self>,
             title: &NSString,
@@ -61,10 +63,12 @@ extern_methods!(
             >,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

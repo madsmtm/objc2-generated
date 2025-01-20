@@ -55,26 +55,32 @@ unsafe impl UIContentConfiguration for UIContentUnavailableConfiguration {}
 extern_methods!(
     unsafe impl UIContentUnavailableConfiguration {
         /// Returns the default configuration for unavailable content.
-        #[method_id(@__method_family Other emptyConfiguration)]
+        #[unsafe(method_family(none))]
+        #[method_id(emptyConfiguration)]
         pub unsafe fn emptyConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// Returns the default configuration for content which is loading.
-        #[method_id(@__method_family Other loadingConfiguration)]
+        #[unsafe(method_family(none))]
+        #[method_id(loadingConfiguration)]
         pub unsafe fn loadingConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// Returns the default configuration for searches which return no results.
-        #[method_id(@__method_family Other searchConfiguration)]
+        #[unsafe(method_family(none))]
+        #[method_id(searchConfiguration)]
         pub unsafe fn searchConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "UIImage")]
         /// The image to display.
-        #[method_id(@__method_family Other image)]
+        #[unsafe(method_family(none))]
+        #[method_id(image)]
         pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
@@ -84,11 +90,13 @@ extern_methods!(
 
         #[cfg(feature = "UIContentUnavailableImageProperties")]
         /// Additional properties to configure the image. When adopting the loading configuration, relevant properties are applied to the activity indicator.
-        #[method_id(@__method_family Other imageProperties)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageProperties)]
         pub unsafe fn imageProperties(&self) -> Retained<UIContentUnavailableImageProperties>;
 
         /// The primary text.
-        #[method_id(@__method_family Other text)]
+        #[unsafe(method_family(none))]
+        #[method_id(text)]
         pub unsafe fn text(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`text`][Self::text].
@@ -96,7 +104,8 @@ extern_methods!(
         pub unsafe fn setText(&self, text: Option<&NSString>);
 
         /// An attributed variant of the primary text, which supersedes the `text` and some properties of the `textProperties` if set.
-        #[method_id(@__method_family Other attributedText)]
+        #[unsafe(method_family(none))]
+        #[method_id(attributedText)]
         pub unsafe fn attributedText(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Setter for [`attributedText`][Self::attributedText].
@@ -105,11 +114,13 @@ extern_methods!(
 
         #[cfg(feature = "UIContentUnavailableTextProperties")]
         /// Additional properties to configure the primary text.
-        #[method_id(@__method_family Other textProperties)]
+        #[unsafe(method_family(none))]
+        #[method_id(textProperties)]
         pub unsafe fn textProperties(&self) -> Retained<UIContentUnavailableTextProperties>;
 
         /// The secondary text.
-        #[method_id(@__method_family Other secondaryText)]
+        #[unsafe(method_family(none))]
+        #[method_id(secondaryText)]
         pub unsafe fn secondaryText(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`secondaryText`][Self::secondaryText].
@@ -117,7 +128,8 @@ extern_methods!(
         pub unsafe fn setSecondaryText(&self, secondary_text: Option<&NSString>);
 
         /// An attributed variant of the secondary text, which supersedes the `secondaryText` and some properties of the `secondaryTextProperties` if set.
-        #[method_id(@__method_family Other secondaryAttributedText)]
+        #[unsafe(method_family(none))]
+        #[method_id(secondaryAttributedText)]
         pub unsafe fn secondaryAttributedText(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Setter for [`secondaryAttributedText`][Self::secondaryAttributedText].
@@ -129,14 +141,16 @@ extern_methods!(
 
         #[cfg(feature = "UIContentUnavailableTextProperties")]
         /// Additional properties to configure the secondary text.
-        #[method_id(@__method_family Other secondaryTextProperties)]
+        #[unsafe(method_family(none))]
+        #[method_id(secondaryTextProperties)]
         pub unsafe fn secondaryTextProperties(
             &self,
         ) -> Retained<UIContentUnavailableTextProperties>;
 
         #[cfg(feature = "UIButtonConfiguration")]
         /// The primary button.
-        #[method_id(@__method_family Other button)]
+        #[unsafe(method_family(none))]
+        #[method_id(button)]
         pub unsafe fn button(&self) -> Retained<UIButtonConfiguration>;
 
         #[cfg(feature = "UIButtonConfiguration")]
@@ -146,12 +160,14 @@ extern_methods!(
 
         #[cfg(feature = "UIContentUnavailableButtonProperties")]
         /// Additional properties to configure the primary button.
-        #[method_id(@__method_family Other buttonProperties)]
+        #[unsafe(method_family(none))]
+        #[method_id(buttonProperties)]
         pub unsafe fn buttonProperties(&self) -> Retained<UIContentUnavailableButtonProperties>;
 
         #[cfg(feature = "UIButtonConfiguration")]
         /// The secondary button.
-        #[method_id(@__method_family Other secondaryButton)]
+        #[unsafe(method_family(none))]
+        #[method_id(secondaryButton)]
         pub unsafe fn secondaryButton(&self) -> Retained<UIButtonConfiguration>;
 
         #[cfg(feature = "UIButtonConfiguration")]
@@ -161,7 +177,8 @@ extern_methods!(
 
         #[cfg(feature = "UIContentUnavailableButtonProperties")]
         /// Additional properties to configure the secondary button.
-        #[method_id(@__method_family Other secondaryButtonProperties)]
+        #[unsafe(method_family(none))]
+        #[method_id(secondaryButtonProperties)]
         pub unsafe fn secondaryButtonProperties(
             &self,
         ) -> Retained<UIContentUnavailableButtonProperties>;
@@ -245,7 +262,8 @@ extern_methods!(
 
         #[cfg(feature = "UIBackgroundConfiguration")]
         /// The background configuration.
-        #[method_id(@__method_family Other background)]
+        #[unsafe(method_family(none))]
+        #[method_id(background)]
         pub unsafe fn background(&self) -> Retained<UIBackgroundConfiguration>;
 
         #[cfg(feature = "UIBackgroundConfiguration")]

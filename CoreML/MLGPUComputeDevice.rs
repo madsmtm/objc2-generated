@@ -28,16 +28,19 @@ unsafe impl NSObjectProtocol for MLGPUComputeDevice {}
 
 extern_methods!(
     unsafe impl MLGPUComputeDevice {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "objc2-metal")]
         #[cfg(not(target_os = "watchos"))]
         /// The underlying metal device.
-        #[method_id(@__method_family Other metalDevice)]
+        #[unsafe(method_family(none))]
+        #[method_id(metalDevice)]
         pub unsafe fn metalDevice(&self) -> Option<Retained<ProtocolObject<dyn MTLDevice>>>;
     }
 );

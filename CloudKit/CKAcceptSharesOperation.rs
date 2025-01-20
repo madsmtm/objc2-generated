@@ -21,18 +21,21 @@ unsafe impl NSObjectProtocol for CKAcceptSharesOperation {}
 extern_methods!(
     #[cfg(feature = "CKOperation")]
     unsafe impl CKAcceptSharesOperation {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "CKShareMetadata")]
-        #[method_id(@__method_family Init initWithShareMetadatas:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithShareMetadatas:)]
         pub unsafe fn initWithShareMetadatas(
             this: Allocated<Self>,
             share_metadatas: &NSArray<CKShareMetadata>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKShareMetadata")]
-        #[method_id(@__method_family Other shareMetadatas)]
+        #[unsafe(method_family(none))]
+        #[method_id(shareMetadatas)]
         pub unsafe fn shareMetadatas(&self) -> Option<Retained<NSArray<CKShareMetadata>>>;
 
         #[cfg(feature = "CKShareMetadata")]
@@ -112,7 +115,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CKOperation")]
     unsafe impl CKAcceptSharesOperation {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

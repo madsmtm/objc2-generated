@@ -162,14 +162,16 @@ extern_methods!(
         #[method(cancelButtonBounds)]
         pub unsafe fn cancelButtonBounds(&self) -> NSRect;
 
-        #[method_id(@__method_family Other recentSearches)]
+        #[unsafe(method_family(none))]
+        #[method_id(recentSearches)]
         pub unsafe fn recentSearches(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`recentSearches`][Self::recentSearches].
         #[method(setRecentSearches:)]
         pub unsafe fn setRecentSearches(&self, recent_searches: &NSArray<NSString>);
 
-        #[method_id(@__method_family Other recentsAutosaveName)]
+        #[unsafe(method_family(none))]
+        #[method_id(recentsAutosaveName)]
         pub unsafe fn recentsAutosaveName(
             &self,
         ) -> Option<Retained<NSSearchFieldRecentsAutosaveName>>;
@@ -182,7 +184,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSMenu")]
-        #[method_id(@__method_family Other searchMenuTemplate)]
+        #[unsafe(method_family(none))]
+        #[method_id(searchMenuTemplate)]
         pub unsafe fn searchMenuTemplate(&self) -> Option<Retained<NSMenu>>;
 
         #[cfg(feature = "NSMenu")]
@@ -211,7 +214,8 @@ extern_methods!(
         #[method(setSendsSearchStringImmediately:)]
         pub unsafe fn setSendsSearchStringImmediately(&self, sends_search_string_immediately: bool);
 
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSSearchFieldDelegate>>>;
@@ -235,10 +239,12 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSSearchField {
-        #[method_id(@__method_family Init initWithFrame:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -255,7 +261,8 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSSearchField {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -269,7 +276,8 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSSearchField {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

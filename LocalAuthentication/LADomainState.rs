@@ -33,13 +33,16 @@ extern_methods!(
         ///
         /// Warning: Please note that the value returned by this property can change exceptionally between major OS versions even if
         /// the state of biometry has not changed.
-        #[method_id(@__method_family Other stateHash)]
+        #[unsafe(method_family(none))]
+        #[method_id(stateHash)]
         pub unsafe fn stateHash(&self) -> Option<Retained<NSData>>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -58,7 +61,8 @@ extern_methods!(
         /// Indicates types of companions paired with the device.
         /// The elements are NSNumber-wrapped instances of
         /// ``LACompanionType`.`
-        #[method_id(@__method_family Other availableCompanionTypes)]
+        #[unsafe(method_family(none))]
+        #[method_id(availableCompanionTypes)]
         pub unsafe fn availableCompanionTypes(&self) -> Retained<NSSet<NSNumber>>;
 
         /// Contains combined state hash data for all available companion types. . Returns `nil` if no companion devices are paired.
@@ -78,7 +82,8 @@ extern_methods!(
         ///
         /// Warning: Please note that the value returned by this property can change exceptionally between major OS versions even if
         /// the list of paired companions has not changed.
-        #[method_id(@__method_family Other stateHash)]
+        #[unsafe(method_family(none))]
+        #[method_id(stateHash)]
         pub unsafe fn stateHash(&self) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "LACompanionType")]
@@ -92,16 +97,19 @@ extern_methods!(
         ///
         ///
         /// Parameter `companionType`: The companion type for which state hash data should be returned.
-        #[method_id(@__method_family Other stateHashForCompanionType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(stateHashForCompanionType:)]
         pub unsafe fn stateHashForCompanionType(
             &self,
             companion_type: LACompanionType,
         ) -> Option<Retained<NSData>>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -118,11 +126,13 @@ unsafe impl NSObjectProtocol for LADomainState {}
 extern_methods!(
     unsafe impl LADomainState {
         /// Contains biometric domain state.
-        #[method_id(@__method_family Other biometry)]
+        #[unsafe(method_family(none))]
+        #[method_id(biometry)]
         pub unsafe fn biometry(&self) -> Retained<LADomainStateBiometry>;
 
         /// Contains companion domain state.
-        #[method_id(@__method_family Other companion)]
+        #[unsafe(method_family(none))]
+        #[method_id(companion)]
         pub unsafe fn companion(&self) -> Retained<LADomainStateCompanion>;
 
         /// Contains combined state hash data for biometry and companion state hashes.
@@ -130,13 +140,16 @@ extern_methods!(
         ///
         /// Warning: Please note that the value returned by this property can change exceptionally between major OS versions even if
         /// the list of paired companions has not changed.
-        #[method_id(@__method_family Other stateHash)]
+        #[unsafe(method_family(none))]
+        #[method_id(stateHash)]
         pub unsafe fn stateHash(&self) -> Option<Retained<NSData>>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

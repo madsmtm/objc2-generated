@@ -31,7 +31,8 @@ extern_methods!(
         /// Initialize the directory share with a directory on the host.
         ///
         /// Parameter `directory`: Directory to share.
-        #[method_id(@__method_family Init initWithDirectory:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDirectory:)]
         pub unsafe fn initWithDirectory(
             this: Allocated<Self>,
             directory: &VZSharedDirectory,
@@ -39,7 +40,8 @@ extern_methods!(
 
         #[cfg(feature = "VZSharedDirectory")]
         /// Directory on the host to share.
-        #[method_id(@__method_family Other directory)]
+        #[unsafe(method_family(none))]
+        #[method_id(directory)]
         pub unsafe fn directory(&self) -> Retained<VZSharedDirectory>;
     }
 );
@@ -48,10 +50,12 @@ extern_methods!(
     /// Methods declared on superclass `VZDirectoryShare`
     #[cfg(feature = "VZDirectoryShare")]
     unsafe impl VZSingleDirectoryShare {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

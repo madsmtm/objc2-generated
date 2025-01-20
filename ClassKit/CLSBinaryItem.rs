@@ -74,7 +74,8 @@ extern_methods!(
         /// Parameter `identifier`: An identifier that is unique within its owning activity.
         ///
         /// Parameter `valueType`: The type of binary value. Ex. pass or fail.
-        #[method_id(@__method_family Init initWithIdentifier:title:type:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithIdentifier:title:type:)]
         pub unsafe fn initWithIdentifier_title_type(
             this: Allocated<Self>,
             identifier: &NSString,
@@ -88,10 +89,12 @@ extern_methods!(
     /// Methods declared on superclass `CLSActivityItem`
     #[cfg(all(feature = "CLSActivityItem", feature = "CLSObject"))]
     unsafe impl CLSBinaryItem {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

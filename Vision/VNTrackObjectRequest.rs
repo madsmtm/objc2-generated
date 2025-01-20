@@ -37,7 +37,8 @@ extern_methods!(
         ///
         ///
         /// Parameter `observation`: Detected object observation with bounding box info.
-        #[method_id(@__method_family Init initWithDetectedObjectObservation:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDetectedObjectObservation:)]
         pub unsafe fn initWithDetectedObjectObservation(
             this: Allocated<Self>,
             observation: &VNDetectedObjectObservation,
@@ -50,18 +51,21 @@ extern_methods!(
         /// Parameter `observation`: Detected object observation with bounding box info.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
-        #[method_id(@__method_family Init initWithDetectedObjectObservation:completionHandler:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDetectedObjectObservation:completionHandler:)]
         pub unsafe fn initWithDetectedObjectObservation_completionHandler(
             this: Allocated<Self>,
             observation: &VNDetectedObjectObservation,
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        #[method_id(@__method_family Init initWithCompletionHandler:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCompletionHandler:)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
             completion_handler: VNRequestCompletionHandler,
@@ -73,7 +77,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "VNRequest", feature = "VNTrackingRequest"))]
     unsafe impl VNTrackObjectRequest {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

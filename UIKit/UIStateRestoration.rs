@@ -36,7 +36,8 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewcontrollerrestoration?language=objc)
     pub unsafe trait UIViewControllerRestoration: MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-        #[method_id(@__method_family Other viewControllerWithRestorationIdentifierPath:coder:)]
+        #[unsafe(method_family(none))]
+        #[method_id(viewControllerWithRestorationIdentifierPath:coder:)]
         unsafe fn viewControllerWithRestorationIdentifierPath_coder(
             identifier_components: &NSArray<NSString>,
             coder: &NSCoder,
@@ -49,7 +50,8 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidatasourcemodelassociation?language=objc)
     pub unsafe trait UIDataSourceModelAssociation: MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[method_id(@__method_family Other modelIdentifierForElementAtIndexPath:inView:)]
+        #[unsafe(method_family(none))]
+        #[method_id(modelIdentifierForElementAtIndexPath:inView:)]
         unsafe fn modelIdentifierForElementAtIndexPath_inView(
             &self,
             idx: &NSIndexPath,
@@ -57,7 +59,8 @@ extern_protocol!(
         ) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[method_id(@__method_family Other indexPathForElementWithModelIdentifier:inView:)]
+        #[unsafe(method_family(none))]
+        #[method_id(indexPathForElementWithModelIdentifier:inView:)]
         unsafe fn indexPathForElementWithModelIdentifier_inView(
             &self,
             identifier: &NSString,
@@ -70,7 +73,8 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistaterestoring?language=objc)
     pub unsafe trait UIStateRestoring: NSObjectProtocol + MainThreadOnly {
         #[optional]
-        #[method_id(@__method_family Other restorationParent)]
+        #[unsafe(method_family(none))]
+        #[method_id(restorationParent)]
         unsafe fn restorationParent(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIStateRestoring>>>;
@@ -96,7 +100,8 @@ extern_protocol!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiobjectrestoration?language=objc)
     pub unsafe trait UIObjectRestoration: MainThreadOnly {
-        #[method_id(@__method_family Other objectWithRestorationIdentifierPath:coder:)]
+        #[unsafe(method_family(none))]
+        #[method_id(objectWithRestorationIdentifierPath:coder:)]
         unsafe fn objectWithRestorationIdentifierPath_coder(
             identifier_components: &NSArray<NSString>,
             coder: &NSCoder,

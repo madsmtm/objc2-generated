@@ -91,23 +91,28 @@ extern_methods!(
         #[method(persistentID)]
         pub unsafe fn persistentID(&self) -> MPMediaEntityPersistentID;
 
-        #[method_id(@__method_family Other cloudGlobalID)]
+        #[unsafe(method_family(none))]
+        #[method_id(cloudGlobalID)]
         pub unsafe fn cloudGlobalID(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(@__method_family Other name)]
+        #[unsafe(method_family(none))]
+        #[method_id(name)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         #[method(playlistAttributes)]
         pub unsafe fn playlistAttributes(&self) -> MPMediaPlaylistAttribute;
 
         #[cfg(feature = "MPMediaItem")]
-        #[method_id(@__method_family Other seedItems)]
+        #[unsafe(method_family(none))]
+        #[method_id(seedItems)]
         pub unsafe fn seedItems(&self) -> Option<Retained<NSArray<MPMediaItem>>>;
 
-        #[method_id(@__method_family Other descriptionText)]
+        #[unsafe(method_family(none))]
+        #[method_id(descriptionText)]
         pub unsafe fn descriptionText(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(@__method_family Other authorDisplayName)]
+        #[unsafe(method_family(none))]
+        #[method_id(authorDisplayName)]
         pub unsafe fn authorDisplayName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "block2")]
@@ -133,7 +138,8 @@ extern_methods!(
     #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItemCollection"))]
     unsafe impl MPMediaPlaylist {
         #[cfg(feature = "MPMediaItem")]
-        #[method_id(@__method_family Init initWithItems:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithItems:)]
         pub unsafe fn initWithItems(
             this: Allocated<Self>,
             items: &NSArray<MPMediaItem>,
@@ -145,10 +151,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItemCollection"))]
     unsafe impl MPMediaPlaylist {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -164,28 +172,34 @@ unsafe impl NSObjectProtocol for MPMediaPlaylistCreationMetadata {}
 
 extern_methods!(
     unsafe impl MPMediaPlaylistCreationMetadata {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithName:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithName:)]
         pub unsafe fn initWithName(this: Allocated<Self>, name: &NSString) -> Retained<Self>;
 
         /// The display name of the playlist.
-        #[method_id(@__method_family Other name)]
+        #[unsafe(method_family(none))]
+        #[method_id(name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Defaults to the requesting app's display name.
-        #[method_id(@__method_family Other authorDisplayName)]
+        #[unsafe(method_family(none))]
+        #[method_id(authorDisplayName)]
         pub unsafe fn authorDisplayName(&self) -> Retained<NSString>;
 
         /// Setter for [`authorDisplayName`][Self::authorDisplayName].
         #[method(setAuthorDisplayName:)]
         pub unsafe fn setAuthorDisplayName(&self, author_display_name: Option<&NSString>);
 
-        #[method_id(@__method_family Other descriptionText)]
+        #[unsafe(method_family(none))]
+        #[method_id(descriptionText)]
         pub unsafe fn descriptionText(&self) -> Retained<NSString>;
 
         /// Setter for [`descriptionText`][Self::descriptionText].

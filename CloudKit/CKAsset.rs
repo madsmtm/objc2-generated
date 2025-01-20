@@ -17,18 +17,22 @@ unsafe impl NSObjectProtocol for CKAsset {}
 
 extern_methods!(
     unsafe impl CKAsset {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Initialize an asset to be saved with the content at the given file URL
-        #[method_id(@__method_family Init initWithFileURL:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithFileURL:)]
         pub unsafe fn initWithFileURL(this: Allocated<Self>, file_url: &NSURL) -> Retained<Self>;
 
         /// Local file URL where fetched records are cached and saved records originate from.
-        #[method_id(@__method_family Other fileURL)]
+        #[unsafe(method_family(none))]
+        #[method_id(fileURL)]
         pub unsafe fn fileURL(&self) -> Option<Retained<NSURL>>;
     }
 );

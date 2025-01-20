@@ -53,7 +53,8 @@ extern_methods!(
         /// Parameter `device`: The optional device represents the HKDevice from which the data is provided.
         ///
         /// Parameter `startDate`: The start date of the HKHeartbeatSeriesSample that will be generated.
-        #[method_id(@__method_family Init initWithHealthStore:device:startDate:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithHealthStore:device:startDate:)]
         pub unsafe fn initWithHealthStore_device_startDate(
             this: Allocated<Self>,
             health_store: &HKHealthStore,
@@ -137,7 +138,8 @@ extern_methods!(
     #[cfg(feature = "HKSeriesBuilder")]
     unsafe impl HKHeartbeatSeriesBuilder {
         /// Use only subclass initializer methods.
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -146,7 +148,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "HKSeriesBuilder")]
     unsafe impl HKHeartbeatSeriesBuilder {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

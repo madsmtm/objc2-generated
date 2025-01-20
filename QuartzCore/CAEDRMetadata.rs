@@ -28,32 +28,38 @@ unsafe impl NSSecureCoding for CAEDRMetadata {}
 
 extern_methods!(
     unsafe impl CAEDRMetadata {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family Other HDR10MetadataWithDisplayInfo:contentInfo:opticalOutputScale:)]
+        #[unsafe(method_family(none))]
+        #[method_id(HDR10MetadataWithDisplayInfo:contentInfo:opticalOutputScale:)]
         pub unsafe fn HDR10MetadataWithDisplayInfo_contentInfo_opticalOutputScale(
             display_data: Option<&NSData>,
             content_data: Option<&NSData>,
             scale: c_float,
         ) -> Retained<CAEDRMetadata>;
 
-        #[method_id(@__method_family Other HDR10MetadataWithMinLuminance:maxLuminance:opticalOutputScale:)]
+        #[unsafe(method_family(none))]
+        #[method_id(HDR10MetadataWithMinLuminance:maxLuminance:opticalOutputScale:)]
         pub unsafe fn HDR10MetadataWithMinLuminance_maxLuminance_opticalOutputScale(
             min_nits: c_float,
             max_nits: c_float,
             scale: c_float,
         ) -> Retained<CAEDRMetadata>;
 
-        #[method_id(@__method_family Other HLGMetadataWithAmbientViewingEnvironment:)]
+        #[unsafe(method_family(none))]
+        #[method_id(HLGMetadataWithAmbientViewingEnvironment:)]
         pub unsafe fn HLGMetadataWithAmbientViewingEnvironment(
             data: &NSData,
         ) -> Retained<CAEDRMetadata>;
 
-        #[method_id(@__method_family Other HLGMetadata)]
+        #[unsafe(method_family(none))]
+        #[method_id(HLGMetadata)]
         pub unsafe fn HLGMetadata() -> Retained<CAEDRMetadata>;
 
         #[method(isAvailable)]

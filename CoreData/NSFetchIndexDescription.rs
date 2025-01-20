@@ -27,14 +27,16 @@ unsafe impl NSObjectProtocol for NSFetchIndexDescription {}
 extern_methods!(
     unsafe impl NSFetchIndexDescription {
         #[cfg(feature = "NSFetchIndexElementDescription")]
-        #[method_id(@__method_family Init initWithName:elements:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithName:elements:)]
         pub unsafe fn initWithName_elements(
             this: Allocated<Self>,
             name: &NSString,
             elements: Option<&NSArray<NSFetchIndexElementDescription>>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Other name)]
+        #[unsafe(method_family(none))]
+        #[method_id(name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
@@ -42,7 +44,8 @@ extern_methods!(
         pub unsafe fn setName(&self, name: &NSString);
 
         #[cfg(feature = "NSFetchIndexElementDescription")]
-        #[method_id(@__method_family Other elements)]
+        #[unsafe(method_family(none))]
+        #[method_id(elements)]
         pub unsafe fn elements(&self) -> Retained<NSArray<NSFetchIndexElementDescription>>;
 
         #[cfg(feature = "NSFetchIndexElementDescription")]
@@ -51,10 +54,12 @@ extern_methods!(
         pub unsafe fn setElements(&self, elements: &NSArray<NSFetchIndexElementDescription>);
 
         #[cfg(feature = "NSEntityDescription")]
-        #[method_id(@__method_family Other entity)]
+        #[unsafe(method_family(none))]
+        #[method_id(entity)]
         pub unsafe fn entity(&self) -> Option<Retained<NSEntityDescription>>;
 
-        #[method_id(@__method_family Other partialIndexPredicate)]
+        #[unsafe(method_family(none))]
+        #[method_id(partialIndexPredicate)]
         pub unsafe fn partialIndexPredicate(&self) -> Option<Retained<NSPredicate>>;
 
         /// Setter for [`partialIndexPredicate`][Self::partialIndexPredicate].
@@ -69,10 +74,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSFetchIndexDescription {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

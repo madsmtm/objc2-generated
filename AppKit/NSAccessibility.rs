@@ -14,14 +14,16 @@ extern_category!(
     pub unsafe trait NSObjectNSAccessibility {
         #[cfg(feature = "NSAccessibilityConstants")]
         #[deprecated = "Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)"]
-        #[method_id(@__method_family Other accessibilityAttributeNames)]
+        #[unsafe(method_family(none))]
+        #[method_id(accessibilityAttributeNames)]
         unsafe fn accessibilityAttributeNames(
             &self,
         ) -> Retained<NSArray<NSAccessibilityAttributeName>>;
 
         #[cfg(feature = "NSAccessibilityConstants")]
         #[deprecated = "Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)"]
-        #[method_id(@__method_family Other accessibilityAttributeValue:)]
+        #[unsafe(method_family(none))]
+        #[method_id(accessibilityAttributeValue:)]
         unsafe fn accessibilityAttributeValue(
             &self,
             attribute: &NSAccessibilityAttributeName,
@@ -46,14 +48,16 @@ extern_category!(
 
         #[cfg(feature = "NSAccessibilityConstants")]
         #[deprecated = "Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)"]
-        #[method_id(@__method_family Other accessibilityParameterizedAttributeNames)]
+        #[unsafe(method_family(none))]
+        #[method_id(accessibilityParameterizedAttributeNames)]
         unsafe fn accessibilityParameterizedAttributeNames(
             &self,
         ) -> Retained<NSArray<NSAccessibilityParameterizedAttributeName>>;
 
         #[cfg(feature = "NSAccessibilityConstants")]
         #[deprecated = "Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)"]
-        #[method_id(@__method_family Other accessibilityAttributeValue:forParameter:)]
+        #[unsafe(method_family(none))]
+        #[method_id(accessibilityAttributeValue:forParameter:)]
         unsafe fn accessibilityAttributeValue_forParameter(
             &self,
             attribute: &NSAccessibilityParameterizedAttributeName,
@@ -62,12 +66,14 @@ extern_category!(
 
         #[cfg(feature = "NSAccessibilityConstants")]
         #[deprecated = "Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)"]
-        #[method_id(@__method_family Other accessibilityActionNames)]
+        #[unsafe(method_family(none))]
+        #[method_id(accessibilityActionNames)]
         unsafe fn accessibilityActionNames(&self) -> Retained<NSArray<NSAccessibilityActionName>>;
 
         #[cfg(feature = "NSAccessibilityConstants")]
         #[deprecated = "Use the NSAccessibility protocol methods instead (see NSAccessibilityProtocols.h)"]
-        #[method_id(@__method_family Other accessibilityActionDescription:)]
+        #[unsafe(method_family(none))]
+        #[method_id(accessibilityActionDescription:)]
         unsafe fn accessibilityActionDescription(
             &self,
             action: &NSAccessibilityActionName,
@@ -82,10 +88,12 @@ extern_category!(
         #[method(accessibilityIsIgnored)]
         unsafe fn accessibilityIsIgnored(&self) -> bool;
 
-        #[method_id(@__method_family Other accessibilityHitTest:)]
+        #[unsafe(method_family(none))]
+        #[method_id(accessibilityHitTest:)]
         unsafe fn accessibilityHitTest(&self, point: NSPoint) -> Option<Retained<AnyObject>>;
 
-        #[method_id(@__method_family Other accessibilityFocusedUIElement)]
+        #[unsafe(method_family(none))]
+        #[method_id(accessibilityFocusedUIElement)]
         unsafe fn accessibilityFocusedUIElement(&self) -> Option<Retained<AnyObject>>;
 
         #[method(accessibilityIndexOfChild:)]
@@ -99,7 +107,8 @@ extern_category!(
         ) -> NSUInteger;
 
         #[cfg(feature = "NSAccessibilityConstants")]
-        #[method_id(@__method_family Other accessibilityArrayAttributeValues:index:maxCount:)]
+        #[unsafe(method_family(none))]
+        #[method_id(accessibilityArrayAttributeValues:index:maxCount:)]
         unsafe fn accessibilityArrayAttributeValues_index_maxCount(
             &self,
             attribute: &NSAccessibilityAttributeName,

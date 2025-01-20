@@ -79,7 +79,8 @@ unsafe impl NSSecureCoding for ASAuthorizationSecurityKeyPublicKeyCredentialDesc
 
 extern_methods!(
     unsafe impl ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor {
-        #[method_id(@__method_family Init initWithCredentialID:transports:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCredentialID:transports:)]
         pub unsafe fn initWithCredentialID_transports(
             this: Allocated<Self>,
             credential_id: &NSData,
@@ -89,7 +90,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// An array indicating transports for the credential indicated by credentialID.
-        #[method_id(@__method_family Other transports)]
+        #[unsafe(method_family(none))]
+        #[method_id(transports)]
         pub unsafe fn transports(
             &self,
         ) -> Retained<NSArray<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport>>;
@@ -101,10 +103,12 @@ extern_methods!(
             transports: &NSArray<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport>,
         );
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

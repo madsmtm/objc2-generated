@@ -42,7 +42,8 @@ extern_methods!(
         #[method(canContainCollections)]
         pub unsafe fn canContainCollections(&self) -> bool;
 
-        #[method_id(@__method_family Other localizedTitle)]
+        #[unsafe(method_family(none))]
+        #[method_id(localizedTitle)]
         pub unsafe fn localizedTitle(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "PhotosTypes")]
@@ -53,14 +54,16 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(all(feature = "PHFetchOptions", feature = "PHFetchResult"))]
-        #[method_id(@__method_family Other fetchCollectionsInCollectionList:options:)]
+        #[unsafe(method_family(none))]
+        #[method_id(fetchCollectionsInCollectionList:options:)]
         pub unsafe fn fetchCollectionsInCollectionList_options(
             collection_list: &PHCollectionList,
             options: Option<&PHFetchOptions>,
         ) -> Retained<PHFetchResult<PHCollection>>;
 
         #[cfg(all(feature = "PHFetchOptions", feature = "PHFetchResult"))]
-        #[method_id(@__method_family Other fetchTopLevelUserCollectionsWithOptions:)]
+        #[unsafe(method_family(none))]
+        #[method_id(fetchTopLevelUserCollectionsWithOptions:)]
         pub unsafe fn fetchTopLevelUserCollectionsWithOptions(
             options: Option<&PHFetchOptions>,
         ) -> Retained<PHFetchResult<PHCollection>>;
@@ -71,10 +74,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "PHObject")]
     unsafe impl PHCollection {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -118,21 +123,26 @@ extern_methods!(
         #[method(estimatedAssetCount)]
         pub unsafe fn estimatedAssetCount(&self) -> NSUInteger;
 
-        #[method_id(@__method_family Other startDate)]
+        #[unsafe(method_family(none))]
+        #[method_id(startDate)]
         pub unsafe fn startDate(&self) -> Option<Retained<NSDate>>;
 
-        #[method_id(@__method_family Other endDate)]
+        #[unsafe(method_family(none))]
+        #[method_id(endDate)]
         pub unsafe fn endDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "objc2-core-location")]
-        #[method_id(@__method_family Other approximateLocation)]
+        #[unsafe(method_family(none))]
+        #[method_id(approximateLocation)]
         pub unsafe fn approximateLocation(&self) -> Option<Retained<CLLocation>>;
 
-        #[method_id(@__method_family Other localizedLocationNames)]
+        #[unsafe(method_family(none))]
+        #[method_id(localizedLocationNames)]
         pub unsafe fn localizedLocationNames(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "PHFetchOptions", feature = "PHFetchResult"))]
-        #[method_id(@__method_family Other fetchAssetCollectionsWithLocalIdentifiers:options:)]
+        #[unsafe(method_family(none))]
+        #[method_id(fetchAssetCollectionsWithLocalIdentifiers:options:)]
         pub unsafe fn fetchAssetCollectionsWithLocalIdentifiers_options(
             identifiers: &NSArray<NSString>,
             options: Option<&PHFetchOptions>,
@@ -143,7 +153,8 @@ extern_methods!(
             feature = "PHFetchResult",
             feature = "PhotosTypes"
         ))]
-        #[method_id(@__method_family Other fetchAssetCollectionsWithType:subtype:options:)]
+        #[unsafe(method_family(none))]
+        #[method_id(fetchAssetCollectionsWithType:subtype:options:)]
         pub unsafe fn fetchAssetCollectionsWithType_subtype_options(
             r#type: PHAssetCollectionType,
             subtype: PHAssetCollectionSubtype,
@@ -156,7 +167,8 @@ extern_methods!(
             feature = "PHFetchResult",
             feature = "PhotosTypes"
         ))]
-        #[method_id(@__method_family Other fetchAssetCollectionsContainingAsset:withType:options:)]
+        #[unsafe(method_family(none))]
+        #[method_id(fetchAssetCollectionsContainingAsset:withType:options:)]
         pub unsafe fn fetchAssetCollectionsContainingAsset_withType_options(
             asset: &PHAsset,
             r#type: PHAssetCollectionType,
@@ -165,7 +177,8 @@ extern_methods!(
 
         #[cfg(all(feature = "PHFetchOptions", feature = "PHFetchResult"))]
         #[deprecated = "Will be removed in a future release"]
-        #[method_id(@__method_family Other fetchAssetCollectionsWithALAssetGroupURLs:options:)]
+        #[unsafe(method_family(none))]
+        #[method_id(fetchAssetCollectionsWithALAssetGroupURLs:options:)]
         pub unsafe fn fetchAssetCollectionsWithALAssetGroupURLs_options(
             asset_group_ur_ls: &NSArray<NSURL>,
             options: Option<&PHFetchOptions>,
@@ -173,7 +186,8 @@ extern_methods!(
 
         #[cfg(all(feature = "PHFetchOptions", feature = "PHFetchResult"))]
         #[deprecated = "Will be removed in a future release"]
-        #[method_id(@__method_family Other fetchMomentsInMomentList:options:)]
+        #[unsafe(method_family(none))]
+        #[method_id(fetchMomentsInMomentList:options:)]
         pub unsafe fn fetchMomentsInMomentList_options(
             moment_list: &PHCollectionList,
             options: Option<&PHFetchOptions>,
@@ -181,20 +195,23 @@ extern_methods!(
 
         #[cfg(all(feature = "PHFetchOptions", feature = "PHFetchResult"))]
         #[deprecated = "Will be removed in a future release"]
-        #[method_id(@__method_family Other fetchMomentsWithOptions:)]
+        #[unsafe(method_family(none))]
+        #[method_id(fetchMomentsWithOptions:)]
         pub unsafe fn fetchMomentsWithOptions(
             options: Option<&PHFetchOptions>,
         ) -> Retained<PHFetchResult<PHAssetCollection>>;
 
         #[cfg(feature = "PHAsset")]
-        #[method_id(@__method_family Other transientAssetCollectionWithAssets:title:)]
+        #[unsafe(method_family(none))]
+        #[method_id(transientAssetCollectionWithAssets:title:)]
         pub unsafe fn transientAssetCollectionWithAssets_title(
             assets: &NSArray<PHAsset>,
             title: Option<&NSString>,
         ) -> Retained<PHAssetCollection>;
 
         #[cfg(all(feature = "PHAsset", feature = "PHFetchResult"))]
-        #[method_id(@__method_family Other transientAssetCollectionWithAssetFetchResult:title:)]
+        #[unsafe(method_family(none))]
+        #[method_id(transientAssetCollectionWithAssetFetchResult:title:)]
         pub unsafe fn transientAssetCollectionWithAssetFetchResult_title(
             fetch_result: &PHFetchResult<PHAsset>,
             title: Option<&NSString>,
@@ -206,10 +223,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "PHObject")]
     unsafe impl PHAssetCollection {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -250,24 +269,29 @@ extern_methods!(
         #[method(collectionListSubtype)]
         pub unsafe fn collectionListSubtype(&self) -> PHCollectionListSubtype;
 
-        #[method_id(@__method_family Other startDate)]
+        #[unsafe(method_family(none))]
+        #[method_id(startDate)]
         pub unsafe fn startDate(&self) -> Option<Retained<NSDate>>;
 
-        #[method_id(@__method_family Other endDate)]
+        #[unsafe(method_family(none))]
+        #[method_id(endDate)]
         pub unsafe fn endDate(&self) -> Option<Retained<NSDate>>;
 
-        #[method_id(@__method_family Other localizedLocationNames)]
+        #[unsafe(method_family(none))]
+        #[method_id(localizedLocationNames)]
         pub unsafe fn localizedLocationNames(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "PHFetchOptions", feature = "PHFetchResult"))]
-        #[method_id(@__method_family Other fetchCollectionListsContainingCollection:options:)]
+        #[unsafe(method_family(none))]
+        #[method_id(fetchCollectionListsContainingCollection:options:)]
         pub unsafe fn fetchCollectionListsContainingCollection_options(
             collection: &PHCollection,
             options: Option<&PHFetchOptions>,
         ) -> Retained<PHFetchResult<PHCollectionList>>;
 
         #[cfg(all(feature = "PHFetchOptions", feature = "PHFetchResult"))]
-        #[method_id(@__method_family Other fetchCollectionListsWithLocalIdentifiers:options:)]
+        #[unsafe(method_family(none))]
+        #[method_id(fetchCollectionListsWithLocalIdentifiers:options:)]
         pub unsafe fn fetchCollectionListsWithLocalIdentifiers_options(
             identifiers: &NSArray<NSString>,
             options: Option<&PHFetchOptions>,
@@ -278,7 +302,8 @@ extern_methods!(
             feature = "PHFetchResult",
             feature = "PhotosTypes"
         ))]
-        #[method_id(@__method_family Other fetchCollectionListsWithType:subtype:options:)]
+        #[unsafe(method_family(none))]
+        #[method_id(fetchCollectionListsWithType:subtype:options:)]
         pub unsafe fn fetchCollectionListsWithType_subtype_options(
             collection_list_type: PHCollectionListType,
             subtype: PHCollectionListSubtype,
@@ -291,7 +316,8 @@ extern_methods!(
             feature = "PhotosTypes"
         ))]
         #[deprecated = "Will be removed in a future release"]
-        #[method_id(@__method_family Other fetchMomentListsWithSubtype:containingMoment:options:)]
+        #[unsafe(method_family(none))]
+        #[method_id(fetchMomentListsWithSubtype:containingMoment:options:)]
         pub unsafe fn fetchMomentListsWithSubtype_containingMoment_options(
             moment_list_subtype: PHCollectionListSubtype,
             moment: &PHAssetCollection,
@@ -304,20 +330,23 @@ extern_methods!(
             feature = "PhotosTypes"
         ))]
         #[deprecated = "Will be removed in a future release"]
-        #[method_id(@__method_family Other fetchMomentListsWithSubtype:options:)]
+        #[unsafe(method_family(none))]
+        #[method_id(fetchMomentListsWithSubtype:options:)]
         pub unsafe fn fetchMomentListsWithSubtype_options(
             moment_list_subtype: PHCollectionListSubtype,
             options: Option<&PHFetchOptions>,
         ) -> Retained<PHFetchResult<PHCollectionList>>;
 
-        #[method_id(@__method_family Other transientCollectionListWithCollections:title:)]
+        #[unsafe(method_family(none))]
+        #[method_id(transientCollectionListWithCollections:title:)]
         pub unsafe fn transientCollectionListWithCollections_title(
             collections: &NSArray<PHCollection>,
             title: Option<&NSString>,
         ) -> Retained<PHCollectionList>;
 
         #[cfg(feature = "PHFetchResult")]
-        #[method_id(@__method_family Other transientCollectionListWithCollectionsFetchResult:title:)]
+        #[unsafe(method_family(none))]
+        #[method_id(transientCollectionListWithCollectionsFetchResult:title:)]
         pub unsafe fn transientCollectionListWithCollectionsFetchResult_title(
             fetch_result: &PHFetchResult<PHCollection>,
             title: Option<&NSString>,
@@ -329,10 +358,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "PHObject")]
     unsafe impl PHCollectionList {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

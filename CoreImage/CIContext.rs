@@ -88,57 +88,67 @@ unsafe impl NSObjectProtocol for CIContext {}
 extern_methods!(
     unsafe impl CIContext {
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(@__method_family Other contextWithCGContext:options:)]
+        #[unsafe(method_family(none))]
+        #[method_id(contextWithCGContext:options:)]
         pub unsafe fn contextWithCGContext_options(
             cgctx: &CGContext,
             options: Option<&NSDictionary<CIContextOption, AnyObject>>,
         ) -> Retained<CIContext>;
 
-        #[method_id(@__method_family Other contextWithOptions:)]
+        #[unsafe(method_family(none))]
+        #[method_id(contextWithOptions:)]
         pub unsafe fn contextWithOptions(
             options: Option<&NSDictionary<CIContextOption, AnyObject>>,
         ) -> Retained<CIContext>;
 
-        #[method_id(@__method_family Other context)]
+        #[unsafe(method_family(none))]
+        #[method_id(context)]
         pub unsafe fn context() -> Retained<CIContext>;
 
-        #[method_id(@__method_family Init initWithOptions:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithOptions:)]
         pub unsafe fn initWithOptions(
             this: Allocated<Self>,
             options: Option<&NSDictionary<CIContextOption, AnyObject>>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-metal")]
-        #[method_id(@__method_family Other contextWithMTLDevice:)]
+        #[unsafe(method_family(none))]
+        #[method_id(contextWithMTLDevice:)]
         pub unsafe fn contextWithMTLDevice(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<CIContext>;
 
         #[cfg(feature = "objc2-metal")]
-        #[method_id(@__method_family Other contextWithMTLDevice:options:)]
+        #[unsafe(method_family(none))]
+        #[method_id(contextWithMTLDevice:options:)]
         pub unsafe fn contextWithMTLDevice_options(
             device: &ProtocolObject<dyn MTLDevice>,
             options: Option<&NSDictionary<CIContextOption, AnyObject>>,
         ) -> Retained<CIContext>;
 
         #[cfg(feature = "objc2-metal")]
-        #[method_id(@__method_family Other contextWithMTLCommandQueue:)]
+        #[unsafe(method_family(none))]
+        #[method_id(contextWithMTLCommandQueue:)]
         pub unsafe fn contextWithMTLCommandQueue(
             command_queue: &ProtocolObject<dyn MTLCommandQueue>,
         ) -> Retained<CIContext>;
 
         #[cfg(feature = "objc2-metal")]
-        #[method_id(@__method_family Other contextWithMTLCommandQueue:options:)]
+        #[unsafe(method_family(none))]
+        #[method_id(contextWithMTLCommandQueue:options:)]
         pub unsafe fn contextWithMTLCommandQueue_options(
             command_queue: &ProtocolObject<dyn MTLCommandQueue>,
             options: Option<&NSDictionary<CIContextOption, AnyObject>>,
         ) -> Retained<CIContext>;
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(@__method_family Other workingColorSpace)]
+        #[unsafe(method_family(none))]
+        #[method_id(workingColorSpace)]
         pub unsafe fn workingColorSpace(&self) -> Option<Retained<CGColorSpace>>;
 
         #[cfg(feature = "CIImage")]
@@ -249,7 +259,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIContext {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -266,7 +277,8 @@ extern_methods!(
         pub unsafe fn offlineGPUCount() -> c_uint;
 
         #[deprecated = "Core Image OpenGL API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)"]
-        #[method_id(@__method_family Other contextForOfflineGPUAtIndex:)]
+        #[unsafe(method_family(none))]
+        #[method_id(contextForOfflineGPUAtIndex:)]
         pub unsafe fn contextForOfflineGPUAtIndex(index: c_uint) -> Option<Retained<CIContext>>;
     }
 );
@@ -351,7 +363,8 @@ extern_methods!(
     /// ImageRepresentation
     unsafe impl CIContext {
         #[cfg(all(feature = "CIImage", feature = "objc2-core-graphics"))]
-        #[method_id(@__method_family Other TIFFRepresentationOfImage:format:colorSpace:options:)]
+        #[unsafe(method_family(none))]
+        #[method_id(TIFFRepresentationOfImage:format:colorSpace:options:)]
         pub unsafe fn TIFFRepresentationOfImage_format_colorSpace_options(
             &self,
             image: &CIImage,
@@ -361,7 +374,8 @@ extern_methods!(
         ) -> Option<Retained<NSData>>;
 
         #[cfg(all(feature = "CIImage", feature = "objc2-core-graphics"))]
-        #[method_id(@__method_family Other JPEGRepresentationOfImage:colorSpace:options:)]
+        #[unsafe(method_family(none))]
+        #[method_id(JPEGRepresentationOfImage:colorSpace:options:)]
         pub unsafe fn JPEGRepresentationOfImage_colorSpace_options(
             &self,
             image: &CIImage,
@@ -370,7 +384,8 @@ extern_methods!(
         ) -> Option<Retained<NSData>>;
 
         #[cfg(all(feature = "CIImage", feature = "objc2-core-graphics"))]
-        #[method_id(@__method_family Other HEIFRepresentationOfImage:format:colorSpace:options:)]
+        #[unsafe(method_family(none))]
+        #[method_id(HEIFRepresentationOfImage:format:colorSpace:options:)]
         pub unsafe fn HEIFRepresentationOfImage_format_colorSpace_options(
             &self,
             image: &CIImage,
@@ -380,7 +395,8 @@ extern_methods!(
         ) -> Option<Retained<NSData>>;
 
         #[cfg(all(feature = "CIImage", feature = "objc2-core-graphics"))]
-        #[method_id(@__method_family Other HEIF10RepresentationOfImage:colorSpace:options:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(HEIF10RepresentationOfImage:colorSpace:options:error:_)]
         pub unsafe fn HEIF10RepresentationOfImage_colorSpace_options_error(
             &self,
             image: &CIImage,
@@ -389,7 +405,8 @@ extern_methods!(
         ) -> Result<Retained<NSData>, Retained<NSError>>;
 
         #[cfg(all(feature = "CIImage", feature = "objc2-core-graphics"))]
-        #[method_id(@__method_family Other PNGRepresentationOfImage:format:colorSpace:options:)]
+        #[unsafe(method_family(none))]
+        #[method_id(PNGRepresentationOfImage:format:colorSpace:options:)]
         pub unsafe fn PNGRepresentationOfImage_format_colorSpace_options(
             &self,
             image: &CIImage,
@@ -399,7 +416,8 @@ extern_methods!(
         ) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "CIImage")]
-        #[method_id(@__method_family Other OpenEXRRepresentationOfImage:options:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(OpenEXRRepresentationOfImage:options:error:_)]
         pub unsafe fn OpenEXRRepresentationOfImage_options_error(
             &self,
             image: &CIImage,
@@ -474,7 +492,8 @@ extern_methods!(
     /// CIDepthBlurEffect
     unsafe impl CIContext {
         #[cfg(feature = "CIFilter")]
-        #[method_id(@__method_family Other depthBlurEffectFilterForImageURL:options:)]
+        #[unsafe(method_family(none))]
+        #[method_id(depthBlurEffectFilterForImageURL:options:)]
         pub unsafe fn depthBlurEffectFilterForImageURL_options(
             &self,
             url: &NSURL,
@@ -482,7 +501,8 @@ extern_methods!(
         ) -> Option<Retained<CIFilter>>;
 
         #[cfg(feature = "CIFilter")]
-        #[method_id(@__method_family Other depthBlurEffectFilterForImageData:options:)]
+        #[unsafe(method_family(none))]
+        #[method_id(depthBlurEffectFilterForImageData:options:)]
         pub unsafe fn depthBlurEffectFilterForImageData_options(
             &self,
             data: &NSData,

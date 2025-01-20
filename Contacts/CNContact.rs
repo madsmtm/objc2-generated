@@ -100,109 +100,137 @@ unsafe impl NSSecureCoding for CNContact {}
 extern_methods!(
     unsafe impl CNContact {
         /// The identifier is unique among contacts on the device. It can be saved and used for fetching contacts next application launch.
-        #[method_id(@__method_family Other identifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         #[method(contactType)]
         pub unsafe fn contactType(&self) -> CNContactType;
 
-        #[method_id(@__method_family Other namePrefix)]
+        #[unsafe(method_family(none))]
+        #[method_id(namePrefix)]
         pub unsafe fn namePrefix(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other givenName)]
+        #[unsafe(method_family(none))]
+        #[method_id(givenName)]
         pub unsafe fn givenName(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other middleName)]
+        #[unsafe(method_family(none))]
+        #[method_id(middleName)]
         pub unsafe fn middleName(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other familyName)]
+        #[unsafe(method_family(none))]
+        #[method_id(familyName)]
         pub unsafe fn familyName(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other previousFamilyName)]
+        #[unsafe(method_family(none))]
+        #[method_id(previousFamilyName)]
         pub unsafe fn previousFamilyName(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other nameSuffix)]
+        #[unsafe(method_family(none))]
+        #[method_id(nameSuffix)]
         pub unsafe fn nameSuffix(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other nickname)]
+        #[unsafe(method_family(none))]
+        #[method_id(nickname)]
         pub unsafe fn nickname(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other organizationName)]
+        #[unsafe(method_family(none))]
+        #[method_id(organizationName)]
         pub unsafe fn organizationName(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other departmentName)]
+        #[unsafe(method_family(none))]
+        #[method_id(departmentName)]
         pub unsafe fn departmentName(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other jobTitle)]
+        #[unsafe(method_family(none))]
+        #[method_id(jobTitle)]
         pub unsafe fn jobTitle(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other phoneticGivenName)]
+        #[unsafe(method_family(none))]
+        #[method_id(phoneticGivenName)]
         pub unsafe fn phoneticGivenName(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other phoneticMiddleName)]
+        #[unsafe(method_family(none))]
+        #[method_id(phoneticMiddleName)]
         pub unsafe fn phoneticMiddleName(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other phoneticFamilyName)]
+        #[unsafe(method_family(none))]
+        #[method_id(phoneticFamilyName)]
         pub unsafe fn phoneticFamilyName(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other phoneticOrganizationName)]
+        #[unsafe(method_family(none))]
+        #[method_id(phoneticOrganizationName)]
         pub unsafe fn phoneticOrganizationName(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other note)]
+        #[unsafe(method_family(none))]
+        #[method_id(note)]
         pub unsafe fn note(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other imageData)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageData)]
         pub unsafe fn imageData(&self) -> Option<Retained<NSData>>;
 
-        #[method_id(@__method_family Other thumbnailImageData)]
+        #[unsafe(method_family(none))]
+        #[method_id(thumbnailImageData)]
         pub unsafe fn thumbnailImageData(&self) -> Option<Retained<NSData>>;
 
         #[method(imageDataAvailable)]
         pub unsafe fn imageDataAvailable(&self) -> bool;
 
         #[cfg(all(feature = "CNLabeledValue", feature = "CNPhoneNumber"))]
-        #[method_id(@__method_family Other phoneNumbers)]
+        #[unsafe(method_family(none))]
+        #[method_id(phoneNumbers)]
         pub unsafe fn phoneNumbers(&self) -> Retained<NSArray<CNLabeledValue<CNPhoneNumber>>>;
 
         #[cfg(feature = "CNLabeledValue")]
-        #[method_id(@__method_family Other emailAddresses)]
+        #[unsafe(method_family(none))]
+        #[method_id(emailAddresses)]
         pub unsafe fn emailAddresses(&self) -> Retained<NSArray<CNLabeledValue<NSString>>>;
 
         #[cfg(all(feature = "CNLabeledValue", feature = "CNPostalAddress"))]
-        #[method_id(@__method_family Other postalAddresses)]
+        #[unsafe(method_family(none))]
+        #[method_id(postalAddresses)]
         pub unsafe fn postalAddresses(&self) -> Retained<NSArray<CNLabeledValue<CNPostalAddress>>>;
 
         #[cfg(feature = "CNLabeledValue")]
-        #[method_id(@__method_family Other urlAddresses)]
+        #[unsafe(method_family(none))]
+        #[method_id(urlAddresses)]
         pub unsafe fn urlAddresses(&self) -> Retained<NSArray<CNLabeledValue<NSString>>>;
 
         #[cfg(all(feature = "CNContactRelation", feature = "CNLabeledValue"))]
-        #[method_id(@__method_family Other contactRelations)]
+        #[unsafe(method_family(none))]
+        #[method_id(contactRelations)]
         pub unsafe fn contactRelations(
             &self,
         ) -> Retained<NSArray<CNLabeledValue<CNContactRelation>>>;
 
         #[cfg(all(feature = "CNLabeledValue", feature = "CNSocialProfile"))]
-        #[method_id(@__method_family Other socialProfiles)]
+        #[unsafe(method_family(none))]
+        #[method_id(socialProfiles)]
         pub unsafe fn socialProfiles(&self) -> Retained<NSArray<CNLabeledValue<CNSocialProfile>>>;
 
         #[cfg(all(feature = "CNInstantMessageAddress", feature = "CNLabeledValue"))]
-        #[method_id(@__method_family Other instantMessageAddresses)]
+        #[unsafe(method_family(none))]
+        #[method_id(instantMessageAddresses)]
         pub unsafe fn instantMessageAddresses(
             &self,
         ) -> Retained<NSArray<CNLabeledValue<CNInstantMessageAddress>>>;
 
         /// The Gregorian birthday.
-        #[method_id(@__method_family Other birthday)]
+        #[unsafe(method_family(none))]
+        #[method_id(birthday)]
         pub unsafe fn birthday(&self) -> Option<Retained<NSDateComponents>>;
 
         /// The alternate birthday (Lunisolar).
-        #[method_id(@__method_family Other nonGregorianBirthday)]
+        #[unsafe(method_family(none))]
+        #[method_id(nonGregorianBirthday)]
         pub unsafe fn nonGregorianBirthday(&self) -> Option<Retained<NSDateComponents>>;
 
         #[cfg(feature = "CNLabeledValue")]
         /// Other Gregorian dates (anniversaries, etc).
-        #[method_id(@__method_family Other dates)]
+        #[unsafe(method_family(none))]
+        #[method_id(dates)]
         pub unsafe fn dates(&self) -> Retained<NSArray<CNLabeledValue<NSDateComponents>>>;
 
         /// Returns YES if the value for the specified key was fetched.
@@ -217,7 +245,8 @@ extern_methods!(
         ) -> bool;
 
         /// Returns a user displayable property name.
-        #[method_id(@__method_family Other localizedStringForKey:)]
+        #[unsafe(method_family(none))]
+        #[method_id(localizedStringForKey:)]
         pub unsafe fn localizedStringForKey(key: &NSString) -> Retained<NSString>;
 
         /// The contact comparator for a given sort order.
@@ -225,7 +254,8 @@ extern_methods!(
         pub unsafe fn comparatorForNameSortOrder(sort_order: CNContactSortOrder) -> NSComparator;
 
         /// Use to fetch all contact keys required for the contact sort comparator.
-        #[method_id(@__method_family Other descriptorForAllComparatorKeys)]
+        #[unsafe(method_family(none))]
+        #[method_id(descriptorForAllComparatorKeys)]
         pub unsafe fn descriptorForAllComparatorKeys(
         ) -> Retained<ProtocolObject<dyn CNKeyDescriptor>>;
 
@@ -241,10 +271,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CNContact {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

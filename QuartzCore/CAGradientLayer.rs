@@ -36,14 +36,16 @@ unsafe impl NSSecureCoding for CAGradientLayer {}
 extern_methods!(
     #[cfg(feature = "CALayer")]
     unsafe impl CAGradientLayer {
-        #[method_id(@__method_family Other colors)]
+        #[unsafe(method_family(none))]
+        #[method_id(colors)]
         pub unsafe fn colors(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`colors`][Self::colors].
         #[method(setColors:)]
         pub unsafe fn setColors(&self, colors: Option<&NSArray>);
 
-        #[method_id(@__method_family Other locations)]
+        #[unsafe(method_family(none))]
+        #[method_id(locations)]
         pub unsafe fn locations(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         /// Setter for [`locations`][Self::locations].
@@ -68,7 +70,8 @@ extern_methods!(
         #[method(setEndPoint:)]
         pub unsafe fn setEndPoint(&self, end_point: CGPoint);
 
-        #[method_id(@__method_family Other type)]
+        #[unsafe(method_family(none))]
+        #[method_id(type)]
         pub unsafe fn r#type(&self) -> Retained<CAGradientLayerType>;
 
         /// Setter for [`type`][Self::type].
@@ -82,13 +85,16 @@ extern_methods!(
     #[cfg(feature = "CALayer")]
     unsafe impl CAGradientLayer {
         /// Layer creation and initialization. *
-        #[method_id(@__method_family Other layer)]
+        #[unsafe(method_family(none))]
+        #[method_id(layer)]
         pub unsafe fn layer() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithLayer:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithLayer:)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
     }
 );
@@ -97,7 +103,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CALayer")]
     unsafe impl CAGradientLayer {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -52,7 +52,8 @@ extern_methods!(
     unsafe impl DOMUIEvent {
         #[cfg(feature = "DOMAbstractView")]
         #[deprecated]
-        #[method_id(@__method_family Other view)]
+        #[unsafe(method_family(none))]
+        #[method_id(view)]
         pub unsafe fn view(&self) -> Option<Retained<DOMAbstractView>>;
 
         #[deprecated]
@@ -104,7 +105,8 @@ extern_methods!(
     ))]
     unsafe impl DOMUIEvent {
         #[deprecated]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -117,7 +119,8 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMUIEvent {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -98,15 +98,18 @@ extern_methods!(
         pub unsafe fn r#type(&self) -> UIPressType;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView", feature = "UIWindow"))]
-        #[method_id(@__method_family Other window)]
+        #[unsafe(method_family(none))]
+        #[method_id(window)]
         pub unsafe fn window(&self, mtm: MainThreadMarker) -> Option<Retained<UIWindow>>;
 
         #[cfg(feature = "UIResponder")]
-        #[method_id(@__method_family Other responder)]
+        #[unsafe(method_family(none))]
+        #[method_id(responder)]
         pub unsafe fn responder(&self, mtm: MainThreadMarker) -> Option<Retained<UIResponder>>;
 
         #[cfg(feature = "UIGestureRecognizer")]
-        #[method_id(@__method_family Other gestureRecognizers)]
+        #[unsafe(method_family(none))]
+        #[method_id(gestureRecognizers)]
         pub unsafe fn gestureRecognizers(
             &self,
             mtm: MainThreadMarker,
@@ -119,7 +122,8 @@ extern_methods!(
         #[cfg(feature = "UIKey")]
         /// For presses that originate from a hardware keyboard, contains a UIKey object describing the key being acted upon.
         /// This property is nil if the press did not originate from a hardware keyboard.
-        #[method_id(@__method_family Other key)]
+        #[unsafe(method_family(none))]
+        #[method_id(key)]
         pub unsafe fn key(&self, mtm: MainThreadMarker) -> Option<Retained<UIKey>>;
     }
 );
@@ -127,10 +131,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIPress {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

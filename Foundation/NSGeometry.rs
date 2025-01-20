@@ -371,19 +371,23 @@ extern_methods!(
     #[cfg(feature = "NSValue")]
     unsafe impl NSValue {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Other valueWithPoint:)]
+        #[unsafe(method_family(none))]
+        #[method_id(valueWithPoint:)]
         pub unsafe fn valueWithPoint(point: NSPoint) -> Retained<NSValue>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Other valueWithSize:)]
+        #[unsafe(method_family(none))]
+        #[method_id(valueWithSize:)]
         pub unsafe fn valueWithSize(size: NSSize) -> Retained<NSValue>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Other valueWithRect:)]
+        #[unsafe(method_family(none))]
+        #[method_id(valueWithRect:)]
         pub unsafe fn valueWithRect(rect: NSRect) -> Retained<NSValue>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Other valueWithEdgeInsets:)]
+        #[unsafe(method_family(none))]
+        #[method_id(valueWithEdgeInsets:)]
         pub unsafe fn valueWithEdgeInsets(insets: NSEdgeInsets) -> Retained<NSValue>;
 
         #[cfg(feature = "objc2-core-foundation")]

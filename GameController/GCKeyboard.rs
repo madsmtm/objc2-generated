@@ -54,12 +54,14 @@ extern_methods!(
         /// Unlike GCController GCKeyboard only has one input profile.
         ///
         /// This profile allows you to query buttons and button state
-        #[method_id(@__method_family Other keyboardInput)]
+        #[unsafe(method_family(none))]
+        #[method_id(keyboardInput)]
         pub unsafe fn keyboardInput(&self) -> Option<Retained<GCKeyboardInput>>;
 
         /// Keyboard object that represents all keyboards connected to the device
         /// Should be used to query key states every time input needs to be handled
-        #[method_id(@__method_family Other coalescedKeyboard)]
+        #[unsafe(method_family(none))]
+        #[method_id(coalescedKeyboard)]
         pub unsafe fn coalescedKeyboard() -> Option<Retained<GCKeyboard>>;
     }
 );
@@ -67,10 +69,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GCKeyboard {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

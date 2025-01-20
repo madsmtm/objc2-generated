@@ -119,7 +119,8 @@ extern_methods!(
         /// <doc
         /// ://com.apple.documentation/documentation/objectivec/no>
         /// if the system fills the screen with your view’s contents.
-        #[method_id(@__method_family Init initWithFrame:isPreview:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithFrame:isPreview:)]
         pub unsafe fn initWithFrame_isPreview(
             this: Allocated<Self>,
             frame: NSRect,
@@ -249,7 +250,8 @@ extern_methods!(
         /// ## See also
         ///
         /// - ``ScreenSaver/ScreenSaverView/hasConfigureSheet``
-        #[method_id(@__method_family Other configureSheet)]
+        #[unsafe(method_family(none))]
+        #[method_id(configureSheet)]
         pub unsafe fn configureSheet(&self) -> Option<Retained<NSWindow>>;
 
         /// A Boolean value that indicates whether the screen saver view is set to a size suitable
@@ -275,10 +277,12 @@ extern_methods!(
     /// Methods declared on superclass `NSView`
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl ScreenSaverView {
-        #[method_id(@__method_family Init initWithFrame:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -290,7 +294,8 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl ScreenSaverView {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -299,7 +304,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl ScreenSaverView {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

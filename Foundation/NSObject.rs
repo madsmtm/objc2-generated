@@ -14,7 +14,8 @@ extern_protocol!(
         unsafe fn encodeWithCoder(&self, coder: &NSCoder);
 
         #[cfg(feature = "NSCoder")]
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Retained<Self>>;
     }
 );
@@ -42,7 +43,8 @@ extern_category!(
         unsafe fn classForCoder(&self) -> &'static AnyClass;
 
         #[cfg(feature = "NSCoder")]
-        #[method_id(@__method_family Other replacementObjectForCoder:)]
+        #[unsafe(method_family(none))]
+        #[method_id(replacementObjectForCoder:)]
         unsafe fn replacementObjectForCoder(&self, coder: &NSCoder) -> Option<Retained<AnyObject>>;
     }
 
@@ -72,7 +74,8 @@ extern_category!(
     /// Category "NSDiscardableContentProxy" on [`NSObject`].
     #[doc(alias = "NSDiscardableContentProxy")]
     pub unsafe trait NSObjectNSDiscardableContentProxy {
-        #[method_id(@__method_family Other autoContentAccessingProxy)]
+        #[unsafe(method_family(none))]
+        #[method_id(autoContentAccessingProxy)]
         unsafe fn autoContentAccessingProxy(&self) -> Retained<AnyObject>;
     }
 

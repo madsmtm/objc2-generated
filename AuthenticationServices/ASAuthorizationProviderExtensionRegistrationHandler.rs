@@ -210,7 +210,8 @@ extern_protocol!(
         #[cfg(feature = "ASAuthorizationProviderExtensionLoginConfiguration")]
         /// The supported device signing algorithms.
         #[optional]
-        #[method_id(@__method_family Other supportedDeviceSigningAlgorithms)]
+        #[unsafe(method_family(none))]
+        #[method_id(supportedDeviceSigningAlgorithms)]
         unsafe fn supportedDeviceSigningAlgorithms(
             &self,
         ) -> Retained<NSArray<ASAuthorizationProviderExtensionSigningAlgorithm>>;
@@ -218,7 +219,8 @@ extern_protocol!(
         #[cfg(feature = "ASAuthorizationProviderExtensionLoginConfiguration")]
         /// The supported device encryption algorithms.
         #[optional]
-        #[method_id(@__method_family Other supportedDeviceEncryptionAlgorithms)]
+        #[unsafe(method_family(none))]
+        #[method_id(supportedDeviceEncryptionAlgorithms)]
         unsafe fn supportedDeviceEncryptionAlgorithms(
             &self,
         ) -> Retained<NSArray<ASAuthorizationProviderExtensionEncryptionAlgorithm>>;
@@ -226,7 +228,8 @@ extern_protocol!(
         #[cfg(feature = "ASAuthorizationProviderExtensionLoginConfiguration")]
         /// The supported user Secure Enclave Key signing algorithms.
         #[optional]
-        #[method_id(@__method_family Other supportedUserSecureEnclaveKeySigningAlgorithms)]
+        #[unsafe(method_family(none))]
+        #[method_id(supportedUserSecureEnclaveKeySigningAlgorithms)]
         unsafe fn supportedUserSecureEnclaveKeySigningAlgorithms(
             &self,
         ) -> Retained<NSArray<ASAuthorizationProviderExtensionSigningAlgorithm>>;

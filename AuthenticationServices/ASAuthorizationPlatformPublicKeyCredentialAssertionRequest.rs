@@ -46,7 +46,8 @@ extern_methods!(
     unsafe impl ASAuthorizationPlatformPublicKeyCredentialAssertionRequest {
         #[cfg(feature = "ASAuthorizationPlatformPublicKeyCredentialDescriptor")]
         /// A list of credentials to allow for this request. If this ilist is nonempty, only credentials matching the provided descriptors can be used to sign in.
-        #[method_id(@__method_family Other allowedCredentials)]
+        #[unsafe(method_family(none))]
+        #[method_id(allowedCredentials)]
         pub unsafe fn allowedCredentials(
             &self,
         ) -> Retained<NSArray<ASAuthorizationPlatformPublicKeyCredentialDescriptor>>;
@@ -60,7 +61,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput")]
-        #[method_id(@__method_family Other largeBlob)]
+        #[unsafe(method_family(none))]
+        #[method_id(largeBlob)]
         pub unsafe fn largeBlob(
             &self,
         ) -> Option<Retained<ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput>>;
@@ -74,7 +76,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialPRFAssertionInput")]
-        #[method_id(@__method_family Other prf)]
+        #[unsafe(method_family(none))]
+        #[method_id(prf)]
         pub unsafe fn prf(
             &self,
         ) -> Option<Retained<ASAuthorizationPublicKeyCredentialPRFAssertionInput>>;
@@ -87,10 +90,12 @@ extern_methods!(
             prf: Option<&ASAuthorizationPublicKeyCredentialPRFAssertionInput>,
         );
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

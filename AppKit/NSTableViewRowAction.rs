@@ -45,7 +45,8 @@ unsafe impl NSObjectProtocol for NSTableViewRowAction {}
 extern_methods!(
     unsafe impl NSTableViewRowAction {
         #[cfg(feature = "block2")]
-        #[method_id(@__method_family Other rowActionWithStyle:title:handler:)]
+        #[unsafe(method_family(none))]
+        #[method_id(rowActionWithStyle:title:handler:)]
         pub unsafe fn rowActionWithStyle_title_handler(
             style: NSTableViewRowActionStyle,
             title: &NSString,
@@ -55,7 +56,8 @@ extern_methods!(
         #[method(style)]
         pub unsafe fn style(&self) -> NSTableViewRowActionStyle;
 
-        #[method_id(@__method_family Other title)]
+        #[unsafe(method_family(none))]
+        #[method_id(title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
@@ -63,7 +65,8 @@ extern_methods!(
         pub unsafe fn setTitle(&self, title: &NSString);
 
         #[cfg(feature = "NSColor")]
-        #[method_id(@__method_family Other backgroundColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(backgroundColor)]
         pub unsafe fn backgroundColor(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
@@ -72,7 +75,8 @@ extern_methods!(
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&NSColor>);
 
         #[cfg(feature = "NSImage")]
-        #[method_id(@__method_family Other image)]
+        #[unsafe(method_family(none))]
+        #[method_id(image)]
         pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
@@ -85,10 +89,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTableViewRowAction {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

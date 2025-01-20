@@ -72,7 +72,8 @@ extern_methods!(
         ///
         /// Returns: A new MLCAdamWOptimizer object.
         #[deprecated]
-        #[method_id(@__method_family Other optimizerWithDescriptor:)]
+        #[unsafe(method_family(none))]
+        #[method_id(optimizerWithDescriptor:)]
         pub unsafe fn optimizerWithDescriptor(
             optimizer_descriptor: &MLCOptimizerDescriptor,
         ) -> Retained<Self>;
@@ -94,7 +95,8 @@ extern_methods!(
         ///
         /// Returns: A new MLCAdamWOptimizer object.
         #[deprecated]
-        #[method_id(@__method_family Other optimizerWithDescriptor:beta1:beta2:epsilon:usesAMSGrad:timeStep:)]
+        #[unsafe(method_family(none))]
+        #[method_id(optimizerWithDescriptor:beta1:beta2:epsilon:usesAMSGrad:timeStep:)]
         pub unsafe fn optimizerWithDescriptor_beta1_beta2_epsilon_usesAMSGrad_timeStep(
             optimizer_descriptor: &MLCOptimizerDescriptor,
             beta1: c_float,
@@ -111,11 +113,13 @@ extern_methods!(
     #[cfg(feature = "MLCOptimizer")]
     unsafe impl MLCAdamWOptimizer {
         #[deprecated]
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

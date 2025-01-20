@@ -140,19 +140,23 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIStackView {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Init initWithFrame:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithArrangedSubviews:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithArrangedSubviews:)]
         pub unsafe fn initWithArrangedSubviews(
             this: Allocated<Self>,
             views: &NSArray<UIView>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Other arrangedSubviews)]
+        #[unsafe(method_family(none))]
+        #[method_id(arrangedSubviews)]
         pub unsafe fn arrangedSubviews(&self) -> Retained<NSArray<UIView>>;
 
         #[method(addArrangedSubview:)]
@@ -229,10 +233,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIStackView {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

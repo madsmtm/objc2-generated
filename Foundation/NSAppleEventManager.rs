@@ -51,29 +51,34 @@ unsafe impl NSObjectProtocol for NSAppleEventManager {}
 
 extern_methods!(
     unsafe impl NSAppleEventManager {
-        #[method_id(@__method_family Other sharedAppleEventManager)]
+        #[unsafe(method_family(none))]
+        #[method_id(sharedAppleEventManager)]
         pub unsafe fn sharedAppleEventManager() -> Retained<NSAppleEventManager>;
 
         #[cfg(feature = "NSAppleEventDescriptor")]
-        #[method_id(@__method_family Other currentAppleEvent)]
+        #[unsafe(method_family(none))]
+        #[method_id(currentAppleEvent)]
         pub unsafe fn currentAppleEvent(&self) -> Option<Retained<NSAppleEventDescriptor>>;
 
         #[cfg(feature = "NSAppleEventDescriptor")]
-        #[method_id(@__method_family Other currentReplyAppleEvent)]
+        #[unsafe(method_family(none))]
+        #[method_id(currentReplyAppleEvent)]
         pub unsafe fn currentReplyAppleEvent(&self) -> Option<Retained<NSAppleEventDescriptor>>;
 
         #[method(suspendCurrentAppleEvent)]
         pub unsafe fn suspendCurrentAppleEvent(&self) -> NSAppleEventManagerSuspensionID;
 
         #[cfg(feature = "NSAppleEventDescriptor")]
-        #[method_id(@__method_family Other appleEventForSuspensionID:)]
+        #[unsafe(method_family(none))]
+        #[method_id(appleEventForSuspensionID:)]
         pub unsafe fn appleEventForSuspensionID(
             &self,
             suspension_id: NSAppleEventManagerSuspensionID,
         ) -> Retained<NSAppleEventDescriptor>;
 
         #[cfg(feature = "NSAppleEventDescriptor")]
-        #[method_id(@__method_family Other replyAppleEventForSuspensionID:)]
+        #[unsafe(method_family(none))]
+        #[method_id(replyAppleEventForSuspensionID:)]
         pub unsafe fn replyAppleEventForSuspensionID(
             &self,
             suspension_id: NSAppleEventManagerSuspensionID,
@@ -93,10 +98,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSAppleEventManager {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

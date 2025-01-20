@@ -28,24 +28,29 @@ unsafe impl NSSecureCoding for NSColorList {}
 
 extern_methods!(
     unsafe impl NSColorList {
-        #[method_id(@__method_family Other availableColorLists)]
+        #[unsafe(method_family(none))]
+        #[method_id(availableColorLists)]
         pub unsafe fn availableColorLists() -> Retained<NSArray<NSColorList>>;
 
-        #[method_id(@__method_family Other colorListNamed:)]
+        #[unsafe(method_family(none))]
+        #[method_id(colorListNamed:)]
         pub unsafe fn colorListNamed(name: &NSColorListName) -> Option<Retained<NSColorList>>;
 
-        #[method_id(@__method_family Init initWithName:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithName:)]
         pub unsafe fn initWithName(this: Allocated<Self>, name: &NSColorListName)
             -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithName:fromFile:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithName:fromFile:)]
         pub unsafe fn initWithName_fromFile(
             this: Allocated<Self>,
             name: &NSColorListName,
             path: Option<&NSString>,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__method_family Other name)]
+        #[unsafe(method_family(none))]
+        #[method_id(name)]
         pub unsafe fn name(&self) -> Option<Retained<NSColorListName>>;
 
         #[cfg(feature = "NSColor")]
@@ -65,10 +70,12 @@ extern_methods!(
         pub unsafe fn removeColorWithKey(&self, key: &NSColorName);
 
         #[cfg(feature = "NSColor")]
-        #[method_id(@__method_family Other colorWithKey:)]
+        #[unsafe(method_family(none))]
+        #[method_id(colorWithKey:)]
         pub unsafe fn colorWithKey(&self, key: &NSColorName) -> Option<Retained<NSColor>>;
 
-        #[method_id(@__method_family Other allKeys)]
+        #[unsafe(method_family(none))]
+        #[method_id(allKeys)]
         pub unsafe fn allKeys(&self) -> Retained<NSArray<NSColorName>>;
 
         #[method(isEditable)]
@@ -90,10 +97,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSColorList {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

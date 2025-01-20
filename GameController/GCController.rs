@@ -183,7 +183,8 @@ extern_methods!(
         ///
         /// Note: This is useful for single player games where you only care about whether an input is pressed, and not where it came from. You
         /// will still need to register for changes to GCController.current so that your UI can remain up-to-date with the current controller.
-        #[method_id(@__method_family Other current)]
+        #[unsafe(method_family(none))]
+        #[method_id(current)]
         pub unsafe fn current() -> Option<Retained<GCController>>;
 
         /// Whether the current application should monitor and respond to game controller events when it is not the frontmost application.
@@ -238,7 +239,8 @@ extern_methods!(
 
         #[cfg(feature = "GCControllerInput")]
         /// Gets the input profile for the controller.
-        #[method_id(@__method_family Other input)]
+        #[unsafe(method_family(none))]
+        #[method_id(input)]
         pub unsafe fn input(&self) -> Retained<GCControllerLiveInput>;
 
         #[cfg(feature = "GCDeviceBattery")]
@@ -246,7 +248,8 @@ extern_methods!(
         ///
         /// This property is useful when you try to notify your user to change or charge controller before it runs out of battery life
         /// or simply display the current battery level and status.
-        #[method_id(@__method_family Other battery)]
+        #[unsafe(method_family(none))]
+        #[method_id(battery)]
         pub unsafe fn battery(&self) -> Option<Retained<GCDeviceBattery>>;
 
         #[cfg(feature = "GCPhysicalInputProfile")]
@@ -258,7 +261,8 @@ extern_methods!(
         /// See: microGamepad
         ///
         /// See: extendedGamepad
-        #[method_id(@__method_family Other physicalInputProfile)]
+        #[unsafe(method_family(none))]
+        #[method_id(physicalInputProfile)]
         pub unsafe fn physicalInputProfile(&self) -> Retained<GCPhysicalInputProfile>;
 
         #[cfg(all(feature = "GCGamepad", feature = "GCPhysicalInputProfile"))]
@@ -278,15 +282,18 @@ extern_methods!(
         ///
         /// See: motion
         #[deprecated]
-        #[method_id(@__method_family Other gamepad)]
+        #[unsafe(method_family(none))]
+        #[method_id(gamepad)]
         pub unsafe fn gamepad(&self) -> Option<Retained<GCGamepad>>;
 
         #[cfg(all(feature = "GCMicroGamepad", feature = "GCPhysicalInputProfile"))]
-        #[method_id(@__method_family Other microGamepad)]
+        #[unsafe(method_family(none))]
+        #[method_id(microGamepad)]
         pub unsafe fn microGamepad(&self) -> Option<Retained<GCMicroGamepad>>;
 
         #[cfg(all(feature = "GCExtendedGamepad", feature = "GCPhysicalInputProfile"))]
-        #[method_id(@__method_family Other extendedGamepad)]
+        #[unsafe(method_family(none))]
+        #[method_id(extendedGamepad)]
         pub unsafe fn extendedGamepad(&self) -> Option<Retained<GCExtendedGamepad>>;
 
         #[cfg(feature = "GCMotion")]
@@ -298,7 +305,8 @@ extern_methods!(
         /// See: gamepad
         ///
         /// See: extendedGamepad
-        #[method_id(@__method_family Other motion)]
+        #[unsafe(method_family(none))]
+        #[method_id(motion)]
         pub unsafe fn motion(&self) -> Option<Retained<GCMotion>>;
 
         #[cfg(feature = "GCDeviceLight")]
@@ -306,7 +314,8 @@ extern_methods!(
         ///
         /// A controller's light can be used to signal information to the player, such as using different light colors based on the player
         /// index. It can also be used to react to in-game events and enhance user immersion.
-        #[method_id(@__method_family Other light)]
+        #[unsafe(method_family(none))]
+        #[method_id(light)]
         pub unsafe fn light(&self) -> Option<Retained<GCDeviceLight>>;
 
         #[cfg(feature = "GCDeviceHaptics")]
@@ -316,7 +325,8 @@ extern_methods!(
         ///
         ///
         /// Note: Haptics are a drain on the controller's battery, and can be distracting when used excessively.
-        #[method_id(@__method_family Other haptics)]
+        #[unsafe(method_family(none))]
+        #[method_id(haptics)]
         pub unsafe fn haptics(&self) -> Option<Retained<GCDeviceHaptics>>;
 
         /// Polls the state vector of the controller and saves it to a new and writable instance of GCController.
@@ -328,7 +338,8 @@ extern_methods!(
         /// See: snapshot
         ///
         /// Returns: A new controller with the duplicated state vector of the current controller
-        #[method_id(@__method_family Other capture)]
+        #[unsafe(method_family(none))]
+        #[method_id(capture)]
         pub unsafe fn capture(&self) -> Retained<GCController>;
 
         /// Get a list of controllers currently attached to the system.
@@ -337,7 +348,8 @@ extern_methods!(
         /// See: GCControllerDidConnectNotification
         ///
         /// See: GCControllerDidDisconnectNotification
-        #[method_id(@__method_family Other controllers)]
+        #[unsafe(method_family(none))]
+        #[method_id(controllers)]
         pub unsafe fn controllers() -> Retained<NSArray<GCController>>;
 
         #[cfg(feature = "block2")]
@@ -389,7 +401,8 @@ extern_methods!(
         /// See: snapshot
         ///
         /// Returns: A new controller with a micro gamepad profile
-        #[method_id(@__method_family Other controllerWithMicroGamepad)]
+        #[unsafe(method_family(none))]
+        #[method_id(controllerWithMicroGamepad)]
         pub unsafe fn controllerWithMicroGamepad() -> Retained<GCController>;
 
         /// Creates a controller with an extended gamepad profile.
@@ -400,7 +413,8 @@ extern_methods!(
         /// See: snapshot
         ///
         /// Returns: A new controller with an extended gamepad profile
-        #[method_id(@__method_family Other controllerWithExtendedGamepad)]
+        #[unsafe(method_family(none))]
+        #[method_id(controllerWithExtendedGamepad)]
         pub unsafe fn controllerWithExtendedGamepad() -> Retained<GCController>;
     }
 );
@@ -408,10 +422,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GCController {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

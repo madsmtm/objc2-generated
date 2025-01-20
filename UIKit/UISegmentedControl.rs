@@ -160,17 +160,20 @@ extern_methods!(
     #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
     unsafe impl UISegmentedControl {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Init initWithFrame:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
         /// Initializes the segmented control with the given items. Items may be NSStrings, UIImages, or (as of iOS 14.0) UIActions. When constructing from a UIAction segments will prefer images over titles when both are provided. The segmented control is automatically sized to fit content.
-        #[method_id(@__method_family Init initWithItems:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithItems:)]
         pub unsafe fn initWithItems(
             this: Allocated<Self>,
             items: Option<&NSArray>,
@@ -182,7 +185,8 @@ extern_methods!(
             feature = "objc2-core-foundation"
         ))]
         /// Initializes the segmented control with the given frame and segments constructed from the given UIActions. Segments will prefer images over titles when both are provided. Selecting a segment calls UIAction.actionHandler as well as handlers for the ValueChanged and PrimaryActionTriggered control events.
-        #[method_id(@__method_family Init initWithFrame:actions:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithFrame:actions:)]
         pub unsafe fn initWithFrame_actions(
             this: Allocated<Self>,
             frame: CGRect,
@@ -206,7 +210,8 @@ extern_methods!(
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         /// Fetch the action for the given segment, if one has been assigned to that segment
-        #[method_id(@__method_family Other actionForSegmentAtIndex:)]
+        #[unsafe(method_family(none))]
+        #[method_id(actionForSegmentAtIndex:)]
         pub unsafe fn actionForSegmentAtIndex(
             &self,
             segment: NSUInteger,
@@ -282,7 +287,8 @@ extern_methods!(
             segment: NSUInteger,
         );
 
-        #[method_id(@__method_family Other titleForSegmentAtIndex:)]
+        #[unsafe(method_family(none))]
+        #[method_id(titleForSegmentAtIndex:)]
         pub unsafe fn titleForSegmentAtIndex(
             &self,
             segment: NSUInteger,
@@ -297,7 +303,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIImage")]
-        #[method_id(@__method_family Other imageForSegmentAtIndex:)]
+        #[unsafe(method_family(none))]
+        #[method_id(imageForSegmentAtIndex:)]
         pub unsafe fn imageForSegmentAtIndex(
             &self,
             segment: NSUInteger,
@@ -337,7 +344,8 @@ extern_methods!(
         pub unsafe fn setSelectedSegmentIndex(&self, selected_segment_index: NSInteger);
 
         #[cfg(feature = "UIColor")]
-        #[method_id(@__method_family Other selectedSegmentTintColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(selectedSegmentTintColor)]
         pub unsafe fn selectedSegmentTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -358,7 +366,8 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIBarCommon", feature = "UIImage"))]
-        #[method_id(@__method_family Other backgroundImageForState:barMetrics:)]
+        #[unsafe(method_family(none))]
+        #[method_id(backgroundImageForState:barMetrics:)]
         pub unsafe fn backgroundImageForState_barMetrics(
             &self,
             state: UIControlState,
@@ -376,7 +385,8 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIBarCommon", feature = "UIImage"))]
-        #[method_id(@__method_family Other dividerImageForLeftSegmentState:rightSegmentState:barMetrics:)]
+        #[unsafe(method_family(none))]
+        #[method_id(dividerImageForLeftSegmentState:rightSegmentState:barMetrics:)]
         pub unsafe fn dividerImageForLeftSegmentState_rightSegmentState_barMetrics(
             &self,
             left_state: UIControlState,
@@ -391,7 +401,8 @@ extern_methods!(
             state: UIControlState,
         );
 
-        #[method_id(@__method_family Other titleTextAttributesForState:)]
+        #[unsafe(method_family(none))]
+        #[method_id(titleTextAttributesForState:)]
         pub unsafe fn titleTextAttributesForState(
             &self,
             state: UIControlState,
@@ -434,7 +445,8 @@ extern_methods!(
             feature = "objc2-core-foundation"
         ))]
         /// Initializes the control and adds primaryAction for the UIControlEventPrimaryActionTriggered control event. Subclasses of UIControl may alter or add behaviors around the usage of primaryAction, see subclass documentation of this initializer for additional information.
-        #[method_id(@__method_family Init initWithFrame:primaryAction:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithFrame:primaryAction:)]
         pub unsafe fn initWithFrame_primaryAction(
             this: Allocated<Self>,
             frame: CGRect,
@@ -447,10 +459,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
     unsafe impl UISegmentedControl {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

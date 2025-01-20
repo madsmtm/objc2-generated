@@ -70,10 +70,12 @@ unsafe impl NSSecureCoding for CKOperationGroup {}
 
 extern_methods!(
     unsafe impl CKOperationGroup {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Retained<Self>;
 
         /// This is an identifier unique to this
@@ -81,7 +83,8 @@ extern_methods!(
         ///
         /// This value is chosen by the system, and will be unique to this instance of a
         /// `CKOperationGroup.`This identifier will be sent to Apple's servers, and can be used to identify any server-side logging associated with this operation group.
-        #[method_id(@__method_family Other operationGroupID)]
+        #[unsafe(method_family(none))]
+        #[method_id(operationGroupID)]
         pub unsafe fn operationGroupID(&self) -> Retained<NSString>;
 
         #[cfg(feature = "CKOperation")]
@@ -89,7 +92,8 @@ extern_methods!(
         ///
         ///
         /// If an operation associated with this operation group has its own configuration, then any explicitly-set properties in that operation's configuration will override these default configuration values.  See the example in CKOperation.h
-        #[method_id(@__method_family Other defaultConfiguration)]
+        #[unsafe(method_family(none))]
+        #[method_id(defaultConfiguration)]
         pub unsafe fn defaultConfiguration(&self) -> Retained<CKOperationConfiguration>;
 
         #[cfg(feature = "CKOperation")]
@@ -109,7 +113,8 @@ extern_methods!(
         /// "Saving User-Entered Record"
         /// This string will be sent to Apple servers to provide aggregate reporting for
         /// `CKOperationGroup`s and therefore must not include personally identifying data.
-        #[method_id(@__method_family Other name)]
+        #[unsafe(method_family(none))]
+        #[method_id(name)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
@@ -171,7 +176,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CKOperationGroup {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

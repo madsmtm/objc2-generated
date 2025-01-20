@@ -41,10 +41,12 @@ unsafe impl NSObjectProtocol for CKContainer {}
 
 extern_methods!(
     unsafe impl CKContainer {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Convenience method that uses the calling process' "iCloud.\(application-identifier)" as the container identifier
@@ -57,7 +59,8 @@ extern_methods!(
         /// On all OSes, if an
         /// `com.apple.developer.associated-application-identifier`entitlement is present, its value will be preferred over the
         /// `application-identifier`variants.
-        #[method_id(@__method_family Other defaultContainer)]
+        #[unsafe(method_family(none))]
+        #[method_id(defaultContainer)]
         pub unsafe fn defaultContainer() -> Retained<CKContainer>;
 
         /// Obtain a CKContainer for the given containerIdentifier
@@ -66,12 +69,14 @@ extern_methods!(
         /// If the application is in production mode (aka,
         /// `com.apple.developer.icloud-container-environment`is set to Production in your entitlements plist, and you have no override in
         /// `com.apple.developer.icloud-container-development-container-identifiers),`then the production environment is used.
-        #[method_id(@__method_family Other containerWithIdentifier:)]
+        #[unsafe(method_family(none))]
+        #[method_id(containerWithIdentifier:)]
         pub unsafe fn containerWithIdentifier(
             container_identifier: &NSString,
         ) -> Retained<CKContainer>;
 
-        #[method_id(@__method_family Other containerIdentifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(containerIdentifier)]
         pub unsafe fn containerIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "CKOperation")]
@@ -98,15 +103,18 @@ extern_methods!(
     /// - Are counted towards the originating owner's iCloud account storage quota.
     unsafe impl CKContainer {
         #[cfg(feature = "CKDatabase")]
-        #[method_id(@__method_family Other privateCloudDatabase)]
+        #[unsafe(method_family(none))]
+        #[method_id(privateCloudDatabase)]
         pub unsafe fn privateCloudDatabase(&self) -> Retained<CKDatabase>;
 
         #[cfg(feature = "CKDatabase")]
-        #[method_id(@__method_family Other publicCloudDatabase)]
+        #[unsafe(method_family(none))]
+        #[method_id(publicCloudDatabase)]
         pub unsafe fn publicCloudDatabase(&self) -> Retained<CKDatabase>;
 
         #[cfg(feature = "CKDatabase")]
-        #[method_id(@__method_family Other sharedCloudDatabase)]
+        #[unsafe(method_family(none))]
+        #[method_id(sharedCloudDatabase)]
         pub unsafe fn sharedCloudDatabase(&self) -> Retained<CKDatabase>;
 
         #[cfg(feature = "CKDatabase")]
@@ -114,7 +122,8 @@ extern_methods!(
         ///
         ///
         /// Returns: a database that's pointer-equal to one of the above properties
-        #[method_id(@__method_family Other databaseWithDatabaseScope:)]
+        #[unsafe(method_family(none))]
+        #[method_id(databaseWithDatabaseScope:)]
         pub unsafe fn databaseWithDatabaseScope(
             &self,
             database_scope: CKDatabaseScope,

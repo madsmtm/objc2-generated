@@ -156,26 +156,30 @@ extern_methods!(
 
         /// Slows an object proportionally to the object’s velocity.
         /// Use this to simulate effects such as friction from motion through the air.
-        #[method_id(@__method_family Other dragField)]
+        #[unsafe(method_family(none))]
+        #[method_id(dragField)]
         pub unsafe fn dragField() -> Retained<SCNPhysicsField>;
 
         /// Applies a force tangential to the direction from the sample point to the field's position.
         /// The force will be CCW to the direction. Make the strength negative to apply force in the CW direction.
         /// Amount is proportional to distance from center and the object's mass.
         /// Use this to create effects such as tornadoes.
-        #[method_id(@__method_family Other vortexField)]
+        #[unsafe(method_family(none))]
+        #[method_id(vortexField)]
         pub unsafe fn vortexField() -> Retained<SCNPhysicsField>;
 
         /// Applies a force in the direction of the origin of the field in local space. To repel objects, use a negative strength.
         /// The force is proportional to the distance from the field origin. Varies with the mass of the object according to F = ma
         /// The field node's rotation property can be used to orient the gravity in a particular direction.
-        #[method_id(@__method_family Other radialGravityField)]
+        #[unsafe(method_family(none))]
+        #[method_id(radialGravityField)]
         pub unsafe fn radialGravityField() -> Retained<SCNPhysicsField>;
 
         /// Applies a force in the direction of the "direction" vector in the local space. To repel objects, use a negative strength.
         /// The force is the same everywhere in the field. Varies with the mass of the object according to F = ma
         /// The field node's rotation property can be used to orient the gravity in a particular direction.
-        #[method_id(@__method_family Other linearGravityField)]
+        #[unsafe(method_family(none))]
+        #[method_id(linearGravityField)]
         pub unsafe fn linearGravityField() -> Retained<SCNPhysicsField>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -183,7 +187,8 @@ extern_methods!(
         /// Use this to simulate such effects as fireflies, or snow.
         /// To freeze the noise in place, set animationSpeed to 0.0. Mass is ignored.
         /// You can change the "smoothness" and "animationSpeed" using KVC.
-        #[method_id(@__method_family Other noiseFieldWithSmoothness:animationSpeed:)]
+        #[unsafe(method_family(none))]
+        #[method_id(noiseFieldWithSmoothness:animationSpeed:)]
         pub unsafe fn noiseFieldWithSmoothness_animationSpeed(
             smoothness: CGFloat,
             speed: CGFloat,
@@ -191,7 +196,8 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Just like Noise, except the strength of the noise is proportional to the velocity of the object in the field.
-        #[method_id(@__method_family Other turbulenceFieldWithSmoothness:animationSpeed:)]
+        #[unsafe(method_family(none))]
+        #[method_id(turbulenceFieldWithSmoothness:animationSpeed:)]
         pub unsafe fn turbulenceFieldWithSmoothness_animationSpeed(
             smoothness: CGFloat,
             speed: CGFloat,
@@ -200,19 +206,22 @@ extern_methods!(
         /// A Hooke’s law force - a force linearly proportional to distance from the center of the field. An object in this
         /// field will oscillate with a period proportional to the inverse of the mass.
         /// An example use is to keep objects confined to a particular region.
-        #[method_id(@__method_family Other springField)]
+        #[unsafe(method_family(none))]
+        #[method_id(springField)]
         pub unsafe fn springField() -> Retained<SCNPhysicsField>;
 
         /// A force proportional to the charge on the object. An example use of this field is to make objects behavior differently
         /// from one another when they enter a region, or to make an object's behavior different than its mass based behavior
         /// This field models the first part of the Lorentz equation, F = qE
-        #[method_id(@__method_family Other electricField)]
+        #[unsafe(method_family(none))]
+        #[method_id(electricField)]
         pub unsafe fn electricField() -> Retained<SCNPhysicsField>;
 
         /// A force proportional to the charge on the object and the object’s velocity.
         /// An example use of this field is to make objects behavior differently from one another when they enter a region, or to make an object's behavior different than its mass based behavior
         /// This field models the second part of the Lorentz equation, F = qvB
-        #[method_id(@__method_family Other magneticField)]
+        #[unsafe(method_family(none))]
+        #[method_id(magneticField)]
         pub unsafe fn magneticField() -> Retained<SCNPhysicsField>;
 
         #[cfg(all(
@@ -221,7 +230,8 @@ extern_methods!(
             feature = "objc2-core-foundation"
         ))]
         /// A field force with a custom force evaluator.
-        #[method_id(@__method_family Other customFieldWithEvaluationBlock:)]
+        #[unsafe(method_family(none))]
+        #[method_id(customFieldWithEvaluationBlock:)]
         pub unsafe fn customFieldWithEvaluationBlock(
             block: SCNFieldForceEvaluator,
         ) -> Retained<SCNPhysicsField>;
@@ -231,10 +241,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNPhysicsField {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

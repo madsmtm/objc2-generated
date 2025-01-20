@@ -87,14 +87,16 @@ unsafe impl NSUserInterfaceItemIdentification for ASAuthorizationAppleIDButton {
 extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl ASAuthorizationAppleIDButton {
-        #[method_id(@__method_family Other buttonWithType:style:)]
+        #[unsafe(method_family(none))]
+        #[method_id(buttonWithType:style:)]
         pub unsafe fn buttonWithType_style(
             r#type: ASAuthorizationAppleIDButtonType,
             style: ASAuthorizationAppleIDButtonStyle,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithAuthorizationButtonType:authorizationButtonStyle:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithAuthorizationButtonType:authorizationButtonStyle:)]
         pub unsafe fn initWithAuthorizationButtonType_authorizationButtonStyle(
             this: Allocated<Self>,
             r#type: ASAuthorizationAppleIDButtonType,
@@ -117,10 +119,12 @@ extern_methods!(
     /// Methods declared on superclass `NSControl`
     #[cfg(target_os = "macos")]
     unsafe impl ASAuthorizationAppleIDButton {
-        #[method_id(@__method_family Init initWithFrame:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -132,7 +136,8 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(target_os = "macos")]
     unsafe impl ASAuthorizationAppleIDButton {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -141,7 +146,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(target_os = "macos")]
     unsafe impl ASAuthorizationAppleIDButton {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

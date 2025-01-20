@@ -38,14 +38,16 @@ extern_methods!(
     #[cfg(feature = "SKRequest")]
     unsafe impl SKProductsRequest {
         #[deprecated = "Use Product.products(for:)"]
-        #[method_id(@__method_family Init initWithProductIdentifiers:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithProductIdentifiers:)]
         pub unsafe fn initWithProductIdentifiers(
             this: Allocated<Self>,
             product_identifiers: &NSSet<NSString>,
         ) -> Retained<Self>;
 
         #[deprecated = "Use Product.products(for:)"]
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn SKProductsRequestDelegate>>>;
@@ -65,10 +67,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "SKRequest")]
     unsafe impl SKProductsRequest {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -91,11 +95,13 @@ extern_methods!(
     unsafe impl SKProductsResponse {
         #[cfg(feature = "SKProduct")]
         #[deprecated = "Get products using Product.products(for:)"]
-        #[method_id(@__method_family Other products)]
+        #[unsafe(method_family(none))]
+        #[method_id(products)]
         pub unsafe fn products(&self) -> Retained<NSArray<SKProduct>>;
 
         #[deprecated = "Get products using Product.products(for:)"]
-        #[method_id(@__method_family Other invalidProductIdentifiers)]
+        #[unsafe(method_family(none))]
+        #[method_id(invalidProductIdentifiers)]
         pub unsafe fn invalidProductIdentifiers(&self) -> Retained<NSArray<NSString>>;
     }
 );
@@ -103,10 +109,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKProductsResponse {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

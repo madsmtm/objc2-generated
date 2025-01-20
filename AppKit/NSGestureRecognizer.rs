@@ -51,20 +51,23 @@ unsafe impl NSObjectProtocol for NSGestureRecognizer {}
 
 extern_methods!(
     unsafe impl NSGestureRecognizer {
-        #[method_id(@__method_family Init initWithTarget:action:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithTarget:action:)]
         pub unsafe fn initWithTarget_action(
             this: Allocated<Self>,
             target: Option<&AnyObject>,
             action: Option<Sel>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__method_family Other target)]
+        #[unsafe(method_family(none))]
+        #[method_id(target)]
         pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -79,7 +82,8 @@ extern_methods!(
         #[method(setAction:)]
         pub unsafe fn setAction(&self, action: Option<Sel>);
 
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSGestureRecognizerDelegate>>>;
@@ -100,11 +104,13 @@ extern_methods!(
         pub unsafe fn setEnabled(&self, enabled: bool);
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-        #[method_id(@__method_family Other view)]
+        #[unsafe(method_family(none))]
+        #[method_id(view)]
         pub unsafe fn view(&self) -> Option<Retained<NSView>>;
 
         #[cfg(feature = "NSPressureConfiguration")]
-        #[method_id(@__method_family Other pressureConfiguration)]
+        #[unsafe(method_family(none))]
+        #[method_id(pressureConfiguration)]
         pub unsafe fn pressureConfiguration(&self) -> Retained<NSPressureConfiguration>;
 
         #[cfg(feature = "NSPressureConfiguration")]
@@ -175,10 +181,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSGestureRecognizer {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

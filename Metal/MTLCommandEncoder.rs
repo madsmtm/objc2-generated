@@ -67,11 +67,13 @@ extern_protocol!(
     pub unsafe trait MTLCommandEncoder: NSObjectProtocol {
         #[cfg(feature = "MTLDevice")]
         /// The device this resource was created against.
-        #[method_id(@__method_family Other device)]
+        #[unsafe(method_family(none))]
+        #[method_id(device)]
         unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         /// A string to help identify this object.
-        #[method_id(@__method_family Other label)]
+        #[unsafe(method_family(none))]
+        #[method_id(label)]
         fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].

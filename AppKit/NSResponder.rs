@@ -21,16 +21,19 @@ unsafe impl NSObjectProtocol for NSResponder {}
 
 extern_methods!(
     unsafe impl NSResponder {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__method_family Other nextResponder)]
+        #[unsafe(method_family(none))]
+        #[method_id(nextResponder)]
         pub unsafe fn nextResponder(&self) -> Option<Retained<NSResponder>>;
 
         /// Setter for [`nextResponder`][Self::nextResponder].
@@ -45,7 +48,8 @@ extern_methods!(
         pub unsafe fn performKeyEquivalent(&self, event: &NSEvent) -> bool;
 
         #[cfg(feature = "NSPasteboard")]
-        #[method_id(@__method_family Other validRequestorForSendType:returnType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(validRequestorForSendType:returnType:)]
         pub unsafe fn validRequestorForSendType_returnType(
             &self,
             send_type: Option<&NSPasteboardType>,
@@ -220,7 +224,8 @@ extern_methods!(
         pub unsafe fn flushBufferedKeyEvents(&self);
 
         #[cfg(feature = "NSMenu")]
-        #[method_id(@__method_family Other menu)]
+        #[unsafe(method_family(none))]
+        #[method_id(menu)]
         pub unsafe fn menu(&self) -> Option<Retained<NSMenu>>;
 
         #[cfg(feature = "NSMenu")]
@@ -250,7 +255,8 @@ extern_methods!(
         #[method(wantsForwardedScrollEventsForAxis:)]
         pub unsafe fn wantsForwardedScrollEventsForAxis(&self, axis: NSEventGestureAxis) -> bool;
 
-        #[method_id(@__method_family Other supplementalTargetForAction:sender:)]
+        #[unsafe(method_family(none))]
+        #[method_id(supplementalTargetForAction:sender:)]
         pub unsafe fn supplementalTargetForAction_sender(
             &self,
             action: Sel,
@@ -262,7 +268,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSResponder {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -690,7 +697,8 @@ unsafe impl NSStandardKeyBindingResponding for NSResponder {}
 extern_methods!(
     /// NSUndoSupport
     unsafe impl NSResponder {
-        #[method_id(@__method_family Other undoManager)]
+        #[unsafe(method_family(none))]
+        #[method_id(undoManager)]
         pub unsafe fn undoManager(&self) -> Option<Retained<NSUndoManager>>;
     }
 );
@@ -725,7 +733,8 @@ extern_methods!(
         #[method(presentError:)]
         pub unsafe fn presentError(&self, error: &NSError) -> bool;
 
-        #[method_id(@__method_family Other willPresentError:)]
+        #[unsafe(method_family(none))]
+        #[method_id(willPresentError:)]
         pub unsafe fn willPresentError(&self, error: &NSError) -> Retained<NSError>;
     }
 );

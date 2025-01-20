@@ -27,19 +27,23 @@ unsafe impl NSSecureCoding for MKMapItemIdentifier {}
 
 extern_methods!(
     unsafe impl MKMapItemIdentifier {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithIdentifierString:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithIdentifierString:)]
         pub unsafe fn initWithIdentifierString(
             this: Allocated<Self>,
             string: &NSString,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__method_family Other identifierString)]
+        #[unsafe(method_family(none))]
+        #[method_id(identifierString)]
         pub unsafe fn identifierString(&self) -> Retained<NSString>;
     }
 );

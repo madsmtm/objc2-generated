@@ -17,7 +17,8 @@ extern_methods!(
         #[cfg(feature = "WebArchive")]
         /// A WebArchive representing the node and the children of the node.
         #[deprecated]
-        #[method_id(@__method_family Other webArchive)]
+        #[unsafe(method_family(none))]
+        #[method_id(webArchive)]
         pub unsafe fn webArchive(&self) -> Option<Retained<WebArchive>>;
     }
 );
@@ -34,7 +35,8 @@ extern_methods!(
         #[cfg(feature = "WebFrame")]
         /// The frame of the DOM document.
         #[deprecated]
-        #[method_id(@__method_family Other webFrame)]
+        #[unsafe(method_family(none))]
+        #[method_id(webFrame)]
         pub unsafe fn webFrame(&self) -> Option<Retained<WebFrame>>;
 
         /// Constructs a URL given an attribute string.
@@ -43,7 +45,8 @@ extern_methods!(
         /// An attribute string is the value of an attribute of an element such as the href attribute on
         /// the DOMHTMLAnchorElement class. This method is only applicable to attributes that refer to URLs.
         #[deprecated]
-        #[method_id(@__method_family Other URLWithAttributeString:)]
+        #[unsafe(method_family(none))]
+        #[method_id(URLWithAttributeString:)]
         pub unsafe fn URLWithAttributeString(
             &self,
             string: Option<&NSString>,
@@ -62,12 +65,14 @@ extern_methods!(
         #[cfg(feature = "WebArchive")]
         /// A WebArchive representing the range.
         #[deprecated]
-        #[method_id(@__method_family Other webArchive)]
+        #[unsafe(method_family(none))]
+        #[method_id(webArchive)]
         pub unsafe fn webArchive(&self) -> Option<Retained<WebArchive>>;
 
         /// A markup string representing the range.
         #[deprecated]
-        #[method_id(@__method_family Other markupString)]
+        #[unsafe(method_family(none))]
+        #[method_id(markupString)]
         pub unsafe fn markupString(&self) -> Retained<NSString>;
     }
 );
@@ -86,7 +91,8 @@ extern_methods!(
         #[cfg(feature = "WebFrame")]
         /// The content frame of the element.
         #[deprecated]
-        #[method_id(@__method_family Other contentFrame)]
+        #[unsafe(method_family(none))]
+        #[method_id(contentFrame)]
         pub unsafe fn contentFrame(&self) -> Option<Retained<WebFrame>>;
     }
 );
@@ -105,7 +111,8 @@ extern_methods!(
         #[cfg(feature = "WebFrame")]
         /// Returns the content frame of the element.
         #[deprecated]
-        #[method_id(@__method_family Other contentFrame)]
+        #[unsafe(method_family(none))]
+        #[method_id(contentFrame)]
         pub unsafe fn contentFrame(&self) -> Option<Retained<WebFrame>>;
     }
 );
@@ -127,7 +134,8 @@ extern_methods!(
         /// Returns non-nil only if the object represents a child frame
         /// such as if the data of the object is HTML content.
         #[deprecated]
-        #[method_id(@__method_family Other contentFrame)]
+        #[unsafe(method_family(none))]
+        #[method_id(contentFrame)]
         pub unsafe fn contentFrame(&self) -> Option<Retained<WebFrame>>;
     }
 );

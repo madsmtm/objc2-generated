@@ -75,27 +75,31 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UITableViewController {
         #[cfg(feature = "UITableView")]
-        #[method_id(@__method_family Init initWithStyle:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithStyle:)]
         pub unsafe fn initWithStyle(
             this: Allocated<Self>,
             style: UITableViewStyle,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithNibName:bundle:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "UIScrollView", feature = "UITableView", feature = "UIView"))]
-        #[method_id(@__method_family Other tableView)]
+        #[unsafe(method_family(none))]
+        #[method_id(tableView)]
         pub unsafe fn tableView(&self) -> Option<Retained<UITableView>>;
 
         #[cfg(all(feature = "UIScrollView", feature = "UITableView", feature = "UIView"))]
@@ -118,7 +122,8 @@ extern_methods!(
             feature = "UIRefreshControl",
             feature = "UIView"
         ))]
-        #[method_id(@__method_family Other refreshControl)]
+        #[unsafe(method_family(none))]
+        #[method_id(refreshControl)]
         pub unsafe fn refreshControl(&self) -> Option<Retained<UIRefreshControl>>;
 
         #[cfg(all(
@@ -136,10 +141,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UITableViewController {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

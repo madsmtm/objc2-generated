@@ -29,16 +29,19 @@ unsafe impl NSSecureCoding for CAEmitterCell {}
 
 extern_methods!(
     unsafe impl CAEmitterCell {
-        #[method_id(@__method_family Other emitterCell)]
+        #[unsafe(method_family(none))]
+        #[method_id(emitterCell)]
         pub unsafe fn emitterCell() -> Retained<Self>;
 
-        #[method_id(@__method_family Other defaultValueForKey:)]
+        #[unsafe(method_family(none))]
+        #[method_id(defaultValueForKey:)]
         pub unsafe fn defaultValueForKey(key: &NSString) -> Option<Retained<AnyObject>>;
 
         #[method(shouldArchiveValueForKey:)]
         pub unsafe fn shouldArchiveValueForKey(&self, key: &NSString) -> bool;
 
-        #[method_id(@__method_family Other name)]
+        #[unsafe(method_family(none))]
+        #[method_id(name)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
@@ -191,7 +194,8 @@ extern_methods!(
         pub unsafe fn setSpinRange(&self, spin_range: CGFloat);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(@__method_family Other color)]
+        #[unsafe(method_family(none))]
+        #[method_id(color)]
         pub unsafe fn color(&self) -> Option<Retained<CGColor>>;
 
         #[cfg(feature = "objc2-core-graphics")]
@@ -255,7 +259,8 @@ extern_methods!(
         #[method(setAlphaSpeed:)]
         pub unsafe fn setAlphaSpeed(&self, alpha_speed: c_float);
 
-        #[method_id(@__method_family Other contents)]
+        #[unsafe(method_family(none))]
+        #[method_id(contents)]
         pub unsafe fn contents(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`contents`][Self::contents].
@@ -280,14 +285,16 @@ extern_methods!(
         #[method(setContentsScale:)]
         pub unsafe fn setContentsScale(&self, contents_scale: CGFloat);
 
-        #[method_id(@__method_family Other minificationFilter)]
+        #[unsafe(method_family(none))]
+        #[method_id(minificationFilter)]
         pub unsafe fn minificationFilter(&self) -> Retained<NSString>;
 
         /// Setter for [`minificationFilter`][Self::minificationFilter].
         #[method(setMinificationFilter:)]
         pub unsafe fn setMinificationFilter(&self, minification_filter: &NSString);
 
-        #[method_id(@__method_family Other magnificationFilter)]
+        #[unsafe(method_family(none))]
+        #[method_id(magnificationFilter)]
         pub unsafe fn magnificationFilter(&self) -> Retained<NSString>;
 
         /// Setter for [`magnificationFilter`][Self::magnificationFilter].
@@ -301,14 +308,16 @@ extern_methods!(
         #[method(setMinificationFilterBias:)]
         pub unsafe fn setMinificationFilterBias(&self, minification_filter_bias: c_float);
 
-        #[method_id(@__method_family Other emitterCells)]
+        #[unsafe(method_family(none))]
+        #[method_id(emitterCells)]
         pub unsafe fn emitterCells(&self) -> Option<Retained<NSArray<CAEmitterCell>>>;
 
         /// Setter for [`emitterCells`][Self::emitterCells].
         #[method(setEmitterCells:)]
         pub unsafe fn setEmitterCells(&self, emitter_cells: Option<&NSArray<CAEmitterCell>>);
 
-        #[method_id(@__method_family Other style)]
+        #[unsafe(method_family(none))]
+        #[method_id(style)]
         pub unsafe fn style(&self) -> Option<Retained<NSDictionary>>;
 
         /// Setter for [`style`][Self::style].
@@ -320,10 +329,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CAEmitterCell {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

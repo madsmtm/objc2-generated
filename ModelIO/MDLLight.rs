@@ -73,7 +73,8 @@ extern_methods!(
         #[method(setLightType:)]
         pub unsafe fn setLightType(&self, light_type: MDLLightType);
 
-        #[method_id(@__method_family Other colorSpace)]
+        #[unsafe(method_family(none))]
+        #[method_id(colorSpace)]
         pub unsafe fn colorSpace(&self) -> Retained<NSString>;
 
         /// Setter for [`colorSpace`][Self::colorSpace].
@@ -86,10 +87,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MDLObject")]
     unsafe impl MDLLight {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -128,7 +131,8 @@ extern_methods!(
         pub unsafe fn setColorByTemperature(&self, temperature: c_float);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(@__method_family Other color)]
+        #[unsafe(method_family(none))]
+        #[method_id(color)]
         pub unsafe fn color(&self) -> Option<Retained<CGColor>>;
 
         #[cfg(feature = "objc2-core-graphics")]
@@ -177,10 +181,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MDLObject")]
     unsafe impl MDLPhysicallyPlausibleLight {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -222,10 +228,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MDLObject")]
     unsafe impl MDLAreaLight {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -256,7 +264,8 @@ unsafe impl NSObjectProtocol for MDLPhotometricLight {}
 extern_methods!(
     #[cfg(feature = "MDLObject")]
     unsafe impl MDLPhotometricLight {
-        #[method_id(@__method_family Init initWithIESProfile:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithIESProfile:)]
         pub unsafe fn initWithIESProfile(
             this: Allocated<Self>,
             url: &NSURL,
@@ -282,17 +291,20 @@ extern_methods!(
         /// 3D in all other cases
         /// the parameter textureSize is the size in pixels of the texture image. For a size of N,
         /// 1D generates an Nx1 image, 2D generates an NxN image, 3D generates an Nx(N*6) image (i.e. cubemap).
-        #[method_id(@__method_family Other generateTexture:)]
+        #[unsafe(method_family(none))]
+        #[method_id(generateTexture:)]
         pub unsafe fn generateTexture(&self, texture_size: NSUInteger) -> Retained<MDLTexture>;
 
         #[cfg(feature = "MDLTexture")]
-        #[method_id(@__method_family Other lightCubeMap)]
+        #[unsafe(method_family(none))]
+        #[method_id(lightCubeMap)]
         pub unsafe fn lightCubeMap(&self) -> Option<Retained<MDLTexture>>;
 
         #[method(sphericalHarmonicsLevel)]
         pub unsafe fn sphericalHarmonicsLevel(&self) -> NSUInteger;
 
-        #[method_id(@__method_family Other sphericalHarmonicsCoefficients)]
+        #[unsafe(method_family(none))]
+        #[method_id(sphericalHarmonicsCoefficients)]
         pub unsafe fn sphericalHarmonicsCoefficients(&self) -> Option<Retained<NSData>>;
     }
 );
@@ -301,10 +313,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MDLObject")]
     unsafe impl MDLPhotometricLight {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -327,7 +341,8 @@ extern_methods!(
     #[cfg(feature = "MDLObject")]
     unsafe impl MDLLightProbe {
         #[cfg(feature = "MDLTexture")]
-        #[method_id(@__method_family Init initWithReflectiveTexture:irradianceTexture:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithReflectiveTexture:irradianceTexture:)]
         pub unsafe fn initWithReflectiveTexture_irradianceTexture(
             this: Allocated<Self>,
             reflective_texture: Option<&MDLTexture>,
@@ -341,17 +356,20 @@ extern_methods!(
         );
 
         #[cfg(feature = "MDLTexture")]
-        #[method_id(@__method_family Other reflectiveTexture)]
+        #[unsafe(method_family(none))]
+        #[method_id(reflectiveTexture)]
         pub unsafe fn reflectiveTexture(&self) -> Option<Retained<MDLTexture>>;
 
         #[cfg(feature = "MDLTexture")]
-        #[method_id(@__method_family Other irradianceTexture)]
+        #[unsafe(method_family(none))]
+        #[method_id(irradianceTexture)]
         pub unsafe fn irradianceTexture(&self) -> Option<Retained<MDLTexture>>;
 
         #[method(sphericalHarmonicsLevel)]
         pub unsafe fn sphericalHarmonicsLevel(&self) -> NSUInteger;
 
-        #[method_id(@__method_family Other sphericalHarmonicsCoefficients)]
+        #[unsafe(method_family(none))]
+        #[method_id(sphericalHarmonicsCoefficients)]
         pub unsafe fn sphericalHarmonicsCoefficients(&self) -> Option<Retained<NSData>>;
     }
 );
@@ -360,10 +378,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MDLObject")]
     unsafe impl MDLLightProbe {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -373,7 +393,8 @@ extern_methods!(
     #[cfg(feature = "MDLObject")]
     unsafe impl MDLLightProbe {
         #[cfg(all(feature = "MDLTexture", feature = "MDLTransform"))]
-        #[method_id(@__method_family Other lightProbeWithTextureSize:forLocation:lightsToConsider:objectsToConsider:reflectiveCubemap:irradianceCubemap:)]
+        #[unsafe(method_family(none))]
+        #[method_id(lightProbeWithTextureSize:forLocation:lightsToConsider:objectsToConsider:reflectiveCubemap:irradianceCubemap:)]
         pub unsafe fn lightProbeWithTextureSize_forLocation_lightsToConsider_objectsToConsider_reflectiveCubemap_irradianceCubemap(
             texture_size: NSInteger,
             transform: &MDLTransform,

@@ -110,7 +110,8 @@ extern_methods!(
         pub unsafe fn setBarStyle(&self, bar_style: UIBarStyle);
 
         #[cfg(feature = "UIBarCommon")]
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UINavigationBarDelegate>>>;
@@ -136,22 +137,26 @@ extern_methods!(
         pub unsafe fn pushNavigationItem_animated(&self, item: &UINavigationItem, animated: bool);
 
         #[cfg(feature = "UINavigationItem")]
-        #[method_id(@__method_family Other popNavigationItemAnimated:)]
+        #[unsafe(method_family(none))]
+        #[method_id(popNavigationItemAnimated:)]
         pub unsafe fn popNavigationItemAnimated(
             &self,
             animated: bool,
         ) -> Option<Retained<UINavigationItem>>;
 
         #[cfg(feature = "UINavigationItem")]
-        #[method_id(@__method_family Other topItem)]
+        #[unsafe(method_family(none))]
+        #[method_id(topItem)]
         pub unsafe fn topItem(&self) -> Option<Retained<UINavigationItem>>;
 
         #[cfg(feature = "UINavigationItem")]
-        #[method_id(@__method_family Other backItem)]
+        #[unsafe(method_family(none))]
+        #[method_id(backItem)]
         pub unsafe fn backItem(&self) -> Option<Retained<UINavigationItem>>;
 
         #[cfg(feature = "UINavigationItem")]
-        #[method_id(@__method_family Other items)]
+        #[unsafe(method_family(none))]
+        #[method_id(items)]
         pub unsafe fn items(&self) -> Option<Retained<NSArray<UINavigationItem>>>;
 
         #[cfg(feature = "UINavigationItem")]
@@ -198,7 +203,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIColor")]
-        #[method_id(@__method_family Other tintColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(tintColor)]
         pub unsafe fn tintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -207,7 +213,8 @@ extern_methods!(
         pub unsafe fn setTintColor(&self, tint_color: Option<&UIColor>);
 
         #[cfg(feature = "UIColor")]
-        #[method_id(@__method_family Other barTintColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(barTintColor)]
         pub unsafe fn barTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -225,7 +232,8 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIBarCommon", feature = "UIImage"))]
-        #[method_id(@__method_family Other backgroundImageForBarPosition:barMetrics:)]
+        #[unsafe(method_family(none))]
+        #[method_id(backgroundImageForBarPosition:barMetrics:)]
         pub unsafe fn backgroundImageForBarPosition_barMetrics(
             &self,
             bar_position: UIBarPosition,
@@ -241,14 +249,16 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIBarCommon", feature = "UIImage"))]
-        #[method_id(@__method_family Other backgroundImageForBarMetrics:)]
+        #[unsafe(method_family(none))]
+        #[method_id(backgroundImageForBarMetrics:)]
         pub unsafe fn backgroundImageForBarMetrics(
             &self,
             bar_metrics: UIBarMetrics,
         ) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
-        #[method_id(@__method_family Other shadowImage)]
+        #[unsafe(method_family(none))]
+        #[method_id(shadowImage)]
         pub unsafe fn shadowImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
@@ -256,7 +266,8 @@ extern_methods!(
         #[method(setShadowImage:)]
         pub unsafe fn setShadowImage(&self, shadow_image: Option<&UIImage>);
 
-        #[method_id(@__method_family Other titleTextAttributes)]
+        #[unsafe(method_family(none))]
+        #[method_id(titleTextAttributes)]
         pub unsafe fn titleTextAttributes(
             &self,
         ) -> Option<Retained<NSDictionary<NSAttributedStringKey, AnyObject>>>;
@@ -268,7 +279,8 @@ extern_methods!(
             title_text_attributes: Option<&NSDictionary<NSAttributedStringKey, AnyObject>>,
         );
 
-        #[method_id(@__method_family Other largeTitleTextAttributes)]
+        #[unsafe(method_family(none))]
+        #[method_id(largeTitleTextAttributes)]
         pub unsafe fn largeTitleTextAttributes(
             &self,
         ) -> Option<Retained<NSDictionary<NSAttributedStringKey, AnyObject>>>;
@@ -296,7 +308,8 @@ extern_methods!(
         ) -> CGFloat;
 
         #[cfg(feature = "UIImage")]
-        #[method_id(@__method_family Other backIndicatorImage)]
+        #[unsafe(method_family(none))]
+        #[method_id(backIndicatorImage)]
         pub unsafe fn backIndicatorImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
@@ -305,7 +318,8 @@ extern_methods!(
         pub unsafe fn setBackIndicatorImage(&self, back_indicator_image: Option<&UIImage>);
 
         #[cfg(feature = "UIImage")]
-        #[method_id(@__method_family Other backIndicatorTransitionMaskImage)]
+        #[unsafe(method_family(none))]
+        #[method_id(backIndicatorTransitionMaskImage)]
         pub unsafe fn backIndicatorTransitionMaskImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
@@ -318,7 +332,8 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UINavigationBarAppearance"))]
         /// Describes the appearance attributes for the navigation bar to use when it is displayed with its standard height.
-        #[method_id(@__method_family Other standardAppearance)]
+        #[unsafe(method_family(none))]
+        #[method_id(standardAppearance)]
         pub unsafe fn standardAppearance(&self) -> Retained<UINavigationBarAppearance>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UINavigationBarAppearance"))]
@@ -328,7 +343,8 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UINavigationBarAppearance"))]
         /// Describes the appearance attributes for the navigation bar to use when it is displayed with its compact height. If not set, the standardAppearance will be used instead.
-        #[method_id(@__method_family Other compactAppearance)]
+        #[unsafe(method_family(none))]
+        #[method_id(compactAppearance)]
         pub unsafe fn compactAppearance(&self) -> Option<Retained<UINavigationBarAppearance>>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UINavigationBarAppearance"))]
@@ -341,7 +357,8 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UINavigationBarAppearance"))]
         /// Describes the appearance attributes for the navigation bar to use when an associated UIScrollView has reached the edge abutting the bar (the top edge for the navigation bar). If not set, a modified standardAppearance will be used instead.
-        #[method_id(@__method_family Other scrollEdgeAppearance)]
+        #[unsafe(method_family(none))]
+        #[method_id(scrollEdgeAppearance)]
         pub unsafe fn scrollEdgeAppearance(&self) -> Option<Retained<UINavigationBarAppearance>>;
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UINavigationBarAppearance"))]
@@ -354,7 +371,8 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBarAppearance", feature = "UINavigationBarAppearance"))]
         /// Describes the appearance attributes for the navigation bar to use when it is displayed with its compact heights, and an associated UIScrollView has reached the edge abutting the bar. If not set, first the scrollEdgeAppearance will be tried, and if that is nil then compactAppearance followed by a modified standardAppearance.
-        #[method_id(@__method_family Other compactScrollEdgeAppearance)]
+        #[unsafe(method_family(none))]
+        #[method_id(compactScrollEdgeAppearance)]
         pub unsafe fn compactScrollEdgeAppearance(
             &self,
         ) -> Option<Retained<UINavigationBarAppearance>>;
@@ -374,10 +392,12 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UINavigationBar {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Init initWithFrame:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -389,10 +409,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UINavigationBar {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

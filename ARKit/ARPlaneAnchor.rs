@@ -166,10 +166,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2")]
     unsafe impl ARPlaneExtent {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -226,12 +228,14 @@ extern_methods!(
         pub unsafe fn alignment(&self) -> ARPlaneAnchorAlignment;
 
         /// The extent of the plane in the anchor’s coordinate space.
-        #[method_id(@__method_family Other planeExtent)]
+        #[unsafe(method_family(none))]
+        #[method_id(planeExtent)]
         pub unsafe fn planeExtent(&self) -> Retained<ARPlaneExtent>;
 
         #[cfg(feature = "ARPlaneGeometry")]
         /// Geometry of the plane in the anchor's coordinate space.
-        #[method_id(@__method_family Other geometry)]
+        #[unsafe(method_family(none))]
+        #[method_id(geometry)]
         pub unsafe fn geometry(&self) -> Retained<ARPlaneGeometry>;
 
         /// Classification status of the plane.
@@ -250,10 +254,12 @@ extern_methods!(
     #[cfg(all(feature = "ARAnchor", feature = "objc2"))]
     unsafe impl ARPlaneAnchor {
         /// Unavailable
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

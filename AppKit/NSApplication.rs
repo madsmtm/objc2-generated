@@ -471,10 +471,12 @@ unsafe impl NSUserInterfaceValidations for NSApplication {}
 extern_methods!(
     #[cfg(feature = "NSResponder")]
     unsafe impl NSApplication {
-        #[method_id(@__method_family Other sharedApplication)]
+        #[unsafe(method_family(none))]
+        #[method_id(sharedApplication)]
         pub fn sharedApplication(mtm: MainThreadMarker) -> Retained<NSApplication>;
 
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSApplicationDelegate>>>;
@@ -494,18 +496,21 @@ extern_methods!(
         pub unsafe fn unhideWithoutActivation(&self);
 
         #[cfg(feature = "NSWindow")]
-        #[method_id(@__method_family Other windowWithWindowNumber:)]
+        #[unsafe(method_family(none))]
+        #[method_id(windowWithWindowNumber:)]
         pub unsafe fn windowWithWindowNumber(
             &self,
             window_num: NSInteger,
         ) -> Option<Retained<NSWindow>>;
 
         #[cfg(feature = "NSWindow")]
-        #[method_id(@__method_family Other mainWindow)]
+        #[unsafe(method_family(none))]
+        #[method_id(mainWindow)]
         pub unsafe fn mainWindow(&self) -> Option<Retained<NSWindow>>;
 
         #[cfg(feature = "NSWindow")]
-        #[method_id(@__method_family Other keyWindow)]
+        #[unsafe(method_family(none))]
+        #[method_id(keyWindow)]
         pub fn keyWindow(&self) -> Option<Retained<NSWindow>>;
 
         #[method(isActive)]
@@ -594,7 +599,8 @@ extern_methods!(
         pub unsafe fn abortModal(&self);
 
         #[cfg(feature = "NSWindow")]
-        #[method_id(@__method_family Other modalWindow)]
+        #[unsafe(method_family(none))]
+        #[method_id(modalWindow)]
         pub unsafe fn modalWindow(&self) -> Option<Retained<NSWindow>>;
 
         #[cfg(feature = "NSWindow")]
@@ -630,7 +636,8 @@ extern_methods!(
         pub unsafe fn preventWindowOrdering(&self);
 
         #[cfg(feature = "NSWindow")]
-        #[method_id(@__method_family Other windows)]
+        #[unsafe(method_family(none))]
+        #[method_id(windows)]
         pub fn windows(&self) -> Retained<NSArray<NSWindow>>;
 
         #[method(setWindowsNeedUpdate:)]
@@ -640,7 +647,8 @@ extern_methods!(
         pub unsafe fn updateWindows(&self);
 
         #[cfg(feature = "NSMenu")]
-        #[method_id(@__method_family Other mainMenu)]
+        #[unsafe(method_family(none))]
+        #[method_id(mainMenu)]
         pub unsafe fn mainMenu(&self) -> Option<Retained<NSMenu>>;
 
         #[cfg(feature = "NSMenu")]
@@ -651,7 +659,8 @@ extern_methods!(
         #[cfg(feature = "NSMenu")]
         /// Set or get the Help menu for the app.  If a non-nil menu is set as the Help menu, Spotlight for Help will be installed in it; otherwise AppKit will install Spotlight for Help into a menu of its choosing (and that menu is not returned from `-helpMenu`).  If you wish to completely suppress Spotlight for Help, you can set a menu that does not appear in the menu bar.
         /// `NSApplication`retains its Help menu and releases it when a different menu is set.
-        #[method_id(@__method_family Other helpMenu)]
+        #[unsafe(method_family(none))]
+        #[method_id(helpMenu)]
         pub unsafe fn helpMenu(&self) -> Option<Retained<NSMenu>>;
 
         #[cfg(feature = "NSMenu")]
@@ -660,7 +669,8 @@ extern_methods!(
         pub unsafe fn setHelpMenu(&self, help_menu: Option<&NSMenu>);
 
         #[cfg(feature = "NSImage")]
-        #[method_id(@__method_family Other applicationIconImage)]
+        #[unsafe(method_family(none))]
+        #[method_id(applicationIconImage)]
         pub unsafe fn applicationIconImage(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
@@ -685,7 +695,8 @@ extern_methods!(
             -> bool;
 
         #[cfg(feature = "NSDockTile")]
-        #[method_id(@__method_family Other dockTile)]
+        #[unsafe(method_family(none))]
+        #[method_id(dockTile)]
         pub unsafe fn dockTile(&self) -> Retained<NSDockTile>;
 
         #[method(reportException:)]
@@ -744,10 +755,12 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(feature = "NSResponder")]
     unsafe impl NSApplication {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -759,7 +772,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSResponder")]
     unsafe impl NSApplication {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -769,7 +783,8 @@ extern_methods!(
     #[cfg(feature = "NSResponder")]
     unsafe impl NSApplication {
         #[cfg(feature = "NSAppearance")]
-        #[method_id(@__method_family Other appearance)]
+        #[unsafe(method_family(none))]
+        #[method_id(appearance)]
         pub unsafe fn appearance(&self) -> Option<Retained<NSAppearance>>;
 
         #[cfg(feature = "NSAppearance")]
@@ -778,7 +793,8 @@ extern_methods!(
         pub fn setAppearance(&self, appearance: Option<&NSAppearance>);
 
         #[cfg(feature = "NSAppearance")]
-        #[method_id(@__method_family Other effectiveAppearance)]
+        #[unsafe(method_family(none))]
+        #[method_id(effectiveAppearance)]
         pub fn effectiveAppearance(&self) -> Retained<NSAppearance>;
     }
 );
@@ -799,11 +815,13 @@ extern_methods!(
         pub fn postEvent_atStart(&self, event: &NSEvent, at_start: bool);
 
         #[cfg(feature = "NSEvent")]
-        #[method_id(@__method_family Other currentEvent)]
+        #[unsafe(method_family(none))]
+        #[method_id(currentEvent)]
         pub fn currentEvent(&self) -> Option<Retained<NSEvent>>;
 
         #[cfg(feature = "NSEvent")]
-        #[method_id(@__method_family Other nextEventMatchingMask:untilDate:inMode:dequeue:)]
+        #[unsafe(method_family(none))]
+        #[method_id(nextEventMatchingMask:untilDate:inMode:dequeue:)]
         pub unsafe fn nextEventMatchingMask_untilDate_inMode_dequeue(
             &self,
             mask: NSEventMask,
@@ -834,10 +852,12 @@ extern_methods!(
             sender: Option<&AnyObject>,
         ) -> bool;
 
-        #[method_id(@__method_family Other targetForAction:)]
+        #[unsafe(method_family(none))]
+        #[method_id(targetForAction:)]
         pub unsafe fn targetForAction(&self, action: Sel) -> Option<Retained<AnyObject>>;
 
-        #[method_id(@__method_family Other targetForAction:to:from:)]
+        #[unsafe(method_family(none))]
+        #[method_id(targetForAction:to:from:)]
         pub unsafe fn targetForAction_to_from(
             &self,
             action: Sel,
@@ -849,7 +869,8 @@ extern_methods!(
         pub unsafe fn tryToPerform_with(&self, action: Sel, object: Option<&AnyObject>) -> bool;
 
         #[cfg(feature = "NSPasteboard")]
-        #[method_id(@__method_family Other validRequestorForSendType:returnType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(validRequestorForSendType:returnType:)]
         pub unsafe fn validRequestorForSendType_returnType(
             &self,
             send_type: Option<&NSPasteboardType>,
@@ -863,7 +884,8 @@ extern_methods!(
     #[cfg(feature = "NSResponder")]
     unsafe impl NSApplication {
         #[cfg(feature = "NSMenu")]
-        #[method_id(@__method_family Other windowsMenu)]
+        #[unsafe(method_family(none))]
+        #[method_id(windowsMenu)]
         pub unsafe fn windowsMenu(&self) -> Option<Retained<NSMenu>>;
 
         #[cfg(feature = "NSMenu")]
@@ -1073,12 +1095,14 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSMenu", feature = "NSResponder"))]
         #[optional]
-        #[method_id(@__method_family Other applicationDockMenu:)]
+        #[unsafe(method_family(none))]
+        #[method_id(applicationDockMenu:)]
         unsafe fn applicationDockMenu(&self, sender: &NSApplication) -> Option<Retained<NSMenu>>;
 
         #[cfg(feature = "NSResponder")]
         #[optional]
-        #[method_id(@__method_family Other application:willPresentError:)]
+        #[unsafe(method_family(none))]
+        #[method_id(application:willPresentError:)]
         unsafe fn application_willPresentError(
             &self,
             application: &NSApplication,
@@ -1333,7 +1357,8 @@ extern_methods!(
     #[cfg(feature = "NSResponder")]
     unsafe impl NSApplication {
         #[cfg(feature = "NSMenu")]
-        #[method_id(@__method_family Other servicesMenu)]
+        #[unsafe(method_family(none))]
+        #[method_id(servicesMenu)]
         pub unsafe fn servicesMenu(&self) -> Option<Retained<NSMenu>>;
 
         #[cfg(feature = "NSMenu")]
@@ -1374,7 +1399,8 @@ extern_methods!(
     /// NSServicesHandling
     #[cfg(feature = "NSResponder")]
     unsafe impl NSApplication {
-        #[method_id(@__method_family Other servicesProvider)]
+        #[unsafe(method_family(none))]
+        #[method_id(servicesProvider)]
         pub unsafe fn servicesProvider(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`servicesProvider`][Self::servicesProvider].
@@ -1770,7 +1796,8 @@ extern_methods!(
 
         #[cfg(feature = "NSWindow")]
         #[deprecated = "Use -enumerateWindowsWithOptions:usingBlock: instead"]
-        #[method_id(@__method_family Other makeWindowsPerform:inOrder:)]
+        #[unsafe(method_family(none))]
+        #[method_id(makeWindowsPerform:inOrder:)]
         pub unsafe fn makeWindowsPerform_inOrder(
             &self,
             selector: Sel,
@@ -1780,7 +1807,8 @@ extern_methods!(
         #[cfg(feature = "NSGraphicsContext")]
         /// This method is deprecated as of macOS 10.12. Beginning in OS X 10.11 it would always return nil. Prior to this it would return an undefined graphics context that was not generally suitable for drawing.
         #[deprecated = "This method always returns nil. If you need access to the current drawing context, use [NSGraphicsContext currentContext] inside of a draw operation."]
-        #[method_id(@__method_family Other context)]
+        #[unsafe(method_family(none))]
+        #[method_id(context)]
         pub unsafe fn context(&self) -> Option<Retained<NSGraphicsContext>>;
     }
 );

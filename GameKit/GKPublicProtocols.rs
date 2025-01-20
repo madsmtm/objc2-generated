@@ -76,7 +76,8 @@ extern_protocol!(
 
         /// must be sent within some reasonble period of time and should accept at least 512 bytes.
         #[deprecated]
-        #[method_id(@__method_family Other participantID)]
+        #[unsafe(method_family(none))]
+        #[method_id(participantID)]
         unsafe fn participantID(&self) -> Retained<NSString>;
 
         #[cfg(feature = "GKVoiceChatService")]

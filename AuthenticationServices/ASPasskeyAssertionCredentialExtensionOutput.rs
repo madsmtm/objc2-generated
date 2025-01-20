@@ -30,7 +30,8 @@ unsafe impl NSSecureCoding for ASPasskeyAssertionCredentialExtensionOutput {}
 extern_methods!(
     unsafe impl ASPasskeyAssertionCredentialExtensionOutput {
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput")]
-        #[method_id(@__method_family Init initWithLargeBlobOutput:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithLargeBlobOutput:)]
         pub unsafe fn initWithLargeBlobOutput(
             this: Allocated<Self>,
             large_blob: Option<&ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput>,
@@ -38,7 +39,8 @@ extern_methods!(
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput")]
         /// Output for `largeBlob` operation during passkey assertion.
-        #[method_id(@__method_family Other largeBlobAssertionOutput)]
+        #[unsafe(method_family(none))]
+        #[method_id(largeBlobAssertionOutput)]
         pub unsafe fn largeBlobAssertionOutput(
             &self,
         ) -> Option<Retained<ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput>>;
@@ -48,10 +50,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASPasskeyAssertionCredentialExtensionOutput {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

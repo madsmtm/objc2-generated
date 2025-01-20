@@ -93,7 +93,8 @@ extern_methods!(
 
         #[cfg(feature = "DOMEventTarget")]
         #[deprecated]
-        #[method_id(@__method_family Other relatedTarget)]
+        #[unsafe(method_family(none))]
+        #[method_id(relatedTarget)]
         pub unsafe fn relatedTarget(&self) -> Option<Retained<ProtocolObject<dyn DOMEventTarget>>>;
 
         #[method(offsetX)]
@@ -109,11 +110,13 @@ extern_methods!(
         pub unsafe fn y(&self) -> c_int;
 
         #[cfg(feature = "DOMNode")]
-        #[method_id(@__method_family Other fromElement)]
+        #[unsafe(method_family(none))]
+        #[method_id(fromElement)]
         pub unsafe fn fromElement(&self) -> Option<Retained<DOMNode>>;
 
         #[cfg(feature = "DOMNode")]
-        #[method_id(@__method_family Other toElement)]
+        #[unsafe(method_family(none))]
+        #[method_id(toElement)]
         pub unsafe fn toElement(&self) -> Option<Retained<DOMNode>>;
 
         #[cfg(all(feature = "DOMAbstractView", feature = "DOMEventTarget"))]
@@ -149,7 +152,8 @@ extern_methods!(
     ))]
     unsafe impl DOMMouseEvent {
         #[deprecated]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -163,7 +167,8 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMMouseEvent {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

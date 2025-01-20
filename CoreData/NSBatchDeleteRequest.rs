@@ -29,18 +29,21 @@ unsafe impl NSObjectProtocol for NSBatchDeleteRequest {}
 extern_methods!(
     #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl NSBatchDeleteRequest {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSFetchRequest")]
-        #[method_id(@__method_family Init initWithFetchRequest:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithFetchRequest:)]
         pub unsafe fn initWithFetchRequest(
             this: Allocated<Self>,
             fetch: &NSFetchRequest,
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSManagedObjectID")]
-        #[method_id(@__method_family Init initWithObjectIDs:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithObjectIDs:)]
         pub unsafe fn initWithObjectIDs(
             this: Allocated<Self>,
             objects: &NSArray<NSManagedObjectID>,
@@ -56,7 +59,8 @@ extern_methods!(
         pub unsafe fn setResultType(&self, result_type: NSBatchDeleteRequestResultType);
 
         #[cfg(feature = "NSFetchRequest")]
-        #[method_id(@__method_family Other fetchRequest)]
+        #[unsafe(method_family(none))]
+        #[method_id(fetchRequest)]
         pub unsafe fn fetchRequest(&self) -> Retained<NSFetchRequest>;
     }
 );
@@ -65,7 +69,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl NSBatchDeleteRequest {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

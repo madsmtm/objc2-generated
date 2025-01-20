@@ -78,7 +78,8 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLBodyElement {
         #[deprecated]
-        #[method_id(@__method_family Other aLink)]
+        #[unsafe(method_family(none))]
+        #[method_id(aLink)]
         pub unsafe fn aLink(&self) -> Retained<NSString>;
 
         /// Setter for [`aLink`][Self::aLink].
@@ -87,7 +88,8 @@ extern_methods!(
         pub unsafe fn setALink(&self, a_link: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__method_family Other background)]
+        #[unsafe(method_family(none))]
+        #[method_id(background)]
         pub unsafe fn background(&self) -> Retained<NSString>;
 
         /// Setter for [`background`][Self::background].
@@ -96,7 +98,8 @@ extern_methods!(
         pub unsafe fn setBackground(&self, background: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__method_family Other bgColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(bgColor)]
         pub unsafe fn bgColor(&self) -> Retained<NSString>;
 
         /// Setter for [`bgColor`][Self::bgColor].
@@ -105,7 +108,8 @@ extern_methods!(
         pub unsafe fn setBgColor(&self, bg_color: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__method_family Other link)]
+        #[unsafe(method_family(none))]
+        #[method_id(link)]
         pub unsafe fn link(&self) -> Retained<NSString>;
 
         /// Setter for [`link`][Self::link].
@@ -114,7 +118,8 @@ extern_methods!(
         pub unsafe fn setLink(&self, link: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__method_family Other text)]
+        #[unsafe(method_family(none))]
+        #[method_id(text)]
         pub unsafe fn text(&self) -> Retained<NSString>;
 
         /// Setter for [`text`][Self::text].
@@ -123,7 +128,8 @@ extern_methods!(
         pub unsafe fn setText(&self, text: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__method_family Other vLink)]
+        #[unsafe(method_family(none))]
+        #[method_id(vLink)]
         pub unsafe fn vLink(&self) -> Retained<NSString>;
 
         /// Setter for [`vLink`][Self::vLink].
@@ -144,7 +150,8 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLBodyElement {
         #[deprecated]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -159,7 +166,8 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLBodyElement {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

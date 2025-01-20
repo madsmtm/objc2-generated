@@ -18,7 +18,8 @@ unsafe impl NSObjectProtocol for NSExtensionContext {}
 extern_methods!(
     unsafe impl NSExtensionContext {
         #[cfg(feature = "NSArray")]
-        #[method_id(@__method_family Other inputItems)]
+        #[unsafe(method_family(none))]
+        #[method_id(inputItems)]
         pub unsafe fn inputItems(&self) -> Retained<NSArray>;
 
         #[cfg(all(feature = "NSArray", feature = "block2"))]
@@ -46,10 +47,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSExtensionContext {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -28,17 +28,20 @@ unsafe impl NSSecureCoding for HKDeletedObject {}
 extern_methods!(
     unsafe impl HKDeletedObject {
         /// The unique identifier of the HKObject that was deleted from the HealthKit database.
-        #[method_id(@__method_family Other UUID)]
+        #[unsafe(method_family(none))]
+        #[method_id(UUID)]
         pub unsafe fn UUID(&self) -> Retained<NSUUID>;
 
         /// Extra information describing properties of the receiver.
         ///
         /// Metadata retained from the deleted HKObject.
         /// Available keys: HKMetadataKeySyncIdentifier, HKMetadataKeySyncVersion
-        #[method_id(@__method_family Other metadata)]
+        #[unsafe(method_family(none))]
+        #[method_id(metadata)]
         pub unsafe fn metadata(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -46,7 +49,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKDeletedObject {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

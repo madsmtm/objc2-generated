@@ -23,14 +23,16 @@ unsafe impl NSObjectProtocol for PHChange {}
 extern_methods!(
     unsafe impl PHChange {
         #[cfg(feature = "PHObject")]
-        #[method_id(@__method_family Other changeDetailsForObject:)]
+        #[unsafe(method_family(none))]
+        #[method_id(changeDetailsForObject:)]
         pub unsafe fn changeDetailsForObject(
             &self,
             object: &PHObject,
         ) -> Option<Retained<PHObjectChangeDetails>>;
 
         #[cfg(feature = "PHFetchResult")]
-        #[method_id(@__method_family Other changeDetailsForFetchResult:)]
+        #[unsafe(method_family(none))]
+        #[method_id(changeDetailsForFetchResult:)]
         pub unsafe fn changeDetailsForFetchResult(
             &self,
             object: &PHFetchResult,
@@ -41,10 +43,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHChange {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -60,10 +64,12 @@ unsafe impl<ObjectType: ?Sized> NSObjectProtocol for PHObjectChangeDetails<Objec
 
 extern_methods!(
     unsafe impl<ObjectType: Message> PHObjectChangeDetails<ObjectType> {
-        #[method_id(@__method_family Other objectBeforeChanges)]
+        #[unsafe(method_family(none))]
+        #[method_id(objectBeforeChanges)]
         pub unsafe fn objectBeforeChanges(&self) -> Retained<ObjectType>;
 
-        #[method_id(@__method_family Other objectAfterChanges)]
+        #[unsafe(method_family(none))]
+        #[method_id(objectAfterChanges)]
         pub unsafe fn objectAfterChanges(&self) -> Option<Retained<ObjectType>>;
 
         #[method(assetContentChanged)]
@@ -77,10 +83,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<ObjectType: Message> PHObjectChangeDetails<ObjectType> {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -97,32 +105,40 @@ unsafe impl<ObjectType: ?Sized> NSObjectProtocol for PHFetchResultChangeDetails<
 extern_methods!(
     unsafe impl<ObjectType: Message> PHFetchResultChangeDetails<ObjectType> {
         #[cfg(feature = "PHFetchResult")]
-        #[method_id(@__method_family Other fetchResultBeforeChanges)]
+        #[unsafe(method_family(none))]
+        #[method_id(fetchResultBeforeChanges)]
         pub unsafe fn fetchResultBeforeChanges(&self) -> Retained<PHFetchResult<ObjectType>>;
 
         #[cfg(feature = "PHFetchResult")]
-        #[method_id(@__method_family Other fetchResultAfterChanges)]
+        #[unsafe(method_family(none))]
+        #[method_id(fetchResultAfterChanges)]
         pub unsafe fn fetchResultAfterChanges(&self) -> Retained<PHFetchResult<ObjectType>>;
 
         #[method(hasIncrementalChanges)]
         pub unsafe fn hasIncrementalChanges(&self) -> bool;
 
-        #[method_id(@__method_family Other removedIndexes)]
+        #[unsafe(method_family(none))]
+        #[method_id(removedIndexes)]
         pub unsafe fn removedIndexes(&self) -> Option<Retained<NSIndexSet>>;
 
-        #[method_id(@__method_family Other removedObjects)]
+        #[unsafe(method_family(none))]
+        #[method_id(removedObjects)]
         pub unsafe fn removedObjects(&self) -> Retained<NSArray<ObjectType>>;
 
-        #[method_id(@__method_family Other insertedIndexes)]
+        #[unsafe(method_family(none))]
+        #[method_id(insertedIndexes)]
         pub unsafe fn insertedIndexes(&self) -> Option<Retained<NSIndexSet>>;
 
-        #[method_id(@__method_family Other insertedObjects)]
+        #[unsafe(method_family(none))]
+        #[method_id(insertedObjects)]
         pub unsafe fn insertedObjects(&self) -> Retained<NSArray<ObjectType>>;
 
-        #[method_id(@__method_family Other changedIndexes)]
+        #[unsafe(method_family(none))]
+        #[method_id(changedIndexes)]
         pub unsafe fn changedIndexes(&self) -> Option<Retained<NSIndexSet>>;
 
-        #[method_id(@__method_family Other changedObjects)]
+        #[unsafe(method_family(none))]
+        #[method_id(changedObjects)]
         pub unsafe fn changedObjects(&self) -> Retained<NSArray<ObjectType>>;
 
         #[cfg(feature = "block2")]
@@ -136,7 +152,8 @@ extern_methods!(
         pub unsafe fn hasMoves(&self) -> bool;
 
         #[cfg(feature = "PHFetchResult")]
-        #[method_id(@__method_family Other changeDetailsFromFetchResult:toFetchResult:changedObjects:)]
+        #[unsafe(method_family(none))]
+        #[method_id(changeDetailsFromFetchResult:toFetchResult:changedObjects:)]
         pub unsafe fn changeDetailsFromFetchResult_toFetchResult_changedObjects(
             from_result: &PHFetchResult<ObjectType>,
             to_result: &PHFetchResult<ObjectType>,
@@ -148,10 +165,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<ObjectType: Message> PHFetchResultChangeDetails<ObjectType> {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

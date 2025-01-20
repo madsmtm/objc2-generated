@@ -30,7 +30,8 @@ extern_methods!(
     #[cfg(feature = "HMCameraControl")]
     unsafe impl HMCameraSnapshotControl {
         /// Delegate that receives updates on the camera snapshot changes.
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn HMCameraSnapshotControlDelegate>>>;
@@ -45,7 +46,8 @@ extern_methods!(
 
         #[cfg(all(feature = "HMCameraSnapshot", feature = "HMCameraSource"))]
         /// Represents the most recent snapshot taken from the camera.
-        #[method_id(@__method_family Other mostRecentSnapshot)]
+        #[unsafe(method_family(none))]
+        #[method_id(mostRecentSnapshot)]
         pub unsafe fn mostRecentSnapshot(&self) -> Option<Retained<HMCameraSnapshot>>;
 
         /// Takes an image snapshot.
@@ -53,7 +55,8 @@ extern_methods!(
         pub unsafe fn takeSnapshot(&self);
 
         #[deprecated = "HMCameraSnapshotControl objects are created by their parent container objects. Directly creating them is not supported."]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -62,7 +65,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "HMCameraControl")]
     unsafe impl HMCameraSnapshotControl {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

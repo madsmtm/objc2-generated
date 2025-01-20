@@ -34,7 +34,8 @@ extern_methods!(
         /// The detector may do image processing in this context and if the image is on the GPU and the specified context is a GPU context this may avoid additional upload to / download from the GPU. If the input image is on the CPU (or the output from a CPU based context) specifying a GPU based context (or vice versa) may reduce performance.
         ///
         /// The options parameter lets you optinally specify a accuracy / performance tradeoff. Can be nil or an empty dictionary.
-        #[method_id(@__method_family Other detectorOfType:context:options:)]
+        #[unsafe(method_family(none))]
+        #[method_id(detectorOfType:context:options:)]
         pub unsafe fn detectorOfType_context_options(
             r#type: &NSString,
             context: Option<&CIContext>,
@@ -44,14 +45,16 @@ extern_methods!(
         #[cfg(all(feature = "CIFeature", feature = "CIImage"))]
         /// Returns an array of CIFeature instances in the given image.
         /// The array is sorted by confidence, highest confidence first.
-        #[method_id(@__method_family Other featuresInImage:)]
+        #[unsafe(method_family(none))]
+        #[method_id(featuresInImage:)]
         pub unsafe fn featuresInImage(&self, image: &CIImage) -> Retained<NSArray<CIFeature>>;
 
         #[cfg(all(feature = "CIFeature", feature = "CIImage"))]
         /// Returns an array of CIFeature instances in the given image.
         /// The array is sorted by confidence, highest confidence first.
         /// The options dictionary can contain a CIDetectorImageOrientation key value.
-        #[method_id(@__method_family Other featuresInImage:options:)]
+        #[unsafe(method_family(none))]
+        #[method_id(featuresInImage:options:)]
         pub unsafe fn featuresInImage_options(
             &self,
             image: &CIImage,
@@ -63,10 +66,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIDetector {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

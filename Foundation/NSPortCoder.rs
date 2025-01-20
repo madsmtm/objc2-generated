@@ -36,17 +36,20 @@ extern_methods!(
 
         #[cfg(feature = "NSPort")]
         #[deprecated = "Use NSXPCConnection instead"]
-        #[method_id(@__method_family Other decodePortObject)]
+        #[unsafe(method_family(none))]
+        #[method_id(decodePortObject)]
         pub unsafe fn decodePortObject(&self) -> Option<Retained<NSPort>>;
 
         #[cfg(feature = "NSConnection")]
         #[deprecated]
-        #[method_id(@__method_family Other connection)]
+        #[unsafe(method_family(none))]
+        #[method_id(connection)]
         pub unsafe fn connection(&self) -> Option<Retained<NSConnection>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSPort"))]
         #[deprecated]
-        #[method_id(@__method_family Other portCoderWithReceivePort:sendPort:components:)]
+        #[unsafe(method_family(none))]
+        #[method_id(portCoderWithReceivePort:sendPort:components:)]
         pub unsafe fn portCoderWithReceivePort_sendPort_components(
             rcv_port: Option<&NSPort>,
             snd_port: Option<&NSPort>,
@@ -55,7 +58,8 @@ extern_methods!(
 
         #[cfg(all(feature = "NSArray", feature = "NSPort"))]
         #[deprecated]
-        #[method_id(@__method_family Init initWithReceivePort:sendPort:components:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithReceivePort:sendPort:components:)]
         pub unsafe fn initWithReceivePort_sendPort_components(
             this: Allocated<Self>,
             rcv_port: Option<&NSPort>,
@@ -73,10 +77,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSCoder")]
     unsafe impl NSPortCoder {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

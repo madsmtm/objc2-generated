@@ -30,21 +30,26 @@ unsafe impl NSSecureCoding for MEEmailAddress {}
 extern_methods!(
     unsafe impl MEEmailAddress {
         /// The raw string for the email address.
-        #[method_id(@__method_family Other rawString)]
+        #[unsafe(method_family(none))]
+        #[method_id(rawString)]
         pub unsafe fn rawString(&self) -> Retained<NSString>;
 
         /// The simple address string portion of the raw string if it is valid. For example, the
         /// `addressString`of "John Appleseed <j.appleseed@example.com>" will be "j.appleseed@example.com".
-        #[method_id(@__method_family Other addressString)]
+        #[unsafe(method_family(none))]
+        #[method_id(addressString)]
         pub unsafe fn addressString(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithRawString:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithRawString:)]
         pub unsafe fn initWithRawString(
             this: Allocated<Self>,
             raw_string: &NSString,

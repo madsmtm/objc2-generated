@@ -23,17 +23,21 @@ extern_methods!(
     unsafe impl UIFocusSystem {
         #[cfg(feature = "UIFocus")]
         /// The currently focused item in this focus system.
-        #[method_id(@__method_family Other focusedItem)]
+        #[unsafe(method_family(none))]
+        #[method_id(focusedItem)]
         pub unsafe fn focusedItem(&self) -> Option<Retained<ProtocolObject<dyn UIFocusItem>>>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "UIFocus")]
-        #[method_id(@__method_family Other focusSystemForEnvironment:)]
+        #[unsafe(method_family(none))]
+        #[method_id(focusSystemForEnvironment:)]
         pub unsafe fn focusSystemForEnvironment(
             environment: &ProtocolObject<dyn UIFocusEnvironment>,
         ) -> Option<Retained<UIFocusSystem>>;
@@ -84,7 +88,8 @@ extern_methods!(
     ))]
     unsafe impl UIWindowScene {
         /// Returns the focus system that is responsible for this scene or nil if this scene does not support focus.
-        #[method_id(@__method_family Other focusSystem)]
+        #[unsafe(method_family(none))]
+        #[method_id(focusSystem)]
         pub unsafe fn focusSystem(&self) -> Option<Retained<UIFocusSystem>>;
     }
 );

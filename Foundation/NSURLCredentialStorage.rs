@@ -26,7 +26,8 @@ extern_methods!(
         /// Get the shared singleton authentication storage
         ///
         /// Returns: the shared authentication storage
-        #[method_id(@__method_family Other sharedCredentialStorage)]
+        #[unsafe(method_family(none))]
+        #[method_id(sharedCredentialStorage)]
         pub unsafe fn sharedCredentialStorage() -> Retained<NSURLCredentialStorage>;
 
         #[cfg(all(
@@ -40,7 +41,8 @@ extern_methods!(
         /// Parameter `space`: An NSURLProtectionSpace indicating the protection space for which to get credentials
         ///
         /// Returns: A dictionary where the keys are usernames and the values are the corresponding NSURLCredentials.
-        #[method_id(@__method_family Other credentialsForProtectionSpace:)]
+        #[unsafe(method_family(none))]
+        #[method_id(credentialsForProtectionSpace:)]
         pub unsafe fn credentialsForProtectionSpace(
             &self,
             space: &NSURLProtectionSpace,
@@ -57,7 +59,8 @@ extern_methods!(
         /// Returns: an NSDictionary where the keys are NSURLProtectionSpaces
         /// and the values are dictionaries, in which the keys are usernames
         /// and the values are NSURLCredentials
-        #[method_id(@__method_family Other allCredentials)]
+        #[unsafe(method_family(none))]
+        #[method_id(allCredentials)]
         pub unsafe fn allCredentials(
             &self,
         ) -> Retained<NSDictionary<NSURLProtectionSpace, NSDictionary<NSString, NSURLCredential>>>;
@@ -126,7 +129,8 @@ extern_methods!(
         /// Get the default credential for the specified protection space.
         ///
         /// Parameter `space`: The protection space for which to get the default credential.
-        #[method_id(@__method_family Other defaultCredentialForProtectionSpace:)]
+        #[unsafe(method_family(none))]
+        #[method_id(defaultCredentialForProtectionSpace:)]
         pub unsafe fn defaultCredentialForProtectionSpace(
             &self,
             space: &NSURLProtectionSpace,
@@ -152,10 +156,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSURLCredentialStorage {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

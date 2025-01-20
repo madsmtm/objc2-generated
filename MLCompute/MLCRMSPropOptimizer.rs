@@ -65,7 +65,8 @@ extern_methods!(
         ///
         /// Returns: A new MLCRMSPropOptimizer object.
         #[deprecated = "Use Metal Performance Shaders Graph or BNNS instead."]
-        #[method_id(@__method_family Other optimizerWithDescriptor:)]
+        #[unsafe(method_family(none))]
+        #[method_id(optimizerWithDescriptor:)]
         pub unsafe fn optimizerWithDescriptor(
             optimizer_descriptor: &MLCOptimizerDescriptor,
         ) -> Retained<Self>;
@@ -85,7 +86,8 @@ extern_methods!(
         ///
         /// Returns: A new MLCRMSPropOptimizer object.
         #[deprecated = "Use Metal Performance Shaders Graph or BNNS instead."]
-        #[method_id(@__method_family Other optimizerWithDescriptor:momentumScale:alpha:epsilon:isCentered:)]
+        #[unsafe(method_family(none))]
+        #[method_id(optimizerWithDescriptor:momentumScale:alpha:epsilon:isCentered:)]
         pub unsafe fn optimizerWithDescriptor_momentumScale_alpha_epsilon_isCentered(
             optimizer_descriptor: &MLCOptimizerDescriptor,
             momentum_scale: c_float,
@@ -101,11 +103,13 @@ extern_methods!(
     #[cfg(feature = "MLCOptimizer")]
     unsafe impl MLCRMSPropOptimizer {
         #[deprecated]
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

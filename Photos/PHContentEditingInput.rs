@@ -33,14 +33,17 @@ extern_methods!(
         #[method(mediaSubtypes)]
         pub unsafe fn mediaSubtypes(&self) -> PHAssetMediaSubtype;
 
-        #[method_id(@__method_family Other creationDate)]
+        #[unsafe(method_family(none))]
+        #[method_id(creationDate)]
         pub unsafe fn creationDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "objc2-core-location")]
-        #[method_id(@__method_family Other location)]
+        #[unsafe(method_family(none))]
+        #[method_id(location)]
         pub unsafe fn location(&self) -> Option<Retained<CLLocation>>;
 
-        #[method_id(@__method_family Other uniformTypeIdentifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(uniformTypeIdentifier)]
         pub unsafe fn uniformTypeIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "PhotosTypes")]
@@ -48,15 +51,18 @@ extern_methods!(
         pub unsafe fn playbackStyle(&self) -> PHAssetPlaybackStyle;
 
         #[cfg(feature = "PHAdjustmentData")]
-        #[method_id(@__method_family Other adjustmentData)]
+        #[unsafe(method_family(none))]
+        #[method_id(adjustmentData)]
         pub unsafe fn adjustmentData(&self) -> Option<Retained<PHAdjustmentData>>;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
-        #[method_id(@__method_family Other displaySizeImage)]
+        #[unsafe(method_family(none))]
+        #[method_id(displaySizeImage)]
         pub unsafe fn displaySizeImage(&self) -> Option<Retained<NSImage>>;
 
-        #[method_id(@__method_family Other fullSizeImageURL)]
+        #[unsafe(method_family(none))]
+        #[method_id(fullSizeImageURL)]
         pub unsafe fn fullSizeImageURL(&self) -> Option<Retained<NSURL>>;
 
         #[method(fullSizeImageOrientation)]
@@ -64,15 +70,18 @@ extern_methods!(
 
         #[cfg(feature = "objc2-av-foundation")]
         #[deprecated]
-        #[method_id(@__method_family Other avAsset)]
+        #[unsafe(method_family(none))]
+        #[method_id(avAsset)]
         pub unsafe fn avAsset(&self) -> Option<Retained<AVAsset>>;
 
         #[cfg(feature = "objc2-av-foundation")]
-        #[method_id(@__method_family Other audiovisualAsset)]
+        #[unsafe(method_family(none))]
+        #[method_id(audiovisualAsset)]
         pub unsafe fn audiovisualAsset(&self) -> Option<Retained<AVAsset>>;
 
         #[cfg(feature = "PHLivePhoto")]
-        #[method_id(@__method_family Other livePhoto)]
+        #[unsafe(method_family(none))]
+        #[method_id(livePhoto)]
         pub unsafe fn livePhoto(&self) -> Option<Retained<PHLivePhoto>>;
     }
 );
@@ -80,10 +89,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHContentEditingInput {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

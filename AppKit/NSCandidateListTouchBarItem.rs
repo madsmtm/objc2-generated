@@ -32,7 +32,8 @@ extern_methods!(
             feature = "NSTextInputClient",
             feature = "NSView"
         ))]
-        #[method_id(@__method_family Other client)]
+        #[unsafe(method_family(none))]
+        #[method_id(client)]
         pub unsafe fn client(&self) -> Option<Retained<NSView>>;
 
         #[cfg(all(
@@ -45,7 +46,8 @@ extern_methods!(
         #[method(setClient:)]
         pub unsafe fn setClient(&self, client: Option<&NSView>);
 
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSCandidateListTouchBarItemDelegate>>>;
@@ -108,7 +110,8 @@ extern_methods!(
             >,
         );
 
-        #[method_id(@__method_family Other candidates)]
+        #[unsafe(method_family(none))]
+        #[method_id(candidates)]
         pub unsafe fn candidates(&self) -> Retained<NSArray<CandidateType>>;
 
         #[method(setCandidates:forSelectedRange:inString:)]
@@ -119,7 +122,8 @@ extern_methods!(
             original_string: Option<&NSString>,
         );
 
-        #[method_id(@__method_family Other customizationLabel)]
+        #[unsafe(method_family(none))]
+        #[method_id(customizationLabel)]
         pub unsafe fn customizationLabel(&self) -> Retained<NSString>;
 
         /// Setter for [`customizationLabel`][Self::customizationLabel].
@@ -132,19 +136,22 @@ extern_methods!(
     /// Methods declared on superclass `NSTouchBarItem`
     #[cfg(feature = "NSTouchBarItem")]
     unsafe impl<CandidateType: Message> NSCandidateListTouchBarItem<CandidateType> {
-        #[method_id(@__method_family Init initWithIdentifier:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,
             identifier: &NSTouchBarItemIdentifier,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -153,7 +160,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSTouchBarItem")]
     unsafe impl<CandidateType: Message> NSCandidateListTouchBarItem<CandidateType> {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -207,7 +215,8 @@ extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSView {
         #[cfg(feature = "NSTouchBarItem")]
-        #[method_id(@__method_family Other candidateListTouchBarItem)]
+        #[unsafe(method_family(none))]
+        #[method_id(candidateListTouchBarItem)]
         pub unsafe fn candidateListTouchBarItem(
             &self,
         ) -> Option<Retained<NSCandidateListTouchBarItem>>;

@@ -23,7 +23,8 @@ extern_methods!(
     unsafe impl LARightStore {
         /// Shared instance of
         /// `LARightStore.`
-        #[method_id(@__method_family Other sharedStore)]
+        #[unsafe(method_family(none))]
+        #[method_id(sharedStore)]
         pub unsafe fn sharedStore() -> Retained<LARightStore>;
 
         #[cfg(all(feature = "LAPersistedRight", feature = "LARight", feature = "block2"))]
@@ -113,12 +114,14 @@ extern_methods!(
 
         /// Clients should rely on the
         /// `shared`instance instead
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Clients should rely on the
         /// `shared`instance instead
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

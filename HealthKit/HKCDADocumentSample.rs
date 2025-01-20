@@ -68,7 +68,8 @@ extern_methods!(
         /// accessible to an app.  The authorization request occurs the first time a document matches the predicate
         /// of an executed HKDocumentQuery.  This property will always be nil if the sample is returned by an
         /// HKSampleQuery or an HKAnchoredObjectQuery.
-        #[method_id(@__method_family Other document)]
+        #[unsafe(method_family(none))]
+        #[method_id(document)]
         pub unsafe fn document(&self) -> Option<Retained<HKCDADocument>>;
 
         /// Creates a new document sample with the specified attributes.
@@ -90,7 +91,8 @@ extern_methods!(
         ///
         /// Attributes of the document, such as title, patient name, etc. will be extracted automatically
         /// from the document content.
-        #[method_id(@__method_family Other CDADocumentSampleWithData:startDate:endDate:metadata:validationError:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(CDADocumentSampleWithData:startDate:endDate:metadata:validationError:_)]
         pub unsafe fn CDADocumentSampleWithData_startDate_endDate_metadata_validationError(
             document_data: &NSData,
             start_date: &NSDate,
@@ -108,7 +110,8 @@ extern_methods!(
         feature = "HKSample"
     ))]
     unsafe impl HKCDADocumentSample {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -121,7 +124,8 @@ extern_methods!(
         feature = "HKSample"
     ))]
     unsafe impl HKCDADocumentSample {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -143,31 +147,36 @@ extern_methods!(
     unsafe impl HKCDADocument {
         /// The CDA document content in XML format as specified in the CDA standard. This may be nil if the
         /// includeDocumentData option in HKDocumentQuery is specified as NO.
-        #[method_id(@__method_family Other documentData)]
+        #[unsafe(method_family(none))]
+        #[method_id(documentData)]
         pub unsafe fn documentData(&self) -> Option<Retained<NSData>>;
 
         /// The title of the document.
         ///
         /// This property is extracted automatically from the document.
-        #[method_id(@__method_family Other title)]
+        #[unsafe(method_family(none))]
+        #[method_id(title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// The name of the patient receiving treatment.
         ///
         /// This property is extracted automatically from the document.
-        #[method_id(@__method_family Other patientName)]
+        #[unsafe(method_family(none))]
+        #[method_id(patientName)]
         pub unsafe fn patientName(&self) -> Retained<NSString>;
 
         /// The person responsible for authoring the document.  Usually, this is the treating physician.
         ///
         /// This property is extracted automatically from the document.
-        #[method_id(@__method_family Other authorName)]
+        #[unsafe(method_family(none))]
+        #[method_id(authorName)]
         pub unsafe fn authorName(&self) -> Retained<NSString>;
 
         /// The organization responsible for the document.  This is usually the treating institution name.
         ///
         /// This property is extracted automatically from the document.
-        #[method_id(@__method_family Other custodianName)]
+        #[unsafe(method_family(none))]
+        #[method_id(custodianName)]
         pub unsafe fn custodianName(&self) -> Retained<NSString>;
     }
 );
@@ -175,10 +184,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKCDADocument {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

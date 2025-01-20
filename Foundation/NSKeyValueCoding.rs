@@ -91,7 +91,8 @@ extern_category!(
         unsafe fn accessInstanceVariablesDirectly() -> bool;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__method_family Other valueForKey:)]
+        #[unsafe(method_family(none))]
+        #[method_id(valueForKey:)]
         unsafe fn valueForKey(&self, key: &NSString) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
@@ -107,22 +108,26 @@ extern_category!(
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[method_id(@__method_family Other mutableArrayValueForKey:)]
+        #[unsafe(method_family(none))]
+        #[method_id(mutableArrayValueForKey:)]
         unsafe fn mutableArrayValueForKey(&self, key: &NSString) -> Retained<NSMutableArray>;
 
         #[cfg(all(feature = "NSOrderedSet", feature = "NSString"))]
-        #[method_id(@__method_family Other mutableOrderedSetValueForKey:)]
+        #[unsafe(method_family(none))]
+        #[method_id(mutableOrderedSetValueForKey:)]
         unsafe fn mutableOrderedSetValueForKey(
             &self,
             key: &NSString,
         ) -> Retained<NSMutableOrderedSet>;
 
         #[cfg(all(feature = "NSSet", feature = "NSString"))]
-        #[method_id(@__method_family Other mutableSetValueForKey:)]
+        #[unsafe(method_family(none))]
+        #[method_id(mutableSetValueForKey:)]
         unsafe fn mutableSetValueForKey(&self, key: &NSString) -> Retained<NSMutableSet>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__method_family Other valueForKeyPath:)]
+        #[unsafe(method_family(none))]
+        #[method_id(valueForKeyPath:)]
         unsafe fn valueForKeyPath(&self, key_path: &NSString) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
@@ -138,25 +143,29 @@ extern_category!(
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[method_id(@__method_family Other mutableArrayValueForKeyPath:)]
+        #[unsafe(method_family(none))]
+        #[method_id(mutableArrayValueForKeyPath:)]
         unsafe fn mutableArrayValueForKeyPath(
             &self,
             key_path: &NSString,
         ) -> Retained<NSMutableArray>;
 
         #[cfg(all(feature = "NSOrderedSet", feature = "NSString"))]
-        #[method_id(@__method_family Other mutableOrderedSetValueForKeyPath:)]
+        #[unsafe(method_family(none))]
+        #[method_id(mutableOrderedSetValueForKeyPath:)]
         unsafe fn mutableOrderedSetValueForKeyPath(
             &self,
             key_path: &NSString,
         ) -> Retained<NSMutableOrderedSet>;
 
         #[cfg(all(feature = "NSSet", feature = "NSString"))]
-        #[method_id(@__method_family Other mutableSetValueForKeyPath:)]
+        #[unsafe(method_family(none))]
+        #[method_id(mutableSetValueForKeyPath:)]
         unsafe fn mutableSetValueForKeyPath(&self, key_path: &NSString) -> Retained<NSMutableSet>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__method_family Other valueForUndefinedKey:)]
+        #[unsafe(method_family(none))]
+        #[method_id(valueForUndefinedKey:)]
         unsafe fn valueForUndefinedKey(&self, key: &NSString) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
@@ -168,7 +177,8 @@ extern_category!(
         unsafe fn setNilValueForKey(&self, key: &NSString);
 
         #[cfg(all(feature = "NSArray", feature = "NSDictionary", feature = "NSString"))]
-        #[method_id(@__method_family Other dictionaryWithValuesForKeys:)]
+        #[unsafe(method_family(none))]
+        #[method_id(dictionaryWithValuesForKeys:)]
         unsafe fn dictionaryWithValuesForKeys(
             &self,
             keys: &NSArray<NSString>,
@@ -190,7 +200,8 @@ extern_methods!(
     #[cfg(feature = "NSArray")]
     unsafe impl<ObjectType: Message> NSArray<ObjectType> {
         #[cfg(feature = "NSString")]
-        #[method_id(@__method_family Other valueForKey:)]
+        #[unsafe(method_family(none))]
+        #[method_id(valueForKey:)]
         pub unsafe fn valueForKey(&self, key: &NSString) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSString")]
@@ -204,7 +215,8 @@ extern_methods!(
     #[cfg(feature = "NSDictionary")]
     unsafe impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
         #[cfg(feature = "NSString")]
-        #[method_id(@__method_family Other valueForKey:)]
+        #[unsafe(method_family(none))]
+        #[method_id(valueForKey:)]
         pub unsafe fn valueForKey(&self, key: &NSString) -> Option<Retained<ObjectType>>;
     }
 );
@@ -224,7 +236,8 @@ extern_methods!(
     #[cfg(feature = "NSOrderedSet")]
     unsafe impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         #[cfg(feature = "NSString")]
-        #[method_id(@__method_family Other valueForKey:)]
+        #[unsafe(method_family(none))]
+        #[method_id(valueForKey:)]
         pub unsafe fn valueForKey(&self, key: &NSString) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSString")]
@@ -238,7 +251,8 @@ extern_methods!(
     #[cfg(feature = "NSSet")]
     unsafe impl<ObjectType: Message> NSSet<ObjectType> {
         #[cfg(feature = "NSString")]
-        #[method_id(@__method_family Other valueForKey:)]
+        #[unsafe(method_family(none))]
+        #[method_id(valueForKey:)]
         pub unsafe fn valueForKey(&self, key: &NSString) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSString")]

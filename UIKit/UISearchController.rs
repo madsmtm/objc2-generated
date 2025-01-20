@@ -175,26 +175,30 @@ unsafe impl UIViewControllerTransitioningDelegate for UISearchController {}
 extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UISearchController {
-        #[method_id(@__method_family Init initWithSearchResultsController:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithSearchResultsController:)]
         pub unsafe fn initWithSearchResultsController(
             this: Allocated<Self>,
             search_results_controller: Option<&UIViewController>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithNibName:bundle:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__method_family Other searchResultsUpdater)]
+        #[unsafe(method_family(none))]
+        #[method_id(searchResultsUpdater)]
         pub unsafe fn searchResultsUpdater(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UISearchResultsUpdating>>>;
@@ -214,7 +218,8 @@ extern_methods!(
         #[method(setActive:)]
         pub unsafe fn setActive(&self, active: bool);
 
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UISearchControllerDelegate>>>;
@@ -259,11 +264,13 @@ extern_methods!(
             hides_navigation_bar_during_presentation: bool,
         );
 
-        #[method_id(@__method_family Other searchResultsController)]
+        #[unsafe(method_family(none))]
+        #[method_id(searchResultsController)]
         pub unsafe fn searchResultsController(&self) -> Option<Retained<UIViewController>>;
 
         #[cfg(all(feature = "UISearchBar", feature = "UIView"))]
-        #[method_id(@__method_family Other searchBar)]
+        #[unsafe(method_family(none))]
+        #[method_id(searchBar)]
         pub unsafe fn searchBar(&self) -> Retained<UISearchBar>;
 
         #[cfg(feature = "UINavigationItem")]
@@ -331,7 +338,8 @@ extern_methods!(
         /// searchSuggestions is set to nil when user interaction selects a suggestion,
         /// or when the user otherwise interacts with search (e.g., typing in the search field, choosing a different search scope, canceling search)
         /// after dismissing the menu by tapping outside
-        #[method_id(@__method_family Other searchSuggestions)]
+        #[unsafe(method_family(none))]
+        #[method_id(searchSuggestions)]
         pub unsafe fn searchSuggestions(
             &self,
         ) -> Option<Retained<NSArray<ProtocolObject<dyn UISearchSuggestion>>>>;
@@ -360,7 +368,8 @@ extern_methods!(
 
         #[cfg(all(feature = "UIScrollView", feature = "UIView"))]
         #[deprecated = "Use -[UIViewController setContentScrollView:forEdge:] on the searchResultsController instead."]
-        #[method_id(@__method_family Other searchControllerObservedScrollView)]
+        #[unsafe(method_family(none))]
+        #[method_id(searchControllerObservedScrollView)]
         pub unsafe fn searchControllerObservedScrollView(&self) -> Option<Retained<UIScrollView>>;
 
         #[cfg(all(feature = "UIScrollView", feature = "UIView"))]
@@ -378,10 +387,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UISearchController {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

@@ -62,7 +62,8 @@ extern_methods!(
         ///
         /// Returns a shared instance of a local ODSession.  This can be used for most situations unless
         /// more control is needed over the session.
-        #[method_id(@__method_family Other defaultSession)]
+        #[unsafe(method_family(none))]
+        #[method_id(defaultSession)]
         pub unsafe fn defaultSession() -> Option<Retained<ODSession>>;
 
         /// Creates an autoreleased instance of ODSession directed over Proxy to another host
@@ -77,7 +78,8 @@ extern_methods!(
         /// ODSessionProxyPort           NSNumber(IP port, should not be set as it will default)
         /// ODSessionProxyUsername       NSString(username)
         /// ODSessionProxyPassword       NSString(password)
-        #[method_id(@__method_family Other sessionWithOptions:error:)]
+        #[unsafe(method_family(none))]
+        #[method_id(sessionWithOptions:error:)]
         pub unsafe fn sessionWithOptions_error(
             in_options: Option<&NSDictionary>,
             out_error: Option<&mut Option<Retained<NSError>>>,
@@ -95,7 +97,8 @@ extern_methods!(
         /// ODSessionProxyPort           NSNumber(IP port, should not be set as it will default)
         /// ODSessionProxyUsername       NSString(username)
         /// ODSessionProxyPassword       NSString(password)
-        #[method_id(@__method_family Init initWithOptions:error:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithOptions:error:)]
         pub unsafe fn initWithOptions_error(
             this: Allocated<Self>,
             in_options: Option<&NSDictionary>,
@@ -106,7 +109,8 @@ extern_methods!(
         ///
         /// Returns the node names that are registered on this ODSession.  outError can be nil if
         /// error details are not needed.
-        #[method_id(@__method_family Other nodeNamesAndReturnError:)]
+        #[unsafe(method_family(none))]
+        #[method_id(nodeNamesAndReturnError:)]
         pub unsafe fn nodeNamesAndReturnError(
             &self,
             out_error: Option<&mut Option<Retained<NSError>>>,
@@ -118,7 +122,8 @@ extern_methods!(
         /// Returns a list of names as NSStrings for all available configuration templates.  Configuration templates
         /// have pre-configured modules and/or mappings.  Useful for re-using existing configurations
         /// that may change with operating system without changing the actual configuration.
-        #[method_id(@__method_family Other configurationTemplateNames)]
+        #[unsafe(method_family(none))]
+        #[method_id(configurationTemplateNames)]
         pub unsafe fn configurationTemplateNames(&self) -> Retained<NSArray>;
 
         /// Returns a list names as NSStrings for all available mapping templates.
@@ -126,7 +131,8 @@ extern_methods!(
         ///
         /// Returns a list names as NSStrings for all available mapping templates.  Mapping templates have pre-configured
         /// record/attribute mappings.  Useful if a configuration uses a common layout of mappings for a type of server.
-        #[method_id(@__method_family Other mappingTemplateNames)]
+        #[unsafe(method_family(none))]
+        #[method_id(mappingTemplateNames)]
         pub unsafe fn mappingTemplateNames(&self) -> Retained<NSArray>;
 
         #[cfg(feature = "ODConfiguration")]
@@ -134,7 +140,8 @@ extern_methods!(
         ///
         ///
         /// Reads the configuration for a given nodename.
-        #[method_id(@__method_family Other configurationForNodename:)]
+        #[unsafe(method_family(none))]
+        #[method_id(configurationForNodename:)]
         pub unsafe fn configurationForNodename(
             &self,
             nodename: Option<&NSString>,
@@ -145,10 +152,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ODSession {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

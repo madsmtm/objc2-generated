@@ -49,13 +49,15 @@ extern_methods!(
             mtm: MainThreadMarker,
         );
 
-        #[method_id(@__method_family Other separatorItem)]
+        #[unsafe(method_family(none))]
+        #[method_id(separatorItem)]
         pub fn separatorItem(mtm: MainThreadMarker) -> Retained<NSMenuItem>;
 
         /// Creates a menu item representing a section header with the provided title.
         /// Section header items are used to provide context to a grouping of menu items.
         /// Items created using this method are non-interactive and do not perform an action.
-        #[method_id(@__method_family Other sectionHeaderWithTitle:)]
+        #[unsafe(method_family(none))]
+        #[method_id(sectionHeaderWithTitle:)]
         pub unsafe fn sectionHeaderWithTitle(
             title: &NSString,
             mtm: MainThreadMarker,
@@ -63,10 +65,12 @@ extern_methods!(
 
         /// An array of standard menu items related to Writing Tools.
         /// Each call to this method returns an array of newly allocated instances of NSMenuItem.
-        #[method_id(@__method_family Other writingToolsItems)]
+        #[unsafe(method_family(none))]
+        #[method_id(writingToolsItems)]
         pub unsafe fn writingToolsItems(mtm: MainThreadMarker) -> Retained<NSArray<NSMenuItem>>;
 
-        #[method_id(@__method_family Init initWithTitle:action:keyEquivalent:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithTitle:action:keyEquivalent:)]
         pub unsafe fn initWithTitle_action_keyEquivalent(
             this: Allocated<Self>,
             string: &NSString,
@@ -74,12 +78,14 @@ extern_methods!(
             char_code: &NSString,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "NSMenu")]
         /// Note: Never call the setter method directly: it is there only for subclassers.
-        #[method_id(@__method_family Other menu)]
+        #[unsafe(method_family(none))]
+        #[method_id(menu)]
         pub unsafe fn menu(&self) -> Option<Retained<NSMenu>>;
 
         #[cfg(feature = "NSMenu")]
@@ -91,7 +97,8 @@ extern_methods!(
         pub unsafe fn hasSubmenu(&self) -> bool;
 
         #[cfg(feature = "NSMenu")]
-        #[method_id(@__method_family Other submenu)]
+        #[unsafe(method_family(none))]
+        #[method_id(submenu)]
         pub unsafe fn submenu(&self) -> Option<Retained<NSMenu>>;
 
         #[cfg(feature = "NSMenu")]
@@ -100,17 +107,20 @@ extern_methods!(
         pub fn setSubmenu(&self, submenu: Option<&NSMenu>);
 
         /// Returns: The `NSMenuItem` whose submenu contains the receiver, or nil if the receiver does not have a parent item.
-        #[method_id(@__method_family Other parentItem)]
+        #[unsafe(method_family(none))]
+        #[method_id(parentItem)]
         pub unsafe fn parentItem(&self) -> Option<Retained<NSMenuItem>>;
 
-        #[method_id(@__method_family Other title)]
+        #[unsafe(method_family(none))]
+        #[method_id(title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
-        #[method_id(@__method_family Other attributedTitle)]
+        #[unsafe(method_family(none))]
+        #[method_id(attributedTitle)]
         pub unsafe fn attributedTitle(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Setter for [`attributedTitle`][Self::attributedTitle].
@@ -122,7 +132,8 @@ extern_methods!(
         /// The subtitle is displayed below the standard title.
         ///
         /// Note: On macOS 14, a menu item with an attributed title does not show the subtitle. The subtitle is shown on macOS 15 and later.
-        #[method_id(@__method_family Other subtitle)]
+        #[unsafe(method_family(none))]
+        #[method_id(subtitle)]
         pub unsafe fn subtitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`subtitle`][Self::subtitle].
@@ -137,7 +148,8 @@ extern_methods!(
         #[method(isSectionHeader)]
         pub unsafe fn isSectionHeader(&self) -> bool;
 
-        #[method_id(@__method_family Other keyEquivalent)]
+        #[unsafe(method_family(none))]
+        #[method_id(keyEquivalent)]
         pub unsafe fn keyEquivalent(&self) -> Retained<NSString>;
 
         /// Setter for [`keyEquivalent`][Self::keyEquivalent].
@@ -156,7 +168,8 @@ extern_methods!(
             key_equivalent_modifier_mask: NSEventModifierFlags,
         );
 
-        #[method_id(@__method_family Other userKeyEquivalent)]
+        #[unsafe(method_family(none))]
+        #[method_id(userKeyEquivalent)]
         pub unsafe fn userKeyEquivalent(&self) -> Retained<NSString>;
 
         #[method(allowsKeyEquivalentWhenHidden)]
@@ -190,7 +203,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSImage")]
-        #[method_id(@__method_family Other image)]
+        #[unsafe(method_family(none))]
+        #[method_id(image)]
         pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
@@ -208,7 +222,8 @@ extern_methods!(
         pub unsafe fn setState(&self, state: NSControlStateValue);
 
         #[cfg(feature = "NSImage")]
-        #[method_id(@__method_family Other onStateImage)]
+        #[unsafe(method_family(none))]
+        #[method_id(onStateImage)]
         pub unsafe fn onStateImage(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
@@ -217,7 +232,8 @@ extern_methods!(
         pub unsafe fn setOnStateImage(&self, on_state_image: Option<&NSImage>);
 
         #[cfg(feature = "NSImage")]
-        #[method_id(@__method_family Other offStateImage)]
+        #[unsafe(method_family(none))]
+        #[method_id(offStateImage)]
         pub unsafe fn offStateImage(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
@@ -226,7 +242,8 @@ extern_methods!(
         pub unsafe fn setOffStateImage(&self, off_state_image: Option<&NSImage>);
 
         #[cfg(feature = "NSImage")]
-        #[method_id(@__method_family Other mixedStateImage)]
+        #[unsafe(method_family(none))]
+        #[method_id(mixedStateImage)]
         pub unsafe fn mixedStateImage(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
@@ -255,7 +272,8 @@ extern_methods!(
         #[method(setIndentationLevel:)]
         pub unsafe fn setIndentationLevel(&self, indentation_level: NSInteger);
 
-        #[method_id(@__method_family Other target)]
+        #[unsafe(method_family(none))]
+        #[method_id(target)]
         pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -277,7 +295,8 @@ extern_methods!(
         #[method(setTag:)]
         pub unsafe fn setTag(&self, tag: NSInteger);
 
-        #[method_id(@__method_family Other representedObject)]
+        #[unsafe(method_family(none))]
+        #[method_id(representedObject)]
         pub unsafe fn representedObject(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`representedObject`][Self::representedObject].
@@ -285,7 +304,8 @@ extern_methods!(
         pub unsafe fn setRepresentedObject(&self, represented_object: Option<&AnyObject>);
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-        #[method_id(@__method_family Other view)]
+        #[unsafe(method_family(none))]
+        #[method_id(view)]
         pub unsafe fn view(&self) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -306,7 +326,8 @@ extern_methods!(
         #[method(isHiddenOrHasHiddenAncestor)]
         pub unsafe fn isHiddenOrHasHiddenAncestor(&self) -> bool;
 
-        #[method_id(@__method_family Other toolTip)]
+        #[unsafe(method_family(none))]
+        #[method_id(toolTip)]
         pub unsafe fn toolTip(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`toolTip`][Self::toolTip].
@@ -320,7 +341,8 @@ extern_methods!(
         ///
         /// Note: The default value of this property is
         /// `nil.`
-        #[method_id(@__method_family Other badge)]
+        #[unsafe(method_family(none))]
+        #[method_id(badge)]
         pub unsafe fn badge(&self) -> Option<Retained<NSMenuItemBadge>>;
 
         #[cfg(feature = "NSMenuItemBadge")]
@@ -333,10 +355,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSMenuItem {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -345,7 +369,8 @@ extern_methods!(
     /// NSViewEnclosingMenuItem
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSView {
-        #[method_id(@__method_family Other enclosingMenuItem)]
+        #[unsafe(method_family(none))]
+        #[method_id(enclosingMenuItem)]
         pub unsafe fn enclosingMenuItem(&self) -> Option<Retained<NSMenuItem>>;
     }
 );
@@ -368,7 +393,8 @@ extern_methods!(
         pub unsafe fn mnemonicLocation(&self) -> NSUInteger;
 
         #[deprecated]
-        #[method_id(@__method_family Other mnemonic)]
+        #[unsafe(method_family(none))]
+        #[method_id(mnemonic)]
         pub unsafe fn mnemonic(&self) -> Option<Retained<NSString>>;
 
         #[deprecated]

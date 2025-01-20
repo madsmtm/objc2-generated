@@ -38,7 +38,8 @@ extern_methods!(
         pub unsafe fn updateWithPanRecognizer(&self, pan_recognizer: &NSPanGestureRecognizer);
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-        #[method_id(@__method_family Other alignmentFeedbackTokenForMovementInView:previousPoint:alignedPoint:defaultPoint:)]
+        #[unsafe(method_family(none))]
+        #[method_id(alignmentFeedbackTokenForMovementInView:previousPoint:alignedPoint:defaultPoint:)]
         pub unsafe fn alignmentFeedbackTokenForMovementInView_previousPoint_alignedPoint_defaultPoint(
             &self,
             view: Option<&NSView>,
@@ -52,7 +53,8 @@ extern_methods!(
             feature = "NSView",
             feature = "objc2-core-foundation"
         ))]
-        #[method_id(@__method_family Other alignmentFeedbackTokenForHorizontalMovementInView:previousX:alignedX:defaultX:)]
+        #[unsafe(method_family(none))]
+        #[method_id(alignmentFeedbackTokenForHorizontalMovementInView:previousX:alignedX:defaultX:)]
         pub unsafe fn alignmentFeedbackTokenForHorizontalMovementInView_previousX_alignedX_defaultX(
             &self,
             view: Option<&NSView>,
@@ -66,7 +68,8 @@ extern_methods!(
             feature = "NSView",
             feature = "objc2-core-foundation"
         ))]
-        #[method_id(@__method_family Other alignmentFeedbackTokenForVerticalMovementInView:previousY:alignedY:defaultY:)]
+        #[unsafe(method_family(none))]
+        #[method_id(alignmentFeedbackTokenForVerticalMovementInView:previousY:alignedY:defaultY:)]
         pub unsafe fn alignmentFeedbackTokenForVerticalMovementInView_previousY_alignedY_defaultY(
             &self,
             view: Option<&NSView>,
@@ -88,10 +91,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSAlignmentFeedbackFilter {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

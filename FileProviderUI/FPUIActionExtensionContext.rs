@@ -57,7 +57,8 @@ unsafe impl NSObjectProtocol for FPUIActionExtensionContext {}
 extern_methods!(
     unsafe impl FPUIActionExtensionContext {
         /// The identifier for the domain managed by the current file provider.
-        #[method_id(@__method_family Other domainIdentifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(domainIdentifier)]
         pub unsafe fn domainIdentifier(&self) -> Option<Retained<NSFileProviderDomainIdentifier>>;
 
         /// Marks the action as complete.
@@ -87,10 +88,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl FPUIActionExtensionContext {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

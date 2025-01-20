@@ -47,7 +47,8 @@ extern_methods!(
     unsafe impl ARWorldMap {
         #[cfg(all(feature = "ARAnchor", feature = "objc2-foundation"))]
         /// A list of anchors in the map.
-        #[method_id(@__method_family Other anchors)]
+        #[unsafe(method_family(none))]
+        #[method_id(anchors)]
         pub unsafe fn anchors(&self) -> Retained<NSArray<ARAnchor>>;
 
         #[cfg(all(feature = "ARAnchor", feature = "objc2-foundation"))]
@@ -57,14 +58,17 @@ extern_methods!(
 
         #[cfg(feature = "ARPointCloud")]
         /// The feature points in the map.
-        #[method_id(@__method_family Other rawFeaturePoints)]
+        #[unsafe(method_family(none))]
+        #[method_id(rawFeaturePoints)]
         pub unsafe fn rawFeaturePoints(&self) -> Retained<ARPointCloud>;
 
         /// Unavailable
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

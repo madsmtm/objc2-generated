@@ -142,19 +142,23 @@ unsafe impl NSObjectProtocol for NSTextSelectionNavigation {}
 
 extern_methods!(
     unsafe impl NSTextSelectionNavigation {
-        #[method_id(@__method_family Init initWithDataSource:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDataSource:)]
         pub unsafe fn initWithDataSource(
             this: Allocated<Self>,
             data_source: &ProtocolObject<dyn NSTextSelectionDataSource>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family Other textSelectionDataSource)]
+        #[unsafe(method_family(none))]
+        #[method_id(textSelectionDataSource)]
         pub unsafe fn textSelectionDataSource(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSTextSelectionDataSource>>>;
@@ -180,7 +184,8 @@ extern_methods!(
         pub unsafe fn flushLayoutCache(&self);
 
         #[cfg(feature = "NSTextSelection")]
-        #[method_id(@__method_family Other destinationSelectionForTextSelection:direction:destination:extending:confined:)]
+        #[unsafe(method_family(none))]
+        #[method_id(destinationSelectionForTextSelection:direction:destination:extending:confined:)]
         pub unsafe fn destinationSelectionForTextSelection_direction_destination_extending_confined(
             &self,
             text_selection: &NSTextSelection,
@@ -195,7 +200,8 @@ extern_methods!(
             feature = "NSTextSelection",
             feature = "objc2-core-foundation"
         ))]
-        #[method_id(@__method_family Other textSelectionsInteractingAtPoint:inContainerAtLocation:anchors:modifiers:selecting:bounds:)]
+        #[unsafe(method_family(none))]
+        #[method_id(textSelectionsInteractingAtPoint:inContainerAtLocation:anchors:modifiers:selecting:bounds:)]
         pub unsafe fn textSelectionsInteractingAtPoint_inContainerAtLocation_anchors_modifiers_selecting_bounds(
             &self,
             point: CGPoint,
@@ -207,7 +213,8 @@ extern_methods!(
         ) -> Retained<NSArray<NSTextSelection>>;
 
         #[cfg(feature = "NSTextSelection")]
-        #[method_id(@__method_family Other textSelectionForSelectionGranularity:enclosingTextSelection:)]
+        #[unsafe(method_family(none))]
+        #[method_id(textSelectionForSelectionGranularity:enclosingTextSelection:)]
         pub unsafe fn textSelectionForSelectionGranularity_enclosingTextSelection(
             &self,
             selection_granularity: NSTextSelectionGranularity,
@@ -219,7 +226,8 @@ extern_methods!(
             feature = "NSTextSelection",
             feature = "objc2-core-foundation"
         ))]
-        #[method_id(@__method_family Other textSelectionForSelectionGranularity:enclosingPoint:inContainerAtLocation:)]
+        #[unsafe(method_family(none))]
+        #[method_id(textSelectionForSelectionGranularity:enclosingPoint:inContainerAtLocation:)]
         pub unsafe fn textSelectionForSelectionGranularity_enclosingPoint_inContainerAtLocation(
             &self,
             selection_granularity: NSTextSelectionGranularity,
@@ -228,7 +236,8 @@ extern_methods!(
         ) -> Option<Retained<NSTextSelection>>;
 
         #[cfg(all(feature = "NSTextRange", feature = "NSTextSelection"))]
-        #[method_id(@__method_family Other resolvedInsertionLocationForTextSelection:writingDirection:)]
+        #[unsafe(method_family(none))]
+        #[method_id(resolvedInsertionLocationForTextSelection:writingDirection:)]
         pub unsafe fn resolvedInsertionLocationForTextSelection_writingDirection(
             &self,
             text_selection: &NSTextSelection,
@@ -236,7 +245,8 @@ extern_methods!(
         ) -> Option<Retained<ProtocolObject<dyn NSTextLocation>>>;
 
         #[cfg(all(feature = "NSTextRange", feature = "NSTextSelection"))]
-        #[method_id(@__method_family Other deletionRangesForTextSelection:direction:destination:allowsDecomposition:)]
+        #[unsafe(method_family(none))]
+        #[method_id(deletionRangesForTextSelection:direction:destination:allowsDecomposition:)]
         pub unsafe fn deletionRangesForTextSelection_direction_destination_allowsDecomposition(
             &self,
             text_selection: &NSTextSelection,
@@ -251,7 +261,8 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextselectiondatasource?language=objc)
     pub unsafe trait NSTextSelectionDataSource: NSObjectProtocol {
         #[cfg(feature = "NSTextRange")]
-        #[method_id(@__method_family Other documentRange)]
+        #[unsafe(method_family(none))]
+        #[method_id(documentRange)]
         unsafe fn documentRange(&self) -> Retained<NSTextRange>;
 
         #[cfg(all(feature = "NSTextRange", feature = "block2"))]
@@ -266,7 +277,8 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "NSTextRange", feature = "NSTextSelection"))]
-        #[method_id(@__method_family Other textRangeForSelectionGranularity:enclosingLocation:)]
+        #[unsafe(method_family(none))]
+        #[method_id(textRangeForSelectionGranularity:enclosingLocation:)]
         unsafe fn textRangeForSelectionGranularity_enclosingLocation(
             &self,
             selection_granularity: NSTextSelectionGranularity,
@@ -274,7 +286,8 @@ extern_protocol!(
         ) -> Option<Retained<NSTextRange>>;
 
         #[cfg(feature = "NSTextRange")]
-        #[method_id(@__method_family Other locationFromLocation:withOffset:)]
+        #[unsafe(method_family(none))]
+        #[method_id(locationFromLocation:withOffset:)]
         unsafe fn locationFromLocation_withOffset(
             &self,
             location: &ProtocolObject<dyn NSTextLocation>,
@@ -312,7 +325,8 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "NSTextRange", feature = "objc2-core-foundation"))]
-        #[method_id(@__method_family Other lineFragmentRangeForPoint:inContainerAtLocation:)]
+        #[unsafe(method_family(none))]
+        #[method_id(lineFragmentRangeForPoint:inContainerAtLocation:)]
         unsafe fn lineFragmentRangeForPoint_inContainerAtLocation(
             &self,
             point: CGPoint,

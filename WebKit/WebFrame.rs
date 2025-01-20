@@ -41,7 +41,8 @@ extern_methods!(
         ///
         /// Returns: Returns an initialized WebFrame.
         #[deprecated]
-        #[method_id(@__method_family Init initWithName:webFrameView:webView:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithName:webFrameView:webView:)]
         pub unsafe fn initWithName_webFrameView_webView(
             this: Allocated<Self>,
             name: Option<&NSString>,
@@ -51,21 +52,24 @@ extern_methods!(
 
         /// The frame name.
         #[deprecated]
-        #[method_id(@__method_family Other name)]
+        #[unsafe(method_family(none))]
+        #[method_id(name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         /// The WebView for the document that includes this frame.
         #[deprecated]
-        #[method_id(@__method_family Other webView)]
+        #[unsafe(method_family(none))]
+        #[method_id(webView)]
         pub unsafe fn webView(&self, mtm: MainThreadMarker) -> Option<Retained<WebView>>;
 
         #[cfg(all(feature = "WebFrameView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         /// The WebFrameView for this frame.
         #[deprecated]
-        #[method_id(@__method_family Other frameView)]
+        #[unsafe(method_family(none))]
+        #[method_id(frameView)]
         pub unsafe fn frameView(&self, mtm: MainThreadMarker) -> Option<Retained<WebFrameView>>;
 
         #[cfg(all(
@@ -77,7 +81,8 @@ extern_methods!(
         /// The DOM document of the frame.
         /// Returns nil if the frame does not contain a DOM document such as a standalone image.
         #[deprecated]
-        #[method_id(@__method_family Other DOMDocument)]
+        #[unsafe(method_family(none))]
+        #[method_id(DOMDocument)]
         pub unsafe fn DOMDocument(&self) -> Option<Retained<DOMDocument>>;
 
         #[cfg(all(
@@ -91,7 +96,8 @@ extern_methods!(
         /// The class of the result is either DOMHTMLFrameElement, DOMHTMLIFrameElement or DOMHTMLObjectElement.
         /// Returns nil if the frame is the main frame since there is no frame element for the frame in this case.
         #[deprecated]
-        #[method_id(@__method_family Other frameElement)]
+        #[unsafe(method_family(none))]
+        #[method_id(frameElement)]
         pub unsafe fn frameElement(&self) -> Option<Retained<DOMHTMLElement>>;
 
         /// Parameter `request`: The web request to load.
@@ -160,7 +166,8 @@ extern_methods!(
         /// Returns the committed data source.  Will return nil if the
         /// provisional data source hasn't yet been loaded.
         #[deprecated]
-        #[method_id(@__method_family Other dataSource)]
+        #[unsafe(method_family(none))]
+        #[method_id(dataSource)]
         pub unsafe fn dataSource(&self) -> Option<Retained<WebDataSource>>;
 
         #[cfg(feature = "WebDataSource")]
@@ -170,7 +177,8 @@ extern_methods!(
         /// be nil if no data source has been set on the frame, or the data source
         /// has successfully transitioned to the committed data source.
         #[deprecated]
-        #[method_id(@__method_family Other provisionalDataSource)]
+        #[unsafe(method_family(none))]
+        #[method_id(provisionalDataSource)]
         pub unsafe fn provisionalDataSource(&self) -> Option<Retained<WebDataSource>>;
 
         /// Stop any pending loads on the frame's data source,
@@ -200,25 +208,29 @@ extern_methods!(
         ///
         /// Returns: The frame matching the provided name. nil if the frame is not found.
         #[deprecated]
-        #[method_id(@__method_family Other findFrameNamed:)]
+        #[unsafe(method_family(none))]
+        #[method_id(findFrameNamed:)]
         pub unsafe fn findFrameNamed(&self, name: Option<&NSString>) -> Option<Retained<WebFrame>>;
 
         /// The frame containing this frame, or nil if this is a top level frame.
         #[deprecated]
-        #[method_id(@__method_family Other parentFrame)]
+        #[unsafe(method_family(none))]
+        #[method_id(parentFrame)]
         pub unsafe fn parentFrame(&self) -> Option<Retained<WebFrame>>;
 
         /// An array of WebFrame.
         ///
         /// The frames in the array are associated with a frame set or iframe.
         #[deprecated]
-        #[method_id(@__method_family Other childFrames)]
+        #[unsafe(method_family(none))]
+        #[method_id(childFrames)]
         pub unsafe fn childFrames(&self) -> Retained<NSArray>;
 
         #[cfg(feature = "WebScriptObject")]
         /// The WebScriptObject representing the frame's JavaScript window object.
         #[deprecated]
-        #[method_id(@__method_family Other windowObject)]
+        #[unsafe(method_family(none))]
+        #[method_id(windowObject)]
         pub unsafe fn windowObject(&self) -> Option<Retained<WebScriptObject>>;
     }
 );
@@ -226,10 +238,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WebFrame {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

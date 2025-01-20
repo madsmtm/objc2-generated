@@ -30,24 +30,29 @@ unsafe impl<ValueType: ?Sized + NSSecureCoding> NSSecureCoding for CNLabeledValu
 extern_methods!(
     unsafe impl<ValueType: Message> CNLabeledValue<ValueType> {
         /// The identifier is unique among contacts on the device. It can be saved and used for finding labeled values next application launch.
-        #[method_id(@__method_family Other identifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other label)]
+        #[unsafe(method_family(none))]
+        #[method_id(label)]
         pub unsafe fn label(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(@__method_family Other value)]
+        #[unsafe(method_family(none))]
+        #[method_id(value)]
         pub unsafe fn value(&self) -> Retained<ValueType>;
 
         /// Returns a new CNLabeledValue with a new identifier.
-        #[method_id(@__method_family Other labeledValueWithLabel:value:)]
+        #[unsafe(method_family(none))]
+        #[method_id(labeledValueWithLabel:value:)]
         pub unsafe fn labeledValueWithLabel_value(
             label: Option<&NSString>,
             value: &ValueType,
         ) -> Retained<Self>;
 
         /// Initializes the CNLabeledValue with a new identifier.
-        #[method_id(@__method_family Init initWithLabel:value:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithLabel:value:)]
         pub unsafe fn initWithLabel_value(
             this: Allocated<Self>,
             label: Option<&NSString>,
@@ -55,16 +60,19 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Returns a new CNLabeledValue with the existing value and identifier.
-        #[method_id(@__method_family Other labeledValueBySettingLabel:)]
+        #[unsafe(method_family(none))]
+        #[method_id(labeledValueBySettingLabel:)]
         pub unsafe fn labeledValueBySettingLabel(&self, label: Option<&NSString>)
             -> Retained<Self>;
 
         /// Returns a new CNLabeledValue with the existing label and identifier.
-        #[method_id(@__method_family Other labeledValueBySettingValue:)]
+        #[unsafe(method_family(none))]
+        #[method_id(labeledValueBySettingValue:)]
         pub unsafe fn labeledValueBySettingValue(&self, value: &ValueType) -> Retained<Self>;
 
         /// Returns a new CNLabeledValue with the existing identifier.
-        #[method_id(@__method_family Other labeledValueBySettingLabel:value:)]
+        #[unsafe(method_family(none))]
+        #[method_id(labeledValueBySettingLabel:value:)]
         pub unsafe fn labeledValueBySettingLabel_value(
             &self,
             label: Option<&NSString>,
@@ -80,7 +88,8 @@ extern_methods!(
         /// Parameter `label`: to localize.
         ///
         /// Returns: The localized string if a Contacts framework defined label, otherwise just returns the label.
-        #[method_id(@__method_family Other localizedStringForLabel:)]
+        #[unsafe(method_family(none))]
+        #[method_id(localizedStringForLabel:)]
         pub unsafe fn localizedStringForLabel(label: &NSString) -> Retained<NSString>;
     }
 );
@@ -88,10 +97,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<ValueType: Message> CNLabeledValue<ValueType> {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

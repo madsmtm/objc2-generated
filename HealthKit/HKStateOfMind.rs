@@ -276,15 +276,18 @@ extern_methods!(
         pub unsafe fn valenceClassification(&self) -> HKStateOfMindValenceClassification;
 
         /// Zero or more specific sentiments selected to represent a felt experience.
-        #[method_id(@__method_family Other labels)]
+        #[unsafe(method_family(none))]
+        #[method_id(labels)]
         pub unsafe fn labels(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Zero or more facets of life with which this felt experience is associated.
-        #[method_id(@__method_family Other associations)]
+        #[unsafe(method_family(none))]
+        #[method_id(associations)]
         pub unsafe fn associations(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Creates a new log describing an experienced emotion at a moment in time.
-        #[method_id(@__method_family Other stateOfMindWithDate:kind:valence:labels:associations:)]
+        #[unsafe(method_family(none))]
+        #[method_id(stateOfMindWithDate:kind:valence:labels:associations:)]
         pub unsafe fn stateOfMindWithDate_kind_valence_labels_associations(
             date: &NSDate,
             kind: HKStateOfMindKind,
@@ -294,7 +297,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Creates a new log describing an experienced emotion at a moment in time.
-        #[method_id(@__method_family Other stateOfMindWithDate:kind:valence:labels:associations:metadata:)]
+        #[unsafe(method_family(none))]
+        #[method_id(stateOfMindWithDate:kind:valence:labels:associations:metadata:)]
         pub unsafe fn stateOfMindWithDate_kind_valence_labels_associations_metadata(
             date: &NSDate,
             kind: HKStateOfMindKind,
@@ -304,10 +308,12 @@ extern_methods!(
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

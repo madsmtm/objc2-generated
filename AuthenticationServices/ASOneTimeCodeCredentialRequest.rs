@@ -30,14 +30,16 @@ unsafe impl NSSecureCoding for ASOneTimeCodeCredentialRequest {}
 
 extern_methods!(
     unsafe impl ASOneTimeCodeCredentialRequest {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "ASOneTimeCodeCredentialIdentity")]
         /// Initializes an instance of ASOneTimeCodeCredentialRequest.
         ///
         /// Parameter `credentialIdentity`: the credential identity to use for this request.
-        #[method_id(@__method_family Init initWithCredentialIdentity:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCredentialIdentity:)]
         pub unsafe fn initWithCredentialIdentity(
             this: Allocated<Self>,
             credential_identity: &ASOneTimeCodeCredentialIdentity,
@@ -48,7 +50,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASOneTimeCodeCredentialRequest {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

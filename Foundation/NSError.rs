@@ -146,7 +146,8 @@ unsafe impl NSSecureCoding for NSError {}
 extern_methods!(
     unsafe impl NSError {
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        #[method_id(@__method_family Init initWithDomain:code:userInfo:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDomain:code:userInfo:)]
         pub unsafe fn initWithDomain_code_userInfo(
             this: Allocated<Self>,
             domain: &NSErrorDomain,
@@ -155,7 +156,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        #[method_id(@__method_family Other errorWithDomain:code:userInfo:)]
+        #[unsafe(method_family(none))]
+        #[method_id(errorWithDomain:code:userInfo:)]
         pub unsafe fn errorWithDomain_code_userInfo(
             domain: &NSErrorDomain,
             code: NSInteger,
@@ -163,41 +165,50 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__method_family Other domain)]
+        #[unsafe(method_family(none))]
+        #[method_id(domain)]
         pub fn domain(&self) -> Retained<NSErrorDomain>;
 
         #[method(code)]
         pub fn code(&self) -> NSInteger;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        #[method_id(@__method_family Other userInfo)]
+        #[unsafe(method_family(none))]
+        #[method_id(userInfo)]
         pub fn userInfo(&self) -> Retained<NSDictionary<NSErrorUserInfoKey, AnyObject>>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__method_family Other localizedDescription)]
+        #[unsafe(method_family(none))]
+        #[method_id(localizedDescription)]
         pub fn localizedDescription(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__method_family Other localizedFailureReason)]
+        #[unsafe(method_family(none))]
+        #[method_id(localizedFailureReason)]
         pub unsafe fn localizedFailureReason(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__method_family Other localizedRecoverySuggestion)]
+        #[unsafe(method_family(none))]
+        #[method_id(localizedRecoverySuggestion)]
         pub unsafe fn localizedRecoverySuggestion(&self) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[method_id(@__method_family Other localizedRecoveryOptions)]
+        #[unsafe(method_family(none))]
+        #[method_id(localizedRecoveryOptions)]
         pub unsafe fn localizedRecoveryOptions(&self) -> Option<Retained<NSArray<NSString>>>;
 
-        #[method_id(@__method_family Other recoveryAttempter)]
+        #[unsafe(method_family(none))]
+        #[method_id(recoveryAttempter)]
         pub unsafe fn recoveryAttempter(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__method_family Other helpAnchor)]
+        #[unsafe(method_family(none))]
+        #[method_id(helpAnchor)]
         pub unsafe fn helpAnchor(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSArray")]
-        #[method_id(@__method_family Other underlyingErrors)]
+        #[unsafe(method_family(none))]
+        #[method_id(underlyingErrors)]
         pub unsafe fn underlyingErrors(&self) -> Retained<NSArray<NSError>>;
 
         #[cfg(all(feature = "NSString", feature = "block2"))]
@@ -224,7 +235,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSError {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

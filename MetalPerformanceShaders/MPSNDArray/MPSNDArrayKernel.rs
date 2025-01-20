@@ -102,7 +102,8 @@ extern_methods!(
         /// Method to allocate the result image for -encodeToCommandBuffer:sourceImage:
         ///
         /// Default: MPSTemporaryImage.defaultAllocator
-        #[method_id(@__method_family Other destinationArrayAllocator)]
+        #[unsafe(method_family(none))]
+        #[method_id(destinationArrayAllocator)]
         pub unsafe fn destinationArrayAllocator(
             &self,
         ) -> Retained<ProtocolObject<dyn MPSNDArrayAllocator>>;
@@ -114,7 +115,8 @@ extern_methods!(
             destination_array_allocator: &ProtocolObject<dyn MPSNDArrayAllocator>,
         );
 
-        #[method_id(@__method_family Init initWithDevice:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -127,7 +129,8 @@ extern_methods!(
         /// Parameter `count`: The maximum number of NDArrays read by the kernel
         ///
         /// Returns: A valid MPSNDArrayMultiaryKernel, or nil if allocation failure.
-        #[method_id(@__method_family Init initWithDevice:sourceCount:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:sourceCount:)]
         pub unsafe fn initWithDevice_sourceCount(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -141,7 +144,8 @@ extern_methods!(
         /// Parameter `device`: The device on which the kernel will run
         ///
         /// Returns: A valid MPSNDArrayMultiaryKernel, or nil if allocation failure.
-        #[method_id(@__method_family Init initWithCoder:device:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -161,7 +165,8 @@ extern_methods!(
         /// Parameter `device`: The device on which the new kernel will run. Pass nil for same device.
         ///
         /// Returns: A valid MPSNDArrayMultiaryKernel, or nil if allocation failure.
-        #[method_id(@__method_family Copy copyWithZone:device:)]
+        #[unsafe(method_family(copy))]
+        #[method_id(copyWithZone:device:)]
         pub unsafe fn copyWithZone_device(
             &self,
             zone: *mut NSZone,
@@ -169,7 +174,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSState")]
-        #[method_id(@__method_family Other resultStateForSourceArrays:sourceStates:destinationArray:)]
+        #[unsafe(method_family(none))]
+        #[method_id(resultStateForSourceArrays:sourceStates:destinationArray:)]
         pub unsafe fn resultStateForSourceArrays_sourceStates_destinationArray(
             &self,
             source_arrays: &NSArray<MPSNDArray>,
@@ -190,7 +196,8 @@ extern_methods!(
         ///
         /// Returns: a valid MPSNDArrayDescriptor that may be used to create a MPSNDArray to used to
         /// hold the results of this kernel.
-        #[method_id(@__method_family Other destinationArrayDescriptorForSourceArrays:sourceState:)]
+        #[unsafe(method_family(none))]
+        #[method_id(destinationArrayDescriptorForSourceArrays:sourceState:)]
         pub unsafe fn destinationArrayDescriptorForSourceArrays_sourceState(
             &self,
             sources: &NSArray<MPSNDArray>,
@@ -211,7 +218,8 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -223,10 +231,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNDArrayMultiaryBase {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -259,14 +269,16 @@ unsafe impl NSSecureCoding for MPSNDArrayMultiaryKernel {}
 extern_methods!(
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNDArrayMultiaryKernel {
-        #[method_id(@__method_family Init initWithDevice:sourceCount:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:sourceCount:)]
         pub unsafe fn initWithDevice_sourceCount(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
             count: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:device:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -282,7 +294,8 @@ extern_methods!(
         ///
         /// Returns: A newly allocated MPSNDArray that will contain the result of the calculation
         /// when the command buffer completes successfully.
-        #[method_id(@__method_family Other encodeToCommandBuffer:sourceArrays:)]
+        #[unsafe(method_family(none))]
+        #[method_id(encodeToCommandBuffer:sourceArrays:)]
         pub unsafe fn encodeToCommandBuffer_sourceArrays(
             &self,
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -319,7 +332,8 @@ extern_methods!(
         ///
         /// Returns: A newly allocated MPSNDArray that will contain the result of the calculation
         /// when the command buffer completes successfully.
-        #[method_id(@__method_family Other encodeToCommandBuffer:sourceArrays:resultState:outputStateIsTemporary:)]
+        #[unsafe(method_family(none))]
+        #[method_id(encodeToCommandBuffer:sourceArrays:resultState:outputStateIsTemporary:)]
         pub unsafe fn encodeToCommandBuffer_sourceArrays_resultState_outputStateIsTemporary(
             &self,
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -375,7 +389,8 @@ extern_methods!(
     /// Methods declared on superclass `MPSNDArrayMultiaryBase`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNDArrayMultiaryKernel {
-        #[method_id(@__method_family Init initWithDevice:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -395,7 +410,8 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -407,10 +423,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNDArrayMultiaryKernel {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -443,14 +461,16 @@ unsafe impl NSSecureCoding for MPSNDArrayMultiaryGradientKernel {}
 extern_methods!(
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNDArrayMultiaryGradientKernel {
-        #[method_id(@__method_family Init initWithDevice:sourceCount:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:sourceCount:)]
         pub unsafe fn initWithDevice_sourceCount(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
             count: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:device:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -466,7 +486,8 @@ extern_methods!(
         /// Parameter `sourceGradientIndex`: The source index for which gradient will be calculated
         ///
         /// Returns: A valid MPSNDArrayMultiaryKernel, or nil if allocation failure.
-        #[method_id(@__method_family Init initWithDevice:sourceCount:sourceGradientIndex:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:sourceCount:sourceGradientIndex:)]
         pub unsafe fn initWithDevice_sourceCount_sourceGradientIndex(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -475,7 +496,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSState")]
-        #[method_id(@__method_family Other encodeToCommandBuffer:sourceArrays:sourceGradient:gradientState:)]
+        #[unsafe(method_family(none))]
+        #[method_id(encodeToCommandBuffer:sourceArrays:sourceGradient:gradientState:)]
         pub unsafe fn encodeToCommandBuffer_sourceArrays_sourceGradient_gradientState(
             &self,
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -501,7 +523,8 @@ extern_methods!(
     /// Methods declared on superclass `MPSNDArrayMultiaryBase`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNDArrayMultiaryGradientKernel {
-        #[method_id(@__method_family Init initWithDevice:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -521,7 +544,8 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -533,10 +557,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNDArrayMultiaryGradientKernel {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -610,20 +636,23 @@ extern_methods!(
         #[method(dilationRates)]
         pub unsafe fn dilationRates(&self) -> MPSNDArraySizes;
 
-        #[method_id(@__method_family Init initWithDevice:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithDevice:sourceCount:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:sourceCount:)]
         pub unsafe fn initWithDevice_sourceCount(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
             count: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:device:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -638,7 +667,8 @@ extern_methods!(
         ///
         /// Returns: A newly allocated MPSNDArray that will contain the result of the calculation
         /// when the command buffer completes successfully.
-        #[method_id(@__method_family Other encodeToCommandBuffer:sourceArray:)]
+        #[unsafe(method_family(none))]
+        #[method_id(encodeToCommandBuffer:sourceArray:)]
         pub unsafe fn encodeToCommandBuffer_sourceArray(
             &self,
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -673,7 +703,8 @@ extern_methods!(
         ///
         /// Returns: A newly allocated MPSNDArray that will contain the result of the calculation
         /// when the command buffer completes successfully.
-        #[method_id(@__method_family Other encodeToCommandBuffer:sourceArray:resultState:outputStateIsTemporary:)]
+        #[unsafe(method_family(none))]
+        #[method_id(encodeToCommandBuffer:sourceArray:resultState:outputStateIsTemporary:)]
         pub unsafe fn encodeToCommandBuffer_sourceArray_resultState_outputStateIsTemporary(
             &self,
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -716,7 +747,8 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -728,10 +760,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNDArrayUnaryKernel {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -769,13 +803,15 @@ unsafe impl NSSecureCoding for MPSNDArrayUnaryGradientKernel {}
 extern_methods!(
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNDArrayUnaryGradientKernel {
-        #[method_id(@__method_family Init initWithDevice:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithDevice:sourceCount:sourceGradientIndex:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:sourceCount:sourceGradientIndex:)]
         pub unsafe fn initWithDevice_sourceCount_sourceGradientIndex(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -783,7 +819,8 @@ extern_methods!(
             source_gradient_index: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:device:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -791,7 +828,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSState")]
-        #[method_id(@__method_family Other encodeToCommandBuffer:sourceArray:sourceGradient:gradientState:)]
+        #[unsafe(method_family(none))]
+        #[method_id(encodeToCommandBuffer:sourceArray:sourceGradient:gradientState:)]
         pub unsafe fn encodeToCommandBuffer_sourceArray_sourceGradient_gradientState(
             &self,
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -817,7 +855,8 @@ extern_methods!(
     /// Methods declared on superclass `MPSNDArrayMultiaryGradientKernel`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNDArrayUnaryGradientKernel {
-        #[method_id(@__method_family Init initWithDevice:sourceCount:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:sourceCount:)]
         pub unsafe fn initWithDevice_sourceCount(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -838,7 +877,8 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -850,10 +890,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNDArrayUnaryGradientKernel {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -968,20 +1010,23 @@ extern_methods!(
         #[method(secondaryDilationRates)]
         pub unsafe fn secondaryDilationRates(&self) -> MPSNDArraySizes;
 
-        #[method_id(@__method_family Init initWithDevice:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithDevice:sourceCount:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:sourceCount:)]
         pub unsafe fn initWithDevice_sourceCount(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
             count: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:device:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -998,7 +1043,8 @@ extern_methods!(
         ///
         /// Returns: A newly allocated MPSNDArray that will contain the result of the calculation
         /// when the command buffer completes successfully.
-        #[method_id(@__method_family Other encodeToCommandBuffer:primarySourceArray:secondarySourceArray:)]
+        #[unsafe(method_family(none))]
+        #[method_id(encodeToCommandBuffer:primarySourceArray:secondarySourceArray:)]
         pub unsafe fn encodeToCommandBuffer_primarySourceArray_secondarySourceArray(
             &self,
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1039,7 +1085,8 @@ extern_methods!(
         ///
         /// Returns: A newly allocated MPSNDArray that will contain the result of the calculation
         /// when the command buffer completes successfully.
-        #[method_id(@__method_family Other encodeToCommandBuffer:primarySourceArray:secondarySourceArray:resultState:outputStateIsTemporary:)]
+        #[unsafe(method_family(none))]
+        #[method_id(encodeToCommandBuffer:primarySourceArray:secondarySourceArray:resultState:outputStateIsTemporary:)]
         pub unsafe fn encodeToCommandBuffer_primarySourceArray_secondarySourceArray_resultState_outputStateIsTemporary(
             &self,
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1086,7 +1133,8 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -1098,10 +1146,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNDArrayBinaryKernel {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -1141,7 +1191,8 @@ unsafe impl NSSecureCoding for MPSNDArrayBinaryPrimaryGradientKernel {}
 extern_methods!(
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNDArrayBinaryPrimaryGradientKernel {
-        #[method_id(@__method_family Init initWithDevice:sourceCount:sourceGradientIndex:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:sourceCount:sourceGradientIndex:)]
         pub unsafe fn initWithDevice_sourceCount_sourceGradientIndex(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -1149,13 +1200,15 @@ extern_methods!(
             source_gradient_index: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithDevice:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:device:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -1163,7 +1216,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSState")]
-        #[method_id(@__method_family Other encodeToCommandBuffer:primarySourceArray:secondarySourceArray:sourceGradient:gradientState:)]
+        #[unsafe(method_family(none))]
+        #[method_id(encodeToCommandBuffer:primarySourceArray:secondarySourceArray:sourceGradient:gradientState:)]
         pub unsafe fn encodeToCommandBuffer_primarySourceArray_secondarySourceArray_sourceGradient_gradientState(
             &self,
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1191,7 +1245,8 @@ extern_methods!(
     /// Methods declared on superclass `MPSNDArrayMultiaryGradientKernel`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNDArrayBinaryPrimaryGradientKernel {
-        #[method_id(@__method_family Init initWithDevice:sourceCount:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:sourceCount:)]
         pub unsafe fn initWithDevice_sourceCount(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -1212,7 +1267,8 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -1224,10 +1280,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNDArrayBinaryPrimaryGradientKernel {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -1267,7 +1325,8 @@ unsafe impl NSSecureCoding for MPSNDArrayBinarySecondaryGradientKernel {}
 extern_methods!(
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNDArrayBinarySecondaryGradientKernel {
-        #[method_id(@__method_family Init initWithDevice:sourceCount:sourceGradientIndex:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:sourceCount:sourceGradientIndex:)]
         pub unsafe fn initWithDevice_sourceCount_sourceGradientIndex(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -1275,13 +1334,15 @@ extern_methods!(
             source_gradient_index: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithDevice:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:device:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -1289,7 +1350,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSState")]
-        #[method_id(@__method_family Other encodeToCommandBuffer:primarySourceArray:secondarySourceArray:sourceGradient:gradientState:)]
+        #[unsafe(method_family(none))]
+        #[method_id(encodeToCommandBuffer:primarySourceArray:secondarySourceArray:sourceGradient:gradientState:)]
         pub unsafe fn encodeToCommandBuffer_primarySourceArray_secondarySourceArray_sourceGradient_gradientState(
             &self,
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1317,7 +1379,8 @@ extern_methods!(
     /// Methods declared on superclass `MPSNDArrayMultiaryGradientKernel`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNDArrayBinarySecondaryGradientKernel {
-        #[method_id(@__method_family Init initWithDevice:sourceCount:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:sourceCount:)]
         pub unsafe fn initWithDevice_sourceCount(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -1338,7 +1401,8 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -1350,10 +1414,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNDArrayBinarySecondaryGradientKernel {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

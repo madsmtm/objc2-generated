@@ -71,7 +71,8 @@ unsafe impl NSSecureCoding for NSTextSelection {}
 extern_methods!(
     unsafe impl NSTextSelection {
         #[cfg(feature = "NSTextRange")]
-        #[method_id(@__method_family Init initWithRanges:affinity:granularity:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithRanges:affinity:granularity:)]
         pub unsafe fn initWithRanges_affinity_granularity(
             this: Allocated<Self>,
             text_ranges: &NSArray<NSTextRange>,
@@ -79,14 +80,16 @@ extern_methods!(
             granularity: NSTextSelectionGranularity,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSTextRange")]
-        #[method_id(@__method_family Init initWithRange:affinity:granularity:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithRange:affinity:granularity:)]
         pub unsafe fn initWithRange_affinity_granularity(
             this: Allocated<Self>,
             range: &NSTextRange,
@@ -95,18 +98,21 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSTextRange")]
-        #[method_id(@__method_family Init initWithLocation:affinity:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithLocation:affinity:)]
         pub unsafe fn initWithLocation_affinity(
             this: Allocated<Self>,
             location: &ProtocolObject<dyn NSTextLocation>,
             affinity: NSTextSelectionAffinity,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSTextRange")]
-        #[method_id(@__method_family Other textRanges)]
+        #[unsafe(method_family(none))]
+        #[method_id(textRanges)]
         pub unsafe fn textRanges(&self) -> Retained<NSArray<NSTextRange>>;
 
         #[method(granularity)]
@@ -135,7 +141,8 @@ extern_methods!(
         pub unsafe fn setLogical(&self, logical: bool);
 
         #[cfg(feature = "NSTextRange")]
-        #[method_id(@__method_family Other secondarySelectionLocation)]
+        #[unsafe(method_family(none))]
+        #[method_id(secondarySelectionLocation)]
         pub unsafe fn secondarySelectionLocation(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSTextLocation>>>;
@@ -148,7 +155,8 @@ extern_methods!(
             secondary_selection_location: Option<&ProtocolObject<dyn NSTextLocation>>,
         );
 
-        #[method_id(@__method_family Other typingAttributes)]
+        #[unsafe(method_family(none))]
+        #[method_id(typingAttributes)]
         pub unsafe fn typingAttributes(
             &self,
         ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
@@ -161,7 +169,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSTextRange")]
-        #[method_id(@__method_family Other textSelectionWithTextRanges:)]
+        #[unsafe(method_family(none))]
+        #[method_id(textSelectionWithTextRanges:)]
         pub unsafe fn textSelectionWithTextRanges(
             &self,
             text_ranges: &NSArray<NSTextRange>,
@@ -172,7 +181,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextSelection {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

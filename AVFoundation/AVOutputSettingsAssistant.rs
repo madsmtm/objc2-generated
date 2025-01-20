@@ -92,10 +92,12 @@ unsafe impl NSObjectProtocol for AVOutputSettingsAssistant {}
 
 extern_methods!(
     unsafe impl AVOutputSettingsAssistant {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Returns the list of presets that can be used to create an instance of AVOutputSettingsAssistant
@@ -105,7 +107,8 @@ extern_methods!(
         /// Each preset in the returned list can be passed in to +outputSettingsAssistantWithPreset: to create a new instance of AVOutputSettingsAssistant.
         ///
         /// On iOS, the returned array may be different between different device models.
-        #[method_id(@__method_family Other availableOutputSettingsPresets)]
+        #[unsafe(method_family(none))]
+        #[method_id(availableOutputSettingsPresets)]
         pub unsafe fn availableOutputSettingsPresets() -> Retained<NSArray<AVOutputSettingsPreset>>;
 
         /// Returns an instance of AVOutputSettingsAssistant corresponding to the given preset
@@ -117,7 +120,8 @@ extern_methods!(
         /// The properties of the returned object can be used as a guide for creating and configuring an AVAssetWriter object and one or more AVAssetWriterInput objects.  If all the suggested properties are respected in creating the AVAssetWriter, the resulting media file will conform to the criteria implied by the preset.
         ///
         /// Use +availableOutputSettingsPresets to get a list of presets identifiers that can be used with this method.
-        #[method_id(@__method_family Other outputSettingsAssistantWithPreset:)]
+        #[unsafe(method_family(none))]
+        #[method_id(outputSettingsAssistantWithPreset:)]
         pub unsafe fn outputSettingsAssistantWithPreset(
             preset_identifier: &AVOutputSettingsPreset,
         ) -> Option<Retained<Self>>;
@@ -125,20 +129,23 @@ extern_methods!(
         /// A dictionary of key/value pairs, as specified in AVAudioSettings.h, to be used when e.g. creating an instance of AVAssetWriterInput
         ///
         /// The value of this property may change as a result of setting a new value for the sourceAudioFormat property.
-        #[method_id(@__method_family Other audioSettings)]
+        #[unsafe(method_family(none))]
+        #[method_id(audioSettings)]
         pub unsafe fn audioSettings(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         /// A dictionary of key/value pairs, as specified in AVVideoSettings.h, to be used when e.g. creating an instance of AVAssetWriterInput
         ///
         /// The value of this property may change as a result of setting a new value for the sourceVideoFormat property.
-        #[method_id(@__method_family Other videoSettings)]
+        #[unsafe(method_family(none))]
+        #[method_id(videoSettings)]
         pub unsafe fn videoSettings(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(feature = "AVMediaFormat")]
         /// A UTI indicating the type of file to be written, to be used when e.g. creating an instance of AVAssetWriter
         ///
         /// Use [[UTType typeWithIdentifier:outputFileType] preferredFilenameExtension] to get a suitable file extension for a given file type.
-        #[method_id(@__method_family Other outputFileType)]
+        #[unsafe(method_family(none))]
+        #[method_id(outputFileType)]
         pub unsafe fn outputFileType(&self) -> Retained<AVFileType>;
     }
 );
@@ -152,7 +159,8 @@ extern_methods!(
         /// Setting this property will allow the receiver to make a more informed recommendation for the audio settings that should be used.  After setting this property, you should re-query the audioSettings property to get the new recommendation.  The default value is NULL, which means that the receiver does not know anything about the format of your audio data.
         ///
         /// If you set a non-NULL value for this property, and are using the receiver to initialize an AVAssetWriterInput, the same format description should be used to initialize the AVAssetWriterInput, along with the dictionary from the audioSettings property.
-        #[method_id(@__method_family Other sourceAudioFormat)]
+        #[unsafe(method_family(none))]
+        #[method_id(sourceAudioFormat)]
         pub unsafe fn sourceAudioFormat(&self) -> Option<Retained<CMAudioFormatDescription>>;
 
         #[cfg(feature = "objc2-core-media")]
@@ -169,7 +177,8 @@ extern_methods!(
         /// Setting this property will allow the receiver to make a more informed recommendation for the video settings that should be used.  After setting this property, you should re-query the videoSettings property to get the new recommendation.  The default value is NULL, which means that the receiver does not know anything about the format of your video data.
         ///
         /// If you set a non-NULL value for this property, and are using the receiver to initialize an AVAssetWriterInput, the same format description should be used to initialize the AVAssetWriterInput, along with the dictionary from the videoSettings property.
-        #[method_id(@__method_family Other sourceVideoFormat)]
+        #[unsafe(method_family(none))]
+        #[method_id(sourceVideoFormat)]
         pub unsafe fn sourceVideoFormat(&self) -> Option<Retained<CMVideoFormatDescription>>;
 
         #[cfg(feature = "objc2-core-media")]

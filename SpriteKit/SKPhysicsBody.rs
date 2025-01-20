@@ -40,14 +40,16 @@ extern_methods!(
         /// Creates a circle of radius r centered at the node's origin.
         ///
         /// Parameter `r`: the radius in points
-        #[method_id(@__method_family Other bodyWithCircleOfRadius:)]
+        #[unsafe(method_family(none))]
+        #[method_id(bodyWithCircleOfRadius:)]
         pub unsafe fn bodyWithCircleOfRadius(r: CGFloat) -> Retained<SKPhysicsBody>;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Creates a circle of radius r centered at a point in the node's coordinate space.
         ///
         /// Parameter `r`: the radius in points
-        #[method_id(@__method_family Other bodyWithCircleOfRadius:center:)]
+        #[unsafe(method_family(none))]
+        #[method_id(bodyWithCircleOfRadius:center:)]
         pub unsafe fn bodyWithCircleOfRadius_center(
             r: CGFloat,
             center: CGPoint,
@@ -57,14 +59,16 @@ extern_methods!(
         /// Creates a rectangle of the specified size centered at the node's origin.
         ///
         /// Parameter `s`: the size in points
-        #[method_id(@__method_family Other bodyWithRectangleOfSize:)]
+        #[unsafe(method_family(none))]
+        #[method_id(bodyWithRectangleOfSize:)]
         pub unsafe fn bodyWithRectangleOfSize(s: CGSize) -> Retained<SKPhysicsBody>;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Creates a rectangle of the specified size centered at a point in the node's coordinate space.
         ///
         /// Parameter `s`: the size in points
-        #[method_id(@__method_family Other bodyWithRectangleOfSize:center:)]
+        #[unsafe(method_family(none))]
+        #[method_id(bodyWithRectangleOfSize:center:)]
         pub unsafe fn bodyWithRectangleOfSize_center(
             s: CGSize,
             center: CGPoint,
@@ -74,7 +78,8 @@ extern_methods!(
         /// The path must represent a convex or concave polygon with counter clockwise winding and no self intersection. Positions are relative to the node's origin.
         ///
         /// Parameter `path`: the path to use
-        #[method_id(@__method_family Other bodyWithPolygonFromPath:)]
+        #[unsafe(method_family(none))]
+        #[method_id(bodyWithPolygonFromPath:)]
         pub unsafe fn bodyWithPolygonFromPath(path: &CGPath) -> Retained<SKPhysicsBody>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -83,7 +88,8 @@ extern_methods!(
         /// Parameter `p1`: start point
         ///
         /// Parameter `p2`: end point
-        #[method_id(@__method_family Other bodyWithEdgeFromPoint:toPoint:)]
+        #[unsafe(method_family(none))]
+        #[method_id(bodyWithEdgeFromPoint:toPoint:)]
         pub unsafe fn bodyWithEdgeFromPoint_toPoint(
             p1: CGPoint,
             p2: CGPoint,
@@ -93,21 +99,24 @@ extern_methods!(
         /// Creates an edge chain from a path. The path must have no self intersection. Edges have no volume and are intended to be used to create static environments. Edges can collide with bodies of volume, but not with each other.
         ///
         /// Parameter `path`: the path to use
-        #[method_id(@__method_family Other bodyWithEdgeChainFromPath:)]
+        #[unsafe(method_family(none))]
+        #[method_id(bodyWithEdgeChainFromPath:)]
         pub unsafe fn bodyWithEdgeChainFromPath(path: &CGPath) -> Retained<SKPhysicsBody>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Creates an edge loop from a path. A loop is automatically created by joining the last point to the first. The path must have no self intersection. Edges have no volume and are intended to be used to create static environments. Edges can collide with body's of volume, but not with each other.
         ///
         /// Parameter `path`: the path to use
-        #[method_id(@__method_family Other bodyWithEdgeLoopFromPath:)]
+        #[unsafe(method_family(none))]
+        #[method_id(bodyWithEdgeLoopFromPath:)]
         pub unsafe fn bodyWithEdgeLoopFromPath(path: &CGPath) -> Retained<SKPhysicsBody>;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Creates an edge loop from a CGRect. Edges have no volume and are intended to be used to create static environments. Edges can collide with body's of volume, but not with each other.
         ///
         /// Parameter `rect`: the CGRect to use
-        #[method_id(@__method_family Other bodyWithEdgeLoopFromRect:)]
+        #[unsafe(method_family(none))]
+        #[method_id(bodyWithEdgeLoopFromRect:)]
         pub unsafe fn bodyWithEdgeLoopFromRect(rect: CGRect) -> Retained<SKPhysicsBody>;
 
         #[cfg(all(feature = "SKTexture", feature = "objc2-core-foundation"))]
@@ -116,7 +125,8 @@ extern_methods!(
         /// Parameter `texture`: the texture to be interpreted
         ///
         /// Parameter `size`: of the generated physics body
-        #[method_id(@__method_family Other bodyWithTexture:size:)]
+        #[unsafe(method_family(none))]
+        #[method_id(bodyWithTexture:size:)]
         pub unsafe fn bodyWithTexture_size(
             texture: &SKTexture,
             size: CGSize,
@@ -130,7 +140,8 @@ extern_methods!(
         /// Parameter `alphaThreshold`: the alpha value above which a pixel is interpreted as opaque
         ///
         /// Parameter `size`: of the generated physics body
-        #[method_id(@__method_family Other bodyWithTexture:alphaThreshold:size:)]
+        #[unsafe(method_family(none))]
+        #[method_id(bodyWithTexture:alphaThreshold:size:)]
         pub unsafe fn bodyWithTexture_alphaThreshold_size(
             texture: &SKTexture,
             alpha_threshold: c_float,
@@ -138,7 +149,8 @@ extern_methods!(
         ) -> Retained<SKPhysicsBody>;
 
         /// Creates an compound body that is the union of the bodies used to create it.
-        #[method_id(@__method_family Other bodyWithBodies:)]
+        #[unsafe(method_family(none))]
+        #[method_id(bodyWithBodies:)]
         pub unsafe fn bodyWithBodies(bodies: &NSArray<SKPhysicsBody>) -> Retained<SKPhysicsBody>;
 
         #[method(isDynamic)]
@@ -311,13 +323,15 @@ extern_methods!(
         pub unsafe fn setContactTestBitMask(&self, contact_test_bit_mask: u32);
 
         #[cfg(feature = "SKPhysicsJoint")]
-        #[method_id(@__method_family Other joints)]
+        #[unsafe(method_family(none))]
+        #[method_id(joints)]
         pub unsafe fn joints(&self) -> Retained<NSArray<SKPhysicsJoint>>;
 
         #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         /// The representedObject this physicsBody is currently bound to, or nil if it is not.
-        #[method_id(@__method_family Other node)]
+        #[unsafe(method_family(none))]
+        #[method_id(node)]
         pub unsafe fn node(&self, mtm: MainThreadMarker) -> Option<Retained<SKNode>>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -362,7 +376,8 @@ extern_methods!(
         #[method(applyAngularImpulse:)]
         pub unsafe fn applyAngularImpulse(&self, impulse: CGFloat);
 
-        #[method_id(@__method_family Other allContactedBodies)]
+        #[unsafe(method_family(none))]
+        #[method_id(allContactedBodies)]
         pub unsafe fn allContactedBodies(&self) -> Retained<NSArray<SKPhysicsBody>>;
     }
 );
@@ -370,10 +385,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKPhysicsBody {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -52,20 +52,23 @@ extern_methods!(
             automatically_rearranges_objects: bool,
         );
 
-        #[method_id(@__method_family Other automaticRearrangementKeyPaths)]
+        #[unsafe(method_family(none))]
+        #[method_id(automaticRearrangementKeyPaths)]
         pub unsafe fn automaticRearrangementKeyPaths(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[method(didChangeArrangementCriteria)]
         pub unsafe fn didChangeArrangementCriteria(&self);
 
-        #[method_id(@__method_family Other sortDescriptors)]
+        #[unsafe(method_family(none))]
+        #[method_id(sortDescriptors)]
         pub unsafe fn sortDescriptors(&self) -> Retained<NSArray<NSSortDescriptor>>;
 
         /// Setter for [`sortDescriptors`][Self::sortDescriptors].
         #[method(setSortDescriptors:)]
         pub unsafe fn setSortDescriptors(&self, sort_descriptors: &NSArray<NSSortDescriptor>);
 
-        #[method_id(@__method_family Other filterPredicate)]
+        #[unsafe(method_family(none))]
+        #[method_id(filterPredicate)]
         pub unsafe fn filterPredicate(&self) -> Option<Retained<NSPredicate>>;
 
         /// Setter for [`filterPredicate`][Self::filterPredicate].
@@ -82,10 +85,12 @@ extern_methods!(
             clears_filter_predicate_on_insertion: bool,
         );
 
-        #[method_id(@__method_family Other arrangeObjects:)]
+        #[unsafe(method_family(none))]
+        #[method_id(arrangeObjects:)]
         pub unsafe fn arrangeObjects(&self, objects: &NSArray) -> Retained<NSArray>;
 
-        #[method_id(@__method_family Other arrangedObjects)]
+        #[unsafe(method_family(none))]
+        #[method_id(arrangedObjects)]
         pub unsafe fn arrangedObjects(&self) -> Retained<AnyObject>;
 
         #[method(avoidsEmptySelection)]
@@ -122,7 +127,8 @@ extern_methods!(
         #[method(setSelectionIndexes:)]
         pub unsafe fn setSelectionIndexes(&self, indexes: &NSIndexSet) -> bool;
 
-        #[method_id(@__method_family Other selectionIndexes)]
+        #[unsafe(method_family(none))]
+        #[method_id(selectionIndexes)]
         pub unsafe fn selectionIndexes(&self) -> Retained<NSIndexSet>;
 
         #[method(setSelectionIndex:)]
@@ -140,7 +146,8 @@ extern_methods!(
         #[method(setSelectedObjects:)]
         pub unsafe fn setSelectedObjects(&self, objects: &NSArray) -> bool;
 
-        #[method_id(@__method_family Other selectedObjects)]
+        #[unsafe(method_family(none))]
+        #[method_id(selectedObjects)]
         pub unsafe fn selectedObjects(&self) -> Retained<NSArray>;
 
         #[method(addSelectedObjects:)]
@@ -211,13 +218,15 @@ extern_methods!(
     /// Methods declared on superclass `NSObjectController`
     #[cfg(all(feature = "NSController", feature = "NSObjectController"))]
     unsafe impl NSArrayController {
-        #[method_id(@__method_family Init initWithContent:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithContent:)]
         pub unsafe fn initWithContent(
             this: Allocated<Self>,
             content: Option<&AnyObject>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -229,7 +238,8 @@ extern_methods!(
     /// Methods declared on superclass `NSController`
     #[cfg(all(feature = "NSController", feature = "NSObjectController"))]
     unsafe impl NSArrayController {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -238,7 +248,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSController", feature = "NSObjectController"))]
     unsafe impl NSArrayController {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

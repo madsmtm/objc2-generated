@@ -278,7 +278,8 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> bool;
 
-        #[method_id(@__method_family Other availableMediaTypesForSourceType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(availableMediaTypesForSourceType:)]
         pub unsafe fn availableMediaTypesForSourceType(
             source_type: UIImagePickerControllerSourceType,
             mtm: MainThreadMarker,
@@ -296,13 +297,15 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> bool;
 
-        #[method_id(@__method_family Other availableCaptureModesForCameraDevice:)]
+        #[unsafe(method_family(none))]
+        #[method_id(availableCaptureModesForCameraDevice:)]
         pub unsafe fn availableCaptureModesForCameraDevice(
             camera_device: UIImagePickerControllerCameraDevice,
             mtm: MainThreadMarker,
         ) -> Option<Retained<NSArray<NSNumber>>>;
 
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<
@@ -328,7 +331,8 @@ extern_methods!(
         #[method(setSourceType:)]
         pub unsafe fn setSourceType(&self, source_type: UIImagePickerControllerSourceType);
 
-        #[method_id(@__method_family Other mediaTypes)]
+        #[unsafe(method_family(none))]
+        #[method_id(mediaTypes)]
         pub unsafe fn mediaTypes(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`mediaTypes`][Self::mediaTypes].
@@ -378,7 +382,8 @@ extern_methods!(
         pub unsafe fn setVideoQuality(&self, video_quality: UIImagePickerControllerQualityType);
 
         #[deprecated = "Will be removed in a future release, use PHPicker."]
-        #[method_id(@__method_family Other videoExportPreset)]
+        #[unsafe(method_family(none))]
+        #[method_id(videoExportPreset)]
         pub unsafe fn videoExportPreset(&self) -> Retained<NSString>;
 
         /// Setter for [`videoExportPreset`][Self::videoExportPreset].
@@ -394,7 +399,8 @@ extern_methods!(
         pub unsafe fn setShowsCameraControls(&self, shows_camera_controls: bool);
 
         #[cfg(feature = "UIView")]
-        #[method_id(@__method_family Other cameraOverlayView)]
+        #[unsafe(method_family(none))]
+        #[method_id(cameraOverlayView)]
         pub unsafe fn cameraOverlayView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(feature = "UIView")]
@@ -457,27 +463,31 @@ extern_methods!(
         feature = "UIViewController"
     ))]
     unsafe impl UIImagePickerController {
-        #[method_id(@__method_family Init initWithNavigationBarClass:toolbarClass:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithNavigationBarClass:toolbarClass:)]
         pub unsafe fn initWithNavigationBarClass_toolbarClass(
             this: Allocated<Self>,
             navigation_bar_class: Option<&AnyClass>,
             toolbar_class: Option<&AnyClass>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithRootViewController:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithRootViewController:)]
         pub unsafe fn initWithRootViewController(
             this: Allocated<Self>,
             root_view_controller: &UIViewController,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithNibName:bundle:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -493,10 +503,12 @@ extern_methods!(
         feature = "UIViewController"
     ))]
     unsafe impl UIImagePickerController {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

@@ -27,10 +27,12 @@ unsafe impl<TargetValueType: ?Sized> NSObjectProtocol
 extern_methods!(
     #[cfg(feature = "HMAction")]
     unsafe impl<TargetValueType: Message> HMCharacteristicWriteAction<TargetValueType> {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "HMCharacteristic")]
@@ -44,7 +46,8 @@ extern_methods!(
         ///
         ///
         /// Returns: Instance object representing the characteristic write action.
-        #[method_id(@__method_family Init initWithCharacteristic:targetValue:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCharacteristic:targetValue:)]
         pub unsafe fn initWithCharacteristic_targetValue(
             this: Allocated<Self>,
             characteristic: &HMCharacteristic,
@@ -53,11 +56,13 @@ extern_methods!(
 
         #[cfg(feature = "HMCharacteristic")]
         /// The characteristic associated with the action.
-        #[method_id(@__method_family Other characteristic)]
+        #[unsafe(method_family(none))]
+        #[method_id(characteristic)]
         pub unsafe fn characteristic(&self) -> Retained<HMCharacteristic>;
 
         /// The target value for the action.
-        #[method_id(@__method_family Other targetValue)]
+        #[unsafe(method_family(none))]
+        #[method_id(targetValue)]
         pub unsafe fn targetValue(&self) -> Retained<TargetValueType>;
 
         #[cfg(feature = "block2")]

@@ -30,18 +30,22 @@ unsafe impl NSProgressReporting for UIManagedDocument {}
 extern_methods!(
     #[cfg(feature = "UIDocument")]
     unsafe impl UIManagedDocument {
-        #[method_id(@__method_family Other persistentStoreName)]
+        #[unsafe(method_family(none))]
+        #[method_id(persistentStoreName)]
         pub unsafe fn persistentStoreName(mtm: MainThreadMarker) -> Retained<NSString>;
 
         #[cfg(feature = "objc2-core-data")]
-        #[method_id(@__method_family Other managedObjectContext)]
+        #[unsafe(method_family(none))]
+        #[method_id(managedObjectContext)]
         pub unsafe fn managedObjectContext(&self) -> Retained<NSManagedObjectContext>;
 
         #[cfg(feature = "objc2-core-data")]
-        #[method_id(@__method_family Other managedObjectModel)]
+        #[unsafe(method_family(none))]
+        #[method_id(managedObjectModel)]
         pub unsafe fn managedObjectModel(&self) -> Retained<NSManagedObjectModel>;
 
-        #[method_id(@__method_family Other persistentStoreOptions)]
+        #[unsafe(method_family(none))]
+        #[method_id(persistentStoreOptions)]
         pub unsafe fn persistentStoreOptions(&self) -> Option<Retained<NSDictionary>>;
 
         /// Setter for [`persistentStoreOptions`][Self::persistentStoreOptions].
@@ -51,7 +55,8 @@ extern_methods!(
             persistent_store_options: Option<&NSDictionary>,
         );
 
-        #[method_id(@__method_family Other modelConfiguration)]
+        #[unsafe(method_family(none))]
+        #[method_id(modelConfiguration)]
         pub unsafe fn modelConfiguration(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`modelConfiguration`][Self::modelConfiguration].
@@ -67,7 +72,8 @@ extern_methods!(
             store_options: Option<&NSDictionary>,
         ) -> Result<(), Retained<NSError>>;
 
-        #[method_id(@__method_family Other persistentStoreTypeForFileType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(persistentStoreTypeForFileType:)]
         pub unsafe fn persistentStoreTypeForFileType(
             &self,
             file_type: &NSString,
@@ -79,7 +85,8 @@ extern_methods!(
             absolute_url: &NSURL,
         ) -> Result<(), Retained<NSError>>;
 
-        #[method_id(@__method_family Other additionalContentForURL:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(additionalContentForURL:error:_)]
         pub unsafe fn additionalContentForURL_error(
             &self,
             absolute_url: &NSURL,
@@ -99,7 +106,8 @@ extern_methods!(
     /// Methods declared on superclass `UIDocument`
     #[cfg(feature = "UIDocument")]
     unsafe impl UIManagedDocument {
-        #[method_id(@__method_family Init initWithFileURL:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithFileURL:)]
         pub unsafe fn initWithFileURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
     }
 );
@@ -108,10 +116,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UIDocument")]
     unsafe impl UIManagedDocument {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

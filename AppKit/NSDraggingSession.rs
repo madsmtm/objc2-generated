@@ -45,7 +45,8 @@ extern_methods!(
         pub unsafe fn setDraggingLeaderIndex(&self, dragging_leader_index: NSInteger);
 
         #[cfg(feature = "NSPasteboard")]
-        #[method_id(@__method_family Other draggingPasteboard)]
+        #[unsafe(method_family(none))]
+        #[method_id(draggingPasteboard)]
         pub unsafe fn draggingPasteboard(&self) -> Retained<NSPasteboard>;
 
         #[method(draggingSequenceNumber)]
@@ -77,10 +78,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSDraggingSession {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

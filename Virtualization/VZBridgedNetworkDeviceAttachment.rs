@@ -39,7 +39,8 @@ extern_methods!(
         /// Initialize a VZBridgedNetworkDeviceAttachment with a host network interface.
         ///
         /// Parameter `interface`: Host network interface controller.
-        #[method_id(@__method_family Init initWithInterface:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithInterface:)]
         pub unsafe fn initWithInterface(
             this: Allocated<Self>,
             interface: &VZBridgedNetworkInterface,
@@ -47,7 +48,8 @@ extern_methods!(
 
         #[cfg(feature = "VZBridgedNetworkInterface")]
         /// Network interface of this device attachment.
-        #[method_id(@__method_family Other interface)]
+        #[unsafe(method_family(none))]
+        #[method_id(interface)]
         pub unsafe fn interface(&self) -> Retained<VZBridgedNetworkInterface>;
     }
 );
@@ -56,10 +58,12 @@ extern_methods!(
     /// Methods declared on superclass `VZNetworkDeviceAttachment`
     #[cfg(feature = "VZNetworkDeviceAttachment")]
     unsafe impl VZBridgedNetworkDeviceAttachment {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

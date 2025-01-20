@@ -40,7 +40,8 @@ unsafe impl NSObjectProtocol for UICalendarViewDecoration {}
 extern_methods!(
     unsafe impl UICalendarViewDecoration {
         /// Creates a default decoration with a circle image.
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "UIColor", feature = "UIImage"))]
@@ -54,7 +55,8 @@ extern_methods!(
         /// `UIColor.systemFillColor`if nil.
         ///
         /// Parameter `size`: The preferred size of the decoration. The default is UICalendarViewDecorationSizeMedium
-        #[method_id(@__method_family Init initWithImage:color:size:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithImage:color:size:)]
         pub unsafe fn initWithImage_color_size(
             this: Allocated<Self>,
             image: Option<&UIImage>,
@@ -66,7 +68,8 @@ extern_methods!(
         /// Creates a new custom view decoration using the provided view provider. The provider will
         /// be called once when the decoration view is first loaded. The decoration will be clipped to
         /// its parent's bounds, and cannot have interaction.
-        #[method_id(@__method_family Init initWithCustomViewProvider:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCustomViewProvider:)]
         pub unsafe fn initWithCustomViewProvider(
             this: Allocated<Self>,
             custom_view_provider: &block2::Block<dyn Fn() -> NonNull<UIView>>,
@@ -74,7 +77,8 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         /// Creates a default image accessory with a circle image, and the specified color and size.
-        #[method_id(@__method_family Other decorationWithColor:size:)]
+        #[unsafe(method_family(none))]
+        #[method_id(decorationWithColor:size:)]
         pub unsafe fn decorationWithColor_size(
             color: Option<&UIColor>,
             size: UICalendarViewDecorationSize,
@@ -83,7 +87,8 @@ extern_methods!(
 
         #[cfg(feature = "UIImage")]
         /// Creates an accessory with the specified image, and default color, and size.
-        #[method_id(@__method_family Other decorationWithImage:)]
+        #[unsafe(method_family(none))]
+        #[method_id(decorationWithImage:)]
         pub unsafe fn decorationWithImage(
             image: Option<&UIImage>,
             mtm: MainThreadMarker,
@@ -91,7 +96,8 @@ extern_methods!(
 
         #[cfg(all(feature = "UIColor", feature = "UIImage"))]
         /// Creates an accessory with the specified image, color, and size.
-        #[method_id(@__method_family Other decorationWithImage:color:size:)]
+        #[unsafe(method_family(none))]
+        #[method_id(decorationWithImage:color:size:)]
         pub unsafe fn decorationWithImage_color_size(
             image: Option<&UIImage>,
             color: Option<&UIColor>,
@@ -103,7 +109,8 @@ extern_methods!(
         /// Creates a new custom view decoration using the specified custom view provider. The provider will be called once
         /// when the decoration view is first loaded. The decoration will be clipped to its parent's bounds, and cannot have
         /// user interaction.
-        #[method_id(@__method_family Other decorationWithCustomViewProvider:)]
+        #[unsafe(method_family(none))]
+        #[method_id(decorationWithCustomViewProvider:)]
         pub unsafe fn decorationWithCustomViewProvider(
             custom_view_provider: &block2::Block<dyn Fn() -> NonNull<UIView>>,
             mtm: MainThreadMarker,
@@ -114,7 +121,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UICalendarViewDecoration {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

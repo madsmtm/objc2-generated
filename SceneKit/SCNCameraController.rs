@@ -66,7 +66,8 @@ unsafe impl NSObjectProtocol for SCNCameraController {}
 
 extern_methods!(
     unsafe impl SCNCameraController {
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn SCNCameraControllerDelegate>>>;
@@ -79,7 +80,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "SCNNode")]
-        #[method_id(@__method_family Other pointOfView)]
+        #[unsafe(method_family(none))]
+        #[method_id(pointOfView)]
         pub unsafe fn pointOfView(&self) -> Option<Retained<SCNNode>>;
 
         #[cfg(feature = "SCNNode")]
@@ -236,10 +238,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNCameraController {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

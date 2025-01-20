@@ -51,7 +51,8 @@ extern_methods!(
         ///
         /// Returns: A new MLCSGDOptimizer object.
         #[deprecated]
-        #[method_id(@__method_family Other optimizerWithDescriptor:)]
+        #[unsafe(method_family(none))]
+        #[method_id(optimizerWithDescriptor:)]
         pub unsafe fn optimizerWithDescriptor(
             optimizer_descriptor: &MLCOptimizerDescriptor,
         ) -> Retained<Self>;
@@ -67,7 +68,8 @@ extern_methods!(
         ///
         /// Returns: A new MLCSGDOptimizer object.
         #[deprecated]
-        #[method_id(@__method_family Other optimizerWithDescriptor:momentumScale:usesNesterovMomentum:)]
+        #[unsafe(method_family(none))]
+        #[method_id(optimizerWithDescriptor:momentumScale:usesNesterovMomentum:)]
         pub unsafe fn optimizerWithDescriptor_momentumScale_usesNesterovMomentum(
             optimizer_descriptor: &MLCOptimizerDescriptor,
             momentum_scale: c_float,
@@ -81,11 +83,13 @@ extern_methods!(
     #[cfg(feature = "MLCOptimizer")]
     unsafe impl MLCSGDOptimizer {
         #[deprecated]
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

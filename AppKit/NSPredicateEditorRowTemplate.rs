@@ -33,25 +33,29 @@ extern_methods!(
         pub unsafe fn matchForPredicate(&self, predicate: &NSPredicate) -> c_double;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-        #[method_id(@__method_family Other templateViews)]
+        #[unsafe(method_family(none))]
+        #[method_id(templateViews)]
         pub unsafe fn templateViews(&self, mtm: MainThreadMarker) -> Retained<NSArray<NSView>>;
 
         #[method(setPredicate:)]
         pub unsafe fn setPredicate(&self, predicate: &NSPredicate);
 
-        #[method_id(@__method_family Other predicateWithSubpredicates:)]
+        #[unsafe(method_family(none))]
+        #[method_id(predicateWithSubpredicates:)]
         pub unsafe fn predicateWithSubpredicates(
             &self,
             subpredicates: Option<&NSArray<NSPredicate>>,
         ) -> Retained<NSPredicate>;
 
-        #[method_id(@__method_family Other displayableSubpredicatesOfPredicate:)]
+        #[unsafe(method_family(none))]
+        #[method_id(displayableSubpredicatesOfPredicate:)]
         pub unsafe fn displayableSubpredicatesOfPredicate(
             &self,
             predicate: &NSPredicate,
         ) -> Option<Retained<NSArray<NSPredicate>>>;
 
-        #[method_id(@__method_family Init initWithLeftExpressions:rightExpressions:modifier:operators:options:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithLeftExpressions:rightExpressions:modifier:operators:options:)]
         pub unsafe fn initWithLeftExpressions_rightExpressions_modifier_operators_options(
             this: Allocated<Self>,
             left_expressions: &NSArray<NSExpression>,
@@ -63,7 +67,8 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-data")]
         #[cfg(target_vendor = "apple")]
-        #[method_id(@__method_family Init initWithLeftExpressions:rightExpressionAttributeType:modifier:operators:options:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithLeftExpressions:rightExpressionAttributeType:modifier:operators:options:)]
         pub unsafe fn initWithLeftExpressions_rightExpressionAttributeType_modifier_operators_options(
             this: Allocated<Self>,
             left_expressions: &NSArray<NSExpression>,
@@ -73,16 +78,19 @@ extern_methods!(
             options: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCompoundTypes:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCompoundTypes:)]
         pub unsafe fn initWithCompoundTypes(
             this: Allocated<Self>,
             compound_types: &NSArray<NSNumber>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Other leftExpressions)]
+        #[unsafe(method_family(none))]
+        #[method_id(leftExpressions)]
         pub unsafe fn leftExpressions(&self) -> Option<Retained<NSArray<NSExpression>>>;
 
-        #[method_id(@__method_family Other rightExpressions)]
+        #[unsafe(method_family(none))]
+        #[method_id(rightExpressions)]
         pub unsafe fn rightExpressions(&self) -> Option<Retained<NSArray<NSExpression>>>;
 
         #[cfg(feature = "objc2-core-data")]
@@ -93,18 +101,21 @@ extern_methods!(
         #[method(modifier)]
         pub unsafe fn modifier(&self) -> NSComparisonPredicateModifier;
 
-        #[method_id(@__method_family Other operators)]
+        #[unsafe(method_family(none))]
+        #[method_id(operators)]
         pub unsafe fn operators(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         #[method(options)]
         pub unsafe fn options(&self) -> NSUInteger;
 
-        #[method_id(@__method_family Other compoundTypes)]
+        #[unsafe(method_family(none))]
+        #[method_id(compoundTypes)]
         pub unsafe fn compoundTypes(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         #[cfg(feature = "objc2-core-data")]
         #[cfg(target_vendor = "apple")]
-        #[method_id(@__method_family Other templatesWithAttributeKeyPaths:inEntityDescription:)]
+        #[unsafe(method_family(none))]
+        #[method_id(templatesWithAttributeKeyPaths:inEntityDescription:)]
         pub unsafe fn templatesWithAttributeKeyPaths_inEntityDescription(
             key_paths: &NSArray<NSString>,
             entity_description: &NSEntityDescription,
@@ -115,10 +126,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPredicateEditorRowTemplate {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -47,17 +47,21 @@ extern_methods!(
         #[method(count)]
         pub fn count(&self) -> NSUInteger;
 
-        #[method_id(@__method_family Other member:)]
+        #[unsafe(method_family(none))]
+        #[method_id(member:)]
         pub fn member(&self, object: &ObjectType) -> Option<Retained<ObjectType>>;
 
         #[cfg(feature = "NSEnumerator")]
-        #[method_id(@__method_family Other objectEnumerator)]
+        #[unsafe(method_family(none))]
+        #[method_id(objectEnumerator)]
         pub unsafe fn objectEnumerator(&self) -> Retained<NSEnumerator<ObjectType>>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithObjects:count:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithObjects:count:)]
         pub unsafe fn initWithObjects_count(
             this: Allocated<Self>,
             objects: *mut NonNull<ObjectType>,
@@ -65,7 +69,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -76,7 +81,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<ObjectType: Message> NSSet<ObjectType> {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub fn new() -> Retained<Self>;
     }
 );
@@ -92,21 +98,25 @@ extern_methods!(
     /// NSExtendedSet
     unsafe impl<ObjectType: Message> NSSet<ObjectType> {
         #[cfg(feature = "NSArray")]
-        #[method_id(@__method_family Other allObjects)]
+        #[unsafe(method_family(none))]
+        #[method_id(allObjects)]
         pub fn allObjects(&self) -> Retained<NSArray<ObjectType>>;
 
-        #[method_id(@__method_family Other anyObject)]
+        #[unsafe(method_family(none))]
+        #[method_id(anyObject)]
         pub fn anyObject(&self) -> Option<Retained<ObjectType>>;
 
         #[method(containsObject:)]
         pub fn containsObject(&self, an_object: &ObjectType) -> bool;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__method_family Other description)]
+        #[unsafe(method_family(none))]
+        #[method_id(description)]
         pub unsafe fn description(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__method_family Other descriptionWithLocale:)]
+        #[unsafe(method_family(none))]
+        #[method_id(descriptionWithLocale:)]
         pub unsafe fn descriptionWithLocale(
             &self,
             locale: Option<&AnyObject>,
@@ -131,20 +141,23 @@ extern_methods!(
             argument: Option<&AnyObject>,
         );
 
-        #[method_id(@__method_family Other setByAddingObject:)]
+        #[unsafe(method_family(none))]
+        #[method_id(setByAddingObject:)]
         pub unsafe fn setByAddingObject(
             &self,
             an_object: &ObjectType,
         ) -> Retained<NSSet<ObjectType>>;
 
-        #[method_id(@__method_family Other setByAddingObjectsFromSet:)]
+        #[unsafe(method_family(none))]
+        #[method_id(setByAddingObjectsFromSet:)]
         pub unsafe fn setByAddingObjectsFromSet(
             &self,
             other: &NSSet<ObjectType>,
         ) -> Retained<NSSet<ObjectType>>;
 
         #[cfg(feature = "NSArray")]
-        #[method_id(@__method_family Other setByAddingObjectsFromArray:)]
+        #[unsafe(method_family(none))]
+        #[method_id(setByAddingObjectsFromArray:)]
         pub unsafe fn setByAddingObjectsFromArray(
             &self,
             other: &NSArray<ObjectType>,
@@ -166,14 +179,16 @@ extern_methods!(
         );
 
         #[cfg(feature = "block2")]
-        #[method_id(@__method_family Other objectsPassingTest:)]
+        #[unsafe(method_family(none))]
+        #[method_id(objectsPassingTest:)]
         pub unsafe fn objectsPassingTest(
             &self,
             predicate: &block2::Block<dyn Fn(NonNull<ObjectType>, NonNull<Bool>) -> Bool + '_>,
         ) -> Retained<NSSet<ObjectType>>;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "block2"))]
-        #[method_id(@__method_family Other objectsWithOptions:passingTest:)]
+        #[unsafe(method_family(none))]
+        #[method_id(objectsWithOptions:passingTest:)]
         pub unsafe fn objectsWithOptions_passingTest(
             &self,
             opts: NSEnumerationOptions,
@@ -185,30 +200,37 @@ extern_methods!(
 extern_methods!(
     /// NSSetCreation
     unsafe impl<ObjectType: Message> NSSet<ObjectType> {
-        #[method_id(@__method_family Other set)]
+        #[unsafe(method_family(none))]
+        #[method_id(set)]
         pub unsafe fn set() -> Retained<Self>;
 
-        #[method_id(@__method_family Other setWithObject:)]
+        #[unsafe(method_family(none))]
+        #[method_id(setWithObject:)]
         pub unsafe fn setWithObject(object: &ObjectType) -> Retained<Self>;
 
-        #[method_id(@__method_family Other setWithObjects:count:)]
+        #[unsafe(method_family(none))]
+        #[method_id(setWithObjects:count:)]
         pub unsafe fn setWithObjects_count(
             objects: NonNull<NonNull<ObjectType>>,
             cnt: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Other setWithSet:)]
+        #[unsafe(method_family(none))]
+        #[method_id(setWithSet:)]
         pub unsafe fn setWithSet(set: &NSSet<ObjectType>) -> Retained<Self>;
 
         #[cfg(feature = "NSArray")]
-        #[method_id(@__method_family Other setWithArray:)]
+        #[unsafe(method_family(none))]
+        #[method_id(setWithArray:)]
         pub unsafe fn setWithArray(array: &NSArray<ObjectType>) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithSet:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithSet:)]
         pub unsafe fn initWithSet(this: Allocated<Self>, set: &NSSet<ObjectType>)
             -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithSet:copyItems:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithSet:copyItems:)]
         pub unsafe fn initWithSet_copyItems(
             this: Allocated<Self>,
             set: &NSSet<ObjectType>,
@@ -216,7 +238,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSArray")]
-        #[method_id(@__method_family Init initWithArray:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithArray:)]
         pub unsafe fn initWithArray(
             this: Allocated<Self>,
             array: &NSArray<ObjectType>,
@@ -229,30 +252,37 @@ extern_methods!(
     ///
     /// NSSetCreation
     unsafe impl<ObjectType: Message> NSMutableSet<ObjectType> {
-        #[method_id(@__method_family Other set)]
+        #[unsafe(method_family(none))]
+        #[method_id(set)]
         pub unsafe fn set() -> Retained<Self>;
 
-        #[method_id(@__method_family Other setWithObject:)]
+        #[unsafe(method_family(none))]
+        #[method_id(setWithObject:)]
         pub unsafe fn setWithObject(object: &ObjectType) -> Retained<Self>;
 
-        #[method_id(@__method_family Other setWithObjects:count:)]
+        #[unsafe(method_family(none))]
+        #[method_id(setWithObjects:count:)]
         pub unsafe fn setWithObjects_count(
             objects: NonNull<NonNull<ObjectType>>,
             cnt: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Other setWithSet:)]
+        #[unsafe(method_family(none))]
+        #[method_id(setWithSet:)]
         pub unsafe fn setWithSet(set: &NSSet<ObjectType>) -> Retained<Self>;
 
         #[cfg(feature = "NSArray")]
-        #[method_id(@__method_family Other setWithArray:)]
+        #[unsafe(method_family(none))]
+        #[method_id(setWithArray:)]
         pub unsafe fn setWithArray(array: &NSArray<ObjectType>) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithSet:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithSet:)]
         pub unsafe fn initWithSet(this: Allocated<Self>, set: &NSSet<ObjectType>)
             -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithSet:copyItems:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithSet:copyItems:)]
         pub unsafe fn initWithSet_copyItems(
             this: Allocated<Self>,
             set: &NSSet<ObjectType>,
@@ -260,7 +290,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSArray")]
-        #[method_id(@__method_family Init initWithArray:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithArray:)]
         pub unsafe fn initWithArray(
             this: Allocated<Self>,
             array: &NSArray<ObjectType>,
@@ -313,16 +344,19 @@ extern_methods!(
         pub fn removeObject(&self, object: &ObjectType);
 
         #[cfg(feature = "NSCoder")]
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCapacity:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCapacity:)]
         pub fn initWithCapacity(this: Allocated<Self>, num_items: NSUInteger) -> Retained<Self>;
     }
 );
@@ -330,7 +364,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSSet`
     unsafe impl<ObjectType: Message> NSMutableSet<ObjectType> {
-        #[method_id(@__method_family Init initWithObjects:count:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithObjects:count:)]
         pub unsafe fn initWithObjects_count(
             this: Allocated<Self>,
             objects: *mut NonNull<ObjectType>,
@@ -342,7 +377,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<ObjectType: Message> NSMutableSet<ObjectType> {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub fn new() -> Retained<Self>;
     }
 );
@@ -381,7 +417,8 @@ extern_methods!(
 extern_methods!(
     /// NSMutableSetCreation
     unsafe impl<ObjectType: Message> NSMutableSet<ObjectType> {
-        #[method_id(@__method_family Other setWithCapacity:)]
+        #[unsafe(method_family(none))]
+        #[method_id(setWithCapacity:)]
         pub unsafe fn setWithCapacity(num_items: NSUInteger) -> Retained<Self>;
     }
 );
@@ -408,20 +445,23 @@ unsafe impl<ObjectType: ?Sized + NSSecureCoding> NSSecureCoding for NSCountedSet
 
 extern_methods!(
     unsafe impl<ObjectType: Message> NSCountedSet<ObjectType> {
-        #[method_id(@__method_family Init initWithCapacity:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCapacity:)]
         pub unsafe fn initWithCapacity(
             this: Allocated<Self>,
             num_items: NSUInteger,
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSArray")]
-        #[method_id(@__method_family Init initWithArray:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithArray:)]
         pub unsafe fn initWithArray(
             this: Allocated<Self>,
             array: &NSArray<ObjectType>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithSet:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithSet:)]
         pub unsafe fn initWithSet(this: Allocated<Self>, set: &NSSet<ObjectType>)
             -> Retained<Self>;
 
@@ -429,7 +469,8 @@ extern_methods!(
         pub unsafe fn countForObject(&self, object: &ObjectType) -> NSUInteger;
 
         #[cfg(feature = "NSEnumerator")]
-        #[method_id(@__method_family Other objectEnumerator)]
+        #[unsafe(method_family(none))]
+        #[method_id(objectEnumerator)]
         pub unsafe fn objectEnumerator(&self) -> Retained<NSEnumerator<ObjectType>>;
 
         #[method(addObject:)]
@@ -444,13 +485,15 @@ extern_methods!(
     /// Methods declared on superclass `NSMutableSet`
     unsafe impl<ObjectType: Message> NSCountedSet<ObjectType> {
         #[cfg(feature = "NSCoder")]
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -458,7 +501,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSSet`
     unsafe impl<ObjectType: Message> NSCountedSet<ObjectType> {
-        #[method_id(@__method_family Init initWithObjects:count:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithObjects:count:)]
         pub unsafe fn initWithObjects_count(
             this: Allocated<Self>,
             objects: *mut NonNull<ObjectType>,
@@ -470,7 +514,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<ObjectType: Message> NSCountedSet<ObjectType> {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -36,40 +36,52 @@ unsafe impl NSSecureCoding for MLParameterKey {}
 extern_methods!(
     #[cfg(feature = "MLKey")]
     unsafe impl MLParameterKey {
-        #[method_id(@__method_family Other learningRate)]
+        #[unsafe(method_family(none))]
+        #[method_id(learningRate)]
         pub unsafe fn learningRate() -> Retained<MLParameterKey>;
 
-        #[method_id(@__method_family Other momentum)]
+        #[unsafe(method_family(none))]
+        #[method_id(momentum)]
         pub unsafe fn momentum() -> Retained<MLParameterKey>;
 
-        #[method_id(@__method_family Other miniBatchSize)]
+        #[unsafe(method_family(none))]
+        #[method_id(miniBatchSize)]
         pub unsafe fn miniBatchSize() -> Retained<MLParameterKey>;
 
-        #[method_id(@__method_family Other beta1)]
+        #[unsafe(method_family(none))]
+        #[method_id(beta1)]
         pub unsafe fn beta1() -> Retained<MLParameterKey>;
 
-        #[method_id(@__method_family Other beta2)]
+        #[unsafe(method_family(none))]
+        #[method_id(beta2)]
         pub unsafe fn beta2() -> Retained<MLParameterKey>;
 
-        #[method_id(@__method_family Other eps)]
+        #[unsafe(method_family(none))]
+        #[method_id(eps)]
         pub unsafe fn eps() -> Retained<MLParameterKey>;
 
-        #[method_id(@__method_family Other epochs)]
+        #[unsafe(method_family(none))]
+        #[method_id(epochs)]
         pub unsafe fn epochs() -> Retained<MLParameterKey>;
 
-        #[method_id(@__method_family Other shuffle)]
+        #[unsafe(method_family(none))]
+        #[method_id(shuffle)]
         pub unsafe fn shuffle() -> Retained<MLParameterKey>;
 
-        #[method_id(@__method_family Other seed)]
+        #[unsafe(method_family(none))]
+        #[method_id(seed)]
         pub unsafe fn seed() -> Retained<MLParameterKey>;
 
-        #[method_id(@__method_family Other numberOfNeighbors)]
+        #[unsafe(method_family(none))]
+        #[method_id(numberOfNeighbors)]
         pub unsafe fn numberOfNeighbors() -> Retained<MLParameterKey>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -78,10 +90,12 @@ extern_methods!(
     /// MLLinkedModelParameters
     #[cfg(feature = "MLKey")]
     unsafe impl MLParameterKey {
-        #[method_id(@__method_family Other linkedModelFileName)]
+        #[unsafe(method_family(none))]
+        #[method_id(linkedModelFileName)]
         pub unsafe fn linkedModelFileName() -> Retained<MLParameterKey>;
 
-        #[method_id(@__method_family Other linkedModelSearchPath)]
+        #[unsafe(method_family(none))]
+        #[method_id(linkedModelSearchPath)]
         pub unsafe fn linkedModelSearchPath() -> Retained<MLParameterKey>;
     }
 );
@@ -90,10 +104,12 @@ extern_methods!(
     /// MLNeuralNetworkParameters
     #[cfg(feature = "MLKey")]
     unsafe impl MLParameterKey {
-        #[method_id(@__method_family Other weights)]
+        #[unsafe(method_family(none))]
+        #[method_id(weights)]
         pub unsafe fn weights() -> Retained<MLParameterKey>;
 
-        #[method_id(@__method_family Other biases)]
+        #[unsafe(method_family(none))]
+        #[method_id(biases)]
         pub unsafe fn biases() -> Retained<MLParameterKey>;
     }
 );
@@ -102,7 +118,8 @@ extern_methods!(
     /// MLScopedParameters
     #[cfg(feature = "MLKey")]
     unsafe impl MLParameterKey {
-        #[method_id(@__method_family Other scopedTo:)]
+        #[unsafe(method_family(none))]
+        #[method_id(scopedTo:)]
         pub unsafe fn scopedTo(&self, scope: &NSString) -> Retained<MLParameterKey>;
     }
 );

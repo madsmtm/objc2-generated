@@ -113,7 +113,8 @@ unsafe impl NSObjectProtocol for AVAudioUnitEQFilterParameters {}
 
 extern_methods!(
     unsafe impl AVAudioUnitEQFilterParameters {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// AVAudioUnitEQFilterType
@@ -175,7 +176,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAudioUnitEQFilterParameters {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -211,7 +213,8 @@ extern_methods!(
         /// Initialize the EQ with number of bands.
         ///
         /// Parameter `numberOfBands`: The number of bands created by the EQ.
-        #[method_id(@__method_family Init initWithNumberOfBands:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithNumberOfBands:)]
         pub unsafe fn initWithNumberOfBands(
             this: Allocated<Self>,
             number_of_bands: NSUInteger,
@@ -220,7 +223,8 @@ extern_methods!(
         /// Array of AVAudioUnitEQFilterParameters objects.
         ///
         /// The number of elements in the array is equal to the number of bands.
-        #[method_id(@__method_family Other bands)]
+        #[unsafe(method_family(none))]
+        #[method_id(bands)]
         pub unsafe fn bands(&self) -> Retained<NSArray<AVAudioUnitEQFilterParameters>>;
 
         /// Overall gain adjustment applied to the signal.
@@ -258,7 +262,8 @@ extern_methods!(
         /// kAudioUnitType_Panner
         /// kAudioUnitType_RemoteEffect
         /// kAudioUnitType_RemoteMusicEffect
-        #[method_id(@__method_family Init initWithAudioComponentDescription:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithAudioComponentDescription:)]
         pub unsafe fn initWithAudioComponentDescription(
             this: Allocated<Self>,
             audio_component_description: AudioComponentDescription,
@@ -274,10 +279,12 @@ extern_methods!(
         feature = "AVAudioUnitEffect"
     ))]
     unsafe impl AVAudioUnitEQ {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

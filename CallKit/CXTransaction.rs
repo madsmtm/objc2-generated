@@ -29,7 +29,8 @@ unsafe impl NSSecureCoding for CXTransaction {}
 extern_methods!(
     unsafe impl CXTransaction {
         /// Unique ID
-        #[method_id(@__method_family Other UUID)]
+        #[unsafe(method_family(none))]
+        #[method_id(UUID)]
         pub unsafe fn UUID(&self) -> Retained<NSUUID>;
 
         /// Whether all actions have been completed
@@ -38,18 +39,21 @@ extern_methods!(
 
         #[cfg(feature = "CXAction")]
         /// The list of actions contained by the receiver
-        #[method_id(@__method_family Other actions)]
+        #[unsafe(method_family(none))]
+        #[method_id(actions)]
         pub unsafe fn actions(&self) -> Retained<NSArray<CXAction>>;
 
         #[cfg(feature = "CXAction")]
-        #[method_id(@__method_family Init initWithActions:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithActions:)]
         pub unsafe fn initWithActions(
             this: Allocated<Self>,
             actions: &NSArray<CXAction>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "CXAction")]
-        #[method_id(@__method_family Init initWithAction:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithAction:)]
         pub unsafe fn initWithAction(this: Allocated<Self>, action: &CXAction) -> Retained<Self>;
 
         #[cfg(feature = "CXAction")]
@@ -62,10 +66,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CXTransaction {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

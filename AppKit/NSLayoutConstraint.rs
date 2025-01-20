@@ -181,7 +181,8 @@ unsafe impl NSObjectProtocol for NSLayoutConstraint {}
 
 extern_methods!(
     unsafe impl NSLayoutConstraint {
-        #[method_id(@__method_family Other constraintsWithVisualFormat:options:metrics:views:)]
+        #[unsafe(method_family(none))]
+        #[method_id(constraintsWithVisualFormat:options:metrics:views:)]
         pub unsafe fn constraintsWithVisualFormat_options_metrics_views(
             format: &NSString,
             opts: NSLayoutFormatOptions,
@@ -190,7 +191,8 @@ extern_methods!(
         ) -> Retained<NSArray<NSLayoutConstraint>>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__method_family Other constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant:)]
+        #[unsafe(method_family(none))]
+        #[method_id(constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant:)]
         pub unsafe fn constraintWithItem_attribute_relatedBy_toItem_attribute_multiplier_constant(
             view1: &AnyObject,
             attr1: NSLayoutAttribute,
@@ -215,10 +217,12 @@ extern_methods!(
         #[method(setShouldBeArchived:)]
         pub unsafe fn setShouldBeArchived(&self, should_be_archived: bool);
 
-        #[method_id(@__method_family Other firstItem)]
+        #[unsafe(method_family(none))]
+        #[method_id(firstItem)]
         pub unsafe fn firstItem(&self) -> Option<Retained<AnyObject>>;
 
-        #[method_id(@__method_family Other secondItem)]
+        #[unsafe(method_family(none))]
+        #[method_id(secondItem)]
         pub unsafe fn secondItem(&self) -> Option<Retained<AnyObject>>;
 
         #[method(firstAttribute)]
@@ -228,11 +232,13 @@ extern_methods!(
         pub unsafe fn secondAttribute(&self) -> NSLayoutAttribute;
 
         #[cfg(feature = "NSLayoutAnchor")]
-        #[method_id(@__method_family Other firstAnchor)]
+        #[unsafe(method_family(none))]
+        #[method_id(firstAnchor)]
         pub unsafe fn firstAnchor(&self) -> Retained<NSLayoutAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
-        #[method_id(@__method_family Other secondAnchor)]
+        #[unsafe(method_family(none))]
+        #[method_id(secondAnchor)]
         pub unsafe fn secondAnchor(&self) -> Option<Retained<NSLayoutAnchor>>;
 
         #[method(relation)]
@@ -269,10 +275,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSLayoutConstraint {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -280,7 +288,8 @@ extern_methods!(
 extern_methods!(
     /// NSIdentifier
     unsafe impl NSLayoutConstraint {
-        #[method_id(@__method_family Other identifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(identifier)]
         pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`identifier`][Self::identifier].
@@ -301,54 +310,67 @@ extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSView {
         #[cfg(feature = "NSLayoutAnchor")]
-        #[method_id(@__method_family Other leadingAnchor)]
+        #[unsafe(method_family(none))]
+        #[method_id(leadingAnchor)]
         pub unsafe fn leadingAnchor(&self) -> Retained<NSLayoutXAxisAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
-        #[method_id(@__method_family Other trailingAnchor)]
+        #[unsafe(method_family(none))]
+        #[method_id(trailingAnchor)]
         pub unsafe fn trailingAnchor(&self) -> Retained<NSLayoutXAxisAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
-        #[method_id(@__method_family Other leftAnchor)]
+        #[unsafe(method_family(none))]
+        #[method_id(leftAnchor)]
         pub unsafe fn leftAnchor(&self) -> Retained<NSLayoutXAxisAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
-        #[method_id(@__method_family Other rightAnchor)]
+        #[unsafe(method_family(none))]
+        #[method_id(rightAnchor)]
         pub unsafe fn rightAnchor(&self) -> Retained<NSLayoutXAxisAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
-        #[method_id(@__method_family Other topAnchor)]
+        #[unsafe(method_family(none))]
+        #[method_id(topAnchor)]
         pub unsafe fn topAnchor(&self) -> Retained<NSLayoutYAxisAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
-        #[method_id(@__method_family Other bottomAnchor)]
+        #[unsafe(method_family(none))]
+        #[method_id(bottomAnchor)]
         pub unsafe fn bottomAnchor(&self) -> Retained<NSLayoutYAxisAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
-        #[method_id(@__method_family Other widthAnchor)]
+        #[unsafe(method_family(none))]
+        #[method_id(widthAnchor)]
         pub unsafe fn widthAnchor(&self) -> Retained<NSLayoutDimension>;
 
         #[cfg(feature = "NSLayoutAnchor")]
-        #[method_id(@__method_family Other heightAnchor)]
+        #[unsafe(method_family(none))]
+        #[method_id(heightAnchor)]
         pub unsafe fn heightAnchor(&self) -> Retained<NSLayoutDimension>;
 
         #[cfg(feature = "NSLayoutAnchor")]
-        #[method_id(@__method_family Other centerXAnchor)]
+        #[unsafe(method_family(none))]
+        #[method_id(centerXAnchor)]
         pub unsafe fn centerXAnchor(&self) -> Retained<NSLayoutXAxisAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
-        #[method_id(@__method_family Other centerYAnchor)]
+        #[unsafe(method_family(none))]
+        #[method_id(centerYAnchor)]
         pub unsafe fn centerYAnchor(&self) -> Retained<NSLayoutYAxisAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
-        #[method_id(@__method_family Other firstBaselineAnchor)]
+        #[unsafe(method_family(none))]
+        #[method_id(firstBaselineAnchor)]
         pub unsafe fn firstBaselineAnchor(&self) -> Retained<NSLayoutYAxisAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
-        #[method_id(@__method_family Other lastBaselineAnchor)]
+        #[unsafe(method_family(none))]
+        #[method_id(lastBaselineAnchor)]
         pub unsafe fn lastBaselineAnchor(&self) -> Retained<NSLayoutYAxisAnchor>;
 
-        #[method_id(@__method_family Other constraints)]
+        #[unsafe(method_family(none))]
+        #[method_id(constraints)]
         pub unsafe fn constraints(&self) -> Retained<NSArray<NSLayoutConstraint>>;
 
         #[method(addConstraint:)]
@@ -548,7 +570,8 @@ extern_methods!(
     /// NSConstraintBasedLayoutDebugging
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSView {
-        #[method_id(@__method_family Other constraintsAffectingLayoutForOrientation:)]
+        #[unsafe(method_family(none))]
+        #[method_id(constraintsAffectingLayoutForOrientation:)]
         pub unsafe fn constraintsAffectingLayoutForOrientation(
             &self,
             orientation: NSLayoutConstraintOrientation,

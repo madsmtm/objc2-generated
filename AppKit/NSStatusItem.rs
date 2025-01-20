@@ -46,7 +46,8 @@ unsafe impl NSObjectProtocol for NSStatusItem {}
 extern_methods!(
     unsafe impl NSStatusItem {
         #[cfg(feature = "NSStatusBar")]
-        #[method_id(@__method_family Other statusBar)]
+        #[unsafe(method_family(none))]
+        #[method_id(statusBar)]
         pub unsafe fn statusBar(&self) -> Option<Retained<NSStatusBar>>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -59,7 +60,8 @@ extern_methods!(
         pub unsafe fn setLength(&self, length: CGFloat);
 
         #[cfg(feature = "NSMenu")]
-        #[method_id(@__method_family Other menu)]
+        #[unsafe(method_family(none))]
+        #[method_id(menu)]
         pub unsafe fn menu(&self, mtm: MainThreadMarker) -> Option<Retained<NSMenu>>;
 
         #[cfg(feature = "NSMenu")]
@@ -74,7 +76,8 @@ extern_methods!(
             feature = "NSStatusBarButton",
             feature = "NSView"
         ))]
-        #[method_id(@__method_family Other button)]
+        #[unsafe(method_family(none))]
+        #[method_id(button)]
         pub unsafe fn button(&self, mtm: MainThreadMarker) -> Option<Retained<NSStatusBarButton>>;
 
         #[method(behavior)]
@@ -91,7 +94,8 @@ extern_methods!(
         #[method(setVisible:)]
         pub unsafe fn setVisible(&self, visible: bool);
 
-        #[method_id(@__method_family Other autosaveName)]
+        #[unsafe(method_family(none))]
+        #[method_id(autosaveName)]
         pub unsafe fn autosaveName(&self) -> Retained<NSStatusItemAutosaveName>;
 
         /// Setter for [`autosaveName`][Self::autosaveName].
@@ -103,10 +107,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSStatusItem {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -133,7 +139,8 @@ extern_methods!(
         pub unsafe fn setDoubleAction(&self, double_action: Option<Sel>);
 
         #[deprecated = "Use the receiver's button.target instead"]
-        #[method_id(@__method_family Other target)]
+        #[unsafe(method_family(none))]
+        #[method_id(target)]
         pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -143,7 +150,8 @@ extern_methods!(
         pub unsafe fn setTarget(&self, target: Option<&AnyObject>);
 
         #[deprecated = "Use the receiver's button.title instead"]
-        #[method_id(@__method_family Other title)]
+        #[unsafe(method_family(none))]
+        #[method_id(title)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`title`][Self::title].
@@ -152,7 +160,8 @@ extern_methods!(
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
         #[deprecated = "Use the receiver's button.attributedTitle instead"]
-        #[method_id(@__method_family Other attributedTitle)]
+        #[unsafe(method_family(none))]
+        #[method_id(attributedTitle)]
         pub unsafe fn attributedTitle(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Setter for [`attributedTitle`][Self::attributedTitle].
@@ -162,7 +171,8 @@ extern_methods!(
 
         #[cfg(feature = "NSImage")]
         #[deprecated = "Use the receiver's button.image instead"]
-        #[method_id(@__method_family Other image)]
+        #[unsafe(method_family(none))]
+        #[method_id(image)]
         pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
@@ -173,7 +183,8 @@ extern_methods!(
 
         #[cfg(feature = "NSImage")]
         #[deprecated = "Use the receiver's button.alternateImage instead"]
-        #[method_id(@__method_family Other alternateImage)]
+        #[unsafe(method_family(none))]
+        #[method_id(alternateImage)]
         pub unsafe fn alternateImage(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
@@ -201,7 +212,8 @@ extern_methods!(
         pub unsafe fn setHighlightMode(&self, highlight_mode: bool);
 
         #[deprecated = "Use the receiver's button.toolTip instead"]
-        #[method_id(@__method_family Other toolTip)]
+        #[unsafe(method_family(none))]
+        #[method_id(toolTip)]
         pub unsafe fn toolTip(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`toolTip`][Self::toolTip].
@@ -216,7 +228,8 @@ extern_methods!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[deprecated = "Use the standard button property instead"]
-        #[method_id(@__method_family Other view)]
+        #[unsafe(method_family(none))]
+        #[method_id(view)]
         pub unsafe fn view(&self, mtm: MainThreadMarker) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]

@@ -63,7 +63,8 @@ extern_methods!(
     #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
     unsafe impl UIWindowSceneActivationAction {
         /// The actions title. Set to nil to use the default title.
-        #[method_id(@__method_family Other title)]
+        #[unsafe(method_family(none))]
+        #[method_id(title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
@@ -80,7 +81,8 @@ extern_methods!(
         ///
         /// Parameter `configurationProvider`: Called when the action has been triggered. It should return a
         /// `UIWindowSceneActivationConfiguration`whose user activity will be used to request scene activation.
-        #[method_id(@__method_family Other actionWithIdentifier:alternateAction:configurationProvider:)]
+        #[unsafe(method_family(none))]
+        #[method_id(actionWithIdentifier:alternateAction:configurationProvider:)]
         pub unsafe fn actionWithIdentifier_alternateAction_configurationProvider(
             identifier: Option<&UIActionIdentifier>,
             alternate_action: Option<&UIAction>,
@@ -89,14 +91,16 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        #[method_id(@__method_family Other actionWithHandler:)]
+        #[unsafe(method_family(none))]
+        #[method_id(actionWithHandler:)]
         pub unsafe fn actionWithHandler(
             handler: UIActionHandler,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIImage", feature = "block2"))]
-        #[method_id(@__method_family Other actionWithTitle:image:identifier:handler:)]
+        #[unsafe(method_family(none))]
+        #[method_id(actionWithTitle:image:identifier:handler:)]
         pub unsafe fn actionWithTitle_image_identifier_handler(
             title: &NSString,
             image: Option<&UIImage>,
@@ -111,10 +115,12 @@ extern_methods!(
     /// Methods declared on superclass `UIAction`
     #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
     unsafe impl UIWindowSceneActivationAction {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -123,7 +129,8 @@ extern_methods!(
     /// Methods declared on superclass `UIMenuElement`
     #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
     unsafe impl UIWindowSceneActivationAction {
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,

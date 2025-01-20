@@ -101,7 +101,8 @@ extern_methods!(
         ///
         ///
         /// Returns: A valid MPSMatrixSolveTriangular object or nil, if failure.
-        #[method_id(@__method_family Init initWithDevice:right:upper:transpose:unit:order:numberOfRightHandSides:alpha:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:right:upper:transpose:unit:order:numberOfRightHandSides:alpha:)]
         pub unsafe fn initWithDevice_right_upper_transpose_unit_order_numberOfRightHandSides_alpha(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -163,7 +164,8 @@ extern_methods!(
         /// Returns: a pointer to the newly initialized object. This will fail, returning
         /// nil if the device is not supported. Devices must be
         /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
-        #[method_id(@__method_family Init initWithDevice:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -177,7 +179,8 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -196,7 +199,8 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(@__method_family Init initWithCoder:device:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -209,10 +213,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixSolveTriangular {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -279,7 +285,8 @@ extern_methods!(
         ///
         ///
         /// Returns: A valid MPSMatrixSolveLU object or nil, if failure.
-        #[method_id(@__method_family Init initWithDevice:transpose:order:numberOfRightHandSides:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:transpose:order:numberOfRightHandSides:)]
         pub unsafe fn initWithDevice_transpose_order_numberOfRightHandSides(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -345,7 +352,8 @@ extern_methods!(
         /// Returns: a pointer to the newly initialized object. This will fail, returning
         /// nil if the device is not supported. Devices must be
         /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
-        #[method_id(@__method_family Init initWithDevice:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -359,7 +367,8 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -378,7 +387,8 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(@__method_family Init initWithCoder:device:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -391,10 +401,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixSolveLU {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -463,7 +475,8 @@ extern_methods!(
         ///
         ///
         /// Returns: A valid MPSMatrixSolveCholesky object or nil, if failure.
-        #[method_id(@__method_family Init initWithDevice:upper:order:numberOfRightHandSides:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:upper:order:numberOfRightHandSides:)]
         pub unsafe fn initWithDevice_upper_order_numberOfRightHandSides(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -521,7 +534,8 @@ extern_methods!(
         /// Returns: a pointer to the newly initialized object. This will fail, returning
         /// nil if the device is not supported. Devices must be
         /// MTLFeatureSet_iOS_GPUFamily2_v1 or later.
-        #[method_id(@__method_family Init initWithDevice:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -535,7 +549,8 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -554,7 +569,8 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(@__method_family Init initWithCoder:device:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -567,10 +583,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixSolveCholesky {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

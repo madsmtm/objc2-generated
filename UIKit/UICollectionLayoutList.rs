@@ -152,13 +152,16 @@ unsafe impl NSObjectProtocol for UICollectionLayoutListConfiguration {}
 
 extern_methods!(
     unsafe impl UICollectionLayoutListConfiguration {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithAppearance:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithAppearance:)]
         pub unsafe fn initWithAppearance(
             this: Allocated<Self>,
             appearance: UICollectionLayoutListAppearance,
@@ -180,7 +183,8 @@ extern_methods!(
         #[cfg(feature = "UIListSeparatorConfiguration")]
         /// The preferred configuration for separators. Used as a baseline for a section in a list using this
         /// `UICollectionLayoutListConfiguration`
-        #[method_id(@__method_family Other separatorConfiguration)]
+        #[unsafe(method_family(none))]
+        #[method_id(separatorConfiguration)]
         pub unsafe fn separatorConfiguration(&self) -> Retained<UIListSeparatorConfiguration>;
 
         #[cfg(feature = "UIListSeparatorConfiguration")]
@@ -209,7 +213,8 @@ extern_methods!(
         #[cfg(feature = "UIColor")]
         /// The background color of the section.
         /// Defaults to nil, indicating the system background color for the specified appearance is used.
-        #[method_id(@__method_family Other backgroundColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(backgroundColor)]
         pub unsafe fn backgroundColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -297,7 +302,8 @@ extern_methods!(
     #[cfg(feature = "UICollectionViewCompositionalLayout")]
     unsafe impl NSCollectionLayoutSection {
         /// Creates a list section using the specified configuration. You should pass the layoutEnvironment from inside the UICollectionViewCompositionalLayoutSectionProvider.
-        #[method_id(@__method_family Other sectionWithListConfiguration:layoutEnvironment:)]
+        #[unsafe(method_family(none))]
+        #[method_id(sectionWithListConfiguration:layoutEnvironment:)]
         pub unsafe fn sectionWithListConfiguration_layoutEnvironment(
             configuration: &UICollectionLayoutListConfiguration,
             layout_environment: &ProtocolObject<dyn NSCollectionLayoutEnvironment>,
@@ -313,7 +319,8 @@ extern_methods!(
     ))]
     unsafe impl UICollectionViewCompositionalLayout {
         /// Creates a compositional layout containing only list sections of the specified configuration.
-        #[method_id(@__method_family Other layoutWithListConfiguration:)]
+        #[unsafe(method_family(none))]
+        #[method_id(layoutWithListConfiguration:)]
         pub unsafe fn layoutWithListConfiguration(
             configuration: &UICollectionLayoutListConfiguration,
         ) -> Retained<Self>;

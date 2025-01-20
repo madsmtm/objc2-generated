@@ -134,7 +134,8 @@ extern_methods!(
         /// Parameter `playbackDelegate`: The playback delegate for controlling sample buffer display layer's playback in Picture in Picture.
         ///
         /// Use this initializer for a content source with a sample buffer display layer and playback delegate.
-        #[method_id(@__method_family Init initWithSampleBufferDisplayLayer:playbackDelegate:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithSampleBufferDisplayLayer:playbackDelegate:)]
         pub unsafe fn initWithSampleBufferDisplayLayer_playbackDelegate(
             this: Allocated<Self>,
             sample_buffer_display_layer: &AVSampleBufferDisplayLayer,
@@ -144,13 +145,15 @@ extern_methods!(
         #[cfg(feature = "objc2-av-foundation")]
         #[cfg(not(target_os = "watchos"))]
         /// The receiver's sample buffer display layer.
-        #[method_id(@__method_family Other sampleBufferDisplayLayer)]
+        #[unsafe(method_family(none))]
+        #[method_id(sampleBufferDisplayLayer)]
         pub unsafe fn sampleBufferDisplayLayer(
             &self,
         ) -> Option<Retained<AVSampleBufferDisplayLayer>>;
 
         /// The receiver's sample buffer playback delegate.
-        #[method_id(@__method_family Other sampleBufferPlaybackDelegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(sampleBufferPlaybackDelegate)]
         pub unsafe fn sampleBufferPlaybackDelegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVPictureInPictureSampleBufferPlaybackDelegate>>>;

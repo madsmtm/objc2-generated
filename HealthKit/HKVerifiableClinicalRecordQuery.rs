@@ -28,19 +28,23 @@ extern_methods!(
     #[cfg(feature = "HKQuery")]
     unsafe impl HKVerifiableClinicalRecordQuery {
         /// The record types that need to be present on desired records.
-        #[method_id(@__method_family Other recordTypes)]
+        #[unsafe(method_family(none))]
+        #[method_id(recordTypes)]
         pub unsafe fn recordTypes(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "HKVerifiableClinicalRecord")]
         /// The source type(s) of the records.
-        #[method_id(@__method_family Other sourceTypes)]
+        #[unsafe(method_family(none))]
+        #[method_id(sourceTypes)]
         pub unsafe fn sourceTypes(&self)
             -> Retained<NSArray<HKVerifiableClinicalRecordSourceType>>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(all(
@@ -57,7 +61,8 @@ extern_methods!(
         /// Parameter `predicate`: The predicate which records should match.
         ///
         /// Parameter `resultsHandler`: The block to invoke with the verifiable clinical records from the query.
-        #[method_id(@__method_family Init initWithRecordTypes:predicate:resultsHandler:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithRecordTypes:predicate:resultsHandler:)]
         pub unsafe fn initWithRecordTypes_predicate_resultsHandler(
             this: Allocated<Self>,
             record_types: &NSArray<NSString>,
@@ -87,7 +92,8 @@ extern_methods!(
         /// Parameter `predicate`: The predicate which records should match.
         ///
         /// Parameter `resultsHandler`: The block to invoke with the verifiable clinical records from the query.
-        #[method_id(@__method_family Init initWithRecordTypes:sourceTypes:predicate:resultsHandler:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithRecordTypes:sourceTypes:predicate:resultsHandler:)]
         pub unsafe fn initWithRecordTypes_sourceTypes_predicate_resultsHandler(
             this: Allocated<Self>,
             record_types: &NSArray<NSString>,

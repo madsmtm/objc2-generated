@@ -40,10 +40,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CLBackgroundActivitySessionDiagnostic {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -59,16 +61,19 @@ unsafe impl NSObjectProtocol for CLBackgroundActivitySession {}
 
 extern_methods!(
     unsafe impl CLBackgroundActivitySession {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[method(invalidate)]
         pub unsafe fn invalidate(&self);
 
-        #[method_id(@__method_family Other backgroundActivitySession)]
+        #[unsafe(method_family(none))]
+        #[method_id(backgroundActivitySession)]
         pub unsafe fn backgroundActivitySession() -> Retained<Self>;
     }
 );

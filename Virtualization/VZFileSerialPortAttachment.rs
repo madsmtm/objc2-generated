@@ -26,10 +26,12 @@ unsafe impl NSObjectProtocol for VZFileSerialPortAttachment {}
 extern_methods!(
     #[cfg(feature = "VZSerialPortAttachment")]
     unsafe impl VZFileSerialPortAttachment {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Initialize the VZFileSerialPortAttachment from a URL of a file.
@@ -44,7 +46,8 @@ extern_methods!(
         /// Returns: A newly initialized VZFileSerialPortAttachment. If an error was encountered returns
         /// `nil,`and
         /// `error`contains the error.
-        #[method_id(@__method_family Init initWithURL:append:error:_)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithURL:append:error:_)]
         pub unsafe fn initWithURL_append_error(
             this: Allocated<Self>,
             url: &NSURL,
@@ -52,7 +55,8 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         /// The URL of the file for the attachment on the local file system.
-        #[method_id(@__method_family Other URL)]
+        #[unsafe(method_family(none))]
+        #[method_id(URL)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
 
         /// True if the file should be opened in append mode, false otherwise.

@@ -84,7 +84,8 @@ extern_methods!(
         );
 
         #[deprecated = "No longer supported"]
-        #[method_id(@__method_family Other name)]
+        #[unsafe(method_family(none))]
+        #[method_id(name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[deprecated = "No longer supported"]
@@ -106,7 +107,8 @@ extern_methods!(
         pub unsafe fn setVolume(&self, volume: c_float);
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
-        #[method_id(@__method_family Other players)]
+        #[unsafe(method_family(none))]
+        #[method_id(players)]
         pub unsafe fn players(&self) -> Retained<NSArray<GKPlayer>>;
 
         #[deprecated = "No longer supported"]
@@ -118,10 +120,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKVoiceChat {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -154,7 +158,8 @@ extern_methods!(
     unsafe impl GKVoiceChat {
         /// * This property is obsolete. **
         #[deprecated]
-        #[method_id(@__method_family Other playerIDs)]
+        #[unsafe(method_family(none))]
+        #[method_id(playerIDs)]
         pub unsafe fn playerIDs(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// * This method is obsolete. It will never be invoked and its implementation does nothing**

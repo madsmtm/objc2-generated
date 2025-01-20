@@ -37,7 +37,8 @@ extern_methods!(
         /// Parameter `geometry`: The geometry for this level of detail. nil is supported and indicates that no geometry should be rendered for this level of detail.
         ///
         /// Parameter `radius`: The maximum radius in screen-space that this level of detail is suitable for. The coverage radius is calculated from the projected bounding sphere and expressed in pixels.
-        #[method_id(@__method_family Other levelOfDetailWithGeometry:screenSpaceRadius:)]
+        #[unsafe(method_family(none))]
+        #[method_id(levelOfDetailWithGeometry:screenSpaceRadius:)]
         pub unsafe fn levelOfDetailWithGeometry_screenSpaceRadius(
             geometry: Option<&SCNGeometry>,
             radius: CGFloat,
@@ -49,7 +50,8 @@ extern_methods!(
         /// Parameter `geometry`: The geometry for this level of detail. nil is supported and indicates that no geometry should be rendered for this level of detail.
         ///
         /// Parameter `distance`: The minimum distance to the current point of view that this level of detail is suitable for.
-        #[method_id(@__method_family Other levelOfDetailWithGeometry:worldSpaceDistance:)]
+        #[unsafe(method_family(none))]
+        #[method_id(levelOfDetailWithGeometry:worldSpaceDistance:)]
         pub unsafe fn levelOfDetailWithGeometry_worldSpaceDistance(
             geometry: Option<&SCNGeometry>,
             distance: CGFloat,
@@ -57,7 +59,8 @@ extern_methods!(
 
         #[cfg(feature = "SCNGeometry")]
         /// Returns the geometry of the receiver.
-        #[method_id(@__method_family Other geometry)]
+        #[unsafe(method_family(none))]
+        #[method_id(geometry)]
         pub unsafe fn geometry(&self) -> Option<Retained<SCNGeometry>>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -75,10 +78,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNLevelOfDetail {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

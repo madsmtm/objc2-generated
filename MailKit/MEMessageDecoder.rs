@@ -19,7 +19,8 @@ extern_protocol!(
         /// `MEDecodedMessage`should contain any signing or encryption information about the decoded message. If the extension is not needed for decoding the message it should return quickly with
         /// `nil.`
         /// Parameter `data`: - The original data for the message.
-        #[method_id(@__method_family Other decodedMessageForMessageData:)]
+        #[unsafe(method_family(none))]
+        #[method_id(decodedMessageForMessageData:)]
         unsafe fn decodedMessageForMessageData(
             &self,
             data: &NSData,

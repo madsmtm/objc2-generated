@@ -28,11 +28,13 @@ unsafe impl NSObjectProtocol for MLCMatMulDescriptor {}
 extern_methods!(
     unsafe impl MLCMatMulDescriptor {
         #[deprecated]
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// a scalar to scale the result in C=alpha x X x Y. Default = 1.0
@@ -60,7 +62,8 @@ extern_methods!(
         ///
         /// Returns: A new matrix multiplication layer descriptor
         #[deprecated]
-        #[method_id(@__method_family Other descriptorWithAlpha:transposesX:transposesY:)]
+        #[unsafe(method_family(none))]
+        #[method_id(descriptorWithAlpha:transposesX:transposesY:)]
         pub unsafe fn descriptorWithAlpha_transposesX_transposesY(
             alpha: c_float,
             transposes_x: bool,
@@ -69,7 +72,8 @@ extern_methods!(
 
         /// A matrix multiplication layer descriptor
         #[deprecated]
-        #[method_id(@__method_family Other descriptor)]
+        #[unsafe(method_family(none))]
+        #[method_id(descriptor)]
         pub unsafe fn descriptor() -> Retained<Self>;
     }
 );

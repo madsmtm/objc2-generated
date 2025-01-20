@@ -42,7 +42,8 @@ extern_methods!(
         /// If nil, a
         /// `CNChangeHistoryDropEverythingEvent`will be returned, followed by an add event
         /// for every contact and group currently in the contacts database.
-        #[method_id(@__method_family Other startingToken)]
+        #[unsafe(method_family(none))]
+        #[method_id(startingToken)]
         pub unsafe fn startingToken(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`startingToken`][Self::startingToken].
@@ -60,7 +61,8 @@ extern_methods!(
         ///
         /// `CNContactIdentifierKey`will always be fetched, whether you
         /// request it or not.
-        #[method_id(@__method_family Other additionalContactKeyDescriptors)]
+        #[unsafe(method_family(none))]
+        #[method_id(additionalContactKeyDescriptors)]
         pub unsafe fn additionalContactKeyDescriptors(
             &self,
         ) -> Option<Retained<NSArray<ProtocolObject<dyn CNKeyDescriptor>>>>;
@@ -120,7 +122,8 @@ extern_methods!(
         /// If set, transactions made by the specified authors will be excluded
         /// from the results. Use this, in conjunction with
         /// `CNSaveRequest.transactionAuthor,`to suppress processing of changes you already know about.
-        #[method_id(@__method_family Other excludedTransactionAuthors)]
+        #[unsafe(method_family(none))]
+        #[method_id(excludedTransactionAuthors)]
         pub unsafe fn excludedTransactionAuthors(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`excludedTransactionAuthors`][Self::excludedTransactionAuthors].
@@ -136,10 +139,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CNFetchRequest")]
     unsafe impl CNChangeHistoryFetchRequest {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

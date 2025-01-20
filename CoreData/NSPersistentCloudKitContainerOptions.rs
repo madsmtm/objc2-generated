@@ -20,13 +20,16 @@ unsafe impl NSObjectProtocol for NSPersistentCloudKitContainerOptions {}
 extern_methods!(
     unsafe impl NSPersistentCloudKitContainerOptions {
         /// The container identifier of the CKContainer to use with a given instance of NSPersistentStoreDescription
-        #[method_id(@__method_family Other containerIdentifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(containerIdentifier)]
         pub unsafe fn containerIdentifier(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithContainerIdentifier:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithContainerIdentifier:)]
         pub unsafe fn initWithContainerIdentifier(
             this: Allocated<Self>,
             container_identifier: &NSString,
@@ -37,7 +40,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPersistentCloudKitContainerOptions {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

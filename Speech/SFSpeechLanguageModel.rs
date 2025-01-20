@@ -28,19 +28,23 @@ unsafe impl NSObjectProtocol for SFSpeechLanguageModelConfiguration {}
 
 extern_methods!(
     unsafe impl SFSpeechLanguageModelConfiguration {
-        #[method_id(@__method_family Other languageModel)]
+        #[unsafe(method_family(none))]
+        #[method_id(languageModel)]
         pub unsafe fn languageModel(&self) -> Retained<NSURL>;
 
-        #[method_id(@__method_family Other vocabulary)]
+        #[unsafe(method_family(none))]
+        #[method_id(vocabulary)]
         pub unsafe fn vocabulary(&self) -> Option<Retained<NSURL>>;
 
-        #[method_id(@__method_family Init initWithLanguageModel:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithLanguageModel:)]
         pub unsafe fn initWithLanguageModel(
             this: Allocated<Self>,
             language_model: &NSURL,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithLanguageModel:vocabulary:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithLanguageModel:vocabulary:)]
         pub unsafe fn initWithLanguageModel_vocabulary(
             this: Allocated<Self>,
             language_model: &NSURL,
@@ -52,10 +56,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SFSpeechLanguageModelConfiguration {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -95,10 +101,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SFSpeechLanguageModel {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

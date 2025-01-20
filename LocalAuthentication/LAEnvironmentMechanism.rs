@@ -22,11 +22,13 @@ unsafe impl NSObjectProtocol for LAEnvironmentMechanism {}
 extern_methods!(
     unsafe impl LAEnvironmentMechanism {
         /// Clients should only consume environment mechanisms..
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// The Clients should only consume environment mechanisms..
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Whether the mechanism is available for use, i.e. whether the relevant preflight call of
@@ -40,11 +42,13 @@ extern_methods!(
         pub unsafe fn isUsable(&self) -> bool;
 
         /// The localized name of the authentication mechanism, e.g. "Touch ID", "Face ID" etc.
-        #[method_id(@__method_family Other localizedName)]
+        #[unsafe(method_family(none))]
+        #[method_id(localizedName)]
         pub unsafe fn localizedName(&self) -> Retained<NSString>;
 
         /// Name of the SF Symbol representing this authentication mechanism.
-        #[method_id(@__method_family Other iconSystemName)]
+        #[unsafe(method_family(none))]
+        #[method_id(iconSystemName)]
         pub unsafe fn iconSystemName(&self) -> Retained<NSString>;
     }
 );

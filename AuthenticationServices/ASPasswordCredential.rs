@@ -35,7 +35,8 @@ extern_methods!(
         /// Parameter `user`: the user.
         ///
         /// Parameter `password`: the password.
-        #[method_id(@__method_family Init initWithUser:password:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithUser:password:)]
         pub unsafe fn initWithUser_password(
             this: Allocated<Self>,
             user: &NSString,
@@ -47,7 +48,8 @@ extern_methods!(
         /// Parameter `user`: the user.
         ///
         /// Parameter `password`: the password.
-        #[method_id(@__method_family Other credentialWithUser:password:)]
+        #[unsafe(method_family(none))]
+        #[method_id(credentialWithUser:password:)]
         pub unsafe fn credentialWithUser_password(
             user: &NSString,
             password: &NSString,
@@ -56,13 +58,15 @@ extern_methods!(
         /// The user name of this credential.
         ///
         /// Returns: The user string.
-        #[method_id(@__method_family Other user)]
+        #[unsafe(method_family(none))]
+        #[method_id(user)]
         pub unsafe fn user(&self) -> Retained<NSString>;
 
         /// The password of this credential.
         ///
         /// Returns: The password string.
-        #[method_id(@__method_family Other password)]
+        #[unsafe(method_family(none))]
+        #[method_id(password)]
         pub unsafe fn password(&self) -> Retained<NSString>;
     }
 );
@@ -70,10 +74,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASPasswordCredential {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

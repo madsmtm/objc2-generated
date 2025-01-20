@@ -197,16 +197,19 @@ extern_methods!(
     unsafe impl CXProvider {
         #[cfg(feature = "CXProviderConfiguration")]
         /// Initialize a new provider instance with the supplied configuration
-        #[method_id(@__method_family Init initWithConfiguration:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithConfiguration:)]
         pub unsafe fn initWithConfiguration(
             this: Allocated<Self>,
             configuration: &CXProviderConfiguration,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "CXCallUpdate", feature = "block2"))]
@@ -263,7 +266,8 @@ extern_methods!(
 
         #[cfg(feature = "CXProviderConfiguration")]
         /// The receiver's current configuration.
-        #[method_id(@__method_family Other configuration)]
+        #[unsafe(method_family(none))]
+        #[method_id(configuration)]
         pub unsafe fn configuration(&self) -> Retained<CXProviderConfiguration>;
 
         #[cfg(feature = "CXProviderConfiguration")]
@@ -277,12 +281,14 @@ extern_methods!(
 
         #[cfg(feature = "CXTransaction")]
         /// List of all transactions that are incomplete.
-        #[method_id(@__method_family Other pendingTransactions)]
+        #[unsafe(method_family(none))]
+        #[method_id(pendingTransactions)]
         pub unsafe fn pendingTransactions(&self) -> Retained<NSArray<CXTransaction>>;
 
         #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
         /// Returns subset of call actions contained in any transaction in -pendingTransactions of the specified class and with the specified call UUID.
-        #[method_id(@__method_family Other pendingCallActionsOfClass:withCallUUID:)]
+        #[unsafe(method_family(none))]
+        #[method_id(pendingCallActionsOfClass:withCallUUID:)]
         pub unsafe fn pendingCallActionsOfClass_withCallUUID(
             &self,
             call_action_class: &AnyClass,

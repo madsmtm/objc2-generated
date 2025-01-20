@@ -17,7 +17,8 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object which is a copy of the input.
-        #[method_id(@__method_family Other identityWithTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(identityWithTensor:name:)]
         pub unsafe fn identityWithTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -31,7 +32,8 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other exponentWithTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(exponentWithTensor:name:)]
         pub unsafe fn exponentWithTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -45,7 +47,8 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other exponentBase2WithTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(exponentBase2WithTensor:name:)]
         pub unsafe fn exponentBase2WithTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -59,7 +62,8 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other exponentBase10WithTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(exponentBase10WithTensor:name:)]
         pub unsafe fn exponentBase10WithTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -73,7 +77,8 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other logarithmWithTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(logarithmWithTensor:name:)]
         pub unsafe fn logarithmWithTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -87,7 +92,8 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other logarithmBase2WithTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(logarithmBase2WithTensor:name:)]
         pub unsafe fn logarithmBase2WithTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -101,7 +107,8 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other logarithmBase10WithTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(logarithmBase10WithTensor:name:)]
         pub unsafe fn logarithmBase10WithTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -115,7 +122,8 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other squareWithTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(squareWithTensor:name:)]
         pub unsafe fn squareWithTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -129,7 +137,8 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other squareRootWithTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(squareRootWithTensor:name:)]
         pub unsafe fn squareRootWithTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -143,7 +152,8 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other reciprocalSquareRootWithTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(reciprocalSquareRootWithTensor:name:)]
         pub unsafe fn reciprocalSquareRootWithTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -160,7 +170,8 @@ extern_methods!(
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
         #[deprecated]
-        #[method_id(@__method_family Other reverseSquareRootWithTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(reverseSquareRootWithTensor:name:)]
         pub unsafe fn reverseSquareRootWithTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -174,7 +185,8 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other reciprocalWithTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(reciprocalWithTensor:name:)]
         pub unsafe fn reciprocalWithTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -188,7 +200,8 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other absoluteWithTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(absoluteWithTensor:name:)]
         pub unsafe fn absoluteWithTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -202,7 +215,8 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: An optional string which serves as an identifier for the operation..
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other absoluteSquareWithTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(absoluteSquareWithTensor:name:)]
         pub unsafe fn absoluteSquareWithTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -216,7 +230,8 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other negativeWithTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(negativeWithTensor:name:)]
         pub unsafe fn negativeWithTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -234,7 +249,8 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other signWithTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(signWithTensor:name:)]
         pub unsafe fn signWithTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -251,7 +267,8 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other signbitWithTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(signbitWithTensor:name:)]
         pub unsafe fn signbitWithTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -265,7 +282,8 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other ceilWithTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(ceilWithTensor:name:)]
         pub unsafe fn ceilWithTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -279,7 +297,8 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other floorWithTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(floorWithTensor:name:)]
         pub unsafe fn floorWithTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -293,7 +312,8 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other roundWithTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(roundWithTensor:name:)]
         pub unsafe fn roundWithTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -307,7 +327,8 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other rintWithTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(rintWithTensor:name:)]
         pub unsafe fn rintWithTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -321,7 +342,8 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other sinWithTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(sinWithTensor:name:)]
         pub unsafe fn sinWithTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -335,7 +357,8 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other cosWithTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(cosWithTensor:name:)]
         pub unsafe fn cosWithTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -349,7 +372,8 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other tanWithTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(tanWithTensor:name:)]
         pub unsafe fn tanWithTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -363,7 +387,8 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other sinhWithTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(sinhWithTensor:name:)]
         pub unsafe fn sinhWithTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -377,7 +402,8 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other coshWithTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(coshWithTensor:name:)]
         pub unsafe fn coshWithTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -391,7 +417,8 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other tanhWithTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(tanhWithTensor:name:)]
         pub unsafe fn tanhWithTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -405,7 +432,8 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other asinWithTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(asinWithTensor:name:)]
         pub unsafe fn asinWithTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -419,7 +447,8 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other acosWithTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(acosWithTensor:name:)]
         pub unsafe fn acosWithTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -433,7 +462,8 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other atanWithTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(atanWithTensor:name:)]
         pub unsafe fn atanWithTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -447,7 +477,8 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other asinhWithTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(asinhWithTensor:name:)]
         pub unsafe fn asinhWithTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -461,7 +492,8 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other acoshWithTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(acoshWithTensor:name:)]
         pub unsafe fn acoshWithTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -475,7 +507,8 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other atanhWithTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(atanhWithTensor:name:)]
         pub unsafe fn atanhWithTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -489,7 +522,8 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other notWithTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(notWithTensor:name:)]
         pub unsafe fn notWithTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -505,7 +539,8 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other isInfiniteWithTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(isInfiniteWithTensor:name:)]
         pub unsafe fn isInfiniteWithTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -521,7 +556,8 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other isFiniteWithTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(isFiniteWithTensor:name:)]
         pub unsafe fn isFiniteWithTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -537,7 +573,8 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other isNaNWithTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(isNaNWithTensor:name:)]
         pub unsafe fn isNaNWithTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -551,7 +588,8 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other erfWithTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(erfWithTensor:name:)]
         pub unsafe fn erfWithTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -567,7 +605,8 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other truncateWithTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(truncateWithTensor:name:)]
         pub unsafe fn truncateWithTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -583,7 +622,8 @@ extern_methods!(
         /// - tensor: The input tensor, which must be of integer type.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other bitwiseNOTWithTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(bitwiseNOTWithTensor:name:)]
         pub unsafe fn bitwiseNOTWithTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -599,7 +639,8 @@ extern_methods!(
         /// - tensor: The input tensor, which must be of integer type.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other bitwisePopulationCountWithTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(bitwisePopulationCountWithTensor:name:)]
         pub unsafe fn bitwisePopulationCountWithTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -613,7 +654,8 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: An optional string which serves as an identifier for the operation..
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other conjugateWithTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(conjugateWithTensor:name:)]
         pub unsafe fn conjugateWithTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -633,7 +675,8 @@ extern_methods!(
         /// - secondaryTensor: The RHS tensor of the binary Op.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other additionWithPrimaryTensor:secondaryTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(additionWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn additionWithPrimaryTensor_secondaryTensor_name(
             &self,
             primary_tensor: &MPSGraphTensor,
@@ -654,7 +697,8 @@ extern_methods!(
         /// - secondaryTensor: The RHS tensor of the binary Op.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other subtractionWithPrimaryTensor:secondaryTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(subtractionWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn subtractionWithPrimaryTensor_secondaryTensor_name(
             &self,
             primary_tensor: &MPSGraphTensor,
@@ -675,7 +719,8 @@ extern_methods!(
         /// - secondaryTensor: The RHS tensor of the binary Op.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other multiplicationWithPrimaryTensor:secondaryTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(multiplicationWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn multiplicationWithPrimaryTensor_secondaryTensor_name(
             &self,
             primary_tensor: &MPSGraphTensor,
@@ -696,7 +741,8 @@ extern_methods!(
         /// - secondaryTensor: The RHS tensor of the binary Op.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other divisionWithPrimaryTensor:secondaryTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(divisionWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn divisionWithPrimaryTensor_secondaryTensor_name(
             &self,
             primary_tensor: &MPSGraphTensor,
@@ -717,7 +763,8 @@ extern_methods!(
         /// - secondaryTensor: The RHS tensor of the binary Op.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other moduloWithPrimaryTensor:secondaryTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(moduloWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn moduloWithPrimaryTensor_secondaryTensor_name(
             &self,
             primary_tensor: &MPSGraphTensor,
@@ -738,7 +785,8 @@ extern_methods!(
         /// - secondaryTensor: The RHS tensor of the binary Op.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other powerWithPrimaryTensor:secondaryTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(powerWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn powerWithPrimaryTensor_secondaryTensor_name(
             &self,
             primary_tensor: &MPSGraphTensor,
@@ -759,7 +807,8 @@ extern_methods!(
         /// - secondaryTensor: The RHS tensor of the binary Op.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other minimumWithPrimaryTensor:secondaryTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(minimumWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn minimumWithPrimaryTensor_secondaryTensor_name(
             &self,
             primary_tensor: &MPSGraphTensor,
@@ -780,7 +829,8 @@ extern_methods!(
         /// - secondaryTensor: The RHS tensor of the binary Op.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other maximumWithPrimaryTensor:secondaryTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(maximumWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn maximumWithPrimaryTensor_secondaryTensor_name(
             &self,
             primary_tensor: &MPSGraphTensor,
@@ -803,7 +853,8 @@ extern_methods!(
         /// - secondaryTensor: The RHS tensor of the binary Op.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other minimumWithNaNPropagationWithPrimaryTensor:secondaryTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(minimumWithNaNPropagationWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn minimumWithNaNPropagationWithPrimaryTensor_secondaryTensor_name(
             &self,
             primary_tensor: &MPSGraphTensor,
@@ -826,7 +877,8 @@ extern_methods!(
         /// - secondaryTensor: The RHS tensor of the binary Op.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other maximumWithNaNPropagationWithPrimaryTensor:secondaryTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(maximumWithNaNPropagationWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn maximumWithNaNPropagationWithPrimaryTensor_secondaryTensor_name(
             &self,
             primary_tensor: &MPSGraphTensor,
@@ -847,7 +899,8 @@ extern_methods!(
         /// - secondaryTensor: The RHS tensor of the binary Op.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other equalWithPrimaryTensor:secondaryTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(equalWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn equalWithPrimaryTensor_secondaryTensor_name(
             &self,
             primary_tensor: &MPSGraphTensor,
@@ -868,7 +921,8 @@ extern_methods!(
         /// - secondaryTensor: The RHS tensor of the binary Op.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other notEqualWithPrimaryTensor:secondaryTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(notEqualWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn notEqualWithPrimaryTensor_secondaryTensor_name(
             &self,
             primary_tensor: &MPSGraphTensor,
@@ -891,7 +945,8 @@ extern_methods!(
         /// - secondaryTensor: The RHS tensor of the binary Op.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other lessThanWithPrimaryTensor:secondaryTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(lessThanWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn lessThanWithPrimaryTensor_secondaryTensor_name(
             &self,
             primary_tensor: &MPSGraphTensor,
@@ -914,7 +969,8 @@ extern_methods!(
         /// - secondaryTensor: The RHS tensor of the binary Op.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other lessThanOrEqualToWithPrimaryTensor:secondaryTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(lessThanOrEqualToWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn lessThanOrEqualToWithPrimaryTensor_secondaryTensor_name(
             &self,
             primary_tensor: &MPSGraphTensor,
@@ -935,7 +991,8 @@ extern_methods!(
         /// - secondaryTensor: The RHS tensor of the binary Op.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other greaterThanWithPrimaryTensor:secondaryTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(greaterThanWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn greaterThanWithPrimaryTensor_secondaryTensor_name(
             &self,
             primary_tensor: &MPSGraphTensor,
@@ -958,7 +1015,8 @@ extern_methods!(
         /// - secondaryTensor: The RHS tensor of the binary Op.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other greaterThanOrEqualToWithPrimaryTensor:secondaryTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(greaterThanOrEqualToWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn greaterThanOrEqualToWithPrimaryTensor_secondaryTensor_name(
             &self,
             primary_tensor: &MPSGraphTensor,
@@ -982,7 +1040,8 @@ extern_methods!(
         /// - secondaryTensor: The RHS tensor of the binary Op.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other logicalANDWithPrimaryTensor:secondaryTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(logicalANDWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn logicalANDWithPrimaryTensor_secondaryTensor_name(
             &self,
             primary_tensor: &MPSGraphTensor,
@@ -1003,7 +1062,8 @@ extern_methods!(
         /// - secondaryTensor: The RHS tensor of the binary Op.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other logicalORWithPrimaryTensor:secondaryTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(logicalORWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn logicalORWithPrimaryTensor_secondaryTensor_name(
             &self,
             primary_tensor: &MPSGraphTensor,
@@ -1027,7 +1087,8 @@ extern_methods!(
         /// - secondaryTensor: The RHS tensor of the binary Op.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other logicalNANDWithPrimaryTensor:secondaryTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(logicalNANDWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn logicalNANDWithPrimaryTensor_secondaryTensor_name(
             &self,
             primary_tensor: &MPSGraphTensor,
@@ -1048,7 +1109,8 @@ extern_methods!(
         /// - secondaryTensor: The RHS tensor of the binary Op.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other logicalNORWithPrimaryTensor:secondaryTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(logicalNORWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn logicalNORWithPrimaryTensor_secondaryTensor_name(
             &self,
             primary_tensor: &MPSGraphTensor,
@@ -1069,7 +1131,8 @@ extern_methods!(
         /// - secondaryTensor: The RHS tensor of the binary Op.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other logicalXORWithPrimaryTensor:secondaryTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(logicalXORWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn logicalXORWithPrimaryTensor_secondaryTensor_name(
             &self,
             primary_tensor: &MPSGraphTensor,
@@ -1090,7 +1153,8 @@ extern_methods!(
         /// - secondaryTensor: The RHS tensor of the binary Op.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other logicalXNORWithPrimaryTensor:secondaryTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(logicalXNORWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn logicalXNORWithPrimaryTensor_secondaryTensor_name(
             &self,
             primary_tensor: &MPSGraphTensor,
@@ -1112,7 +1176,8 @@ extern_methods!(
         /// - secondaryTensor: The RHS tensor of the binary Op.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other atan2WithPrimaryTensor:secondaryTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(atan2WithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn atan2WithPrimaryTensor_secondaryTensor_name(
             &self,
             primary_tensor: &MPSGraphTensor,
@@ -1128,7 +1193,8 @@ extern_methods!(
         /// - secondaryTensor: The secondary input tensor, must be of integer type.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other bitwiseANDWithPrimaryTensor:secondaryTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(bitwiseANDWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn bitwiseANDWithPrimaryTensor_secondaryTensor_name(
             &self,
             primary_tensor: &MPSGraphTensor,
@@ -1144,7 +1210,8 @@ extern_methods!(
         /// - secondaryTensor: The secondary input tensor, must be of integer type.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other bitwiseORWithPrimaryTensor:secondaryTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(bitwiseORWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn bitwiseORWithPrimaryTensor_secondaryTensor_name(
             &self,
             primary_tensor: &MPSGraphTensor,
@@ -1160,7 +1227,8 @@ extern_methods!(
         /// - secondaryTensor: The secondary input tensor, must be of integer type.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other bitwiseXORWithPrimaryTensor:secondaryTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(bitwiseXORWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn bitwiseXORWithPrimaryTensor_secondaryTensor_name(
             &self,
             primary_tensor: &MPSGraphTensor,
@@ -1176,7 +1244,8 @@ extern_methods!(
         /// - secondaryTensor: The secondary input tensor, must be of integer type.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other bitwiseLeftShiftWithPrimaryTensor:secondaryTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(bitwiseLeftShiftWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn bitwiseLeftShiftWithPrimaryTensor_secondaryTensor_name(
             &self,
             primary_tensor: &MPSGraphTensor,
@@ -1192,7 +1261,8 @@ extern_methods!(
         /// - secondaryTensor: The secondary input tensor, must be of integer type.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other bitwiseRightShiftWithPrimaryTensor:secondaryTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(bitwiseRightShiftWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn bitwiseRightShiftWithPrimaryTensor_secondaryTensor_name(
             &self,
             primary_tensor: &MPSGraphTensor,
@@ -1214,7 +1284,8 @@ extern_methods!(
         /// - falseSelectTensor: The tensor to select values from if predicate is false.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other selectWithPredicateTensor:truePredicateTensor:falsePredicateTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(selectWithPredicateTensor:truePredicateTensor:falsePredicateTensor:name:)]
         pub unsafe fn selectWithPredicateTensor_truePredicateTensor_falsePredicateTensor_name(
             &self,
             predicate_tensor: &MPSGraphTensor,
@@ -1237,7 +1308,8 @@ extern_methods!(
         /// - minValueTensor: The tensor with max values to clamp to.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other clampWithTensor:minValueTensor:maxValueTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(clampWithTensor:minValueTensor:maxValueTensor:name:)]
         pub unsafe fn clampWithTensor_minValueTensor_maxValueTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -1258,7 +1330,8 @@ extern_methods!(
         /// - secondaryTensor: The RHS tensor of the binary Op.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other divisionNoNaNWithPrimaryTensor:secondaryTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(divisionNoNaNWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn divisionNoNaNWithPrimaryTensor_secondaryTensor_name(
             &self,
             primary_tensor: &MPSGraphTensor,
@@ -1279,7 +1352,8 @@ extern_methods!(
         /// - secondaryTensor: The RHS tensor of the binary Op.
         /// - name: An optional string which serves as an identifier for the operation.
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other floorModuloWithPrimaryTensor:secondaryTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(floorModuloWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn floorModuloWithPrimaryTensor_secondaryTensor_name(
             &self,
             primary_tensor: &MPSGraphTensor,
@@ -1294,7 +1368,8 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: An optional string which serves as an identifier for the operation..
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other realPartOfTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(realPartOfTensor:name:)]
         pub unsafe fn realPartOfTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -1308,7 +1383,8 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: An optional string which serves as an identifier for the operation..
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other imaginaryPartOfTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(imaginaryPartOfTensor:name:)]
         pub unsafe fn imaginaryPartOfTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -1323,7 +1399,8 @@ extern_methods!(
         /// - imaginaryTensor: The imaginary part of the complex tensor.
         /// - name: An optional string which serves as an identifier for the operation..
         /// - Returns: A valid `MPSGraphTensor` object containing the elementwise result of the applied operation.
-        #[method_id(@__method_family Other complexTensorWithRealTensor:imaginaryTensor:name:)]
+        #[unsafe(method_family(none))]
+        #[method_id(complexTensorWithRealTensor:imaginaryTensor:name:)]
         pub unsafe fn complexTensorWithRealTensor_imaginaryTensor_name(
             &self,
             real_tensor: &MPSGraphTensor,

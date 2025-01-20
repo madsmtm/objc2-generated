@@ -124,7 +124,8 @@ extern_protocol!(
     pub unsafe trait SCNSceneRenderer: NSObjectProtocol {
         #[cfg(feature = "SCNScene")]
         /// Specifies the scene of the receiver.
-        #[method_id(@__method_family Other scene)]
+        #[unsafe(method_family(none))]
+        #[method_id(scene)]
         unsafe fn scene(&self) -> Option<Retained<SCNScene>>;
 
         #[cfg(feature = "SCNScene")]
@@ -143,7 +144,8 @@ extern_protocol!(
         unsafe fn setSceneTime(&self, scene_time: NSTimeInterval);
 
         /// Specifies the renderer delegate.
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         unsafe fn delegate(&self)
             -> Option<Retained<ProtocolObject<dyn SCNSceneRendererDelegate>>>;
 
@@ -161,7 +163,8 @@ extern_protocol!(
         /// Parameter `point`: A point in the coordinate system of the receiver.
         ///
         /// Parameter `options`: Optional parameters (see the "Hit test options" group for the available options).
-        #[method_id(@__method_family Other hitTest:options:)]
+        #[unsafe(method_family(none))]
+        #[method_id(hitTest:options:)]
         unsafe fn hitTest_options(
             &self,
             point: CGPoint,
@@ -189,7 +192,8 @@ extern_protocol!(
         /// Parameter `pointOfView`: The point of view used to test the visibility.
         ///
         /// Returns an array of all the nodes that are inside or intersects the clipping planes of the point of view. Starting in macOS10.13/iOS11 this method work with the presentation tree.
-        #[method_id(@__method_family Other nodesInsideFrustumWithPointOfView:)]
+        #[unsafe(method_family(none))]
+        #[method_id(nodesInsideFrustumWithPointOfView:)]
         unsafe fn nodesInsideFrustumWithPointOfView(
             &self,
             point_of_view: &SCNNode,
@@ -235,7 +239,8 @@ extern_protocol!(
         /// Specifies the point of view used to render the scene.
         ///
         /// A point of view must have either a camera or a spot light attached.
-        #[method_id(@__method_family Other pointOfView)]
+        #[unsafe(method_family(none))]
+        #[method_id(pointOfView)]
         unsafe fn pointOfView(&self) -> Option<Retained<SCNNode>>;
 
         #[cfg(feature = "SCNNode")]
@@ -329,7 +334,8 @@ extern_protocol!(
         /// Specifies the color space used by the receiver for shading.
         ///
         /// SceneKit will automatically color match image and color objects (NSImage, NSColor, CGImageRef, CGColorRef, etc.). When you directly provide color components to shaders, use this property to color match them to the working color space.
-        #[method_id(@__method_family Other workingColorSpace)]
+        #[unsafe(method_family(none))]
+        #[method_id(workingColorSpace)]
         unsafe fn workingColorSpace(&self) -> Retained<CGColorSpace>;
 
         /// A Core OpenGL render context that is used as the render target (a CGLContextObj on macOS, an EAGLContext on iOS).
@@ -339,7 +345,8 @@ extern_protocol!(
         #[cfg(feature = "objc2-metal")]
         #[cfg(not(target_os = "watchos"))]
         /// The current render command encoder if any. This property is only valid within the SCNSceneRendererDelegate methods and when rendering with Metal. Otherwise it is set to nil.
-        #[method_id(@__method_family Other currentRenderCommandEncoder)]
+        #[unsafe(method_family(none))]
+        #[method_id(currentRenderCommandEncoder)]
         unsafe fn currentRenderCommandEncoder(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MTLRenderCommandEncoder>>>;
@@ -347,13 +354,15 @@ extern_protocol!(
         #[cfg(feature = "objc2-metal")]
         #[cfg(not(target_os = "watchos"))]
         /// The render pass descriptor of the receiver. This property is only valid within the SCNSceneRendererDelegate methods and when rendering with Metal. Otherwise it is set to nil.
-        #[method_id(@__method_family Other currentRenderPassDescriptor)]
+        #[unsafe(method_family(none))]
+        #[method_id(currentRenderPassDescriptor)]
         unsafe fn currentRenderPassDescriptor(&self) -> Retained<MTLRenderPassDescriptor>;
 
         #[cfg(feature = "objc2-metal")]
         #[cfg(not(target_os = "watchos"))]
         /// The metal device of the renderer. This property is only valid on a renderer created with a Metal device. Otherwise it is set to nil.
-        #[method_id(@__method_family Other device)]
+        #[unsafe(method_family(none))]
+        #[method_id(device)]
         unsafe fn device(&self) -> Option<Retained<ProtocolObject<dyn MTLDevice>>>;
 
         #[cfg(feature = "objc2-metal")]
@@ -377,24 +386,28 @@ extern_protocol!(
         #[cfg(feature = "objc2-metal")]
         #[cfg(not(target_os = "watchos"))]
         /// The command queue of the renderer. This property is only valid on a renderer created with a Metal device. Otherwise it is set to nil.
-        #[method_id(@__method_family Other commandQueue)]
+        #[unsafe(method_family(none))]
+        #[method_id(commandQueue)]
         unsafe fn commandQueue(&self) -> Option<Retained<ProtocolObject<dyn MTLCommandQueue>>>;
 
         #[cfg(feature = "objc2-avf-audio")]
         /// Contains the instance of audio engine used by the scene.
         ///
         /// The audio engine can be used to add custom nodes to the audio graph.
-        #[method_id(@__method_family Other audioEngine)]
+        #[unsafe(method_family(none))]
+        #[method_id(audioEngine)]
         unsafe fn audioEngine(&self) -> Retained<AVAudioEngine>;
 
         #[cfg(feature = "objc2-avf-audio")]
         /// Contains the instance of audio environment node used by the scene to spacialize sounds.
-        #[method_id(@__method_family Other audioEnvironmentNode)]
+        #[unsafe(method_family(none))]
+        #[method_id(audioEnvironmentNode)]
         unsafe fn audioEnvironmentNode(&self) -> Retained<AVAudioEnvironmentNode>;
 
         #[cfg(feature = "SCNNode")]
         /// Use this property to set the audio node to use as the listener position and orientation when rendering positional audio for this scene. The default is nil which means that the current point of view will be used dynamically.
-        #[method_id(@__method_family Other audioListener)]
+        #[unsafe(method_family(none))]
+        #[method_id(audioListener)]
         unsafe fn audioListener(&self) -> Option<Retained<SCNNode>>;
 
         #[cfg(feature = "SCNNode")]

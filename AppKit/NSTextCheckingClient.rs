@@ -222,7 +222,8 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcheckingclient?language=objc)
     #[cfg(feature = "NSTextInputClient")]
     pub unsafe trait NSTextCheckingClient: NSTextInputClient + NSTextInputTraits {
-        #[method_id(@__method_family Other annotatedSubstringForProposedRange:actualRange:)]
+        #[unsafe(method_family(none))]
+        #[method_id(annotatedSubstringForProposedRange:actualRange:)]
         unsafe fn annotatedSubstringForProposedRange_actualRange(
             &self,
             range: NSRange,
@@ -261,7 +262,8 @@ extern_protocol!(
         unsafe fn selectAndShowRange(&self, range: NSRange);
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-        #[method_id(@__method_family Other viewForRange:firstRect:actualRange:)]
+        #[unsafe(method_family(none))]
+        #[method_id(viewForRange:firstRect:actualRange:)]
         unsafe fn viewForRange_firstRect_actualRange(
             &self,
             range: NSRange,
@@ -271,7 +273,8 @@ extern_protocol!(
         ) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSCandidateListTouchBarItem", feature = "NSTouchBarItem"))]
-        #[method_id(@__method_family Other candidateListTouchBarItem)]
+        #[unsafe(method_family(none))]
+        #[method_id(candidateListTouchBarItem)]
         unsafe fn candidateListTouchBarItem(
             &self,
             mtm: MainThreadMarker,

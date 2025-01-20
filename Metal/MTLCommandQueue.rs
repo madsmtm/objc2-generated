@@ -13,7 +13,8 @@ extern_protocol!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandqueue?language=objc)
     pub unsafe trait MTLCommandQueue: NSObjectProtocol {
         /// A string to help identify this object
-        #[method_id(@__method_family Other label)]
+        #[unsafe(method_family(none))]
+        #[method_id(label)]
         fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
@@ -22,20 +23,23 @@ extern_protocol!(
 
         #[cfg(feature = "MTLDevice")]
         /// The device this queue will submit to
-        #[method_id(@__method_family Other device)]
+        #[unsafe(method_family(none))]
+        #[method_id(device)]
         fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         #[cfg(feature = "MTLCommandBuffer")]
         /// Returns a new autoreleased command buffer used to encode work into this queue that
         /// maintains strong references to resources used within the command buffer.
-        #[method_id(@__method_family Other commandBuffer)]
+        #[unsafe(method_family(none))]
+        #[method_id(commandBuffer)]
         fn commandBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLCommandBuffer>>>;
 
         #[cfg(feature = "MTLCommandBuffer")]
         /// Parameter `descriptor`: The requested properties of the command buffer.
         ///
         /// Returns a new autoreleased command buffer used to encode work into this queue.
-        #[method_id(@__method_family Other commandBufferWithDescriptor:)]
+        #[unsafe(method_family(none))]
+        #[method_id(commandBufferWithDescriptor:)]
         unsafe fn commandBufferWithDescriptor(
             &self,
             descriptor: &MTLCommandBufferDescriptor,
@@ -44,7 +48,8 @@ extern_protocol!(
         #[cfg(feature = "MTLCommandBuffer")]
         /// Returns a new autoreleased command buffer used to encode work into this queue that
         /// does not maintain strong references to resources used within the command buffer.
-        #[method_id(@__method_family Other commandBufferWithUnretainedReferences)]
+        #[unsafe(method_family(none))]
+        #[method_id(commandBufferWithUnretainedReferences)]
         unsafe fn commandBufferWithUnretainedReferences(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MTLCommandBuffer>>>;
@@ -113,7 +118,8 @@ extern_methods!(
         #[cfg(feature = "MTLLogState")]
         /// @
         /// Specify the MTLLogState to enable shader logging
-        #[method_id(@__method_family Other logState)]
+        #[unsafe(method_family(none))]
+        #[method_id(logState)]
         pub unsafe fn logState(&self) -> Option<Retained<ProtocolObject<dyn MTLLogState>>>;
 
         #[cfg(feature = "MTLLogState")]
@@ -126,10 +132,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLCommandQueueDescriptor {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

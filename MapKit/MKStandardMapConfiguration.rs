@@ -55,23 +55,27 @@ unsafe impl NSSecureCoding for MKStandardMapConfiguration {}
 extern_methods!(
     #[cfg(feature = "MKMapConfiguration")]
     unsafe impl MKStandardMapConfiguration {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithElevationStyle:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithElevationStyle:)]
         pub unsafe fn initWithElevationStyle(
             this: Allocated<Self>,
             elevation_style: MKMapElevationStyle,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithElevationStyle:emphasisStyle:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithElevationStyle:emphasisStyle:)]
         pub unsafe fn initWithElevationStyle_emphasisStyle(
             this: Allocated<Self>,
             elevation_style: MKMapElevationStyle,
             emphasis_style: MKStandardMapEmphasisStyle,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithEmphasisStyle:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithEmphasisStyle:)]
         pub unsafe fn initWithEmphasisStyle(
             this: Allocated<Self>,
             emphasis_style: MKStandardMapEmphasisStyle,
@@ -85,7 +89,8 @@ extern_methods!(
         pub unsafe fn setEmphasisStyle(&self, emphasis_style: MKStandardMapEmphasisStyle);
 
         #[cfg(feature = "MKPointOfInterestFilter")]
-        #[method_id(@__method_family Other pointOfInterestFilter)]
+        #[unsafe(method_family(none))]
+        #[method_id(pointOfInterestFilter)]
         pub unsafe fn pointOfInterestFilter(&self) -> Option<Retained<MKPointOfInterestFilter>>;
 
         #[cfg(feature = "MKPointOfInterestFilter")]
@@ -109,7 +114,8 @@ extern_methods!(
     /// Methods declared on superclass `MKMapConfiguration`
     #[cfg(feature = "MKMapConfiguration")]
     unsafe impl MKStandardMapConfiguration {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

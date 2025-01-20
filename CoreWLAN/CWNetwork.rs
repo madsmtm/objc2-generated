@@ -39,7 +39,8 @@ extern_methods!(
         ///
         ///
         /// See also: CLLocationManager
-        #[method_id(@__method_family Other ssid)]
+        #[unsafe(method_family(none))]
+        #[method_id(ssid)]
         pub unsafe fn ssid(&self) -> Option<Retained<NSString>>;
 
         /// Returns the service set identifier (SSID) for the Wi-Fi network device, encapsulated in an NSData object.
@@ -52,7 +53,8 @@ extern_methods!(
         ///
         ///
         /// See also: CLLocationManager
-        #[method_id(@__method_family Other ssidData)]
+        #[unsafe(method_family(none))]
+        #[method_id(ssidData)]
         pub unsafe fn ssidData(&self) -> Option<Retained<NSData>>;
 
         /// Returns the basic service set identifier (BSSID) for the Wi-Fi network device, returned as UTF-8 string.
@@ -65,12 +67,14 @@ extern_methods!(
         ///
         ///
         /// See also: CLLocationManager
-        #[method_id(@__method_family Other bssid)]
+        #[unsafe(method_family(none))]
+        #[method_id(bssid)]
         pub unsafe fn bssid(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "CWChannel")]
         /// The operating channel of the Wi-Fi device.
-        #[method_id(@__method_family Other wlanChannel)]
+        #[unsafe(method_family(none))]
+        #[method_id(wlanChannel)]
         pub unsafe fn wlanChannel(&self) -> Option<Retained<CWChannel>>;
 
         /// Returns the received signal strength indication (RSSI) measurement (dBm) for the Wi-Fi device.
@@ -82,7 +86,8 @@ extern_methods!(
         pub unsafe fn noiseMeasurement(&self) -> NSInteger;
 
         /// Returns information element data included in beacon or probe response frames.
-        #[method_id(@__method_family Other informationElementData)]
+        #[unsafe(method_family(none))]
+        #[method_id(informationElementData)]
         pub unsafe fn informationElementData(&self) -> Option<Retained<NSData>>;
 
         /// Returns the advertised country code (ISO/IEC 3166-1:1997) for the Wi-Fi device.
@@ -92,7 +97,8 @@ extern_methods!(
         ///
         ///
         /// See also: CLLocationManager
-        #[method_id(@__method_family Other countryCode)]
+        #[unsafe(method_family(none))]
+        #[method_id(countryCode)]
         pub unsafe fn countryCode(&self) -> Option<Retained<NSString>>;
 
         /// Returns the beacon interval (ms) for the Wi-Fi device.
@@ -161,10 +167,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CWNetwork {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

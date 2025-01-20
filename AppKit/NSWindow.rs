@@ -538,7 +538,8 @@ extern_methods!(
         pub fn contentRectForFrameRect(&self, frame_rect: NSRect) -> NSRect;
 
         #[cfg(feature = "NSGraphics")]
-        #[method_id(@__method_family Init initWithContentRect:styleMask:backing:defer:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithContentRect:styleMask:backing:defer:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer(
             this: Allocated<Self>,
             content_rect: NSRect,
@@ -548,7 +549,8 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSGraphics", feature = "NSScreen"))]
-        #[method_id(@__method_family Init initWithContentRect:styleMask:backing:defer:screen:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithContentRect:styleMask:backing:defer:screen:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer_screen(
             this: Allocated<Self>,
             content_rect: NSRect,
@@ -558,10 +560,12 @@ extern_methods!(
             screen: Option<&NSScreen>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
-        #[method_id(@__method_family Other title)]
+        #[unsafe(method_family(none))]
+        #[method_id(title)]
         pub fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
@@ -570,7 +574,8 @@ extern_methods!(
 
         /// Secondary text that may be displayed adjacent to or below the primary title depending on the configuration of the window.
         /// A value of empty string will remove the subtitle from the window layout.
-        #[method_id(@__method_family Other subtitle)]
+        #[unsafe(method_family(none))]
+        #[method_id(subtitle)]
         pub unsafe fn subtitle(&self) -> Retained<NSString>;
 
         /// Setter for [`subtitle`][Self::subtitle].
@@ -614,14 +619,16 @@ extern_methods!(
         /// `contentLayoutGuide`is a corollary to
         /// `contentLayoutRect.`It can be used by autolayout constraints to automatically bind to the
         /// `contentLayoutRect.`
-        #[method_id(@__method_family Other contentLayoutGuide)]
+        #[unsafe(method_family(none))]
+        #[method_id(contentLayoutGuide)]
         pub unsafe fn contentLayoutGuide(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(all(
             feature = "NSTitlebarAccessoryViewController",
             feature = "NSViewController"
         ))]
-        #[method_id(@__method_family Other titlebarAccessoryViewControllers)]
+        #[unsafe(method_family(none))]
+        #[method_id(titlebarAccessoryViewControllers)]
         pub unsafe fn titlebarAccessoryViewControllers(
             &self,
         ) -> Retained<NSArray<NSTitlebarAccessoryViewController>>;
@@ -664,14 +671,16 @@ extern_methods!(
         /// If url is not nil and its path is not empty, the window will show a document icon in the titlebar.
         /// If the url represents a filename or other resource with a known icon, that icon will be used as the document icon.  Otherwise the default document icon will be used.  The icon can be customized using `-[[NSWindow standardWindowButton:NSWindowDocumentIconButton] setImage:customImage]`.  If url is not nil and its path is not empty, the window will have a pop-up menu which can be shown via command-click on the area containing the document icon and title.  By default, this menu will display the path components of the url.  The presence and contents of this menu can be controlled by the delegate method `-[window:shouldPopUpDocumentPathMenu:]`
         /// If the url is nil or has an empty path, the window will not show a document icon and will not have a pop-up menu available via command-click.
-        #[method_id(@__method_family Other representedURL)]
+        #[unsafe(method_family(none))]
+        #[method_id(representedURL)]
         pub unsafe fn representedURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`representedURL`][Self::representedURL].
         #[method(setRepresentedURL:)]
         pub unsafe fn setRepresentedURL(&self, represented_url: Option<&NSURL>);
 
-        #[method_id(@__method_family Other representedFilename)]
+        #[unsafe(method_family(none))]
+        #[method_id(representedFilename)]
         pub unsafe fn representedFilename(&self) -> Retained<NSString>;
 
         /// Setter for [`representedFilename`][Self::representedFilename].
@@ -689,7 +698,8 @@ extern_methods!(
         pub unsafe fn setExcludedFromWindowsMenu(&self, excluded_from_windows_menu: bool);
 
         #[cfg(feature = "NSView")]
-        #[method_id(@__method_family Other contentView)]
+        #[unsafe(method_family(none))]
+        #[method_id(contentView)]
         pub fn contentView(&self) -> Option<Retained<NSView>>;
 
         #[cfg(feature = "NSView")]
@@ -697,7 +707,8 @@ extern_methods!(
         #[method(setContentView:)]
         pub fn setContentView(&self, content_view: Option<&NSView>);
 
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSWindowDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -720,7 +731,8 @@ extern_methods!(
         pub fn setStyleMask(&self, style_mask: NSWindowStyleMask);
 
         #[cfg(all(feature = "NSText", feature = "NSView"))]
-        #[method_id(@__method_family Other fieldEditor:forObject:)]
+        #[unsafe(method_family(none))]
+        #[method_id(fieldEditor:forObject:)]
         pub unsafe fn fieldEditor_forObject(
             &self,
             create_flag: bool,
@@ -841,7 +853,8 @@ extern_methods!(
         #[method(makeFirstResponder:)]
         pub fn makeFirstResponder(&self, responder: Option<&NSResponder>) -> bool;
 
-        #[method_id(@__method_family Other firstResponder)]
+        #[unsafe(method_family(none))]
+        #[method_id(firstResponder)]
         pub fn firstResponder(&self) -> Option<Retained<NSResponder>>;
 
         #[cfg(feature = "NSEvent")]
@@ -877,7 +890,8 @@ extern_methods!(
         pub unsafe fn tryToPerform_with(&self, action: Sel, object: Option<&AnyObject>) -> bool;
 
         #[cfg(feature = "NSPasteboard")]
-        #[method_id(@__method_family Other validRequestorForSendType:returnType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(validRequestorForSendType:returnType:)]
         pub unsafe fn validRequestorForSendType_returnType(
             &self,
             send_type: Option<&NSPasteboardType>,
@@ -885,7 +899,8 @@ extern_methods!(
         ) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSColor")]
-        #[method_id(@__method_family Other backgroundColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(backgroundColor)]
         pub unsafe fn backgroundColor(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
@@ -975,7 +990,8 @@ extern_methods!(
         pub unsafe fn orderFrontRegardless(&self);
 
         #[cfg(feature = "NSImage")]
-        #[method_id(@__method_family Other miniwindowImage)]
+        #[unsafe(method_family(none))]
+        #[method_id(miniwindowImage)]
         pub unsafe fn miniwindowImage(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
@@ -983,7 +999,8 @@ extern_methods!(
         #[method(setMiniwindowImage:)]
         pub unsafe fn setMiniwindowImage(&self, miniwindow_image: Option<&NSImage>);
 
-        #[method_id(@__method_family Other miniwindowTitle)]
+        #[unsafe(method_family(none))]
+        #[method_id(miniwindowTitle)]
         pub unsafe fn miniwindowTitle(&self) -> Retained<NSString>;
 
         /// Setter for [`miniwindowTitle`][Self::miniwindowTitle].
@@ -991,7 +1008,8 @@ extern_methods!(
         pub unsafe fn setMiniwindowTitle(&self, miniwindow_title: Option<&NSString>);
 
         #[cfg(feature = "NSDockTile")]
-        #[method_id(@__method_family Other dockTile)]
+        #[unsafe(method_family(none))]
+        #[method_id(dockTile)]
         pub unsafe fn dockTile(&self) -> Retained<NSDockTile>;
 
         #[method(isDocumentEdited)]
@@ -1102,10 +1120,12 @@ extern_methods!(
         #[method(performZoom:)]
         pub unsafe fn performZoom(&self, sender: Option<&AnyObject>);
 
-        #[method_id(@__method_family Other dataWithEPSInsideRect:)]
+        #[unsafe(method_family(none))]
+        #[method_id(dataWithEPSInsideRect:)]
         pub unsafe fn dataWithEPSInsideRect(&self, rect: NSRect) -> Retained<NSData>;
 
-        #[method_id(@__method_family Other dataWithPDFInsideRect:)]
+        #[unsafe(method_family(none))]
+        #[method_id(dataWithPDFInsideRect:)]
         pub unsafe fn dataWithPDFInsideRect(&self, rect: NSRect) -> Retained<NSData>;
 
         #[method(print:)]
@@ -1159,11 +1179,13 @@ extern_methods!(
 
         #[cfg(feature = "NSScreen")]
         /// The screen property returns the best screen for the window. If the window only intersects one screen, it returns that screen. If it intersects more than one screen, then it resolves the tie through based on what space it is mostly on. It may return nil if there are no available screens, or it is completely off screen.
-        #[method_id(@__method_family Other screen)]
+        #[unsafe(method_family(none))]
+        #[method_id(screen)]
         pub fn screen(&self) -> Option<Retained<NSScreen>>;
 
         #[cfg(feature = "NSScreen")]
-        #[method_id(@__method_family Other deepestScreen)]
+        #[unsafe(method_family(none))]
+        #[method_id(deepestScreen)]
         pub unsafe fn deepestScreen(&self) -> Option<Retained<NSScreen>>;
 
         #[method(hasShadow)]
@@ -1263,7 +1285,8 @@ extern_methods!(
         #[method(toggleFullScreen:)]
         pub fn toggleFullScreen(&self, sender: Option<&AnyObject>);
 
-        #[method_id(@__method_family Other stringWithSavedFrame)]
+        #[unsafe(method_family(none))]
+        #[method_id(stringWithSavedFrame)]
         pub unsafe fn stringWithSavedFrame(&self) -> Retained<NSWindowPersistableFrameDescriptor>;
 
         #[method(setFrameFromString:)]
@@ -1285,7 +1308,8 @@ extern_methods!(
         #[method(setFrameAutosaveName:)]
         pub unsafe fn setFrameAutosaveName(&self, name: &NSWindowFrameAutosaveName) -> bool;
 
-        #[method_id(@__method_family Other frameAutosaveName)]
+        #[unsafe(method_family(none))]
+        #[method_id(frameAutosaveName)]
         pub unsafe fn frameAutosaveName(&self) -> Retained<NSWindowFrameAutosaveName>;
 
         #[method(removeFrameUsingName:)]
@@ -1334,13 +1358,15 @@ extern_methods!(
         pub unsafe fn setMaxFullScreenContentSize(&self, max_full_screen_content_size: NSSize);
 
         #[cfg(feature = "NSGraphics")]
-        #[method_id(@__method_family Other deviceDescription)]
+        #[unsafe(method_family(none))]
+        #[method_id(deviceDescription)]
         pub unsafe fn deviceDescription(
             &self,
         ) -> Retained<NSDictionary<NSDeviceDescriptionKey, AnyObject>>;
 
         #[cfg(feature = "NSWindowController")]
-        #[method_id(@__method_family Other windowController)]
+        #[unsafe(method_family(none))]
+        #[method_id(windowController)]
         pub unsafe fn windowController(&self) -> Option<Retained<NSWindowController>>;
 
         #[cfg(feature = "NSWindowController")]
@@ -1377,11 +1403,13 @@ extern_methods!(
         );
 
         /// An ordered array of the sheets on the window. This consists of the presented sheets in top-to-bottom order, followed by queued sheets in the order they were queued. This does not include nested/sub-sheets.
-        #[method_id(@__method_family Other sheets)]
+        #[unsafe(method_family(none))]
+        #[method_id(sheets)]
         pub unsafe fn sheets(&self) -> Retained<NSArray<NSWindow>>;
 
         /// Returns the top-most sheet if there is one or more sheets, or nil if there is no sheet.
-        #[method_id(@__method_family Other attachedSheet)]
+        #[unsafe(method_family(none))]
+        #[method_id(attachedSheet)]
         pub unsafe fn attachedSheet(&self) -> Option<Retained<NSWindow>>;
 
         #[method(isSheet)]
@@ -1391,11 +1419,13 @@ extern_methods!(
         /// This relationship exists starting when the sheet is begun (using
         /// `NSApplication's``-beginSheet:modalForWindow:modalDelegate:didEndSelector:contextInfo: or NSWindow's -beginSheet:completionHandler:`), and ending once it is ordered out.
         /// Returns nil if the window is not a sheet or has no sheet parent.
-        #[method_id(@__method_family Other sheetParent)]
+        #[unsafe(method_family(none))]
+        #[method_id(sheetParent)]
         pub unsafe fn sheetParent(&self) -> Option<Retained<NSWindow>>;
 
         #[cfg(all(feature = "NSButton", feature = "NSControl", feature = "NSView"))]
-        #[method_id(@__method_family Other standardWindowButton:forStyleMask:)]
+        #[unsafe(method_family(none))]
+        #[method_id(standardWindowButton:forStyleMask:)]
         pub unsafe fn standardWindowButton_forStyleMask(
             b: NSWindowButton,
             style_mask: NSWindowStyleMask,
@@ -1403,7 +1433,8 @@ extern_methods!(
         ) -> Option<Retained<NSButton>>;
 
         #[cfg(all(feature = "NSButton", feature = "NSControl", feature = "NSView"))]
-        #[method_id(@__method_family Other standardWindowButton:)]
+        #[unsafe(method_family(none))]
+        #[method_id(standardWindowButton:)]
         pub fn standardWindowButton(&self, b: NSWindowButton) -> Option<Retained<NSButton>>;
 
         #[cfg(feature = "NSGraphics")]
@@ -1417,10 +1448,12 @@ extern_methods!(
         #[method(removeChildWindow:)]
         pub unsafe fn removeChildWindow(&self, child_win: &NSWindow);
 
-        #[method_id(@__method_family Other childWindows)]
+        #[unsafe(method_family(none))]
+        #[method_id(childWindows)]
         pub unsafe fn childWindows(&self) -> Option<Retained<NSArray<NSWindow>>>;
 
-        #[method_id(@__method_family Other parentWindow)]
+        #[unsafe(method_family(none))]
+        #[method_id(parentWindow)]
         pub unsafe fn parentWindow(&self) -> Option<Retained<NSWindow>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -1430,7 +1463,8 @@ extern_methods!(
 
         #[cfg(feature = "NSAppearance")]
         /// If set, the receiver will inherit the appearance of that object, as well as use KVO to observe its effectiveAppearance for changes. Typically this is used for child windows that are shown from a parent window or specific view. Defaults to NSApp.
-        #[method_id(@__method_family Other appearanceSource)]
+        #[unsafe(method_family(none))]
+        #[method_id(appearanceSource)]
         pub unsafe fn appearanceSource(&self) -> Option<Retained<NSObject>>;
 
         #[cfg(feature = "NSAppearance")]
@@ -1440,7 +1474,8 @@ extern_methods!(
         pub unsafe fn setAppearanceSource(&self, appearance_source: Option<&NSObject>);
 
         #[cfg(feature = "NSColorSpace")]
-        #[method_id(@__method_family Other colorSpace)]
+        #[unsafe(method_family(none))]
+        #[method_id(colorSpace)]
         pub unsafe fn colorSpace(&self) -> Option<Retained<NSColorSpace>>;
 
         #[cfg(feature = "NSColorSpace")]
@@ -1466,7 +1501,8 @@ extern_methods!(
         /// `windowNumbers = [NSWindow windowNumbersWithOptions:NSWindowNumberListAllApplications|NSWindowNumberListAllSpaces];`
         /// To get an array of windowNumbers visible on any space and belonging to the calling application:
         /// `windowNumbers = [NSWindow windowNumbersWithOptions:NSWindowNumberListAllSpaces];`
-        #[method_id(@__method_family Other windowNumbersWithOptions:)]
+        #[unsafe(method_family(none))]
+        #[method_id(windowNumbersWithOptions:)]
         pub unsafe fn windowNumbersWithOptions(
             options: NSWindowNumberListOptions,
             mtm: MainThreadMarker,
@@ -1500,7 +1536,8 @@ extern_methods!(
         /// The main content view controller for the window. This provides the contentView of the window. Assigning this value will remove the existing contentView and will make the contentViewController.view the main contentView for the window. The default value is nil. The contentViewController only controls the contentView, and not the title of the window. The window title can easily be bound to the contentViewController with the following: [window bind:NSTitleBinding toObject:contentViewController withKeyPath:
         /// "
         /// title" options:nil]. Setting the contentViewController will cause the window to resize based on the current size of the contentViewController. Autolayout should be used to restrict the size of the window. The value of the contentViewController is encoded in the NIB. Directly assigning a contentView will clear out the contentViewController.
-        #[method_id(@__method_family Other contentViewController)]
+        #[unsafe(method_family(none))]
+        #[method_id(contentViewController)]
         pub unsafe fn contentViewController(&self) -> Option<Retained<NSViewController>>;
 
         #[cfg(feature = "NSViewController")]
@@ -1513,7 +1550,8 @@ extern_methods!(
 
         #[cfg(feature = "NSViewController")]
         /// Convenience method for creating an autoreleased titled window with the given contentViewController. A basic NSWindow with the following attributes is made: titled, closable, resizable, miniaturizable. The window's title is automatically bound to the contentViewController's title. The size of the window can easily be controlled by utilizing autolayout and applying size constraints to the view (or its subviews). The window has isReleasedWhenClosed set to NO, and it must be explicitly retained to keep the window instance alive. To have it automatically be freed when it is closed, do the following: [window retain] and [window setReleasedWhenClosed:YES].
-        #[method_id(@__method_family Other windowWithContentViewController:)]
+        #[unsafe(method_family(none))]
+        #[method_id(windowWithContentViewController:)]
         pub unsafe fn windowWithContentViewController(
             content_view_controller: &NSViewController,
         ) -> Retained<Self>;
@@ -1524,7 +1562,8 @@ extern_methods!(
         pub fn performWindowDragWithEvent(&self, event: &NSEvent);
 
         #[cfg(feature = "NSView")]
-        #[method_id(@__method_family Other initialFirstResponder)]
+        #[unsafe(method_family(none))]
+        #[method_id(initialFirstResponder)]
         pub unsafe fn initialFirstResponder(&self) -> Option<Retained<NSView>>;
 
         #[cfg(feature = "NSView")]
@@ -1551,7 +1590,8 @@ extern_methods!(
         pub unsafe fn keyViewSelectionDirection(&self) -> NSSelectionDirection;
 
         #[cfg(all(feature = "NSActionCell", feature = "NSButtonCell", feature = "NSCell"))]
-        #[method_id(@__method_family Other defaultButtonCell)]
+        #[unsafe(method_family(none))]
+        #[method_id(defaultButtonCell)]
         pub unsafe fn defaultButtonCell(&self) -> Option<Retained<NSButtonCell>>;
 
         #[cfg(all(feature = "NSActionCell", feature = "NSButtonCell", feature = "NSCell"))]
@@ -1576,7 +1616,8 @@ extern_methods!(
         pub unsafe fn recalculateKeyViewLoop(&self);
 
         #[cfg(feature = "NSToolbar")]
-        #[method_id(@__method_family Other toolbar)]
+        #[unsafe(method_family(none))]
+        #[method_id(toolbar)]
         pub unsafe fn toolbar(&self) -> Option<Retained<NSToolbar>>;
 
         #[cfg(feature = "NSToolbar")]
@@ -1632,7 +1673,8 @@ extern_methods!(
         /// `tabbingIdentifier`will have the ability to be tabbed together when a window is being shown. This allows aggregation of similar windows. By default, the
         /// `tabbingIdentifier`will be generated based on inherent window properties, such as the window class name, the delegate class name, the window controller class name, and some additional state. Windows can be explicitly made to group together by using the same
         /// `tabbingIdentifier.`
-        #[method_id(@__method_family Other tabbingIdentifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(tabbingIdentifier)]
         pub fn tabbingIdentifier(&self) -> Retained<NSWindowTabbingIdentifier>;
 
         /// Setter for [`tabbingIdentifier`][Self::tabbingIdentifier].
@@ -1661,7 +1703,8 @@ extern_methods!(
         pub unsafe fn toggleTabOverview(&self, sender: Option<&AnyObject>);
 
         /// This is now a cover for `self.tabGroup.windows`, but will return nil if the window is not showing a tab bar.
-        #[method_id(@__method_family Other tabbedWindows)]
+        #[unsafe(method_family(none))]
+        #[method_id(tabbedWindows)]
         pub unsafe fn tabbedWindows(&self) -> Option<Retained<NSArray<NSWindow>>>;
 
         #[cfg(feature = "NSGraphics")]
@@ -1676,13 +1719,15 @@ extern_methods!(
         #[cfg(feature = "NSWindowTab")]
         /// Access the properties for this window when it is a tabbed window environment. See the
         /// `NSWindowTab`header and comments for more information.
-        #[method_id(@__method_family Other tab)]
+        #[unsafe(method_family(none))]
+        #[method_id(tab)]
         pub unsafe fn tab(&self) -> Retained<NSWindowTab>;
 
         #[cfg(feature = "NSWindowTabGroup")]
         /// Represents a tab group of windows. This
         /// `tabGroup`is lazily created on demand.
-        #[method_id(@__method_family Other tabGroup)]
+        #[unsafe(method_family(none))]
+        #[method_id(tabGroup)]
         pub fn tabGroup(&self) -> Option<Retained<NSWindowTabGroup>>;
 
         #[cfg(feature = "block2")]
@@ -1745,7 +1790,8 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(feature = "NSResponder")]
     unsafe impl NSWindow {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -1754,7 +1800,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSResponder")]
     unsafe impl NSWindow {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -1777,11 +1824,13 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSEvent")]
-        #[method_id(@__method_family Other nextEventMatchingMask:)]
+        #[unsafe(method_family(none))]
+        #[method_id(nextEventMatchingMask:)]
         pub unsafe fn nextEventMatchingMask(&self, mask: NSEventMask) -> Option<Retained<NSEvent>>;
 
         #[cfg(feature = "NSEvent")]
-        #[method_id(@__method_family Other nextEventMatchingMask:untilDate:inMode:dequeue:)]
+        #[unsafe(method_family(none))]
+        #[method_id(nextEventMatchingMask:untilDate:inMode:dequeue:)]
         pub unsafe fn nextEventMatchingMask_untilDate_inMode_dequeue(
             &self,
             mask: NSEventMask,
@@ -1807,7 +1856,8 @@ extern_methods!(
         pub fn sendEvent(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
-        #[method_id(@__method_family Other currentEvent)]
+        #[unsafe(method_family(none))]
+        #[method_id(currentEvent)]
         pub unsafe fn currentEvent(&self) -> Option<Retained<NSEvent>>;
 
         #[method(acceptsMouseMovedEvents)]
@@ -1864,7 +1914,8 @@ extern_methods!(
             feature = "NSDraggingSession",
             feature = "NSEvent"
         ))]
-        #[method_id(@__method_family Other beginDraggingSessionWithItems:event:source:)]
+        #[unsafe(method_family(none))]
+        #[method_id(beginDraggingSessionWithItems:event:source:)]
         pub unsafe fn beginDraggingSessionWithItems_event_source(
             &self,
             items: &NSArray<NSDraggingItem>,
@@ -1901,7 +1952,8 @@ extern_methods!(
     unsafe impl NSWindow {
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(target_vendor = "apple")]
-        #[method_id(@__method_family Other displayLinkWithTarget:selector:)]
+        #[unsafe(method_family(none))]
+        #[method_id(displayLinkWithTarget:selector:)]
         pub unsafe fn displayLinkWithTarget_selector(
             &self,
             target: &AnyObject,
@@ -1920,7 +1972,8 @@ extern_protocol!(
 
         #[cfg(feature = "NSResponder")]
         #[optional]
-        #[method_id(@__method_family Other windowWillReturnFieldEditor:toObject:)]
+        #[unsafe(method_family(none))]
+        #[method_id(windowWillReturnFieldEditor:toObject:)]
         unsafe fn windowWillReturnFieldEditor_toObject(
             &self,
             sender: &NSWindow,
@@ -1948,7 +2001,8 @@ extern_protocol!(
 
         #[cfg(feature = "NSResponder")]
         #[optional]
-        #[method_id(@__method_family Other windowWillReturnUndoManager:)]
+        #[unsafe(method_family(none))]
+        #[method_id(windowWillReturnUndoManager:)]
         unsafe fn windowWillReturnUndoManager(
             &self,
             window: &NSWindow,
@@ -2019,7 +2073,8 @@ extern_protocol!(
         #[cfg(feature = "NSResponder")]
         /// The default animation between a window and its fullscreen representation is a crossfade.  With knowledge of the layout of a window before and after it enters fullscreen, an application can do a much better job on the animation.  The following API allows a window delegate to customize the animation by providing a custom window or windows containing layers or other effects.  In order to manage windows on spaces, we need the window delegate to provide a list of windows involved in the animation.  If an application does not do a custom animation, this method can be unimplemented or can return nil.  `-window:startCustomAnimationToEnterFullScreenWithDuration:` will be called only if `-customWindowsToEnterFullScreenForWindow:` returns non-nil.
         #[optional]
-        #[method_id(@__method_family Other customWindowsToEnterFullScreenForWindow:)]
+        #[unsafe(method_family(none))]
+        #[method_id(customWindowsToEnterFullScreenForWindow:)]
         unsafe fn customWindowsToEnterFullScreenForWindow(
             &self,
             window: &NSWindow,
@@ -2044,7 +2099,8 @@ extern_protocol!(
         #[cfg(feature = "NSResponder")]
         /// The window is about to exit fullscreen mode.  The following API allows a window delegate to customize the animation when the window is about to exit fullscreen.  In order to manage windows on spaces, we need the window delegate to provide a list of windows involved in the animation.  If an application does not do a custom animation, this method can be unimplemented or can return nil. `-window:startCustomAnimationToExitFullScreenWithDuration:` will be called only if `-customWindowsToExitFullScreenForWindow:` returns non-nil.
         #[optional]
-        #[method_id(@__method_family Other customWindowsToExitFullScreenForWindow:)]
+        #[unsafe(method_family(none))]
+        #[method_id(customWindowsToExitFullScreenForWindow:)]
         unsafe fn customWindowsToExitFullScreenForWindow(
             &self,
             window: &NSWindow,
@@ -2063,7 +2119,8 @@ extern_protocol!(
         #[cfg(all(feature = "NSResponder", feature = "NSScreen"))]
         /// `-customWindowsToEnterFullScreenForWindow:onScreen:` will be called in place of `-customWindowsToEnterFullScreenForWindow:` if both are implemented.
         #[optional]
-        #[method_id(@__method_family Other customWindowsToEnterFullScreenForWindow:onScreen:)]
+        #[unsafe(method_family(none))]
+        #[method_id(customWindowsToEnterFullScreenForWindow:onScreen:)]
         unsafe fn customWindowsToEnterFullScreenForWindow_onScreen(
             &self,
             window: &NSWindow,
@@ -2116,7 +2173,8 @@ extern_protocol!(
         #[cfg(all(feature = "NSPreviewRepresentingActivityItem", feature = "NSResponder"))]
         /// Preview representable activity items, used for sharing and collaboration.
         #[optional]
-        #[method_id(@__method_family Other previewRepresentableActivityItemsForWindow:)]
+        #[unsafe(method_family(none))]
+        #[method_id(previewRepresentableActivityItemsForWindow:)]
         unsafe fn previewRepresentableActivityItemsForWindow(
             &self,
             window: &NSWindow,
@@ -2125,7 +2183,8 @@ extern_protocol!(
         #[cfg(feature = "NSResponder")]
         /// Method called to get the window to share once sharing is confirmed, after a request is initiated by requestSharingOfWindowUsingPreview:title:completionHandler:. Implement this on the delegate of the requesting window
         #[optional]
-        #[method_id(@__method_family Other windowForSharingRequestFromWindow:)]
+        #[unsafe(method_family(none))]
+        #[method_id(windowForSharingRequestFromWindow:)]
         unsafe fn windowForSharingRequestFromWindow(
             &self,
             window: &NSWindow,
@@ -2523,7 +2582,8 @@ extern_methods!(
 
         #[cfg(feature = "NSGraphicsContext")]
         #[deprecated = "Add instances of NSView to display content in a window."]
-        #[method_id(@__method_family Other graphicsContext)]
+        #[unsafe(method_family(none))]
+        #[method_id(graphicsContext)]
         pub unsafe fn graphicsContext(&self) -> Option<Retained<NSGraphicsContext>>;
 
         #[deprecated = "This property does not do anything and should not be used"]
@@ -2561,7 +2621,8 @@ extern_methods!(
         pub unsafe fn setShowsResizeIndicator(&self, shows_resize_indicator: bool);
 
         #[deprecated = "This method should not be used."]
-        #[method_id(@__method_family Init initWithWindowRef:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithWindowRef:)]
         pub unsafe fn initWithWindowRef(
             this: Allocated<Self>,
             window_ref: NonNull<c_void>,

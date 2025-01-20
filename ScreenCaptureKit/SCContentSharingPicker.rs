@@ -64,7 +64,8 @@ extern_methods!(
         );
 
         /// excludedWindowIDs Excludes CGWindowIDs for picking
-        #[method_id(@__method_family Other excludedWindowIDs)]
+        #[unsafe(method_family(none))]
+        #[method_id(excludedWindowIDs)]
         pub unsafe fn excludedWindowIDs(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Setter for [`excludedWindowIDs`][Self::excludedWindowIDs].
@@ -72,7 +73,8 @@ extern_methods!(
         pub unsafe fn setExcludedWindowIDs(&self, excluded_window_i_ds: &NSArray<NSNumber>);
 
         /// excludedBundleIDs Excludes bundle IDs for picking
-        #[method_id(@__method_family Other excludedBundleIDs)]
+        #[unsafe(method_family(none))]
+        #[method_id(excludedBundleIDs)]
         pub unsafe fn excludedBundleIDs(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`excludedBundleIDs`][Self::excludedBundleIDs].
@@ -95,10 +97,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<NSCopying: Message> SCContentSharingPickerConfiguration<NSCopying> {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -118,18 +122,22 @@ unsafe impl NSObjectProtocol for SCContentSharingPicker {}
 
 extern_methods!(
     unsafe impl SCContentSharingPicker {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// sharedPicker the singleton shared picker for the application
-        #[method_id(@__method_family Other sharedPicker)]
+        #[unsafe(method_family(none))]
+        #[method_id(sharedPicker)]
         pub unsafe fn sharedPicker() -> Retained<SCContentSharingPicker>;
 
         /// defaultConfiguration for the content sharing picker. If a stream does not have a configuration, the default configuration will be used.
-        #[method_id(@__method_family Other defaultConfiguration)]
+        #[unsafe(method_family(none))]
+        #[method_id(defaultConfiguration)]
         pub unsafe fn defaultConfiguration(&self) -> Retained<SCContentSharingPickerConfiguration>;
 
         /// Setter for [`defaultConfiguration`][Self::defaultConfiguration].
@@ -140,7 +148,8 @@ extern_methods!(
         );
 
         /// maximumStreamCount An integer value that, if set, limits when Control Center will show the UI to present a picker with no associated stream. If set to 0, Control Center will never ever show UI to present a picker without an associated stream.
-        #[method_id(@__method_family Other maximumStreamCount)]
+        #[unsafe(method_family(none))]
+        #[method_id(maximumStreamCount)]
         pub unsafe fn maximumStreamCount(&self) -> Option<Retained<NSNumber>>;
 
         /// Setter for [`maximumStreamCount`][Self::maximumStreamCount].

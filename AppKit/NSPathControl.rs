@@ -79,21 +79,24 @@ extern_methods!(
         #[method(setEditable:)]
         pub unsafe fn setEditable(&self, editable: bool);
 
-        #[method_id(@__method_family Other allowedTypes)]
+        #[unsafe(method_family(none))]
+        #[method_id(allowedTypes)]
         pub unsafe fn allowedTypes(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`allowedTypes`][Self::allowedTypes].
         #[method(setAllowedTypes:)]
         pub unsafe fn setAllowedTypes(&self, allowed_types: Option<&NSArray<NSString>>);
 
-        #[method_id(@__method_family Other placeholderString)]
+        #[unsafe(method_family(none))]
+        #[method_id(placeholderString)]
         pub unsafe fn placeholderString(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`placeholderString`][Self::placeholderString].
         #[method(setPlaceholderString:)]
         pub unsafe fn setPlaceholderString(&self, placeholder_string: Option<&NSString>);
 
-        #[method_id(@__method_family Other placeholderAttributedString)]
+        #[unsafe(method_family(none))]
+        #[method_id(placeholderAttributedString)]
         pub unsafe fn placeholderAttributedString(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Setter for [`placeholderAttributedString`][Self::placeholderAttributedString].
@@ -103,7 +106,8 @@ extern_methods!(
             placeholder_attributed_string: Option<&NSAttributedString>,
         );
 
-        #[method_id(@__method_family Other URL)]
+        #[unsafe(method_family(none))]
+        #[method_id(URL)]
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`URL`][Self::URL].
@@ -127,11 +131,13 @@ extern_methods!(
         pub unsafe fn setPathStyle(&self, path_style: NSPathStyle);
 
         #[cfg(feature = "NSPathControlItem")]
-        #[method_id(@__method_family Other clickedPathItem)]
+        #[unsafe(method_family(none))]
+        #[method_id(clickedPathItem)]
         pub unsafe fn clickedPathItem(&self) -> Option<Retained<NSPathControlItem>>;
 
         #[cfg(feature = "NSPathControlItem")]
-        #[method_id(@__method_family Other pathItems)]
+        #[unsafe(method_family(none))]
+        #[method_id(pathItems)]
         pub unsafe fn pathItems(&self) -> Retained<NSArray<NSPathControlItem>>;
 
         #[cfg(feature = "NSPathControlItem")]
@@ -140,7 +146,8 @@ extern_methods!(
         pub unsafe fn setPathItems(&self, path_items: &NSArray<NSPathControlItem>);
 
         #[cfg(feature = "NSColor")]
-        #[method_id(@__method_family Other backgroundColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(backgroundColor)]
         pub unsafe fn backgroundColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColor")]
@@ -148,7 +155,8 @@ extern_methods!(
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&NSColor>);
 
-        #[method_id(@__method_family Other delegate)]
+        #[unsafe(method_family(none))]
+        #[method_id(delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSPathControlDelegate>>>;
@@ -170,7 +178,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSMenu")]
-        #[method_id(@__method_family Other menu)]
+        #[unsafe(method_family(none))]
+        #[method_id(menu)]
         pub unsafe fn menu(&self) -> Option<Retained<NSMenu>>;
 
         #[cfg(feature = "NSMenu")]
@@ -184,10 +193,12 @@ extern_methods!(
     /// Methods declared on superclass `NSControl`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSPathControl {
-        #[method_id(@__method_family Init initWithFrame:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -199,7 +210,8 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSPathControl {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -208,7 +220,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSPathControl {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -319,7 +332,8 @@ extern_methods!(
             feature = "NSTextFieldCell"
         ))]
         #[deprecated = "Use the clickedPathItem property instead"]
-        #[method_id(@__method_family Other clickedPathComponentCell)]
+        #[unsafe(method_family(none))]
+        #[method_id(clickedPathComponentCell)]
         pub unsafe fn clickedPathComponentCell(&self) -> Option<Retained<NSPathComponentCell>>;
 
         #[cfg(all(
@@ -329,7 +343,8 @@ extern_methods!(
             feature = "NSTextFieldCell"
         ))]
         #[deprecated = "Use the pathItems property instead"]
-        #[method_id(@__method_family Other pathComponentCells)]
+        #[unsafe(method_family(none))]
+        #[method_id(pathComponentCells)]
         pub unsafe fn pathComponentCells(&self) -> Retained<NSArray<NSPathComponentCell>>;
 
         #[cfg(all(

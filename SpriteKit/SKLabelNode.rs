@@ -95,25 +95,29 @@ extern_methods!(
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl SKLabelNode {
-        #[method_id(@__method_family Other labelNodeWithText:)]
+        #[unsafe(method_family(none))]
+        #[method_id(labelNodeWithText:)]
         pub unsafe fn labelNodeWithText(
             text: Option<&NSString>,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Other labelNodeWithAttributedText:)]
+        #[unsafe(method_family(none))]
+        #[method_id(labelNodeWithAttributedText:)]
         pub unsafe fn labelNodeWithAttributedText(
             attributed_text: Option<&NSAttributedString>,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Other labelNodeWithFontNamed:)]
+        #[unsafe(method_family(none))]
+        #[method_id(labelNodeWithFontNamed:)]
         pub unsafe fn labelNodeWithFontNamed(
             font_name: Option<&NSString>,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithFontNamed:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithFontNamed:)]
         pub unsafe fn initWithFontNamed(
             this: Allocated<Self>,
             font_name: Option<&NSString>,
@@ -168,21 +172,24 @@ extern_methods!(
         #[method(setPreferredMaxLayoutWidth:)]
         pub unsafe fn setPreferredMaxLayoutWidth(&self, preferred_max_layout_width: CGFloat);
 
-        #[method_id(@__method_family Other fontName)]
+        #[unsafe(method_family(none))]
+        #[method_id(fontName)]
         pub unsafe fn fontName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`fontName`][Self::fontName].
         #[method(setFontName:)]
         pub unsafe fn setFontName(&self, font_name: Option<&NSString>);
 
-        #[method_id(@__method_family Other text)]
+        #[unsafe(method_family(none))]
+        #[method_id(text)]
         pub unsafe fn text(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`text`][Self::text].
         #[method(setText:)]
         pub unsafe fn setText(&self, text: Option<&NSString>);
 
-        #[method_id(@__method_family Other attributedText)]
+        #[unsafe(method_family(none))]
+        #[method_id(attributedText)]
         pub unsafe fn attributedText(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Setter for [`attributedText`][Self::attributedText].
@@ -199,7 +206,8 @@ extern_methods!(
         pub unsafe fn setFontSize(&self, font_size: CGFloat);
 
         /// Base color that the text is rendered with (if supported by the font)
-        #[method_id(@__method_family Other fontColor)]
+        #[unsafe(method_family(none))]
+        #[method_id(fontColor)]
         pub unsafe fn fontColor(&self) -> Option<Retained<NSColor>>;
 
         /// Setter for [`fontColor`][Self::fontColor].
@@ -217,7 +225,8 @@ extern_methods!(
         pub unsafe fn setColorBlendFactor(&self, color_blend_factor: CGFloat);
 
         /// Color to be blended with the text based on the colorBlendFactor
-        #[method_id(@__method_family Other color)]
+        #[unsafe(method_family(none))]
+        #[method_id(color)]
         pub unsafe fn color(&self) -> Option<Retained<NSColor>>;
 
         /// Setter for [`color`][Self::color].
@@ -241,26 +250,31 @@ extern_methods!(
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl SKLabelNode {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Support coding and decoding via NSKeyedArchiver.
-        #[method_id(@__method_family Init initWithCoder:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__method_family Other node)]
+        #[unsafe(method_family(none))]
+        #[method_id(node)]
         pub unsafe fn node(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__method_family Other nodeWithFileNamed:)]
+        #[unsafe(method_family(none))]
+        #[method_id(nodeWithFileNamed:)]
         pub unsafe fn nodeWithFileNamed(
             filename: &NSString,
             mtm: MainThreadMarker,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__method_family Other nodeWithFileNamed:securelyWithClasses:andError:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(nodeWithFileNamed:securelyWithClasses:andError:_)]
         pub unsafe fn nodeWithFileNamed_securelyWithClasses_andError(
             filename: &NSString,
             classes: &NSSet<AnyClass>,
@@ -274,7 +288,8 @@ extern_methods!(
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl SKLabelNode {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

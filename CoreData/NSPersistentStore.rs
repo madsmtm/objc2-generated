@@ -18,7 +18,8 @@ unsafe impl NSObjectProtocol for NSPersistentStore {}
 
 extern_methods!(
     unsafe impl NSPersistentStore {
-        #[method_id(@__method_family Other metadataForPersistentStoreWithURL:error:_)]
+        #[unsafe(method_family(none))]
+        #[method_id(metadataForPersistentStoreWithURL:error:_)]
         pub unsafe fn metadataForPersistentStoreWithURL_error(
             url: &NSURL,
         ) -> Result<Retained<NSDictionary<NSString, AnyObject>>, Retained<NSError>>;
@@ -33,7 +34,8 @@ extern_methods!(
         pub unsafe fn migrationManagerClass() -> &'static AnyClass;
 
         #[cfg(feature = "NSPersistentStoreCoordinator")]
-        #[method_id(@__method_family Init initWithPersistentStoreCoordinator:configurationName:URL:options:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithPersistentStoreCoordinator:configurationName:URL:options:)]
         pub unsafe fn initWithPersistentStoreCoordinator_configurationName_URL_options(
             this: Allocated<Self>,
             root: Option<&NSPersistentStoreCoordinator>,
@@ -42,39 +44,46 @@ extern_methods!(
             options: Option<&NSDictionary>,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(loadMetadata:_)]
         pub unsafe fn loadMetadata(&self) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "NSPersistentStoreCoordinator")]
-        #[method_id(@__method_family Other persistentStoreCoordinator)]
+        #[unsafe(method_family(none))]
+        #[method_id(persistentStoreCoordinator)]
         pub unsafe fn persistentStoreCoordinator(
             &self,
         ) -> Option<Retained<NSPersistentStoreCoordinator>>;
 
-        #[method_id(@__method_family Other configurationName)]
+        #[unsafe(method_family(none))]
+        #[method_id(configurationName)]
         pub unsafe fn configurationName(&self) -> Retained<NSString>;
 
-        #[method_id(@__method_family Other options)]
+        #[unsafe(method_family(none))]
+        #[method_id(options)]
         pub unsafe fn options(&self) -> Option<Retained<NSDictionary>>;
 
-        #[method_id(@__method_family Other URL)]
+        #[unsafe(method_family(none))]
+        #[method_id(URL)]
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`URL`][Self::URL].
         #[method(setURL:)]
         pub unsafe fn setURL(&self, url: Option<&NSURL>);
 
-        #[method_id(@__method_family Other identifier)]
+        #[unsafe(method_family(none))]
+        #[method_id(identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         /// Setter for [`identifier`][Self::identifier].
         #[method(setIdentifier:)]
         pub unsafe fn setIdentifier(&self, identifier: Option<&NSString>);
 
-        #[method_id(@__method_family Other type)]
+        #[unsafe(method_family(none))]
+        #[method_id(type)]
         pub unsafe fn r#type(&self) -> Retained<NSString>;
 
         #[method(isReadOnly)]
@@ -84,7 +93,8 @@ extern_methods!(
         #[method(setReadOnly:)]
         pub unsafe fn setReadOnly(&self, read_only: bool);
 
-        #[method_id(@__method_family Other metadata)]
+        #[unsafe(method_family(none))]
+        #[method_id(metadata)]
         pub unsafe fn metadata(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         /// Setter for [`metadata`][Self::metadata].
@@ -106,7 +116,8 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSCoreDataCoreSpotlightDelegate")]
-        #[method_id(@__method_family Other coreSpotlightExporter)]
+        #[unsafe(method_family(none))]
+        #[method_id(coreSpotlightExporter)]
         pub unsafe fn coreSpotlightExporter(&self) -> Retained<NSCoreDataCoreSpotlightDelegate>;
     }
 );
@@ -114,7 +125,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPersistentStore {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

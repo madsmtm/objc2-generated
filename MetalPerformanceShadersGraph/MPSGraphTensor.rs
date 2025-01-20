@@ -40,7 +40,8 @@ extern_methods!(
         ///
         /// nil shape represents an unranked tensor.
         /// -1 value for a dimension represents that it will be resolved via shape inference at runtime and it can be anything.
-        #[method_id(@__method_family Other shape)]
+        #[unsafe(method_family(none))]
+        #[method_id(shape)]
         pub unsafe fn shape(&self) -> Option<Retained<MPSShape>>;
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
@@ -50,11 +51,13 @@ extern_methods!(
 
         #[cfg(feature = "MPSGraphOperation")]
         /// The operation responsible for creating this tensor.
-        #[method_id(@__method_family Other operation)]
+        #[unsafe(method_family(none))]
+        #[method_id(operation)]
         pub unsafe fn operation(&self) -> Retained<MPSGraphOperation>;
 
         /// Unavailable, please utilize graph methods to create and initialize tensors.
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -63,7 +66,8 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MPSGraphCore")]
     unsafe impl MPSGraphTensor {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

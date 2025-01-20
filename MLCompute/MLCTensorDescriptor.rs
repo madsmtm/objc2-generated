@@ -39,12 +39,14 @@ extern_methods!(
 
         /// The size in each dimension
         #[deprecated]
-        #[method_id(@__method_family Other shape)]
+        #[unsafe(method_family(none))]
+        #[method_id(shape)]
         pub unsafe fn shape(&self) -> Retained<NSArray<NSNumber>>;
 
         /// The stride in bytes in each dimension
         #[deprecated]
-        #[method_id(@__method_family Other stride)]
+        #[unsafe(method_family(none))]
+        #[method_id(stride)]
         pub unsafe fn stride(&self) -> Retained<NSArray<NSNumber>>;
 
         /// The allocation size in bytes for a tensor.
@@ -54,7 +56,8 @@ extern_methods!(
 
         /// TODO
         #[deprecated]
-        #[method_id(@__method_family Other sequenceLengths)]
+        #[unsafe(method_family(none))]
+        #[method_id(sequenceLengths)]
         pub unsafe fn sequenceLengths(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         /// Specifies whether the sequences are sorted or not.
@@ -67,15 +70,18 @@ extern_methods!(
         /// We populate this only when sequenceLengths is valid. The length of this array should be
         /// the maximum sequence length in sequenceLengths (i.e sequenceLengths[0]).
         #[deprecated]
-        #[method_id(@__method_family Other batchSizePerSequenceStep)]
+        #[unsafe(method_family(none))]
+        #[method_id(batchSizePerSequenceStep)]
         pub unsafe fn batchSizePerSequenceStep(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         #[deprecated]
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// The maximum number of tensor dimensions supported
@@ -92,7 +98,8 @@ extern_methods!(
         ///
         /// Returns: A new MLCTensorDescriptor object or nil if failure.
         #[deprecated]
-        #[method_id(@__method_family Other descriptorWithShape:dataType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(descriptorWithShape:dataType:)]
         pub unsafe fn descriptorWithShape_dataType(
             shape: &NSArray<NSNumber>,
             data_type: MLCDataType,
@@ -113,7 +120,8 @@ extern_methods!(
         ///
         /// This method is provided as an easy to use API to create sequence tensors used by recurrent layers.
         #[deprecated]
-        #[method_id(@__method_family Other descriptorWithShape:sequenceLengths:sortedSequences:dataType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(descriptorWithShape:sequenceLengths:sortedSequences:dataType:)]
         pub unsafe fn descriptorWithShape_sequenceLengths_sortedSequences_dataType(
             shape: &NSArray<NSNumber>,
             sequence_lengths: &NSArray<NSNumber>,
@@ -135,7 +143,8 @@ extern_methods!(
         ///
         /// This method is provided as an easy to use API to create [NCHW] tensors used by convolutional layers.
         #[deprecated]
-        #[method_id(@__method_family Other descriptorWithWidth:height:featureChannelCount:batchSize:)]
+        #[unsafe(method_family(none))]
+        #[method_id(descriptorWithWidth:height:featureChannelCount:batchSize:)]
         pub unsafe fn descriptorWithWidth_height_featureChannelCount_batchSize(
             width: NSUInteger,
             height: NSUInteger,
@@ -160,7 +169,8 @@ extern_methods!(
         ///
         /// This method is provided as an easy to use API to create [NCHW] tensors used by convolutional layers.
         #[deprecated]
-        #[method_id(@__method_family Other descriptorWithWidth:height:featureChannelCount:batchSize:dataType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(descriptorWithWidth:height:featureChannelCount:batchSize:dataType:)]
         pub unsafe fn descriptorWithWidth_height_featureChannelCount_batchSize_dataType(
             width: NSUInteger,
             height: NSUInteger,
@@ -186,7 +196,8 @@ extern_methods!(
         ///
         /// This method is provided as an easy to use API to create a weight tensor.
         #[deprecated]
-        #[method_id(@__method_family Other convolutionWeightsDescriptorWithWidth:height:inputFeatureChannelCount:outputFeatureChannelCount:dataType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(convolutionWeightsDescriptorWithWidth:height:inputFeatureChannelCount:outputFeatureChannelCount:dataType:)]
         pub unsafe fn convolutionWeightsDescriptorWithWidth_height_inputFeatureChannelCount_outputFeatureChannelCount_dataType(
             width: NSUInteger,
             height: NSUInteger,
@@ -208,7 +219,8 @@ extern_methods!(
         ///
         /// This method is provided as an easy to use API to create a weight tensor for a kernel of size 1.
         #[deprecated]
-        #[method_id(@__method_family Other convolutionWeightsDescriptorWithInputFeatureChannelCount:outputFeatureChannelCount:dataType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(convolutionWeightsDescriptorWithInputFeatureChannelCount:outputFeatureChannelCount:dataType:)]
         pub unsafe fn convolutionWeightsDescriptorWithInputFeatureChannelCount_outputFeatureChannelCount_dataType(
             input_feature_channel_count: NSUInteger,
             output_feature_channel_count: NSUInteger,
@@ -226,7 +238,8 @@ extern_methods!(
         ///
         /// This method is provided as an easy to use API to create a bias tensor.
         #[deprecated]
-        #[method_id(@__method_family Other convolutionBiasesDescriptorWithFeatureChannelCount:dataType:)]
+        #[unsafe(method_family(none))]
+        #[method_id(convolutionBiasesDescriptorWithFeatureChannelCount:dataType:)]
         pub unsafe fn convolutionBiasesDescriptorWithFeatureChannelCount_dataType(
             feature_channel_count: NSUInteger,
             data_type: MLCDataType,

@@ -99,7 +99,8 @@ extern_methods!(
             color_processing_mode: MTLFXSpatialScalerColorProcessingMode,
         );
 
-        #[method_id(@__method_family New newSpatialScalerWithDevice:)]
+        #[unsafe(method_family(new))]
+        #[method_id(newSpatialScalerWithDevice:)]
         pub unsafe fn newSpatialScalerWithDevice(
             &self,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -113,10 +114,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLFXSpatialScalerDescriptor {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -144,14 +147,16 @@ extern_protocol!(
         #[method(setInputContentHeight:)]
         unsafe fn setInputContentHeight(&self, input_content_height: NSUInteger);
 
-        #[method_id(@__method_family Other colorTexture)]
+        #[unsafe(method_family(none))]
+        #[method_id(colorTexture)]
         unsafe fn colorTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         /// Setter for [`colorTexture`][Self::colorTexture].
         #[method(setColorTexture:)]
         unsafe fn setColorTexture(&self, color_texture: Option<&ProtocolObject<dyn MTLTexture>>);
 
-        #[method_id(@__method_family Other outputTexture)]
+        #[unsafe(method_family(none))]
+        #[method_id(outputTexture)]
         unsafe fn outputTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         /// Setter for [`outputTexture`][Self::outputTexture].
@@ -179,7 +184,8 @@ extern_protocol!(
         #[method(colorProcessingMode)]
         unsafe fn colorProcessingMode(&self) -> MTLFXSpatialScalerColorProcessingMode;
 
-        #[method_id(@__method_family Other fence)]
+        #[unsafe(method_family(none))]
+        #[method_id(fence)]
         unsafe fn fence(&self) -> Option<Retained<ProtocolObject<dyn MTLFence>>>;
 
         /// Setter for [`fence`][Self::fence].

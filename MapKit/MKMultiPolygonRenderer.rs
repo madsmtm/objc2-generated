@@ -20,14 +20,16 @@ extern_methods!(
     #[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]
     unsafe impl MKMultiPolygonRenderer {
         #[cfg(all(feature = "MKMultiPolygon", feature = "MKShape"))]
-        #[method_id(@__method_family Init initWithMultiPolygon:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithMultiPolygon:)]
         pub unsafe fn initWithMultiPolygon(
             this: Allocated<Self>,
             multi_polygon: &MKMultiPolygon,
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MKMultiPolygon", feature = "MKShape"))]
-        #[method_id(@__method_family Other multiPolygon)]
+        #[unsafe(method_family(none))]
+        #[method_id(multiPolygon)]
         pub unsafe fn multiPolygon(&self) -> Retained<MKMultiPolygon>;
     }
 );
@@ -37,7 +39,8 @@ extern_methods!(
     #[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]
     unsafe impl MKMultiPolygonRenderer {
         #[cfg(all(feature = "MKAnnotation", feature = "MKOverlay"))]
-        #[method_id(@__method_family Init initWithOverlay:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithOverlay:)]
         pub unsafe fn initWithOverlay(
             this: Allocated<Self>,
             overlay: &ProtocolObject<dyn MKOverlay>,
@@ -49,10 +52,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]
     unsafe impl MKMultiPolygonRenderer {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

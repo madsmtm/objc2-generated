@@ -31,29 +31,35 @@ unsafe impl NSSecureCoding for NSIndexPath {}
 
 extern_methods!(
     unsafe impl NSIndexPath {
-        #[method_id(@__method_family Other indexPathWithIndex:)]
+        #[unsafe(method_family(none))]
+        #[method_id(indexPathWithIndex:)]
         pub unsafe fn indexPathWithIndex(index: NSUInteger) -> Retained<Self>;
 
-        #[method_id(@__method_family Other indexPathWithIndexes:length:)]
+        #[unsafe(method_family(none))]
+        #[method_id(indexPathWithIndexes:length:)]
         pub unsafe fn indexPathWithIndexes_length(
             indexes: *mut NSUInteger,
             length: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithIndexes:length:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithIndexes:length:)]
         pub unsafe fn initWithIndexes_length(
             this: Allocated<Self>,
             indexes: *mut NSUInteger,
             length: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(@__method_family Init initWithIndex:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithIndex:)]
         pub unsafe fn initWithIndex(this: Allocated<Self>, index: NSUInteger) -> Retained<Self>;
 
-        #[method_id(@__method_family Other indexPathByAddingIndex:)]
+        #[unsafe(method_family(none))]
+        #[method_id(indexPathByAddingIndex:)]
         pub unsafe fn indexPathByAddingIndex(&self, index: NSUInteger) -> Retained<NSIndexPath>;
 
-        #[method_id(@__method_family Other indexPathByRemovingLastIndex)]
+        #[unsafe(method_family(none))]
+        #[method_id(indexPathByRemovingLastIndex)]
         pub unsafe fn indexPathByRemovingLastIndex(&self) -> Retained<NSIndexPath>;
 
         #[method(indexAtPosition:)]
@@ -86,10 +92,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSIndexPath {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

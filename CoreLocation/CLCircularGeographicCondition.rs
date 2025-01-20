@@ -43,7 +43,8 @@ extern_methods!(
         pub unsafe fn radius(&self) -> CLLocationDistance;
 
         #[cfg(feature = "CLLocation")]
-        #[method_id(@__method_family Init initWithCenter:radius:)]
+        #[unsafe(method_family(init))]
+        #[method_id(initWithCenter:radius:)]
         pub unsafe fn initWithCenter_radius(
             this: Allocated<Self>,
             center: CLLocationCoordinate2D,
@@ -56,10 +57,12 @@ extern_methods!(
     /// Methods declared on superclass `CLCondition`
     #[cfg(feature = "CLCondition")]
     unsafe impl CLCircularGeographicCondition {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

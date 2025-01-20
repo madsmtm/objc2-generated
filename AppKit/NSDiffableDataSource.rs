@@ -43,10 +43,12 @@ extern_methods!(
         #[method(numberOfSections)]
         pub unsafe fn numberOfSections(&self) -> NSInteger;
 
-        #[method_id(@__method_family Other sectionIdentifiers)]
+        #[unsafe(method_family(none))]
+        #[method_id(sectionIdentifiers)]
         pub unsafe fn sectionIdentifiers(&self) -> Retained<NSArray<SectionIdentifierType>>;
 
-        #[method_id(@__method_family Other itemIdentifiers)]
+        #[unsafe(method_family(none))]
+        #[method_id(itemIdentifiers)]
         pub unsafe fn itemIdentifiers(&self) -> Retained<NSArray<ItemIdentifierType>>;
 
         #[method(numberOfItemsInSection:)]
@@ -55,13 +57,15 @@ extern_methods!(
             section_identifier: &SectionIdentifierType,
         ) -> NSInteger;
 
-        #[method_id(@__method_family Other itemIdentifiersInSectionWithIdentifier:)]
+        #[unsafe(method_family(none))]
+        #[method_id(itemIdentifiersInSectionWithIdentifier:)]
         pub unsafe fn itemIdentifiersInSectionWithIdentifier(
             &self,
             section_identifier: &SectionIdentifierType,
         ) -> Retained<NSArray<ItemIdentifierType>>;
 
-        #[method_id(@__method_family Other sectionIdentifierForSectionContainingItemIdentifier:)]
+        #[unsafe(method_family(none))]
+        #[method_id(sectionIdentifierForSectionContainingItemIdentifier:)]
         pub unsafe fn sectionIdentifierForSectionContainingItemIdentifier(
             &self,
             item_identifier: &ItemIdentifierType,
@@ -179,10 +183,12 @@ extern_methods!(
     unsafe impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
         NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
     {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -217,13 +223,16 @@ extern_methods!(
     unsafe impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
         NSCollectionViewDiffableDataSource<SectionIdentifierType, ItemIdentifierType>
     {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__method_family Other snapshot)]
+        #[unsafe(method_family(none))]
+        #[method_id(snapshot)]
         pub unsafe fn snapshot(
             &self,
         ) -> Retained<NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>>;
@@ -235,13 +244,15 @@ extern_methods!(
             animating_differences: bool,
         );
 
-        #[method_id(@__method_family Other itemIdentifierForIndexPath:)]
+        #[unsafe(method_family(none))]
+        #[method_id(itemIdentifierForIndexPath:)]
         pub unsafe fn itemIdentifierForIndexPath(
             &self,
             index_path: &NSIndexPath,
         ) -> Option<Retained<ItemIdentifierType>>;
 
-        #[method_id(@__method_family Other indexPathForItemIdentifier:)]
+        #[unsafe(method_family(none))]
+        #[method_id(indexPathForItemIdentifier:)]
         pub unsafe fn indexPathForItemIdentifier(
             &self,
             identifier: &ItemIdentifierType,

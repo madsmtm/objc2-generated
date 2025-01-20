@@ -19,7 +19,8 @@ extern_protocol!(
         /// Scope label
         ///
         /// Created capture scopes are listed in Xcode when long-pressing the capture button, performing the capture over the selected scope
-        #[method_id(@__method_family Other label)]
+        #[unsafe(method_family(none))]
+        #[method_id(label)]
         fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
@@ -27,12 +28,14 @@ extern_protocol!(
         unsafe fn setLabel(&self, label: Option<&NSString>);
 
         #[cfg(feature = "MTLDevice")]
-        #[method_id(@__method_family Other device)]
+        #[unsafe(method_family(none))]
+        #[method_id(device)]
         unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         #[cfg(feature = "MTLCommandQueue")]
         /// If set, this scope will only capture Metal commands from the associated command queue. Defaults to nil (all command queues from the associated device are captured).
-        #[method_id(@__method_family Other commandQueue)]
+        #[unsafe(method_family(none))]
+        #[method_id(commandQueue)]
         unsafe fn commandQueue(&self) -> Option<Retained<ProtocolObject<dyn MTLCommandQueue>>>;
     }
 );

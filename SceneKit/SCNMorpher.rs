@@ -53,7 +53,8 @@ extern_methods!(
         /// Specifies the morph targets as an array of SCNGeometry.
         ///
         /// The target geometries must have the same number of entries in their geometry sources and the same topology as the base geometry.
-        #[method_id(@__method_family Other targets)]
+        #[unsafe(method_family(none))]
+        #[method_id(targets)]
         pub unsafe fn targets(&self) -> Retained<NSArray<SCNGeometry>>;
 
         #[cfg(feature = "SCNGeometry")]
@@ -62,7 +63,8 @@ extern_methods!(
         pub unsafe fn setTargets(&self, targets: &NSArray<SCNGeometry>);
 
         /// Access to all the weights of all the targets.
-        #[method_id(@__method_family Other weights)]
+        #[unsafe(method_family(none))]
+        #[method_id(weights)]
         pub unsafe fn weights(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Setter for [`weights`][Self::weights].
@@ -110,10 +112,12 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNMorpher {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -88,7 +88,8 @@ extern_methods!(
         /// Parameter `code`: is a low level key code that can be used for accessing a keyboard button.
         ///
         /// Note: Full list of supported key constants can be found in GCKeyCodes.h and GCKeyNames.h
-        #[method_id(@__method_family Other buttonForKeyCode:)]
+        #[unsafe(method_family(none))]
+        #[method_id(buttonForKeyCode:)]
         pub unsafe fn buttonForKeyCode(
             &self,
             code: GCKeyCode,
@@ -100,10 +101,12 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "GCPhysicalInputProfile")]
     unsafe impl GCKeyboardInput {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

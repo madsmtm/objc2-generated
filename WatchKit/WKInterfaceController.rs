@@ -281,7 +281,8 @@ unsafe impl NSObjectProtocol for WKInterfaceController {}
 
 extern_methods!(
     unsafe impl WKInterfaceController {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(awakeWithContext:)]
@@ -292,7 +293,8 @@ extern_methods!(
         pub unsafe fn contentFrame(&self) -> CGRect;
 
         #[cfg(feature = "WKCrownSequencer")]
-        #[method_id(@__method_family Other crownSequencer)]
+        #[unsafe(method_family(none))]
+        #[method_id(crownSequencer)]
         pub unsafe fn crownSequencer(&self) -> Retained<WKCrownSequencer>;
 
         #[cfg(feature = "objc2-ui-kit")]
@@ -454,20 +456,23 @@ extern_methods!(
         #[method(dismissAudioRecorderController)]
         pub unsafe fn dismissAudioRecorderController(&self);
 
-        #[method_id(@__method_family Other contextForSegueWithIdentifier:)]
+        #[unsafe(method_family(none))]
+        #[method_id(contextForSegueWithIdentifier:)]
         pub unsafe fn contextForSegueWithIdentifier(
             &self,
             segue_identifier: &NSString,
         ) -> Option<Retained<AnyObject>>;
 
-        #[method_id(@__method_family Other contextsForSegueWithIdentifier:)]
+        #[unsafe(method_family(none))]
+        #[method_id(contextsForSegueWithIdentifier:)]
         pub unsafe fn contextsForSegueWithIdentifier(
             &self,
             segue_identifier: &NSString,
         ) -> Option<Retained<NSArray>>;
 
         #[cfg(all(feature = "WKInterfaceObject", feature = "WKInterfaceTable"))]
-        #[method_id(@__method_family Other contextForSegueWithIdentifier:inTable:rowIndex:)]
+        #[unsafe(method_family(none))]
+        #[method_id(contextForSegueWithIdentifier:inTable:rowIndex:)]
         pub unsafe fn contextForSegueWithIdentifier_inTable_rowIndex(
             &self,
             segue_identifier: &NSString,
@@ -476,7 +481,8 @@ extern_methods!(
         ) -> Option<Retained<AnyObject>>;
 
         #[cfg(all(feature = "WKInterfaceObject", feature = "WKInterfaceTable"))]
-        #[method_id(@__method_family Other contextsForSegueWithIdentifier:inTable:rowIndex:)]
+        #[unsafe(method_family(none))]
+        #[method_id(contextsForSegueWithIdentifier:inTable:rowIndex:)]
         pub unsafe fn contextsForSegueWithIdentifier_inTable_rowIndex(
             &self,
             segue_identifier: &NSString,
@@ -577,7 +583,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKInterfaceController {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -594,11 +601,13 @@ unsafe impl NSObjectProtocol for WKUserNotificationInterfaceController {}
 
 extern_methods!(
     unsafe impl WKUserNotificationInterfaceController {
-        #[method_id(@__method_family Init init)]
+        #[unsafe(method_family(init))]
+        #[method_id(init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-user-notifications")]
-        #[method_id(@__method_family Other notificationActions)]
+        #[unsafe(method_family(none))]
+        #[method_id(notificationActions)]
         pub unsafe fn notificationActions(&self) -> Retained<NSArray<UNNotificationAction>>;
 
         #[cfg(feature = "objc2-user-notifications")]
@@ -614,7 +623,8 @@ extern_methods!(
         pub unsafe fn didReceiveNotification(&self, notification: &UNNotification);
 
         #[cfg(feature = "objc2-user-notifications")]
-        #[method_id(@__method_family Other suggestionsForResponseToActionWithIdentifier:forNotification:inputLanguage:)]
+        #[unsafe(method_family(none))]
+        #[method_id(suggestionsForResponseToActionWithIdentifier:forNotification:inputLanguage:)]
         pub unsafe fn suggestionsForResponseToActionWithIdentifier_forNotification_inputLanguage(
             &self,
             identifier: &NSString,
@@ -646,7 +656,8 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKUserNotificationInterfaceController {
-        #[method_id(@__method_family New new)]
+        #[unsafe(method_family(new))]
+        #[method_id(new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
