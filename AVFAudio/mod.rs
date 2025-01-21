@@ -238,6 +238,8 @@ pub use self::__AVAudioIONode::AVAudioInputNode;
 #[cfg(all(feature = "AVAudioIONode", feature = "AVAudioNode"))]
 pub use self::__AVAudioIONode::AVAudioOutputNode;
 #[cfg(feature = "AVAudioIONode")]
+pub use self::__AVAudioIONode::AVAudioVoiceProcessingOtherAudioDuckingConfiguration;
+#[cfg(feature = "AVAudioIONode")]
 pub use self::__AVAudioIONode::AVAudioVoiceProcessingOtherAudioDuckingLevel;
 #[cfg(feature = "AVAudioIONode")]
 pub use self::__AVAudioIONode::AVAudioVoiceProcessingSpeechActivityEvent;

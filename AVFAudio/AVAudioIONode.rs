@@ -100,6 +100,35 @@ unsafe impl RefEncode for AVAudioVoiceProcessingOtherAudioDuckingLevel {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The configuration of ducking other (i.e. non-voice) audio
+///
+///
+/// Enables advanced ducking which ducks other audio based on the presence of voice activity from local and/or remote chat participants.
+///
+/// Ducking level of other audio
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiovoiceprocessingotheraudioduckingconfiguration?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct AVAudioVoiceProcessingOtherAudioDuckingConfiguration {
+    pub enableAdvancedDucking: Bool,
+    pub duckingLevel: AVAudioVoiceProcessingOtherAudioDuckingLevel,
+}
+
+unsafe impl Encode for AVAudioVoiceProcessingOtherAudioDuckingConfiguration {
+    const ENCODING: Encoding = Encoding::Struct(
+        "AVAudioVoiceProcessingOtherAudioDuckingConfiguration",
+        &[
+            <Bool>::ENCODING,
+            <AVAudioVoiceProcessingOtherAudioDuckingLevel>::ENCODING,
+        ],
+    );
+}
+
+unsafe impl RefEncode for AVAudioVoiceProcessingOtherAudioDuckingConfiguration {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_class!(
     /// Base class for a node that performs audio input or output in the engine.
     ///
@@ -322,6 +351,25 @@ extern_methods!(
                 &block2::Block<dyn Fn(AVAudioVoiceProcessingSpeechActivityEvent)>,
             >,
         ) -> bool;
+
+        /// The configuration of ducking other (i.e. non-voice) audio
+        ///
+        /// Configures the ducking of other (i.e. non-voice) audio, including advanced ducking enablement and ducking level.
+        /// In general, when other audio is played during voice chat, applying a higher level of ducking could increase the intelligibility of the voice chat.
+        /// If not set, the default ducking configuration is to disable advanced ducking, with a ducking level set to AVAudioVoiceProcessingOtherAudioDuckingLevelDefault.
+        #[method(voiceProcessingOtherAudioDuckingConfiguration)]
+        #[unsafe(method_family = none)]
+        pub unsafe fn voiceProcessingOtherAudioDuckingConfiguration(
+            &self,
+        ) -> AVAudioVoiceProcessingOtherAudioDuckingConfiguration;
+
+        /// Setter for [`voiceProcessingOtherAudioDuckingConfiguration`][Self::voiceProcessingOtherAudioDuckingConfiguration].
+        #[method(setVoiceProcessingOtherAudioDuckingConfiguration:)]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setVoiceProcessingOtherAudioDuckingConfiguration(
+            &self,
+            voice_processing_other_audio_ducking_configuration: AVAudioVoiceProcessingOtherAudioDuckingConfiguration,
+        );
     }
 );
 

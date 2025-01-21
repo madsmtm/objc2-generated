@@ -384,6 +384,8 @@ pub use self::__GCExtendedGamepadSnapshot::GCExtendedGamepadSnapShotDataV100From
 ))]
 pub use self::__GCExtendedGamepadSnapshot::GCExtendedGamepadSnapshot;
 #[cfg(feature = "GCExtendedGamepadSnapshot")]
+pub use self::__GCExtendedGamepadSnapshot::GCExtendedGamepadSnapshotData;
+#[cfg(feature = "GCExtendedGamepadSnapshot")]
 pub use self::__GCExtendedGamepadSnapshot::GCExtendedGamepadSnapshotDataFromNSData;
 #[cfg(feature = "GCExtendedGamepadSnapshot")]
 pub use self::__GCExtendedGamepadSnapshot::GCExtendedGamepadSnapshotDataVersion;

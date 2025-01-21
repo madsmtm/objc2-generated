@@ -158,7 +158,7 @@ extern_methods!(
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplecursorsyncinfo?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AVSampleCursorSyncInfo {
     pub sampleIsFullSync: Bool,
     pub sampleIsPartialSync: Bool,
@@ -190,7 +190,7 @@ unsafe impl RefEncode for AVSampleCursorSyncInfo {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplecursordependencyinfo?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AVSampleCursorDependencyInfo {
     pub sampleIndicatesWhetherItHasDependentSamples: Bool,
     pub sampleHasDependentSamples: Bool,
@@ -226,7 +226,7 @@ unsafe impl RefEncode for AVSampleCursorDependencyInfo {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplecursoraudiodependencyinfo?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AVSampleCursorAudioDependencyInfo {
     pub audioSampleIsIndependentlyDecodable: Bool,
     pub audioSamplePacketRefreshCount: NSInteger,
@@ -336,7 +336,7 @@ unsafe impl RefEncode for AVSampleCursorStorageRange {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplecursorchunkinfo?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AVSampleCursorChunkInfo {
     pub chunkSampleCount: i64,
     pub chunkHasUniformSampleSizes: Bool,

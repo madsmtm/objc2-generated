@@ -103,6 +103,62 @@ extern "C" {
     pub static GCCurrentExtendedGamepadSnapshotDataVersion: GCExtendedGamepadSnapshotDataVersion;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcextendedgamepadsnapshotdata?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct GCExtendedGamepadSnapshotData {
+    pub version: u16,
+    pub size: u16,
+    pub dpadX: c_float,
+    pub dpadY: c_float,
+    pub buttonA: c_float,
+    pub buttonB: c_float,
+    pub buttonX: c_float,
+    pub buttonY: c_float,
+    pub leftShoulder: c_float,
+    pub rightShoulder: c_float,
+    pub leftThumbstickX: c_float,
+    pub leftThumbstickY: c_float,
+    pub rightThumbstickX: c_float,
+    pub rightThumbstickY: c_float,
+    pub leftTrigger: c_float,
+    pub rightTrigger: c_float,
+    pub supportsClickableThumbsticks: Bool,
+    pub leftThumbstickButton: Bool,
+    pub rightThumbstickButton: Bool,
+}
+
+unsafe impl Encode for GCExtendedGamepadSnapshotData {
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <u16>::ENCODING,
+            <u16>::ENCODING,
+            <c_float>::ENCODING,
+            <c_float>::ENCODING,
+            <c_float>::ENCODING,
+            <c_float>::ENCODING,
+            <c_float>::ENCODING,
+            <c_float>::ENCODING,
+            <c_float>::ENCODING,
+            <c_float>::ENCODING,
+            <c_float>::ENCODING,
+            <c_float>::ENCODING,
+            <c_float>::ENCODING,
+            <c_float>::ENCODING,
+            <c_float>::ENCODING,
+            <c_float>::ENCODING,
+            <Bool>::ENCODING,
+            <Bool>::ENCODING,
+            <Bool>::ENCODING,
+        ],
+    );
+}
+
+unsafe impl RefEncode for GCExtendedGamepadSnapshotData {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 /// Fills out a snapshot from any compatible NSData source
 ///
 ///
