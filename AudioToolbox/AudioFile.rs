@@ -165,7 +165,6 @@ unsafe impl RefEncode for OpaqueAudioFileID {
 /// An opaque reference to an AudioFile object.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofileid?language=objc)
-#[cfg(feature = "AudioUnitProperties")]
 pub type AudioFileID = *mut OpaqueAudioFileID;
 
 /// A constant for an AudioFile property.
@@ -641,11 +640,7 @@ extern "C-unwind" {
     /// Parameter `outAudioFile`: if successful, an AudioFileID that can be used for subsequent AudioFile calls.
     ///
     /// Returns: returns noErr if successful.
-    #[cfg(all(
-        feature = "AudioUnitProperties",
-        feature = "objc2-core-audio-types",
-        feature = "objc2-core-foundation"
-    ))]
+    #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-foundation"))]
     pub fn AudioFileCreateWithURL(
         in_file_ref: &CFURL,
         in_file_type: AudioFileTypeID,
@@ -673,7 +668,7 @@ extern "C-unwind" {
     /// AudioFile calls.
     ///
     /// Returns: returns noErr if successful.
-    #[cfg(all(feature = "AudioUnitProperties", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "objc2-core-foundation")]
     pub fn AudioFileOpenURL(
         in_file_ref: &CFURL,
         in_permissions: AudioFilePermissions,
@@ -787,7 +782,7 @@ extern "C-unwind" {
     /// AudioFile calls.
     ///
     /// Returns: returns noErr if successful.
-    #[cfg(all(feature = "AudioUnitProperties", feature = "objc2-core-audio-types"))]
+    #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioFileInitializeWithCallbacks(
         in_client_data: NonNull<c_void>,
         in_read_func: AudioFile_ReadProc,
@@ -825,7 +820,6 @@ extern "C-unwind" {
     /// AudioFile calls.
     ///
     /// Returns: returns noErr if successful.
-    #[cfg(feature = "AudioUnitProperties")]
     pub fn AudioFileOpenWithCallbacks(
         in_client_data: NonNull<c_void>,
         in_read_func: AudioFile_ReadProc,
@@ -843,7 +837,6 @@ extern "C-unwind" {
     /// Parameter `inAudioFile`: an AudioFileID.
     ///
     /// Returns: returns noErr if successful.
-    #[cfg(feature = "AudioUnitProperties")]
     pub fn AudioFileClose(in_audio_file: AudioFileID) -> OSStatus;
 }
 
@@ -861,7 +854,6 @@ extern "C-unwind" {
     /// Parameter `inAudioFile`: an AudioFileID.
     ///
     /// Returns: returns noErr if successful.
-    #[cfg(feature = "AudioUnitProperties")]
     pub fn AudioFileOptimize(in_audio_file: AudioFileID) -> OSStatus;
 }
 
@@ -882,7 +874,6 @@ extern "C-unwind" {
 /// Parameter `outBuffer`: outBuffer should be a void * to user allocated memory large enough for the requested bytes.
 ///
 /// Returns: returns noErr if successful.
-#[cfg(feature = "AudioUnitProperties")]
 #[inline]
 pub unsafe extern "C-unwind" fn AudioFileReadBytes(
     in_audio_file: AudioFileID,
@@ -925,7 +916,6 @@ pub unsafe extern "C-unwind" fn AudioFileReadBytes(
 /// Parameter `inBuffer`: inBuffer should be a void * containing the bytes to be written
 ///
 /// Returns: returns noErr if successful.
-#[cfg(feature = "AudioUnitProperties")]
 #[inline]
 pub unsafe extern "C-unwind" fn AudioFileWriteBytes(
     in_audio_file: AudioFileID,
@@ -988,7 +978,7 @@ pub unsafe extern "C-unwind" fn AudioFileWriteBytes(
 /// Parameter `outBuffer`: outBuffer should be a pointer to user allocated memory.
 ///
 /// Returns: returns noErr if successful.
-#[cfg(all(feature = "AudioUnitProperties", feature = "objc2-core-audio-types"))]
+#[cfg(feature = "objc2-core-audio-types")]
 #[inline]
 pub unsafe extern "C-unwind" fn AudioFileReadPacketData(
     in_audio_file: AudioFileID,
@@ -1053,7 +1043,7 @@ pub unsafe extern "C-unwind" fn AudioFileReadPacketData(
 /// packet size.
 ///
 /// Returns: returns noErr if successful.
-#[cfg(all(feature = "AudioUnitProperties", feature = "objc2-core-audio-types"))]
+#[cfg(feature = "objc2-core-audio-types")]
 #[deprecated = "no longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn AudioFileReadPackets(
@@ -1111,7 +1101,7 @@ pub unsafe extern "C-unwind" fn AudioFileReadPackets(
 /// Parameter `inBuffer`: a void * to user allocated memory containing the packets to write.
 ///
 /// Returns: returns noErr if successful.
-#[cfg(all(feature = "AudioUnitProperties", feature = "objc2-core-audio-types"))]
+#[cfg(feature = "objc2-core-audio-types")]
 #[inline]
 pub unsafe extern "C-unwind" fn AudioFileWritePackets(
     in_audio_file: AudioFileID,
@@ -1160,7 +1150,6 @@ extern "C-unwind" {
     /// Parameter `outNumberItems`: on output, if successful, number of chunks of this type in the file.
     ///
     /// Returns: returns noErr if successful.
-    #[cfg(feature = "AudioUnitProperties")]
     pub fn AudioFileCountUserData(
         in_audio_file: AudioFileID,
         in_user_data_id: u32,
@@ -1180,7 +1169,6 @@ extern "C-unwind" {
     /// Parameter `outUserDataSize`: on output, if successful, the size of the user data chunk.
     ///
     /// Returns: returns noErr if successful.
-    #[cfg(feature = "AudioUnitProperties")]
     pub fn AudioFileGetUserDataSize(
         in_audio_file: AudioFileID,
         in_user_data_id: u32,
@@ -1201,7 +1189,6 @@ extern "C-unwind" {
     /// Parameter `outUserDataSize`: on output, if successful, the size of the user data chunk.
     ///
     /// Returns: returns noErr if successful.
-    #[cfg(feature = "AudioUnitProperties")]
     pub fn AudioFileGetUserDataSize64(
         in_audio_file: AudioFileID,
         in_user_data_id: u32,
@@ -1224,7 +1211,6 @@ extern "C-unwind" {
     /// Parameter `outUserData`: a pointer to a buffer in which to copy the chunk data.
     ///
     /// Returns: returns noErr if successful.
-    #[cfg(feature = "AudioUnitProperties")]
     pub fn AudioFileGetUserData(
         in_audio_file: AudioFileID,
         in_user_data_id: u32,
@@ -1250,7 +1236,6 @@ extern "C-unwind" {
     /// Parameter `outUserData`: a pointer to a buffer in which to copy the chunk data.
     ///
     /// Returns: returns noErr if successful.
-    #[cfg(feature = "AudioUnitProperties")]
     pub fn AudioFileGetUserDataAtOffset(
         in_audio_file: AudioFileID,
         in_user_data_id: u32,
@@ -1276,7 +1261,6 @@ extern "C-unwind" {
     /// (only the contents of the chunk, not including the chunk header).
     ///
     /// Returns: returns noErr if successful.
-    #[cfg(feature = "AudioUnitProperties")]
     pub fn AudioFileSetUserData(
         in_audio_file: AudioFileID,
         in_user_data_id: u32,
@@ -1296,7 +1280,6 @@ extern "C-unwind" {
     /// Parameter `inIndex`: an index specifying which chunk if there are more than one.
     ///
     /// Returns: returns noErr if successful.
-    #[cfg(feature = "AudioUnitProperties")]
     pub fn AudioFileRemoveUserData(
         in_audio_file: AudioFileID,
         in_user_data_id: u32,
@@ -1392,7 +1375,6 @@ extern "C-unwind" {
     /// Parameter `isWritable`: will be set to 1 if writable, or 0 if read only.
     ///
     /// Returns: returns noErr if successful.
-    #[cfg(feature = "AudioUnitProperties")]
     pub fn AudioFileGetPropertyInfo(
         in_audio_file: AudioFileID,
         in_property_id: AudioFilePropertyID,
@@ -1413,7 +1395,6 @@ extern "C-unwind" {
     /// Parameter `outPropertyData`: the buffer in which to write the property data.
     ///
     /// Returns: returns noErr if successful.
-    #[cfg(feature = "AudioUnitProperties")]
     pub fn AudioFileGetProperty(
         in_audio_file: AudioFileID,
         in_property_id: AudioFilePropertyID,
@@ -1434,7 +1415,6 @@ extern "C-unwind" {
     /// Parameter `inPropertyData`: the buffer containing the property data.
     ///
     /// Returns: returns noErr if successful.
-    #[cfg(feature = "AudioUnitProperties")]
     pub fn AudioFileSetProperty(
         in_audio_file: AudioFileID,
         in_property_id: AudioFilePropertyID,

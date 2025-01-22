@@ -126,7 +126,7 @@ extern "C-unwind" {
 /// ExtAudioFileRef is disposed. Disposing the ExtAudioFileRef will not close
 /// the AudioFileID when this Wrap API call is used, so the client is also
 /// responsible for closing the AudioFileID when finished with it.
-#[cfg(all(feature = "AudioFile", feature = "AudioUnitProperties"))]
+#[cfg(feature = "AudioFile")]
 #[inline]
 pub unsafe extern "C-unwind" fn ExtAudioFileWrapAudioFileID(
     in_file_id: AudioFileID,

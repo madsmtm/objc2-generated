@@ -1495,13 +1495,12 @@ pub use self::__AudioFile::kAudioFileWave64Type;
 pub use self::__AudioFile::AudioBytePacketTranslation;
 #[cfg(feature = "AudioFile")]
 pub use self::__AudioFile::AudioBytePacketTranslationFlags;
-#[cfg(all(feature = "AudioFile", feature = "AudioUnitProperties"))]
+#[cfg(feature = "AudioFile")]
 pub use self::__AudioFile::AudioFileClose;
-#[cfg(all(feature = "AudioFile", feature = "AudioUnitProperties"))]
+#[cfg(feature = "AudioFile")]
 pub use self::__AudioFile::AudioFileCountUserData;
 #[cfg(all(
     feature = "AudioFile",
-    feature = "AudioUnitProperties",
     feature = "objc2-core-audio-types",
     feature = "objc2-core-foundation"
 ))]
@@ -1512,39 +1511,31 @@ pub use self::__AudioFile::AudioFileFlags;
 pub use self::__AudioFile::AudioFileGetGlobalInfo;
 #[cfg(feature = "AudioFile")]
 pub use self::__AudioFile::AudioFileGetGlobalInfoSize;
-#[cfg(all(feature = "AudioFile", feature = "AudioUnitProperties"))]
+#[cfg(feature = "AudioFile")]
 pub use self::__AudioFile::AudioFileGetProperty;
-#[cfg(all(feature = "AudioFile", feature = "AudioUnitProperties"))]
+#[cfg(feature = "AudioFile")]
 pub use self::__AudioFile::AudioFileGetPropertyInfo;
-#[cfg(all(feature = "AudioFile", feature = "AudioUnitProperties"))]
+#[cfg(feature = "AudioFile")]
 pub use self::__AudioFile::AudioFileGetUserData;
-#[cfg(all(feature = "AudioFile", feature = "AudioUnitProperties"))]
+#[cfg(feature = "AudioFile")]
 pub use self::__AudioFile::AudioFileGetUserDataAtOffset;
-#[cfg(all(feature = "AudioFile", feature = "AudioUnitProperties"))]
+#[cfg(feature = "AudioFile")]
 pub use self::__AudioFile::AudioFileGetUserDataSize;
-#[cfg(all(feature = "AudioFile", feature = "AudioUnitProperties"))]
+#[cfg(feature = "AudioFile")]
 pub use self::__AudioFile::AudioFileGetUserDataSize64;
-#[cfg(all(feature = "AudioFile", feature = "AudioUnitProperties"))]
+#[cfg(feature = "AudioFile")]
 pub use self::__AudioFile::AudioFileID;
-#[cfg(all(
-    feature = "AudioFile",
-    feature = "AudioUnitProperties",
-    feature = "objc2-core-audio-types"
-))]
+#[cfg(all(feature = "AudioFile", feature = "objc2-core-audio-types"))]
 pub use self::__AudioFile::AudioFileInitializeWithCallbacks;
 #[cfg(all(feature = "AudioFile", feature = "objc2-core-foundation"))]
 pub use self::__AudioFile::AudioFileMarker;
 #[cfg(all(feature = "AudioFile", feature = "objc2-core-foundation"))]
 pub use self::__AudioFile::AudioFileMarkerList;
-#[cfg(all(
-    feature = "AudioFile",
-    feature = "AudioUnitProperties",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "AudioFile", feature = "objc2-core-foundation"))]
 pub use self::__AudioFile::AudioFileOpenURL;
-#[cfg(all(feature = "AudioFile", feature = "AudioUnitProperties"))]
+#[cfg(feature = "AudioFile")]
 pub use self::__AudioFile::AudioFileOpenWithCallbacks;
-#[cfg(all(feature = "AudioFile", feature = "AudioUnitProperties"))]
+#[cfg(feature = "AudioFile")]
 pub use self::__AudioFile::AudioFileOptimize;
 #[cfg(feature = "AudioFile")]
 pub use self::__AudioFile::AudioFilePacketTableInfo;
@@ -1552,19 +1543,11 @@ pub use self::__AudioFile::AudioFilePacketTableInfo;
 pub use self::__AudioFile::AudioFilePermissions;
 #[cfg(feature = "AudioFile")]
 pub use self::__AudioFile::AudioFilePropertyID;
-#[cfg(all(feature = "AudioFile", feature = "AudioUnitProperties"))]
+#[cfg(feature = "AudioFile")]
 pub use self::__AudioFile::AudioFileReadBytes;
-#[cfg(all(
-    feature = "AudioFile",
-    feature = "AudioUnitProperties",
-    feature = "objc2-core-audio-types"
-))]
+#[cfg(all(feature = "AudioFile", feature = "objc2-core-audio-types"))]
 pub use self::__AudioFile::AudioFileReadPacketData;
-#[cfg(all(
-    feature = "AudioFile",
-    feature = "AudioUnitProperties",
-    feature = "objc2-core-audio-types"
-))]
+#[cfg(all(feature = "AudioFile", feature = "objc2-core-audio-types"))]
 pub use self::__AudioFile::AudioFileReadPackets;
 #[cfg(all(feature = "AudioFile", feature = "objc2-core-foundation"))]
 pub use self::__AudioFile::AudioFileRegion;
@@ -1572,23 +1555,19 @@ pub use self::__AudioFile::AudioFileRegion;
 pub use self::__AudioFile::AudioFileRegionFlags;
 #[cfg(all(feature = "AudioFile", feature = "objc2-core-foundation"))]
 pub use self::__AudioFile::AudioFileRegionList;
-#[cfg(all(feature = "AudioFile", feature = "AudioUnitProperties"))]
+#[cfg(feature = "AudioFile")]
 pub use self::__AudioFile::AudioFileRemoveUserData;
-#[cfg(all(feature = "AudioFile", feature = "AudioUnitProperties"))]
+#[cfg(feature = "AudioFile")]
 pub use self::__AudioFile::AudioFileSetProperty;
-#[cfg(all(feature = "AudioFile", feature = "AudioUnitProperties"))]
+#[cfg(feature = "AudioFile")]
 pub use self::__AudioFile::AudioFileSetUserData;
 #[cfg(feature = "AudioFile")]
 pub use self::__AudioFile::AudioFileTypeAndFormatID;
 #[cfg(feature = "AudioFile")]
 pub use self::__AudioFile::AudioFileTypeID;
-#[cfg(all(feature = "AudioFile", feature = "AudioUnitProperties"))]
+#[cfg(feature = "AudioFile")]
 pub use self::__AudioFile::AudioFileWriteBytes;
-#[cfg(all(
-    feature = "AudioFile",
-    feature = "AudioUnitProperties",
-    feature = "objc2-core-audio-types"
-))]
+#[cfg(all(feature = "AudioFile", feature = "objc2-core-audio-types"))]
 pub use self::__AudioFile::AudioFileWritePackets;
 #[cfg(feature = "AudioFile")]
 pub use self::__AudioFile::AudioFile_GetSizeProc;
@@ -1610,7 +1589,7 @@ pub use self::__AudioFile::AudioPacketDependencyInfoTranslation;
 pub use self::__AudioFile::AudioPacketRangeByteCountTranslation;
 #[cfg(feature = "AudioFile")]
 pub use self::__AudioFile::AudioPacketRollDistanceTranslation;
-#[cfg(feature = "AudioUnitProperties")]
+#[cfg(feature = "AudioFile")]
 pub use self::__AudioFile::OpaqueAudioFileID;
 #[cfg(feature = "AudioFileStream")]
 pub use self::__AudioFileStream::kAudioFileStreamError_BadPropertySize;
@@ -3861,11 +3840,7 @@ pub use self::__ExtendedAudioFile::ExtAudioFileSeek;
 pub use self::__ExtendedAudioFile::ExtAudioFileSetProperty;
 #[cfg(feature = "ExtendedAudioFile")]
 pub use self::__ExtendedAudioFile::ExtAudioFileTell;
-#[cfg(all(
-    feature = "AudioFile",
-    feature = "AudioUnitProperties",
-    feature = "ExtendedAudioFile"
-))]
+#[cfg(all(feature = "AudioFile", feature = "ExtendedAudioFile"))]
 pub use self::__ExtendedAudioFile::ExtAudioFileWrapAudioFileID;
 #[cfg(all(feature = "ExtendedAudioFile", feature = "objc2-core-audio-types"))]
 pub use self::__ExtendedAudioFile::ExtAudioFileWrite;
