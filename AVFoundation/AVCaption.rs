@@ -882,7 +882,8 @@ impl AVCaption {
         /// Magenta    (RGB:1.0, 0.0, 1.0)
         /// Black    (RGB:0.0, 0.0, 0.0)
         #[unsafe(method(textColorAtIndex:range:))]
-        #[unsafe(method_family = none)]
+        // required for soundness, method has `returns_retained` attribute.
+        #[unsafe(method_family = copy)]
         pub unsafe fn textColorAtIndex_range(
             &self,
             index: NSInteger,
@@ -906,7 +907,8 @@ impl AVCaption {
         /// Magenta    (RGB:1.0, 0.0, 1.0)
         /// Black    (RGB:0.0, 0.0, 0.0)
         #[unsafe(method(backgroundColorAtIndex:range:))]
-        #[unsafe(method_family = none)]
+        // required for soundness, method has `returns_retained` attribute.
+        #[unsafe(method_family = copy)]
         pub unsafe fn backgroundColorAtIndex_range(
             &self,
             index: NSInteger,

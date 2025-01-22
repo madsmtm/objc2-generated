@@ -177,6 +177,17 @@ impl CIContext {
             from_rect: CGRect,
         );
 
+        #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
+        #[deprecated]
+        #[unsafe(method(createCGLayerWithSize:info:))]
+        // required for soundness, method has `returns_retained` attribute.
+        #[unsafe(method_family = copy)]
+        pub unsafe fn createCGLayerWithSize_info(
+            &self,
+            size: CGSize,
+            info: Option<&CFDictionary>,
+        ) -> Option<Retained<CGLayer>>;
+
         #[cfg(all(
             feature = "CIImage",
             feature = "objc2-core-foundation",
@@ -279,7 +290,54 @@ impl CIContext {
 
 /// createCGImage.
 impl CIContext {
-    extern_methods!();
+    extern_methods!(
+        #[cfg(all(
+            feature = "CIImage",
+            feature = "objc2-core-foundation",
+            feature = "objc2-core-graphics"
+        ))]
+        #[unsafe(method(createCGImage:fromRect:))]
+        // required for soundness, method has `returns_retained` attribute.
+        #[unsafe(method_family = copy)]
+        pub unsafe fn createCGImage_fromRect(
+            &self,
+            image: &CIImage,
+            from_rect: CGRect,
+        ) -> Option<Retained<CGImage>>;
+
+        #[cfg(all(
+            feature = "CIImage",
+            feature = "objc2-core-foundation",
+            feature = "objc2-core-graphics"
+        ))]
+        #[unsafe(method(createCGImage:fromRect:format:colorSpace:))]
+        // required for soundness, method has `returns_retained` attribute.
+        #[unsafe(method_family = copy)]
+        pub unsafe fn createCGImage_fromRect_format_colorSpace(
+            &self,
+            image: &CIImage,
+            from_rect: CGRect,
+            format: CIFormat,
+            color_space: Option<&CGColorSpace>,
+        ) -> Option<Retained<CGImage>>;
+
+        #[cfg(all(
+            feature = "CIImage",
+            feature = "objc2-core-foundation",
+            feature = "objc2-core-graphics"
+        ))]
+        #[unsafe(method(createCGImage:fromRect:format:colorSpace:deferred:))]
+        // required for soundness, method has `returns_retained` attribute.
+        #[unsafe(method_family = copy)]
+        pub unsafe fn createCGImage_fromRect_format_colorSpace_deferred(
+            &self,
+            image: &CIImage,
+            from_rect: CGRect,
+            format: CIFormat,
+            color_space: Option<&CGColorSpace>,
+            deferred: bool,
+        ) -> Option<Retained<CGImage>>;
+    );
 }
 
 /// OfflineGPUSupport.

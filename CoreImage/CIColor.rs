@@ -140,6 +140,11 @@ impl CIColor {
         #[unsafe(method_family = none)]
         pub unsafe fn alpha(&self) -> CGFloat;
 
+        #[cfg(feature = "objc2-core-graphics")]
+        #[unsafe(method(colorSpace))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn colorSpace(&self) -> Retained<CGColorSpace>;
+
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(red))]
         #[unsafe(method_family = none)]

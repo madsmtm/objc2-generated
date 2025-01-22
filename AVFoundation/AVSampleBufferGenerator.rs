@@ -53,7 +53,8 @@ impl AVSampleBufferGenerator {
         #[cfg(feature = "objc2-core-media")]
         #[deprecated = "Use -createSampleBufferForRequest: error:, passing NULL for the error if not required"]
         #[unsafe(method(createSampleBufferForRequest:))]
-        #[unsafe(method_family = none)]
+        // required for soundness, method has `returns_retained` attribute.
+        #[unsafe(method_family = copy)]
         pub unsafe fn createSampleBufferForRequest(
             &self,
             request: &AVSampleBufferRequest,

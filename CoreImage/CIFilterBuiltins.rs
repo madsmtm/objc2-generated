@@ -7322,6 +7322,7 @@ impl CIFilter {
         pub unsafe fn barsSwipeTransitionFilter() -> Retained<CIFilter>;
 
         #[unsafe(method(copyMachineTransitionFilter))]
+        // required for soundness, method has `returns_not_retained` attribute.
         #[unsafe(method_family = none)]
         pub unsafe fn copyMachineTransitionFilter() -> Retained<CIFilter>;
 

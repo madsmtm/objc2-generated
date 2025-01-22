@@ -789,6 +789,11 @@ impl CIImage {
         #[unsafe(method_family = none)]
         pub unsafe fn url(&self) -> Option<Retained<NSURL>>;
 
+        #[cfg(feature = "objc2-core-graphics")]
+        #[unsafe(method(colorSpace))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn colorSpace(&self) -> Option<Retained<CGColorSpace>>;
+
         #[unsafe(method(contentHeadroom))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentHeadroom(&self) -> c_float;

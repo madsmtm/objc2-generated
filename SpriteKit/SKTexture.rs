@@ -234,7 +234,8 @@ impl SKTexture {
         #[cfg(feature = "objc2-core-graphics")]
         /// Convert the current SKTexture into a CGImageRef object
         #[unsafe(method(CGImage))]
-        #[unsafe(method_family = none)]
+        // required for soundness, method has `returns_retained` attribute.
+        #[unsafe(method_family = copy)]
         pub unsafe fn CGImage(&self) -> Retained<CGImage>;
 
         #[cfg(feature = "block2")]

@@ -22,6 +22,14 @@ impl UIGraphicsRenderer {
         pub unsafe fn rendererContextClass() -> &'static AnyClass;
 
         #[cfg(feature = "objc2-core-graphics")]
+        #[unsafe(method(contextWithFormat:))]
+        // required for soundness, method has `returns_retained` attribute.
+        #[unsafe(method_family = copy)]
+        pub unsafe fn contextWithFormat(
+            format: &UIGraphicsRendererFormat,
+        ) -> Option<Retained<CGContext>>;
+
+        #[cfg(feature = "objc2-core-graphics")]
         #[unsafe(method(prepareCGContext:withRendererContext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn prepareCGContext_withRendererContext(

@@ -193,7 +193,8 @@ impl ASAuthorizationProviderExtensionLoginManager {
         ///
         /// Parameter `keyType`: The key type to retrieve.
         #[unsafe(method(beginKeyRotationForKeyType:))]
-        #[unsafe(method_family = none)]
+        // required for soundness, method has `returns_retained` attribute.
+        #[unsafe(method_family = copy)]
         pub unsafe fn beginKeyRotationForKeyType(
             &self,
             key_type: ASAuthorizationProviderExtensionKeyType,
